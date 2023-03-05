@@ -45,7 +45,7 @@ class AppRoute {
               vendorCreateUsecase: getIt.get(),
               vendorGetTemplateUsecase: getIt.get(),
             ),
-            child: const AppCreatePage(),
+            child: const VendorCreatePage(),
           ),
         ),
         GoRoute(

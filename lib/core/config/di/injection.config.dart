@@ -74,11 +74,11 @@ import 'package:webtrit_configurator/share/data/realtime_firebase_data.dart'
 import 'package:webtrit_configurator/share/entity/dto/dto.dart' as _i8;
 import 'package:webtrit_configurator/share/entity/entity.dart' as _i5;
 import 'package:webtrit_configurator/share/entity/mappers/implementation/themes/colors_mapper.dart'
-    as _i12;
+    as _i11;
 import 'package:webtrit_configurator/share/entity/mappers/implementation/themes/image_mapper.dart'
     as _i10;
 import 'package:webtrit_configurator/share/entity/mappers/implementation/themes/text_style_mapper.dart'
-    as _i11;
+    as _i12;
 import 'package:webtrit_configurator/share/entity/mappers/implementation/themes/theme_mapper.dart'
     as _i25;
 import 'package:webtrit_configurator/share/entity/mappers/implementation/vendors/vendor_mapper.dart'
@@ -117,10 +117,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i6.VendorMapper());
     gh.factory<_i7.Mapper<_i8.ImageDTO, _i9.ImageModel>>(
         () => _i10.ImageMapper());
-    gh.factory<_i7.Mapper<_i8.TextStyleDTO, _i9.TextStyleModel>>(
-        () => _i11.TextStyleMapper());
     gh.factory<_i7.Mapper<_i8.ColorDTO, _i9.ColorsModel>>(
-        () => _i12.ColorsMapper());
+        () => _i11.ColorsMapper());
+    gh.factory<_i7.Mapper<_i8.TextStyleDTO, _i9.TextStyleModel>>(
+        () => _i12.TextStyleMapper());
     gh.singleton<_i13.RealtimeFirebaseData>(_i13.RealtimeFirebaseData(
         firebaseDatabase: gh<_i4.FirebaseDatabase>()));
     gh.factory<_i14.ThemeRepository>(() =>
@@ -173,9 +173,9 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
         ));
     gh.factory<_i40.UsecaseThemeUpdate>(() => _i41.UsecaseThemeUpdateImpl(
-          gh<_i21.ThemeRepository>(),
-          gh<_i21.AuthRepository>(),
-          gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
+          themeRepository: gh<_i21.ThemeRepository>(),
+          authRepository: gh<_i21.AuthRepository>(),
+          mapper: gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
         ));
     gh.factory<_i21.UsecaseUserGet>(
         () => _i42.UsecaseThemeDeleteCreateImpl(gh<_i21.AuthRepository>()));
