@@ -110,7 +110,7 @@ class _FontsPickerState extends State<FontsPicker> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              final url = Uri.tryParse("https://fonts.google.com/specimen/${font.name}");
+                              final url = Uri.tryParse(ConstsUrl.font(font.name));
                               if (url != null) {
                                 if (await canLaunchUrl(url)) {
                                   await launchUrl(url);
