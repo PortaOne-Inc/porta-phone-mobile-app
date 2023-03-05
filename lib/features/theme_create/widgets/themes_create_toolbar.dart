@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+
+import 'package:webtrit_configurator/core/widgets/widgets.dart';
+
+class WelcomeToolbar extends StatelessWidget {
+  const WelcomeToolbar({
+    super.key,
+    required this.onSwitchedLanguage,
+  });
+
+  final Function() onSwitchedLanguage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 6),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 8, right: 8),
+              child: Row(
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    children: _buildLeftMenu(),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                context.l10n.feature_theme_create_Text_create_or_select_theme,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black.withOpacity(0.6)),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Wrap(
+                  alignment: WrapAlignment.end,
+                  children: _buildRightMenu(context),
+                ),
+                SwitcherLanguage(
+                  margin: const EdgeInsets.only(right: 16),
+                  onSwitchedLanguage: onSwitchedLanguage,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildLeftMenu() => [];
+
+  List<Widget> _buildRightMenu(BuildContext context) => [];
+}
