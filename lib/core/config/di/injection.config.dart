@@ -173,9 +173,9 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
         ));
     gh.factory<_i40.UsecaseThemeUpdate>(() => _i41.UsecaseThemeUpdateImpl(
-          themeRepository: gh<_i21.ThemeRepository>(),
-          authRepository: gh<_i21.AuthRepository>(),
-          mapper: gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
+          gh<_i21.ThemeRepository>(),
+          gh<_i21.AuthRepository>(),
+          gh<_i21.Mapper<_i21.ThemeDTO, _i21.ThemeModel>>(),
         ));
     gh.factory<_i21.UsecaseUserGet>(
         () => _i42.UsecaseThemeDeleteCreateImpl(gh<_i21.AuthRepository>()));
