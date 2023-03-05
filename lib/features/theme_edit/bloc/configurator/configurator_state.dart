@@ -1,0 +1,76 @@
+part of 'configurator_cubit.dart';
+
+@immutable
+class ThemePropertyState {
+  const ThemePropertyState(
+      {this.theme,
+      this.nameField = const ThemeNameInput.dirty(),
+      this.descriptionField = const ThemeDescriptionInput.dirty()});
+
+  final ThemeNameInput nameField;
+  final ThemeDescriptionInput descriptionField;
+
+  final ThemeModel? theme;
+
+  bool get isModelAvailable => theme != null;
+
+  Color? get colorPrimary => _parseColor(theme?.colors.primary);
+
+  Color? get colorOnPrimary => _parseColor(theme?.colors.onPrimary);
+
+  Color? get colorSecondary => _parseColor(theme?.colors.secondary);
+
+  Color? get colorSecondaryContainer => _parseColor(theme?.colors.secondaryContainer);
+
+  Color? get colorOnSecondaryContainer => _parseColor(theme?.colors.onSecondaryContainer);
+
+  Color? get colorTertiary => _parseColor(theme?.colors.tertiary);
+
+  Color? get colorError => _parseColor(theme?.colors.error);
+
+  Color? get colorOutline => _parseColor(theme?.colors.outline);
+
+  Color? get colorBackground => _parseColor(theme?.colors.background);
+
+  Color? get colorOnBackground => _parseColor(theme?.colors.onBackground);
+
+  Color? get colorSurface => _parseColor(theme?.colors.surface);
+
+  Color? get colorOnSurface => _parseColor(theme?.colors.onSurface);
+
+  List<Color> get gradientTabColor => _parseColors(theme?.colors.gradientTabColor);
+
+  Color? _parseColor(int? color) => color == null ? null : Color(color);
+
+  List<Color> _parseColors(List<int>? colors) {
+    if (colors == null) return [Colors.white, Colors.white];
+    return colors.map((it) => Color(it)).toList();
+  }
+
+  ThemePropertyState copyWith({
+    final ThemeModel? theme,
+    final FocusModel? focusGroup,
+    final ThemeNameInput? nameField,
+    final ThemeDescriptionInput? descriptionField,
+  }) {
+    return ThemePropertyState(
+      theme: theme ?? this.theme,
+      nameField: nameField ?? this.nameField,
+      descriptionField: descriptionField ?? this.descriptionField,
+    );
+  }
+
+  ThemePropertyState copyWithCommonConfig({
+    String? name,
+    String? note,
+  }) {
+    final styles = theme?.commonConfig.copyWith(appName: name, note: note);
+    return copyWith(theme: theme?.copyWith(commonConfig: styles));
+  }
+}
+
+class ConfiguratorFailure extends ThemePropertyState {
+  const ConfiguratorFailure(this.message, {required super.theme});
+
+  final String message;
+}

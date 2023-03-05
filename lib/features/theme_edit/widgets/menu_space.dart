@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+
+class MenuSpace extends StatelessWidget {
+  const MenuSpace({
+    super.key,
+    required this.children,
+    required this.isTopPosition,
+    this.border = Colors.black87,
+    this.borderWidth = 0.1,
+    this.background = const Color(0xffececec),
+  });
+
+  final List<Widget> children;
+  final bool isTopPosition;
+  final Color border;
+  final double borderWidth;
+  final Color background;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 4, top: 4),
+      decoration: BoxDecoration(
+        border: Border(
+            top: isTopPosition ? BorderSide.none : BorderSide(width: borderWidth, color: border),
+            bottom: isTopPosition ? BorderSide(width: borderWidth, color: border) : BorderSide.none),
+        color: background,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: children,
+      ),
+    );
+  }
+}
