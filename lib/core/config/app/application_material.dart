@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
-import 'package:webtrit_configurator/core/config/di/di.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../providers/providers.dart';
 import '../../theme/theme.dart';
@@ -11,11 +11,17 @@ import '../l10n/l10n.dart';
 import 'route/app_route.dart';
 
 class MaterialApplication extends StatelessWidget {
-  const MaterialApplication({super.key});
+  final GetIt getIt;
+
+  MaterialApplication({
+    super.key,
+    required this.getIt,
+  });
+
+  late final route = AppRoute().build(getIt);
 
   @override
   Widget build(BuildContext context) {
-    final route = AppRoute().build(InjectionProvider.of(context).getIt);
     return ProviderTheme(
       settings: appThemeSettings,
       lightDynamic: null,
@@ -43,6 +49,7 @@ class MaterialApplication extends StatelessWidget {
               ],
               background: Container(color: const Color(0xFFF5F5F5))),
           debugShowCheckedModeBanner: false,
+          restorationScopeId: 'App',
           routeInformationProvider: route.routeInformationProvider,
           routeInformationParser: route.routeInformationParser,
           routerDelegate: route.routerDelegate,

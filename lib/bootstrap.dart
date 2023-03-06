@@ -5,16 +5,16 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
 
+import 'package:webtrit_configurator/core/config/firebase/firebase_options.dart';
 import 'package:webtrit_phone/data/device_info.dart';
 import 'package:webtrit_phone/data/package_info.dart';
 import 'package:webtrit_phone/data/secure_storage.dart';
 
-import 'package:webtrit_configurator/core/config/config.dart';
 import 'package:webtrit_configurator/core/config/di/di.dart';
 
-
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +29,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
       final diContainer = await configureDependencies();
 
-      final diProvider = InjectionProvider(
-        getIt: diContainer,
-        child: await builder(),
-      );
-
-      return runApp(diProvider);
+      return runApp(await builder(diContainer));
     },
     (error, stackTrace) {
       if (kDebugMode) {
