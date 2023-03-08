@@ -104,7 +104,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   Future<ThemeDTO> _tryGetTheme(String userId, String applicationId, String themeId) async {
-    final theme = await datasource.get<String, Map<String, dynamic>>(_getThemePath(
+    final theme = await datasource.get<String, dynamic>(_getThemePath(
       userId: userId,
       applicationId: applicationId,
       themeId: themeId,
