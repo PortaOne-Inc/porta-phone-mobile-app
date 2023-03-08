@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
@@ -73,16 +74,14 @@ class ItemTheme extends StatelessWidget {
                           child: Wrap(
                             children: themeMode.colors
                                 .asList()
-                                .map(
-                                  (e) => UsedColor(
-                                    blurRadius: 4,
-                                    size: 16,
-                                    color: Color(e),
-                                    boxShadow: const [
-                                      BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)
-                                    ],
-                                  ),
-                                )
+                                .map((color) => UsedColor(
+                                      blurRadius: 4,
+                                      size: 16,
+                                      color: UtilityColor.fromHex(color),
+                                      boxShadow: const [
+                                        BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)
+                                      ],
+                                    ))
                                 .toList(),
                           ),
                         ),
@@ -101,7 +100,9 @@ class ItemTheme extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
-                                  colors: themeMode.colors.gradientTabColor.map((e) => Color(e)).toList()),
+                                  colors: themeMode.colors.gradientTabColor
+                                      .map((color) => UtilityColor.fromHex(color))
+                                      .toList()),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),
                           ),
@@ -116,7 +117,9 @@ class ItemTheme extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
-                                  colors: themeMode.colors.gradientTabColor.map((e) => Color(e)).toList()),
+                                  colors: themeMode.colors.gradientTabColor
+                                      .map((color) => UtilityColor.fromHex(color))
+                                      .toList()),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),
                           ),

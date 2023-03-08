@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
+
+import 'package:webtrit_configurator/core/extension/extension.dart';
+import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../../model/models.dart';
@@ -183,7 +186,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updatePrimaryColor(Color color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color.toHex())),
     ));
   }
 
@@ -250,80 +253,83 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updateColorPrimary(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color!.toHex())),
     ));
   }
 
   void updateColorOnPrimary(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onPrimary: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onPrimary: color!.toHex())),
     ));
   }
 
   void updateColorSecondary(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondary: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondary: color!.toHex())),
     ));
   }
 
   void updateColorSecondaryContainer(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondaryContainer: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondaryContainer: color!.toHex())),
     ));
   }
 
   void updateColorOnSecondaryContainer(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSecondaryContainer: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSecondaryContainer: color!.toHex())),
     ));
   }
 
   void updateColorTertiary(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(tertiary: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(tertiary: color!.toHex())),
     ));
   }
 
   void updateColorError(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(error: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(error: color!.toHex())),
     ));
   }
 
   void updateColorOutline(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(outline: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(outline: color!.toHex())),
     ));
   }
 
   void updateColorBackground(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(background: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(background: color!.toHex())),
     ));
   }
 
   void updateColorOnBackground(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onBackground: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onBackground: color!.toHex())),
     ));
   }
 
   void updateColorSurface(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(surface: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(surface: color!.toHex())),
     ));
   }
 
   void updateColorOnSurface(Color? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSurface: color!.value)),
+      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSurface: color!.toHex())),
     ));
   }
 
   void updateGradientTab(List<Color> colors) {
     emit(state.copyWith(
-        theme: state.theme?.copyWith(
-      colors: state.theme?.colors.copyWith(gradientTabColor: colors.map((e) => e.value).toList()),
-    )));
+      theme: state.theme?.copyWith(
+        colors: state.theme?.colors.copyWith(
+          gradientTabColor: colors.map((e) => e.toHex()).toList(),
+        ),
+      ),
+    ));
   }
 }

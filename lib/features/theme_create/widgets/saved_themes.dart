@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import 'used_color.dart';
@@ -30,10 +31,12 @@ class SavedThemes extends StatelessWidget {
             width: 128,
             height: 128,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: themeMode.colors.gradientTabColor.map((e) => Color(e)).toList())),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: themeMode.colors.gradientTabColor.map((color) => UtilityColor.fromHex(color)).toList(),
+              ),
+            ),
             child: Column(
               children: [
                 Container(
@@ -49,7 +52,11 @@ class SavedThemes extends StatelessWidget {
                               Theme.of(context).textTheme.labelLarge)
                           ?.copyWith(color: Colors.white, fontWeight: FontWeight.w400)),
                 ),
-                Wrap(children: themeMode.colors.asList().map((e) => UsedColor(color: Color(e))).toList())
+                Wrap(
+                    children: themeMode.colors
+                        .asList()
+                        .map((color) => UsedColor(color: UtilityColor.fromHex(color)))
+                        .toList())
               ],
             ),
           ),

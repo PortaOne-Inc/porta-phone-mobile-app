@@ -6,7 +6,7 @@ import '../../mapper.dart';
 
 @Injectable(as: Mapper<ColorDTO, ColorsModel>)
 class ColorsMapper extends Mapper<ColorDTO, ColorsModel> {
-  final int _whiteColor = 4294967295;
+  final String _whiteColor = '#FFFFFF';
 
   @override
   ColorDTO mapToDto(ColorsModel model) {

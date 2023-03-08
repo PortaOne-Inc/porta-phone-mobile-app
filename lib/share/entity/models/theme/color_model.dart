@@ -1,17 +1,17 @@
 class ColorsModel {
-  final int primary;
-  final int onPrimary;
-  final int secondary;
-  final int secondaryContainer;
-  final int onSecondaryContainer;
-  final int tertiary;
-  final int error;
-  final int outline;
-  final int background;
-  final int onBackground;
-  final int surface;
-  final int onSurface;
-  final List<int> gradientTabColor;
+  final String primary;
+  final String onPrimary;
+  final String secondary;
+  final String secondaryContainer;
+  final String onSecondaryContainer;
+  final String tertiary;
+  final String error;
+  final String outline;
+  final String background;
+  final String onBackground;
+  final String surface;
+  final String onSurface;
+  final List<String> gradientTabColor;
 
   ColorsModel(
       {required this.primary,
@@ -29,19 +29,19 @@ class ColorsModel {
       this.gradientTabColor = const []});
 
   ColorsModel copyWith({
-    final int? primary,
-    final int? onPrimary,
-    final int? secondary,
-    final int? secondaryContainer,
-    final int? onSecondaryContainer,
-    final int? tertiary,
-    final int? error,
-    final int? outline,
-    final int? background,
-    final int? onBackground,
-    final int? surface,
-    final int? onSurface,
-    final List<int>? gradientTabColor,
+    final String? primary,
+    final String? onPrimary,
+    final String? secondary,
+    final String? secondaryContainer,
+    final String? onSecondaryContainer,
+    final String? tertiary,
+    final String? error,
+    final String? outline,
+    final String? background,
+    final String? onBackground,
+    final String? surface,
+    final String? onSurface,
+    final List<String>? gradientTabColor,
   }) {
     return ColorsModel(
       primary: primary ?? this.primary,
@@ -60,7 +60,7 @@ class ColorsModel {
     );
   }
 
-  List<int> asList() => [
+  List<String> asList() => [
         primary,
         onPrimary,
         secondary,

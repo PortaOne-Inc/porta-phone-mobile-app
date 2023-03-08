@@ -20,19 +20,19 @@ ColorDTO _$ColorDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ColorDTO {
-  int? get primary => throw _privateConstructorUsedError;
-  int? get onPrimary => throw _privateConstructorUsedError;
-  int? get secondary => throw _privateConstructorUsedError;
-  int? get secondaryContainer => throw _privateConstructorUsedError;
-  int? get onSecondaryContainer => throw _privateConstructorUsedError;
-  int? get tertiary => throw _privateConstructorUsedError;
-  int? get error => throw _privateConstructorUsedError;
-  int? get outline => throw _privateConstructorUsedError;
-  int? get background => throw _privateConstructorUsedError;
-  int? get onBackground => throw _privateConstructorUsedError;
-  int? get surface => throw _privateConstructorUsedError;
-  int? get onSurface => throw _privateConstructorUsedError;
-  List<int>? get gradientTabColor => throw _privateConstructorUsedError;
+  String? get primary => throw _privateConstructorUsedError;
+  String? get onPrimary => throw _privateConstructorUsedError;
+  String? get secondary => throw _privateConstructorUsedError;
+  String? get secondaryContainer => throw _privateConstructorUsedError;
+  String? get onSecondaryContainer => throw _privateConstructorUsedError;
+  String? get tertiary => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+  String? get outline => throw _privateConstructorUsedError;
+  String? get background => throw _privateConstructorUsedError;
+  String? get onBackground => throw _privateConstructorUsedError;
+  String? get surface => throw _privateConstructorUsedError;
+  String? get onSurface => throw _privateConstructorUsedError;
+  List<String>? get gradientTabColor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,19 +46,19 @@ abstract class $ColorDTOCopyWith<$Res> {
       _$ColorDTOCopyWithImpl<$Res, ColorDTO>;
   @useResult
   $Res call(
-      {int? primary,
-      int? onPrimary,
-      int? secondary,
-      int? secondaryContainer,
-      int? onSecondaryContainer,
-      int? tertiary,
-      int? error,
-      int? outline,
-      int? background,
-      int? onBackground,
-      int? surface,
-      int? onSurface,
-      List<int>? gradientTabColor});
+      {String? primary,
+      String? onPrimary,
+      String? secondary,
+      String? secondaryContainer,
+      String? onSecondaryContainer,
+      String? tertiary,
+      String? error,
+      String? outline,
+      String? background,
+      String? onBackground,
+      String? surface,
+      String? onSurface,
+      List<String>? gradientTabColor});
 }
 
 /// @nodoc
@@ -92,55 +92,55 @@ class _$ColorDTOCopyWithImpl<$Res, $Val extends ColorDTO>
       primary: freezed == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onPrimary: freezed == onPrimary
           ? _value.onPrimary
           : onPrimary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       secondary: freezed == secondary
           ? _value.secondary
           : secondary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       secondaryContainer: freezed == secondaryContainer
           ? _value.secondaryContainer
           : secondaryContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onSecondaryContainer: freezed == onSecondaryContainer
           ? _value.onSecondaryContainer
           : onSecondaryContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       tertiary: freezed == tertiary
           ? _value.tertiary
           : tertiary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       outline: freezed == outline
           ? _value.outline
           : outline // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       background: freezed == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onBackground: freezed == onBackground
           ? _value.onBackground
           : onBackground // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       surface: freezed == surface
           ? _value.surface
           : surface // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onSurface: freezed == onSurface
           ? _value.onSurface
           : onSurface // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       gradientTabColor: freezed == gradientTabColor
           ? _value.gradientTabColor
           : gradientTabColor // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -153,19 +153,19 @@ abstract class _$$_ColorDTOCopyWith<$Res> implements $ColorDTOCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? primary,
-      int? onPrimary,
-      int? secondary,
-      int? secondaryContainer,
-      int? onSecondaryContainer,
-      int? tertiary,
-      int? error,
-      int? outline,
-      int? background,
-      int? onBackground,
-      int? surface,
-      int? onSurface,
-      List<int>? gradientTabColor});
+      {String? primary,
+      String? onPrimary,
+      String? secondary,
+      String? secondaryContainer,
+      String? onSecondaryContainer,
+      String? tertiary,
+      String? error,
+      String? outline,
+      String? background,
+      String? onBackground,
+      String? surface,
+      String? onSurface,
+      List<String>? gradientTabColor});
 }
 
 /// @nodoc
@@ -197,55 +197,55 @@ class __$$_ColorDTOCopyWithImpl<$Res>
       primary: freezed == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onPrimary: freezed == onPrimary
           ? _value.onPrimary
           : onPrimary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       secondary: freezed == secondary
           ? _value.secondary
           : secondary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       secondaryContainer: freezed == secondaryContainer
           ? _value.secondaryContainer
           : secondaryContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onSecondaryContainer: freezed == onSecondaryContainer
           ? _value.onSecondaryContainer
           : onSecondaryContainer // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       tertiary: freezed == tertiary
           ? _value.tertiary
           : tertiary // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       outline: freezed == outline
           ? _value.outline
           : outline // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       background: freezed == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onBackground: freezed == onBackground
           ? _value.onBackground
           : onBackground // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       surface: freezed == surface
           ? _value.surface
           : surface // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       onSurface: freezed == onSurface
           ? _value.onSurface
           : onSurface // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       gradientTabColor: freezed == gradientTabColor
           ? _value.gradientTabColor
           : gradientTabColor // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<String>?,
     ));
   }
 }
@@ -272,31 +272,31 @@ class _$_ColorDTO implements _ColorDTO {
       _$$_ColorDTOFromJson(json);
 
   @override
-  final int? primary;
+  final String? primary;
   @override
-  final int? onPrimary;
+  final String? onPrimary;
   @override
-  final int? secondary;
+  final String? secondary;
   @override
-  final int? secondaryContainer;
+  final String? secondaryContainer;
   @override
-  final int? onSecondaryContainer;
+  final String? onSecondaryContainer;
   @override
-  final int? tertiary;
+  final String? tertiary;
   @override
-  final int? error;
+  final String? error;
   @override
-  final int? outline;
+  final String? outline;
   @override
-  final int? background;
+  final String? background;
   @override
-  final int? onBackground;
+  final String? onBackground;
   @override
-  final int? surface;
+  final String? surface;
   @override
-  final int? onSurface;
+  final String? onSurface;
   @override
-  final List<int>? gradientTabColor;
+  final List<String>? gradientTabColor;
 
   @override
   String toString() {
@@ -366,48 +366,48 @@ class _$_ColorDTO implements _ColorDTO {
 
 abstract class _ColorDTO implements ColorDTO {
   const factory _ColorDTO(
-      {final int? primary,
-      final int? onPrimary,
-      final int? secondary,
-      final int? secondaryContainer,
-      final int? onSecondaryContainer,
-      final int? tertiary,
-      final int? error,
-      final int? outline,
-      final int? background,
-      final int? onBackground,
-      final int? surface,
-      final int? onSurface,
-      final List<int>? gradientTabColor}) = _$_ColorDTO;
+      {final String? primary,
+      final String? onPrimary,
+      final String? secondary,
+      final String? secondaryContainer,
+      final String? onSecondaryContainer,
+      final String? tertiary,
+      final String? error,
+      final String? outline,
+      final String? background,
+      final String? onBackground,
+      final String? surface,
+      final String? onSurface,
+      final List<String>? gradientTabColor}) = _$_ColorDTO;
 
   factory _ColorDTO.fromJson(Map<String, dynamic> json) = _$_ColorDTO.fromJson;
 
   @override
-  int? get primary;
+  String? get primary;
   @override
-  int? get onPrimary;
+  String? get onPrimary;
   @override
-  int? get secondary;
+  String? get secondary;
   @override
-  int? get secondaryContainer;
+  String? get secondaryContainer;
   @override
-  int? get onSecondaryContainer;
+  String? get onSecondaryContainer;
   @override
-  int? get tertiary;
+  String? get tertiary;
   @override
-  int? get error;
+  String? get error;
   @override
-  int? get outline;
+  String? get outline;
   @override
-  int? get background;
+  String? get background;
   @override
-  int? get onBackground;
+  String? get onBackground;
   @override
-  int? get surface;
+  String? get surface;
   @override
-  int? get onSurface;
+  String? get onSurface;
   @override
-  List<int>? get gradientTabColor;
+  List<String>? get gradientTabColor;
   @override
   @JsonKey(ignore: true)
   _$$_ColorDTOCopyWith<_$_ColorDTO> get copyWith =>

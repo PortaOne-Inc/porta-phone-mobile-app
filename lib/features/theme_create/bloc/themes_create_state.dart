@@ -2,7 +2,11 @@ part of 'themes_create_cubit.dart';
 
 @immutable
 class ThemesCreateState {
-  const ThemesCreateState({this.themes = const [], this.defaultTheme, this.nameField = const ThemeNameInput.pure()});
+  const ThemesCreateState({
+    this.themes = const [],
+    this.defaultTheme,
+    this.nameField = const ThemeNameInput.pure(),
+  });
 
   final List<ThemeModel> themes;
   final ThemeModel? defaultTheme;
@@ -10,7 +14,7 @@ class ThemesCreateState {
 
   Color? get colorPrimary => _parseColor(defaultTheme?.colors.primary);
 
-  Color? _parseColor(int? color) => color == null ? null : Color(color);
+  Color? _parseColor(String? color) => color == null ? null : UtilityColor.fromHex(color);
 
   ThemesCreateState copyWith({
     final List<ThemeModel>? themes,
@@ -21,7 +25,6 @@ class ThemesCreateState {
       defaultTheme: defaultTheme ?? this.defaultTheme,
       themes: themes ?? this.themes,
       nameField: nameField ?? this.nameField,
-
     );
   }
 }

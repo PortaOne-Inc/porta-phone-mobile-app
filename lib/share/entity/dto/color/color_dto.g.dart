@@ -7,20 +7,20 @@ part of 'color_dto.dart';
 // **************************************************************************
 
 _$_ColorDTO _$$_ColorDTOFromJson(Map<String, dynamic> json) => _$_ColorDTO(
-      primary: json['primary'] as int?,
-      onPrimary: json['onPrimary'] as int?,
-      secondary: json['secondary'] as int?,
-      secondaryContainer: json['secondaryContainer'] as int?,
-      onSecondaryContainer: json['onSecondaryContainer'] as int?,
-      tertiary: json['tertiary'] as int?,
-      error: json['error'] as int?,
-      outline: json['outline'] as int?,
-      background: json['background'] as int?,
-      onBackground: json['onBackground'] as int?,
-      surface: json['surface'] as int?,
-      onSurface: json['onSurface'] as int?,
+      primary: json['primary'] as String?,
+      onPrimary: json['onPrimary'] as String?,
+      secondary: json['secondary'] as String?,
+      secondaryContainer: json['secondaryContainer'] as String?,
+      onSecondaryContainer: json['onSecondaryContainer'] as String?,
+      tertiary: json['tertiary'] as String?,
+      error: json['error'] as String?,
+      outline: json['outline'] as String?,
+      background: json['background'] as String?,
+      onBackground: json['onBackground'] as String?,
+      surface: json['surface'] as String?,
+      onSurface: json['onSurface'] as String?,
       gradientTabColor: (json['gradientTabColor'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => e as String)
           .toList(),
     );
 

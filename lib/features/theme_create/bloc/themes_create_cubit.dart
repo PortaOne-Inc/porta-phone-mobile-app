@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
+import 'package:webtrit_configurator/core/extension/extension.dart';
+import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../model/theme_name_input.dart';
@@ -74,7 +76,7 @@ class ThemesCreateCubit extends Cubit<ThemesCreateState> {
   }
 
   void initPrimaryColor(Color color) {
-    final newColors = state.defaultTheme!.colors.copyWith(primary: color.value);
+    final newColors = state.defaultTheme!.colors.copyWith(primary: color.toHex());
     emit(state.copyWith(defaultTheme: state.defaultTheme!.copyWith(colors: newColors)));
   }
 
