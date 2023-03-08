@@ -77,7 +77,7 @@
   "common_language_en": "EN",
   "common_language_ua": "UA",
   "common_text_delete": "delete",
-  "common_failure_message": "Description to short",
+  "common_failure_message": "Failure",
   "feature_auth_logout": "Logout",
   "feature_auth_SnakeBar_success_auth": "You success authorized",
   "feature_auth_Input_invalid_email_address": "Invalid email address",
