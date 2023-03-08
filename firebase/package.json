@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "object-to-xml": "^2.0.0",
+    "xmlbuilder": "^15.1.1"
+  }
+}
