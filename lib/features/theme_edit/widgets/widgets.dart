@@ -8,4 +8,5 @@ export 'log_event.dart';
 export 'log_event_close.dart';
 export 'log_event_message.dart';
 export 'menu_space.dart';
+export 'font_item.dart';
 export 'dialog/credentials_toolbar.dart';

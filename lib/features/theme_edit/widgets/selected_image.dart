@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:webtrit_configurator/core/widgets/image/image.dart';
 
 import 'package:webtrit_configurator/share/entity/models/theme/image_model.dart';
 
@@ -19,7 +20,7 @@ class SelectedImage extends StatelessWidget {
   final String name;
   final Function() onTap;
   final Function() onRemove;
-  final double _size = 200;
+  final Size _size = const Size.square(200);
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +31,16 @@ class SelectedImage extends StatelessWidget {
             color: Colors.white,
             border: Border.all(color: Colors.grey.withOpacity(0.3)),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
-        width: _size,
-        height: _size,
+        width: _size.width,
+        height: _size.height,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            (image?.isAvailable ?? false)
-                ? SvgPicture.memory(
-                    width: _size,
-                    height: _size,
-                    base64Decode(image!.data!),
-                    fit: BoxFit.cover,
-                  )
-                : GestureDetector(
-                    onTap: () => onTap(),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.05),
-                      width: _size,
-                      height: _size,
-                      child: Icon(
-                        Icons.add_photo_alternate_outlined,
-                        color: Colors.orange.withOpacity(0.3),
-                        size: 32,
-                      ),
-                    ),
-                  ),
+            ImageResource(
+              imageModel: image,
+              size: _size,
+              onTap: onTap,
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(

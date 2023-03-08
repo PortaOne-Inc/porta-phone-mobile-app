@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 
 class FontItem extends StatelessWidget {
@@ -14,7 +15,6 @@ class FontItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(left: 16, right: 16),
       elevation: 1,
       child: InkWell(
         onTap: () async => onTap.call(),
@@ -27,7 +27,10 @@ class FontItem extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               border: Border(
-                left: BorderSide(color: Theme.of(context).colorScheme.primary, width: 6),
+                left: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 6,
+                ),
               ),
             ),
             padding: const EdgeInsets.symmetric(

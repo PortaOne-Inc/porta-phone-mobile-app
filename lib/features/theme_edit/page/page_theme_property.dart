@@ -208,8 +208,10 @@ class PageThemeProperty extends StatelessWidget {
                             fontName: state.theme?.textStyles.generalFontName,
                             onTap: () => _onChangeBaseFont(context, bloc),
                           ),
-                          const SizedBox(
-                            height: 8,
+                          const Divider(
+                            indent: 8,
+                            endIndent: 8,
+                            color: Colors.black12,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_large,
@@ -229,9 +231,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_medium,
                             onLineHeight: (value) => bloc.setDisplayMediumStyle(
@@ -249,9 +248,6 @@ class PageThemeProperty extends StatelessWidget {
                                 wordSpacing: value,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_small,
@@ -271,9 +267,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_large,
                             onLineHeight: (value) => bloc.setHeadlineLargeStyle(
@@ -291,9 +284,6 @@ class PageThemeProperty extends StatelessWidget {
                                 wordSpacing: value,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_medium,
@@ -313,9 +303,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_small,
                             onLineHeight: (value) => bloc.setHeadlineSmallStyle(
@@ -333,9 +320,6 @@ class PageThemeProperty extends StatelessWidget {
                                 wordSpacing: value,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_large,
@@ -355,9 +339,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_medium,
                             onLineHeight: (value) => bloc.setTitleMediumStyle(
@@ -375,9 +356,6 @@ class PageThemeProperty extends StatelessWidget {
                                 wordSpacing: value,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_small,
@@ -397,9 +375,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_large,
                             onLineHeight: (value) => bloc.setBodyLargeStyle(
@@ -418,9 +393,6 @@ class PageThemeProperty extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_medium,
                             onLineHeight: (value) => bloc.setBodyMediumStyle(
@@ -438,9 +410,6 @@ class PageThemeProperty extends StatelessWidget {
                                 wordSpacing: value,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_small,
@@ -461,32 +430,33 @@ class PageThemeProperty extends StatelessWidget {
                   ExpansionTile(
                     title: Text(context.l10n.configurator_image_resources),
                     childrenPadding: const EdgeInsets.all(16),
+                    expandedAlignment: Alignment.centerLeft,
                     children: [
-                      Card(
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.start,
-                            children: [
-                              SelectedImage(
-                                name: context.l10n.configurator_image_resource_onboarding,
-                                image: state.theme?.images.onboarding,
-                                onTap: () async => _onChangeOnboarding(bloc),
-                                onRemove: () => bloc.removeImageOnboarding(),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              SelectedImage(
-                                name: context.l10n.feature_theme_edit_Image_logo,
-                                image: state.theme?.images.logo,
-                                onTap: () async => _onChangeLogo(bloc),
-                                onRemove: () => bloc.removeImageLogo(),
-                              ),
-                            ],
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: [
+                          SelectedImage(
+                            name: context.l10n.configurator_image_resource_onboarding,
+                            image: state.theme?.images.onboarding,
+                            onTap: () async => _onChangeOnboarding(bloc),
+                            onRemove: () => bloc.removeImageOnboarding(),
                           ),
-                        ),
-                      )
+                          SelectedImage(
+                            name: context.l10n.feature_theme_edit_Image_logo,
+                            image: state.theme?.images.logo,
+                            onTap: () async => _onChangeLogo(bloc),
+                            onRemove: () => bloc.removeImageLogo(),
+                          ),
+                          SelectedImage(
+                            name: 'Push notification logo',
+                            image: state.theme?.images.logo,
+                            onTap: () async => _onChangeLogo(bloc),
+                            onRemove: () => bloc.removeImageLogo(),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],

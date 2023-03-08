@@ -10,7 +10,7 @@ class TextStyleItem extends StatelessWidget {
     required this.onLineHeight,
     required this.onLaterSpacing,
     required this.onWordSpacing,
-    this.margin = const EdgeInsets.only(left: 16, right: 16, bottom: 4),
+    this.margin = EdgeInsets.zero,
   });
 
   final String title;
@@ -22,7 +22,6 @@ class TextStyleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(left: 16, right: 16),
       elevation: 1,
       child: ClipPath(
         clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))),
