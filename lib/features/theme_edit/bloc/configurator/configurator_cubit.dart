@@ -211,20 +211,14 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
   }
 
   void updateImageLogo(ImageModel path) {
-    if (path.isRaster) {
-      emit(
-        ConfiguratorFailure("You can't use raster images", theme: state.theme),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          theme: state.theme?.copyWith(
-              images: state.theme?.images.copyWith(
-            logo: path,
-          )),
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        theme: state.theme?.copyWith(
+            images: state.theme?.images.copyWith(
+          logo: path,
+        )),
+      ),
+    );
   }
 
   void removeImageLogo() {
