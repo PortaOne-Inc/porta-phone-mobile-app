@@ -13,9 +13,9 @@ extension ExtensionValidationDescriptionErrorL10n on ApplicationDescriptionInput
         case ApplicationDescriptionValidationError.blank:
           return context.l10n.validationBlankError;
         case ApplicationDescriptionValidationError.toLong:
-          return context.l10n.common_validation_description_to_long;
+          return context.l10n.feature_vendor_create_Validation_description_to_long;
         case ApplicationDescriptionValidationError.toShort:
-          return context.l10n.common_validation_description_to_short;
+          return context.l10n.feature_vendor_create_Validation_description_to_short;
       }
     }
   }

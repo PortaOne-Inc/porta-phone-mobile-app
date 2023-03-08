@@ -50,6 +50,8 @@
   "feature_theme_public_themes": "Public themes",
   "feature_theme_create": "Create theme",
   "feature_theme_create_Text_create_or_select_theme": "Create or select your theme",
+  "feature_theme_edit_Validation_to_short": "Theme name to short",
+  "feature_theme_edit_Validation_to_long": "Theme name to long",
   "feature_theme_edit_ExpansionTile_common_property": "Common property",
   "feature_theme_edit_add_font": "Add font",
   "feature_theme_edit_edit_font": "Edit font",
