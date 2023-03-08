@@ -12,9 +12,9 @@ extension ThemeNameInputErrorL10n on ThemeNameInput {
         case ThemeNameValidationError.blank:
           return context.l10n.validationBlankError;
         case ThemeNameValidationError.toLong:
-          return context.l10n.common_validation_description_to_long;
+          return context.l10n.feature_theme_edit_Validation_to_long;
         case ThemeNameValidationError.toShort:
-          return context.l10n.common_validation_description_to_short;
+          return context.l10n.feature_theme_edit_Validation_to_short;
       }
     }
   }
