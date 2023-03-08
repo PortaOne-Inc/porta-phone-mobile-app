@@ -54,12 +54,6 @@ class ItemTheme extends StatelessWidget {
                       Text(themeMode.textStyles.generalFontName,
                           textAlign: TextAlign.start,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black87)),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(themeMode.commonConfig.note,
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black38)),
                     ],
                   ),
                 ),

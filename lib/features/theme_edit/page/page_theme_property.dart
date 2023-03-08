@@ -41,17 +41,6 @@ class PageThemeProperty extends StatelessWidget {
                           errorText: state.nameField.errorL10n(context),
                         ),
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextFormField(
-                        onChanged: bloc.updateThemeNote,
-                        initialValue: bloc.state.descriptionField.value,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.feature_theme_InputHint_note,
-                          errorText: state.nameField.errorL10n(context),
-                        ),
-                      ),
                     ],
                   ),
                   ExpansionTile(

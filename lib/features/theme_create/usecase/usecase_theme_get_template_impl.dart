@@ -18,7 +18,6 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
       textStyles: FontModel.empty(),
       commonConfig: CommonConfigModel(
         appName: themeName ?? '',
-        note: '',
       ),
       colors: ColorsModel(
           gradientTabColor: [0xFF58A1A4, 0xFF343D77],

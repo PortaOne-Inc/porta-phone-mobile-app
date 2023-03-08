@@ -2,13 +2,12 @@ part of 'configurator_cubit.dart';
 
 @immutable
 class ThemePropertyState {
-  const ThemePropertyState(
-      {this.theme,
-      this.nameField = const ThemeNameInput.dirty(),
-      this.descriptionField = const ThemeDescriptionInput.dirty()});
+  const ThemePropertyState({
+    this.theme,
+    this.nameField = const ThemeNameInput.dirty(),
+  });
 
   final ThemeNameInput nameField;
-  final ThemeDescriptionInput descriptionField;
 
   final ThemeModel? theme;
 
@@ -51,26 +50,28 @@ class ThemePropertyState {
     final ThemeModel? theme,
     final FocusModel? focusGroup,
     final ThemeNameInput? nameField,
-    final ThemeDescriptionInput? descriptionField,
   }) {
     return ThemePropertyState(
       theme: theme ?? this.theme,
       nameField: nameField ?? this.nameField,
-      descriptionField: descriptionField ?? this.descriptionField,
     );
   }
 
   ThemePropertyState copyWithCommonConfig({
     String? name,
-    String? note,
   }) {
-    final styles = theme?.commonConfig.copyWith(appName: name, note: note);
+    final styles = theme?.commonConfig.copyWith(
+      appName: name,
+    );
     return copyWith(theme: theme?.copyWith(commonConfig: styles));
   }
 }
 
 class ConfiguratorFailure extends ThemePropertyState {
-  const ConfiguratorFailure(this.message, {required super.theme});
+  const ConfiguratorFailure(
+    this.message, {
+    required super.theme,
+  });
 
   final String message;
 }

@@ -6,20 +6,29 @@ import '../../mapper.dart';
 
 @Injectable(as: Mapper<ThemeDTO, ThemeModel>)
 class ThemeMapper extends Mapper<ThemeDTO, ThemeModel> {
+  ThemeMapper(
+    this.colorsMapper,
+    this.textStyleMapper,
+    this.imageMapper,
+  );
+
   final Mapper<ColorDTO, ColorsModel> colorsMapper;
   final Mapper<TextStyleDTO, TextStyleModel> textStyleMapper;
   final Mapper<ImageDTO, ImageModel> imageMapper;
-
-  ThemeMapper(this.colorsMapper, this.textStyleMapper, this.imageMapper);
 
   @override
   ThemeDTO mapToDto(ThemeModel model) {
     return ThemeDTO(
         colors: colorsMapper.mapToDto(model.colors),
-        commonConfig: ThemeCommonDTO(appName: model.commonConfig.appName, note: model.commonConfig.note),
+        commonConfig: ThemeCommonDTO(
+          appName: model.commonConfig.appName,
+        ),
         textStyles: _toTextStyleCollectionDTO(model.textStyles),
         images: ImageCollectionDTO(
-            logo: imageMapper.mapToDto(model.images.logo), onboarding: imageMapper.mapToDto(model.images.onboarding)),
+            logo: imageMapper.mapToDto(model.images.logo),
+            onboarding: imageMapper.mapToDto(
+              model.images.onboarding,
+            )),
         id: model.id);
   }
 
@@ -27,7 +36,9 @@ class ThemeMapper extends Mapper<ThemeDTO, ThemeModel> {
   ThemeModel mapToModel(ThemeDTO dto) {
     return ThemeModel(
         colors: colorsMapper.mapToModel(dto.colors ?? const ColorDTO()),
-        commonConfig: CommonConfigModel(appName: dto.commonConfig?.appName ?? '', note: dto.commonConfig?.note ?? ''),
+        commonConfig: CommonConfigModel(
+          appName: dto.commonConfig?.appName ?? '',
+        ),
         textStyles: _toTextStyleCollectionModel(dto.textStyles),
         images: ConfiguratorImagesSetting(
             logo: imageMapper.mapToModel(dto.images?.logo ?? const ImageDTO()),

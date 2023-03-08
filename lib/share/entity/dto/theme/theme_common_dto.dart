@@ -8,7 +8,6 @@ part 'theme_common_dto.g.dart';
 class ThemeCommonDTO with _$ThemeCommonDTO {
   const factory ThemeCommonDTO({
     String? appName,
-    String? note,
   }) = _ThemeCommonDTO;
 
   factory ThemeCommonDTO.fromJson(Map<String, Object?> json) => _$ThemeCommonDTOFromJson(json);

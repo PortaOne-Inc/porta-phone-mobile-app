@@ -21,17 +21,6 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void updateThemeNote(String note) {
-    emit(state.copyWith(
-      descriptionField: ThemeDescriptionInput.dirty(note),
-      theme: state.theme?.copyWith(
-        commonConfig: state.theme?.commonConfig.copyWith(
-          note: note,
-        ),
-      ),
-    ));
-  }
-
   void setDisplayLargeStyle({required TextStyleModel style}) {
     emit(state.copyWith(
       theme: state.theme?.copyWith(
@@ -201,9 +190,9 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
   void setTheme(ThemeModel? theme) {
     emit(
       state.copyWith(
-          theme: theme,
-          nameField: ThemeNameInput.pure(theme?.commonConfig.appName ?? ''),
-          descriptionField: ThemeDescriptionInput.pure(theme?.commonConfig.note ?? '')),
+        theme: theme,
+        nameField: ThemeNameInput.pure(theme?.commonConfig.appName ?? ''),
+      ),
     );
   }
 

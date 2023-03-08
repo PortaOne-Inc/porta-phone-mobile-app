@@ -21,7 +21,6 @@ ThemeCommonDTO _$ThemeCommonDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ThemeCommonDTO {
   String? get appName => throw _privateConstructorUsedError;
-  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $ThemeCommonDTOCopyWith<$Res> {
           ThemeCommonDTO value, $Res Function(ThemeCommonDTO) then) =
       _$ThemeCommonDTOCopyWithImpl<$Res, ThemeCommonDTO>;
   @useResult
-  $Res call({String? appName, String? note});
+  $Res call({String? appName});
 }
 
 /// @nodoc
@@ -52,16 +51,11 @@ class _$ThemeCommonDTOCopyWithImpl<$Res, $Val extends ThemeCommonDTO>
   @override
   $Res call({
     Object? appName = freezed,
-    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       appName: freezed == appName
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -75,7 +69,7 @@ abstract class _$$_ThemeCommonDTOCopyWith<$Res>
       __$$_ThemeCommonDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? appName, String? note});
+  $Res call({String? appName});
 }
 
 /// @nodoc
@@ -90,16 +84,11 @@ class __$$_ThemeCommonDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appName = freezed,
-    Object? note = freezed,
   }) {
     return _then(_$_ThemeCommonDTO(
       appName: freezed == appName
           ? _value.appName
           : appName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -108,19 +97,17 @@ class __$$_ThemeCommonDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ThemeCommonDTO implements _ThemeCommonDTO {
-  const _$_ThemeCommonDTO({this.appName, this.note});
+  const _$_ThemeCommonDTO({this.appName});
 
   factory _$_ThemeCommonDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ThemeCommonDTOFromJson(json);
 
   @override
   final String? appName;
-  @override
-  final String? note;
 
   @override
   String toString() {
-    return 'ThemeCommonDTO(appName: $appName, note: $note)';
+    return 'ThemeCommonDTO(appName: $appName)';
   }
 
   @override
@@ -128,13 +115,12 @@ class _$_ThemeCommonDTO implements _ThemeCommonDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ThemeCommonDTO &&
-            (identical(other.appName, appName) || other.appName == appName) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.appName, appName) || other.appName == appName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, appName, note);
+  int get hashCode => Object.hash(runtimeType, appName);
 
   @JsonKey(ignore: true)
   @override
@@ -151,16 +137,13 @@ class _$_ThemeCommonDTO implements _ThemeCommonDTO {
 }
 
 abstract class _ThemeCommonDTO implements ThemeCommonDTO {
-  const factory _ThemeCommonDTO({final String? appName, final String? note}) =
-      _$_ThemeCommonDTO;
+  const factory _ThemeCommonDTO({final String? appName}) = _$_ThemeCommonDTO;
 
   factory _ThemeCommonDTO.fromJson(Map<String, dynamic> json) =
       _$_ThemeCommonDTO.fromJson;
 
   @override
   String? get appName;
-  @override
-  String? get note;
   @override
   @JsonKey(ignore: true)
   _$$_ThemeCommonDTOCopyWith<_$_ThemeCommonDTO> get copyWith =>

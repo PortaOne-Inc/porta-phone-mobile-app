@@ -77,8 +77,6 @@
   "common_language_en": "EN",
   "common_language_ua": "UA",
   "common_text_delete": "delete",
-  "common_validation_description_to_long": "Description to long",
-  "common_validation_description_to_short": "Description to short",
   "common_failure_message": "Description to short",
   "feature_auth_logout": "Logout",
   "feature_auth_SnakeBar_success_auth": "You success authorized",
