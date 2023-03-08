@@ -4,11 +4,14 @@ import 'package:webtrit_configurator/core/exception/exception.dart';
 
 import '../../data/data.dart';
 import '../../entity/dto/dto.dart';
+
 import 'theme_repository.dart';
 
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
-  ThemeRepositoryImpl({required this.datasource});
+  ThemeRepositoryImpl({
+    required this.datasource,
+  });
 
   final RealtimeFirebaseData datasource;
 
@@ -25,13 +28,14 @@ class ThemeRepositoryImpl extends ThemeRepository {
     required String userId,
     required String applicationId,
     required String themeId,
-  }) =>
-      '${_getThemesPath(userId, applicationId)}$themeId';
+  }) {
+    return '${_getThemesPath(userId, applicationId)}$themeId';
+  }
 
   @override
   Future<ThemeDTO> updateTheme(String userId, String applicationId, ThemeDTO theme) async {
     try {
-      return _tryUpdateTheme(userId, applicationId, theme);
+      return await _tryUpdateTheme(userId, applicationId, theme);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -40,7 +44,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   @override
   Future<ThemeDTO> createTheme(String userId, String applicationId, ThemeDTO theme) async {
     try {
-      return _tryCreateTheme(userId, applicationId, theme);
+      return await _tryCreateTheme(userId, applicationId, theme);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -49,7 +53,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   @override
   Future<List<ThemeDTO>> getThemes(String userId, String applicationId) async {
     try {
-      return _tryGetThemes(userId, applicationId);
+      return await _tryGetThemes(userId, applicationId);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -69,7 +73,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   @override
   Future<ThemeDTO> deleteTheme(String userId, String applicationId, ThemeDTO themeDTO) async {
     try {
-      return _tryDeleteTheme(userId, applicationId, themeDTO);
+      return await _tryDeleteTheme(userId, applicationId, themeDTO);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
