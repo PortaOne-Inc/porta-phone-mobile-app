@@ -3,6 +3,7 @@ class ImageModel {
     this.data,
     this.name,
     this.mime,
+    this.extension,
   });
 
   static String mimeSVG = 'image/svg+xml';
@@ -20,6 +21,7 @@ class ImageModel {
   final String? data;
   final String? name;
   final String? mime;
+  final String? extension;
 
   bool get isAvailable => (data?.isNotEmpty ?? false);
 

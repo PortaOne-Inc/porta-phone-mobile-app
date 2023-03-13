@@ -10,6 +10,7 @@ class ImageDTO with _$ImageDTO {
     String? data,
     String? name,
     String? mime,
+    String? extension,
   }) = _ImageDTO;
 
   factory ImageDTO.fromJson(Map<String, Object?> json) => _$ImageDTOFromJson(json);

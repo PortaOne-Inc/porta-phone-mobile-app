@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:path/path.dart' as path;
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/utility/utility.dart';
@@ -533,7 +534,14 @@ class PageThemeProperty extends StatelessWidget {
   Future<ImageModel> _selectImage() async {
     final imageInfo = await ImagePickerWeb.getImageInfo;
     final mime = UtilityImage.getMimeFromBase64(imageInfo?.base64WithScheme);
-    final image = ImageModel(data: imageInfo?.base64 ?? '', name: imageInfo?.fileName ?? '', mime: mime ?? '');
+    final extension = path.extension(imageInfo?.fileName ?? '');
+
+    final image = ImageModel(
+      data: imageInfo?.base64 ?? '',
+      name: imageInfo?.fileName ?? '',
+      mime: mime ?? '',
+      extension: extension,
+    );
     return image;
   }
 

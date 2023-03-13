@@ -23,6 +23,7 @@ mixin _$ImageDTO {
   String? get data => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get mime => throw _privateConstructorUsedError;
+  String? get extension => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $ImageDTOCopyWith<$Res> {
   factory $ImageDTOCopyWith(ImageDTO value, $Res Function(ImageDTO) then) =
       _$ImageDTOCopyWithImpl<$Res, ImageDTO>;
   @useResult
-  $Res call({String? data, String? name, String? mime});
+  $Res call({String? data, String? name, String? mime, String? extension});
 }
 
 /// @nodoc
@@ -54,6 +55,7 @@ class _$ImageDTOCopyWithImpl<$Res, $Val extends ImageDTO>
     Object? data = freezed,
     Object? name = freezed,
     Object? mime = freezed,
+    Object? extension = freezed,
   }) {
     return _then(_value.copyWith(
       data: freezed == data
@@ -68,6 +70,10 @@ class _$ImageDTOCopyWithImpl<$Res, $Val extends ImageDTO>
           ? _value.mime
           : mime // ignore: cast_nullable_to_non_nullable
               as String?,
+      extension: freezed == extension
+          ? _value.extension
+          : extension // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -79,7 +85,7 @@ abstract class _$$_ImageDTOCopyWith<$Res> implements $ImageDTOCopyWith<$Res> {
       __$$_ImageDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? data, String? name, String? mime});
+  $Res call({String? data, String? name, String? mime, String? extension});
 }
 
 /// @nodoc
@@ -96,6 +102,7 @@ class __$$_ImageDTOCopyWithImpl<$Res>
     Object? data = freezed,
     Object? name = freezed,
     Object? mime = freezed,
+    Object? extension = freezed,
   }) {
     return _then(_$_ImageDTO(
       data: freezed == data
@@ -110,6 +117,10 @@ class __$$_ImageDTOCopyWithImpl<$Res>
           ? _value.mime
           : mime // ignore: cast_nullable_to_non_nullable
               as String?,
+      extension: freezed == extension
+          ? _value.extension
+          : extension // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -117,7 +128,7 @@ class __$$_ImageDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ImageDTO implements _ImageDTO {
-  const _$_ImageDTO({this.data, this.name, this.mime});
+  const _$_ImageDTO({this.data, this.name, this.mime, this.extension});
 
   factory _$_ImageDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ImageDTOFromJson(json);
@@ -128,10 +139,12 @@ class _$_ImageDTO implements _ImageDTO {
   final String? name;
   @override
   final String? mime;
+  @override
+  final String? extension;
 
   @override
   String toString() {
-    return 'ImageDTO(data: $data, name: $name, mime: $mime)';
+    return 'ImageDTO(data: $data, name: $name, mime: $mime, extension: $extension)';
   }
 
   @override
@@ -141,12 +154,14 @@ class _$_ImageDTO implements _ImageDTO {
             other is _$_ImageDTO &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.mime, mime) || other.mime == mime));
+            (identical(other.mime, mime) || other.mime == mime) &&
+            (identical(other.extension, extension) ||
+                other.extension == extension));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, data, name, mime);
+  int get hashCode => Object.hash(runtimeType, data, name, mime, extension);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +181,8 @@ abstract class _ImageDTO implements ImageDTO {
   const factory _ImageDTO(
       {final String? data,
       final String? name,
-      final String? mime}) = _$_ImageDTO;
+      final String? mime,
+      final String? extension}) = _$_ImageDTO;
 
   factory _ImageDTO.fromJson(Map<String, dynamic> json) = _$_ImageDTO.fromJson;
 
@@ -176,6 +192,8 @@ abstract class _ImageDTO implements ImageDTO {
   String? get name;
   @override
   String? get mime;
+  @override
+  String? get extension;
   @override
   @JsonKey(ignore: true)
   _$$_ImageDTOCopyWith<_$_ImageDTO> get copyWith =>

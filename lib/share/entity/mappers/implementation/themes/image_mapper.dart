@@ -8,11 +8,21 @@ import '../../mapper.dart';
 class ImageMapper extends Mapper<ImageDTO, ImageModel> {
   @override
   ImageDTO mapToDto(ImageModel model) {
-    return ImageDTO(data: model.data, name: model.name, mime: model.mime);
+    return ImageDTO(
+      data: model.data,
+      name: model.name,
+      mime: model.mime,
+      extension: model.extension,
+    );
   }
 
   @override
   ImageModel mapToModel(ImageDTO dto) {
-    return ImageModel(data: dto.data, name: dto.name, mime: dto.mime);
+    return ImageModel(
+      data: dto.data,
+      name: dto.name,
+      mime: dto.mime,
+      extension: dto.extension,
+    );
   }
 }
