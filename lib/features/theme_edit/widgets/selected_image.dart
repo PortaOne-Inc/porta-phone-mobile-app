@@ -46,7 +46,7 @@ class SelectedImage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 width: double.infinity,
-                color: Colors.black26,
+                color: Colors.black38,
                 child: Text(
                   name,
                   textAlign: TextAlign.center,

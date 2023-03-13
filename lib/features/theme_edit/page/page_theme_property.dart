@@ -430,7 +430,7 @@ class PageThemeProperty extends StatelessWidget {
                   ),
                   ExpansionTile(
                     title: Text(context.l10n.configurator_image_resources),
-                    childrenPadding: const EdgeInsets.all(16),
+                    childrenPadding: const EdgeInsets.all(8),
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Wrap(
