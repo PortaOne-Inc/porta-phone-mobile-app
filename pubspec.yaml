@@ -51,7 +51,6 @@ dependencies:
   json_annotation: ^4.8.0
   flutter_launcher_icons: ^0.12.0
 
-
   # Helpers
   uuid: ^3.0.7
   meta: ^1.8.0
@@ -61,12 +60,12 @@ dependencies:
   logging_appenders: ^1.0.0
   collection: ^1.17.0
 
-
   # Plugins for support phone module
   connectivity_plus: ^3.0.2
   google_fonts: ^4.0.3
   path: ^1.8.2
   rxdart: ^0.27.5
+  infinite_scroll_pagination: ^3.2.0
 
   webtrit_phone:
     git:
