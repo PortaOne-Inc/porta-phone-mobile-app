@@ -10,7 +10,13 @@ part 'image_collection_dto.g.dart';
 class ImageCollectionDTO with _$ImageCollectionDTO {
   const factory ImageCollectionDTO({
     ImageDTO? onboarding,
-    ImageDTO? logo,
+    ImageDTO? applicationLogo,
+    ImageDTO? notificationLogo,
+    ImageDTO? adaptiveIconBackground,
+    ImageDTO? adaptiveIconForeground,
+    ImageDTO? androidLauncherIcon,
+    ImageDTO? iosLauncherIcon,
+    ImageDTO? webLauncherIcon,
   }) = _ImageCollectionDTO;
 
   factory ImageCollectionDTO.fromJson(Map<String, Object?> json) => _$ImageCollectionDTOFromJson(json);

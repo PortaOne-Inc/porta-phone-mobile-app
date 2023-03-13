@@ -21,7 +21,13 @@ ImageCollectionDTO _$ImageCollectionDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImageCollectionDTO {
   ImageDTO? get onboarding => throw _privateConstructorUsedError;
-  ImageDTO? get logo => throw _privateConstructorUsedError;
+  ImageDTO? get applicationLogo => throw _privateConstructorUsedError;
+  ImageDTO? get notificationLogo => throw _privateConstructorUsedError;
+  ImageDTO? get adaptiveIconBackground => throw _privateConstructorUsedError;
+  ImageDTO? get adaptiveIconForeground => throw _privateConstructorUsedError;
+  ImageDTO? get androidLauncherIcon => throw _privateConstructorUsedError;
+  ImageDTO? get iosLauncherIcon => throw _privateConstructorUsedError;
+  ImageDTO? get webLauncherIcon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,10 +41,24 @@ abstract class $ImageCollectionDTOCopyWith<$Res> {
           ImageCollectionDTO value, $Res Function(ImageCollectionDTO) then) =
       _$ImageCollectionDTOCopyWithImpl<$Res, ImageCollectionDTO>;
   @useResult
-  $Res call({ImageDTO? onboarding, ImageDTO? logo});
+  $Res call(
+      {ImageDTO? onboarding,
+      ImageDTO? applicationLogo,
+      ImageDTO? notificationLogo,
+      ImageDTO? adaptiveIconBackground,
+      ImageDTO? adaptiveIconForeground,
+      ImageDTO? androidLauncherIcon,
+      ImageDTO? iosLauncherIcon,
+      ImageDTO? webLauncherIcon});
 
   $ImageDTOCopyWith<$Res>? get onboarding;
-  $ImageDTOCopyWith<$Res>? get logo;
+  $ImageDTOCopyWith<$Res>? get applicationLogo;
+  $ImageDTOCopyWith<$Res>? get notificationLogo;
+  $ImageDTOCopyWith<$Res>? get adaptiveIconBackground;
+  $ImageDTOCopyWith<$Res>? get adaptiveIconForeground;
+  $ImageDTOCopyWith<$Res>? get androidLauncherIcon;
+  $ImageDTOCopyWith<$Res>? get iosLauncherIcon;
+  $ImageDTOCopyWith<$Res>? get webLauncherIcon;
 }
 
 /// @nodoc
@@ -55,16 +75,46 @@ class _$ImageCollectionDTOCopyWithImpl<$Res, $Val extends ImageCollectionDTO>
   @override
   $Res call({
     Object? onboarding = freezed,
-    Object? logo = freezed,
+    Object? applicationLogo = freezed,
+    Object? notificationLogo = freezed,
+    Object? adaptiveIconBackground = freezed,
+    Object? adaptiveIconForeground = freezed,
+    Object? androidLauncherIcon = freezed,
+    Object? iosLauncherIcon = freezed,
+    Object? webLauncherIcon = freezed,
   }) {
     return _then(_value.copyWith(
       onboarding: freezed == onboarding
           ? _value.onboarding
           : onboarding // ignore: cast_nullable_to_non_nullable
               as ImageDTO?,
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
+      applicationLogo: freezed == applicationLogo
+          ? _value.applicationLogo
+          : applicationLogo // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      notificationLogo: freezed == notificationLogo
+          ? _value.notificationLogo
+          : notificationLogo // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      adaptiveIconBackground: freezed == adaptiveIconBackground
+          ? _value.adaptiveIconBackground
+          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      adaptiveIconForeground: freezed == adaptiveIconForeground
+          ? _value.adaptiveIconForeground
+          : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      androidLauncherIcon: freezed == androidLauncherIcon
+          ? _value.androidLauncherIcon
+          : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      iosLauncherIcon: freezed == iosLauncherIcon
+          ? _value.iosLauncherIcon
+          : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      webLauncherIcon: freezed == webLauncherIcon
+          ? _value.webLauncherIcon
+          : webLauncherIcon // ignore: cast_nullable_to_non_nullable
               as ImageDTO?,
     ) as $Val);
   }
@@ -83,13 +133,85 @@ class _$ImageCollectionDTOCopyWithImpl<$Res, $Val extends ImageCollectionDTO>
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageDTOCopyWith<$Res>? get logo {
-    if (_value.logo == null) {
+  $ImageDTOCopyWith<$Res>? get applicationLogo {
+    if (_value.applicationLogo == null) {
       return null;
     }
 
-    return $ImageDTOCopyWith<$Res>(_value.logo!, (value) {
-      return _then(_value.copyWith(logo: value) as $Val);
+    return $ImageDTOCopyWith<$Res>(_value.applicationLogo!, (value) {
+      return _then(_value.copyWith(applicationLogo: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get notificationLogo {
+    if (_value.notificationLogo == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.notificationLogo!, (value) {
+      return _then(_value.copyWith(notificationLogo: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get adaptiveIconBackground {
+    if (_value.adaptiveIconBackground == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.adaptiveIconBackground!, (value) {
+      return _then(_value.copyWith(adaptiveIconBackground: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get adaptiveIconForeground {
+    if (_value.adaptiveIconForeground == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.adaptiveIconForeground!, (value) {
+      return _then(_value.copyWith(adaptiveIconForeground: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get androidLauncherIcon {
+    if (_value.androidLauncherIcon == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.androidLauncherIcon!, (value) {
+      return _then(_value.copyWith(androidLauncherIcon: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get iosLauncherIcon {
+    if (_value.iosLauncherIcon == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.iosLauncherIcon!, (value) {
+      return _then(_value.copyWith(iosLauncherIcon: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageDTOCopyWith<$Res>? get webLauncherIcon {
+    if (_value.webLauncherIcon == null) {
+      return null;
+    }
+
+    return $ImageDTOCopyWith<$Res>(_value.webLauncherIcon!, (value) {
+      return _then(_value.copyWith(webLauncherIcon: value) as $Val);
     });
   }
 }
@@ -102,12 +224,32 @@ abstract class _$$_ImageCollectionDTOCopyWith<$Res>
       __$$_ImageCollectionDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ImageDTO? onboarding, ImageDTO? logo});
+  $Res call(
+      {ImageDTO? onboarding,
+      ImageDTO? applicationLogo,
+      ImageDTO? notificationLogo,
+      ImageDTO? adaptiveIconBackground,
+      ImageDTO? adaptiveIconForeground,
+      ImageDTO? androidLauncherIcon,
+      ImageDTO? iosLauncherIcon,
+      ImageDTO? webLauncherIcon});
 
   @override
   $ImageDTOCopyWith<$Res>? get onboarding;
   @override
-  $ImageDTOCopyWith<$Res>? get logo;
+  $ImageDTOCopyWith<$Res>? get applicationLogo;
+  @override
+  $ImageDTOCopyWith<$Res>? get notificationLogo;
+  @override
+  $ImageDTOCopyWith<$Res>? get adaptiveIconBackground;
+  @override
+  $ImageDTOCopyWith<$Res>? get adaptiveIconForeground;
+  @override
+  $ImageDTOCopyWith<$Res>? get androidLauncherIcon;
+  @override
+  $ImageDTOCopyWith<$Res>? get iosLauncherIcon;
+  @override
+  $ImageDTOCopyWith<$Res>? get webLauncherIcon;
 }
 
 /// @nodoc
@@ -122,16 +264,46 @@ class __$$_ImageCollectionDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? onboarding = freezed,
-    Object? logo = freezed,
+    Object? applicationLogo = freezed,
+    Object? notificationLogo = freezed,
+    Object? adaptiveIconBackground = freezed,
+    Object? adaptiveIconForeground = freezed,
+    Object? androidLauncherIcon = freezed,
+    Object? iosLauncherIcon = freezed,
+    Object? webLauncherIcon = freezed,
   }) {
     return _then(_$_ImageCollectionDTO(
       onboarding: freezed == onboarding
           ? _value.onboarding
           : onboarding // ignore: cast_nullable_to_non_nullable
               as ImageDTO?,
-      logo: freezed == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
+      applicationLogo: freezed == applicationLogo
+          ? _value.applicationLogo
+          : applicationLogo // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      notificationLogo: freezed == notificationLogo
+          ? _value.notificationLogo
+          : notificationLogo // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      adaptiveIconBackground: freezed == adaptiveIconBackground
+          ? _value.adaptiveIconBackground
+          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      adaptiveIconForeground: freezed == adaptiveIconForeground
+          ? _value.adaptiveIconForeground
+          : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      androidLauncherIcon: freezed == androidLauncherIcon
+          ? _value.androidLauncherIcon
+          : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      iosLauncherIcon: freezed == iosLauncherIcon
+          ? _value.iosLauncherIcon
+          : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
+              as ImageDTO?,
+      webLauncherIcon: freezed == webLauncherIcon
+          ? _value.webLauncherIcon
+          : webLauncherIcon // ignore: cast_nullable_to_non_nullable
               as ImageDTO?,
     ));
   }
@@ -140,7 +312,15 @@ class __$$_ImageCollectionDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ImageCollectionDTO implements _ImageCollectionDTO {
-  const _$_ImageCollectionDTO({this.onboarding, this.logo});
+  const _$_ImageCollectionDTO(
+      {this.onboarding,
+      this.applicationLogo,
+      this.notificationLogo,
+      this.adaptiveIconBackground,
+      this.adaptiveIconForeground,
+      this.androidLauncherIcon,
+      this.iosLauncherIcon,
+      this.webLauncherIcon});
 
   factory _$_ImageCollectionDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ImageCollectionDTOFromJson(json);
@@ -148,11 +328,23 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
   @override
   final ImageDTO? onboarding;
   @override
-  final ImageDTO? logo;
+  final ImageDTO? applicationLogo;
+  @override
+  final ImageDTO? notificationLogo;
+  @override
+  final ImageDTO? adaptiveIconBackground;
+  @override
+  final ImageDTO? adaptiveIconForeground;
+  @override
+  final ImageDTO? androidLauncherIcon;
+  @override
+  final ImageDTO? iosLauncherIcon;
+  @override
+  final ImageDTO? webLauncherIcon;
 
   @override
   String toString() {
-    return 'ImageCollectionDTO(onboarding: $onboarding, logo: $logo)';
+    return 'ImageCollectionDTO(onboarding: $onboarding, applicationLogo: $applicationLogo, notificationLogo: $notificationLogo, adaptiveIconBackground: $adaptiveIconBackground, adaptiveIconForeground: $adaptiveIconForeground, androidLauncherIcon: $androidLauncherIcon, iosLauncherIcon: $iosLauncherIcon, webLauncherIcon: $webLauncherIcon)';
   }
 
   @override
@@ -162,12 +354,34 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
             other is _$_ImageCollectionDTO &&
             (identical(other.onboarding, onboarding) ||
                 other.onboarding == onboarding) &&
-            (identical(other.logo, logo) || other.logo == logo));
+            (identical(other.applicationLogo, applicationLogo) ||
+                other.applicationLogo == applicationLogo) &&
+            (identical(other.notificationLogo, notificationLogo) ||
+                other.notificationLogo == notificationLogo) &&
+            (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
+                other.adaptiveIconBackground == adaptiveIconBackground) &&
+            (identical(other.adaptiveIconForeground, adaptiveIconForeground) ||
+                other.adaptiveIconForeground == adaptiveIconForeground) &&
+            (identical(other.androidLauncherIcon, androidLauncherIcon) ||
+                other.androidLauncherIcon == androidLauncherIcon) &&
+            (identical(other.iosLauncherIcon, iosLauncherIcon) ||
+                other.iosLauncherIcon == iosLauncherIcon) &&
+            (identical(other.webLauncherIcon, webLauncherIcon) ||
+                other.webLauncherIcon == webLauncherIcon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, onboarding, logo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      onboarding,
+      applicationLogo,
+      notificationLogo,
+      adaptiveIconBackground,
+      adaptiveIconForeground,
+      androidLauncherIcon,
+      iosLauncherIcon,
+      webLauncherIcon);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +401,13 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
 abstract class _ImageCollectionDTO implements ImageCollectionDTO {
   const factory _ImageCollectionDTO(
       {final ImageDTO? onboarding,
-      final ImageDTO? logo}) = _$_ImageCollectionDTO;
+      final ImageDTO? applicationLogo,
+      final ImageDTO? notificationLogo,
+      final ImageDTO? adaptiveIconBackground,
+      final ImageDTO? adaptiveIconForeground,
+      final ImageDTO? androidLauncherIcon,
+      final ImageDTO? iosLauncherIcon,
+      final ImageDTO? webLauncherIcon}) = _$_ImageCollectionDTO;
 
   factory _ImageCollectionDTO.fromJson(Map<String, dynamic> json) =
       _$_ImageCollectionDTO.fromJson;
@@ -195,7 +415,19 @@ abstract class _ImageCollectionDTO implements ImageCollectionDTO {
   @override
   ImageDTO? get onboarding;
   @override
-  ImageDTO? get logo;
+  ImageDTO? get applicationLogo;
+  @override
+  ImageDTO? get notificationLogo;
+  @override
+  ImageDTO? get adaptiveIconBackground;
+  @override
+  ImageDTO? get adaptiveIconForeground;
+  @override
+  ImageDTO? get androidLauncherIcon;
+  @override
+  ImageDTO? get iosLauncherIcon;
+  @override
+  ImageDTO? get webLauncherIcon;
   @override
   @JsonKey(ignore: true)
   _$$_ImageCollectionDTOCopyWith<_$_ImageCollectionDTO> get copyWith =>

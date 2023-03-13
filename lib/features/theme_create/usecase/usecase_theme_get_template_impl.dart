@@ -16,7 +16,13 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
     return ThemeModel(
       images: ConfiguratorImagesSetting(
         onboarding: ImageModel(),
-        logo: ImageModel(),
+        applicationLogo: ImageModel(),
+        notificationLogo: ImageModel(),
+        adaptiveIconBackground: ImageModel(),
+        adaptiveIconForeground: ImageModel(),
+        androidLauncherIcon: ImageModel(),
+        iosLauncherIcon: ImageModel(),
+        webLauncherIcon: ImageModel(),
       ),
       textStyles: FontModel.empty(),
       commonConfig: CommonConfigModel(

@@ -25,10 +25,9 @@ class ThemeMapper extends Mapper<ThemeDTO, ThemeModel> {
         ),
         textStyles: _toTextStyleCollectionDTO(model.textStyles),
         images: ImageCollectionDTO(
-            logo: imageMapper.mapToDto(model.images.logo),
-            onboarding: imageMapper.mapToDto(
-              model.images.onboarding,
-            )),
+            applicationLogo: imageMapper.mapToDto(model.images.applicationLogo),
+            notificationLogo: imageMapper.mapToDto(model.images.notificationLogo),
+            onboarding: imageMapper.mapToDto(model.images.onboarding)),
         id: model.id);
   }
 
@@ -41,8 +40,31 @@ class ThemeMapper extends Mapper<ThemeDTO, ThemeModel> {
         ),
         textStyles: _toTextStyleCollectionModel(dto.textStyles),
         images: ConfiguratorImagesSetting(
-            logo: imageMapper.mapToModel(dto.images?.logo ?? const ImageDTO()),
-            onboarding: imageMapper.mapToModel(dto.images?.onboarding ?? const ImageDTO())),
+          applicationLogo: imageMapper.mapToModel(
+            dto.images?.applicationLogo ?? const ImageDTO(),
+          ),
+          notificationLogo: imageMapper.mapToModel(
+            dto.images?.applicationLogo ?? const ImageDTO(),
+          ),
+          onboarding: imageMapper.mapToModel(
+            dto.images?.onboarding ?? const ImageDTO(),
+          ),
+          adaptiveIconBackground: imageMapper.mapToModel(
+            dto.images?.adaptiveIconBackground ?? const ImageDTO(),
+          ),
+          adaptiveIconForeground: imageMapper.mapToModel(
+            dto.images?.adaptiveIconForeground ?? const ImageDTO(),
+          ),
+          androidLauncherIcon: imageMapper.mapToModel(
+            dto.images?.androidLauncherIcon ?? const ImageDTO(),
+          ),
+          iosLauncherIcon: imageMapper.mapToModel(
+            dto.images?.iosLauncherIcon ?? const ImageDTO(),
+          ),
+          webLauncherIcon: imageMapper.mapToModel(
+            dto.images?.webLauncherIcon ?? const ImageDTO(),
+          ),
+        ),
         id: dto.id);
   }
 

@@ -433,30 +433,172 @@ class PageThemeProperty extends StatelessWidget {
                     childrenPadding: const EdgeInsets.all(8),
                     expandedAlignment: Alignment.centerLeft,
                     children: [
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        spacing: 16,
-                        runSpacing: 16,
-                        children: [
-                          SelectedImage(
-                            name: context.l10n.configurator_image_resource_onboarding,
-                            image: state.theme?.images.onboarding,
-                            onTap: () async => _onChangeOnboarding(bloc),
-                            onRemove: () => bloc.removeImageOnboarding(),
+                      ListTile(
+                          title: Container(
+                            margin: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              'Application images',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                            ),
                           ),
-                          SelectedImage(
-                            name: context.l10n.feature_theme_edit_Image_logo,
-                            image: state.theme?.images.logo,
-                            onTap: () async => _onChangeLogo(bloc),
-                            onRemove: () => bloc.removeImageLogo(),
+                          subtitle: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            spacing: 16,
+                            runSpacing: 16,
+                            children: [
+                              SelectedImage(
+                                name: context.l10n.configurator_image_resource_onboarding,
+                                image: state.theme?.images.onboarding,
+                                onTap: () async => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    onboarding: await _selectImage(),
+                                  ),
+                                ),
+                                onRemove: () => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    onboarding: ImageModel(),
+                                  ),
+                                ),
+                              ),
+                              SelectedImage(
+                                name: context.l10n.feature_theme_edit_Image_logo,
+                                image: state.theme?.images.applicationLogo,
+                                onTap: () async => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    applicationLogo: await _selectImage(),
+                                  ),
+                                ),
+                                onRemove: () => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    applicationLogo: ImageModel(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      ListTile(
+                          title: Container(
+                            margin: const EdgeInsets.only(bottom: 8, top: 8),
+                            child: Text(
+                              'Application icons',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                            ),
                           ),
-                          SelectedImage(
-                            name: 'Push notification logo',
-                            image: state.theme?.images.logo,
-                            onTap: () async => _onChangeLogo(bloc),
-                            onRemove: () => bloc.removeImageLogo(),
+                          subtitle: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            spacing: 16,
+                            runSpacing: 16,
+                            children: [
+                              SelectedImage(
+                                name: 'Push notification icon',
+                                image: state.theme?.images.notificationLogo,
+                                onTap: () async => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    notificationLogo: await _selectImage(),
+                                  ),
+                                ),
+                                onRemove: () => bloc.updateImageResources(
+                                  bloc.state.theme?.images.copyWith(
+                                    notificationLogo: ImageModel(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                      ListTile(
+                        title: Container(
+                          margin: const EdgeInsets.only(bottom: 8, top: 8),
+                          child: Text(
+                            'App launcher icons',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(color: Theme.of(context).colorScheme.secondary),
                           ),
-                        ],
+                        ),
+                        subtitle: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          spacing: 16,
+                          runSpacing: 16,
+                          children: [
+                            SelectedImage(
+                              name: 'Adaptive icon background',
+                              image: state.theme?.images.adaptiveIconBackground,
+                              onTap: () async => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  adaptiveIconBackground: await _selectImage(),
+                                ),
+                              ),
+                              onRemove: () => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  adaptiveIconBackground: ImageModel(),
+                                ),
+                              ),
+                            ),
+                            SelectedImage(
+                              name: 'Adaptive icon foreground',
+                              image: state.theme?.images.adaptiveIconForeground,
+                              onTap: () async => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  adaptiveIconForeground: await _selectImage(),
+                                ),
+                              ),
+                              onRemove: () => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  adaptiveIconForeground: ImageModel(),
+                                ),
+                              ),
+                            ),
+                            SelectedImage(
+                              name: 'Android launcher icon',
+                              image: state.theme?.images.androidLauncherIcon,
+                              onTap: () async => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  androidLauncherIcon: await _selectImage(),
+                                ),
+                              ),
+                              onRemove: () => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  androidLauncherIcon: ImageModel(),
+                                ),
+                              ),
+                            ),
+                            SelectedImage(
+                              name: 'IOS launcher icon',
+                              image: state.theme?.images.iosLauncherIcon,
+                              onTap: () async => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  iosLauncherIcon: await _selectImage(),
+                                ),
+                              ),
+                              onRemove: () => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  iosLauncherIcon: ImageModel(),
+                                ),
+                              ),
+                            ),
+                            SelectedImage(
+                              name: 'WEB launcher icon',
+                              image: state.theme?.images.webLauncherIcon,
+                              onTap: () async => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  webLauncherIcon: await _selectImage(),
+                                ),
+                              ),
+                              onRemove: () => bloc.updateImageResources(
+                                bloc.state.theme?.images.copyWith(
+                                  webLauncherIcon: ImageModel(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
