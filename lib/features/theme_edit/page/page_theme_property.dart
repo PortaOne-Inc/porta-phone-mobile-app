@@ -521,16 +521,6 @@ class PageThemeProperty extends StatelessWidget {
     if (result is Color) callback([...colors, result]);
   }
 
-  void _onChangeLogo(ThemePropertyCubit bloc) async {
-    final image = await _selectImage();
-    bloc.updateImageLogo(image);
-  }
-
-  void _onChangeOnboarding(ThemePropertyCubit cubit) async {
-    final image = await _selectImage();
-    cubit.updateImageOnboarding(image);
-  }
-
   Future<ImageModel> _selectImage() async {
     final imageInfo = await ImagePickerWeb.getImageInfo;
     final mime = UtilityImage.getMimeFromBase64(imageInfo?.base64WithScheme);

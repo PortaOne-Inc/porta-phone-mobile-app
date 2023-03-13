@@ -199,48 +199,10 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     );
   }
 
-  void updateImageOnboarding(ImageModel? path) {
+  void updateImageResources(ConfiguratorImagesSetting? image) {
     emit(
       state.copyWith(
-        theme: state.theme?.copyWith(
-            images: state.theme?.images.copyWith(
-          onboarding: path,
-        )),
-      ),
-    );
-  }
-
-  void updateImageLogo(ImageModel path) {
-    emit(
-      state.copyWith(
-        theme: state.theme?.copyWith(
-            images: state.theme?.images.copyWith(
-          logo: path,
-        )),
-      ),
-    );
-  }
-
-  void removeImageLogo() {
-    emit(
-      state.copyWith(
-        theme: state.theme?.copyWith(
-          images: state.theme?.images.copyWith(
-            logo: ImageModel(),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void removeImageOnboarding() {
-    emit(
-      state.copyWith(
-        theme: state.theme?.copyWith(
-          images: state.theme?.images.copyWith(
-            onboarding: ImageModel(),
-          ),
-        ),
+        theme: state.theme?.copyWith(images: image),
       ),
     );
   }
