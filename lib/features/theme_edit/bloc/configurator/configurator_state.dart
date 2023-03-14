@@ -39,11 +39,24 @@ class ThemePropertyState {
 
   List<Color> get gradientTabColor => _parseColors(theme?.colors.gradientTabColor);
 
-  Color? _parseColor(String? color) => color == null ? null : UtilityColor.fromHex(color);
+  Color? _parseColor(String? color) {
+    if (color == null) {
+      return null;
+    } else {
+      return UtilityColor.tryParseColorFromHex(color);
+    }
+  }
 
   List<Color> _parseColors(List<String>? colors) {
     if (colors == null) return [Colors.white, Colors.white];
-    return colors.map((color) => UtilityColor.fromHex(color)).toList();
+    return colors
+        .map(
+          (color) => UtilityColor.tryParseColorFromHex(
+            color,
+            defaultColor: Colors.transparent,
+          )!,
+        )
+        .toList();
   }
 
   ThemePropertyState copyWith({

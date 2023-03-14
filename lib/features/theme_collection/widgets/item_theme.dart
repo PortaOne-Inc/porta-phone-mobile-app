@@ -65,27 +65,18 @@ class ItemTheme extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
-                        width: 200,
-                        height: 108,
-                        child: Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationY(pi),
+                      Expanded(
                           child: Wrap(
-                            children: themeMode.colors
-                                .asList()
-                                .map((color) => UsedColor(
-                                      blurRadius: 4,
-                                      size: 16,
-                                      color: UtilityColor.fromHex(color),
-                                      boxShadow: const [
-                                        BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)
-                                      ],
-                                    ))
-                                .toList(),
-                          ),
-                        ),
-                      ),
+                        children: themeMode.colors
+                            .asList()
+                            .map((color) => UsedColor(
+                                  blurRadius: 4,
+                                  size: 16,
+                                  color: UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!,
+                                  boxShadow: const [BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)],
+                                ))
+                            .toList(),
+                      )),
                       const SizedBox(
                         width: 8,
                       ),
@@ -101,7 +92,8 @@ class ItemTheme extends StatelessWidget {
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                   colors: themeMode.colors.gradientTabColor
-                                      .map((color) => UtilityColor.fromHex(color))
+                                      .map((color) =>
+                                          UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!)
                                       .toList()),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),
@@ -118,7 +110,10 @@ class ItemTheme extends StatelessWidget {
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                   colors: themeMode.colors.gradientTabColor
-                                      .map((color) => UtilityColor.fromHex(color))
+                                      .map(
+                                        (color) =>
+                                            UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!,
+                                      )
                                       .toList()),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),
