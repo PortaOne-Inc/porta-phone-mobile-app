@@ -58,17 +58,6 @@ class AppRoute {
           ),
         ),
         GoRoute(
-            path: AppRoutInfo.themesCreate.path,
-            name: AppRoutInfo.themesCreate.name,
-            builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemesCreateCubit>(
-                  create: (BuildContext context) => ThemesCreateCubit(
-                    state.params[AppRoutInfo.keyAppId]!,
-                    getIt.get(),
-                    getIt.get(),
-                  ),
-                  child: const ThemesCreatePage(),
-                )),
-        GoRoute(
             path: AppRoutInfo.themesEdit.path,
             name: AppRoutInfo.themesEdit.name,
             builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
