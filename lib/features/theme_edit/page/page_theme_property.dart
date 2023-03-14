@@ -14,7 +14,9 @@ import '../widgets/widgets.dart';
 import '../extension/extension.dart';
 
 class PageThemeProperty extends StatelessWidget {
-  const PageThemeProperty({super.key});
+  const PageThemeProperty({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
