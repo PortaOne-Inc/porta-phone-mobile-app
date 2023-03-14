@@ -7,54 +7,66 @@ class ThemesToolbar extends StatelessWidget {
   const ThemesToolbar({
     super.key,
     required this.onSwitchedLanguage,
+    required this.onNewTheme,
   });
 
+  static const _menuKeyRight = '_menuKeyRight';
   final Function() onSwitchedLanguage;
+  final Function() onNewTheme;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 6),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(left: 8, right: 8),
-              child: Row(
-                children: [
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    children: _buildLeftMenu(),
-                  ),
-                ],
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Row(
+            children: [
+              Wrap(
+                alignment: WrapAlignment.end,
+                children: _buildLeftMenu(context),
               ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              context.l10n.feature_vendor_manager_title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                context.l10n.feature_vendor_themes,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black.withOpacity(0.6)),
-              ),
-            ),
-          ),
-          Expanded(
-              child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+        ),
+        Expanded(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Wrap(alignment: WrapAlignment.center, children: _buildRightMenu(context)),
-              SwitcherLanguage(margin: const EdgeInsets.only(right: 16), onSwitchedLanguage: onSwitchedLanguage)
+              SwitcherLanguage(
+                margin: const EdgeInsets.only(right: 16),
+                onSwitchedLanguage: onSwitchedLanguage,
+              )
             ],
-          )),
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 
-  List<Widget> _buildLeftMenu() => [];
-
-  List<Widget> _buildRightMenu(BuildContext context) => [];
+  List<Widget> _buildLeftMenu(BuildContext context) {
+    return [
+      ToolbarPopupMenu(
+        onSelected: (value) => onNewTheme.call(),
+        items: [
+          ToolbarMenuItem(
+            value: _menuKeyRight,
+            text: 'New',
+          ),
+        ],
+        child: const ToolbarLabelItem(
+          text: 'Theme',
+        ),
+      )
+    ];
+  }
 }

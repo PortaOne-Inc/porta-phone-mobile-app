@@ -1,3 +1,3 @@
-export 'bloc/themes_cubit.dart';
-export 'page/themes_page.dart';
+export 'bloc/theme_collection_cubit.dart';
+export 'page/theme_collection_page.dart';
 export 'usecase/usecase.dart';

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
@@ -27,12 +25,12 @@ class ItemTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white.withOpacity(0.95),
       elevation: 1,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: InkWell(
         onTap: () => onTap(themeMode),
         child: Container(
+          constraints: const BoxConstraints(maxWidth: 480),
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
@@ -41,21 +39,12 @@ class ItemTheme extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(themeMode.commonConfig.appName,
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.black87)),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(themeMode.textStyles.generalFontName,
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black87)),
-                    ],
+                  flex: 1,
+                  child: Text(
+                    themeMode.commonConfig.appName,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.titleLarge,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Expanded(

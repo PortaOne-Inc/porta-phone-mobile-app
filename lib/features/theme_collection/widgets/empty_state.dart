@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 
 class EmptyState extends StatelessWidget {
-  const EmptyState({super.key});
+  const EmptyState({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

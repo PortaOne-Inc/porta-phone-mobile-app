@@ -18,6 +18,10 @@ import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in.
     as _i30;
 import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in_impl.dart'
     as _i31;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create.dart'
+    as _i32;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create_impl.dart'
+    as _i33;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete.dart'
     as _i34;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete_impl.dart'
@@ -34,18 +38,14 @@ import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_t
     as _i38;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_by_id_impl.dart'
     as _i39;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_template.dart'
+    as _i17;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_template_impl.dart'
+    as _i18;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_update.dart'
     as _i40;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_update_impl.dart'
     as _i41;
-import 'package:webtrit_configurator/features/theme_create/usecase/usecase_theme_create.dart'
-    as _i32;
-import 'package:webtrit_configurator/features/theme_create/usecase/usecase_theme_create_impl.dart'
-    as _i33;
-import 'package:webtrit_configurator/features/theme_create/usecase/usecase_theme_get_template.dart'
-    as _i17;
-import 'package:webtrit_configurator/features/theme_create/usecase/usecase_theme_get_template_impl.dart'
-    as _i18;
 import 'package:webtrit_configurator/features/vendor_collection/usecase/usecase_vendor_add_theme.dart'
     as _i43;
 import 'package:webtrit_configurator/features/vendor_collection/usecase/usecase_vendor_add_theme_impl.dart'
