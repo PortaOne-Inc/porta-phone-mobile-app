@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../../../share/entity/models/theme/theme.dart';
-import '../../theme_create/usecase/usecase_theme_get_template.dart';
+import 'usecase_theme_get_template.dart';
 
 @Injectable(as: UsecaseThemeGetTemplate)
 class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {

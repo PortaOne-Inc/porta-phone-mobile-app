@@ -6,7 +6,11 @@ import 'usecase_theme_create.dart';
 
 @Injectable(as: UsecaseThemeCreate)
 class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
-  UsecaseThemeCreateImpl(this._themeRepository, this.authRepository, this.mapper);
+  UsecaseThemeCreateImpl(
+    this._themeRepository,
+    this.authRepository,
+    this.mapper,
+  );
 
   final AuthRepository authRepository;
   final ThemeRepository _themeRepository;
