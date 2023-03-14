@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:webtrit_configurator/core/widgets/image/image.dart';
 
 import 'package:webtrit_configurator/share/entity/models/theme/image_model.dart';
