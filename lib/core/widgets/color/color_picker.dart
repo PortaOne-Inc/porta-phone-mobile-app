@@ -21,7 +21,6 @@ class ColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerState extends State<ColorPicker> {
-  bool _isVisibleColorChooser = false;
   Color? _currentColor;
 
   @override
@@ -32,49 +31,38 @@ class _ColorPickerState extends State<ColorPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            spreadRadius: 6,
-            blurRadius: 20,
-          ),
-        ],
-      ),
-      child: Card(
-        color: Colors.white,
-        margin: const EdgeInsets.all(24),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              color_picker.ColorPicker(
-                color: Colors.blue,
-                onChanged: (value) => _currentColor = value,
-                initialPicker: color_picker.Picker.paletteHue,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    child: Text(context.l10n.configurator_cancel),
-                    onPressed: () => _hide(),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  ElevatedButton(
-                    child: Text(context.l10n.configurator_got_it),
-                    onPressed: () => _hideColorChooserAndReturnResult(),
-                  ),
-                ],
-              )
-            ],
-          ),
+    return Card(
+      color: Colors.white,
+      margin: const EdgeInsets.all(24),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            color_picker.ColorPicker(
+              color: Colors.blue,
+              onChanged: (value) => _currentColor = value,
+              initialPicker: color_picker.Picker.paletteHue,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  child: Text(context.l10n.configurator_cancel),
+                  onPressed: () => _hide(),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                ElevatedButton(
+                  child: Text(context.l10n.configurator_got_it),
+                  onPressed: () => _hideColorChooserAndReturnResult(),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -82,15 +70,11 @@ class _ColorPickerState extends State<ColorPicker> {
 
   void _hideColorChooserAndReturnResult() {
     widget.onAcceptColor?.call(_currentColor!);
-    setState(() {
-      _isVisibleColorChooser = false;
-    });
+    setState(() {});
   }
 
   void _hide() {
     widget.onDeclineColor?.call();
-    setState(() {
-      _isVisibleColorChooser = false;
-    });
+    setState(() {});
   }
 }
