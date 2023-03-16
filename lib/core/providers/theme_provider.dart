@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webtrit_phone/theme/theme.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:material_color_utilities/material_color_utilities.dart';
@@ -6,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../theme/theme.dart';
 
-class ProviderTheme extends InheritedWidget {
-  const ProviderTheme({
+class ThemeProvider extends InheritedWidget {
+  const ThemeProvider({
     super.key,
     required this.settings,
     required this.lightDynamic,
@@ -19,7 +20,7 @@ class ProviderTheme extends InheritedWidget {
   final ColorScheme? lightDynamic;
   final ColorScheme? darkDynamic;
 
-  Color custom(ColorCustom custom) {
+  Color custom(CustomColor custom) {
     if (custom.blend) {
       return blend(custom.color);
     } else {
@@ -163,9 +164,9 @@ class ProviderTheme extends InheritedWidget {
     );
   }
 
-  ColorGradient gradients(ColorScheme colors) {
+  Gradients gradients(ColorScheme colors) {
     final customColors = settings.primaryGradientColors;
-    return ColorGradient(
+    return Gradients(
       tab: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
@@ -299,12 +300,12 @@ class ProviderTheme extends InheritedWidget {
     return null;
   }
 
-  static ProviderTheme of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ProviderTheme>()!;
+  static ThemeProvider of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
   }
 
   @override
-  bool updateShouldNotify(covariant ProviderTheme oldWidget) {
+  bool updateShouldNotify(covariant ThemeProvider oldWidget) {
     return oldWidget.settings != settings;
   }
 }

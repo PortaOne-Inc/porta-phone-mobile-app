@@ -22,7 +22,7 @@ class MaterialApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderTheme(
+    return ThemeProvider(
       settings: appThemeSettings,
       lightDynamic: null,
       darkDynamic: null,
@@ -54,8 +54,8 @@ class MaterialApplication extends StatelessWidget {
           routeInformationParser: route.routeInformationParser,
           routerDelegate: route.routerDelegate,
           backButtonDispatcher: route.backButtonDispatcher,
-          theme: ProviderTheme.of(context).light(),
-          darkTheme: ProviderTheme.of(context).dark(),
+          theme: ThemeProvider.of(context).light(),
+          darkTheme: ThemeProvider.of(context).dark(),
         ),
       ),
     );
