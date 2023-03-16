@@ -57,23 +57,23 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_primary,
-                                  color: state.theme.colors?.primary,
+                                  color: state.theme.colorScheme?.primary,
                                   onFocus: (isFocus) => focusBloc.updateFocusPrimary(isFocus),
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(primary: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(primary: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_primary,
-                                  color: state.theme.colors?.onPrimary,
+                                  color: state.theme.colorScheme?.onPrimary,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onPrimary: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(onPrimary: color)),
                                   ),
                                 ),
                               ),
@@ -81,21 +81,21 @@ class PageThemeProperty extends StatelessWidget {
                           ),
                           ColorField(
                             title: context.l10n.configurator_color_secondary,
-                            color: state.theme.colors?.secondary,
+                            color: state.theme.colorScheme?.secondary,
                             onFocus: (isFocus) => focusBloc.updateColorSecondary(isFocus),
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.updateColor(state.theme.colors?.copyWith(secondary: color)),
+                              (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(secondary: color)),
                             ),
                           ),
                           ColorField(
                             title: context.l10n.configurator_color_outline,
-                            color: state.theme.colors?.outline,
+                            color: state.theme.colorScheme?.outline,
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.updateColor(state.theme.colors?.copyWith(outline: color)),
+                              (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(outline: color)),
                             ),
                           ),
                           Row(
@@ -103,24 +103,24 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_secondary_container,
-                                  color: state.theme.colors?.secondaryContainer,
+                                  color: state.theme.colorScheme?.secondaryContainer,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
                                     (color) =>
-                                        bloc.updateColor(state.theme.colors?.copyWith(secondaryContainer: color)),
+                                        bloc.updateColor(state.theme.colorScheme?.copyWith(secondaryContainer: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_secondary_container,
-                                  color: state.theme.colors?.onSecondaryContainer,
+                                  color: state.theme.colorScheme?.onSecondaryContainer,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) =>
-                                        bloc.updateColor(state.theme.colors?.copyWith(onSecondaryContainer: color)),
+                                    (color) => bloc
+                                        .updateColor(state.theme.colorScheme?.copyWith(onSecondaryContainer: color)),
                                   ),
                                 ),
                               ),
@@ -131,22 +131,22 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_tertiary,
-                                  color: state.theme.colors?.tertiary,
+                                  color: state.theme.colorScheme?.tertiary,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(tertiary: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(tertiary: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_error,
-                                  color: state.theme.colors?.error,
+                                  color: state.theme.colorScheme?.error,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(error: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(error: color)),
                                   ),
                                 ),
                               ),
@@ -157,25 +157,25 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_background,
-                                  color: state.theme.colors?.onBackground,
+                                  color: state.theme.colorScheme?.onBackground,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onBackground: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(onBackground: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_background,
-                                  color: state.theme.colors?.background,
+                                  color: state.theme.colorScheme?.background,
                                   onFocus: (isFocus) {
                                     focusBloc.updateColorBackground(isFocus);
                                   },
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(background: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(background: color)),
                                   ),
                                 ),
                               ),
@@ -186,22 +186,22 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_surface,
-                                  color: state.theme.colors?.surface,
+                                  color: state.theme.colorScheme?.surface,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(surface: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(surface: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_surface,
-                                  color: state.theme.colors?.onSurface,
+                                  color: state.theme.colorScheme?.onSurface,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onSurface: color)),
+                                    (color) => bloc.updateColor(state.theme.colorScheme?.copyWith(onSurface: color)),
                                   ),
                                 ),
                               ),

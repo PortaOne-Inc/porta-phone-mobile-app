@@ -32,7 +32,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updatePrimaryColor(Color color) {
     emit(state.copyWith(
-      theme: state.theme.copyWith(colors: state.theme.colors?.copyWith(primary: color)),
+      theme: state.theme.copyWith(colorScheme: state.theme.colorScheme?.copyWith(primary: color)),
     ));
   }
 
@@ -55,14 +55,14 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updateColor(ColorSchemeModel? color) {
     emit(state.copyWith(
-      theme: state.theme.copyWith(colors: color),
+      theme: state.theme.copyWith(colorScheme: color),
     ));
   }
 
   void updateGradientTab(List<Color> colors) {
     emit(state.copyWith(
       theme: state.theme.copyWith(
-        colors: state.theme.colors?.copyWith(
+        colorScheme: state.theme.colorScheme?.copyWith(
           gradientTabColor: colors.map((color) => color).toList(),
         ),
       ),

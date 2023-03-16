@@ -16,9 +16,9 @@ _$_ThemeDTO _$$_ThemeDTOFromJson(Map<String, dynamic> json) => _$_ThemeDTO(
       images: json['images'] == null
           ? null
           : ImageCollectionDTO.fromJson(json['images'] as Map<String, dynamic>),
-      colors: json['colors'] == null
+      colorScheme: json['colorScheme'] == null
           ? null
-          : ColorDTO.fromJson(json['colors'] as Map<String, dynamic>),
+          : ColorDTO.fromJson(json['colorScheme'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ThemeDTOToJson(_$_ThemeDTO instance) =>
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$_ThemeDTOToJson(_$_ThemeDTO instance) =>
       'fontFamily': instance.fontFamily,
       'commonConfig': instance.commonConfig,
       'images': instance.images,
-      'colors': instance.colors,
+      'colorScheme': instance.colorScheme,
     };

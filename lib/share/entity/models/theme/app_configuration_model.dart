@@ -9,23 +9,23 @@ class AppConfigurationModel {
   AppConfigurationModel({
     this.id,
     this.fontFamily,
-    this.colors,
+    this.colorScheme,
     this.commonConfig,
     this.images,
   });
 
   final String? id;
-  final ColorSchemeModel? colors;
+  final ColorSchemeModel? colorScheme;
   final CommonConfigModel? commonConfig;
   final String? fontFamily;
   final ConfiguratorImagesSetting? images;
 
   List<Color> get colorSchemeCollection {
-    return colors?.asList() ?? <Color>[];
+    return colorScheme?.asList() ?? <Color>[];
   }
 
   List<Color> get colorGradientCollection {
-    return colors?.gradientTabColor ?? <Color>[Colors.transparent, Colors.transparent];
+    return colorScheme?.gradientTabColor ?? <Color>[Colors.transparent, Colors.transparent];
   }
 
   List<CustomColor> get toCustomColorGradientCollection {
@@ -39,14 +39,14 @@ class AppConfigurationModel {
 
   AppConfigurationModel copyWith({
     final String? id,
-    final ColorSchemeModel? colors,
+    final ColorSchemeModel? colorScheme,
     final CommonConfigModel? commonConfig,
     final String? fontFamily,
     final ConfiguratorImagesSetting? images,
   }) {
     return AppConfigurationModel(
       id: id ?? this.id,
-      colors: colors ?? this.colors,
+      colorScheme: colorScheme ?? this.colorScheme,
       commonConfig: commonConfig ?? this.commonConfig,
       fontFamily: fontFamily ?? this.fontFamily,
       images: images ?? this.images,

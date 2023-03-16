@@ -21,7 +21,7 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
   @override
   ThemeDTO mapToDto(AppConfigurationModel model) {
     return ThemeDTO(
-        colors: colorsMapper.mapToDto(model.colors),
+        colorScheme: colorsMapper.mapToDto(model.colorScheme),
         commonConfig: ThemeCommonDTO(
           appName: model.commonConfig?.appName,
         ),
@@ -37,7 +37,7 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
   @override
   AppConfigurationModel mapToModel(ThemeDTO dto) {
     return AppConfigurationModel(
-        colors: colorsMapper.mapToModel(dto.colors ?? const ColorDTO()),
+        colorScheme: colorsMapper.mapToModel(dto.colorScheme ?? const ColorDTO()),
         commonConfig: CommonConfigModel(
           appName: dto.commonConfig?.appName ?? '',
         ),
