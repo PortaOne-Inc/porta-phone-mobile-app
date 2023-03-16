@@ -24,161 +24,23 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void setDisplayLargeStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          displayLarge: state.theme?.textStyles.displayLarge.merge(style),
+  void updateTextStyle(TextTheme? textTheme) {
+    emit(
+      state.copyWith(
+        theme: state.theme?.copyWith(
+          fontModel: state.theme?.fontModel.copyWith(
+            textTheme: textTheme,
+          ),
         ),
       ),
-    ));
-  }
-
-  void setDisplayMediumStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          displayMedium: state.theme?.textStyles.displayMedium.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setDisplaySmallStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          displaySmall: state.theme?.textStyles.displaySmall.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setHeadlineLargeStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          headlineLarge: state.theme?.textStyles.headlineLarge.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setHeadlineMediumStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          headlineMedium: state.theme?.textStyles.headlineMedium.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setHeadlineSmallStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          headlineSmall: state.theme?.textStyles.headlineSmall.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setTitleLargeStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          titleLarge: state.theme?.textStyles.titleLarge.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setTitleMediumStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          titleMedium: state.theme?.textStyles.titleMedium.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setTitleSmallStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          titleSmall: state.theme?.textStyles.titleSmall.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setBodyLargeStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          bodyLarge: state.theme?.textStyles.bodyLarge.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setBodyMediumStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          bodyMedium: state.theme?.textStyles.bodyMedium.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setBodySmallStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          bodySmall: state.theme?.textStyles.bodySmall.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setLabelLargeStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          labelLarge: state.theme?.textStyles.labelLarge.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setLabelMediumStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          labelMedium: state.theme?.textStyles.labelMedium.merge(style),
-        ),
-      ),
-    ));
-  }
-
-  void setLabelSmallStyle({required TextStyleModel style}) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          labelSmall: state.theme?.textStyles.labelSmall.merge(style),
-        ),
-      ),
-    ));
+    );
   }
 
   void updateCommonFont(String font) {
     emit(state.copyWith(
       theme: state.theme?.copyWith(
-        textStyles: state.theme?.textStyles.copyWith(
-          generalFontName: font,
+        fontModel: state.theme?.fontModel.copyWith(
+          fontFamily: font,
         ),
       ),
     ));
@@ -190,7 +52,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void setTheme(ThemeModel? theme) {
+  void setTheme(AppConfigurationModel? theme) {
     emit(
       state.copyWith(
         theme: theme,
@@ -207,75 +69,9 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     );
   }
 
-  void updateColorPrimary(Color? color) {
+  void updateColor(ColorsModel? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color!.toHex())),
-    ));
-  }
-
-  void updateColorOnPrimary(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onPrimary: color!.toHex())),
-    ));
-  }
-
-  void updateColorSecondary(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondary: color!.toHex())),
-    ));
-  }
-
-  void updateColorSecondaryContainer(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(secondaryContainer: color!.toHex())),
-    ));
-  }
-
-  void updateColorOnSecondaryContainer(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSecondaryContainer: color!.toHex())),
-    ));
-  }
-
-  void updateColorTertiary(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(tertiary: color!.toHex())),
-    ));
-  }
-
-  void updateColorError(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(error: color!.toHex())),
-    ));
-  }
-
-  void updateColorOutline(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(outline: color!.toHex())),
-    ));
-  }
-
-  void updateColorBackground(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(background: color!.toHex())),
-    ));
-  }
-
-  void updateColorOnBackground(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onBackground: color!.toHex())),
-    ));
-  }
-
-  void updateColorSurface(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(surface: color!.toHex())),
-    ));
-  }
-
-  void updateColorOnSurface(Color? color) {
-    emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(onSurface: color!.toHex())),
+      theme: state.theme?.copyWith(colors: color),
     ));
   }
 

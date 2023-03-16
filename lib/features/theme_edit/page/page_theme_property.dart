@@ -5,6 +5,7 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/extension/extension.dart';
 import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/share.dart';
@@ -62,7 +63,7 @@ class PageThemeProperty extends StatelessWidget {
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    bloc.updateColorPrimary,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(primary: color.toHex())),
                                   ),
                                 ),
                               ),
@@ -70,7 +71,11 @@ class PageThemeProperty extends StatelessWidget {
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_primary,
                                   color: state.colorOnPrimary,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorOnPrimary),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(onPrimary: color.toHex())),
+                                  ),
                                 ),
                               ),
                             ],
@@ -79,12 +84,20 @@ class PageThemeProperty extends StatelessWidget {
                             title: context.l10n.configurator_color_secondary,
                             color: state.colorSecondary,
                             onFocus: (isFocus) => focusBloc.updateColorSecondary(isFocus),
-                            onTap: (color) async => _selectColor(context, color, bloc.updateColorSecondary),
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.updateColor(state.theme?.colors.copyWith(secondary: color.toHex())),
+                            ),
                           ),
                           ColorField(
                             title: context.l10n.configurator_color_outline,
                             color: state.colorOutline,
-                            onTap: (color) async => _selectColor(context, color, bloc.updateColorOutline),
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.updateColor(state.theme?.colors.copyWith(outline: color.toHex())),
+                            ),
                           ),
                           Row(
                             children: [
@@ -92,16 +105,24 @@ class PageThemeProperty extends StatelessWidget {
                                 child: ColorField(
                                   title: context.l10n.configurator_color_secondary_container,
                                   color: state.colorSecondaryContainer,
-                                  onTap: (color) async =>
-                                      _selectColor(context, color, bloc.updateColorSecondaryContainer),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc
+                                        .updateColor(state.theme?.colors.copyWith(secondaryContainer: color.toHex())),
+                                  ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_secondary_container,
                                   color: state.colorOnSecondaryContainer,
-                                  onTap: (color) async =>
-                                      _selectColor(context, color, bloc.updateColorOnSecondaryContainer),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc
+                                        .updateColor(state.theme?.colors.copyWith(onSecondaryContainer: color.toHex())),
+                                  ),
                                 ),
                               ),
                             ],
@@ -112,14 +133,22 @@ class PageThemeProperty extends StatelessWidget {
                                 child: ColorField(
                                   title: context.l10n.configurator_color_tertiary,
                                   color: state.colorTertiary,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorTertiary),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(tertiary: color.toHex())),
+                                  ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_error,
                                   color: state.colorError,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorError),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(error: color.toHex())),
+                                  ),
                                 ),
                               ),
                             ],
@@ -130,7 +159,12 @@ class PageThemeProperty extends StatelessWidget {
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_background,
                                   color: state.colorOnBackground,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorOnBackground),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) =>
+                                        bloc.updateColor(state.theme?.colors.copyWith(onBackground: color.toHex())),
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -140,7 +174,12 @@ class PageThemeProperty extends StatelessWidget {
                                   onFocus: (isFocus) {
                                     focusBloc.updateColorBackground(isFocus);
                                   },
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorBackground),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) =>
+                                        bloc.updateColor(state.theme?.colors.copyWith(background: color.toHex())),
+                                  ),
                                 ),
                               ),
                             ],
@@ -151,14 +190,22 @@ class PageThemeProperty extends StatelessWidget {
                                 child: ColorField(
                                   title: context.l10n.configurator_color_surface,
                                   color: state.colorSurface,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorSurface),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(surface: color.toHex())),
+                                  ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_surface,
                                   color: state.colorOnSurface,
-                                  onTap: (color) async => _selectColor(context, color, bloc.updateColorOnSurface),
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(onSurface: color.toHex())),
+                                  ),
                                 ),
                               ),
                             ],
@@ -208,7 +255,7 @@ class PageThemeProperty extends StatelessWidget {
                       Column(
                         children: [
                           FontItem(
-                            fontName: state.theme?.textStyles.generalFontName,
+                            fontName: state.theme?.fontModel.fontFamily,
                             onTap: () => _onChangeBaseFont(context, bloc),
                           ),
                           const Divider(
@@ -218,212 +265,290 @@ class PageThemeProperty extends StatelessWidget {
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_large,
-                            onLineHeight: (value) => bloc.setDisplayLargeStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayLarge: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setDisplayLargeStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayLarge: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setDisplayLargeStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayLarge: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_medium,
-                            onLineHeight: (value) => bloc.setDisplayMediumStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayMedium: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setDisplayMediumStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayMedium: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setDisplayMediumStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displayMedium: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_display_small,
-                            onLineHeight: (value) => bloc.setDisplaySmallStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displaySmall: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setDisplaySmallStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displaySmall: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setDisplaySmallStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                displaySmall: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_large,
-                            onLineHeight: (value) => bloc.setHeadlineLargeStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineLarge: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setHeadlineLargeStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineLarge: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setHeadlineLargeStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineLarge: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_medium,
-                            onLineHeight: (value) => bloc.setHeadlineMediumStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineMedium: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setHeadlineMediumStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineMedium: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setHeadlineMediumStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineMedium: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_headline_small,
-                            onLineHeight: (value) => bloc.setHeadlineSmallStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineSmall: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setHeadlineSmallStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineSmall: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setHeadlineSmallStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                headlineSmall: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_large,
-                            onLineHeight: (value) => bloc.setTitleLargeStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleLarge: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setTitleLargeStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleLarge: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setTitleLargeStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleLarge: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_medium,
-                            onLineHeight: (value) => bloc.setTitleMediumStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleMedium: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setTitleMediumStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleMedium: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setTitleMediumStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleMedium: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_title_small,
-                            onLineHeight: (value) => bloc.setTitleSmallStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleSmall: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setTitleSmallStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleSmall: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setTitleSmallStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                titleSmall: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_large,
-                            onLineHeight: (value) => bloc.setBodyLargeStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyLarge: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setBodyLargeStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyLarge: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setBodyLargeStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyLarge: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_medium,
-                            onLineHeight: (value) => bloc.setBodyMediumStyle(
-                              style: TextStyleModel(
-                                height: value,
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyMedium: TextStyle(
+                                  height: value,
+                                ),
                               ),
                             ),
-                            onLaterSpacing: (value) => bloc.setBodyMediumStyle(
-                              style: TextStyleModel(
-                                letterSpacing: value,
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyMedium: TextStyle(
+                                  letterSpacing: value,
+                                ),
                               ),
                             ),
-                            onWordSpacing: (value) => bloc.setBodyMediumStyle(
-                              style: TextStyleModel(
-                                wordSpacing: value,
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodyMedium: TextStyle(
+                                  wordSpacing: value,
+                                ),
                               ),
                             ),
                           ),
                           TextStyleItem(
                             title: context.l10n.feature_theme_edit_TextStyle_body_small,
-                            onLineHeight: (value) => bloc.setBodySmallStyle(
-                              style: TextStyleModel(height: value),
+                            onLineHeight: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodySmall: TextStyle(
+                                  height: value,
+                                ),
+                              ),
                             ),
-                            onLaterSpacing: (value) => bloc.setBodySmallStyle(
-                              style: TextStyleModel(letterSpacing: value),
+                            onLaterSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodySmall: TextStyle(
+                                  letterSpacing: value,
+                                ),
+                              ),
                             ),
-                            onWordSpacing: (value) => bloc.setBodySmallStyle(
-                              style: TextStyleModel(wordSpacing: value),
+                            onWordSpacing: (value) => bloc.updateTextStyle(
+                              state.theme?.fontModel.textTheme.copyWith(
+                                bodySmall: TextStyle(
+                                  wordSpacing: value,
+                                ),
+                              ),
                             ),
                           ),
                         ],

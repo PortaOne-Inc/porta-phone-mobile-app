@@ -9,7 +9,7 @@ part of 'text_style_collection_dto.dart';
 _$_TextStyleCollectionDTO _$$_TextStyleCollectionDTOFromJson(
         Map<String, dynamic> json) =>
     _$_TextStyleCollectionDTO(
-      generalFontName: json['generalFontName'] as String?,
+      fontFamily: json['fontFamily'] as String?,
       displayLarge: json['displayLarge'] == null
           ? null
           : TextStyleDTO.fromJson(json['displayLarge'] as Map<String, dynamic>),
@@ -64,7 +64,7 @@ _$_TextStyleCollectionDTO _$$_TextStyleCollectionDTOFromJson(
 Map<String, dynamic> _$$_TextStyleCollectionDTOToJson(
         _$_TextStyleCollectionDTO instance) =>
     <String, dynamic>{
-      'generalFontName': instance.generalFontName,
+      'fontFamily': instance.fontFamily,
       'displayLarge': instance.displayLarge,
       'displayMedium': instance.displayMedium,
       'displaySmall': instance.displaySmall,

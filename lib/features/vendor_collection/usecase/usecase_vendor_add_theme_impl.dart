@@ -12,10 +12,10 @@ class UsecaseVendorAddThemeImpl extends UsecaseVendorAddTheme {
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<VendorDTO, ApplicationModel> applicationMapper;
-  final Mapper<ThemeDTO, ThemeModel> themeModel;
+  final Mapper<ThemeDTO, AppConfigurationModel> themeModel;
 
   @override
-  FutureOr<void> execute({required String applicationID, required ThemeModel themeModel}) async {
+  FutureOr<void> execute({required String applicationID, required AppConfigurationModel themeModel}) async {
     final uid = await authRepository.getUserUID();
     final applications = await applicationRepository.getUserApplications(uid!);
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);

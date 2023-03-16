@@ -7,7 +7,6 @@ part 'text_style_dto.g.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class TextStyleDTO with _$TextStyleDTO {
   const factory TextStyleDTO({
-    String? name,
     double? height,
     double? letterSpacing,
     double? wordSpacing,

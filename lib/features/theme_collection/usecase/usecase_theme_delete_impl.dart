@@ -12,10 +12,10 @@ class UsecaseThemeDeleteCreateImpl implements UsecaseThemeDeleteCreate {
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
-  final Mapper<ThemeDTO, ThemeModel> applicationMapper;
+  final Mapper<ThemeDTO, AppConfigurationModel> applicationMapper;
 
   @override
-  Future<void> execute({required String applicationId, required ThemeModel themeModel}) async {
+  Future<void> execute({required String applicationId, required AppConfigurationModel themeModel}) async {
     final uid = await authRepository.getUserUID();
     themeRepository.deleteTheme(uid!, applicationId, applicationMapper.mapToDto(themeModel));
   }

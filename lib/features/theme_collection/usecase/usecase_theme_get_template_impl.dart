@@ -1,19 +1,20 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 
 import 'package:injectable/injectable.dart';
-import 'package:webtrit_configurator/share/share.dart';
 
-import '../../../share/entity/models/theme/theme.dart';
+import 'package:webtrit_configurator/share/entity/entity.dart';
+
 import 'usecase_theme_get_template.dart';
 
 @Injectable(as: UsecaseThemeGetTemplate)
 class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
   @override
-  FutureOr<ThemeModel> execute({
+  FutureOr<AppConfigurationModel> execute({
     String? primaryColor,
     String? themeName,
   }) {
-    return ThemeModel(
+    return AppConfigurationModel(
       images: ConfiguratorImagesSetting(
         onboarding: ImageModel(),
         applicationLogo: ImageModel(),
@@ -24,7 +25,7 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
         iosLauncherIcon: ImageModel(),
         webLauncherIcon: ImageModel(),
       ),
-      textStyles: FontModel.empty(),
+      fontModel: TextThemeModel(fontFamily: null, textTheme: const TextTheme()),
       commonConfig: CommonConfigModel(
         appName: themeName ?? '',
       ),

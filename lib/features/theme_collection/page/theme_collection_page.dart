@@ -91,7 +91,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
     );
   }
 
-  void _openTheme(ThemeModel model) {
+  void _openTheme(AppConfigurationModel model) {
     GoRouter.of(context).goNamed(AppRoutInfo.themesEdit.name, params: <String, String>{
       AppRoutInfo.keyAppId: _allMyThemesCubit.applicationId,
       AppRoutInfo.keyThemeId: model.id!

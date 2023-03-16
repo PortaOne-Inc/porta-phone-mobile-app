@@ -9,7 +9,7 @@ part 'text_style_collection_dto.g.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class TextStyleCollectionDTO with _$TextStyleCollectionDTO {
   factory TextStyleCollectionDTO({
-    String? generalFontName,
+    String? fontFamily,
     TextStyleDTO? displayLarge,
     TextStyleDTO? displayMedium,
     TextStyleDTO? displaySmall,

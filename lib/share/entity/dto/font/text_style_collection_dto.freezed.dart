@@ -21,7 +21,7 @@ TextStyleCollectionDTO _$TextStyleCollectionDTOFromJson(
 
 /// @nodoc
 mixin _$TextStyleCollectionDTO {
-  String? get generalFontName => throw _privateConstructorUsedError;
+  String? get fontFamily => throw _privateConstructorUsedError;
   TextStyleDTO? get displayLarge => throw _privateConstructorUsedError;
   TextStyleDTO? get displayMedium => throw _privateConstructorUsedError;
   TextStyleDTO? get displaySmall => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $TextStyleCollectionDTOCopyWith<$Res> {
       _$TextStyleCollectionDTOCopyWithImpl<$Res, TextStyleCollectionDTO>;
   @useResult
   $Res call(
-      {String? generalFontName,
+      {String? fontFamily,
       TextStyleDTO? displayLarge,
       TextStyleDTO? displayMedium,
       TextStyleDTO? displaySmall,
@@ -99,7 +99,7 @@ class _$TextStyleCollectionDTOCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generalFontName = freezed,
+    Object? fontFamily = freezed,
     Object? displayLarge = freezed,
     Object? displayMedium = freezed,
     Object? displaySmall = freezed,
@@ -117,9 +117,9 @@ class _$TextStyleCollectionDTOCopyWithImpl<$Res,
     Object? labelSmall = freezed,
   }) {
     return _then(_value.copyWith(
-      generalFontName: freezed == generalFontName
-          ? _value.generalFontName
-          : generalFontName // ignore: cast_nullable_to_non_nullable
+      fontFamily: freezed == fontFamily
+          ? _value.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
       displayLarge: freezed == displayLarge
           ? _value.displayLarge
@@ -374,7 +374,7 @@ abstract class _$$_TextStyleCollectionDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? generalFontName,
+      {String? fontFamily,
       TextStyleDTO? displayLarge,
       TextStyleDTO? displayMedium,
       TextStyleDTO? displaySmall,
@@ -435,7 +435,7 @@ class __$$_TextStyleCollectionDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generalFontName = freezed,
+    Object? fontFamily = freezed,
     Object? displayLarge = freezed,
     Object? displayMedium = freezed,
     Object? displaySmall = freezed,
@@ -453,9 +453,9 @@ class __$$_TextStyleCollectionDTOCopyWithImpl<$Res>
     Object? labelSmall = freezed,
   }) {
     return _then(_$_TextStyleCollectionDTO(
-      generalFontName: freezed == generalFontName
-          ? _value.generalFontName
-          : generalFontName // ignore: cast_nullable_to_non_nullable
+      fontFamily: freezed == fontFamily
+          ? _value.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
       displayLarge: freezed == displayLarge
           ? _value.displayLarge
@@ -525,7 +525,7 @@ class __$$_TextStyleCollectionDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
   _$_TextStyleCollectionDTO(
-      {this.generalFontName,
+      {this.fontFamily,
       this.displayLarge,
       this.displayMedium,
       this.displaySmall,
@@ -546,7 +546,7 @@ class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
       _$$_TextStyleCollectionDTOFromJson(json);
 
   @override
-  final String? generalFontName;
+  final String? fontFamily;
   @override
   final TextStyleDTO? displayLarge;
   @override
@@ -580,7 +580,7 @@ class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
 
   @override
   String toString() {
-    return 'TextStyleCollectionDTO(generalFontName: $generalFontName, displayLarge: $displayLarge, displayMedium: $displayMedium, displaySmall: $displaySmall, headlineLarge: $headlineLarge, headlineMedium: $headlineMedium, headlineSmall: $headlineSmall, titleLarge: $titleLarge, titleMedium: $titleMedium, titleSmall: $titleSmall, bodyLarge: $bodyLarge, bodyMedium: $bodyMedium, bodySmall: $bodySmall, labelLarge: $labelLarge, labelMedium: $labelMedium, labelSmall: $labelSmall)';
+    return 'TextStyleCollectionDTO(fontFamily: $fontFamily, displayLarge: $displayLarge, displayMedium: $displayMedium, displaySmall: $displaySmall, headlineLarge: $headlineLarge, headlineMedium: $headlineMedium, headlineSmall: $headlineSmall, titleLarge: $titleLarge, titleMedium: $titleMedium, titleSmall: $titleSmall, bodyLarge: $bodyLarge, bodyMedium: $bodyMedium, bodySmall: $bodySmall, labelLarge: $labelLarge, labelMedium: $labelMedium, labelSmall: $labelSmall)';
   }
 
   @override
@@ -588,8 +588,8 @@ class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TextStyleCollectionDTO &&
-            (identical(other.generalFontName, generalFontName) ||
-                other.generalFontName == generalFontName) &&
+            (identical(other.fontFamily, fontFamily) ||
+                other.fontFamily == fontFamily) &&
             (identical(other.displayLarge, displayLarge) ||
                 other.displayLarge == displayLarge) &&
             (identical(other.displayMedium, displayMedium) ||
@@ -626,7 +626,7 @@ class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      generalFontName,
+      fontFamily,
       displayLarge,
       displayMedium,
       displaySmall,
@@ -660,7 +660,7 @@ class _$_TextStyleCollectionDTO implements _TextStyleCollectionDTO {
 
 abstract class _TextStyleCollectionDTO implements TextStyleCollectionDTO {
   factory _TextStyleCollectionDTO(
-      {final String? generalFontName,
+      {final String? fontFamily,
       final TextStyleDTO? displayLarge,
       final TextStyleDTO? displayMedium,
       final TextStyleDTO? displaySmall,
@@ -681,7 +681,7 @@ abstract class _TextStyleCollectionDTO implements TextStyleCollectionDTO {
       _$_TextStyleCollectionDTO.fromJson;
 
   @override
-  String? get generalFontName;
+  String? get fontFamily;
   @override
   TextStyleDTO? get displayLarge;
   @override

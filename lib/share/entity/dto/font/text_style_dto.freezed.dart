@@ -20,7 +20,6 @@ TextStyleDTO _$TextStyleDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TextStyleDTO {
-  String? get name => throw _privateConstructorUsedError;
   double? get height => throw _privateConstructorUsedError;
   double? get letterSpacing => throw _privateConstructorUsedError;
   double? get wordSpacing => throw _privateConstructorUsedError;
@@ -37,11 +36,7 @@ abstract class $TextStyleDTOCopyWith<$Res> {
           TextStyleDTO value, $Res Function(TextStyleDTO) then) =
       _$TextStyleDTOCopyWithImpl<$Res, TextStyleDTO>;
   @useResult
-  $Res call(
-      {String? name,
-      double? height,
-      double? letterSpacing,
-      double? wordSpacing});
+  $Res call({double? height, double? letterSpacing, double? wordSpacing});
 }
 
 /// @nodoc
@@ -57,16 +52,11 @@ class _$TextStyleDTOCopyWithImpl<$Res, $Val extends TextStyleDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? height = freezed,
     Object? letterSpacing = freezed,
     Object? wordSpacing = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -91,11 +81,7 @@ abstract class _$$_TextStyleDTOCopyWith<$Res>
       __$$_TextStyleDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? name,
-      double? height,
-      double? letterSpacing,
-      double? wordSpacing});
+  $Res call({double? height, double? letterSpacing, double? wordSpacing});
 }
 
 /// @nodoc
@@ -109,16 +95,11 @@ class __$$_TextStyleDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? height = freezed,
     Object? letterSpacing = freezed,
     Object? wordSpacing = freezed,
   }) {
     return _then(_$_TextStyleDTO(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -138,14 +119,11 @@ class __$$_TextStyleDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TextStyleDTO implements _TextStyleDTO {
-  const _$_TextStyleDTO(
-      {this.name, this.height, this.letterSpacing, this.wordSpacing});
+  const _$_TextStyleDTO({this.height, this.letterSpacing, this.wordSpacing});
 
   factory _$_TextStyleDTO.fromJson(Map<String, dynamic> json) =>
       _$$_TextStyleDTOFromJson(json);
 
-  @override
-  final String? name;
   @override
   final double? height;
   @override
@@ -155,7 +133,7 @@ class _$_TextStyleDTO implements _TextStyleDTO {
 
   @override
   String toString() {
-    return 'TextStyleDTO(name: $name, height: $height, letterSpacing: $letterSpacing, wordSpacing: $wordSpacing)';
+    return 'TextStyleDTO(height: $height, letterSpacing: $letterSpacing, wordSpacing: $wordSpacing)';
   }
 
   @override
@@ -163,7 +141,6 @@ class _$_TextStyleDTO implements _TextStyleDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TextStyleDTO &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.letterSpacing, letterSpacing) ||
                 other.letterSpacing == letterSpacing) &&
@@ -174,7 +151,7 @@ class _$_TextStyleDTO implements _TextStyleDTO {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, height, letterSpacing, wordSpacing);
+      Object.hash(runtimeType, height, letterSpacing, wordSpacing);
 
   @JsonKey(ignore: true)
   @override
@@ -192,16 +169,13 @@ class _$_TextStyleDTO implements _TextStyleDTO {
 
 abstract class _TextStyleDTO implements TextStyleDTO {
   const factory _TextStyleDTO(
-      {final String? name,
-      final double? height,
+      {final double? height,
       final double? letterSpacing,
       final double? wordSpacing}) = _$_TextStyleDTO;
 
   factory _TextStyleDTO.fromJson(Map<String, dynamic> json) =
       _$_TextStyleDTO.fromJson;
 
-  @override
-  String? get name;
   @override
   double? get height;
   @override

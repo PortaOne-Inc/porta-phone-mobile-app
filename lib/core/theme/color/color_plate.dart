@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import 'package:webtrit_phone/theme/theme.dart';
 
 const _seedColor = Color(0xFFF5841F);
 const _darkBlue = Color(0xFF3D5B68);
@@ -11,12 +11,12 @@ const _white = Color(0xFFFFFFFF);
 
 const _red = Color(0xFFE74C3C);
 
-const _gradientTop = ColorCustom(
+const _gradientTop = CustomColor(
   color: Color(0xFF58A1A4),
   blend: false,
 );
 
-const _gradientBottom = ColorCustom(
+const _gradientBottom = CustomColor(
   color: Color(0xFF343D77),
   blend: false,
 );

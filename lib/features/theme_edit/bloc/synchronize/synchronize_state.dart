@@ -18,7 +18,7 @@ class ThemeIsNotValidState extends SynchronizeState {
 }
 
 class ThemeReadyState extends SynchronizeState {
-  final ThemeModel themeModel;
+  final AppConfigurationModel themeModel;
 
   const ThemeReadyState(this.themeModel);
 }

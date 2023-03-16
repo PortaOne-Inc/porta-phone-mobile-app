@@ -9,7 +9,7 @@ class ThemePropertyState {
 
   final ThemeNameInput nameField;
 
-  final ThemeModel? theme;
+  final AppConfigurationModel? theme;
 
   bool get isModelAvailable => theme != null;
 
@@ -60,7 +60,7 @@ class ThemePropertyState {
   }
 
   ThemePropertyState copyWith({
-    final ThemeModel? theme,
+    final AppConfigurationModel? theme,
     final FocusModel? focusGroup,
     final ThemeNameInput? nameField,
   }) {

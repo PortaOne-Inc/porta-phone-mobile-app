@@ -14,10 +14,10 @@ class ItemTheme extends StatelessWidget {
     required this.onDelete,
   });
 
-  final ThemeModel themeMode;
-  final Function(ThemeModel model) onTap;
-  final Function(ThemeModel model) onDelete;
-  final Function(ThemeModel model) onMakeDefault;
+  final AppConfigurationModel themeMode;
+  final Function(AppConfigurationModel model) onTap;
+  final Function(AppConfigurationModel model) onDelete;
+  final Function(AppConfigurationModel model) onMakeDefault;
 
   static const _menuKeyDelete = '_menuKeyDelete';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';

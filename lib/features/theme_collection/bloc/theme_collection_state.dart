@@ -6,7 +6,7 @@ class ThemesState {
     required this.themes,
   });
 
-  final List<ThemeModel> themes;
+  final List<AppConfigurationModel> themes;
 }
 
 class ThemesInitial extends ThemesState {
@@ -45,5 +45,5 @@ class ThemesFailure extends ThemesState {
 class NavigateToConfigurator extends ThemesState {
   const NavigateToConfigurator({required this.themeModel, required super.themes});
 
-  final ThemeModel themeModel;
+  final AppConfigurationModel themeModel;
 }

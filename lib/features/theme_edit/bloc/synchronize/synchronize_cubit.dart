@@ -32,7 +32,7 @@ class SynchronizeCubit extends Cubit<SynchronizeState> {
     ));
   }
 
-  void validateAndTryUpdateTheme(ThemeModel? themeModel) async {
+  void validateAndTryUpdateTheme(AppConfigurationModel? themeModel) async {
     if (themeModel != null) {
       if (themeModel.commonConfig.appName.isNotEmpty) {
         _tryUpdateTheme(themeModel);
@@ -54,7 +54,7 @@ class SynchronizeCubit extends Cubit<SynchronizeState> {
     }
   }
 
-  Future<void> _tryUpdateTheme(ThemeModel themeModel) async {
+  Future<void> _tryUpdateTheme(AppConfigurationModel themeModel) async {
     try {
       await _updateTheme(themeModel);
     } on BaseException catch (e) {
@@ -72,7 +72,7 @@ class SynchronizeCubit extends Cubit<SynchronizeState> {
     emit(ThemeReadyState(model));
   }
 
-  Future _updateTheme(ThemeModel themeModel) async {
+  Future _updateTheme(AppConfigurationModel themeModel) async {
     emit(const SyncStateProgress());
     await updateThemeUseCase.execute(applicationId: applicationId, themeModel: themeModel);
     emit(const SyncInitial());

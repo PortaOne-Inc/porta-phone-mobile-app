@@ -1,4 +1,20 @@
 class ColorsModel {
+  ColorsModel({
+    required this.primary,
+    required this.secondary,
+    required this.onPrimary,
+    required this.secondaryContainer,
+    required this.onSecondaryContainer,
+    required this.tertiary,
+    required this.error,
+    required this.outline,
+    required this.background,
+    required this.onBackground,
+    required this.surface,
+    required this.onSurface,
+    this.gradientTabColor = const [],
+  });
+
   final String primary;
   final String onPrimary;
   final String secondary;
@@ -12,21 +28,6 @@ class ColorsModel {
   final String surface;
   final String onSurface;
   final List<String> gradientTabColor;
-
-  ColorsModel(
-      {required this.primary,
-      required this.secondary,
-      required this.onPrimary,
-      required this.secondaryContainer,
-      required this.onSecondaryContainer,
-      required this.tertiary,
-      required this.error,
-      required this.outline,
-      required this.background,
-      required this.onBackground,
-      required this.surface,
-      required this.onSurface,
-      this.gradientTabColor = const []});
 
   ColorsModel copyWith({
     final String? primary,

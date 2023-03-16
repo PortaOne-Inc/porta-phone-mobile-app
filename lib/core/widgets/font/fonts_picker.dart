@@ -149,7 +149,7 @@ class _FontsPickerState extends State<FontsPicker> {
                       ),
                     ),
                   ),
-                  onTap: () => widget.onChoose(''),
+                  onTap: () => widget.onChoose(item),
                 ),
               ),
             ),

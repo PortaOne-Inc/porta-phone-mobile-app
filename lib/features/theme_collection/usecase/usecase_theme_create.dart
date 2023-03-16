@@ -1,8 +1,8 @@
 import 'package:webtrit_configurator/share/share.dart';
 
 abstract class UsecaseThemeCreate {
-  Future<ThemeModel> execute({
+  Future<AppConfigurationModel> execute({
     required String applicationId,
-    required ThemeModel themeModel,
+    required AppConfigurationModel themeModel,
   });
 }
