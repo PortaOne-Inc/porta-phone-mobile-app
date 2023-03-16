@@ -35,9 +35,9 @@ dependencies:
   flutter_bloc: ^8.1.2
 
   # Firebase
-  firebase_core: ^2.7.0
-  firebase_auth: ^4.2.9
-  firebase_database: ^10.0.4
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
+  firebase_database: ^10.0.15
 
   # UI
   device_preview: ^1.1.0
