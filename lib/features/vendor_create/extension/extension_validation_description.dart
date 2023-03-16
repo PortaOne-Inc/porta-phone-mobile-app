@@ -6,7 +6,7 @@ import '../model/models.dart';
 
 extension ExtensionValidationDescriptionErrorL10n on ApplicationDescriptionInput {
   String? errorL10n(BuildContext context) {
-    if (!invalid) {
+    if (isValid) {
       return null;
     } else {
       switch (error!) {

@@ -6,7 +6,7 @@ import '../models/auth_email_input.dart';
 
 extension AuthEmailInputErrorL10n on AuthEmailInput {
   String? errorL10n(BuildContext context) {
-    if (!invalid) {
+    if (isValid) {
       return null;
     } else {
       switch (error!) {

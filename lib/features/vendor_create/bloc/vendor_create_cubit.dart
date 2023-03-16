@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-
 import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
 
@@ -94,6 +93,6 @@ class VendorCreateCubit extends Cubit<VendorCreateState> {
   }
 
   bool _isValidFields() {
-    return Formz.validate([state.nameField, state.descriptionField]).isValid;
+    return Formz.validate([state.nameField, state.descriptionField]);
   }
 }

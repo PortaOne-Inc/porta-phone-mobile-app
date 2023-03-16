@@ -94,7 +94,7 @@ class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialo
               height: 16,
             ),
             Button(
-              isEnable: !nameField.invalid,
+              isEnable: !nameField.isValid,
               title: context.l10n.theme_create,
               onPressed: () {
                 widget.onCreateTheme(_controller.text, _selectedColor);

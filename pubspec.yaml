@@ -54,7 +54,7 @@ dependencies:
   # Helpers
   uuid: ^3.0.7
   meta: ^1.8.0
-  formz: ^0.4.1
+  formz: ^0.5.0
   validated: ^2.0.0
   logging: ^1.0.2
   logging_appenders: ^1.0.0

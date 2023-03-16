@@ -6,7 +6,7 @@ import '../models/auth_password_input.dart';
 
 extension AuthPasswordInputErrorL10n on AuthPasswordInput {
   String? errorL10n(BuildContext context) {
-    if (!invalid) {
+    if (isValid) {
       return null;
     } else {
       switch (error!) {

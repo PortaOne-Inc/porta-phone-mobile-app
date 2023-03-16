@@ -5,7 +5,7 @@ import '../model/application_name_input.dart';
 
 extension ExtensionValidationNameErrorL10n on ApplicationNameInput {
   String? errorL10n(BuildContext context) {
-    if (!invalid) {
+    if (isValid) {
       return null;
     } else {
       switch (error!) {

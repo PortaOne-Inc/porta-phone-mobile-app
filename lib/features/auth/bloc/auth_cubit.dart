@@ -72,6 +72,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   bool _isValidFields() {
-    return Formz.validate([state.passwordError, state.emailError]).isValid;
+    return Formz.validate([state.passwordError, state.emailError]);
   }
 }

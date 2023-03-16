@@ -6,7 +6,7 @@ import '../model/theme_name_input.dart';
 
 extension ThemeNameInputErrorL10n on ThemeNameInput {
   String? errorL10n(BuildContext context) {
-    if (!invalid) {
+    if (isValid) {
       return null;
     } else {
       switch (error!) {
