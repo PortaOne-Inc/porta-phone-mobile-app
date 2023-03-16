@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin_messages.dart';
+import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import '../theme_edit.dart';
 import '../widgets/widgets.dart';
+
 import 'page_theme_preview.dart';
 
 class PageThemeEdit extends StatefulWidget {

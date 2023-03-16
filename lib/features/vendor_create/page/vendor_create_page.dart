@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/core/config/app/application.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
-import 'package:webtrit_configurator/core/config/app/application.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
-import '../extension/extension.dart';
 import '../bloc/vendor_create_cubit.dart';
+import '../extension/extension.dart';
 import '../widgets/vendor_create_toolbar.dart';
 
 class VendorCreatePage extends StatefulWidget {

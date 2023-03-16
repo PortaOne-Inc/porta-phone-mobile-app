@@ -5,14 +5,13 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
-import 'package:webtrit_configurator/core/extension/extension.dart';
 import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
+import '../extension/extension.dart';
 import '../theme_edit.dart';
 import '../widgets/widgets.dart';
-import '../extension/extension.dart';
 
 class PageThemeProperty extends StatelessWidget {
   const PageThemeProperty({
@@ -58,23 +57,23 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_primary,
-                                  color: state.colorPrimary,
+                                  color: state.theme.colors?.primary,
                                   onFocus: (isFocus) => focusBloc.updateFocusPrimary(isFocus),
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(primary: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(primary: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_primary,
-                                  color: state.colorOnPrimary,
+                                  color: state.theme.colors?.onPrimary,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(onPrimary: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onPrimary: color)),
                                   ),
                                 ),
                               ),
@@ -82,21 +81,21 @@ class PageThemeProperty extends StatelessWidget {
                           ),
                           ColorField(
                             title: context.l10n.configurator_color_secondary,
-                            color: state.colorSecondary,
+                            color: state.theme.colors?.secondary,
                             onFocus: (isFocus) => focusBloc.updateColorSecondary(isFocus),
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.updateColor(state.theme?.colors.copyWith(secondary: color.toHex())),
+                              (color) => bloc.updateColor(state.theme.colors?.copyWith(secondary: color)),
                             ),
                           ),
                           ColorField(
                             title: context.l10n.configurator_color_outline,
-                            color: state.colorOutline,
+                            color: state.theme.colors?.outline,
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.updateColor(state.theme?.colors.copyWith(outline: color.toHex())),
+                              (color) => bloc.updateColor(state.theme.colors?.copyWith(outline: color)),
                             ),
                           ),
                           Row(
@@ -104,24 +103,24 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_secondary_container,
-                                  color: state.colorSecondaryContainer,
+                                  color: state.theme.colors?.secondaryContainer,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc
-                                        .updateColor(state.theme?.colors.copyWith(secondaryContainer: color.toHex())),
+                                    (color) =>
+                                        bloc.updateColor(state.theme.colors?.copyWith(secondaryContainer: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_secondary_container,
-                                  color: state.colorOnSecondaryContainer,
+                                  color: state.theme.colors?.onSecondaryContainer,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc
-                                        .updateColor(state.theme?.colors.copyWith(onSecondaryContainer: color.toHex())),
+                                    (color) =>
+                                        bloc.updateColor(state.theme.colors?.copyWith(onSecondaryContainer: color)),
                                   ),
                                 ),
                               ),
@@ -132,22 +131,22 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_tertiary,
-                                  color: state.colorTertiary,
+                                  color: state.theme.colors?.tertiary,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(tertiary: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(tertiary: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_error,
-                                  color: state.colorError,
+                                  color: state.theme.colors?.error,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(error: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(error: color)),
                                   ),
                                 ),
                               ),
@@ -158,27 +157,25 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.feature_theme_edit_Color_on_background,
-                                  color: state.colorOnBackground,
+                                  color: state.theme.colors?.onBackground,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) =>
-                                        bloc.updateColor(state.theme?.colors.copyWith(onBackground: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onBackground: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_background,
-                                  color: state.colorBackground,
+                                  color: state.theme.colors?.background,
                                   onFocus: (isFocus) {
                                     focusBloc.updateColorBackground(isFocus);
                                   },
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) =>
-                                        bloc.updateColor(state.theme?.colors.copyWith(background: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(background: color)),
                                   ),
                                 ),
                               ),
@@ -189,22 +186,22 @@ class PageThemeProperty extends StatelessWidget {
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_surface,
-                                  color: state.colorSurface,
+                                  color: state.theme.colors?.surface,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(surface: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(surface: color)),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: ColorField(
                                   title: context.l10n.configurator_color_on_surface,
-                                  color: state.colorOnSurface,
+                                  color: state.theme.colors?.onSurface,
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
-                                    (color) => bloc.updateColor(state.theme?.colors.copyWith(onSurface: color.toHex())),
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onSurface: color)),
                                   ),
                                 ),
                               ),
@@ -212,7 +209,7 @@ class PageThemeProperty extends StatelessWidget {
                           ),
                           GradientField(
                             title: context.l10n.configurator_color_gradient_tab,
-                            colors: state.gradientTabColor,
+                            colors: state.theme.colorGradientCollection,
                             onAddColor: (colors) async => _addGradientColor(
                               context,
                               colors,
@@ -220,7 +217,7 @@ class PageThemeProperty extends StatelessWidget {
                             ),
                             onRemoveColor: (color) {
                               bloc.updateGradientTab(
-                                state.gradientTabColor
+                                (state.theme.colorGradientCollection)
                                     .where(
                                       (element) => element != color,
                                     )
@@ -255,7 +252,7 @@ class PageThemeProperty extends StatelessWidget {
                       Column(
                         children: [
                           FontItem(
-                            fontName: state.theme?.fontFamily,
+                            fontName: state.theme.fontFamily,
                             onTap: () => _onChangeBaseFont(context, bloc),
                           ),
                         ],
@@ -285,28 +282,28 @@ class PageThemeProperty extends StatelessWidget {
                             children: [
                               SelectedImage(
                                 name: context.l10n.configurator_image_resource_onboarding,
-                                image: state.theme?.images.onboarding,
+                                image: state.theme.images?.onboarding,
                                 onTap: () async => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     onboarding: await _selectImage(),
                                   ),
                                 ),
                                 onRemove: () => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     onboarding: ImageModel(),
                                   ),
                                 ),
                               ),
                               SelectedImage(
                                 name: context.l10n.feature_theme_edit_Image_logo,
-                                image: state.theme?.images.applicationLogo,
+                                image: state.theme.images?.applicationLogo,
                                 onTap: () async => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     applicationLogo: await _selectImage(),
                                   ),
                                 ),
                                 onRemove: () => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     applicationLogo: ImageModel(),
                                   ),
                                 ),
@@ -331,14 +328,14 @@ class PageThemeProperty extends StatelessWidget {
                             children: [
                               SelectedImage(
                                 name: 'Push notification icon',
-                                image: state.theme?.images.notificationLogo,
+                                image: state.theme.images?.notificationLogo,
                                 onTap: () async => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     notificationLogo: await _selectImage(),
                                   ),
                                 ),
                                 onRemove: () => bloc.updateImageResources(
-                                  bloc.state.theme?.images.copyWith(
+                                  bloc.state.theme.images?.copyWith(
                                     notificationLogo: ImageModel(),
                                   ),
                                 ),
@@ -363,70 +360,70 @@ class PageThemeProperty extends StatelessWidget {
                           children: [
                             SelectedImage(
                               name: 'Adaptive icon background',
-                              image: state.theme?.images.adaptiveIconBackground,
+                              image: state.theme.images?.adaptiveIconBackground,
                               onTap: () async => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   adaptiveIconBackground: await _selectImage(),
                                 ),
                               ),
                               onRemove: () => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   adaptiveIconBackground: ImageModel(),
                                 ),
                               ),
                             ),
                             SelectedImage(
                               name: 'Adaptive icon foreground',
-                              image: state.theme?.images.adaptiveIconForeground,
+                              image: state.theme.images?.adaptiveIconForeground,
                               onTap: () async => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   adaptiveIconForeground: await _selectImage(),
                                 ),
                               ),
                               onRemove: () => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   adaptiveIconForeground: ImageModel(),
                                 ),
                               ),
                             ),
                             SelectedImage(
                               name: 'Android launcher icon',
-                              image: state.theme?.images.androidLauncherIcon,
+                              image: state.theme.images?.androidLauncherIcon,
                               onTap: () async => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   androidLauncherIcon: await _selectImage(),
                                 ),
                               ),
                               onRemove: () => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   androidLauncherIcon: ImageModel(),
                                 ),
                               ),
                             ),
                             SelectedImage(
                               name: 'IOS launcher icon',
-                              image: state.theme?.images.iosLauncherIcon,
+                              image: state.theme.images?.iosLauncherIcon,
                               onTap: () async => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   iosLauncherIcon: await _selectImage(),
                                 ),
                               ),
                               onRemove: () => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   iosLauncherIcon: ImageModel(),
                                 ),
                               ),
                             ),
                             SelectedImage(
                               name: 'WEB launcher icon',
-                              image: state.theme?.images.webLauncherIcon,
+                              image: state.theme.images?.webLauncherIcon,
                               onTap: () async => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   webLauncherIcon: await _selectImage(),
                                 ),
                               ),
                               onRemove: () => bloc.updateImageResources(
-                                bloc.state.theme?.images.copyWith(
+                                bloc.state.theme.images?.copyWith(
                                   webLauncherIcon: ImageModel(),
                                 ),
                               ),

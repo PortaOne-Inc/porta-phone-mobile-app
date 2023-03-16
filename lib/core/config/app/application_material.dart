@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../providers/providers.dart';
 import '../../theme/theme.dart';
 import '../l10n/l10n.dart';
+
 import 'route/app_route.dart';
 
 class MaterialApplication extends StatelessWidget {

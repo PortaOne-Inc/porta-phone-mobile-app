@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:webtrit_phone/theme/theme.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:material_color_utilities/material_color_utilities.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:webtrit_phone/theme/theme.dart';
 
 import '../theme/theme.dart';
 

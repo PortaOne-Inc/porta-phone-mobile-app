@@ -4,7 +4,6 @@ import 'package:webtrit_configurator/share/share.dart';
 
 import 'usecase_theme_get_by_id.dart';
 
-
 @Injectable(as: UsecaseThemeGetById)
 class UsecaseThemeGetByIdImpl implements UsecaseThemeGetById {
   UsecaseThemeGetByIdImpl(this.themeRepository, this.authRepository, this.mapper);
@@ -20,6 +19,4 @@ class UsecaseThemeGetByIdImpl implements UsecaseThemeGetById {
     final dto = await themeRepository.getTheme(uid!, applicationId, themeId);
     return mapper.mapToModel(dto);
   }
-
-
 }

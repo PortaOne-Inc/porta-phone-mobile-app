@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
-import '../model/theme_name_input.dart';
 import '../extension/extension.dart';
+import '../model/theme_name_input.dart';
 
 class ThemeCollectionCreateDialog extends StatefulWidget {
   const ThemeCollectionCreateDialog({

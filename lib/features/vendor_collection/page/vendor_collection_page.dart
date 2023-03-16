@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/core/config/app/application.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/entity/entity.dart';
-import 'package:webtrit_configurator/core/config/app/application.dart';
 
 import '../bloc/vendor_collection_cubit.dart';
 import '../widgets/widgets.dart';
