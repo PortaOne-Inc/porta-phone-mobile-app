@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
-import 'package:webtrit_configurator/core/extension/extension_hex_color.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../usecase/usecase.dart';
@@ -78,8 +77,8 @@ class ThemeCollectionCubit extends Cubit<ThemesState> {
     final defaultTheme = await getTemplateThemeUseCase.execute();
     final result = await createThemeUseCase.execute(
       themeModel: defaultTheme.copyWith(
-        commonConfig: defaultTheme.commonConfig.copyWith(appName: name),
-        colors: defaultTheme.colors.copyWith(primary: color.toHex()),
+        commonConfig: defaultTheme.commonConfig?.copyWith(appName: name),
+        colors: defaultTheme.colors?.copyWith(primary: color),
       ),
       applicationId: applicationId,
     );

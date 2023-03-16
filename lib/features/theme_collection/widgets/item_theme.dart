@@ -40,7 +40,7 @@ class ItemTheme extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Text(
-                    themeMode.commonConfig.appName,
+                    themeMode.commonConfig?.appName ?? '',
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.titleLarge,
                     overflow: TextOverflow.ellipsis,
@@ -55,12 +55,11 @@ class ItemTheme extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Wrap(
-                        children: themeMode.colors
-                            .asList()
+                        children: themeMode.colorSchemeCollection
                             .map((color) => UsedColor(
                                   blurRadius: 4,
                                   size: 16,
-                                  color: UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!,
+                                  color: color,
                                   boxShadow: const [BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)],
                                 ))
                             .toList(),
@@ -77,12 +76,10 @@ class ItemTheme extends StatelessWidget {
                             height: 40,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: themeMode.colors.gradientTabColor
-                                      .map((color) =>
-                                          UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!)
-                                      .toList()),
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: themeMode.colorGradientCollection.map((color) => color).toList(),
+                              ),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),
                             ),
                           ),
@@ -97,10 +94,9 @@ class ItemTheme extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
-                                  colors: themeMode.colors.gradientTabColor
+                                  colors: themeMode.colorGradientCollection
                                       .map(
-                                        (color) =>
-                                            UtilityColor.tryParseColorFromHex(color, defaultColor: Colors.transparent)!,
+                                        (color) => color,
                                       )
                                       .toList()),
                               borderRadius: const BorderRadius.all(Radius.circular(8)),

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 
-import 'package:webtrit_configurator/core/extension/extension.dart';
-import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../../model/models.dart';
@@ -11,13 +9,13 @@ import '../../model/models.dart';
 part 'configurator_state.dart';
 
 class ThemePropertyCubit extends Cubit<ThemePropertyState> {
-  ThemePropertyCubit() : super(const ThemePropertyState());
+  ThemePropertyCubit() : super(ThemePropertyState(theme: AppConfigurationModel()));
 
   void updateAppName(String name) {
     emit(state.copyWith(
       nameField: ThemeNameInput.dirty(name),
-      theme: state.theme?.copyWith(
-        commonConfig: state.theme?.commonConfig.copyWith(
+      theme: state.theme.copyWith(
+        commonConfig: state.theme.commonConfig?.copyWith(
           appName: name,
         ),
       ),
@@ -26,7 +24,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updateCommonFont(String font) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(
+      theme: state.theme.copyWith(
         fontFamily: font,
       ),
     ));
@@ -34,7 +32,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   void updatePrimaryColor(Color color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: state.theme?.colors.copyWith(primary: color.toHex())),
+      theme: state.theme.copyWith(colors: state.theme.colors?.copyWith(primary: color)),
     ));
   }
 
@@ -42,7 +40,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     emit(
       state.copyWith(
         theme: theme,
-        nameField: ThemeNameInput.pure(theme?.commonConfig.appName ?? ''),
+        nameField: ThemeNameInput.pure(theme?.commonConfig?.appName ?? ''),
       ),
     );
   }
@@ -50,22 +48,22 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
   void updateImageResources(ConfiguratorImagesSetting? image) {
     emit(
       state.copyWith(
-        theme: state.theme?.copyWith(images: image),
+        theme: state.theme.copyWith(images: image),
       ),
     );
   }
 
-  void updateColor(ColorsModel? color) {
+  void updateColor(ColorSchemeModel? color) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(colors: color),
+      theme: state.theme.copyWith(colors: color),
     ));
   }
 
   void updateGradientTab(List<Color> colors) {
     emit(state.copyWith(
-      theme: state.theme?.copyWith(
-        colors: state.theme?.colors.copyWith(
-          gradientTabColor: colors.map((e) => e.toHex()).toList(),
+      theme: state.theme.copyWith(
+        colors: state.theme.colors?.copyWith(
+          gradientTabColor: colors.map((color) => color).toList(),
         ),
       ),
     ));

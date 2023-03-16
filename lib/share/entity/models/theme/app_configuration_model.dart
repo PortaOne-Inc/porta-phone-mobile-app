@@ -1,26 +1,45 @@
-import 'package:webtrit_configurator/share/entity/models/theme/theme_images_model.dart';
+import 'package:flutter/material.dart';
+import 'package:webtrit_configurator/share/exports/exports.dart';
 
-import 'color_model.dart';
+import 'color_shema_model.dart';
 import 'common_config_model.dart';
+import 'theme_images_model.dart';
 
 class AppConfigurationModel {
-  final String? id;
-  final ColorsModel colors;
-  final CommonConfigModel commonConfig;
-  final String? fontFamily;
-  final ConfiguratorImagesSetting images;
-
   AppConfigurationModel({
+    this.id,
     this.fontFamily,
-    required this.id,
-    required this.colors,
-    required this.commonConfig,
-    required this.images,
+    this.colors,
+    this.commonConfig,
+    this.images,
   });
+
+  final String? id;
+  final ColorSchemeModel? colors;
+  final CommonConfigModel? commonConfig;
+  final String? fontFamily;
+  final ConfiguratorImagesSetting? images;
+
+  List<Color> get colorSchemeCollection {
+    return colors?.asList() ?? <Color>[];
+  }
+
+  List<Color> get colorGradientCollection {
+    return colors?.gradientTabColor ?? <Color>[Colors.transparent, Colors.transparent];
+  }
+
+  List<CustomColor> get toCustomColorGradientCollection {
+    return colorGradientCollection
+        .map((color) => CustomColor(
+              color: color,
+              blend: false,
+            ))
+        .toList();
+  }
 
   AppConfigurationModel copyWith({
     final String? id,
-    final ColorsModel? colors,
+    final ColorSchemeModel? colors,
     final CommonConfigModel? commonConfig,
     final String? fontFamily,
     final ConfiguratorImagesSetting? images,

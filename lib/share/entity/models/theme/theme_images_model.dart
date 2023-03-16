@@ -1,24 +1,24 @@
 import 'image_model.dart';
 
 class ConfiguratorImagesSetting {
-  ImageModel onboarding;
-  ImageModel applicationLogo;
-  ImageModel notificationLogo;
-  ImageModel adaptiveIconBackground;
-  ImageModel adaptiveIconForeground;
-  ImageModel androidLauncherIcon;
-  ImageModel iosLauncherIcon;
-  ImageModel webLauncherIcon;
+  ImageModel? onboarding;
+  ImageModel? applicationLogo;
+  ImageModel? notificationLogo;
+  ImageModel? adaptiveIconBackground;
+  ImageModel? adaptiveIconForeground;
+  ImageModel? androidLauncherIcon;
+  ImageModel? iosLauncherIcon;
+  ImageModel? webLauncherIcon;
 
   ConfiguratorImagesSetting({
-    required this.onboarding,
-    required this.applicationLogo,
-    required this.notificationLogo,
-    required this.adaptiveIconBackground,
-    required this.adaptiveIconForeground,
-    required this.androidLauncherIcon,
-    required this.iosLauncherIcon,
-    required this.webLauncherIcon,
+    this.onboarding,
+    this.applicationLogo,
+    this.notificationLogo,
+    this.adaptiveIconBackground,
+    this.adaptiveIconForeground,
+    this.androidLauncherIcon,
+    this.iosLauncherIcon,
+    this.webLauncherIcon,
   });
 
   ConfiguratorImagesSetting copyWith({

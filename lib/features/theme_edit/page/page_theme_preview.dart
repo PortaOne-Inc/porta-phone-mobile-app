@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:webtrit_configurator/core/utility/utility.dart';
-import 'package:webtrit_configurator/share/entity/entity.dart';
-
-import 'package:screenshots/mocks/mocks.dart';
-import 'package:screenshots/screenshots/screenshots.dart';
-import 'package:screenshots/widgets/widgets.dart';
-
-import 'package:webtrit_phone/features/features.dart';
-import 'package:webtrit_phone/theme/theme.dart';
+import 'package:webtrit_configurator/share/exports/exports.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../bloc/focus/focus_group_cubit.dart';
@@ -32,27 +23,12 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   late final FocusGroupCubit _focusGroup = BlocProvider.of(context);
   final ScrollController _eventLogScrollController = ScrollController();
 
-  List<CustomColor> primaryGradientColors(ThemePropertyState state) => state.gradientTabColor
-      .map((color) => CustomColor(
-            color: color,
-            blend: false,
-          ))
-      .toList();
-
-  ColorSchemeOverride getColorSchemeOverride(ColorsModel? colorSetting) => ColorSchemeOverride(
-        primary: UtilityColor.tryParseColorFromHex(colorSetting?.primary ?? ''),
-        onPrimary: UtilityColor.tryParseColorFromHex(colorSetting?.onPrimary ?? ''),
-        secondary: UtilityColor.tryParseColorFromHex(colorSetting?.secondary ?? ''),
-        secondaryContainer: UtilityColor.tryParseColorFromHex(colorSetting?.secondaryContainer ?? ''),
-        onSecondaryContainer: UtilityColor.tryParseColorFromHex(colorSetting?.onSecondaryContainer ?? ''),
-        tertiary: UtilityColor.tryParseColorFromHex(colorSetting?.tertiary ?? ''),
-        error: UtilityColor.tryParseColorFromHex(colorSetting?.error ?? ''),
-        outline: UtilityColor.tryParseColorFromHex(colorSetting?.outline ?? ''),
-        background: UtilityColor.tryParseColorFromHex(colorSetting?.background ?? ''),
-        onBackground: UtilityColor.tryParseColorFromHex(colorSetting?.onBackground ?? ''),
-        surface: UtilityColor.tryParseColorFromHex(colorSetting?.surface ?? ''),
-        onSurface: UtilityColor.tryParseColorFromHex(colorSetting?.onSurface ?? ''),
-      );
+  List<CustomColor> get customColorGradientCollection {
+    return [
+      const CustomColor(color: Colors.transparent),
+      const CustomColor(color: Colors.transparent),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +36,10 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       builder: (BuildContext context, state) {
         final appBloc = MockAppBloc.allScreen(
           themeSettings: ThemeSettings(
-              seedColor: state.colorPrimary ?? Colors.transparent,
-              lightColorSchemeOverride: getColorSchemeOverride(state.theme?.colors),
-              primaryGradientColors: primaryGradientColors(state),
-              fontFamily: state.theme?.fontFamily),
+              seedColor: state.theme.colors?.primary ?? Colors.transparent,
+              lightColorSchemeOverride: state.theme.colors,
+              primaryGradientColors: state.theme.toCustomColorGradientCollection,
+              fontFamily: state.theme.fontFamily),
           themeMode: ThemeMode.light,
           locale: const Locale('en'),
         );

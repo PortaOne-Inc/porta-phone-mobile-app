@@ -14,22 +14,22 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
     this.imageMapper,
   );
 
-  final Mapper<ColorDTO, ColorsModel> colorsMapper;
-  final Mapper<TextStyleDTO, TextStyle> textStyleMapper;
-  final Mapper<ImageDTO, ImageModel> imageMapper;
+  final Mapper<ColorDTO?, ColorSchemeModel?> colorsMapper;
+  final Mapper<TextStyleDTO?, TextStyle?> textStyleMapper;
+  final Mapper<ImageDTO?, ImageModel?> imageMapper;
 
   @override
   ThemeDTO mapToDto(AppConfigurationModel model) {
     return ThemeDTO(
         colors: colorsMapper.mapToDto(model.colors),
         commonConfig: ThemeCommonDTO(
-          appName: model.commonConfig.appName,
+          appName: model.commonConfig?.appName,
         ),
         fontFamily: model.fontFamily,
         images: ImageCollectionDTO(
-          applicationLogo: imageMapper.mapToDto(model.images.applicationLogo),
-          notificationLogo: imageMapper.mapToDto(model.images.notificationLogo),
-          onboarding: imageMapper.mapToDto(model.images.onboarding),
+          applicationLogo: imageMapper.mapToDto(model.images?.applicationLogo),
+          notificationLogo: imageMapper.mapToDto(model.images?.notificationLogo),
+          onboarding: imageMapper.mapToDto(model.images?.onboarding),
         ),
         id: model.id);
   }
@@ -70,6 +70,4 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
         ),
         id: dto.id);
   }
-
-
 }
