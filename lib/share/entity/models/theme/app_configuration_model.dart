@@ -20,12 +20,15 @@ class AppConfigurationModel {
   final String? fontFamily;
   final ConfiguratorImagesSetting? images;
 
+  static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+
   List<Color> get colorSchemeCollection {
     return colorScheme?.asList() ?? <Color>[];
   }
 
   List<Color> get colorGradientCollection {
-    return colorScheme?.gradientTabColor ?? <Color>[Colors.transparent, Colors.transparent];
+    final gradient = colorScheme?.gradientTabColor ?? emptyGradient;
+    return gradient.length >= 2 ? gradient : emptyGradient;
   }
 
   List<CustomColor> get toCustomColorGradientCollection {

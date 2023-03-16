@@ -3,7 +3,7 @@ import 'package:webtrit_configurator/share/exports/exports.dart';
 
 class ColorSchemeModel extends ColorSchemeOverride {
   ColorSchemeModel({
-    this.gradientTabColor = const [],
+    this.gradientTabColor,
     super.primary,
     super.onPrimary,
     super.primaryContainer,
@@ -33,7 +33,7 @@ class ColorSchemeModel extends ColorSchemeOverride {
     super.surfaceTint,
   });
 
-  final List<Color> gradientTabColor;
+  final List<Color>? gradientTabColor;
 
   ColorSchemeModel copyWith({
     Color? primary,

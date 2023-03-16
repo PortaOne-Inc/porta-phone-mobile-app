@@ -37,35 +37,35 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
   @override
   AppConfigurationModel mapToModel(ThemeDTO dto) {
     return AppConfigurationModel(
-        colorScheme: colorsMapper.mapToModel(dto.colorScheme ?? const ColorDTO()),
+        colorScheme: colorsMapper.mapToModel(dto.colorScheme),
         commonConfig: CommonConfigModel(
           appName: dto.commonConfig?.appName ?? '',
         ),
         fontFamily: dto.fontFamily,
         images: ConfiguratorImagesSetting(
           applicationLogo: imageMapper.mapToModel(
-            dto.images?.applicationLogo ?? const ImageDTO(),
+            dto.images?.applicationLogo,
           ),
           notificationLogo: imageMapper.mapToModel(
-            dto.images?.applicationLogo ?? const ImageDTO(),
+            dto.images?.applicationLogo,
           ),
           onboarding: imageMapper.mapToModel(
-            dto.images?.onboarding ?? const ImageDTO(),
+            dto.images?.onboarding,
           ),
           adaptiveIconBackground: imageMapper.mapToModel(
-            dto.images?.adaptiveIconBackground ?? const ImageDTO(),
+            dto.images?.adaptiveIconBackground,
           ),
           adaptiveIconForeground: imageMapper.mapToModel(
-            dto.images?.adaptiveIconForeground ?? const ImageDTO(),
+            dto.images?.adaptiveIconForeground,
           ),
           androidLauncherIcon: imageMapper.mapToModel(
-            dto.images?.androidLauncherIcon ?? const ImageDTO(),
+            dto.images?.androidLauncherIcon,
           ),
           iosLauncherIcon: imageMapper.mapToModel(
-            dto.images?.iosLauncherIcon ?? const ImageDTO(),
+            dto.images?.iosLauncherIcon,
           ),
           webLauncherIcon: imageMapper.mapToModel(
-            dto.images?.webLauncherIcon ?? const ImageDTO(),
+            dto.images?.webLauncherIcon,
           ),
         ),
         id: dto.id);
