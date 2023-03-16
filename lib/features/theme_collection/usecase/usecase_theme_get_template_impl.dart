@@ -25,7 +25,6 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
         iosLauncherIcon: ImageModel(),
         webLauncherIcon: ImageModel(),
       ),
-      fontModel: TextThemeModel(fontFamily: null, textTheme: const TextTheme()),
       commonConfig: CommonConfigModel(
         appName: themeName ?? '',
       ),

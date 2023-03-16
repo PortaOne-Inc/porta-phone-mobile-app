@@ -8,10 +8,7 @@ part of 'theme_dto.dart';
 
 _$_ThemeDTO _$$_ThemeDTOFromJson(Map<String, dynamic> json) => _$_ThemeDTO(
       id: json['id'] as String?,
-      textStyles: json['textStyles'] == null
-          ? null
-          : TextStyleCollectionDTO.fromJson(
-              json['textStyles'] as Map<String, dynamic>),
+      fontFamily: json['fontFamily'] as String?,
       commonConfig: json['commonConfig'] == null
           ? null
           : ThemeCommonDTO.fromJson(
@@ -27,7 +24,7 @@ _$_ThemeDTO _$$_ThemeDTOFromJson(Map<String, dynamic> json) => _$_ThemeDTO(
 Map<String, dynamic> _$$_ThemeDTOToJson(_$_ThemeDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'textStyles': instance.textStyles,
+      'fontFamily': instance.fontFamily,
       'commonConfig': instance.commonConfig,
       'images': instance.images,
       'colors': instance.colors,

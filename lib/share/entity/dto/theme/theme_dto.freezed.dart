@@ -21,7 +21,7 @@ ThemeDTO _$ThemeDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ThemeDTO {
   String? get id => throw _privateConstructorUsedError;
-  TextStyleCollectionDTO? get textStyles => throw _privateConstructorUsedError;
+  String? get fontFamily => throw _privateConstructorUsedError;
   ThemeCommonDTO? get commonConfig => throw _privateConstructorUsedError;
   ImageCollectionDTO? get images => throw _privateConstructorUsedError;
   ColorDTO? get colors => throw _privateConstructorUsedError;
@@ -39,12 +39,11 @@ abstract class $ThemeDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      TextStyleCollectionDTO? textStyles,
+      String? fontFamily,
       ThemeCommonDTO? commonConfig,
       ImageCollectionDTO? images,
       ColorDTO? colors});
 
-  $TextStyleCollectionDTOCopyWith<$Res>? get textStyles;
   $ThemeCommonDTOCopyWith<$Res>? get commonConfig;
   $ImageCollectionDTOCopyWith<$Res>? get images;
   $ColorDTOCopyWith<$Res>? get colors;
@@ -64,7 +63,7 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
   @override
   $Res call({
     Object? id = freezed,
-    Object? textStyles = freezed,
+    Object? fontFamily = freezed,
     Object? commonConfig = freezed,
     Object? images = freezed,
     Object? colors = freezed,
@@ -74,10 +73,10 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyles: freezed == textStyles
-          ? _value.textStyles
-          : textStyles // ignore: cast_nullable_to_non_nullable
-              as TextStyleCollectionDTO?,
+      fontFamily: freezed == fontFamily
+          ? _value.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
+              as String?,
       commonConfig: freezed == commonConfig
           ? _value.commonConfig
           : commonConfig // ignore: cast_nullable_to_non_nullable
@@ -91,18 +90,6 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
           : colors // ignore: cast_nullable_to_non_nullable
               as ColorDTO?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TextStyleCollectionDTOCopyWith<$Res>? get textStyles {
-    if (_value.textStyles == null) {
-      return null;
-    }
-
-    return $TextStyleCollectionDTOCopyWith<$Res>(_value.textStyles!, (value) {
-      return _then(_value.copyWith(textStyles: value) as $Val);
-    });
   }
 
   @override
@@ -151,13 +138,11 @@ abstract class _$$_ThemeDTOCopyWith<$Res> implements $ThemeDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      TextStyleCollectionDTO? textStyles,
+      String? fontFamily,
       ThemeCommonDTO? commonConfig,
       ImageCollectionDTO? images,
       ColorDTO? colors});
 
-  @override
-  $TextStyleCollectionDTOCopyWith<$Res>? get textStyles;
   @override
   $ThemeCommonDTOCopyWith<$Res>? get commonConfig;
   @override
@@ -178,7 +163,7 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? textStyles = freezed,
+    Object? fontFamily = freezed,
     Object? commonConfig = freezed,
     Object? images = freezed,
     Object? colors = freezed,
@@ -188,10 +173,10 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyles: freezed == textStyles
-          ? _value.textStyles
-          : textStyles // ignore: cast_nullable_to_non_nullable
-              as TextStyleCollectionDTO?,
+      fontFamily: freezed == fontFamily
+          ? _value.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
+              as String?,
       commonConfig: freezed == commonConfig
           ? _value.commonConfig
           : commonConfig // ignore: cast_nullable_to_non_nullable
@@ -212,7 +197,7 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ThemeDTO implements _ThemeDTO {
   const _$_ThemeDTO(
-      {this.id, this.textStyles, this.commonConfig, this.images, this.colors});
+      {this.id, this.fontFamily, this.commonConfig, this.images, this.colors});
 
   factory _$_ThemeDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ThemeDTOFromJson(json);
@@ -220,7 +205,7 @@ class _$_ThemeDTO implements _ThemeDTO {
   @override
   final String? id;
   @override
-  final TextStyleCollectionDTO? textStyles;
+  final String? fontFamily;
   @override
   final ThemeCommonDTO? commonConfig;
   @override
@@ -230,7 +215,7 @@ class _$_ThemeDTO implements _ThemeDTO {
 
   @override
   String toString() {
-    return 'ThemeDTO(id: $id, textStyles: $textStyles, commonConfig: $commonConfig, images: $images, colors: $colors)';
+    return 'ThemeDTO(id: $id, fontFamily: $fontFamily, commonConfig: $commonConfig, images: $images, colors: $colors)';
   }
 
   @override
@@ -239,8 +224,8 @@ class _$_ThemeDTO implements _ThemeDTO {
         (other.runtimeType == runtimeType &&
             other is _$_ThemeDTO &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.textStyles, textStyles) ||
-                other.textStyles == textStyles) &&
+            (identical(other.fontFamily, fontFamily) ||
+                other.fontFamily == fontFamily) &&
             (identical(other.commonConfig, commonConfig) ||
                 other.commonConfig == commonConfig) &&
             (identical(other.images, images) || other.images == images) &&
@@ -250,7 +235,7 @@ class _$_ThemeDTO implements _ThemeDTO {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, textStyles, commonConfig, images, colors);
+      Object.hash(runtimeType, id, fontFamily, commonConfig, images, colors);
 
   @JsonKey(ignore: true)
   @override
@@ -269,7 +254,7 @@ class _$_ThemeDTO implements _ThemeDTO {
 abstract class _ThemeDTO implements ThemeDTO {
   const factory _ThemeDTO(
       {final String? id,
-      final TextStyleCollectionDTO? textStyles,
+      final String? fontFamily,
       final ThemeCommonDTO? commonConfig,
       final ImageCollectionDTO? images,
       final ColorDTO? colors}) = _$_ThemeDTO;
@@ -279,7 +264,7 @@ abstract class _ThemeDTO implements ThemeDTO {
   @override
   String? get id;
   @override
-  TextStyleCollectionDTO? get textStyles;
+  String? get fontFamily;
   @override
   ThemeCommonDTO? get commonConfig;
   @override

@@ -63,7 +63,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               seedColor: state.colorPrimary ?? Colors.transparent,
               lightColorSchemeOverride: getColorSchemeOverride(state.theme?.colors),
               primaryGradientColors: primaryGradientColors(state),
-              fontFamily: state.theme?.fontModel.fontFamily),
+              fontFamily: state.theme?.fontFamily),
           themeMode: ThemeMode.light,
           locale: const Locale('en'),
         );

@@ -2,20 +2,19 @@ import 'package:webtrit_configurator/share/entity/models/theme/theme_images_mode
 
 import 'color_model.dart';
 import 'common_config_model.dart';
-import 'text_theme_model.dart';
 
 class AppConfigurationModel {
   final String? id;
   final ColorsModel colors;
   final CommonConfigModel commonConfig;
-  final TextThemeModel fontModel;
+  final String? fontFamily;
   final ConfiguratorImagesSetting images;
 
   AppConfigurationModel({
+    this.fontFamily,
     required this.id,
     required this.colors,
     required this.commonConfig,
-    required this.fontModel,
     required this.images,
   });
 
@@ -23,14 +22,14 @@ class AppConfigurationModel {
     final String? id,
     final ColorsModel? colors,
     final CommonConfigModel? commonConfig,
-    final TextThemeModel? fontModel,
+    final String? fontFamily,
     final ConfiguratorImagesSetting? images,
   }) {
     return AppConfigurationModel(
       id: id ?? this.id,
       colors: colors ?? this.colors,
       commonConfig: commonConfig ?? this.commonConfig,
-      fontModel: fontModel ?? this.fontModel,
+      fontFamily: fontFamily ?? this.fontFamily,
       images: images ?? this.images,
     );
   }

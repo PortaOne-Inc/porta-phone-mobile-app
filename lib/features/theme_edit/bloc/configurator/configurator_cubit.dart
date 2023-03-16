@@ -24,24 +24,10 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void updateTextStyle(TextTheme? textTheme) {
-    emit(
-      state.copyWith(
-        theme: state.theme?.copyWith(
-          fontModel: state.theme?.fontModel.copyWith(
-            textTheme: textTheme,
-          ),
-        ),
-      ),
-    );
-  }
-
   void updateCommonFont(String font) {
     emit(state.copyWith(
       theme: state.theme?.copyWith(
-        fontModel: state.theme?.fontModel.copyWith(
-          fontFamily: font,
-        ),
+        fontFamily: font,
       ),
     ));
   }

@@ -136,11 +136,12 @@ extension GetItInjectableX on _i1.GetIt {
         _i24.AuthFirebaseData(gh<_i3.FirebaseAuth>()));
     gh.factory<_i22.AuthRepository>(
         () => _i25.AuthRepositoryImpl(datasource: gh<_i22.AuthFirebaseData>()));
-    gh.factory<_i5.Mapper<_i6.ThemeDTO, _i7.AppConfigurationModel>>(() => _i26.ThemeMapper(
-          gh<_i5.Mapper<_i6.ColorDTO, _i7.ColorsModel>>(),
-          gh<_i5.Mapper<_i6.TextStyleDTO, _i9.TextStyle>>(),
-          gh<_i5.Mapper<_i6.ImageDTO, _i7.ImageModel>>(),
-        ));
+    gh.factory<_i5.Mapper<_i6.ThemeDTO, _i7.AppConfigurationModel>>(
+        () => _i26.ThemeMapper(
+              gh<_i5.Mapper<_i6.ColorDTO, _i7.ColorsModel>>(),
+              gh<_i5.Mapper<_i6.TextStyleDTO, _i9.TextStyle>>(),
+              gh<_i5.Mapper<_i6.ImageDTO, _i7.ImageModel>>(),
+            ));
     gh.factory<_i27.SetThemeForApplicationUseCase>(
         () => _i28.SetThemeForApplicationUseCaseImpl(
               gh<_i22.VendorRepository>(),

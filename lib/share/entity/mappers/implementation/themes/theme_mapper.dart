@@ -25,7 +25,7 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
         commonConfig: ThemeCommonDTO(
           appName: model.commonConfig.appName,
         ),
-        textStyles: _toTextStyleCollectionDTO(model.fontModel),
+        fontFamily: model.fontFamily,
         images: ImageCollectionDTO(
           applicationLogo: imageMapper.mapToDto(model.images.applicationLogo),
           notificationLogo: imageMapper.mapToDto(model.images.notificationLogo),
@@ -41,7 +41,7 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
         commonConfig: CommonConfigModel(
           appName: dto.commonConfig?.appName ?? '',
         ),
-        fontModel: _toTextStyleCollectionModel(dto.textStyles),
+        fontFamily: dto.fontFamily,
         images: ConfiguratorImagesSetting(
           applicationLogo: imageMapper.mapToModel(
             dto.images?.applicationLogo ?? const ImageDTO(),
@@ -71,48 +71,5 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
         id: dto.id);
   }
 
-  TextThemeModel _toTextStyleCollectionModel(TextStyleCollectionDTO? dto) {
-    return TextThemeModel(
-      fontFamily: dto?.fontFamily,
-      textTheme: TextTheme(
-        displayLarge: dto?.displayLarge == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.displayLarge!),
-        displayMedium: dto?.displayMedium == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.displayMedium!),
-        displaySmall: dto?.displaySmall == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.displaySmall!),
-        headlineLarge: dto?.headlineLarge == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.headlineLarge!),
-        headlineMedium:
-            dto?.headlineMedium == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.headlineMedium!),
-        headlineSmall: dto?.headlineSmall == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.headlineSmall!),
-        titleLarge: dto?.titleLarge == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.titleLarge!),
-        titleMedium: dto?.titleMedium == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.titleMedium!),
-        titleSmall: dto?.titleSmall == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.titleSmall!),
-        bodyLarge: dto?.bodyLarge == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.bodyLarge!),
-        bodyMedium: dto?.bodyMedium == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.bodyMedium!),
-        bodySmall: dto?.bodySmall == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.bodySmall!),
-        labelLarge: dto?.labelLarge == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.labelLarge!),
-        labelMedium: dto?.labelMedium == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.labelMedium!),
-        labelSmall: dto?.labelSmall == null ? const TextStyle() : textStyleMapper.mapToModel(dto!.labelSmall!),
-      ),
-    );
-  }
 
-  TextStyleCollectionDTO _toTextStyleCollectionDTO(TextThemeModel model) {
-    return TextStyleCollectionDTO(
-      fontFamily: model.fontFamily,
-      displayLarge: textStyleMapper.mapToDto(model.textTheme.displayLarge!),
-      displayMedium: textStyleMapper.mapToDto(model.textTheme.displayMedium!),
-      displaySmall: textStyleMapper.mapToDto(model.textTheme.displaySmall!),
-      headlineLarge: textStyleMapper.mapToDto(model.textTheme.headlineLarge!),
-      headlineMedium: textStyleMapper.mapToDto(model.textTheme.headlineMedium!),
-      headlineSmall: textStyleMapper.mapToDto(model.textTheme.headlineSmall!),
-      titleLarge: textStyleMapper.mapToDto(model.textTheme.titleLarge!),
-      titleMedium: textStyleMapper.mapToDto(model.textTheme.titleMedium!),
-      titleSmall: textStyleMapper.mapToDto(model.textTheme.titleSmall!),
-      bodyLarge: textStyleMapper.mapToDto(model.textTheme.bodyLarge!),
-      bodyMedium: textStyleMapper.mapToDto(model.textTheme.bodyMedium!),
-      bodySmall: textStyleMapper.mapToDto(model.textTheme.bodySmall!),
-      labelLarge: textStyleMapper.mapToDto(model.textTheme.labelLarge!),
-      labelMedium: textStyleMapper.mapToDto(model.textTheme.labelMedium!),
-      labelSmall: textStyleMapper.mapToDto(model.textTheme.labelSmall!),
-    );
-  }
 }
