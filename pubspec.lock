@@ -1723,6 +1723,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  webtrit_phone_publisher:
+    dependency: transitive
+    description:
+      path: "../webtrit_phone_publisher"
+      relative: true
+    source: path
+    version: "1.0.0"
   webtrit_signaling:
     dependency: transitive
     description:
