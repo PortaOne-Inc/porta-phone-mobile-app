@@ -10,7 +10,7 @@ class LogEventMessage extends StatelessWidget {
   });
 
   final EventLogModel model;
-  final Function(ScreenEnum screen) onClick;
+  final Function(int index) onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class LogEventMessage extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Colors.deepOrange),
                   ),
                   TextSpan(
-                    text: model.screen.name,
+                    text: model.screen.toString(),
                     style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12, color: Colors.deepOrange),
                   )
                 ]),
@@ -63,7 +63,7 @@ class LogEventMessage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.only(left: 4),
                       child: Text(
-                        ' - ${e.name}',
+                        ' - ${e.toString()}',
                         style: const TextStyle(
                             color: Colors.blue, fontSize: 12, fontWeight: FontWeight.w100, letterSpacing: 1.25),
                       ),

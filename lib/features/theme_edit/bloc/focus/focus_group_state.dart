@@ -10,12 +10,12 @@ class FocusGroupState {
 
   final FocusModel focusGroup;
   final List<EventLogModel> messages;
-  final ScreenEnum currentScreen;
+  final int currentScreen;
 
   FocusGroupState copyWith({
     final FocusModel? focusGroup,
     final List<EventLogModel>? messages,
-    final ScreenEnum? currentScreen,
+    final int? currentScreen,
   }) {
     return FocusGroupState(
       focusGroup: focusGroup ?? this.focusGroup,
@@ -25,21 +25,22 @@ class FocusGroupState {
   }
 }
 
+// TODO: Actualize log state
 class FocusGroupInitial extends FocusGroupState {
   FocusGroupInitial()
       : super(
-          currentScreen: ScreenEnum.auth,
+          currentScreen: 0,
           messages: [],
           focusGroup: FocusModel(
             groups: {
-              ScreenEnum.auth: {
+              0: {
                 FocusModel.colorPrimary: false,
                 FocusModel.colorOnPrimary: false,
                 FocusModel.colorOnBackground: false,
                 FocusModel.colorBackground: false,
                 FocusModel.gradientTabColor: false,
               },
-              ScreenEnum.main: {
+              1: {
                 FocusModel.colorPrimary: false,
                 FocusModel.colorSecondary: false,
                 FocusModel.colorSecondaryContainer: false,
@@ -49,7 +50,7 @@ class FocusGroupInitial extends FocusGroupState {
                 FocusModel.colorSurface: false,
                 FocusModel.colorOnSurface: false,
               },
-              ScreenEnum.setting: {
+              2: {
                 FocusModel.colorPrimary: false,
                 FocusModel.colorOnPrimary: false,
                 FocusModel.colorSecondary: false,

@@ -41,7 +41,7 @@ class FocusGroupCubit extends Cubit<FocusGroupState> {
       state.focusGroup.groups[state.currentScreen] = currentPageFocus;
       emit(state.copyWith(focusGroup: state.focusGroup));
     } else {
-      List<ScreenEnum> availableScreens = [];
+      List<int> availableScreens = [];
 
       if (isFocus) {
         state.focusGroup.groups.forEach((key, value) {
@@ -56,7 +56,7 @@ class FocusGroupCubit extends Cubit<FocusGroupState> {
     }
   }
 
-  void updateCurrentScreen(ScreenEnum screen) {
+  void updateCurrentScreen(int screen) {
     emit(state.copyWith(currentScreen: screen));
   }
 }

@@ -1,5 +1,3 @@
-import 'screens_enum.dart';
-
 class FocusModel {
   static const String colorPrimary = 'a1';
   static const String colorOnPrimary = 'colorOnPrimary';
@@ -15,7 +13,7 @@ class FocusModel {
   static const String colorOnSurface = 'colorOnSurface';
   static const String gradientTabColor = 'gradientTabColor';
 
-  final Map<ScreenEnum, Map<String, bool>> groups;
+  final Map<int, Map<String, bool>> groups;
 
   FocusModel({required this.groups});
 }
