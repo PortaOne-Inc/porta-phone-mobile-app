@@ -126,14 +126,14 @@ class _VendorCollectionPageState extends State<VendorCollectionPage> with MixinM
   }
 
   void _createApplication() {
-    GoRouter.of(context).goNamed(AppRoutInfo.applicationsCreate.name);
+    GoRouter.of(context).goNamed(AppRoutInfo.vendorCreate.name);
   }
 
   void _openApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).pushNamed(
       AppRoutInfo.themes.name,
       params: <String, String>{
-        AppRoutInfo.keyAppId: applicationModel.id!,
+        AppRoutInfo.keyVendorId: applicationModel.id!,
       },
     );
   }

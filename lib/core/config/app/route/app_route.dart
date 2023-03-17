@@ -38,8 +38,8 @@ class AppRoute {
           ),
         ),
         GoRoute(
-          path: AppRoutInfo.applicationsCreate.path,
-          name: AppRoutInfo.applicationsCreate.name,
+          path: AppRoutInfo.vendorCreate.path,
+          name: AppRoutInfo.vendorCreate.name,
           builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCreateCubit>(
             create: (BuildContext context) => VendorCreateCubit(
               vendorCreateUsecase: getIt.get(),
@@ -54,7 +54,7 @@ class AppRoute {
           builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
             child: const ThemeCollectionPage(),
             create: (BuildContext context) => ThemeCollectionCubit(
-              applicationId: state.params[AppRoutInfo.keyAppId]!,
+              applicationId: state.params[AppRoutInfo.keyVendorId]!,
               getThemesUseCase: getIt.get(),
               makeThemeAsDefaultUseCase: getIt.get(),
               deleteThemeUseCase: getIt.get(),
@@ -79,7 +79,7 @@ class AppRoute {
                         updateThemeUseCase: getIt.get(),
                         getThemeUseCase: getIt.get(),
                         getUserUsecase: getIt.get(),
-                        applicationId: state.params[AppRoutInfo.keyAppId]!,
+                        applicationId: state.params[AppRoutInfo.keyVendorId]!,
                         themeId: state.params[AppRoutInfo.keyThemeId]!,
                       ),
                     ),
@@ -89,7 +89,7 @@ class AppRoute {
       ],
       redirect: handleMain,
       routerNeglect: false,
-      initialLocation: '/',
+      initialLocation: AppRoutInfo.vendors.path,
     );
   }
 

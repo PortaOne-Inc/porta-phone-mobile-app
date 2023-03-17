@@ -14,23 +14,23 @@ abstract class AppRoutInfo {
     name: 'vendors',
     path: '/vendors',
   );
-  static const applicationsCreate = RouteData(
-    name: 'applicationsCreate',
-    path: '/applications/create',
+  static const vendorCreate = RouteData(
+    name: 'vendorCreate',
+    path: '/vendor/create',
   );
   static const themes = RouteData(
     name: 'themes',
-    path: '/applications/:$keyAppId/themes',
+    path: '/vendor/:$keyVendorId/themes',
   );
   static const themesCreate = RouteData(
     name: 'themesCreate',
-    path: '/applications/:$keyAppId',
+    path: '/vendor/:$keyVendorId',
   );
   static const themesEdit = RouteData(
     name: 'themesEdit',
-    path: '/applications/:$keyAppId/:$keyThemeId',
+    path: '/vendor/:$keyVendorId/:$keyThemeId',
   );
 
-  static const String keyAppId = 'appId';
+  static const String keyVendorId = 'vendorId';
   static const String keyThemeId = 'themeId';
 }

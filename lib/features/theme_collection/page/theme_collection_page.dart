@@ -73,7 +73,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
 
   void _openConfigurator(String appId, String themeId) {
     GoRouter.of(context).goNamed(AppRoutInfo.themesEdit.name,
-        params: <String, String>{AppRoutInfo.keyAppId: appId, AppRoutInfo.keyThemeId: themeId});
+        params: <String, String>{AppRoutInfo.keyVendorId: appId, AppRoutInfo.keyThemeId: themeId});
   }
 
   void _onLanguageChanged() {
@@ -93,7 +93,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
 
   void _openTheme(AppConfigurationModel model) {
     GoRouter.of(context).goNamed(AppRoutInfo.themesEdit.name, params: <String, String>{
-      AppRoutInfo.keyAppId: _allMyThemesCubit.applicationId,
+      AppRoutInfo.keyVendorId: _allMyThemesCubit.applicationId,
       AppRoutInfo.keyThemeId: model.id!
     });
   }
