@@ -1,48 +1,74 @@
 part of 'auth_cubit.dart';
 
-@immutable
-class AuthState {
-  const AuthState(this.emailError, this.passwordError);
+@freezed
+class AuthState with _$AuthState {
+  factory AuthState({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) = _AuthState;
 
-  final AuthEmailInput emailError;
-  final AuthPasswordInput passwordError;
+  factory AuthState.progress({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) = AuthStateProgress;
 
-  AuthState copyWith({
-    final AuthEmailInput? emailError,
-    final AuthPasswordInput? passwordError,
+  factory AuthState.success({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) = AuthStateSuccess;
+
+  factory AuthState.validation({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) = AuthStateValidation;
+
+  factory AuthState.error({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+    BaseException? error,
+  }) = AuthStateError;
+}
+
+extension _StateCopyWith on AuthState {
+  AuthState copyWithValidate({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
   }) {
-    return AuthState(
-      emailError ?? this.emailError,
-      passwordError ?? this.passwordError,
+    return AuthState.validation(
+      emailInput: emailInput ?? this.emailInput,
+      passwordInput: passwordInput ?? this.passwordInput,
     );
   }
-}
 
-class AuthInit extends AuthState {
-  const AuthInit() : super(const AuthEmailInput.dirty(), const AuthPasswordInput.dirty());
-}
+  AuthState copyWithProgress({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) {
+    return AuthState.progress(
+      emailInput: emailInput ?? this.emailInput,
+      passwordInput: passwordInput ?? this.passwordInput,
+    );
+  }
 
-class AuthProgress extends AuthState {
-  const AuthProgress() : super(const AuthEmailInput.pure(), const AuthPasswordInput.pure());
-}
+  AuthState copyWithSuccess({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+  }) {
+    return AuthState.success(
+      emailInput: emailInput ?? this.emailInput,
+      passwordInput: passwordInput ?? this.passwordInput,
+    );
+  }
 
-class AuthLoginSuccess extends AuthState {
-  const AuthLoginSuccess() : super(const AuthEmailInput.pure(), const AuthPasswordInput.pure());
-}
-
-class AuthNotCaughtFailure extends AuthState {
-  const AuthNotCaughtFailure(this.message) : super(const AuthEmailInput.pure(), const AuthPasswordInput.pure());
-  final String message;
-}
-
-class AuthLoginUserNotFoundFailure extends AuthState {
-  const AuthLoginUserNotFoundFailure() : super(const AuthEmailInput.pure(), const AuthPasswordInput.pure());
-}
-
-class AuthLoginUserWrongPasswordFailure extends AuthState {
-  const AuthLoginUserWrongPasswordFailure() : super(const AuthEmailInput.pure(), const AuthPasswordInput.pure());
-}
-
-class AuthFailure extends AuthState {
-  const AuthFailure(AuthEmailInput email, AuthPasswordInput password) : super(email, password);
+  AuthState copyWithError({
+    AuthEmailInput? emailInput,
+    AuthPasswordInput? passwordInput,
+    BaseException? failure,
+  }) {
+    return AuthState.error(
+      emailInput: emailInput ?? this.emailInput,
+      passwordInput: passwordInput ?? this.passwordInput,
+      error: failure,
+    );
+  }
 }

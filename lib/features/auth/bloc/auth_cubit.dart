@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
 
@@ -9,69 +9,67 @@ import '../usecase/usecase.dart';
 
 part 'auth_state.dart';
 
+part 'auth_cubit.freezed.dart';
+
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({
     required this.usecaseAuthSignIn,
     required this.isUserAuthorized,
-  }) : super(const AuthInit());
+  }) : super(AuthState());
 
   final UsecaseAuthSignIn usecaseAuthSignIn;
   final UsecaseAuthIsLoggedIn isUserAuthorized;
 
   void authPasswordChanged(String password) {
-    emit(state.copyWith(passwordError: AuthPasswordInput.dirty(password)));
+    emit(state.copyWithValidate(
+      passwordInput: AuthPasswordInput.dirty(password),
+    ));
   }
 
   void authEmailChanged(String email) {
-    emit(state.copyWith(emailError: AuthEmailInput.dirty(email)));
-  }
-
-  Future<bool> isAuthorized() async {
-    var isAuthorized = await isUserAuthorized.execute();
-    return isAuthorized;
+    emit(
+      state.copyWithValidate(
+        emailInput: AuthEmailInput.dirty(email),
+      ),
+    );
   }
 
   void validateAndTryLogin() {
     if (_isValidFields()) {
-      tryLogin();
+      _tryLogin();
     } else {
-      emit(AuthFailure(state.emailError.toDirty(), state.passwordError.toDirty()));
+      emit(
+        state.copyWith(
+          passwordInput: state.passwordInput?.toDirty(),
+          emailInput: state.emailInput?.toDirty(),
+        ),
+      );
     }
   }
 
-  void tryLogin() async {
+  void _tryLogin() async {
     try {
-      await _loginInServerSuccess(state.emailError.value, state.passwordError.value);
-    } on AuthUserNotFountException catch (_) {
-      _showNotUserNotFoundFailure();
-    } on AuthWrongPasswordException catch (_) {
-      _showWrongPasswordFailure();
+      await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
+    } on AuthUserNotFountException catch (e) {
+      emit(state.copyWithError(failure: e));
+    } on AuthWrongPasswordException catch (e) {
+      emit(state.copyWithError(failure: e));
     } on BaseException catch (e) {
-      _showNotCaughtFailure(e.message);
-    } on Exception catch (e) {
-      _showNotCaughtFailure(e.toString());
+      emit(state.copyWithError(failure: e));
     }
   }
 
   Future _loginInServerSuccess(String email, String password) async {
-    emit(const AuthProgress());
+    emit(state.copyWithProgress());
     await usecaseAuthSignIn.execute(email: email, password: password);
-    emit(const AuthLoginSuccess());
-  }
-
-  void _showNotCaughtFailure(String message) {
-    emit(AuthNotCaughtFailure(message));
-  }
-
-  void _showWrongPasswordFailure() {
-    emit(const AuthLoginUserWrongPasswordFailure());
-  }
-
-  void _showNotUserNotFoundFailure() {
-    emit(const AuthLoginUserNotFoundFailure());
+    emit(state.copyWithSuccess());
   }
 
   bool _isValidFields() {
-    return Formz.validate([state.passwordError, state.emailError]);
+    // TODO: ADD something more clearly for check nullable
+    if (state.passwordInput == null || state.emailInput == null) {
+      return false;
+    }
+    return Formz.validate([state.passwordInput!, state.emailInput!]);
   }
 }

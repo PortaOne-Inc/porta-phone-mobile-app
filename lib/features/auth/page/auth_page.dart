@@ -9,7 +9,7 @@ import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/features/auth/extensions/extensions.dart';
 
-import '../bloc/auth_cubit.dart';
+import '../bloc/bloc.dart';
 import '../widgets/toolbar_auth.dart';
 
 class AuthPage extends StatelessWidget with MixinMessages {
@@ -24,7 +24,7 @@ class AuthPage extends StatelessWidget with MixinMessages {
       builder: (ctx, state) {
         return Scaffold(
           appBar: BaseToolBar(
-            isVisibleProgress: state is AuthProgress,
+            isVisibleProgress: state is AuthStateProgress,
             child: VendorsToolbar(
               onLanguageChanged: () => _languageChanged(context),
             ),
@@ -32,46 +32,47 @@ class AuthPage extends StatelessWidget with MixinMessages {
           body: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 800, minWidth: 200, maxHeight: 528, minHeight: 200),
-              child: Card(
-                margin: const EdgeInsets.only(bottom: 128),
-                child: Container(
-                  margin: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        context.l10n.authorization_title,
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      const SizedBox(height: 32),
-                      TextFormField(
-                        onChanged: (it) => BlocProvider.of<AuthCubit>(context).authEmailChanged(it),
-                        initialValue: state.emailError.value,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.authorization_enter_email_hint,
-                          errorText: state.emailError.errorL10n(context),
+              child: SingleChildScrollView(
+                child: Card(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 64, horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          context.l10n.authorization_title,
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextFormField(
-                        onChanged: (it) => BlocProvider.of<AuthCubit>(context).authPasswordChanged(it),
-                        initialValue: state.passwordError.value,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.authorization_enter_password_hint,
-                          errorText: state.passwordError.errorL10n(context),
+                        const SizedBox(height: 32),
+                        TextFormField(
+                          onChanged: (it) => BlocProvider.of<AuthCubit>(context).authEmailChanged(it),
+                          initialValue: state.emailInput?.value,
+                          decoration: InputDecoration(
+                            hintText: context.l10n.authorization_enter_email_hint,
+                            errorText: state.emailInput?.errorL10n(context),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Button(
-                        title: context.l10n.authorization_sign_in,
-                        onPressed: () => _tryLogin(context),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        TextFormField(
+                          onChanged: (it) => BlocProvider.of<AuthCubit>(context).authPasswordChanged(it),
+                          initialValue: state.passwordInput?.value,
+                          decoration: InputDecoration(
+                            hintText: context.l10n.authorization_enter_password_hint,
+                            errorText: state.passwordInput?.errorL10n(context),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Button(
+                          title: context.l10n.authorization_sign_in,
+                          onPressed: () => _tryLogin(context),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -87,10 +88,10 @@ class AuthPage extends StatelessWidget with MixinMessages {
   }
 
   void _listenAuthState(BuildContext context, AuthState state) {
-    if (state is AuthNotCaughtFailure) {
-      showFailureMessage(context, state.message);
+    if (state is AuthStateError) {
+      showFailureMessage(context, state.error.toString());
     }
-    if (state is AuthLoginSuccess) {
+    if (state is AuthStateSuccess) {
       GoRouter.of(context).goNamed(AppRoutInfo.vendors.name);
       showTopSnakeMessageSuccess(context, context.l10n.feature_auth_SnakeBar_success_auth);
     }
