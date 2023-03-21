@@ -87,13 +87,29 @@ class AppRoute {
                   child: const PageThemeEdit(),
                 ))
       ],
-      redirect: handleMain,
+      redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
       routerNeglect: false,
       initialLocation: AppRoutInfo.vendors.path,
     );
   }
 
-  FutureOr<String?> handleMain(BuildContext context, GoRouterState state) async {
+  FutureOr<String?> handleMain(
+    BuildContext context,
+    GoRouterState state,
+    UsecaseAuthIsLoggedIn isLoggedIn,
+  ) async {
+    final isAuth = await isLoggedIn.execute();
+
+    final currentLocation = state.location;
+
+    if (!isAuth) {
+      return AppRoutInfo.login.path;
+    } else {
+      if (currentLocation == AppRoutInfo.login.path) {
+        return AppRoutInfo.vendors.path;
+      }
+    }
+
     return null;
   }
 }
