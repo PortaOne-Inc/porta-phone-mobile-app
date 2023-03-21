@@ -29,6 +29,14 @@ class ItemTheme extends StatelessWidget {
       child: InkWell(
         onTap: () => onTap(themeMode),
         child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: themeMode.colorGradientCollection.toList(),
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+          ),
           constraints: const BoxConstraints(maxWidth: 480),
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
@@ -54,55 +62,27 @@ class ItemTheme extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Expanded(
-                          child: Wrap(
-                        children: themeMode.colorSchemeCollection
-                            .map((color) => UsedColor(
-                                  blurRadius: 4,
-                                  size: 16,
-                                  color: color,
-                                  boxShadow: const [BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4)],
-                                ))
-                            .toList(),
-                      )),
+                        child: GridView.builder(
+                          itemBuilder: (ctx, index) {
+                            return FittedBox(
+                              child: UsedColor(
+                                blurRadius: 4,
+                                size: 16,
+                                color: themeMode.colorSchemeCollection[index],
+                                boxShadow: const [
+                                  BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4),
+                                ],
+                              ),
+                            );
+                          },
+                          itemCount: themeMode.colorSchemeCollection.length,
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 6,
+                          ),
+                        ),
+                      ),
                       const SizedBox(
                         width: 8,
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 4, right: 8),
-                            width: 60,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: themeMode.colorGradientCollection.map((color) => color).toList(),
-                              ),
-                              borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 4, right: 8),
-                            width: 60,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: themeMode.colorGradientCollection
-                                      .map(
-                                        (color) => color,
-                                      )
-                                      .toList()),
-                              borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
