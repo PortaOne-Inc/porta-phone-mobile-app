@@ -18,11 +18,19 @@ class PageThemePreview extends StatefulWidget {
 
 class _PageThemePreviewState extends State<PageThemePreview> {
   var _isVisibleInfoConsole = false;
+  var _isFrameVisible = true;
+  var _previewType = PreviewType.single;
   var _focusScreenPosition = 0;
 
   final _eventLogScrollController = ScrollController();
 
-  final _screenshots = [];
+  final _screenshots = <Widget>[];
+
+  final scaleIcon = [
+    Icons.grid_view_rounded,
+    Icons.grid_on,
+    Icons.crop_square_rounded,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +45,20 @@ class _PageThemePreviewState extends State<PageThemePreview> {
             itemCount: _screenshots.length,
             padding: const EdgeInsets.only(right: 8),
             itemBuilder: (BuildContext context, int index) {
-              final isActive = index == _focusScreenPosition;
-              return MockSmallPreviewCard(
+              return GestureDetector(
+                child: TypeOfPreview(
+                  isFocused: index == _focusScreenPosition,
+                  constraints: const BoxConstraints(maxHeight: 300),
+                  child: _screenshots[index],
+                ),
                 onTap: () {
                   Scaffold.of(context).closeEndDrawer();
-                  setState(() {
-                    _focusScreenPosition = index;
-                  });
+                  setState(
+                    () {
+                      _focusScreenPosition = index;
+                    },
+                  );
                 },
-                isActive: isActive,
-                child: _screenshots[index],
               );
             },
           ),
@@ -59,6 +71,40 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               isTopPosition: true,
               background: const Color(0xfffafafa),
               children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isFrameVisible = !_isFrameVisible;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        _isFrameVisible ? Icons.phone_android : Icons.phonelink_erase_outlined,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _previewType = PreviewType.values[(_previewType.index + 1) % PreviewType.values.length];
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Icon(
+                        scaleIcon[(_previewType.index) % PreviewType.values.length],
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.topRight,
                   child: GestureDetector(
@@ -84,24 +130,16 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                       return Column(
                         children: [
                           Expanded(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    margin: const EdgeInsets.symmetric(vertical: 16),
-                                    child: BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
-                                      builder: (BuildContext context, state) {
-                                        return MockDevice(
-                                          key: ValueKey(_focusScreenPosition),
-                                          child: _screenshots[_focusScreenPosition],
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            child: PreviewDetails(
+                              type: _previewType,
+                              screens: _screenshots,
+                              screenFocus: _focusScreenPosition,
+                              isFrameVisible: _isFrameVisible,
+                              onFocusPosition: (position) {
+                                setState(() {
+                                  _focusScreenPosition = position;
+                                });
+                              },
                             ),
                           ),
                           AnimatedContainer(

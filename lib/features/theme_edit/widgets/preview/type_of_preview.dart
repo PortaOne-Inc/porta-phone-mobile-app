@@ -1,0 +1,95 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import '../widgets.dart';
+
+enum PreviewType {
+  single(position: 0),
+  grid(position: 1),
+  smallGrid(position: 2);
+
+  const PreviewType({
+    required this.position,
+  });
+
+  final int position;
+}
+
+class PreviewDetails extends StatelessWidget {
+  const PreviewDetails({
+    super.key,
+    required this.type,
+    required this.screens,
+    required this.screenFocus,
+    required this.isFrameVisible,
+    required this.onFocusPosition,
+  });
+
+  final PreviewType type;
+  final int screenFocus;
+  final bool isFrameVisible;
+  final List<Widget> screens;
+  final Function(int position) onFocusPosition;
+
+  @override
+  Widget build(BuildContext context) {
+    switch (type) {
+      case PreviewType.single:
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          child: TypeOfPreview(
+            key: ValueKey(screenFocus),
+            isFrameVisible: isFrameVisible,
+            constraints: const BoxConstraints(),
+            child: screens[screenFocus],
+          ),
+        );
+      case PreviewType.grid:
+        return SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 16),
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: screens
+                .mapIndexed(
+                  (index, screen) => GestureDetector(
+                    onTap: () => onFocusPosition(index),
+                    child: TypeOfPreview(
+                      isFocused: screenFocus == index,
+                      isFrameVisible: isFrameVisible,
+                      constraints: const BoxConstraints(maxHeight: 300),
+                      child: screen,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+
+      case PreviewType.smallGrid:
+        return SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 16),
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: screens
+                .mapIndexed(
+                  (index, screen) => GestureDetector(
+                    onTap: () => onFocusPosition(index),
+                    child: TypeOfPreview(
+                      isFocused: screenFocus == index,
+                      isFrameVisible: isFrameVisible,
+                      constraints: const BoxConstraints(maxHeight: 500),
+                      child: screen,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+    }
+  }
+}
