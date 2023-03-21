@@ -12,5 +12,5 @@ firebase deploy --only functions
 
 npm run build
 firebase emulators:start --inspect-functions
-lsof -t -i :7980 -i:7981 -i:7982 -i:7983 -i:9229 | xargs kill -9
+lsof -t -i :7980 -i:7981 -i:7982 -i:7983 -i:7984 -i:9229 | xargs kill -9
 

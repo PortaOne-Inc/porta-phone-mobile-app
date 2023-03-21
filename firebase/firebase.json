@@ -9,7 +9,8 @@
       "firebase-debug.log",
       "firebase-debug.*.log"
     ],
-    "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build"
+    "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build",
+    "source": "functions"
   },
   "hosting": {
     "public": "public",
@@ -26,11 +27,19 @@
     "functions": {
       "port": 7981
     },
+    "firestore": {
+      "port": 7982
+    },
     "database": {
       "port": 7983
     },
+    "hosting": {
+      "port": 7984
+    },
     "ui": {
-      "enabled": true
-    }
+      "enabled": true,
+      "port": 7985
+    },
+    "singleProjectMode": true
   }
 }
