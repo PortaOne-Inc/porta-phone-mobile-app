@@ -8,7 +8,7 @@ class AuthFirebaseData {
   final FirebaseAuth firebaseAuth;
 
   Future checkCredential(String emailAddress, String password) async {
-    await firebaseAuth.signInWithEmailAndPassword(
+    return await firebaseAuth.signInWithEmailAndPassword(
       email: emailAddress,
       password: password,
     );

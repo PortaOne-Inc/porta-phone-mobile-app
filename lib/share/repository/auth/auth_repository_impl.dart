@@ -41,7 +41,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   Future<void> _tryLogin(String email, String password) async {
-    await datasource.checkCredential(email, password);
+   return await datasource.checkCredential(email, password);
   }
 
   @override
