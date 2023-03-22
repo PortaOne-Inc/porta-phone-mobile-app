@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:injectable/injectable.dart';
 
-import '../../../dto/dto.dart';
-import '../../../models/theme/theme.dart';
-import '../../mapper.dart';
+import '../../dto/dto.dart';
+import '../../models/theme/theme.dart';
+import '../mapper.dart';
 
 @Injectable(as: Mapper<ThemeDTO, AppConfigurationModel>)
 class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {

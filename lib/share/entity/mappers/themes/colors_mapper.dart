@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/core/extension/extension.dart';
 import 'package:webtrit_configurator/core/utility/utility.dart';
 
-import '../../../dto/dto.dart';
-import '../../../models/theme/theme.dart';
-import '../../mapper.dart';
+import '../../dto/dto.dart';
+import '../../models/theme/theme.dart';
+import '../mapper.dart';
 
 @Injectable(as: Mapper<ColorDTO?, ColorSchemeModel?>)
 class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../entity.dart';
+import '../../entity.dart';
 
 @Injectable(as: Mapper<VendorDTO, ApplicationModel>)
 class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {

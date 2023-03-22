@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:injectable/injectable.dart';
 
-import '../../../dto/dto.dart';
-import '../../mapper.dart';
+import '../../dto/dto.dart';
+import '../mapper.dart';
 
 @Injectable(as: Mapper<TextStyleDTO?, TextStyle?>)
 class TextStyleMapper extends Mapper<TextStyleDTO?, TextStyle?> {
