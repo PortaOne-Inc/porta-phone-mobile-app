@@ -37,7 +37,7 @@ class VendorPreviewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    application.title,
+                    application.title ?? context.l10n.common_text_undefine,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   PopupMenuButton(
@@ -70,7 +70,7 @@ class VendorPreviewItem extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                application.description,
+                application.description ?? context.l10n.common_text_undefine,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.labelLarge,
