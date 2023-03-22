@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'vendor_dto.freezed.dart';
+
 part 'vendor_dto.g.dart';
 
 @freezed
@@ -9,6 +10,8 @@ class VendorDTO with _$VendorDTO {
     String? theme,
     String? title,
     String? description,
+    String? androidIdentifier,
+    String? iosIdentifier,
     String? uuid,
     String? id,
   }) = _ApplicationDTO;

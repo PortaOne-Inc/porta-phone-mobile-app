@@ -7,7 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:firebase_database/firebase_database.dart' as _i4;
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i11;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:webtrit_configurator/core/config/di/injection.dart' as _i52;
@@ -72,19 +72,19 @@ import 'package:webtrit_configurator/share/data/auth_firebase_data.dart'
 import 'package:webtrit_configurator/share/data/data.dart' as _i17;
 import 'package:webtrit_configurator/share/data/realtime_firebase_data.dart'
     as _i14;
-import 'package:webtrit_configurator/share/entity/dto/dto.dart' as _i6;
-import 'package:webtrit_configurator/share/entity/entity.dart' as _i11;
-import 'package:webtrit_configurator/share/entity/mappers/mapper.dart' as _i5;
+import 'package:webtrit_configurator/share/entity/dto/dto.dart' as _i8;
+import 'package:webtrit_configurator/share/entity/entity.dart' as _i5;
+import 'package:webtrit_configurator/share/entity/mappers/mapper.dart' as _i7;
 import 'package:webtrit_configurator/share/entity/mappers/themes/colors_mapper.dart'
     as _i10;
 import 'package:webtrit_configurator/share/entity/mappers/themes/image_mapper.dart'
     as _i13;
 import 'package:webtrit_configurator/share/entity/mappers/themes/text_style_mapper.dart'
-    as _i8;
+    as _i12;
 import 'package:webtrit_configurator/share/entity/mappers/themes/theme_mapper.dart'
     as _i26;
 import 'package:webtrit_configurator/share/entity/mappers/vendors/vendor_mapper.dart'
-    as _i12;
+    as _i6;
 import 'package:webtrit_configurator/share/entity/models/theme/theme.dart'
     as _i9;
 import 'package:webtrit_configurator/share/repository/auth/auth_repository_impl.dart'
@@ -114,13 +114,13 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.singleton<_i3.FirebaseAuth>(registerModule.auth());
     gh.singleton<_i4.FirebaseDatabase>(registerModule.database());
-    gh.factory<_i5.Mapper<_i6.TextStyleDTO?, _i7.TextStyle?>>(
-        () => _i8.TextStyleMapper());
-    gh.factory<_i5.Mapper<_i6.ColorDTO?, _i9.ColorSchemeModel?>>(
+    gh.factory<_i5.Mapper<_i5.VendorDTO, _i5.ApplicationModel>>(
+        () => _i6.VendorMapper());
+    gh.factory<_i7.Mapper<_i8.ColorDTO?, _i9.ColorSchemeModel?>>(
         () => _i10.ColorsMapper());
-    gh.factory<_i11.Mapper<_i11.VendorDTO, _i11.ApplicationModel>>(
-        () => _i12.VendorMapper());
-    gh.factory<_i5.Mapper<_i6.ImageDTO?, _i9.ImageModel?>>(
+    gh.factory<_i7.Mapper<_i8.TextStyleDTO?, _i11.TextStyle?>>(
+        () => _i12.TextStyleMapper());
+    gh.factory<_i7.Mapper<_i8.ImageDTO?, _i9.ImageModel?>>(
         () => _i13.ImageMapper());
     gh.singleton<_i14.RealtimeFirebaseData>(_i14.RealtimeFirebaseData(
         firebaseDatabase: gh<_i4.FirebaseDatabase>()));
@@ -136,11 +136,11 @@ extension GetItInjectableX on _i1.GetIt {
         _i24.AuthFirebaseData(gh<_i3.FirebaseAuth>()));
     gh.factory<_i22.AuthRepository>(
         () => _i25.AuthRepositoryImpl(datasource: gh<_i22.AuthFirebaseData>()));
-    gh.factory<_i5.Mapper<_i6.ThemeDTO, _i9.AppConfigurationModel>>(
+    gh.factory<_i7.Mapper<_i8.ThemeDTO, _i9.AppConfigurationModel>>(
         () => _i26.ThemeMapper(
-              gh<_i5.Mapper<_i6.ColorDTO?, _i9.ColorSchemeModel?>>(),
-              gh<_i5.Mapper<_i6.TextStyleDTO?, _i7.TextStyle?>>(),
-              gh<_i5.Mapper<_i6.ImageDTO?, _i9.ImageModel?>>(),
+              gh<_i7.Mapper<_i8.ColorDTO?, _i9.ColorSchemeModel?>>(),
+              gh<_i7.Mapper<_i8.TextStyleDTO?, _i11.TextStyle?>>(),
+              gh<_i7.Mapper<_i8.ImageDTO?, _i9.ImageModel?>>(),
             ));
     gh.factory<_i27.SetThemeForApplicationUseCase>(
         () => _i28.SetThemeForApplicationUseCaseImpl(
