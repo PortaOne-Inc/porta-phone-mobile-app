@@ -14,6 +14,6 @@ class UsecaseVendorGetTemplateImpl extends UsecaseVendorGetTemplate {
   @override
   FutureOr<ApplicationModel> execute({void argument}) async {
     final applicationUUID = UtilityUUID().generate();
-    return ApplicationModel(title: '', description: '', uuid: applicationUUID, id: null);
+    return ApplicationModel(uuid: applicationUUID);
   }
 }

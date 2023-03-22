@@ -1,4 +1,6 @@
+import 'package:flutter/widgets.dart';
 import 'package:formz/formz.dart';
+import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 
 enum ApplicationNameValidationError {
   blank,
@@ -23,6 +25,23 @@ class ApplicationNameInput extends FormzInput<String, ApplicationNameValidationE
       return ApplicationNameValidationError.toShort;
     } else {
       return null;
+    }
+  }
+}
+
+extension ExtensionValidationNameErrorL10n on ApplicationNameInput {
+  String? errorL10n(BuildContext context) {
+    if (isValid) {
+      return null;
+    } else {
+      switch (error!) {
+        case ApplicationNameValidationError.blank:
+          return context.l10n.validationBlankError;
+        case ApplicationNameValidationError.toLong:
+          return context.l10n.feature_vendor_create_Validation_description_to_long;
+        case ApplicationNameValidationError.toShort:
+          return context.l10n.feature_vendor_create_Validation_description_to_short;
+      }
     }
   }
 }
