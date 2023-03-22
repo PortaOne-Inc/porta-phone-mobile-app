@@ -102,7 +102,7 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
                               Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: Text(
-                                  'com.webtrit.phone.',
+                                  EnvironmentConfig.IDENTIFIER_PREFIX,
                                   style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
                                         color: Colors.black54,
                                       ),
@@ -134,7 +134,7 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
                               Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: Text(
-                                  'com.webtrit.phone.',
+                                  EnvironmentConfig.IDENTIFIER_PREFIX,
                                   style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
                                         color: Colors.black54,
                                       ),
