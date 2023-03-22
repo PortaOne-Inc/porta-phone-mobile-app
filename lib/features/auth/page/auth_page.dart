@@ -47,10 +47,10 @@ class AuthPage extends StatelessWidget with MixinMessages {
                         const SizedBox(height: 32),
                         TextFormField(
                           onChanged: (it) => BlocProvider.of<AuthCubit>(context).authEmailChanged(it),
-                          initialValue: state.emailError?.value,
+                          initialValue: state.emailInput?.value,
                           decoration: InputDecoration(
                             hintText: context.l10n.authorization_enter_email_hint,
-                            errorText: state.emailError?.errorL10n(context),
+                            errorText: state.emailInput?.errorL10n(context),
                           ),
                         ),
                         const SizedBox(
@@ -58,10 +58,10 @@ class AuthPage extends StatelessWidget with MixinMessages {
                         ),
                         TextFormField(
                           onChanged: (it) => BlocProvider.of<AuthCubit>(context).authPasswordChanged(it),
-                          initialValue: state.passwordError?.value,
+                          initialValue: state.passwordInput?.value,
                           decoration: InputDecoration(
                             hintText: context.l10n.authorization_enter_password_hint,
-                            errorText: state.passwordError?.errorL10n(context),
+                            errorText: state.passwordInput?.errorL10n(context),
                           ),
                         ),
                         const SizedBox(
