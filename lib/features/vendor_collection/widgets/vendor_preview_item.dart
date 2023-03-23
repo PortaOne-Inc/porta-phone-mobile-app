@@ -34,11 +34,14 @@ class VendorPreviewItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    application.title ?? context.l10n.common_text_undefine,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Expanded(
+                    child: Text(
+                      application.title ?? context.l10n.common_text_undefine,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                   PopupMenuButton(
                     offset: const Offset(0, 32),
