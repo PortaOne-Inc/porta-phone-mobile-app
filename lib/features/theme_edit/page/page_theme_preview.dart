@@ -26,12 +26,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
   final _screenshots = <Widget>[];
 
-  final scaleIcon = [
-    Icons.grid_view_rounded,
-    Icons.grid_on,
-    Icons.crop_square_rounded,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,58 +46,17 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       body: Builder(
         builder: (context) => Column(
           children: [
-            MenuSpace(
-              isTopPosition: true,
-              background: const Color(0xfffafafa),
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isFrameVisible = !_isFrameVisible;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Icon(
-                        _isFrameVisible ? Icons.phone_android : Icons.phonelink_erase_outlined,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _previewType = PreviewType.values[(_previewType.index + 1) % PreviewType.values.length];
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Icon(
-                        scaleIcon[(_previewType.index) % PreviewType.values.length],
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () => Scaffold.of(context).openEndDrawer(),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      child: const Icon(
-                        Icons.menu,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            MenuPreview(
+              onMenuTab: () => Scaffold.of(context).openEndDrawer(),
+              onScaleTab: (PreviewType type) {
+                _previewType = type;
+                setState(() {});
+              },
+              onFrameTab: (visibility) {
+                _isFrameVisible = visibility;
+                setState(() {});
+              },
+              isEnableFrame: _isFrameVisible,
             ),
             Expanded(
               child: BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
