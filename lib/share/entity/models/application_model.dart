@@ -1,3 +1,5 @@
+import 'theme/app_configuration_model.dart';
+
 class ApplicationModel {
   ApplicationModel({
     this.id,
@@ -11,7 +13,7 @@ class ApplicationModel {
 
   final String? id;
   final String uuid;
-  final String? theme;
+  final AppConfigurationModel? theme;
   final String? title;
   final String? description;
   final String? iosIdentifier;
@@ -20,7 +22,7 @@ class ApplicationModel {
   ApplicationModel copyWith({
     String? id,
     String? uuid,
-    String? theme,
+    AppConfigurationModel? theme,
     String? title,
     String? description,
     String? iosIdentifier,

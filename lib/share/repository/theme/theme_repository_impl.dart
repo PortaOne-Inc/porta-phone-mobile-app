@@ -33,7 +33,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeDTO> updateTheme(String userId, String applicationId, ThemeDTO theme) async {
+  Future<ThemeDTO> updateTheme(String userId, String applicationId, ThemeDTO? theme) async {
     try {
       return await _tryUpdateTheme(userId, applicationId, theme);
     } catch (e) {
@@ -79,12 +79,12 @@ class ThemeRepositoryImpl extends ThemeRepository {
     }
   }
 
-  Future<ThemeDTO> _tryUpdateTheme(String userId, String applicationId, ThemeDTO theme) async {
+  Future<ThemeDTO> _tryUpdateTheme(String userId, String applicationId, ThemeDTO? theme) async {
     await datasource.patch(
         _getThemePath(
           userId: userId,
           applicationId: applicationId,
-          themeId: theme.id!,
+          themeId: theme!.id!,
         ),
         theme.toJson());
     return theme;

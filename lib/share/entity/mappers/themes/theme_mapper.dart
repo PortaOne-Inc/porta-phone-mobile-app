@@ -6,8 +6,8 @@ import '../../dto/dto.dart';
 import '../../models/theme/theme.dart';
 import '../mapper.dart';
 
-@Injectable(as: Mapper<ThemeDTO, AppConfigurationModel>)
-class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
+@Injectable(as: Mapper<ThemeDTO?, AppConfigurationModel?>)
+class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
   ThemeMapper(
     this.colorsMapper,
     this.textStyleMapper,
@@ -19,7 +19,11 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
   final Mapper<ImageDTO?, ImageModel?> imageMapper;
 
   @override
-  ThemeDTO mapToDto(AppConfigurationModel model) {
+  ThemeDTO? mapToDto(AppConfigurationModel? model) {
+    if (model == null) {
+      return null;
+    }
+
     return ThemeDTO(
         colorScheme: colorsMapper.mapToDto(model.colorScheme),
         commonConfig: ThemeCommonDTO(
@@ -35,7 +39,11 @@ class ThemeMapper extends Mapper<ThemeDTO, AppConfigurationModel> {
   }
 
   @override
-  AppConfigurationModel mapToModel(ThemeDTO dto) {
+  AppConfigurationModel? mapToModel(ThemeDTO? dto) {
+    if (dto == null) {
+      return null;
+    }
+
     return AppConfigurationModel(
         colorScheme: colorsMapper.mapToModel(dto.colorScheme),
         commonConfig: CommonConfigModel(

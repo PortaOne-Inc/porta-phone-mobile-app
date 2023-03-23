@@ -14,7 +14,7 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
-  final Mapper<ThemeDTO, AppConfigurationModel> mapper;
+  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
 
   @override
   Future<AppConfigurationModel> execute({
@@ -27,6 +27,6 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
       applicationId,
       mapper.mapToDto(themeModel),
     );
-    return mapper.mapToModel(theme);
+    return mapper.mapToModel(theme)!;
   }
 }

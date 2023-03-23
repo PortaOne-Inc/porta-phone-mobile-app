@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../theme/theme_dto.dart';
+
 part 'vendor_dto.freezed.dart';
 
 part 'vendor_dto.g.dart';
@@ -7,7 +9,7 @@ part 'vendor_dto.g.dart';
 @freezed
 class VendorDTO with _$VendorDTO {
   const factory VendorDTO({
-    String? theme,
+    ThemeDTO? theme,
     String? title,
     String? description,
     String? androidIdentifier,

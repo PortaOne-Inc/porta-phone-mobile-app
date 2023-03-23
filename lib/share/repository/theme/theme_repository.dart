@@ -10,7 +10,7 @@ abstract class ThemeRepository {
   Future<ThemeDTO> updateTheme(
     String userId,
     String applicationId,
-    ThemeDTO theme,
+    ThemeDTO? theme,
   );
 
   Future<ThemeDTO> deleteTheme(

@@ -4,7 +4,9 @@ import '../../entity.dart';
 
 @Injectable(as: Mapper<VendorDTO, ApplicationModel>)
 class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {
-  VendorMapper();
+  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
+
+  VendorMapper(this.mapper);
 
   @override
   VendorDTO mapToDto(ApplicationModel model) {
@@ -13,7 +15,7 @@ class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {
       description: model.description,
       id: model.id,
       uuid: model.uuid,
-      theme: model.theme,
+      theme: mapper.mapToDto(model.theme),
       androidIdentifier: model.androidIdentifier,
       iosIdentifier: model.iosIdentifier,
     );
@@ -25,7 +27,7 @@ class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {
       title: dto.title,
       description: dto.description,
       id: dto.id,
-      theme: dto.theme,
+      theme: mapper.mapToModel(dto.theme),
       uuid: dto.uuid ?? '',
       androidIdentifier: dto.androidIdentifier,
       iosIdentifier: dto.iosIdentifier,

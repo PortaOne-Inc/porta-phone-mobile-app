@@ -20,7 +20,7 @@ VendorDTO _$VendorDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VendorDTO {
-  String? get theme => throw _privateConstructorUsedError;
+  ThemeDTO? get theme => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get androidIdentifier => throw _privateConstructorUsedError;
@@ -40,13 +40,15 @@ abstract class $VendorDTOCopyWith<$Res> {
       _$VendorDTOCopyWithImpl<$Res, VendorDTO>;
   @useResult
   $Res call(
-      {String? theme,
+      {ThemeDTO? theme,
       String? title,
       String? description,
       String? androidIdentifier,
       String? iosIdentifier,
       String? uuid,
       String? id});
+
+  $ThemeDTOCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -74,7 +76,7 @@ class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ThemeDTO?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -101,6 +103,18 @@ class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeDTOCopyWith<$Res>? get theme {
+    if (_value.theme == null) {
+      return null;
+    }
+
+    return $ThemeDTOCopyWith<$Res>(_value.theme!, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -112,13 +126,16 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? theme,
+      {ThemeDTO? theme,
       String? title,
       String? description,
       String? androidIdentifier,
       String? iosIdentifier,
       String? uuid,
       String? id});
+
+  @override
+  $ThemeDTOCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -144,7 +161,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ThemeDTO?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -189,7 +206,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
       _$$_ApplicationDTOFromJson(json);
 
   @override
-  final String? theme;
+  final ThemeDTO? theme;
   @override
   final String? title;
   @override
@@ -246,7 +263,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
 
 abstract class _ApplicationDTO implements VendorDTO {
   const factory _ApplicationDTO(
-      {final String? theme,
+      {final ThemeDTO? theme,
       final String? title,
       final String? description,
       final String? androidIdentifier,
@@ -258,7 +275,7 @@ abstract class _ApplicationDTO implements VendorDTO {
       _$_ApplicationDTO.fromJson;
 
   @override
-  String? get theme;
+  ThemeDTO? get theme;
   @override
   String? get title;
   @override

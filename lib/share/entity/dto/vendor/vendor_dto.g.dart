@@ -8,7 +8,9 @@ part of 'vendor_dto.dart';
 
 _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
     _$_ApplicationDTO(
-      theme: json['theme'] as String?,
+      theme: json['theme'] == null
+          ? null
+          : ThemeDTO.fromJson(json['theme'] as Map<String, dynamic>),
       title: json['title'] as String?,
       description: json['description'] as String?,
       androidIdentifier: json['androidIdentifier'] as String?,
