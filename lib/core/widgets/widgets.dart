@@ -7,3 +7,4 @@ export 'image/image.dart';
 export 'slider/sliders.dart';
 export 'switchers/switchers.dart';
 export 'toolbars/toolbars.dart';
+export 'placeholders/placeholders.dart';
