@@ -39,29 +39,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(2)),
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(right: 8, top: 2, bottom: 2),
-          child: ListView.builder(
-            itemCount: _screenshots.length,
-            padding: const EdgeInsets.only(right: 8),
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                child: TypeOfPreview(
-                  isFocused: index == _focusScreenPosition,
-                  constraints: const BoxConstraints(maxHeight: 300),
-                  child: _screenshots[index],
-                ),
-                onTap: () {
-                  Scaffold.of(context).closeEndDrawer();
-                  setState(
-                    () {
-                      _focusScreenPosition = index;
-                    },
-                  );
-                },
-              );
-            },
-          ),
+        child: DrawerPreview(
+          screenshots: _screenshots,
+          focusScreenPosition: _focusScreenPosition,
+          onTapScreen: (position) {
+            Scaffold.of(context).closeEndDrawer();
+            _focusScreenPosition = position;
+            setState(() {});
+          },
         ),
       ),
       body: Builder(
