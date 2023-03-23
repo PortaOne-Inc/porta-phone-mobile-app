@@ -20,9 +20,9 @@ class ThemeCollectionCreateDialog extends StatefulWidget {
 
 class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialog> {
   var _selectedColor = Colors.black38;
-  var nameField = const ThemeNameInput.pure();
-  var isDefault = false;
-  final _controller = TextEditingController(text: DateTime.now().toIso8601String());
+  var _isDefault = false;
+  final _controller = TextEditingController();
+  ThemeNameInput? _themeNameInput;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +54,11 @@ class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialo
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      isDefault = !isDefault;
+                      _isDefault = !_isDefault;
                     });
                   },
                   child: Card(
-                    elevation: isDefault ? 2 : 0.75,
+                    elevation: _isDefault ? 2 : 0.75,
                     margin: const EdgeInsets.only(left: 8),
                     child: Tooltip(
                       message: context.l10n.feature_theme_as_default,
@@ -82,11 +82,11 @@ class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialo
               controller: _controller,
               decoration: InputDecoration(
                 hintText: context.l10n.theme_name,
-                errorText: nameField.errorL10n(context),
+                errorText: _themeNameInput?.errorL10n(context),
               ),
               onChanged: (it) {
                 setState(() {
-                  nameField = ThemeNameInput.dirty(it);
+                  _themeNameInput = ThemeNameInput.dirty(it);
                 });
               },
             ),
@@ -94,7 +94,7 @@ class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialo
               height: 16,
             ),
             Button(
-              isEnable: !nameField.isValid,
+              isEnable: _themeNameInput?.isValid ?? false,
               title: context.l10n.theme_create,
               onPressed: () {
                 widget.onCreateTheme(_controller.text, _selectedColor);
