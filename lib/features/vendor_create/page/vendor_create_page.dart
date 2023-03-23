@@ -7,7 +7,6 @@ import 'package:webtrit_configurator/core/config/app/application.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
-import 'package:webtrit_configurator/share/share.dart';
 
 import '../bloc/vendor_create_cubit.dart';
 import '../model/models.dart';
@@ -49,156 +48,51 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 16,
-                      ),
                       Text(
-                        context.l10n.feature_vendor_create_Text_new_vendor_theme,
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        context.l10n.feature_application_Input_title,
+                        style: Theme.of(context).textTheme.labelMedium,
                       ),
                       const SizedBox(
-                        height: 24,
+                        height: 4,
                       ),
                       TextFormField(
                         onChanged: _bloc.updateNameChange,
                         decoration: InputDecoration(
                           errorText: state.nameInput?.errorL10n(context),
-                          hintText: context.l10n.feature_application_project_name,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextFormField(
-                        onChanged: _bloc.updateDescriptionChange,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.feature_application_project_description,
-                          errorText: state.descriptionInput?.errorL10n(context),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      const Divider(
-                        color: Colors.black12,
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        context.l10n.feature_application_android_package_name,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      TextFormField(
-                        onChanged: _bloc.updateAndroidIdentifier,
-                        decoration: InputDecoration(
-                          errorText: state.applicationAndroidIdentifierInput?.errorL10n(context),
-                          prefixIcon: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  EnvironmentConfig.IDENTIFIER_PREFIX,
-                                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                        color: Colors.black54,
-                                      ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        context.l10n.feature_application_ios_identifier,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      TextFormField(
-                        onChanged: _bloc.updateIOSIdentifier,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                          errorText: state.applicationIOSIdentifierInput?.errorL10n(context),
-                          prefixStyle: Theme.of(ctx).inputDecorationTheme.hintStyle,
-                          prefixIcon: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Text(
-                                  EnvironmentConfig.IDENTIFIER_PREFIX,
-                                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                        color: Colors.black54,
-                                      ),
-                                ),
-                              )
-                            ],
-                          ),
+                          hintText: context.l10n.feature_application_Input_hint,
+                          hintStyle: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black54,
+                              ),
                         ),
                       ),
                       const SizedBox(
                         height: 16,
                       ),
-                      GestureDetector(
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 48,
-                              width: 48,
-                              decoration: BoxDecoration(
-                                color: Colors.blueGrey[50],
-                                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                              ),
-                              child: Center(
+                      Text(
+                        context.l10n.feature_application_identifier,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      TextFormField(
+                        onChanged: _bloc.updateApplicationIdentifier,
+                        decoration: InputDecoration(
+                          errorText: state.applicationIdentifierInput?.errorL10n(context),
+                          prefixIcon: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
                                 child: Text(
-                                  context.l10n.feature_vendor_create_Text_uuid,
-                                  style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 48,
-                                padding: const EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 16),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.blueGrey[50],
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        state.applicationTemplate?.uuid ?? '',
-                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.grey),
+                                  EnvironmentConfig.IDENTIFIER_PREFIX,
+                                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
+                                        color: Colors.black54,
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.copy,
-                                      color: Colors.grey,
-                                    ),
-                                  ],
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        onTap: () => showTopSnakeMessageInfo(
-                          context,
-                          state.applicationTemplate?.uuid ?? '',
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -224,7 +118,7 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
       showFailureMessage(context, state.exception.toString());
     }
     if (state is VendorCreateStateSuccess) {
-      _openApplications(state.applicationTemplate!);
+      _openApplications();
     }
   }
 
@@ -232,7 +126,7 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
     showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
   }
 
-  void _openApplications(ApplicationModel applicationModel) {
+  void _openApplications() {
     GoRouter.of(context).pushNamed(AppRoutInfo.vendors.name);
   }
 }

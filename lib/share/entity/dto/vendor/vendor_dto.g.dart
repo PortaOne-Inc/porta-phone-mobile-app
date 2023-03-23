@@ -12,10 +12,7 @@ _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
           ? null
           : ThemeDTO.fromJson(json['theme'] as Map<String, dynamic>),
       title: json['title'] as String?,
-      description: json['description'] as String?,
-      androidIdentifier: json['androidIdentifier'] as String?,
-      iosIdentifier: json['iosIdentifier'] as String?,
-      uuid: json['uuid'] as String?,
+      applicationIdentifier: json['applicationIdentifier'] as String?,
       id: json['id'] as String?,
     );
 
@@ -23,9 +20,6 @@ Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) =>
     <String, dynamic>{
       'theme': instance.theme,
       'title': instance.title,
-      'description': instance.description,
-      'androidIdentifier': instance.androidIdentifier,
-      'iosIdentifier': instance.iosIdentifier,
-      'uuid': instance.uuid,
+      'applicationIdentifier': instance.applicationIdentifier,
       'id': instance.id,
     };

@@ -16,146 +16,68 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$VendorCreateState {
-  ApplicationModel? get applicationTemplate =>
-      throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
-  ApplicationDescriptionInput? get descriptionInput =>
-      throw _privateConstructorUsedError;
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput =>
-      throw _privateConstructorUsedError;
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput =>
+  ApplicationIdentifierInput? get applicationIdentifierInput =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
@@ -202,11 +124,8 @@ abstract class $VendorCreateStateCopyWith<$Res> {
       _$VendorCreateStateCopyWithImpl<$Res, VendorCreateState>;
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput});
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput});
 }
 
 /// @nodoc
@@ -222,34 +141,18 @@ class _$VendorCreateStateCopyWithImpl<$Res, $Val extends VendorCreateState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
   }) {
     return _then(_value.copyWith(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
     ) as $Val);
   }
 }
@@ -263,11 +166,8 @@ abstract class _$$_VendorCreateStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput});
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput});
 }
 
 /// @nodoc
@@ -281,34 +181,18 @@ class __$$_VendorCreateStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
   }) {
     return _then(_$_VendorCreateState(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
     ));
   }
 }
@@ -316,28 +200,17 @@ class __$$_VendorCreateStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_VendorCreateState extends _VendorCreateState {
-  _$_VendorCreateState(
-      {this.applicationTemplate,
-      this.nameInput,
-      this.descriptionInput,
-      this.applicationIOSIdentifierInput,
-      this.applicationAndroidIdentifierInput})
+  _$_VendorCreateState({this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
-  final ApplicationModel? applicationTemplate;
-  @override
   final ApplicationNameInput? nameInput;
   @override
-  final ApplicationDescriptionInput? descriptionInput;
-  @override
-  final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput;
-  @override
-  final ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput;
+  final ApplicationIdentifierInput? applicationIdentifierInput;
 
   @override
   String toString() {
-    return 'VendorCreateState(applicationTemplate: $applicationTemplate, nameInput: $nameInput, descriptionInput: $descriptionInput, applicationIOSIdentifierInput: $applicationIOSIdentifierInput, applicationAndroidIdentifierInput: $applicationAndroidIdentifierInput)';
+    return 'VendorCreateState(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
@@ -345,30 +218,17 @@ class _$_VendorCreateState extends _VendorCreateState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_VendorCreateState &&
-            (identical(other.applicationTemplate, applicationTemplate) ||
-                other.applicationTemplate == applicationTemplate) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.descriptionInput, descriptionInput) ||
-                other.descriptionInput == descriptionInput) &&
-            (identical(other.applicationIOSIdentifierInput,
-                    applicationIOSIdentifierInput) ||
-                other.applicationIOSIdentifierInput ==
-                    applicationIOSIdentifierInput) &&
-            (identical(other.applicationAndroidIdentifierInput,
-                    applicationAndroidIdentifierInput) ||
-                other.applicationAndroidIdentifierInput ==
-                    applicationAndroidIdentifierInput));
+            (identical(other.applicationIdentifierInput,
+                    applicationIdentifierInput) ||
+                other.applicationIdentifierInput ==
+                    applicationIdentifierInput));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      applicationTemplate,
-      nameInput,
-      descriptionInput,
-      applicationIOSIdentifierInput,
-      applicationAndroidIdentifierInput);
+  int get hashCode =>
+      Object.hash(runtimeType, nameInput, applicationIdentifierInput);
 
   @JsonKey(ignore: true)
   @override
@@ -380,150 +240,75 @@ class _$_VendorCreateState extends _VendorCreateState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) {
-    return $default(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return $default(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) {
-    return $default?.call(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return $default?.call(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(applicationTemplate, nameInput, descriptionInput,
-          applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+      return $default(nameInput, applicationIdentifierInput);
     }
     return orElse();
   }
@@ -571,24 +356,15 @@ class _$_VendorCreateState extends _VendorCreateState {
 
 abstract class _VendorCreateState extends VendorCreateState {
   factory _VendorCreateState(
-      {final ApplicationModel? applicationTemplate,
-      final ApplicationNameInput? nameInput,
-      final ApplicationDescriptionInput? descriptionInput,
-      final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      final ApplicationAndroidIdentifierInput?
-          applicationAndroidIdentifierInput}) = _$_VendorCreateState;
+          {final ApplicationNameInput? nameInput,
+          final ApplicationIdentifierInput? applicationIdentifierInput}) =
+      _$_VendorCreateState;
   _VendorCreateState._() : super._();
 
   @override
-  ApplicationModel? get applicationTemplate;
-  @override
   ApplicationNameInput? get nameInput;
   @override
-  ApplicationDescriptionInput? get descriptionInput;
-  @override
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput;
-  @override
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput;
+  ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
   _$$_VendorCreateStateCopyWith<_$_VendorCreateState> get copyWith =>
@@ -605,11 +381,8 @@ abstract class _$$VendorCreateStateProgressCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput});
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput});
 }
 
 /// @nodoc
@@ -623,34 +396,18 @@ class __$$VendorCreateStateProgressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
   }) {
     return _then(_$VendorCreateStateProgress(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
     ));
   }
 }
@@ -658,28 +415,17 @@ class __$$VendorCreateStateProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$VendorCreateStateProgress extends VendorCreateStateProgress {
-  _$VendorCreateStateProgress(
-      {this.applicationTemplate,
-      this.nameInput,
-      this.descriptionInput,
-      this.applicationIOSIdentifierInput,
-      this.applicationAndroidIdentifierInput})
+  _$VendorCreateStateProgress({this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
-  final ApplicationModel? applicationTemplate;
-  @override
   final ApplicationNameInput? nameInput;
   @override
-  final ApplicationDescriptionInput? descriptionInput;
-  @override
-  final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput;
-  @override
-  final ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput;
+  final ApplicationIdentifierInput? applicationIdentifierInput;
 
   @override
   String toString() {
-    return 'VendorCreateState.progress(applicationTemplate: $applicationTemplate, nameInput: $nameInput, descriptionInput: $descriptionInput, applicationIOSIdentifierInput: $applicationIOSIdentifierInput, applicationAndroidIdentifierInput: $applicationAndroidIdentifierInput)';
+    return 'VendorCreateState.progress(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
@@ -687,30 +433,17 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VendorCreateStateProgress &&
-            (identical(other.applicationTemplate, applicationTemplate) ||
-                other.applicationTemplate == applicationTemplate) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.descriptionInput, descriptionInput) ||
-                other.descriptionInput == descriptionInput) &&
-            (identical(other.applicationIOSIdentifierInput,
-                    applicationIOSIdentifierInput) ||
-                other.applicationIOSIdentifierInput ==
-                    applicationIOSIdentifierInput) &&
-            (identical(other.applicationAndroidIdentifierInput,
-                    applicationAndroidIdentifierInput) ||
-                other.applicationAndroidIdentifierInput ==
-                    applicationAndroidIdentifierInput));
+            (identical(other.applicationIdentifierInput,
+                    applicationIdentifierInput) ||
+                other.applicationIdentifierInput ==
+                    applicationIdentifierInput));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      applicationTemplate,
-      nameInput,
-      descriptionInput,
-      applicationIOSIdentifierInput,
-      applicationAndroidIdentifierInput);
+  int get hashCode =>
+      Object.hash(runtimeType, nameInput, applicationIdentifierInput);
 
   @JsonKey(ignore: true)
   @override
@@ -722,150 +455,75 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) {
-    return progress(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return progress(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) {
-    return progress?.call(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return progress?.call(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
   }) {
     if (progress != null) {
-      return progress(applicationTemplate, nameInput, descriptionInput,
-          applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+      return progress(nameInput, applicationIdentifierInput);
     }
     return orElse();
   }
@@ -913,24 +571,15 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
 
 abstract class VendorCreateStateProgress extends VendorCreateState {
   factory VendorCreateStateProgress(
-      {final ApplicationModel? applicationTemplate,
-      final ApplicationNameInput? nameInput,
-      final ApplicationDescriptionInput? descriptionInput,
-      final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      final ApplicationAndroidIdentifierInput?
-          applicationAndroidIdentifierInput}) = _$VendorCreateStateProgress;
+          {final ApplicationNameInput? nameInput,
+          final ApplicationIdentifierInput? applicationIdentifierInput}) =
+      _$VendorCreateStateProgress;
   VendorCreateStateProgress._() : super._();
 
   @override
-  ApplicationModel? get applicationTemplate;
-  @override
   ApplicationNameInput? get nameInput;
   @override
-  ApplicationDescriptionInput? get descriptionInput;
-  @override
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput;
-  @override
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput;
+  ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
   _$$VendorCreateStateProgressCopyWith<_$VendorCreateStateProgress>
@@ -946,11 +595,8 @@ abstract class _$$VendorCreateStateSuccessCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput});
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput});
 }
 
 /// @nodoc
@@ -964,34 +610,18 @@ class __$$VendorCreateStateSuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
   }) {
     return _then(_$VendorCreateStateSuccess(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
     ));
   }
 }
@@ -999,28 +629,17 @@ class __$$VendorCreateStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
-  _$VendorCreateStateSuccess(
-      {this.applicationTemplate,
-      this.nameInput,
-      this.descriptionInput,
-      this.applicationIOSIdentifierInput,
-      this.applicationAndroidIdentifierInput})
+  _$VendorCreateStateSuccess({this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
-  final ApplicationModel? applicationTemplate;
-  @override
   final ApplicationNameInput? nameInput;
   @override
-  final ApplicationDescriptionInput? descriptionInput;
-  @override
-  final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput;
-  @override
-  final ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput;
+  final ApplicationIdentifierInput? applicationIdentifierInput;
 
   @override
   String toString() {
-    return 'VendorCreateState.success(applicationTemplate: $applicationTemplate, nameInput: $nameInput, descriptionInput: $descriptionInput, applicationIOSIdentifierInput: $applicationIOSIdentifierInput, applicationAndroidIdentifierInput: $applicationAndroidIdentifierInput)';
+    return 'VendorCreateState.success(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
@@ -1028,30 +647,17 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VendorCreateStateSuccess &&
-            (identical(other.applicationTemplate, applicationTemplate) ||
-                other.applicationTemplate == applicationTemplate) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.descriptionInput, descriptionInput) ||
-                other.descriptionInput == descriptionInput) &&
-            (identical(other.applicationIOSIdentifierInput,
-                    applicationIOSIdentifierInput) ||
-                other.applicationIOSIdentifierInput ==
-                    applicationIOSIdentifierInput) &&
-            (identical(other.applicationAndroidIdentifierInput,
-                    applicationAndroidIdentifierInput) ||
-                other.applicationAndroidIdentifierInput ==
-                    applicationAndroidIdentifierInput));
+            (identical(other.applicationIdentifierInput,
+                    applicationIdentifierInput) ||
+                other.applicationIdentifierInput ==
+                    applicationIdentifierInput));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      applicationTemplate,
-      nameInput,
-      descriptionInput,
-      applicationIOSIdentifierInput,
-      applicationAndroidIdentifierInput);
+  int get hashCode =>
+      Object.hash(runtimeType, nameInput, applicationIdentifierInput);
 
   @JsonKey(ignore: true)
   @override
@@ -1064,150 +670,75 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) {
-    return success(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return success(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) {
-    return success?.call(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return success?.call(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(applicationTemplate, nameInput, descriptionInput,
-          applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+      return success(nameInput, applicationIdentifierInput);
     }
     return orElse();
   }
@@ -1255,24 +786,15 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
 
 abstract class VendorCreateStateSuccess extends VendorCreateState {
   factory VendorCreateStateSuccess(
-      {final ApplicationModel? applicationTemplate,
-      final ApplicationNameInput? nameInput,
-      final ApplicationDescriptionInput? descriptionInput,
-      final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      final ApplicationAndroidIdentifierInput?
-          applicationAndroidIdentifierInput}) = _$VendorCreateStateSuccess;
+          {final ApplicationNameInput? nameInput,
+          final ApplicationIdentifierInput? applicationIdentifierInput}) =
+      _$VendorCreateStateSuccess;
   VendorCreateStateSuccess._() : super._();
 
   @override
-  ApplicationModel? get applicationTemplate;
-  @override
   ApplicationNameInput? get nameInput;
   @override
-  ApplicationDescriptionInput? get descriptionInput;
-  @override
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput;
-  @override
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput;
+  ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
   _$$VendorCreateStateSuccessCopyWith<_$VendorCreateStateSuccess>
@@ -1289,11 +811,8 @@ abstract class _$$VendorCreateStateValidationCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput});
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput});
 }
 
 /// @nodoc
@@ -1308,34 +827,18 @@ class __$$VendorCreateStateValidationCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
   }) {
     return _then(_$VendorCreateStateValidation(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
     ));
   }
 }
@@ -1344,27 +847,17 @@ class __$$VendorCreateStateValidationCopyWithImpl<$Res>
 
 class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   _$VendorCreateStateValidation(
-      {this.applicationTemplate,
-      this.nameInput,
-      this.descriptionInput,
-      this.applicationIOSIdentifierInput,
-      this.applicationAndroidIdentifierInput})
+      {this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
-  final ApplicationModel? applicationTemplate;
-  @override
   final ApplicationNameInput? nameInput;
   @override
-  final ApplicationDescriptionInput? descriptionInput;
-  @override
-  final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput;
-  @override
-  final ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput;
+  final ApplicationIdentifierInput? applicationIdentifierInput;
 
   @override
   String toString() {
-    return 'VendorCreateState.validation(applicationTemplate: $applicationTemplate, nameInput: $nameInput, descriptionInput: $descriptionInput, applicationIOSIdentifierInput: $applicationIOSIdentifierInput, applicationAndroidIdentifierInput: $applicationAndroidIdentifierInput)';
+    return 'VendorCreateState.validation(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
@@ -1372,30 +865,17 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VendorCreateStateValidation &&
-            (identical(other.applicationTemplate, applicationTemplate) ||
-                other.applicationTemplate == applicationTemplate) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.descriptionInput, descriptionInput) ||
-                other.descriptionInput == descriptionInput) &&
-            (identical(other.applicationIOSIdentifierInput,
-                    applicationIOSIdentifierInput) ||
-                other.applicationIOSIdentifierInput ==
-                    applicationIOSIdentifierInput) &&
-            (identical(other.applicationAndroidIdentifierInput,
-                    applicationAndroidIdentifierInput) ||
-                other.applicationAndroidIdentifierInput ==
-                    applicationAndroidIdentifierInput));
+            (identical(other.applicationIdentifierInput,
+                    applicationIdentifierInput) ||
+                other.applicationIdentifierInput ==
+                    applicationIdentifierInput));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      applicationTemplate,
-      nameInput,
-      descriptionInput,
-      applicationIOSIdentifierInput,
-      applicationAndroidIdentifierInput);
+  int get hashCode =>
+      Object.hash(runtimeType, nameInput, applicationIdentifierInput);
 
   @JsonKey(ignore: true)
   @override
@@ -1407,150 +887,75 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) {
-    return validation(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return validation(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) {
-    return validation?.call(applicationTemplate, nameInput, descriptionInput,
-        applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+    return validation?.call(nameInput, applicationIdentifierInput);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
   }) {
     if (validation != null) {
-      return validation(applicationTemplate, nameInput, descriptionInput,
-          applicationIOSIdentifierInput, applicationAndroidIdentifierInput);
+      return validation(nameInput, applicationIdentifierInput);
     }
     return orElse();
   }
@@ -1598,24 +1003,15 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
 
 abstract class VendorCreateStateValidation extends VendorCreateState {
   factory VendorCreateStateValidation(
-      {final ApplicationModel? applicationTemplate,
-      final ApplicationNameInput? nameInput,
-      final ApplicationDescriptionInput? descriptionInput,
-      final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      final ApplicationAndroidIdentifierInput?
-          applicationAndroidIdentifierInput}) = _$VendorCreateStateValidation;
+          {final ApplicationNameInput? nameInput,
+          final ApplicationIdentifierInput? applicationIdentifierInput}) =
+      _$VendorCreateStateValidation;
   VendorCreateStateValidation._() : super._();
 
   @override
-  ApplicationModel? get applicationTemplate;
-  @override
   ApplicationNameInput? get nameInput;
   @override
-  ApplicationDescriptionInput? get descriptionInput;
-  @override
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput;
-  @override
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput;
+  ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
   _$$VendorCreateStateValidationCopyWith<_$VendorCreateStateValidation>
@@ -1631,11 +1027,8 @@ abstract class _$$VendorCreateStateErrorCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ApplicationModel? applicationTemplate,
-      ApplicationNameInput? nameInput,
-      ApplicationDescriptionInput? descriptionInput,
-      ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput,
+      {ApplicationNameInput? nameInput,
+      ApplicationIdentifierInput? applicationIdentifierInput,
       Exception? exception});
 }
 
@@ -1650,35 +1043,19 @@ class __$$VendorCreateStateErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? applicationTemplate = freezed,
     Object? nameInput = freezed,
-    Object? descriptionInput = freezed,
-    Object? applicationIOSIdentifierInput = freezed,
-    Object? applicationAndroidIdentifierInput = freezed,
+    Object? applicationIdentifierInput = freezed,
     Object? exception = freezed,
   }) {
     return _then(_$VendorCreateStateError(
-      applicationTemplate: freezed == applicationTemplate
-          ? _value.applicationTemplate
-          : applicationTemplate // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      descriptionInput: freezed == descriptionInput
-          ? _value.descriptionInput
-          : descriptionInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationDescriptionInput?,
-      applicationIOSIdentifierInput: freezed == applicationIOSIdentifierInput
-          ? _value.applicationIOSIdentifierInput
-          : applicationIOSIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIOSIdentifierInput?,
-      applicationAndroidIdentifierInput: freezed ==
-              applicationAndroidIdentifierInput
-          ? _value.applicationAndroidIdentifierInput
-          : applicationAndroidIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationAndroidIdentifierInput?,
+      applicationIdentifierInput: freezed == applicationIdentifierInput
+          ? _value.applicationIdentifierInput
+          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -1691,30 +1068,19 @@ class __$$VendorCreateStateErrorCopyWithImpl<$Res>
 
 class _$VendorCreateStateError extends VendorCreateStateError {
   _$VendorCreateStateError(
-      {this.applicationTemplate,
-      this.nameInput,
-      this.descriptionInput,
-      this.applicationIOSIdentifierInput,
-      this.applicationAndroidIdentifierInput,
-      this.exception})
+      {this.nameInput, this.applicationIdentifierInput, this.exception})
       : super._();
 
   @override
-  final ApplicationModel? applicationTemplate;
-  @override
   final ApplicationNameInput? nameInput;
   @override
-  final ApplicationDescriptionInput? descriptionInput;
-  @override
-  final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput;
-  @override
-  final ApplicationAndroidIdentifierInput? applicationAndroidIdentifierInput;
+  final ApplicationIdentifierInput? applicationIdentifierInput;
   @override
   final Exception? exception;
 
   @override
   String toString() {
-    return 'VendorCreateState.error(applicationTemplate: $applicationTemplate, nameInput: $nameInput, descriptionInput: $descriptionInput, applicationIOSIdentifierInput: $applicationIOSIdentifierInput, applicationAndroidIdentifierInput: $applicationAndroidIdentifierInput, exception: $exception)';
+    return 'VendorCreateState.error(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, exception: $exception)';
   }
 
   @override
@@ -1722,33 +1088,19 @@ class _$VendorCreateStateError extends VendorCreateStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VendorCreateStateError &&
-            (identical(other.applicationTemplate, applicationTemplate) ||
-                other.applicationTemplate == applicationTemplate) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.descriptionInput, descriptionInput) ||
-                other.descriptionInput == descriptionInput) &&
-            (identical(other.applicationIOSIdentifierInput,
-                    applicationIOSIdentifierInput) ||
-                other.applicationIOSIdentifierInput ==
-                    applicationIOSIdentifierInput) &&
-            (identical(other.applicationAndroidIdentifierInput,
-                    applicationAndroidIdentifierInput) ||
-                other.applicationAndroidIdentifierInput ==
-                    applicationAndroidIdentifierInput) &&
+            (identical(other.applicationIdentifierInput,
+                    applicationIdentifierInput) ||
+                other.applicationIdentifierInput ==
+                    applicationIdentifierInput) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      applicationTemplate,
-      nameInput,
-      descriptionInput,
-      applicationIOSIdentifierInput,
-      applicationAndroidIdentifierInput,
-      exception);
+      runtimeType, nameInput, applicationIdentifierInput, exception);
 
   @JsonKey(ignore: true)
   @override
@@ -1760,165 +1112,75 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         $default, {
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         progress,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         success,
-    required TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)
+    required TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)
         validation,
     required TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)
         error,
   }) {
-    return error(
-        applicationTemplate,
-        nameInput,
-        descriptionInput,
-        applicationIOSIdentifierInput,
-        applicationAndroidIdentifierInput,
-        exception);
+    return error(nameInput, applicationIdentifierInput, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult? Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult? Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult? Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
   }) {
-    return error?.call(
-        applicationTemplate,
-        nameInput,
-        descriptionInput,
-        applicationIOSIdentifierInput,
-        applicationAndroidIdentifierInput,
-        exception);
+    return error?.call(nameInput, applicationIdentifierInput, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         $default, {
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         progress,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         success,
-    TResult Function(
-            ApplicationModel? applicationTemplate,
-            ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput)?
+    TResult Function(ApplicationNameInput? nameInput,
+            ApplicationIdentifierInput? applicationIdentifierInput)?
         validation,
     TResult Function(
-            ApplicationModel? applicationTemplate,
             ApplicationNameInput? nameInput,
-            ApplicationDescriptionInput? descriptionInput,
-            ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-            ApplicationAndroidIdentifierInput?
-                applicationAndroidIdentifierInput,
+            ApplicationIdentifierInput? applicationIdentifierInput,
             Exception? exception)?
         error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(
-          applicationTemplate,
-          nameInput,
-          descriptionInput,
-          applicationIOSIdentifierInput,
-          applicationAndroidIdentifierInput,
-          exception);
+      return error(nameInput, applicationIdentifierInput, exception);
     }
     return orElse();
   }
@@ -1966,25 +1228,15 @@ class _$VendorCreateStateError extends VendorCreateStateError {
 
 abstract class VendorCreateStateError extends VendorCreateState {
   factory VendorCreateStateError(
-      {final ApplicationModel? applicationTemplate,
-      final ApplicationNameInput? nameInput,
-      final ApplicationDescriptionInput? descriptionInput,
-      final ApplicationIOSIdentifierInput? applicationIOSIdentifierInput,
-      final ApplicationAndroidIdentifierInput?
-          applicationAndroidIdentifierInput,
+      {final ApplicationNameInput? nameInput,
+      final ApplicationIdentifierInput? applicationIdentifierInput,
       final Exception? exception}) = _$VendorCreateStateError;
   VendorCreateStateError._() : super._();
 
   @override
-  ApplicationModel? get applicationTemplate;
-  @override
   ApplicationNameInput? get nameInput;
   @override
-  ApplicationDescriptionInput? get descriptionInput;
-  @override
-  ApplicationIOSIdentifierInput? get applicationIOSIdentifierInput;
-  @override
-  ApplicationAndroidIdentifierInput? get applicationAndroidIdentifierInput;
+  ApplicationIdentifierInput? get applicationIdentifierInput;
   Exception? get exception;
   @override
   @JsonKey(ignore: true)

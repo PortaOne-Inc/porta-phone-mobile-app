@@ -22,10 +22,7 @@ VendorDTO _$VendorDTOFromJson(Map<String, dynamic> json) {
 mixin _$VendorDTO {
   ThemeDTO? get theme => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get androidIdentifier => throw _privateConstructorUsedError;
-  String? get iosIdentifier => throw _privateConstructorUsedError;
-  String? get uuid => throw _privateConstructorUsedError;
+  String? get applicationIdentifier => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +39,7 @@ abstract class $VendorDTOCopyWith<$Res> {
   $Res call(
       {ThemeDTO? theme,
       String? title,
-      String? description,
-      String? androidIdentifier,
-      String? iosIdentifier,
-      String? uuid,
+      String? applicationIdentifier,
       String? id});
 
   $ThemeDTOCopyWith<$Res>? get theme;
@@ -66,10 +60,7 @@ class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
   $Res call({
     Object? theme = freezed,
     Object? title = freezed,
-    Object? description = freezed,
-    Object? androidIdentifier = freezed,
-    Object? iosIdentifier = freezed,
-    Object? uuid = freezed,
+    Object? applicationIdentifier = freezed,
     Object? id = freezed,
   }) {
     return _then(_value.copyWith(
@@ -81,21 +72,9 @@ class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      androidIdentifier: freezed == androidIdentifier
-          ? _value.androidIdentifier
-          : androidIdentifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosIdentifier: freezed == iosIdentifier
-          ? _value.iosIdentifier
-          : iosIdentifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
+      applicationIdentifier: freezed == applicationIdentifier
+          ? _value.applicationIdentifier
+          : applicationIdentifier // ignore: cast_nullable_to_non_nullable
               as String?,
       id: freezed == id
           ? _value.id
@@ -128,10 +107,7 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
   $Res call(
       {ThemeDTO? theme,
       String? title,
-      String? description,
-      String? androidIdentifier,
-      String? iosIdentifier,
-      String? uuid,
+      String? applicationIdentifier,
       String? id});
 
   @override
@@ -151,10 +127,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
   $Res call({
     Object? theme = freezed,
     Object? title = freezed,
-    Object? description = freezed,
-    Object? androidIdentifier = freezed,
-    Object? iosIdentifier = freezed,
-    Object? uuid = freezed,
+    Object? applicationIdentifier = freezed,
     Object? id = freezed,
   }) {
     return _then(_$_ApplicationDTO(
@@ -166,21 +139,9 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      androidIdentifier: freezed == androidIdentifier
-          ? _value.androidIdentifier
-          : androidIdentifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosIdentifier: freezed == iosIdentifier
-          ? _value.iosIdentifier
-          : iosIdentifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
+      applicationIdentifier: freezed == applicationIdentifier
+          ? _value.applicationIdentifier
+          : applicationIdentifier // ignore: cast_nullable_to_non_nullable
               as String?,
       id: freezed == id
           ? _value.id
@@ -194,13 +155,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ApplicationDTO implements _ApplicationDTO {
   const _$_ApplicationDTO(
-      {this.theme,
-      this.title,
-      this.description,
-      this.androidIdentifier,
-      this.iosIdentifier,
-      this.uuid,
-      this.id});
+      {this.theme, this.title, this.applicationIdentifier, this.id});
 
   factory _$_ApplicationDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ApplicationDTOFromJson(json);
@@ -210,19 +165,13 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   @override
   final String? title;
   @override
-  final String? description;
-  @override
-  final String? androidIdentifier;
-  @override
-  final String? iosIdentifier;
-  @override
-  final String? uuid;
+  final String? applicationIdentifier;
   @override
   final String? id;
 
   @override
   String toString() {
-    return 'VendorDTO(theme: $theme, title: $title, description: $description, androidIdentifier: $androidIdentifier, iosIdentifier: $iosIdentifier, uuid: $uuid, id: $id)';
+    return 'VendorDTO(theme: $theme, title: $title, applicationIdentifier: $applicationIdentifier, id: $id)';
   }
 
   @override
@@ -232,20 +181,15 @@ class _$_ApplicationDTO implements _ApplicationDTO {
             other is _$_ApplicationDTO &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.androidIdentifier, androidIdentifier) ||
-                other.androidIdentifier == androidIdentifier) &&
-            (identical(other.iosIdentifier, iosIdentifier) ||
-                other.iosIdentifier == iosIdentifier) &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.applicationIdentifier, applicationIdentifier) ||
+                other.applicationIdentifier == applicationIdentifier) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, theme, title, description,
-      androidIdentifier, iosIdentifier, uuid, id);
+  int get hashCode =>
+      Object.hash(runtimeType, theme, title, applicationIdentifier, id);
 
   @JsonKey(ignore: true)
   @override
@@ -265,10 +209,7 @@ abstract class _ApplicationDTO implements VendorDTO {
   const factory _ApplicationDTO(
       {final ThemeDTO? theme,
       final String? title,
-      final String? description,
-      final String? androidIdentifier,
-      final String? iosIdentifier,
-      final String? uuid,
+      final String? applicationIdentifier,
       final String? id}) = _$_ApplicationDTO;
 
   factory _ApplicationDTO.fromJson(Map<String, dynamic> json) =
@@ -279,13 +220,7 @@ abstract class _ApplicationDTO implements VendorDTO {
   @override
   String? get title;
   @override
-  String? get description;
-  @override
-  String? get androidIdentifier;
-  @override
-  String? get iosIdentifier;
-  @override
-  String? get uuid;
+  String? get applicationIdentifier;
   @override
   String? get id;
   @override

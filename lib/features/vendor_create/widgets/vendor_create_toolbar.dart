@@ -34,7 +34,7 @@ class VendorCreateToolbar extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                context.l10n.configurator_vendor_manager,
+                context.l10n.feature_application_Toolbar_title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium,
               ),

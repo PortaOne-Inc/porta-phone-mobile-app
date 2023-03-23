@@ -68,44 +68,10 @@ class VendorPreviewItem extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                application.description ?? context.l10n.common_text_undefine,
-                maxLines: 4,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              const SizedBox(height: 8),
-              GestureDetector(
-                child: Tooltip(
-                  message: application.id,
-                  margin: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    application.uuid,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Colors.green),
-                  ),
-                ),
-                onTap: () => _showCopyInBufferMessage(context),
-              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  void _showCopyInBufferMessage(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: application.id)).then(
-      (_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              application.uuid,
-            ),
-          ),
-        );
-      },
     );
   }
 

@@ -14,13 +14,9 @@ part 'vendor_create_cubit.freezed.dart';
 
 class VendorCreateCubit extends Cubit<VendorCreateState> {
   VendorCreateCubit({
-    required this.vendorGetTemplateUsecase,
     required this.vendorCreateUsecase,
-  }) : super(VendorCreateState()) {
-    _loadTemplate();
-  }
+  }) : super(VendorCreateState());
 
-  final UsecaseVendorGetTemplate vendorGetTemplateUsecase;
   final UsecaseVendorCreate vendorCreateUsecase;
 
   void updateNameChange(String name) {
@@ -29,21 +25,9 @@ class VendorCreateCubit extends Cubit<VendorCreateState> {
     ));
   }
 
-  void updateDescriptionChange(String description) {
+  void updateApplicationIdentifier(String identifier) {
     emit(state.copyWithValidation(
-      descriptionInput: ApplicationDescriptionInput.dirty(description),
-    ));
-  }
-
-  void updateAndroidIdentifier(String identifier) {
-    emit(state.copyWithValidation(
-      applicationAndroidIdentifierInput: ApplicationAndroidIdentifierInput.dirty(identifier),
-    ));
-  }
-
-  void updateIOSIdentifier(String identifier) {
-    emit(state.copyWithValidation(
-      applicationIOSIdentifierInput: ApplicationIOSIdentifierInput.dirty(identifier),
+      applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier),
     ));
   }
 
@@ -51,20 +35,16 @@ class VendorCreateCubit extends Cubit<VendorCreateState> {
     if (_isValidFields()) {
       tryCreateApplication();
     } else {
-      emit(state.copyWith(
-        nameInput: state.nameInput?.toDirty(),
-        descriptionInput: state.descriptionInput?.toDirty(),
-      ));
+      emit(state.copyWith(nameInput: state.nameInput?.toDirty()));
     }
   }
 
   void tryCreateApplication() async {
     try {
       await _createApplication(
-          projectName: state.nameInput!.value,
-          projectDescription: state.descriptionInput!.value,
-          iosIdentifier: state.applicationIOSIdentifierInput!.value,
-          androidIdentifier: state.applicationAndroidIdentifierInput!.value);
+        projectName: state.nameInput!.value,
+        applicationIdentifier: state.applicationIdentifierInput!.value,
+      );
     } on BaseException catch (e) {
       emit(state.copyWithError(exception: e));
     }
@@ -72,41 +52,25 @@ class VendorCreateCubit extends Cubit<VendorCreateState> {
 
   Future _createApplication({
     required String projectName,
-    required String projectDescription,
-    required String iosIdentifier,
-    required String androidIdentifier,
+    required String applicationIdentifier,
   }) async {
     emit(state.copyWithProgress());
     final model = ApplicationModel(
-      uuid: state.applicationTemplate!.uuid,
       title: projectName,
-      description: projectDescription,
-      id: null,
-      iosIdentifier: iosIdentifier,
-      androidIdentifier: androidIdentifier,
+      applicationIdentifier: applicationIdentifier,
     );
-    final result = await vendorCreateUsecase.execute(argument: model);
-    emit(state.copyWithSuccess(applicationTemplate: result));
-  }
-
-  void _loadTemplate() async {
-    final app = await vendorGetTemplateUsecase.execute();
-    emit(state.copyWith(applicationTemplate: app));
+    await vendorCreateUsecase.execute(argument: model);
+    emit(state.copyWithSuccess());
   }
 
   bool _isValidFields() {
     // TODO: ADD something more clearly for check nullable
-    if (state.nameInput == null ||
-        state.descriptionInput == null ||
-        state.applicationIOSIdentifierInput == null ||
-        state.applicationAndroidIdentifierInput == null) {
+    if (state.nameInput == null || state.applicationIdentifierInput == null) {
       return false;
     }
     return Formz.validate([
       state.nameInput!,
-      state.descriptionInput!,
-      state.applicationIOSIdentifierInput!,
-      state.applicationAndroidIdentifierInput!
+      state.applicationIdentifierInput!,
     ]);
   }
 }

@@ -43,7 +43,6 @@ class AppRoute {
           builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCreateCubit>(
             create: (BuildContext context) => VendorCreateCubit(
               vendorCreateUsecase: getIt.get(),
-              vendorGetTemplateUsecase: getIt.get(),
             ),
             child: const VendorCreatePage(),
           ),
