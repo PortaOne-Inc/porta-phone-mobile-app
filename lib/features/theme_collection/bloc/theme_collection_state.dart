@@ -1,49 +1,69 @@
 part of 'theme_collection_cubit.dart';
 
-@immutable
-class ThemesState {
-  const ThemesState({
-    required this.themes,
-  });
+@freezed
+class ThemeCollectionState with _$ThemeCollectionState {
+  factory ThemeCollectionState({
+    @Default([]) List<AppConfigurationModel> themes,
+  }) = _ThemeCollectionState;
 
-  final List<AppConfigurationModel> themes;
+  factory ThemeCollectionState.progress({
+    @Default([]) List<AppConfigurationModel> themes,
+  }) = ThemeCollectionStateProgress;
+
+  factory ThemeCollectionState.success({
+    @Default([]) List<AppConfigurationModel> themes,
+  }) = ThemeCollectionStateSuccess;
+
+  factory ThemeCollectionState.error({
+    @Default([]) List<AppConfigurationModel> themes,
+    BaseException? error,
+  }) = ThemeCollectionStateError;
+
+  factory ThemeCollectionState.navigateToEditTheme({
+    @Default([]) List<AppConfigurationModel> themes,
+    AppConfigurationModel? theme,
+    BaseException? error,
+  }) = ThemeCollectionNavigateToEditTheme;
 }
 
-class ThemesInitial extends ThemesState {
-  const ThemesInitial({
-    required super.themes,
-  });
+extension ThemeCollectionStateGetters on ThemeCollectionState {
+  bool get isProgress => this is ThemeCollectionStateProgress;
 }
 
-class ThemesEmptyState extends ThemesState {
-  const ThemesEmptyState({
-    required super.themes,
-  });
-}
+extension _StateCopyWith on ThemeCollectionState {
+  ThemeCollectionState copyWithProgress({
+    List<AppConfigurationModel>? themes,
+  }) {
+    return ThemeCollectionState.progress(
+      themes: themes ?? this.themes,
+    );
+  }
 
-class ThemesSuccess extends ThemesState {
-  const ThemesSuccess({
-    required super.themes,
-  });
-}
+  ThemeCollectionState copyWithNavigateToEditTheme({
+    List<AppConfigurationModel>? themes,
+    AppConfigurationModel? theme,
+  }) {
+    return ThemeCollectionState.navigateToEditTheme(
+      themes: themes ?? this.themes,
+      theme: theme,
+    );
+  }
 
-class ThemesProgress extends ThemesState {
-  const ThemesProgress({
-    required super.themes,
-  });
-}
+  ThemeCollectionState copyWithSuccess({
+    List<AppConfigurationModel>? themes,
+  }) {
+    return ThemeCollectionState.success(
+      themes: themes ?? this.themes,
+    );
+  }
 
-class ThemesFailure extends ThemesState {
-  const ThemesFailure({
-    required this.message,
-    required super.themes,
-  });
-
-  final String message;
-}
-
-class NavigateToConfigurator extends ThemesState {
-  const NavigateToConfigurator({required this.themeModel, required super.themes});
-
-  final AppConfigurationModel themeModel;
+  ThemeCollectionState copyWithError({
+    List<AppConfigurationModel>? themes,
+    BaseException? error,
+  }) {
+    return ThemeCollectionState.error(
+      themes: themes ?? this.themes,
+      error: error,
+    );
+  }
 }

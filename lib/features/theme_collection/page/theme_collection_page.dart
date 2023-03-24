@@ -27,47 +27,102 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ThemeCollectionCubit, ThemesState>(
-        listener: (context, state) => _listenThemesState(state, context),
-        builder: (context, state) {
-          return Scaffold(
-            appBar: BaseToolBar(
-              isVisibleProgress: state is ThemesProgress,
+    return BlocConsumer<ThemeCollectionCubit, ThemeCollectionState>(
+      listener: _listenThemesState,
+      builder: (ctx, state) {
+        return Scaffold(
+          appBar: BaseToolBar(
+            isVisibleProgress: state.isProgress,
+            child: BaseToolBar(
+              isVisibleProgress: state.isProgress,
               child: ThemesToolbar(
                 onSwitchedLanguage: _onLanguageChanged,
-                onNewTheme: () => _onNewTheme(state),
+                onNewTheme: () => _onNewTheme(),
               ),
             ),
-            body: (state is ThemesEmptyState)
-                ? const EmptyState()
-                : GridView.builder(
-                    padding: const EdgeInsets.only(top: 16),
-                    itemBuilder: (ctx, index) {
-                      return ItemTheme(
-                        themeMode: state.themes[index],
-                        onTap: _openTheme,
-                        onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
-                        onDelete: _allMyThemesCubit.tryDeleteTheme,
-                      );
-                    },
-                    itemCount: state.themes.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 8.0,
-                      crossAxisSpacing: 8.0,
-                      childAspectRatio: 2.0,
+          ),
+          body: Align(
+            alignment: (state.themes.length <= 2) ? Alignment.center : Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: (state.themes.length <= 2) ? 800 : MediaQuery.of(context).size.width - 16,
+                minWidth: (state.themes.length <= 2) ? 200 : MediaQuery.of(context).size.height,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Visibility(
+                      visible: state.isProgress,
+                      child: const CircularProgressIndicator(),
                     ),
-                  ),
-          );
-        });
+                    EmptyHolder(
+                      visibility: state.themes.isEmpty && !state.isProgress,
+                      onPressed: () => _onNewTheme(),
+                      title: context.l10n.feature_theme_edit_Text_no_themes_yet_title,
+                      description: context.l10n.feature_theme_edit_Text_no_themes_yet_description,
+                      button: context.l10n.feature_theme_create,
+                    ),
+                    Visibility(
+                      visible: state.themes.isNotEmpty && !state.isProgress,
+                      child: GridView.builder(
+                        padding: const EdgeInsets.only(top: 24),
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemBuilder: (ctx, index) => ItemTheme(
+                          themeMode: state.themes[index],
+                          onTap: _openTheme,
+                          onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
+                          onDelete: _allMyThemesCubit.tryDeleteTheme,
+                        ),
+                        itemCount: state.themes.length,
+                        gridDelegate: _prepareGridDelegate(state.themes),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Visibility(
+                      visible: state.themes.isNotEmpty && !state.isProgress,
+                      child: Button(
+                        title: context.l10n.feature_theme_create,
+                        onPressed: () => _onNewTheme(),
+                      ),
+                    ),
+                    const SizedBox(height: 16)
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
-  void _listenThemesState(ThemesState state, BuildContext context) {
-    if (state is ThemesFailure) {
-      showFailureMessage(context, state.message);
+  SliverGridDelegateWithFixedCrossAxisCount _prepareGridDelegate(List<AppConfigurationModel> apps) {
+    var crossAxisCount = apps.length;
+    if (apps.isEmpty) crossAxisCount = 1;
+    if (apps.length > 4) crossAxisCount = 4;
+
+    return SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        mainAxisSpacing: 8.0,
+        crossAxisSpacing: 8.0,
+        childAspectRatio: crossAxisCount == 1 ? 3 : 1.5);
+  }
+
+  void _listenThemesState(
+    BuildContext context,
+    ThemeCollectionState state,
+  ) {
+    if (state is ThemeCollectionStateError) {
+      showFailureMessage(context, state.error!.message);
     }
-    if (state is NavigateToConfigurator) {
-      _openConfigurator(_allMyThemesCubit.applicationId, state.themeModel.id ?? '');
+    if (state is ThemeCollectionNavigateToEditTheme) {
+      _openConfigurator(_allMyThemesCubit.applicationId, state.theme!.id ?? '');
     }
   }
 
@@ -80,7 +135,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
     showTopSnakeMessageInfo(context, context.l10n.common_not_implemented);
   }
 
-  void _onNewTheme(ThemesState state) {
+  void _onNewTheme() {
     showDialog(
       context: context,
       builder: (context) => ThemeCollectionCreateDialog(

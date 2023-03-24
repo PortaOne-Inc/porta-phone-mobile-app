@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
@@ -10,7 +11,9 @@ import '../usecase/usecase.dart';
 
 part 'theme_collection_state.dart';
 
-class ThemeCollectionCubit extends Cubit<ThemesState> {
+part 'theme_collection_cubit.freezed.dart';
+
+class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   ThemeCollectionCubit({
     required this.getThemesUseCase,
     required this.makeThemeAsDefaultUseCase,
@@ -18,7 +21,7 @@ class ThemeCollectionCubit extends Cubit<ThemesState> {
     required this.createThemeUseCase,
     required this.getTemplateThemeUseCase,
     required this.applicationId,
-  }) : super(const ThemesInitial(themes: [])) {
+  }) : super(ThemeCollectionState.progress()) {
     _tyGetThemes();
   }
 
@@ -33,9 +36,7 @@ class ThemeCollectionCubit extends Cubit<ThemesState> {
     try {
       await _deleteTheme(themeModel);
     } on BaseException catch (e) {
-      _showFailure(e.message);
-    } on Exception catch (e) {
-      _showFailure(e.toString());
+      emit(state.copyWithError(error: e));
     }
   }
 
@@ -47,30 +48,20 @@ class ThemeCollectionCubit extends Cubit<ThemesState> {
     try {
       await _getThemes();
     } on BaseException catch (e) {
-      _showFailure(e.message);
-    } on Exception catch (e) {
-      _showFailure(e.toString());
+      emit(state.copyWithError(error: e));
     }
   }
 
   Future _getThemes() async {
-    emit(ThemesProgress(themes: state.themes));
+    emit(state.copyWithProgress());
     final themes = await getThemesUseCase.execute(applicationId: applicationId);
-    if (themes.isEmpty) {
-      emit(ThemesEmptyState(themes: themes));
-    } else {
-      emit(ThemesInitial(themes: themes));
-    }
+    emit(state.copyWithSuccess(themes: themes));
   }
 
   Future _deleteTheme(AppConfigurationModel themeModel) async {
-    emit(ThemesProgress(themes: state.themes));
+    emit(state.copyWithProgress());
     await deleteThemeUseCase.execute(themeModel: themeModel, applicationId: applicationId);
     _getThemes();
-  }
-
-  void _showFailure(String message) {
-    emit(ThemesFailure(message: message, themes: state.themes));
   }
 
   Future _tryCreateTheme(String name, Color color) async {
@@ -82,16 +73,14 @@ class ThemeCollectionCubit extends Cubit<ThemesState> {
       ),
       applicationId: applicationId,
     );
-    emit(NavigateToConfigurator(themes: state.themes, themeModel: result));
+    emit(state.copyWithNavigateToEditTheme(theme: result));
   }
 
   void tryCreateTheme(String name, Color color) async {
     try {
       await _tryCreateTheme(name, color);
     } on BaseException catch (e) {
-      _showFailure(e.toString());
-    } on Exception catch (e) {
-      _showFailure(e.toString());
+      emit(state.copyWithError(error: e));
     }
   }
 }

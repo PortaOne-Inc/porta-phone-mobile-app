@@ -12,64 +12,64 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:webtrit_configurator/core/config/di/injection.dart' as _i50;
 import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_add_theme.dart'
-    as _i27;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_add_theme_impl.dart'
-    as _i28;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete.dart'
-    as _i31;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete_impl.dart'
-    as _i32;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all.dart'
-    as _i33;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all_impl.dart'
-    as _i34;
-import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create.dart'
-    as _i29;
-import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create_impl.dart'
-    as _i30;
-import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in.dart'
-    as _i35;
-import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in_impl.dart'
-    as _i36;
-import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in.dart'
-    as _i37;
-import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in_impl.dart'
-    as _i38;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create.dart'
-    as _i39;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create_impl.dart'
-    as _i40;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete.dart'
-    as _i41;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete_impl.dart'
     as _i42;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_do_as_default.dart'
-    as _i25;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_do_as_default_impl.dart'
-    as _i26;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_all.dart'
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_add_theme_impl.dart'
     as _i43;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_all_impl.dart'
-    as _i44;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_by_id.dart'
-    as _i45;
-import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_by_id_impl.dart'
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete.dart'
     as _i46;
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete_impl.dart'
+    as _i47;
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all.dart'
+    as _i48;
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all_impl.dart'
+    as _i49;
+import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create.dart'
+    as _i44;
+import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create_impl.dart'
+    as _i45;
+import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in.dart'
+    as _i23;
+import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in_impl.dart'
+    as _i24;
+import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in.dart'
+    as _i25;
+import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_sign_in_impl.dart'
+    as _i26;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create.dart'
+    as _i27;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_create_impl.dart'
+    as _i28;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete.dart'
+    as _i29;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_delete_impl.dart'
+    as _i30;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_do_as_default.dart'
+    as _i40;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_do_as_default_impl.dart'
+    as _i41;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_all.dart'
+    as _i31;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_all_impl.dart'
+    as _i32;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_by_id.dart'
+    as _i33;
+import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_by_id_impl.dart'
+    as _i34;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_template.dart'
     as _i16;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_get_template_impl.dart'
     as _i17;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_update.dart'
-    as _i47;
+    as _i35;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_update_impl.dart'
-    as _i48;
+    as _i36;
 import 'package:webtrit_configurator/share/data/auth_firebase_data.dart'
     as _i20;
 import 'package:webtrit_configurator/share/data/data.dart' as _i15;
 import 'package:webtrit_configurator/share/data/realtime_firebase_data.dart'
     as _i12;
 import 'package:webtrit_configurator/share/entity/dto/dto.dart' as _i6;
-import 'package:webtrit_configurator/share/entity/entity.dart' as _i23;
+import 'package:webtrit_configurator/share/entity/entity.dart' as _i38;
 import 'package:webtrit_configurator/share/entity/mappers/mapper.dart' as _i5;
 import 'package:webtrit_configurator/share/entity/mappers/themes/colors_mapper.dart'
     as _i8;
@@ -80,7 +80,7 @@ import 'package:webtrit_configurator/share/entity/mappers/themes/text_style_mapp
 import 'package:webtrit_configurator/share/entity/mappers/themes/theme_mapper.dart'
     as _i22;
 import 'package:webtrit_configurator/share/entity/mappers/vendors/vendor_mapper.dart'
-    as _i24;
+    as _i39;
 import 'package:webtrit_configurator/share/entity/models/theme/theme.dart'
     as _i7;
 import 'package:webtrit_configurator/share/repository/auth/auth_repository_impl.dart'
@@ -93,7 +93,7 @@ import 'package:webtrit_configurator/share/repository/vendor/vendor_repository_i
     as _i19;
 import 'package:webtrit_configurator/share/share.dart' as _i18;
 import 'package:webtrit_configurator/share/usecase/user/usecase_user_get_impl.dart'
-    as _i49; // ignore_for_file: unnecessary_lambdas
+    as _i37; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
@@ -134,75 +134,75 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i5.Mapper<_i6.TextStyleDTO?, _i9.TextStyle?>>(),
               gh<_i5.Mapper<_i6.ImageDTO?, _i7.ImageModel?>>(),
             ));
-    gh.factory<_i23.Mapper<_i23.VendorDTO, _i23.ApplicationModel>>(() =>
-        _i24.VendorMapper(
-            gh<_i23.Mapper<_i23.ThemeDTO?, _i23.AppConfigurationModel?>>()));
-    gh.factory<_i25.SetThemeForApplicationUseCase>(
-        () => _i26.SetThemeForApplicationUseCaseImpl(
-              gh<_i18.VendorRepository>(),
-              gh<_i18.AuthRepository>(),
-              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-              gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
-            ));
-    gh.factory<_i27.UsecaseApplicationAddTheme>(
-        () => _i28.UsecaseApplicationAddThemeImpl(
-              gh<_i18.VendorRepository>(),
-              gh<_i18.AuthRepository>(),
-              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-              gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel>>(),
-            ));
-    gh.factory<_i29.UsecaseApplicationCreate>(
-        () => _i30.UsecaseApplicationCreateImpl(
-              gh<_i18.VendorRepository>(),
-              gh<_i18.AuthRepository>(),
-              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-            ));
-    gh.factory<_i31.UsecaseApplicationDeleteTemplate>(
-        () => _i32.UsecaseVendorDeleteTemplateImpl(
-              gh<_i18.VendorRepository>(),
-              gh<_i18.AuthRepository>(),
-              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-            ));
-    gh.factory<_i33.UsecaseApplicationGetAll>(
-        () => _i34.UsecaseApplicationGetAllImpl(
-              gh<_i18.VendorRepository>(),
-              gh<_i18.AuthRepository>(),
-              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-            ));
-    gh.factory<_i35.UsecaseAuthIsLoggedIn>(() => _i36.UsecaseAuthIsLoggedInImpl(
+    gh.factory<_i23.UsecaseAuthIsLoggedIn>(() => _i24.UsecaseAuthIsLoggedInImpl(
         authRepository: gh<_i18.AuthRepository>()));
-    gh.factory<_i37.UsecaseAuthSignIn>(() =>
-        _i38.UsecaseAuthSignInImpl(authRepository: gh<_i18.AuthRepository>()));
-    gh.factory<_i39.UsecaseThemeCreate>(() => _i40.UsecaseThemeCreateImpl(
+    gh.factory<_i25.UsecaseAuthSignIn>(() =>
+        _i26.UsecaseAuthSignInImpl(authRepository: gh<_i18.AuthRepository>()));
+    gh.factory<_i27.UsecaseThemeCreate>(() => _i28.UsecaseThemeCreateImpl(
           gh<_i18.ThemeRepository>(),
           gh<_i18.AuthRepository>(),
           gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
         ));
-    gh.factory<_i41.UsecaseThemeDeleteCreate>(
-        () => _i42.UsecaseThemeDeleteCreateImpl(
+    gh.factory<_i29.UsecaseThemeDeleteCreate>(
+        () => _i30.UsecaseThemeDeleteCreateImpl(
               gh<_i18.ThemeRepository>(),
               gh<_i18.AuthRepository>(),
               gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
             ));
-    gh.factory<_i43.UsecaseThemeGetAll>(() => _i44.UsecaseThemeGetAllImpl(
+    gh.factory<_i31.UsecaseThemeGetAll>(() => _i32.UsecaseThemeGetAllImpl(
           themeRepository: gh<_i18.ThemeRepository>(),
           authRepository: gh<_i18.AuthRepository>(),
           mapper:
               gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
         ));
-    gh.factory<_i45.UsecaseThemeGetById>(() => _i46.UsecaseThemeGetByIdImpl(
+    gh.factory<_i33.UsecaseThemeGetById>(() => _i34.UsecaseThemeGetByIdImpl(
           gh<_i18.ThemeRepository>(),
           gh<_i18.AuthRepository>(),
           gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
         ));
-    gh.factory<_i47.UsecaseThemeUpdate>(() => _i48.UsecaseThemeUpdateImpl(
+    gh.factory<_i35.UsecaseThemeUpdate>(() => _i36.UsecaseThemeUpdateImpl(
           themeRepository: gh<_i18.ThemeRepository>(),
           authRepository: gh<_i18.AuthRepository>(),
           mapper:
               gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
         ));
     gh.factory<_i18.UsecaseUserGet>(
-        () => _i49.UsecaseThemeDeleteCreateImpl(gh<_i18.AuthRepository>()));
+        () => _i37.UsecaseThemeDeleteCreateImpl(gh<_i18.AuthRepository>()));
+    gh.factory<_i38.Mapper<_i38.VendorDTO, _i38.ApplicationModel>>(() =>
+        _i39.VendorMapper(
+            gh<_i38.Mapper<_i38.ThemeDTO?, _i38.AppConfigurationModel?>>()));
+    gh.factory<_i40.SetThemeForApplicationUseCase>(
+        () => _i41.SetThemeForApplicationUseCaseImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+              gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel?>>(),
+            ));
+    gh.factory<_i42.UsecaseApplicationAddTheme>(
+        () => _i43.UsecaseApplicationAddThemeImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+              gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel>>(),
+            ));
+    gh.factory<_i44.UsecaseApplicationCreate>(
+        () => _i45.UsecaseApplicationCreateImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+            ));
+    gh.factory<_i46.UsecaseApplicationDeleteTemplate>(
+        () => _i47.UsecaseVendorDeleteTemplateImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+            ));
+    gh.factory<_i48.UsecaseApplicationGetAll>(
+        () => _i49.UsecaseApplicationGetAllImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+            ));
     return this;
   }
 }
