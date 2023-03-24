@@ -92,7 +92,7 @@ class AuthPage extends StatelessWidget with MixinMessages {
       showFailureMessage(context, state.error.toString());
     }
     if (state is AuthStateSuccess) {
-      GoRouter.of(context).goNamed(AppRoutInfo.vendors.name);
+      GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
       showTopSnakeMessageSuccess(context, context.l10n.feature_auth_SnakeBar_success_auth);
     }
   }

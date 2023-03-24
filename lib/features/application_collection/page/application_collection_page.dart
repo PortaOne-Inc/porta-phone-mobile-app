@@ -109,14 +109,14 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _createApplication() {
-    GoRouter.of(context).goNamed(AppRoutInfo.vendorCreate.name);
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
   }
 
   void _openApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).pushNamed(
       AppRoutInfo.themes.name,
       params: <String, String>{
-        AppRoutInfo.keyVendorId: applicationModel.id!,
+        AppRoutInfo.keyApplicationId: applicationModel.id!,
       },
     );
   }

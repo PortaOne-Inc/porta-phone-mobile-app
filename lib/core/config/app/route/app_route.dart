@@ -27,8 +27,8 @@ class AppRoute {
           ),
         ),
         GoRoute(
-          path: AppRoutInfo.vendors.path,
-          name: AppRoutInfo.vendors.name,
+          path: AppRoutInfo.applicationCollection.path,
+          name: AppRoutInfo.applicationCollection.name,
           builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCollectionCubit>(
             create: (BuildContext context) => VendorCollectionCubit(
               vendorCollectionUsecase: getIt.get(),
@@ -38,8 +38,8 @@ class AppRoute {
           ),
         ),
         GoRoute(
-          path: AppRoutInfo.vendorCreate.path,
-          name: AppRoutInfo.vendorCreate.name,
+          path: AppRoutInfo.applicationCreate.path,
+          name: AppRoutInfo.applicationCreate.name,
           builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCreateCubit>(
             create: (BuildContext context) => ApplicationCreateCubit(
               vendorCreateUsecase: getIt.get(),
@@ -53,7 +53,7 @@ class AppRoute {
           builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
             child: const ThemeCollectionPage(),
             create: (BuildContext context) => ThemeCollectionCubit(
-              applicationId: state.params[AppRoutInfo.keyVendorId]!,
+              applicationId: state.params[AppRoutInfo.keyApplicationId]!,
               getThemesUseCase: getIt.get(),
               makeThemeAsDefaultUseCase: getIt.get(),
               deleteThemeUseCase: getIt.get(),
@@ -78,7 +78,7 @@ class AppRoute {
                         updateThemeUseCase: getIt.get(),
                         getThemeUseCase: getIt.get(),
                         getUserUsecase: getIt.get(),
-                        applicationId: state.params[AppRoutInfo.keyVendorId]!,
+                        applicationId: state.params[AppRoutInfo.keyApplicationId]!,
                         themeId: state.params[AppRoutInfo.keyThemeId]!,
                       ),
                     ),
@@ -88,7 +88,7 @@ class AppRoute {
       ],
       redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
       routerNeglect: false,
-      initialLocation: AppRoutInfo.vendors.path,
+      initialLocation: AppRoutInfo.applicationCollection.path,
     );
   }
 
@@ -105,7 +105,7 @@ class AppRoute {
       return AppRoutInfo.login.path;
     } else {
       if (currentLocation == AppRoutInfo.login.path) {
-        return AppRoutInfo.vendors.path;
+        return AppRoutInfo.applicationCollection.path;
       }
     }
 

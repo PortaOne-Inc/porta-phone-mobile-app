@@ -2,7 +2,10 @@ class RouteData {
   final String name;
   final String path;
 
-  const RouteData({required this.name, required this.path});
+  const RouteData({
+    required this.name,
+    required this.path,
+  });
 }
 
 abstract class AppRoutInfo {
@@ -10,27 +13,27 @@ abstract class AppRoutInfo {
     name: 'login',
     path: '/',
   );
-  static const vendors = RouteData(
-    name: 'vendors',
-    path: '/vendors',
+  static const applicationCollection = RouteData(
+    name: 'application/collection',
+    path: '/application/collection',
   );
-  static const vendorCreate = RouteData(
-    name: 'vendorCreate',
-    path: '/vendor/create',
+  static const applicationCreate = RouteData(
+    name: 'application/create',
+    path: '/application/create',
   );
   static const themes = RouteData(
-    name: 'themes',
-    path: '/vendor/:$keyVendorId/themes',
+    name: 'theme/collection',
+    path: '/application/:$keyApplicationId/theme/collection',
   );
   static const themesCreate = RouteData(
     name: 'themesCreate',
-    path: '/vendor/:$keyVendorId',
+    path: '/application/:$keyApplicationId',
   );
   static const themesEdit = RouteData(
     name: 'themesEdit',
-    path: '/vendor/:$keyVendorId/:$keyThemeId',
+    path: '/application/:$keyApplicationId/theme/:$keyThemeId',
   );
 
-  static const String keyVendorId = 'vendorId';
+  static const String keyApplicationId = 'applicationId';
   static const String keyThemeId = 'themeId';
 }
