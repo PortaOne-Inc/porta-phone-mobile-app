@@ -4,10 +4,10 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_vendor_delete.dart';
+import 'usecase_application_delete.dart';
 
-@Injectable(as: UsecaseVendorDeleteTemplate)
-class UsecaseVendorDeleteTemplateImpl implements UsecaseVendorDeleteTemplate {
+@Injectable(as: UsecaseApplicationDeleteTemplate)
+class UsecaseVendorDeleteTemplateImpl implements UsecaseApplicationDeleteTemplate {
   UsecaseVendorDeleteTemplateImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
 
   final VendorRepository applicationRepository;

@@ -34,7 +34,7 @@ class AppRoute {
               vendorCollectionUsecase: getIt.get(),
               vendorDeleteUsecase: getIt.get(),
             ),
-            child: const VendorCollectionPage(),
+            child: const ApplicationCollectionPage(),
           ),
         ),
         GoRoute(

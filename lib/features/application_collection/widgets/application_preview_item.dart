@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
-class VendorPreviewItem extends StatelessWidget {
-  const VendorPreviewItem({
+class ApplicationPreviewItem extends StatelessWidget {
+  const ApplicationPreviewItem({
     super.key,
     required this.application,
     required this.onDelete,

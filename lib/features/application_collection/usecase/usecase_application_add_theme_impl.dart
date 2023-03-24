@@ -4,11 +4,11 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_vendor_add_theme.dart';
+import 'usecase_application_add_theme.dart';
 
-@Injectable(as: UsecaseVendorAddTheme)
-class UsecaseVendorAddThemeImpl extends UsecaseVendorAddTheme {
-  UsecaseVendorAddThemeImpl(this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
+@Injectable(as: UsecaseApplicationAddTheme)
+class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
+  UsecaseApplicationAddThemeImpl(this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;

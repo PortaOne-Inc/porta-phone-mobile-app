@@ -1,24 +1,25 @@
 import 'package:bloc/bloc.dart';
-
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_configurator/core/exception/implementation/common/base_exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../usecase/usecase.dart';
 
-part 'vendor_collection_state.dart';
+part 'application_collection_state.dart';
 
-class VendorCollectionCubit extends Cubit<VendorCollectionState> {
+part 'application_collection_cubit.freezed.dart';
+
+class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
   VendorCollectionCubit({
     required this.vendorCollectionUsecase,
     required this.vendorDeleteUsecase,
-  }) : super(const AppsInitial([])) {
+  }) : super(ApplicationCollectionState.progress()) {
     tryGetApplications();
   }
 
-  final UsecaseVendorGetAll vendorCollectionUsecase;
-  final UsecaseVendorDeleteTemplate vendorDeleteUsecase;
+  final UsecaseApplicationGetAll vendorCollectionUsecase;
+  final UsecaseApplicationDeleteTemplate vendorDeleteUsecase;
 
   void tryGetApplications() async {
     try {
@@ -30,17 +31,17 @@ class VendorCollectionCubit extends Cubit<VendorCollectionState> {
     }
   }
 
+  void deleteApplication(ApplicationModel applicationModel) async {
+    await vendorDeleteUsecase.execute(model: applicationModel);
+    tryGetApplications();
+  }
+
   void _showNotCaughtFailure(String message) {
-    emit(AppsNotCaughtFailure(state.apps, message));
+    emit(state.copyWithSuccess());
   }
 
   Future _getApplications() async {
     final result = await vendorCollectionUsecase.execute();
-    emit(AppsInitialized(result));
-  }
-
-  void deleteApplication(ApplicationModel applicationModel) async {
-    await vendorDeleteUsecase.execute(model: applicationModel);
-    tryGetApplications();
+    emit(state.copyWithSuccess(applications: result));
   }
 }

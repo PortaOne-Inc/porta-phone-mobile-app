@@ -9,28 +9,28 @@ import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/entity/entity.dart';
 
-import '../bloc/vendor_collection_cubit.dart';
+import '../bloc/application_collection_cubit.dart';
 import '../widgets/widgets.dart';
 
-class VendorCollectionPage extends StatefulWidget {
-  const VendorCollectionPage({
+class ApplicationCollectionPage extends StatefulWidget {
+  const ApplicationCollectionPage({
     super.key,
   });
 
   @override
-  State<VendorCollectionPage> createState() => _VendorCollectionPageState();
+  State<ApplicationCollectionPage> createState() => _ApplicationCollectionPageState();
 }
 
-class _VendorCollectionPageState extends State<VendorCollectionPage> with MixinMessages {
+class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<VendorCollectionCubit, VendorCollectionState>(
-      listener: (BuildContext context, VendorCollectionState state) {},
+    return BlocConsumer<VendorCollectionCubit, ApplicationCollectionState>(
+      listener: (BuildContext context, ApplicationCollectionState state) {},
       builder: (ctx, state) {
         return Scaffold(
           appBar: BaseToolBar(
-            isVisibleProgress: state is AppsInitial,
-            child: VendorsCollectionToolbar(onLogout: () => _onLogout(context)),
+            isVisibleProgress: state.isProgress,
+            child: ApplicationCollectionToolbar(onLogout: () => _onLogout(context)),
           ),
           body: Center(
             child: ConstrainedBox(
@@ -42,36 +42,36 @@ class _VendorCollectionPageState extends State<VendorCollectionPage> with MixinM
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Visibility(
-                      visible: state is AppsInitial,
+                      visible: state.isProgress,
                       child: const CircularProgressIndicator(),
                     ),
                     EmptyHolder(
-                      visibility: state is! AppsInitial && state.apps.isEmpty,
+                      visibility: state.applications.isEmpty && !state.isProgress,
                       onPressed: () => _createApplication(),
                       title: context.l10n.feature_application_create_Text_no_applications_yet_title,
                       description: context.l10n.feature_application_create_Text_no_applications_yet_description,
                       button: context.l10n.feature_vendor_create,
                     ),
                     Visibility(
-                      visible: state is! AppsInitial && state.apps.isNotEmpty,
+                      visible: state.applications.isNotEmpty && !state.isProgress,
                       child: GridView.builder(
                         padding: const EdgeInsets.only(top: 24),
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        itemBuilder: (ctx, index) => VendorPreviewItem(
-                            application: state.apps[index],
+                        itemBuilder: (ctx, index) => ApplicationPreviewItem(
+                            application: state.applications[index],
                             onDelete: BlocProvider.of<VendorCollectionCubit>(context).deleteApplication,
                             onEdit: _onEditApplication,
                             onOpen: _openApplication),
-                        itemCount: state.apps.length,
-                        gridDelegate: _prepareGridDelegate(state.apps),
+                        itemCount: state.applications.length,
+                        gridDelegate: _prepareGridDelegate(state.applications),
                       ),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Visibility(
-                      visible: state is! AppsInitial && state.apps.isNotEmpty,
+                      visible: state.applications.isNotEmpty && !state.isProgress,
                       child: Button(
                         title: context.l10n.feature_vendor_create,
                         onPressed: () => _createApplication(),

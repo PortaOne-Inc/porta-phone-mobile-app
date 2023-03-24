@@ -4,11 +4,11 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_vendor_get_all.dart';
+import 'usecase_application_get_all.dart';
 
-@Injectable(as: UsecaseVendorGetAll)
-class UsecaseVendorGetAllImpl implements UsecaseVendorGetAll {
-  UsecaseVendorGetAllImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
+@Injectable(as: UsecaseApplicationGetAll)
+class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
+  UsecaseApplicationGetAllImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;

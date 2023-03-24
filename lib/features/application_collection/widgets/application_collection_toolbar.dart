@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
-class VendorsCollectionToolbar extends StatelessWidget {
-  const VendorsCollectionToolbar({
+class ApplicationCollectionToolbar extends StatelessWidget {
+  const ApplicationCollectionToolbar({
     super.key,
     required this.onLogout,
   });
