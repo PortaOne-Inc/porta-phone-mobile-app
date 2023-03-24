@@ -1,73 +1,73 @@
-part of 'vendor_create_cubit.dart';
+part of 'application_create_cubit.dart';
 
 @freezed
-class VendorCreateState with _$VendorCreateState {
-  VendorCreateState._();
+class ApplicationCreateState with _$ApplicationCreateState {
+  ApplicationCreateState._();
 
-  factory VendorCreateState({
+  factory ApplicationCreateState({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
-  }) = _VendorCreateState;
+  }) = _ApplicationCreateState;
 
-  factory VendorCreateState.progress({
+  factory ApplicationCreateState.progress({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
-  }) = VendorCreateStateProgress;
+  }) = ApplicationCreateStateProgress;
 
-  factory VendorCreateState.success({
+  factory ApplicationCreateState.success({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
-  }) = VendorCreateStateSuccess;
+  }) = ApplicationCreateStateSuccess;
 
-  factory VendorCreateState.validation({
+  factory ApplicationCreateState.validation({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
-  }) = VendorCreateStateValidation;
+  }) = ApplicationCreateStateValidation;
 
-  factory VendorCreateState.error({
+  factory ApplicationCreateState.error({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
     Exception? exception,
-  }) = VendorCreateStateError;
+  }) = ApplicationCreateStateError;
 }
 
-extension _StateCopyWith on VendorCreateState {
-  VendorCreateState copyWithValidation({
+extension _StateCopyWith on ApplicationCreateState {
+  ApplicationCreateState copyWithValidation({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
   }) {
-    return VendorCreateState.validation(
+    return ApplicationCreateState.validation(
       nameInput: nameInput ?? this.nameInput,
       applicationIdentifierInput: applicationIdentifierInput ?? this.applicationIdentifierInput,
     );
   }
 
-  VendorCreateState copyWithProgress({
+  ApplicationCreateState copyWithProgress({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
   }) {
-    return VendorCreateState.progress(
+    return ApplicationCreateState.progress(
       nameInput: nameInput ?? this.nameInput,
       applicationIdentifierInput: applicationIdentifierInput ?? this.applicationIdentifierInput,
     );
   }
 
-  VendorCreateState copyWithSuccess({
+  ApplicationCreateState copyWithSuccess({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
   }) {
-    return VendorCreateState.success(
+    return ApplicationCreateState.success(
       nameInput: nameInput ?? this.nameInput,
       applicationIdentifierInput: applicationIdentifierInput ?? this.applicationIdentifierInput,
     );
   }
 
-  VendorCreateState copyWithError({
+  ApplicationCreateState copyWithError({
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
     BaseException? exception,
   }) {
-    return VendorCreateState.error(
+    return ApplicationCreateState.error(
         nameInput: nameInput ?? this.nameInput,
         applicationIdentifierInput: applicationIdentifierInput ?? this.applicationIdentifierInput,
         exception: exception);

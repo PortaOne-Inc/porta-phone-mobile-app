@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'vendor_create_cubit.dart';
+part of 'application_create_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$VendorCreateState {
+mixin _$ApplicationCreateState {
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get applicationIdentifierInput =>
       throw _privateConstructorUsedError;
@@ -85,43 +85,44 @@ mixin _$VendorCreateState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $VendorCreateStateCopyWith<VendorCreateState> get copyWith =>
+  $ApplicationCreateStateCopyWith<ApplicationCreateState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VendorCreateStateCopyWith<$Res> {
-  factory $VendorCreateStateCopyWith(
-          VendorCreateState value, $Res Function(VendorCreateState) then) =
-      _$VendorCreateStateCopyWithImpl<$Res, VendorCreateState>;
+abstract class $ApplicationCreateStateCopyWith<$Res> {
+  factory $ApplicationCreateStateCopyWith(ApplicationCreateState value,
+          $Res Function(ApplicationCreateState) then) =
+      _$ApplicationCreateStateCopyWithImpl<$Res, ApplicationCreateState>;
   @useResult
   $Res call(
       {ApplicationNameInput? nameInput,
@@ -129,9 +130,10 @@ abstract class $VendorCreateStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VendorCreateStateCopyWithImpl<$Res, $Val extends VendorCreateState>
-    implements $VendorCreateStateCopyWith<$Res> {
-  _$VendorCreateStateCopyWithImpl(this._value, this._then);
+class _$ApplicationCreateStateCopyWithImpl<$Res,
+        $Val extends ApplicationCreateState>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  _$ApplicationCreateStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -158,11 +160,11 @@ class _$VendorCreateStateCopyWithImpl<$Res, $Val extends VendorCreateState>
 }
 
 /// @nodoc
-abstract class _$$_VendorCreateStateCopyWith<$Res>
-    implements $VendorCreateStateCopyWith<$Res> {
-  factory _$$_VendorCreateStateCopyWith(_$_VendorCreateState value,
-          $Res Function(_$_VendorCreateState) then) =
-      __$$_VendorCreateStateCopyWithImpl<$Res>;
+abstract class _$$_ApplicationCreateStateCopyWith<$Res>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  factory _$$_ApplicationCreateStateCopyWith(_$_ApplicationCreateState value,
+          $Res Function(_$_ApplicationCreateState) then) =
+      __$$_ApplicationCreateStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -171,11 +173,12 @@ abstract class _$$_VendorCreateStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_VendorCreateStateCopyWithImpl<$Res>
-    extends _$VendorCreateStateCopyWithImpl<$Res, _$_VendorCreateState>
-    implements _$$_VendorCreateStateCopyWith<$Res> {
-  __$$_VendorCreateStateCopyWithImpl(
-      _$_VendorCreateState _value, $Res Function(_$_VendorCreateState) _then)
+class __$$_ApplicationCreateStateCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res,
+        _$_ApplicationCreateState>
+    implements _$$_ApplicationCreateStateCopyWith<$Res> {
+  __$$_ApplicationCreateStateCopyWithImpl(_$_ApplicationCreateState _value,
+      $Res Function(_$_ApplicationCreateState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -184,7 +187,7 @@ class __$$_VendorCreateStateCopyWithImpl<$Res>
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
   }) {
-    return _then(_$_VendorCreateState(
+    return _then(_$_ApplicationCreateState(
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -199,8 +202,8 @@ class __$$_VendorCreateStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_VendorCreateState extends _VendorCreateState {
-  _$_VendorCreateState({this.nameInput, this.applicationIdentifierInput})
+class _$_ApplicationCreateState extends _ApplicationCreateState {
+  _$_ApplicationCreateState({this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
@@ -210,14 +213,14 @@ class _$_VendorCreateState extends _VendorCreateState {
 
   @override
   String toString() {
-    return 'VendorCreateState(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
+    return 'ApplicationCreateState(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_VendorCreateState &&
+            other is _$_ApplicationCreateState &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -233,8 +236,8 @@ class _$_VendorCreateState extends _VendorCreateState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VendorCreateStateCopyWith<_$_VendorCreateState> get copyWith =>
-      __$$_VendorCreateStateCopyWithImpl<_$_VendorCreateState>(
+  _$$_ApplicationCreateStateCopyWith<_$_ApplicationCreateState> get copyWith =>
+      __$$_ApplicationCreateStateCopyWithImpl<_$_ApplicationCreateState>(
           this, _$identity);
 
   @override
@@ -316,11 +319,12 @@ class _$_VendorCreateState extends _VendorCreateState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) {
     return $default(this);
   }
@@ -328,11 +332,11 @@ class _$_VendorCreateState extends _VendorCreateState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) {
     return $default?.call(this);
   }
@@ -340,11 +344,11 @@ class _$_VendorCreateState extends _VendorCreateState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -354,12 +358,12 @@ class _$_VendorCreateState extends _VendorCreateState {
   }
 }
 
-abstract class _VendorCreateState extends VendorCreateState {
-  factory _VendorCreateState(
+abstract class _ApplicationCreateState extends ApplicationCreateState {
+  factory _ApplicationCreateState(
           {final ApplicationNameInput? nameInput,
           final ApplicationIdentifierInput? applicationIdentifierInput}) =
-      _$_VendorCreateState;
-  _VendorCreateState._() : super._();
+      _$_ApplicationCreateState;
+  _ApplicationCreateState._() : super._();
 
   @override
   ApplicationNameInput? get nameInput;
@@ -367,17 +371,17 @@ abstract class _VendorCreateState extends VendorCreateState {
   ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
-  _$$_VendorCreateStateCopyWith<_$_VendorCreateState> get copyWith =>
+  _$$_ApplicationCreateStateCopyWith<_$_ApplicationCreateState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$VendorCreateStateProgressCopyWith<$Res>
-    implements $VendorCreateStateCopyWith<$Res> {
-  factory _$$VendorCreateStateProgressCopyWith(
-          _$VendorCreateStateProgress value,
-          $Res Function(_$VendorCreateStateProgress) then) =
-      __$$VendorCreateStateProgressCopyWithImpl<$Res>;
+abstract class _$$ApplicationCreateStateProgressCopyWith<$Res>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  factory _$$ApplicationCreateStateProgressCopyWith(
+          _$ApplicationCreateStateProgress value,
+          $Res Function(_$ApplicationCreateStateProgress) then) =
+      __$$ApplicationCreateStateProgressCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -386,11 +390,13 @@ abstract class _$$VendorCreateStateProgressCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$VendorCreateStateProgressCopyWithImpl<$Res>
-    extends _$VendorCreateStateCopyWithImpl<$Res, _$VendorCreateStateProgress>
-    implements _$$VendorCreateStateProgressCopyWith<$Res> {
-  __$$VendorCreateStateProgressCopyWithImpl(_$VendorCreateStateProgress _value,
-      $Res Function(_$VendorCreateStateProgress) _then)
+class __$$ApplicationCreateStateProgressCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res,
+        _$ApplicationCreateStateProgress>
+    implements _$$ApplicationCreateStateProgressCopyWith<$Res> {
+  __$$ApplicationCreateStateProgressCopyWithImpl(
+      _$ApplicationCreateStateProgress _value,
+      $Res Function(_$ApplicationCreateStateProgress) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -399,7 +405,7 @@ class __$$VendorCreateStateProgressCopyWithImpl<$Res>
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
   }) {
-    return _then(_$VendorCreateStateProgress(
+    return _then(_$ApplicationCreateStateProgress(
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -414,8 +420,9 @@ class __$$VendorCreateStateProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VendorCreateStateProgress extends VendorCreateStateProgress {
-  _$VendorCreateStateProgress({this.nameInput, this.applicationIdentifierInput})
+class _$ApplicationCreateStateProgress extends ApplicationCreateStateProgress {
+  _$ApplicationCreateStateProgress(
+      {this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
@@ -425,14 +432,14 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
 
   @override
   String toString() {
-    return 'VendorCreateState.progress(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
+    return 'ApplicationCreateState.progress(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VendorCreateStateProgress &&
+            other is _$ApplicationCreateStateProgress &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -448,9 +455,9 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$VendorCreateStateProgressCopyWith<_$VendorCreateStateProgress>
-      get copyWith => __$$VendorCreateStateProgressCopyWithImpl<
-          _$VendorCreateStateProgress>(this, _$identity);
+  _$$ApplicationCreateStateProgressCopyWith<_$ApplicationCreateStateProgress>
+      get copyWith => __$$ApplicationCreateStateProgressCopyWithImpl<
+          _$ApplicationCreateStateProgress>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -531,11 +538,12 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) {
     return progress(this);
   }
@@ -543,11 +551,11 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) {
     return progress?.call(this);
   }
@@ -555,11 +563,11 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) {
     if (progress != null) {
@@ -569,12 +577,12 @@ class _$VendorCreateStateProgress extends VendorCreateStateProgress {
   }
 }
 
-abstract class VendorCreateStateProgress extends VendorCreateState {
-  factory VendorCreateStateProgress(
+abstract class ApplicationCreateStateProgress extends ApplicationCreateState {
+  factory ApplicationCreateStateProgress(
           {final ApplicationNameInput? nameInput,
           final ApplicationIdentifierInput? applicationIdentifierInput}) =
-      _$VendorCreateStateProgress;
-  VendorCreateStateProgress._() : super._();
+      _$ApplicationCreateStateProgress;
+  ApplicationCreateStateProgress._() : super._();
 
   @override
   ApplicationNameInput? get nameInput;
@@ -582,16 +590,17 @@ abstract class VendorCreateStateProgress extends VendorCreateState {
   ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
-  _$$VendorCreateStateProgressCopyWith<_$VendorCreateStateProgress>
+  _$$ApplicationCreateStateProgressCopyWith<_$ApplicationCreateStateProgress>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$VendorCreateStateSuccessCopyWith<$Res>
-    implements $VendorCreateStateCopyWith<$Res> {
-  factory _$$VendorCreateStateSuccessCopyWith(_$VendorCreateStateSuccess value,
-          $Res Function(_$VendorCreateStateSuccess) then) =
-      __$$VendorCreateStateSuccessCopyWithImpl<$Res>;
+abstract class _$$ApplicationCreateStateSuccessCopyWith<$Res>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  factory _$$ApplicationCreateStateSuccessCopyWith(
+          _$ApplicationCreateStateSuccess value,
+          $Res Function(_$ApplicationCreateStateSuccess) then) =
+      __$$ApplicationCreateStateSuccessCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -600,11 +609,13 @@ abstract class _$$VendorCreateStateSuccessCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$VendorCreateStateSuccessCopyWithImpl<$Res>
-    extends _$VendorCreateStateCopyWithImpl<$Res, _$VendorCreateStateSuccess>
-    implements _$$VendorCreateStateSuccessCopyWith<$Res> {
-  __$$VendorCreateStateSuccessCopyWithImpl(_$VendorCreateStateSuccess _value,
-      $Res Function(_$VendorCreateStateSuccess) _then)
+class __$$ApplicationCreateStateSuccessCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res,
+        _$ApplicationCreateStateSuccess>
+    implements _$$ApplicationCreateStateSuccessCopyWith<$Res> {
+  __$$ApplicationCreateStateSuccessCopyWithImpl(
+      _$ApplicationCreateStateSuccess _value,
+      $Res Function(_$ApplicationCreateStateSuccess) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -613,7 +624,7 @@ class __$$VendorCreateStateSuccessCopyWithImpl<$Res>
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
   }) {
-    return _then(_$VendorCreateStateSuccess(
+    return _then(_$ApplicationCreateStateSuccess(
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -628,8 +639,9 @@ class __$$VendorCreateStateSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
-  _$VendorCreateStateSuccess({this.nameInput, this.applicationIdentifierInput})
+class _$ApplicationCreateStateSuccess extends ApplicationCreateStateSuccess {
+  _$ApplicationCreateStateSuccess(
+      {this.nameInput, this.applicationIdentifierInput})
       : super._();
 
   @override
@@ -639,14 +651,14 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
 
   @override
   String toString() {
-    return 'VendorCreateState.success(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
+    return 'ApplicationCreateState.success(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VendorCreateStateSuccess &&
+            other is _$ApplicationCreateStateSuccess &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -662,10 +674,9 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$VendorCreateStateSuccessCopyWith<_$VendorCreateStateSuccess>
-      get copyWith =>
-          __$$VendorCreateStateSuccessCopyWithImpl<_$VendorCreateStateSuccess>(
-              this, _$identity);
+  _$$ApplicationCreateStateSuccessCopyWith<_$ApplicationCreateStateSuccess>
+      get copyWith => __$$ApplicationCreateStateSuccessCopyWithImpl<
+          _$ApplicationCreateStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -746,11 +757,12 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) {
     return success(this);
   }
@@ -758,11 +770,11 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) {
     return success?.call(this);
   }
@@ -770,11 +782,11 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -784,12 +796,12 @@ class _$VendorCreateStateSuccess extends VendorCreateStateSuccess {
   }
 }
 
-abstract class VendorCreateStateSuccess extends VendorCreateState {
-  factory VendorCreateStateSuccess(
+abstract class ApplicationCreateStateSuccess extends ApplicationCreateState {
+  factory ApplicationCreateStateSuccess(
           {final ApplicationNameInput? nameInput,
           final ApplicationIdentifierInput? applicationIdentifierInput}) =
-      _$VendorCreateStateSuccess;
-  VendorCreateStateSuccess._() : super._();
+      _$ApplicationCreateStateSuccess;
+  ApplicationCreateStateSuccess._() : super._();
 
   @override
   ApplicationNameInput? get nameInput;
@@ -797,17 +809,17 @@ abstract class VendorCreateStateSuccess extends VendorCreateState {
   ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
-  _$$VendorCreateStateSuccessCopyWith<_$VendorCreateStateSuccess>
+  _$$ApplicationCreateStateSuccessCopyWith<_$ApplicationCreateStateSuccess>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$VendorCreateStateValidationCopyWith<$Res>
-    implements $VendorCreateStateCopyWith<$Res> {
-  factory _$$VendorCreateStateValidationCopyWith(
-          _$VendorCreateStateValidation value,
-          $Res Function(_$VendorCreateStateValidation) then) =
-      __$$VendorCreateStateValidationCopyWithImpl<$Res>;
+abstract class _$$ApplicationCreateStateValidationCopyWith<$Res>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  factory _$$ApplicationCreateStateValidationCopyWith(
+          _$ApplicationCreateStateValidation value,
+          $Res Function(_$ApplicationCreateStateValidation) then) =
+      __$$ApplicationCreateStateValidationCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -816,12 +828,13 @@ abstract class _$$VendorCreateStateValidationCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$VendorCreateStateValidationCopyWithImpl<$Res>
-    extends _$VendorCreateStateCopyWithImpl<$Res, _$VendorCreateStateValidation>
-    implements _$$VendorCreateStateValidationCopyWith<$Res> {
-  __$$VendorCreateStateValidationCopyWithImpl(
-      _$VendorCreateStateValidation _value,
-      $Res Function(_$VendorCreateStateValidation) _then)
+class __$$ApplicationCreateStateValidationCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res,
+        _$ApplicationCreateStateValidation>
+    implements _$$ApplicationCreateStateValidationCopyWith<$Res> {
+  __$$ApplicationCreateStateValidationCopyWithImpl(
+      _$ApplicationCreateStateValidation _value,
+      $Res Function(_$ApplicationCreateStateValidation) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -830,7 +843,7 @@ class __$$VendorCreateStateValidationCopyWithImpl<$Res>
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
   }) {
-    return _then(_$VendorCreateStateValidation(
+    return _then(_$ApplicationCreateStateValidation(
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -845,8 +858,9 @@ class __$$VendorCreateStateValidationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VendorCreateStateValidation extends VendorCreateStateValidation {
-  _$VendorCreateStateValidation(
+class _$ApplicationCreateStateValidation
+    extends ApplicationCreateStateValidation {
+  _$ApplicationCreateStateValidation(
       {this.nameInput, this.applicationIdentifierInput})
       : super._();
 
@@ -857,14 +871,14 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
 
   @override
   String toString() {
-    return 'VendorCreateState.validation(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
+    return 'ApplicationCreateState.validation(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VendorCreateStateValidation &&
+            other is _$ApplicationCreateStateValidation &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -880,9 +894,10 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$VendorCreateStateValidationCopyWith<_$VendorCreateStateValidation>
-      get copyWith => __$$VendorCreateStateValidationCopyWithImpl<
-          _$VendorCreateStateValidation>(this, _$identity);
+  _$$ApplicationCreateStateValidationCopyWith<
+          _$ApplicationCreateStateValidation>
+      get copyWith => __$$ApplicationCreateStateValidationCopyWithImpl<
+          _$ApplicationCreateStateValidation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -963,11 +978,12 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) {
     return validation(this);
   }
@@ -975,11 +991,11 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) {
     return validation?.call(this);
   }
@@ -987,11 +1003,11 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) {
     if (validation != null) {
@@ -1001,12 +1017,12 @@ class _$VendorCreateStateValidation extends VendorCreateStateValidation {
   }
 }
 
-abstract class VendorCreateStateValidation extends VendorCreateState {
-  factory VendorCreateStateValidation(
+abstract class ApplicationCreateStateValidation extends ApplicationCreateState {
+  factory ApplicationCreateStateValidation(
           {final ApplicationNameInput? nameInput,
           final ApplicationIdentifierInput? applicationIdentifierInput}) =
-      _$VendorCreateStateValidation;
-  VendorCreateStateValidation._() : super._();
+      _$ApplicationCreateStateValidation;
+  ApplicationCreateStateValidation._() : super._();
 
   @override
   ApplicationNameInput? get nameInput;
@@ -1014,16 +1030,18 @@ abstract class VendorCreateStateValidation extends VendorCreateState {
   ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   @JsonKey(ignore: true)
-  _$$VendorCreateStateValidationCopyWith<_$VendorCreateStateValidation>
+  _$$ApplicationCreateStateValidationCopyWith<
+          _$ApplicationCreateStateValidation>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$VendorCreateStateErrorCopyWith<$Res>
-    implements $VendorCreateStateCopyWith<$Res> {
-  factory _$$VendorCreateStateErrorCopyWith(_$VendorCreateStateError value,
-          $Res Function(_$VendorCreateStateError) then) =
-      __$$VendorCreateStateErrorCopyWithImpl<$Res>;
+abstract class _$$ApplicationCreateStateErrorCopyWith<$Res>
+    implements $ApplicationCreateStateCopyWith<$Res> {
+  factory _$$ApplicationCreateStateErrorCopyWith(
+          _$ApplicationCreateStateError value,
+          $Res Function(_$ApplicationCreateStateError) then) =
+      __$$ApplicationCreateStateErrorCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1033,11 +1051,13 @@ abstract class _$$VendorCreateStateErrorCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$VendorCreateStateErrorCopyWithImpl<$Res>
-    extends _$VendorCreateStateCopyWithImpl<$Res, _$VendorCreateStateError>
-    implements _$$VendorCreateStateErrorCopyWith<$Res> {
-  __$$VendorCreateStateErrorCopyWithImpl(_$VendorCreateStateError _value,
-      $Res Function(_$VendorCreateStateError) _then)
+class __$$ApplicationCreateStateErrorCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res,
+        _$ApplicationCreateStateError>
+    implements _$$ApplicationCreateStateErrorCopyWith<$Res> {
+  __$$ApplicationCreateStateErrorCopyWithImpl(
+      _$ApplicationCreateStateError _value,
+      $Res Function(_$ApplicationCreateStateError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1047,7 +1067,7 @@ class __$$VendorCreateStateErrorCopyWithImpl<$Res>
     Object? applicationIdentifierInput = freezed,
     Object? exception = freezed,
   }) {
-    return _then(_$VendorCreateStateError(
+    return _then(_$ApplicationCreateStateError(
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -1066,8 +1086,8 @@ class __$$VendorCreateStateErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VendorCreateStateError extends VendorCreateStateError {
-  _$VendorCreateStateError(
+class _$ApplicationCreateStateError extends ApplicationCreateStateError {
+  _$ApplicationCreateStateError(
       {this.nameInput, this.applicationIdentifierInput, this.exception})
       : super._();
 
@@ -1080,14 +1100,14 @@ class _$VendorCreateStateError extends VendorCreateStateError {
 
   @override
   String toString() {
-    return 'VendorCreateState.error(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, exception: $exception)';
+    return 'ApplicationCreateState.error(nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, exception: $exception)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VendorCreateStateError &&
+            other is _$ApplicationCreateStateError &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -1105,9 +1125,9 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$VendorCreateStateErrorCopyWith<_$VendorCreateStateError> get copyWith =>
-      __$$VendorCreateStateErrorCopyWithImpl<_$VendorCreateStateError>(
-          this, _$identity);
+  _$$ApplicationCreateStateErrorCopyWith<_$ApplicationCreateStateError>
+      get copyWith => __$$ApplicationCreateStateErrorCopyWithImpl<
+          _$ApplicationCreateStateError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1188,11 +1208,12 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_VendorCreateState value) $default, {
-    required TResult Function(VendorCreateStateProgress value) progress,
-    required TResult Function(VendorCreateStateSuccess value) success,
-    required TResult Function(VendorCreateStateValidation value) validation,
-    required TResult Function(VendorCreateStateError value) error,
+    TResult Function(_ApplicationCreateState value) $default, {
+    required TResult Function(ApplicationCreateStateProgress value) progress,
+    required TResult Function(ApplicationCreateStateSuccess value) success,
+    required TResult Function(ApplicationCreateStateValidation value)
+        validation,
+    required TResult Function(ApplicationCreateStateError value) error,
   }) {
     return error(this);
   }
@@ -1200,11 +1221,11 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_VendorCreateState value)? $default, {
-    TResult? Function(VendorCreateStateProgress value)? progress,
-    TResult? Function(VendorCreateStateSuccess value)? success,
-    TResult? Function(VendorCreateStateValidation value)? validation,
-    TResult? Function(VendorCreateStateError value)? error,
+    TResult? Function(_ApplicationCreateState value)? $default, {
+    TResult? Function(ApplicationCreateStateProgress value)? progress,
+    TResult? Function(ApplicationCreateStateSuccess value)? success,
+    TResult? Function(ApplicationCreateStateValidation value)? validation,
+    TResult? Function(ApplicationCreateStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -1212,11 +1233,11 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_VendorCreateState value)? $default, {
-    TResult Function(VendorCreateStateProgress value)? progress,
-    TResult Function(VendorCreateStateSuccess value)? success,
-    TResult Function(VendorCreateStateValidation value)? validation,
-    TResult Function(VendorCreateStateError value)? error,
+    TResult Function(_ApplicationCreateState value)? $default, {
+    TResult Function(ApplicationCreateStateProgress value)? progress,
+    TResult Function(ApplicationCreateStateSuccess value)? success,
+    TResult Function(ApplicationCreateStateValidation value)? validation,
+    TResult Function(ApplicationCreateStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1226,12 +1247,12 @@ class _$VendorCreateStateError extends VendorCreateStateError {
   }
 }
 
-abstract class VendorCreateStateError extends VendorCreateState {
-  factory VendorCreateStateError(
+abstract class ApplicationCreateStateError extends ApplicationCreateState {
+  factory ApplicationCreateStateError(
       {final ApplicationNameInput? nameInput,
       final ApplicationIdentifierInput? applicationIdentifierInput,
-      final Exception? exception}) = _$VendorCreateStateError;
-  VendorCreateStateError._() : super._();
+      final Exception? exception}) = _$ApplicationCreateStateError;
+  ApplicationCreateStateError._() : super._();
 
   @override
   ApplicationNameInput? get nameInput;
@@ -1240,6 +1261,6 @@ abstract class VendorCreateStateError extends VendorCreateState {
   Exception? get exception;
   @override
   @JsonKey(ignore: true)
-  _$$VendorCreateStateErrorCopyWith<_$VendorCreateStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ApplicationCreateStateErrorCopyWith<_$ApplicationCreateStateError>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -8,16 +8,16 @@ import 'package:webtrit_configurator/share/share.dart';
 import '../model/models.dart';
 import '../usecase/usecase.dart';
 
-part 'vendor_create_state.dart';
+part 'application_create_state.dart';
 
-part 'vendor_create_cubit.freezed.dart';
+part 'application_create_cubit.freezed.dart';
 
-class VendorCreateCubit extends Cubit<VendorCreateState> {
-  VendorCreateCubit({
+class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
+  ApplicationCreateCubit({
     required this.vendorCreateUsecase,
-  }) : super(VendorCreateState());
+  }) : super(ApplicationCreateState());
 
-  final UsecaseVendorCreate vendorCreateUsecase;
+  final UsecaseApplicationCreate vendorCreateUsecase;
 
   void updateNameChange(String name) {
     emit(state.copyWithValidation(

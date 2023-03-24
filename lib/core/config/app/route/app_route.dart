@@ -40,11 +40,11 @@ class AppRoute {
         GoRoute(
           path: AppRoutInfo.vendorCreate.path,
           name: AppRoutInfo.vendorCreate.name,
-          builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCreateCubit>(
-            create: (BuildContext context) => VendorCreateCubit(
+          builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCreateCubit>(
+            create: (BuildContext context) => ApplicationCreateCubit(
               vendorCreateUsecase: getIt.get(),
             ),
-            child: const VendorCreatePage(),
+            child: const ApplicationCreatePage(),
           ),
         ),
         GoRoute(

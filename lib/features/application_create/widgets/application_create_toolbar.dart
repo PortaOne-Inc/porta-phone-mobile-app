@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
-class VendorCreateToolbar extends StatelessWidget {
-  const VendorCreateToolbar({
+class ApplicationCreateToolbar extends StatelessWidget {
+  const ApplicationCreateToolbar({
     super.key,
     required this.onSwitchedLanguage,
   });

@@ -8,30 +8,30 @@ import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
-import '../bloc/vendor_create_cubit.dart';
+import '../bloc/application_create_cubit.dart';
 import '../model/models.dart';
-import '../widgets/vendor_create_toolbar.dart';
+import '../widgets/application_create_toolbar.dart';
 
-class VendorCreatePage extends StatefulWidget {
-  const VendorCreatePage({
+class ApplicationCreatePage extends StatefulWidget {
+  const ApplicationCreatePage({
     super.key,
   });
 
   @override
-  State<VendorCreatePage> createState() => _VendorCreatePageState();
+  State<ApplicationCreatePage> createState() => _ApplicationCreatePageState();
 }
 
-class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages, MixinMessages {
-  late final VendorCreateCubit _bloc = BlocProvider.of<VendorCreateCubit>(context);
+class _ApplicationCreatePageState extends State<ApplicationCreatePage> with MixinMessages, MixinMessages {
+  late final ApplicationCreateCubit _bloc = BlocProvider.of<ApplicationCreateCubit>(context);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<VendorCreateCubit, VendorCreateState>(
-      listener: (BuildContext context, VendorCreateState state) => _listenAppCreateState(state),
+    return BlocConsumer<ApplicationCreateCubit, ApplicationCreateState>(
+      listener: (BuildContext context, ApplicationCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
         appBar: BaseToolBar(
-          isVisibleProgress: state is VendorCreateStateProgress,
-          child: VendorCreateToolbar(
+          isVisibleProgress: state is ApplicationCreateStateProgress,
+          child: ApplicationCreateToolbar(
             onSwitchedLanguage: () => _languageChanged(context),
           ),
         ),
@@ -113,11 +113,11 @@ class _VendorCreatePageState extends State<VendorCreatePage> with MixinMessages,
     );
   }
 
-  void _listenAppCreateState(VendorCreateState state) {
-    if (state is VendorCreateStateError) {
+  void _listenAppCreateState(ApplicationCreateState state) {
+    if (state is ApplicationCreateStateError) {
       showFailureMessage(context, state.exception.toString());
     }
-    if (state is VendorCreateStateSuccess) {
+    if (state is ApplicationCreateStateSuccess) {
       _openApplications();
     }
   }

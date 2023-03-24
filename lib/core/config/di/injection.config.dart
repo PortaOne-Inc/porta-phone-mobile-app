@@ -16,13 +16,17 @@ import 'package:webtrit_configurator/features/application_collection/usecase/use
 import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_add_theme_impl.dart'
     as _i43;
 import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete.dart'
-    as _i44;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete_impl.dart'
-    as _i45;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all.dart'
     as _i46;
-import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all_impl.dart'
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_delete_impl.dart'
     as _i47;
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all.dart'
+    as _i48;
+import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_get_all_impl.dart'
+    as _i49;
+import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create.dart'
+    as _i44;
+import 'package:webtrit_configurator/features/application_create/usecase/usecase_application_create_impl.dart'
+    as _i45;
 import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in.dart'
     as _i23;
 import 'package:webtrit_configurator/features/auth/usecase/usecase_auth_is_logged_in_impl.dart'
@@ -59,10 +63,6 @@ import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_t
     as _i35;
 import 'package:webtrit_configurator/features/theme_collection/usecase/usecase_theme_update_impl.dart'
     as _i36;
-import 'package:webtrit_configurator/features/vendor_create/usecase/usecase_vendor_create.dart'
-    as _i48;
-import 'package:webtrit_configurator/features/vendor_create/usecase/usecase_vendor_create_impl.dart'
-    as _i49;
 import 'package:webtrit_configurator/share/data/auth_firebase_data.dart'
     as _i20;
 import 'package:webtrit_configurator/share/data/data.dart' as _i15;
@@ -185,23 +185,24 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
               gh<_i18.Mapper<_i18.ThemeDTO?, _i18.AppConfigurationModel>>(),
             ));
-    gh.factory<_i44.UsecaseApplicationDeleteTemplate>(
-        () => _i45.UsecaseVendorDeleteTemplateImpl(
+    gh.factory<_i44.UsecaseApplicationCreate>(
+        () => _i45.UsecaseApplicationCreateImpl(
               gh<_i18.VendorRepository>(),
               gh<_i18.AuthRepository>(),
               gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
             ));
-    gh.factory<_i46.UsecaseApplicationGetAll>(
-        () => _i47.UsecaseApplicationGetAllImpl(
+    gh.factory<_i46.UsecaseApplicationDeleteTemplate>(
+        () => _i47.UsecaseVendorDeleteTemplateImpl(
               gh<_i18.VendorRepository>(),
               gh<_i18.AuthRepository>(),
               gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
             ));
-    gh.factory<_i48.UsecaseVendorCreate>(() => _i49.UsecaseVendorCreateImpl(
-          gh<_i18.VendorRepository>(),
-          gh<_i18.AuthRepository>(),
-          gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
-        ));
+    gh.factory<_i48.UsecaseApplicationGetAll>(
+        () => _i49.UsecaseApplicationGetAllImpl(
+              gh<_i18.VendorRepository>(),
+              gh<_i18.AuthRepository>(),
+              gh<_i18.Mapper<_i18.VendorDTO, _i18.ApplicationModel>>(),
+            ));
     return this;
   }
 }

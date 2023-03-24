@@ -2,6 +2,6 @@ import 'dart:async';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-abstract class UsecaseVendorCreate {
+abstract class UsecaseApplicationCreate {
   FutureOr<ApplicationModel> execute({required ApplicationModel argument});
 }
