@@ -35,7 +35,13 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     if (_isValidFields()) {
       tryCreateApplication();
     } else {
-      emit(state.copyWith(nameInput: state.nameInput?.toDirty()));
+      final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
+      final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
+      
+      emit(state.copyWith(
+        nameInput: nameInput.toDirty(),
+        applicationIdentifierInput: appIdentifier.toDirty(),
+      ));
     }
   }
 
