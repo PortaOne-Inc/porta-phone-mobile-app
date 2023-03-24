@@ -67,3 +67,6 @@ node_modules/
 
 # Credentials
 key.json
+
+# Generated files
+public
