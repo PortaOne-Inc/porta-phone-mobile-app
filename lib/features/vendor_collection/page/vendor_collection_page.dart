@@ -45,8 +45,12 @@ class _VendorCollectionPageState extends State<VendorCollectionPage> with MixinM
                       visible: state is AppsInitial,
                       child: const CircularProgressIndicator(),
                     ),
-                    VendorEmptyView(
+                    EmptyHolder(
                       visibility: state is! AppsInitial && state.apps.isEmpty,
+                      onPressed: () => _createApplication(),
+                      title: context.l10n.feature_application_create_Text_no_applications_yet_title,
+                      description: context.l10n.feature_application_create_Text_no_applications_yet_description,
+                      button: context.l10n.feature_vendor_create,
                     ),
                     Visibility(
                       visible: state is! AppsInitial && state.apps.isNotEmpty,
@@ -63,36 +67,15 @@ class _VendorCollectionPageState extends State<VendorCollectionPage> with MixinM
                         gridDelegate: _prepareGridDelegate(state.apps),
                       ),
                     ),
-                    const SizedBox(height: 40),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 16),
-                            width: double.infinity,
-                            color: Colors.black,
-                            height: 1,
-                          ),
-                        ),
-                        Text(
-                          state.apps.isEmpty
-                              ? context.l10n.feature_vendor_Text_butWeCan
-                              : context.l10n.feature_vendor_Text_or,
-                        ),
-                        Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 16),
-                            width: double.infinity,
-                            color: Colors.black,
-                            height: 1,
-                          ),
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 8,
                     ),
-                    const SizedBox(height: 40),
-                    Button(
-                      title: context.l10n.feature_vendor_create,
-                      onPressed: () => _createApplication(),
+                    Visibility(
+                      visible: state is! AppsInitial && state.apps.isNotEmpty,
+                      child: Button(
+                        title: context.l10n.feature_vendor_create,
+                        onPressed: () => _createApplication(),
+                      ),
                     ),
                     const SizedBox(height: 16)
                   ],
