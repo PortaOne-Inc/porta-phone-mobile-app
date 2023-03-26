@@ -20,10 +20,13 @@ class ThemesEditToolbar extends StatelessWidget {
   static const _menuLeftOpen = '_menuLeftOpen';
   static const _menuLeftDownload = '_menuLeftDownload';
 
+  static const _menuRightLogout = '_menuRightLogout';
+
   static const _menuAPICredential = '_menuAPICredential';
   static const _menuAPIEndpoints = '_menuAPIEndpoints';
 
   static const _menuLeftSkipToDefault = '_menuLeftSkipToDefault';
+
   final Function() onSaveTheme;
   final Function() onSkipChanges;
   final Function() onOpen;
@@ -65,7 +68,7 @@ class ThemesEditToolbar extends StatelessWidget {
               ),
               SwitcherLanguage(
                 margin: const EdgeInsets.only(right: 16),
-                onSwitchedLanguage: onLogout,
+                onSwitchedLanguage: onLanguageChanged,
               )
             ],
           ),
@@ -77,6 +80,7 @@ class ThemesEditToolbar extends StatelessWidget {
   List<Widget> _buildRightMenu(BuildContext context) {
     return [
       ToolbarPopupMenu(
+        onSelected: (value) => _handleAccountMenu(value),
         items: [
           ToolbarMenuItem(
             text: 'My profile',
@@ -85,6 +89,7 @@ class ThemesEditToolbar extends StatelessWidget {
             text: 'Setting',
           ),
           ToolbarMenuItem(
+            value: _menuRightLogout,
             text: 'Log out',
           )
         ],
@@ -145,6 +150,12 @@ class ThemesEditToolbar extends StatelessWidget {
     }
     if (value == _menuLeftDownload) {
       onDownload();
+    }
+  }
+
+  void _handleAccountMenu(Object? value) {
+    if (value == _menuRightLogout) {
+      onLogout();
     }
   }
 

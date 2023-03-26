@@ -6,6 +6,7 @@ import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin_messages.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
+import '../../common/common.dart';
 import '../theme_edit.dart';
 import '../widgets/widgets.dart';
 
@@ -35,7 +36,7 @@ class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
               onOpen: _notImplemented,
               onDownload: _notImplemented,
               onLanguageChanged: _notImplemented,
-              onLogout: () {},
+              onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
               onApiCredential: () {
                 BlocProvider.of<SynchronizeCubit>(context).showThemeCredential();
               },
