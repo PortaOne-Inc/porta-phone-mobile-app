@@ -7,84 +7,106 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
 
 import 'app_route_consts.dart';
 
 class AppRoute {
   GoRouter build(GetIt getIt) {
+    final commonBloc = CommonBloc(
+      usecaseAuthLogOut: getIt.get(),
+    );
+
     return GoRouter(
-      routes: <GoRoute>[
-        GoRoute(
-          path: AppRoutInfo.login.path,
-          name: AppRoutInfo.login.name,
-          builder: (BuildContext context, GoRouterState state) => BlocProvider<AuthCubit>(
-            child: const AuthPage(),
-            create: (BuildContext context) => AuthCubit(
-              usecaseAuthSignIn: getIt.get(),
-              isUserAuthorized: getIt.get(),
-            ),
-          ),
-        ),
-        GoRoute(
-          path: AppRoutInfo.applicationCollection.path,
-          name: AppRoutInfo.applicationCollection.name,
-          builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCollectionCubit>(
-            create: (BuildContext context) => VendorCollectionCubit(
-              vendorCollectionUsecase: getIt.get(),
-              vendorDeleteUsecase: getIt.get(),
-            ),
-            child: const ApplicationCollectionPage(),
-          ),
-        ),
-        GoRoute(
-          path: AppRoutInfo.applicationCreate.path,
-          name: AppRoutInfo.applicationCreate.name,
-          builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCreateCubit>(
-            create: (BuildContext context) => ApplicationCreateCubit(
-              vendorCreateUsecase: getIt.get(),
-            ),
-            child: const ApplicationCreatePage(),
-          ),
-        ),
-        GoRoute(
-          path: AppRoutInfo.themes.path,
-          name: AppRoutInfo.themes.name,
-          builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
-            child: const ThemeCollectionPage(),
-            create: (BuildContext context) => ThemeCollectionCubit(
-              applicationId: state.params[AppRoutInfo.keyApplicationId]!,
-              getThemesUseCase: getIt.get(),
-              makeThemeAsDefaultUseCase: getIt.get(),
-              deleteThemeUseCase: getIt.get(),
-              createThemeUseCase: getIt.get(),
-              getTemplateThemeUseCase: getIt.get(),
-            ),
-          ),
-        ),
-        GoRoute(
-            path: AppRoutInfo.themesEdit.path,
-            name: AppRoutInfo.themesEdit.name,
-            builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider<ThemePropertyCubit>(
-                      create: (BuildContext context) => ThemePropertyCubit(),
-                    ),
-                    BlocProvider<FocusGroupCubit>(
-                      create: (BuildContext context) => FocusGroupCubit(),
-                    ),
-                    BlocProvider<SynchronizeCubit>(
-                      create: (BuildContext context) => SynchronizeCubit(
-                        updateThemeUseCase: getIt.get(),
-                        getThemeUseCase: getIt.get(),
-                        getUserUsecase: getIt.get(),
-                        applicationId: state.params[AppRoutInfo.keyApplicationId]!,
-                        themeId: state.params[AppRoutInfo.keyThemeId]!,
-                      ),
-                    ),
-                  ],
-                  child: const PageThemeEdit(),
-                ))
+      routes: [
+        ShellRoute(
+            builder: (BuildContext context, GoRouterState state, Widget child) {
+              return BlocProvider(
+                lazy: false,
+                create: (BuildContext context) => commonBloc,
+                child: BlocListener<CommonBloc, CommonState>(
+                  listener: (BuildContext context, CommonState state) {
+                    if (state.isLogOut) {
+                      GoRouter.of(context).pushNamed(AppRoutInfo.login.name);
+                    }
+                  },
+                  child: child,
+                ),
+              );
+            },
+            routes: [
+              GoRoute(
+                path: AppRoutInfo.login.path,
+                name: AppRoutInfo.login.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<AuthCubit>(
+                  child: const AuthPage(),
+                  create: (BuildContext context) => AuthCubit(
+                    usecaseAuthSignIn: getIt.get(),
+                    isUserAuthorized: getIt.get(),
+                  ),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutInfo.applicationCollection.path,
+                name: AppRoutInfo.applicationCollection.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCollectionCubit>(
+                  create: (BuildContext context) => VendorCollectionCubit(
+                    vendorCollectionUsecase: getIt.get(),
+                    vendorDeleteUsecase: getIt.get(),
+                  ),
+                  child: const ApplicationCollectionPage(),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutInfo.applicationCreate.path,
+                name: AppRoutInfo.applicationCreate.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCreateCubit>(
+                  create: (BuildContext context) => ApplicationCreateCubit(
+                    vendorCreateUsecase: getIt.get(),
+                  ),
+                  child: const ApplicationCreatePage(),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutInfo.themes.path,
+                name: AppRoutInfo.themes.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
+                  child: const ThemeCollectionPage(),
+                  create: (BuildContext context) => ThemeCollectionCubit(
+                    applicationId: state.params[AppRoutInfo.keyApplicationId]!,
+                    getThemesUseCase: getIt.get(),
+                    makeThemeAsDefaultUseCase: getIt.get(),
+                    deleteThemeUseCase: getIt.get(),
+                    createThemeUseCase: getIt.get(),
+                    getTemplateThemeUseCase: getIt.get(),
+                  ),
+                ),
+              ),
+              GoRoute(
+                  path: AppRoutInfo.themesEdit.path,
+                  name: AppRoutInfo.themesEdit.name,
+                  builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
+                        providers: [
+                          BlocProvider<ThemePropertyCubit>(
+                            create: (BuildContext context) => ThemePropertyCubit(),
+                          ),
+                          BlocProvider<FocusGroupCubit>(
+                            create: (BuildContext context) => FocusGroupCubit(),
+                          ),
+                          BlocProvider<SynchronizeCubit>(
+                            create: (BuildContext context) => SynchronizeCubit(
+                              updateThemeUseCase: getIt.get(),
+                              getThemeUseCase: getIt.get(),
+                              getUserUsecase: getIt.get(),
+                              applicationId: state.params[AppRoutInfo.keyApplicationId]!,
+                              themeId: state.params[AppRoutInfo.keyThemeId]!,
+                            ),
+                          ),
+                        ],
+                        child: const PageThemeEdit(),
+                      ))
+            ])
       ],
       redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
       routerNeglect: false,

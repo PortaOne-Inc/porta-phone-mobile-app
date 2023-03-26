@@ -19,32 +19,38 @@ mixin _$CommonState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CommonStateLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CommonStateLogout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CommonStateLogout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() logout,
   }) {
     return initial();
   }
@@ -114,6 +121,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? logout,
   }) {
     return initial?.call();
   }
@@ -122,6 +130,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -134,6 +143,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_CommonStateLogout value) logout,
   }) {
     return initial(this);
   }
@@ -142,6 +152,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_CommonStateLogout value)? logout,
   }) {
     return initial?.call(this);
   }
@@ -150,6 +161,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_CommonStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -161,4 +173,106 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements CommonState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_CommonStateLogoutCopyWith<$Res> {
+  factory _$$_CommonStateLogoutCopyWith(_$_CommonStateLogout value,
+          $Res Function(_$_CommonStateLogout) then) =
+      __$$_CommonStateLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CommonStateLogoutCopyWithImpl<$Res>
+    extends _$CommonStateCopyWithImpl<$Res, _$_CommonStateLogout>
+    implements _$$_CommonStateLogoutCopyWith<$Res> {
+  __$$_CommonStateLogoutCopyWithImpl(
+      _$_CommonStateLogout _value, $Res Function(_$_CommonStateLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CommonStateLogout implements _CommonStateLogout {
+  const _$_CommonStateLogout();
+
+  @override
+  String toString() {
+    return 'CommonState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CommonStateLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CommonStateLogout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CommonStateLogout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CommonStateLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CommonStateLogout implements CommonState {
+  const factory _CommonStateLogout() = _$_CommonStateLogout;
 }
