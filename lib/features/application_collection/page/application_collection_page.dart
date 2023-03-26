@@ -9,6 +9,7 @@ import 'package:webtrit_configurator/core/mixin/mixin.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/entity/entity.dart';
 
+import '../../common/common.dart';
 import '../bloc/application_collection_cubit.dart';
 import '../widgets/widgets.dart';
 
@@ -101,7 +102,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _onLogout(BuildContext context) {
-    showTopSnakeMessageInfo(context, context.l10n.notImplemented);
+    BlocProvider.of<CommonBloc>(context).logout();
   }
 
   void _onEditApplication(ApplicationModel applicationModel) {
