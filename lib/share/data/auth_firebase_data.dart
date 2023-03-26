@@ -14,6 +14,10 @@ class AuthFirebaseData {
     );
   }
 
+  Future logout() {
+    return firebaseAuth.signOut();
+  }
+
   Future<String?> getUID() async {
     final uid = firebaseAuth.currentUser?.uid;
     return uid;

@@ -6,7 +6,9 @@ import 'package:webtrit_configurator/share/share.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository {
-  AuthRepositoryImpl({required this.datasource});
+  AuthRepositoryImpl({
+    required this.datasource,
+  });
 
   static const String _exceptionCodeNoUser = 'user-not-found';
   static const String _exceptionCodeWrongPassword = 'wrong-password';
@@ -17,6 +19,17 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<void> login(String email, String password) async {
     try {
       await _tryLogin(email, password);
+    } on FirebaseAuthException catch (e) {
+      _handleFirebaseAuthException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      return await datasource.logout();
     } on FirebaseAuthException catch (e) {
       _handleFirebaseAuthException(e);
     } catch (e) {
@@ -41,7 +54,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   Future<void> _tryLogin(String email, String password) async {
-   return await datasource.checkCredential(email, password);
+    return await datasource.checkCredential(email, password);
   }
 
   @override
