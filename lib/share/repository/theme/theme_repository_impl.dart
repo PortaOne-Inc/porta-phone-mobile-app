@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
@@ -11,9 +12,11 @@ import 'theme_repository.dart';
 class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({
     required this.datasource,
+    required this.firebaseStorage,
   });
 
   final RealtimeFirebaseData datasource;
+  final FirebaseStorage firebaseStorage;
 
   final String _themesDirectoryName = 'themes';
   final String _themeIdField = 'id';
@@ -126,5 +129,13 @@ class ThemeRepositoryImpl extends ThemeRepository {
       themeId: theme.id!,
     ));
     return Future.value(theme);
+  }
+
+  @override
+  Future<String> uploadThemeImage(ImageDTO imageDTO) async {
+    final storageRef = firebaseStorage.ref();
+    final mountainImagesRef = storageRef.child('theme/${imageDTO.name}');
+    final res = await mountainImagesRef.putString(imageDTO.data!, format: PutStringFormat.base64);
+    return res.ref.getDownloadURL();
   }
 }

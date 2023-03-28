@@ -29,4 +29,8 @@ abstract class ThemeRepository {
     String applicationId,
     String themeId,
   );
+
+  Future<String> uploadThemeImage(
+    ImageDTO imageDTO,
+  );
 }

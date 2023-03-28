@@ -1,6 +1,7 @@
 class ImageModel {
   ImageModel({
     this.data,
+    this.url,
     this.name,
     this.mime,
     this.extension,
@@ -19,6 +20,7 @@ class ImageModel {
       ];
 
   final String? data;
+  final String? url;
   final String? name;
   final String? mime;
   final String? extension;
@@ -28,6 +30,8 @@ class ImageModel {
   bool get isNotAvailable => !isAvailable;
 
   bool get isVector => mimeSVG == mime;
+
+  bool get isNetwork => url != null;
 
   bool get isRaster => !isVector;
 }

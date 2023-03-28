@@ -17,7 +17,10 @@ class SetThemeForApplicationUseCaseImpl extends SetThemeForApplicationUseCase {
   final Mapper<ThemeDTO?, AppConfigurationModel?> themeMapper;
 
   @override
-  FutureOr<void> execute({required String applicationID, required AppConfigurationModel themeModel}) async {
+  FutureOr<void> execute({
+    required String applicationID,
+    required AppConfigurationModel themeModel,
+  }) async {
     final uid = await authRepository.getUserUID();
     final applications = await applicationRepository.getUserApplications(uid!);
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);

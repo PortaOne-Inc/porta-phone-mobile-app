@@ -25,17 +25,23 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
     }
 
     return ThemeDTO(
-        colorScheme: colorsMapper.mapToDto(model.colorScheme),
-        commonConfig: ThemeCommonDTO(
-          appName: model.commonConfig?.appName,
-        ),
-        fontFamily: model.fontFamily,
-        images: ImageCollectionDTO(
-          applicationLogo: imageMapper.mapToDto(model.images?.applicationLogo),
-          notificationLogo: imageMapper.mapToDto(model.images?.notificationLogo),
-          onboarding: imageMapper.mapToDto(model.images?.onboarding),
-        ),
-        id: model.id);
+      colorScheme: colorsMapper.mapToDto(model.colorScheme),
+      commonConfig: ThemeCommonDTO(
+        appName: model.commonConfig?.appName,
+      ),
+      fontFamily: model.fontFamily,
+      id: model.id,
+      images: ImageCollectionDTO(
+        applicationLogo: model.images?.applicationLogo?.url,
+        notificationLogo: model.images?.notificationLogo?.url,
+        onboarding: model.images?.onboarding?.url,
+        adaptiveIconBackground: model.images?.adaptiveIconBackground?.url,
+        adaptiveIconForeground: model.images?.adaptiveIconForeground?.url,
+        androidLauncherIcon: model.images?.androidLauncherIcon?.url,
+        iosLauncherIcon: model.images?.iosLauncherIcon?.url,
+        webLauncherIcon: model.images?.webLauncherIcon?.url,
+      ),
+    );
   }
 
   @override
@@ -51,30 +57,14 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
         ),
         fontFamily: dto.fontFamily,
         images: ConfiguratorImagesSetting(
-          applicationLogo: imageMapper.mapToModel(
-            dto.images?.applicationLogo,
-          ),
-          notificationLogo: imageMapper.mapToModel(
-            dto.images?.applicationLogo,
-          ),
-          onboarding: imageMapper.mapToModel(
-            dto.images?.onboarding,
-          ),
-          adaptiveIconBackground: imageMapper.mapToModel(
-            dto.images?.adaptiveIconBackground,
-          ),
-          adaptiveIconForeground: imageMapper.mapToModel(
-            dto.images?.adaptiveIconForeground,
-          ),
-          androidLauncherIcon: imageMapper.mapToModel(
-            dto.images?.androidLauncherIcon,
-          ),
-          iosLauncherIcon: imageMapper.mapToModel(
-            dto.images?.iosLauncherIcon,
-          ),
-          webLauncherIcon: imageMapper.mapToModel(
-            dto.images?.webLauncherIcon,
-          ),
+          applicationLogo: ImageModel(url: dto.images?.applicationLogo),
+          notificationLogo: ImageModel(url: dto.images?.notificationLogo),
+          onboarding: ImageModel(url: dto.images?.onboarding),
+          adaptiveIconBackground: ImageModel(url: dto.images?.adaptiveIconBackground),
+          adaptiveIconForeground: ImageModel(url: dto.images?.adaptiveIconForeground),
+          androidLauncherIcon: ImageModel(url: dto.images?.androidLauncherIcon),
+          iosLauncherIcon: ImageModel(url: dto.images?.iosLauncherIcon),
+          webLauncherIcon: ImageModel(url: dto.images?.webLauncherIcon),
         ),
         id: dto.id);
   }

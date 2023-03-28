@@ -24,29 +24,31 @@ class ImageResource extends StatelessWidget {
       child: Container(
         color: Colors.black.withOpacity(0.05),
         padding: const EdgeInsets.all(16),
-        child: isVector(imageModel)
-            ? SvgPicture.memory(
-                width: size.width,
-                height: size.height,
-                base64Decode(imageModel!.data!),
-                fit: BoxFit.cover,
-              )
-            : isRaster(imageModel)
-                ? Image.memory(
+        child: isNetwork(imageModel)
+            ? Image.network(imageModel!.url!)
+            : isVector(imageModel)
+                ? SvgPicture.memory(
                     width: size.width,
                     height: size.height,
                     base64Decode(imageModel!.data!),
                     fit: BoxFit.cover,
                   )
-                : SizedBox(
-                    width: size.width,
-                    height: size.height,
-                    child: Icon(
-                      Icons.add_photo_alternate_outlined,
-                      color: Colors.orange.withOpacity(0.3),
-                      size: 32,
-                    ),
-                  ),
+                : isRaster(imageModel)
+                    ? Image.memory(
+                        width: size.width,
+                        height: size.height,
+                        base64Decode(imageModel!.data!),
+                        fit: BoxFit.cover,
+                      )
+                    : SizedBox(
+                        width: size.width,
+                        height: size.height,
+                        child: Icon(
+                          Icons.add_photo_alternate_outlined,
+                          color: Colors.orange.withOpacity(0.3),
+                          size: 32,
+                        ),
+                      ),
       ),
     );
   }
@@ -57,6 +59,10 @@ class ImageResource extends StatelessWidget {
     } else {
       return image!.isRaster;
     }
+  }
+
+  bool isNetwork(ImageModel? image) {
+    return image?.isNetwork ?? false;
   }
 
   bool isVector(ImageModel? image) {
