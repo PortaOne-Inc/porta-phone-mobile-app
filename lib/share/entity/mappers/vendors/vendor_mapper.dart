@@ -11,7 +11,7 @@ class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {
   @override
   VendorDTO mapToDto(ApplicationModel model) {
     return VendorDTO(
-      title: model.title,
+      name: model.name,
       id: model.id,
       theme: mapper.mapToDto(model.theme),
       applicationIdentifier: model.applicationIdentifier,
@@ -21,7 +21,7 @@ class VendorMapper extends Mapper<VendorDTO, ApplicationModel> {
   @override
   ApplicationModel mapToModel(VendorDTO dto) {
     return ApplicationModel(
-      title: dto.title,
+      name: dto.name,
       id: dto.id,
       theme: mapper.mapToModel(dto.theme),
       applicationIdentifier: dto.applicationIdentifier,

@@ -10,7 +10,7 @@ part 'vendor_dto.g.dart';
 class VendorDTO with _$VendorDTO {
   const factory VendorDTO({
     ThemeDTO? theme,
-    String? title,
+    String? name,
     String? applicationIdentifier,
     String? id,
   }) = _ApplicationDTO;

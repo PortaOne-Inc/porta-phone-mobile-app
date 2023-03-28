@@ -4,25 +4,26 @@ class ApplicationModel {
   ApplicationModel({
     this.id,
     this.theme,
-    this.title,
+    this.name,
     this.applicationIdentifier,
   });
 
   final String? id;
-  final AppConfigurationModel? theme;
-  final String? title;
+  final String? name;
   final String? applicationIdentifier;
+  final AppConfigurationModel? theme;
 
   ApplicationModel copyWith({
     String? id,
     AppConfigurationModel? theme,
-    String? title,
+    String? name,
     String? applicationIdentifier,
   }) {
     return ApplicationModel(
       id: id ?? this.id,
       theme: theme ?? this.theme,
-      title: title ?? this.title,
+      name: name ?? this.name,
+      applicationIdentifier: applicationIdentifier ?? this.applicationIdentifier,
     );
   }
 }

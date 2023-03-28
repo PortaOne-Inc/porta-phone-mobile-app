@@ -38,7 +38,7 @@ class ApplicationPreviewItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      application.title ?? context.l10n.common_text_undefine,
+                      application.name ?? context.l10n.common_text_undefine,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),

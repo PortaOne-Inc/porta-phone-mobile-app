@@ -62,7 +62,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   }) async {
     emit(state.copyWithProgress());
     final model = ApplicationModel(
-      title: projectName,
+      name: projectName,
       applicationIdentifier: applicationIdentifier,
     );
     await vendorCreateUsecase.execute(argument: model);
