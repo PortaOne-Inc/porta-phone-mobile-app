@@ -1,6 +1,20 @@
 import * as admin from "firebase-admin"
+import * as functions from "firebase-functions"
+import * as firestore from "firebase-admin/firestore"
 
-admin.initializeApp()
+import {
+    signInWithEmailAndPassword,
+    getAuth,
+    connectAuthEmulator,
 
-const db = admin.database()
-export {admin, db}
+} from 'firebase/auth'
+
+import {initializeApp} from 'firebase/app';
+
+initializeApp();
+
+admin.initializeApp();
+
+
+const dbFirestore = admin.firestore()
+export {admin, functions, firestore, dbFirestore, signInWithEmailAndPassword, getAuth}

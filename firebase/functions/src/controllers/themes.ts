@@ -1,39 +1,38 @@
 import {Request, Response} from "express"
-import {db} from '../config/firebase'
+import {dbFirestore} from '../config/firebase'
 
-const getApplication = async (req: Request, resp: Response) => {
-    const {userId, applicationId} = req.params
+const getThemes = async (req: Request, resp: Response) => {
+    const {applicationId} = req.params
     try {
-        const application = (await db.ref(`/applications/${userId}/${applicationId}`).get()).val();
-        const buffer = Buffer.from(JSON.stringify(application), 'binary');
+        const querySnapshot = await dbFirestore.collection('themes').where("applicationId", "==", applicationId).get();
+        const documents = querySnapshot.docs.map(doc => doc.data());
+        return resp.status(200).json(documents);
+    } catch (error) {
+        return resp.status(500).json(error)
+    }
+}
 
-        return resp.writeHead(200, {
-            'Content-Type': "application/json",
-            'Content-disposition': 'attachment;filename=' + "theme.json",
-            'Content-Length': buffer.length
-        }).end(buffer)
+
+const createTheme = async (req: Request, resp: Response) => {
+    const {applicationId} = req.params
+    try {
+        const newDocRef = await dbFirestore.collection('themes').doc();
+        const newDocId = newDocRef.id;
+
+        await newDocRef.set({
+            id: newDocId,
+            applicationId: applicationId,
+            name: req.body.name,
+            description: req.body.description,
+        });
+
+        const application = (await dbFirestore.collection('themes').doc(newDocId).get()).data();
+        return resp.status(200).json(application);
 
     } catch (error) {
         return resp.status(500).json(error)
     }
 }
 
-const getApplicationTheme = async (req: Request, resp: Response) => {
-    const {userId, applicationId} = req.params
-    try {
-        const application = (await db.ref(`/applications/${userId}/${applicationId}`).get()).val();
-        const theme = application["theme"];
-        const buffer = Buffer.from(JSON.stringify(theme), 'binary');
 
-        return resp.writeHead(200, {
-            'Content-Type': "application/json",
-            'Content-disposition': 'attachment;filename=' + "theme.json",
-            'Content-Length': buffer.length
-        }).end(buffer)
-
-    } catch (error) {
-        return resp.status(500).json(error)
-    }
-}
-
-export {getApplicationTheme, getApplication}
+export {getThemes, createTheme}
