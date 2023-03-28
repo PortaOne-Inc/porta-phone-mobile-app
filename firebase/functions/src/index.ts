@@ -15,9 +15,9 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 router.get('/users/:userId/applications/:applicationId', (req, res) => getApplications(req, res));
-router.post('/users/:userId/applications/:applicationId', (req, res) => createApplication(req, res));
+router.post('/users/:userId/applications/:applicationId',parseAuthToken, (req, res) => createApplication(req, res));
 router.get('/users/:userId/applications/:applicationId/themes', (req, res) => getThemes(req, res));
-router.post('users/:userId/applications/:applicationId/themes', (req, res) => createTheme(req, res));
+router.post('users/:userId/applications/:applicationId/themes', parseAuthToken, (req, res) => createTheme(req, res));
 router.get('/user/auth', (req, res) => testAuth(req, res));
 
 api.use('/v1', router);
