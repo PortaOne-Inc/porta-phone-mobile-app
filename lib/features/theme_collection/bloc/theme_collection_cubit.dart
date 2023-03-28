@@ -69,7 +69,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     final result = await createThemeUseCase.execute(
       themeModel: defaultTheme.copyWith(
         name: name,
-        colorScheme: defaultTheme.colorScheme?.copyWith(primary: color),
+        colors: defaultTheme.colors?.copyWith(primary: color),
       ),
       applicationId: applicationId,
     );

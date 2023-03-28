@@ -14,7 +14,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
     this.imageMapper,
   );
 
-  final Mapper<ColorDTO?, ColorSchemeModel?> colorsMapper;
+  final Mapper<ColorDTO?, ColorModel?> colorsMapper;
   final Mapper<TextStyleDTO?, TextStyle?> textStyleMapper;
   final Mapper<ImageDTO?, ImageModel?> imageMapper;
 
@@ -25,10 +25,10 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
     }
 
     return ThemeDTO(
-      colorScheme: colorsMapper.mapToDto(model.colorScheme),
       name: model.name,
       fontFamily: model.fontFamily,
       id: model.id,
+      colors: colorsMapper.mapToDto(model.colors),
       images: ImageCollectionDTO(
         applicationLogo: model.images?.applicationLogo?.url,
         notificationLogo: model.images?.notificationLogo?.url,
@@ -49,7 +49,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
     }
 
     return AppConfigurationModel(
-        colorScheme: colorsMapper.mapToModel(dto.colorScheme),
+        colors: colorsMapper.mapToModel(dto.colors),
         name: dto.name,
         fontFamily: dto.fontFamily,
         images: ConfiguratorImagesSetting(

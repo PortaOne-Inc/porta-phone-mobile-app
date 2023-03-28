@@ -17,7 +17,7 @@ class ThemeDTO with _$ThemeDTO {
     String? name,
     String? fontFamily,
     ImageCollectionDTO? images,
-    ColorDTO? colorScheme,
+    ColorDTO? colors,
   }) = _ThemeDTO;
 
   factory ThemeDTO.fromJson(Map<String, Object?> json) => _$ThemeDTOFromJson(json);

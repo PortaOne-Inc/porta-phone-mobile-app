@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
-class ColorSchemeModel extends ColorSchemeOverride {
-  ColorSchemeModel({
+class ColorModel extends ColorSchemeOverride {
+  ColorModel({
     this.gradientTabColor,
     super.primary,
     super.onPrimary,
@@ -35,7 +35,7 @@ class ColorSchemeModel extends ColorSchemeOverride {
 
   final List<Color>? gradientTabColor;
 
-  ColorSchemeModel copyWith({
+  ColorModel copyWith({
     Color? primary,
     Color? onPrimary,
     Color? primaryContainer,
@@ -65,7 +65,7 @@ class ColorSchemeModel extends ColorSchemeOverride {
     Color? surfaceTint,
     List<Color>? gradientTabColor,
   }) {
-    return ColorSchemeModel(
+    return ColorModel(
       primary: primary ?? this.primary,
       onPrimary: onPrimary ?? this.onPrimary,
       primaryContainer: primaryContainer ?? this.primaryContainer,

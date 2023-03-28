@@ -156,8 +156,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   void _updatePreviewScreens(ThemePropertyState state) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
-          seedColor: state.theme.colorScheme?.primary ?? Colors.transparent,
-          lightColorSchemeOverride: state.theme.colorScheme,
+          seedColor: state.theme.colors?.primary ?? Colors.transparent,
+          lightColorSchemeOverride: state.theme.colors,
           primaryGradientColors: state.theme.toCustomColorGradientCollection,
           fontFamily: state.theme.fontFamily),
       themeMode: ThemeMode.light,

@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
-import 'color_shema_model.dart';
+import 'color_model.dart';
 import 'theme_images_model.dart';
 
 class AppConfigurationModel {
   final String? id;
   final String? name;
-  final ColorSchemeModel? colorScheme;
   final String? fontFamily;
+  final ColorModel? colors;
   final ConfiguratorImagesSetting? images;
 
   AppConfigurationModel({
     this.id,
     this.name,
     this.fontFamily,
-    this.colorScheme,
+    this.colors,
     this.images,
   });
 
   static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
 
   List<Color> get colorSchemeCollection {
-    return colorScheme?.asList() ?? <Color>[];
+    return colors?.asList() ?? <Color>[];
   }
 
   List<Color> get colorGradientCollection {
-    final gradient = colorScheme?.gradientTabColor ?? emptyGradient;
+    final gradient = colors?.gradientTabColor ?? emptyGradient;
     return gradient.length >= 2 ? gradient : emptyGradient;
   }
 
@@ -42,14 +42,14 @@ class AppConfigurationModel {
   AppConfigurationModel copyWith({
     String? id,
     String? name,
-    ColorSchemeModel? colorScheme,
+    ColorModel? colors,
     String? fontFamily,
     ConfiguratorImagesSetting? images,
   }) {
     return AppConfigurationModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      colorScheme: colorScheme ?? this.colorScheme,
+      colors: colors ?? this.colors,
       fontFamily: fontFamily ?? this.fontFamily,
       images: images ?? this.images,
     );
