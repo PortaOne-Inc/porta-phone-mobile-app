@@ -34,7 +34,7 @@ class SynchronizeCubit extends Cubit<SynchronizeState> {
 
   void validateAndTryUpdateTheme(AppConfigurationModel? themeModel) async {
     if (themeModel != null) {
-      if ((themeModel.commonConfig?.appName ?? '').isNotEmpty) {
+      if ((themeModel.name ?? '').isNotEmpty) {
         _tryUpdateTheme(themeModel);
       } else {
         emit(const ThemeIsNotValidState());

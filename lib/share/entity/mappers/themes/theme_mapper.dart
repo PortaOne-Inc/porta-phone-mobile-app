@@ -26,9 +26,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
 
     return ThemeDTO(
       colorScheme: colorsMapper.mapToDto(model.colorScheme),
-      commonConfig: ThemeCommonDTO(
-        appName: model.commonConfig?.appName,
-      ),
+      name: model.name,
       fontFamily: model.fontFamily,
       id: model.id,
       images: ImageCollectionDTO(
@@ -52,9 +50,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, AppConfigurationModel?> {
 
     return AppConfigurationModel(
         colorScheme: colorsMapper.mapToModel(dto.colorScheme),
-        commonConfig: CommonConfigModel(
-          appName: dto.commonConfig?.appName ?? '',
-        ),
+        name: dto.name,
         fontFamily: dto.fontFamily,
         images: ConfiguratorImagesSetting(
           applicationLogo: ImageModel(url: dto.images?.applicationLogo),

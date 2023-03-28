@@ -14,8 +14,8 @@ toNull(_) => null;
 class ThemeDTO with _$ThemeDTO {
   const factory ThemeDTO({
     String? id,
+    String? name,
     String? fontFamily,
-    ThemeCommonDTO? commonConfig,
     ImageCollectionDTO? images,
     ColorDTO? colorScheme,
   }) = _ThemeDTO;

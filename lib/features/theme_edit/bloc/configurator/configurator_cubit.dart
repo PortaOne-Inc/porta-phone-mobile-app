@@ -15,9 +15,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     emit(state.copyWith(
       nameField: ThemeNameInput.dirty(name),
       theme: state.theme.copyWith(
-        commonConfig: state.theme.commonConfig?.copyWith(
-          appName: name,
-        ),
+        name: name,
       ),
     ));
   }
@@ -40,7 +38,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     emit(
       state.copyWith(
         theme: theme,
-        nameField: ThemeNameInput.pure(theme?.commonConfig?.appName ?? ''),
+        nameField: ThemeNameInput.pure(theme?.name ?? ''),
       ),
     );
   }

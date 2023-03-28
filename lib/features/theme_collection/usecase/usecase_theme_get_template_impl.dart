@@ -14,6 +14,7 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
     String? themeName,
   }) {
     return AppConfigurationModel(
+      name: themeName,
       images: ConfiguratorImagesSetting(
         onboarding: ImageModel(),
         applicationLogo: ImageModel(),
@@ -23,9 +24,6 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
         androidLauncherIcon: ImageModel(),
         iosLauncherIcon: ImageModel(),
         webLauncherIcon: ImageModel(),
-      ),
-      commonConfig: CommonConfigModel(
-        appName: themeName ?? '',
       ),
     );
   }

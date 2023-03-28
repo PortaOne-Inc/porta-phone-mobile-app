@@ -48,7 +48,7 @@ class ItemTheme extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Text(
-                    themeMode.commonConfig?.appName ?? '',
+                    themeMode.name ?? '',
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.titleLarge,
                     overflow: TextOverflow.ellipsis,

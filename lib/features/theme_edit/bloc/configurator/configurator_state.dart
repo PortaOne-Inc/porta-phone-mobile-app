@@ -25,10 +25,10 @@ class ThemePropertyState {
   ThemePropertyState copyWithCommonConfig({
     String? name,
   }) {
-    final styles = theme.commonConfig?.copyWith(
-      appName: name,
-    );
-    return copyWith(theme: theme.copyWith(commonConfig: styles));
+    return copyWith(
+        theme: theme.copyWith(
+      name: name,
+    ));
   }
 }
 

@@ -68,7 +68,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     final defaultTheme = await getTemplateThemeUseCase.execute();
     final result = await createThemeUseCase.execute(
       themeModel: defaultTheme.copyWith(
-        commonConfig: defaultTheme.commonConfig?.copyWith(appName: name),
+        name: name,
         colorScheme: defaultTheme.colorScheme?.copyWith(primary: color),
       ),
       applicationId: applicationId,
