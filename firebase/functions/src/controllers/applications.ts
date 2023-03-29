@@ -30,7 +30,7 @@ const createApplication = async (req: Request, resp: Response) => {
             name: req.body.name,
             platformIdentifier: req.body.platformIdentifier,
             id: newDocId,
-            defaultTheme: null
+            theme: null
         });
 
         const application = (await dbFirestore.collection('applications').doc(newDocId).get()).data();
@@ -41,15 +41,26 @@ const createApplication = async (req: Request, resp: Response) => {
     }
 }
 
-const getApplications = async (req: Request, resp: Response) => {
-    const {userId, applicationId} = req.params
+const getApplication = async (req: Request, resp: Response) => {
+    const {applicationId} = req.params
     try {
         const newDocRef = (await dbFirestore.collection('applications')
-            .where("uid", "==", userId).where("id", "==", applicationId).get()).docs[0].data();
+            .where("id", "==", applicationId).get()).docs[0].data();
         return resp.status(200).json(newDocRef);
     } catch (error) {
         return resp.status(500).json(error)
     }
 }
 
-export {createApplication, getApplications, testAuth}
+const getApplications = async (req: Request, resp: Response) => {
+    try {
+        const querySnapshot = await dbFirestore.collection('applications').where("uid", "==", req.user?.uid).get();
+        const documents = querySnapshot.docs.map(doc => doc.data());
+        return resp.status(200).json(documents);
+    } catch (error) {
+        return resp.status(500).json(error)
+    }
+}
+
+
+export {createApplication, getApplication, getApplications, testAuth}
