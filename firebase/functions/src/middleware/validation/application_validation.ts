@@ -3,9 +3,11 @@ import * as Joi from "joi";
 
 function validateCreateApplication(req: Request, res: Response, next: () => void) {
     const {error} = Joi.object({
+        id: Joi.string().allow(null),
         name: Joi.string().required(),
+        theme: Joi.string().allow(null),
         platformIdentifier: Joi.string().required(),
-        defaultTheme: Joi.string(),
+        defaultTheme: Joi.string().allow(null),
     }).validate(req.body);
 
     if (error) {
