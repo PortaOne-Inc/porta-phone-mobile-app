@@ -69,6 +69,9 @@ dependencies:
   rxdart: ^0.27.5
   infinite_scroll_pagination: ^3.2.0
 
+  # HTTP
+  dio: ^5.1.0
+
   # The main dependency of the configuration object
   screenshots:
     path: ../webtrit_phone/screenshots

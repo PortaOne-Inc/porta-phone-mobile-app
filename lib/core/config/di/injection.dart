@@ -39,4 +39,18 @@ abstract class RegisterModule {
 
   @Singleton()
   FirebaseStorage storage() => FirebaseStorage.instance;
+
+  @Singleton()
+  Dio dio() {
+    final dio = Dio();
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final token = await auth().currentUser?.getIdToken();
+        final authToken = 'Bearer $token';
+        options.headers['Authorization'] = authToken;
+        return handler.next(options);
+      },
+    ));
+    return dio;
+  }
 }
