@@ -25,7 +25,17 @@ abstract class RegisterModule {
   FirebaseDatabase database() => FirebaseDatabase.instance;
 
   @Singleton()
-  FirebaseAuth auth() => FirebaseAuth.instance;
+  FirebaseAuth auth() {
+    final firebaseAuth = FirebaseAuth.instance;
+    final env = _getIt.get<AppEnvironment>();
+    final authorizationOption = env.authorizationEmulator;
+
+    if (authorizationOption != null) {
+      firebaseAuth.useAuthEmulator(authorizationOption.host, authorizationOption.port);
+    }
+
+    return firebaseAuth;
+  }
 
   @Singleton()
   FirebaseStorage storage() => FirebaseStorage.instance;
