@@ -5,25 +5,25 @@ class ApplicationModel {
     this.id,
     this.theme,
     this.name,
-    this.applicationIdentifier,
+    this.platformIdentifier,
   });
 
   final String? id;
   final String? name;
-  final String? applicationIdentifier;
+  final String? platformIdentifier;
   final AppConfigurationModel? theme;
 
   ApplicationModel copyWith({
     String? id,
     AppConfigurationModel? theme,
     String? name,
-    String? applicationIdentifier,
+    String? platformIdentifier,
   }) {
     return ApplicationModel(
       id: id ?? this.id,
       theme: theme ?? this.theme,
       name: name ?? this.name,
-      applicationIdentifier: applicationIdentifier ?? this.applicationIdentifier,
+      platformIdentifier: platformIdentifier ?? this.platformIdentifier,
     );
   }
 }

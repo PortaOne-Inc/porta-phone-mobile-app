@@ -11,7 +11,7 @@ class VendorDTO with _$VendorDTO {
   const factory VendorDTO({
     ThemeDTO? theme,
     String? name,
-    String? applicationIdentifier,
+    String? platformIdentifier,
     String? id,
   }) = _ApplicationDTO;
 
