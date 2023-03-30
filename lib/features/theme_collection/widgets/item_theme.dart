@@ -23,17 +23,18 @@ class ItemTheme extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: InkWell(
-        onTap: () => onTap(themeMode),
+    return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      onTap: () => onTap(themeMode),
+      child: Card(
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: themeMode.colorGradientCollection.toList(),
+              colors: themeMode.colorGradientCollection.toList().map((e) => e.withOpacity(0.25)).toList(),
             ),
             borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
@@ -66,11 +67,15 @@ class ItemTheme extends StatelessWidget {
                           itemBuilder: (ctx, index) {
                             return FittedBox(
                               child: UsedColor(
-                                blurRadius: 4,
+                                blurRadius: 2,
                                 size: 16,
                                 color: themeMode.colorSchemeCollection[index],
                                 boxShadow: const [
-                                  BoxShadow(color: Colors.black38, spreadRadius: 0.5, blurRadius: 4),
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    spreadRadius: 0.5,
+                                    blurRadius: 2,
+                                  ),
                                 ],
                               ),
                             );

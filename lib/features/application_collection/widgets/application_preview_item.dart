@@ -23,7 +23,10 @@ class ApplicationPreviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       onTap: () => onOpen.call(application),
       child: Card(
         child: Container(
