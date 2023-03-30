@@ -10,7 +10,7 @@ import 'usecase_application_delete.dart';
 class UsecaseVendorDeleteTemplateImpl implements UsecaseApplicationDeleteTemplate {
   UsecaseVendorDeleteTemplateImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
 
-  final VendorRepository applicationRepository;
+  final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 

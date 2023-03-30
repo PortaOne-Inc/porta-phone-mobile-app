@@ -9,7 +9,7 @@ import 'usecase_application_create.dart';
 class UsecaseApplicationCreateImpl extends UsecaseApplicationCreate {
   UsecaseApplicationCreateImpl(this.applicationRepository, this.authRepository, this.mapper);
 
-  final VendorRepository applicationRepository;
+  final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<ApplicationDTO, ApplicationModel> mapper;
 

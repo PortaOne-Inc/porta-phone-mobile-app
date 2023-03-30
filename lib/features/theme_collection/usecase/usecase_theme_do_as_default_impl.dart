@@ -11,7 +11,7 @@ class SetThemeForApplicationUseCaseImpl extends SetThemeForApplicationUseCase {
   SetThemeForApplicationUseCaseImpl(
       this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
 
-  final VendorRepository applicationRepository;
+  final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
   final Mapper<ThemeDTO?, AppConfigurationModel?> themeMapper;

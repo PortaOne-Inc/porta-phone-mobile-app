@@ -10,7 +10,7 @@ import 'usecase_application_get_all.dart';
 class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
   UsecaseApplicationGetAllImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
 
-  final VendorRepository applicationRepository;
+  final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 

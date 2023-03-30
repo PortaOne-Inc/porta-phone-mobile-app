@@ -1,6 +1,6 @@
 import 'package:webtrit_configurator/share/share.dart';
 
-abstract class VendorRepository {
+abstract class ApplicationRepository {
   Future<ApplicationDTO> updateApplication(String userId, ApplicationDTO applicationDTO);
 
   Future<ApplicationDTO> createApplication(String userId, ApplicationDTO applicationDTO);

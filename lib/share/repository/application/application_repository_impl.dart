@@ -3,11 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/core/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
-@Injectable(as: VendorRepository)
-class VendorRepositoryImpl extends VendorRepository {
+import 'application_repository.dart';
+
+@Injectable(as: ApplicationRepository)
+class ApplicationRepositoryImpl extends ApplicationRepository {
   HttpDatasource httpDatasource;
 
-  VendorRepositoryImpl({
+  ApplicationRepositoryImpl({
     required this.httpDatasource,
   });
 
