@@ -32,7 +32,7 @@ class ThemesToolbar extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              context.l10n.feature_vendor_manager_title,
+              context.l10n.feature_theme_collection_Toolbar_title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),

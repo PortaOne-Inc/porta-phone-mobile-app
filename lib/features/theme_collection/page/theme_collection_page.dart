@@ -33,12 +33,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
         return Scaffold(
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
-            child: BaseToolBar(
-              isVisibleProgress: state.isProgress,
-              child: ThemesToolbar(
-                onSwitchedLanguage: _onLanguageChanged,
-                onNewTheme: () => _onNewTheme(),
-              ),
+            child: ThemesToolbar(
+              onSwitchedLanguage: _onLanguageChanged,
+              onNewTheme: () => _onNewTheme(),
             ),
           ),
           body: Align(

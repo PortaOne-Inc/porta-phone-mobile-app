@@ -49,6 +49,7 @@
   "feature_theme_all_theme": "All themes",
   "feature_theme_public_themes": "Public themes",
   "feature_theme_create": "Create",
+  "feature_theme_collection_Toolbar_title": "Theme collections",
   "feature_theme_create_Text_create_or_select_theme": "Create or select your theme",
   "feature_theme_edit_Text_no_themes_yet_title": "No themes yet",
   "feature_theme_edit_Text_no_themes_yet_description": "You have not created any themes yet.",
