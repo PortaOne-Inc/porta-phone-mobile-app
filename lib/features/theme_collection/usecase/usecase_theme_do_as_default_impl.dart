@@ -13,7 +13,7 @@ class SetThemeForApplicationUseCaseImpl extends SetThemeForApplicationUseCase {
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<VendorDTO, ApplicationModel> applicationMapper;
+  final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
   final Mapper<ThemeDTO?, AppConfigurationModel?> themeMapper;
 
   @override

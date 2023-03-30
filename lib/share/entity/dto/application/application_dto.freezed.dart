@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'vendor_dto.dart';
+part of 'application_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-VendorDTO _$VendorDTOFromJson(Map<String, dynamic> json) {
+ApplicationDTO _$ApplicationDTOFromJson(Map<String, dynamic> json) {
   return _ApplicationDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$VendorDTO {
+mixin _$ApplicationDTO {
   ThemeDTO? get theme => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
@@ -27,14 +27,15 @@ mixin _$VendorDTO {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $VendorDTOCopyWith<VendorDTO> get copyWith =>
+  $ApplicationDTOCopyWith<ApplicationDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VendorDTOCopyWith<$Res> {
-  factory $VendorDTOCopyWith(VendorDTO value, $Res Function(VendorDTO) then) =
-      _$VendorDTOCopyWithImpl<$Res, VendorDTO>;
+abstract class $ApplicationDTOCopyWith<$Res> {
+  factory $ApplicationDTOCopyWith(
+          ApplicationDTO value, $Res Function(ApplicationDTO) then) =
+      _$ApplicationDTOCopyWithImpl<$Res, ApplicationDTO>;
   @useResult
   $Res call(
       {ThemeDTO? theme, String? name, String? platformIdentifier, String? id});
@@ -43,9 +44,9 @@ abstract class $VendorDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
-    implements $VendorDTOCopyWith<$Res> {
-  _$VendorDTOCopyWithImpl(this._value, this._then);
+class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
+    implements $ApplicationDTOCopyWith<$Res> {
+  _$ApplicationDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +96,7 @@ class _$VendorDTOCopyWithImpl<$Res, $Val extends VendorDTO>
 
 /// @nodoc
 abstract class _$$_ApplicationDTOCopyWith<$Res>
-    implements $VendorDTOCopyWith<$Res> {
+    implements $ApplicationDTOCopyWith<$Res> {
   factory _$$_ApplicationDTOCopyWith(
           _$_ApplicationDTO value, $Res Function(_$_ApplicationDTO) then) =
       __$$_ApplicationDTOCopyWithImpl<$Res>;
@@ -110,7 +111,7 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_ApplicationDTOCopyWithImpl<$Res>
-    extends _$VendorDTOCopyWithImpl<$Res, _$_ApplicationDTO>
+    extends _$ApplicationDTOCopyWithImpl<$Res, _$_ApplicationDTO>
     implements _$$_ApplicationDTOCopyWith<$Res> {
   __$$_ApplicationDTOCopyWithImpl(
       _$_ApplicationDTO _value, $Res Function(_$_ApplicationDTO) _then)
@@ -165,7 +166,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
 
   @override
   String toString() {
-    return 'VendorDTO(theme: $theme, name: $name, platformIdentifier: $platformIdentifier, id: $id)';
+    return 'ApplicationDTO(theme: $theme, name: $name, platformIdentifier: $platformIdentifier, id: $id)';
   }
 
   @override
@@ -199,7 +200,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   }
 }
 
-abstract class _ApplicationDTO implements VendorDTO {
+abstract class _ApplicationDTO implements ApplicationDTO {
   const factory _ApplicationDTO(
       {final ThemeDTO? theme,
       final String? name,

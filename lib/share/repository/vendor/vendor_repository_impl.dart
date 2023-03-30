@@ -12,7 +12,7 @@ class VendorRepositoryImpl extends VendorRepository {
   });
 
   @override
-  Future<VendorDTO> createApplication(String userId, VendorDTO applicationDTO) async {
+  Future<ApplicationDTO> createApplication(String userId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.createApplications(applicationDTO);
     } catch (e) {
@@ -21,7 +21,7 @@ class VendorRepositoryImpl extends VendorRepository {
   }
 
   @override
-  Future<List<VendorDTO>> getUserApplications(String userId) async {
+  Future<List<ApplicationDTO>> getUserApplications(String userId) async {
     try {
       return await httpDatasource.getApplications();
     } catch (e) {
@@ -30,7 +30,7 @@ class VendorRepositoryImpl extends VendorRepository {
   }
 
   @override
-  Future<VendorDTO> deleteApplication(String userId, VendorDTO applicationDTO) async {
+  Future<ApplicationDTO> deleteApplication(String userId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.deleteApplications(applicationDTO);
     } catch (e) {
@@ -39,7 +39,7 @@ class VendorRepositoryImpl extends VendorRepository {
   }
 
   @override
-  Future<VendorDTO> updateApplication(String userId, VendorDTO applicationDTO) async {
+  Future<ApplicationDTO> updateApplication(String userId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.updateApplications(applicationDTO);
     } catch (e) {

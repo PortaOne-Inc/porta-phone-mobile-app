@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
@@ -153,13 +157,31 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
+  ReplaySubject<SvgLoader?> cLogo = ReplaySubject(maxSize: 1);
+  ReplaySubject<SvgLoader> cOnboarding = ReplaySubject();
+
+  void compleate(BuildContext context, ThemePropertyState state) async {
+    final logo = state.theme.images?.applicationLogo;
+
+    if (logo?.isNetwork ?? false) {
+      cLogo.add((SvgNetworkLoader(logo!.url!)));
+    } else if (logo?.isAvailable ?? false) {
+      cLogo.add((SvgBytesLoader(base64Decode(logo!.data!))));
+    } else {
+      cLogo.add(null);
+    }
+  }
+
   void _updatePreviewScreens(ThemePropertyState state) {
+    compleate(context, state);
+
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
           seedColor: state.theme.colors?.primary ?? Colors.transparent,
           lightColorSchemeOverride: state.theme.colors,
           primaryGradientColors: state.theme.toCustomColorGradientCollection,
-          fontFamily: state.theme.fontFamily),
+          fontFamily: state.theme.fontFamily,
+          imagesScheme: ImagesScheme(applicationLogo: cLogo)),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );

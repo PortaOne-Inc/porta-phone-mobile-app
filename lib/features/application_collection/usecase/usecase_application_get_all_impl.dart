@@ -12,7 +12,7 @@ class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<VendorDTO, ApplicationModel> applicationMapper;
+  final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 
   @override
   FutureOr<List<ApplicationModel>> execute({void argument}) async {

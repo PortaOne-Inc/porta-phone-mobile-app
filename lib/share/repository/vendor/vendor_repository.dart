@@ -1,11 +1,11 @@
 import 'package:webtrit_configurator/share/share.dart';
 
 abstract class VendorRepository {
-  Future<VendorDTO> updateApplication(String userId, VendorDTO applicationDTO);
+  Future<ApplicationDTO> updateApplication(String userId, ApplicationDTO applicationDTO);
 
-  Future<VendorDTO> createApplication(String userId, VendorDTO applicationDTO);
+  Future<ApplicationDTO> createApplication(String userId, ApplicationDTO applicationDTO);
 
-  Future<VendorDTO> deleteApplication(String userId, VendorDTO applicationDTO);
+  Future<ApplicationDTO> deleteApplication(String userId, ApplicationDTO applicationDTO);
 
-  Future<List<VendorDTO>> getUserApplications(String userId);
+  Future<List<ApplicationDTO>> getUserApplications(String userId);
 }

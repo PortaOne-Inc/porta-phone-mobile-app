@@ -12,7 +12,7 @@ class UsecaseVendorDeleteTemplateImpl implements UsecaseApplicationDeleteTemplat
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<VendorDTO, ApplicationModel> applicationMapper;
+  final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 
   @override
   FutureOr<void> execute({required ApplicationModel model}) async {

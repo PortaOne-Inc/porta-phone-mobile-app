@@ -11,7 +11,7 @@ class UsecaseApplicationCreateImpl extends UsecaseApplicationCreate {
 
   final VendorRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<VendorDTO, ApplicationModel> mapper;
+  final Mapper<ApplicationDTO, ApplicationModel> mapper;
 
   @override
   FutureOr<ApplicationModel> execute({required ApplicationModel argument}) async {

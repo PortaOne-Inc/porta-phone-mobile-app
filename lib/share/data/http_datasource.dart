@@ -11,24 +11,24 @@ class HttpDatasource {
 
   HttpDatasource(this.dio, this.environment);
 
-  Future<List<VendorDTO>> getApplications() async {
+  Future<List<ApplicationDTO>> getApplications() async {
     final response = await dio.get('${environment.endpoints.url}/applications/');
-    return (response.data as List).map((data) => VendorDTO.fromJson(data)).toList();
+    return (response.data as List).map((data) => ApplicationDTO.fromJson(data)).toList();
   }
 
-  Future<VendorDTO> createApplications(VendorDTO vendorDTO) async {
+  Future<ApplicationDTO> createApplications(ApplicationDTO vendorDTO) async {
     final response = await dio.post('${environment.endpoints.url}/applications/', data: vendorDTO.toJson());
-    return VendorDTO.fromJson(response.data);
+    return ApplicationDTO.fromJson(response.data);
   }
 
-  Future<VendorDTO> updateApplications(VendorDTO application) async {
+  Future<ApplicationDTO> updateApplications(ApplicationDTO application) async {
     final response = await dio.patch('${environment.endpoints.url}/applications/', data: application.toJson());
-    return VendorDTO.fromJson(response.data);
+    return ApplicationDTO.fromJson(response.data);
   }
 
-  Future<VendorDTO> deleteApplications(VendorDTO application) async {
+  Future<ApplicationDTO> deleteApplications(ApplicationDTO application) async {
     final response = await dio.delete('${environment.endpoints.url}/applications/', data: application.toJson());
-    return VendorDTO.fromJson(response.data);
+    return ApplicationDTO.fromJson(response.data);
   }
 
   Future<List<ThemeDTO>> getThemes(String applicationId) async {
