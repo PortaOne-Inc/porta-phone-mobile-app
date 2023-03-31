@@ -21,8 +21,9 @@ class HttpDatasource {
     return ApplicationDTO.fromJson(response.data);
   }
 
-  Future<ApplicationDTO> updateApplications(ApplicationDTO application) async {
-    final response = await dio.patch('${environment.endpoints.url}/applications/', data: application.toJson());
+  Future<ApplicationDTO> updateApplications(String applicationId, ApplicationDTO application) async {
+    final response =
+        await dio.patch('${environment.endpoints.url}/applications/$applicationId', data: application.toJson());
     return ApplicationDTO.fromJson(response.data);
   }
 

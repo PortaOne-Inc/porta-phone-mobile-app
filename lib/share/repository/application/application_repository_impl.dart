@@ -41,9 +41,13 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationDTO> updateApplication(String userId, ApplicationDTO applicationDTO) async {
+  Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
     try {
-      return await httpDatasource.updateApplications(applicationDTO);
+      return await httpDatasource.updateApplications(applicationId,applicationDTO);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 
   @override
   Future<ApplicationDTO> getApplication(String id) async {
