@@ -1,7 +1,7 @@
 import {functions, admin} from '../config/firebase'
 
 
-async function parseAuthToken(
+async function authorizationMiddleware(
     req: functions.Request,
     res: functions.Response,
     next: () => void
@@ -31,4 +31,4 @@ async function parseAuthToken(
     }
 }
 
-export {parseAuthToken}
+export {authorizationMiddleware}

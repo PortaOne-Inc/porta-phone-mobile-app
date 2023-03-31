@@ -10,7 +10,7 @@ import {
     getApplication,
     patchApplication
 } from './controllers/applications'
-import {parseAuthToken} from './middleware/auth_verefication'
+import {authorizationMiddleware} from './middleware/auth_verefication'
 import {validateCreateApplication} from './middleware/validation/application_validation'
 import {validateCreateTheme} from "./middleware/validation/theme_validation";
 import {bodyIdIgnore} from "./middleware/body_id_ignore";
@@ -20,15 +20,16 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyIdIgnore);
 
-router.get('/applications', parseAuthToken, (req, res) => getApplications(req, res));
-router.post('/applications', parseAuthToken, validateCreateApplication, (req, res) => createApplication(req, res));
+router.get('/applications', authorizationMiddleware, (req, res) => getApplications(req, res));
+router.post('/applications', validateCreateApplication, (req, res) => createApplication(req, res));
 router.get('/applications/:applicationId', (req, res) => getApplication(req, res));
-router.patch('/applications/:applicationId', parseAuthToken, validateCreateApplication, bodyIdIgnore, (req, res) => patchApplication(req, res));
+router.patch('/applications/:applicationId', authorizationMiddleware, validateCreateApplication, (req, res) => patchApplication(req, res));
 router.get('/applications/:applicationId/themes', (req, res) => getThemes(req, res));
-router.post('/applications/:applicationId/themes', parseAuthToken, validateCreateTheme, (req, res) => createTheme(req, res));
-router.patch('/applications/:applicationId/themes/:themeId', parseAuthToken, validateCreateTheme, bodyIdIgnore, (req, res) => updateTheme(req, res));
-router.delete('/applications/:applicationId/themes/:themeId', parseAuthToken, (req, res) => deleteTheme(req, res));
+router.post('/applications/:applicationId/themes', authorizationMiddleware, validateCreateTheme, (req, res) => createTheme(req, res));
+router.patch('/applications/:applicationId/themes/:themeId', authorizationMiddleware, validateCreateTheme, (req, res) => updateTheme(req, res));
+router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddleware, (req, res) => deleteTheme(req, res));
 router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) => getTheme(req, res));
 router.get('/user/auth', (req, res) => testAuth(req, res));
 
