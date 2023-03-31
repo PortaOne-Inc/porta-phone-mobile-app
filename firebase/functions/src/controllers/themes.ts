@@ -20,15 +20,15 @@ const createTheme = async (req: Request, resp: Response) => {
         const newDocId = newDocRef.id;
 
         await newDocRef.set({
+            ...req.body,
             ...{
                 id: newDocId,
                 applicationId: applicationId,
             },
-            ...req.body
         });
 
-        const application = (await dbFirestore.collection('themes').doc(newDocId).get()).data();
-        return resp.status(200).json(application);
+        const theme = (await dbFirestore.collection('themes').doc(newDocId).get()).data();
+        return resp.status(200).json(theme);
 
     } catch (error) {
         return resp.status(500).json(error)

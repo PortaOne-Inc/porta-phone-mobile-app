@@ -3,16 +3,16 @@ import * as Joi from "joi";
 
 function validateCreateTheme(req: Request, res: Response, next: () => void) {
     const {error} = Joi.object({
-        id: Joi.string(),
+        id: Joi.string().allow(null),
         name: Joi.string(),
-        fontFamily: Joi.string(),
+        fontFamily: Joi.string().allow(null),
         colors: Joi.object({
             primary: Joi.string().allow(null),
             onPrimary: Joi.string().allow(null),
             primaryContainer: Joi.string().allow(null),
             onPrimaryContainer: Joi.string().allow(null),
             secondary: Joi.string().allow(null),
-            onSecondary: Joi.string(),
+            onSecondary: Joi.string().allow(null),
             secondaryContainer: Joi.string().allow(null),
             onSecondaryContainer: Joi.string().allow(null),
             tertiary: Joi.string().allow(null),
