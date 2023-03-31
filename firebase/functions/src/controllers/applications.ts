@@ -1,9 +1,9 @@
 import {Request, Response} from "express"
-import {dbFirestore, signInWithEmailAndPassword, getAuth} from '../config/firebase'
+import {db, auth} from '../config/firebase'
 
 const testAuth = async (req: Request, resp: Response) => {
     try {
-        const res = await signInWithEmailAndPassword(getAuth(), "qwerty@gmail.com", "qwerty");
+        const res = await auth.signInWithEmailAndPassword(auth.getAuth(), "qwerty@gmail.com", "qwerty");
         const buffer = Buffer.from(JSON.stringify(res.user), 'binary');
 
         console.log(res.user.toJSON())
@@ -22,7 +22,7 @@ const testAuth = async (req: Request, resp: Response) => {
 
 const createApplication = async (req: Request, resp: Response) => {
     try {
-        const newDocRef = await dbFirestore.collection('applications').doc();
+        const newDocRef = await db.collection('applications').doc();
         const newDocId = newDocRef.id;
 
         await newDocRef.set({
@@ -33,7 +33,7 @@ const createApplication = async (req: Request, resp: Response) => {
             theme: null
         });
 
-        const application = (await dbFirestore.collection('applications').doc(newDocId).get()).data();
+        const application = (await db.collection('applications').doc(newDocId).get()).data();
         return resp.status(200).json(application);
 
     } catch (error) {
@@ -44,9 +44,9 @@ const createApplication = async (req: Request, resp: Response) => {
 const patchApplication = async (req: Request, resp: Response) => {
     const {applicationId} = req.params
     try {
-        const newDocRef = await dbFirestore.collection("applications").doc(applicationId);
+        const newDocRef = await db.collection("applications").doc(applicationId);
         await newDocRef.update(req.body);
-        const application = (await dbFirestore.collection('applications').doc(applicationId).get()).data();
+        const application = (await db.collection('applications').doc(applicationId).get()).data();
         return resp.status(200).json(application);
     } catch (error) {
         return resp.status(500).json(error)
@@ -56,7 +56,7 @@ const patchApplication = async (req: Request, resp: Response) => {
 const getApplication = async (req: Request, resp: Response) => {
     const {applicationId} = req.params
     try {
-        const newDocRef = (await dbFirestore.collection('applications')
+        const newDocRef = (await db.collection('applications')
             .where("id", "==", applicationId).get()).docs[0].data();
         return resp.status(200).json(newDocRef);
     } catch (error) {
@@ -66,7 +66,7 @@ const getApplication = async (req: Request, resp: Response) => {
 
 const getApplications = async (req: Request, resp: Response) => {
     try {
-        const querySnapshot = await dbFirestore.collection('applications').where("uid", "==", req.user?.uid).get();
+        const querySnapshot = await db.collection('applications').where("uid", "==", req.user?.uid).get();
         const documents = querySnapshot.docs.map(doc => doc.data());
         return resp.status(200).json(documents);
     } catch (error) {
