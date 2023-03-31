@@ -43,7 +43,10 @@ class HttpDatasource {
   }
 
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO themeDTO) async {
-    final response = await dio.post('${environment.endpoints.url}/applications/$applicationId/themes');
+    final response = await dio.post(
+      '${environment.endpoints.url}/applications/$applicationId/themes',
+      data: themeDTO.toJson(),
+    );
     return ThemeDTO.fromJson(response.data);
   }
 
