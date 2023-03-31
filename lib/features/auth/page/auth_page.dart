@@ -12,10 +12,17 @@ import 'package:webtrit_configurator/features/auth/extensions/extensions.dart';
 import '../bloc/bloc.dart';
 import '../widgets/toolbar_auth.dart';
 
-class AuthPage extends StatelessWidget with MixinMessages {
+class AuthPage extends StatefulWidget {
   const AuthPage({
     super.key,
   });
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> with MixinMessages {
+  bool _isPasswordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +64,22 @@ class AuthPage extends StatelessWidget with MixinMessages {
                           height: 8,
                         ),
                         TextFormField(
+                          obscureText: _isPasswordVisible,
                           onChanged: (it) => BlocProvider.of<AuthCubit>(context).authPasswordChanged(it),
                           initialValue: state.passwordInput?.value,
                           decoration: InputDecoration(
                             hintText: context.l10n.authorization_enter_password_hint,
                             errorText: state.passwordInput?.errorL10n(context),
+                            suffixIcon: IconButton(
+                              icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ),
                         const SizedBox(
