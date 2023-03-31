@@ -138,6 +138,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
       builder: (context) => ThemeCollectionCreateDialog(
         onCreateTheme: (String name, Color color) {
           _allMyThemesCubit.tryCreateTheme(name, color);
+          GoRouter.of(context).pop();
         },
       ),
     );
