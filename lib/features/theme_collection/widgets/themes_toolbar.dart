@@ -63,8 +63,8 @@ class ThemesToolbar extends StatelessWidget {
             text: 'New',
           ),
         ],
-        child: const ToolbarLabelItem(
-          text: 'Theme',
+        child: ToolbarLabelItem(
+          text: context.l10n.common_file,
         ),
       )
     ];

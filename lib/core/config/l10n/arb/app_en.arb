@@ -8,6 +8,7 @@
   "theme_create": "Create",
   "theme_update": "Update",
   "common_help": "Help",
+  "common_file": "File",
   "authorization_title": "Authorization",
   "authorization_enter_email_hint": "Enter email",
   "authorization_enter_password_hint": "Enter password",
