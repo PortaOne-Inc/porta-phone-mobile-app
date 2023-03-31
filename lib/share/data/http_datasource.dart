@@ -31,6 +31,11 @@ class HttpDatasource {
     return ApplicationDTO.fromJson(response.data);
   }
 
+  Future<ApplicationDTO> getApplication(String applicationId) async {
+    final response = await dio.get('${environment.endpoints.url}/applications/$applicationId/');
+    return ApplicationDTO.fromJson(response.data);
+  }
+
   Future<List<ThemeDTO>> getThemes(String applicationId) async {
     final response = await dio.get('${environment.endpoints.url}/applications/$applicationId/themes');
     return (response.data as List).map((data) => ThemeDTO.fromJson(data)).toList();
