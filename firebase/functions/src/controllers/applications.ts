@@ -41,6 +41,18 @@ const createApplication = async (req: Request, resp: Response) => {
     }
 }
 
+const patchApplication = async (req: Request, resp: Response) => {
+    const {applicationId} = req.params
+    try {
+        const newDocRef = await dbFirestore.collection("applications").doc(applicationId);
+        await newDocRef.update(req.body);
+        const application = (await dbFirestore.collection('applications').doc(applicationId).get()).data();
+        return resp.status(200).json(application);
+    } catch (error) {
+        return resp.status(500).json(error)
+    }
+}
+
 const getApplication = async (req: Request, resp: Response) => {
     const {applicationId} = req.params
     try {
@@ -63,4 +75,4 @@ const getApplications = async (req: Request, resp: Response) => {
 }
 
 
-export {createApplication, getApplication, getApplications, testAuth}
+export {createApplication, getApplication, getApplications, testAuth, patchApplication}
