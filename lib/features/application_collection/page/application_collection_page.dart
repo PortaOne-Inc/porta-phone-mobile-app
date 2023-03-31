@@ -106,7 +106,9 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _onEditApplication(ApplicationModel applicationModel) {
-    showTopSnakeMessageInfo(context, context.l10n.common_not_implemented);
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, params: <String, String>{
+      AppRoutInfo.keyApplicationId: applicationModel.id!,
+    });
   }
 
   void _createApplication() {

@@ -21,6 +21,10 @@ abstract class AppRoutInfo {
     name: 'application/create',
     path: '/application/create',
   );
+  static const applicationEdit = RouteData(
+    name: 'applications/edit',
+    path: '/applications/:$keyApplicationId/edit',
+  );
   static const themes = RouteData(
     name: 'theme/collection',
     path: '/application/:$keyApplicationId/theme/collection',

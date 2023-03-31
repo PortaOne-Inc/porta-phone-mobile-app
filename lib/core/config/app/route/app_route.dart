@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:webtrit_configurator/features/application_edit/application_edit.dart';
 
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
@@ -66,6 +67,18 @@ class AppRoute {
                     vendorCreateUsecase: getIt.get(),
                   ),
                   child: const ApplicationCreatePage(),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutInfo.applicationEdit.path,
+                name: AppRoutInfo.applicationEdit.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationEditCubit>(
+                  create: (BuildContext context) => ApplicationEditCubit(
+                    applicationEditUsecase: getIt.get(),
+                    applicationGetUsecase: getIt.get(),
+                    applicationId: state.params[AppRoutInfo.keyApplicationId]!,
+                  ),
+                  child: const ApplicationEditPage(),
                 ),
               ),
               GoRoute(
