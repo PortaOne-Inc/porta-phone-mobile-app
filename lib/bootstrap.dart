@@ -6,7 +6,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
+import 'package:webtrit_configurator/core/config/env/env.dart';
 
 import 'package:webtrit_configurator/core/config/firebase/firebase_options.dart';
 import 'package:webtrit_phone/data/device_info.dart';
@@ -28,7 +28,7 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       await SecureStorage.init();
       await (FirebaseAuth.instance).setPersistence(Persistence.LOCAL);
 
-      final diContainer = await configureDependencies(environment: Environment.dev);
+      final diContainer = await configureDependencies(environment: EnvironmentConfig.ENV);
 
       return runApp(await builder(diContainer));
     },
