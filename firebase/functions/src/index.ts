@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions'
 import * as express from 'express'
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 
 import {getThemes, createTheme, updateTheme, getTheme, deleteTheme} from './controllers/themes'
 import {
@@ -17,6 +18,7 @@ import {bodyIdIgnore} from "./middleware/body_id_ignore";
 const api = express();
 const router = express.Router();
 
+router.use(cors());
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyIdIgnore);
