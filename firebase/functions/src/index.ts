@@ -5,7 +5,6 @@ import * as bodyParser from "body-parser";
 import {getThemes, createTheme, updateTheme, getTheme, deleteTheme} from './controllers/themes'
 import {
     createApplication,
-    testAuth,
     getApplications,
     getApplication,
     patchApplication
@@ -31,7 +30,6 @@ router.post('/applications/:applicationId/themes', authorizationMiddleware, vali
 router.patch('/applications/:applicationId/themes/:themeId', authorizationMiddleware, validateCreateTheme, (req, res) => updateTheme(req, res));
 router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddleware, (req, res) => deleteTheme(req, res));
 router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) => getTheme(req, res));
-router.get('/user/auth', (req, res) => testAuth(req, res));
 
 api.use('/v1', router);
 exports.api = functions.https.onRequest(api)

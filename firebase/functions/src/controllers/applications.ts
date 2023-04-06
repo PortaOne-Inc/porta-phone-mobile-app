@@ -1,24 +1,5 @@
 import {Request, Response} from "express"
-import {db, auth} from '../config/firebase'
-
-const testAuth = async (req: Request, resp: Response) => {
-    try {
-        const res = await auth.signInWithEmailAndPassword(auth.getAuth(), "qwerty@gmail.com", "qwerty");
-        const buffer = Buffer.from(JSON.stringify(res.user), 'binary');
-
-        console.log(res.user.toJSON())
-        // @ts-ignore
-        return resp.writeHead(200, {
-            'Content-Type': "application/json",
-            'Content-disposition': 'attachment;filename=' + "theme.json",
-            'Content-Length': buffer.length
-        }).end(buffer)
-
-    } catch
-        (error) {
-        return resp.status(500).json(error)
-    }
-}
+import {db} from '../config/firebase'
 
 const createApplication = async (req: Request, resp: Response) => {
     try {
@@ -75,4 +56,4 @@ const getApplications = async (req: Request, resp: Response) => {
 }
 
 
-export {createApplication, getApplication, getApplications, testAuth, patchApplication}
+export {createApplication, getApplication, getApplications, patchApplication}
