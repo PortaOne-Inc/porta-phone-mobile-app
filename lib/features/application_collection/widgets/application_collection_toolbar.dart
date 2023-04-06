@@ -25,7 +25,7 @@ class ApplicationCollectionToolbar extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              context.l10n.feature_vendor_manager_title,
+              context.l10n.feature_applications_title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),

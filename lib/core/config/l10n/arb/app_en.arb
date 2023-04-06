@@ -109,8 +109,7 @@
   "feature_vendor_use_current_theme": "Use as current for vendor",
   "feature_vendor_create_Validation_description_to_short": "Description to short",
   "feature_vendor_create_Validation_description_to_long": "Description to long",
-  "feature_vendor_create": "Create vendor",
-  "feature_vendor_create_Text_uuid": "UUID",
+  "feature_application_create": "Create application",
   "feature_application_create_Text_no_applications_yet_title": "No applications yet",
   "feature_application_create_Text_no_applications_yet_description": "You have not created any apps yet.",
   "feature_vendor_create_Text_new_vendor_theme": "New vendor theme",
@@ -120,7 +119,7 @@
   "feature_vendor_no_themes": "No themes yet",
   "feature_vendor_Text_butWeCan": "but we can",
   "feature_vendor_Text_or": "Or",
-  "feature_vendor_manager_title": "Vendor manager",
+  "feature_applications_title": "Applications",
   "common_not_implemented": "Not implemented",
   "configurator_common_description": "Description",
   "@locale_default": {

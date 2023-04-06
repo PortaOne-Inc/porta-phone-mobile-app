@@ -51,7 +51,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                       onPressed: () => _createApplication(),
                       title: context.l10n.feature_application_create_Text_no_applications_yet_title,
                       description: context.l10n.feature_application_create_Text_no_applications_yet_description,
-                      button: context.l10n.feature_vendor_create,
+                      button: context.l10n.feature_application_create,
                     ),
                     Visibility(
                       visible: state.applications.isNotEmpty && !state.isProgress,
@@ -74,7 +74,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                     Visibility(
                       visible: state.applications.isNotEmpty && !state.isProgress,
                       child: Button(
-                        title: context.l10n.feature_vendor_create,
+                        title: context.l10n.feature_application_create,
                         onPressed: () => _createApplication(),
                       ),
                     ),
