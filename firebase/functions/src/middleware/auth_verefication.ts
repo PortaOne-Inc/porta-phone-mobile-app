@@ -1,6 +1,5 @@
 import {functions, admin} from '../config/firebase'
 
-
 async function authorizationMiddleware(
     req: functions.Request,
     res: functions.Response,
