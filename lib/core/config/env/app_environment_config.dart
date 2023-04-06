@@ -9,4 +9,9 @@ class EnvironmentConfig {
     'ENV',
     defaultValue: Environment.prod,
   );
+
+  static const APP_NAME = String.fromEnvironment(
+    'APP_NAME',
+    defaultValue: 'Webtrit configurator',
+  );
 }
