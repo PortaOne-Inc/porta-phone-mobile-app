@@ -14,28 +14,28 @@ abstract class AppRoutInfo {
     path: '/',
   );
   static const applicationCollection = RouteData(
-    name: 'application/collection',
-    path: '/application/collection',
+    name: 'applications',
+    path: '/applications',
   );
   static const applicationCreate = RouteData(
-    name: 'application/create',
-    path: '/application/create',
+    name: 'applications/create',
+    path: '/applications/create',
   );
   static const applicationEdit = RouteData(
     name: 'applications/edit',
     path: '/applications/:$keyApplicationId/edit',
   );
   static const themes = RouteData(
-    name: 'theme/collection',
-    path: '/application/:$keyApplicationId/theme/collection',
+    name: 'themes',
+    path: '/applications/:$keyApplicationId/themes',
   );
   static const themesCreate = RouteData(
-    name: 'themesCreate',
-    path: '/application/:$keyApplicationId',
+    name: 'themes/create',
+    path: '/applications/:$keyApplicationId',
   );
   static const themesEdit = RouteData(
-    name: 'themesEdit',
-    path: '/application/:$keyApplicationId/theme/:$keyThemeId',
+    name: 'themes/edit',
+    path: '/applications/:$keyApplicationId/themes/:$keyThemeId',
   );
 
   static const String keyApplicationId = 'applicationId';
