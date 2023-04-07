@@ -27,7 +27,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
 
   final String applicationId;
   final UsecaseThemeGetAll getThemesUseCase;
-  final SetThemeForApplicationUseCase makeThemeAsDefaultUseCase;
+  final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseThemeCreate createThemeUseCase;
   final UsecaseThemeGetTemplate getTemplateThemeUseCase;
@@ -41,7 +41,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   }
 
   void tryMakeThemeAsDefault(ThemeModel themeModel) async {
-    await makeThemeAsDefaultUseCase.execute(applicationID: applicationId, themeModel: themeModel);
+    makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
   }
 
   void _tyGetThemes() async {
