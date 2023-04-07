@@ -14,10 +14,18 @@ _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
       theme: json['theme'] as String?,
     );
 
-Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'platformIdentifier': instance.platformIdentifier,
-      'theme': instance.theme,
-    };
+Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('name', instance.name);
+  writeNotNull('platformIdentifier', instance.platformIdentifier);
+  writeNotNull('theme', instance.theme);
+  return val;
+}

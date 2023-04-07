@@ -130,7 +130,8 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_ApplicationDTO implements _ApplicationDTO {
   const _$_ApplicationDTO(
       {this.id, this.name, this.platformIdentifier, this.theme});
