@@ -13,10 +13,10 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
-  final Mapper<ThemeDTO?, AppConfigurationModel> themeMapper;
+  final Mapper<ThemeDTO?, ThemeModel> themeMapper;
 
   @override
-  FutureOr<void> execute({required String applicationID, required AppConfigurationModel themeModel}) async {
+  FutureOr<void> execute({required String applicationID, required ThemeModel themeModel}) async {
     final uid = await authRepository.getUserUID();
     final applications = await applicationRepository.getUserApplications(uid!);
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);

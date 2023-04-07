@@ -9,10 +9,10 @@ class ThemePropertyState {
 
   final ThemeNameInput nameField;
 
-  final AppConfigurationModel theme;
+  final ThemeModel theme;
 
   ThemePropertyState copyWith({
-    final AppConfigurationModel? theme,
+    final ThemeModel? theme,
     final FocusModel? focusGroup,
     final ThemeNameInput? nameField,
   }) {

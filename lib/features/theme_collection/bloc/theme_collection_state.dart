@@ -3,25 +3,25 @@ part of 'theme_collection_cubit.dart';
 @freezed
 class ThemeCollectionState with _$ThemeCollectionState {
   factory ThemeCollectionState({
-    @Default([]) List<AppConfigurationModel> themes,
+    @Default([]) List<ThemeModel> themes,
   }) = _ThemeCollectionState;
 
   factory ThemeCollectionState.progress({
-    @Default([]) List<AppConfigurationModel> themes,
+    @Default([]) List<ThemeModel> themes,
   }) = ThemeCollectionStateProgress;
 
   factory ThemeCollectionState.success({
-    @Default([]) List<AppConfigurationModel> themes,
+    @Default([]) List<ThemeModel> themes,
   }) = ThemeCollectionStateSuccess;
 
   factory ThemeCollectionState.error({
-    @Default([]) List<AppConfigurationModel> themes,
+    @Default([]) List<ThemeModel> themes,
     BaseException? error,
   }) = ThemeCollectionStateError;
 
   factory ThemeCollectionState.navigateToEditTheme({
-    @Default([]) List<AppConfigurationModel> themes,
-    AppConfigurationModel? theme,
+    @Default([]) List<ThemeModel> themes,
+    ThemeModel? theme,
     BaseException? error,
   }) = ThemeCollectionNavigateToEditTheme;
 }
@@ -32,7 +32,7 @@ extension ThemeCollectionStateGetters on ThemeCollectionState {
 
 extension _StateCopyWith on ThemeCollectionState {
   ThemeCollectionState copyWithProgress({
-    List<AppConfigurationModel>? themes,
+    List<ThemeModel>? themes,
   }) {
     return ThemeCollectionState.progress(
       themes: themes ?? this.themes,
@@ -40,8 +40,8 @@ extension _StateCopyWith on ThemeCollectionState {
   }
 
   ThemeCollectionState copyWithNavigateToEditTheme({
-    List<AppConfigurationModel>? themes,
-    AppConfigurationModel? theme,
+    List<ThemeModel>? themes,
+    ThemeModel? theme,
   }) {
     return ThemeCollectionState.navigateToEditTheme(
       themes: themes ?? this.themes,
@@ -50,7 +50,7 @@ extension _StateCopyWith on ThemeCollectionState {
   }
 
   ThemeCollectionState copyWithSuccess({
-    List<AppConfigurationModel>? themes,
+    List<ThemeModel>? themes,
   }) {
     return ThemeCollectionState.success(
       themes: themes ?? this.themes,
@@ -58,7 +58,7 @@ extension _StateCopyWith on ThemeCollectionState {
   }
 
   ThemeCollectionState copyWithError({
-    List<AppConfigurationModel>? themes,
+    List<ThemeModel>? themes,
     BaseException? error,
   }) {
     return ThemeCollectionState.error(

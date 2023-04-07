@@ -4,14 +4,14 @@ import 'package:webtrit_configurator/share/exports/exports.dart';
 import 'color_model.dart';
 import 'theme_images_model.dart';
 
-class AppConfigurationModel {
+class ThemeModel {
   final String? id;
   final String? name;
   final String? fontFamily;
   final ColorModel? colors;
   final ConfiguratorImagesSetting? images;
 
-  AppConfigurationModel({
+  ThemeModel({
     this.id,
     this.name,
     this.fontFamily,
@@ -39,14 +39,14 @@ class AppConfigurationModel {
         .toList();
   }
 
-  AppConfigurationModel copyWith({
+  ThemeModel copyWith({
     String? id,
     String? name,
     ColorModel? colors,
     String? fontFamily,
     ConfiguratorImagesSetting? images,
   }) {
-    return AppConfigurationModel(
+    return ThemeModel(
       id: id ?? this.id,
       name: name ?? this.name,
       colors: colors ?? this.colors,

@@ -32,7 +32,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   final UsecaseThemeCreate createThemeUseCase;
   final UsecaseThemeGetTemplate getTemplateThemeUseCase;
 
-  void tryDeleteTheme(AppConfigurationModel themeModel) async {
+  void tryDeleteTheme(ThemeModel themeModel) async {
     try {
       await _deleteTheme(themeModel);
     } on BaseException catch (e) {
@@ -40,7 +40,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     }
   }
 
-  void tryMakeThemeAsDefault(AppConfigurationModel themeModel) async {
+  void tryMakeThemeAsDefault(ThemeModel themeModel) async {
     await makeThemeAsDefaultUseCase.execute(applicationID: applicationId, themeModel: themeModel);
   }
 
@@ -58,7 +58,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     emit(state.copyWithSuccess(themes: themes));
   }
 
-  Future _deleteTheme(AppConfigurationModel themeModel) async {
+  Future _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWithProgress());
     await deleteThemeUseCase.execute(themeModel: themeModel, applicationId: applicationId);
     _getThemes();

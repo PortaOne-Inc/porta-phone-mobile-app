@@ -4,7 +4,7 @@ import '../../entity.dart';
 
 @Injectable(as: Mapper<ApplicationDTO, ApplicationModel>)
 class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
-  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
+  final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   VendorMapper(this.mapper);
 

@@ -16,13 +16,13 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
-  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
+  final Mapper<ThemeDTO?, ThemeModel?> mapper;
   final UsecaseThemeUploadImage uploadImage;
 
   @override
-  Future<AppConfigurationModel> execute({
+  Future<ThemeModel> execute({
     required String applicationId,
-    required AppConfigurationModel themeModel,
+    required ThemeModel themeModel,
   }) async {
     final uid = await authRepository.getUserUID();
     final dtoTheme = mapper.mapToDto(themeModel);

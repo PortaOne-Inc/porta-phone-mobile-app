@@ -16,41 +16,41 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ThemeCollectionState {
-  List<AppConfigurationModel> get themes => throw _privateConstructorUsedError;
+  List<ThemeModel> get themes => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) =>
@@ -98,7 +98,7 @@ abstract class $ThemeCollectionStateCopyWith<$Res> {
           $Res Function(ThemeCollectionState) then) =
       _$ThemeCollectionStateCopyWithImpl<$Res, ThemeCollectionState>;
   @useResult
-  $Res call({List<AppConfigurationModel> themes});
+  $Res call({List<ThemeModel> themes});
 }
 
 /// @nodoc
@@ -121,7 +121,7 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
       themes: null == themes
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
     ) as $Val);
   }
 }
@@ -134,7 +134,7 @@ abstract class _$$_ThemeCollectionStateCopyWith<$Res>
       __$$_ThemeCollectionStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<AppConfigurationModel> themes});
+  $Res call({List<ThemeModel> themes});
 }
 
 /// @nodoc
@@ -154,7 +154,7 @@ class __$$_ThemeCollectionStateCopyWithImpl<$Res>
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
     ));
   }
 }
@@ -162,13 +162,13 @@ class __$$_ThemeCollectionStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ThemeCollectionState implements _ThemeCollectionState {
-  _$_ThemeCollectionState({final List<AppConfigurationModel> themes = const []})
+  _$_ThemeCollectionState({final List<ThemeModel> themes = const []})
       : _themes = themes;
 
-  final List<AppConfigurationModel> _themes;
+  final List<ThemeModel> _themes;
   @override
   @JsonKey()
-  List<AppConfigurationModel> get themes {
+  List<ThemeModel> get themes {
     if (_themes is EqualUnmodifiableListView) return _themes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_themes);
@@ -201,14 +201,14 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return $default(themes);
@@ -217,13 +217,13 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return $default?.call(themes);
@@ -232,13 +232,13 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -293,11 +293,11 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
 }
 
 abstract class _ThemeCollectionState implements ThemeCollectionState {
-  factory _ThemeCollectionState({final List<AppConfigurationModel> themes}) =
+  factory _ThemeCollectionState({final List<ThemeModel> themes}) =
       _$_ThemeCollectionState;
 
   @override
-  List<AppConfigurationModel> get themes;
+  List<ThemeModel> get themes;
   @override
   @JsonKey(ignore: true)
   _$$_ThemeCollectionStateCopyWith<_$_ThemeCollectionState> get copyWith =>
@@ -313,7 +313,7 @@ abstract class _$$ThemeCollectionStateProgressCopyWith<$Res>
       __$$ThemeCollectionStateProgressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<AppConfigurationModel> themes});
+  $Res call({List<ThemeModel> themes});
 }
 
 /// @nodoc
@@ -335,7 +335,7 @@ class __$$ThemeCollectionStateProgressCopyWithImpl<$Res>
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
     ));
   }
 }
@@ -344,13 +344,13 @@ class __$$ThemeCollectionStateProgressCopyWithImpl<$Res>
 
 class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
   _$ThemeCollectionStateProgress(
-      {final List<AppConfigurationModel> themes = const []})
+      {final List<ThemeModel> themes = const []})
       : _themes = themes;
 
-  final List<AppConfigurationModel> _themes;
+  final List<ThemeModel> _themes;
   @override
   @JsonKey()
-  List<AppConfigurationModel> get themes {
+  List<ThemeModel> get themes {
     if (_themes is EqualUnmodifiableListView) return _themes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_themes);
@@ -383,14 +383,14 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return progress(themes);
@@ -399,13 +399,13 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return progress?.call(themes);
@@ -414,13 +414,13 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -476,11 +476,11 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
 
 abstract class ThemeCollectionStateProgress implements ThemeCollectionState {
   factory ThemeCollectionStateProgress(
-          {final List<AppConfigurationModel> themes}) =
+          {final List<ThemeModel> themes}) =
       _$ThemeCollectionStateProgress;
 
   @override
-  List<AppConfigurationModel> get themes;
+  List<ThemeModel> get themes;
   @override
   @JsonKey(ignore: true)
   _$$ThemeCollectionStateProgressCopyWith<_$ThemeCollectionStateProgress>
@@ -496,7 +496,7 @@ abstract class _$$ThemeCollectionStateSuccessCopyWith<$Res>
       __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<AppConfigurationModel> themes});
+  $Res call({List<ThemeModel> themes});
 }
 
 /// @nodoc
@@ -518,7 +518,7 @@ class __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
     ));
   }
 }
@@ -527,13 +527,13 @@ class __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>
 
 class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
   _$ThemeCollectionStateSuccess(
-      {final List<AppConfigurationModel> themes = const []})
+      {final List<ThemeModel> themes = const []})
       : _themes = themes;
 
-  final List<AppConfigurationModel> _themes;
+  final List<ThemeModel> _themes;
   @override
   @JsonKey()
-  List<AppConfigurationModel> get themes {
+  List<ThemeModel> get themes {
     if (_themes is EqualUnmodifiableListView) return _themes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_themes);
@@ -566,14 +566,14 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return success(themes);
@@ -582,13 +582,13 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return success?.call(themes);
@@ -597,13 +597,13 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -659,11 +659,11 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
 
 abstract class ThemeCollectionStateSuccess implements ThemeCollectionState {
   factory ThemeCollectionStateSuccess(
-          {final List<AppConfigurationModel> themes}) =
+          {final List<ThemeModel> themes}) =
       _$ThemeCollectionStateSuccess;
 
   @override
-  List<AppConfigurationModel> get themes;
+  List<ThemeModel> get themes;
   @override
   @JsonKey(ignore: true)
   _$$ThemeCollectionStateSuccessCopyWith<_$ThemeCollectionStateSuccess>
@@ -679,7 +679,7 @@ abstract class _$$ThemeCollectionStateErrorCopyWith<$Res>
       __$$ThemeCollectionStateErrorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<AppConfigurationModel> themes, BaseException? error});
+  $Res call({List<ThemeModel> themes, BaseException? error});
 }
 
 /// @nodoc
@@ -701,7 +701,7 @@ class __$$ThemeCollectionStateErrorCopyWithImpl<$Res>
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -714,13 +714,13 @@ class __$$ThemeCollectionStateErrorCopyWithImpl<$Res>
 
 class _$ThemeCollectionStateError implements ThemeCollectionStateError {
   _$ThemeCollectionStateError(
-      {final List<AppConfigurationModel> themes = const [], this.error})
+      {final List<ThemeModel> themes = const [], this.error})
       : _themes = themes;
 
-  final List<AppConfigurationModel> _themes;
+  final List<ThemeModel> _themes;
   @override
   @JsonKey()
-  List<AppConfigurationModel> get themes {
+  List<ThemeModel> get themes {
     if (_themes is EqualUnmodifiableListView) return _themes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_themes);
@@ -757,14 +757,14 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return error(themes, this.error);
@@ -773,13 +773,13 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return error?.call(themes, this.error);
@@ -788,13 +788,13 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -850,11 +850,11 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
 
 abstract class ThemeCollectionStateError implements ThemeCollectionState {
   factory ThemeCollectionStateError(
-      {final List<AppConfigurationModel> themes,
+      {final List<ThemeModel> themes,
       final BaseException? error}) = _$ThemeCollectionStateError;
 
   @override
-  List<AppConfigurationModel> get themes;
+  List<ThemeModel> get themes;
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
@@ -872,8 +872,8 @@ abstract class _$$ThemeCollectionNavigateToEditThemeCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<AppConfigurationModel> themes,
-      AppConfigurationModel? theme,
+      {List<ThemeModel> themes,
+      ThemeModel? theme,
       BaseException? error});
 }
 
@@ -898,11 +898,11 @@ class __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigurationModel>,
+              as List<ThemeModel>,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
-              as AppConfigurationModel?,
+              as ThemeModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -916,22 +916,22 @@ class __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>
 class _$ThemeCollectionNavigateToEditTheme
     implements ThemeCollectionNavigateToEditTheme {
   _$ThemeCollectionNavigateToEditTheme(
-      {final List<AppConfigurationModel> themes = const [],
+      {final List<ThemeModel> themes = const [],
       this.theme,
       this.error})
       : _themes = themes;
 
-  final List<AppConfigurationModel> _themes;
+  final List<ThemeModel> _themes;
   @override
   @JsonKey()
-  List<AppConfigurationModel> get themes {
+  List<ThemeModel> get themes {
     if (_themes is EqualUnmodifiableListView) return _themes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_themes);
   }
 
   @override
-  final AppConfigurationModel? theme;
+  final ThemeModel? theme;
   @override
   final BaseException? error;
 
@@ -965,14 +965,14 @@ class _$ThemeCollectionNavigateToEditTheme
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes) $default, {
-    required TResult Function(List<AppConfigurationModel> themes) progress,
-    required TResult Function(List<AppConfigurationModel> themes) success,
+    TResult Function(List<ThemeModel> themes) $default, {
+    required TResult Function(List<ThemeModel> themes) progress,
+    required TResult Function(List<ThemeModel> themes) success,
     required TResult Function(
-            List<AppConfigurationModel> themes, BaseException? error)
+            List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)
+    required TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return navigateToEditTheme(themes, theme, this.error);
@@ -981,13 +981,13 @@ class _$ThemeCollectionNavigateToEditTheme
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<AppConfigurationModel> themes)? $default, {
-    TResult? Function(List<AppConfigurationModel> themes)? progress,
-    TResult? Function(List<AppConfigurationModel> themes)? success,
-    TResult? Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes)? $default, {
+    TResult? Function(List<ThemeModel> themes)? progress,
+    TResult? Function(List<ThemeModel> themes)? success,
+    TResult? Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult? Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return navigateToEditTheme?.call(themes, theme, this.error);
@@ -996,13 +996,13 @@ class _$ThemeCollectionNavigateToEditTheme
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<AppConfigurationModel> themes)? $default, {
-    TResult Function(List<AppConfigurationModel> themes)? progress,
-    TResult Function(List<AppConfigurationModel> themes)? success,
-    TResult Function(List<AppConfigurationModel> themes, BaseException? error)?
+    TResult Function(List<ThemeModel> themes)? $default, {
+    TResult Function(List<ThemeModel> themes)? progress,
+    TResult Function(List<ThemeModel> themes)? success,
+    TResult Function(List<ThemeModel> themes, BaseException? error)?
         error,
-    TResult Function(List<AppConfigurationModel> themes,
-            AppConfigurationModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes,
+            ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -1059,13 +1059,13 @@ class _$ThemeCollectionNavigateToEditTheme
 abstract class ThemeCollectionNavigateToEditTheme
     implements ThemeCollectionState {
   factory ThemeCollectionNavigateToEditTheme(
-      {final List<AppConfigurationModel> themes,
-      final AppConfigurationModel? theme,
+      {final List<ThemeModel> themes,
+      final ThemeModel? theme,
       final BaseException? error}) = _$ThemeCollectionNavigateToEditTheme;
 
   @override
-  List<AppConfigurationModel> get themes;
-  AppConfigurationModel? get theme;
+  List<ThemeModel> get themes;
+  ThemeModel? get theme;
   BaseException? get error;
   @override
   @JsonKey(ignore: true)

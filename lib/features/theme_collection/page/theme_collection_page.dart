@@ -99,7 +99,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
     );
   }
 
-  SliverGridDelegateWithFixedCrossAxisCount _prepareGridDelegate(List<AppConfigurationModel> apps) {
+  SliverGridDelegateWithFixedCrossAxisCount _prepareGridDelegate(List<ThemeModel> apps) {
     var crossAxisCount = apps.length;
     if (apps.isEmpty) crossAxisCount = 1;
     if (apps.length > 4) crossAxisCount = 4;
@@ -144,7 +144,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
     );
   }
 
-  void _openTheme(AppConfigurationModel model) {
+  void _openTheme(ThemeModel model) {
     GoRouter.of(context).goNamed(AppRoutInfo.themesEdit.name, params: <String, String>{
       AppRoutInfo.keyApplicationId: _allMyThemesCubit.applicationId,
       AppRoutInfo.keyThemeId: model.id!

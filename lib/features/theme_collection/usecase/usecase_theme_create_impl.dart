@@ -14,12 +14,12 @@ class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
 
   final AuthRepository authRepository;
   final ThemeRepository _themeRepository;
-  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
+  final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   @override
-  Future<AppConfigurationModel> execute({
+  Future<ThemeModel> execute({
     required String applicationId,
-    required AppConfigurationModel themeModel,
+    required ThemeModel themeModel,
   }) async {
     final uid = await authRepository.getUserUID();
     final theme = await _themeRepository.createTheme(uid!, applicationId, mapper.mapToDto(themeModel)!);

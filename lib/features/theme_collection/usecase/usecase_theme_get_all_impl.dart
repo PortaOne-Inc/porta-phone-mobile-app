@@ -17,13 +17,13 @@ class UsecaseThemeGetAllImpl extends UsecaseThemeGetAll {
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
 
-  final Mapper<ThemeDTO?, AppConfigurationModel?> mapper;
+  final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   @override
-  FutureOr<List<AppConfigurationModel>> execute({required String applicationId, int? countThemes}) async {
+  FutureOr<List<ThemeModel>> execute({required String applicationId, int? countThemes}) async {
     final uid = await authRepository.getUserUID();
     final theme = await themeRepository.getThemes(uid!, applicationId);
-    final models = mapper.mapToModels(theme).whereType<AppConfigurationModel>().toList();
+    final models = mapper.mapToModels(theme).whereType<ThemeModel>().toList();
 
     if (countThemes == null) {
       return models.toList();

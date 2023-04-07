@@ -1,4 +1,4 @@
-import 'theme/app_configuration_model.dart';
+import 'theme/theme_model.dart';
 
 class ApplicationModel {
   ApplicationModel({
@@ -11,11 +11,11 @@ class ApplicationModel {
   final String? id;
   final String? name;
   final String? platformIdentifier;
-  final AppConfigurationModel? theme;
+  final ThemeModel? theme;
 
   ApplicationModel copyWith({
     String? id,
-    AppConfigurationModel? theme,
+    ThemeModel? theme,
     String? name,
     String? platformIdentifier,
   }) {

@@ -9,11 +9,11 @@ import 'usecase_theme_get_template.dart';
 @Injectable(as: UsecaseThemeGetTemplate)
 class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
   @override
-  FutureOr<AppConfigurationModel> execute({
+  FutureOr<ThemeModel> execute({
     String? primaryColor,
     String? themeName,
   }) {
-    return AppConfigurationModel(
+    return ThemeModel(
       name: themeName,
       images: ConfiguratorImagesSetting(
         onboarding: ImageModel(),

@@ -9,7 +9,7 @@ import '../../model/models.dart';
 part 'configurator_state.dart';
 
 class ThemePropertyCubit extends Cubit<ThemePropertyState> {
-  ThemePropertyCubit() : super(ThemePropertyState(theme: AppConfigurationModel()));
+  ThemePropertyCubit() : super(ThemePropertyState(theme: ThemeModel()));
 
   void updateAppName(String name) {
     emit(state.copyWith(
@@ -34,7 +34,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void setTheme(AppConfigurationModel? theme) {
+  void setTheme(ThemeModel? theme) {
     emit(
       state.copyWith(
         theme: theme,
