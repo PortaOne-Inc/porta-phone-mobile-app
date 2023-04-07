@@ -41,7 +41,12 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   }
 
   void tryMakeThemeAsDefault(ThemeModel themeModel) async {
-    makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
+    try {
+      await makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
+    } on BaseException catch (e) {
+      emit(state.copyWithError(error: e));
+      emit(state.copyWithSuccess());
+    }
   }
 
   void _tyGetThemes() async {
