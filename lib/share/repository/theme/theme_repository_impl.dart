@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,6 +19,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> updateTheme(String userId, String applicationId, ThemeDTO? theme) async {
     try {
       return await httpDatasource.updateTheme(applicationId, theme!);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -27,6 +30,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> createTheme(String userId, String applicationId, ThemeDTO theme) async {
     try {
       return await httpDatasource.createTheme(applicationId, theme);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -36,6 +41,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<List<ThemeDTO>> getThemes(String userId, String applicationId) async {
     try {
       return httpDatasource.getThemes(applicationId);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -47,6 +54,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
       return await httpDatasource.getTheme(applicationId, themeId);
     } on NoContentException catch (_) {
       rethrow;
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -56,6 +65,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> deleteTheme(String userId, String applicationId, ThemeDTO themeDTO) async {
     try {
       return httpDatasource.deleteTheme(applicationId, themeDTO.id!);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }

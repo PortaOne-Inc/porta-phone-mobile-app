@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/core/exception/exception.dart';
@@ -17,6 +18,8 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> createApplication(String userId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.createApplications(applicationDTO);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -26,6 +29,8 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<List<ApplicationDTO>> getUserApplications(String userId) async {
     try {
       return await httpDatasource.getApplications();
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -35,6 +40,8 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> deleteApplication(String userId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.deleteApplications(applicationDTO);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -43,7 +50,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
     try {
-      return await httpDatasource.updateApplications(applicationId,applicationDTO);
+      return await httpDatasource.updateApplications(applicationId, applicationDTO);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -53,6 +62,8 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> getApplication(String id) async {
     try {
       return await httpDatasource.getApplication(id);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
     }
