@@ -11,11 +11,11 @@ class ApplicationModel {
   final String? id;
   final String? name;
   final String? platformIdentifier;
-  final ThemeModel? theme;
+  final String? theme;
 
   ApplicationModel copyWith({
     String? id,
-    ThemeModel? theme,
+    String? theme,
     String? name,
     String? platformIdentifier,
   }) {

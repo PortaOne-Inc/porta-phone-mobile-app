@@ -9,10 +9,10 @@ part 'application_dto.g.dart';
 @freezed
 class ApplicationDTO with _$ApplicationDTO {
   const factory ApplicationDTO({
-    ThemeDTO? theme,
+    String? id,
     String? name,
     String? platformIdentifier,
-    String? id,
+    String? theme,
   }) = _ApplicationDTO;
 
   factory ApplicationDTO.fromJson(Map<String, dynamic> json) => _$ApplicationDTOFromJson(json);

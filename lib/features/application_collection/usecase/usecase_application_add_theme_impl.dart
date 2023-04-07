@@ -20,7 +20,7 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
     final uid = await authRepository.getUserUID();
     final applications = await applicationRepository.getUserApplications(uid!);
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);
-    final applicationDTO = fountApplication.copyWith(theme: themeMapper.mapToDto(themeModel));
+    final applicationDTO = fountApplication.copyWith(theme: themeModel.id);
     applicationRepository.updateApplication(uid, applicationDTO);
   }
 }

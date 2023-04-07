@@ -22,11 +22,10 @@ mixin _$ThemeCollectionState {
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) =>
       throw _privateConstructorUsedError;
@@ -35,10 +34,9 @@ mixin _$ThemeCollectionState {
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) =>
       throw _privateConstructorUsedError;
@@ -47,10 +45,9 @@ mixin _$ThemeCollectionState {
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) =>
@@ -204,11 +201,10 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return $default(themes);
@@ -220,10 +216,9 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return $default?.call(themes);
@@ -235,10 +230,9 @@ class _$_ThemeCollectionState implements _ThemeCollectionState {
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -343,8 +337,7 @@ class __$$ThemeCollectionStateProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
-  _$ThemeCollectionStateProgress(
-      {final List<ThemeModel> themes = const []})
+  _$ThemeCollectionStateProgress({final List<ThemeModel> themes = const []})
       : _themes = themes;
 
   final List<ThemeModel> _themes;
@@ -386,11 +379,10 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return progress(themes);
@@ -402,10 +394,9 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return progress?.call(themes);
@@ -417,10 +408,9 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -475,8 +465,7 @@ class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
 }
 
 abstract class ThemeCollectionStateProgress implements ThemeCollectionState {
-  factory ThemeCollectionStateProgress(
-          {final List<ThemeModel> themes}) =
+  factory ThemeCollectionStateProgress({final List<ThemeModel> themes}) =
       _$ThemeCollectionStateProgress;
 
   @override
@@ -526,8 +515,7 @@ class __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
-  _$ThemeCollectionStateSuccess(
-      {final List<ThemeModel> themes = const []})
+  _$ThemeCollectionStateSuccess({final List<ThemeModel> themes = const []})
       : _themes = themes;
 
   final List<ThemeModel> _themes;
@@ -569,11 +557,10 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return success(themes);
@@ -585,10 +572,9 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return success?.call(themes);
@@ -600,10 +586,9 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -658,8 +643,7 @@ class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
 }
 
 abstract class ThemeCollectionStateSuccess implements ThemeCollectionState {
-  factory ThemeCollectionStateSuccess(
-          {final List<ThemeModel> themes}) =
+  factory ThemeCollectionStateSuccess({final List<ThemeModel> themes}) =
       _$ThemeCollectionStateSuccess;
 
   @override
@@ -760,11 +744,10 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return error(themes, this.error);
@@ -776,10 +759,9 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return error?.call(themes, this.error);
@@ -791,10 +773,9 @@ class _$ThemeCollectionStateError implements ThemeCollectionStateError {
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {
@@ -871,10 +852,7 @@ abstract class _$$ThemeCollectionNavigateToEditThemeCopyWith<$Res>
       __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<ThemeModel> themes,
-      ThemeModel? theme,
-      BaseException? error});
+  $Res call({List<ThemeModel> themes, ThemeModel? theme, BaseException? error});
 }
 
 /// @nodoc
@@ -916,9 +894,7 @@ class __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>
 class _$ThemeCollectionNavigateToEditTheme
     implements ThemeCollectionNavigateToEditTheme {
   _$ThemeCollectionNavigateToEditTheme(
-      {final List<ThemeModel> themes = const [],
-      this.theme,
-      this.error})
+      {final List<ThemeModel> themes = const [], this.theme, this.error})
       : _themes = themes;
 
   final List<ThemeModel> _themes;
@@ -968,11 +944,10 @@ class _$ThemeCollectionNavigateToEditTheme
     TResult Function(List<ThemeModel> themes) $default, {
     required TResult Function(List<ThemeModel> themes) progress,
     required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(
-            List<ThemeModel> themes, BaseException? error)
+    required TResult Function(List<ThemeModel> themes, BaseException? error)
         error,
-    required TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)
+    required TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
         navigateToEditTheme,
   }) {
     return navigateToEditTheme(themes, theme, this.error);
@@ -984,10 +959,9 @@ class _$ThemeCollectionNavigateToEditTheme
     TResult? Function(List<ThemeModel> themes)? $default, {
     TResult? Function(List<ThemeModel> themes)? progress,
     TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult? Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult? Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
   }) {
     return navigateToEditTheme?.call(themes, theme, this.error);
@@ -999,10 +973,9 @@ class _$ThemeCollectionNavigateToEditTheme
     TResult Function(List<ThemeModel> themes)? $default, {
     TResult Function(List<ThemeModel> themes)? progress,
     TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)?
-        error,
-    TResult Function(List<ThemeModel> themes,
-            ThemeModel? theme, BaseException? error)?
+    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
+    TResult Function(
+            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
         navigateToEditTheme,
     required TResult orElse(),
   }) {

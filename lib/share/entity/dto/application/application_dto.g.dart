@@ -8,18 +8,16 @@ part of 'application_dto.dart';
 
 _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
     _$_ApplicationDTO(
-      theme: json['theme'] == null
-          ? null
-          : ThemeDTO.fromJson(json['theme'] as Map<String, dynamic>),
+      id: json['id'] as String?,
       name: json['name'] as String?,
       platformIdentifier: json['platformIdentifier'] as String?,
-      id: json['id'] as String?,
+      theme: json['theme'] as String?,
     );
 
 Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) =>
     <String, dynamic>{
-      'theme': instance.theme,
+      'id': instance.id,
       'name': instance.name,
       'platformIdentifier': instance.platformIdentifier,
-      'id': instance.id,
+      'theme': instance.theme,
     };

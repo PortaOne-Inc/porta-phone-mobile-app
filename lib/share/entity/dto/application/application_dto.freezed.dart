@@ -20,10 +20,10 @@ ApplicationDTO _$ApplicationDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ApplicationDTO {
-  ThemeDTO? get theme => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
-  String? get id => throw _privateConstructorUsedError;
+  String? get theme => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +38,7 @@ abstract class $ApplicationDTOCopyWith<$Res> {
       _$ApplicationDTOCopyWithImpl<$Res, ApplicationDTO>;
   @useResult
   $Res call(
-      {ThemeDTO? theme, String? name, String? platformIdentifier, String? id});
-
-  $ThemeDTOCopyWith<$Res>? get theme;
+      {String? id, String? name, String? platformIdentifier, String? theme});
 }
 
 /// @nodoc
@@ -56,16 +54,16 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
+    Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
-    Object? id = freezed,
+    Object? theme = freezed,
   }) {
     return _then(_value.copyWith(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeDTO?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -74,23 +72,11 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ThemeDTOCopyWith<$Res>? get theme {
-    if (_value.theme == null) {
-      return null;
-    }
-
-    return $ThemeDTOCopyWith<$Res>(_value.theme!, (value) {
-      return _then(_value.copyWith(theme: value) as $Val);
-    });
   }
 }
 
@@ -103,10 +89,7 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ThemeDTO? theme, String? name, String? platformIdentifier, String? id});
-
-  @override
-  $ThemeDTOCopyWith<$Res>? get theme;
+      {String? id, String? name, String? platformIdentifier, String? theme});
 }
 
 /// @nodoc
@@ -120,16 +103,16 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
+    Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
-    Object? id = freezed,
+    Object? theme = freezed,
   }) {
     return _then(_$_ApplicationDTO(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeDTO?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -138,9 +121,9 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -150,23 +133,23 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ApplicationDTO implements _ApplicationDTO {
   const _$_ApplicationDTO(
-      {this.theme, this.name, this.platformIdentifier, this.id});
+      {this.id, this.name, this.platformIdentifier, this.theme});
 
   factory _$_ApplicationDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ApplicationDTOFromJson(json);
 
   @override
-  final ThemeDTO? theme;
+  final String? id;
   @override
   final String? name;
   @override
   final String? platformIdentifier;
   @override
-  final String? id;
+  final String? theme;
 
   @override
   String toString() {
-    return 'ApplicationDTO(theme: $theme, name: $name, platformIdentifier: $platformIdentifier, id: $id)';
+    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme)';
   }
 
   @override
@@ -174,17 +157,17 @@ class _$_ApplicationDTO implements _ApplicationDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ApplicationDTO &&
-            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.theme, theme) || other.theme == theme));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, theme, name, platformIdentifier, id);
+      Object.hash(runtimeType, id, name, platformIdentifier, theme);
 
   @JsonKey(ignore: true)
   @override
@@ -202,22 +185,22 @@ class _$_ApplicationDTO implements _ApplicationDTO {
 
 abstract class _ApplicationDTO implements ApplicationDTO {
   const factory _ApplicationDTO(
-      {final ThemeDTO? theme,
+      {final String? id,
       final String? name,
       final String? platformIdentifier,
-      final String? id}) = _$_ApplicationDTO;
+      final String? theme}) = _$_ApplicationDTO;
 
   factory _ApplicationDTO.fromJson(Map<String, dynamic> json) =
       _$_ApplicationDTO.fromJson;
 
   @override
-  ThemeDTO? get theme;
+  String? get id;
   @override
   String? get name;
   @override
   String? get platformIdentifier;
   @override
-  String? get id;
+  String? get theme;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationDTOCopyWith<_$_ApplicationDTO> get copyWith =>

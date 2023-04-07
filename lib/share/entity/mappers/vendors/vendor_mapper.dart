@@ -13,7 +13,7 @@ class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
     return ApplicationDTO(
       name: model.name,
       id: model.id,
-      theme: mapper.mapToDto(model.theme),
+      theme: model.theme,
       platformIdentifier: model.platformIdentifier,
     );
   }
@@ -23,7 +23,7 @@ class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
     return ApplicationModel(
       name: dto.name,
       id: dto.id,
-      theme: mapper.mapToModel(dto.theme),
+      theme: dto.theme,
       platformIdentifier: dto.platformIdentifier,
     );
   }
