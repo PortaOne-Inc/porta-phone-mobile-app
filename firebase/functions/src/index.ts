@@ -3,17 +3,14 @@ import * as express from 'express'
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 
-import {getThemes, createTheme, updateTheme, getTheme, deleteTheme} from './controllers/themes'
-import {
-    createApplication,
-    getApplications,
-    getApplication,
-    patchApplication
-} from './controllers/applications'
+import * as applicationValidation from './middleware/validation/application_validation'
+import * as themeValidation from './middleware/validation/theme_validation'
+
+import * as themeController from './controllers/themes'
+import * as applicationController from './controllers/applications'
+
 import {authorizationMiddleware} from './middleware/auth_verefication'
-import {validateCreateApplication} from './middleware/validation/application_validation'
-import {validateCreateTheme} from "./middleware/validation/theme_validation";
-import {bodyIdIgnore} from "./middleware/body_id_ignore";
+import {bodyIdIgnoreMiddleware} from "./middleware/body_id_ignore";
 
 const api = express();
 const router = express.Router();
@@ -21,17 +18,35 @@ const router = express.Router();
 router.use(cors());
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
-router.use(bodyIdIgnore);
+router.use(bodyIdIgnoreMiddleware);
 
-router.get('/applications', authorizationMiddleware, (req, res) => getApplications(req, res));
-router.post('/applications', authorizationMiddleware, validateCreateApplication, (req, res) => createApplication(req, res));
-router.get('/applications/:applicationId', (req, res) => getApplication(req, res));
-router.patch('/applications/:applicationId', authorizationMiddleware, validateCreateApplication, (req, res) => patchApplication(req, res));
-router.get('/applications/:applicationId/themes', (req, res) => getThemes(req, res));
-router.post('/applications/:applicationId/themes', authorizationMiddleware, validateCreateTheme, (req, res) => createTheme(req, res));
-router.patch('/applications/:applicationId/themes/:themeId', authorizationMiddleware, validateCreateTheme, (req, res) => updateTheme(req, res));
-router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddleware, (req, res) => deleteTheme(req, res));
-router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) => getTheme(req, res));
+router.get('/applications',
+    authorizationMiddleware, (req, res) =>
+        applicationController.getApplications(req, res));
+router.post('/applications',
+    authorizationMiddleware, applicationValidation.validateCreateApplication, (req, res) =>
+        applicationController.createApplication(req, res));
+router.get('/applications/:applicationId',
+    (req, res) =>
+        applicationController.getApplication(req, res));
+router.patch('/applications/:applicationId',
+    authorizationMiddleware, applicationValidation.validatePathApplication, (req, res) =>
+        applicationController.patchApplication(req, res));
+router.get('/applications/:applicationId/themes',
+    (req, res) =>
+        themeController.getThemes(req, res));
+router.post('/applications/:applicationId/themes',
+    authorizationMiddleware, themeValidation.validateCreateTheme, (req, res) =>
+        themeController.createTheme(req, res));
+router.patch('/applications/:applicationId/themes/:themeId',
+    authorizationMiddleware, themeValidation.validateCreateTheme, (req, res) =>
+        themeController.updateTheme(req, res));
+router.delete('/applications/:applicationId/themes/:themeId',
+    authorizationMiddleware, (req, res) =>
+        themeController.deleteTheme(req, res));
+router.get('/applications/:applicationId/themes/:themeId',
+    themeValidation.validateCreateTheme, (req, res) =>
+        themeController.getTheme(req, res));
 
 api.use('/v1', router);
 exports.api = functions.https.onRequest(api)

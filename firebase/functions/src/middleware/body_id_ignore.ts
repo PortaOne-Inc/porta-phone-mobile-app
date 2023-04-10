@@ -1,6 +1,6 @@
 import {functions} from '../config/firebase'
 
-async function bodyIdIgnore(
+async function bodyIdIgnoreMiddleware(
     req: functions.Request,
     res: functions.Response,
     next: () => void
@@ -10,4 +10,4 @@ async function bodyIdIgnore(
     return res;
 }
 
-export {bodyIdIgnore}
+export {bodyIdIgnoreMiddleware}
