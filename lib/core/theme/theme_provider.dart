@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:webtrit_phone/theme/theme.dart';
 
-import '../theme/theme.dart';
+import 'theme.dart';
 
 class ThemeProvider extends InheritedWidget {
   const ThemeProvider({

@@ -7,9 +7,7 @@ import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import 'package:webtrit_configurator/core/env/env.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-
-import '../providers/providers.dart';
-import '../theme/theme.dart';
+import 'package:webtrit_configurator/core/theme/theme.dart';
 
 import 'route/app_route.dart';
 
