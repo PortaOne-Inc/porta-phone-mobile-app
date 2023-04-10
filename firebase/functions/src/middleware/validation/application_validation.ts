@@ -7,7 +7,6 @@ function validateCreateApplication(req: Request, res: Response, next: () => void
         name: Joi.string().required(),
         theme: Joi.string().allow(null),
         platformIdentifier: Joi.string().required(),
-        defaultTheme: Joi.string().allow(null),
     }).validate(req.body);
 
     if (error) {
@@ -18,4 +17,19 @@ function validateCreateApplication(req: Request, res: Response, next: () => void
     return;
 }
 
-export {validateCreateApplication};
+function validatePathApplication(req: Request, res: Response, next: () => void) {
+    const {error} = Joi.object({
+        id: Joi.string().optional(),
+        name: Joi.string().optional(),
+        theme: Joi.string().allow(null),
+    }).validate(req.body);
+
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
+    next();
+    return;
+}
+
+export {validateCreateApplication, validatePathApplication};
