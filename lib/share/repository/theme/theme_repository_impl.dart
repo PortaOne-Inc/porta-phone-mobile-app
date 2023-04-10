@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/core/exception/exception.dart';
+import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 @Injectable(as: ThemeRepository)

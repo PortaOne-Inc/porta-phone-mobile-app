@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/core/exception/exception.dart';
+import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 @Injectable(as: AuthRepository)

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
-import 'package:webtrit_configurator/core/exception/exception.dart';
+import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import '../usecase/usecase.dart';
