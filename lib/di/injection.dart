@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import '../env/app_environment.dart';
+import '../core/env/app_environment.dart';
 import 'injection.config.dart';
 
 late GetIt _getIt;

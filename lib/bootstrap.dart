@@ -13,7 +13,7 @@ import 'package:webtrit_phone/data/device_info.dart';
 import 'package:webtrit_phone/data/package_info.dart';
 import 'package:webtrit_phone/data/secure_storage.dart';
 
-import 'package:webtrit_configurator/core/di/di.dart';
+import 'package:webtrit_configurator/di/di.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
   await runZonedGuarded(
