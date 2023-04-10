@@ -5,11 +5,11 @@ import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
 
-import 'package:webtrit_configurator/core/config/env/env.dart';
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/env/env.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
-import '../../providers/providers.dart';
-import '../../theme/theme.dart';
+import '../providers/providers.dart';
+import '../theme/theme.dart';
 
 import 'route/app_route.dart';
 

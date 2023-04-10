@@ -11,7 +11,7 @@ import 'package:webtrit_configurator/features/application_edit/application_edit.
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
 
-import '../../../widgets/page/page.dart';
+import '../../widgets/page/page.dart';
 
 import 'app_route_consts.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart' as color_picker;
 
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
 class ColorPicker extends StatefulWidget {
   const ColorPicker({

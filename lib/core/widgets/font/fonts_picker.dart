@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:webtrit_configurator/core/assets/assets.dart';
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
 import 'fonts.dart';
 

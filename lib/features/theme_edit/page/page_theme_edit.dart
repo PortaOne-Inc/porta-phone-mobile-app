@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin_messages.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 

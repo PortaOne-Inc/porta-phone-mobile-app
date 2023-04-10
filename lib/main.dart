@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/core/config/app/application.dart';
+import 'package:webtrit_configurator/core/app/application.dart';
 
 import 'package:get_it/get_it.dart';
 

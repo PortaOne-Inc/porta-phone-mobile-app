@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/core/config/env/app_environment.dart';
+import 'package:webtrit_configurator/core/env/app_environment.dart';
 import 'package:webtrit_configurator/share/entity/dto/dto.dart';
 
 @singleton

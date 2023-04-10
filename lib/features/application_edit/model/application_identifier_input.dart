@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:formz/formz.dart';
-import 'package:webtrit_configurator/core/config/l10n/l10n.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
 enum ApplicationIdentifierValidationError {
   blank,
