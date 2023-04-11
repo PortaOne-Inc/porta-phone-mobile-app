@@ -495,9 +495,11 @@ class PageThemeProperty extends StatelessWidget {
   }
 
   Future<ImageModel> _selectImage() async {
-    final imageInfo = await ImagePickerWeb.getImageInfo;
-    final mime = UtilityImage.getMimeFromBase64(imageInfo?.base64WithScheme);
     final extension = path.extension(imageInfo?.fileName ?? '');
+    final ImagePicker picker = ImagePicker();
+    final file = await picker.pickImage(source: ImageSource.gallery, requestFullMetadata: true);
+    final bytes = await file!.readAsBytes();
+    final base64 = uint8ListTob64(bytes);
 
     final image = ImageModel(
       data: imageInfo?.base64 ?? '',
