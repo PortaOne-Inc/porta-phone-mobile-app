@@ -56,6 +56,7 @@
   "feature_theme_create": "Create",
   "feature_theme_collection_Toolbar_title": "Theme collections",
   "feature_theme_create_Text_create_or_select_theme": "Create or select your theme",
+  "feature_theme_edit_Validation_image_format": "The {format} is not available for this field",
   "feature_theme_edit_Text_no_themes_yet_title": "No themes yet",
   "feature_theme_edit_Text_no_themes_yet_description": "You have not created any themes yet.",
   "feature_theme_edit_Validation_to_short": "Theme name to short",

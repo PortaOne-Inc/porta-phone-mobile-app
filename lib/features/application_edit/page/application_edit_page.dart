@@ -21,7 +21,7 @@ class ApplicationEditPage extends StatefulWidget {
   State<ApplicationEditPage> createState() => _ApplicationEditPageState();
 }
 
-class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMessages, MixinMessages {
+class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMessages {
   late final ApplicationEditCubit _bloc = BlocProvider.of<ApplicationEditCubit>(context);
 
   final _nameEditController = TextEditingController();

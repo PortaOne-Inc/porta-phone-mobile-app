@@ -4,6 +4,17 @@ import 'package:webtrit_configurator/core/widgets/image/image.dart';
 
 import 'package:webtrit_configurator/share/entity/models/theme/image_model.dart';
 
+enum AvailableFormat {
+  svg(format: 'image/svg+xml'),
+  png(format: 'image/png');
+
+  const AvailableFormat({
+    required this.format,
+  });
+
+  final String format;
+}
+
 class SelectedImage extends StatelessWidget {
   const SelectedImage({
     super.key,
@@ -11,13 +22,17 @@ class SelectedImage extends StatelessWidget {
     required this.name,
     required this.onTap,
     required this.onRemove,
+    required this.availableFormat,
   });
 
-  final ImageModel? image;
   final String name;
-  final Function() onTap;
-  final Function() onRemove;
   final Size _size = const Size.square(200);
+
+  final ImageModel? image;
+  final AvailableFormat availableFormat;
+
+  final Function(AvailableFormat format) onTap;
+  final Function() onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +51,7 @@ class SelectedImage extends StatelessWidget {
             ImageResource(
               imageModel: image,
               size: _size,
-              onTap: onTap,
+              onTap: () => onTap(availableFormat),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -51,28 +66,46 @@ class SelectedImage extends StatelessWidget {
                 ),
               ),
             ),
-            Visibility(
-              visible: (image?.isAvailable ?? false),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  child: Container(
-                    margin: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(24),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      margin: const EdgeInsets.all(4),
+                      child: Text(
+                        availableFormat.name.toUpperCase(),
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                       ),
                     ),
-                    child: const Icon(
-                      Icons.remove_circle,
-                      color: Colors.red,
+                    onTap: () => onRemove(),
+                  ),
+                  Visibility(
+                    visible: (image?.isAvailable ?? false),
+                    child: GestureDetector(
+                      child: Container(
+                        margin: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black12),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(24),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.remove_circle,
+                          color: Colors.red,
+                        ),
+                      ),
+                      onTap: () => onRemove(),
                     ),
                   ),
-                  onTap: () => onRemove(),
-                ),
+                ],
               ),
-            ),
+            )
           ],
         ),
       ),
