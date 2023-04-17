@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/core/extension/extension.dart';
-import 'package:webtrit_configurator/core/utility/utility.dart';
-
+import '../../../extension/extension.dart';
+import '../../../utility/utility.dart';
 import '../../dto/dto.dart';
 import '../../models/theme/theme.dart';
 import '../mapper.dart';

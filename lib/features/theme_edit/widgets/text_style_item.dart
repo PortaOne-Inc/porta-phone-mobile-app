@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-import 'package:webtrit_configurator/core/widgets/slider/slider_property_control.dart';
+import 'package:webtrit_configurator/share/widgets/slider/slider_property_control.dart';
 
 class TextStyleItem extends StatelessWidget {
   const TextStyleItem({

@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/app/application.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-import 'package:webtrit_configurator/core/mixin/mixin.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
+import 'package:webtrit_configurator/share/mixin/mixin.dart';
+import 'package:webtrit_configurator/share/widgets/widgets.dart';
 import 'package:webtrit_configurator/features/auth/extensions/extensions.dart';
 
 import '../bloc/bloc.dart';

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:webtrit_configurator/core/app/route/route.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
-import '../../app/application.dart';
-
 class NotFoundPage extends StatelessWidget {
-  const NotFoundPage({super.key});
+  const NotFoundPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

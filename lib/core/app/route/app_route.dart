@@ -10,8 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:webtrit_configurator/features/application_edit/application_edit.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
-
-import '../../widgets/page/page.dart';
+import 'package:webtrit_configurator/share/widgets/page/page.dart';
 
 import 'app_route_consts.dart';
 
@@ -124,7 +123,7 @@ class AppRoute {
             ])
       ],
       redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
-      errorBuilder: (context, state) => NotFoundPage(),
+      errorBuilder: (context, state) => const NotFoundPage(),
       routerNeglect: false,
       initialLocation: AppRoutInfo.applicationCollection.path,
     );
