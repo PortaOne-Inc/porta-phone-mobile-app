@@ -28,8 +28,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     return Navigator(
       onGenerateRoute: (routeSettings) {
         return MaterialPageRoute(
-          builder: (context) => BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
-            listener: (BuildContext context, ThemePropertyState state) => _listenConfiguratorState(state),
+          builder: (context) => BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
             builder: (ctx, state) => SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -509,12 +508,5 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
         useRootNavigator: false);
     if (result is Color) callback([...colors, result]);
-  }
-
-  //TODO: Check it
-  void _listenConfiguratorState(ThemePropertyState state) {
-    if (state is ConfiguratorFailure) {
-// Navigator.of(context).pushNamed(ThemesEditPage.configuratorPageAlert, arguments: state.message);
-    }
   }
 }
