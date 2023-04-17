@@ -24,5 +24,16 @@ class ImageFilterModel {
   final SupportFormat format;
   final Size? size;
 
-  String get extension => format.name;
+  String get extension => format.name.toUpperCase();
+
+  @override
+  String toString() {
+    final message = StringBuffer();
+    message.write(extension);
+    if (size != null) {
+      message.writeln();
+      message.write('${size!.width} : ${size!.height}');
+    }
+    return message.toString();
+  }
 }

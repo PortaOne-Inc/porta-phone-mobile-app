@@ -61,18 +61,21 @@ class SelectedImage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
+                  Tooltip(
+                    message: imageFilter.toString(),
                     child: Container(
                       margin: const EdgeInsets.all(4),
-                      child: Text(
-                        imageFilter.extension,
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black12),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(24),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.info_outline,
+                        color: Colors.lightBlueAccent,
                       ),
                     ),
-                    onTap: () => onRemove(),
                   ),
                   Visibility(
                     visible: (image?.isAvailable ?? false),
