@@ -15,7 +15,7 @@ class EmptyState extends StatelessWidget {
         children: [
           const SizedBox(height: 24),
           Text(
-            context.l10n.feature_vendor_no_themes,
+            context.l10n.feature_application_no_themes,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.deepPurple),
           ),
           const SizedBox(height: 40)

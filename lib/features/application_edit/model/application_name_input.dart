@@ -38,9 +38,9 @@ extension ExtensionValidationNameErrorL10n on ApplicationNameInput {
         case ApplicationNameValidationError.blank:
           return context.l10n.validationBlankError;
         case ApplicationNameValidationError.toLong:
-          return context.l10n.feature_vendor_create_Validation_description_to_long;
+          return context.l10n.feature_application_create_Validation_description_to_long;
         case ApplicationNameValidationError.toShort:
-          return context.l10n.feature_vendor_create_Validation_description_to_short;
+          return context.l10n.feature_application_create_Validation_description_to_short;
       }
     }
   }

@@ -108,7 +108,7 @@ class ItemTheme extends StatelessWidget {
                           value: _menuKeyThemeDefault,
                           padding: const EdgeInsets.all(8),
                           child: Text(
-                            context.l10n.feature_vendor_use_current_theme,
+                            context.l10n.feature_application_use_current_theme,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: Colors.deepPurple,
                                 ),

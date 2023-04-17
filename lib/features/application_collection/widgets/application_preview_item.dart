@@ -57,7 +57,7 @@ class ApplicationPreviewItem extends StatelessWidget {
                         value: _menuKeyEdit,
                         padding: const EdgeInsets.all(8),
                         child: Text(
-                          context.l10n.feature_vendor_collection_VendorPreviewItem_edit,
+                          context.l10n.feature_application_collection_ApplicationPreviewItem_edit,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -65,7 +65,7 @@ class ApplicationPreviewItem extends StatelessWidget {
                         value: _menuKeyDelete,
                         padding: const EdgeInsets.all(8),
                         child: Text(
-                          context.l10n.feature_vendor_collection_VendorPreviewItem_delete,
+                          context.l10n.feature_application_collection_ApplicationPreviewItem_delete,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
