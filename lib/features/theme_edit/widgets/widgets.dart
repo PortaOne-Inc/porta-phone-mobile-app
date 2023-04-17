@@ -1,6 +1,7 @@
 export 'background_binary_resizable_column.dart';
 export 'dialog/credentials_toolbar.dart';
 export 'drawer/drawer_preview.dart';
+export 'font/fonts.dart';
 export 'font_item.dart';
 export 'image/images.dart';
 export 'log_event.dart';
@@ -12,3 +13,4 @@ export 'preview/mock_device.dart';
 export 'preview/type_of_preview.dart';
 export 'text_style_item.dart';
 export 'themes_edit_toolbar.dart';
+export 'color/color.dart';

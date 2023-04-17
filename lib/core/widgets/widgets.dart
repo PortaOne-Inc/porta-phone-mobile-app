@@ -1,8 +1,6 @@
 export 'buttons/buttons.dart';
-export 'color/color.dart';
-export 'color/gradient_field.dart';
+export '../../features/theme_edit/widgets/color/gradient_field.dart';
 export 'dialogs/dialogs.dart';
-export 'font/fonts.dart';
 export 'image/image.dart';
 export 'page/not_found_page.dart';
 export 'placeholders/placeholders.dart';

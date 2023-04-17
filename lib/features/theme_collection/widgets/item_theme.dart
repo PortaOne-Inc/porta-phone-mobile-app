@@ -4,6 +4,8 @@ import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
+import 'used_color.dart';
+
 class ItemTheme extends StatelessWidget {
   const ItemTheme({
     super.key,
