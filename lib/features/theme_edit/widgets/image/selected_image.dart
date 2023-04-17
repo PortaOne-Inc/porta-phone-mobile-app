@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/widgets/image/image.dart';
-
 import 'package:webtrit_configurator/share/entity/models/theme/image_model.dart';
 
-enum AvailableFormat {
-  svg(format: 'image/svg+xml'),
-  png(format: 'image/png');
-
-  const AvailableFormat({
-    required this.format,
-  });
-
-  final String format;
-}
+import '../../model/models.dart';
 
 class SelectedImage extends StatelessWidget {
   const SelectedImage({
@@ -22,16 +12,16 @@ class SelectedImage extends StatelessWidget {
     required this.name,
     required this.onTap,
     required this.onRemove,
-    required this.availableFormat,
+    required this.imageFilter,
   });
 
   final String name;
   final Size _size = const Size.square(200);
 
   final ImageModel? image;
-  final AvailableFormat availableFormat;
+  final ImageFilterModel imageFilter;
 
-  final Function(AvailableFormat format) onTap;
+  final Function(ImageFilterModel format) onTap;
   final Function() onRemove;
 
   @override
@@ -51,7 +41,7 @@ class SelectedImage extends StatelessWidget {
             ImageResource(
               imageModel: image,
               size: _size,
-              onTap: () => onTap(availableFormat),
+              onTap: () => onTap(imageFilter),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -75,7 +65,7 @@ class SelectedImage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.all(4),
                       child: Text(
-                        availableFormat.name.toUpperCase(),
+                        imageFilter.extension,
                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               fontWeight: FontWeight.w800,
                               color: Theme.of(context).colorScheme.secondary,

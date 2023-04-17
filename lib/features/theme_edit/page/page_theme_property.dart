@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/core/mixin/mixin.dart';
@@ -12,8 +8,11 @@ import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
+import '../consts/consts.dart';
 import '../extension/extension.dart';
+import '../model/image_filter_model.dart';
 import '../theme_edit.dart';
+import '../utility/utility.dart';
 import '../widgets/widgets.dart';
 
 class PageThemeProperty extends StatelessWidget with MixinMessages {
@@ -285,19 +284,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             children: [
                               SelectedImage(
                                 name: context.l10n.configurator_image_resource_onboarding,
-                                availableFormat: AvailableFormat.svg,
+                                imageFilter: ImageFilterModel.svg(),
                                 image: state.theme.images?.onboarding,
-                                onTap: (AvailableFormat format) async {
-                                  try {
-                                    final image = await _selectImage(format);
-                                    bloc.updateImageResources(
-                                      bloc.state.theme.images?.copyWith(onboarding: image),
-                                    );
-                                  } on InvalidFormatImageException catch (e) {
-                                    showFailureMessage(context,
-                                        context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                  }
-                                },
+                                onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                  final image = await UtilityImage.pickImage(format);
+                                  bloc.updateImageResources(
+                                    bloc.state.theme.images?.copyWith(onboarding: image),
+                                  );
+                                }),
                                 onRemove: () => bloc.updateImageResources(
                                   bloc.state.theme.images?.copyWith(
                                     onboarding: ImageModel(),
@@ -306,19 +300,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               ),
                               SelectedImage(
                                 name: context.l10n.feature_theme_edit_Image_logo,
-                                availableFormat: AvailableFormat.svg,
+                                imageFilter: ImageFilterModel.svg(),
                                 image: state.theme.images?.applicationLogo,
-                                onTap: (AvailableFormat format) async {
-                                  try {
-                                    final image = await _selectImage(format);
-                                    bloc.updateImageResources(
-                                      bloc.state.theme.images?.copyWith(applicationLogo: image),
-                                    );
-                                  } on InvalidFormatImageException catch (e) {
-                                    showFailureMessage(context,
-                                        context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                  }
-                                },
+                                onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                  final image = await UtilityImage.pickImage(format);
+                                  bloc.updateImageResources(
+                                    bloc.state.theme.images?.copyWith(applicationLogo: image),
+                                  );
+                                }),
                                 onRemove: () => bloc.updateImageResources(
                                   bloc.state.theme.images?.copyWith(
                                     applicationLogo: ImageModel(),
@@ -345,19 +334,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             children: [
                               SelectedImage(
                                 name: 'Push notification icon',
-                                availableFormat: AvailableFormat.svg,
+                                imageFilter: ImageFilterModel.svg(),
                                 image: state.theme.images?.notificationLogo,
-                                onTap: (AvailableFormat format) async {
-                                  try {
-                                    final image = await _selectImage(format);
-                                    bloc.updateImageResources(
-                                      bloc.state.theme.images?.copyWith(notificationLogo: image),
-                                    );
-                                  } on InvalidFormatImageException catch (e) {
-                                    showFailureMessage(context,
-                                        context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                  }
-                                },
+                                onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                  final image = await UtilityImage.pickImage(format);
+                                  bloc.updateImageResources(
+                                    bloc.state.theme.images?.copyWith(notificationLogo: image),
+                                  );
+                                }),
                                 onRemove: () => bloc.updateImageResources(
                                   bloc.state.theme.images?.copyWith(
                                     notificationLogo: ImageModel(),
@@ -384,19 +368,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           children: [
                             SelectedImage(
                               name: 'Adaptive icon background',
-                              availableFormat: AvailableFormat.png,
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
                               image: state.theme.images?.adaptiveIconBackground,
-                              onTap: (AvailableFormat format) async {
-                                try {
-                                  final image = await _selectImage(format);
-                                  bloc.updateImageResources(
-                                    bloc.state.theme.images?.copyWith(adaptiveIconBackground: image),
-                                  );
-                                } on InvalidFormatImageException catch (e) {
-                                  showFailureMessage(context,
-                                      context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                }
-                              },
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.updateImageResources(
+                                  bloc.state.theme.images?.copyWith(adaptiveIconBackground: image),
+                                );
+                              }),
                               onRemove: () => bloc.updateImageResources(
                                 bloc.state.theme.images?.copyWith(
                                   adaptiveIconBackground: ImageModel(),
@@ -405,19 +384,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                             SelectedImage(
                               name: 'Adaptive icon foreground',
-                              availableFormat: AvailableFormat.png,
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
                               image: state.theme.images?.adaptiveIconForeground,
-                              onTap: (AvailableFormat format) async {
-                                try {
-                                  final image = await _selectImage(format);
-                                  bloc.updateImageResources(
-                                    bloc.state.theme.images?.copyWith(adaptiveIconForeground: image),
-                                  );
-                                } on InvalidFormatImageException catch (e) {
-                                  showFailureMessage(context,
-                                      context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                }
-                              },
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.updateImageResources(
+                                  bloc.state.theme.images?.copyWith(adaptiveIconForeground: image),
+                                );
+                              }),
                               onRemove: () => bloc.updateImageResources(
                                 bloc.state.theme.images?.copyWith(
                                   adaptiveIconForeground: ImageModel(),
@@ -426,19 +400,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                             SelectedImage(
                               name: 'Android launcher icon',
-                              availableFormat: AvailableFormat.png,
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.android)),
                               image: state.theme.images?.androidLauncherIcon,
-                              onTap: (AvailableFormat format) async {
-                                try {
-                                  final image = await _selectImage(format);
-                                  bloc.updateImageResources(
-                                    bloc.state.theme.images?.copyWith(androidLauncherIcon: image),
-                                  );
-                                } on InvalidFormatImageException catch (e) {
-                                  showFailureMessage(context,
-                                      context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                }
-                              },
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.updateImageResources(
+                                  bloc.state.theme.images?.copyWith(androidLauncherIcon: image),
+                                );
+                              }),
                               onRemove: () => bloc.updateImageResources(
                                 bloc.state.theme.images?.copyWith(
                                   androidLauncherIcon: ImageModel(),
@@ -447,19 +416,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                             SelectedImage(
                               name: 'IOS launcher icon',
-                              availableFormat: AvailableFormat.png,
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.ios)),
                               image: state.theme.images?.iosLauncherIcon,
-                              onTap: (AvailableFormat format) async {
-                                try {
-                                  final image = await _selectImage(format);
-                                  bloc.updateImageResources(
-                                    bloc.state.theme.images?.copyWith(iosLauncherIcon: image),
-                                  );
-                                } on InvalidFormatImageException catch (e) {
-                                  showFailureMessage(context,
-                                      context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                }
-                              },
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.updateImageResources(
+                                  bloc.state.theme.images?.copyWith(iosLauncherIcon: image),
+                                );
+                              }),
                               onRemove: () => bloc.updateImageResources(
                                 bloc.state.theme.images?.copyWith(
                                   iosLauncherIcon: ImageModel(),
@@ -468,19 +432,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                             SelectedImage(
                               name: 'WEB launcher icon',
-                              availableFormat: AvailableFormat.png,
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.web)),
                               image: state.theme.images?.webLauncherIcon,
-                              onTap: (AvailableFormat format) async {
-                                try {
-                                  final image = await _selectImage(format);
-                                  bloc.updateImageResources(
-                                    bloc.state.theme.images?.copyWith(webLauncherIcon: image),
-                                  );
-                                } on InvalidFormatImageException catch (e) {
-                                  showFailureMessage(context,
-                                      context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
-                                }
-                              },
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.updateImageResources(
+                                  bloc.state.theme.images?.copyWith(webLauncherIcon: image),
+                                );
+                              }),
                               onRemove: () => bloc.updateImageResources(
                                 bloc.state.theme.images?.copyWith(
                                   webLauncherIcon: ImageModel(),
@@ -501,10 +460,17 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     );
   }
 
-  void _onChangeBaseFont(
-    BuildContext context,
-    ThemePropertyCubit cubit,
-  ) async {
+  void _catchExceptions(BuildContext context, Function function) async {
+    try {
+      await function.call();
+    } on InvalidFormatImageException catch (e) {
+      showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
+    } on InvalidSizeImageException catch (e) {
+      showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_size(e.toString()));
+    }
+  }
+
+  void _onChangeBaseFont(BuildContext context, ThemePropertyCubit cubit) async {
     final result = await showDialog(
         context: context,
         builder: (context) => Center(
@@ -517,11 +483,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     if (result is String) cubit.updateCommonFont(result);
   }
 
-  void _selectColor(
-    BuildContext context,
-    Color color,
-    Function(Color) callback,
-  ) async {
+  void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
     final result = await showDialog(
         context: context,
         builder: (context) => Center(
@@ -535,11 +497,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     if (result is Color) callback(result);
   }
 
-  void _addGradientColor(
-    BuildContext context,
-    List<Color> colors,
-    Function(List<Color>) callback,
-  ) async {
+  void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
     final result = await showDialog(
         context: context,
         builder: (context) => Center(
@@ -551,31 +509,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
         useRootNavigator: false);
     if (result is Color) callback([...colors, result]);
-  }
-
-  Future<ImageModel> _selectImage(AvailableFormat availableFormat) async {
-    final ImagePicker picker = ImagePicker();
-    final file = await picker.pickImage(source: ImageSource.gallery, requestFullMetadata: true);
-    final bytes = await file!.readAsBytes();
-    final base64 = uint8ListTob64(bytes);
-
-    if (availableFormat.format == file.mimeType) {
-      // TODO: Handle correct nullable fields
-      final image = ImageModel(
-        data: base64 ?? '',
-        name: file.name ?? '',
-        mime: file.mimeType ?? '',
-        extension: path.extension(file.name ?? ''),
-      );
-      return image;
-    } else {
-      throw InvalidFormatImageException(file.mimeType ?? '');
-    }
-  }
-
-  String uint8ListTob64(Uint8List uint8list) {
-    String base64String = base64Encode(uint8list);
-    return base64String;
   }
 
   //TODO: Check it
