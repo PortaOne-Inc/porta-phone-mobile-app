@@ -1,4 +1,4 @@
-import {functions, admin} from '../config/firebase'
+import {functions, admin} from '../../config/firebase'
 
 async function authorizationMiddleware(
     req: functions.Request,

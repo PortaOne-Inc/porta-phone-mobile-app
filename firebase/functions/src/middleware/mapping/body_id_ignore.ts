@@ -1,4 +1,4 @@
-import {functions} from '../config/firebase'
+import {functions} from '../../config/firebase'
 
 async function bodyIdIgnoreMiddleware(
     req: functions.Request,
