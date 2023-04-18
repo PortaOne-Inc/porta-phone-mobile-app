@@ -54,3 +54,5 @@ router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, 
 api.use('/v1', router);
 
 exports.api = functions.https.onRequest(api)
+
+export {triggers} from './controllers/controllers'
