@@ -6,8 +6,8 @@ import * as cors from "cors";
 import * as applicationValidation from './middleware/validation/application_validation'
 import * as themeValidation from './middleware/validation/theme_validation'
 
-import * as themeController from './controllers/themes'
-import * as applicationController from './controllers/applications'
+import * as themeController from './controllers/api/themes'
+import * as applicationController from './controllers/api/applications'
 
 import {authorizationMiddleware} from './middleware/auth_verefication'
 import {bodyIdIgnoreMiddleware} from "./middleware/body_id_ignore";

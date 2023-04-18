@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import {db} from '../config/firebase'
+import {db} from '../../config/firebase'
 
 const getThemes = async (req: Request, resp: Response) => {
     const {applicationId} = req.params

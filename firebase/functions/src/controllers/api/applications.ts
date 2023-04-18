@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import {db} from '../config/firebase'
+import {db} from '../../config/firebase'
 
 const createApplication = async (req: Request, resp: Response) => {
     try {
