@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions'
 import * as express from 'express'
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
+import * as timeout from 'connect-timeout';
 
 import {
 	getApplications,
@@ -51,6 +52,7 @@ router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddl
 router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) =>
 	getTheme(req, res));
 
+api.use(timeout('30s'));
 api.use('/v1', router);
 
 exports.api = functions.https.onRequest(api)
