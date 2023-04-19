@@ -1,22 +1,16 @@
 import {Request, Response} from 'express'
-import {database} from '../../config/firebase'
+
+import * as service from '../../services/services'
 
 async function createApplication(req: Request, resp: Response) {
 	try {
-		const newDocRef = await database.collection('applications').doc();
-		const newDocId = newDocRef.id;
-
-		await newDocRef.set({
+		const data = await service.createApplication(new Map<string, string>(Object.entries({
 			uid: req.user?.uid,
 			name: req.body.name,
 			platformIdentifier: req.body.platformIdentifier,
-			id: newDocId,
 			theme: null
-		});
-
-		const application = (await database.collection('applications').doc(newDocId).get()).data();
-		return resp.status(200).json(application);
-
+		})));
+		return resp.status(200).json(Object.fromEntries(data));
 	} catch (error) {
 		return resp.status(500).json(error)
 	}
@@ -25,10 +19,14 @@ async function createApplication(req: Request, resp: Response) {
 async function patchApplication(req: Request, resp: Response) {
 	const {applicationId} = req.params
 	try {
-		const newDocRef = await database.collection('applications').doc(applicationId);
-		await newDocRef.update(req.body);
-		const application = (await database.collection('applications').doc(applicationId).get()).data();
-		return resp.status(200).json(application);
+		const data = await service.patchApplication(new Map<string, string>(Object.entries({
+			uid: req.user?.uid,
+			id: applicationId,
+			name: req.body.name,
+			platformIdentifier: req.body.platformIdentifier,
+			theme: null
+		})));
+		return resp.status(200).json(Object.fromEntries(data));
 	} catch (error) {
 		return resp.status(500).json(error)
 	}
@@ -37,9 +35,8 @@ async function patchApplication(req: Request, resp: Response) {
 async function getApplication(req: Request, resp: Response) {
 	const {applicationId} = req.params
 	try {
-		const newDocRef = (await database.collection('applications')
-			.where('id', '==', applicationId).get()).docs[0].data();
-		return resp.status(200).json(newDocRef);
+		const data = await service.getApplication(applicationId);
+		return resp.status(200).json(Object.fromEntries(data));
 	} catch (error) {
 		return resp.status(500).json(error)
 	}
@@ -47,12 +44,11 @@ async function getApplication(req: Request, resp: Response) {
 
 async function getApplications(req: Request, resp: Response) {
 	try {
-		const querySnapshot = await database.collection('applications').where('uid', '==', req.user?.uid).get();
-		const documents = querySnapshot.docs.map(doc => doc.data());
-		return resp.status(200).json(documents);
+		const data = await service.getApplications(req.user?.uid!);
+		return resp.status(200).json(Array.from(data.values()));
 	} catch (error) {
 		return resp.status(500).json(error)
 	}
 }
 
-export {createApplication, getApplication, getApplications, patchApplication,}
+export {createApplication, getApplication, getApplications, patchApplication}
