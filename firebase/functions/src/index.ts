@@ -12,8 +12,8 @@ import {
 	getThemes,
 	getTheme,
 	createTheme,
-	updateTheme,
-	deleteTheme
+	patchTheme,
+	deleteTheme,
 } from './controllers/controllers'
 
 import {
@@ -46,7 +46,7 @@ router.get('/applications/:applicationId/themes', (req, res) =>
 router.post('/applications/:applicationId/themes', authorizationMiddleware, validateCreateTheme, (req, res) =>
 	createTheme(req, res));
 router.patch('/applications/:applicationId/themes/:themeId', authorizationMiddleware, validateCreateTheme, (req, res) =>
-	updateTheme(req, res));
+	patchTheme(req, res));
 router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddleware, (req, res) =>
 	deleteTheme(req, res));
 router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) =>
