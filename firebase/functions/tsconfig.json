@@ -12,5 +12,7 @@
   "compileOnSave": true,
   "include": [
     "src"
-  ]
+  ],
+  "lib": ["es2019"]
+
 }
