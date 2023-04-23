@@ -55,7 +55,7 @@ jobs:
 
       - name: Build stage web
         if: startsWith(github.ref, 'refs/tags/v')
-        run: flutter build web --dart-define ENV="prod"
+        run: flutter build web --dart-define ENV="dev"
         working-directory: ${{env.WORKING_DIRECTORY}}
 
       - name: Archive artifacts
