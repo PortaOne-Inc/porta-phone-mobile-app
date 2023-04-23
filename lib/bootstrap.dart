@@ -18,11 +18,11 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       WidgetsFlutterBinding.ensureInitialized();
       usePathUrlStrategy();
 
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      final diContainer = await configureDependencies(environment: EnvironmentConfig.ENV);
+
+      await Firebase.initializeApp(options: diContainer.get<AppEnvironment>().firebaseOptions);
 
       await (FirebaseAuth.instance).setPersistence(Persistence.LOCAL);
-
-      final diContainer = await configureDependencies(environment: EnvironmentConfig.ENV);
 
       return runApp(await builder(diContainer));
     },

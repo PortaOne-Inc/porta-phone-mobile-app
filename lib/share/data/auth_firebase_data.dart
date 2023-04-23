@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class AuthFirebaseData {
   const AuthFirebaseData(this.firebaseAuth);
 

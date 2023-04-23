@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+
 abstract class AppEnvironment {
   const AppEnvironment();
 
@@ -6,6 +8,8 @@ abstract class AppEnvironment {
   Endpoints get endpoints;
 
   AuthorizationEmulator? get authorizationEmulator;
+
+  FirebaseOptions get firebaseOptions;
 }
 
 class Endpoints {

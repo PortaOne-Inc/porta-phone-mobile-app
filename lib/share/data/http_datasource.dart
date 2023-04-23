@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/core/env/app_environment.dart';
 import 'package:webtrit_configurator/share/entity/dto/dto.dart';
 
-@singleton
+@lazySingleton
 class HttpDatasource {
   final Dio dio;
   final AppEnvironment environment;
@@ -55,6 +55,12 @@ class HttpDatasource {
         data: themeDTO.toJson());
     return ThemeDTO.fromJson(response.data);
   }
+
+  // Future<ThemeDTO> patchDefaultTheme(ThemeDTO themeDTO) async {
+  //   final response = await dio.patch('${environment.endpoints.url}/applications/$applicationId/themes/${themeDTO.id}',
+  //       data: themeDTO.toJson());
+  //   return ThemeDTO.fromJson(response.data);
+  // }
 
   Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
     final response = await dio.get('${environment.endpoints.url}/applications/$applicationId/themes/$themeId');
