@@ -17,6 +17,10 @@ abstract class AppRoutInfo {
     name: 'applications',
     path: '/applications',
   );
+  static const admin = RouteData(
+    name: 'admin',
+    path: '/admin',
+  );
   static const applicationCreate = RouteData(
     name: 'applications/create',
     path: '/applications/create',

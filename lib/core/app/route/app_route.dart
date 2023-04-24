@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/features/admin/page/admin_page.dart';
 import 'package:webtrit_configurator/features/application_edit/application_edit.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
@@ -47,6 +48,14 @@ class AppRoute {
                     usecaseAuthSignIn: getIt.get(),
                     isUserAuthorized: getIt.get(),
                   ),
+                ),
+              ),
+              GoRoute(
+                path: AppRoutInfo.admin.path,
+                name: AppRoutInfo.admin.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<AdminCubit>(
+                  child: const AdminPage(),
+                  create: (BuildContext context) => AdminCubit(),
                 ),
               ),
               GoRoute(
