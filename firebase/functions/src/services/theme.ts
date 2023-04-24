@@ -7,6 +7,12 @@ async function createTheme(theme: Map<string, any>) {
 	return theme;
 }
 
+async function putDefaultTheme(theme: Map<string, any>) {
+	const reference = await database.collection('static').doc('default_theme');
+	await reference.set(Object.fromEntries(theme));
+	return theme;
+}
+
 async function patchTheme(theme: Map<string, any>) {
 	const reference = await database.collection('theme').doc(theme.get('id'));
 	await reference.update(Object.fromEntries(theme));
@@ -37,4 +43,4 @@ async function getDefaultTheme() {
 	return new Map<string, string>(Object.entries(app!));
 }
 
-export {createTheme, getDefaultTheme, getThemes, getTheme, patchTheme, deleteTheme}
+export {createTheme, getDefaultTheme, getThemes, getTheme, patchTheme, deleteTheme, putDefaultTheme}

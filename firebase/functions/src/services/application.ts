@@ -8,6 +8,13 @@ async function createApplication(application: Map<string, any>) {
 	return new Map<string, any>(Object.entries(data!));
 }
 
+async function putDefaultApplication(application: Map<string, any>) {
+	const reference = await database.collection('static').doc('default_application');
+	await reference.set(Object.fromEntries(application));
+	const data = (await database.collection('static').doc("default_application").get()).data();
+	return new Map<string, any>(Object.entries(data!));
+}
+
 async function patchApplication(application: Map<string, any>) {
 	const reference = await database.collection('applications').doc(application.get('id'));
 	await reference.update(Object.fromEntries(application));
@@ -31,4 +38,11 @@ async function getDefaultApplication() {
 	return new Map<string, any>(Object.entries(reference!));
 }
 
-export {createApplication, getDefaultApplication, patchApplication, getApplication, getApplications}
+export {
+	createApplication,
+	getDefaultApplication,
+	patchApplication,
+	getApplication,
+	getApplications,
+	putDefaultApplication
+}

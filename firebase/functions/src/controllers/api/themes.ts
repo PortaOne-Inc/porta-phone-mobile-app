@@ -39,6 +39,23 @@ async function createTheme(req: Request, resp: Response) {
 	}
 }
 
+async function putDefaultTheme(req: Request, resp: Response) {
+	const {applicationId} = req.params
+	try {
+		const data = await service.putDefaultTheme(new Map<string, string>(Object.entries({
+			...req.body,
+			...{
+				applicationId: applicationId,
+			},
+		})));
+
+		return resp.status(200).json(Object.fromEntries(data));
+
+	} catch (error) {
+		return resp.status(500).json(error)
+	}
+}
+
 async function patchTheme(req: Request, resp: Response) {
 	const {themeId} = req.params
 	try {
@@ -65,4 +82,4 @@ async function deleteTheme(req: Request, resp: Response) {
 	}
 }
 
-export {getThemes, createTheme, patchTheme, getTheme, deleteTheme}
+export {getThemes, createTheme, patchTheme, getTheme, deleteTheme, putDefaultTheme}

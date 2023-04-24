@@ -4,7 +4,6 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as timeout from 'connect-timeout';
 
-
 import {bodyIdIgnoreMiddleware} from './middleware/middleware'
 
 import {router as themesRouter} from './routes/applications';
@@ -21,7 +20,7 @@ router.use(bodyIdIgnoreMiddleware);
 api.use(timeout('30s'));
 api.use('/v1', router);
 
-router.use('/themes', themesRouter);
+router.use('/applications', themesRouter);
 router.use('/applications', applicationsRouter);
 
 exports.api = functions.https.onRequest(api)

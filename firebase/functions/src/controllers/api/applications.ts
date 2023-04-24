@@ -16,6 +16,20 @@ async function createApplication(req: Request, resp: Response) {
 	}
 }
 
+async function putDefaultApplication(req: Request, resp: Response) {
+	try {
+		const data = await service.putDefaultApplication(new Map<string, string>(Object.entries({
+			uid: req.user?.uid,
+			name: req.body.name,
+			platformIdentifier: req.body.platformIdentifier,
+			theme: null
+		})));
+		return resp.status(200).json(Object.fromEntries(data));
+	} catch (error) {
+		return resp.status(500).json(error)
+	}
+}
+
 async function patchApplication(req: Request, resp: Response) {
 	const {applicationId} = req.params
 	try {
@@ -51,4 +65,4 @@ async function getApplications(req: Request, resp: Response) {
 	}
 }
 
-export {createApplication, getApplication, getApplications, patchApplication}
+export {createApplication, getApplication, getApplications, patchApplication, putDefaultApplication}
