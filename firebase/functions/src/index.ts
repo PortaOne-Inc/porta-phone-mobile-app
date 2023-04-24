@@ -4,26 +4,11 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as timeout from 'connect-timeout';
 
-import {
-	getApplications,
-	createApplication,
-	patchApplication,
-	getApplication,
-	getThemes,
-	getTheme,
-	createTheme,
-	patchTheme,
-	deleteTheme,
-} from './controllers/controllers'
 
-import {
-	bodyIdIgnoreMiddleware,
-	authorizationMiddleware,
-	validateCreateApplication,
-	validatePathApplication,
-	validateCreateTheme,
-} from './middleware/middleware'
+import {bodyIdIgnoreMiddleware} from './middleware/middleware'
 
+import {router as themesRouter} from './routes/applications';
+import {router as applicationsRouter} from './routes/themes';
 
 const api = express();
 const router = express.Router();
@@ -33,27 +18,11 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyIdIgnoreMiddleware);
 
-router.get('/applications', authorizationMiddleware, (req, res) =>
-	getApplications(req, res));
-router.post('/applications', authorizationMiddleware, validateCreateApplication, (req, res) =>
-	createApplication(req, res));
-router.get('/applications/:applicationId', (req, res) =>
-	getApplication(req, res));
-router.patch('/applications/:applicationId', authorizationMiddleware, validatePathApplication, (req, res) =>
-	patchApplication(req, res));
-router.get('/applications/:applicationId/themes', (req, res) =>
-	getThemes(req, res));
-router.post('/applications/:applicationId/themes', authorizationMiddleware, validateCreateTheme, (req, res) =>
-	createTheme(req, res));
-router.patch('/applications/:applicationId/themes/:themeId', authorizationMiddleware, validateCreateTheme, (req, res) =>
-	patchTheme(req, res));
-router.delete('/applications/:applicationId/themes/:themeId', authorizationMiddleware, (req, res) =>
-	deleteTheme(req, res));
-router.get('/applications/:applicationId/themes/:themeId', validateCreateTheme, (req, res) =>
-	getTheme(req, res));
-
 api.use(timeout('30s'));
 api.use('/v1', router);
+
+router.use('/themes', themesRouter);
+router.use('/applications', applicationsRouter);
 
 exports.api = functions.https.onRequest(api)
 
