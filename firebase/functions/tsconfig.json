@@ -5,14 +5,21 @@
     "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,
+    "resolveJsonModule": true,
+    "types": [
+      "reflect-metadata"
+    ],
     "strict": true,
     "target": "es2017",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "compileOnSave": true,
   "include": [
     "src"
   ],
-  "lib": ["es2019"]
-
+  "lib": [
+    "es2019"
+  ]
 }
