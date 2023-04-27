@@ -9,7 +9,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "swagger-autogen": "node doc/swagger.ts --host=http://127.0.0.1:7981/webtrit-configurator-stage/us-central1/api/v1"
+    "swagger-autogen": "node doc/swagger.ts --host=127.0.0.1:7981/webtrit-configurator-stage/us-central1/api/v1"
   },
   "engines": {
     "node": "16"
