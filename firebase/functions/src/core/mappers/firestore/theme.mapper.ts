@@ -30,9 +30,9 @@ export default class FirestoreThemeMapper {
 		const plainObject: any = {};
 		for (const [key, value] of Object.entries(data)) {
 			if (value === undefined) {
-				plainObject[key.toLowerCase()] = null;
+				plainObject[key] = null;
 			} else {
-				plainObject[key.toLowerCase()] = value;
+				plainObject[key] = value;
 			}
 		}
 		return instanceToPlain(plainObject);
