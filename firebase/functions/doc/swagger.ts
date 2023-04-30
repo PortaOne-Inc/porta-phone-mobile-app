@@ -72,17 +72,18 @@ const doc = {
 		Application: {
 			uid: 'CBAlTVH7YzWWauK8KqWF4gclwmt1',
 			name: 'Application',
+			version: 0,
 			theme: null,
 			id: '3kzRn8wqN7KYOgjByBxE',
 			platformIdentifier: 'com.webtrit.id'
 		},
 		ApplicationCreate: {
 			name: 'Application',
+			version: 0,
 			platformIdentifier: 'com.webtrit.id'
 		}
 	}
 };
-
 
 (async () => {
 	await swaggerAutogen(outputFile, endpointsFiles, doc);

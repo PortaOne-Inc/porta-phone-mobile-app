@@ -27,6 +27,16 @@ export default class ApplicationsService implements IApplicationsService {
 		return this.applicationRepository.create(user);
 	}
 
+	async incrementVersion(id: string): Promise<Application | null> {
+		const application = await this.applicationRepository.getById(id);
+		if (application != null) {
+			application.version++;
+			return await this.applicationRepository.patch(id, application);
+		} else {
+			return null;
+		}
+	}
+
 	async getApplicationById(id: string): Promise<Application | null> {
 		return this.applicationRepository.getById(id);
 	}

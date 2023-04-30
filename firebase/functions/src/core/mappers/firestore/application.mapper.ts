@@ -9,8 +9,8 @@ import Application from '../../models/application';
 @injectable()
 export default class FirestoreApplicationMapper {
 	public toClass(data: firestore.DocumentData): Application {
-		const {id, user, name, platformIdentifier} = data;
-		return new Application(id, user, name, platformIdentifier);
+		const {id, user, name, platformIdentifier, version} = data;
+		return new Application(id, user, name, platformIdentifier, version);
 	}
 
 	// TODO: Do better way for converting obj

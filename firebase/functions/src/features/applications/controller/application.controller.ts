@@ -50,6 +50,12 @@ export default class ApplicationController extends BaseController {
 				func: this.createApplication,
 				middlewares: [new AuthMiddleware()]
 			},
+			{
+				path: '/applications/:applicationId/version',
+				method: 'put',
+				func: this.incrementVersion,
+				middlewares: [new AuthMiddleware()]
+			},
 		],)
 	}
 
@@ -96,6 +102,35 @@ export default class ApplicationController extends BaseController {
 	async createApplication({body, user}: Request<{}, {}, Application>, res: Response, _: NextFunction) {
 		const result = await this.applicationsService.createApplication(body, user!);
 		this.ok(res, result);
+	}
+
+	/*
+	#swagger.start
+	#swagger.tags = ['Applications']
+	#swagger.path = '/applications/{applicationId}/version'
+	#swagger.method = 'put'
+	#swagger.description = 'Update application version'
+	#swagger.produces = ['application/json']
+	#swagger.security = [{
+		  "apiKeyAuth": []
+		   				}]
+	#swagger.parameters['applicationId'] = {
+            in: 'path',
+            type: 'string',
+            description: 'Application ID.' }
+    #swagger.responses[004] = {
+      description: 'Applications response',
+      schema: { $ref: '#/definitions/Application' }
+  	}
+    #swagger.end
+    */
+	async incrementVersion(req: Request, res: Response, _: NextFunction) {
+		const result = await this.applicationsService.incrementVersion(req.params.applicationId);
+		if (result == null) {
+			this.noContent(res);
+		} else {
+			this.ok(res, result);
+		}
 	}
 
 	/*
