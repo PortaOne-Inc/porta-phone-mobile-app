@@ -23,7 +23,7 @@ export default class AuthTrigger extends BaseTrigger {
 	}
 
 	async onCreate(change: auth.UserRecord, context: EventContext) {
-		const user = new User(context.auth?.uid!)!;
+		const user = new User(change?.uid!)!;
 		const result = await this.authService.createDefaultApplication(user);
 		if (result == null) {
 			console.log('No setup of default application');
