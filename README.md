@@ -6,6 +6,24 @@
 * `Cloud storage` (_**Firebase storage**_)
 * `REST` (_**HTTP Cloud functions**_)
 
+## Firebase CORS
+
+1.  Install https://formulae.brew.sh/cask/google-cloud-sdk
+2.  In root of flutter project create a file called cors.json and add this json file which will remove all domain restrictions.
+    ``[
+    {
+    "origin": ["*"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+    }
+    ]``
+3. Run gcloud init (located in google-cloud-sdk/bin
+4. Authenticate yourself by clicking the link and choose the project in the console.
+5. Finally execute gsutil cors set cors.json gs://<your-bucket-name>.appspot.com You can find your bucket name in firebase storage.
+   `` gsutil cors set cors.json gs://webtrit-configurator-stage.appspot.com
+   ``
+
+
 ## Build variables
 
 * `ENV` (_default **prod**_)
