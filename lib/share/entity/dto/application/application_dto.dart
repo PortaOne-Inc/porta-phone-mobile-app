@@ -15,6 +15,7 @@ class ApplicationDTO with _$ApplicationDTO {
     String? name,
     String? platformIdentifier,
     String? theme,
+    int? version,
   }) = _ApplicationDTO;
 
   factory ApplicationDTO.fromJson(Map<String, dynamic> json) => _$ApplicationDTOFromJson(json);

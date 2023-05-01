@@ -24,6 +24,7 @@ mixin _$ApplicationDTO {
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
+  int? get version => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +39,11 @@ abstract class $ApplicationDTOCopyWith<$Res> {
       _$ApplicationDTOCopyWithImpl<$Res, ApplicationDTO>;
   @useResult
   $Res call(
-      {String? id, String? name, String? platformIdentifier, String? theme});
+      {String? id,
+      String? name,
+      String? platformIdentifier,
+      String? theme,
+      int? version});
 }
 
 /// @nodoc
@@ -58,6 +63,7 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
     Object? name = freezed,
     Object? platformIdentifier = freezed,
     Object? theme = freezed,
+    Object? version = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -76,6 +82,10 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -89,7 +99,11 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id, String? name, String? platformIdentifier, String? theme});
+      {String? id,
+      String? name,
+      String? platformIdentifier,
+      String? theme,
+      int? version});
 }
 
 /// @nodoc
@@ -107,6 +121,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
     Object? name = freezed,
     Object? platformIdentifier = freezed,
     Object? theme = freezed,
+    Object? version = freezed,
   }) {
     return _then(_$_ApplicationDTO(
       id: freezed == id
@@ -125,6 +140,10 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -134,7 +153,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
 @JsonSerializable(includeIfNull: false)
 class _$_ApplicationDTO implements _ApplicationDTO {
   const _$_ApplicationDTO(
-      {this.id, this.name, this.platformIdentifier, this.theme});
+      {this.id, this.name, this.platformIdentifier, this.theme, this.version});
 
   factory _$_ApplicationDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ApplicationDTOFromJson(json);
@@ -147,10 +166,12 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   final String? platformIdentifier;
   @override
   final String? theme;
+  @override
+  final int? version;
 
   @override
   String toString() {
-    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme)';
+    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme, version: $version)';
   }
 
   @override
@@ -162,13 +183,14 @@ class _$_ApplicationDTO implements _ApplicationDTO {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
-            (identical(other.theme, theme) || other.theme == theme));
+            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.version, version) || other.version == version));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, platformIdentifier, theme);
+      Object.hash(runtimeType, id, name, platformIdentifier, theme, version);
 
   @JsonKey(ignore: true)
   @override
@@ -189,7 +211,8 @@ abstract class _ApplicationDTO implements ApplicationDTO {
       {final String? id,
       final String? name,
       final String? platformIdentifier,
-      final String? theme}) = _$_ApplicationDTO;
+      final String? theme,
+      final int? version}) = _$_ApplicationDTO;
 
   factory _ApplicationDTO.fromJson(Map<String, dynamic> json) =
       _$_ApplicationDTO.fromJson;
@@ -202,6 +225,8 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   String? get platformIdentifier;
   @override
   String? get theme;
+  @override
+  int? get version;
   @override
   @JsonKey(ignore: true)
   _$$_ApplicationDTOCopyWith<_$_ApplicationDTO> get copyWith =>
