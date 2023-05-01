@@ -25,7 +25,7 @@ class ImageModel {
   final String? mime;
   final String? extension;
 
-  bool get isAvailable => (data?.isNotEmpty ?? false);
+  bool get isAvailable => (data?.isNotEmpty ?? false) || url != null;
 
   bool get isNotAvailable => !isAvailable;
 

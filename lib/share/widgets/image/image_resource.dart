@@ -5,6 +5,9 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:webtrit_configurator/share/entity/entity.dart';
 
+import 'network_image.dart' as widgets;
+
+// TODO: Change logic
 class ImageResource extends StatelessWidget {
   const ImageResource({
     Key? key,
@@ -25,7 +28,10 @@ class ImageResource extends StatelessWidget {
         color: Colors.black.withOpacity(0.05),
         padding: const EdgeInsets.all(16),
         child: isNetwork(imageModel)
-            ? Image.network(imageModel!.url!)
+            ? widgets.NetworkImage(
+                imageUrl: imageModel!.url!,
+                size: size,
+              )
             : isVector(imageModel)
                 ? SvgPicture.memory(
                     width: size.width,
