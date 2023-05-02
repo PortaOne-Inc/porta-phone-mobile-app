@@ -20,36 +20,40 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   final UsecaseThemeUploadImage uploadImage;
 
   @override
-  Future<ThemeModel> execute({
+  Future<ThemeModel?> execute({
     required String applicationId,
     required ThemeModel themeModel,
   }) async {
     final uid = await authRepository.getUserUID();
     final dtoTheme = mapper.mapToDto(themeModel);
 
-    final notificationLogo = await uploadImage.execute(imageModel: themeModel.images?.notificationLogo);
-    final onboarding = await uploadImage.execute(imageModel: themeModel.images?.onboarding);
-    final applicationLogo = await uploadImage.execute(imageModel: themeModel.images?.applicationLogo);
-    final adaptiveIconBackground = await uploadImage.execute(imageModel: themeModel.images?.adaptiveIconBackground);
-    final adaptiveIconForeground = await uploadImage.execute(imageModel: themeModel.images?.adaptiveIconForeground);
-    final iosLauncherIcon = await uploadImage.execute(imageModel: themeModel.images?.iosLauncherIcon);
-    final androidLauncherIcon = await uploadImage.execute(imageModel: themeModel.images?.androidLauncherIcon);
-    final webLauncherIcon = await uploadImage.execute(imageModel: themeModel.images?.webLauncherIcon);
+    final images = ImageCollectionDTO(
+      onboarding: await _getImageUrl(themeModel.images?.onboarding),
+      notificationLogo: await _getImageUrl(themeModel.images?.notificationLogo),
+      applicationLogo: await _getImageUrl(themeModel.images?.applicationLogo),
+      adaptiveIconBackground: await _getImageUrl(themeModel.images?.adaptiveIconBackground),
+      adaptiveIconForeground: await _getImageUrl(themeModel.images?.adaptiveIconForeground),
+      iosLauncherIcon: await _getImageUrl(themeModel.images?.iosLauncherIcon),
+      androidLauncherIcon: await _getImageUrl(themeModel.images?.androidLauncherIcon),
+      webLauncherIcon: await _getImageUrl(themeModel.images?.webLauncherIcon),
+    );
 
-    final theme = await themeRepository.updateTheme(
-        uid!,
-        applicationId,
-        dtoTheme?.copyWith(
-            images: ImageCollectionDTO(
-          onboarding: onboarding,
-          notificationLogo: notificationLogo,
-          applicationLogo: applicationLogo,
-          adaptiveIconBackground: adaptiveIconBackground,
-          adaptiveIconForeground: adaptiveIconForeground,
-          iosLauncherIcon: iosLauncherIcon,
-          androidLauncherIcon: androidLauncherIcon,
-          webLauncherIcon: webLauncherIcon,
-        )));
-    return mapper.mapToModel(theme)!;
+    final theme = await themeRepository.updateTheme(uid!, applicationId, dtoTheme?.copyWith(images: images));
+
+    return mapper.mapToModel(theme);
+  }
+
+  // If model was changed in ui and added new image it's mean field ready to upload
+  bool _isShouldBeUploadedImage(ImageModel? imageModel) {
+    return imageModel?.data != null;
+  }
+
+  // Get url for dto if base64 resource available in data
+  Future<String?> _getImageUrl(ImageModel? imageModel) async {
+    if (_isShouldBeUploadedImage(imageModel)) {
+      return await uploadImage.execute(imageModel: imageModel);
+    } else {
+      return imageModel?.url;
+    }
   }
 }
