@@ -10,7 +10,11 @@ class DevEnvironment extends AppEnvironment {
   String get name => Environment.dev;
 
   @override
-  Endpoints get endpoints => Endpoints(host: 'https://us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1');
+  Endpoints get endpoints => Endpoints(
+        host: 'https://us-central1-webtrit-configurator-stage.cloudfunctions.net/api',
+        apiVersion: '/v1',
+        docs: '/docs',
+      );
 
   @override
   AuthorizationEmulator? get authorizationEmulator => null;

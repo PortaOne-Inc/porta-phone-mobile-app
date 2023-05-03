@@ -13,11 +13,23 @@ abstract class AppEnvironment {
 }
 
 class Endpoints {
-  final String host;
+  late final String _host;
+  late final String _apiVersion;
+  late final String _doc;
 
   Endpoints({
-    required this.host,
-  });
+    required String host,
+    required String apiVersion,
+    required String docs,
+  }) {
+    _host = host;
+    _apiVersion = apiVersion;
+    _doc = docs;
+  }
+
+  String get host => _host + _apiVersion;
+
+  String get doc => _host + _apiVersion + _doc;
 }
 
 class AuthorizationEmulator {

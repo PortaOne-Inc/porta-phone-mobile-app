@@ -10,7 +10,11 @@ class ProdEnvironment implements AppEnvironment {
   String get name => Environment.prod;
 
   @override
-  Endpoints get endpoints => Endpoints(host: 'https://us-central1-webtrit-configurator.cloudfunctions.net/api/v1');
+  Endpoints get endpoints => Endpoints(
+        host: 'https://us-central1-webtrit-configurator.cloudfunctions.net/api',
+        apiVersion: '/v1',
+        docs: '/docs',
+      );
 
   @override
   AuthorizationEmulator? get authorizationEmulator => null;

@@ -10,7 +10,11 @@ class DevEnvironment extends AppEnvironment {
   String get name => Environment.test;
 
   @override
-  Endpoints get endpoints => Endpoints(host: 'http://127.0.0.1:7981/webtrit-configurator-stage/us-central1/api/v1');
+  Endpoints get endpoints => Endpoints(
+        host: 'http://127.0.0.1:7981/webtrit-configurator-stage/us-central1/api',
+        apiVersion: '/v1',
+        docs: '/docs',
+      );
 
   @override
   AuthorizationEmulator get authorizationEmulator => AuthorizationEmulator(host: '127.0.0.1', port: 7980);
