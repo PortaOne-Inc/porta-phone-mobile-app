@@ -60,10 +60,12 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemBuilder: (ctx, index) => ApplicationPreviewItem(
-                            application: state.applications[index],
-                            onDelete: BlocProvider.of<VendorCollectionCubit>(context).deleteApplication,
-                            onEdit: _onEditApplication,
-                            onOpen: _openApplication),
+                          application: state.applications[index],
+                          onDelete: BlocProvider.of<VendorCollectionCubit>(context).deleteApplication,
+                          onEdit: _onEditApplication,
+                          onOpen: _openApplication,
+                          incrementVersion: _incrementApplicationVersion,
+                        ),
                         itemCount: state.applications.length,
                         gridDelegate: _prepareGridDelegate(state.applications),
                       ),
@@ -113,6 +115,10 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
 
   void _createApplication() {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
+  }
+
+  void _incrementApplicationVersion(ApplicationModel applicationModel) {
+    BlocProvider.of<VendorCollectionCubit>(context).incrementApplicationVersion(applicationModel);
   }
 
   void _openApplication(ApplicationModel applicationModel) {

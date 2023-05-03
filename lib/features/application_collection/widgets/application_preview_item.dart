@@ -12,6 +12,7 @@ class ApplicationPreviewItem extends StatelessWidget {
     required this.onDelete,
     required this.onEdit,
     required this.onOpen,
+    required this.incrementVersion,
   });
 
   final ApplicationModel application;
@@ -19,6 +20,7 @@ class ApplicationPreviewItem extends StatelessWidget {
   final Function(ApplicationModel model) onOpen;
   final Function(ApplicationModel model) onDelete;
   final Function(ApplicationModel model) onEdit;
+  final Function(ApplicationModel model) incrementVersion;
 
   static const _menuKeyEdit = '_menuKeyEdit';
   static const _menuKeyUpdateVersion = '_menuKeyUpdateVersion';
@@ -104,6 +106,9 @@ class ApplicationPreviewItem extends StatelessWidget {
         break;
       case _menuKeyEdit:
         onEdit.call(application);
+        break;
+        case _menuKeyUpdateVersion:
+        incrementVersion.call(application);
         break;
     }
   }

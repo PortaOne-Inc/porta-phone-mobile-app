@@ -7,6 +7,8 @@ abstract class ApplicationRepository {
 
   Future<ApplicationDTO> deleteApplication(String userId, ApplicationDTO applicationDTO);
 
+  Future<ApplicationDTO> incApplicationVersion(String applicationId);
+
   Future<List<ApplicationDTO>> getUserApplications(String userId);
 
   Future<ApplicationDTO> getApplication(

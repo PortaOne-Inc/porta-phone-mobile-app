@@ -65,6 +65,7 @@ class AppRoute {
                   create: (BuildContext context) => VendorCollectionCubit(
                     vendorCollectionUsecase: getIt.get(),
                     vendorDeleteUsecase: getIt.get(),
+                    applicationIncVersion: getIt.get(),
                   ),
                   child: const ApplicationCollectionPage(),
                 ),

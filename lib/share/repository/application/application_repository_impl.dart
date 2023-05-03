@@ -68,4 +68,15 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<ApplicationDTO> incApplicationVersion(String applicationId) async {
+    try {
+      return await httpDatasource.incApplicationVersion(applicationId);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

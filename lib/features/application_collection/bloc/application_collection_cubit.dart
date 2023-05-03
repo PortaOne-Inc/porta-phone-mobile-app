@@ -14,12 +14,14 @@ class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
   VendorCollectionCubit({
     required this.vendorCollectionUsecase,
     required this.vendorDeleteUsecase,
+    required this.applicationIncVersion,
   }) : super(ApplicationCollectionState.progress()) {
     tryGetApplications();
   }
 
   final UsecaseApplicationGetAll vendorCollectionUsecase;
   final UsecaseApplicationDeleteTemplate vendorDeleteUsecase;
+  final UsecaseApplicationIncVersion applicationIncVersion;
 
   void tryGetApplications() async {
     try {
@@ -33,6 +35,11 @@ class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
 
   void deleteApplication(ApplicationModel applicationModel) async {
     await vendorDeleteUsecase.execute(model: applicationModel);
+    tryGetApplications();
+  }
+
+  void incrementApplicationVersion(ApplicationModel applicationModel) async {
+    await applicationIncVersion.execute(applicationId: applicationModel.id!);
     tryGetApplications();
   }
 
