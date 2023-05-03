@@ -66,10 +66,6 @@ class ThemesEditToolbar extends StatelessWidget {
                 alignment: WrapAlignment.end,
                 children: _buildRightMenu(context),
               ),
-              SwitcherLanguage(
-                margin: const EdgeInsets.only(right: 16),
-                onSwitchedLanguage: onLanguageChanged,
-              )
             ],
           ),
         )
@@ -82,12 +78,6 @@ class ThemesEditToolbar extends StatelessWidget {
       ToolbarPopupMenu(
         onSelected: (value) => _handleAccountMenu(value),
         items: [
-          ToolbarMenuItem(
-            text: 'My profile',
-          ),
-          ToolbarMenuItem(
-            text: 'Setting',
-          ),
           ToolbarMenuItem(
             value: _menuRightLogout,
             text: 'Log out',
@@ -109,10 +99,6 @@ class ThemesEditToolbar extends StatelessWidget {
           ToolbarMenuItem(
             value: _menuLeftSave,
             text: 'Save',
-          ),
-          ToolbarMenuItem(
-            value: _menuLeftOpen,
-            text: 'Open',
           ),
         ],
         child: const ToolbarLabelItem(

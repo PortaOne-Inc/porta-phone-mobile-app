@@ -41,11 +41,7 @@ class ThemesToolbar extends StatelessWidget {
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SwitcherLanguage(
-                margin: const EdgeInsets.only(right: 16),
-                onSwitchedLanguage: onSwitchedLanguage,
-              )
+            children: const [
             ],
           ),
         )

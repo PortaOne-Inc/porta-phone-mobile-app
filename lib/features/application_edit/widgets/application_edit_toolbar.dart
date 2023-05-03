@@ -48,10 +48,6 @@ class ApplicationEditToolbar extends StatelessWidget {
                   alignment: WrapAlignment.end,
                   children: _buildRightMenu(context),
                 ),
-                SwitcherLanguage(
-                  margin: const EdgeInsets.only(right: 16),
-                  onSwitchedLanguage: onSwitchedLanguage,
-                ),
               ],
             ),
           ),
