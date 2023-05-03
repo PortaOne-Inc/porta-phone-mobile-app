@@ -30,7 +30,6 @@ export default class ApplicationController extends BaseController {
 				path: '/applications/:applicationId',
 				method: 'get',
 				func: this.getApplicationsById,
-				middlewares: [new AuthMiddleware()]
 			},
 			{
 				path: '/applications/:applicationId',
