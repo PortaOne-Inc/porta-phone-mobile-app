@@ -31,7 +31,9 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
         return Scaffold(
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
-            child: ApplicationCollectionToolbar(onLogout: () => _onLogout(context)),
+            child: ApplicationCollectionToolbar(
+              onLogout: () => _onLogout(context),
+            ),
           ),
           body: Center(
             child: ConstrainedBox(
