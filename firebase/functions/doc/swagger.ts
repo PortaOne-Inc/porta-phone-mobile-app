@@ -17,7 +17,7 @@ const doc = {
 	},
 	host: host,
 	basePath: '/',
-	schemes: ['http', 'https'],
+	schemes: ['https', 'http'],
 	consumes: ['application/json'],
 	produces: ['application/json'],
 	tags: [
