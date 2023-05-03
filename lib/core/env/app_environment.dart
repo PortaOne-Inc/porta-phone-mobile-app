@@ -13,10 +13,10 @@ abstract class AppEnvironment {
 }
 
 class Endpoints {
-  final String url;
+  final String host;
 
   Endpoints({
-    required this.url,
+    required this.host,
   });
 }
 
