@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/theme_edit/widgets/color/color.dart';
 import 'package:webtrit_configurator/share/entity/models/theme/color_model.dart';
-import 'package:webtrit_phone/theme/model/colors_scheme.dart';
 
 class ColorSchemeWidget extends StatelessWidget {
   final ColorModel? colors;
