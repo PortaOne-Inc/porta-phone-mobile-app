@@ -12,7 +12,7 @@ const host = args.find(arg => arg.startsWith('--host=')).substring(7);
 
 const doc = {
 	info: {
-		version: '1.0.0',
+		version: '1.0.1',
 		title: 'Webtrit configurator api',
 	},
 	host: host,
