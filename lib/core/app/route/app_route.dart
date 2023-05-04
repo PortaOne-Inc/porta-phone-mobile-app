@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:webtrit_configurator/core/env/app_environment.dart';
 
 import 'package:webtrit_configurator/features/admin/page/admin_page.dart';
 import 'package:webtrit_configurator/features/application_edit/application_edit.dart';
@@ -128,7 +129,9 @@ class AppRoute {
                             ),
                           ),
                         ],
-                        child: const PageThemeEdit(),
+                        child: PageThemeEdit(
+                          swaggerUrl: getIt.get<AppEnvironment>().endpoints.doc,
+                        ),
                       ))
             ])
       ],

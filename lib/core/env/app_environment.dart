@@ -29,7 +29,7 @@ class Endpoints {
 
   String get host => _host + _apiVersion;
 
-  String get doc => _host + _apiVersion + _doc;
+  String get doc => '$_host$_doc/';
 }
 
 class AuthorizationEmulator {
