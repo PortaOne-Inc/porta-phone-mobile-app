@@ -8,9 +8,9 @@ on:
       - v*
 
 env:
-  FLUTTER_VERSION: 3.7.7
+  FLUTTER_VERSION: 3.7.0
   FLUTTER_CHANNEL: 'stable'
-  DART_VERSION: 2.19.6
+  DART_VERSION: 2.19.0
 
   REPOSITORY_PHONE_NAME: WebTrit/webtrit_phone
   REPOSITORY_PHONE_BRANCH: feat/change_style_resource_temporary_for_actions
@@ -19,12 +19,31 @@ env:
   WORKING_DIRECTORY: webtrit/webtrit_configurator
 
 jobs:
-  build:
+  remove-old-artifacts:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '1 days'
+
+  build_flutter_web:
+    runs-on: ubuntu-latest
+    needs: [ remove-old-artifacts ]
+
+    steps:
+      - name: Get develop repository
+        uses: actions/checkout@v3
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          ref: develop
+          path: '${{env.WORKING_DIRECTORY}}'
+
       - name: Get main repository
         uses: actions/checkout@v3
+        if: "!startsWith(github.ref, 'refs/tags/v')"
         with:
           path: '${{env.WORKING_DIRECTORY}}'
 
@@ -59,41 +78,103 @@ jobs:
         working-directory: ${{env.WORKING_DIRECTORY}}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@master
         with:
           name: web-build
           path: ${{env.WORKING_DIRECTORY}}/build/web
 
-  deploy:
+  deploy-server-to-cloud-functions:
     runs-on: ubuntu-latest
-    needs: [ build ]
+    needs: [ remove-old-artifacts ]
     steps:
-      - uses: actions/checkout@v3
+      - name: Get develop repository
+        uses: actions/checkout@v3
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          ref: develop
+          path: '${{env.WORKING_DIRECTORY}}'
+
+      - name: Get main repository
+        uses: actions/checkout@v3
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        with:
+          path: '${{env.WORKING_DIRECTORY}}'
+
+      - name: Install cloud functions dependency
+        run: npm install --save firebase-functions@latest
+        working-directory: ${{env.WORKING_DIRECTORY}}/firebase/functions
+
+      - name: Generate swagger stage
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: node doc/swagger.ts --host=us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1
+        working-directory: ${{env.WORKING_DIRECTORY}}/firebase/functions
+
+      - name: Generate swagger prod
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        run: node doc/swagger.ts --host=us-central1-webtrit-configurator.cloudfunctions.net/api/v1
+        working-directory: ${{env.WORKING_DIRECTORY}}/firebase/functions
+
+      - name: Deploy stage cloud functions
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: docker://w9jds/firebase-action:master
+        with:
+          args: deploy --only functions
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR_STAGE }}
+          PROJECT_PATH: ${{env.WORKING_DIRECTORY}}/firebase
+          PROJECT_ID: webtrit-configurator-stage
+
+      - name: Deploy prod cloud functions
+        uses: docker://w9jds/firebase-action:master
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        with:
+          project_id: webtrit-configurator
+          args: deploy --only functions
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR }}
+          PROJECT_PATH: ${{env.WORKING_DIRECTORY}}/firebase
+          PROJECT_ID: webtrit-configurator
+
+  deploy_web_to_hosting:
+    runs-on: ubuntu-latest
+    needs: [ build_flutter_web ]
+    steps:
+      - name: Get develop repository
+        uses: actions/checkout@v3
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          ref: develop
+          path: '${{env.WORKING_DIRECTORY}}'
+
+      - name: Get main repository
+        uses: actions/checkout@v3
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        with:
+          path: '${{env.WORKING_DIRECTORY}}'
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
           name: web-build
-          path: firebase/public
+          path: ${{env.WORKING_DIRECTORY}}/firebase/public
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Deploy stage web to hosting
         if: startsWith(github.ref, 'refs/tags/v')
+        uses: docker://w9jds/firebase-action:master
         with:
-          entryPoint: "firebase"
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR_STAGE }}'
-          projectId: webtrit-configurator-stage
-          channelId: live
+          args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR_STAGE }}
+          PROJECT_PATH: ${{env.WORKING_DIRECTORY}}/firebase
+          PROJECT_ID: webtrit-configurator-stage
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy prod web to hosting
+        uses: docker://w9jds/firebase-action:master
         if: "!startsWith(github.ref, 'refs/tags/v')"
         with:
-          entryPoint: "firebase"
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR }}'
-          projectId: webtrit-configurator
-          channelId: live
+          args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBTRIT_CONFIGURATOR }}
+          PROJECT_PATH: ${{env.WORKING_DIRECTORY}}/firebase
+          PROJECT_ID: webtrit-configurator
