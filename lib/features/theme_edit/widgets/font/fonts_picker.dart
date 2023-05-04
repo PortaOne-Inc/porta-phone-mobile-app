@@ -26,7 +26,6 @@ class _FontsPickerState extends State<FontsPicker> {
   final _fonts = <String>[];
   final _filteredFonts = <String>[];
 
-  var _loadedItems = 0;
   late int _pageSize;
 
   final PagingController<int, String> _pagingController = PagingController(firstPageKey: 0);
@@ -41,8 +40,7 @@ class _FontsPickerState extends State<FontsPicker> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _pageSize = MediaQuery.of(context).size.height ~/ 56;
-    _loadedItems = _pageSize;
+    _pageSize = 5;
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
@@ -56,9 +54,13 @@ class _FontsPickerState extends State<FontsPicker> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final newItems = _filteredFonts.take(_loadedItems + _pageSize).toList();
-      final isLastPage = newItems.length < _pageSize;
-      if (isLastPage) {
+      final loadedItems = _pagingController.value.itemList?.length ?? 0;
+      final newItems = _filteredFonts.sublist(loadedItems, loadedItems + _pageSize).toList();
+
+      // Time for render font items
+      if (loadedItems > 24) await Future.delayed(const Duration(seconds: 1));
+
+      if (newItems.length < _pageSize) {
         _pagingController.appendLastPage(newItems);
       } else {
         final nextPageKey = pageKey + newItems.length;
@@ -105,7 +107,6 @@ class _FontsPickerState extends State<FontsPicker> {
                   final filteredList = _fonts.where((element) => element.contains(v)).toList();
                   _filteredFonts.clear();
                   _filteredFonts.addAll(filteredList);
-                  _loadedItems = _pageSize;
                   _pagingController.refresh();
                   setState(() {});
                 },
