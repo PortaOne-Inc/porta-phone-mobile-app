@@ -137,7 +137,7 @@ export default class ThemeController extends BaseController {
 	async patchApplication(req: Request, res: Response) {
 		const applicationId = req.params!.applicationId;
 		const themeId = req.params!.themeId;
-		const result = await this.themesService.patch(applicationId, themeId, req.body);
+		const result = await this.themesService.patchById(applicationId, themeId, req.body);
 		this.ok(res, result);
 	}
 

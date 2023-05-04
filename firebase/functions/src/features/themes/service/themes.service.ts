@@ -30,7 +30,7 @@ export default class ThemesService implements IThemesService {
 		return this.themeRepository.getByApplicationsId(id);
 	}
 
-	patch(applicationId: string, themeId: string, theme: Theme): Promise<Theme | null> {
+	patchById(applicationId: string, themeId: string, theme: Theme): Promise<Theme | null> {
 		theme.applicationId = applicationId;
 		theme.id = themeId;
 		return this.themeRepository.patch(theme);
