@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import {QueryDocumentSnapshot} from 'firebase-functions/lib/providers/firestore';
-import {EventContext} from 'firebase-functions/lib/cloud-functions';
+import {firestore} from 'firebase-admin';
+import {EventContext} from 'firebase-functions';
 import {inject, injectable} from 'inversify';
 
 import BaseTrigger from '../../../core/controllers/base.trigger';
@@ -19,7 +19,7 @@ export default class StaticTrigger extends BaseTrigger {
 		this.setDatabaseCreateListener('applications/{id}', this.onCreate.bind(this));
 	}
 
-	async onCreate(snapshot: QueryDocumentSnapshot, event: EventContext) {
+	async onCreate(snapshot: firestore.QueryDocumentSnapshot, event: EventContext) {
 		const result = await this.staticService.createDefaultTheme(snapshot.data().id);
 		if (result == null) {
 			console.log('No setup of default them');

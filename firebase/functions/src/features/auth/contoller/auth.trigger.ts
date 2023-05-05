@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import {EventContext} from 'firebase-functions/lib/cloud-functions';
+import {EventContext} from 'firebase-functions';
 import {inject, injectable} from 'inversify';
 
 import BaseTrigger from '../../../core/controllers/base.trigger';

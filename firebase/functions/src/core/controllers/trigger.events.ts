@@ -1,4 +1,4 @@
-import {EventContext} from 'firebase-functions/lib/cloud-functions';
-import {QueryDocumentSnapshot} from 'firebase-functions/lib/providers/firestore';
+import {firestore} from 'firebase-admin';
+import {EventContext} from 'firebase-functions';
 
-export type OnCreate = (snapshot: QueryDocumentSnapshot, context: EventContext) => PromiseLike<any> | any;
+export type OnCreate = (snapshot: firestore.QueryDocumentSnapshot, context: EventContext) => PromiseLike<any> | any;
