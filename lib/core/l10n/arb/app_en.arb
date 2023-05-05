@@ -126,6 +126,8 @@
   "feature_application_Text_butWeCan": "but we can",
   "feature_application_Text_or": "Or",
   "feature_applications_title": "Applications",
+  "feature_applications_version": "Version: {version}",
+  "feature_applications_Menu_increment": "Inc version",
   "common_not_implemented": "Not implemented",
   "configurator_common_description": "Description",
   "@locale_default": {

@@ -12,6 +12,7 @@ _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       platformIdentifier: json['platformIdentifier'] as String?,
       theme: json['theme'] as String?,
+      version: json['version'] as int?,
     );
 
 Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
@@ -27,5 +28,6 @@ Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
   writeNotNull('name', instance.name);
   writeNotNull('platformIdentifier', instance.platformIdentifier);
   writeNotNull('theme', instance.theme);
+  writeNotNull('version', instance.version);
   return val;
 }

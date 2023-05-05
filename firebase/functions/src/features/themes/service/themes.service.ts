@@ -1,0 +1,42 @@
+import 'reflect-metadata';
+
+import {inject, injectable} from 'inversify';
+
+import IThemeRepository from '../repository/themes.repository.interface';
+import IThemesService from './themes.service.interface';
+
+import {TYPES} from '../../../di';
+
+import User from '../../../core/models/user';
+import Theme from '../../../core/models/theme';
+
+@injectable()
+export default class ThemesService implements IThemesService {
+	constructor(
+		@inject(TYPES.ThemeRepository) private themeRepository: IThemeRepository
+	) {
+	}
+
+	createTheme(applicationId: string, theme: Theme): Promise<Theme | null> {
+		theme.applicationId = applicationId;
+		return this.themeRepository.create(theme);
+	}
+
+	getByThemeId(applicationId: string, id: string): Promise<Theme | null> {
+		return this.themeRepository.getByThemeId(applicationId, id);
+	}
+
+	getByApplicationId(id: string): Promise<Theme[]> {
+		return this.themeRepository.getByApplicationsId(id);
+	}
+
+	patchById(applicationId: string, themeId: string, theme: Theme): Promise<Theme | null> {
+		theme.applicationId = applicationId;
+		theme.id = themeId;
+		return this.themeRepository.patch(theme);
+	}
+
+	patchTheme(theme: Theme, userDto: User): Promise<Theme | null> {
+		return this.themeRepository.patch(theme);
+	}
+}

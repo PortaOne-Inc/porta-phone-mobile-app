@@ -14,6 +14,7 @@ class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       name: model.name,
       id: model.id,
       theme: model.theme,
+      version: model.version,
       platformIdentifier: model.platformIdentifier,
     );
   }
@@ -24,6 +25,7 @@ class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       name: dto.name,
       id: dto.id,
       theme: dto.theme,
+      version: dto.version ?? 0,
       platformIdentifier: dto.platformIdentifier,
     );
   }

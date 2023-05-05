@@ -157,23 +157,22 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
-  ReplaySubject<SvgLoader?> cLogo = ReplaySubject(maxSize: 1);
-  ReplaySubject<SvgLoader> cOnboarding = ReplaySubject();
+  final scheme = ImagesScheme();
 
-  void compleate(BuildContext context, ThemePropertyState state) async {
+  void complete(BuildContext context, ThemePropertyState state) async {
     final logo = state.theme.images?.applicationLogo;
 
     if (logo?.isNetwork ?? false) {
-      cLogo.add((SvgNetworkLoader(logo!.url!)));
-    } else if (logo?.isAvailable ?? false) {
-      cLogo.add((SvgBytesLoader(base64Decode(logo!.data!))));
+      scheme.setApplicationLogoByUrl(logo!.url!);
+    } else if (logo?.data != null) {
+      scheme.setApplicationByBytes(base64Decode(logo!.data!));
     } else {
-      cLogo.add(null);
+      scheme.clearApplicationLogo();
     }
   }
 
   void _updatePreviewScreens(ThemePropertyState state) {
-    compleate(context, state);
+    complete(context, state);
 
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
@@ -181,7 +180,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
           lightColorSchemeOverride: state.theme.colors,
           primaryGradientColors: state.theme.toCustomColorGradientCollection,
           fontFamily: state.theme.fontFamily,
-          imagesScheme: ImagesScheme(applicationLogo: cLogo)),
+          imagesScheme: scheme),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );

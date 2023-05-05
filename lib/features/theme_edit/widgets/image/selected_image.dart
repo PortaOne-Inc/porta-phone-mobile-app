@@ -77,6 +77,7 @@ class SelectedImage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  //TODO: Remove also on server if user delete image
                   Visibility(
                     visible: (image?.isAvailable ?? false),
                     child: GestureDetector(

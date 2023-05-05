@@ -8,11 +8,14 @@ class ThemesToolbar extends StatelessWidget {
     super.key,
     required this.onSwitchedLanguage,
     required this.onNewTheme,
+    required this.onLogout,
   });
 
   static const _menuKeyRight = '_menuKeyRight';
+  static const _menuKeyLogOut = '_menuKeyOnLogout';
   final Function() onSwitchedLanguage;
   final Function() onNewTheme;
+  final Function() onLogout;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,10 @@ class ThemesToolbar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SwitcherLanguage(
-                margin: const EdgeInsets.only(right: 16),
-                onSwitchedLanguage: onSwitchedLanguage,
-              )
+              Wrap(
+                alignment: WrapAlignment.end,
+                children: _buildRightMenu(context),
+              ),
             ],
           ),
         )
@@ -65,6 +68,24 @@ class ThemesToolbar extends StatelessWidget {
         ],
         child: ToolbarLabelItem(
           text: context.l10n.common_file,
+        ),
+      )
+    ];
+  }
+
+  List<Widget> _buildRightMenu(BuildContext context) {
+    return [
+      ToolbarPopupMenu(
+        onSelected: (value) => onLogout.call(),
+        items: [
+          ToolbarMenuItem(
+            value: _menuKeyLogOut,
+            text: 'Log out',
+          )
+        ],
+        child: const ToolbarLabelWidgetItem(
+          icon: Icons.account_circle,
+          margin: EdgeInsets.symmetric(horizontal: 8),
         ),
       )
     ];

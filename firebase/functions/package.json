@@ -1,25 +1,37 @@
 {
   "name": "functions",
   "scripts": {
+    "debug": "lsof -t -i :7980 -i:7981 -i:7982 -i:7983 -i:7984 -i:7985 -i:9229 | xargs kill -9 && tsc && firebase emulators:start --inspect-functions",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "swagger-autogen": "node doc/swagger.ts --host=127.0.0.1:7981/webtrit-configurator-stage/us-central1/api/v1"
   },
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@types/node": "^18.15.11",
+    "and": "^0.0.3",
     "body-parser": "^1.20.2",
-    "firebase-admin": "^10.2.0",
-    "firebase-functions": "^3.21.0",
-    "joi": "^17.9.1"
+    "class-transformer": "^0.5.1",
+    "connect-timeout": "^1.9.0",
+    "firebase-admin": "^11.7.0",
+    "firebase-functions": "^4.3.1",
+    "inversify": "^6.0.1",
+    "joi": "^17.9.1",
+    "reflect-metadata": "^0.1.13",
+    "swagger-autogen": "^2.23.1",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
+    "@types/connect-timeout": "^0.0.36",
+    "@types/swagger-ui-express": "^4.1.3",
     "typescript": "^4.6.4"
   },
   "private": true

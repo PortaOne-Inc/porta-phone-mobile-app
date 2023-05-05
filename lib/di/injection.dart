@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -12,7 +13,7 @@ late GetIt _getIt;
 
 @InjectableInit()
 Future<GetIt> configureDependencies({
-  String environment = Environment.dev,
+  String environment = Environment.prod,
 }) async {
   _getIt = GetIt.asNewInstance();
   _getIt.init(environment: environment);
@@ -21,10 +22,11 @@ Future<GetIt> configureDependencies({
 
 @module
 abstract class RegisterModule {
-  @Singleton()
+
+  @LazySingleton()
   FirebaseDatabase database() => FirebaseDatabase.instance;
 
-  @Singleton()
+  @LazySingleton()
   FirebaseAuth auth() {
     final firebaseAuth = FirebaseAuth.instance;
     final env = _getIt.get<AppEnvironment>();
@@ -33,14 +35,13 @@ abstract class RegisterModule {
     if (authorizationOption != null) {
       firebaseAuth.useAuthEmulator(authorizationOption.host, authorizationOption.port);
     }
-
     return firebaseAuth;
   }
 
-  @Singleton()
+  @LazySingleton()
   FirebaseStorage storage() => FirebaseStorage.instance;
 
-  @Singleton()
+  @LazySingleton()
   Dio dio() {
     final dio = Dio();
     dio.interceptors.add(InterceptorsWrapper(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
@@ -10,6 +12,7 @@ class ApplicationPreviewItem extends StatelessWidget {
     required this.onDelete,
     required this.onEdit,
     required this.onOpen,
+    required this.incrementVersion,
   });
 
   final ApplicationModel application;
@@ -17,8 +20,10 @@ class ApplicationPreviewItem extends StatelessWidget {
   final Function(ApplicationModel model) onOpen;
   final Function(ApplicationModel model) onDelete;
   final Function(ApplicationModel model) onEdit;
+  final Function(ApplicationModel model) incrementVersion;
 
   static const _menuKeyEdit = '_menuKeyEdit';
+  static const _menuKeyUpdateVersion = '_menuKeyUpdateVersion';
   static const _menuKeyDelete = '_menuKeyDelete';
 
   @override
@@ -54,6 +59,16 @@ class ApplicationPreviewItem extends StatelessWidget {
                     child: const Icon(Icons.more_vert_outlined),
                     itemBuilder: (c) => [
                       PopupMenuItem(
+                        value: _menuKeyUpdateVersion,
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          context.l10n.feature_applications_Menu_increment,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.black87,
+                              ),
+                        ),
+                      ),
+                      PopupMenuItem(
                         value: _menuKeyEdit,
                         padding: const EdgeInsets.all(8),
                         child: Text(
@@ -73,6 +88,10 @@ class ApplicationPreviewItem extends StatelessWidget {
                   ),
                 ],
               ),
+              Text(
+                context.l10n.feature_applications_version(application.version),
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
             ],
           ),
         ),
@@ -87,6 +106,9 @@ class ApplicationPreviewItem extends StatelessWidget {
         break;
       case _menuKeyEdit:
         onEdit.call(application);
+        break;
+        case _menuKeyUpdateVersion:
+        incrementVersion.call(application);
         break;
     }
   }

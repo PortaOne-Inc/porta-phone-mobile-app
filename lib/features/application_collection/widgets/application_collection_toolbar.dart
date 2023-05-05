@@ -39,10 +39,6 @@ class ApplicationCollectionToolbar extends StatelessWidget {
                 alignment: WrapAlignment.end,
                 children: _buildRightMenu(context),
               ),
-              SwitcherLanguage(
-                margin: const EdgeInsets.only(right: 16),
-                onSwitchedLanguage: onLogout,
-              )
             ],
           ),
         )
@@ -55,14 +51,6 @@ class ApplicationCollectionToolbar extends StatelessWidget {
       ToolbarPopupMenu(
         onSelected: (value) => onLogout.call(),
         items: [
-          ToolbarMenuItem(
-            value: _menuKeyRight,
-            text: 'My profile',
-          ),
-          ToolbarMenuItem(
-            value: _menuKeyRight,
-            text: 'Setting',
-          ),
           ToolbarMenuItem(
             value: _menuKeyRight,
             text: 'Log out',

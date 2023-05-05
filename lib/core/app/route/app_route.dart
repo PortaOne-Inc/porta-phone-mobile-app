@@ -6,7 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:webtrit_configurator/core/env/app_environment.dart';
 
+import 'package:webtrit_configurator/features/admin/page/admin_page.dart';
 import 'package:webtrit_configurator/features/application_edit/application_edit.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
@@ -50,12 +52,21 @@ class AppRoute {
                 ),
               ),
               GoRoute(
+                path: AppRoutInfo.admin.path,
+                name: AppRoutInfo.admin.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<AdminCubit>(
+                  child: const AdminPage(),
+                  create: (BuildContext context) => AdminCubit(),
+                ),
+              ),
+              GoRoute(
                 path: AppRoutInfo.applicationCollection.path,
                 name: AppRoutInfo.applicationCollection.name,
                 builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCollectionCubit>(
                   create: (BuildContext context) => VendorCollectionCubit(
                     vendorCollectionUsecase: getIt.get(),
                     vendorDeleteUsecase: getIt.get(),
+                    applicationIncVersion: getIt.get(),
                   ),
                   child: const ApplicationCollectionPage(),
                 ),
@@ -118,7 +129,9 @@ class AppRoute {
                             ),
                           ),
                         ],
-                        child: const PageThemeEdit(),
+                        child: PageThemeEdit(
+                          swaggerUrl: getIt.get<AppEnvironment>().endpoints.doc,
+                        ),
                       ))
             ])
       ],

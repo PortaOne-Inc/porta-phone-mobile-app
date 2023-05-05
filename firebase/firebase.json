@@ -1,7 +1,4 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "functions": {
     "ignore": [
       "node_modules",
@@ -35,9 +32,6 @@
     },
     "firestore": {
       "port": 7982
-    },
-    "database": {
-      "port": 7983
     },
     "hosting": {
       "port": 7984

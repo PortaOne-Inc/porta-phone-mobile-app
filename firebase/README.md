@@ -1,5 +1,20 @@
 # Webtrit configurator
 
+## Swagger generation
+
+    node doc/swagger.ts --host=http:host.com
+or
+    
+    "swagger-autogen": "node doc/swagger.ts --host=http:host.com
+
+    npm run swagger-autogen
+
+## Testing
+
+To get local user:
+
+    http://127.0.0.1:7980/identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[key]
+
 ## Init
 
 * firebase init

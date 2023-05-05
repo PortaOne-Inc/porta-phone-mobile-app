@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin_messages.dart';
@@ -15,7 +16,10 @@ import 'page_theme_preview.dart';
 class PageThemeEdit extends StatefulWidget {
   const PageThemeEdit({
     super.key,
+    required this.swaggerUrl,
   });
+
+  final String swaggerUrl;
 
   @override
   State<PageThemeEdit> createState() => _PageThemeEditState();
@@ -37,10 +41,8 @@ class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
               onDownload: _notImplemented,
               onLanguageChanged: _notImplemented,
               onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
-              onApiCredential: () {
-                BlocProvider.of<SynchronizeCubit>(context).showThemeCredential();
-              },
-              onApiEndpoints: () {},
+              onApiCredential: () => BlocProvider.of<SynchronizeCubit>(context).showThemeCredential(),
+              onApiEndpoints: () => _openSwaggerDocs(),
             ),
           ),
           body: const BackgroundBinaryResizableColumn(
@@ -50,6 +52,12 @@ class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
         ),
       ),
     );
+  }
+
+  Future<void> _openSwaggerDocs() async {
+    if (!await launchUrl(Uri.parse(widget.swaggerUrl))) {
+      throw Exception('Could not launch ${widget.swaggerUrl}');
+    }
   }
 
   void _listenSynchronizeState(SynchronizeState state) {

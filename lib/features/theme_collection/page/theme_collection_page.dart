@@ -9,6 +9,7 @@ import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
+import '../../common/common.dart';
 import '../bloc/theme_collection_cubit.dart';
 import '../widgets/widgets.dart';
 import 'theme_collection_create_dialog.dart';
@@ -34,9 +35,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
             child: ThemesToolbar(
-              onSwitchedLanguage: _onLanguageChanged,
-              onNewTheme: () => _onNewTheme(),
-            ),
+                onSwitchedLanguage: _onLanguageChanged,
+                onNewTheme: () => _onNewTheme(),
+                onLogout: () => _onLogout(context)),
           ),
           body: Align(
             alignment: (state.themes.length <= 2) ? Alignment.center : Alignment.topCenter,
@@ -142,6 +143,10 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
         },
       ),
     );
+  }
+
+  void _onLogout(BuildContext context) {
+    BlocProvider.of<CommonBloc>(context).logout();
   }
 
   void _openTheme(ThemeModel model) {

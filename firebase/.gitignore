@@ -70,4 +70,4 @@ credentials/service_account.json
 credentials/firebase_config.json
 
 # Generated files
-public
+/public
