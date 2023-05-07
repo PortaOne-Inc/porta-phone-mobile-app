@@ -14,7 +14,6 @@ import FirestoreApplicationMapper from '../../../core/mappers/firestore/applicat
 
 import Theme from '../../../core/models/theme';
 
-
 @injectable()
 export default class ThemeRepository implements IThemeRepository {
 	private collection: firestore.CollectionReference;
@@ -39,7 +38,7 @@ export default class ThemeRepository implements IThemeRepository {
 		return theme;
 	}
 
-	async getByThemeId(applicationId: string, id: string): Promise<Theme | null> {
+	async get(id: string): Promise<Theme | null> {
 		const reference = (await this.collection.doc(id).get());
 		if (reference.exists) {
 			return this.themeMapper.toClass(reference.data()!);
@@ -56,5 +55,11 @@ export default class ThemeRepository implements IThemeRepository {
 	async getByApplicationsId(id: string): Promise<Theme[]> {
 		return (await this.collection.where('applicationId', '==', id).get())
 			.docs.map(doc => this.themeMapper.toClass(doc.data()));
+	}
+
+	async delete(themeId: string): Promise<void | null> {
+		const reference = await this.collection.doc(themeId);
+		await reference.delete();
+		return;
 	}
 }

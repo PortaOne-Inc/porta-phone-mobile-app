@@ -43,7 +43,13 @@ export default class ThemeController extends BaseController {
 			{
 				path: '/applications/:applicationId/themes/:themeId',
 				method: 'patch',
-				func: this.patchApplication,
+				func: this.patchTheme,
+				middlewares: [new AuthMiddleware()]
+			},
+			{
+				path: '/applications/:applicationId/themes/:themeId',
+				method: 'delete',
+				func: this.deleteTheme,
 				middlewares: [new AuthMiddleware()]
 			},
 
@@ -134,11 +140,53 @@ export default class ThemeController extends BaseController {
     */
 
 	// TODO: Add params validation
-	async patchApplication(req: Request, res: Response) {
+	async patchTheme(req: Request, res: Response) {
 		const applicationId = req.params!.applicationId;
 		const themeId = req.params!.themeId;
 		const result = await this.themesService.patchById(applicationId, themeId, req.body);
 		this.ok(res, result);
+	}
+
+
+	/*
+	#swagger.start
+	#swagger.tags = ['Themes']
+	#swagger.path = '/applications/{applicationId}/themes/{themeId}'
+	#swagger.method = 'delete'
+	#swagger.description = 'Delete theme by id'
+	#swagger.produces = ['application/json']
+	#swagger.security = [{
+		  "apiKeyAuth": []
+		   				}]
+	#swagger.parameters['applicationId'] = {
+            in: 'path',
+            type: 'string',
+            description: 'Application ID.' }
+
+    #swagger.parameters['themeId'] = {
+            in: 'path',
+            type: 'string',
+            description: 'Theme ID.' }
+        }
+
+    #swagger.responses[004] = {
+      description: 'Application response',
+      schema: { $ref: '#/definitions/Application' }
+  	}
+    #swagger.end
+    */
+	async deleteTheme(req: Request, resp: Response) {
+		const applicationId = req.params!.applicationId;
+		const themeId = req.params!.themeId;
+		const user = req.user;
+
+		const result = await this.themesService.deleteTheme(applicationId, themeId, user!);
+
+		if (result === undefined) {
+			this.ok(resp, 'Theme deleted successfully')
+		} else {
+			this.noContent(resp)
+		}
 	}
 
 	/*

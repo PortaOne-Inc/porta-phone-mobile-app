@@ -27,9 +27,8 @@ class HttpDatasource {
     return ApplicationDTO.fromJson(response.data);
   }
 
-  Future<ApplicationDTO> deleteApplications(ApplicationDTO application) async {
-    final response = await dio.delete('${environment.endpoints.host}/applications/', data: application.toJson());
-    return ApplicationDTO.fromJson(response.data);
+  Future deleteApplications(String applicationId) async {
+    final response = await dio.delete('${environment.endpoints.host}/applications/$applicationId');
   }
 
   Future<ApplicationDTO> getApplication(String applicationId) async {
@@ -61,19 +60,13 @@ class HttpDatasource {
     return ThemeDTO.fromJson(response.data);
   }
 
-  // Future<ThemeDTO> patchDefaultTheme(ThemeDTO themeDTO) async {
-  //   final response = await dio.patch('${environment.endpoints.url}/applications/$applicationId/themes/${themeDTO.id}',
-  //       data: themeDTO.toJson());
-  //   return ThemeDTO.fromJson(response.data);
-  // }
-
   Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
     final response = await dio.get('${environment.endpoints.host}/applications/$applicationId/themes/$themeId');
     return ThemeDTO.fromJson(response.data);
   }
 
-  Future<ThemeDTO> deleteTheme(String applicationId, String themeId) async {
-    final response = await dio.delete('${environment.endpoints.host}/applications/$applicationId/themes/$themeId');
-    return ThemeDTO.fromJson(response.data);
+  Future deleteTheme(String applicationId, String themeId) async {
+    await dio.delete('${environment.endpoints.host}/applications/$applicationId/themes/$themeId');
+    return;
   }
 }

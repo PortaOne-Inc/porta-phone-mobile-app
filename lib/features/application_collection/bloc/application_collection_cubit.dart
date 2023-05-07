@@ -34,8 +34,15 @@ class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
   }
 
   void deleteApplication(ApplicationModel applicationModel) async {
-    await vendorDeleteUsecase.execute(model: applicationModel);
-    tryGetApplications();
+    try {
+      emit(state.copyWithProgress());
+      await vendorDeleteUsecase.execute(applicationId: applicationModel.id!);
+      tryGetApplications();
+    } on BaseException catch (e) {
+      _showNotCaughtFailure(e.message);
+    } catch (e) {
+      _showNotCaughtFailure(e.toString());
+    }
   }
 
   void incrementApplicationVersion(ApplicationModel applicationModel) async {

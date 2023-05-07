@@ -38,6 +38,12 @@ export default class ApplicationController extends BaseController {
 				middlewares: [new AuthMiddleware()]
 			},
 			{
+				path: '/applications/:applicationId',
+				method: 'delete',
+				func: this.deleteApplication,
+				middlewares: [new AuthMiddleware()]
+			},
+			{
 				path: '/applications',
 				method: 'post',
 				func: this.createApplication,
@@ -160,6 +166,40 @@ export default class ApplicationController extends BaseController {
 	async patchApplication({params, body}: Request, resp: Response) {
 		const data = await this.applicationsService.patchApplication(params.applicationId, body);
 		resp.status(200).json(data);
+	}
+
+	/*
+	#swagger.start
+	#swagger.tags = ['Applications']
+	#swagger.path = '/applications/{applicationId}'
+	#swagger.method = 'delete'
+	#swagger.description = 'Delete applications by id'
+	#swagger.produces = ['application/json']
+	#swagger.security = [{
+		  "apiKeyAuth": []
+		   				}]
+	#swagger.parameters['applicationId'] = {
+            in: 'path',
+            type: 'string',
+            description: 'Application ID.' }
+
+    #swagger.responses[004] = {
+      description: 'Application response',
+      schema: { $ref: '#/definitions/Application' }
+  	}
+    #swagger.end
+    */
+	async deleteApplication(req: Request, resp: Response) {
+		const applicationId = req.params!.applicationId;
+		const user = req.user;
+
+		const result = await this.applicationsService.deleteApplication(applicationId, user!);
+
+		if (result === undefined) {
+			this.ok(resp, 'Application deleted successfully')
+		} else {
+			this.noContent(resp)
+		}
 	}
 
 	/*

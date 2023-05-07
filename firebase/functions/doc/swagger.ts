@@ -6,8 +6,19 @@ const endpointsFiles = ['src/features/**/controller/**/*.ts']
 
 // @ts-ignore
 const args = process.argv.slice(2);
-// @ts-ignore
-const host = args.find(arg => arg.startsWith('--host=')).substring(7);
+
+// Define default values for the host and scheme parameters
+let host = '127.0.0.1:7981/webtrit-configurator-stage/us-central1/api/v1';
+let scheme = 'https';
+
+// Parse the command line arguments
+args.forEach(arg => {
+	if (arg.startsWith('--host=')) {
+		host = arg.substring(7);
+	} else if (arg.startsWith('--scheme=')) {
+		scheme = arg.substring(9);
+	}
+});
 
 
 const doc = {
@@ -17,7 +28,7 @@ const doc = {
 	},
 	host: host,
 	basePath: '/',
-	schemes: ['https', 'http'],
+	schemes: [scheme],
 	consumes: ['application/json'],
 	produces: ['application/json'],
 	tags: [

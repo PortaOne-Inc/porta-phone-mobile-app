@@ -14,7 +14,6 @@ import Application from '../../../core/models/application';
 
 import {TYPES} from '../../../di';
 
-
 @injectable()
 export default class ApplicationRepository implements IApplicationRepository {
 	private collection: firestore.CollectionReference;
@@ -40,6 +39,12 @@ export default class ApplicationRepository implements IApplicationRepository {
 		return application;
 	}
 
+	async delete(id: string): Promise<void> {
+		const reference = await this.collection.doc(id);
+		await reference.delete();
+		return;
+	}
+
 	// TODO: Handle moment when no application with id
 	async getById(id: string): Promise<Application | null> {
 		const reference = (await this.collection.doc(id).get());
@@ -50,9 +55,4 @@ export default class ApplicationRepository implements IApplicationRepository {
 		const reference = (await this.collection.where('user', '==', id).get()).docs;
 		return reference.map((snapshot) => this.applicationMapper.toClass(snapshot.data()));
 	}
-
-	// async getApplications(user: string) {
-	// 	const reference = (await this.collection.where('user', '==', user).get()).docs.map(doc => doc.data());
-	// 	return reference.map((snapshot) => this.applicationMapper.toClass(snapshot));
-	// }
 }

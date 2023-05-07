@@ -13,10 +13,9 @@ abstract class ThemeRepository {
     ThemeDTO? theme,
   );
 
-  Future<ThemeDTO> deleteTheme(
-    String userId,
+  Future deleteTheme(
     String applicationId,
-    ThemeDTO themeDTO,
+    String themeId,
   );
 
   Future<List<ThemeDTO>> getThemes(
