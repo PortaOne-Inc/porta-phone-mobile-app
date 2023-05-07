@@ -10,7 +10,6 @@ import User from '../../../core/models/user';
 
 import {TYPES} from '../../../di';
 
-
 @injectable()
 export default class ApplicationsService implements IApplicationsService {
 

@@ -14,7 +14,6 @@ import Application from '../../../core/models/application';
 
 import {TYPES} from '../../../di';
 
-
 @injectable()
 export default class ApplicationRepository implements IApplicationRepository {
 	private collection: firestore.CollectionReference;
@@ -56,5 +55,4 @@ export default class ApplicationRepository implements IApplicationRepository {
 		const reference = (await this.collection.where('user', '==', id).get()).docs;
 		return reference.map((snapshot) => this.applicationMapper.toClass(snapshot.data()));
 	}
-
 }
