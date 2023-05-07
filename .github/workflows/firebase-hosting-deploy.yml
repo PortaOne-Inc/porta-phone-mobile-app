@@ -106,12 +106,12 @@ jobs:
 
       - name: Generate swagger stage
         if: startsWith(github.ref, 'refs/tags/v')
-        run: node doc/swagger.ts --host=us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1
+        run: node doc/swagger.ts --host=us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1 --scheme=https
         working-directory: ${{env.WORKING_DIRECTORY}}/firebase/functions
 
       - name: Generate swagger prod
         if: "!startsWith(github.ref, 'refs/tags/v')"
-        run: node doc/swagger.ts --host=us-central1-webtrit-configurator.cloudfunctions.net/api/v1
+        run: node doc/swagger.ts --host=us-central1-webtrit-configurator.cloudfunctions.net/api/v1 --scheme=https
         working-directory: ${{env.WORKING_DIRECTORY}}/firebase/functions
 
       - name: Deploy stage cloud functions
