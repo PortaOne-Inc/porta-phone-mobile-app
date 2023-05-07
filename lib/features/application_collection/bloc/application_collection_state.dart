@@ -32,4 +32,12 @@ extension _StateCopyWith on ApplicationCollectionState {
       applications: applications ?? this.applications,
     );
   }
+
+  ApplicationCollectionState copyWithProgress({
+    List<ApplicationModel>? applications,
+  }) {
+    return ApplicationCollectionState.progress(
+      applications: applications ?? this.applications,
+    );
+  }
 }

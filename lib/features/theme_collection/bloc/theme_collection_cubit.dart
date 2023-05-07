@@ -65,7 +65,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
 
   Future _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWithProgress());
-    await deleteThemeUseCase.execute(themeModel: themeModel, applicationId: applicationId);
+    await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
     _getThemes();
   }
 

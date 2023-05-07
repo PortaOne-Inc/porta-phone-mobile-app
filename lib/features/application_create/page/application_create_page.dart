@@ -127,6 +127,6 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
   }
 
   void _openApplications() {
-    GoRouter.of(context).pushNamed(AppRoutInfo.applicationCollection.name);
+    GoRouter.of(context).push(AppRoutInfo.applicationCollection.name);
   }
 }

@@ -15,8 +15,8 @@ class UsecaseVendorDeleteTemplateImpl implements UsecaseApplicationDeleteTemplat
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 
   @override
-  FutureOr<void> execute({required ApplicationModel model}) async {
-    final uid = await authRepository.getUserUID();
-    applicationRepository.deleteApplication(uid!, applicationMapper.mapToDto(model));
+  FutureOr<void> execute({required String applicationId}) async {
+    await applicationRepository.deleteApplication(applicationId);
+    return;
   }
 }

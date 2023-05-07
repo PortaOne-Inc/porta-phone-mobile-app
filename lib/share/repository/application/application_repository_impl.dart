@@ -37,9 +37,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationDTO> deleteApplication(String userId, ApplicationDTO applicationDTO) async {
+  Future deleteApplication(String applicationId) async {
     try {
-      return await httpDatasource.deleteApplications(applicationDTO);
+      return await httpDatasource.deleteApplications(applicationId);
     } on DioError catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
