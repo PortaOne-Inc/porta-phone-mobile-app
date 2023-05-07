@@ -44,4 +44,18 @@ export default class ApplicationsService implements IApplicationsService {
 	async patchApplication(id: string, application: Application): Promise<Application | null> {
 		return this.applicationRepository.patch(id, application);
 	}
+
+	async deleteApplication(id: string, {uid}: User): Promise<void | null> {
+		try {
+			const application = await this.applicationRepository.getById(id);
+
+			if (application?.user == uid) {
+				return this.applicationRepository.delete(id);
+			} else {
+				return null;
+			}
+		} catch (e) {
+			return null;
+		}
+	}
 }
