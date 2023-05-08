@@ -25,6 +25,7 @@ class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
 
   void tryGetApplications() async {
     try {
+      emit(state.copyWithProgress());
       await _getApplications();
     } on BaseException catch (e) {
       _showNotCaughtFailure(e.message);
