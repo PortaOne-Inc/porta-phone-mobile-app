@@ -24,7 +24,6 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
     required String applicationId,
     required ThemeModel themeModel,
   }) async {
-    final uid = await authRepository.getUserUID();
     final dtoTheme = mapper.mapToDto(themeModel);
 
     final images = ImageCollectionDTO(
@@ -38,7 +37,7 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
       webLauncherIcon: await _getImageUrl(themeModel.images?.webLauncherIcon),
     );
 
-    final theme = await themeRepository.updateTheme(uid!, applicationId, dtoTheme?.copyWith(images: images));
+    final theme = await themeRepository.updateTheme(applicationId, dtoTheme?.copyWith(images: images));
 
     return mapper.mapToModel(theme);
   }

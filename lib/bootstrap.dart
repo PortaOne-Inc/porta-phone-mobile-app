@@ -8,7 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:webtrit_configurator/core/env/env.dart';
-import 'package:webtrit_configurator/core/firebase/firebase_options.dart';
 
 import 'package:webtrit_configurator/di/di.dart';
 

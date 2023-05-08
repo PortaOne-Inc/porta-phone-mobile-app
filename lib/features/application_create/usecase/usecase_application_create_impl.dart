@@ -15,8 +15,7 @@ class UsecaseApplicationCreateImpl extends UsecaseApplicationCreate {
 
   @override
   FutureOr<ApplicationModel> execute({required ApplicationModel argument}) async {
-    final uid = await authRepository.getUserUID();
-    final dto = await applicationRepository.createApplication(uid!, mapper.mapToDto(argument));
+    final dto = await applicationRepository.createApplication(mapper.mapToDto(argument));
     return mapper.mapToModel(dto);
   }
 }

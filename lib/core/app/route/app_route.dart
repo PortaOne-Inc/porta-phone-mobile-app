@@ -32,7 +32,7 @@ class AppRoute {
                 child: BlocListener<CommonBloc, CommonState>(
                   listener: (BuildContext context, CommonState state) {
                     if (state.isLogOut) {
-                      GoRouter.of(context).pushNamed(AppRoutInfo.login.name);
+                      GoRouter.of(context).go(AppRoutInfo.login.name);
                     }
                   },
                   child: child,
