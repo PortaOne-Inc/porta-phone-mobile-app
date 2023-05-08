@@ -25,7 +25,7 @@ class AuthState with _$AuthState {
   factory AuthState.error({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
-    BaseException? error,
+    AuthException? error,
   }) = AuthStateError;
 }
 
@@ -63,7 +63,7 @@ extension _StateCopyWith on AuthState {
   AuthState copyWithError({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
-    BaseException? failure,
+    required AuthException failure,
   }) {
     return AuthState.error(
       emailInput: emailInput ?? this.emailInput,

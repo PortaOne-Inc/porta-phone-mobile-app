@@ -157,17 +157,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             children: [
                               Expanded(
                                 child: ColorField(
-                                  title: context.l10n.feature_theme_edit_Color_on_background,
-                                  color: state.theme.colors?.onBackground,
-                                  onTap: (color) async => _selectColor(
-                                    context,
-                                    color,
-                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onBackground: color)),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: ColorField(
                                   title: context.l10n.configurator_color_background,
                                   color: state.theme.colors?.background,
                                   onFocus: (isFocus) {
@@ -177,6 +166,17 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                     context,
                                     color,
                                     (color) => bloc.updateColor(state.theme.colors?.copyWith(background: color)),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: ColorField(
+                                  title: context.l10n.feature_theme_edit_Color_on_background,
+                                  color: state.theme.colors?.onBackground,
+                                  onTap: (color) async => _selectColor(
+                                    context,
+                                    color,
+                                    (color) => bloc.updateColor(state.theme.colors?.copyWith(onBackground: color)),
                                   ),
                                 ),
                               ),

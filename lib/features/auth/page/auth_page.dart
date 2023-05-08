@@ -107,7 +107,7 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
 
   void _listenAuthState(BuildContext context, AuthState state) {
     if (state is AuthStateError) {
-      showFailureMessage(context, state.error.toString());
+      showFailureMessage(context, state.error!.errorL10n(context));
     }
     if (state is AuthStateSuccess) {
       GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
