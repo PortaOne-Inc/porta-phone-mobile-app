@@ -25,7 +25,7 @@ class ApplicationCollectionPage extends StatefulWidget {
 class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<VendorCollectionCubit, ApplicationCollectionState>(
+    return BlocConsumer<ApplicationCollectionCubit, ApplicationCollectionState>(
       listener: (BuildContext context, ApplicationCollectionState state) {},
       builder: (ctx, state) {
         return Scaffold(
@@ -63,7 +63,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         physics: const ClampingScrollPhysics(),
                         itemBuilder: (ctx, index) => ApplicationPreviewItem(
                           application: state.applications[index],
-                          onDelete: BlocProvider.of<VendorCollectionCubit>(context).deleteApplication,
+                          onDelete: BlocProvider.of<ApplicationCollectionCubit>(context).deleteApplication,
                           onEdit: _onEditApplication,
                           onOpen: _openApplication,
                           incrementVersion: _incrementApplicationVersion,
@@ -120,7 +120,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _incrementApplicationVersion(ApplicationModel applicationModel) {
-    BlocProvider.of<VendorCollectionCubit>(context).incrementApplicationVersion(applicationModel);
+    BlocProvider.of<ApplicationCollectionCubit>(context).incrementApplicationVersion(applicationModel);
   }
 
   void _openApplication(ApplicationModel applicationModel) {
