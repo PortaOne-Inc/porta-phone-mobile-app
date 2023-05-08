@@ -22,6 +22,7 @@ mixin _$CommonState {
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -35,12 +36,14 @@ mixin _$CommonState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CommonStateLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
@@ -58,35 +61,29 @@ mixin _$CommonState {
 
 /// @nodoc
 abstract class $CommonStateCopyWith<$Res> {
-  factory $CommonStateCopyWith(
-          CommonState value, $Res Function(CommonState) then) =
+  factory $CommonStateCopyWith(CommonState value, $Res Function(CommonState) then) =
       _$CommonStateCopyWithImpl<$Res, CommonState>;
 }
 
 /// @nodoc
-class _$CommonStateCopyWithImpl<$Res, $Val extends CommonState>
-    implements $CommonStateCopyWith<$Res> {
+class _$CommonStateCopyWithImpl<$Res, $Val extends CommonState> implements $CommonStateCopyWith<$Res> {
   _$CommonStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+  factory _$$_InitialCopyWith(_$_Initial value, $Res Function(_$_Initial) then) = __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$CommonStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -101,8 +98,7 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -177,17 +173,14 @@ abstract class _Initial implements CommonState {
 
 /// @nodoc
 abstract class _$$_CommonStateLogoutCopyWith<$Res> {
-  factory _$$_CommonStateLogoutCopyWith(_$_CommonStateLogout value,
-          $Res Function(_$_CommonStateLogout) then) =
+  factory _$$_CommonStateLogoutCopyWith(_$_CommonStateLogout value, $Res Function(_$_CommonStateLogout) then) =
       __$$_CommonStateLogoutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CommonStateLogoutCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$_CommonStateLogout>
+class __$$_CommonStateLogoutCopyWithImpl<$Res> extends _$CommonStateCopyWithImpl<$Res, _$_CommonStateLogout>
     implements _$$_CommonStateLogoutCopyWith<$Res> {
-  __$$_CommonStateLogoutCopyWithImpl(
-      _$_CommonStateLogout _value, $Res Function(_$_CommonStateLogout) _then)
+  __$$_CommonStateLogoutCopyWithImpl(_$_CommonStateLogout _value, $Res Function(_$_CommonStateLogout) _then)
       : super(_value, _then);
 }
 
@@ -203,8 +196,7 @@ class _$_CommonStateLogout implements _CommonStateLogout {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CommonStateLogout);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_CommonStateLogout);
   }
 
   @override

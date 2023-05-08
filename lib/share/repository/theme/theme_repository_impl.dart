@@ -16,7 +16,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   final HttpDatasource httpDatasource;
 
   @override
-  Future<ThemeDTO> updateTheme(String userId, String applicationId, ThemeDTO? theme) async {
+  Future<ThemeDTO> updateTheme(String applicationId, ThemeDTO? theme) async {
     try {
       return await httpDatasource.updateTheme(applicationId, theme!);
     } on DioError catch (e) {
@@ -27,7 +27,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeDTO> createTheme(String userId, String applicationId, ThemeDTO theme) async {
+  Future<ThemeDTO> createTheme(String applicationId, ThemeDTO theme) async {
     try {
       return await httpDatasource.createTheme(applicationId, theme);
     } on DioError catch (e) {
@@ -38,7 +38,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<List<ThemeDTO>> getThemes(String userId, String applicationId) async {
+  Future<List<ThemeDTO>> getThemes(String applicationId) async {
     try {
       return httpDatasource.getThemes(applicationId);
     } on DioError catch (e) {
@@ -49,7 +49,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeDTO> getTheme(String userId, String applicationId, String themeId) async {
+  Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
     try {
       return await httpDatasource.getTheme(applicationId, themeId);
     } on NoContentException catch (_) {

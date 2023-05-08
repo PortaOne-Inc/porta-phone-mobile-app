@@ -8,7 +8,8 @@ import 'usecase_application_add_theme.dart';
 
 @Injectable(as: UsecaseApplicationAddTheme)
 class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
-  UsecaseApplicationAddThemeImpl(this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
+  UsecaseApplicationAddThemeImpl(
+      this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
@@ -17,10 +18,9 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
 
   @override
   FutureOr<void> execute({required String applicationID, required ThemeModel themeModel}) async {
-    final uid = await authRepository.getUserUID();
-    final applications = await applicationRepository.getUserApplications(uid!);
+    final applications = await applicationRepository.getUserApplications();
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);
     final applicationDTO = fountApplication.copyWith(theme: themeModel.id);
-    applicationRepository.updateApplication(uid, applicationDTO);
+    applicationRepository.updateApplication(applicationID, applicationDTO);
   }
 }

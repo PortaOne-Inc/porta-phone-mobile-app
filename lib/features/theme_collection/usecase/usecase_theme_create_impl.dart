@@ -21,8 +21,7 @@ class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
     required String applicationId,
     required ThemeModel themeModel,
   }) async {
-    final uid = await authRepository.getUserUID();
-    final theme = await _themeRepository.createTheme(uid!, applicationId, mapper.mapToDto(themeModel)!);
+    final theme = await _themeRepository.createTheme(applicationId, mapper.mapToDto(themeModel)!);
     return mapper.mapToModel(theme)!;
   }
 }

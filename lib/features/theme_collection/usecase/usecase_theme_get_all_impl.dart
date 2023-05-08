@@ -21,8 +21,7 @@ class UsecaseThemeGetAllImpl extends UsecaseThemeGetAll {
 
   @override
   FutureOr<List<ThemeModel>> execute({required String applicationId, int? countThemes}) async {
-    final uid = await authRepository.getUserUID();
-    final theme = await themeRepository.getThemes(uid!, applicationId);
+    final theme = await themeRepository.getThemes(applicationId);
     final models = mapper.mapToModels(theme).whereType<ThemeModel>().toList();
 
     if (countThemes == null) {

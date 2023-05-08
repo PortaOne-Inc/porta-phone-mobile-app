@@ -16,8 +16,7 @@ class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
 
   @override
   FutureOr<List<ApplicationModel>> execute({void argument}) async {
-    final uid = await authRepository.getUserUID();
-    final result = await applicationRepository.getUserApplications(uid!);
+    final result = await applicationRepository.getUserApplications();
     return result.map((e) => applicationMapper.mapToModel(e)).toList();
   }
 }
