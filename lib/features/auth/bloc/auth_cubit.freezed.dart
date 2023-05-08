@@ -33,7 +33,7 @@ mixin _$AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ mixin _$AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ mixin _$AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) =>
@@ -235,7 +235,7 @@ class _$_AuthState implements _AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) {
     return $default(emailInput, passwordInput);
@@ -257,7 +257,7 @@ class _$_AuthState implements _AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) {
     return $default?.call(emailInput, passwordInput);
@@ -279,7 +279,7 @@ class _$_AuthState implements _AuthState {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) {
@@ -434,7 +434,7 @@ class _$AuthStateProgress implements AuthStateProgress {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) {
     return progress(emailInput, passwordInput);
@@ -456,7 +456,7 @@ class _$AuthStateProgress implements AuthStateProgress {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) {
     return progress?.call(emailInput, passwordInput);
@@ -478,7 +478,7 @@ class _$AuthStateProgress implements AuthStateProgress {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) {
@@ -633,7 +633,7 @@ class _$AuthStateSuccess implements AuthStateSuccess {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) {
     return success(emailInput, passwordInput);
@@ -655,7 +655,7 @@ class _$AuthStateSuccess implements AuthStateSuccess {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) {
     return success?.call(emailInput, passwordInput);
@@ -677,7 +677,7 @@ class _$AuthStateSuccess implements AuthStateSuccess {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) {
@@ -833,7 +833,7 @@ class _$AuthStateValidation implements AuthStateValidation {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) {
     return validation(emailInput, passwordInput);
@@ -855,7 +855,7 @@ class _$AuthStateValidation implements AuthStateValidation {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) {
     return validation?.call(emailInput, passwordInput);
@@ -877,7 +877,7 @@ class _$AuthStateValidation implements AuthStateValidation {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) {
@@ -954,7 +954,7 @@ abstract class _$$AuthStateErrorCopyWith<$Res>
   $Res call(
       {AuthEmailInput? emailInput,
       AuthPasswordInput? passwordInput,
-      BaseException? error});
+      AuthException? error});
 }
 
 /// @nodoc
@@ -984,7 +984,7 @@ class __$$AuthStateErrorCopyWithImpl<$Res>
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
+              as AuthException?,
     ));
   }
 }
@@ -999,7 +999,7 @@ class _$AuthStateError implements AuthStateError {
   @override
   final AuthPasswordInput? passwordInput;
   @override
-  final BaseException? error;
+  final AuthException? error;
 
   @override
   String toString() {
@@ -1044,7 +1044,7 @@ class _$AuthStateError implements AuthStateError {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
         validation,
     required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)
+            AuthPasswordInput? passwordInput, AuthException? error)
         error,
   }) {
     return error(emailInput, passwordInput, this.error);
@@ -1066,7 +1066,7 @@ class _$AuthStateError implements AuthStateError {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
   }) {
     return error?.call(emailInput, passwordInput, this.error);
@@ -1088,7 +1088,7 @@ class _$AuthStateError implements AuthStateError {
             AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
         validation,
     TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, BaseException? error)?
+            AuthPasswordInput? passwordInput, AuthException? error)?
         error,
     required TResult orElse(),
   }) {
@@ -1143,13 +1143,13 @@ abstract class AuthStateError implements AuthState {
   factory AuthStateError(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput,
-      final BaseException? error}) = _$AuthStateError;
+      final AuthException? error}) = _$AuthStateError;
 
   @override
   AuthEmailInput? get emailInput;
   @override
   AuthPasswordInput? get passwordInput;
-  BaseException? get error;
+  AuthException? get error;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateErrorCopyWith<_$AuthStateError> get copyWith =>

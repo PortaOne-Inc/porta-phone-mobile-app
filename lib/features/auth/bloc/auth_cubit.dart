@@ -50,12 +50,12 @@ class AuthCubit extends Cubit<AuthState> {
   void _tryLogin() async {
     try {
       await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
-    } on AuthUserNotFountException catch (e) {
-      emit(state.copyWithError(failure: e));
-    } on AuthWrongPasswordException catch (e) {
-      emit(state.copyWithError(failure: e));
+    } on AuthUserNotFountException catch (_) {
+      emit(state.copyWithError(failure: AuthException.noUser()));
+    } on AuthWrongPasswordException catch (_) {
+      emit(state.copyWithError(failure: AuthException.wrongPassword()));
     } on BaseException catch (e) {
-      emit(state.copyWithError(failure: e));
+      emit(state.copyWithError(failure: AuthException.another(message: e.message)));
     }
   }
 
