@@ -62,8 +62,8 @@ class AppRoute {
               GoRoute(
                 path: AppRoutInfo.applicationCollection.path,
                 name: AppRoutInfo.applicationCollection.name,
-                builder: (BuildContext context, GoRouterState state) => BlocProvider<VendorCollectionCubit>(
-                  create: (BuildContext context) => VendorCollectionCubit(
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCollectionCubit>(
+                  create: (BuildContext context) => ApplicationCollectionCubit(
                     vendorCollectionUsecase: getIt.get(),
                     vendorDeleteUsecase: getIt.get(),
                     applicationIncVersion: getIt.get(),

@@ -10,8 +10,8 @@ part 'application_collection_state.dart';
 
 part 'application_collection_cubit.freezed.dart';
 
-class VendorCollectionCubit extends Cubit<ApplicationCollectionState> {
-  VendorCollectionCubit({
+class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
+  ApplicationCollectionCubit({
     required this.vendorCollectionUsecase,
     required this.vendorDeleteUsecase,
     required this.applicationIncVersion,
