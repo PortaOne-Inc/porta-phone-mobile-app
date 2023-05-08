@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:formz/formz.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
+import 'applications_consts.dart';
+
 enum ApplicationNameValidationError {
   blank,
   toLong,
@@ -19,9 +21,9 @@ class ApplicationNameInput extends FormzInput<String, ApplicationNameValidationE
   ApplicationNameValidationError? validator(String value) {
     if (value.isEmpty) {
       return ApplicationNameValidationError.blank;
-    } else if (value.length > 24) {
+    } else if (value.length > ApplicationConsts.maxNameLimit) {
       return ApplicationNameValidationError.toLong;
-    } else if (value.length < 4) {
+    } else if (value.length < ApplicationConsts.minNameLimit) {
       return ApplicationNameValidationError.toShort;
     } else {
       return null;

@@ -9,6 +9,7 @@ import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 import '../bloc/application_create_cubit.dart';
+import '../model/applications_consts.dart';
 import '../model/models.dart';
 import '../widgets/application_create_toolbar.dart';
 
@@ -26,6 +27,9 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textScheme = Theme.of(context).textTheme;
+
     return BlocConsumer<ApplicationCreateCubit, ApplicationCreateState>(
       listener: (BuildContext context, ApplicationCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
@@ -50,20 +54,22 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                     children: [
                       Text(
                         context.l10n.feature_application_Input_title,
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: textScheme.labelMedium,
                       ),
                       const SizedBox(
                         height: 4,
                       ),
                       TextFormField(
                         onChanged: _bloc.updateNameChange,
+                        maxLength: ApplicationConsts.maxNameLimit,
                         decoration: InputDecoration(
-                          errorText: state.nameInput?.errorL10n(context),
-                          hintText: context.l10n.feature_application_Input_hint,
-                          hintStyle: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black54,
-                              ),
-                        ),
+                            errorText: state.nameInput?.errorL10n(context),
+                            hintText: context.l10n.feature_application_Input_hint,
+                            hintStyle: textScheme.bodyMedium?.copyWith(color: Colors.black54),
+                            suffixIcon: Tooltip(
+                              message: context.l10n.feature_application_create_Tooltip_name_info,
+                              child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                            )),
                       ),
                       const SizedBox(
                         height: 16,
@@ -77,8 +83,13 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                       ),
                       TextFormField(
                         onChanged: _bloc.updateApplicationIdentifier,
+                        maxLength: ApplicationConsts.maxIdentifierLimit,
                         decoration: InputDecoration(
                           errorText: state.applicationIdentifierInput?.errorL10n(context),
+                          suffixIcon: Tooltip(
+                            message: context.l10n.feature_application_create_Tooltip_identifier_info,
+                            child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                          ),
                           prefixIcon: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -86,9 +97,9 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                                 padding: const EdgeInsets.only(left: 8),
                                 child: Text(
                                   EnvironmentConfig.IDENTIFIER_PREFIX,
-                                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                        color: Colors.black54,
-                                      ),
+                                  style: textScheme.bodyMedium?.copyWith(
+                                    color: Colors.black54,
+                                  ),
                                 ),
                               )
                             ],

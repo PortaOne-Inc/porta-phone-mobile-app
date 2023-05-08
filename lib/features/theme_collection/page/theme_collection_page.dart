@@ -35,9 +35,11 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
             child: ThemesToolbar(
-                onSwitchedLanguage: _onLanguageChanged,
-                onNewTheme: () => _onNewTheme(),
-                onLogout: () => _onLogout(context)),
+              onSwitchedLanguage: _onLanguageChanged,
+              onNewTheme: () => _onNewTheme(),
+              onLogout: () => _onLogout(context),
+              onInfo: () => _onInfo(context),
+            ),
           ),
           body: Align(
             alignment: (state.themes.length <= 2) ? Alignment.center : Alignment.topCenter,
@@ -147,6 +149,16 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
 
   void _onLogout(BuildContext context) {
     BlocProvider.of<CommonBloc>(context).logout();
+  }
+
+  void _onInfo(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => InfoDialog(
+        title: context.l10n.feature_theme_Tooltip_description_title,
+        message: context.l10n.feature_theme_Tooltip_description_message,
+      ),
+    );
   }
 
   void _openTheme(ThemeModel model) {

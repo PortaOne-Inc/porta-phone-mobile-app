@@ -9,13 +9,16 @@ class ThemesToolbar extends StatelessWidget {
     required this.onSwitchedLanguage,
     required this.onNewTheme,
     required this.onLogout,
+    required this.onInfo,
   });
 
   static const _menuKeyRight = '_menuKeyRight';
   static const _menuKeyLogOut = '_menuKeyOnLogout';
+  static const _menuKeyInfo = '_menuKeyOnInfo';
   final Function() onSwitchedLanguage;
   final Function() onNewTheme;
   final Function() onLogout;
+  final Function() onInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +79,19 @@ class ThemesToolbar extends StatelessWidget {
   List<Widget> _buildRightMenu(BuildContext context) {
     return [
       ToolbarPopupMenu(
-        onSelected: (value) => onLogout.call(),
+        onSelected: (value) {
+          if (value == _menuKeyLogOut) {
+            onLogout.call();
+          }
+          if (value == _menuKeyInfo) {
+            onInfo.call();
+          }
+        },
         items: [
+          ToolbarMenuItem(
+            value: _menuKeyInfo,
+            text: 'Info',
+          ),
           ToolbarMenuItem(
             value: _menuKeyLogOut,
             text: 'Log out',
