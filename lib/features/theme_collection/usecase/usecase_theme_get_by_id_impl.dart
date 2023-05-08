@@ -15,8 +15,7 @@ class UsecaseThemeGetByIdImpl implements UsecaseThemeGetById {
 
   @override
   Future<ThemeModel> execute({required String themeId, required String applicationId}) async {
-    final uid = await authRepository.getUserUID();
-    final dto = await themeRepository.getTheme(uid!, applicationId, themeId);
+    final dto = await themeRepository.getTheme( applicationId, themeId);
     return mapper.mapToModel(dto)!;
   }
 }

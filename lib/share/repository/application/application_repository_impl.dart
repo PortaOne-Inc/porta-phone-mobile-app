@@ -15,7 +15,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   });
 
   @override
-  Future<ApplicationDTO> createApplication(String userId, ApplicationDTO applicationDTO) async {
+  Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.createApplications(applicationDTO);
     } on DioError catch (e) {
@@ -26,7 +26,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<List<ApplicationDTO>> getUserApplications(String userId) async {
+  Future<List<ApplicationDTO>> getUserApplications() async {
     try {
       return await httpDatasource.getApplications();
     } on DioError catch (e) {
