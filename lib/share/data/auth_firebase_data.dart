@@ -26,4 +26,8 @@ class AuthFirebaseData {
   Future<bool> isAuthorized() async {
     return firebaseAuth.currentUser != null;
   }
+
+  Future<void> reset(String email) async {
+    return firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }

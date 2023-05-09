@@ -1,0 +1,23 @@
+import 'dart:async';
+
+import 'package:injectable/injectable.dart';
+
+import 'package:webtrit_configurator/share/share.dart';
+
+import 'usecase_auth_reset_password.dart';
+
+@Injectable(as: UsecaseAuthResetPassword)
+class UsecaseAuthResetPasswordImpl extends UsecaseAuthResetPassword {
+  UsecaseAuthResetPasswordImpl({
+    required this.authRepository,
+  });
+
+  final AuthRepository authRepository;
+
+  @override
+  FutureOr execute({
+    required String email,
+  }) {
+    return authRepository.reset(email);
+  }
+}

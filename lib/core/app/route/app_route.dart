@@ -52,6 +52,16 @@ class AppRoute {
                 ),
               ),
               GoRoute(
+                path: AppRoutInfo.reset.path,
+                name: AppRoutInfo.reset.name,
+                builder: (BuildContext context, GoRouterState state) => BlocProvider<ResetPasswordCubit>(
+                  child: const ResetPage(),
+                  create: (BuildContext context) => ResetPasswordCubit(
+                    usecaseAuthResetPassword: getIt.get(),
+                  ),
+                ),
+              ),
+              GoRoute(
                 path: AppRoutInfo.admin.path,
                 name: AppRoutInfo.admin.name,
                 builder: (BuildContext context, GoRouterState state) => BlocProvider<AdminCubit>(
@@ -152,7 +162,11 @@ class AppRoute {
     final currentLocation = state.location;
 
     if (!isAuth) {
-      return AppRoutInfo.login.path;
+      if (state.location == AppRoutInfo.reset.path) {
+        return null;
+      } else {
+        return AppRoutInfo.login.path;
+      }
     } else {
       if (currentLocation == AppRoutInfo.login.path) {
         return AppRoutInfo.applicationCollection.path;
