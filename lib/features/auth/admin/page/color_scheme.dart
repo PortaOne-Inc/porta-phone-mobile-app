@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/theme_edit/widgets/color/color.dart';
 import 'package:webtrit_configurator/share/entity/models/theme/color_model.dart';
