@@ -17,7 +17,7 @@ class SectionMenu extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            TextButton(onPressed: onUpdate, child: const Text("Update"))
+            TextButton(onPressed: onUpdate, child: const Text('Update'))
           ],
         ));
   }

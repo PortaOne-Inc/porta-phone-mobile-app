@@ -21,8 +21,6 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> with MixinMessages {
-  static const double verticalSpace = 4;
-
   late final bloc = BlocProvider.of<AdminCubit>(context);
 
   @override
@@ -89,5 +87,4 @@ class _AdminPageState extends State<AdminPage> with MixinMessages {
     //   showTopSnakeMessageSuccess(context, context.l10n.feature_auth_SnakeBar_success_auth);
     // }
   }
-
 }

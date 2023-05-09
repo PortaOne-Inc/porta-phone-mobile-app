@@ -27,8 +27,8 @@ class HttpDatasource {
     return ApplicationDTO.fromJson(response.data);
   }
 
-  Future deleteApplications(String applicationId) async {
-    final response = await dio.delete('${environment.endpoints.host}/applications/$applicationId');
+  Future deleteApplications(String applicationId) {
+    return dio.delete('${environment.endpoints.host}/applications/$applicationId');
   }
 
   Future<ApplicationDTO> getApplication(String applicationId) async {

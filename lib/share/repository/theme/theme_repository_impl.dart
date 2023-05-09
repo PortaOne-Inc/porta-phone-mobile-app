@@ -64,7 +64,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   @override
   Future deleteTheme(String applicationId, String themeId) async {
     try {
-      return httpDatasource.deleteTheme(applicationId, themeId!);
+      return httpDatasource.deleteTheme(applicationId, themeId);
     } on DioError catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
