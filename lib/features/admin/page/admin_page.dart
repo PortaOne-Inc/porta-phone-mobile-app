@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import 'package:webtrit_configurator/core/app/application.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/admin/bloc/admin_cubit.dart';
 import 'package:webtrit_configurator/features/admin/page/color_scheme.dart';
@@ -11,11 +9,7 @@ import 'package:webtrit_configurator/features/admin/widget/section_menu.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
-import '../../../share/entity/models/theme/color_model.dart';
-import '../../auth/bloc/auth_cubit.dart';
 import '../../theme_edit/widgets/background_binary_resizable_column.dart';
-import '../../theme_edit/widgets/color/color_field.dart';
-import '../../theme_edit/widgets/color/color_picker.dart';
 import '../widget/widgets.dart';
 
 class AdminPage extends StatefulWidget {
@@ -97,7 +91,4 @@ class _AdminPageState extends State<AdminPage> with MixinMessages {
     // }
   }
 
-  void _tryLogin(BuildContext context) {
-    BlocProvider.of<AuthCubit>(context).validateAndTryLogin();
-  }
 }
