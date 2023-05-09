@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 

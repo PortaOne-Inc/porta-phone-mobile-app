@@ -6,11 +6,9 @@ import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/auth/admin/bloc/admin_cubit.dart';
 import 'package:webtrit_configurator/features/auth/admin/page/color_scheme.dart';
 import 'package:webtrit_configurator/features/auth/admin/widget/section_menu.dart';
-import 'package:webtrit_configurator/features/theme_edit/widgets/widgets.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
-import '../../theme_edit/widgets/background_binary_resizable_column.dart';
 import '../widget/widgets.dart';
 
 class AdminPage extends StatefulWidget {

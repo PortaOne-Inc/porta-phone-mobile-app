@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
-import '../../application_create/usecase/usecase_application_create.dart';
 import 'usecase_application_edit.dart';
 
 @Injectable(as: UsecaseApplicationEdit)

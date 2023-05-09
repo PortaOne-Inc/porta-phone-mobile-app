@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/exception/auth_exception.dart';
 
-import '../models/auth_email_input.dart';
-
 extension AuthExceptionMessageL10n on AuthException {
   String errorL10n(BuildContext context) {
     switch (state) {
