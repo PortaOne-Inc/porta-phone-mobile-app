@@ -7,10 +7,10 @@ import 'package:webtrit_configurator/core/app/application.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
-import 'package:webtrit_configurator/features/auth/extensions/extensions.dart';
 
 import '../bloc/bloc.dart';
 import '../widgets/toolbar_auth.dart';
+import '../extensions/extensions.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({
@@ -83,6 +83,17 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
                           ),
                         ),
                         const SizedBox(
+                          height: 4,
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.titleSmall),
+                            onPressed: () => _resetPassword(),
+                            child: Text(context.l10n.feature_authorization_reset_password),
+                          ),
+                        ),
+                        const SizedBox(
                           height: 16,
                         ),
                         Button(
@@ -117,5 +128,9 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
 
   void _tryLogin(BuildContext context) {
     BlocProvider.of<AuthCubit>(context).validateAndTryLogin();
+  }
+
+  void _resetPassword() {
+    GoRouter.of(context).goNamed(AppRoutInfo.reset.name);
   }
 }
