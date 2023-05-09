@@ -13,6 +13,10 @@ abstract class AppRoutInfo {
     name: 'login',
     path: '/',
   );
+  static const reset = RouteData(
+    name: 'reset',
+    path: '/auth/reset',
+  );
   static const applicationCollection = RouteData(
     name: 'applications',
     path: '/applications',

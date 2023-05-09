@@ -61,4 +61,9 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<bool> isUserAuthorized() {
     return datasource.isAuthorized();
   }
+
+  @override
+  Future<void> reset(String email) {
+    return datasource.reset(email);
+  }
 }

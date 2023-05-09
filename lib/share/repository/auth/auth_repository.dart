@@ -6,4 +6,6 @@ abstract class AuthRepository {
   Future<String?> getUserUID();
 
   Future<bool> isUserAuthorized();
+
+  Future<void> reset(String email);
 }
