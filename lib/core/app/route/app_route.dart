@@ -161,15 +161,16 @@ class AppRoute {
 
     final currentLocation = state.location;
 
-    if (!isAuth) {
+    // TODO: Do more pretty
+    if (isAuth) {
+      if (currentLocation == AppRoutInfo.login.path) {
+        return AppRoutInfo.applicationCollection.path;
+      }
+    } else {
       if (state.location == AppRoutInfo.reset.path) {
         return null;
       } else {
         return AppRoutInfo.login.path;
-      }
-    } else {
-      if (currentLocation == AppRoutInfo.login.path) {
-        return AppRoutInfo.applicationCollection.path;
       }
     }
 
