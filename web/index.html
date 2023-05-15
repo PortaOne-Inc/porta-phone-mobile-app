@@ -50,7 +50,7 @@
     </style>
     <style>
         body {
-            background-color: #FFFFFFF;
+            background-color: #FFFFFF;
         }
 
         #loading {
@@ -126,13 +126,17 @@
         });
     });
 
+
 </script>
 <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-            navigator.serviceWorker.register("/firebase-messaging-sw.js");
-        });
-    }
+    document.addEventListener("initialize_firebase_env", function () {
+        if (window.ENV === "prod") {
+            navigator.serviceWorker.register("/firebase/firebase-prod-sw.js");
+        } else {
+            navigator.serviceWorker.register("/firebase/firebase-stage-sw.js");
+        }
+    });
+
 </script>
 </body>
 </html>

@@ -1,8 +1,7 @@
 importScripts("https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging-compat.js");
 
 firebase.initializeApp({
-   apiKey: "AIzaSyDfVipSr47hmDzE-b4Xq9y3ozFSF-GgLdc",
+    apiKey: "AIzaSyDfVipSr47hmDzE-b4Xq9y3ozFSF-GgLdc",
     authDomain: "webtrit-configurator-stage.firebaseapp.com",
     projectId: "webtrit-configurator-stage",
     storageBucket: "webtrit-configurator-stage.appspot.com",
