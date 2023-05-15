@@ -5,8 +5,10 @@ import 'package:injectable/injectable.dart';
 class EnvironmentConfig {
   EnvironmentConfig._();
 
+  static const ENV_KEY = 'ENV';
+
   static const ENV = String.fromEnvironment(
-    'ENV',
+    ENV_KEY,
     defaultValue: Environment.prod,
   );
 
