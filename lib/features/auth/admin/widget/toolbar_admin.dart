@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
-
 class AdminToolbar extends StatelessWidget {
   const AdminToolbar({
     super.key,

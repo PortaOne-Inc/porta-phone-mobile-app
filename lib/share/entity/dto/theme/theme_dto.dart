@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../color/color_dto.dart';
 import '../image/image_collection_dto.dart';
-import 'theme_common_dto.dart';
 
 part 'theme_dto.freezed.dart';
 

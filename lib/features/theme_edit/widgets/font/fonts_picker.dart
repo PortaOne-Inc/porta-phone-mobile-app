@@ -29,12 +29,14 @@ class _FontsPickerState extends State<FontsPicker> {
   late int _pageSize;
 
   final PagingController<int, String> _pagingController = PagingController(firstPageKey: 0);
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _fonts.addAll(GoogleFonts.asMap().keys.toList());
     _filteredFonts.addAll(_fonts);
+    _textEditingController.addListener(_onTextChanged);
   }
 
   @override
@@ -49,22 +51,42 @@ class _FontsPickerState extends State<FontsPicker> {
   @override
   void dispose() {
     _pagingController.dispose();
+    _textEditingController.removeListener(_onTextChanged);
+    _textEditingController.dispose();
     super.dispose();
+  }
+
+  void _onTextChanged() {
+    final currentText = _textEditingController.text;
+
+    final filteredList = _fonts.where((element) {
+      final isAvailable = element.toLowerCase().startsWith(currentText.toLowerCase());
+      return isAvailable;
+    }).toList();
+    _filteredFonts.clear();
+    _filteredFonts.addAll(filteredList);
+    _pagingController.refresh();
+    setState(() {});
   }
 
   Future<void> _fetchPage(int pageKey) async {
     try {
       final loadedItems = _pagingController.value.itemList?.length ?? 0;
-      final newItems = _filteredFonts.sublist(loadedItems, loadedItems + _pageSize).toList();
 
-      // Time for render font items
-      if (loadedItems > 24) await Future.delayed(const Duration(seconds: 1));
-
-      if (newItems.length < _pageSize) {
-        _pagingController.appendLastPage(newItems);
+      if (_filteredFonts.length - loadedItems <= _pageSize) {
+        _pagingController.appendLastPage(_filteredFonts);
       } else {
-        final nextPageKey = pageKey + newItems.length;
-        _pagingController.appendPage(newItems, nextPageKey);
+        final newItems = _filteredFonts.sublist(loadedItems, loadedItems + _pageSize).toList();
+
+        // Time for render font items
+        if (loadedItems > 24) await Future.delayed(const Duration(seconds: 1));
+
+        if (newItems.length < _pageSize) {
+          _pagingController.appendLastPage(newItems);
+        } else {
+          final nextPageKey = pageKey + newItems.length;
+          _pagingController.appendPage(newItems, nextPageKey);
+        }
       }
     } catch (error) {
       _pagingController.error = error;
@@ -84,6 +106,7 @@ class _FontsPickerState extends State<FontsPicker> {
             child: Container(
               margin: const EdgeInsets.only(left: 16, right: 16),
               child: TextField(
+                controller: _textEditingController,
                 decoration: InputDecoration(
                   labelText: 'Font name',
                   prefixIcon: InkWell(
@@ -103,13 +126,6 @@ class _FontsPickerState extends State<FontsPicker> {
                     borderSide: BorderSide(color: Colors.black12),
                   ),
                 ),
-                onChanged: (v) async {
-                  final filteredList = _fonts.where((element) => element.contains(v)).toList();
-                  _filteredFonts.clear();
-                  _filteredFonts.addAll(filteredList);
-                  _pagingController.refresh();
-                  setState(() {});
-                },
               ),
             ),
           ),

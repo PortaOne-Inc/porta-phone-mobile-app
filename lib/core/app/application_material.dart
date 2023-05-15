@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:responsive_framework/utils/scroll_behavior.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'package:webtrit_configurator/core/env/env.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
@@ -40,15 +39,14 @@ class MaterialApplication extends StatelessWidget {
             Locale('en', ''), // English, no country code
             Locale('ar', ''), // Spanish, no country code
           ],
-          builder: (context, widget) => ResponsiveWrapper.builder(
-            BouncingScrollWrapper.builder(context, widget!),
-            minWidth: 450,
-            defaultScale: true,
+          builder: (context, widget) => ResponsiveBreakpoints.builder(
+            child: BouncingScrollWrapper.builder(context, widget!),
             debugLog: false,
             breakpoints: [
-              const ResponsiveBreakpoint.autoScaleDown(800, name: TABLET),
-              const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-              const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+              const Breakpoint(start: 0, end: 450, name: MOBILE),
+              const Breakpoint(start: 451, end: 800, name: TABLET),
+              const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+              const Breakpoint(start: 1921, end: double.infinity, name: '4K')
             ],
           ),
           debugShowCheckedModeBanner: false,

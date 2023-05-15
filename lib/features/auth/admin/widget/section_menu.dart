@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SectionMenu extends StatelessWidget {
   final String title;
@@ -18,7 +17,7 @@ class SectionMenu extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            TextButton(onPressed: onUpdate, child: const Text("Update"))
+            TextButton(onPressed: onUpdate, child: const Text('Update'))
           ],
         ));
   }

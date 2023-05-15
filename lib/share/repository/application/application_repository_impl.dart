@@ -4,8 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'application_repository.dart';
-
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {
   HttpDatasource httpDatasource;

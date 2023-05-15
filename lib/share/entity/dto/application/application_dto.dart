@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../theme/theme_dto.dart';
-
 part 'application_dto.freezed.dart';
 
 part 'application_dto.g.dart';

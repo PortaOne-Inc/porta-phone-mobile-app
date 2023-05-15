@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';

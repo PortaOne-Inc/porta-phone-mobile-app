@@ -5,8 +5,6 @@ import 'package:webtrit_configurator/features/application_collection/usecase/use
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_application_add_theme.dart';
-
 @Injectable(as: UsecaseApplicationIncVersion)
 class UsecaseApplicationIncVersionImpl extends UsecaseApplicationIncVersion {
   UsecaseApplicationIncVersionImpl(this.applicationRepository, this.applicationMapper);

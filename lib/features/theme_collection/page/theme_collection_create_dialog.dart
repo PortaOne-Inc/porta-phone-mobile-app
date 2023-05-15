@@ -19,7 +19,7 @@ class ThemeCollectionCreateDialog extends StatefulWidget {
 }
 
 class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialog> {
-  var _selectedColor = Colors.black38;
+  final _selectedColor = Colors.black38;
   var _isDefault = false;
   final _controller = TextEditingController();
   ThemeNameInput? _themeNameInput;

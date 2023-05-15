@@ -44,6 +44,5 @@ extension ExtensionIdentifierErrorL10n on ApplicationIdentifierInput {
           return context.l10n.feature_application_identifier_error;
       }
     }
-    return null;
   }
 }
