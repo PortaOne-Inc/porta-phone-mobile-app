@@ -50,7 +50,7 @@
     </style>
     <style>
         body {
-            background-color: #FFFFFFF;
+            background-color: #FFFFFF;
         }
 
         #loading {
@@ -108,8 +108,10 @@
     window.addEventListener('load', function () {
         var loadingElement = document.querySelector('#loading');
         _flutter.loader.loadEntrypoint({
+            entrypointUrl: "/main.dart.js",
             serviceWorker: {
                 serviceWorkerVersion: serviceWorkerVersion,
+                serviceWorkerUrl: "/flutter_service_worker.js?v=",
             }
         }).then(function (engineInitializer) {
             loadingElement.classList.add('main_done');
@@ -122,6 +124,17 @@
                 loadingElement.remove();
             });
         });
+    });
+
+
+</script>
+<script>
+    document.addEventListener("initialize_firebase_env", function () {
+        if (window.ENV === "prod") {
+            navigator.serviceWorker.register("/firebase/firebase-prod-sw.js");
+        } else {
+            navigator.serviceWorker.register("/firebase/firebase-stage-sw.js");
+        }
     });
 
 </script>

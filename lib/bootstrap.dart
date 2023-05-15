@@ -1,3 +1,9 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:js' as js;
+
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +29,8 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
 
       await (FirebaseAuth.instance).setPersistence(Persistence.LOCAL);
 
+      _initializeFirebaseEnv();
+
       return runApp(await builder(diContainer));
     },
     (error, stackTrace) {
@@ -31,4 +39,11 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       }
     },
   );
+}
+
+void _initializeFirebaseEnv() {
+  if (kIsWeb) {
+    js.context[EnvironmentConfig.ENV_KEY] = EnvironmentConfig.ENV;
+    html.document.dispatchEvent(html.CustomEvent('initialize_firebase_env'));
+  }
 }
