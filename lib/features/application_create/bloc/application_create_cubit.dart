@@ -37,7 +37,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
       final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
-      
+
       emit(state.copyWith(
         nameInput: nameInput.toDirty(),
         applicationIdentifierInput: appIdentifier.toDirty(),
@@ -70,13 +70,11 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   }
 
   bool _isValidFields() {
-    // TODO: ADD something more clearly for check nullable
-    if (state.nameInput == null || state.applicationIdentifierInput == null) {
-      return false;
-    }
-    return Formz.validate([
-      state.nameInput!,
-      state.applicationIdentifierInput!,
-    ]);
+    return state.nameInput == null || state.applicationIdentifierInput == null
+        ? false
+        : Formz.validate([
+            state.nameInput!,
+            state.applicationIdentifierInput!,
+          ]);
   }
 }

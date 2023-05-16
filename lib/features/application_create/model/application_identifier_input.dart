@@ -31,7 +31,6 @@ class ApplicationIdentifierInput extends FormzInput<String, ApplicationIdentifie
   }
 }
 
-// TODO: ADD CORRECT VALIDATION
 extension ExtensionIdentifierErrorL10n on ApplicationIdentifierInput {
   String? errorL10n(BuildContext context) {
     if (isValid) {

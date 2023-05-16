@@ -66,10 +66,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   bool _isValidFields() {
-    // TODO: ADD something more clearly for check nullable
-    if (state.passwordInput == null || state.emailInput == null) {
-      return false;
-    }
-    return Formz.validate([state.passwordInput!, state.emailInput!]);
+    return state.passwordInput == null || state.emailInput == null
+        ? false
+        : Formz.validate([state.passwordInput!, state.emailInput!]);
   }
 }

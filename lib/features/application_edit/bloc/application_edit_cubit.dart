@@ -90,13 +90,11 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   bool _isValidFields() {
-    // TODO: ADD something more clearly for check nullable
-    if (state.nameInput == null || state.applicationIdentifierInput == null) {
-      return false;
-    }
-    return Formz.validate([
-      state.nameInput!,
-      state.applicationIdentifierInput!,
-    ]);
+    return state.nameInput == null || state.applicationIdentifierInput == null
+        ? false
+        : Formz.validate([
+            state.nameInput!,
+            state.applicationIdentifierInput!,
+          ]);
   }
 }
