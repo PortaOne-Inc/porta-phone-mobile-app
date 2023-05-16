@@ -471,7 +471,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               ),
             ),
         useRootNavigator: false);
-    if (result is String) cubit.updateCommonFont(result);
+    if (result is String) cubit.updateFont(result);
   }
 
   void _selectColor(BuildContext context, Color color, Function(Color) callback) async {

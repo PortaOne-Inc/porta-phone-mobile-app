@@ -20,17 +20,11 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void updateCommonFont(String font) {
+  void updateFont(String font) {
     emit(state.copyWith(
       theme: state.theme.copyWith(
         fontFamily: font,
       ),
-    ));
-  }
-
-  void updatePrimaryColor(Color color) {
-    emit(state.copyWith(
-      theme: state.theme.copyWith(colors: state.theme.colors?.copyWith(primary: color)),
     ));
   }
 
