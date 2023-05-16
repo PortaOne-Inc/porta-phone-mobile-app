@@ -101,6 +101,7 @@
   "common_feature_create": "Create",
   "common_failure_message": "Failure",
   "common_text_undefine": "Undefine",
+  "feature_application_id": "Application id: ",
   "feature_application_Toolbar_title": "Create application",
   "feature_application_Toolbar_edit": "Edit application",
   "feature_application_Input_title": "Application name",

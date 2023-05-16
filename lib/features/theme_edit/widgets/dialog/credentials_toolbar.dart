@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
@@ -73,9 +74,8 @@ class CredentialToolbar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              // TODO: move to localization
-              const Flexible(
-                child: Text('Application id:'),
+              Flexible(
+                child: Text(context.l10n.feature_application_id),
               ),
               Flexible(
                 child: GestureDetector(
