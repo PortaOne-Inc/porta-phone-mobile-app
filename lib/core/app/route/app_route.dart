@@ -124,9 +124,6 @@ class AppRoute {
                           BlocProvider<ThemePropertyCubit>(
                             create: (BuildContext context) => ThemePropertyCubit(),
                           ),
-                          BlocProvider<FocusGroupCubit>(
-                            create: (BuildContext context) => FocusGroupCubit(),
-                          ),
                           BlocProvider<SynchronizeCubit>(
                             create: (BuildContext context) => SynchronizeCubit(
                               updateThemeUseCase: getIt.get(),

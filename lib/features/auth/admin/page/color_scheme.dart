@@ -130,9 +130,6 @@ class ColorSchemeWidget extends StatelessWidget {
                 child: ColorField(
                   title: context.l10n.configurator_color_background,
                   color: colors?.background,
-                  onFocus: (isFocus) {
-                    // focusBloc.updateColorBackground(isFocus);
-                  },
                   onTap: (color) async => _selectColor(
                     context,
                     color,

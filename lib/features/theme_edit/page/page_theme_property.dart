@@ -22,8 +22,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<ThemePropertyCubit>();
-    final focusBloc = context.watch<FocusGroupCubit>();
-
     return Navigator(
       onGenerateRoute: (routeSettings) {
         return MaterialPageRoute(
@@ -58,7 +56,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 child: ColorField(
                                   title: context.l10n.configurator_color_primary,
                                   color: state.theme.colors?.primary,
-                                  onFocus: (isFocus) => focusBloc.updateFocusPrimary(isFocus),
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
@@ -82,7 +79,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           ColorField(
                             title: context.l10n.configurator_color_secondary,
                             color: state.theme.colors?.secondary,
-                            onFocus: (isFocus) => focusBloc.updateColorSecondary(isFocus),
                             onTap: (color) async => _selectColor(
                               context,
                               color,
@@ -158,9 +154,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 child: ColorField(
                                   title: context.l10n.configurator_color_background,
                                   color: state.theme.colors?.background,
-                                  onFocus: (isFocus) {
-                                    focusBloc.updateColorBackground(isFocus);
-                                  },
                                   onTap: (color) async => _selectColor(
                                     context,
                                     color,
