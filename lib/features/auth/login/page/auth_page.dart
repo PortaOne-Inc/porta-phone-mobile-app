@@ -32,7 +32,7 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
         return Scaffold(
           appBar: BaseToolBar(
             isVisibleProgress: state is AuthStateProgress,
-            child: VendorsToolbar(
+            child: ApplicationsToolbar(
               onLanguageChanged: () => _languageChanged(context),
             ),
           ),

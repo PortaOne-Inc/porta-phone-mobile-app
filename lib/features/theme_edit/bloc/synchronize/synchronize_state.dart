@@ -27,12 +27,12 @@ class ShowThemeCredentials extends SynchronizeState {
   const ShowThemeCredentials({
     required this.userId,
     required this.themeId,
-    required this.vendorId,
+    required this.applicationId,
   });
 
   final String userId;
   final String themeId;
-  final String vendorId;
+  final String applicationId;
 }
 
 class ThemeEditSyncFailure extends SynchronizeState {

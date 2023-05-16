@@ -14,10 +14,10 @@ part 'application_create_cubit.freezed.dart';
 
 class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   ApplicationCreateCubit({
-    required this.vendorCreateUsecase,
+    required this.applicationCreateUsecase,
   }) : super(ApplicationCreateState());
 
-  final UsecaseApplicationCreate vendorCreateUsecase;
+  final UsecaseApplicationCreate applicationCreateUsecase;
 
   void updateNameChange(String name) {
     emit(state.copyWithValidation(
@@ -65,7 +65,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       name: projectName,
       platformIdentifier: applicationIdentifier,
     );
-    await vendorCreateUsecase.execute(argument: model);
+    await applicationCreateUsecase.execute(argument: model);
     emit(state.copyWithSuccess());
   }
 

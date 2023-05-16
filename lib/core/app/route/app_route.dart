@@ -72,8 +72,8 @@ class AppRoute {
                 name: AppRoutInfo.applicationCollection.name,
                 builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCollectionCubit>(
                   create: (BuildContext context) => ApplicationCollectionCubit(
-                    vendorCollectionUsecase: getIt.get(),
-                    vendorDeleteUsecase: getIt.get(),
+                    applicationCollectionUsecase: getIt.get(),
+                    applicationDeleteUsecase: getIt.get(),
                     applicationIncVersion: getIt.get(),
                   ),
                   child: const ApplicationCollectionPage(),
@@ -84,7 +84,7 @@ class AppRoute {
                 name: AppRoutInfo.applicationCreate.name,
                 builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCreateCubit>(
                   create: (BuildContext context) => ApplicationCreateCubit(
-                    vendorCreateUsecase: getIt.get(),
+                    applicationCreateUsecase: getIt.get(),
                   ),
                   child: const ApplicationCreatePage(),
                 ),

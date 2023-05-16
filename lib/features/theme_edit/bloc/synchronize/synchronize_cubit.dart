@@ -27,7 +27,7 @@ class SynchronizeCubit extends Cubit<SynchronizeState> {
     final userModel = await getUserUsecase.execute();
     emit(ShowThemeCredentials(
       themeId: themeId,
-      vendorId: applicationId,
+      applicationId: applicationId,
       userId: userModel.id,
     ));
   }

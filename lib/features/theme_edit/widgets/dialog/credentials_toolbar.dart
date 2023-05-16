@@ -8,12 +8,12 @@ class CredentialToolbar extends StatelessWidget {
     super.key,
     required this.userId,
     required this.themeId,
-    required this.vendorId,
+    required this.applicationId,
   });
 
   final String userId;
   final String themeId;
-  final String vendorId;
+  final String applicationId;
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +73,9 @@ class CredentialToolbar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              // TODO: move to localization
               const Flexible(
-                child: Text('Vendor id:'),
+                child: Text('Application id:'),
               ),
               Flexible(
                 child: GestureDetector(
@@ -82,7 +83,7 @@ class CredentialToolbar extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: vendorId,
+                          text: applicationId,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         const WidgetSpan(
@@ -103,7 +104,7 @@ class CredentialToolbar extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: () => Clipboard.setData(ClipboardData(text: vendorId)),
+                  onTap: () => Clipboard.setData(ClipboardData(text: applicationId)),
                 ),
               ),
             ],

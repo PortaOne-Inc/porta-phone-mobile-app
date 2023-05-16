@@ -71,7 +71,7 @@ class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
         builder: (context) => CredentialToolbar(
           userId: state.userId,
           themeId: state.themeId,
-          vendorId: state.vendorId,
+          applicationId: state.applicationId,
         ),
       );
     }

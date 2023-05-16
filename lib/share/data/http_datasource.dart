@@ -16,8 +16,8 @@ class HttpDatasource {
     return (response.data as List).map((data) => ApplicationDTO.fromJson(data)).toList();
   }
 
-  Future<ApplicationDTO> createApplications(ApplicationDTO vendorDTO) async {
-    final response = await dio.post('${environment.endpoints.host}/applications/', data: vendorDTO.toJson());
+  Future<ApplicationDTO> createApplications(ApplicationDTO applicationDTO) async {
+    final response = await dio.post('${environment.endpoints.host}/applications/', data: applicationDTO.toJson());
     return ApplicationDTO.fromJson(response.data);
   }
 
