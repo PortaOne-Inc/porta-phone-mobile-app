@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class ThemesEditToolbar extends StatelessWidget {
   const ThemesEditToolbar({
     super.key,
+    required this.title,
     required this.onSaveTheme,
     required this.onLogout,
-    required this.onApiCredential,
-    required this.onApiEndpoints,
   });
 
-  static const _menuLeftSave = '_menuLeftSave';
+  final String title;
 
+  static const _menuLeftSave = '_menuLeftSave';
   static const _menuRightLogout = '_menuRightLogout';
 
-  static const _menuAPICredential = '_menuAPICredential';
-  static const _menuAPIEndpoints = '_menuAPIEndpoints';
-
   final Function() onSaveTheme;
-
-  final Function() onApiCredential;
-  final Function() onApiEndpoints;
 
   final Function() onLogout;
 
@@ -39,7 +32,7 @@ class ThemesEditToolbar extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              context.l10n.feature_theme_edit_Toolbar_dashboard,
+              title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),
@@ -92,22 +85,6 @@ class ThemesEditToolbar extends StatelessWidget {
           text: 'File',
         ),
       ),
-      ToolbarPopupMenu(
-        onSelected: (value) => _handleAPIMenu(value),
-        items: [
-          ToolbarMenuItem(
-            value: _menuAPICredential,
-            text: 'Credentials',
-          ),
-          ToolbarMenuItem(
-            value: _menuAPIEndpoints,
-            text: 'Endpoints',
-          ),
-        ],
-        child: const ToolbarLabelItem(
-          text: 'API',
-        ),
-      ),
     ];
   }
 
@@ -120,15 +97,6 @@ class ThemesEditToolbar extends StatelessWidget {
   void _handleAccountMenu(Object? value) {
     if (value == _menuRightLogout) {
       onLogout();
-    }
-  }
-
-  void _handleAPIMenu(Object? value) {
-    if (value == _menuAPIEndpoints) {
-      onApiEndpoints();
-    }
-    if (value == _menuAPICredential) {
-      onApiCredential();
     }
   }
 }

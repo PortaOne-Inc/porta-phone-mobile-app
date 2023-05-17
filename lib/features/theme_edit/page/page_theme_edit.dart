@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/theme_edit/model/exception/exception.dart';
@@ -17,10 +16,10 @@ import 'page_theme_preview.dart';
 class PageThemeEdit extends StatelessWidget with MixinMessages {
   const PageThemeEdit({
     super.key,
-    required this.swaggerUrl,
+    required this.title,
   });
 
-  final String swaggerUrl;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,6 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
           child: ThemesEditToolbar(
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
-            onApiCredential: () => BlocProvider.of<ThemePropertyCubit>(context).showThemeCredential(),
-            onApiEndpoints: () => _openSwaggerDocs(),
           ),
         ),
         body: const BackgroundBinaryResizableColumn(
@@ -46,12 +43,6 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
         ),
       ),
     );
-  }
-
-  Future<void> _openSwaggerDocs() async {
-    if (!await launchUrl(Uri.parse(swaggerUrl))) {
-      throw Exception('Could not launch $swaggerUrl');
-    }
   }
 
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
