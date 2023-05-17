@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/features/theme_edit/model/exception/exception.dart';
 import 'package:webtrit_configurator/share/mixin/mixin_messages.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
@@ -13,7 +14,7 @@ import '../widgets/widgets.dart';
 
 import 'page_theme_preview.dart';
 
-class PageThemeEdit extends StatefulWidget {
+class PageThemeEdit extends StatelessWidget with MixinMessages {
   const PageThemeEdit({
     super.key,
     required this.swaggerUrl,
@@ -22,32 +23,25 @@ class PageThemeEdit extends StatefulWidget {
   final String swaggerUrl;
 
   @override
-  State<PageThemeEdit> createState() => _PageThemeEditState();
-}
-
-class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
-  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SynchronizeCubit, SynchronizeState>(
-      listener: (BuildContext context, SynchronizeState state) => _listenSynchronizeState(state),
-      builder: (ctx, state) => BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
-        builder: (ctx, state) => Scaffold(
-          appBar: BaseToolBar(
-            isVisibleProgress: state is SyncStateProgress,
-            child: ThemesEditToolbar(
-              onSaveTheme: _updateTheme,
-              onSkipChanges: _notImplemented,
-              onOpen: _notImplemented,
-              onDownload: _notImplemented,
-              onLanguageChanged: _notImplemented,
-              onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
-              onApiCredential: () => BlocProvider.of<SynchronizeCubit>(context).showThemeCredential(),
-              onApiEndpoints: () => _openSwaggerDocs(),
-            ),
+    return BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
+      listener: (BuildContext context, ThemePropertyState state) => _listenSynchronizeState(context, state),
+      builder: (ctx, state) => Scaffold(
+        appBar: BaseToolBar(
+          isVisibleProgress: state is ThemePropertyProgressState,
+          child: ThemesEditToolbar(
+            onSaveTheme: () => _updateTheme(context),
+            onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
+            onApiCredential: () => BlocProvider.of<ThemePropertyCubit>(context).showThemeCredential(),
+            onApiEndpoints: () => _openSwaggerDocs(),
           ),
-          body: const BackgroundBinaryResizableColumn(
-            leftChild: PageThemeProperty(),
-            rightChild: PageThemePreview(),
+        ),
+        body: const BackgroundBinaryResizableColumn(
+          leftChild: SingleStack(
+            child: PageThemeProperty(),
+          ),
+          rightChild: SingleStack(
+            child: PageThemePreview(),
           ),
         ),
       ),
@@ -55,47 +49,41 @@ class _PageThemeEditState extends State<PageThemeEdit> with MixinMessages {
   }
 
   Future<void> _openSwaggerDocs() async {
-    if (!await launchUrl(Uri.parse(widget.swaggerUrl))) {
-      throw Exception('Could not launch ${widget.swaggerUrl}');
+    if (!await launchUrl(Uri.parse(swaggerUrl))) {
+      throw Exception('Could not launch $swaggerUrl');
     }
   }
 
-  void _listenSynchronizeState(SynchronizeState state) {
-    if (state is ThemeEditSyncFailure) {
-      _showFailureMessage(state.message);
+  void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
+    if (state is ThemePropertyErrorState) {
+      if (state.error is ThemeIsNotValidException) {
+        _showFailureMessage(context, context.l10n.feature_theme_is_not_valid);
+      } else {
+        _showFailureMessage(context, state.error?.message ?? context.l10n.common_failure_message);
+      }
     }
 
-    if (state is ShowThemeCredentials) {
+    if (state is ThemePropertCredentialsState) {
       showDialog(
         context: context,
         builder: (context) => CredentialToolbar(
-          userId: state.userId,
-          themeId: state.themeId,
-          applicationId: state.applicationId,
+          userId: state.userId!,
+          themeId: state.themeId!,
+          applicationId: state.applicationId!,
         ),
       );
     }
-
-    if (state is ThemeReadyState) {
-      BlocProvider.of<ThemePropertyCubit>(context).setTheme(state.themeModel);
-    }
-
-    if (state is ThemeIsNotValidState) {
-      _showFailureMessage(context.l10n.feature_theme_is_not_valid);
-    }
   }
 
-  void _showFailureMessage(String message) {
+  void _showFailureMessage(BuildContext context, String message) {
     final dialog = FailureDialog(message: message);
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
-  void _updateTheme() {
+  void _updateTheme(
+    BuildContext context,
+  ) {
     final theme = BlocProvider.of<ThemePropertyCubit>(context).state.theme;
-    BlocProvider.of<SynchronizeCubit>(context).validateAndTryUpdateTheme(theme);
-  }
-
-  void _notImplemented() {
-    showTopSnakeMessageInfo(context, context.l10n.common_not_implemented);
+    BlocProvider.of<ThemePropertyCubit>(context).validateAndTryUpdateTheme(theme);
   }
 }

@@ -122,10 +122,7 @@ class AppRoute {
                   builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
                         providers: [
                           BlocProvider<ThemePropertyCubit>(
-                            create: (BuildContext context) => ThemePropertyCubit(),
-                          ),
-                          BlocProvider<SynchronizeCubit>(
-                            create: (BuildContext context) => SynchronizeCubit(
+                            create: (BuildContext context) => ThemePropertyCubit(
                               updateThemeUseCase: getIt.get(),
                               getThemeUseCase: getIt.get(),
                               getUserUsecase: getIt.get(),

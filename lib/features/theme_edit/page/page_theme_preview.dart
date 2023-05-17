@@ -22,8 +22,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   var _previewType = PreviewType.single;
   var _focusScreenPosition = 0;
 
-  final _eventLogScrollController = ScrollController();
-
   final _screenshots = <Widget>[];
 
   @override
@@ -91,7 +89,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   final scheme = ImagesScheme();
 
   void complete(BuildContext context, ThemePropertyState state) async {
-    final logo = state.theme.images?.applicationLogo;
+    final logo = state.theme?.images?.applicationLogo;
 
     if (logo?.isNetwork ?? false) {
       scheme.setApplicationLogoByUrl(logo!.url!);
@@ -107,10 +105,10 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
-          seedColor: state.theme.colors?.primary ?? Colors.transparent,
-          lightColorSchemeOverride: state.theme.colors,
-          primaryGradientColors: state.theme.toCustomColorGradientCollection,
-          fontFamily: state.theme.fontFamily,
+          seedColor: state.theme?.colors?.primary ?? Colors.transparent,
+          lightColorSchemeOverride: state.theme?.colors,
+          primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
+          fontFamily: state.theme?.fontFamily,
           imagesScheme: scheme),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),

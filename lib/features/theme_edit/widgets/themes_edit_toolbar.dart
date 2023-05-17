@@ -7,36 +7,23 @@ class ThemesEditToolbar extends StatelessWidget {
   const ThemesEditToolbar({
     super.key,
     required this.onSaveTheme,
-    required this.onSkipChanges,
-    required this.onOpen,
-    required this.onDownload,
-    required this.onLanguageChanged,
     required this.onLogout,
     required this.onApiCredential,
     required this.onApiEndpoints,
   });
 
   static const _menuLeftSave = '_menuLeftSave';
-  static const _menuLeftOpen = '_menuLeftOpen';
-  static const _menuLeftDownload = '_menuLeftDownload';
 
   static const _menuRightLogout = '_menuRightLogout';
 
   static const _menuAPICredential = '_menuAPICredential';
   static const _menuAPIEndpoints = '_menuAPIEndpoints';
 
-  static const _menuLeftSkipToDefault = '_menuLeftSkipToDefault';
-
   final Function() onSaveTheme;
-  final Function() onSkipChanges;
-  final Function() onOpen;
 
   final Function() onApiCredential;
   final Function() onApiEndpoints;
 
-  final Function() onDownload;
-
-  final Function() onLanguageChanged;
   final Function() onLogout;
 
   @override
@@ -125,17 +112,8 @@ class ThemesEditToolbar extends StatelessWidget {
   }
 
   void _handleActionsMenu(Object? value) {
-    if (value == _menuLeftSkipToDefault) {
-      onSkipChanges();
-    }
     if (value == _menuLeftSave) {
       onSaveTheme();
-    }
-    if (value == _menuLeftOpen) {
-      onOpen();
-    }
-    if (value == _menuLeftDownload) {
-      onDownload();
     }
   }
 

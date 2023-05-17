@@ -1,42 +1,76 @@
 part of 'configurator_cubit.dart';
 
-@immutable
-class ThemePropertyState {
-  const ThemePropertyState({
-    required this.theme,
-    this.nameField = const ThemeNameInput.dirty(),
-  });
+@freezed
+class ThemePropertyState with _$ThemePropertyState {
+  factory ThemePropertyState({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+  }) = _ThemePropertyState;
 
-  final ThemeNameInput nameField;
+  factory ThemePropertyState.progress({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+  }) = ThemePropertyProgressState;
 
-  final ThemeModel theme;
+  factory ThemePropertyState.validation({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+  }) = _ThemePropertyValidationState;
 
-  ThemePropertyState copyWith({
-    final ThemeModel? theme,
-    final FocusModel? focusGroup,
-    final ThemeNameInput? nameField,
+  factory ThemePropertyState.credentials({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+    String? userId,
+    String? themeId,
+    String? applicationId,
+  }) = ThemePropertCredentialsState;
+
+  factory ThemePropertyState.success({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+  }) = _ThemePropertSuccessState;
+
+  factory ThemePropertyState.error({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+    BaseException? error,
+  }) = ThemePropertyErrorState;
+}
+
+extension _StateCopyWith on ThemePropertyState {
+  ThemePropertyState showCredentials({
+    required final String userId,
+    required final String themeId,
+    required final String applicationId,
   }) {
-    return ThemePropertyState(
-      theme: theme ?? this.theme,
-      nameField: nameField ?? this.nameField,
+    return ThemePropertyState.credentials(
+      theme: theme,
+      nameField: nameField,
     );
   }
 
-  ThemePropertyState copyWithCommonConfig({
-    String? name,
-  }) {
-    return copyWith(
-        theme: theme.copyWith(
-      name: name,
-    ));
+  ThemePropertyState showError(BaseException exception) {
+    return ThemePropertyState.error(
+      nameField: nameField,
+      theme: theme,
+      error: exception,
+    );
   }
-}
 
-class ConfiguratorFailure extends ThemePropertyState {
-  const ConfiguratorFailure(
-    this.message, {
-    required super.theme,
-  });
+  ThemePropertyState showProgress() {
+    return ThemePropertyState.progress(
+      nameField: nameField,
+      theme: theme,
+    );
+  }
 
-  final String message;
+  ThemePropertyState updateTheme({
+    ThemeNameInput? nameField,
+    ThemeModel? theme,
+  }) {
+    return ThemePropertyState.success(
+      nameField: nameField ?? this.nameField,
+      theme: theme ?? this.theme,
+    );
+  }
 }
