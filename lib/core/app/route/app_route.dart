@@ -128,7 +128,7 @@ class AppRoute {
                               getUserUsecase: getIt.get(),
                               applicationId: state.params[AppRoutInfo.keyApplicationId]!,
                               themeId: state.params[AppRoutInfo.keyThemeId]!,
-                            ),
+                            )..tryGetTheme(),
                           ),
                         ],
                         child: PageThemeEdit(

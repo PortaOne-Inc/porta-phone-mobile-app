@@ -29,9 +29,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     required this.getUserUsecase,
     required this.applicationId,
     required this.themeId,
-  }) : super(ThemePropertyState(theme: ThemeModel())) {
-    _tryGetTheme();
-  }
+  }) : super(ThemePropertyState(theme: ThemeModel()));
 
   void showThemeCredential() async {
     final userModel = await getUserUsecase.execute();
@@ -52,7 +50,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     }
   }
 
-  Future<void> _tryGetTheme() async {
+  Future<void> tryGetTheme() async {
     try {
       await _getTheme();
     } on NoContentException catch (e) {
