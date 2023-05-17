@@ -71,7 +71,6 @@ class AppRoute {
                   ..tryGetTheme(),
                 child: PageThemeEdit(
                   title: context.l10n.feature_admin_title,
-                  swaggerUrl: getIt.get<AppEnvironment>().endpoints.doc,
                 ),
               ),
             ),
@@ -144,7 +143,6 @@ class AppRoute {
                 )..tryGetTheme(),
                 child: PageThemeEdit(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
-                  swaggerUrl: getIt.get<AppEnvironment>().endpoints.doc,
                 ),
               ),
             )
