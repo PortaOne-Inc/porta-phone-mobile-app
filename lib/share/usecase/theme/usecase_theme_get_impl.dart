@@ -2,11 +2,11 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_theme_get_by_id.dart';
+import 'usecase_theme_get.dart';
 
-@Injectable(as: UsecaseThemeGetById)
-class UsecaseThemeGetByIdImpl implements UsecaseThemeGetById {
-  UsecaseThemeGetByIdImpl(this.themeRepository, this.authRepository, this.mapper);
+@Injectable(as: UsecaseThemeGet)
+class UsecaseThemeGetImpl implements UsecaseThemeGet {
+  UsecaseThemeGetImpl(this.themeRepository, this.authRepository, this.mapper);
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;

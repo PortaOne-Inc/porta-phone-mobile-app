@@ -20,7 +20,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
   final String applicationId;
   final String themeId;
   final UsecaseThemeUpdate updateThemeUseCase;
-  final UsecaseThemeGetById getThemeUseCase;
+  final UsecaseThemeGet getThemeUseCase;
   final UsecaseUserGet getUserUsecase;
 
   ThemePropertyCubit({
