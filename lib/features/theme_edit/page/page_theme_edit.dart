@@ -29,6 +29,7 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
         appBar: BaseToolBar(
           isVisibleProgress: state is ThemePropertyProgressState,
           child: ThemesEditToolbar(
+            title: title,
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
           ),

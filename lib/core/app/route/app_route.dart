@@ -15,7 +15,7 @@ import 'package:webtrit_configurator/share/widgets/page/page.dart';
 import 'app_route_consts.dart';
 
 class AppRoute {
-  GoRouter build(GetIt getIt) {
+  GoRouter build(GetIt getIt, BuildContext context) {
     final commonBloc = CommonBloc(
       usecaseAuthLogOut: getIt.get(),
     );
@@ -135,6 +135,7 @@ class AppRoute {
                   themeId: state.params[AppRoutInfo.keyThemeId]!,
                 )..tryGetTheme(),
                 child: PageThemeEdit(
+                  title: context.l10n.feature_theme_edit_Toolbar_dashboard,
                   swaggerUrl: getIt.get<AppEnvironment>().endpoints.doc,
                 ),
               ),

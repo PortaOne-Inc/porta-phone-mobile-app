@@ -10,15 +10,20 @@ import 'package:webtrit_configurator/core/theme/theme.dart';
 
 import 'route/app_route.dart';
 
-class MaterialApplication extends StatelessWidget {
+class MaterialApplication extends StatefulWidget {
   final GetIt getIt;
 
-  MaterialApplication({
+  const MaterialApplication({
     super.key,
     required this.getIt,
   });
 
-  late final route = AppRoute().build(getIt);
+  @override
+  State<MaterialApplication> createState() => _MaterialApplicationState();
+}
+
+class _MaterialApplicationState extends State<MaterialApplication> {
+  late final route = AppRoute().build(widget.getIt, context);
 
   @override
   Widget build(BuildContext context) {
