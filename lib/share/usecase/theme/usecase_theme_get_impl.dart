@@ -4,9 +4,14 @@ import 'package:webtrit_configurator/share/share.dart';
 
 import 'usecase_theme_get.dart';
 
+@Named(UsecaseThemeGet.applicationUsecaseKey)
 @Injectable(as: UsecaseThemeGet)
 class UsecaseThemeGetImpl implements UsecaseThemeGet {
-  UsecaseThemeGetImpl(this.themeRepository, this.authRepository, this.mapper);
+  UsecaseThemeGetImpl({
+    required this.themeRepository,
+    required this.authRepository,
+    required this.mapper,
+  });
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
@@ -14,8 +19,11 @@ class UsecaseThemeGetImpl implements UsecaseThemeGet {
   final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   @override
-  Future<ThemeModel> execute({required String themeId, required String applicationId}) async {
-    final dto = await themeRepository.getTheme( applicationId, themeId);
+  Future<ThemeModel> execute({
+    required String themeId,
+    required String applicationId,
+  }) async {
+    final dto = await themeRepository.getTheme(applicationId, themeId);
     return mapper.mapToModel(dto)!;
   }
 }
