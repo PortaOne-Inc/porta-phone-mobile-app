@@ -3,8 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import 'usecase_theme_update.dart';
+
 import '../../../features/theme_collection/usecase/usecase_theme_upload_image.dart';
 
+@Named(UsecaseThemeUpdate.applicationEditUsecaseKey)
 @Injectable(as: UsecaseThemeUpdate)
 class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   UsecaseThemeUpdateImpl({
@@ -12,7 +14,10 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
     required this.themeRepository,
     required this.authRepository,
     required this.mapper,
+    @factoryParam required this.applicationId,
   });
+
+  String applicationId;
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;
@@ -21,7 +26,6 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
 
   @override
   Future<ThemeModel?> execute({
-    required String applicationId,
     required ThemeModel themeModel,
   }) async {
     final dtoTheme = mapper.mapToDto(themeModel);
