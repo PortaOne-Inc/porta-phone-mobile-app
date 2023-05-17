@@ -17,10 +17,6 @@ part 'configurator_state.dart';
 part 'configurator_cubit.freezed.dart';
 
 class ThemePropertyCubit extends Cubit<ThemePropertyState> {
-  final UsecaseThemeUpdate updateThemeUseCase;
-  final UsecaseThemeGet getThemeUseCase;
-  final UsecaseUserGet getUserUsecase;
-
   ThemePropertyCubit({
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
@@ -31,6 +27,10 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
 
   final String? applicationId;
   final String? themeId;
+
+  final UsecaseThemeUpdate updateThemeUseCase;
+  final UsecaseThemeGet getThemeUseCase;
+  final UsecaseUserGet getUserUsecase;
 
   void validateAndTryUpdateTheme(ThemeModel? themeModel) async {
     if (themeModel != null) {
