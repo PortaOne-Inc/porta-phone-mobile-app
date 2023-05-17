@@ -88,6 +88,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
   Future _updateTheme(ThemeModel themeModel) async {
     emit(state.showProgress());
     await updateThemeUseCase.execute(applicationId: applicationId, themeModel: themeModel);
+    emit(state.updateTheme());
   }
 
   void updateAppName(String name) {
