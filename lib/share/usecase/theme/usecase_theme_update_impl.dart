@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import 'usecase_theme_update.dart';
-import 'usecase_theme_upload_image.dart';
+import '../../../features/theme_collection/usecase/usecase_theme_upload_image.dart';
 
 @Injectable(as: UsecaseThemeUpdate)
 class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
