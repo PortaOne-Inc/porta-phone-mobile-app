@@ -122,7 +122,11 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
                   updateThemeUseCase: getIt.get(),
-                  getThemeUseCase: getIt.get(instanceName: UsecaseThemeGet.applicationUsecaseKey),
+                  getThemeUseCase: getIt.get(
+                    instanceName: UsecaseThemeGet.applicationUsecaseKey,
+                    param1: state.params[AppRoutInfo.keyApplicationId]!,
+                    param2: state.params[AppRoutInfo.keyThemeId]!,
+                  ),
                   getUserUsecase: getIt.get(),
                   applicationId: state.params[AppRoutInfo.keyApplicationId]!,
                   themeId: state.params[AppRoutInfo.keyThemeId]!,
