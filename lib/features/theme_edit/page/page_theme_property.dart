@@ -213,22 +213,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         );
                       },
                     ),
-                    GradientField(
-                      title: context.l10n.configurator_color_gradient_control_panel,
-                      colors: [
-                        Colors.purpleAccent.withOpacity(1.0),
-                        Colors.purpleAccent.withOpacity(0.75),
-                        Colors.purpleAccent.withOpacity(0.50),
-                        Colors.purpleAccent.withOpacity(0.25),
-                        Colors.purpleAccent.withOpacity(0),
-                      ],
-                      onAddColor: (colors) async => _addGradientColor(
-                        context,
-                        colors,
-                        bloc.updateGradientTab,
-                      ),
-                      onRemoveColor: (Color color) {},
-                    )
                   ],
                 )
               ],
