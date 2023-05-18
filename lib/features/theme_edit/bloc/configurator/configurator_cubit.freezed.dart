@@ -25,9 +25,6 @@ mixin _$ThemePropertyState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -40,9 +37,6 @@ mixin _$ThemePropertyState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -54,9 +48,6 @@ mixin _$ThemePropertyState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -69,7 +60,6 @@ mixin _$ThemePropertyState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) =>
@@ -79,7 +69,6 @@ mixin _$ThemePropertyState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) =>
@@ -89,7 +78,6 @@ mixin _$ThemePropertyState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
@@ -220,9 +208,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -238,9 +223,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -255,9 +237,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -276,7 +255,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
@@ -289,7 +267,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
@@ -302,7 +279,6 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
@@ -412,9 +388,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -430,9 +403,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -447,9 +417,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -468,7 +435,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
@@ -481,7 +447,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
@@ -494,7 +459,6 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
@@ -605,9 +569,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -623,9 +584,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -640,9 +598,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -661,7 +616,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
@@ -674,7 +628,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
@@ -687,7 +640,6 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
@@ -711,241 +663,6 @@ abstract class _ThemePropertyValidationState implements ThemePropertyState {
   @override
   @JsonKey(ignore: true)
   _$$_ThemePropertyValidationStateCopyWith<_$_ThemePropertyValidationState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertCredentialsStateCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertCredentialsStateCopyWith(
-          _$ThemePropertCredentialsState value,
-          $Res Function(_$ThemePropertCredentialsState) then) =
-      __$$ThemePropertCredentialsStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ThemeModel? theme,
-      ThemeNameInput? nameField,
-      String? userId,
-      String? themeId,
-      String? applicationId});
-}
-
-/// @nodoc
-class __$$ThemePropertCredentialsStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$ThemePropertCredentialsState>
-    implements _$$ThemePropertCredentialsStateCopyWith<$Res> {
-  __$$ThemePropertCredentialsStateCopyWithImpl(
-      _$ThemePropertCredentialsState _value,
-      $Res Function(_$ThemePropertCredentialsState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-    Object? userId = freezed,
-    Object? themeId = freezed,
-    Object? applicationId = freezed,
-  }) {
-    return _then(_$ThemePropertCredentialsState(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      themeId: freezed == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      applicationId: freezed == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertCredentialsState implements ThemePropertCredentialsState {
-  _$ThemePropertCredentialsState(
-      {this.theme,
-      this.nameField,
-      this.userId,
-      this.themeId,
-      this.applicationId});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-  @override
-  final String? userId;
-  @override
-  final String? themeId;
-  @override
-  final String? applicationId;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState.credentials(theme: $theme, nameField: $nameField, userId: $userId, themeId: $themeId, applicationId: $applicationId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertCredentialsState &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.themeId, themeId) || other.themeId == themeId) &&
-            (identical(other.applicationId, applicationId) ||
-                other.applicationId == applicationId));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, theme, nameField, userId, themeId, applicationId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertCredentialsStateCopyWith<_$ThemePropertCredentialsState>
-      get copyWith => __$$ThemePropertCredentialsStateCopyWithImpl<
-          _$ThemePropertCredentialsState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return credentials(theme, nameField, userId, themeId, applicationId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return credentials?.call(theme, nameField, userId, themeId, applicationId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (credentials != null) {
-      return credentials(theme, nameField, userId, themeId, applicationId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return credentials(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return credentials?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (credentials != null) {
-      return credentials(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemePropertCredentialsState implements ThemePropertyState {
-  factory ThemePropertCredentialsState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField,
-      final String? userId,
-      final String? themeId,
-      final String? applicationId}) = _$ThemePropertCredentialsState;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  String? get userId;
-  String? get themeId;
-  String? get applicationId;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertCredentialsStateCopyWith<_$ThemePropertCredentialsState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1031,9 +748,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -1049,9 +763,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -1066,9 +777,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -1087,7 +795,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
@@ -1100,7 +807,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
@@ -1113,7 +819,6 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
@@ -1230,9 +935,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
         progress,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)
-        credentials,
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
@@ -1248,9 +950,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -1265,9 +964,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField,
-            String? userId, String? themeId, String? applicationId)?
-        credentials,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
@@ -1286,7 +982,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult Function(_ThemePropertyState value) $default, {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(ThemePropertCredentialsState value) credentials,
     required TResult Function(_ThemePropertSuccessState value) success,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
@@ -1299,7 +994,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult? Function(_ThemePropertyState value)? $default, {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(ThemePropertCredentialsState value)? credentials,
     TResult? Function(_ThemePropertSuccessState value)? success,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
@@ -1312,7 +1006,6 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult Function(_ThemePropertyState value)? $default, {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(ThemePropertCredentialsState value)? credentials,
     TResult Function(_ThemePropertSuccessState value)? success,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),

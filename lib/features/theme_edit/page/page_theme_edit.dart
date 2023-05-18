@@ -54,17 +54,6 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
         _showFailureMessage(context, state.error?.message ?? context.l10n.common_failure_message);
       }
     }
-
-    if (state is ThemePropertCredentialsState) {
-      showDialog(
-        context: context,
-        builder: (context) => CredentialToolbar(
-          userId: state.userId!,
-          themeId: state.themeId!,
-          applicationId: state.applicationId!,
-        ),
-      );
-    }
   }
 
   void _showFailureMessage(BuildContext context, String message) {

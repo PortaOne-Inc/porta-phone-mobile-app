@@ -17,14 +17,6 @@ class ThemePropertyState with _$ThemePropertyState {
     ThemeNameInput? nameField,
   }) = _ThemePropertyValidationState;
 
-  factory ThemePropertyState.credentials({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-    String? userId,
-    String? themeId,
-    String? applicationId,
-  }) = ThemePropertCredentialsState;
-
   factory ThemePropertyState.success({
     ThemeModel? theme,
     ThemeNameInput? nameField,
@@ -38,17 +30,6 @@ class ThemePropertyState with _$ThemePropertyState {
 }
 
 extension _StateCopyWith on ThemePropertyState {
-  ThemePropertyState showCredentials({
-    required final String userId,
-    required final String themeId,
-    required final String applicationId,
-  }) {
-    return ThemePropertyState.credentials(
-      theme: theme,
-      nameField: nameField,
-    );
-  }
-
   ThemePropertyState showError(BaseException exception) {
     return ThemePropertyState.error(
       nameField: nameField,
