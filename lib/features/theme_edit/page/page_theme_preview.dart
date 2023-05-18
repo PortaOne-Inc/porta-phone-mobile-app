@@ -138,11 +138,19 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ),
       ScreenshotApp(
         appBloc: appBloc,
-        child: const CallScreenScreenshot(false),
+        child: const CallScreenScreenshot(
+          video: false,
+        ),
       ),
       ScreenshotApp(
         appBloc: appBloc,
-        child: const CallScreenScreenshot(true),
+        child: const CallScreenScreenshot(
+          video: true,
+          remotePlaceholderUrl:
+              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref1.png?alt=media&token=692ccd4f-d43d-48b0-8e1d-9fd7b2f90220',
+          localePlaceholderUrl:
+              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref2.png?alt=media&token=3d469e82-9a64-4852-b593-9133f304bbef',
+        ),
       ),
     ]);
   }
