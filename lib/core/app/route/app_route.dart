@@ -6,11 +6,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:webtrit_configurator/core/env/app_environment.dart';
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/features/features.dart';
+import 'package:webtrit_configurator/share/share.dart';
 import 'package:webtrit_configurator/share/widgets/page/page.dart';
 
 import 'app_route_consts.dart';

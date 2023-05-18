@@ -7,9 +7,6 @@ import 'package:webtrit_configurator/share/usecase/usecase.dart';
 import 'package:webtrit_configurator/share/exception/exception.dart';
 import 'package:webtrit_configurator/share/entity/entity.dart';
 
-//TODO: move to share
-import 'package:webtrit_configurator/features/theme_collection/theme_collection.dart';
-
 import '../../model/models.dart';
 
 part 'configurator_state.dart';
