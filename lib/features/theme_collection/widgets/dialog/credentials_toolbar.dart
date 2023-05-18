@@ -7,12 +7,10 @@ import 'package:webtrit_configurator/share/widgets/widgets.dart';
 class CredentialToolbar extends StatelessWidget {
   const CredentialToolbar({
     super.key,
-    required this.userId,
     required this.themeId,
     required this.applicationId,
   });
 
-  final String userId;
   final String themeId;
   final String applicationId;
 
@@ -26,51 +24,6 @@ class CredentialToolbar extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Flexible(
-                child: Text('User id:'),
-              ),
-              Flexible(
-                child: GestureDetector(
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: userId,
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        const WidgetSpan(
-                          child: SizedBox(
-                            width: 8,
-                          ),
-                        ),
-                        WidgetSpan(
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: Icon(
-                              Icons.copy,
-                              size: 16,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () => Clipboard.setData(
-                    ClipboardData(
-                      text: userId,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8.0,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

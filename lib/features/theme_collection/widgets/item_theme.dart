@@ -12,15 +12,18 @@ class ItemTheme extends StatelessWidget {
     required this.onTap,
     required this.onMakeDefault,
     required this.onDelete,
+    required this.onInfo,
   });
 
   final ThemeModel themeMode;
   final Function(ThemeModel model) onTap;
   final Function(ThemeModel model) onDelete;
+  final Function(ThemeModel model) onInfo;
   final Function(ThemeModel model) onMakeDefault;
 
   static const _menuKeyDelete = '_menuKeyDelete';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';
+  static const _menuKeyInfo = '_menuKeyInfo';
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +113,12 @@ class ItemTheme extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: Text(
                             context.l10n.feature_application_use_current_theme,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Colors.deepPurple,
-                                ),
+                          )),
+                      PopupMenuItem(
+                          value: _menuKeyInfo,
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            context.l10n.feature_theme_info,
                           )),
                       PopupMenuItem(
                         value: _menuKeyDelete,
@@ -137,6 +143,9 @@ class ItemTheme extends StatelessWidget {
 
   void _handleMenuTab(String key) {
     switch (key) {
+      case _menuKeyInfo:
+        onInfo.call(themeMode);
+        break;
       case _menuKeyDelete:
         onDelete.call(themeMode);
         break;

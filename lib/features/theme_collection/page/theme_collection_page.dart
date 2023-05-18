@@ -76,6 +76,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
                           onTap: _openTheme,
                           onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
                           onDelete: _allMyThemesCubit.tryDeleteTheme,
+                          onInfo: _showThemeInfo,
                         ),
                         itemCount: state.themes.length,
                         gridDelegate: _prepareGridDelegate(state.themes),
@@ -166,5 +167,15 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
       AppRoutInfo.keyApplicationId: _allMyThemesCubit.applicationId,
       AppRoutInfo.keyThemeId: model.id!
     });
+  }
+
+  void _showThemeInfo(ThemeModel model) async {
+    showDialog(
+      context: context,
+      builder: (context) => CredentialToolbar(
+        themeId: model.id!,
+        applicationId: _allMyThemesCubit.applicationId,
+      ),
+    );
   }
 }
