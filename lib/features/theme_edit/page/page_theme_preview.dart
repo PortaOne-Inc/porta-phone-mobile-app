@@ -105,11 +105,13 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
-          seedColor: state.theme?.colors?.primary ?? Colors.transparent,
-          lightColorSchemeOverride: state.theme?.colors,
-          primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
-          fontFamily: state.theme?.fontFamily,
-          imagesScheme: scheme),
+        seedColor: state.theme?.colors?.primary ?? Colors.transparent,
+        lightColorSchemeOverride: state.theme?.colors,
+        primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
+        fontFamily: state.theme?.fontFamily,
+        imagesScheme: scheme,
+        appName: state.theme?.name,
+      ),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
