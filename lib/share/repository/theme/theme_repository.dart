@@ -11,6 +11,10 @@ abstract class ThemeRepository {
     ThemeDTO? theme,
   );
 
+  Future<ThemeDTO> updateStaticTheme(
+    ThemeDTO? theme,
+  );
+
   Future deleteTheme(
     String applicationId,
     String themeId,
@@ -24,6 +28,8 @@ abstract class ThemeRepository {
     String applicationId,
     String themeId,
   );
+
+  Future<ThemeDTO> getStaticTheme();
 
   Future<String> uploadThemeImage(
     ImageDTO imageDTO,

@@ -38,11 +38,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   }
 
   bool _isValidFields() {
-    // TODO: ADD something more clearly for check nullable
-    if (state.emailInput == null) {
-      return false;
-    }
-    return Formz.validate([state.emailInput!]);
+    return state.emailInput == null ? false : Formz.validate([state.emailInput!]);
   }
 
   void _tryToReset() async {

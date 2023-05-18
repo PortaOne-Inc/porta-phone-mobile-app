@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
-import '../bloc/focus/focus_group_cubit.dart';
 import '../widgets/widgets.dart';
 
 class PageThemePreview extends StatefulWidget {
@@ -19,12 +18,9 @@ class PageThemePreview extends StatefulWidget {
 }
 
 class _PageThemePreviewState extends State<PageThemePreview> {
-  var _isVisibleInfoConsole = false;
   var _isFrameVisible = true;
   var _previewType = PreviewType.single;
   var _focusScreenPosition = 0;
-
-  final _eventLogScrollController = ScrollController();
 
   final _screenshots = <Widget>[];
 
@@ -63,88 +59,23 @@ class _PageThemePreviewState extends State<PageThemePreview> {
             Expanded(
               child: BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
                 builder: (BuildContext context, state) {
-                  return BlocConsumer<FocusGroupCubit, FocusGroupState>(
-                    listener: _listenSynchronizeState,
-                    builder: (BuildContext context, focus) {
-                      _updatePreviewScreens(state);
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: PreviewDetails(
-                              type: _previewType,
-                              screens: _screenshots,
-                              screenFocus: _focusScreenPosition,
-                              isFrameVisible: _isFrameVisible,
-                              onFocusPosition: (position) {
-                                setState(() {
-                                  _focusScreenPosition = position;
-                                });
-                              },
-                            ),
-                          ),
-                          AnimatedContainer(
-                            color: const Color(0xfff6f6f6),
-                            height: _isVisibleInfoConsole ? MediaQuery.of(context).size.height / 2 : 0,
-                            duration: const Duration(milliseconds: 200),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (_isVisibleInfoConsole)
-                                  MenuSpace(
-                                    isTopPosition: false,
-                                    borderWidth: 0.2,
-                                    background: Colors.black.withOpacity(0.04),
-                                    children: [
-                                      LogEventClose(
-                                        onClick: () {
-                                          setState(
-                                            () {
-                                              _isVisibleInfoConsole = false;
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                Expanded(
-                                  child: ListView.builder(
-                                    reverse: true,
-                                    controller: _eventLogScrollController,
-                                    itemCount: focus.messages.length,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return LogEventMessage(
-                                        model: focus.messages[index],
-                                        onClick: (int screen) {
-                                          BlocProvider.of<FocusGroupCubit>(context).updateCurrentScreen(screen);
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          MenuSpace(
-                            isTopPosition: false,
-                            borderWidth: 0.2,
-                            children: [
-                              LogEvent(
-                                onClick: (isSelected) {
-                                  setState(
-                                    () {
-                                      _isVisibleInfoConsole = isSelected;
-                                    },
-                                  );
-                                },
-                                isSelected: _isVisibleInfoConsole,
-                                messages: focus.messages,
-                              )
-                            ],
-                          )
-                        ],
-                      );
-                    },
+                  _updatePreviewScreens(state);
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: PreviewDetails(
+                          type: _previewType,
+                          screens: _screenshots,
+                          screenFocus: _focusScreenPosition,
+                          isFrameVisible: _isFrameVisible,
+                          onFocusPosition: (position) {
+                            setState(() {
+                              _focusScreenPosition = position;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
@@ -158,7 +89,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   final scheme = ImagesScheme();
 
   void complete(BuildContext context, ThemePropertyState state) async {
-    final logo = state.theme.images?.applicationLogo;
+    final logo = state.theme?.images?.applicationLogo;
 
     if (logo?.isNetwork ?? false) {
       scheme.setApplicationLogoByUrl(logo!.url!);
@@ -174,10 +105,10 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
-          seedColor: state.theme.colors?.primary ?? Colors.transparent,
-          lightColorSchemeOverride: state.theme.colors,
-          primaryGradientColors: state.theme.toCustomColorGradientCollection,
-          fontFamily: state.theme.fontFamily,
+          seedColor: state.theme?.colors?.primary ?? Colors.transparent,
+          lightColorSchemeOverride: state.theme?.colors,
+          primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
+          fontFamily: state.theme?.fontFamily,
           imagesScheme: scheme),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
@@ -207,17 +138,20 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ),
       ScreenshotApp(
         appBloc: appBloc,
-        child: const CallScreenScreenshot(false),
+        child: const CallScreenScreenshot(
+          video: false,
+        ),
       ),
       ScreenshotApp(
         appBloc: appBloc,
-        child: const CallScreenScreenshot(true),
+        child: const CallScreenScreenshot(
+          video: true,
+          remotePlaceholderUrl:
+              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref1.png?alt=media&token=692ccd4f-d43d-48b0-8e1d-9fd7b2f90220',
+          localePlaceholderUrl:
+              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref2.png?alt=media&token=3d469e82-9a64-4852-b593-9133f304bbef',
+        ),
       ),
     ]);
-  }
-
-  void _listenSynchronizeState(BuildContext context, FocusGroupState state) {
-    _eventLogScrollController.animateTo(_eventLogScrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 200), curve: Curves.bounceIn);
   }
 }

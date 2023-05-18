@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class CredentialToolbar extends StatelessWidget {
   const CredentialToolbar({
     super.key,
-    required this.userId,
     required this.themeId,
-    required this.vendorId,
+    required this.applicationId,
   });
 
-  final String userId;
   final String themeId;
-  final String vendorId;
+  final String applicationId;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,8 @@ class CredentialToolbar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Flexible(
-                child: Text('User id:'),
+              Flexible(
+                child: Text(context.l10n.feature_application_id),
               ),
               Flexible(
                 child: GestureDetector(
@@ -37,7 +36,7 @@ class CredentialToolbar extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: userId,
+                          text: applicationId,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         const WidgetSpan(
@@ -58,52 +57,7 @@ class CredentialToolbar extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: () => Clipboard.setData(
-                    ClipboardData(
-                      text: userId,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Flexible(
-                child: Text('Vendor id:'),
-              ),
-              Flexible(
-                child: GestureDetector(
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: vendorId,
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        const WidgetSpan(
-                          child: SizedBox(
-                            width: 8,
-                          ),
-                        ),
-                        WidgetSpan(
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: Icon(
-                              Icons.copy,
-                              size: 16,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () => Clipboard.setData(ClipboardData(text: vendorId)),
+                  onTap: () => Clipboard.setData(ClipboardData(text: applicationId)),
                 ),
               ),
             ],

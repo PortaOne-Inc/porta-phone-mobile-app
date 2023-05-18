@@ -1,42 +1,22 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class ThemesEditToolbar extends StatelessWidget {
   const ThemesEditToolbar({
     super.key,
+    required this.title,
     required this.onSaveTheme,
-    required this.onSkipChanges,
-    required this.onOpen,
-    required this.onDownload,
-    required this.onLanguageChanged,
     required this.onLogout,
-    required this.onApiCredential,
-    required this.onApiEndpoints,
   });
 
-  static const _menuLeftSave = '_menuLeftSave';
-  static const _menuLeftOpen = '_menuLeftOpen';
-  static const _menuLeftDownload = '_menuLeftDownload';
+  final String title;
 
+  static const _menuLeftSave = '_menuLeftSave';
   static const _menuRightLogout = '_menuRightLogout';
 
-  static const _menuAPICredential = '_menuAPICredential';
-  static const _menuAPIEndpoints = '_menuAPIEndpoints';
-
-  static const _menuLeftSkipToDefault = '_menuLeftSkipToDefault';
-
   final Function() onSaveTheme;
-  final Function() onSkipChanges;
-  final Function() onOpen;
 
-  final Function() onApiCredential;
-  final Function() onApiEndpoints;
-
-  final Function() onDownload;
-
-  final Function() onLanguageChanged;
   final Function() onLogout;
 
   @override
@@ -52,7 +32,7 @@ class ThemesEditToolbar extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              context.l10n.feature_theme_edit_Toolbar_dashboard,
+              title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),
@@ -105,52 +85,18 @@ class ThemesEditToolbar extends StatelessWidget {
           text: 'File',
         ),
       ),
-      ToolbarPopupMenu(
-        onSelected: (value) => _handleAPIMenu(value),
-        items: [
-          ToolbarMenuItem(
-            value: _menuAPICredential,
-            text: 'Credentials',
-          ),
-          ToolbarMenuItem(
-            value: _menuAPIEndpoints,
-            text: 'Endpoints',
-          ),
-        ],
-        child: const ToolbarLabelItem(
-          text: 'API',
-        ),
-      ),
     ];
   }
 
   void _handleActionsMenu(Object? value) {
-    if (value == _menuLeftSkipToDefault) {
-      onSkipChanges();
-    }
     if (value == _menuLeftSave) {
       onSaveTheme();
-    }
-    if (value == _menuLeftOpen) {
-      onOpen();
-    }
-    if (value == _menuLeftDownload) {
-      onDownload();
     }
   }
 
   void _handleAccountMenu(Object? value) {
     if (value == _menuRightLogout) {
       onLogout();
-    }
-  }
-
-  void _handleAPIMenu(Object? value) {
-    if (value == _menuAPIEndpoints) {
-      onApiEndpoints();
-    }
-    if (value == _menuAPICredential) {
-      onApiCredential();
     }
   }
 }

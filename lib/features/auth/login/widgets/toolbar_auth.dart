@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 
-class VendorsToolbar extends StatelessWidget {
-  const VendorsToolbar({
+class ApplicationsToolbar extends StatelessWidget {
+  const ApplicationsToolbar({
     super.key,
     required this.onLanguageChanged,
   });

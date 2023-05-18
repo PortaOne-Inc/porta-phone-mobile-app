@@ -14,10 +14,10 @@ part 'application_create_cubit.freezed.dart';
 
 class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   ApplicationCreateCubit({
-    required this.vendorCreateUsecase,
+    required this.applicationCreateUsecase,
   }) : super(ApplicationCreateState());
 
-  final UsecaseApplicationCreate vendorCreateUsecase;
+  final UsecaseApplicationCreate applicationCreateUsecase;
 
   void updateNameChange(String name) {
     emit(state.copyWithValidation(
@@ -37,7 +37,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
       final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
-      
+
       emit(state.copyWith(
         nameInput: nameInput.toDirty(),
         applicationIdentifierInput: appIdentifier.toDirty(),
@@ -65,18 +65,16 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       name: projectName,
       platformIdentifier: applicationIdentifier,
     );
-    await vendorCreateUsecase.execute(argument: model);
+    await applicationCreateUsecase.execute(argument: model);
     emit(state.copyWithSuccess());
   }
 
   bool _isValidFields() {
-    // TODO: ADD something more clearly for check nullable
-    if (state.nameInput == null || state.applicationIdentifierInput == null) {
-      return false;
-    }
-    return Formz.validate([
-      state.nameInput!,
-      state.applicationIdentifierInput!,
-    ]);
+    return state.nameInput == null || state.applicationIdentifierInput == null
+        ? false
+        : Formz.validate([
+            state.nameInput!,
+            state.applicationIdentifierInput!,
+          ]);
   }
 }

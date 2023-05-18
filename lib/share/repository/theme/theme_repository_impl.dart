@@ -27,6 +27,17 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
+  Future<ThemeDTO> updateStaticTheme(ThemeDTO? theme) async {
+    try {
+      return await httpDatasource.updateStaticTheme(theme!);
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO theme) async {
     try {
       return await httpDatasource.createTheme(applicationId, theme);
@@ -78,5 +89,16 @@ class ThemeRepositoryImpl extends ThemeRepository {
     final mountainImagesRef = storageRef.child('theme/${imageDTO.name}');
     final res = await mountainImagesRef.putString(imageDTO.data!, format: PutStringFormat.base64);
     return res.ref.getDownloadURL();
+  }
+
+  @override
+  Future<ThemeDTO> getStaticTheme() async {
+    try {
+      return httpDatasource.getStaticTheme();
+    } on DioError catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 }

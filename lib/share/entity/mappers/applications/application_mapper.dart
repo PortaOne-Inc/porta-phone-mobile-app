@@ -3,10 +3,10 @@ import 'package:injectable/injectable.dart';
 import '../../entity.dart';
 
 @Injectable(as: Mapper<ApplicationDTO, ApplicationModel>)
-class VendorMapper extends Mapper<ApplicationDTO, ApplicationModel> {
+class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
   final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
-  VendorMapper(this.mapper);
+  ApplicationMapper(this.mapper);
 
   @override
   ApplicationDTO mapToDto(ApplicationModel model) {

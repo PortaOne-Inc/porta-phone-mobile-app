@@ -8,19 +8,15 @@ class ColorField extends StatelessWidget {
     required this.title,
     this.color = Colors.white,
     this.onTap,
-    this.onFocus,
   });
 
   final String title;
   final Color? color;
   final Function(Color color)? onTap;
-  final Function(bool isFocus)? onFocus;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (PointerEvent details) => onFocus?.call(true),
-      onExit: (PointerEvent details) => onFocus?.call(false),
       child: GestureDetector(
         child: Card(
           elevation: 1,

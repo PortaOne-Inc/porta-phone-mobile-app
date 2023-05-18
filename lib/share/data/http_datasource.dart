@@ -16,8 +16,8 @@ class HttpDatasource {
     return (response.data as List).map((data) => ApplicationDTO.fromJson(data)).toList();
   }
 
-  Future<ApplicationDTO> createApplications(ApplicationDTO vendorDTO) async {
-    final response = await dio.post('${environment.endpoints.host}/applications/', data: vendorDTO.toJson());
+  Future<ApplicationDTO> createApplications(ApplicationDTO applicationDTO) async {
+    final response = await dio.post('${environment.endpoints.host}/applications/', data: applicationDTO.toJson());
     return ApplicationDTO.fromJson(response.data);
   }
 
@@ -60,8 +60,18 @@ class HttpDatasource {
     return ThemeDTO.fromJson(response.data);
   }
 
+  Future<ThemeDTO> updateStaticTheme(ThemeDTO themeDTO) async {
+    final response = await dio.put('${environment.endpoints.host}/static/themes', data: themeDTO.toJson());
+    return ThemeDTO.fromJson(response.data);
+  }
+
   Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
     final response = await dio.get('${environment.endpoints.host}/applications/$applicationId/themes/$themeId');
+    return ThemeDTO.fromJson(response.data);
+  }
+
+  Future<ThemeDTO> getStaticTheme() async {
+    final response = await dio.get('${environment.endpoints.host}/static/themes');
     return ThemeDTO.fromJson(response.data);
   }
 

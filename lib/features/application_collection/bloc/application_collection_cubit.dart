@@ -12,15 +12,15 @@ part 'application_collection_cubit.freezed.dart';
 
 class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   ApplicationCollectionCubit({
-    required this.vendorCollectionUsecase,
-    required this.vendorDeleteUsecase,
+    required this.applicationCollectionUsecase,
+    required this.applicationDeleteUsecase,
     required this.applicationIncVersion,
   }) : super(ApplicationCollectionState.progress()) {
     tryGetApplications();
   }
 
-  final UsecaseApplicationGetAll vendorCollectionUsecase;
-  final UsecaseApplicationDeleteTemplate vendorDeleteUsecase;
+  final UsecaseApplicationGetAll applicationCollectionUsecase;
+  final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
   final UsecaseApplicationIncVersion applicationIncVersion;
 
   void tryGetApplications() async {
@@ -37,7 +37,7 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   void deleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWithProgress());
-      await vendorDeleteUsecase.execute(applicationId: applicationModel.id!);
+      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
       tryGetApplications();
     } on BaseException catch (e) {
       _showNotCaughtFailure(e.message);
@@ -56,7 +56,7 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   }
 
   Future _getApplications() async {
-    final result = await vendorCollectionUsecase.execute();
+    final result = await applicationCollectionUsecase.execute();
     emit(state.copyWithSuccess(applications: result));
   }
 }
