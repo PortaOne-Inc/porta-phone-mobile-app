@@ -64,7 +64,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                         maxLength: ApplicationConsts.maxNameLimit,
                         decoration: InputDecoration(
                             errorText: state.nameInput?.errorL10n(context),
-                            hintText: context.l10n.feature_application_Input_hint,
+                            hintText: context.l10n.feature_application_Input_title,
                             hintStyle: textScheme.bodyMedium?.copyWith(color: Colors.black54),
                             suffixIcon: Tooltip(
                               message: context.l10n.feature_application_create_Tooltip_name_info,

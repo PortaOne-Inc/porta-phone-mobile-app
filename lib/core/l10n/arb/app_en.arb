@@ -54,7 +54,7 @@
   "feature_theme_Tooltip_description_title": "Definition of \"Theme\"",
   "feature_theme_Tooltip_description_message": "Theme - is a set of colors and elements that reflects your brand or style. You can have a main theme and several alternate or additional themes for a particular event. So you can create, for example, a Christmas theme for your application and apply it for a certain period of time",
   "feature_theme_InputHint_note": "Note",
-  "feature_theme_InputHint_app_name": "App name",
+  "feature_theme_InputHint_app_name": "Greeting message",
   "feature_theme_as_default": "As default",
   "feature_theme_open_local": "Open local theme",
   "feature_theme_all_theme": "All themes",
