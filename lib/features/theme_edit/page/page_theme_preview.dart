@@ -124,6 +124,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ),
       ScreenshotApp(
         appBloc: appBloc,
+        child: const LoginScreenScreenshot(LoginStep.coreUrlAssign),
+      ),
+      ScreenshotApp(
+        appBloc: appBloc,
+        child: const LoginScreenScreenshot(LoginStep.otpRequest),
+      ),
+      ScreenshotApp(
+        appBloc: appBloc,
         child: const MainScreenScreenshot(MainFlavor.favorites),
       ),
       ScreenshotApp(
