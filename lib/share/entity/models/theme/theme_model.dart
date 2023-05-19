@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
 import 'color_model.dart';
+import 'texts/texts_model.dart';
 import 'theme_images_model.dart';
+
+export 'texts/texts_model.dart';
 
 class ThemeModel {
   final String? id;
@@ -10,6 +13,7 @@ class ThemeModel {
   final String? fontFamily;
   final ColorModel? colors;
   final ConfiguratorImagesSetting? images;
+  final TextsModel? texts;
 
   ThemeModel({
     this.id,
@@ -17,6 +21,7 @@ class ThemeModel {
     this.fontFamily,
     this.colors,
     this.images,
+    this.texts,
   });
 
   static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
@@ -45,6 +50,7 @@ class ThemeModel {
     ColorModel? colors,
     String? fontFamily,
     ConfiguratorImagesSetting? images,
+    TextsModel? texts,
   }) {
     return ThemeModel(
       id: id ?? this.id,
@@ -52,6 +58,7 @@ class ThemeModel {
       colors: colors ?? this.colors,
       fontFamily: fontFamily ?? this.fontFamily,
       images: images ?? this.images,
+      texts: texts ?? this.texts,
     );
   }
 }

@@ -12,11 +12,13 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
     this.colorsMapper,
     this.textStyleMapper,
     this.imageMapper,
+    this.textsMapper,
   );
 
   final Mapper<ColorDTO?, ColorModel?> colorsMapper;
   final Mapper<TextStyleDTO?, TextStyle?> textStyleMapper;
   final Mapper<ImageDTO?, ImageModel?> imageMapper;
+  final Mapper<TextsDTO?, TextsModel?> textsMapper;
 
   @override
   ThemeDTO? mapToDto(ThemeModel? model) {
@@ -29,6 +31,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
       fontFamily: model.fontFamily,
       id: model.id,
       colors: colorsMapper.mapToDto(model.colors),
+      texts: textsMapper.mapToDto(model.texts),
       images: ImageCollectionDTO(
         applicationLogo: model.images?.applicationLogo?.url,
         notificationLogo: model.images?.notificationLogo?.url,
@@ -52,6 +55,7 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
         colors: colorsMapper.mapToModel(dto.colors),
         name: dto.name,
         fontFamily: dto.fontFamily,
+        texts: textsMapper.mapToModel(dto.texts),
         images: ConfiguratorImagesSetting(
           applicationLogo: ImageModel(url: dto.images?.applicationLogo),
           notificationLogo: ImageModel(url: dto.images?.notificationLogo),
