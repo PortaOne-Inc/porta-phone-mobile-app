@@ -110,7 +110,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
         primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
         fontFamily: state.theme?.fontFamily,
         imagesScheme: scheme,
-        appName: state.theme?.name,
+        appName: state.theme?.texts?.greeting,
       ),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
