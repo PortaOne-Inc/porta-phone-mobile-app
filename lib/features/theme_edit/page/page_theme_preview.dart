@@ -57,7 +57,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               isEnableFrame: _isFrameVisible,
             ),
             Expanded(
-              child: BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
+              child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
+                listener: (BuildContext context, state) {
+                  if (state is ThemePropertFocusState) {
+                    setState(() {
+                      _focusScreenPosition = state.position!;
+                    });
+                  }
+                },
                 builder: (BuildContext context, state) {
                   _updatePreviewScreens(state);
                   return Column(

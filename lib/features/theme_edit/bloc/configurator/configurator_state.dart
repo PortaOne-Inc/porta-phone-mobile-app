@@ -22,6 +22,12 @@ class ThemePropertyState with _$ThemePropertyState {
     ThemeNameInput? nameField,
   }) = _ThemePropertSuccessState;
 
+  factory ThemePropertyState.focus({
+    ThemeModel? theme,
+    ThemeNameInput? nameField,
+    int? position,
+  }) = ThemePropertFocusState;
+
   factory ThemePropertyState.error({
     ThemeModel? theme,
     ThemeNameInput? nameField,
@@ -30,6 +36,14 @@ class ThemePropertyState with _$ThemePropertyState {
 }
 
 extension _StateCopyWith on ThemePropertyState {
+  ThemePropertyState focus(int position) {
+    return ThemePropertyState.focus(
+      nameField: nameField,
+      theme: theme,
+      position: position,
+    );
+  }
+
   ThemePropertyState showError(BaseException exception) {
     return ThemePropertyState.error(
       nameField: nameField,

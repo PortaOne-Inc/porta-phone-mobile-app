@@ -61,7 +61,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           Icons.open_in_new_sharp,
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        onPressed: () {},
+                        onPressed: () => bloc.focusScreen(0),
                       ),
                     )
                   ],
@@ -98,7 +98,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           Icons.open_in_new_sharp,
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        onPressed: () {},
+                        onPressed: () => bloc.focusScreen(1),
                       ),
                     )
                   ],

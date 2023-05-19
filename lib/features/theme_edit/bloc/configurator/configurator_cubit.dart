@@ -97,6 +97,10 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
+  void focusScreen(int position) {
+    emit(state.focus(position));
+  }
+
   void updateImageResources(ConfiguratorImagesSetting? image) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(images: image),

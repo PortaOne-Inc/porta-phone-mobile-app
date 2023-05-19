@@ -28,6 +28,9 @@ mixin _$ThemePropertyState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) =>
@@ -38,6 +41,9 @@ mixin _$ThemePropertyState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -50,6 +56,9 @@ mixin _$ThemePropertyState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
     required TResult orElse(),
@@ -61,6 +70,7 @@ mixin _$ThemePropertyState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +80,7 @@ mixin _$ThemePropertyState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +90,7 @@ mixin _$ThemePropertyState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) =>
@@ -211,6 +223,9 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) {
@@ -225,6 +240,9 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
   }) {
@@ -238,6 +256,9 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -256,6 +277,7 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
     return $default(this);
@@ -268,6 +290,7 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
     return $default?.call(this);
@@ -280,6 +303,7 @@ class _$_ThemePropertyState implements _ThemePropertyState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -391,6 +415,9 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) {
@@ -405,6 +432,9 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
   }) {
@@ -418,6 +448,9 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -436,6 +469,7 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
     return progress(this);
@@ -448,6 +482,7 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
     return progress?.call(this);
@@ -460,6 +495,7 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -572,6 +608,9 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) {
@@ -586,6 +625,9 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
   }) {
@@ -599,6 +641,9 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -617,6 +662,7 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
     return validation(this);
@@ -629,6 +675,7 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
     return validation?.call(this);
@@ -641,6 +688,7 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -751,6 +799,9 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) {
@@ -765,6 +816,9 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
   }) {
@@ -778,6 +832,9 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -796,6 +853,7 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
     return success(this);
@@ -808,6 +866,7 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
     return success?.call(this);
@@ -820,6 +879,7 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -843,6 +903,207 @@ abstract class _ThemePropertSuccessState implements ThemePropertyState {
   @JsonKey(ignore: true)
   _$$_ThemePropertSuccessStateCopyWith<_$_ThemePropertSuccessState>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ThemePropertFocusStateCopyWith<$Res>
+    implements $ThemePropertyStateCopyWith<$Res> {
+  factory _$$ThemePropertFocusStateCopyWith(_$ThemePropertFocusState value,
+          $Res Function(_$ThemePropertFocusState) then) =
+      __$$ThemePropertFocusStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ThemeModel? theme, ThemeNameInput? nameField, int? position});
+}
+
+/// @nodoc
+class __$$ThemePropertFocusStateCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertFocusState>
+    implements _$$ThemePropertFocusStateCopyWith<$Res> {
+  __$$ThemePropertFocusStateCopyWithImpl(_$ThemePropertFocusState _value,
+      $Res Function(_$ThemePropertFocusState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? theme = freezed,
+    Object? nameField = freezed,
+    Object? position = freezed,
+  }) {
+    return _then(_$ThemePropertFocusState(
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
+      nameField: freezed == nameField
+          ? _value.nameField
+          : nameField // ignore: cast_nullable_to_non_nullable
+              as ThemeNameInput?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ThemePropertFocusState implements ThemePropertFocusState {
+  _$ThemePropertFocusState({this.theme, this.nameField, this.position});
+
+  @override
+  final ThemeModel? theme;
+  @override
+  final ThemeNameInput? nameField;
+  @override
+  final int? position;
+
+  @override
+  String toString() {
+    return 'ThemePropertyState.focus(theme: $theme, nameField: $nameField, position: $position)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThemePropertFocusState &&
+            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.nameField, nameField) ||
+                other.nameField == nameField) &&
+            (identical(other.position, position) ||
+                other.position == position));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, theme, nameField, position);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThemePropertFocusStateCopyWith<_$ThemePropertFocusState> get copyWith =>
+      __$$ThemePropertFocusStateCopyWithImpl<_$ThemePropertFocusState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
+    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
+        progress,
+    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
+        validation,
+    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
+        success,
+    required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
+        error,
+  }) {
+    return focus(theme, nameField, position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
+    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
+    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
+    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
+        error,
+  }) {
+    return focus?.call(theme, nameField, position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
+    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
+    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
+    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (focus != null) {
+      return focus(theme, nameField, position);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ThemePropertyState value) $default, {
+    required TResult Function(ThemePropertyProgressState value) progress,
+    required TResult Function(_ThemePropertyValidationState value) validation,
+    required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
+    required TResult Function(ThemePropertyErrorState value) error,
+  }) {
+    return focus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ThemePropertyState value)? $default, {
+    TResult? Function(ThemePropertyProgressState value)? progress,
+    TResult? Function(_ThemePropertyValidationState value)? validation,
+    TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
+    TResult? Function(ThemePropertyErrorState value)? error,
+  }) {
+    return focus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ThemePropertyState value)? $default, {
+    TResult Function(ThemePropertyProgressState value)? progress,
+    TResult Function(_ThemePropertyValidationState value)? validation,
+    TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
+    TResult Function(ThemePropertyErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (focus != null) {
+      return focus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ThemePropertFocusState implements ThemePropertyState {
+  factory ThemePropertFocusState(
+      {final ThemeModel? theme,
+      final ThemeNameInput? nameField,
+      final int? position}) = _$ThemePropertFocusState;
+
+  @override
+  ThemeModel? get theme;
+  @override
+  ThemeNameInput? get nameField;
+  int? get position;
+  @override
+  @JsonKey(ignore: true)
+  _$$ThemePropertFocusStateCopyWith<_$ThemePropertFocusState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -938,6 +1199,9 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
         success,
     required TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)
+        focus,
+    required TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
         error,
   }) {
@@ -952,6 +1216,9 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
     TResult? Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
+    TResult? Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
   }) {
@@ -965,6 +1232,9 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
     TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
+    TResult Function(
+            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
+        focus,
     TResult Function(
             ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
         error,
@@ -983,6 +1253,7 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     required TResult Function(ThemePropertyProgressState value) progress,
     required TResult Function(_ThemePropertyValidationState value) validation,
     required TResult Function(_ThemePropertSuccessState value) success,
+    required TResult Function(ThemePropertFocusState value) focus,
     required TResult Function(ThemePropertyErrorState value) error,
   }) {
     return error(this);
@@ -995,6 +1266,7 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult? Function(ThemePropertyProgressState value)? progress,
     TResult? Function(_ThemePropertyValidationState value)? validation,
     TResult? Function(_ThemePropertSuccessState value)? success,
+    TResult? Function(ThemePropertFocusState value)? focus,
     TResult? Function(ThemePropertyErrorState value)? error,
   }) {
     return error?.call(this);
@@ -1007,6 +1279,7 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
     TResult Function(ThemePropertyProgressState value)? progress,
     TResult Function(_ThemePropertyValidationState value)? validation,
     TResult Function(_ThemePropertSuccessState value)? success,
+    TResult Function(ThemePropertFocusState value)? focus,
     TResult Function(ThemePropertyErrorState value)? error,
     required TResult orElse(),
   }) {
