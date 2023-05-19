@@ -108,6 +108,8 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
       _$ThemePropertyStateCopyWithImpl<$Res, ThemePropertyState>;
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -137,6 +139,18 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
               as ThemeNameInput?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeModelCopyWith<$Res>? get theme {
+    if (_value.theme == null) {
+      return null;
+    }
+
+    return $ThemeModelCopyWith<$Res>(_value.theme!, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -148,6 +162,9 @@ abstract class _$$_ThemePropertyStateCopyWith<$Res>
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -339,6 +356,9 @@ abstract class _$$ThemePropertyProgressStateCopyWith<$Res>
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -531,6 +551,9 @@ abstract class _$$_ThemePropertyValidationStateCopyWith<$Res>
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -724,6 +747,9 @@ abstract class _$$_ThemePropertSuccessStateCopyWith<$Res>
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -914,6 +940,9 @@ abstract class _$$ThemePropertFocusStateCopyWith<$Res>
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField, int? position});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -1116,6 +1145,9 @@ abstract class _$$ThemePropertyErrorStateCopyWith<$Res>
   @useResult
   $Res call(
       {ThemeModel? theme, ThemeNameInput? nameField, BaseException? error});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc

@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
-import 'color_model.dart';
+import 'color/color_scheme_model.dart';
+import 'image/image_scheme_model.dart';
 import 'texts/texts_model.dart';
-import 'theme_images_model.dart';
 
-export 'texts/texts_model.dart';
+part 'theme_model.freezed.dart';
 
-class ThemeModel {
-  final String? id;
-  final String? name;
-  final String? fontFamily;
-  final ColorModel? colors;
-  final ConfiguratorImagesSetting? images;
-  final TextsModel? texts;
+@freezed
+class ThemeModel with _$ThemeModel {
+  const ThemeModel._();
 
-  ThemeModel({
-    this.id,
-    this.name,
-    this.fontFamily,
-    this.colors,
-    this.images,
-    this.texts,
-  });
+  const factory ThemeModel({
+    final String? id,
+    final String? name,
+    final String? fontFamily,
+    final ColorSchemeModel? colors,
+    final ImageSchemeModel? images,
+    final TextsModel? texts,
+  }) = _ThemeModel;
 
   static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
 
-  List<Color> get colorSchemeCollection {
-    return colors?.asList() ?? <Color>[];
-  }
+List<Color> get colorSchemeCollection {
+  return colors?.asList ?? <Color>[];
+}
 
-  List<Color> get colorGradientCollection {
-    final gradient = colors?.gradientTabColor ?? emptyGradient;
-    return gradient.length >= 2 ? gradient : emptyGradient;
-  }
+List<Color> get colorGradientCollection {
+  final gradient = colors?.gradientTabColor ?? emptyGradient;
+  return gradient.length >= 2 ? gradient : emptyGradient;
+}
 
   List<CustomColor> get toCustomColorGradientCollection {
     return colorGradientCollection
@@ -42,23 +39,5 @@ class ThemeModel {
               blend: false,
             ))
         .toList();
-  }
-
-  ThemeModel copyWith({
-    String? id,
-    String? name,
-    ColorModel? colors,
-    String? fontFamily,
-    ConfiguratorImagesSetting? images,
-    TextsModel? texts,
-  }) {
-    return ThemeModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      colors: colors ?? this.colors,
-      fontFamily: fontFamily ?? this.fontFamily,
-      images: images ?? this.images,
-      texts: texts ?? this.texts,
-    );
   }
 }

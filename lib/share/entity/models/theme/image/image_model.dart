@@ -1,11 +1,18 @@
-class ImageModel {
-  ImageModel({
-    this.data,
-    this.url,
-    this.name,
-    this.mime,
-    this.extension,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'image_model.freezed.dart';
+
+@freezed
+class ImageModel with _$ImageModel {
+  const ImageModel._();
+
+  const factory ImageModel({
+    final String? data,
+    final String? url,
+    final String? name,
+    final String? mime,
+    final String? extension,
+  }) = _ImageModel;
 
   static String mimeSVG = 'image/svg+xml';
   static String mimePNG = 'image/png';
@@ -18,12 +25,6 @@ class ImageModel {
         mimeJPEG,
         mimeBMB,
       ];
-
-  final String? data;
-  final String? url;
-  final String? name;
-  final String? mime;
-  final String? extension;
 
   bool get isAvailable => (data?.isNotEmpty ?? false) || url != null;
 

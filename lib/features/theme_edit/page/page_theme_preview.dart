@@ -110,10 +110,40 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   void _updatePreviewScreens(ThemePropertyState state) {
     complete(context, state);
 
+    ColorSchemeOverride();
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
         seedColor: state.theme?.colors?.primary ?? Colors.transparent,
-        lightColorSchemeOverride: state.theme?.colors,
+        // lightColorSchemeOverride: state.theme?.colors,
+        lightColorSchemeOverride: ColorSchemeOverride(
+          primary: state.theme?.colors?.primary,
+          onPrimary: state.theme?.colors?.onPrimary,
+          primaryContainer: state.theme?.colors?.primaryContainer,
+          onPrimaryContainer: state.theme?.colors?.onPrimaryContainer,
+          secondary: state.theme?.colors?.secondary,
+          onSecondary: state.theme?.colors?.onSecondary,
+          secondaryContainer: state.theme?.colors?.secondaryContainer,
+          onSecondaryContainer: state.theme?.colors?.onSecondaryContainer,
+          tertiary: state.theme?.colors?.tertiary,
+          onTertiary: state.theme?.colors?.onTertiary,
+          tertiaryContainer: state.theme?.colors?.tertiaryContainer,
+          error: state.theme?.colors?.error,
+          onError: state.theme?.colors?.onError,
+          errorContainer: state.theme?.colors?.errorContainer,
+          onErrorContainer: state.theme?.colors?.onErrorContainer,
+          outline: state.theme?.colors?.outline,
+          outlineVariant: state.theme?.colors?.outlineVariant,
+          background: state.theme?.colors?.background,
+          onBackground: state.theme?.colors?.onBackground,
+          surface: state.theme?.colors?.surface,
+          onSurface: state.theme?.colors?.onSurface,
+          surfaceVariant: state.theme?.colors?.surfaceVariant,
+          onSurfaceVariant: state.theme?.colors?.onSurfaceVariant,
+          inverseSurface: state.theme?.colors?.inverseSurface,
+          shadow: state.theme?.colors?.shadow,
+          scrim: state.theme?.colors?.scrim,
+          surfaceTint: state.theme?.colors?.surfaceTint,
+        ),
         primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
         fontFamily: state.theme?.fontFamily,
         imagesScheme: scheme,

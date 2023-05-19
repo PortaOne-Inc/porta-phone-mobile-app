@@ -101,13 +101,13 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     emit(state.focus(position));
   }
 
-  void updateImageResources(ConfiguratorImagesSetting? image) {
+  void updateImageResources(ImageSchemeModel? image) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(images: image),
     ));
   }
 
-  void updateColor(ColorModel? color) {
+  void updateColor(ColorSchemeModel? color) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(colors: color),
     ));
