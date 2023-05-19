@@ -89,10 +89,11 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void setTheme(ThemeModel? theme) {
+  void updateTexts(TextsModel? textsModel) {
     emit(state.updateTheme(
-      theme: theme,
-      nameField: ThemeNameInput.pure(theme?.name ?? ''),
+      theme: state.theme?.copyWith(
+        texts: textsModel,
+      ),
     ));
   }
 

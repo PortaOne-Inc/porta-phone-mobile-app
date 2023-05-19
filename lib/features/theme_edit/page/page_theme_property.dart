@@ -29,21 +29,104 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
           children: <Widget>[
             ExpansionTile(
               title: Text(context.l10n.feature_theme_edit_ExpansionTile_common_property),
-              childrenPadding: const EdgeInsets.all(16),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              tilePadding: const EdgeInsets.only(left: 16, right: 8),
               children: <Widget>[
-                TextFormField(
-                  onChanged: bloc.updateAppName,
-                  initialValue: bloc.state.theme?.name,
-                  decoration: InputDecoration(
-                    hintText: context.l10n.feature_theme_InputHint_app_name,
-                    errorText: state.nameField?.errorL10n(context),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        onChanged: (value) => bloc.updateTexts(bloc.state.theme?.texts?.copyWith(greeting: value)),
+                        initialValue: bloc.state.theme?.texts?.greeting,
+                        decoration: InputDecoration(
+                          hintText: context.l10n.feature_theme_greeting_message,
+                          errorText: state.nameField?.errorL10n(context),
+                          suffixIcon: Tooltip(
+                            message: context.l10n.feature_theme_edit_greeting_info,
+                            child: Icon(
+                              Icons.info_rounded,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Tooltip(
+                      message: context.l10n.feature_theme_edit_open_screen,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.open_in_new_sharp,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        onChanged: (value) => bloc.updateTexts(bloc.state.theme?.texts?.copyWith(greeting: value)),
+                        initialValue: bloc.state.theme?.texts?.contactEmail,
+                        decoration: InputDecoration(
+                          hintText: context.l10n.feature_theme_contact_email,
+                          errorText: state.nameField?.errorL10n(context),
+                          suffixIcon: Tooltip(
+                            message: context.l10n.feature_theme_edit_contact_us_info,
+                            child: Icon(
+                              Icons.info_rounded,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Tooltip(
+                      message: context.l10n.feature_theme_edit_open_screen,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.open_in_new_sharp,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
               ],
             ),
             ExpansionTile(
+              title: Text(context.l10n.feature_theme_edit_TextStyle_title),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              tilePadding: const EdgeInsets.only(left: 16, right: 8),
+              children: [
+                Column(
+                  children: [
+                    FontItem(
+                      fontName: state.theme?.fontFamily,
+                      onTap: () => _onChangeBaseFont(context, bloc),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            ExpansionTile(
               title: Text(context.l10n.configurator_color_template_title),
-              childrenPadding: const EdgeInsets.all(16),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              tilePadding: const EdgeInsets.only(left: 16, right: 8),
               children: <Widget>[
                 Column(
                   children: [
@@ -218,22 +301,9 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               ],
             ),
             ExpansionTile(
-              title: Text(context.l10n.feature_theme_edit_TextStyle_title),
-              childrenPadding: const EdgeInsets.all(16),
-              children: [
-                Column(
-                  children: [
-                    FontItem(
-                      fontName: state.theme?.fontFamily,
-                      onTap: () => _onChangeBaseFont(context, bloc),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            ExpansionTile(
               title: Text(context.l10n.configurator_image_resources),
-              childrenPadding: const EdgeInsets.all(8),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              tilePadding: const EdgeInsets.only(left: 16, right: 8),
               expandedAlignment: Alignment.centerLeft,
               children: [
                 ListTile(
