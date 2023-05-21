@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../../extension/extension.dart';
 import '../../../utility/utility.dart';
 import '../../dto/dto.dart';
-import '../../models/theme/theme.dart';
+import '../../models/models.dart';
 import '../mapper.dart';
 
 @Injectable(as: Mapper<ColorDTO?, ColorSchemeModel?>)
