@@ -10,13 +10,11 @@ import '../mapper.dart';
 class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
   ThemeMapper(
     this.colorsMapper,
-    this.textStyleMapper,
     this.imageMapper,
     this.textsMapper,
   );
 
   final Mapper<ColorDTO?, ColorSchemeModel?> colorsMapper;
-  final Mapper<TextStyleDTO?, TextStyle?> textStyleMapper;
   final Mapper<ImageDTO?, ImageModel?> imageMapper;
   final Mapper<TextsDTO?, TextsModel?> textsMapper;
 

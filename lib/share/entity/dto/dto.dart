@@ -1,7 +1,5 @@
 export '../dto/application/application_dto.dart';
 export '../dto/color/color_dto.dart';
-export '../dto/font/font.dart';
-export '../dto/font/text_style_dto.dart';
 export '../dto/image/image_collection_dto.dart';
 export '../dto/image/image_dto.dart';
 export '../dto/texts/texts.dart';
