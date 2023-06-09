@@ -110,7 +110,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _onEditApplication(ApplicationModel applicationModel) {
-    GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, params: <String, String>{
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
       AppRoutInfo.keyApplicationId: applicationModel.id!,
     });
   }
@@ -126,7 +126,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   void _openApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).pushNamed(
       AppRoutInfo.themes.name,
-      params: <String, String>{
+      pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationModel.id!,
       },
     );

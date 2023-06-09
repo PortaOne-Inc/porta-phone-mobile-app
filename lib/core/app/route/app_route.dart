@@ -103,7 +103,7 @@ class AppRoute {
                 create: (BuildContext context) => ApplicationEditCubit(
                   applicationEditUsecase: getIt.get(),
                   applicationGetUsecase: getIt.get(),
-                  applicationId: state.params[AppRoutInfo.keyApplicationId]!,
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                 ),
                 child: const ApplicationEditPage(),
               ),
@@ -114,7 +114,7 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
                 child: const ThemeCollectionPage(),
                 create: (BuildContext context) => ThemeCollectionCubit(
-                  applicationId: state.params[AppRoutInfo.keyApplicationId]!,
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   getThemesUseCase: getIt.get(),
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
@@ -130,16 +130,16 @@ class AppRoute {
                 create: (BuildContext context) => ThemePropertyCubit(
                   updateThemeUseCase: getIt.get(
                     instanceName: UsecaseThemeUpdate.applicationEditUsecaseKey,
-                    param1: state.params[AppRoutInfo.keyApplicationId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   ),
                   getThemeUseCase: getIt.get(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                    param1: state.params[AppRoutInfo.keyApplicationId]!,
-                    param2: state.params[AppRoutInfo.keyThemeId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                    param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
                   ),
                   getUserUsecase: getIt.get(),
-                  applicationId: state.params[AppRoutInfo.keyApplicationId]!,
-                  themeId: state.params[AppRoutInfo.keyThemeId]!,
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
                 )..tryGetTheme(),
                 child: PageThemeEdit(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
