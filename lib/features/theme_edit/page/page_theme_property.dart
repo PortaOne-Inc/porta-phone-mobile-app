@@ -527,7 +527,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               child: ColorPicker(
                 onDeclineColor: () => Navigator.of(context).pop(),
                 onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: Colors.black,
+                initialColor: color,
               ),
             ),
         useRootNavigator: false);

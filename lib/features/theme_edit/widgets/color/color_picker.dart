@@ -21,7 +21,7 @@ class ColorPicker extends StatefulWidget {
 }
 
 class _ColorPickerState extends State<ColorPicker> {
-  Color? _currentColor;
+  late Color _currentColor;
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _ColorPickerState extends State<ColorPicker> {
           mainAxisSize: MainAxisSize.min,
           children: [
             color_picker.ColorPicker(
-              color: Colors.blue,
+              color: _currentColor,
               onChanged: (value) => _currentColor = value,
               initialPicker: color_picker.Picker.paletteHue,
             ),
@@ -69,7 +69,7 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   void _hideColorChooserAndReturnResult() {
-    widget.onAcceptColor?.call(_currentColor!);
+    widget.onAcceptColor?.call(_currentColor);
     setState(() {});
   }
 
