@@ -16,9 +16,9 @@ class ApplicationCollectionToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Expanded(
+        const Expanded(
           child: Row(
-            children: const [],
+            children: [],
           ),
         ),
         Expanded(

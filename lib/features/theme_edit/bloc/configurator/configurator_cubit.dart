@@ -20,7 +20,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     required this.getUserUsecase,
     this.applicationId,
     this.themeId,
-  }) : super(ThemePropertyState(theme: ThemeModel()));
+  }) : super(ThemePropertyState(theme: const ThemeModel()));
 
   final String? applicationId;
   final String? themeId;

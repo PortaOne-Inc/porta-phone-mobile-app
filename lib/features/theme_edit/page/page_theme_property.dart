@@ -334,7 +334,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           }),
                           onRemove: () => bloc.updateImageResources(
                             bloc.state.theme?.images?.copyWith(
-                              onboarding: ImageModel(),
+                              onboarding: const ImageModel(),
                             ),
                           ),
                         ),
@@ -350,7 +350,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           }),
                           onRemove: () => bloc.updateImageResources(
                             bloc.state.theme?.images?.copyWith(
-                              applicationLogo: ImageModel(),
+                              applicationLogo: const ImageModel(),
                             ),
                           ),
                         ),
@@ -384,7 +384,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           }),
                           onRemove: () => bloc.updateImageResources(
                             bloc.state.theme?.images?.copyWith(
-                              notificationLogo: ImageModel(),
+                              notificationLogo: const ImageModel(),
                             ),
                           ),
                         ),
@@ -418,7 +418,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         }),
                         onRemove: () => bloc.updateImageResources(
                           bloc.state.theme?.images?.copyWith(
-                            adaptiveIconBackground: ImageModel(),
+                            adaptiveIconBackground: const ImageModel(),
                           ),
                         ),
                       ),
@@ -434,7 +434,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         }),
                         onRemove: () => bloc.updateImageResources(
                           bloc.state.theme?.images?.copyWith(
-                            adaptiveIconForeground: ImageModel(),
+                            adaptiveIconForeground: const ImageModel(),
                           ),
                         ),
                       ),
@@ -450,7 +450,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         }),
                         onRemove: () => bloc.updateImageResources(
                           bloc.state.theme?.images?.copyWith(
-                            androidLauncherIcon: ImageModel(),
+                            androidLauncherIcon: const ImageModel(),
                           ),
                         ),
                       ),
@@ -466,7 +466,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         }),
                         onRemove: () => bloc.updateImageResources(
                           bloc.state.theme?.images?.copyWith(
-                            iosLauncherIcon: ImageModel(),
+                            iosLauncherIcon: const ImageModel(),
                           ),
                         ),
                       ),
@@ -482,7 +482,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         }),
                         onRemove: () => bloc.updateImageResources(
                           bloc.state.theme?.images?.copyWith(
-                            webLauncherIcon: ImageModel(),
+                            webLauncherIcon: const ImageModel(),
                           ),
                         ),
                       ),

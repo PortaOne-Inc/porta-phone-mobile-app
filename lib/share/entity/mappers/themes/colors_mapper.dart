@@ -34,7 +34,7 @@ class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {
   @override
   ColorSchemeModel? mapToModel(ColorDTO? dto) {
     return dto == null
-        ? ColorSchemeModel()
+        ? const ColorSchemeModel()
         : ColorSchemeModel(
             primary: UtilityColor.tryParseColorFromHex(
               dto.primary,
