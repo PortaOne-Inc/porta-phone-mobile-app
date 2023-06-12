@@ -5,13 +5,13 @@ import 'package:injectable/injectable.dart';
 import '../../../extension/extension.dart';
 import '../../../utility/utility.dart';
 import '../../dto/dto.dart';
-import '../../models/theme/theme.dart';
+import '../../models/models.dart';
 import '../mapper.dart';
 
-@Injectable(as: Mapper<ColorDTO?, ColorModel?>)
-class ColorsMapper extends Mapper<ColorDTO?, ColorModel?> {
+@Injectable(as: Mapper<ColorDTO?, ColorSchemeModel?>)
+class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {
   @override
-  ColorDTO? mapToDto(ColorModel? model) {
+  ColorDTO? mapToDto(ColorSchemeModel? model) {
     return model == null
         ? const ColorDTO()
         : ColorDTO(
@@ -32,10 +32,10 @@ class ColorsMapper extends Mapper<ColorDTO?, ColorModel?> {
   }
 
   @override
-  ColorModel? mapToModel(ColorDTO? dto) {
+  ColorSchemeModel? mapToModel(ColorDTO? dto) {
     return dto == null
-        ? ColorModel()
-        : ColorModel(
+        ? const ColorSchemeModel()
+        : ColorSchemeModel(
             primary: UtilityColor.tryParseColorFromHex(
               dto.primary,
               defaultColor: Colors.white,

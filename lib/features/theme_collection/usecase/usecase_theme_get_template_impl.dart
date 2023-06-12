@@ -15,7 +15,7 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
   }) {
     return ThemeModel(
       name: themeName,
-      images: ConfiguratorImagesSetting(
+      images: const ImageSchemeModel(
         onboarding: ImageModel(),
         applicationLogo: ImageModel(),
         notificationLogo: ImageModel(),

@@ -20,7 +20,7 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     required this.getUserUsecase,
     this.applicationId,
     this.themeId,
-  }) : super(ThemePropertyState(theme: ThemeModel()));
+  }) : super(ThemePropertyState(theme: const ThemeModel()));
 
   final String? applicationId;
   final String? themeId;
@@ -89,20 +89,25 @@ class ThemePropertyCubit extends Cubit<ThemePropertyState> {
     ));
   }
 
-  void setTheme(ThemeModel? theme) {
+  void updateTexts(TextsModel? textsModel) {
     emit(state.updateTheme(
-      theme: theme,
-      nameField: ThemeNameInput.pure(theme?.name ?? ''),
+      theme: state.theme?.copyWith(
+        texts: textsModel,
+      ),
     ));
   }
 
-  void updateImageResources(ConfiguratorImagesSetting? image) {
+  void focusScreen(int position) {
+    emit(state.focus(position));
+  }
+
+  void updateImageResources(ImageSchemeModel? image) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(images: image),
     ));
   }
 
-  void updateColor(ColorModel? color) {
+  void updateColor(ColorSchemeModel? color) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(colors: color),
     ));

@@ -35,11 +35,13 @@ class ItemTheme extends StatelessWidget {
       child: Card(
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: themeMode.colorGradientCollection.toList().map((e) => e.withOpacity(0.25)).toList(),
-            ),
+            gradient: themeMode.colorGradientCollection != null
+                ? LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.withOpacity(0.25)).toList(),
+                  )
+                : null,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
           constraints: const BoxConstraints(maxWidth: 480),

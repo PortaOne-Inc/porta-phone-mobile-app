@@ -17,8 +17,8 @@ class ResetToolbar extends StatelessWidget {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8, right: 8),
-            child: Row(
-              children: const [],
+            child: const Row(
+              children: [],
             ),
           ),
         ),
@@ -32,10 +32,10 @@ class ResetToolbar extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: const [],
+            children: [],
           ),
         ),
       ],

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'theme_dto.dart';
+part of 'theme_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,47 +14,43 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ThemeDTO _$ThemeDTOFromJson(Map<String, dynamic> json) {
-  return _ThemeDTO.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ThemeDTO {
+mixin _$ThemeModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get fontFamily => throw _privateConstructorUsedError;
-  ImageCollectionDTO? get images => throw _privateConstructorUsedError;
-  ColorDTO? get colors => throw _privateConstructorUsedError;
-  TextsDTO? get texts => throw _privateConstructorUsedError;
+  ColorSchemeModel? get colors => throw _privateConstructorUsedError;
+  ImageSchemeModel? get images => throw _privateConstructorUsedError;
+  TextsModel? get texts => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ThemeDTOCopyWith<ThemeDTO> get copyWith =>
+  $ThemeModelCopyWith<ThemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThemeDTOCopyWith<$Res> {
-  factory $ThemeDTOCopyWith(ThemeDTO value, $Res Function(ThemeDTO) then) =
-      _$ThemeDTOCopyWithImpl<$Res, ThemeDTO>;
+abstract class $ThemeModelCopyWith<$Res> {
+  factory $ThemeModelCopyWith(
+          ThemeModel value, $Res Function(ThemeModel) then) =
+      _$ThemeModelCopyWithImpl<$Res, ThemeModel>;
   @useResult
   $Res call(
       {String? id,
       String? name,
       String? fontFamily,
-      ImageCollectionDTO? images,
-      ColorDTO? colors,
-      TextsDTO? texts});
+      ColorSchemeModel? colors,
+      ImageSchemeModel? images,
+      TextsModel? texts});
 
-  $ImageCollectionDTOCopyWith<$Res>? get images;
-  $ColorDTOCopyWith<$Res>? get colors;
-  $TextsDTOCopyWith<$Res>? get texts;
+  $ColorSchemeModelCopyWith<$Res>? get colors;
+  $ImageSchemeModelCopyWith<$Res>? get images;
+  $TextsModelCopyWith<$Res>? get texts;
 }
 
 /// @nodoc
-class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
-    implements $ThemeDTOCopyWith<$Res> {
-  _$ThemeDTOCopyWithImpl(this._value, this._then);
+class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
+    implements $ThemeModelCopyWith<$Res> {
+  _$ThemeModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -67,8 +63,8 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
     Object? id = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
-    Object? images = freezed,
     Object? colors = freezed,
+    Object? images = freezed,
     Object? texts = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,87 +80,88 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
           ? _value.fontFamily
           : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
-      images: freezed == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as ImageCollectionDTO?,
       colors: freezed == colors
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
-              as ColorDTO?,
+              as ColorSchemeModel?,
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as ImageSchemeModel?,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
-              as TextsDTO?,
+              as TextsModel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageCollectionDTOCopyWith<$Res>? get images {
-    if (_value.images == null) {
-      return null;
-    }
-
-    return $ImageCollectionDTOCopyWith<$Res>(_value.images!, (value) {
-      return _then(_value.copyWith(images: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorDTOCopyWith<$Res>? get colors {
+  $ColorSchemeModelCopyWith<$Res>? get colors {
     if (_value.colors == null) {
       return null;
     }
 
-    return $ColorDTOCopyWith<$Res>(_value.colors!, (value) {
+    return $ColorSchemeModelCopyWith<$Res>(_value.colors!, (value) {
       return _then(_value.copyWith(colors: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TextsDTOCopyWith<$Res>? get texts {
+  $ImageSchemeModelCopyWith<$Res>? get images {
+    if (_value.images == null) {
+      return null;
+    }
+
+    return $ImageSchemeModelCopyWith<$Res>(_value.images!, (value) {
+      return _then(_value.copyWith(images: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TextsModelCopyWith<$Res>? get texts {
     if (_value.texts == null) {
       return null;
     }
 
-    return $TextsDTOCopyWith<$Res>(_value.texts!, (value) {
+    return $TextsModelCopyWith<$Res>(_value.texts!, (value) {
       return _then(_value.copyWith(texts: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_ThemeDTOCopyWith<$Res> implements $ThemeDTOCopyWith<$Res> {
-  factory _$$_ThemeDTOCopyWith(
-          _$_ThemeDTO value, $Res Function(_$_ThemeDTO) then) =
-      __$$_ThemeDTOCopyWithImpl<$Res>;
+abstract class _$$_ThemeModelCopyWith<$Res>
+    implements $ThemeModelCopyWith<$Res> {
+  factory _$$_ThemeModelCopyWith(
+          _$_ThemeModel value, $Res Function(_$_ThemeModel) then) =
+      __$$_ThemeModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       String? name,
       String? fontFamily,
-      ImageCollectionDTO? images,
-      ColorDTO? colors,
-      TextsDTO? texts});
+      ColorSchemeModel? colors,
+      ImageSchemeModel? images,
+      TextsModel? texts});
 
   @override
-  $ImageCollectionDTOCopyWith<$Res>? get images;
+  $ColorSchemeModelCopyWith<$Res>? get colors;
   @override
-  $ColorDTOCopyWith<$Res>? get colors;
+  $ImageSchemeModelCopyWith<$Res>? get images;
   @override
-  $TextsDTOCopyWith<$Res>? get texts;
+  $TextsModelCopyWith<$Res>? get texts;
 }
 
 /// @nodoc
-class __$$_ThemeDTOCopyWithImpl<$Res>
-    extends _$ThemeDTOCopyWithImpl<$Res, _$_ThemeDTO>
-    implements _$$_ThemeDTOCopyWith<$Res> {
-  __$$_ThemeDTOCopyWithImpl(
-      _$_ThemeDTO _value, $Res Function(_$_ThemeDTO) _then)
+class __$$_ThemeModelCopyWithImpl<$Res>
+    extends _$ThemeModelCopyWithImpl<$Res, _$_ThemeModel>
+    implements _$$_ThemeModelCopyWith<$Res> {
+  __$$_ThemeModelCopyWithImpl(
+      _$_ThemeModel _value, $Res Function(_$_ThemeModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -173,11 +170,11 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
-    Object? images = freezed,
     Object? colors = freezed,
+    Object? images = freezed,
     Object? texts = freezed,
   }) {
-    return _then(_$_ThemeDTO(
+    return _then(_$_ThemeModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -190,35 +187,33 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
           ? _value.fontFamily
           : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
-      images: freezed == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as ImageCollectionDTO?,
       colors: freezed == colors
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
-              as ColorDTO?,
+              as ColorSchemeModel?,
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as ImageSchemeModel?,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
-              as TextsDTO?,
+              as TextsModel?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_ThemeDTO implements _ThemeDTO {
-  const _$_ThemeDTO(
+
+class _$_ThemeModel extends _ThemeModel {
+  const _$_ThemeModel(
       {this.id,
       this.name,
       this.fontFamily,
-      this.images,
       this.colors,
-      this.texts});
-
-  factory _$_ThemeDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ThemeDTOFromJson(json);
+      this.images,
+      this.texts})
+      : super._();
 
   @override
   final String? id;
@@ -227,60 +222,51 @@ class _$_ThemeDTO implements _ThemeDTO {
   @override
   final String? fontFamily;
   @override
-  final ImageCollectionDTO? images;
+  final ColorSchemeModel? colors;
   @override
-  final ColorDTO? colors;
+  final ImageSchemeModel? images;
   @override
-  final TextsDTO? texts;
+  final TextsModel? texts;
 
   @override
   String toString() {
-    return 'ThemeDTO(id: $id, name: $name, fontFamily: $fontFamily, images: $images, colors: $colors, texts: $texts)';
+    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colors: $colors, images: $images, texts: $texts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemeDTO &&
+            other is _$_ThemeModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fontFamily, fontFamily) ||
                 other.fontFamily == fontFamily) &&
-            (identical(other.images, images) || other.images == images) &&
             (identical(other.colors, colors) || other.colors == colors) &&
+            (identical(other.images, images) || other.images == images) &&
             (identical(other.texts, texts) || other.texts == texts));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, fontFamily, images, colors, texts);
+      Object.hash(runtimeType, id, name, fontFamily, colors, images, texts);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemeDTOCopyWith<_$_ThemeDTO> get copyWith =>
-      __$$_ThemeDTOCopyWithImpl<_$_ThemeDTO>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ThemeDTOToJson(
-      this,
-    );
-  }
+  _$$_ThemeModelCopyWith<_$_ThemeModel> get copyWith =>
+      __$$_ThemeModelCopyWithImpl<_$_ThemeModel>(this, _$identity);
 }
 
-abstract class _ThemeDTO implements ThemeDTO {
-  const factory _ThemeDTO(
+abstract class _ThemeModel extends ThemeModel {
+  const factory _ThemeModel(
       {final String? id,
       final String? name,
       final String? fontFamily,
-      final ImageCollectionDTO? images,
-      final ColorDTO? colors,
-      final TextsDTO? texts}) = _$_ThemeDTO;
-
-  factory _ThemeDTO.fromJson(Map<String, dynamic> json) = _$_ThemeDTO.fromJson;
+      final ColorSchemeModel? colors,
+      final ImageSchemeModel? images,
+      final TextsModel? texts}) = _$_ThemeModel;
+  const _ThemeModel._() : super._();
 
   @override
   String? get id;
@@ -289,13 +275,13 @@ abstract class _ThemeDTO implements ThemeDTO {
   @override
   String? get fontFamily;
   @override
-  ImageCollectionDTO? get images;
+  ColorSchemeModel? get colors;
   @override
-  ColorDTO? get colors;
+  ImageSchemeModel? get images;
   @override
-  TextsDTO? get texts;
+  TextsModel? get texts;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemeDTOCopyWith<_$_ThemeDTO> get copyWith =>
+  _$$_ThemeModelCopyWith<_$_ThemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -853,6 +853,8 @@ abstract class _$$ThemeCollectionNavigateToEditThemeCopyWith<$Res>
   @override
   @useResult
   $Res call({List<ThemeModel> themes, ThemeModel? theme, BaseException? error});
+
+  $ThemeModelCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -886,6 +888,18 @@ class __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>
           : error // ignore: cast_nullable_to_non_nullable
               as BaseException?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeModelCopyWith<$Res>? get theme {
+    if (_value.theme == null) {
+      return null;
+    }
+
+    return $ThemeModelCopyWith<$Res>(_value.theme!, (value) {
+      return _then(_value.copyWith(theme: value));
+    });
   }
 }
 

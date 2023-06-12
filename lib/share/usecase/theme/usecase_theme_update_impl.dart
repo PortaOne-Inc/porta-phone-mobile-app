@@ -2,8 +2,6 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_theme_update.dart';
-
 import '../../../features/theme_collection/usecase/usecase_theme_upload_image.dart';
 
 @Named(UsecaseThemeUpdate.applicationEditUsecaseKey)

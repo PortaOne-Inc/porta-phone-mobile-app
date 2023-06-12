@@ -2,8 +2,6 @@ import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/share/share.dart';
 
-import 'usecase_theme_get.dart';
-
 @Named(UsecaseThemeGet.applicationUsecaseKey)
 @Injectable(as: UsecaseThemeGet)
 class UsecaseThemeGetImpl implements UsecaseThemeGet {

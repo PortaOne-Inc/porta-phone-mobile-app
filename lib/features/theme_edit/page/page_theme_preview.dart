@@ -57,7 +57,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               isEnableFrame: _isFrameVisible,
             ),
             Expanded(
-              child: BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
+              child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
+                listener: (BuildContext context, state) {
+                  if (state is ThemePropertFocusState) {
+                    setState(() {
+                      _focusScreenPosition = state.position!;
+                    });
+                  }
+                },
                 builder: (BuildContext context, state) {
                   _updatePreviewScreens(state);
                   return Column(
@@ -102,15 +109,44 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
   void _updatePreviewScreens(ThemePropertyState state) {
     complete(context, state);
-
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
         seedColor: state.theme?.colors?.primary ?? Colors.transparent,
-        lightColorSchemeOverride: state.theme?.colors,
-        primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
+        // lightColorSchemeOverride: state.theme?.colors,
+        lightColorSchemeOverride: ColorSchemeOverride(
+          primary: state.theme?.colors?.primary,
+          onPrimary: state.theme?.colors?.onPrimary,
+          primaryContainer: state.theme?.colors?.primaryContainer,
+          onPrimaryContainer: state.theme?.colors?.onPrimaryContainer,
+          secondary: state.theme?.colors?.secondary,
+          onSecondary: state.theme?.colors?.onSecondary,
+          secondaryContainer: state.theme?.colors?.secondaryContainer,
+          onSecondaryContainer: state.theme?.colors?.onSecondaryContainer,
+          tertiary: state.theme?.colors?.tertiary,
+          onTertiary: state.theme?.colors?.onTertiary,
+          tertiaryContainer: state.theme?.colors?.tertiaryContainer,
+          error: state.theme?.colors?.error,
+          onError: state.theme?.colors?.onError,
+          errorContainer: state.theme?.colors?.errorContainer,
+          onErrorContainer: state.theme?.colors?.onErrorContainer,
+          outline: state.theme?.colors?.outline,
+          outlineVariant: state.theme?.colors?.outlineVariant,
+          background: state.theme?.colors?.background,
+          onBackground: state.theme?.colors?.onBackground,
+          surface: state.theme?.colors?.surface,
+          onSurface: state.theme?.colors?.onSurface,
+          surfaceVariant: state.theme?.colors?.surfaceVariant,
+          onSurfaceVariant: state.theme?.colors?.onSurfaceVariant,
+          inverseSurface: state.theme?.colors?.inverseSurface,
+          shadow: state.theme?.colors?.shadow,
+          scrim: state.theme?.colors?.scrim,
+          surfaceTint: state.theme?.colors?.surfaceTint,
+        ),
+        //TODO: Add possibility to add null
+        primaryGradientColors: state.theme!.toCustomColorGradientCollection(),
         fontFamily: state.theme?.fontFamily,
         imagesScheme: scheme,
-        appName: state.theme?.name,
+        appName: state.theme?.texts?.greeting,
       ),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
@@ -121,6 +157,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ScreenshotApp(
         appBloc: appBloc,
         child: const LoginScreenScreenshot(LoginStep.modeSelect),
+      ),
+      ScreenshotApp(
+        appBloc: appBloc,
+        child: const LoginScreenScreenshot(LoginStep.coreUrlAssign),
+      ),
+      ScreenshotApp(
+        appBloc: appBloc,
+        child: const LoginScreenScreenshot(LoginStep.otpRequest),
       ),
       ScreenshotApp(
         appBloc: appBloc,

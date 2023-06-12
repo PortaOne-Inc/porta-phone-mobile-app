@@ -1,57 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
 
-import 'color_model.dart';
-import 'theme_images_model.dart';
+import '../color/color_scheme_model.dart';
+import '../image/image_scheme_model.dart';
+import '../texts/texts_model.dart';
 
-class ThemeModel {
-  final String? id;
-  final String? name;
-  final String? fontFamily;
-  final ColorModel? colors;
-  final ConfiguratorImagesSetting? images;
+part 'theme_model.freezed.dart';
 
-  ThemeModel({
-    this.id,
-    this.name,
-    this.fontFamily,
-    this.colors,
-    this.images,
-  });
+@freezed
+class ThemeModel with _$ThemeModel {
+  const ThemeModel._();
 
-  static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+  const factory ThemeModel({
+    final String? id,
+    final String? name,
+    final String? fontFamily,
+    final ColorSchemeModel? colors,
+    final ImageSchemeModel? images,
+    final TextsModel? texts,
+  }) = _ThemeModel;
 
   List<Color> get colorSchemeCollection {
-    return colors?.asList() ?? <Color>[];
+    return colors?.asList ?? <Color>[];
   }
 
-  List<Color> get colorGradientCollection {
-    final gradient = colors?.gradientTabColor ?? emptyGradient;
-    return gradient.length >= 2 ? gradient : emptyGradient;
+  List<Color>? get colorGradientCollection {
+    return colors?.gradientTabColor;
   }
 
-  List<CustomColor> get toCustomColorGradientCollection {
-    return colorGradientCollection
-        .map((color) => CustomColor(
-              color: color,
-              blend: false,
-            ))
-        .toList();
-  }
-
-  ThemeModel copyWith({
-    String? id,
-    String? name,
-    ColorModel? colors,
-    String? fontFamily,
-    ConfiguratorImagesSetting? images,
-  }) {
-    return ThemeModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      colors: colors ?? this.colors,
-      fontFamily: fontFamily ?? this.fontFamily,
-      images: images ?? this.images,
-    );
+  List<CustomColor> toCustomColorGradientCollection() {
+    const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+    final isEnoughGradientColor = (colorGradientCollection ?? []).length < 2;
+    final colors = isEnoughGradientColor ? emptyGradient : colorGradientCollection;
+    return colors!.map((color) => CustomColor(color: color, blend: false)).toList();
   }
 }
