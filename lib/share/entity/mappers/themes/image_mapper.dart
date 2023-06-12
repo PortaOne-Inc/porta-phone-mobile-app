@@ -21,7 +21,7 @@ class ImageMapper extends Mapper<ImageDTO?, ImageModel?> {
   @override
   ImageModel? mapToModel(ImageDTO? dto) {
     return dto == null
-        ? ImageModel()
+        ? const ImageModel()
         : ImageModel(
             data: dto.data,
             name: dto.name,

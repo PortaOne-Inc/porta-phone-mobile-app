@@ -12,7 +12,7 @@ class TextsMapper extends Mapper<TextsDTO?, TextsModel?> {
         ? const TextsDTO()
         : TextsDTO(
             greeting: model.greeting,
-            contact_email: model.contactEmail,
+            contactEmail: model.contactEmail,
           );
   }
 
@@ -22,7 +22,7 @@ class TextsMapper extends Mapper<TextsDTO?, TextsModel?> {
         ? const TextsModel()
         : TextsModel(
             greeting: dto.greeting,
-            contactEmail: dto.contact_email,
+            contactEmail: dto.contactEmail,
           );
   }
 }
