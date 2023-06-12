@@ -21,23 +21,18 @@ class ThemeModel with _$ThemeModel {
     final TextsModel? texts,
   }) = _ThemeModel;
 
-  static const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+  List<Color> get colorSchemeCollection {
+    return colors?.asList ?? <Color>[];
+  }
 
-List<Color> get colorSchemeCollection {
-  return colors?.asList ?? <Color>[];
-}
+  List<Color>? get colorGradientCollection {
+    return colors?.gradientTabColor;
+  }
 
-List<Color> get colorGradientCollection {
-  final gradient = colors?.gradientTabColor ?? emptyGradient;
-  return gradient.length >= 2 ? gradient : emptyGradient;
-}
-
-  List<CustomColor> get toCustomColorGradientCollection {
-    return colorGradientCollection
-        .map((color) => CustomColor(
-              color: color,
-              blend: false,
-            ))
-        .toList();
+  List<CustomColor> toCustomColorGradientCollection() {
+    const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+    final isEnoughGradientColor = (colorGradientCollection ?? []).length < 2;
+    final colors = isEnoughGradientColor ? emptyGradient : colorGradientCollection;
+    return colors!.map((color) => CustomColor(color: color, blend: false)).toList();
   }
 }

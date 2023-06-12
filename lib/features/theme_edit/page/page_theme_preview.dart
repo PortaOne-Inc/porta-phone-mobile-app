@@ -142,7 +142,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
           scrim: state.theme?.colors?.scrim,
           surfaceTint: state.theme?.colors?.surfaceTint,
         ),
-        primaryGradientColors: state.theme?.toCustomColorGradientCollection ?? [],
+        //TODO: Add possibility to add null
+        primaryGradientColors: state.theme!.toCustomColorGradientCollection(),
         fontFamily: state.theme?.fontFamily,
         imagesScheme: scheme,
         appName: state.theme?.texts?.greeting,

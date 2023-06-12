@@ -38,7 +38,6 @@ class _GradientFieldState extends State<GradientField> {
                   padding: const EdgeInsets.all(8),
                   child: Wrap(
                     alignment: WrapAlignment.spaceBetween,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -56,7 +55,7 @@ class _GradientFieldState extends State<GradientField> {
                                 height: 8,
                               ),
                               ConstrainedBox(
-                                constraints: BoxConstraints(maxWidth: constraints.maxWidth - 48),
+                                constraints: BoxConstraints(maxWidth: constraints.maxWidth - 48, minHeight: 24),
                                 child: Wrap(
                                   children: widget.colors
                                       .map((e) => Text(
@@ -93,8 +92,10 @@ class _GradientFieldState extends State<GradientField> {
                             width: MediaQuery.of(context).size.width / 10,
                             height: 40,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.centerLeft, end: Alignment.centerRight, colors: widget.colors),
+                              gradient: widget.colors.length >= 2
+                                  ? LinearGradient(
+                                      begin: Alignment.centerLeft, end: Alignment.centerRight, colors: widget.colors)
+                                  : null,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(4),
                               ),
@@ -123,43 +124,37 @@ class _GradientFieldState extends State<GradientField> {
                         .map(
                           (e) => Container(
                             margin: const EdgeInsets.all(8),
-                            child: IgnorePointer(
-                              ignoring: widget.colors.length <= 2,
-                              child: GestureDetector(
-                                onTap: () => widget.onRemoveColor(e),
-                                child: Card(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: e,
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4),
-                                        topRight: Radius.circular(4),
-                                        bottomRight: Radius.circular(4),
-                                        bottomLeft: Radius.circular(4),
-                                      ),
+                            child: GestureDetector(
+                              onTap: () => widget.onRemoveColor(e),
+                              child: Card(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: e,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4),
+                                      topRight: Radius.circular(4),
+                                      bottomRight: Radius.circular(4),
+                                      bottomLeft: Radius.circular(4),
                                     ),
-                                    width: 40,
-                                    height: 40,
-                                    child: Center(
-                                      child: Container(
-                                        width: 24,
-                                        height: 24,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white60,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(90),
-                                            topRight: Radius.circular(90),
-                                            bottomRight: Radius.circular(90),
-                                            bottomLeft: Radius.circular(90),
-                                          ),
+                                  ),
+                                  width: 40,
+                                  height: 40,
+                                  child: Center(
+                                    child: Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white60,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(90),
+                                          topRight: Radius.circular(90),
+                                          bottomRight: Radius.circular(90),
+                                          bottomLeft: Radius.circular(90),
                                         ),
-                                        child: Visibility(
-                                          visible: widget.colors.length > 2,
-                                          child: const Icon(
-                                            Icons.remove,
-                                            size: 24,
-                                          ),
-                                        ),
+                                      ),
+                                      child: const Icon(
+                                        Icons.remove,
+                                        size: 24,
                                       ),
                                     ),
                                   ),
