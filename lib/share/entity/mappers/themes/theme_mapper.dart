@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:injectable/injectable.dart';
 
 import '../../dto/dto.dart';

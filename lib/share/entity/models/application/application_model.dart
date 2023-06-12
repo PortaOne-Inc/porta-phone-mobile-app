@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:webtrit_configurator/share/exports/exports.dart';
-
-import '../color/color_scheme_model.dart';
-import '../image/image_scheme_model.dart';
-import '../texts/texts_model.dart';
 
 part 'application_model.freezed.dart';
 
