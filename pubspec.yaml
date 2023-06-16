@@ -57,8 +57,6 @@ dependencies:
   meta: ^1.9.0
   formz: ^0.6.0
   validated: ^2.0.0
-  logging: ^1.2.0
-  logging_appenders: ^1.1.0
   collection: ^1.17.0
 
   # Plugins for support phone module
