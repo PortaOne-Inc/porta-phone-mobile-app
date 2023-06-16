@@ -13,7 +13,7 @@ env:
   DART_VERSION: 3.0.0
 
   REPOSITORY_PHONE_NAME: WebTrit/webtrit_phone
-  REPOSITORY_PHONE_BRANCH: feat/change_style_resource_temporary_for_actions
+  REPOSITORY_PHONE_BRANCH: feature/configurator_compatibility
   REPOSITORY_PHONE_OUT_DIR: webtrit/webtrit_phone
 
   WORKING_DIRECTORY: webtrit/webtrit_configurator
