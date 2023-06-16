@@ -24,6 +24,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
   final _screenshots = <Widget>[];
 
+  final _previewImageScheme = ImagesScheme();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +36,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
         child: DrawerPreview(
           screenshots: _screenshots,
           focusScreenPosition: _focusScreenPosition,
-          onTapScreen: (position) {
-            Scaffold.of(context).closeEndDrawer();
-            _focusScreenPosition = position;
-            setState(() {});
-          },
+          onTapScreen: _setFocusedScreen,
         ),
       ),
       body: Builder(
@@ -58,31 +56,18 @@ class _PageThemePreviewState extends State<PageThemePreview> {
             ),
             Expanded(
               child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
-                listener: (BuildContext context, state) {
-                  if (state is ThemePropertFocusState) {
-                    setState(() {
-                      _focusScreenPosition = state.position!;
-                    });
-                  }
-                },
+                listener: _listenBloc,
                 builder: (BuildContext context, state) {
-                  _updatePreviewScreens(state);
-                  return Column(
-                    children: [
-                      Expanded(
-                        child: PreviewDetails(
-                          type: _previewType,
-                          screens: _screenshots,
-                          screenFocus: _focusScreenPosition,
-                          isFrameVisible: _isFrameVisible,
-                          onFocusPosition: (position) {
-                            setState(() {
-                              _focusScreenPosition = position;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                  return Center(
+                    child: _screenshots.isEmpty
+                        ? const CircularProgressIndicator()
+                        : PreviewDetails(
+                            type: _previewType,
+                            screens: _screenshots,
+                            screenFocus: _focusScreenPosition,
+                            isFrameVisible: _isFrameVisible,
+                            onFocusPosition: _setFocusedScreen,
+                          ),
                   );
                 },
               ),
@@ -93,26 +78,34 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
-  final scheme = ImagesScheme();
-
-  void complete(BuildContext context, ThemePropertyState state) async {
-    final logo = state.theme?.images?.applicationLogo;
-
-    if (logo?.isNetwork ?? false) {
-      scheme.setApplicationLogoByUrl(logo!.url!);
-    } else if (logo?.data != null) {
-      scheme.setApplicationByBytes(base64Decode(logo!.data!));
+  void _listenBloc(BuildContext context, state) {
+    if (state is ThemePropertFocusState) {
+      _setFocusedScreen(state.position!);
     } else {
-      scheme.clearApplicationLogo();
+      _updatePreviewScreens(state);
     }
   }
 
-  void _updatePreviewScreens(ThemePropertyState state) {
-    complete(context, state);
+  void _setFocusedScreen(int position) {
+    Scaffold.of(context).closeEndDrawer();
+    _focusScreenPosition = position;
+    setState(() {});
+  }
+
+  void _updatePreviewScreens(ThemePropertyState state) async {
+    final logo = state.theme?.images?.applicationLogo;
+
+    if (logo?.isNetwork ?? false) {
+      _previewImageScheme.setApplicationLogoByUrl(logo!.url!);
+    } else if (logo?.data != null) {
+      _previewImageScheme.setApplicationByBytes(base64Decode(logo!.data!));
+    } else {
+      _previewImageScheme.clearApplicationLogo();
+    }
+
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeSettings(
         seedColor: state.theme?.colors?.primary ?? Colors.transparent,
-        // lightColorSchemeOverride: state.theme?.colors,
         lightColorSchemeOverride: ColorSchemeOverride(
           primary: state.theme?.colors?.primary,
           onPrimary: state.theme?.colors?.onPrimary,
@@ -145,7 +138,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
         //TODO: Add possibility to add null
         primaryGradientColors: state.theme!.toCustomColorGradientCollection(),
         fontFamily: state.theme?.fontFamily,
-        imagesScheme: scheme,
+        imagesScheme: _previewImageScheme,
         appName: state.theme?.texts?.greeting,
       ),
       themeMode: ThemeMode.light,
@@ -185,19 +178,20 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ScreenshotApp(
         appBloc: appBloc,
         child: const CallScreenScreenshot(
-          video: false,
+          false,
         ),
       ),
       ScreenshotApp(
         appBloc: appBloc,
         child: const CallScreenScreenshot(
-          video: true,
-          remotePlaceholderUrl:
+          true,
+          localePlaceholderImageUrl:
               'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref1.png?alt=media&token=692ccd4f-d43d-48b0-8e1d-9fd7b2f90220',
-          localePlaceholderUrl:
+          remotePlaceholderImageUrl:
               'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref2.png?alt=media&token=3d469e82-9a64-4852-b593-9133f304bbef',
         ),
       ),
     ]);
+    setState(() {});
   }
 }
