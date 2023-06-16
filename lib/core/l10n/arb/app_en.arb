@@ -69,7 +69,7 @@
   "feature_theme_edit_Validation_image_format": "The {format} is not available for this field",
   "feature_theme_edit_open_screen": "Open screen where using this text",
   "feature_theme_edit_greeting_info": "It is displayed on the authorization page in large font",
-  "feature_theme_edit_contact_us_info": "Email for contact with support",
+  "feature_theme_edit_contact_us_info": "An email for contacting support that will be displayed on the page in the phone application",
   "feature_theme_edit_Validation_image_size": "Image should have {size} px",
   "feature_theme_edit_Text_no_themes_yet_title": "No themes yet",
   "feature_theme_edit_Text_no_themes_yet_description": "You have not created any themes yet.",
