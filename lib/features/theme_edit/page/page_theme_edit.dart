@@ -14,12 +14,14 @@ import '../widgets/widgets.dart';
 import 'page_theme_preview.dart';
 
 class PageThemeEdit extends StatelessWidget with MixinMessages {
-  const PageThemeEdit({
+  PageThemeEdit({
     super.key,
     required this.title,
   });
 
   final String title;
+
+  final _leftPageNavigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,14 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
           ),
         ),
-        body: const BackgroundBinaryResizableColumn(
+        body: BackgroundBinaryResizableColumn(
           leftChild: SingleStack(
-            child: PageThemeProperty(),
+            key: _leftPageNavigatorKey,
+            child: const PageThemeProperty(),
           ),
           rightChild: SingleStack(
-            child: PageThemePreview(),
+            key: _rightPageNavigatorKey,
+            child: const PageThemePreview(),
           ),
         ),
       ),
