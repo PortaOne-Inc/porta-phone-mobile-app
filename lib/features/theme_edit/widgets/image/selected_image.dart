@@ -30,8 +30,9 @@ class SelectedImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey.withOpacity(0.3)),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+            ),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         width: _size.width,
         height: _size.height,
@@ -48,11 +49,11 @@ class SelectedImage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 width: double.infinity,
-                color: Colors.black38,
+                color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.5),
                 child: Text(
                   name,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.labelLarge!,
                 ),
               ),
             ),
@@ -66,14 +67,14 @@ class SelectedImage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
+                        border: Border.all(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.4)),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(24),
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.info_outline,
-                        color: Colors.lightBlueAccent,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                     ),
                   ),
@@ -84,14 +85,14 @@ class SelectedImage extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black12),
+                          border: Border.all(color: Theme.of(context).colorScheme.error.withOpacity(0.5)),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(24),
                           ),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           Icons.remove_circle,
-                          color: Colors.red,
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
                       onTap: () => onRemove(),

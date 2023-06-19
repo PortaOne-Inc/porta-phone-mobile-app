@@ -133,7 +133,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
   }
 
   void _onLanguageChanged() {
-    showTopSnakeMessageInfo(context, context.l10n.common_not_implemented);
+    showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
   }
 
   void _onNewTheme() {

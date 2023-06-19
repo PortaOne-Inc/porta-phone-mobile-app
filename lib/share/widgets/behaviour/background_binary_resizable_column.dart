@@ -60,7 +60,7 @@ class _BackgroundBinaryResizableColumnState extends State<BackgroundBinaryResiza
             cursor: SystemMouseCursors.resizeColumn,
             child: Container(
               width: 2,
-              color: Colors.black38,
+              color: Theme.of(context).colorScheme.inversePrimary,
               height: double.infinity,
             ),
           ),

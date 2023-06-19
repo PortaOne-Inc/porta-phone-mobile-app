@@ -61,9 +61,7 @@ class ApplicationPreviewItem extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         child: Text(
                           context.l10n.feature_applications_Menu_increment,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black87,
-                              ),
+                          style: Theme.of(context).textTheme.bodyMedium
                         ),
                       ),
                       PopupMenuItem(

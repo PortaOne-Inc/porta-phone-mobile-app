@@ -25,7 +25,7 @@ class MenuPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return MenuSpace(
       isTopPosition: true,
-      background: const Color(0xfffafafa),
+      background: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
       children: [
         Align(
           alignment: Alignment.topRight,

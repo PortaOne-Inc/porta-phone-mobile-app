@@ -65,9 +65,7 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
                         decoration: InputDecoration(
                           errorText: state.nameInput?.errorL10n(context),
                           hintText: context.l10n.feature_application_Input_hint,
-                          hintStyle: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                color: Colors.black54,
-                              ),
+                          hintStyle: Theme.of(ctx).textTheme.bodyMedium,
                         ),
                       ),
                       const SizedBox(
@@ -92,9 +90,7 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
                                 padding: const EdgeInsets.only(left: 8),
                                 child: Text(
                                   EnvironmentConfig.IDENTIFIER_PREFIX,
-                                  style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                                        color: Colors.black54,
-                                      ),
+                                  style: Theme.of(ctx).textTheme.bodyMedium,
                                 ),
                               )
                             ],

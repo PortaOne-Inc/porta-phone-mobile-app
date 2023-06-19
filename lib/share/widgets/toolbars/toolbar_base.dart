@@ -27,8 +27,8 @@ class _BaseToolBarState extends State<BaseToolBar> {
           bottomLeft: Radius.circular(4),
           bottomRight: Radius.circular(4),
         ),
-        boxShadow: _getBoxShadow(),
-        color: Colors.white,
+        boxShadow: _getBoxShadow(context),
+        color: Theme.of(context).colorScheme.inversePrimary,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -44,12 +44,12 @@ class _BaseToolBarState extends State<BaseToolBar> {
     );
   }
 
-  List<BoxShadow> _getBoxShadow() => const [
+  List<BoxShadow> _getBoxShadow(BuildContext context) => [
         BoxShadow(
-          color: Colors.black12,
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
           spreadRadius: 1,
           blurRadius: 1,
-          offset: Offset(1, 1),
+          offset: const Offset(1, 1),
         ),
       ];
 }
