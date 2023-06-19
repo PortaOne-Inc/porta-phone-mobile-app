@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../widgets.dart';
+import 'widgets.dart';
 
 class DrawerPreview extends StatelessWidget {
   const DrawerPreview({

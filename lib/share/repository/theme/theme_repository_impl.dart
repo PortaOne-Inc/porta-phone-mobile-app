@@ -19,7 +19,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> updateTheme(String applicationId, ThemeDTO? theme) async {
     try {
       return await httpDatasource.updateTheme(applicationId, theme!);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -30,7 +30,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> updateStaticTheme(ThemeDTO? theme) async {
     try {
       return await httpDatasource.updateStaticTheme(theme!);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -41,7 +41,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO theme) async {
     try {
       return await httpDatasource.createTheme(applicationId, theme);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -52,7 +52,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<List<ThemeDTO>> getThemes(String applicationId) async {
     try {
       return httpDatasource.getThemes(applicationId);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -65,7 +65,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
       return await httpDatasource.getTheme(applicationId, themeId);
     } on NoContentException catch (_) {
       rethrow;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -76,7 +76,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future deleteTheme(String applicationId, String themeId) async {
     try {
       return httpDatasource.deleteTheme(applicationId, themeId);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -95,7 +95,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<ThemeDTO> getStaticTheme() async {
     try {
       return httpDatasource.getStaticTheme();
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());

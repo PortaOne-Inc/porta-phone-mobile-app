@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
+
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class ThemesEditToolbar extends StatelessWidget {
@@ -8,16 +10,18 @@ class ThemesEditToolbar extends StatelessWidget {
     required this.title,
     required this.onSaveTheme,
     required this.onLogout,
+    required this.onPreload,
   });
 
   final String title;
 
   static const _menuLeftSave = '_menuLeftSave';
+  static const _menuLeftPreload = '_menuLeftPreload';
   static const _menuRightLogout = '_menuRightLogout';
 
   final Function() onSaveTheme;
-
   final Function() onLogout;
+  final Function() onPreload;
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +89,27 @@ class ThemesEditToolbar extends StatelessWidget {
           text: 'File',
         ),
       ),
+      ToolbarPopupMenu(
+        onSelected: (value) => _handleActionsMenu(value),
+        items: [
+          ToolbarMenuItem(
+            value: _menuLeftPreload,
+            text: context.l10n.feature_theme_edit_Template,
+          ),
+        ],
+        child: const ToolbarLabelItem(
+          text: 'Theme',
+        ),
+      ),
     ];
   }
 
   void _handleActionsMenu(Object? value) {
     if (value == _menuLeftSave) {
       onSaveTheme();
+    }
+    if (value == _menuLeftPreload) {
+      onPreload();
     }
   }
 

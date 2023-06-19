@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/widgets/switchers/switchers.dart';
 
-import '../preview/type_of_preview.dart';
+import 'type_of_preview.dart';
 import 'menu_space.dart';
 
 class MenuPreview extends StatelessWidget {
@@ -25,7 +25,7 @@ class MenuPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return MenuSpace(
       isTopPosition: true,
-      background: const Color(0xfffafafa),
+      background: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
       children: [
         Align(
           alignment: Alignment.topRight,

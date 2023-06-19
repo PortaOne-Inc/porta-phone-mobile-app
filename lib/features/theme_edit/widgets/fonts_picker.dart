@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'package:webtrit_configurator/core/assets/assets.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-
-import 'fonts.dart';
 
 class FontsPicker extends StatefulWidget {
   const FontsPicker({
@@ -95,9 +94,8 @@ class _FontsPickerState extends State<FontsPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    return Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [

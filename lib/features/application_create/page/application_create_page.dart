@@ -65,7 +65,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                         decoration: InputDecoration(
                             errorText: state.nameInput?.errorL10n(context),
                             hintText: context.l10n.feature_application_Input_title,
-                            hintStyle: textScheme.bodyMedium?.copyWith(color: Colors.black54),
+                            hintStyle: textScheme.bodyMedium,
                             suffixIcon: Tooltip(
                               message: context.l10n.feature_application_create_Tooltip_name_info,
                               child: Icon(Icons.info_outlined, color: colorScheme.secondary),
@@ -97,9 +97,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
                                 padding: const EdgeInsets.only(left: 8),
                                 child: Text(
                                   EnvironmentConfig.IDENTIFIER_PREFIX,
-                                  style: textScheme.bodyMedium?.copyWith(
-                                    color: Colors.black54,
-                                  ),
+                                  style: textScheme.bodyMedium?.copyWith(),
                                 ),
                               )
                             ],

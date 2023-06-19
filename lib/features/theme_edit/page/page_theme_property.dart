@@ -73,7 +73,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                   children: [
                     Expanded(
                       child: TextFormField(
-                        onChanged: (value) => bloc.updateTexts(bloc.state.theme?.texts?.copyWith(greeting: value)),
+                        onChanged: (value) => bloc.updateTexts(bloc.state.theme?.texts?.copyWith(contactEmail: value)),
                         initialValue: bloc.state.theme?.texts?.contactEmail,
                         decoration: InputDecoration(
                           hintText: context.l10n.feature_theme_contact_email,
