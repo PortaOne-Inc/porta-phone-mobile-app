@@ -7,7 +7,6 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 import 'package:webtrit_configurator/core/env/env.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-import 'package:webtrit_configurator/core/theme/theme.dart';
 
 import 'route/app_route.dart';
 

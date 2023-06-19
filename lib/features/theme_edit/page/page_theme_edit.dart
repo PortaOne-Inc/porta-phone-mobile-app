@@ -21,7 +21,8 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
 
   final String title;
 
-  final _leftPageNavigatorKey = GlobalKey<NavigatorState>();
+  final _leftPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Left edit theme page');
+  final _rightPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Right edit theme page');
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +35,39 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
             title: title,
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
+            onPreload: () => _openTemplates(state),
           ),
         ),
         body: BackgroundBinaryResizableColumn(
           leftChild: SingleStack(
-            key: _leftPageNavigatorKey,
+            key: const ValueKey('leftStack'),
+            navigator: _leftPageNavigatorKey,
             child: const PageThemeProperty(),
           ),
           rightChild: SingleStack(
-            key: _rightPageNavigatorKey,
+            key: const ValueKey('rightStack'),
+            navigator: _rightPageNavigatorKey,
             child: const PageThemePreview(),
           ),
         ),
+      ),
+    );
+  }
+
+  void _openTemplates(ThemePropertyState state) {
+    _leftPageNavigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Center(
+            child: PreloadPicker(
+              current: state.theme!.colors!,
+              onDeclineColor: () => Navigator.of(context).pop(),
+              onSelect: (scheme) {
+                BlocProvider.of<ThemePropertyCubit>(context).updateColor(scheme);
+              },
+            ),
+          );
+        },
       ),
     );
   }
@@ -65,9 +87,7 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
     showDialog(context: context, builder: (BuildContext context) => dialog);
   }
 
-  void _updateTheme(
-    BuildContext context,
-  ) {
+  void _updateTheme(BuildContext context) {
     final theme = BlocProvider.of<ThemePropertyCubit>(context).state.theme;
     BlocProvider.of<ThemePropertyCubit>(context).validateAndTryUpdateTheme(theme);
   }
