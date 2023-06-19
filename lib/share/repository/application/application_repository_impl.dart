@@ -16,7 +16,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.createApplications(applicationDTO);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -27,7 +27,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<List<ApplicationDTO>> getUserApplications() async {
     try {
       return await httpDatasource.getApplications();
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -38,7 +38,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future deleteApplication(String applicationId) async {
     try {
       return await httpDatasource.deleteApplications(applicationId);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -49,7 +49,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
     try {
       return await httpDatasource.updateApplications(applicationId, applicationDTO);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -60,7 +60,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> getApplication(String id) async {
     try {
       return await httpDatasource.getApplication(id);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -71,7 +71,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationDTO> incApplicationVersion(String applicationId) async {
     try {
       return await httpDatasource.incApplicationVersion(applicationId);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
       throw BaseException(message: e.toString());
