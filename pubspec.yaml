@@ -74,6 +74,9 @@ dependencies:
   webtrit_phone:
     path: ../webtrit_phone
 
+  flex_color_scheme: ^7.1.2
+
+
 analyzer:
   exclude:
     - "**/*.g.dart"
