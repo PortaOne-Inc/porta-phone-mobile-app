@@ -35,34 +35,29 @@ class _ExcludeColorSchemeState extends State<ExcludeColorScheme> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: widget.selectedSchemeKeys
-              .map<Widget>(
-                (chip) => Chip(
-                  key: ValueKey(chip),
-                  label: Text(chip.name),
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                  deleteIconColor: Colors.red,
-                  onDeleted: () => _onDeleteExclude(chip),
-                ),
-              )
-              .toList()
-            ..add(
-              PopupMenuButton(
-                child: const Chip(
-                  label: Icon(Icons.add),
-                  key: ValueKey('Add'),
-                ),
-                onSelected: (value) => _addExclude(value),
-                itemBuilder: (BuildContext bc) => _schemeKeys
-                    .map(
-                      (key) => PopupMenuItem(
-                        value: key,
-                        child: Text(key.name),
-                      ),
-                    )
-                    .toList(),
+          children: [
+            ...widget.selectedSchemeKeys.map<Widget>(
+              (chip) => Chip(
+                key: ValueKey(chip),
+                label: Text(chip.name.capitalize),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                onDeleted: () => _onDeleteExclude(chip),
               ),
             ),
+            PopupMenuButton(
+              child: const Chip(
+                key: ValueKey('Add'),
+                label: Icon(Icons.add),
+              ),
+              onSelected: (value) => _addExclude(value),
+              itemBuilder: (BuildContext bc) => _schemeKeys
+                  .map((key) => PopupMenuItem(
+                        value: key,
+                        child: Text(key.name.capitalize),
+                      ))
+                  .toList(),
+            )
+          ],
         )
       ],
     );

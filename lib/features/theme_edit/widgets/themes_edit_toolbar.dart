@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
+
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class ThemesEditToolbar extends StatelessWidget {
@@ -92,7 +94,7 @@ class ThemesEditToolbar extends StatelessWidget {
         items: [
           ToolbarMenuItem(
             value: _menuLeftPreload,
-            text: 'Templates',
+            text: context.l10n.feature_theme_edit_Template,
           ),
         ],
         child: const ToolbarLabelItem(

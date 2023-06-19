@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:webtrit_configurator/features/theme_edit/widgets/exclude_color_scheme.dart';
 
+import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/share.dart';
+
+import 'exclude_color_scheme.dart';
 
 class PreloadPicker extends StatefulWidget {
   const PreloadPicker({
@@ -22,7 +24,7 @@ class PreloadPicker extends StatefulWidget {
 }
 
 class _PreloadPickerState extends State<PreloadPicker> {
-  int? selected;
+  int? _selectedTemplatePosition;
 
   final _selectedExcludeColorFields = [ColorSchemeKeys.background];
 
@@ -47,7 +49,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
                   width: 8,
                 ),
                 Text(
-                  'Use one of color schemes',
+                  context.l10n.feature_theme_edit_Template_description,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
@@ -64,37 +66,40 @@ class _PreloadPickerState extends State<PreloadPicker> {
             const Divider(),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 48),
-              child: const Text('Templates: '),
+              child: Text(
+                context.l10n.feature_theme_edit_Template_dot,
+              ),
             ),
             const SizedBox(
               height: 8,
             ),
             Expanded(
-                child: ListView.builder(
-              itemCount: FlexScheme.values.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 40),
-                  child: TextButton(
-                    onPressed: () => _onSelectTemplate(index),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        children: [
-                          Icon(selected == index ? Icons.check_box : Icons.check_box_outline_blank),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            FlexScheme.values[index].name,
-                          )
-                        ],
+              child: ListView.builder(
+                itemCount: FlexScheme.values.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 40),
+                    child: TextButton(
+                      onPressed: () => _onSelectTemplate(index),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: [
+                            Icon(_selectedTemplatePosition == index ? Icons.check_box : Icons.check_box_outline_blank),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              StringExtension(FlexScheme.values[index].name).capitalize,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            )),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -102,11 +107,11 @@ class _PreloadPickerState extends State<PreloadPicker> {
   }
 
   void _onSelectTemplate(int index) {
-    if (index == selected) {
-      selected = null;
+    if (index == _selectedTemplatePosition) {
+      _selectedTemplatePosition = null;
       widget.onSelect?.call(widget.current);
     } else {
-      selected = index;
+      _selectedTemplatePosition = index;
       ColorSchemeModel scheme = _getNewScheme(index);
       widget.onSelect?.call(scheme);
     }
@@ -115,6 +120,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
 
   ColorSchemeModel _getNewScheme(int index) {
     final themeColorScheme = FlexThemeData.light(scheme: FlexScheme.values[index]).colorScheme;
+    //TODO: Improve this part
     final scheme = ColorSchemeModel(
       primary: _useColorByExclude(
         widget.current.primary,
@@ -260,10 +266,10 @@ class _PreloadPickerState extends State<PreloadPicker> {
   }
 
   void _onUpdate() {
-    if (selected == null) {
+    if (_selectedTemplatePosition == null) {
       widget.onSelect?.call(widget.current);
     } else {
-      ColorSchemeModel scheme = _getNewScheme(selected!);
+      ColorSchemeModel scheme = _getNewScheme(_selectedTemplatePosition!);
       widget.onSelect?.call(scheme);
     }
   }
