@@ -1,8 +1,9 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 
-import '../widgets.dart';
+import 'mock_device.dart';
 
 enum PreviewType {
   single(position: 0),

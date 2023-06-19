@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/share/widgets/image/image.dart';
 import 'package:webtrit_configurator/share/entity/models/models.dart';
 
-import '../../model/models.dart';
+import '../model/models.dart';
 
 class SelectedImage extends StatelessWidget {
   const SelectedImage({
