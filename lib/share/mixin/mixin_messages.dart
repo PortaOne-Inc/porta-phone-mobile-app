@@ -13,8 +13,17 @@ mixin MixinMessages {
       behavior: SnackBarBehavior.floating,
       dismissDirection: DismissDirection.up,
       duration: duration,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height - kToolbarHeight, right: 8, left: 8),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        ),
+      ),
+      margin: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height - kToolbarHeight - kMinInteractiveDimension,
+        right: 0,
+        left: 0,
+      ),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snakeBar);
