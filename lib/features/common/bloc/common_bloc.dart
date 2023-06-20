@@ -18,8 +18,8 @@ class CommonBloc extends Cubit<CommonState> {
 
   void logout() async {
     await usecaseAuthLogOut.execute();
-    emit(const CommonState.logout());
-    emit(const CommonState.initial());
+    emit(CommonState.logout(themeMode: state.themeMode));
+    emit(CommonState.initial(themeMode: state.themeMode));
   }
 
   void setThemeMode(ThemeMode themeMode) {
