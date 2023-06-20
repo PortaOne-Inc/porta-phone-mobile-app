@@ -8,4 +8,8 @@ class EnvironmentConfig {
     defaultValue: 'com.webtrit.phone.',
   );
 
+  static const APP_NAME = String.fromEnvironment(
+    'APP_NAME',
+    defaultValue: 'Webtrit Configurator',
+  );
 }

@@ -6,9 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
-import 'package:webtrit_configurator/features/common/common.dart';
+
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/share/share.dart';
 import 'package:webtrit_configurator/share/widgets/page/page.dart';
@@ -17,27 +16,10 @@ import 'app_route_consts.dart';
 
 class AppRoute {
   GoRouter build(GetIt getIt, BuildContext context) {
-    final commonBloc = CommonBloc(
-      usecaseAuthLogOut: getIt.get(),
-    );
-
     return GoRouter(
       routes: [
         ShellRoute(
-          builder: (BuildContext context, GoRouterState state, Widget child) {
-            return BlocProvider(
-              lazy: false,
-              create: (BuildContext context) => commonBloc,
-              child: BlocListener<CommonBloc, CommonState>(
-                listener: (BuildContext context, CommonState state) {
-                  if (state.isLogOut) {
-                    GoRouter.of(context).go(AppRoutInfo.login.name);
-                  }
-                },
-                child: child,
-              ),
-            );
-          },
+          builder: (BuildContext context, GoRouterState state, Widget child) => child,
           routes: [
             GoRoute(
               path: AppRoutInfo.login.path,

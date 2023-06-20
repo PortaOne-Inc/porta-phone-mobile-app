@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,5 +20,9 @@ class CommonBloc extends Cubit<CommonState> {
     await usecaseAuthLogOut.execute();
     emit(const CommonState.logout());
     emit(const CommonState.initial());
+  }
+
+  void setThemeMode(ThemeMode themeMode) {
+    emit(CommonState.themeMode(themeMode: themeMode));
   }
 }
