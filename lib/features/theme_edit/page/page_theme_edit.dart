@@ -13,7 +13,7 @@ import '../widgets/widgets.dart';
 
 import 'page_theme_preview.dart';
 
-class PageThemeEdit extends StatelessWidget with MixinMessages {
+class PageThemeEdit extends StatefulWidget with MixinMessages {
   PageThemeEdit({
     super.key,
     required this.title,
@@ -21,7 +21,13 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
 
   final String title;
 
+  @override
+  State<PageThemeEdit> createState() => _PageThemeEditState();
+}
+
+class _PageThemeEditState extends State<PageThemeEdit> {
   final _leftPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Left edit theme page');
+
   final _rightPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Right edit theme page');
 
   @override
@@ -32,7 +38,7 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
         appBar: BaseToolBar(
           isVisibleProgress: state is ThemePropertyProgressState,
           child: ThemesEditToolbar(
-            title: title,
+            title: widget.title,
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
             onPreload: () => _openTemplates(state),

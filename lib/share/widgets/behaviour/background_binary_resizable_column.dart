@@ -11,6 +11,7 @@ class BackgroundBinaryResizableColumn extends StatefulWidget {
 
   final Widget leftChild;
   final Widget rightChild;
+
   final double minColumWidth;
   final double minScrollWidth;
 
@@ -19,19 +20,27 @@ class BackgroundBinaryResizableColumn extends StatefulWidget {
 }
 
 class _BackgroundBinaryResizableColumnState extends State<BackgroundBinaryResizableColumn> {
-  final double _columnMargin = 2;
+  final _columnMargin = 2.0;
 
-  double _screenWidth = 0;
-  double _leftColumnWidth = 0;
-  double _rightColumnWidth = 0;
-  double _verticalDividerPosition = 0;
+  var _screenWidth = 0.0;
+  var _leftColumnWidth = 0.0;
+  var _rightColumnWidth = 0.0;
+  var _horizontalDividerPosition = 0.0;
 
   @override
   void didChangeDependencies() {
-    _screenWidth = MediaQuery.of(context).size.width - _columnMargin;
-    _leftColumnWidth = _calculateLeftContainerWidth(0);
-    _rightColumnWidth = _calculateRightContainerWidth(0);
+    _recalculateProportion();
     super.didChangeDependencies();
+  }
+
+  double _getScreenWidth() {
+    return MediaQuery.of(context).size.width - _columnMargin;
+  }
+
+  void _recalculateProportion() {
+    _screenWidth = _getScreenWidth();
+    _leftColumnWidth = _calculateLeftContainerWidth(_horizontalDividerPosition);
+    _rightColumnWidth = _calculateRightContainerWidth(_horizontalDividerPosition);
   }
 
   @override
@@ -98,9 +107,9 @@ class _BackgroundBinaryResizableColumnState extends State<BackgroundBinaryResiza
   }
 
   void _reCalculateChildrenWidth(DragUpdateDetails details) {
-    _verticalDividerPosition += details.delta.dx;
-    _leftColumnWidth = _calculateLeftContainerWidth(_verticalDividerPosition);
-    _rightColumnWidth = _calculateRightContainerWidth(_verticalDividerPosition);
+    _horizontalDividerPosition += details.delta.dx;
+    _leftColumnWidth = _calculateLeftContainerWidth(_horizontalDividerPosition);
+    _rightColumnWidth = _calculateRightContainerWidth(_horizontalDividerPosition);
 
     setState(() {});
   }
