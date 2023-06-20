@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
+import '../../common/bloc/common_bloc.dart';
 import '../bloc/application_edit_cubit.dart';
 import '../model/models.dart';
 import '../widgets/application_edit_toolbar.dart';
@@ -37,6 +38,8 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
           isVisibleProgress: state is ApplicationEditStateProgress,
           child: ApplicationEditToolbar(
             onSwitchedLanguage: () => _languageChanged(context),
+            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
           ),
         ),
         body: Center(
@@ -134,5 +137,9 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
 
   void _openApplications() {
     GoRouter.of(context).pushNamed(AppRoutInfo.applicationCollection.name);
+  }
+
+  void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
+    BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 }

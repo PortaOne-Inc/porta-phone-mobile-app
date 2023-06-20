@@ -6,19 +6,26 @@ import 'package:webtrit_configurator/share/widgets/widgets.dart';
 class ThemesToolbar extends StatelessWidget {
   const ThemesToolbar({
     super.key,
+    required this.themeMode,
     required this.onSwitchedLanguage,
     required this.onNewTheme,
     required this.onLogout,
     required this.onInfo,
+    required this.onThemeChange,
   });
+
+  final ThemeMode themeMode;
 
   static const _menuKeyRight = '_menuKeyRight';
   static const _menuKeyLogOut = '_menuKeyOnLogout';
   static const _menuKeyInfo = '_menuKeyOnInfo';
+
   final Function() onSwitchedLanguage;
   final Function() onNewTheme;
   final Function() onLogout;
   final Function() onInfo;
+
+  final Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +55,10 @@ class ThemesToolbar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              ThemeModeSwitcher(
+                themeMode: themeMode,
+                onThemeChange: onThemeChange,
+              ),
               Wrap(
                 alignment: WrapAlignment.end,
                 children: _buildRightMenu(context),

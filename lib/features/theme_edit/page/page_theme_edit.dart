@@ -36,6 +36,8 @@ class PageThemeEdit extends StatelessWidget with MixinMessages {
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
             onPreload: () => _openTemplates(state),
+            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+            onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
           ),
         ),
         body: BackgroundBinaryResizableColumn(

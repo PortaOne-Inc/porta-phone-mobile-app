@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 class ApplicationsToolbar extends StatelessWidget {
   const ApplicationsToolbar({
     super.key,
+    required this.themeMode,
     required this.onLanguageChanged,
+    required this.onThemeChange,
   });
 
+  final ThemeMode themeMode;
+
   final Function onLanguageChanged;
+  final Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +38,15 @@ class ApplicationsToolbar extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [],
+            children: [
+              ThemeModeSwitcher(
+                themeMode: themeMode,
+                onThemeChange: onThemeChange,
+              ),
+            ],
           ),
         ),
       ],

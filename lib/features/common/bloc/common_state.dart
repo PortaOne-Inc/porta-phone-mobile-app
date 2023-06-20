@@ -2,11 +2,15 @@ part of 'common_bloc.dart';
 
 @freezed
 class CommonState with _$CommonState {
-  const factory CommonState.initial() = _Initial;
+  const factory CommonState.initial({
+    @Default(ThemeMode.system) ThemeMode themeMode,
+  }) = _Initial;
 
-  const factory CommonState.logout() = _CommonStateLogout;
-}
+  const factory CommonState.logout({
+    @Default(ThemeMode.system) ThemeMode themeMode,
+  }) = CommonStateLogout;
 
-extension ThemeCollectionStateGetters on CommonState {
-  bool get isLogOut => this is _CommonStateLogout;
+  const factory CommonState.themeMode({
+    @Default(ThemeMode.system) ThemeMode themeMode,
+  }) = CommonStateThemeMode;
 }
