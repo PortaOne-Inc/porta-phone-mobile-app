@@ -6,11 +6,17 @@ import 'package:webtrit_configurator/share/widgets/widgets.dart';
 class ApplicationCollectionToolbar extends StatelessWidget {
   const ApplicationCollectionToolbar({
     super.key,
+    required this.themeMode,
     required this.onLogout,
+    required this.onThemeChange,
   });
 
   static const _menuKeyRight = '_menuKeyRight';
+
+  final ThemeMode themeMode;
+
   final Function() onLogout;
+  final Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +41,10 @@ class ApplicationCollectionToolbar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              ThemeModeSwitcher(
+                themeMode: themeMode,
+                onThemeChange: onThemeChange,
+              ),
               Wrap(
                 alignment: WrapAlignment.end,
                 children: _buildRightMenu(context),

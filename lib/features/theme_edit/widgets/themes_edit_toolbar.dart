@@ -11,17 +11,22 @@ class ThemesEditToolbar extends StatelessWidget {
     required this.onSaveTheme,
     required this.onLogout,
     required this.onPreload,
+    required this.themeMode,
+    required this.onThemeChange,
   });
-
-  final String title;
 
   static const _menuLeftSave = '_menuLeftSave';
   static const _menuLeftPreload = '_menuLeftPreload';
   static const _menuRightLogout = '_menuRightLogout';
 
+  final String title;
+
+  final ThemeMode themeMode;
+
   final Function() onSaveTheme;
   final Function() onLogout;
   final Function() onPreload;
+  final Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +51,10 @@ class ThemesEditToolbar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              ThemeModeSwitcher(
+                themeMode: themeMode,
+                onThemeChange: onThemeChange,
+              ),
               Wrap(
                 alignment: WrapAlignment.end,
                 children: _buildRightMenu(context),

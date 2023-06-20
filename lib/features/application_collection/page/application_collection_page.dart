@@ -32,7 +32,9 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
             child: ApplicationCollectionToolbar(
+              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onLogout: () => _onLogout(context),
+              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
           body: Center(
@@ -130,5 +132,9 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
         AppRoutInfo.keyApplicationId: applicationModel.id!,
       },
     );
+  }
+
+  void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
+    BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 }

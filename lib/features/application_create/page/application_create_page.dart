@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
+import '../../common/bloc/common_bloc.dart';
 import '../bloc/application_create_cubit.dart';
 import '../model/applications_consts.dart';
 import '../model/models.dart';
@@ -36,6 +37,8 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
         appBar: BaseToolBar(
           isVisibleProgress: state is ApplicationCreateStateProgress,
           child: ApplicationCreateToolbar(
+            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             onSwitchedLanguage: () => _languageChanged(context),
           ),
         ),
@@ -137,5 +140,9 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
 
   void _openApplications() {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+  }
+
+  void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
+    BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 }

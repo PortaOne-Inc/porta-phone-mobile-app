@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/core/l10n/l10n.dart';
 import 'package:webtrit_configurator/share/mixin/mixin.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
+import '../../../common/bloc/common_bloc.dart';
 import '../bloc/bloc.dart';
 import '../widgets/toolbar_auth.dart';
 import '../extensions/extensions.dart';
@@ -33,7 +34,9 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
           appBar: BaseToolBar(
             isVisibleProgress: state is AuthStateProgress,
             child: ApplicationsToolbar(
+              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onLanguageChanged: () => _languageChanged(context),
+              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
           body: Center(
@@ -114,6 +117,10 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
 
   void _languageChanged(BuildContext context) {
     showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
+  }
+
+  void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
+    BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 
   void _listenAuthState(BuildContext context, AuthState state) {

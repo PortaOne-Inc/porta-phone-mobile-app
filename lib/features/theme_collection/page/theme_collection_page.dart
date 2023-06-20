@@ -35,10 +35,12 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
           appBar: BaseToolBar(
             isVisibleProgress: state.isProgress,
             child: ThemesToolbar(
+              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onSwitchedLanguage: _onLanguageChanged,
               onNewTheme: () => _onNewTheme(),
               onLogout: () => _onLogout(context),
               onInfo: () => _onInfo(context),
+              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
           body: Align(
@@ -177,5 +179,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
         applicationId: _allMyThemesCubit.applicationId,
       ),
     );
+  }
+
+  void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
+    BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 }
