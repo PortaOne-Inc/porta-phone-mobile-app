@@ -7,6 +7,7 @@ class BackgroundBinaryResizableColumn extends StatefulWidget {
     required this.rightChild,
     this.minColumWidth = 200.0,
     this.minScrollWidth = 500.0,
+    this.dividerPosition = 0,
   });
 
   final Widget leftChild;
@@ -14,6 +15,8 @@ class BackgroundBinaryResizableColumn extends StatefulWidget {
 
   final double minColumWidth;
   final double minScrollWidth;
+
+  final double dividerPosition;
 
   @override
   State<BackgroundBinaryResizableColumn> createState() => _BackgroundBinaryResizableColumnState();
@@ -26,6 +29,12 @@ class _BackgroundBinaryResizableColumnState extends State<BackgroundBinaryResiza
   var _leftColumnWidth = 0.0;
   var _rightColumnWidth = 0.0;
   var _horizontalDividerPosition = 0.0;
+
+  @override
+  void initState() {
+    _horizontalDividerPosition = widget.dividerPosition;
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {

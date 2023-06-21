@@ -47,6 +47,8 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           ),
         ),
         body: BackgroundBinaryResizableColumn(
+          // Move left vertical divider
+          dividerPosition: -MediaQuery.of(context).size.width / 5,
           leftChild: SingleStack(
             key: const ValueKey('leftStack'),
             navigator: _leftPageNavigatorKey,
