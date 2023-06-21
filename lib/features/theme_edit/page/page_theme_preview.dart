@@ -29,21 +29,17 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Drawer(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-        ),
-        child: DrawerPreview(
-          screenshots: _screenshots,
-          focusScreenPosition: _focusScreenPosition,
-          onTapScreen: _setFocusedScreen,
-        ),
-      ),
+      bottomNavigationBar: _previewType == PreviewType.single
+          ? DrawerPreview(
+              screenshots: _screenshots,
+              focusScreenPosition: _focusScreenPosition,
+              onTapScreen: _setFocusedScreen,
+            )
+          : null,
       body: Builder(
         builder: (context) => Column(
           children: [
             MenuPreview(
-              onMenuTab: () => Scaffold.of(context).openEndDrawer(),
               onScaleTab: (PreviewType type) {
                 _previewType = type;
                 setState(() {});
@@ -58,17 +54,15 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
                 listener: _listenBloc,
                 builder: (BuildContext context, state) {
-                  return Center(
-                    child: _screenshots.isEmpty
-                        ? const CircularProgressIndicator()
-                        : PreviewDetails(
-                            type: _previewType,
-                            screens: _screenshots,
-                            screenFocus: _focusScreenPosition,
-                            isFrameVisible: _isFrameVisible,
-                            onFocusPosition: _setFocusedScreen,
-                          ),
-                  );
+                  return _screenshots.isEmpty
+                      ? const Center(child: CircularProgressIndicator())
+                      : PreviewDetails(
+                          type: _previewType,
+                          screens: _screenshots,
+                          screenFocus: _focusScreenPosition,
+                          isFrameVisible: _isFrameVisible,
+                          onFocusPosition: _setFocusedScreen,
+                        );
                 },
               ),
             )
@@ -87,7 +81,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   }
 
   void _setFocusedScreen(int position) {
-    Scaffold.of(context).closeEndDrawer();
     _focusScreenPosition = position;
     setState(() {});
   }

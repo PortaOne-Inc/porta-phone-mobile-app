@@ -9,13 +9,11 @@ import 'menu_space.dart';
 class MenuPreview extends StatelessWidget {
   const MenuPreview({
     super.key,
-    required this.onMenuTab,
     required this.onScaleTab,
     required this.onFrameTab,
     required this.isEnableFrame,
   });
 
-  final Function() onMenuTab;
   final Function(PreviewType type) onScaleTab;
   final Function(bool isEnableFrame) onFrameTab;
 
@@ -40,6 +38,7 @@ class MenuPreview extends StatelessWidget {
             },
           ),
         ),
+        const SizedBox(width: 8),
         Align(
           alignment: Alignment.topRight,
           child: GestureDetector(
@@ -50,20 +49,7 @@ class MenuPreview extends StatelessWidget {
             ),
           ),
         ),
-        const Spacer(),
-        Align(
-          alignment: Alignment.topRight,
-          child: GestureDetector(
-            onTap: () => onMenuTab(),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: const Icon(
-                Icons.menu,
-                size: 20,
-              ),
-            ),
-          ),
-        ),
+        const SizedBox(width: 8),
       ],
     );
   }

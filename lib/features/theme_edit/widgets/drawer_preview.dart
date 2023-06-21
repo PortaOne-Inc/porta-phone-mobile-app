@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'widgets.dart';
@@ -16,22 +17,33 @@ class DrawerPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8, top: 2, bottom: 2),
-      child: ListView.builder(
-        itemCount: screenshots.length,
-        padding: const EdgeInsets.only(right: 8),
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            child: TypeOfPreview(
-              isFocused: index == focusScreenPosition,
-              constraints: const BoxConstraints(maxHeight: 300),
-              child: screenshots[index],
-            ),
-            onTap: () => onTapScreen.call(index),
-          );
-        },
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Divider(),
+        SizedBox(
+            height: 124,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(width: 8);
+              },
+              itemCount: screenshots.length,
+              padding: const EdgeInsets.only(right: 8),
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  child: TypeOfPreview(
+                    isFocused: index == focusScreenPosition,
+                    constraints: const BoxConstraints(maxHeight: 224),
+                    child: screenshots[index],
+                  ),
+                  onTap: () => onTapScreen.call(index),
+                );
+              },
+            ))
+      ],
     );
   }
 }
