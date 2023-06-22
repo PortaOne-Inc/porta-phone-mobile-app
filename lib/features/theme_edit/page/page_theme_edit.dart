@@ -72,9 +72,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             child: PreloadPicker(
               current: state.theme!.colors!,
               onDeclineColor: () => Navigator.of(context).pop(),
-              onSelect: (scheme) {
-                BlocProvider.of<ThemePropertyCubit>(context).updateColor(scheme);
-              },
+              onSelect: (scheme) => BlocProvider.of<ThemePropertyCubit>(context).add(ReplaceColorSchemeEvent(scheme)),
             ),
           );
         },
@@ -99,6 +97,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
 
   void _updateTheme(BuildContext context) {
     final theme = BlocProvider.of<ThemePropertyCubit>(context).state.theme;
-    BlocProvider.of<ThemePropertyCubit>(context).validateAndTryUpdateTheme(theme);
+    BlocProvider.of<ThemePropertyCubit>(context).add(UpdateThemeEvent((theme)));
   }
 }

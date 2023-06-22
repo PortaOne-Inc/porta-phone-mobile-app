@@ -68,4 +68,6 @@ extension _StateCopyWith on ThemePropertyState {
       theme: theme ?? this.theme,
     );
   }
+
+  ColorSchemeModel? get colors => theme?.colors;
 }
