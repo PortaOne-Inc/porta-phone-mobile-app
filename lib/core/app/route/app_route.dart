@@ -49,8 +49,7 @@ class AppRoute {
                 create: (BuildContext context) => ThemePropertyCubit(
                     updateThemeUseCase: getIt.get(instanceName: UsecaseThemeUpdate.staticEditUsecaseKey),
                     getThemeUseCase: getIt.get(instanceName: UsecaseThemeGet.staticUsecaseKey),
-                    getUserUsecase: getIt.get())
-                  ..tryGetTheme(),
+                    getUserUseCase: getIt.get()),
                 child: PageThemeEdit(
                   title: context.l10n.feature_admin_title,
                 ),
@@ -119,10 +118,10 @@ class AppRoute {
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                     param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
                   ),
-                  getUserUsecase: getIt.get(),
+                  getUserUseCase: getIt.get(),
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
-                )..tryGetTheme(),
+                ),
                 child: PageThemeEdit(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
                 ),

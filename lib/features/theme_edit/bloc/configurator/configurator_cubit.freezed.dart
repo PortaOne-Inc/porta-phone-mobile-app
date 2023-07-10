@@ -1338,3 +1338,8359 @@ abstract class ThemePropertyErrorState implements ThemePropertyState {
   _$$ThemePropertyErrorStateCopyWith<_$ThemePropertyErrorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ReplaceColorSchemeEvent {
+  ColorSchemeModel get colorScheme => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$_ReplaceColorSchemeEvent implements _ReplaceColorSchemeEvent {
+  const _$_ReplaceColorSchemeEvent(this.colorScheme);
+
+  @override
+  final ColorSchemeModel colorScheme;
+
+  @override
+  String toString() {
+    return 'ReplaceColorSchemeEvent(colorScheme: $colorScheme)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ReplaceColorSchemeEvent &&
+            (identical(other.colorScheme, colorScheme) ||
+                other.colorScheme == colorScheme));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, colorScheme);
+}
+
+abstract class _ReplaceColorSchemeEvent implements ReplaceColorSchemeEvent {
+  const factory _ReplaceColorSchemeEvent(final ColorSchemeModel colorScheme) =
+      _$_ReplaceColorSchemeEvent;
+
+  @override
+  ColorSchemeModel get colorScheme;
+}
+
+/// @nodoc
+mixin _$GetThemeEvent {}
+
+/// @nodoc
+
+class _$_GetThemeEvent implements _GetThemeEvent {
+  const _$_GetThemeEvent();
+
+  @override
+  String toString() {
+    return 'GetThemeEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetThemeEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class _GetThemeEvent implements GetThemeEvent {
+  const factory _GetThemeEvent() = _$_GetThemeEvent;
+}
+
+/// @nodoc
+mixin _$UpdateThemeEvent {
+  ThemeModel? get model => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$_UpdateThemeEvent implements _UpdateThemeEvent {
+  const _$_UpdateThemeEvent(this.model);
+
+  @override
+  final ThemeModel? model;
+
+  @override
+  String toString() {
+    return 'UpdateThemeEvent(model: $model)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateThemeEvent &&
+            (identical(other.model, model) || other.model == model));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, model);
+}
+
+abstract class _UpdateThemeEvent implements UpdateThemeEvent {
+  const factory _UpdateThemeEvent(final ThemeModel? model) =
+      _$_UpdateThemeEvent;
+
+  @override
+  ThemeModel? get model;
+}
+
+/// @nodoc
+mixin _$FocusScreenEvent {
+  int get position => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$_FocusScreenEvent implements _FocusScreenEvent {
+  const _$_FocusScreenEvent(this.position);
+
+  @override
+  final int position;
+
+  @override
+  String toString() {
+    return 'FocusScreenEvent(position: $position)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FocusScreenEvent &&
+            (identical(other.position, position) ||
+                other.position == position));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, position);
+}
+
+abstract class _FocusScreenEvent implements FocusScreenEvent {
+  const factory _FocusScreenEvent(final int position) = _$_FocusScreenEvent;
+
+  @override
+  int get position;
+}
+
+/// @nodoc
+mixin _$UpdateColorSchemeEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
+  const _$_UpdateColorEventPrimary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.primary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventPrimary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return primary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return primary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (primary != null) {
+      return primary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return primary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return primary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (primary != null) {
+      return primary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventPrimary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventPrimary(final Color? color) =
+      _$_UpdateColorEventPrimary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
+  const _$_UpdateColorEventOnPrimary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onPrimary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnPrimary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onPrimary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onPrimary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onPrimary != null) {
+      return onPrimary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onPrimary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onPrimary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onPrimary != null) {
+      return onPrimary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnPrimary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnPrimary(final Color? color) =
+      _$_UpdateColorEventOnPrimary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventPrimaryContainer
+    implements _UpdateColorEventPrimaryContainer {
+  const _$_UpdateColorEventPrimaryContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.primaryContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventPrimaryContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return primaryContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return primaryContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (primaryContainer != null) {
+      return primaryContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return primaryContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return primaryContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (primaryContainer != null) {
+      return primaryContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventPrimaryContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventPrimaryContainer(final Color? color) =
+      _$_UpdateColorEventPrimaryContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnPrimaryContainer
+    implements _UpdateColorEventOnPrimaryContainer {
+  const _$_UpdateColorEventOnPrimaryContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onPrimaryContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnPrimaryContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onPrimaryContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onPrimaryContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onPrimaryContainer != null) {
+      return onPrimaryContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onPrimaryContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onPrimaryContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onPrimaryContainer != null) {
+      return onPrimaryContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnPrimaryContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnPrimaryContainer(final Color? color) =
+      _$_UpdateColorEventOnPrimaryContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
+  const _$_UpdateColorEventSecondary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.secondary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventSecondary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return secondary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return secondary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (secondary != null) {
+      return secondary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return secondary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return secondary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (secondary != null) {
+      return secondary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventSecondary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventSecondary(final Color? color) =
+      _$_UpdateColorEventSecondary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
+  const _$_UpdateColorEventOnSecondary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onSecondary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnSecondary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onSecondary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onSecondary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSecondary != null) {
+      return onSecondary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onSecondary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onSecondary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSecondary != null) {
+      return onSecondary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnSecondary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnSecondary(final Color? color) =
+      _$_UpdateColorEventOnSecondary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventSecondaryContainer
+    implements _UpdateColorEventSecondaryContainer {
+  const _$_UpdateColorEventSecondaryContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.secondaryContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventSecondaryContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return secondaryContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return secondaryContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (secondaryContainer != null) {
+      return secondaryContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return secondaryContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return secondaryContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (secondaryContainer != null) {
+      return secondaryContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventSecondaryContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventSecondaryContainer(final Color? color) =
+      _$_UpdateColorEventSecondaryContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnSecondaryContainer
+    implements _UpdateColorEventOnSecondaryContainer {
+  const _$_UpdateColorEventOnSecondaryContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onSecondaryContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnSecondaryContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onSecondaryContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onSecondaryContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSecondaryContainer != null) {
+      return onSecondaryContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onSecondaryContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onSecondaryContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSecondaryContainer != null) {
+      return onSecondaryContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnSecondaryContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnSecondaryContainer(final Color? color) =
+      _$_UpdateColorEventOnSecondaryContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
+  const _$_UpdateColorEventTertiary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.tertiary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventTertiary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return tertiary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return tertiary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (tertiary != null) {
+      return tertiary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return tertiary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return tertiary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (tertiary != null) {
+      return tertiary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventTertiary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventTertiary(final Color? color) =
+      _$_UpdateColorEventTertiary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
+  const _$_UpdateColorEventOnTertiary(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onTertiary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnTertiary &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onTertiary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onTertiary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onTertiary != null) {
+      return onTertiary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onTertiary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onTertiary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onTertiary != null) {
+      return onTertiary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnTertiary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnTertiary(final Color? color) =
+      _$_UpdateColorEventOnTertiary;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventTertiaryContainer
+    implements _UpdateColorEventTertiaryContainer {
+  const _$_UpdateColorEventTertiaryContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.tertiaryContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventTertiaryContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return tertiaryContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return tertiaryContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (tertiaryContainer != null) {
+      return tertiaryContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return tertiaryContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return tertiaryContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (tertiaryContainer != null) {
+      return tertiaryContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventTertiaryContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventTertiaryContainer(final Color? color) =
+      _$_UpdateColorEventTertiaryContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventError implements _UpdateColorEventError {
+  const _$_UpdateColorEventError(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.error(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventError &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return error(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return error?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventError implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventError(final Color? color) =
+      _$_UpdateColorEventError;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
+  const _$_UpdateColorEventOnError(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onError(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnError &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onError(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onError?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onError != null) {
+      return onError(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onError != null) {
+      return onError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnError implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnError(final Color? color) =
+      _$_UpdateColorEventOnError;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventErrorContainer
+    implements _UpdateColorEventErrorContainer {
+  const _$_UpdateColorEventErrorContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.errorContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventErrorContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return errorContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return errorContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (errorContainer != null) {
+      return errorContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return errorContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return errorContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (errorContainer != null) {
+      return errorContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventErrorContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventErrorContainer(final Color? color) =
+      _$_UpdateColorEventErrorContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnErrorContainer
+    implements _UpdateColorEventOnErrorContainer {
+  const _$_UpdateColorEventOnErrorContainer(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onErrorContainer(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnErrorContainer &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onErrorContainer(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onErrorContainer?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onErrorContainer != null) {
+      return onErrorContainer(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onErrorContainer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onErrorContainer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onErrorContainer != null) {
+      return onErrorContainer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnErrorContainer
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnErrorContainer(final Color? color) =
+      _$_UpdateColorEventOnErrorContainer;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
+  const _$_UpdateColorEventOutline(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.outline(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOutline &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return outline(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return outline?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (outline != null) {
+      return outline(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return outline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return outline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (outline != null) {
+      return outline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOutline implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOutline(final Color? color) =
+      _$_UpdateColorEventOutline;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOutlineVariant
+    implements _UpdateColorEventOutlineVariant {
+  const _$_UpdateColorEventOutlineVariant(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.outlineVariant(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOutlineVariant &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return outlineVariant(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return outlineVariant?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (outlineVariant != null) {
+      return outlineVariant(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return outlineVariant(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return outlineVariant?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (outlineVariant != null) {
+      return outlineVariant(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOutlineVariant
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOutlineVariant(final Color? color) =
+      _$_UpdateColorEventOutlineVariant;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
+  const _$_UpdateColorEventBackground(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.background(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventBackground &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return background(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return background?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (background != null) {
+      return background(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return background(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return background?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (background != null) {
+      return background(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventBackground implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventBackground(final Color? color) =
+      _$_UpdateColorEventBackground;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
+  const _$_UpdateColorEventOnBackground(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onBackground(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnBackground &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onBackground(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onBackground?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onBackground != null) {
+      return onBackground(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onBackground(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onBackground?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onBackground != null) {
+      return onBackground(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnBackground implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnBackground(final Color? color) =
+      _$_UpdateColorEventOnBackground;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
+  const _$_UpdateColorEventSurface(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.surface(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventSurface &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return surface(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return surface?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surface != null) {
+      return surface(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return surface(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return surface?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surface != null) {
+      return surface(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventSurface implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventSurface(final Color? color) =
+      _$_UpdateColorEventSurface;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
+  const _$_UpdateColorEventOnSurface(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onSurface(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnSurface &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onSurface(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onSurface?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSurface != null) {
+      return onSurface(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onSurface(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onSurface?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSurface != null) {
+      return onSurface(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnSurface implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnSurface(final Color? color) =
+      _$_UpdateColorEventOnSurface;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventSurfaceVariant
+    implements _UpdateColorEventSurfaceVariant {
+  const _$_UpdateColorEventSurfaceVariant(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.surfaceVariant(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventSurfaceVariant &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return surfaceVariant(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return surfaceVariant?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surfaceVariant != null) {
+      return surfaceVariant(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return surfaceVariant(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return surfaceVariant?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surfaceVariant != null) {
+      return surfaceVariant(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventSurfaceVariant
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventSurfaceVariant(final Color? color) =
+      _$_UpdateColorEventSurfaceVariant;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventOnSurfaceVariant
+    implements _UpdateColorEventOnSurfaceVariant {
+  const _$_UpdateColorEventOnSurfaceVariant(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onSurfaceVariant(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventOnSurfaceVariant &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return onSurfaceVariant(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return onSurfaceVariant?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSurfaceVariant != null) {
+      return onSurfaceVariant(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return onSurfaceVariant(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return onSurfaceVariant?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (onSurfaceVariant != null) {
+      return onSurfaceVariant(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnSurfaceVariant
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnSurfaceVariant(final Color? color) =
+      _$_UpdateColorEventOnSurfaceVariant;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventInverseSurface
+    implements _UpdateColorEventInverseSurface {
+  const _$_UpdateColorEventInverseSurface(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.inverseSurface(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventInverseSurface &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return inverseSurface(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return inverseSurface?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (inverseSurface != null) {
+      return inverseSurface(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return inverseSurface(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return inverseSurface?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (inverseSurface != null) {
+      return inverseSurface(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventInverseSurface
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventInverseSurface(final Color? color) =
+      _$_UpdateColorEventInverseSurface;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
+  const _$_UpdateColorEventShadow(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.shadow(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventShadow &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return shadow(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return shadow?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (shadow != null) {
+      return shadow(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return shadow(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return shadow?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (shadow != null) {
+      return shadow(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventShadow implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventShadow(final Color? color) =
+      _$_UpdateColorEventShadow;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
+  const _$_UpdateColorEventScrim(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.scrim(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventScrim &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return scrim(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return scrim?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (scrim != null) {
+      return scrim(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return scrim(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return scrim?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (scrim != null) {
+      return scrim(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventScrim implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventScrim(final Color? color) =
+      _$_UpdateColorEventScrim;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
+  const _$_UpdateColorEventSurfaceTint(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.surfaceTint(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventSurfaceTint &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return surfaceTint(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return surfaceTint?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surfaceTint != null) {
+      return surfaceTint(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return surfaceTint(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return surfaceTint?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (surfaceTint != null) {
+      return surfaceTint(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventSurfaceTint implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventSurfaceTint(final Color? color) =
+      _$_UpdateColorEventSurfaceTint;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
+  const _$_UpdateColorEventGradientTab(final List<Color> colors)
+      : _colors = colors;
+
+  final List<Color> _colors;
+  @override
+  List<Color> get colors {
+    if (_colors is EqualUnmodifiableListView) return _colors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_colors);
+  }
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.gradientTab(colors: $colors)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventGradientTab &&
+            const DeepCollectionEquality().equals(other._colors, _colors));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_colors));
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+  }) {
+    return gradientTab(colors);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+  }) {
+    return gradientTab?.call(colors);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (gradientTab != null) {
+      return gradientTab(colors);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+  }) {
+    return gradientTab(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+  }) {
+    return gradientTab?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    required TResult orElse(),
+  }) {
+    if (gradientTab != null) {
+      return gradientTab(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventGradientTab implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventGradientTab(final List<Color> colors) =
+      _$_UpdateColorEventGradientTab;
+
+  List<Color> get colors;
+}
+
+/// @nodoc
+mixin _$UpdateThemeSchemeEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String font) updateFont,
+    required TResult Function(TextsModel? textsModel) updateTexts,
+    required TResult Function(ImageSchemeModel? image) updateImages,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String font)? updateFont,
+    TResult? Function(TextsModel? textsModel)? updateTexts,
+    TResult? Function(ImageSchemeModel? image)? updateImages,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String font)? updateFont,
+    TResult Function(TextsModel? textsModel)? updateTexts,
+    TResult Function(ImageSchemeModel? image)? updateImages,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
+    required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
+  const _$_UpdateThemeSchemeFontEvent(this.font);
+
+  @override
+  final String font;
+
+  @override
+  String toString() {
+    return 'UpdateThemeSchemeEvent.updateFont(font: $font)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateThemeSchemeFontEvent &&
+            (identical(other.font, font) || other.font == font));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, font);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String font) updateFont,
+    required TResult Function(TextsModel? textsModel) updateTexts,
+    required TResult Function(ImageSchemeModel? image) updateImages,
+  }) {
+    return updateFont(font);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String font)? updateFont,
+    TResult? Function(TextsModel? textsModel)? updateTexts,
+    TResult? Function(ImageSchemeModel? image)? updateImages,
+  }) {
+    return updateFont?.call(font);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String font)? updateFont,
+    TResult Function(TextsModel? textsModel)? updateTexts,
+    TResult Function(ImageSchemeModel? image)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateFont != null) {
+      return updateFont(font);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
+    required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+  }) {
+    return updateFont(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+  }) {
+    return updateFont?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateFont != null) {
+      return updateFont(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateThemeSchemeFontEvent implements UpdateThemeSchemeEvent {
+  const factory _UpdateThemeSchemeFontEvent(final String font) =
+      _$_UpdateThemeSchemeFontEvent;
+
+  String get font;
+}
+
+/// @nodoc
+
+class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
+  const _$_UpdateThemeSchemeTextsvent(this.textsModel);
+
+  @override
+  final TextsModel? textsModel;
+
+  @override
+  String toString() {
+    return 'UpdateThemeSchemeEvent.updateTexts(textsModel: $textsModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateThemeSchemeTextsvent &&
+            (identical(other.textsModel, textsModel) ||
+                other.textsModel == textsModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, textsModel);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String font) updateFont,
+    required TResult Function(TextsModel? textsModel) updateTexts,
+    required TResult Function(ImageSchemeModel? image) updateImages,
+  }) {
+    return updateTexts(textsModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String font)? updateFont,
+    TResult? Function(TextsModel? textsModel)? updateTexts,
+    TResult? Function(ImageSchemeModel? image)? updateImages,
+  }) {
+    return updateTexts?.call(textsModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String font)? updateFont,
+    TResult Function(TextsModel? textsModel)? updateTexts,
+    TResult Function(ImageSchemeModel? image)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateTexts != null) {
+      return updateTexts(textsModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
+    required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+  }) {
+    return updateTexts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+  }) {
+    return updateTexts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateTexts != null) {
+      return updateTexts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateThemeSchemeTextsvent implements UpdateThemeSchemeEvent {
+  const factory _UpdateThemeSchemeTextsvent(final TextsModel? textsModel) =
+      _$_UpdateThemeSchemeTextsvent;
+
+  TextsModel? get textsModel;
+}
+
+/// @nodoc
+
+class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
+  const _$_UpdateThemeSchemeImagesEvent(this.image);
+
+  @override
+  final ImageSchemeModel? image;
+
+  @override
+  String toString() {
+    return 'UpdateThemeSchemeEvent.updateImages(image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateThemeSchemeImagesEvent &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, image);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String font) updateFont,
+    required TResult Function(TextsModel? textsModel) updateTexts,
+    required TResult Function(ImageSchemeModel? image) updateImages,
+  }) {
+    return updateImages(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String font)? updateFont,
+    TResult? Function(TextsModel? textsModel)? updateTexts,
+    TResult? Function(ImageSchemeModel? image)? updateImages,
+  }) {
+    return updateImages?.call(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String font)? updateFont,
+    TResult Function(TextsModel? textsModel)? updateTexts,
+    TResult Function(ImageSchemeModel? image)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateImages != null) {
+      return updateImages(image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
+    required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+  }) {
+    return updateImages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+  }) {
+    return updateImages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    required TResult orElse(),
+  }) {
+    if (updateImages != null) {
+      return updateImages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateThemeSchemeImagesEvent implements UpdateThemeSchemeEvent {
+  const factory _UpdateThemeSchemeImagesEvent(final ImageSchemeModel? image) =
+      _$_UpdateThemeSchemeImagesEvent;
+
+  ImageSchemeModel? get image;
+}
