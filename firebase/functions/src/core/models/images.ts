@@ -5,6 +5,7 @@ export default class Images {
 	public androidLauncherIcon?: string;
 	public notificationLogo?: string;
 	public applicationLogo?: string;
+	public applicationLogoV2?: string;
 	public adaptiveIconForeground?: string;
 	public webLauncherIcon?: string;
 }
