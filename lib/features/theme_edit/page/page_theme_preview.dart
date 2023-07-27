@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
+import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../widgets/widgets.dart';
@@ -29,13 +30,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _previewType == PreviewType.single
-          ? DrawerPreview(
-              screenshots: _screenshots,
-              focusScreenPosition: _focusScreenPosition,
-              onTapScreen: _setFocusedScreen,
-            )
-          : null,
       body: Builder(
         builder: (context) => Column(
           children: [
@@ -54,15 +48,22 @@ class _PageThemePreviewState extends State<PageThemePreview> {
               child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
                 listener: _listenBloc,
                 builder: (BuildContext context, state) {
-                  return _screenshots.isEmpty
-                      ? const Center(child: CircularProgressIndicator())
-                      : PreviewDetails(
-                          type: _previewType,
-                          screens: _screenshots,
-                          screenFocus: _focusScreenPosition,
-                          isFrameVisible: _isFrameVisible,
-                          onFocusPosition: _setFocusedScreen,
-                        );
+                  return BackgroundBinaryResizableVertical(
+                    topChild: PreviewDetails(
+                      type: _previewType,
+                      screens: _screenshots,
+                      screenFocus: _focusScreenPosition,
+                      isFrameVisible: _isFrameVisible,
+                      onFocusPosition: _setFocusedScreen,
+                    ),
+                    bottomChild: _previewType == PreviewType.single
+                        ? DrawerPreview(
+                            screenshots: _screenshots,
+                            focusScreenPosition: _focusScreenPosition,
+                            onTapScreen: _setFocusedScreen,
+                          )
+                        : null,
+                  );
                 },
               ),
             )
