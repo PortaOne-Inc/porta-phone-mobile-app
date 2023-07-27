@@ -408,6 +408,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                     children: [
                       SelectedImage(
                         name: 'Adaptive icon background',
+                        description: 'Will be used to fill out the background of the adaptive launch icon',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
                         image: state.theme?.images?.adaptiveIconBackground,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
@@ -422,6 +423,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       ),
                       SelectedImage(
                         name: 'Adaptive icon foreground',
+                        description:
+                            'The image asset which will be used for the icon foreground of the adaptive icon Note: Adaptive Icons will only be generated when both adaptive_icon_background and adaptive_icon_foreground are specifier',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
                         image: state.theme?.images?.adaptiveIconForeground,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
