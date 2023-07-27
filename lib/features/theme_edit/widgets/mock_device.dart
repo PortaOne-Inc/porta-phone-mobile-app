@@ -8,15 +8,15 @@ class TypeOfPreview extends StatelessWidget {
     required this.child,
     this.size = const Size(400, 800),
     this.isFrameVisible = true,
-    this.isFocused = false,
     required this.constraints,
+    this.focusIndicator,
   });
 
   final Widget child;
   final Size size;
   final bool isFrameVisible;
-  final bool isFocused;
   final BoxConstraints constraints;
+  final Widget? focusIndicator;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,8 @@ class TypeOfPreview extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(isFrameVisible ? 0.0 : 1.0),
               ),
-              child: DeviceFrame(
+              child: FittedBox(
+                  child: DeviceFrame(
                 device: DeviceInfo.genericPhone(
                   platform: TargetPlatform.android,
                   id: 'device_id',
@@ -43,14 +44,10 @@ class TypeOfPreview extends StatelessWidget {
                 screen: IgnorePointer(
                   child: child,
                 ),
-              ),
+              )),
             ),
           ),
-          Icon(
-            isFocused ? Icons.center_focus_strong_rounded : Icons.center_focus_strong_outlined,
-            color: isFocused ? Colors.green : Colors.black45,
-            size: 16,
-          ),
+          focusIndicator ?? const SizedBox()
         ],
       ),
     );
