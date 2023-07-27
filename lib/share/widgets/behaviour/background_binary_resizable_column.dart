@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//TODO: MERGE VERTICAL and HORIZONTAL
 class BackgroundBinaryResizableColumn extends StatefulWidget {
   const BackgroundBinaryResizableColumn({
     super.key,
