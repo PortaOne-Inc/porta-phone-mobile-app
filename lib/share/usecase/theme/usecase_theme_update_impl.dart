@@ -29,9 +29,9 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
     final dtoTheme = mapper.mapToDto(themeModel);
 
     final images = ImageCollectionDTO(
-      onboarding: await _getImageUrl(themeModel.images?.onboarding),
+      primaryOnboardingLogo: await _getImageUrl(themeModel.images?.primaryOnboardingLogo),
+      secondaryOnboardingLogo: await _getImageUrl(themeModel.images?.secondaryOnboardingLogo),
       notificationLogo: await _getImageUrl(themeModel.images?.notificationLogo),
-      applicationLogo: await _getImageUrl(themeModel.images?.applicationLogo),
       adaptiveIconBackground: await _getImageUrl(themeModel.images?.adaptiveIconBackground),
       adaptiveIconForeground: await _getImageUrl(themeModel.images?.adaptiveIconForeground),
       iosLauncherIcon: await _getImageUrl(themeModel.images?.iosLauncherIcon),

@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ImageSchemeModel {
-  ImageModel? get onboarding => throw _privateConstructorUsedError;
-  ImageModel? get applicationLogo => throw _privateConstructorUsedError;
+  ImageModel? get primaryOnboardingLogo => throw _privateConstructorUsedError;
+  ImageModel? get secondaryOnboardingLogo => throw _privateConstructorUsedError;
   ImageModel? get notificationLogo => throw _privateConstructorUsedError;
   ImageModel? get adaptiveIconBackground => throw _privateConstructorUsedError;
   ImageModel? get adaptiveIconForeground => throw _privateConstructorUsedError;
@@ -37,8 +37,8 @@ abstract class $ImageSchemeModelCopyWith<$Res> {
       _$ImageSchemeModelCopyWithImpl<$Res, ImageSchemeModel>;
   @useResult
   $Res call(
-      {ImageModel? onboarding,
-      ImageModel? applicationLogo,
+      {ImageModel? primaryOnboardingLogo,
+      ImageModel? secondaryOnboardingLogo,
       ImageModel? notificationLogo,
       ImageModel? adaptiveIconBackground,
       ImageModel? adaptiveIconForeground,
@@ -46,8 +46,8 @@ abstract class $ImageSchemeModelCopyWith<$Res> {
       ImageModel? iosLauncherIcon,
       ImageModel? webLauncherIcon});
 
-  $ImageModelCopyWith<$Res>? get onboarding;
-  $ImageModelCopyWith<$Res>? get applicationLogo;
+  $ImageModelCopyWith<$Res>? get primaryOnboardingLogo;
+  $ImageModelCopyWith<$Res>? get secondaryOnboardingLogo;
   $ImageModelCopyWith<$Res>? get notificationLogo;
   $ImageModelCopyWith<$Res>? get adaptiveIconBackground;
   $ImageModelCopyWith<$Res>? get adaptiveIconForeground;
@@ -69,8 +69,8 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onboarding = freezed,
-    Object? applicationLogo = freezed,
+    Object? primaryOnboardingLogo = freezed,
+    Object? secondaryOnboardingLogo = freezed,
     Object? notificationLogo = freezed,
     Object? adaptiveIconBackground = freezed,
     Object? adaptiveIconForeground = freezed,
@@ -79,13 +79,13 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
     Object? webLauncherIcon = freezed,
   }) {
     return _then(_value.copyWith(
-      onboarding: freezed == onboarding
-          ? _value.onboarding
-          : onboarding // ignore: cast_nullable_to_non_nullable
+      primaryOnboardingLogo: freezed == primaryOnboardingLogo
+          ? _value.primaryOnboardingLogo
+          : primaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
               as ImageModel?,
-      applicationLogo: freezed == applicationLogo
-          ? _value.applicationLogo
-          : applicationLogo // ignore: cast_nullable_to_non_nullable
+      secondaryOnboardingLogo: freezed == secondaryOnboardingLogo
+          ? _value.secondaryOnboardingLogo
+          : secondaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
               as ImageModel?,
       notificationLogo: freezed == notificationLogo
           ? _value.notificationLogo
@@ -116,25 +116,25 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res>? get onboarding {
-    if (_value.onboarding == null) {
+  $ImageModelCopyWith<$Res>? get primaryOnboardingLogo {
+    if (_value.primaryOnboardingLogo == null) {
       return null;
     }
 
-    return $ImageModelCopyWith<$Res>(_value.onboarding!, (value) {
-      return _then(_value.copyWith(onboarding: value) as $Val);
+    return $ImageModelCopyWith<$Res>(_value.primaryOnboardingLogo!, (value) {
+      return _then(_value.copyWith(primaryOnboardingLogo: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res>? get applicationLogo {
-    if (_value.applicationLogo == null) {
+  $ImageModelCopyWith<$Res>? get secondaryOnboardingLogo {
+    if (_value.secondaryOnboardingLogo == null) {
       return null;
     }
 
-    return $ImageModelCopyWith<$Res>(_value.applicationLogo!, (value) {
-      return _then(_value.copyWith(applicationLogo: value) as $Val);
+    return $ImageModelCopyWith<$Res>(_value.secondaryOnboardingLogo!, (value) {
+      return _then(_value.copyWith(secondaryOnboardingLogo: value) as $Val);
     });
   }
 
@@ -220,8 +220,8 @@ abstract class _$$_ImageSchemeModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ImageModel? onboarding,
-      ImageModel? applicationLogo,
+      {ImageModel? primaryOnboardingLogo,
+      ImageModel? secondaryOnboardingLogo,
       ImageModel? notificationLogo,
       ImageModel? adaptiveIconBackground,
       ImageModel? adaptiveIconForeground,
@@ -230,9 +230,9 @@ abstract class _$$_ImageSchemeModelCopyWith<$Res>
       ImageModel? webLauncherIcon});
 
   @override
-  $ImageModelCopyWith<$Res>? get onboarding;
+  $ImageModelCopyWith<$Res>? get primaryOnboardingLogo;
   @override
-  $ImageModelCopyWith<$Res>? get applicationLogo;
+  $ImageModelCopyWith<$Res>? get secondaryOnboardingLogo;
   @override
   $ImageModelCopyWith<$Res>? get notificationLogo;
   @override
@@ -258,8 +258,8 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onboarding = freezed,
-    Object? applicationLogo = freezed,
+    Object? primaryOnboardingLogo = freezed,
+    Object? secondaryOnboardingLogo = freezed,
     Object? notificationLogo = freezed,
     Object? adaptiveIconBackground = freezed,
     Object? adaptiveIconForeground = freezed,
@@ -268,13 +268,13 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
     Object? webLauncherIcon = freezed,
   }) {
     return _then(_$_ImageSchemeModel(
-      onboarding: freezed == onboarding
-          ? _value.onboarding
-          : onboarding // ignore: cast_nullable_to_non_nullable
+      primaryOnboardingLogo: freezed == primaryOnboardingLogo
+          ? _value.primaryOnboardingLogo
+          : primaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
               as ImageModel?,
-      applicationLogo: freezed == applicationLogo
-          ? _value.applicationLogo
-          : applicationLogo // ignore: cast_nullable_to_non_nullable
+      secondaryOnboardingLogo: freezed == secondaryOnboardingLogo
+          ? _value.secondaryOnboardingLogo
+          : secondaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
               as ImageModel?,
       notificationLogo: freezed == notificationLogo
           ? _value.notificationLogo
@@ -308,8 +308,8 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
 
 class _$_ImageSchemeModel extends _ImageSchemeModel {
   const _$_ImageSchemeModel(
-      {this.onboarding,
-      this.applicationLogo,
+      {this.primaryOnboardingLogo,
+      this.secondaryOnboardingLogo,
       this.notificationLogo,
       this.adaptiveIconBackground,
       this.adaptiveIconForeground,
@@ -319,9 +319,9 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
       : super._();
 
   @override
-  final ImageModel? onboarding;
+  final ImageModel? primaryOnboardingLogo;
   @override
-  final ImageModel? applicationLogo;
+  final ImageModel? secondaryOnboardingLogo;
   @override
   final ImageModel? notificationLogo;
   @override
@@ -337,7 +337,7 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
 
   @override
   String toString() {
-    return 'ImageSchemeModel(onboarding: $onboarding, applicationLogo: $applicationLogo, notificationLogo: $notificationLogo, adaptiveIconBackground: $adaptiveIconBackground, adaptiveIconForeground: $adaptiveIconForeground, androidLauncherIcon: $androidLauncherIcon, iosLauncherIcon: $iosLauncherIcon, webLauncherIcon: $webLauncherIcon)';
+    return 'ImageSchemeModel(primaryOnboardingLogo: $primaryOnboardingLogo, secondaryOnboardingLogo: $secondaryOnboardingLogo, notificationLogo: $notificationLogo, adaptiveIconBackground: $adaptiveIconBackground, adaptiveIconForeground: $adaptiveIconForeground, androidLauncherIcon: $androidLauncherIcon, iosLauncherIcon: $iosLauncherIcon, webLauncherIcon: $webLauncherIcon)';
   }
 
   @override
@@ -345,10 +345,11 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ImageSchemeModel &&
-            (identical(other.onboarding, onboarding) ||
-                other.onboarding == onboarding) &&
-            (identical(other.applicationLogo, applicationLogo) ||
-                other.applicationLogo == applicationLogo) &&
+            (identical(other.primaryOnboardingLogo, primaryOnboardingLogo) ||
+                other.primaryOnboardingLogo == primaryOnboardingLogo) &&
+            (identical(
+                    other.secondaryOnboardingLogo, secondaryOnboardingLogo) ||
+                other.secondaryOnboardingLogo == secondaryOnboardingLogo) &&
             (identical(other.notificationLogo, notificationLogo) ||
                 other.notificationLogo == notificationLogo) &&
             (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
@@ -366,8 +367,8 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      onboarding,
-      applicationLogo,
+      primaryOnboardingLogo,
+      secondaryOnboardingLogo,
       notificationLogo,
       adaptiveIconBackground,
       adaptiveIconForeground,
@@ -384,8 +385,8 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
 
 abstract class _ImageSchemeModel extends ImageSchemeModel {
   const factory _ImageSchemeModel(
-      {final ImageModel? onboarding,
-      final ImageModel? applicationLogo,
+      {final ImageModel? primaryOnboardingLogo,
+      final ImageModel? secondaryOnboardingLogo,
       final ImageModel? notificationLogo,
       final ImageModel? adaptiveIconBackground,
       final ImageModel? adaptiveIconForeground,
@@ -395,9 +396,9 @@ abstract class _ImageSchemeModel extends ImageSchemeModel {
   const _ImageSchemeModel._() : super._();
 
   @override
-  ImageModel? get onboarding;
+  ImageModel? get primaryOnboardingLogo;
   @override
-  ImageModel? get applicationLogo;
+  ImageModel? get secondaryOnboardingLogo;
   @override
   ImageModel? get notificationLogo;
   @override

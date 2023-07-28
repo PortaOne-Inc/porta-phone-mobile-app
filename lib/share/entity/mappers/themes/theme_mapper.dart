@@ -29,9 +29,9 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
       colors: colorsMapper.mapToDto(model.colors),
       texts: textsMapper.mapToDto(model.texts),
       images: ImageCollectionDTO(
-        applicationLogo: model.images?.applicationLogo?.url,
+        primaryOnboardingLogo: model.images?.primaryOnboardingLogo?.url,
+        secondaryOnboardingLogo: model.images?.secondaryOnboardingLogo?.url,
         notificationLogo: model.images?.notificationLogo?.url,
-        onboarding: model.images?.onboarding?.url,
         adaptiveIconBackground: model.images?.adaptiveIconBackground?.url,
         adaptiveIconForeground: model.images?.adaptiveIconForeground?.url,
         androidLauncherIcon: model.images?.androidLauncherIcon?.url,
@@ -53,9 +53,9 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
         fontFamily: dto.fontFamily,
         texts: textsMapper.mapToModel(dto.texts),
         images: ImageSchemeModel(
-          applicationLogo: ImageModel(url: dto.images?.applicationLogo),
+          primaryOnboardingLogo: ImageModel(url: dto.images?.primaryOnboardingLogo),
+          secondaryOnboardingLogo: ImageModel(url: dto.images?.secondaryOnboardingLogo),
           notificationLogo: ImageModel(url: dto.images?.notificationLogo),
-          onboarding: ImageModel(url: dto.images?.onboarding),
           adaptiveIconBackground: ImageModel(url: dto.images?.adaptiveIconBackground),
           adaptiveIconForeground: ImageModel(url: dto.images?.adaptiveIconForeground),
           androidLauncherIcon: ImageModel(url: dto.images?.androidLauncherIcon),

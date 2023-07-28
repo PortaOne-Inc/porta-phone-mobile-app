@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/share/exports/exports.dart';
+import 'package:webtrit_configurator/share/extension/extension.dart';
 import 'package:webtrit_configurator/share/widgets/widgets.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
@@ -87,14 +88,25 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   }
 
   void _updatePreviewScreens(ThemePropertyState state) async {
-    final logo = state.theme?.images?.applicationLogo;
+    final primaryOnboardingLogo = state.theme?.images?.primaryOnboardingLogo;
+    final secondaryOnboardingLogo = state.theme?.images?.secondaryOnboardingLogo;
 
-    if (logo?.isNetwork ?? false) {
-      _previewImageScheme.setApplicationLogoByUrl(logo!.url!);
-    } else if (logo?.data != null) {
-      _previewImageScheme.setApplicationByBytes(base64Decode(logo!.data!));
+    if (primaryOnboardingLogo?.isAvailable == true) {
+      _previewImageScheme.setPrimaryOnboardingLogo(
+        url: primaryOnboardingLogo?.url,
+        bytes: base64DecodeOrNull(primaryOnboardingLogo?.data),
+      );
     } else {
-      _previewImageScheme.clearApplicationLogo();
+      _previewImageScheme.clearPrimaryOnboardingLogoStream();
+    }
+
+    if (secondaryOnboardingLogo?.isAvailable == true) {
+      _previewImageScheme.setSecondaryOnboardingLogo(
+        url: secondaryOnboardingLogo?.url,
+        bytes: base64DecodeOrNull(secondaryOnboardingLogo?.data),
+      );
+    } else {
+      _previewImageScheme.clearSecondaryOnboardingLogoStream();
     }
 
     final appBloc = MockAppBloc.allScreen(
