@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/widgets.dart';
 
 import 'mock_device.dart';
 
