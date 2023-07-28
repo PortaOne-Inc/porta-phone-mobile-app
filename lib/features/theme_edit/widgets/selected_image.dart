@@ -50,19 +50,26 @@ class SelectedImage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Tooltip(
-                  margin: const EdgeInsets.only(left: 32, top: 8, bottom: 8, right: 8),
-                  preferBelow: true,
-                  message: description ?? '',
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    width: double.infinity,
-                    color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.95),
-                    child: Text(
-                      name,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelLarge!,
+                margin: const EdgeInsets.only(left: 32, top: 8, bottom: 8, right: 8),
+                preferBelow: true,
+                message: description ?? '',
+                child: Container(
+                  height: _size.height / 5,
+                  padding: const EdgeInsets.all(8),
+                  width: double.infinity,
+                  color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.95),
+                  child: Center(
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        name,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.labelMedium!,
+                      ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.topCenter,
