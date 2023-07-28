@@ -35,62 +35,76 @@ class PreviewDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (type) {
-      case PreviewType.single:
-        return Container(
-          margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          child: TypeOfPreview(
-            key: ValueKey(screenFocus),
-            isFrameVisible: isFrameVisible,
-            constraints: const BoxConstraints(),
-            child: screens[screenFocus],
-          ),
-        );
-      case PreviewType.grid:
-        return SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 16),
-          child: Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: screens
-                .mapIndexed(
-                  (index, screen) => GestureDetector(
-                    onTap: () => onFocusPosition(index),
-                    child: TypeOfPreview(
-                      isFocused: screenFocus == index,
-                      isFrameVisible: isFrameVisible,
-                      constraints: const BoxConstraints(maxHeight: 300),
-                      child: screen,
+    if (screens.isEmpty) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      switch (type) {
+        case PreviewType.single:
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            child: TypeOfPreview(
+              key: ValueKey(screenFocus),
+              isFrameVisible: isFrameVisible,
+              constraints: const BoxConstraints(),
+              child: screens[screenFocus],
+            ),
+          );
+        case PreviewType.grid:
+          return SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 16),
+            child: Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: screens
+                  .mapIndexed(
+                    (index, screen) => GestureDetector(
+                      onTap: () => onFocusPosition(index),
+                      child: TypeOfPreview(
+                        focusIndicator: Icon(
+                          index == screenFocus ? Icons.center_focus_strong_rounded : Icons.center_focus_strong_outlined,
+                          color: index == screenFocus ? Colors.green : Colors.black45,
+                          size: 16,
+                        ),
+                        isFrameVisible: isFrameVisible,
+                        constraints: const BoxConstraints(maxHeight: 300),
+                        child: screen,
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-          ),
-        );
+                  )
+                  .toList(),
+            ),
+          );
 
-      case PreviewType.smallGrid:
-        return SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 16),
-          child: Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: screens
-                .mapIndexed(
-                  (index, screen) => GestureDetector(
-                    onTap: () => onFocusPosition(index),
-                    child: TypeOfPreview(
-                      isFocused: screenFocus == index,
-                      isFrameVisible: isFrameVisible,
-                      constraints: const BoxConstraints(maxHeight: 500),
-                      child: screen,
+        case PreviewType.smallGrid:
+          return SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 16),
+            child: Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: screens
+                  .mapIndexed(
+                    (index, screen) => GestureDetector(
+                      onTap: () => onFocusPosition(index),
+                      child: TypeOfPreview(
+                        focusIndicator: Icon(
+                          index == screenFocus ? Icons.center_focus_strong_rounded : Icons.center_focus_strong_outlined,
+                          color: index == screenFocus ? Colors.green : Colors.black45,
+                          size: 16,
+                        ),
+                        isFrameVisible: isFrameVisible,
+                        constraints: const BoxConstraints(maxHeight: 500),
+                        child: screen,
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-          ),
-        );
+                  )
+                  .toList(),
+            ),
+          );
+      }
     }
   }
 }

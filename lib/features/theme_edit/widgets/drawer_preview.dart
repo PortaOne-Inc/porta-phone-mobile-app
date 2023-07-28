@@ -17,33 +17,30 @@ class DrawerPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Divider(),
-        SizedBox(
-            height: 124,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(width: 8);
-              },
-              itemCount: screenshots.length,
-              padding: const EdgeInsets.only(right: 8),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  child: TypeOfPreview(
-                    isFocused: index == focusScreenPosition,
-                    constraints: const BoxConstraints(maxHeight: 224),
-                    child: screenshots[index],
-                  ),
-                  onTap: () => onTapScreen.call(index),
-                );
-              },
-            ))
-      ],
-    );
+    return Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(width: 8);
+          },
+          itemCount: screenshots.length,
+          padding: const EdgeInsets.only(right: 8),
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              child: TypeOfPreview(
+                focusIndicator: Icon(
+                  index == focusScreenPosition ? Icons.center_focus_strong_rounded : Icons.center_focus_strong_outlined,
+                  color: index == focusScreenPosition ? Colors.green : Colors.black45,
+                  size: 16,
+                ),
+                constraints: const BoxConstraints(maxHeight: 124),
+                child: screenshots[index],
+              ),
+              onTap: () => onTapScreen.call(index),
+            );
+          },
+        ));
   }
 }

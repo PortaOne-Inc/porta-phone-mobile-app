@@ -13,9 +13,12 @@ class SelectedImage extends StatelessWidget {
     required this.onTap,
     required this.onRemove,
     required this.imageFilter,
+    this.description,
   });
 
   final String name;
+  final String? description;
+
   final Size _size = const Size.square(200);
 
   final ImageModel? image;
@@ -46,16 +49,20 @@ class SelectedImage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                width: double.infinity,
-                color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.5),
-                child: Text(
-                  name,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelLarge!,
-                ),
-              ),
+              child: Tooltip(
+                  margin: const EdgeInsets.only(left: 32, top: 8, bottom: 8, right: 8),
+                  preferBelow: true,
+                  message: description ?? '',
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.95),
+                    child: Text(
+                      name,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelLarge!,
+                    ),
+                  )),
             ),
             Align(
               alignment: Alignment.topCenter,
