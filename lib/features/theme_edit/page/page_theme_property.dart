@@ -327,33 +327,33 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       runSpacing: 16,
                       children: [
                         SelectedImage(
-                          name: context.l10n.configurator_image_resource_onboarding,
+                          name: context.l10n.feature_theme_edit_Image_primary_onboarding_logo,
                           imageFilter: ImageFilterModel.svg(),
-                          image: state.theme?.images?.onboarding,
+                          image: state.theme?.images?.primaryOnboardingLogo,
                           onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                             final image = await UtilityImage.pickImage(format);
                             bloc.add(UpdateThemeSchemeEvent.updateImages(
-                              bloc.state.theme?.images?.copyWith(onboarding: image),
+                              bloc.state.theme?.images?.copyWith(primaryOnboardingLogo: image),
+                            ));
+                          }),
+                          onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                            bloc.state.theme?.images?.copyWith(primaryOnboardingLogo: const ImageModel()),
+                          )),
+                        ),
+                        SelectedImage(
+                          name: context.l10n.feature_theme_edit_Image_secondary_onboarding_logo,
+                          imageFilter: ImageFilterModel.svg(),
+                          image: state.theme?.images?.secondaryOnboardingLogo,
+                          onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                            final image = await UtilityImage.pickImage(format);
+                            bloc.add(UpdateThemeSchemeEvent.updateImages(
+                              bloc.state.theme?.images?.copyWith(secondaryOnboardingLogo: image),
                             ));
                           }),
                           onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
                             bloc.state.theme?.images?.copyWith(
-                              onboarding: const ImageModel(),
+                              secondaryOnboardingLogo: const ImageModel(),
                             ),
-                          )),
-                        ),
-                        SelectedImage(
-                          name: context.l10n.feature_theme_edit_Image_logo,
-                          imageFilter: ImageFilterModel.svg(),
-                          image: state.theme?.images?.applicationLogo,
-                          onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                            final image = await UtilityImage.pickImage(format);
-                            bloc.add(UpdateThemeSchemeEvent.updateImages(
-                              bloc.state.theme?.images?.copyWith(applicationLogo: image),
-                            ));
-                          }),
-                          onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images?.copyWith(applicationLogo: const ImageModel()),
                           )),
                         ),
                       ],

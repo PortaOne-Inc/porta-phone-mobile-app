@@ -9,8 +9,8 @@ class ImageSchemeModel with _$ImageSchemeModel {
   const ImageSchemeModel._();
 
   const factory ImageSchemeModel({
-    ImageModel? onboarding,
-    ImageModel? applicationLogo,
+    ImageModel? primaryOnboardingLogo,
+    ImageModel? secondaryOnboardingLogo,
     ImageModel? notificationLogo,
     ImageModel? adaptiveIconBackground,
     ImageModel? adaptiveIconForeground,
