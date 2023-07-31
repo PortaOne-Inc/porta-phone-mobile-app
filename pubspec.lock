@@ -264,6 +264,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  dart_casing:
+    dependency: transitive
+    description:
+      name: dart_casing
+      sha256: "103ab12ecc536b955feedddb3c3b41de6282cd4517008e9087e6293781369d07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -280,6 +288,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.16"
+  dartlin:
+    dependency: transitive
+    description:
+      name: dartlin
+      sha256: "80764ff3d1801a086c2b802bd39ff6d306e783710741fab8e9981d2ba5ad68a1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.3"
   dartx:
     dependency: transitive
     description:
@@ -964,6 +980,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  json2yaml:
+    dependency: transitive
+    description:
+      name: json2yaml
+      sha256: da94630fbc56079426fdd167ae58373286f603371075b69bf46d848d63ba3e51
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   json_annotation:
     dependency: "direct main"
     description:
@@ -1560,7 +1584,7 @@ packages:
     source: hosted
     version: "1.2.0"
   style:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../webtrit_phone/packages/style"
       relative: true
@@ -1792,7 +1816,35 @@ packages:
   webtrit_callkeep:
     dependency: transitive
     description:
-      path: "../webtrit_phone/packages/webtrit_callkeep"
+      path: "../webtrit_callkeep/webtrit_callkeep"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_android:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_android"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_ios:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_ios"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_platform_interface:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_platform_interface"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_web:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_web"
       relative: true
     source: path
     version: "0.0.1"
@@ -1802,7 +1854,7 @@ packages:
       path: "../webtrit_phone"
       relative: true
     source: path
-    version: "1.1.0+1"
+    version: "1.1.0+1010000"
   webtrit_phone_number:
     dependency: transitive
     description:
@@ -1810,6 +1862,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  webtrit_phone_publisher:
+    dependency: transitive
+    description:
+      path: "../webtrit_phone_publisher"
+      relative: true
+    source: path
+    version: "1.0.0"
   webtrit_signaling:
     dependency: transitive
     description:
