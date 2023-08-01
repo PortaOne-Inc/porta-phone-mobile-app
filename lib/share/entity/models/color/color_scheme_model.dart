@@ -37,6 +37,7 @@ class ColorSchemeModel with _$ColorSchemeModel {
     Color? scrim,
     Color? surfaceTint,
     List<Color>? gradientTabColor,
+    LaunchModel? launch,
   }) = _ColorModel;
 
   List<Color> get asList => [
@@ -53,4 +54,12 @@ class ColorSchemeModel with _$ColorSchemeModel {
         if (surface != null) surface!,
         if (onSurface != null) onSurface!,
       ];
+}
+
+@freezed
+class LaunchModel with _$LaunchModel {
+  const factory LaunchModel({
+    Color? adaptiveIconBackground,
+    Color? splashBackground,
+  }) = _LaunchModel;
 }

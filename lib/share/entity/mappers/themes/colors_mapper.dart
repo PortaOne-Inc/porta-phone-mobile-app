@@ -28,6 +28,10 @@ class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {
             surface: model.surface?.toHex(),
             onSurface: model.onSurface?.toHex(),
             gradientTabColor: model.gradientTabColor?.map((e) => e.toHex()).toList(),
+            launch: LaunchDTO(
+              adaptiveIconBackground: model.launch?.adaptiveIconBackground?.toHex(),
+              splashBackground: model.launch?.splashBackground?.toHex(),
+            ),
           );
   }
 
@@ -90,6 +94,16 @@ class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {
                       defaultColor: Colors.white,
                     )!)
                 .toList(),
+            launch: LaunchModel(
+              adaptiveIconBackground: UtilityColor.tryParseColorFromHex(
+                dto.launch?.adaptiveIconBackground,
+                defaultColor: Colors.white,
+              ),
+              splashBackground: UtilityColor.tryParseColorFromHex(
+                dto.launch?.splashBackground,
+                defaultColor: Colors.white,
+              ),
+            ),
           );
   }
 }
