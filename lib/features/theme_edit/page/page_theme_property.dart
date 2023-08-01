@@ -19,6 +19,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     super.key,
   });
 
+  static const _marginBetweenComponent = 8.0;
+
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ThemePropertyCubit>();
@@ -53,9 +55,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ),
+                    const SizedBox(width: _marginBetweenComponent),
                     Tooltip(
                       message: context.l10n.feature_theme_edit_open_screen,
                       child: IconButton(
@@ -93,7 +93,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       ),
                     ),
                     const SizedBox(
-                      width: 8,
+                      width: _marginBetweenComponent,
                     ),
                     Tooltip(
                       message: context.l10n.feature_theme_edit_open_screen,
@@ -147,6 +147,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.feature_theme_edit_Color_on_primary,
@@ -160,6 +161,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     ColorField(
                       title: context.l10n.configurator_color_secondary,
                       color: state.theme?.colors?.secondary,
@@ -169,6 +171,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         (color) => bloc.add(UpdateColorSchemeEvent.secondary(color)),
                       ),
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     ColorField(
                       title: context.l10n.configurator_color_outline,
                       color: state.theme?.colors?.outline,
@@ -178,6 +181,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         (color) => bloc.add(UpdateColorSchemeEvent.outline(color)),
                       ),
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -191,6 +195,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_on_secondary_container,
@@ -204,6 +209,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -217,6 +223,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_error,
@@ -230,6 +237,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -243,6 +251,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.feature_theme_edit_Color_on_background,
@@ -256,6 +265,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -269,6 +279,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_on_surface,
@@ -282,6 +293,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     GradientField(
                       title: context.l10n.configurator_color_gradient_tab,
                       colors: state.theme?.colorGradientCollection ?? [],
