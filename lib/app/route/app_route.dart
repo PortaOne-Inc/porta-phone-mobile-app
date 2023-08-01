@@ -9,8 +9,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
-import 'package:webtrit_configurator/share/share.dart';
-import 'package:webtrit_configurator/share/widgets/page/page.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'app_route_consts.dart';
 

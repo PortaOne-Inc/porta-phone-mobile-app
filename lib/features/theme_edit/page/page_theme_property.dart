@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/share/mixin/mixin.dart';
-import 'package:webtrit_configurator/share/exception/exception.dart';
-import 'package:webtrit_configurator/share/share.dart';
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../consts/consts.dart';
 import '../extension/extension.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/share/share.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 class ApplicationPreviewItem extends StatelessWidget {
   const ApplicationPreviewItem({

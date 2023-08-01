@@ -5,8 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/share/mixin/mixin.dart';
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../../common/bloc/common_bloc.dart';
 import '../bloc/application_edit_cubit.dart';

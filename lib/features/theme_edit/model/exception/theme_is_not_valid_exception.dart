@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/share/exception/common/base_exception.dart';
+import 'package:webtrit_configurator/core/exception/common/base_exception.dart';
 
 class ThemeIsNotValidException extends BaseException {
   ThemeIsNotValidException() : super(message: '');

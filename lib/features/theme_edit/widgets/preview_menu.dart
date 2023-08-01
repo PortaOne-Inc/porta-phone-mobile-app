@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/share/widgets/switchers/switchers.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'type_of_preview.dart';
 import 'menu_space.dart';

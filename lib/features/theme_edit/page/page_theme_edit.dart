@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/theme_edit/model/exception/exception.dart';
-import 'package:webtrit_configurator/share/mixin/mixin_messages.dart';
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/core.dart';
+
 
 import '../../common/common.dart';
 import '../theme_edit.dart';

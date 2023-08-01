@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/share/entity/entity.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'usecase_theme_get_template.dart';
 

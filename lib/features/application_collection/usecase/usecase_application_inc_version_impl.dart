@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/features/application_collection/usecase/usecase_application_inc_version.dart';
 
-import 'package:webtrit_configurator/share/share.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 @Injectable(as: UsecaseApplicationIncVersion)
 class UsecaseApplicationIncVersionImpl extends UsecaseApplicationIncVersion {

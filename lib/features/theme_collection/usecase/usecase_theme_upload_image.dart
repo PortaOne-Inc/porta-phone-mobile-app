@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/share/share.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 abstract class UsecaseThemeUploadImage {
   Future<String?> execute({

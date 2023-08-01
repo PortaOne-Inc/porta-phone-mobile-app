@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:webtrit_configurator/localization/localization.dart';
 
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 class CredentialToolbar extends StatelessWidget {
   const CredentialToolbar({

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/share/share.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'usecase_theme_create.dart';
 
