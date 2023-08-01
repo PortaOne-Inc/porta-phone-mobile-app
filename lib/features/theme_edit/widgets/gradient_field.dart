@@ -7,12 +7,14 @@ class GradientField extends StatefulWidget {
     super.key,
     required this.title,
     required this.colors,
+    this.margin = EdgeInsets.zero,
     required this.onAddColor,
     required this.onRemoveColor,
   });
 
   final String title;
   final List<Color> colors;
+  final EdgeInsets margin;
   final Function(Color) onRemoveColor;
   final Function(List<Color> colors) onAddColor;
 
@@ -32,6 +34,7 @@ class _GradientFieldState extends State<GradientField> {
           children: [
             GestureDetector(
               child: Card(
+                margin: widget.margin,
                 elevation: 2,
                 child: Container(
                   width: double.infinity,
