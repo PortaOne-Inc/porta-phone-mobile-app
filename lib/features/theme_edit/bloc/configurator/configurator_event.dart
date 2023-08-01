@@ -81,6 +81,11 @@ class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements Configurat
   const factory UpdateColorSchemeEvent.surfaceTint(Color? color) = _UpdateColorEventSurfaceTint;
 
   const factory UpdateColorSchemeEvent.gradientTab(List<Color> colors) = _UpdateColorEventGradientTab;
+
+  const factory UpdateColorSchemeEvent.launchAdaptiveIconColor(Color? color) = _UpdateColorLaunchAdaptiveIcon;
+
+  const factory UpdateColorSchemeEvent.launchSplashBackgroundColor(Color? color) =
+      _UpdateColorEventlaunchSplashBackground;
 }
 
 @Freezed(copyWith: false)

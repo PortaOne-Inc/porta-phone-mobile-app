@@ -312,6 +312,58 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ));
                       },
                     ),
+                    const SizedBox(height: _marginBetweenComponent * 3),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Launcher color scheme'),
+                        Tooltip(
+                          message:
+                              'These colors are responsible for the icons that are displayed in the system and the system splash screen that is displayed before preparing the application. Currently, these colors are not displayed in the layout.',
+                          child: Container(
+                            margin: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.4)),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(24),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.info_outline,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: 'Adaptive icon background',
+                            color: state.theme?.colors?.launch?.adaptiveIconBackground,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.launchAdaptiveIconColor(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: 'Native splash background',
+                            color: state.theme?.colors?.launch?.splashBackground,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.launchSplashBackgroundColor(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 )
               ],

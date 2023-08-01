@@ -122,6 +122,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       onSecondaryContainer: (value) async => _animateColor(
           value.color, (color) => _updateColor(state.colors?.copyWith(onSecondaryContainer: color), emit)),
       gradientTab: (_UpdateColorEventGradientTab value) async => _updateGradientTab(value.colors, emit),
+      launchAdaptiveIconColor: (value) async => _updateLaunchColor(emit, adaptiveIconBackground: value.color),
+      launchSplashBackgroundColor: (value) async => _updateLaunchColor(emit, splashBackground: value.color),
     );
   }
 
@@ -189,6 +191,28 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(colors: color),
     ));
+  }
+
+  void _updateLaunchColor(Emitter<ThemePropertyState> emit, {Color? adaptiveIconBackground, Color? splashBackground}) {
+    final theme = state.theme;
+    final colors = theme?.colors;
+    final launchColors = colors?.launch;
+
+    final newAdaptiveIconBackground = adaptiveIconBackground ?? launchColors?.adaptiveIconBackground;
+    final newSplashBackground = splashBackground ?? launchColors?.splashBackground;
+
+    emit(
+      state.updateTheme(
+        theme: theme?.copyWith(
+          colors: colors?.copyWith(
+            launch: launchColors?.copyWith(
+              adaptiveIconBackground: newAdaptiveIconBackground,
+              splashBackground: newSplashBackground,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   void _animateColor(Color? color, Function onUpdate) async {
