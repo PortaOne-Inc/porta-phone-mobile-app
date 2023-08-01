@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 
 class FailureDialog extends StatelessWidget {
   const FailureDialog({

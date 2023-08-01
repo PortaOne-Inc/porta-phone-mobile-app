@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 
 import 'application.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/share/share.dart';
 
 import 'exclude_color_scheme.dart';
