@@ -1513,6 +1513,8 @@ mixin _$UpdateColorSchemeEvent {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1545,6 +1547,8 @@ mixin _$UpdateColorSchemeEvent {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1577,6 +1581,8 @@ mixin _$UpdateColorSchemeEvent {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1621,6 +1627,10 @@ mixin _$UpdateColorSchemeEvent {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1660,6 +1670,10 @@ mixin _$UpdateColorSchemeEvent {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1696,6 +1710,10 @@ mixin _$UpdateColorSchemeEvent {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1756,6 +1774,8 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return primary(color);
   }
@@ -1791,6 +1811,8 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return primary?.call(color);
   }
@@ -1826,6 +1848,8 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (primary != null) {
@@ -1876,6 +1900,10 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return primary(this);
   }
@@ -1918,6 +1946,10 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return primary?.call(this);
   }
@@ -1957,6 +1989,10 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (primary != null) {
@@ -2028,6 +2064,8 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onPrimary(color);
   }
@@ -2063,6 +2101,8 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onPrimary?.call(color);
   }
@@ -2098,6 +2138,8 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onPrimary != null) {
@@ -2148,6 +2190,10 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onPrimary(this);
   }
@@ -2190,6 +2236,10 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onPrimary?.call(this);
   }
@@ -2229,6 +2279,10 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onPrimary != null) {
@@ -2301,6 +2355,8 @@ class _$_UpdateColorEventPrimaryContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return primaryContainer(color);
   }
@@ -2336,6 +2392,8 @@ class _$_UpdateColorEventPrimaryContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return primaryContainer?.call(color);
   }
@@ -2371,6 +2429,8 @@ class _$_UpdateColorEventPrimaryContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (primaryContainer != null) {
@@ -2421,6 +2481,10 @@ class _$_UpdateColorEventPrimaryContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return primaryContainer(this);
   }
@@ -2463,6 +2527,10 @@ class _$_UpdateColorEventPrimaryContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return primaryContainer?.call(this);
   }
@@ -2502,6 +2570,10 @@ class _$_UpdateColorEventPrimaryContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (primaryContainer != null) {
@@ -2575,6 +2647,8 @@ class _$_UpdateColorEventOnPrimaryContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onPrimaryContainer(color);
   }
@@ -2610,6 +2684,8 @@ class _$_UpdateColorEventOnPrimaryContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onPrimaryContainer?.call(color);
   }
@@ -2645,6 +2721,8 @@ class _$_UpdateColorEventOnPrimaryContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onPrimaryContainer != null) {
@@ -2695,6 +2773,10 @@ class _$_UpdateColorEventOnPrimaryContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onPrimaryContainer(this);
   }
@@ -2737,6 +2819,10 @@ class _$_UpdateColorEventOnPrimaryContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onPrimaryContainer?.call(this);
   }
@@ -2776,6 +2862,10 @@ class _$_UpdateColorEventOnPrimaryContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onPrimaryContainer != null) {
@@ -2848,6 +2938,8 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return secondary(color);
   }
@@ -2883,6 +2975,8 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return secondary?.call(color);
   }
@@ -2918,6 +3012,8 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (secondary != null) {
@@ -2968,6 +3064,10 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return secondary(this);
   }
@@ -3010,6 +3110,10 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return secondary?.call(this);
   }
@@ -3049,6 +3153,10 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (secondary != null) {
@@ -3120,6 +3228,8 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onSecondary(color);
   }
@@ -3155,6 +3265,8 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onSecondary?.call(color);
   }
@@ -3190,6 +3302,8 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSecondary != null) {
@@ -3240,6 +3354,10 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onSecondary(this);
   }
@@ -3282,6 +3400,10 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onSecondary?.call(this);
   }
@@ -3321,6 +3443,10 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSecondary != null) {
@@ -3393,6 +3519,8 @@ class _$_UpdateColorEventSecondaryContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return secondaryContainer(color);
   }
@@ -3428,6 +3556,8 @@ class _$_UpdateColorEventSecondaryContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return secondaryContainer?.call(color);
   }
@@ -3463,6 +3593,8 @@ class _$_UpdateColorEventSecondaryContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (secondaryContainer != null) {
@@ -3513,6 +3645,10 @@ class _$_UpdateColorEventSecondaryContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return secondaryContainer(this);
   }
@@ -3555,6 +3691,10 @@ class _$_UpdateColorEventSecondaryContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return secondaryContainer?.call(this);
   }
@@ -3594,6 +3734,10 @@ class _$_UpdateColorEventSecondaryContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (secondaryContainer != null) {
@@ -3667,6 +3811,8 @@ class _$_UpdateColorEventOnSecondaryContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onSecondaryContainer(color);
   }
@@ -3702,6 +3848,8 @@ class _$_UpdateColorEventOnSecondaryContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onSecondaryContainer?.call(color);
   }
@@ -3737,6 +3885,8 @@ class _$_UpdateColorEventOnSecondaryContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSecondaryContainer != null) {
@@ -3787,6 +3937,10 @@ class _$_UpdateColorEventOnSecondaryContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onSecondaryContainer(this);
   }
@@ -3829,6 +3983,10 @@ class _$_UpdateColorEventOnSecondaryContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onSecondaryContainer?.call(this);
   }
@@ -3868,6 +4026,10 @@ class _$_UpdateColorEventOnSecondaryContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSecondaryContainer != null) {
@@ -3940,6 +4102,8 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return tertiary(color);
   }
@@ -3975,6 +4139,8 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return tertiary?.call(color);
   }
@@ -4010,6 +4176,8 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (tertiary != null) {
@@ -4060,6 +4228,10 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return tertiary(this);
   }
@@ -4102,6 +4274,10 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return tertiary?.call(this);
   }
@@ -4141,6 +4317,10 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (tertiary != null) {
@@ -4212,6 +4392,8 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onTertiary(color);
   }
@@ -4247,6 +4429,8 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onTertiary?.call(color);
   }
@@ -4282,6 +4466,8 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onTertiary != null) {
@@ -4332,6 +4518,10 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onTertiary(this);
   }
@@ -4374,6 +4564,10 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onTertiary?.call(this);
   }
@@ -4413,6 +4607,10 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onTertiary != null) {
@@ -4485,6 +4683,8 @@ class _$_UpdateColorEventTertiaryContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return tertiaryContainer(color);
   }
@@ -4520,6 +4720,8 @@ class _$_UpdateColorEventTertiaryContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return tertiaryContainer?.call(color);
   }
@@ -4555,6 +4757,8 @@ class _$_UpdateColorEventTertiaryContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (tertiaryContainer != null) {
@@ -4605,6 +4809,10 @@ class _$_UpdateColorEventTertiaryContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return tertiaryContainer(this);
   }
@@ -4647,6 +4855,10 @@ class _$_UpdateColorEventTertiaryContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return tertiaryContainer?.call(this);
   }
@@ -4686,6 +4898,10 @@ class _$_UpdateColorEventTertiaryContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (tertiaryContainer != null) {
@@ -4758,6 +4974,8 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return error(color);
   }
@@ -4793,6 +5011,8 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return error?.call(color);
   }
@@ -4828,6 +5048,8 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -4878,6 +5100,10 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return error(this);
   }
@@ -4920,6 +5146,10 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return error?.call(this);
   }
@@ -4959,6 +5189,10 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -5030,6 +5264,8 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onError(color);
   }
@@ -5065,6 +5301,8 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onError?.call(color);
   }
@@ -5100,6 +5338,8 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onError != null) {
@@ -5150,6 +5390,10 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onError(this);
   }
@@ -5192,6 +5436,10 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onError?.call(this);
   }
@@ -5231,6 +5479,10 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onError != null) {
@@ -5303,6 +5555,8 @@ class _$_UpdateColorEventErrorContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return errorContainer(color);
   }
@@ -5338,6 +5592,8 @@ class _$_UpdateColorEventErrorContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return errorContainer?.call(color);
   }
@@ -5373,6 +5629,8 @@ class _$_UpdateColorEventErrorContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (errorContainer != null) {
@@ -5423,6 +5681,10 @@ class _$_UpdateColorEventErrorContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return errorContainer(this);
   }
@@ -5465,6 +5727,10 @@ class _$_UpdateColorEventErrorContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return errorContainer?.call(this);
   }
@@ -5504,6 +5770,10 @@ class _$_UpdateColorEventErrorContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (errorContainer != null) {
@@ -5577,6 +5847,8 @@ class _$_UpdateColorEventOnErrorContainer
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onErrorContainer(color);
   }
@@ -5612,6 +5884,8 @@ class _$_UpdateColorEventOnErrorContainer
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onErrorContainer?.call(color);
   }
@@ -5647,6 +5921,8 @@ class _$_UpdateColorEventOnErrorContainer
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onErrorContainer != null) {
@@ -5697,6 +5973,10 @@ class _$_UpdateColorEventOnErrorContainer
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onErrorContainer(this);
   }
@@ -5739,6 +6019,10 @@ class _$_UpdateColorEventOnErrorContainer
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onErrorContainer?.call(this);
   }
@@ -5778,6 +6062,10 @@ class _$_UpdateColorEventOnErrorContainer
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onErrorContainer != null) {
@@ -5850,6 +6138,8 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return outline(color);
   }
@@ -5885,6 +6175,8 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return outline?.call(color);
   }
@@ -5920,6 +6212,8 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (outline != null) {
@@ -5970,6 +6264,10 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return outline(this);
   }
@@ -6012,6 +6310,10 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return outline?.call(this);
   }
@@ -6051,6 +6353,10 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (outline != null) {
@@ -6123,6 +6429,8 @@ class _$_UpdateColorEventOutlineVariant
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return outlineVariant(color);
   }
@@ -6158,6 +6466,8 @@ class _$_UpdateColorEventOutlineVariant
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return outlineVariant?.call(color);
   }
@@ -6193,6 +6503,8 @@ class _$_UpdateColorEventOutlineVariant
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (outlineVariant != null) {
@@ -6243,6 +6555,10 @@ class _$_UpdateColorEventOutlineVariant
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return outlineVariant(this);
   }
@@ -6285,6 +6601,10 @@ class _$_UpdateColorEventOutlineVariant
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return outlineVariant?.call(this);
   }
@@ -6324,6 +6644,10 @@ class _$_UpdateColorEventOutlineVariant
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (outlineVariant != null) {
@@ -6396,6 +6720,8 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return background(color);
   }
@@ -6431,6 +6757,8 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return background?.call(color);
   }
@@ -6466,6 +6794,8 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (background != null) {
@@ -6516,6 +6846,10 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return background(this);
   }
@@ -6558,6 +6892,10 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return background?.call(this);
   }
@@ -6597,6 +6935,10 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (background != null) {
@@ -6668,6 +7010,8 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onBackground(color);
   }
@@ -6703,6 +7047,8 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onBackground?.call(color);
   }
@@ -6738,6 +7084,8 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onBackground != null) {
@@ -6788,6 +7136,10 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onBackground(this);
   }
@@ -6830,6 +7182,10 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onBackground?.call(this);
   }
@@ -6869,6 +7225,10 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onBackground != null) {
@@ -6940,6 +7300,8 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return surface(color);
   }
@@ -6975,6 +7337,8 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return surface?.call(color);
   }
@@ -7010,6 +7374,8 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surface != null) {
@@ -7060,6 +7426,10 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return surface(this);
   }
@@ -7102,6 +7472,10 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return surface?.call(this);
   }
@@ -7141,6 +7515,10 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surface != null) {
@@ -7212,6 +7590,8 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onSurface(color);
   }
@@ -7247,6 +7627,8 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onSurface?.call(color);
   }
@@ -7282,6 +7664,8 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSurface != null) {
@@ -7332,6 +7716,10 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onSurface(this);
   }
@@ -7374,6 +7762,10 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onSurface?.call(this);
   }
@@ -7413,6 +7805,10 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSurface != null) {
@@ -7485,6 +7881,8 @@ class _$_UpdateColorEventSurfaceVariant
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return surfaceVariant(color);
   }
@@ -7520,6 +7918,8 @@ class _$_UpdateColorEventSurfaceVariant
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return surfaceVariant?.call(color);
   }
@@ -7555,6 +7955,8 @@ class _$_UpdateColorEventSurfaceVariant
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surfaceVariant != null) {
@@ -7605,6 +8007,10 @@ class _$_UpdateColorEventSurfaceVariant
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return surfaceVariant(this);
   }
@@ -7647,6 +8053,10 @@ class _$_UpdateColorEventSurfaceVariant
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return surfaceVariant?.call(this);
   }
@@ -7686,6 +8096,10 @@ class _$_UpdateColorEventSurfaceVariant
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surfaceVariant != null) {
@@ -7759,6 +8173,8 @@ class _$_UpdateColorEventOnSurfaceVariant
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return onSurfaceVariant(color);
   }
@@ -7794,6 +8210,8 @@ class _$_UpdateColorEventOnSurfaceVariant
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return onSurfaceVariant?.call(color);
   }
@@ -7829,6 +8247,8 @@ class _$_UpdateColorEventOnSurfaceVariant
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSurfaceVariant != null) {
@@ -7879,6 +8299,10 @@ class _$_UpdateColorEventOnSurfaceVariant
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return onSurfaceVariant(this);
   }
@@ -7921,6 +8345,10 @@ class _$_UpdateColorEventOnSurfaceVariant
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return onSurfaceVariant?.call(this);
   }
@@ -7960,6 +8388,10 @@ class _$_UpdateColorEventOnSurfaceVariant
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (onSurfaceVariant != null) {
@@ -8033,6 +8465,8 @@ class _$_UpdateColorEventInverseSurface
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return inverseSurface(color);
   }
@@ -8068,6 +8502,8 @@ class _$_UpdateColorEventInverseSurface
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return inverseSurface?.call(color);
   }
@@ -8103,6 +8539,8 @@ class _$_UpdateColorEventInverseSurface
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (inverseSurface != null) {
@@ -8153,6 +8591,10 @@ class _$_UpdateColorEventInverseSurface
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return inverseSurface(this);
   }
@@ -8195,6 +8637,10 @@ class _$_UpdateColorEventInverseSurface
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return inverseSurface?.call(this);
   }
@@ -8234,6 +8680,10 @@ class _$_UpdateColorEventInverseSurface
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (inverseSurface != null) {
@@ -8306,6 +8756,8 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return shadow(color);
   }
@@ -8341,6 +8793,8 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return shadow?.call(color);
   }
@@ -8376,6 +8830,8 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (shadow != null) {
@@ -8426,6 +8882,10 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return shadow(this);
   }
@@ -8468,6 +8928,10 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return shadow?.call(this);
   }
@@ -8507,6 +8971,10 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (shadow != null) {
@@ -8578,6 +9046,8 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return scrim(color);
   }
@@ -8613,6 +9083,8 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return scrim?.call(color);
   }
@@ -8648,6 +9120,8 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (scrim != null) {
@@ -8698,6 +9172,10 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return scrim(this);
   }
@@ -8740,6 +9218,10 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return scrim?.call(this);
   }
@@ -8779,6 +9261,10 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (scrim != null) {
@@ -8850,6 +9336,8 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return surfaceTint(color);
   }
@@ -8885,6 +9373,8 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return surfaceTint?.call(color);
   }
@@ -8920,6 +9410,8 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surfaceTint != null) {
@@ -8970,6 +9462,10 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return surfaceTint(this);
   }
@@ -9012,6 +9508,10 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return surfaceTint?.call(this);
   }
@@ -9051,6 +9551,10 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (surfaceTint != null) {
@@ -9129,6 +9633,8 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     required TResult Function(Color? color) scrim,
     required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
   }) {
     return gradientTab(colors);
   }
@@ -9164,6 +9670,8 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     TResult? Function(Color? color)? scrim,
     TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
   }) {
     return gradientTab?.call(colors);
   }
@@ -9199,6 +9707,8 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     TResult Function(Color? color)? scrim,
     TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (gradientTab != null) {
@@ -9249,6 +9759,10 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     required TResult Function(_UpdateColorEventScrim value) scrim,
     required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
   }) {
     return gradientTab(this);
   }
@@ -9291,6 +9805,10 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     TResult? Function(_UpdateColorEventScrim value)? scrim,
     TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
   }) {
     return gradientTab?.call(this);
   }
@@ -9330,6 +9848,10 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
     TResult Function(_UpdateColorEventScrim value)? scrim,
     TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
     required TResult orElse(),
   }) {
     if (gradientTab != null) {
@@ -9344,6 +9866,590 @@ abstract class _UpdateColorEventGradientTab implements UpdateColorSchemeEvent {
       _$_UpdateColorEventGradientTab;
 
   List<Color> get colors;
+}
+
+/// @nodoc
+
+class _$_UpdateColorLaunchAdaptiveIcon
+    implements _UpdateColorLaunchAdaptiveIcon {
+  const _$_UpdateColorLaunchAdaptiveIcon(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.launchAdaptiveIconColor(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorLaunchAdaptiveIcon &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
+  }) {
+    return launchAdaptiveIconColor(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
+  }) {
+    return launchAdaptiveIconColor?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (launchAdaptiveIconColor != null) {
+      return launchAdaptiveIconColor(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
+  }) {
+    return launchAdaptiveIconColor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+  }) {
+    return launchAdaptiveIconColor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (launchAdaptiveIconColor != null) {
+      return launchAdaptiveIconColor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorLaunchAdaptiveIcon
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorLaunchAdaptiveIcon(final Color? color) =
+      _$_UpdateColorLaunchAdaptiveIcon;
+
+  Color? get color;
+}
+
+/// @nodoc
+
+class _$_UpdateColorEventlaunchSplashBackground
+    implements _UpdateColorEventlaunchSplashBackground {
+  const _$_UpdateColorEventlaunchSplashBackground(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.launchSplashBackgroundColor(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateColorEventlaunchSplashBackground &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) primaryContainer,
+    required TResult Function(Color? color) onPrimaryContainer,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) onSecondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) onTertiary,
+    required TResult Function(Color? color) tertiaryContainer,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) onError,
+    required TResult Function(Color? color) errorContainer,
+    required TResult Function(Color? color) onErrorContainer,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) outlineVariant,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(Color? color) surfaceVariant,
+    required TResult Function(Color? color) onSurfaceVariant,
+    required TResult Function(Color? color) inverseSurface,
+    required TResult Function(Color? color) shadow,
+    required TResult Function(Color? color) scrim,
+    required TResult Function(Color? color) surfaceTint,
+    required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
+  }) {
+    return launchSplashBackgroundColor(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? primaryContainer,
+    TResult? Function(Color? color)? onPrimaryContainer,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? onSecondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? onTertiary,
+    TResult? Function(Color? color)? tertiaryContainer,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? onError,
+    TResult? Function(Color? color)? errorContainer,
+    TResult? Function(Color? color)? onErrorContainer,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? outlineVariant,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(Color? color)? surfaceVariant,
+    TResult? Function(Color? color)? onSurfaceVariant,
+    TResult? Function(Color? color)? inverseSurface,
+    TResult? Function(Color? color)? shadow,
+    TResult? Function(Color? color)? scrim,
+    TResult? Function(Color? color)? surfaceTint,
+    TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
+  }) {
+    return launchSplashBackgroundColor?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? primaryContainer,
+    TResult Function(Color? color)? onPrimaryContainer,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? onSecondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? onTertiary,
+    TResult Function(Color? color)? tertiaryContainer,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? onError,
+    TResult Function(Color? color)? errorContainer,
+    TResult Function(Color? color)? onErrorContainer,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? outlineVariant,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(Color? color)? surfaceVariant,
+    TResult Function(Color? color)? onSurfaceVariant,
+    TResult Function(Color? color)? inverseSurface,
+    TResult Function(Color? color)? shadow,
+    TResult Function(Color? color)? scrim,
+    TResult Function(Color? color)? surfaceTint,
+    TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (launchSplashBackgroundColor != null) {
+      return launchSplashBackgroundColor(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventPrimaryContainer value)
+        primaryContainer,
+    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
+        onPrimaryContainer,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
+    required TResult Function(_UpdateColorEventTertiaryContainer value)
+        tertiaryContainer,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOnError value) onError,
+    required TResult Function(_UpdateColorEventErrorContainer value)
+        errorContainer,
+    required TResult Function(_UpdateColorEventOnErrorContainer value)
+        onErrorContainer,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventOutlineVariant value)
+        outlineVariant,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventSurfaceVariant value)
+        surfaceVariant,
+    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
+        onSurfaceVariant,
+    required TResult Function(_UpdateColorEventInverseSurface value)
+        inverseSurface,
+    required TResult Function(_UpdateColorEventShadow value) shadow,
+    required TResult Function(_UpdateColorEventScrim value) scrim,
+    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
+  }) {
+    return launchSplashBackgroundColor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventPrimaryContainer value)?
+        primaryContainer,
+    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult? Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOnError value)? onError,
+    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult? Function(_UpdateColorEventOnErrorContainer value)?
+        onErrorContainer,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
+        onSurfaceVariant,
+    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult? Function(_UpdateColorEventShadow value)? shadow,
+    TResult? Function(_UpdateColorEventScrim value)? scrim,
+    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+  }) {
+    return launchSplashBackgroundColor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
+    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
+        onPrimaryContainer,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
+    TResult Function(_UpdateColorEventTertiaryContainer value)?
+        tertiaryContainer,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOnError value)? onError,
+    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
+    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
+    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
+    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
+    TResult Function(_UpdateColorEventShadow value)? shadow,
+    TResult Function(_UpdateColorEventScrim value)? scrim,
+    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (launchSplashBackgroundColor != null) {
+      return launchSplashBackgroundColor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventlaunchSplashBackground
+    implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventlaunchSplashBackground(final Color? color) =
+      _$_UpdateColorEventlaunchSplashBackground;
+
+  Color? get color;
 }
 
 /// @nodoc

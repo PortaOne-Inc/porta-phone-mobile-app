@@ -74,8 +74,12 @@ dependencies:
   # The main dependency of the configuration object
   screenshots:
     path: ../webtrit_phone/screenshots
+
   webtrit_phone:
     path: ../webtrit_phone
+
+  style:
+    path: ../webtrit_phone/packages/style
 
 analyzer:
   exclude:

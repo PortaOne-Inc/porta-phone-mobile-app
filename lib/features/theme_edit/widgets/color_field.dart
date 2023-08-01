@@ -7,11 +7,13 @@ class ColorField extends StatelessWidget {
     super.key,
     required this.title,
     this.color = Colors.white,
+    this.margin = EdgeInsets.zero,
     this.onTap,
   });
 
   final String title;
   final Color? color;
+  final EdgeInsets margin;
   final Function(Color color)? onTap;
 
   @override
@@ -19,6 +21,7 @@ class ColorField extends StatelessWidget {
     return MouseRegion(
       child: GestureDetector(
         child: Card(
+          margin: margin,
           elevation: 1,
           child: Container(
             padding: const EdgeInsets.all(8),
@@ -44,7 +47,7 @@ class ColorField extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                   ],
                 ),
                 Container(

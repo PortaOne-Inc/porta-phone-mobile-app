@@ -19,6 +19,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     super.key,
   });
 
+  static const _marginBetweenComponent = 8.0;
+
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ThemePropertyCubit>();
@@ -53,9 +55,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ),
+                    const SizedBox(width: _marginBetweenComponent),
                     Tooltip(
                       message: context.l10n.feature_theme_edit_open_screen,
                       child: IconButton(
@@ -93,7 +93,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       ),
                     ),
                     const SizedBox(
-                      width: 8,
+                      width: _marginBetweenComponent,
                     ),
                     Tooltip(
                       message: context.l10n.feature_theme_edit_open_screen,
@@ -147,6 +147,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.feature_theme_edit_Color_on_primary,
@@ -160,6 +161,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     ColorField(
                       title: context.l10n.configurator_color_secondary,
                       color: state.theme?.colors?.secondary,
@@ -169,6 +171,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         (color) => bloc.add(UpdateColorSchemeEvent.secondary(color)),
                       ),
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     ColorField(
                       title: context.l10n.configurator_color_outline,
                       color: state.theme?.colors?.outline,
@@ -178,6 +181,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         (color) => bloc.add(UpdateColorSchemeEvent.outline(color)),
                       ),
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -191,6 +195,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_on_secondary_container,
@@ -204,6 +209,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -217,6 +223,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_error,
@@ -230,6 +237,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -243,6 +251,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.feature_theme_edit_Color_on_background,
@@ -256,6 +265,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     Row(
                       children: [
                         Expanded(
@@ -269,6 +279,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
                             title: context.l10n.configurator_color_on_surface,
@@ -282,6 +293,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     ),
+                    const SizedBox(height: _marginBetweenComponent),
                     GradientField(
                       title: context.l10n.configurator_color_gradient_tab,
                       colors: state.theme?.colorGradientCollection ?? [],
@@ -299,6 +311,58 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               .toList(),
                         ));
                       },
+                    ),
+                    const SizedBox(height: _marginBetweenComponent * 3),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Launcher color scheme'),
+                        Tooltip(
+                          message:
+                              'These colors are responsible for the icons that are displayed in the system and the system splash screen that is displayed before preparing the application. Currently, these colors are not displayed in the layout.',
+                          child: Container(
+                            margin: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.4)),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(24),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.info_outline,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: 'Adaptive icon background',
+                            color: state.theme?.colors?.launch?.adaptiveIconBackground,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.launchAdaptiveIconColor(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: 'Native splash background',
+                            color: state.theme?.colors?.launch?.splashBackground,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.launchSplashBackgroundColor(color)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 )

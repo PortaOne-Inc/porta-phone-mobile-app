@@ -44,6 +44,7 @@ mixin _$ColorSchemeModel {
   Color? get scrim => throw _privateConstructorUsedError;
   Color? get surfaceTint => throw _privateConstructorUsedError;
   List<Color>? get gradientTabColor => throw _privateConstructorUsedError;
+  LaunchModel? get launch => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ColorSchemeModelCopyWith<ColorSchemeModel> get copyWith =>
@@ -84,7 +85,10 @@ abstract class $ColorSchemeModelCopyWith<$Res> {
       Color? shadow,
       Color? scrim,
       Color? surfaceTint,
-      List<Color>? gradientTabColor});
+      List<Color>? gradientTabColor,
+      LaunchModel? launch});
+
+  $LaunchModelCopyWith<$Res>? get launch;
 }
 
 /// @nodoc
@@ -128,6 +132,7 @@ class _$ColorSchemeModelCopyWithImpl<$Res, $Val extends ColorSchemeModel>
     Object? scrim = freezed,
     Object? surfaceTint = freezed,
     Object? gradientTabColor = freezed,
+    Object? launch = freezed,
   }) {
     return _then(_value.copyWith(
       primary: freezed == primary
@@ -242,7 +247,23 @@ class _$ColorSchemeModelCopyWithImpl<$Res, $Val extends ColorSchemeModel>
           ? _value.gradientTabColor
           : gradientTabColor // ignore: cast_nullable_to_non_nullable
               as List<Color>?,
+      launch: freezed == launch
+          ? _value.launch
+          : launch // ignore: cast_nullable_to_non_nullable
+              as LaunchModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LaunchModelCopyWith<$Res>? get launch {
+    if (_value.launch == null) {
+      return null;
+    }
+
+    return $LaunchModelCopyWith<$Res>(_value.launch!, (value) {
+      return _then(_value.copyWith(launch: value) as $Val);
+    });
   }
 }
 
@@ -282,7 +303,11 @@ abstract class _$$_ColorModelCopyWith<$Res>
       Color? shadow,
       Color? scrim,
       Color? surfaceTint,
-      List<Color>? gradientTabColor});
+      List<Color>? gradientTabColor,
+      LaunchModel? launch});
+
+  @override
+  $LaunchModelCopyWith<$Res>? get launch;
 }
 
 /// @nodoc
@@ -324,6 +349,7 @@ class __$$_ColorModelCopyWithImpl<$Res>
     Object? scrim = freezed,
     Object? surfaceTint = freezed,
     Object? gradientTabColor = freezed,
+    Object? launch = freezed,
   }) {
     return _then(_$_ColorModel(
       primary: freezed == primary
@@ -438,6 +464,10 @@ class __$$_ColorModelCopyWithImpl<$Res>
           ? _value._gradientTabColor
           : gradientTabColor // ignore: cast_nullable_to_non_nullable
               as List<Color>?,
+      launch: freezed == launch
+          ? _value.launch
+          : launch // ignore: cast_nullable_to_non_nullable
+              as LaunchModel?,
     ));
   }
 }
@@ -473,7 +503,8 @@ class _$_ColorModel extends _ColorModel {
       this.shadow,
       this.scrim,
       this.surfaceTint,
-      final List<Color>? gradientTabColor})
+      final List<Color>? gradientTabColor,
+      this.launch})
       : _gradientTabColor = gradientTabColor,
         super._();
 
@@ -543,8 +574,11 @@ class _$_ColorModel extends _ColorModel {
   }
 
   @override
+  final LaunchModel? launch;
+
+  @override
   String toString() {
-    return 'ColorSchemeModel(primary: $primary, onPrimary: $onPrimary, primaryContainer: $primaryContainer, onPrimaryContainer: $onPrimaryContainer, secondary: $secondary, onSecondary: $onSecondary, secondaryContainer: $secondaryContainer, onSecondaryContainer: $onSecondaryContainer, tertiary: $tertiary, onTertiary: $onTertiary, tertiaryContainer: $tertiaryContainer, error: $error, onError: $onError, errorContainer: $errorContainer, onErrorContainer: $onErrorContainer, outline: $outline, outlineVariant: $outlineVariant, background: $background, onBackground: $onBackground, surface: $surface, onSurface: $onSurface, surfaceVariant: $surfaceVariant, onSurfaceVariant: $onSurfaceVariant, inverseSurface: $inverseSurface, shadow: $shadow, scrim: $scrim, surfaceTint: $surfaceTint, gradientTabColor: $gradientTabColor)';
+    return 'ColorSchemeModel(primary: $primary, onPrimary: $onPrimary, primaryContainer: $primaryContainer, onPrimaryContainer: $onPrimaryContainer, secondary: $secondary, onSecondary: $onSecondary, secondaryContainer: $secondaryContainer, onSecondaryContainer: $onSecondaryContainer, tertiary: $tertiary, onTertiary: $onTertiary, tertiaryContainer: $tertiaryContainer, error: $error, onError: $onError, errorContainer: $errorContainer, onErrorContainer: $onErrorContainer, outline: $outline, outlineVariant: $outlineVariant, background: $background, onBackground: $onBackground, surface: $surface, onSurface: $onSurface, surfaceVariant: $surfaceVariant, onSurfaceVariant: $onSurfaceVariant, inverseSurface: $inverseSurface, shadow: $shadow, scrim: $scrim, surfaceTint: $surfaceTint, gradientTabColor: $gradientTabColor, launch: $launch)';
   }
 
   @override
@@ -600,7 +634,8 @@ class _$_ColorModel extends _ColorModel {
             (identical(other.surfaceTint, surfaceTint) ||
                 other.surfaceTint == surfaceTint) &&
             const DeepCollectionEquality()
-                .equals(other._gradientTabColor, _gradientTabColor));
+                .equals(other._gradientTabColor, _gradientTabColor) &&
+            (identical(other.launch, launch) || other.launch == launch));
   }
 
   @override
@@ -633,7 +668,8 @@ class _$_ColorModel extends _ColorModel {
         shadow,
         scrim,
         surfaceTint,
-        const DeepCollectionEquality().hash(_gradientTabColor)
+        const DeepCollectionEquality().hash(_gradientTabColor),
+        launch
       ]);
 
   @JsonKey(ignore: true)
@@ -672,7 +708,8 @@ abstract class _ColorModel extends ColorSchemeModel {
       final Color? shadow,
       final Color? scrim,
       final Color? surfaceTint,
-      final List<Color>? gradientTabColor}) = _$_ColorModel;
+      final List<Color>? gradientTabColor,
+      final LaunchModel? launch}) = _$_ColorModel;
   const _ColorModel._() : super._();
 
   @override
@@ -732,7 +769,147 @@ abstract class _ColorModel extends ColorSchemeModel {
   @override
   List<Color>? get gradientTabColor;
   @override
+  LaunchModel? get launch;
+  @override
   @JsonKey(ignore: true)
   _$$_ColorModelCopyWith<_$_ColorModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$LaunchModel {
+  Color? get adaptiveIconBackground => throw _privateConstructorUsedError;
+  Color? get splashBackground => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LaunchModelCopyWith<LaunchModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LaunchModelCopyWith<$Res> {
+  factory $LaunchModelCopyWith(
+          LaunchModel value, $Res Function(LaunchModel) then) =
+      _$LaunchModelCopyWithImpl<$Res, LaunchModel>;
+  @useResult
+  $Res call({Color? adaptiveIconBackground, Color? splashBackground});
+}
+
+/// @nodoc
+class _$LaunchModelCopyWithImpl<$Res, $Val extends LaunchModel>
+    implements $LaunchModelCopyWith<$Res> {
+  _$LaunchModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? adaptiveIconBackground = freezed,
+    Object? splashBackground = freezed,
+  }) {
+    return _then(_value.copyWith(
+      adaptiveIconBackground: freezed == adaptiveIconBackground
+          ? _value.adaptiveIconBackground
+          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
+              as Color?,
+      splashBackground: freezed == splashBackground
+          ? _value.splashBackground
+          : splashBackground // ignore: cast_nullable_to_non_nullable
+              as Color?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_LaunchModelCopyWith<$Res>
+    implements $LaunchModelCopyWith<$Res> {
+  factory _$$_LaunchModelCopyWith(
+          _$_LaunchModel value, $Res Function(_$_LaunchModel) then) =
+      __$$_LaunchModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Color? adaptiveIconBackground, Color? splashBackground});
+}
+
+/// @nodoc
+class __$$_LaunchModelCopyWithImpl<$Res>
+    extends _$LaunchModelCopyWithImpl<$Res, _$_LaunchModel>
+    implements _$$_LaunchModelCopyWith<$Res> {
+  __$$_LaunchModelCopyWithImpl(
+      _$_LaunchModel _value, $Res Function(_$_LaunchModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? adaptiveIconBackground = freezed,
+    Object? splashBackground = freezed,
+  }) {
+    return _then(_$_LaunchModel(
+      adaptiveIconBackground: freezed == adaptiveIconBackground
+          ? _value.adaptiveIconBackground
+          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
+              as Color?,
+      splashBackground: freezed == splashBackground
+          ? _value.splashBackground
+          : splashBackground // ignore: cast_nullable_to_non_nullable
+              as Color?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LaunchModel implements _LaunchModel {
+  const _$_LaunchModel({this.adaptiveIconBackground, this.splashBackground});
+
+  @override
+  final Color? adaptiveIconBackground;
+  @override
+  final Color? splashBackground;
+
+  @override
+  String toString() {
+    return 'LaunchModel(adaptiveIconBackground: $adaptiveIconBackground, splashBackground: $splashBackground)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LaunchModel &&
+            (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
+                other.adaptiveIconBackground == adaptiveIconBackground) &&
+            (identical(other.splashBackground, splashBackground) ||
+                other.splashBackground == splashBackground));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, adaptiveIconBackground, splashBackground);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LaunchModelCopyWith<_$_LaunchModel> get copyWith =>
+      __$$_LaunchModelCopyWithImpl<_$_LaunchModel>(this, _$identity);
+}
+
+abstract class _LaunchModel implements LaunchModel {
+  const factory _LaunchModel(
+      {final Color? adaptiveIconBackground,
+      final Color? splashBackground}) = _$_LaunchModel;
+
+  @override
+  Color? get adaptiveIconBackground;
+  @override
+  Color? get splashBackground;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LaunchModelCopyWith<_$_LaunchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
