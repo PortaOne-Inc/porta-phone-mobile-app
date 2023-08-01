@@ -4,7 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import '../core/env/app_environment.dart';
+import '../core/app/env/env.dart';
+
 import 'injection.config.dart';
 
 late GetIt _getIt;
@@ -20,7 +21,6 @@ Future<GetIt> configureDependencies({
 
 @module
 abstract class RegisterModule {
-
   @LazySingleton()
   FirebaseAuth auth() {
     final firebaseAuth = FirebaseAuth.instance;

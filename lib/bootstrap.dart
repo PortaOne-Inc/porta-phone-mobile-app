@@ -13,9 +13,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:webtrit_configurator/core/env/env.dart';
-
 import 'package:webtrit_configurator/di/di.dart';
+
+import 'core/app/env/env.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
   await runZonedGuarded(
