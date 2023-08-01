@@ -28,6 +28,7 @@ class MenuPreview extends StatelessWidget {
         Align(
           alignment: Alignment.topRight,
           child: Dropdown(
+            constraints: const BoxConstraints(maxWidth: 64),
             items: [
               context.l10n.feature_theme_edit_Dropdown_scale_x1,
               context.l10n.feature_theme_edit_Dropdown_scale_x2,
