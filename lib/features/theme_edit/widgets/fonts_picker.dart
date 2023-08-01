@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'package:webtrit_configurator/core/assets/assets.dart';
 import 'package:webtrit_configurator/core/l10n/l10n.dart';
+
+import '../consts/font_const.dart';
 
 class FontsPicker extends StatefulWidget {
   const FontsPicker({
@@ -147,7 +148,7 @@ class _FontsPickerState extends State<FontsPicker> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              final url = Uri.tryParse(ConstsUrl.font(item));
+                              final url = Uri.tryParse(FontConst.font(item));
                               if (url != null) {
                                 if (await canLaunchUrl(url)) {
                                   await launchUrl(url);
