@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:webtrit_configurator/core/app/route/route.dart';
 
+import 'package:webtrit_configurator/app/route/route.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class NotFoundPage extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import '../core/app/env/env.dart';
+import 'package:webtrit_configurator/app/application.dart';
 
 import 'injection.config.dart';
 

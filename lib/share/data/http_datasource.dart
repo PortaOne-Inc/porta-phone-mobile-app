@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:webtrit_configurator/core/app/application.dart';
+import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/share/entity/dto/dto.dart';
 
 @lazySingleton
