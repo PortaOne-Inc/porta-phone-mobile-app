@@ -1,4 +1,5 @@
 export 'buttons/buttons.dart';
+export 'decoration/grid_widget.dart';
 export 'dialogs/dialogs.dart';
 export 'image/image.dart';
 export 'page/not_found_page.dart';
