@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/theme_edit/page/page_theme_preview_launch_icons.dart';
+import 'package:webtrit_configurator/features/theme_edit/page/page_theme_preview_native_splash.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../widgets/widgets.dart';
@@ -18,6 +21,7 @@ class PageThemePreview extends StatefulWidget {
 class _PageThemePreviewState extends State<PageThemePreview> {
   var _isFrameVisible = true;
   var _previewType = PreviewType.single;
+  var _layoutType = LayoutType.layout;
   var _focusScreenPosition = 0;
 
   final _screenshots = <Widget>[];
@@ -31,6 +35,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
         builder: (context) => Column(
           children: [
             MenuPreview(
+              isEnableFrame: _isFrameVisible,
               onScaleTab: (PreviewType type) {
                 _previewType = type;
                 setState(() {});
@@ -39,21 +44,43 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                 _isFrameVisible = visibility;
                 setState(() {});
               },
-              isEnableFrame: _isFrameVisible,
+              onTypeOfPreview: (LayoutType type) {
+                _layoutType = type;
+                setState(() {});
+              },
             ),
             Expanded(
               child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
                 listener: _listenBloc,
                 builder: (BuildContext context, state) {
+                  Widget layout;
+
+                  switch (_layoutType) {
+                    case LayoutType.layout:
+                      layout = PreviewDetails(
+                        type: _previewType,
+                        screens: _screenshots,
+                        screenFocus: _focusScreenPosition,
+                        isFrameVisible: _isFrameVisible,
+                        onFocusPosition: _setFocusedScreen,
+                      );
+                      break;
+                    case LayoutType.splash:
+                      layout = PageThemePreviewLaunchSplash(
+                        theme: state.theme!,
+                      );
+                      break;
+                    case LayoutType.icons:
+                      layout = PageThemePreviewLaunchIcons(
+                        theme: state.theme!,
+                      );
+
+                      break;
+                  }
+
                   return BackgroundBinaryResizableVertical(
-                    topChild: PreviewDetails(
-                      type: _previewType,
-                      screens: _screenshots,
-                      screenFocus: _focusScreenPosition,
-                      isFrameVisible: _isFrameVisible,
-                      onFocusPosition: _setFocusedScreen,
-                    ),
-                    bottomChild: _previewType == PreviewType.single
+                    topChild: layout,
+                    bottomChild: _previewType == PreviewType.single && _layoutType == LayoutType.layout
                         ? DrawerPreview(
                             screenshots: _screenshots,
                             focusScreenPosition: _focusScreenPosition,

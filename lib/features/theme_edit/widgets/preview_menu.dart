@@ -12,10 +12,12 @@ class MenuPreview extends StatelessWidget {
     required this.onScaleTab,
     required this.onFrameTab,
     required this.isEnableFrame,
+    required this.onTypeOfPreview,
   });
 
   final Function(PreviewType type) onScaleTab;
   final Function(bool isEnableFrame) onFrameTab;
+  final Function(LayoutType type) onTypeOfPreview;
 
   final bool isEnableFrame;
 
@@ -25,6 +27,19 @@ class MenuPreview extends StatelessWidget {
       isTopPosition: true,
       background: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
       children: [
+        Dropdown(
+          constraints: const BoxConstraints(maxWidth: 224),
+          items: const [
+            'Layouts',
+            'Launch icons',
+            'Native splash screen',
+          ],
+          onSelect: (int position) {
+            onTypeOfPreview(LayoutType.values[position]);
+          },
+          icon: const Icon(Icons.menu_open),
+        ),
+        const Spacer(),
         Align(
           alignment: Alignment.topRight,
           child: Dropdown(
