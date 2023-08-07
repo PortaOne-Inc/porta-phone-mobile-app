@@ -6,7 +6,6 @@ import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/theme_edit/model/exception/exception.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-
 import '../../common/common.dart';
 import '../theme_edit.dart';
 import '../widgets/widgets.dart';
@@ -49,11 +48,16 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         body: BackgroundBinaryResizableColumn(
           // Move left vertical divider
           dividerPosition: -MediaQuery.of(context).size.width / 5,
-          leftChild: SingleStack(
-            key: const ValueKey('leftStack'),
-            navigator: _leftPageNavigatorKey,
-            child: const PageThemeProperty(),
+          leftChild: ConditionalProgressBar(
+            condition: state.theme != null,
+            //TODO: Don't like this implementation with SingleStack
+            child: SingleStack(
+              key: const ValueKey('leftStack'),
+              navigator: _leftPageNavigatorKey,
+              child: const PageThemeProperty(),
+            ),
           ),
+          //TODO: Don't like this implementation with SingleStack
           rightChild: SingleStack(
             key: const ValueKey('rightStack'),
             navigator: _rightPageNavigatorKey,

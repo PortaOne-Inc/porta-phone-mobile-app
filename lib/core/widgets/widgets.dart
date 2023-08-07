@@ -1,3 +1,4 @@
+export 'behaviour/behaviour.dart';
 export 'buttons/buttons.dart';
 export 'decoration/grid_widget.dart';
 export 'dialogs/dialogs.dart';
@@ -7,4 +8,3 @@ export 'placeholders/placeholders.dart';
 export 'slider/sliders.dart';
 export 'switchers/switchers.dart';
 export 'toolbars/toolbars.dart';
-export 'behaviour/behaviour.dart';
