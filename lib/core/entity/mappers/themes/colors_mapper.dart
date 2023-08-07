@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:injectable/injectable.dart';
 
 import '../../../extension/extension.dart';
@@ -42,66 +40,51 @@ class ColorsMapper extends Mapper<ColorDTO?, ColorSchemeModel?> {
         : ColorSchemeModel(
             primary: UtilityColor.tryParseColorFromHex(
               dto.primary,
-              defaultColor: Colors.white,
             ),
             onPrimary: UtilityColor.tryParseColorFromHex(
               dto.onPrimary,
-              defaultColor: Colors.white,
             ),
             secondary: UtilityColor.tryParseColorFromHex(
               dto.secondary,
-              defaultColor: Colors.white,
             ),
             secondaryContainer: UtilityColor.tryParseColorFromHex(
               dto.secondaryContainer,
-              defaultColor: Colors.white,
             ),
             onSecondaryContainer: UtilityColor.tryParseColorFromHex(
               dto.onSecondaryContainer,
-              defaultColor: Colors.white,
             ),
             tertiary: UtilityColor.tryParseColorFromHex(
               dto.tertiary,
-              defaultColor: Colors.white,
             ),
             error: UtilityColor.tryParseColorFromHex(
               dto.error,
-              defaultColor: Colors.white,
             ),
             outline: UtilityColor.tryParseColorFromHex(
               dto.outline,
-              defaultColor: Colors.white,
             ),
             background: UtilityColor.tryParseColorFromHex(
               dto.background,
-              defaultColor: Colors.white,
             ),
             onBackground: UtilityColor.tryParseColorFromHex(
               dto.onBackground,
-              defaultColor: Colors.white,
             ),
             surface: UtilityColor.tryParseColorFromHex(
               dto.surface,
-              defaultColor: Colors.white,
             ),
             onSurface: UtilityColor.tryParseColorFromHex(
               dto.onSurface,
-              defaultColor: Colors.white,
             ),
             gradientTabColor: dto.gradientTabColor
                 ?.map((color) => UtilityColor.tryParseColorFromHex(
                       color,
-                      defaultColor: Colors.white,
                     )!)
                 .toList(),
             launch: LaunchModel(
               adaptiveIconBackground: UtilityColor.tryParseColorFromHex(
                 dto.launch?.adaptiveIconBackground,
-                defaultColor: Colors.white,
               ),
               splashBackground: UtilityColor.tryParseColorFromHex(
                 dto.launch?.splashBackground,
-                defaultColor: Colors.white,
               ),
             ),
           );
