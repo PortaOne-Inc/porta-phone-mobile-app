@@ -3,7 +3,6 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/core/core.dart';
 
 import '../model/models.dart';
 import '../usecase/usecase.dart';

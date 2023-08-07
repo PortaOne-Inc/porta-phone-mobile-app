@@ -20,7 +20,7 @@ mixin _$ThemeModel {
   String? get name => throw _privateConstructorUsedError;
   String? get fontFamily => throw _privateConstructorUsedError;
   ColorSchemeModel? get colors => throw _privateConstructorUsedError;
-  ImageSchemeModel? get images => throw _privateConstructorUsedError;
+  ImageSchemeModel get images => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,11 +39,11 @@ abstract class $ThemeModelCopyWith<$Res> {
       String? name,
       String? fontFamily,
       ColorSchemeModel? colors,
-      ImageSchemeModel? images,
+      ImageSchemeModel images,
       TextsModel? texts});
 
   $ColorSchemeModelCopyWith<$Res>? get colors;
-  $ImageSchemeModelCopyWith<$Res>? get images;
+  $ImageSchemeModelCopyWith<$Res> get images;
   $TextsModelCopyWith<$Res>? get texts;
 }
 
@@ -64,7 +64,7 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     Object? name = freezed,
     Object? fontFamily = freezed,
     Object? colors = freezed,
-    Object? images = freezed,
+    Object? images = null,
     Object? texts = freezed,
   }) {
     return _then(_value.copyWith(
@@ -84,10 +84,10 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as ColorSchemeModel?,
-      images: freezed == images
+      images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as ImageSchemeModel?,
+              as ImageSchemeModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -109,12 +109,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ImageSchemeModelCopyWith<$Res>? get images {
-    if (_value.images == null) {
-      return null;
-    }
-
-    return $ImageSchemeModelCopyWith<$Res>(_value.images!, (value) {
+  $ImageSchemeModelCopyWith<$Res> get images {
+    return $ImageSchemeModelCopyWith<$Res>(_value.images, (value) {
       return _then(_value.copyWith(images: value) as $Val);
     });
   }
@@ -145,13 +141,13 @@ abstract class _$$_ThemeModelCopyWith<$Res>
       String? name,
       String? fontFamily,
       ColorSchemeModel? colors,
-      ImageSchemeModel? images,
+      ImageSchemeModel images,
       TextsModel? texts});
 
   @override
   $ColorSchemeModelCopyWith<$Res>? get colors;
   @override
-  $ImageSchemeModelCopyWith<$Res>? get images;
+  $ImageSchemeModelCopyWith<$Res> get images;
   @override
   $TextsModelCopyWith<$Res>? get texts;
 }
@@ -171,7 +167,7 @@ class __$$_ThemeModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? fontFamily = freezed,
     Object? colors = freezed,
-    Object? images = freezed,
+    Object? images = null,
     Object? texts = freezed,
   }) {
     return _then(_$_ThemeModel(
@@ -191,10 +187,10 @@ class __$$_ThemeModelCopyWithImpl<$Res>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as ColorSchemeModel?,
-      images: freezed == images
+      images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as ImageSchemeModel?,
+              as ImageSchemeModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -211,7 +207,7 @@ class _$_ThemeModel extends _ThemeModel {
       this.name,
       this.fontFamily,
       this.colors,
-      this.images,
+      this.images = const ImageSchemeModel(),
       this.texts})
       : super._();
 
@@ -224,7 +220,8 @@ class _$_ThemeModel extends _ThemeModel {
   @override
   final ColorSchemeModel? colors;
   @override
-  final ImageSchemeModel? images;
+  @JsonKey()
+  final ImageSchemeModel images;
   @override
   final TextsModel? texts;
 
@@ -264,7 +261,7 @@ abstract class _ThemeModel extends ThemeModel {
       final String? name,
       final String? fontFamily,
       final ColorSchemeModel? colors,
-      final ImageSchemeModel? images,
+      final ImageSchemeModel images,
       final TextsModel? texts}) = _$_ThemeModel;
   const _ThemeModel._() : super._();
 
@@ -277,7 +274,7 @@ abstract class _ThemeModel extends ThemeModel {
   @override
   ColorSchemeModel? get colors;
   @override
-  ImageSchemeModel? get images;
+  ImageSchemeModel get images;
   @override
   TextsModel? get texts;
   @override

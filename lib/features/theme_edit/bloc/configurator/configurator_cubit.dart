@@ -181,7 +181,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   void _updateImageResources(ImageSchemeModel? image, Emitter<ThemePropertyState> emit) {
     emit(state.updateTheme(
-      theme: state.theme?.copyWith(images: image),
+      theme: state.theme?.copyWith(images: image ?? const ImageSchemeModel()),
     ));
   }
 

@@ -9,13 +9,13 @@ class ImageSchemeModel with _$ImageSchemeModel {
   const ImageSchemeModel._();
 
   const factory ImageSchemeModel({
-    ImageModel? primaryOnboardingLogo,
-    ImageModel? secondaryOnboardingLogo,
-    ImageModel? notificationLogo,
-    ImageModel? adaptiveIconBackground,
-    ImageModel? adaptiveIconForeground,
-    ImageModel? androidLauncherIcon,
-    ImageModel? iosLauncherIcon,
-    ImageModel? webLauncherIcon,
+    @Default(ImageModel()) ImageModel primaryOnboardingLogo,
+    @Default(ImageModel()) ImageModel secondaryOnboardingLogo,
+    @Default(ImageModel()) ImageModel notificationLogo,
+    @Default(ImageModel()) ImageModel adaptiveIconBackground,
+    @Default(ImageModel()) ImageModel adaptiveIconForeground,
+    @Default(ImageModel()) ImageModel androidLauncherIcon,
+    @Default(ImageModel()) ImageModel iosLauncherIcon,
+    @Default(ImageModel()) ImageModel webLauncherIcon,
   }) = _ImageSchemeModel;
 }

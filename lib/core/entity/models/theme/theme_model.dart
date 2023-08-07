@@ -14,7 +14,7 @@ class ThemeModel with _$ThemeModel {
     final String? name,
     final String? fontFamily,
     final ColorSchemeModel? colors,
-    final ImageSchemeModel? images,
+    @Default(ImageSchemeModel()) final ImageSchemeModel images,
     final TextsModel? texts,
   }) = _ThemeModel;
 
