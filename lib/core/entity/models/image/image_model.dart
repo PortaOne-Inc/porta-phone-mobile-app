@@ -2,6 +2,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'image_model.freezed.dart';
 
+enum ImageFormat {
+  vector,
+  raster,
+}
+
+enum ImageLocation {
+  network,
+  memory,
+  empty,
+}
+
 @freezed
 class ImageModel with _$ImageModel {
   const ImageModel._();
@@ -26,13 +37,25 @@ class ImageModel with _$ImageModel {
         mimeBMB,
       ];
 
-  bool get isAvailable => (data?.isNotEmpty ?? false) || url != null;
+  bool get isAvailable => location != ImageLocation.empty;
 
   bool get isNotAvailable => !isAvailable;
 
-  bool get isVector => mimeSVG == mime;
+  ImageFormat get type {
+    if (mimeSVG == mime) {
+      return ImageFormat.vector;
+    } else {
+      return ImageFormat.raster;
+    }
+  }
 
-  bool get isNetwork => url != null;
-
-  bool get isRaster => !isVector;
+  ImageLocation get location {
+    if (url != null) {
+      return ImageLocation.network;
+    } else if (data != null) {
+      return ImageLocation.memory;
+    } else {
+      return ImageLocation.empty;
+    }
+  }
 }
