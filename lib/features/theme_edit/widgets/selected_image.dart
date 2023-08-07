@@ -20,7 +20,7 @@ class SelectedImage extends StatelessWidget {
 
   final Size _size = const Size.square(200);
 
-  final ImageModel? image;
+  final ImageModel image;
   final ImageFilterModel imageFilter;
 
   final Function(ImageFilterModel format) onTap;
@@ -41,9 +41,14 @@ class SelectedImage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            ImageResource(
-              imageModel: image,
-              size: _size,
+            GestureDetector(
+              child: SizedBox(
+                width: _size.width,
+                height: _size.height,
+                child: ImageResource(
+                  imageModel: image,
+                ),
+              ),
               onTap: () => onTap(imageFilter),
             ),
             Align(

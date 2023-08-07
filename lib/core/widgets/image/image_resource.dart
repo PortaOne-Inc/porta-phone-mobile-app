@@ -5,77 +5,97 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
-import 'network_image.dart' as widgets;
-
-// TODO: Change logic
 class ImageResource extends StatelessWidget {
   const ImageResource({
     Key? key,
-    this.imageModel,
-    required this.size,
-    required this.onTap,
+    required this.imageModel,
+    this.fit = BoxFit.cover,
+    this.defaultWidget = const Center(
+      child: GridWidget(
+        density: 8,
+      ),
+    ),
   }) : super(key: key);
 
-  final ImageModel? imageModel;
-  final Function() onTap;
-  final Size size;
+  final ImageModel imageModel;
+  final Widget defaultWidget;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        color: Colors.black.withOpacity(0.05),
-        padding: const EdgeInsets.all(16),
-        child: isNetwork(imageModel)
-            ? widgets.NetworkImage(
-                imageUrl: imageModel!.url!,
-                size: size,
-              )
-            : isVector(imageModel)
-                ? SvgPicture.memory(
-                    width: size.width,
-                    height: size.height,
-                    base64Decode(imageModel!.data!),
-                    fit: BoxFit.cover,
-                  )
-                : isRaster(imageModel)
-                    ? Image.memory(
-                        width: size.width,
-                        height: size.height,
-                        base64Decode(imageModel!.data!),
-                        fit: BoxFit.cover,
-                      )
-                    : SizedBox(
-                        width: size.width,
-                        height: size.height,
-                        child: Icon(
-                          Icons.add_photo_alternate_outlined,
-                          color: Colors.orange.withOpacity(0.3),
-                          size: 32,
-                        ),
-                      ),
-      ),
-    );
-  }
-
-  bool isRaster(ImageModel? image) {
-    if (image?.isNotAvailable ?? false) {
-      return false;
-    } else {
-      return image!.isRaster;
+    switch (imageModel.location) {
+      case ImageLocation.memory:
+        return MemorySource(
+          imageFormat: imageModel.type,
+          base64: imageModel.data!,
+          fit: fit,
+        );
+      case ImageLocation.network:
+        return NetworkSource(
+          imageFormat: imageModel.type,
+          url: imageModel.url!,
+          fit: fit,
+        );
+      case ImageLocation.empty:
+        return defaultWidget;
     }
   }
+}
 
-  bool isNetwork(ImageModel? image) {
-    return image?.isNetwork ?? false;
+class MemorySource extends StatelessWidget {
+  const MemorySource({
+    super.key,
+    required this.imageFormat,
+    required this.base64,
+    this.fit,
+  });
+
+  final ImageFormat imageFormat;
+  final String base64;
+  final BoxFit? fit;
+
+  @override
+  Widget build(BuildContext context) {
+    switch (imageFormat) {
+      case ImageFormat.vector:
+        return SvgPicture.memory(
+          base64Decode(base64),
+          fit: BoxFit.cover,
+        );
+      case ImageFormat.raster:
+        return Image.memory(
+          base64Decode(base64),
+          fit: BoxFit.cover,
+        );
+    }
   }
+}
 
-  bool isVector(ImageModel? image) {
-    if (image?.isNotAvailable ?? false) {
-      return false;
-    } else {
-      return image!.isVector;
+class NetworkSource extends StatelessWidget {
+  const NetworkSource({
+    super.key,
+    required this.imageFormat,
+    required this.url,
+    required this.fit,
+  });
+
+  final ImageFormat imageFormat;
+  final String url;
+  final BoxFit? fit;
+
+  @override
+  Widget build(BuildContext context) {
+    switch (imageFormat) {
+      case ImageFormat.vector:
+        return SvgPicture.network(
+          url,
+          fit: BoxFit.cover,
+        );
+      case ImageFormat.raster:
+        return Image.network(
+          url,
+          fit: BoxFit.cover,
+        );
     }
   }
 }

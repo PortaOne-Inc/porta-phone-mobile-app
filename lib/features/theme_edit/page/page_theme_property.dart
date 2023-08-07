@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/core/core.dart';
 
 import '../consts/consts.dart';
 import '../extension/extension.dart';
@@ -23,6 +22,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<ThemePropertyCubit>();
+
     return BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
       builder: (ctx, state) => SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -392,7 +392,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         SelectedImage(
                           name: context.l10n.feature_theme_edit_Image_primary_onboarding_logo,
                           imageFilter: ImageFilterModel.svg(),
-                          image: state.theme?.images?.primaryOnboardingLogo,
+                          image: state.theme!.images.primaryOnboardingLogo,
                           onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                             final image = await UtilityImage.pickImage(format);
                             bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -406,7 +406,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         SelectedImage(
                           name: context.l10n.feature_theme_edit_Image_secondary_onboarding_logo,
                           imageFilter: ImageFilterModel.svg(),
-                          image: state.theme?.images?.secondaryOnboardingLogo,
+                          image: state.theme!.images.secondaryOnboardingLogo,
                           onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                             final image = await UtilityImage.pickImage(format);
                             bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -440,7 +440,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         SelectedImage(
                           name: 'Push notification icon',
                           imageFilter: ImageFilterModel.svg(),
-                          image: state.theme?.images?.notificationLogo,
+                          image: state.theme!.images.notificationLogo,
                           onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                             final image = await UtilityImage.pickImage(format);
                             bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -473,7 +473,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         name: 'Adaptive icon background',
                         description: 'Will be used to fill out the background of the adaptive launch icon',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
-                        image: state.theme?.images?.adaptiveIconBackground,
+                        image: state.theme!.images.adaptiveIconBackground,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
                           bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -489,7 +489,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         description:
                             'The image asset which will be used for the icon foreground of the adaptive icon Note: Adaptive Icons will only be generated when both adaptive_icon_background and adaptive_icon_foreground are specifier',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
-                        image: state.theme?.images?.adaptiveIconForeground,
+                        image: state.theme!.images.adaptiveIconForeground,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
                           bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -503,7 +503,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       SelectedImage(
                         name: 'Android launcher icon',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.android)),
-                        image: state.theme?.images?.androidLauncherIcon,
+                        image: state.theme!.images.androidLauncherIcon,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
                           bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -517,7 +517,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       SelectedImage(
                         name: 'IOS launcher icon',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.ios)),
-                        image: state.theme?.images?.iosLauncherIcon,
+                        image: state.theme!.images.iosLauncherIcon,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
                           bloc.add(UpdateThemeSchemeEvent.updateImages(
@@ -531,7 +531,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       SelectedImage(
                         name: 'WEB launcher icon',
                         imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.web)),
-                        image: state.theme?.images?.webLauncherIcon,
+                        image: state.theme!.images.webLauncherIcon,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
                           bloc.add(UpdateThemeSchemeEvent.updateImages(
