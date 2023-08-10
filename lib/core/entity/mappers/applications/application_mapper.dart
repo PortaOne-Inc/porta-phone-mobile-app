@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:webtrit_configurator/core/entity/models/application/google_services_model.dart';
 
 import '../../entity.dart';
 
@@ -16,6 +17,10 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: model.theme,
       version: model.version,
       platformIdentifier: model.platformIdentifier,
+      googleServices: GoogleServices(
+        androidUrl: model.googleServices?.androidUrl,
+        iosUrl: model.googleServices?.androidUrl,
+      ),
     );
   }
 
@@ -27,6 +32,10 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: dto.theme,
       version: dto.version ?? 0,
       platformIdentifier: dto.platformIdentifier,
+      googleServices: GoogleServicesModel(
+        androidUrl: dto.googleServices?.androidUrl ?? '',
+        iosUrl: dto.googleServices?.androidUrl ?? '',
+      ),
     );
   }
 }

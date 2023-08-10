@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:webtrit_configurator/core/core.dart';
 
 abstract class ApplicationRepository {
@@ -12,4 +14,6 @@ abstract class ApplicationRepository {
   Future<List<ApplicationDTO>> getUserApplications();
 
   Future<ApplicationDTO> getApplication(String id);
+
+  Future<String> uploadGoogleService(Uint8List service, String name);
 }

@@ -1,15 +1,20 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {
-  HttpDatasource httpDatasource;
-
   ApplicationRepositoryImpl({
+    required this.firebaseStorage,
     required this.httpDatasource,
   });
+
+  final FirebaseStorage firebaseStorage;
+  final HttpDatasource httpDatasource;
 
   @override
   Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO) async {
@@ -75,5 +80,13 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
     } catch (e) {
       throw BaseException(message: e.toString());
     }
+  }
+
+  @override
+  Future<String> uploadGoogleService(Uint8List service, String name) async {
+    final storageRef = firebaseStorage.ref();
+    final mountainImagesRef = storageRef.child('google-services/$name');
+    final res = await mountainImagesRef.putData(service);
+    return res.ref.getDownloadURL();
   }
 }

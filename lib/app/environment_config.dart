@@ -5,7 +5,7 @@ class EnvironmentConfig {
 
   static const IDENTIFIER_PREFIX = String.fromEnvironment(
     'IDENTIFIER_PREFIX',
-    defaultValue: 'com.webtrit.phone.',
+    defaultValue: 'com.',
   );
 
   static const APP_NAME = String.fromEnvironment(

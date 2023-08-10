@@ -20,6 +20,7 @@ mixin _$ApplicationModel {
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
+  GoogleServicesModel? get googleServices => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,7 +39,10 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String? name,
       String? platformIdentifier,
       String? theme,
+      GoogleServicesModel? googleServices,
       int version});
+
+  $GoogleServicesModelCopyWith<$Res>? get googleServices;
 }
 
 /// @nodoc
@@ -58,6 +62,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? name = freezed,
     Object? platformIdentifier = freezed,
     Object? theme = freezed,
+    Object? googleServices = freezed,
     Object? version = null,
   }) {
     return _then(_value.copyWith(
@@ -77,11 +82,27 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      googleServices: freezed == googleServices
+          ? _value.googleServices
+          : googleServices // ignore: cast_nullable_to_non_nullable
+              as GoogleServicesModel?,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GoogleServicesModelCopyWith<$Res>? get googleServices {
+    if (_value.googleServices == null) {
+      return null;
+    }
+
+    return $GoogleServicesModelCopyWith<$Res>(_value.googleServices!, (value) {
+      return _then(_value.copyWith(googleServices: value) as $Val);
+    });
   }
 }
 
@@ -98,7 +119,11 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
       String? name,
       String? platformIdentifier,
       String? theme,
+      GoogleServicesModel? googleServices,
       int version});
+
+  @override
+  $GoogleServicesModelCopyWith<$Res>? get googleServices;
 }
 
 /// @nodoc
@@ -116,6 +141,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? platformIdentifier = freezed,
     Object? theme = freezed,
+    Object? googleServices = freezed,
     Object? version = null,
   }) {
     return _then(_$_ApplicationModel(
@@ -135,6 +161,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      googleServices: freezed == googleServices
+          ? _value.googleServices
+          : googleServices // ignore: cast_nullable_to_non_nullable
+              as GoogleServicesModel?,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -151,6 +181,7 @@ class _$_ApplicationModel extends _ApplicationModel {
       this.name,
       this.platformIdentifier,
       this.theme,
+      this.googleServices,
       this.version = 0})
       : super._();
 
@@ -163,12 +194,14 @@ class _$_ApplicationModel extends _ApplicationModel {
   @override
   final String? theme;
   @override
+  final GoogleServicesModel? googleServices;
+  @override
   @JsonKey()
   final int version;
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme, version: $version)';
+    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme, googleServices: $googleServices, version: $version)';
   }
 
   @override
@@ -181,12 +214,14 @@ class _$_ApplicationModel extends _ApplicationModel {
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
             (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.googleServices, googleServices) ||
+                other.googleServices == googleServices) &&
             (identical(other.version, version) || other.version == version));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, platformIdentifier, theme, version);
+  int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
+      theme, googleServices, version);
 
   @JsonKey(ignore: true)
   @override
@@ -201,6 +236,7 @@ abstract class _ApplicationModel extends ApplicationModel {
       final String? name,
       final String? platformIdentifier,
       final String? theme,
+      final GoogleServicesModel? googleServices,
       final int version}) = _$_ApplicationModel;
   const _ApplicationModel._() : super._();
 
@@ -212,6 +248,8 @@ abstract class _ApplicationModel extends ApplicationModel {
   String? get platformIdentifier;
   @override
   String? get theme;
+  @override
+  GoogleServicesModel? get googleServices;
   @override
   int get version;
   @override
