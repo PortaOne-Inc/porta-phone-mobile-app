@@ -111,8 +111,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   }
 
   void _updatePreviewScreens(ThemePropertyState state) async {
-    final primaryOnboardingLogo = state.theme?.images?.primaryOnboardingLogo;
-    final secondaryOnboardingLogo = state.theme?.images?.secondaryOnboardingLogo;
+    final primaryOnboardingLogo = state.theme?.images.primaryOnboardingLogo;
+    final secondaryOnboardingLogo = state.theme?.images.secondaryOnboardingLogo;
 
     if (primaryOnboardingLogo?.isAvailable == true) {
       _previewImageScheme.setPrimaryOnboardingLogo(

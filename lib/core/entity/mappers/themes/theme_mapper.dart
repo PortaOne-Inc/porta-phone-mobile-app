@@ -29,14 +29,14 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
       colors: colorsMapper.mapToDto(model.colors),
       texts: textsMapper.mapToDto(model.texts),
       images: ImageCollectionDTO(
-        primaryOnboardingLogo: model.images?.primaryOnboardingLogo?.url,
-        secondaryOnboardingLogo: model.images?.secondaryOnboardingLogo?.url,
-        notificationLogo: model.images?.notificationLogo?.url,
-        adaptiveIconBackground: model.images?.adaptiveIconBackground?.url,
-        adaptiveIconForeground: model.images?.adaptiveIconForeground?.url,
-        androidLauncherIcon: model.images?.androidLauncherIcon?.url,
-        iosLauncherIcon: model.images?.iosLauncherIcon?.url,
-        webLauncherIcon: model.images?.webLauncherIcon?.url,
+        primaryOnboardingLogo: model.images.primaryOnboardingLogo.url,
+        secondaryOnboardingLogo: model.images.secondaryOnboardingLogo.url,
+        notificationLogo: model.images.notificationLogo.url,
+        adaptiveIconBackground: model.images.adaptiveIconBackground.url,
+        adaptiveIconForeground: model.images.adaptiveIconForeground.url,
+        androidLauncherIcon: model.images.androidLauncherIcon.url,
+        iosLauncherIcon: model.images.iosLauncherIcon.url,
+        webLauncherIcon: model.images.webLauncherIcon.url,
       ),
     );
   }

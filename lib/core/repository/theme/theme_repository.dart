@@ -30,8 +30,4 @@ abstract class ThemeRepository {
   );
 
   Future<ThemeDTO> getStaticTheme();
-
-  Future<String> uploadThemeImage(
-    ImageDTO imageDTO,
-  );
 }
