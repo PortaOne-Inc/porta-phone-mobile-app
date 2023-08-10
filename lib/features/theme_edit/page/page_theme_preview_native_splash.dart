@@ -17,32 +17,26 @@ class PageThemePreviewLaunchSplash extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: Expanded(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            DeviceFrame(
-              device: DeviceInfo.genericPhone(
-                platform: TargetPlatform.iOS,
-                id: 'ios_id',
-                name: 'IOS',
-                screenSize: const Size(400, 800),
+      child: DeviceFrame(
+        device: DeviceInfo.genericPhone(
+          platform: TargetPlatform.iOS,
+          id: 'ios_id',
+          name: 'IOS',
+          screenSize: const Size(400, 800),
+        ),
+        isFrameVisible: true,
+        orientation: Orientation.portrait,
+        screen: IgnorePointer(
+          child: Container(
+            color: theme.colors?.launch?.splashBackground ?? Colors.green,
+            child: Center(
+              child: ImageResource(
+                imageModel: theme.images.adaptiveIconForeground,
+                fit: BoxFit.none,
+                defaultWidget: const SizedBox(),
               ),
-              isFrameVisible: true,
-              orientation: Orientation.portrait,
-              screen: IgnorePointer(
-                child: Container(
-                  color: theme.colors?.launch?.splashBackground ?? Colors.green,
-                  child: Center(
-                      child: ImageResource(
-                    imageModel: theme.images.adaptiveIconForeground,
-                    fit: BoxFit.none,
-                    defaultWidget: const SizedBox(),
-                  )),
-                ),
-              ),
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );
