@@ -4,15 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
-import 'package:webtrit_configurator/features/application_create/widgets/google_services_preview.dart';
+import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../../common/bloc/common_bloc.dart';
 import '../bloc/application_create_cubit.dart';
 import '../model/applications_consts.dart';
 import '../model/models.dart';
-import '../widgets/application_create_toolbar.dart';
+import '../widgets/widgets.dart';
 
 class ApplicationCreatePage extends StatefulWidget {
   const ApplicationCreatePage({

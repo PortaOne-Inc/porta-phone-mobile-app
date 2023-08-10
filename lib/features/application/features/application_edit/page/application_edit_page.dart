@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
-import 'package:webtrit_configurator/features/application_create/widgets/google_services_preview.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/common/common.dart';
 
-import '../../common/bloc/common_bloc.dart';
+import '../../../widgets/widgets.dart';
 import '../bloc/application_edit_cubit.dart';
 import '../model/models.dart';
 import '../widgets/application_edit_toolbar.dart';
