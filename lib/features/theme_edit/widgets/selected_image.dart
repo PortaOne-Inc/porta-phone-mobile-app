@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/share/widgets/image/image.dart';
-import 'package:webtrit_configurator/share/entity/models/models.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../model/models.dart';
 
@@ -21,7 +20,7 @@ class SelectedImage extends StatelessWidget {
 
   final Size _size = const Size.square(200);
 
-  final ImageModel? image;
+  final ImageModel image;
   final ImageFilterModel imageFilter;
 
   final Function(ImageFilterModel format) onTap;
@@ -42,9 +41,14 @@ class SelectedImage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            ImageResource(
-              imageModel: image,
-              size: _size,
+            GestureDetector(
+              child: SizedBox(
+                width: _size.width,
+                height: _size.height,
+                child: ImageResource(
+                  imageModel: image,
+                ),
+              ),
               onTap: () => onTap(imageFilter),
             ),
             Align(
@@ -94,7 +98,7 @@ class SelectedImage extends StatelessWidget {
                   ),
                   //TODO: Remove also on server if user delete image
                   Visibility(
-                    visible: (image?.isAvailable ?? false),
+                    visible: (image.isAvailable ?? false),
                     child: GestureDetector(
                       child: Container(
                         margin: const EdgeInsets.all(4),

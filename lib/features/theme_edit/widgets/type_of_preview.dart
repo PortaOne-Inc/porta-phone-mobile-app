@@ -16,6 +16,18 @@ enum PreviewType {
   final int position;
 }
 
+enum LayoutType {
+  layout(position: 0),
+  icons(position: 1),
+  splash(position: 2);
+
+  const LayoutType({
+    required this.position,
+  });
+
+  final int position;
+}
+
 class PreviewDetails extends StatelessWidget {
   const PreviewDetails({
     super.key,

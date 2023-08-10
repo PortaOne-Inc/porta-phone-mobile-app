@@ -1,6 +1,10 @@
 export default class GoogleServices {
     public androidUrl?: string;
     public iosUrl?: string;
-    public projectId?: string;
+
+    constructor(androidUrl?: string, iosUrl?: string) {
+        this.androidUrl = androidUrl;
+        this.iosUrl = iosUrl;
+    }
 }
 

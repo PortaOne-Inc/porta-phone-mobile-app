@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/l10n/l10n.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/theme_edit/model/exception/exception.dart';
-import 'package:webtrit_configurator/share/mixin/mixin_messages.dart';
-import 'package:webtrit_configurator/share/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../../common/common.dart';
 import '../theme_edit.dart';
@@ -49,11 +48,16 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         body: BackgroundBinaryResizableColumn(
           // Move left vertical divider
           dividerPosition: -MediaQuery.of(context).size.width / 5,
-          leftChild: SingleStack(
-            key: const ValueKey('leftStack'),
-            navigator: _leftPageNavigatorKey,
-            child: const PageThemeProperty(),
+          leftChild: ConditionalProgressBar(
+            condition: state.theme != null,
+            //TODO: Don't like this implementation with SingleStack
+            child: SingleStack(
+              key: const ValueKey('leftStack'),
+              navigator: _leftPageNavigatorKey,
+              child: const PageThemeProperty(),
+            ),
           ),
+          //TODO: Don't like this implementation with SingleStack
           rightChild: SingleStack(
             key: const ValueKey('rightStack'),
             navigator: _rightPageNavigatorKey,

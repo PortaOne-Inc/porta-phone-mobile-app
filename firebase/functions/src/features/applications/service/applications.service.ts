@@ -9,52 +9,58 @@ import Application from '../../../core/models/application';
 import User from '../../../core/models/user';
 
 import {TYPES} from '../../../di';
+import GoogleServices from "../../../core/models/google_services";
 
 @injectable()
 export default class ApplicationsService implements IApplicationsService {
 
-	constructor(@inject(TYPES.ApplicationRepository) private applicationRepository: IApplicationRepository,
-	) {
-	}
+    constructor(@inject(TYPES.ApplicationRepository) private applicationRepository: IApplicationRepository,
+    ) {
+    }
 
-	async getApplications({uid}: User): Promise<Application[] | null> {
-		return this.applicationRepository.getByUser(uid!);
-	}
+    async getApplications({uid}: User): Promise<Application[] | null> {
+        return this.applicationRepository.getByUser(uid!);
+    }
 
-	async createApplication({name, platformIdentifier}: Application, {uid}: User): Promise<Application | null> {
-		const user = new Application(undefined, uid, name, platformIdentifier);
-		return this.applicationRepository.create(user);
-	}
+    async createApplication({
+                                name,
+                                platformIdentifier,
+                                googleServices
+                            }: Application, {uid}: User): Promise<Application | null> {
+        const googleServicesModel = new GoogleServices(googleServices?.androidUrl, googleServices?.iosUrl);
+        const userModel = new Application(undefined, uid, name, platformIdentifier, googleServicesModel);
+        return this.applicationRepository.create(userModel);
+    }
 
-	async incrementVersion(id: string): Promise<Application | null> {
-		const application = await this.applicationRepository.getById(id);
-		if (application != null) {
-			application.version++;
-			return await this.applicationRepository.patch(id, application);
-		} else {
-			return null;
-		}
-	}
+    async incrementVersion(id: string): Promise<Application | null> {
+        const application = await this.applicationRepository.getById(id);
+        if (application != null) {
+            application.version++;
+            return await this.applicationRepository.patch(id, application);
+        } else {
+            return null;
+        }
+    }
 
-	async getApplicationById(id: string): Promise<Application | null> {
-		return this.applicationRepository.getById(id);
-	}
+    async getApplicationById(id: string): Promise<Application | null> {
+        return this.applicationRepository.getById(id);
+    }
 
-	async patchApplication(id: string, application: Application): Promise<Application | null> {
-		return this.applicationRepository.patch(id, application);
-	}
+    async patchApplication(id: string, application: Application): Promise<Application | null> {
+        return this.applicationRepository.patch(id, application);
+    }
 
-	async deleteApplication(id: string, {uid}: User): Promise<void | null> {
-		try {
-			const application = await this.applicationRepository.getById(id);
+    async deleteApplication(id: string, {uid}: User): Promise<void | null> {
+        try {
+            const application = await this.applicationRepository.getById(id);
 
-			if (application?.user == uid) {
-				return this.applicationRepository.delete(id);
-			} else {
-				return null;
-			}
-		} catch (e) {
-			return null;
-		}
-	}
+            if (application?.user == uid) {
+                return this.applicationRepository.delete(id);
+            } else {
+                return null;
+            }
+        } catch (e) {
+            return null;
+        }
+    }
 }
