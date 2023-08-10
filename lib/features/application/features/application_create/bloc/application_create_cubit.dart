@@ -7,7 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../model/models.dart';
+import '../../../model/models.dart';
+
 import '../usecase/usecase.dart';
 
 part 'application_create_state.dart';
