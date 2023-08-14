@@ -17,12 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ApplicationEditState {
   ApplicationEditStatus get status => throw _privateConstructorUsedError;
-  ApplicationModel? get applicationModel => throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get applicationIdentifierInput =>
       throw _privateConstructorUsedError;
   Uint8List? get androidGoogleServices => throw _privateConstructorUsedError;
   Uint8List? get iosGoogleServices => throw _privateConstructorUsedError;
+  String? get androidGoogleServicesUrl => throw _privateConstructorUsedError;
+  String? get iosGoogleServicesUrl => throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,14 +39,13 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ApplicationEditStatus status,
-      ApplicationModel? applicationModel,
       ApplicationNameInput? nameInput,
       ApplicationIdentifierInput? applicationIdentifierInput,
       Uint8List? androidGoogleServices,
       Uint8List? iosGoogleServices,
+      String? androidGoogleServicesUrl,
+      String? iosGoogleServicesUrl,
       Exception? exception});
-
-  $ApplicationModelCopyWith<$Res>? get applicationModel;
 }
 
 /// @nodoc
@@ -63,11 +63,12 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
-    Object? applicationModel = freezed,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
     Object? androidGoogleServices = freezed,
     Object? iosGoogleServices = freezed,
+    Object? androidGoogleServicesUrl = freezed,
+    Object? iosGoogleServicesUrl = freezed,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
@@ -75,10 +76,6 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationEditStatus,
-      applicationModel: freezed == applicationModel
-          ? _value.applicationModel
-          : applicationModel // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -95,23 +92,19 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.iosGoogleServices
           : iosGoogleServices // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
+          ? _value.androidGoogleServicesUrl
+          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
+          ? _value.iosGoogleServicesUrl
+          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as Exception?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ApplicationModelCopyWith<$Res>? get applicationModel {
-    if (_value.applicationModel == null) {
-      return null;
-    }
-
-    return $ApplicationModelCopyWith<$Res>(_value.applicationModel!, (value) {
-      return _then(_value.copyWith(applicationModel: value) as $Val);
-    });
   }
 }
 
@@ -126,15 +119,13 @@ abstract class _$$ApplicationEditStateInitialCopyWith<$Res>
   @useResult
   $Res call(
       {ApplicationEditStatus status,
-      ApplicationModel? applicationModel,
       ApplicationNameInput? nameInput,
       ApplicationIdentifierInput? applicationIdentifierInput,
       Uint8List? androidGoogleServices,
       Uint8List? iosGoogleServices,
+      String? androidGoogleServicesUrl,
+      String? iosGoogleServicesUrl,
       Exception? exception});
-
-  @override
-  $ApplicationModelCopyWith<$Res>? get applicationModel;
 }
 
 /// @nodoc
@@ -151,11 +142,12 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? applicationModel = freezed,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
     Object? androidGoogleServices = freezed,
     Object? iosGoogleServices = freezed,
+    Object? androidGoogleServicesUrl = freezed,
+    Object? iosGoogleServicesUrl = freezed,
     Object? exception = freezed,
   }) {
     return _then(_$ApplicationEditStateInitial(
@@ -163,10 +155,6 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationEditStatus,
-      applicationModel: freezed == applicationModel
-          ? _value.applicationModel
-          : applicationModel // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
       nameInput: freezed == nameInput
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
@@ -183,6 +171,14 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
           ? _value.iosGoogleServices
           : iosGoogleServices // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
+          ? _value.androidGoogleServicesUrl
+          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
+          ? _value.iosGoogleServicesUrl
+          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -196,18 +192,17 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
 class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
   const _$ApplicationEditStateInitial(
       {this.status = ApplicationEditStatus.initial,
-      this.applicationModel,
       this.nameInput,
       this.applicationIdentifierInput,
       this.androidGoogleServices,
       this.iosGoogleServices,
+      this.androidGoogleServicesUrl,
+      this.iosGoogleServicesUrl,
       this.exception});
 
   @override
   @JsonKey()
   final ApplicationEditStatus status;
-  @override
-  final ApplicationModel? applicationModel;
   @override
   final ApplicationNameInput? nameInput;
   @override
@@ -217,11 +212,15 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
   @override
   final Uint8List? iosGoogleServices;
   @override
+  final String? androidGoogleServicesUrl;
+  @override
+  final String? iosGoogleServicesUrl;
+  @override
   final Exception? exception;
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, applicationModel: $applicationModel, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
   }
 
   @override
@@ -230,8 +229,6 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
         (other.runtimeType == runtimeType &&
             other is _$ApplicationEditStateInitial &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.applicationModel, applicationModel) ||
-                other.applicationModel == applicationModel) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
             (identical(other.applicationIdentifierInput,
@@ -242,6 +239,11 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
                 .equals(other.androidGoogleServices, androidGoogleServices) &&
             const DeepCollectionEquality()
                 .equals(other.iosGoogleServices, iosGoogleServices) &&
+            (identical(
+                    other.androidGoogleServicesUrl, androidGoogleServicesUrl) ||
+                other.androidGoogleServicesUrl == androidGoogleServicesUrl) &&
+            (identical(other.iosGoogleServicesUrl, iosGoogleServicesUrl) ||
+                other.iosGoogleServicesUrl == iosGoogleServicesUrl) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
@@ -250,11 +252,12 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      applicationModel,
       nameInput,
       applicationIdentifierInput,
       const DeepCollectionEquality().hash(androidGoogleServices),
       const DeepCollectionEquality().hash(iosGoogleServices),
+      androidGoogleServicesUrl,
+      iosGoogleServicesUrl,
       exception);
 
   @JsonKey(ignore: true)
@@ -268,17 +271,16 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
 abstract class ApplicationEditStateInitial implements ApplicationEditState {
   const factory ApplicationEditStateInitial(
       {final ApplicationEditStatus status,
-      final ApplicationModel? applicationModel,
       final ApplicationNameInput? nameInput,
       final ApplicationIdentifierInput? applicationIdentifierInput,
       final Uint8List? androidGoogleServices,
       final Uint8List? iosGoogleServices,
+      final String? androidGoogleServicesUrl,
+      final String? iosGoogleServicesUrl,
       final Exception? exception}) = _$ApplicationEditStateInitial;
 
   @override
   ApplicationEditStatus get status;
-  @override
-  ApplicationModel? get applicationModel;
   @override
   ApplicationNameInput? get nameInput;
   @override
@@ -287,6 +289,10 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   Uint8List? get androidGoogleServices;
   @override
   Uint8List? get iosGoogleServices;
+  @override
+  String? get androidGoogleServicesUrl;
+  @override
+  String? get iosGoogleServicesUrl;
   @override
   Exception? get exception;
   @override

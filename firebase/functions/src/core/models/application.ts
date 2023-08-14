@@ -5,7 +5,7 @@ export default class Application {
                 public user?: string,
                 public name?: string,
                 public platformIdentifier?: string,
-                public googleServices?: GoogleServices,
+                public googleServices?: GoogleServices | null,
                 public version: number = 0,
     ) {
     }

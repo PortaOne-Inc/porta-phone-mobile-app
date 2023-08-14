@@ -19,7 +19,7 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       platformIdentifier: model.platformIdentifier,
       googleServices: GoogleServices(
         androidUrl: model.googleServices?.androidUrl,
-        iosUrl: model.googleServices?.androidUrl,
+        iosUrl: model.googleServices?.iosUrl,
       ),
     );
   }
@@ -33,8 +33,8 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       version: dto.version ?? 0,
       platformIdentifier: dto.platformIdentifier,
       googleServices: GoogleServicesModel(
-        androidUrl: dto.googleServices?.androidUrl ?? '',
-        iosUrl: dto.googleServices?.androidUrl ?? '',
+        androidUrl: dto.googleServices?.androidUrl,
+        iosUrl: dto.googleServices?.iosUrl,
       ),
     );
   }

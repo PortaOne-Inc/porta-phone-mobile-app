@@ -67,10 +67,11 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       final app = await applicationGetUsecase.execute(id: id);
       emit(
         ApplicationEditState(
-          applicationModel: app,
           applicationIdentifierInput: ApplicationIdentifierInput.dirty(app.platformIdentifier ?? ''),
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
           status: ApplicationEditStatus.initial,
+          androidGoogleServicesUrl: app.googleServices?.androidUrl,
+          iosGoogleServicesUrl: app.googleServices?.iosUrl,
         ),
       );
     } on BaseException catch (e) {
@@ -83,12 +84,17 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     required String applicationIdentifier,
   }) async {
     emit(state.copyWith(status: ApplicationEditStatus.loading));
-    final model = ApplicationModel(
+
+    await applicationEditUsecase.execute(
       id: applicationId,
       name: projectName,
       platformIdentifier: applicationIdentifier,
+      applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
+      applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
+      newIosGoogleServices: state.androidGoogleServices,
+      newAndroidGoogleServices: state.androidGoogleServices,
     );
-    await applicationEditUsecase.execute(argument: model);
+
     emit(state.copyWith(status: ApplicationEditStatus.success));
   }
 

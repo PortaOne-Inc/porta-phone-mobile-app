@@ -14,16 +14,22 @@ class ResourcesRepositoryImpl extends ResourcesRepository {
   @override
   Future<String> putBytes(String folder, String name, Uint8List data) async {
     final storageRef = firebaseStorage.ref();
-    final mountainImagesRef = storageRef.child('$folder/$name');
-    final res = await mountainImagesRef.putData(data);
+    final ref = storageRef.child('$folder/$name');
+    final res = await ref.putData(data);
     return res.ref.getDownloadURL();
   }
 
   @override
   Future<String> putBase64(String folder, String name, String data) async {
     final storageRef = firebaseStorage.ref();
-    final mountainImagesRef = storageRef.child('$folder/$name}');
-    final res = await mountainImagesRef.putString(data, format: PutStringFormat.base64);
+    final ref = storageRef.child('$folder/$name}');
+    final res = await ref.putString(data, format: PutStringFormat.base64);
     return res.ref.getDownloadURL();
+  }
+
+  @override
+  Future<void> delete(String url) {
+    final storageRef = firebaseStorage.refFromURL(url);
+    return storageRef.delete();
   }
 }
