@@ -49,6 +49,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       await _createApplication(
         projectName: state.nameInput!.value,
         applicationIdentifier: state.applicationIdentifierInput!.value,
+        iosGoogleServices: state.iosGoogleServices,
+        androidGoogleServices: state.androidGoogleServices,
       );
     } on BaseException catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationCreateStatus.error));
@@ -64,7 +66,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     }
   }
 
-  Future<void> chooseIosAndroidServices() async {
+  Future<void> chooseAndroidServices() async {
     if (state.androidGoogleServices == null) {
       final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['json']);
       emit(state.copyWith(androidGoogleServices: result?.files.first.bytes));
@@ -76,14 +78,16 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   Future _createApplication({
     required String projectName,
     required String applicationIdentifier,
+    Uint8List? iosGoogleServices,
+    Uint8List? androidGoogleServices,
   }) async {
     emit(state.copyWith(status: ApplicationCreateStatus.loading));
 
     await applicationCreateUsecase.execute(
       name: projectName,
       platformIdentifier: applicationIdentifier,
-      iosGoogleServices: state.androidGoogleServices,
-      androidGoogleServices: state.androidGoogleServices,
+      iosGoogleServices: iosGoogleServices,
+      androidGoogleServices: androidGoogleServices,
     );
 
     emit(state.copyWith(status: ApplicationCreateStatus.success));
