@@ -41,13 +41,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
-          body: Align(
-            alignment: (state.themes.length <= 2) ? Alignment.center : Alignment.topCenter,
+          body: Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: (state.themes.length <= 2) ? 800 : MediaQuery.of(context).size.width - 16,
-                minWidth: (state.themes.length <= 2) ? 200 : MediaQuery.of(context).size.height,
-              ),
+              constraints: const BoxConstraints(maxWidth: 800, minWidth: 200),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
