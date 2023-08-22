@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../../common/common.dart';
 import '../bloc/theme_collection_cubit.dart';
 import '../widgets/widgets.dart';
 import 'theme_collection_create_dialog.dart';
