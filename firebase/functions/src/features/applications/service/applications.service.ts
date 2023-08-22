@@ -24,11 +24,12 @@ export default class ApplicationsService implements IApplicationsService {
 
     async createApplication({
                                 name,
+                                theme,
                                 platformIdentifier,
                                 googleServices
                             }: Application, {uid}: User): Promise<Application | null> {
         const googleServicesModel = googleServices?.androidUrl != null || googleServices?.iosUrl != null ? new GoogleServices(googleServices?.androidUrl ?? null, googleServices?.iosUrl ?? null) : null;
-        const userModel = new Application(undefined, uid, name, platformIdentifier, googleServicesModel);
+        const userModel = new Application(undefined, uid, name,theme, platformIdentifier, googleServicesModel);
         return this.applicationRepository.create(userModel);
     }
 
