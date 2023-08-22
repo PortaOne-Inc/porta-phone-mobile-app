@@ -557,9 +557,13 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     try {
       await function.call();
     } on InvalidFormatImageException catch (e) {
-      showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
+      if (context.mounted) {
+        showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_format(e.invalidFormat));
+      }
     } on InvalidSizeImageException catch (e) {
-      showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_size(e.toString()));
+      if (context.mounted) {
+        showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_size(e.toString()));
+      }
     }
   }
 
