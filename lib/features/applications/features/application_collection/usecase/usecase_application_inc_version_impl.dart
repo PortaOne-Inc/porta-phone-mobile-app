@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:webtrit_configurator/features/application/features/application_collection/usecase/usecase_application_inc_version.dart';
+import 'package:webtrit_configurator/features/applications/features/application_collection/usecase/usecase_application_inc_version.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
