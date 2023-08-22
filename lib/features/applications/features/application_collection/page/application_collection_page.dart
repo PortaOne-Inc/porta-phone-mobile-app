@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
-import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/application_collection_cubit.dart';
@@ -35,74 +34,47 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
-          body: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 800, minWidth: 200),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Visibility(
-                      visible: state.isProgress,
-                      child: const CircularProgressIndicator(),
-                    ),
-                    EmptyHolder(
-                      visibility: state.applications.isEmpty && !state.isProgress,
-                      onPressed: () => _createApplication(),
-                      title: context.l10n.feature_application_create_Text_no_applications_yet_title,
-                      description: context.l10n.feature_application_create_Text_no_applications_yet_description,
-                      button: context.l10n.feature_application_create,
-                    ),
-                    Visibility(
-                      visible: state.applications.isNotEmpty && !state.isProgress,
-                      child: GridView.builder(
-                        padding: const EdgeInsets.only(top: 24),
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemBuilder: (ctx, index) => ApplicationPreviewItem(
-                          application: state.applications[index],
+          body: Stack(
+            children: [
+              Visibility(
+                visible: !state.isProgress,
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(16),
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemBuilder: (ctx, index) => index == 0
+                      ? ItemButton(
+                          name: 'New application',
+                          description: 'Create an application for initial configuration and style binding',
+                          onTab: _createApplication,
+                        )
+                      : ApplicationPreviewItem(
+                          application: state.applications[index - 1],
                           onDelete: BlocProvider.of<ApplicationCollectionCubit>(context).deleteApplication,
                           onEdit: _onEditApplication,
                           onOpen: _openApplication,
                           incrementVersion: _incrementApplicationVersion,
                         ),
-                        itemCount: state.applications.length,
-                        gridDelegate: _prepareGridDelegate(state.applications),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Visibility(
-                      visible: state.applications.isNotEmpty && !state.isProgress,
-                      child: Button(
-                        title: context.l10n.feature_application_create,
-                        onPressed: () => _createApplication(),
-                      ),
-                    ),
-                    const SizedBox(height: 16)
-                  ],
+                  itemCount: state.applications.length + 1,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 8.0,
+                    childAspectRatio: 1.5,
+                  ),
                 ),
               ),
-            ),
+              Visibility(
+                visible: state.isProgress,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            ],
           ),
         );
       },
     );
-  }
-
-  SliverGridDelegateWithFixedCrossAxisCount _prepareGridDelegate(List<ApplicationModel> apps) {
-    var crossAxisCount = 1;
-    if (apps.length == 2) crossAxisCount = 2;
-    if (apps.length > 2) crossAxisCount = 3;
-
-    return SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        childAspectRatio: crossAxisCount == 1 ? 3 : 1.5);
   }
 
   void _onLogout(BuildContext context) {
@@ -126,6 +98,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   void _openApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).pushNamed(
       AppRoutInfo.themes.name,
+      extra: applicationModel,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationModel.id!,
       },

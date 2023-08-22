@@ -16,73 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ThemeCollectionState {
+  ThemeCollectionStateStatus get status => throw _privateConstructorUsedError;
   List<ThemeModel> get themes => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  ApplicationModel? get application => throw _privateConstructorUsedError;
+  BaseException? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeCollectionStateCopyWith<ThemeCollectionState> get copyWith =>
@@ -95,7 +32,13 @@ abstract class $ThemeCollectionStateCopyWith<$Res> {
           $Res Function(ThemeCollectionState) then) =
       _$ThemeCollectionStateCopyWithImpl<$Res, ThemeCollectionState>;
   @useResult
-  $Res call({List<ThemeModel> themes});
+  $Res call(
+      {ThemeCollectionStateStatus status,
+      List<ThemeModel> themes,
+      ApplicationModel? application,
+      BaseException? error});
+
+  $ApplicationModelCopyWith<$Res>? get application;
 }
 
 /// @nodoc
@@ -112,805 +55,114 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? themes = null,
+    Object? application = freezed,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ThemeCollectionStateStatus,
       themes: null == themes
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
+      application: freezed == application
+          ? _value.application
+          : application // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as BaseException?,
     ) as $Val);
   }
-}
-
-/// @nodoc
-abstract class _$$_ThemeCollectionStateCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$_ThemeCollectionStateCopyWith(_$_ThemeCollectionState value,
-          $Res Function(_$_ThemeCollectionState) then) =
-      __$$_ThemeCollectionStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ThemeModel> themes});
-}
-
-/// @nodoc
-class __$$_ThemeCollectionStateCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res, _$_ThemeCollectionState>
-    implements _$$_ThemeCollectionStateCopyWith<$Res> {
-  __$$_ThemeCollectionStateCopyWithImpl(_$_ThemeCollectionState _value,
-      $Res Function(_$_ThemeCollectionState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themes = null,
-  }) {
-    return _then(_$_ThemeCollectionState(
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ThemeCollectionState implements _ThemeCollectionState {
-  _$_ThemeCollectionState({final List<ThemeModel> themes = const []})
-      : _themes = themes;
-
-  final List<ThemeModel> _themes;
-  @override
-  @JsonKey()
-  List<ThemeModel> get themes {
-    if (_themes is EqualUnmodifiableListView) return _themes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_themes);
-  }
-
-  @override
-  String toString() {
-    return 'ThemeCollectionState(themes: $themes)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ThemeCollectionState &&
-            const DeepCollectionEquality().equals(other._themes, _themes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_themes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ThemeCollectionStateCopyWith<_$_ThemeCollectionState> get copyWith =>
-      __$$_ThemeCollectionStateCopyWithImpl<_$_ThemeCollectionState>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) {
-    return $default(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) {
-    return $default?.call(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(themes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ThemeCollectionState implements ThemeCollectionState {
-  factory _ThemeCollectionState({final List<ThemeModel> themes}) =
-      _$_ThemeCollectionState;
-
-  @override
-  List<ThemeModel> get themes;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ThemeCollectionStateCopyWith<_$_ThemeCollectionState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemeCollectionStateProgressCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionStateProgressCopyWith(
-          _$ThemeCollectionStateProgress value,
-          $Res Function(_$ThemeCollectionStateProgress) then) =
-      __$$ThemeCollectionStateProgressCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ThemeModel> themes});
-}
-
-/// @nodoc
-class __$$ThemeCollectionStateProgressCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionStateProgress>
-    implements _$$ThemeCollectionStateProgressCopyWith<$Res> {
-  __$$ThemeCollectionStateProgressCopyWithImpl(
-      _$ThemeCollectionStateProgress _value,
-      $Res Function(_$ThemeCollectionStateProgress) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themes = null,
-  }) {
-    return _then(_$ThemeCollectionStateProgress(
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemeCollectionStateProgress implements ThemeCollectionStateProgress {
-  _$ThemeCollectionStateProgress({final List<ThemeModel> themes = const []})
-      : _themes = themes;
-
-  final List<ThemeModel> _themes;
-  @override
-  @JsonKey()
-  List<ThemeModel> get themes {
-    if (_themes is EqualUnmodifiableListView) return _themes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_themes);
-  }
-
-  @override
-  String toString() {
-    return 'ThemeCollectionState.progress(themes: $themes)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionStateProgress &&
-            const DeepCollectionEquality().equals(other._themes, _themes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_themes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemeCollectionStateProgressCopyWith<_$ThemeCollectionStateProgress>
-      get copyWith => __$$ThemeCollectionStateProgressCopyWithImpl<
-          _$ThemeCollectionStateProgress>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) {
-    return progress(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) {
-    return progress?.call(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(themes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemeCollectionStateProgress implements ThemeCollectionState {
-  factory ThemeCollectionStateProgress({final List<ThemeModel> themes}) =
-      _$ThemeCollectionStateProgress;
-
-  @override
-  List<ThemeModel> get themes;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemeCollectionStateProgressCopyWith<_$ThemeCollectionStateProgress>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemeCollectionStateSuccessCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionStateSuccessCopyWith(
-          _$ThemeCollectionStateSuccess value,
-          $Res Function(_$ThemeCollectionStateSuccess) then) =
-      __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ThemeModel> themes});
-}
-
-/// @nodoc
-class __$$ThemeCollectionStateSuccessCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionStateSuccess>
-    implements _$$ThemeCollectionStateSuccessCopyWith<$Res> {
-  __$$ThemeCollectionStateSuccessCopyWithImpl(
-      _$ThemeCollectionStateSuccess _value,
-      $Res Function(_$ThemeCollectionStateSuccess) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themes = null,
-  }) {
-    return _then(_$ThemeCollectionStateSuccess(
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemeCollectionStateSuccess implements ThemeCollectionStateSuccess {
-  _$ThemeCollectionStateSuccess({final List<ThemeModel> themes = const []})
-      : _themes = themes;
-
-  final List<ThemeModel> _themes;
-  @override
-  @JsonKey()
-  List<ThemeModel> get themes {
-    if (_themes is EqualUnmodifiableListView) return _themes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_themes);
-  }
-
-  @override
-  String toString() {
-    return 'ThemeCollectionState.success(themes: $themes)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionStateSuccess &&
-            const DeepCollectionEquality().equals(other._themes, _themes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_themes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemeCollectionStateSuccessCopyWith<_$ThemeCollectionStateSuccess>
-      get copyWith => __$$ThemeCollectionStateSuccessCopyWithImpl<
-          _$ThemeCollectionStateSuccess>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) {
-    return success(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) {
-    return success?.call(themes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(themes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemeCollectionStateSuccess implements ThemeCollectionState {
-  factory ThemeCollectionStateSuccess({final List<ThemeModel> themes}) =
-      _$ThemeCollectionStateSuccess;
-
-  @override
-  List<ThemeModel> get themes;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemeCollectionStateSuccessCopyWith<_$ThemeCollectionStateSuccess>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemeCollectionStateErrorCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionStateErrorCopyWith(
-          _$ThemeCollectionStateError value,
-          $Res Function(_$ThemeCollectionStateError) then) =
-      __$$ThemeCollectionStateErrorCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ThemeModel> themes, BaseException? error});
-}
-
-/// @nodoc
-class __$$ThemeCollectionStateErrorCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionStateError>
-    implements _$$ThemeCollectionStateErrorCopyWith<$Res> {
-  __$$ThemeCollectionStateErrorCopyWithImpl(_$ThemeCollectionStateError _value,
-      $Res Function(_$ThemeCollectionStateError) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themes = null,
-    Object? error = freezed,
-  }) {
-    return _then(_$ThemeCollectionStateError(
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemeCollectionStateError implements ThemeCollectionStateError {
-  _$ThemeCollectionStateError(
-      {final List<ThemeModel> themes = const [], this.error})
-      : _themes = themes;
-
-  final List<ThemeModel> _themes;
-  @override
-  @JsonKey()
-  List<ThemeModel> get themes {
-    if (_themes is EqualUnmodifiableListView) return _themes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_themes);
-  }
-
-  @override
-  final BaseException? error;
-
-  @override
-  String toString() {
-    return 'ThemeCollectionState.error(themes: $themes, error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionStateError &&
-            const DeepCollectionEquality().equals(other._themes, _themes) &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_themes), error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemeCollectionStateErrorCopyWith<_$ThemeCollectionStateError>
-      get copyWith => __$$ThemeCollectionStateErrorCopyWithImpl<
-          _$ThemeCollectionStateError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) {
-    return error(themes, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) {
-    return error?.call(themes, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(themes, this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemeCollectionStateError implements ThemeCollectionState {
-  factory ThemeCollectionStateError(
-      {final List<ThemeModel> themes,
-      final BaseException? error}) = _$ThemeCollectionStateError;
-
-  @override
-  List<ThemeModel> get themes;
-  BaseException? get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemeCollectionStateErrorCopyWith<_$ThemeCollectionStateError>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemeCollectionNavigateToEditThemeCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionNavigateToEditThemeCopyWith(
-          _$ThemeCollectionNavigateToEditTheme value,
-          $Res Function(_$ThemeCollectionNavigateToEditTheme) then) =
-      __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<ThemeModel> themes, ThemeModel? theme, BaseException? error});
-
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionNavigateToEditTheme>
-    implements _$$ThemeCollectionNavigateToEditThemeCopyWith<$Res> {
-  __$$ThemeCollectionNavigateToEditThemeCopyWithImpl(
-      _$ThemeCollectionNavigateToEditTheme _value,
-      $Res Function(_$ThemeCollectionNavigateToEditTheme) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themes = null,
-    Object? theme = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$ThemeCollectionNavigateToEditTheme(
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
-    ));
-  }
 
   @override
   @pragma('vm:prefer-inline')
-  $ThemeModelCopyWith<$Res>? get theme {
-    if (_value.theme == null) {
+  $ApplicationModelCopyWith<$Res>? get application {
+    if (_value.application == null) {
       return null;
     }
 
-    return $ThemeModelCopyWith<$Res>(_value.theme!, (value) {
-      return _then(_value.copyWith(theme: value));
+    return $ApplicationModelCopyWith<$Res>(_value.application!, (value) {
+      return _then(_value.copyWith(application: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$ThemeCollectionStateInitialCopyWith<$Res>
+    implements $ThemeCollectionStateCopyWith<$Res> {
+  factory _$$ThemeCollectionStateInitialCopyWith(
+          _$ThemeCollectionStateInitial value,
+          $Res Function(_$ThemeCollectionStateInitial) then) =
+      __$$ThemeCollectionStateInitialCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {ThemeCollectionStateStatus status,
+      List<ThemeModel> themes,
+      ApplicationModel? application,
+      BaseException? error});
 
-class _$ThemeCollectionNavigateToEditTheme
-    implements ThemeCollectionNavigateToEditTheme {
-  _$ThemeCollectionNavigateToEditTheme(
-      {final List<ThemeModel> themes = const [], this.theme, this.error})
+  @override
+  $ApplicationModelCopyWith<$Res>? get application;
+}
+
+/// @nodoc
+class __$$ThemeCollectionStateInitialCopyWithImpl<$Res>
+    extends _$ThemeCollectionStateCopyWithImpl<$Res,
+        _$ThemeCollectionStateInitial>
+    implements _$$ThemeCollectionStateInitialCopyWith<$Res> {
+  __$$ThemeCollectionStateInitialCopyWithImpl(
+      _$ThemeCollectionStateInitial _value,
+      $Res Function(_$ThemeCollectionStateInitial) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? themes = null,
+    Object? application = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_$ThemeCollectionStateInitial(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ThemeCollectionStateStatus,
+      themes: null == themes
+          ? _value._themes
+          : themes // ignore: cast_nullable_to_non_nullable
+              as List<ThemeModel>,
+      application: freezed == application
+          ? _value.application
+          : application // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as BaseException?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ThemeCollectionStateInitial implements ThemeCollectionStateInitial {
+  const _$ThemeCollectionStateInitial(
+      {required this.status,
+      final List<ThemeModel> themes = const [],
+      this.application,
+      this.error})
       : _themes = themes;
 
+  @override
+  final ThemeCollectionStateStatus status;
   final List<ThemeModel> _themes;
   @override
   @JsonKey()
@@ -921,142 +173,56 @@ class _$ThemeCollectionNavigateToEditTheme
   }
 
   @override
-  final ThemeModel? theme;
+  final ApplicationModel? application;
   @override
   final BaseException? error;
 
   @override
   String toString() {
-    return 'ThemeCollectionState.navigateToEditTheme(themes: $themes, theme: $theme, error: $error)';
+    return 'ThemeCollectionState(status: $status, themes: $themes, application: $application, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionNavigateToEditTheme &&
+            other is _$ThemeCollectionStateInitial &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
-            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.application, application) ||
+                other.application == application) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_themes), theme, error);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_themes), application, error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemeCollectionNavigateToEditThemeCopyWith<
-          _$ThemeCollectionNavigateToEditTheme>
-      get copyWith => __$$ThemeCollectionNavigateToEditThemeCopyWithImpl<
-          _$ThemeCollectionNavigateToEditTheme>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes) $default, {
-    required TResult Function(List<ThemeModel> themes) progress,
-    required TResult Function(List<ThemeModel> themes) success,
-    required TResult Function(List<ThemeModel> themes, BaseException? error)
-        error,
-    required TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)
-        navigateToEditTheme,
-  }) {
-    return navigateToEditTheme(themes, theme, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<ThemeModel> themes)? $default, {
-    TResult? Function(List<ThemeModel> themes)? progress,
-    TResult? Function(List<ThemeModel> themes)? success,
-    TResult? Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult? Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-  }) {
-    return navigateToEditTheme?.call(themes, theme, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<ThemeModel> themes)? $default, {
-    TResult Function(List<ThemeModel> themes)? progress,
-    TResult Function(List<ThemeModel> themes)? success,
-    TResult Function(List<ThemeModel> themes, BaseException? error)? error,
-    TResult Function(
-            List<ThemeModel> themes, ThemeModel? theme, BaseException? error)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (navigateToEditTheme != null) {
-      return navigateToEditTheme(themes, theme, this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value) $default, {
-    required TResult Function(ThemeCollectionStateProgress value) progress,
-    required TResult Function(ThemeCollectionStateSuccess value) success,
-    required TResult Function(ThemeCollectionStateError value) error,
-    required TResult Function(ThemeCollectionNavigateToEditTheme value)
-        navigateToEditTheme,
-  }) {
-    return navigateToEditTheme(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemeCollectionState value)? $default, {
-    TResult? Function(ThemeCollectionStateProgress value)? progress,
-    TResult? Function(ThemeCollectionStateSuccess value)? success,
-    TResult? Function(ThemeCollectionStateError value)? error,
-    TResult? Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-  }) {
-    return navigateToEditTheme?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemeCollectionState value)? $default, {
-    TResult Function(ThemeCollectionStateProgress value)? progress,
-    TResult Function(ThemeCollectionStateSuccess value)? success,
-    TResult Function(ThemeCollectionStateError value)? error,
-    TResult Function(ThemeCollectionNavigateToEditTheme value)?
-        navigateToEditTheme,
-    required TResult orElse(),
-  }) {
-    if (navigateToEditTheme != null) {
-      return navigateToEditTheme(this);
-    }
-    return orElse();
-  }
+  _$$ThemeCollectionStateInitialCopyWith<_$ThemeCollectionStateInitial>
+      get copyWith => __$$ThemeCollectionStateInitialCopyWithImpl<
+          _$ThemeCollectionStateInitial>(this, _$identity);
 }
 
-abstract class ThemeCollectionNavigateToEditTheme
-    implements ThemeCollectionState {
-  factory ThemeCollectionNavigateToEditTheme(
-      {final List<ThemeModel> themes,
-      final ThemeModel? theme,
-      final BaseException? error}) = _$ThemeCollectionNavigateToEditTheme;
+abstract class ThemeCollectionStateInitial implements ThemeCollectionState {
+  const factory ThemeCollectionStateInitial(
+      {required final ThemeCollectionStateStatus status,
+      final List<ThemeModel> themes,
+      final ApplicationModel? application,
+      final BaseException? error}) = _$ThemeCollectionStateInitial;
 
   @override
+  ThemeCollectionStateStatus get status;
+  @override
   List<ThemeModel> get themes;
-  ThemeModel? get theme;
+  @override
+  ApplicationModel? get application;
+  @override
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ThemeCollectionNavigateToEditThemeCopyWith<
-          _$ThemeCollectionNavigateToEditTheme>
+  _$$ThemeCollectionStateInitialCopyWith<_$ThemeCollectionStateInitial>
       get copyWith => throw _privateConstructorUsedError;
 }

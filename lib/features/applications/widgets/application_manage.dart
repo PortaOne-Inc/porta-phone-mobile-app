@@ -135,19 +135,19 @@ class ApplicationManage extends StatelessWidget {
                   children: [
                     GoogleServicesPreview(
                       platform: TargetPlatform.android,
-                      isAttached: isAndroidGoogleServiceSelected,
+                      type: isAndroidGoogleServiceSelected
+                          ? GoogleServicesPreviewType.remove
+                          : GoogleServicesPreviewType.add,
                       onTap: updateAndroidGoogleService,
                     ),
                     const SizedBox(width: 16),
                     GoogleServicesPreview(
-                      isAttached: isIosGoogleServiceSelected,
+                      type:
+                          isIosGoogleServiceSelected ? GoogleServicesPreviewType.remove : GoogleServicesPreviewType.add,
                       platform: TargetPlatform.iOS,
                       onTap: updateIosGoogleService,
                     ),
                   ],
-                ),
-                const SizedBox(
-                  height: 4,
                 ),
                 const SizedBox(
                   height: 40,

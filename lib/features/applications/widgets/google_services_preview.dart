@@ -1,65 +1,94 @@
 import 'package:flutter/material.dart';
 
+enum GoogleServicesPreviewType {
+  add,
+  remove,
+  download,
+}
+
 class GoogleServicesPreview extends StatelessWidget {
   const GoogleServicesPreview({
     super.key,
+    this.type = GoogleServicesPreviewType.add,
     required this.platform,
-    this.isAttached = true,
     required this.onTap,
   });
 
+  final GoogleServicesPreviewType type;
   final TargetPlatform platform;
-  final bool isAttached;
   final Function onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      hoverColor: isAttached ? Colors.red.withOpacity(0.2) : Colors.green.withOpacity(0.2),
-      onTap: () => onTap(),
+    return SizedBox(
+      width: 168,
+      height: 134,
       child: Card(
-        child: SizedBox(
-            width: 168,
-            height: 134,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    platform.name.toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelLarge,
+        clipBehavior: Clip.antiAlias,
+        margin: EdgeInsets.zero,
+        child: InkWell(
+          hoverColor: _getActiveColor(context).withOpacity(0.1),
+          onTap: () => onTap(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  platform.name.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ),
+              const Divider(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        type == GoogleServicesPreviewType.add ? 'Google services config' : _getPlatformNameFile(),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    ],
                   ),
                 ),
-                const Divider(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Spacer(),
-                        Text(
-                          isAttached ? 'Google services config' : _getPlatformNameFile(),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                isAttached
-                    ? Icon(Icons.remove_circle_outlined, color: Theme.of(context).colorScheme.error)
-                    : Icon(Icons.add_outlined, color: Theme.of(context).colorScheme.tertiary),
-                const SizedBox(height: 8),
-              ],
-            )),
+              ),
+              const SizedBox(height: 8),
+              Icon(_getActiveIcon(), color: _getActiveColor(context)),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
       ),
     );
+  }
+
+  IconData _getActiveIcon() {
+    switch (type) {
+      case GoogleServicesPreviewType.add:
+        return Icons.add_outlined;
+      case GoogleServicesPreviewType.remove:
+        return Icons.remove_circle_outlined;
+      case GoogleServicesPreviewType.download:
+        return Icons.download;
+    }
+  }
+
+  Color _getActiveColor(BuildContext context) {
+    switch (type) {
+      case GoogleServicesPreviewType.add:
+        return Theme.of(context).colorScheme.tertiary;
+      case GoogleServicesPreviewType.remove:
+        return Theme.of(context).colorScheme.error;
+      case GoogleServicesPreviewType.download:
+        return Theme.of(context).colorScheme.onBackground.withOpacity(0.5);
+    }
   }
 
   String _getPlatformNameFile() {

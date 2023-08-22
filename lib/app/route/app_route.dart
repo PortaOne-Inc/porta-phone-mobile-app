@@ -94,12 +94,14 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
                 child: const ThemeCollectionPage(),
                 create: (BuildContext context) => ThemeCollectionCubit(
+                  applicationModel: state.extra as ApplicationModel?,
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   getThemesUseCase: getIt.get(),
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
                   createThemeUseCase: getIt.get(),
                   getTemplateThemeUseCase: getIt.get(),
+                  getApplicationGet: getIt.get(),
                 ),
               ),
             ),

@@ -19,7 +19,7 @@ class UseCaseSetThemeDefaultImpl extends UseCaseSetThemeDefault {
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 
   @override
-  FutureOr<ApplicationModel> execute({
+  Future<ApplicationModel> execute({
     required String applicationId,
     required String themeId,
   }) async {

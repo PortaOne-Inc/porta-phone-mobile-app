@@ -26,12 +26,11 @@ class ApplicationPreviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      onTap: () => onOpen.call(application),
-      child: Card(
+    return Card(
+      margin: EdgeInsets.zero,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => onOpen.call(application),
         child: Container(
           margin: const EdgeInsets.all(16),
           child: Column(
@@ -59,10 +58,8 @@ class ApplicationPreviewItem extends StatelessWidget {
                       PopupMenuItem(
                         value: _menuKeyUpdateVersion,
                         padding: const EdgeInsets.all(8),
-                        child: Text(
-                          context.l10n.feature_applications_Menu_increment,
-                          style: Theme.of(context).textTheme.bodyMedium
-                        ),
+                        child: Text(context.l10n.feature_applications_Menu_increment,
+                            style: Theme.of(context).textTheme.bodyMedium),
                       ),
                       PopupMenuItem(
                         value: _menuKeyEdit,
@@ -103,7 +100,7 @@ class ApplicationPreviewItem extends StatelessWidget {
       case _menuKeyEdit:
         onEdit.call(application);
         break;
-        case _menuKeyUpdateVersion:
+      case _menuKeyUpdateVersion:
         incrementVersion.call(application);
         break;
     }

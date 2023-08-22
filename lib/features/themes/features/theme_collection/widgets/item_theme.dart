@@ -33,6 +33,7 @@ class ItemTheme extends StatelessWidget {
       ),
       onTap: () => onTap(themeMode),
       child: Card(
+        margin: EdgeInsets.zero,
         child: Container(
           decoration: BoxDecoration(
             gradient: themeMode.colorGradientCollection != null
@@ -44,7 +45,6 @@ class ItemTheme extends StatelessWidget {
                 : null,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
-          constraints: const BoxConstraints(maxWidth: 480),
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
@@ -53,7 +53,7 @@ class ItemTheme extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Text(
                     themeMode.name ?? '',
                     textAlign: TextAlign.start,
