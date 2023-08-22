@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+
+class ItemButton extends StatelessWidget {
+  final String name;
+  final String description;
+  final Function() onTab;
+
+  const ItemButton({
+    super.key,
+    required this.name,
+    required this.description,
+    required this.onTab,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.zero,
+      color: Theme.of(context).colorScheme.primary,
+      child: InkWell(
+        onTap: onTab,
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                overflow: TextOverflow.fade,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Expanded(
+                child: SizedBox(
+                  child: Text(
+                    description,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.fade,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).colorScheme.background.withOpacity(0.75),
+                        ),
+                  ),
+                ),
+              ),
+              Divider(
+                height: 0,
+                color: Theme.of(context).colorScheme.background.withOpacity(0.5),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Expanded(
+                flex: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Create',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.background,
+                          ),
+                    ),
+                    const Spacer(),
+                    Icon(
+                      Icons.arrow_right_alt_outlined,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
