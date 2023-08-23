@@ -1,6 +1,6 @@
-part of 'theme_collection_cubit.dart';
+part of 'application_details_cubit.dart';
 
-enum ThemeCollectionStateStatus {
+enum ApplicationDetailsStateStatus {
   initial,
   progress,
   error,
@@ -8,17 +8,17 @@ enum ThemeCollectionStateStatus {
 }
 
 @freezed
-class ThemeCollectionState with _$ThemeCollectionState {
-  const factory ThemeCollectionState({
-    required ThemeCollectionStateStatus status,
+class ApplicationDetailsState with _$ApplicationDetailsState {
+  const factory ApplicationDetailsState({
+    required ApplicationDetailsStateStatus status,
     @Default([]) List<ThemeModel> themes,
     ApplicationModel? application,
     BaseException? error,
-  }) = ThemeCollectionStateInitial;
+  }) = ApplicationDetailsStateInitial;
 }
 
-extension ThemeCollectionStateGetters on ThemeCollectionState {
-  bool get isProgress => status == ThemeCollectionStateStatus.progress;
+extension ThemeCollectionStateGetters on ApplicationDetailsState {
+  bool get isProgress => status == ApplicationDetailsStateStatus.progress;
 
   bool get isGoogleServicesAvailable =>
       application?.googleServices?.iosUrl != null && application?.googleServices?.androidUrl != null;

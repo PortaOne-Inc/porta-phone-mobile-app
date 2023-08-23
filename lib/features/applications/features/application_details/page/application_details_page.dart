@@ -11,25 +11,26 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import '../../../../applications/widgets/google_services_preview.dart';
 import '../../../../common/bloc/common_bloc.dart';
-import '../bloc/theme_collection_cubit.dart';
+import '../bloc/application_details_cubit.dart';
 import '../widgets/widgets.dart';
-import 'theme_collection_create_dialog.dart';
 
-class ThemeCollectionPage extends StatefulWidget {
-  const ThemeCollectionPage({
+import 'theme_create_dialog.dart';
+
+class ApplicationDetailsPage extends StatefulWidget {
+  const ApplicationDetailsPage({
     super.key,
   });
 
   @override
-  State<ThemeCollectionPage> createState() => _ThemeCollectionPageState();
+  State<ApplicationDetailsPage> createState() => _ApplicationDetailsPageState();
 }
 
-class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMessages {
-  late final ThemeCollectionCubit _allMyThemesCubit = BlocProvider.of<ThemeCollectionCubit>(context);
+class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
+  late final ApplicationDetailsCubit _allMyThemesCubit = BlocProvider.of<ApplicationDetailsCubit>(context);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ThemeCollectionCubit, ThemeCollectionState>(
+    return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
         return Scaffold(
@@ -222,9 +223,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
 
   void _listenThemesState(
     BuildContext context,
-    ThemeCollectionState state,
+    ApplicationDetailsState state,
   ) {
-    if (state.status == ThemeCollectionStateStatus.error) {
+    if (state.status == ApplicationDetailsStateStatus.error) {
       showFailureMessage(context, state.error!.message);
     }
   }
@@ -236,7 +237,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
   void _onNewTheme() {
     showDialog(
       context: context,
-      builder: (context) => ThemeCollectionCreateDialog(
+      builder: (context) => ThemeCreateDialog(
         onCreateTheme: (String name, Color color) {
           _allMyThemesCubit.tryCreateTheme(name, color);
           GoRouter.of(context).pop();

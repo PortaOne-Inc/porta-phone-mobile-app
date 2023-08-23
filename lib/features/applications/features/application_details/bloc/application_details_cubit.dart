@@ -9,12 +9,12 @@ import 'package:webtrit_configurator/features/applications/applications.dart';
 
 import '../usecase/usecase.dart';
 
-part 'theme_collection_state.dart';
+part 'application_details_state.dart';
 
-part 'theme_collection_cubit.freezed.dart';
+part 'application_details_cubit.freezed.dart';
 
-class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
-  ThemeCollectionCubit({
+class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
+  ApplicationDetailsCubit({
     @factoryParam ApplicationModel? applicationModel,
     required this.getThemesUseCase,
     required this.getApplicationGet,
@@ -23,8 +23,8 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     required this.createThemeUseCase,
     required this.getTemplateThemeUseCase,
     required this.applicationId,
-  }) : super(ThemeCollectionState(
-          status: ThemeCollectionStateStatus.progress,
+  }) : super(ApplicationDetailsState(
+          status: ApplicationDetailsStateStatus.progress,
           application: applicationModel,
         )) {
     getThemes();
@@ -53,34 +53,34 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     try {
       await makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
     } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
+      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
     }
   }
 
   Future getThemes() async {
     try {
-      emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
       final themes = await getThemesUseCase.execute(applicationId: applicationId);
-      emit(state.copyWith(themes: themes, status: ThemeCollectionStateStatus.success));
+      emit(state.copyWith(themes: themes, status: ApplicationDetailsStateStatus.success));
     } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
+      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
     }
   }
 
   Future _getApplication() async {
     if (state.application == null) {
       try {
-        emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
+        emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
         final application = await getApplicationGet.execute(id: applicationId);
-        emit(state.copyWith(application: application, status: ThemeCollectionStateStatus.success));
+        emit(state.copyWith(application: application, status: ApplicationDetailsStateStatus.success));
       } on BaseException catch (e) {
-        emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
+        emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
       }
     }
   }
 
   Future _deleteTheme(ThemeModel themeModel) async {
-    emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
+    emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
     getThemes();
   }
@@ -101,7 +101,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
       await _tryCreateTheme(name, color);
       getThemes();
     } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
+      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
     }
   }
 }

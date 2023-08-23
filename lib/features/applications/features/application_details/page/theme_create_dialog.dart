@@ -6,8 +6,8 @@ import 'package:webtrit_configurator/core/core.dart';
 import '../extension/extension.dart';
 import '../model/theme_name_input.dart';
 
-class ThemeCollectionCreateDialog extends StatefulWidget {
-  const ThemeCollectionCreateDialog({
+class ThemeCreateDialog extends StatefulWidget {
+  const ThemeCreateDialog({
     super.key,
     required this.onCreateTheme,
   });
@@ -15,10 +15,10 @@ class ThemeCollectionCreateDialog extends StatefulWidget {
   final Function(String name, Color color) onCreateTheme;
 
   @override
-  State<ThemeCollectionCreateDialog> createState() => _ThemeCollectionCreateDialogState();
+  State<ThemeCreateDialog> createState() => _ThemeCreateDialogState();
 }
 
-class _ThemeCollectionCreateDialogState extends State<ThemeCollectionCreateDialog> {
+class _ThemeCreateDialogState extends State<ThemeCreateDialog> {
   final _selectedColor = Colors.black38;
   var _isDefault = false;
   final _controller = TextEditingController();

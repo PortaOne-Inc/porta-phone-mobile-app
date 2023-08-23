@@ -91,9 +91,9 @@ class AppRoute {
             GoRoute(
               path: AppRoutInfo.themes.path,
               name: AppRoutInfo.themes.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
-                child: const ThemeCollectionPage(),
-                create: (BuildContext context) => ThemeCollectionCubit(
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationDetailsCubit>(
+                child: const ApplicationDetailsPage(),
+                create: (BuildContext context) => ApplicationDetailsCubit(
                   applicationModel: state.extra as ApplicationModel?,
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   getThemesUseCase: getIt.get(),

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'theme_collection_cubit.dart';
+part of 'application_details_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,25 +15,26 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ThemeCollectionState {
-  ThemeCollectionStateStatus get status => throw _privateConstructorUsedError;
+mixin _$ApplicationDetailsState {
+  ApplicationDetailsStateStatus get status =>
+      throw _privateConstructorUsedError;
   List<ThemeModel> get themes => throw _privateConstructorUsedError;
   ApplicationModel? get application => throw _privateConstructorUsedError;
   BaseException? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ThemeCollectionStateCopyWith<ThemeCollectionState> get copyWith =>
+  $ApplicationDetailsStateCopyWith<ApplicationDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThemeCollectionStateCopyWith<$Res> {
-  factory $ThemeCollectionStateCopyWith(ThemeCollectionState value,
-          $Res Function(ThemeCollectionState) then) =
-      _$ThemeCollectionStateCopyWithImpl<$Res, ThemeCollectionState>;
+abstract class $ApplicationDetailsStateCopyWith<$Res> {
+  factory $ApplicationDetailsStateCopyWith(ApplicationDetailsState value,
+          $Res Function(ApplicationDetailsState) then) =
+      _$ApplicationDetailsStateCopyWithImpl<$Res, ApplicationDetailsState>;
   @useResult
   $Res call(
-      {ThemeCollectionStateStatus status,
+      {ApplicationDetailsStateStatus status,
       List<ThemeModel> themes,
       ApplicationModel? application,
       BaseException? error});
@@ -42,10 +43,10 @@ abstract class $ThemeCollectionStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ThemeCollectionStateCopyWithImpl<$Res,
-        $Val extends ThemeCollectionState>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  _$ThemeCollectionStateCopyWithImpl(this._value, this._then);
+class _$ApplicationDetailsStateCopyWithImpl<$Res,
+        $Val extends ApplicationDetailsState>
+    implements $ApplicationDetailsStateCopyWith<$Res> {
+  _$ApplicationDetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -64,7 +65,7 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as ThemeCollectionStateStatus,
+              as ApplicationDetailsStateStatus,
       themes: null == themes
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -94,16 +95,16 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ThemeCollectionStateInitialCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionStateInitialCopyWith(
-          _$ThemeCollectionStateInitial value,
-          $Res Function(_$ThemeCollectionStateInitial) then) =
-      __$$ThemeCollectionStateInitialCopyWithImpl<$Res>;
+abstract class _$$ApplicationDetailsStateInitialCopyWith<$Res>
+    implements $ApplicationDetailsStateCopyWith<$Res> {
+  factory _$$ApplicationDetailsStateInitialCopyWith(
+          _$ApplicationDetailsStateInitial value,
+          $Res Function(_$ApplicationDetailsStateInitial) then) =
+      __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {ThemeCollectionStateStatus status,
+      {ApplicationDetailsStateStatus status,
       List<ThemeModel> themes,
       ApplicationModel? application,
       BaseException? error});
@@ -113,13 +114,13 @@ abstract class _$$ThemeCollectionStateInitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ThemeCollectionStateInitialCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionStateInitial>
-    implements _$$ThemeCollectionStateInitialCopyWith<$Res> {
-  __$$ThemeCollectionStateInitialCopyWithImpl(
-      _$ThemeCollectionStateInitial _value,
-      $Res Function(_$ThemeCollectionStateInitial) _then)
+class __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>
+    extends _$ApplicationDetailsStateCopyWithImpl<$Res,
+        _$ApplicationDetailsStateInitial>
+    implements _$$ApplicationDetailsStateInitialCopyWith<$Res> {
+  __$$ApplicationDetailsStateInitialCopyWithImpl(
+      _$ApplicationDetailsStateInitial _value,
+      $Res Function(_$ApplicationDetailsStateInitial) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -130,11 +131,11 @@ class __$$ThemeCollectionStateInitialCopyWithImpl<$Res>
     Object? application = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$ThemeCollectionStateInitial(
+    return _then(_$ApplicationDetailsStateInitial(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as ThemeCollectionStateStatus,
+              as ApplicationDetailsStateStatus,
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -153,8 +154,9 @@ class __$$ThemeCollectionStateInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ThemeCollectionStateInitial implements ThemeCollectionStateInitial {
-  const _$ThemeCollectionStateInitial(
+class _$ApplicationDetailsStateInitial
+    implements ApplicationDetailsStateInitial {
+  const _$ApplicationDetailsStateInitial(
       {required this.status,
       final List<ThemeModel> themes = const [],
       this.application,
@@ -162,7 +164,7 @@ class _$ThemeCollectionStateInitial implements ThemeCollectionStateInitial {
       : _themes = themes;
 
   @override
-  final ThemeCollectionStateStatus status;
+  final ApplicationDetailsStateStatus status;
   final List<ThemeModel> _themes;
   @override
   @JsonKey()
@@ -179,14 +181,14 @@ class _$ThemeCollectionStateInitial implements ThemeCollectionStateInitial {
 
   @override
   String toString() {
-    return 'ThemeCollectionState(status: $status, themes: $themes, application: $application, error: $error)';
+    return 'ApplicationDetailsState(status: $status, themes: $themes, application: $application, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionStateInitial &&
+            other is _$ApplicationDetailsStateInitial &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
             (identical(other.application, application) ||
@@ -201,20 +203,21 @@ class _$ThemeCollectionStateInitial implements ThemeCollectionStateInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemeCollectionStateInitialCopyWith<_$ThemeCollectionStateInitial>
-      get copyWith => __$$ThemeCollectionStateInitialCopyWithImpl<
-          _$ThemeCollectionStateInitial>(this, _$identity);
+  _$$ApplicationDetailsStateInitialCopyWith<_$ApplicationDetailsStateInitial>
+      get copyWith => __$$ApplicationDetailsStateInitialCopyWithImpl<
+          _$ApplicationDetailsStateInitial>(this, _$identity);
 }
 
-abstract class ThemeCollectionStateInitial implements ThemeCollectionState {
-  const factory ThemeCollectionStateInitial(
-      {required final ThemeCollectionStateStatus status,
+abstract class ApplicationDetailsStateInitial
+    implements ApplicationDetailsState {
+  const factory ApplicationDetailsStateInitial(
+      {required final ApplicationDetailsStateStatus status,
       final List<ThemeModel> themes,
       final ApplicationModel? application,
-      final BaseException? error}) = _$ThemeCollectionStateInitial;
+      final BaseException? error}) = _$ApplicationDetailsStateInitial;
 
   @override
-  ThemeCollectionStateStatus get status;
+  ApplicationDetailsStateStatus get status;
   @override
   List<ThemeModel> get themes;
   @override
@@ -223,6 +226,6 @@ abstract class ThemeCollectionStateInitial implements ThemeCollectionState {
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ThemeCollectionStateInitialCopyWith<_$ThemeCollectionStateInitial>
+  _$$ApplicationDetailsStateInitialCopyWith<_$ApplicationDetailsStateInitial>
       get copyWith => throw _privateConstructorUsedError;
 }
