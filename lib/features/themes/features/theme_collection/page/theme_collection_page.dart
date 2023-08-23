@@ -47,7 +47,6 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
           body: FlexibleBinaryLayout(
             childPrimary: (context, dimension) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -148,6 +147,8 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
             },
             childSecondary: (context, dimension) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -164,8 +165,6 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
                         padding: const EdgeInsets.only(right: 16, left: 16),
                         child: SingleChildScrollView(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Visibility(
@@ -194,7 +193,7 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
                                   },
                                   itemCount: state.themes.length + 1,
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: MediaQuery.of(context).size.width < 400 ? 1 : 2,
+                                    crossAxisCount: dimension < 500 ? 1 : 2,
                                     mainAxisSpacing: 8.0,
                                     crossAxisSpacing: 8.0,
                                     childAspectRatio: 1.75,
