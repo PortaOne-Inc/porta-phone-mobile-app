@@ -45,24 +45,29 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
           ),
         ),
-        body: BackgroundBinaryResizableColumn(
+        body: FlexibleBinaryLayout(
           // Move left vertical divider
-          dividerPosition: -MediaQuery.of(context).size.width / 5,
-          leftChild: ConditionalProgressBar(
-            condition: state.theme != null,
-            //TODO: Don't like this implementation with SingleStack
-            child: SingleStack(
-              key: const ValueKey('leftStack'),
-              navigator: _leftPageNavigatorKey,
-              child: const PageThemeProperty(),
-            ),
-          ),
+          // dividerPosition: -MediaQuery.of(context).size.width / 5,
+          childPrimary: (context, size) {
+            return ConditionalProgressBar(
+              condition: state.theme != null,
+              //TODO: Don't like this implementation with SingleStack
+              child: SingleStack(
+                key: const ValueKey('leftStack'),
+                navigator: _leftPageNavigatorKey,
+                child: const PageThemeProperty(),
+              ),
+            );
+          },
           //TODO: Don't like this implementation with SingleStack
-          rightChild: SingleStack(
-            key: const ValueKey('rightStack'),
-            navigator: _rightPageNavigatorKey,
-            child: const PageThemePreview(),
-          ),
+          childSecondary: (context, size) {
+            return SingleStack(
+              key: const ValueKey('rightStack'),
+              navigator: _rightPageNavigatorKey,
+              child: const PageThemePreview(),
+            );
+          },
+          orientation: ResizableOrientation.horizontal,
         ),
       ),
     );

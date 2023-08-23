@@ -78,15 +78,17 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                       break;
                   }
 
-                  return BackgroundBinaryResizableVertical(
-                    topChild: layout,
-                    bottomChild: _previewType == PreviewType.single && _layoutType == LayoutType.layout
-                        ? DrawerPreview(
-                            screenshots: _screenshots,
-                            focusScreenPosition: _focusScreenPosition,
-                            onTapScreen: _setFocusedScreen,
-                          )
-                        : null,
+                  return FlexibleBinaryLayout(
+                    childPrimary: (context, size) => layout,
+                    childSecondary: (context, size) =>
+                        _previewType == PreviewType.single && _layoutType == LayoutType.layout
+                            ? DrawerPreview(
+                                screenshots: _screenshots,
+                                focusScreenPosition: _focusScreenPosition,
+                                onTapScreen: _setFocusedScreen,
+                              )
+                            : Container(),
+                    orientation: ResizableOrientation.vertical,
                   );
                 },
               ),

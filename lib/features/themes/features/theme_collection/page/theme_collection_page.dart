@@ -44,10 +44,9 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
-          body: Row(
-            children: [
-              Expanded(
-                  child: Column(
+          body: FlexibleBinaryLayout(
+            childPrimary: (context, dimension) {
+              return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -145,82 +144,77 @@ class _ThemeCollectionPageState extends State<ThemeCollectionPage> with MixinMes
                     ],
                   )
                 ],
-              )),
-              Container(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                height: MediaQuery.of(context).size.height,
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                width: 2,
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(top: 8),
-                      padding: const EdgeInsets.all(16),
-                      // color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
-                      child: const Center(child: Text('Themes')),
-                    ),
-                    const Divider(),
-                    Expanded(
-                      child: ConditionalProgressBar(
-                        condition: !state.isProgress,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Visibility(
-                                  visible: !state.isProgress,
-                                  child: GridView.builder(
-                                    padding: const EdgeInsets.only(top: 24),
-                                    shrinkWrap: true,
-                                    physics: const ClampingScrollPhysics(),
-                                    itemBuilder: (ctx, index) {
-                                      if (index == 0) {
-                                        return ItemButton(
-                                          name: 'New theme',
-                                          description:
-                                              'Create new theme for application and change this style when you want',
-                                          onTab: _onNewTheme,
-                                        );
-                                      } else {
-                                        return ItemTheme(
-                                          themeMode: state.themes[index - 1],
-                                          onTap: (theme) => _openTheme(_allMyThemesCubit.applicationId, theme.id!),
-                                          onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
-                                          onDelete: _allMyThemesCubit.tryDeleteTheme,
-                                          onInfo: _showThemeInfo,
-                                        );
-                                      }
-                                    },
-                                    itemCount: state.themes.length + 1,
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: MediaQuery.of(context).size.width < 800 ? 1 : 2,
-                                      mainAxisSpacing: 8.0,
-                                      crossAxisSpacing: 8.0,
-                                      childAspectRatio: 1.75,
-                                    ),
+              );
+            },
+            childSecondary: (context, dimension) {
+              return Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(top: 8),
+                    padding: const EdgeInsets.all(16),
+                    // color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                    child: const Center(child: Text('Themes')),
+                  ),
+                  const Divider(),
+                  Expanded(
+                    child: ConditionalProgressBar(
+                      condition: !state.isProgress,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16, left: 16),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Visibility(
+                                visible: !state.isProgress,
+                                child: GridView.builder(
+                                  padding: const EdgeInsets.only(top: 24),
+                                  shrinkWrap: true,
+                                  physics: const ClampingScrollPhysics(),
+                                  itemBuilder: (ctx, index) {
+                                    if (index == 0) {
+                                      return ItemButton(
+                                        name: 'New theme',
+                                        description:
+                                            'Create new theme for application and change this style when you want',
+                                        onTab: _onNewTheme,
+                                      );
+                                    } else {
+                                      return ItemTheme(
+                                        themeMode: state.themes[index - 1],
+                                        onTap: (theme) => _openTheme(_allMyThemesCubit.applicationId, theme.id!),
+                                        onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
+                                        onDelete: _allMyThemesCubit.tryDeleteTheme,
+                                        onInfo: _showThemeInfo,
+                                      );
+                                    }
+                                  },
+                                  itemCount: state.themes.length + 1,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: MediaQuery.of(context).size.width < 400 ? 1 : 2,
+                                    mainAxisSpacing: 8.0,
+                                    crossAxisSpacing: 8.0,
+                                    childAspectRatio: 1.75,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                const SizedBox(height: 16)
-                              ],
-                            ),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              const SizedBox(height: 16)
+                            ],
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              )
-            ],
+                    ),
+                  )
+                ],
+              );
+            },
+            orientation: ResizableOrientation.horizontal,
           ),
         );
       },
