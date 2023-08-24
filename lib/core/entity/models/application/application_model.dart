@@ -17,3 +17,9 @@ class ApplicationModel with _$ApplicationModel {
     @Default(0) final int version,
   }) = _ApplicationModel;
 }
+
+extension ApplicationModelGetters on ApplicationModel {
+  bool get isGoogleServicesAvailable => googleServices?.iosUrl != null && googleServices?.androidUrl != null;
+
+  bool get isApplicationHasDefaultThem => theme != null;
+}

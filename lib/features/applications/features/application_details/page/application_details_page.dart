@@ -1,35 +1,28 @@
-import 'dart:html' as html;
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/features/applications/features/application_details/page/application_themes_screen.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../../../../applications/widgets/google_services_preview.dart';
 import '../../../../common/bloc/common_bloc.dart';
 import '../bloc/application_details_cubit.dart';
 import '../widgets/widgets.dart';
 
+import 'application_details_screen.dart';
 import 'theme_create_dialog.dart';
 
-class ApplicationDetailsPage extends StatefulWidget {
+class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
   const ApplicationDetailsPage({
     super.key,
   });
 
   @override
-  State<ApplicationDetailsPage> createState() => _ApplicationDetailsPageState();
-}
-
-class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
-  late final ApplicationDetailsCubit _allMyThemesCubit = BlocProvider.of<ApplicationDetailsCubit>(context);
-
-  @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
@@ -38,110 +31,34 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
             isVisibleProgress: state.isProgress,
             child: ThemesToolbar(
               themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-              onSwitchedLanguage: _onLanguageChanged,
-              onNewTheme: () => _onNewTheme(),
+              onSwitchedLanguage: () => _onLanguageChanged(context),
+              onNewTheme: () => _onNewTheme(context),
               onLogout: () => _onLogout(context),
               onInfo: () => _onInfo(context),
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
             ),
           ),
           body: FlexibleBinaryLayout(
+            orientation: ResizableOrientation.horizontal,
             childPrimary: (context, dimension) {
               return Column(
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(16),
                     margin: const EdgeInsets.only(top: 8),
-                    // color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                    padding: const EdgeInsets.all(16),
                     child: const Center(
-                      child: Text('Application config'),
+                      child: Text('Config'),
                     ),
                   ),
                   const Divider(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        title: const Text('Project name:'),
-                        subtitle: SelectableText(state.application?.name ?? ''),
-                      ),
-                      ListTile(
-                        title: const Text('Project id:'),
-                        subtitle: SelectableText(
-                          state.application?.id ?? '',
-                        ),
-                      ),
-                      ListTile(
-                        title: const Text('Platform identifier: '),
-                        subtitle: SelectableText(state.application?.platformIdentifier ?? ''),
-                      ),
-                      ListTile(
-                        title: const Text('Version:'),
-                        subtitle: SelectableText(state.application?.version.toString() ?? '0'),
-                      ),
-                      ListTile(
-                        title: const Text('Default theme:'),
-                        trailing: InkWell(
-                          child: Visibility(
-                            visible: state.isApplicationHasDefaultThem,
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text('Open'),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Icon(Icons.open_in_new_outlined),
-                              ],
-                            ),
-                          ),
-                          onTap: () => _openTheme(_allMyThemesCubit.applicationId, state.application?.theme ?? ''),
-                        ),
-                        subtitle: state.isApplicationHasDefaultThem
-                            ? SelectableText(state.application?.theme ?? '')
-                            : const Text('Not selected default theme yet'),
-                      ),
-                      ListTile(
-                        title: const Text('Google services:'),
-                        subtitle: Container(
-                          margin: const EdgeInsets.only(top: 8),
-                          child: state.isGoogleServicesAvailable
-                              ? Row(
-                                  children: [
-                                    if (state.application?.googleServices?.androidUrl != null)
-                                      GoogleServicesPreview(
-                                        type: GoogleServicesPreviewType.download,
-                                        platform: TargetPlatform.android,
-                                        onTap: () {
-                                          html.AnchorElement anchorElement =
-                                              html.AnchorElement(href: state.application?.googleServices?.androidUrl);
-                                          anchorElement.download = state.application?.googleServices?.androidUrl;
-                                          anchorElement.click();
-                                        },
-                                      ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    if (state.application?.googleServices?.iosUrl != null)
-                                      if (state.application?.googleServices?.iosUrl != null)
-                                        GoogleServicesPreview(
-                                          platform: TargetPlatform.iOS,
-                                          type: GoogleServicesPreviewType.download,
-                                          onTap: () {
-                                            html.AnchorElement anchorElement =
-                                                html.AnchorElement(href: state.application?.googleServices?.iosUrl);
-                                            anchorElement.download = state.application?.googleServices?.iosUrl;
-                                            anchorElement.click();
-                                          },
-                                        )
-                                  ],
-                                )
-                              : const Text('Google services has not uploaded'),
-                        ),
-                      ),
-                    ],
+                  ApplicationDetailsScreen(
+                    application: state.application,
+                    onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
+                      context,
+                      applicationId,
+                      themeId,
+                    ),
                   )
                 ],
               );
@@ -155,7 +72,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.only(top: 8),
                     padding: const EdgeInsets.all(16),
-                    // color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                     child: const Center(child: Text('Themes')),
                   ),
                   const Divider(),
@@ -164,49 +80,14 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                       condition: !state.isProgress,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16, left: 16),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Visibility(
-                                visible: !state.isProgress,
-                                child: GridView.builder(
-                                  padding: const EdgeInsets.only(top: 24),
-                                  shrinkWrap: true,
-                                  physics: const ClampingScrollPhysics(),
-                                  itemBuilder: (ctx, index) {
-                                    if (index == 0) {
-                                      return ItemButton(
-                                        name: 'New theme',
-                                        description:
-                                            'Create new theme for application and change this style when you want',
-                                        onTab: _onNewTheme,
-                                      );
-                                    } else {
-                                      return ItemTheme(
-                                        themeMode: state.themes[index - 1],
-                                        onTap: (theme) => _openTheme(_allMyThemesCubit.applicationId, theme.id!),
-                                        onMakeDefault: _allMyThemesCubit.tryMakeThemeAsDefault,
-                                        onDelete: _allMyThemesCubit.tryDeleteTheme,
-                                        onInfo: _showThemeInfo,
-                                      );
-                                    }
-                                  },
-                                  itemCount: state.themes.length + 1,
-                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: dimension < 500 ? 1 : 2,
-                                    mainAxisSpacing: 8.0,
-                                    crossAxisSpacing: 8.0,
-                                    childAspectRatio: 1.75,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              const SizedBox(height: 16)
-                            ],
-                          ),
+                        child: ApplicationThemesScreen(
+                          themes: state.themes,
+                          crossAxisCount: dimension < 500 ? 1 : 2,
+                          onNewBranding: () => _onNewTheme(context),
+                          onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
+                          onMakeDefault: bloc.tryMakeThemeAsDefault,
+                          onDelete: bloc.tryDeleteTheme,
+                          onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
                         ),
                       ),
                     ),
@@ -214,7 +95,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                 ],
               );
             },
-            orientation: ResizableOrientation.horizontal,
           ),
         );
       },
@@ -230,16 +110,16 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     }
   }
 
-  void _onLanguageChanged() {
+  void _onLanguageChanged(BuildContext context) {
     showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
   }
 
-  void _onNewTheme() {
+  void _onNewTheme(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => ThemeCreateDialog(
         onCreateTheme: (String name, Color color) {
-          _allMyThemesCubit.tryCreateTheme(name, color);
+          BlocProvider.of<ApplicationDetailsCubit>(context).tryCreateTheme(name, color);
           GoRouter.of(context).pop();
         },
       ),
@@ -260,19 +140,19 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  void _openTheme(String applicationId, String themeId) {
+  void _openTheme(BuildContext context, String applicationId, String themeId) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.themesEdit.name,
       pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationId, AppRoutInfo.keyThemeId: themeId},
     );
   }
 
-  void _showThemeInfo(ThemeModel model) async {
+  void _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
     showDialog(
       context: context,
       builder: (context) => CredentialToolbar(
         themeId: model.id!,
-        applicationId: _allMyThemesCubit.applicationId,
+        applicationId: applicationId,
       ),
     );
   }

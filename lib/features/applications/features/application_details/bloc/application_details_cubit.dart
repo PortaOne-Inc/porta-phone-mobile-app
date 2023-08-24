@@ -7,8 +7,6 @@ import 'package:injectable/injectable.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/applications/applications.dart';
 
-import '../usecase/usecase.dart';
-
 part 'application_details_state.dart';
 
 part 'application_details_cubit.freezed.dart';
