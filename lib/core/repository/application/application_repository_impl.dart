@@ -76,12 +76,4 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       throw BaseException(message: e.toString());
     }
   }
-
-  // @override
-  // Future<String> uploadGoogleService(Uint8List service, String name) async {
-  //   final storageRef = firebaseStorage.ref();
-  //   final mountainImagesRef = storageRef.child('google-services/$name');
-  //   final res = await mountainImagesRef.putData(service);
-  //   return res.ref.getDownloadURL();
-  // }
 }
