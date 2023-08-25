@@ -39,7 +39,7 @@ class ApplicationThemesScreen extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             itemBuilder: (ctx, index) {
               if (index == 0) {
-                return ItemButton(
+                return ItemOfListButton(
                   name: 'New theme',
                   description: 'Create new theme for application and change this style when you want',
                   onTab: onNewBranding,

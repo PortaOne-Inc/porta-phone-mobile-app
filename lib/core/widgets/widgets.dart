@@ -5,6 +5,7 @@ export 'dialogs/dialogs.dart';
 export 'image/image.dart';
 export 'page/not_found_page.dart';
 export 'placeholders/placeholders.dart';
+export 'preview/preview.dart';
 export 'slider/sliders.dart';
 export 'switchers/switchers.dart';
 export 'toolbars/toolbars.dart';

@@ -1,9 +1,8 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/core.dart';
-
-import '../../application_create/widgets/widgets.dart';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   const ApplicationDetailsScreen({

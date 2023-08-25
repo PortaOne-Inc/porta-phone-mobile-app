@@ -43,7 +43,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   itemBuilder: (ctx, index) => index == 0
-                      ? ItemButton(
+                      ? ItemOfListButton(
                           name: 'New application',
                           description: 'Create an application for initial configuration and style binding',
                           onTab: _createApplication,

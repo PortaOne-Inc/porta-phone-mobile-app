@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:webtrit_configurator/app/environment_config.dart';
-import 'package:webtrit_configurator/core/widgets/buttons/button_default.dart';
+import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
 import '../model/models.dart';
-import 'google_services_preview.dart';
 
 class ApplicationManage extends StatelessWidget {
   const ApplicationManage({

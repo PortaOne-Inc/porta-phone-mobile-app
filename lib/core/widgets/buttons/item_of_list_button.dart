@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ItemButton extends StatelessWidget {
+class ItemOfListButton extends StatelessWidget {
   final String name;
   final String description;
   final Function() onTab;
 
-  const ItemButton({
+  const ItemOfListButton({
     super.key,
     required this.name,
     required this.description,
