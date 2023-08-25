@@ -5,6 +5,8 @@
 - Fix edit application (flow with google services)
 - Fix input style on create application
 - Update firebase storage url
+- Move data to separate package
+- Move domain to separate package
 - Firebase cloud function
   - Fix post, path, put methods
 - Google services
@@ -21,8 +23,9 @@
 
 ### In Progress ···
 
-- Update application details page
+- Add possibility to download config file for publisher
 
 ### Done ✓
 
+- Update application details page
 - MVP
