@@ -97,7 +97,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
 
   void _openApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).pushNamed(
-      AppRoutInfo.themes.name,
+      AppRoutInfo.applicationDetails.name,
       extra: applicationModel,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationModel.id!,

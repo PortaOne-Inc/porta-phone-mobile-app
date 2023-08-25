@@ -13,13 +13,11 @@ part 'application_details_cubit.freezed.dart';
 
 class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   ApplicationDetailsCubit({
-    @factoryParam ApplicationModel? applicationModel,
+    ApplicationModel? applicationModel,
     required this.getThemesUseCase,
     required this.getApplicationGet,
     required this.makeThemeAsDefaultUseCase,
     required this.deleteThemeUseCase,
-    required this.createThemeUseCase,
-    required this.getTemplateThemeUseCase,
     required this.applicationId,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -36,8 +34,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseThemeGetAll getThemesUseCase;
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
-  final UsecaseThemeCreate createThemeUseCase;
-  final UsecaseThemeGetTemplate getTemplateThemeUseCase;
 
   void tryDeleteTheme(ThemeModel themeModel) async {
     try {
@@ -81,25 +77,5 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
     getThemes();
-  }
-
-  Future _tryCreateTheme(String name, Color color) async {
-    final defaultTheme = await getTemplateThemeUseCase.execute();
-    await createThemeUseCase.execute(
-      themeModel: defaultTheme.copyWith(
-        name: name,
-        colors: defaultTheme.colors?.copyWith(primary: color),
-      ),
-      applicationId: applicationId,
-    );
-  }
-
-  void tryCreateTheme(String name, Color color) async {
-    try {
-      await _tryCreateTheme(name, color);
-      getThemes();
-    } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
-    }
   }
 }

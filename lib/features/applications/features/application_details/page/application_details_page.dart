@@ -13,7 +13,6 @@ import '../bloc/application_details_cubit.dart';
 import '../widgets/widgets.dart';
 
 import 'application_details_screen.dart';
-import 'theme_create_dialog.dart';
 
 class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
   const ApplicationDetailsPage({
@@ -32,7 +31,7 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
             child: ThemesToolbar(
               themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onSwitchedLanguage: () => _onLanguageChanged(context),
-              onNewTheme: () => _onNewTheme(context),
+              onNewTheme: () => _onNewTheme(context, state.application!.id!),
               onLogout: () => _onLogout(context),
               onInfo: () => _onInfo(context),
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
@@ -83,7 +82,7 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
                         child: ApplicationThemesScreen(
                           themes: state.themes,
                           crossAxisCount: dimension < 500 ? 1 : 2,
-                          onNewBranding: () => _onNewTheme(context),
+                          onNewBranding: () => _onNewTheme(context, state.application!.id!),
                           onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
                           onMakeDefault: bloc.tryMakeThemeAsDefault,
                           onDelete: bloc.tryDeleteTheme,
@@ -114,15 +113,12 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
     showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
   }
 
-  void _onNewTheme(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => ThemeCreateDialog(
-        onCreateTheme: (String name, Color color) {
-          BlocProvider.of<ApplicationDetailsCubit>(context).tryCreateTheme(name, color);
-          GoRouter.of(context).pop();
-        },
-      ),
+  void _onNewTheme(BuildContext context, String applicationId) {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.themesCreate.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
     );
   }
 

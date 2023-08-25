@@ -89,8 +89,20 @@ class AppRoute {
               ),
             ),
             GoRoute(
-              path: AppRoutInfo.themes.path,
-              name: AppRoutInfo.themes.name,
+              path: AppRoutInfo.themesCreate.path,
+              name: AppRoutInfo.themesCreate.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCreateCubit>(
+                create: (BuildContext context) => ThemeCreateCubit(
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  createThemeUseCase: getIt.get(),
+                  getTemplateThemeUseCase: getIt.get(),
+                ),
+                child: const ThemeCreatePage(),
+              ),
+            ),
+            GoRoute(
+              path: AppRoutInfo.applicationDetails.path,
+              name: AppRoutInfo.applicationDetails.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationDetailsCubit>(
                 child: const ApplicationDetailsPage(),
                 create: (BuildContext context) => ApplicationDetailsCubit(
@@ -99,8 +111,6 @@ class AppRoute {
                   getThemesUseCase: getIt.get(),
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
-                  createThemeUseCase: getIt.get(),
-                  getTemplateThemeUseCase: getIt.get(),
                   getApplicationGet: getIt.get(),
                 ),
               ),

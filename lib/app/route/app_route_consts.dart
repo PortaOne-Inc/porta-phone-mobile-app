@@ -33,13 +33,13 @@ abstract class AppRoutInfo {
     name: 'applications/edit',
     path: '/applications/:$keyApplicationId/edit',
   );
-  static const themes = RouteData(
+  static const applicationDetails = RouteData(
     name: 'themes',
-    path: '/applications/:$keyApplicationId/themes',
+    path: '/applications/:$keyApplicationId',
   );
   static const themesCreate = RouteData(
     name: 'themes/create',
-    path: '/applications/:$keyApplicationId',
+    path: '/applications/:$keyApplicationId/create',
   );
   static const themesEdit = RouteData(
     name: 'themes/edit',
