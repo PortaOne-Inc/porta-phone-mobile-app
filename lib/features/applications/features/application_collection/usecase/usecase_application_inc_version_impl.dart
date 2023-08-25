@@ -7,7 +7,10 @@ import 'package:webtrit_configurator/core/core.dart';
 
 @Injectable(as: UsecaseApplicationIncVersion)
 class UsecaseApplicationIncVersionImpl extends UsecaseApplicationIncVersion {
-  UsecaseApplicationIncVersionImpl(this.applicationRepository, this.applicationMapper);
+  UsecaseApplicationIncVersionImpl(
+    this.applicationRepository,
+    this.applicationMapper,
+  );
 
   final ApplicationRepository applicationRepository;
   final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;

@@ -9,7 +9,11 @@ import 'usecase_application_add_theme.dart';
 @Injectable(as: UsecaseApplicationAddTheme)
 class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
   UsecaseApplicationAddThemeImpl(
-      this.applicationRepository, this.authRepository, this.applicationMapper, this.themeMapper);
+    this.applicationRepository,
+    this.authRepository,
+    this.applicationMapper,
+    this.themeMapper,
+  );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;

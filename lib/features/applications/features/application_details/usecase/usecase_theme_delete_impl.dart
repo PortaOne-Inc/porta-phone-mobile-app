@@ -8,7 +8,11 @@ import 'usecase_theme_delete.dart';
 
 @Injectable(as: UsecaseThemeDeleteCreate)
 class UsecaseThemeDeleteCreateImpl implements UsecaseThemeDeleteCreate {
-  UsecaseThemeDeleteCreateImpl(this.themeRepository, this.authRepository, this.applicationMapper);
+  UsecaseThemeDeleteCreateImpl(
+    this.themeRepository,
+    this.authRepository,
+    this.applicationMapper,
+  );
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;

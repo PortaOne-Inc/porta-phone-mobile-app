@@ -8,7 +8,11 @@ import 'usecase_application_delete.dart';
 
 @Injectable(as: UsecaseApplicationDeleteTemplate)
 class UsecaseApplicationDeleteTemplateImpl implements UsecaseApplicationDeleteTemplate {
-  UsecaseApplicationDeleteTemplateImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
+  UsecaseApplicationDeleteTemplateImpl(
+    this.applicationRepository,
+    this.authRepository,
+    this.applicationMapper,
+  );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;

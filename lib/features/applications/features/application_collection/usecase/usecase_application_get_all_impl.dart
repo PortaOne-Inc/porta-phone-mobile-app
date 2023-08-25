@@ -8,7 +8,11 @@ import 'usecase_application_get_all.dart';
 
 @Injectable(as: UsecaseApplicationGetAll)
 class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
-  UsecaseApplicationGetAllImpl(this.applicationRepository, this.authRepository, this.applicationMapper);
+  UsecaseApplicationGetAllImpl(
+    this.applicationRepository,
+    this.authRepository,
+    this.applicationMapper,
+  );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
