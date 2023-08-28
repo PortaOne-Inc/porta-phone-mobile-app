@@ -155,7 +155,7 @@ class AppRoute {
   ) async {
     final isAuth = await isLoggedIn.execute();
 
-    final currentLocation = state.location;
+    final currentLocation = state.path;
 
     // TODO: Do more pretty
     if (isAuth) {
@@ -163,7 +163,7 @@ class AppRoute {
         return AppRoutInfo.applicationCollection.path;
       }
     } else {
-      if (state.location == AppRoutInfo.reset.path) {
+      if (state.path == AppRoutInfo.reset.path) {
         return null;
       } else {
         return AppRoutInfo.login.path;
