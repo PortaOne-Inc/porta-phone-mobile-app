@@ -26,8 +26,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
 
   final _screenshots = <Widget>[];
 
-  final _previewImageScheme = ImagesScheme();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,10 +72,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                       layout = PageThemePreviewLaunchIcons(
                         theme: state.theme!,
                       );
-
                       break;
                   }
-
                   return FlexibleBinaryLayout(
                     childPrimary: (context, size) => layout,
                     childSecondary: (context, size) =>
@@ -99,11 +95,11 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
-  void _listenBloc(BuildContext context, state) {
+  void _listenBloc(BuildContext context, ThemePropertyState state) {
     if (state is ThemePropertFocusState) {
       _setFocusedScreen(state.position!);
     } else {
-      _updatePreviewScreens(state);
+      _updatePreviewScreens(state.theme ?? const ThemeModel());
     }
   }
 
@@ -112,66 +108,9 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     setState(() {});
   }
 
-  void _updatePreviewScreens(ThemePropertyState state) async {
-    final primaryOnboardingLogo = state.theme?.images.primaryOnboardingLogo;
-    final secondaryOnboardingLogo = state.theme?.images.secondaryOnboardingLogo;
-
-    if (primaryOnboardingLogo?.isAvailable == true) {
-      _previewImageScheme.setPrimaryOnboardingLogo(
-        url: primaryOnboardingLogo?.url,
-        bytes: base64DecodeOrNull(primaryOnboardingLogo?.data),
-      );
-    } else {
-      _previewImageScheme.clearPrimaryOnboardingLogoStream();
-    }
-
-    if (secondaryOnboardingLogo?.isAvailable == true) {
-      _previewImageScheme.setSecondaryOnboardingLogo(
-        url: secondaryOnboardingLogo?.url,
-        bytes: base64DecodeOrNull(secondaryOnboardingLogo?.data),
-      );
-    } else {
-      _previewImageScheme.clearSecondaryOnboardingLogoStream();
-    }
-
+  void _updatePreviewScreens(ThemeModel theme) async {
     final appBloc = MockAppBloc.allScreen(
-      themeSettings: ThemeSettings(
-        seedColor: state.theme?.colors?.primary ?? Colors.transparent,
-        lightColorSchemeOverride: ColorSchemeOverride(
-          primary: state.theme?.colors?.primary,
-          onPrimary: state.theme?.colors?.onPrimary,
-          primaryContainer: state.theme?.colors?.primaryContainer,
-          onPrimaryContainer: state.theme?.colors?.onPrimaryContainer,
-          secondary: state.theme?.colors?.secondary,
-          onSecondary: state.theme?.colors?.onSecondary,
-          secondaryContainer: state.theme?.colors?.secondaryContainer,
-          onSecondaryContainer: state.theme?.colors?.onSecondaryContainer,
-          tertiary: state.theme?.colors?.tertiary,
-          onTertiary: state.theme?.colors?.onTertiary,
-          tertiaryContainer: state.theme?.colors?.tertiaryContainer,
-          error: state.theme?.colors?.error,
-          onError: state.theme?.colors?.onError,
-          errorContainer: state.theme?.colors?.errorContainer,
-          onErrorContainer: state.theme?.colors?.onErrorContainer,
-          outline: state.theme?.colors?.outline,
-          outlineVariant: state.theme?.colors?.outlineVariant,
-          background: state.theme?.colors?.background,
-          onBackground: state.theme?.colors?.onBackground,
-          surface: state.theme?.colors?.surface,
-          onSurface: state.theme?.colors?.onSurface,
-          surfaceVariant: state.theme?.colors?.surfaceVariant,
-          onSurfaceVariant: state.theme?.colors?.onSurfaceVariant,
-          inverseSurface: state.theme?.colors?.inverseSurface,
-          shadow: state.theme?.colors?.shadow,
-          scrim: state.theme?.colors?.scrim,
-          surfaceTint: state.theme?.colors?.surfaceTint,
-        ),
-        //TODO: Add possibility to add null
-        primaryGradientColors: state.theme!.toCustomColorGradientCollection(),
-        fontFamily: state.theme?.fontFamily,
-        imagesScheme: _previewImageScheme,
-        appName: state.theme?.texts?.greeting,
-      ),
+      themeSettings: theme.toThemeSettings(),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
