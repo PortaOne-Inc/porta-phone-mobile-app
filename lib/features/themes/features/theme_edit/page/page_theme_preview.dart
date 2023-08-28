@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
+import '../consts/image.dart';
 import '../widgets/widgets.dart';
 import 'page_theme_preview_launch_icons.dart';
 import 'page_theme_preview_native_splash.dart';
@@ -153,12 +154,10 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       ),
       ScreenshotApp(
         appBloc: appBloc,
-        child: const CallScreenScreenshot(
+        child: CallScreenScreenshot(
           true,
-          localePlaceholderImageUrl:
-              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref1.png?alt=media&token=692ccd4f-d43d-48b0-8e1d-9fd7b2f90220',
-          remotePlaceholderImageUrl:
-              'https://firebasestorage.googleapis.com/v0/b/webtrit-configurator-stage.appspot.com/o/screenshots%20_video_call%2Fref2.png?alt=media&token=3d469e82-9a64-4852-b593-9133f304bbef',
+          localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+          remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
         ),
       ),
     ]);
