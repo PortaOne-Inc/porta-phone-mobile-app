@@ -25,7 +25,21 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   var _layoutType = LayoutType.layout;
   var _focusScreenPosition = 0;
 
-  final _screenshots = <Widget>[];
+  final _phoneScreenshots = [
+    const LoginScreenScreenshot(LoginStep.modeSelect),
+    const LoginScreenScreenshot(LoginStep.coreUrlAssign),
+    const LoginScreenScreenshot(LoginStep.otpRequest),
+    const MainScreenScreenshot(MainFlavor.favorites),
+    const MainScreenScreenshot(MainFlavor.recents),
+    const MainScreenScreenshot(MainFlavor.keypad),
+    const SettingScreenScreenshot(),
+    const CallScreenScreenshot(false),
+    const CallScreenScreenshot(
+      true,
+      localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+      remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +72,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                     case LayoutType.layout:
                       layout = PreviewDetails(
                         type: _previewType,
-                        screens: _screenshots,
+                        screens: _getThemedPreview(state.theme),
                         screenFocus: _focusScreenPosition,
                         isFrameVisible: _isFrameVisible,
                         onFocusPosition: _setFocusedScreen,
@@ -80,7 +94,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                     childSecondary: (context, size) =>
                         _previewType == PreviewType.single && _layoutType == LayoutType.layout
                             ? DrawerPreview(
-                                screenshots: _screenshots,
+                                screenshots: _getThemedPreview(state.theme),
                                 focusScreenPosition: _focusScreenPosition,
                                 onTapScreen: _setFocusedScreen,
                               )
@@ -99,8 +113,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   void _listenBloc(BuildContext context, ThemePropertyState state) {
     if (state is ThemePropertFocusState) {
       _setFocusedScreen(state.position!);
-    } else {
-      _updatePreviewScreens(state.theme ?? const ThemeModel());
     }
   }
 
@@ -109,58 +121,12 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     setState(() {});
   }
 
-  void _updatePreviewScreens(ThemeModel theme) async {
+  List<Widget> _getThemedPreview(ThemeModel? theme) {
     final appBloc = MockAppBloc.allScreen(
-      themeSettings: theme.toThemeSettings(),
+      themeSettings: (theme ?? const ThemeModel()).toThemeSettings(),
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
-
-    _screenshots.clear();
-    _screenshots.addAll([
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const LoginScreenScreenshot(LoginStep.modeSelect),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const LoginScreenScreenshot(LoginStep.coreUrlAssign),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const LoginScreenScreenshot(LoginStep.otpRequest),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const MainScreenScreenshot(MainFlavor.favorites),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const MainScreenScreenshot(MainFlavor.recents),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const MainScreenScreenshot(MainFlavor.keypad),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const SettingScreenScreenshot(),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: const CallScreenScreenshot(
-          false,
-        ),
-      ),
-      ScreenshotApp(
-        appBloc: appBloc,
-        child: CallScreenScreenshot(
-          true,
-          localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
-          remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
-        ),
-      ),
-    ]);
-    setState(() {});
+    return _phoneScreenshots.map((e) => ScreenshotApp(appBloc: appBloc, child: e)).toList();
   }
 }
