@@ -374,6 +374,41 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               expandedAlignment: Alignment.centerLeft,
               children: [
                 ListTile(
+                  title: Container(
+                    margin: const EdgeInsets.only(bottom: 8, top: 8),
+                    child: Text(
+                      'Splash screen',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                    ),
+                  ),
+                  subtitle: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    spacing: 16,
+                    runSpacing: 16,
+                    children: [
+                      SelectedImage(
+                        name: 'Main splash central icon',
+                        description: 'Will be used to fill out the background of the adaptive launch icon',
+                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
+                        image: state.theme!.images.adaptiveIconBackground,
+                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                          final image = await UtilityImage.pickImage(format);
+                          bloc.add(UpdateThemeSchemeEvent.updateImages(
+                            bloc.state.theme?.images.copyWith(adaptiveIconBackground: image),
+                          ));
+                        }),
+                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                          bloc.state.theme?.images.copyWith(adaptiveIconBackground: const ImageModel()),
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(height: 40),
+                ListTile(
                     title: Container(
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Text(
@@ -421,11 +456,12 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     )),
+                const Divider(height: 40),
                 ListTile(
                     title: Container(
                       margin: const EdgeInsets.only(bottom: 8, top: 8),
                       child: Text(
-                        'Application icons',
+                        'Notification icons',
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -438,7 +474,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       runSpacing: 16,
                       children: [
                         SelectedImage(
-                          name: 'Push notification icon',
+                          name: 'IOS push notification icon',
                           imageFilter: ImageFilterModel.svg(),
                           image: state.theme!.images.notificationLogo,
                           onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
@@ -453,6 +489,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ],
                     )),
+                const Divider(height: 40),
                 ListTile(
                   title: Container(
                     margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -469,21 +506,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                     spacing: 16,
                     runSpacing: 16,
                     children: [
-                      SelectedImage(
-                        name: 'Adaptive icon background',
-                        description: 'Will be used to fill out the background of the adaptive launch icon',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
-                        image: state.theme!.images.adaptiveIconBackground,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(adaptiveIconBackground: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(adaptiveIconBackground: const ImageModel()),
-                        )),
-                      ),
                       SelectedImage(
                         name: 'Adaptive icon foreground',
                         description:
