@@ -6,6 +6,7 @@ export default class Application {
                 public name?: string,
                 public theme?: string,
                 public platformIdentifier?: string,
+                public coreUrl?: string,
                 public googleServices?: GoogleServices | null,
                 public version: number = 0,
     ) {

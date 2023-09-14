@@ -30,7 +30,7 @@ export default class StaticRepository implements IStaticRepository {
 	async getApplication(): Promise<Application | null> {
 		const reference = (await this.collection.doc('application').get());
 		if (reference.exists) {
-			return this.applicationMapper.toClass(reference.data()!);
+			return this.applicationMapper.toClass(reference);
 		} else {
 			return null;
 		}

@@ -2,15 +2,17 @@ import 'reflect-metadata';
 
 import {firestore} from 'firebase-admin';
 import {injectable} from 'inversify';
-import {instanceToPlain} from 'class-transformer';
+import {instanceToPlain, plainToClass} from 'class-transformer';
 
 import Application from '../../models/application';
 
 @injectable()
 export default class FirestoreApplicationMapper {
-    public toClass(data: firestore.DocumentData): Application {
-        const {id, user, name,theme, platformIdentifier, googleServices, version} = data;
-        return new Application(id, user, name,theme, platformIdentifier, googleServices, version);
+    public toClass(reference: firestore.DocumentSnapshot): Application {
+        const data = reference.data()! as Map<string, any>;
+        const user = plainToClass(Application, data);
+        user.id = reference.id;
+        return user;
     }
 
     // TODO: Do better way for converting obj
