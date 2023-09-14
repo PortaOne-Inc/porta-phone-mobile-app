@@ -391,8 +391,10 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                     children: [
                       SelectedImage(
                         name: 'Main splash central icon',
-                        description: 'Will be used to fill out the background of the adaptive launch icon',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconBackground)),
+                        description:
+                            'This icon will be displayed on the home screen when the application initializes, usually this screen is visible for a short time',
+                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.splashImageSize)),
+                        //TODO: RENAME adaptiveIconBackground to splash icon
                         image: state.theme!.images.adaptiveIconBackground,
                         onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                           final image = await UtilityImage.pickImage(format);
