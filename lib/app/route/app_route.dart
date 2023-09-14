@@ -89,17 +89,29 @@ class AppRoute {
               ),
             ),
             GoRoute(
-              path: AppRoutInfo.themes.path,
-              name: AppRoutInfo.themes.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
-                child: const ThemeCollectionPage(),
-                create: (BuildContext context) => ThemeCollectionCubit(
+              path: AppRoutInfo.themesCreate.path,
+              name: AppRoutInfo.themesCreate.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCreateCubit>(
+                create: (BuildContext context) => ThemeCreateCubit(
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  createThemeUseCase: getIt.get(),
+                  getTemplateThemeUseCase: getIt.get(),
+                ),
+                child: const ThemeCreatePage(),
+              ),
+            ),
+            GoRoute(
+              path: AppRoutInfo.applicationDetails.path,
+              name: AppRoutInfo.applicationDetails.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationDetailsCubit>(
+                child: const ApplicationDetailsPage(),
+                create: (BuildContext context) => ApplicationDetailsCubit(
+                  applicationModel: state.extra as ApplicationModel?,
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   getThemesUseCase: getIt.get(),
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
-                  createThemeUseCase: getIt.get(),
-                  getTemplateThemeUseCase: getIt.get(),
+                  getApplicationGet: getIt.get(),
                 ),
               ),
             ),
@@ -143,7 +155,7 @@ class AppRoute {
   ) async {
     final isAuth = await isLoggedIn.execute();
 
-    final currentLocation = state.location;
+    final currentLocation = state.path;
 
     // TODO: Do more pretty
     if (isAuth) {
@@ -151,7 +163,7 @@ class AppRoute {
         return AppRoutInfo.applicationCollection.path;
       }
     } else {
-      if (state.location == AppRoutInfo.reset.path) {
+      if (state.path == AppRoutInfo.reset.path) {
         return null;
       } else {
         return AppRoutInfo.login.path;

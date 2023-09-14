@@ -48,11 +48,11 @@ export default class ApplicationRepository implements IApplicationRepository {
 	// TODO: Handle moment when no application with id
 	async getById(id: string): Promise<Application | null> {
 		const reference = (await this.collection.doc(id).get());
-		return this.applicationMapper.toClass(reference.data()!);
+		return this.applicationMapper.toClass(reference);
 	}
 
 	async getByUser(id: string): Promise<Application[] | null> {
 		const reference = (await this.collection.where('user', '==', id).get()).docs;
-		return reference.map((snapshot) => this.applicationMapper.toClass(snapshot.data()));
+		return reference.map((snapshot) => this.applicationMapper.toClass(snapshot));
 	}
 }

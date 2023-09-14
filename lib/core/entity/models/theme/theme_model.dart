@@ -25,11 +25,4 @@ class ThemeModel with _$ThemeModel {
   List<Color>? get colorGradientCollection {
     return colors?.gradientTabColor;
   }
-
-  List<CustomColor> toCustomColorGradientCollection() {
-    const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
-    final isEnoughGradientColor = (colorGradientCollection ?? []).length < 2;
-    final colors = isEnoughGradientColor ? emptyGradient : colorGradientCollection;
-    return colors!.map((color) => CustomColor(color: color, blend: false)).toList();
-  }
 }
