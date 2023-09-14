@@ -27,6 +27,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required String name,
     required String platformIdentifier,
+    String? coreUrl,
     String? theme,
     Uint8List? androidGoogleServices,
     Uint8List? iosGoogleServices,
@@ -42,6 +43,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
       final model = ApplicationModel(
         name: name,
         platformIdentifier: platformIdentifier,
+        coreUrl: coreUrl,
         googleServices: googleService,
         version: version,
       );

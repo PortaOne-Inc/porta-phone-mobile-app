@@ -6,44 +6,44 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationIdentifierValidationError {
+enum ApplicationCoreValidationError {
   blank,
   toLong,
   toShort,
 }
 
-class ApplicationIdentifierInput extends FormzInput<String, ApplicationIdentifierValidationError> {
-  const ApplicationIdentifierInput.pure([String value = '']) : super.pure(value);
+class ApplicationCoreInput extends FormzInput<String, ApplicationCoreValidationError> {
+  const ApplicationCoreInput.pure([String value = '']) : super.pure(value);
 
-  const ApplicationIdentifierInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationCoreInput.dirty([String value = '']) : super.dirty(value);
 
-  ApplicationIdentifierInput toDirty() => ApplicationIdentifierInput.dirty(value);
+  ApplicationCoreInput toDirty() => ApplicationCoreInput.dirty(value);
 
   @override
-  ApplicationIdentifierValidationError? validator(String value) {
+  ApplicationCoreValidationError? validator(String value) {
     if (value.isEmpty) {
-      return ApplicationIdentifierValidationError.blank;
-    } else if (value.length > ApplicationConsts.maxIdentifierLimit) {
-      return ApplicationIdentifierValidationError.toLong;
+      return ApplicationCoreValidationError.blank;
+    } else if (value.length > ApplicationConsts.maxCoreLimit) {
+      return ApplicationCoreValidationError.toLong;
     } else if (value.length < ApplicationConsts.minIdentifierLimit) {
-      return ApplicationIdentifierValidationError.toShort;
+      return ApplicationCoreValidationError.toShort;
     } else {
       return null;
     }
   }
 }
 
-extension ExtensionIdentifierErrorL10n on ApplicationIdentifierInput {
+extension ExtensionCoreErrorL10n on ApplicationCoreInput {
   String? errorL10n(BuildContext context) {
     if (isValid) {
       return null;
     } else {
       switch (error!) {
-        case ApplicationIdentifierValidationError.blank:
+        case ApplicationCoreValidationError.blank:
           return context.l10n.feature_application_identifier_error;
-        case ApplicationIdentifierValidationError.toLong:
+        case ApplicationCoreValidationError.toLong:
           return context.l10n.feature_application_identifier_error;
-        case ApplicationIdentifierValidationError.toShort:
+        case ApplicationCoreValidationError.toShort:
           return context.l10n.feature_application_identifier_error;
       }
     }

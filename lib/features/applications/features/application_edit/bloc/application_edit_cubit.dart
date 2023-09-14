@@ -36,17 +36,22 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier)));
   }
 
+  void updateCore(String core) {
+    emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
+  }
+
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryEditApplication();
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
       final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
+      final appCore = state.applicationCoreInput ?? const ApplicationCoreInput.dirty();
 
       emit(state.copyWith(
-        nameInput: nameInput.toDirty(),
-        applicationIdentifierInput: appIdentifier.toDirty(),
-      ));
+          nameInput: nameInput.toDirty(),
+          applicationIdentifierInput: appIdentifier.toDirty(),
+          applicationCoreInput: appCore.toDirty()));
     }
   }
 
@@ -55,6 +60,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       await _editApplication(
         projectName: state.nameInput!.value,
         applicationIdentifier: state.applicationIdentifierInput!.value,
+        coreUrl: state.applicationCoreInput!.value,
       );
     } on BaseException catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationEditStatus.error));
@@ -82,6 +88,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   Future _editApplication({
     required String projectName,
     required String applicationIdentifier,
+    String? coreUrl,
   }) async {
     emit(state.copyWith(status: ApplicationEditStatus.loading));
 
@@ -89,6 +96,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       id: applicationId,
       name: projectName,
       platformIdentifier: applicationIdentifier,
+      coreUrl: coreUrl,
       applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
       applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
       newIosGoogleServices: state.androidGoogleServices,
@@ -117,11 +125,12 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   bool _isValidFields() {
-    return state.nameInput == null || state.applicationIdentifierInput == null
+    return state.nameInput == null || state.applicationIdentifierInput == null || state.applicationCoreInput == null
         ? false
         : Formz.validate([
             state.nameInput!,
             state.applicationIdentifierInput!,
+            state.applicationCoreInput!,
           ]);
   }
 }

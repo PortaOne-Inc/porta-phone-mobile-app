@@ -27,6 +27,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     required String id,
     required String name,
     required String platformIdentifier,
+    String? coreUrl,
     String? theme,
     Uint8List? newAndroidGoogleServices,
     Uint8List? newIosGoogleServices,
@@ -48,13 +49,13 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     final model = ApplicationModel(
       name: name,
       platformIdentifier: platformIdentifier,
+      coreUrl: coreUrl,
       googleServices: GoogleServicesModel(
         iosUrl: iosGoogleServicesUrl,
         androidUrl: androidGoogleServicesUrl,
       ),
       version: version,
     );
-
 
     // TODO: The API does not work quite correctly, if there is no field, it makes it null instead of ignoring it.
     final dto = await applicationRepository.updateApplication(id, mapper.mapToDto(model));

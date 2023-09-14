@@ -17,6 +17,7 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: model.theme,
       version: model.version,
       platformIdentifier: model.platformIdentifier,
+      coreUrl: model.coreUrl,
       googleServices: GoogleServices(
         androidUrl: model.googleServices?.androidUrl,
         iosUrl: model.googleServices?.iosUrl,
@@ -32,6 +33,7 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: dto.theme,
       version: dto.version ?? 0,
       platformIdentifier: dto.platformIdentifier,
+      coreUrl: dto.coreUrl,
       googleServices: GoogleServicesModel(
         androidUrl: dto.googleServices?.androidUrl,
         iosUrl: dto.googleServices?.iosUrl,

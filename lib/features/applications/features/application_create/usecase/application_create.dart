@@ -7,6 +7,7 @@ abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required final String name,
     required final String platformIdentifier,
+    final String? coreUrl,
     final String? theme,
     final Uint8List? androidGoogleServices,
     final Uint8List? iosGoogleServices,

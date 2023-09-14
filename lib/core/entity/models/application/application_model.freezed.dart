@@ -19,6 +19,7 @@ mixin _$ApplicationModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
+  String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
   GoogleServicesModel? get googleServices => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
       int version});
@@ -61,6 +63,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
     Object? version = null,
@@ -77,6 +80,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coreUrl: freezed == coreUrl
+          ? _value.coreUrl
+          : coreUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       theme: freezed == theme
           ? _value.theme
@@ -118,6 +125,7 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
       int version});
@@ -140,6 +148,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
     Object? version = null,
@@ -156,6 +165,10 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coreUrl: freezed == coreUrl
+          ? _value.coreUrl
+          : coreUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       theme: freezed == theme
           ? _value.theme
@@ -180,6 +193,7 @@ class _$_ApplicationModel extends _ApplicationModel {
       {this.id,
       this.name,
       this.platformIdentifier,
+      this.coreUrl,
       this.theme,
       this.googleServices,
       this.version = 0})
@@ -192,6 +206,8 @@ class _$_ApplicationModel extends _ApplicationModel {
   @override
   final String? platformIdentifier;
   @override
+  final String? coreUrl;
+  @override
   final String? theme;
   @override
   final GoogleServicesModel? googleServices;
@@ -201,7 +217,7 @@ class _$_ApplicationModel extends _ApplicationModel {
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme, googleServices: $googleServices, version: $version)';
+    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
   }
 
   @override
@@ -213,6 +229,7 @@ class _$_ApplicationModel extends _ApplicationModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
+            (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.googleServices, googleServices) ||
                 other.googleServices == googleServices) &&
@@ -221,7 +238,7 @@ class _$_ApplicationModel extends _ApplicationModel {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
-      theme, googleServices, version);
+      coreUrl, theme, googleServices, version);
 
   @JsonKey(ignore: true)
   @override
@@ -235,6 +252,7 @@ abstract class _ApplicationModel extends ApplicationModel {
       {final String? id,
       final String? name,
       final String? platformIdentifier,
+      final String? coreUrl,
       final String? theme,
       final GoogleServicesModel? googleServices,
       final int version}) = _$_ApplicationModel;
@@ -246,6 +264,8 @@ abstract class _ApplicationModel extends ApplicationModel {
   String? get name;
   @override
   String? get platformIdentifier;
+  @override
+  String? get coreUrl;
   @override
   String? get theme;
   @override

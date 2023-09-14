@@ -12,6 +12,7 @@ class ApplicationModel with _$ApplicationModel {
     final String? id,
     final String? name,
     final String? platformIdentifier,
+    final String? coreUrl,
     final String? theme,
     final GoogleServicesModel? googleServices,
     @Default(0) final int version,

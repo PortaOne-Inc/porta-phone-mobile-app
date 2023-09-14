@@ -42,10 +42,12 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
           child: ApplicationManage(
             updateName: _bloc.updateNameChange,
             updateIdentifier: _bloc.updateApplicationIdentifier,
+            onChangedCoreInput: _bloc.updateCore,
             updateAndroidGoogleService: _bloc.chooseAndroidServices,
             updateIosGoogleService: _bloc.chooseIosGoogleServices,
             nameInput: state.nameInput,
             applicationIdentifierInput: state.applicationIdentifierInput,
+            applicationCoreInput: state.applicationCoreInput,
             actionManage: _bloc.validateAndTryCreateApplication,
             isAndroidGoogleServiceSelected: state.androidGoogleServices != null,
             isIosGoogleServiceSelected: state.iosGoogleServices != null,

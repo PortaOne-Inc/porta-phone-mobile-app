@@ -11,6 +11,7 @@ _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       name: json['name'] as String?,
       platformIdentifier: json['platformIdentifier'] as String?,
+      coreUrl: json['coreUrl'] as String?,
       theme: json['theme'] as String?,
       version: json['version'] as int?,
       googleServices: json['googleServices'] == null
@@ -31,6 +32,7 @@ Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
   writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('platformIdentifier', instance.platformIdentifier);
+  writeNotNull('coreUrl', instance.coreUrl);
   writeNotNull('theme', instance.theme);
   writeNotNull('version', instance.version);
   writeNotNull('googleServices', instance.googleServices);

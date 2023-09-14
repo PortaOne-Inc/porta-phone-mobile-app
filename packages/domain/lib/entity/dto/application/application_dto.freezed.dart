@@ -23,6 +23,7 @@ mixin _$ApplicationDTO {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
+  String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
   int? get version => throw _privateConstructorUsedError;
   GoogleServices? get googleServices => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $ApplicationDTOCopyWith<$Res> {
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? coreUrl,
       String? theme,
       int? version,
       GoogleServices? googleServices});
@@ -66,6 +68,7 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? version = freezed,
     Object? googleServices = freezed,
@@ -82,6 +85,10 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coreUrl: freezed == coreUrl
+          ? _value.coreUrl
+          : coreUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       theme: freezed == theme
           ? _value.theme
@@ -123,6 +130,7 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? coreUrl,
       String? theme,
       int? version,
       GoogleServices? googleServices});
@@ -145,6 +153,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? version = freezed,
     Object? googleServices = freezed,
@@ -161,6 +170,10 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      coreUrl: freezed == coreUrl
+          ? _value.coreUrl
+          : coreUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       theme: freezed == theme
           ? _value.theme
@@ -186,6 +199,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
       {this.id,
       this.name,
       this.platformIdentifier,
+      this.coreUrl,
       this.theme,
       this.version,
       this.googleServices});
@@ -200,6 +214,8 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   @override
   final String? platformIdentifier;
   @override
+  final String? coreUrl;
+  @override
   final String? theme;
   @override
   final int? version;
@@ -208,7 +224,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
 
   @override
   String toString() {
-    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, theme: $theme, version: $version, googleServices: $googleServices)';
+    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, coreUrl: $coreUrl, theme: $theme, version: $version, googleServices: $googleServices)';
   }
 
   @override
@@ -220,6 +236,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
+            (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.version, version) || other.version == version) &&
             (identical(other.googleServices, googleServices) ||
@@ -229,7 +246,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
-      theme, version, googleServices);
+      coreUrl, theme, version, googleServices);
 
   @JsonKey(ignore: true)
   @override
@@ -250,6 +267,7 @@ abstract class _ApplicationDTO implements ApplicationDTO {
       {final String? id,
       final String? name,
       final String? platformIdentifier,
+      final String? coreUrl,
       final String? theme,
       final int? version,
       final GoogleServices? googleServices}) = _$_ApplicationDTO;
@@ -263,6 +281,8 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   String? get name;
   @override
   String? get platformIdentifier;
+  @override
+  String? get coreUrl;
   @override
   String? get theme;
   @override

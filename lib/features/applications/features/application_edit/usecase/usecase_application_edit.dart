@@ -8,6 +8,7 @@ abstract class UsecaseApplicationEdit {
     required final String id,
     required final String name,
     required final String platformIdentifier,
+    final String? coreUrl,
     final String? theme,
     Uint8List? newAndroidGoogleServices,
     Uint8List? newIosGoogleServices,

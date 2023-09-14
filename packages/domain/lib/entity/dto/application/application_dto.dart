@@ -12,6 +12,7 @@ class ApplicationDTO with _$ApplicationDTO {
     String? id,
     String? name,
     String? platformIdentifier,
+    String? coreUrl,
     String? theme,
     int? version,
     GoogleServices? googleServices,

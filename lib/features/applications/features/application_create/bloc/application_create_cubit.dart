@@ -30,17 +30,22 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier)));
   }
 
+  void updateCore(String core) {
+    emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
+  }
+
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryCreateApplication();
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
       final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
+      final appCore = state.applicationCoreInput ?? const ApplicationCoreInput.dirty();
 
       emit(state.copyWith(
-        nameInput: nameInput.toDirty(),
-        applicationIdentifierInput: appIdentifier.toDirty(),
-      ));
+          nameInput: nameInput.toDirty(),
+          applicationIdentifierInput: appIdentifier.toDirty(),
+          applicationCoreInput: appCore));
     }
   }
 
@@ -49,6 +54,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       await _createApplication(
         projectName: state.nameInput!.value,
         applicationIdentifier: state.applicationIdentifierInput!.value,
+        coreUrl: state.applicationCoreInput!.value,
         iosGoogleServices: state.iosGoogleServices,
         androidGoogleServices: state.androidGoogleServices,
       );
@@ -78,6 +84,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   Future _createApplication({
     required String projectName,
     required String applicationIdentifier,
+    String? coreUrl,
     Uint8List? iosGoogleServices,
     Uint8List? androidGoogleServices,
   }) async {
@@ -88,17 +95,19 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       platformIdentifier: applicationIdentifier,
       iosGoogleServices: iosGoogleServices,
       androidGoogleServices: androidGoogleServices,
+      coreUrl: coreUrl,
     );
 
     emit(state.copyWith(status: ApplicationCreateStatus.success));
   }
 
   bool _isValidFields() {
-    return state.nameInput == null || state.applicationIdentifierInput == null
+    return state.nameInput == null || state.applicationIdentifierInput == null || state.applicationCoreInput == null
         ? false
         : Formz.validate([
             state.nameInput!,
             state.applicationIdentifierInput!,
+            state.applicationCoreInput!,
           ]);
   }
 }
