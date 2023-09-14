@@ -78,8 +78,8 @@ dependencies:
   webtrit_phone:
     path: ../webtrit_phone
 
-  style:
-    path: ../webtrit_phone/packages/style
+  domain:
+    path: ./packages/domain
 
 analyzer:
   exclude:

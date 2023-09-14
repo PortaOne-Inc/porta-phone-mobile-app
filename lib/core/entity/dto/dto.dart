@@ -1,1 +1,2 @@
-export 'package:style/src/dto/dto.dart';
+// TODO: Remove this
+export 'package:domain/entity/dto/dto.dart';
