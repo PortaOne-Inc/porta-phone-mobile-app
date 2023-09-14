@@ -373,202 +373,214 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               tilePadding: const EdgeInsets.only(left: 16, right: 8),
               expandedAlignment: Alignment.centerLeft,
               children: [
-                ListTile(
-                  title: Container(
-                    margin: const EdgeInsets.only(bottom: 8, top: 8),
-                    child: Text(
-                      'Splash screen',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                    ),
-                  ),
-                  subtitle: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    spacing: 16,
-                    runSpacing: 16,
+                ExpansionTile(
+                    title: const Text('Application icons'),
+                    childrenPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                    tilePadding: const EdgeInsets.only(left: 24, right: 8),
+                    expandedAlignment: Alignment.centerLeft,
                     children: [
-                      SelectedImage(
-                        name: 'Main splash central icon',
-                        description:
-                            'This icon will be displayed on the home screen when the application initializes, usually this screen is visible for a short time',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.splashImageSize)),
-                        //TODO: RENAME adaptiveIconBackground to splash icon
-                        image: state.theme!.images.adaptiveIconBackground,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(adaptiveIconBackground: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(adaptiveIconBackground: const ImageModel()),
-                        )),
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(height: 40),
-                ListTile(
-                    title: Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Application images',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
-                    ),
-                    subtitle: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: [
-                        SelectedImage(
-                          name: context.l10n.feature_theme_edit_Image_primary_onboarding_logo,
-                          imageFilter: ImageFilterModel.svg(),
-                          image: state.theme!.images.primaryOnboardingLogo,
-                          onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                            final image = await UtilityImage.pickImage(format);
-                            bloc.add(UpdateThemeSchemeEvent.updateImages(
-                              bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
-                            ));
-                          }),
-                          onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(primaryOnboardingLogo: const ImageModel()),
-                          )),
-                        ),
-                        SelectedImage(
-                          name: context.l10n.feature_theme_edit_Image_secondary_onboarding_logo,
-                          imageFilter: ImageFilterModel.svg(),
-                          image: state.theme!.images.secondaryOnboardingLogo,
-                          onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                            final image = await UtilityImage.pickImage(format);
-                            bloc.add(UpdateThemeSchemeEvent.updateImages(
-                              bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
-                            ));
-                          }),
-                          onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(
-                              secondaryOnboardingLogo: const ImageModel(),
+                      ListTile(
+                          title: Container(
+                            margin: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              'Auth flow',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(color: Theme.of(context).colorScheme.secondary),
                             ),
+                          ),
+                          subtitle: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            spacing: 16,
+                            runSpacing: 16,
+                            children: [
+                              SelectedImage(
+                                name: context.l10n.feature_theme_edit_Image_primary_onboarding_logo,
+                                imageFilter: ImageFilterModel.svg(),
+                                image: state.theme!.images.primaryOnboardingLogo,
+                                onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                  final image = await UtilityImage.pickImage(format);
+                                  bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                    bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
+                                  ));
+                                }),
+                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(primaryOnboardingLogo: const ImageModel()),
+                                )),
+                              ),
+                              SelectedImage(
+                                name: context.l10n.feature_theme_edit_Image_secondary_onboarding_logo,
+                                imageFilter: ImageFilterModel.svg(),
+                                image: state.theme!.images.secondaryOnboardingLogo,
+                                onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                  final image = await UtilityImage.pickImage(format);
+                                  bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                    bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
+                                  ));
+                                }),
+                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(
+                                    secondaryOnboardingLogo: const ImageModel(),
+                                  ),
+                                )),
+                              ),
+                            ],
                           )),
-                        ),
-                      ],
-                    )),
-                const Divider(height: 40),
-                ListTile(
-                    title: Container(
-                      margin: const EdgeInsets.only(bottom: 8, top: 8),
-                      child: Text(
-                        'Notification icons',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
-                    ),
-                    subtitle: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: [
-                        SelectedImage(
-                          name: 'IOS push notification icon',
-                          imageFilter: ImageFilterModel.svg(),
-                          image: state.theme!.images.notificationLogo,
-                          onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                            final image = await UtilityImage.pickImage(format);
-                            bloc.add(UpdateThemeSchemeEvent.updateImages(
-                              bloc.state.theme?.images.copyWith(notificationLogo: image),
-                            ));
-                          }),
-                          onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(notificationLogo: const ImageModel()),
-                          )),
-                        ),
-                      ],
-                    )),
-                const Divider(height: 40),
-                ListTile(
-                  title: Container(
-                    margin: const EdgeInsets.only(bottom: 8, top: 8),
-                    child: Text(
-                      'App launcher icons',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                    ),
-                  ),
-                  subtitle: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    spacing: 16,
-                    runSpacing: 16,
+                    ]),
+                ExpansionTile(
+                    title: const Text('App branding assets'),
+                    childrenPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                    tilePadding: const EdgeInsets.only(left: 24, right: 8),
+                    expandedAlignment: Alignment.centerLeft,
                     children: [
-                      SelectedImage(
-                        name: 'Adaptive icon foreground',
-                        description:
-                            'The image asset which will be used for the icon foreground of the adaptive icon Note: Adaptive Icons will only be generated when both adaptive_icon_background and adaptive_icon_foreground are specifier',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
-                        image: state.theme!.images.adaptiveIconForeground,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(adaptiveIconForeground: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(adaptiveIconForeground: const ImageModel()),
-                        )),
+                      ListTile(
+                        title: Container(
+                          margin: const EdgeInsets.only(bottom: 8, top: 8),
+                          child: Text(
+                            'App launcher icons',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                        subtitle: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          spacing: 16,
+                          runSpacing: 16,
+                          children: [
+                            SelectedImage(
+                              name: 'Adaptive icon foreground',
+                              description:
+                                  'The image asset which will be used for the icon foreground of the adaptive icon Note: Adaptive Icons will only be generated when both adaptive_icon_background and adaptive_icon_foreground are specifier',
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
+                              image: state.theme!.images.adaptiveIconForeground,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(adaptiveIconForeground: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(adaptiveIconForeground: const ImageModel()),
+                              )),
+                            ),
+                            SelectedImage(
+                              name: 'Android launcher icon',
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.android)),
+                              image: state.theme!.images.androidLauncherIcon,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(androidLauncherIcon: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(androidLauncherIcon: const ImageModel()),
+                              )),
+                            ),
+                            SelectedImage(
+                              name: 'IOS launcher icon',
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.ios)),
+                              image: state.theme!.images.iosLauncherIcon,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(iosLauncherIcon: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(iosLauncherIcon: const ImageModel()),
+                              )),
+                            ),
+                            SelectedImage(
+                              name: 'WEB launcher icon',
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.web)),
+                              image: state.theme!.images.webLauncherIcon,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(webLauncherIcon: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(webLauncherIcon: const ImageModel()),
+                              )),
+                            ),
+                          ],
+                        ),
                       ),
-                      SelectedImage(
-                        name: 'Android launcher icon',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.android)),
-                        image: state.theme!.images.androidLauncherIcon,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(androidLauncherIcon: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(androidLauncherIcon: const ImageModel()),
-                        )),
+                      ListTile(
+                        title: Container(
+                          margin: const EdgeInsets.only(bottom: 8, top: 8),
+                          child: Text(
+                            'Splash screen',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                        subtitle: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          spacing: 16,
+                          runSpacing: 16,
+                          children: [
+                            SelectedImage(
+                              name: 'Main splash central icon',
+                              description:
+                                  'This icon will be displayed on the home screen when the application initializes, usually this screen is visible for a short time',
+                              imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.splashImageSize)),
+                              //TODO: RENAME adaptiveIconBackground to splash icon
+                              image: state.theme!.images.adaptiveIconBackground,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(adaptiveIconBackground: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(adaptiveIconBackground: const ImageModel()),
+                              )),
+                            ),
+                          ],
+                        ),
                       ),
-                      SelectedImage(
-                        name: 'IOS launcher icon',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.ios)),
-                        image: state.theme!.images.iosLauncherIcon,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(iosLauncherIcon: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(iosLauncherIcon: const ImageModel()),
-                        )),
+                      ListTile(
+                        title: Container(
+                          margin: const EdgeInsets.only(bottom: 8, top: 8),
+                          child: Text(
+                            'Notification icons',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                        subtitle: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          spacing: 16,
+                          runSpacing: 16,
+                          children: [
+                            SelectedImage(
+                              name: 'IOS push notification icon',
+                              imageFilter: ImageFilterModel.svg(),
+                              image: state.theme!.images.notificationLogo,
+                              onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
+                                final image = await UtilityImage.pickImage(format);
+                                bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.state.theme?.images.copyWith(notificationLogo: image),
+                                ));
+                              }),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                bloc.state.theme?.images.copyWith(notificationLogo: const ImageModel()),
+                              )),
+                            ),
+                          ],
+                        ),
                       ),
-                      SelectedImage(
-                        name: 'WEB launcher icon',
-                        imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.web)),
-                        image: state.theme!.images.webLauncherIcon,
-                        onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
-                          final image = await UtilityImage.pickImage(format);
-                          bloc.add(UpdateThemeSchemeEvent.updateImages(
-                            bloc.state.theme?.images.copyWith(webLauncherIcon: image),
-                          ));
-                        }),
-                        onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                          bloc.state.theme?.images.copyWith(webLauncherIcon: const ImageModel()),
-                        )),
-                      ),
-                    ],
-                  ),
-                ),
+                    ]),
               ],
             ),
           ],
