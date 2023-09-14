@@ -1,8 +1,8 @@
 class ImageSizeConsts {
   static double splashImageSize = 640;
 
-  static double adaptiveIconForeground = 1024;
-  static double android = 1024;
+  static double adaptiveIconForeground = 432;
+  static double android = 192;
   static double ios = 1024;
   static double web = 1024;
 }
