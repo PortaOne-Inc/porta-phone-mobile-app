@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/widgets/image/image_resource.dart';
 
 class LaunchIcon extends StatelessWidget {
@@ -63,6 +64,7 @@ class LaunchIcon extends StatelessWidget {
               width: safeZone.width,
               height: safeZone.height,
               decoration: BoxDecoration(
+                borderRadius: radius,
                 border: Border.all(
                   color: Theme.of(context).colorScheme.tertiary.withOpacity(0.75), // Border color
                   width: 1.0, // Border width
