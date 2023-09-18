@@ -36,8 +36,7 @@ dependencies:
 
   # Firebase
   firebase_core: ^2.15.1
-  firebase_auth: ^4.8.0
-  firebase_storage: ^11.2.6
+
 
   # UI
   device_preview: ^1.1.0
@@ -78,11 +77,11 @@ dependencies:
   webtrit_phone:
     path: ../webtrit_phone
 
-  data:
-    path: ./packages/data
-
   domain:
     path: ./packages/domain
+
+  data:
+    path: ./packages/data
 
 analyzer:
   exclude:
