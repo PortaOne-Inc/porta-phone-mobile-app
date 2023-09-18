@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -46,9 +47,9 @@ class AppRoute {
               name: AppRoutInfo.admin.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
-                    updateThemeUseCase: getIt.get(instanceName: UsecaseThemeUpdate.staticEditUsecaseKey),
-                    getThemeUseCase: getIt.get(instanceName: UsecaseThemeGet.staticUsecaseKey),
-                    getUserUseCase: getIt.get()),
+                  updateThemeUseCase: getIt.get(instanceName: UsecaseThemeUpdate.staticEditUsecaseKey),
+                  getThemeUseCase: getIt.get(instanceName: UsecaseThemeGet.staticUsecaseKey),
+                ),
                 child: PageThemeEdit(
                   title: context.l10n.feature_admin_title,
                 ),
@@ -120,16 +121,15 @@ class AppRoute {
               name: AppRoutInfo.themesEdit.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
-                  updateThemeUseCase: getIt.get(
+                  updateThemeUseCase: getIt<UsecaseThemeUpdate>(
                     instanceName: UsecaseThemeUpdate.applicationEditUsecaseKey,
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   ),
-                  getThemeUseCase: getIt.get(
+                  getThemeUseCase: getIt<UsecaseThemeGet>(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                     param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
                   ),
-                  getUserUseCase: getIt.get(),
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
                 ),

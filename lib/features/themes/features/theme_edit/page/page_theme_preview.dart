@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';

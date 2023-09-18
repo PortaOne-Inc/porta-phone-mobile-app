@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/core/core.dart';
 
 extension AuthExceptionMessageL10n on AuthException {
   String errorL10n(BuildContext context) {

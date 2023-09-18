@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:webtrit_configurator/core/core.dart';
+
+import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/core/widgets/image/image_resource.dart';
 
 class LaunchIcon extends StatelessWidget {
   const LaunchIcon({

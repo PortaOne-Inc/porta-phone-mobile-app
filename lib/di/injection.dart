@@ -1,52 +1,24 @@
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:get_it/get_it.dart';
 
-import 'package:webtrit_configurator/app/application.dart';
+import 'package:data/di/injection.module.dart';
+import 'package:domain/di/injection.module.dart';
 
 import 'injection.config.dart';
 
-late GetIt _getIt;
-
-@InjectableInit()
-Future<GetIt> configureDependencies({
-  String environment = Environment.prod,
-}) async {
-  _getIt = GetIt.asNewInstance();
-  _getIt.init(environment: environment);
-  return _getIt;
-}
+@InjectableInit(
+  externalPackageModulesBefore: [
+    ExternalModule(DataPackageModule),
+    ExternalModule(DomainPackageModule),
+  ],
+)
+Future<GetIt> configureDependencies(String environment) async => GetIt.asNewInstance().init(environment: environment);
 
 @module
 abstract class RegisterModule {
-  @LazySingleton()
-  FirebaseAuth auth() {
-    final firebaseAuth = FirebaseAuth.instance;
-    final env = _getIt.get<AppEnvironment>();
-    final authorizationOption = env.authorizationEmulator;
-
-    if (authorizationOption != null) {
-      firebaseAuth.useAuthEmulator(authorizationOption.host, authorizationOption.port);
-    }
-    return firebaseAuth;
-  }
-
-  @LazySingleton()
-  FirebaseStorage storage() => FirebaseStorage.instance;
-
-  @LazySingleton()
-  Dio dio() {
-    final dio = Dio();
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        final token = await auth().currentUser?.getIdToken();
-        final authToken = 'Bearer $token';
-        options.headers['Authorization'] = authToken;
-        return handler.next(options);
-      },
-    ));
-    return dio;
+  // You can register named preemptive types like follows
+  @Named('baseUrl')
+  String get baseUrl {
+    return 'https://us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1';
   }
 }

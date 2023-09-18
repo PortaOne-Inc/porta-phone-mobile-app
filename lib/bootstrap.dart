@@ -22,7 +22,7 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       WidgetsFlutterBinding.ensureInitialized();
       usePathUrlStrategy();
 
-      final diContainer = await configureDependencies(environment: EnvironmentConfig.ENV);
+      final diContainer = await configureDependencies(EnvironmentConfig.ENV);
 
       await Firebase.initializeApp(options: diContainer.get<AppEnvironment>().firebaseOptions);
 

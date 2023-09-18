@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:domain/domain.dart';
 
 import '../../model/models.dart';
 
@@ -17,7 +17,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
-    required this.getUserUseCase,
     this.applicationId,
     this.themeId,
   }) : super(ThemePropertyState.progress()) {
@@ -50,7 +49,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
-  final UsecaseUserGet getUserUseCase;
 
   Future<void> _onReplaceColorEvent(ReplaceColorSchemeEvent event, Emitter<ThemePropertyState> emit) async {
     _updateColor(event.colorScheme, emit);

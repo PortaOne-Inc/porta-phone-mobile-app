@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:domain/domain.dart';
 
 import '../model/models.dart';
 

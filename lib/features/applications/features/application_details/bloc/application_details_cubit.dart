@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/applications/applications.dart';
+import 'package:domain/domain.dart';
+
 
 part 'application_details_state.dart';
 

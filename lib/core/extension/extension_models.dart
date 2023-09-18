@@ -1,6 +1,9 @@
-import 'dart:convert';
+import 'package:domain/domain.dart';
 
 import 'package:flutter/material.dart';
+
+import 'dart:convert';
+
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/gen/assets.gen.dart';
 

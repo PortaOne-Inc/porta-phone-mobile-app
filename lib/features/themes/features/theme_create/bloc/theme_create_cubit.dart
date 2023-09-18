@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-
 import '../model/theme_name_input.dart';
-import '../usecase/usecase.dart';
 
 part 'theme_create_state.dart';
 

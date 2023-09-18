@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:webtrit_configurator/core/entity/entity.dart';
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import '../widgets/widgets.dart';

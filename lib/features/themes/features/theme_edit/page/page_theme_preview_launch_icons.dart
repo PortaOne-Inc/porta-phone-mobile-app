@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/entity/models/models.dart';
+import 'package:domain/domain.dart';
 
 import '../widgets/lauch_icon.dart';
 

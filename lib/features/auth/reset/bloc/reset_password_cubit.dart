@@ -2,10 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:domain/domain.dart';
 
 import '../models/auth_email_input.dart';
-import '../usecase/usecase.dart';
 
 part 'reset_password_state.dart';
 
