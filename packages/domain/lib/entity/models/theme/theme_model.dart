@@ -1,3 +1,4 @@
+import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +19,7 @@ class ThemeModel with _$ThemeModel {
     final String? fontFamily,
     final ColorSchemeModel? colors,
     @Default(ImageSchemeModel()) final ImageSchemeModel images,
+    @Default(SystemAssetsModel()) final SystemAssetsModel systemAssets,
     final TextsModel? texts,
   }) = _ThemeModel;
 

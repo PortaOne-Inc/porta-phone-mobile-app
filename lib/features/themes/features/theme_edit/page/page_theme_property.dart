@@ -403,11 +403,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.primaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                     bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
                                   ));
                                 }),
-                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(primaryOnboardingLogo: const ImageModel()),
                                 )),
                               ),
@@ -417,11 +417,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.secondaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                     bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
                                   ));
                                 }),
-                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
+                                onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(
                                     secondaryOnboardingLogo: const ImageModel(),
                                   ),
@@ -457,57 +457,57 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               description:
                                   'The image asset which will be used for the icon foreground of the adaptive icon Note: Adaptive Icons will only be generated when both adaptive_icon_background and adaptive_icon_foreground are specifier',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.adaptiveIconForeground)),
-                              image: state.theme!.images.adaptiveIconForeground,
+                              image: state.theme!.systemAssets.adaptiveIconForeground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(adaptiveIconForeground: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(adaptiveIconForeground: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: const ImageModel()),
                               )),
                             ),
                             SelectedImage(
                               name: 'Android launcher icon',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.android)),
-                              image: state.theme!.images.androidLauncherIcon,
+                              image: state.theme!.systemAssets.androidLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(androidLauncherIcon: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(androidLauncherIcon: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: const ImageModel()),
                               )),
                             ),
                             SelectedImage(
                               name: 'IOS launcher icon',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.ios)),
-                              image: state.theme!.images.iosLauncherIcon,
+                              image: state.theme!.systemAssets.iosLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(iosLauncherIcon: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(iosLauncherIcon: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: const ImageModel()),
                               )),
                             ),
                             SelectedImage(
                               name: 'WEB launcher icon',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.web)),
-                              image: state.theme!.images.webLauncherIcon,
+                              image: state.theme!.systemAssets.webLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(webLauncherIcon: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(webLauncherIcon: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: const ImageModel()),
                               )),
                             ),
                           ],
@@ -535,15 +535,15 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                   'This icon will be displayed on the home screen when the application initializes, usually this screen is visible for a short time',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.splashImageSize)),
                               //TODO: RENAME adaptiveIconBackground to splash icon
-                              image: state.theme!.images.adaptiveIconBackground,
+                              image: state.theme!.systemAssets.adaptiveIconBackground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(adaptiveIconBackground: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(adaptiveIconBackground: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: const ImageModel()),
                               )),
                             ),
                           ],
@@ -568,15 +568,15 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             SelectedImage(
                               name: 'IOS push notification icon',
                               imageFilter: ImageFilterModel.svg(),
-                              image: state.theme!.images.notificationLogo,
+                              image: state.theme!.systemAssets.notificationLogo,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                  bloc.state.theme?.images.copyWith(notificationLogo: image),
+                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                  bloc.state.theme?.systemAssets.copyWith(notificationLogo: image),
                                 ));
                               }),
-                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateImages(
-                                bloc.state.theme?.images.copyWith(notificationLogo: const ImageModel()),
+                              onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                bloc.state.theme?.systemAssets.copyWith(notificationLogo: const ImageModel()),
                               )),
                             ),
                           ],

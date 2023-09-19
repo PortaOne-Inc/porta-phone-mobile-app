@@ -32,7 +32,7 @@ class PageThemePreviewLaunchSplash extends StatelessWidget {
             color: theme.colors?.launch?.splashBackground ?? Colors.green,
             child: Center(
               child: ImageResource(
-                imageModel: theme.images.adaptiveIconBackground,
+                imageModel: theme.systemAssets.adaptiveIconBackground,
                 fit: BoxFit.none,
                 defaultWidget: const SizedBox(),
               ),

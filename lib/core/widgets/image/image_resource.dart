@@ -63,12 +63,12 @@ class MemorySource extends StatelessWidget {
       case ImageFormat.vector:
         return SvgPicture.memory(
           base64Decode(base64),
-          fit: BoxFit.cover,
+          fit: fit ?? BoxFit.cover,
         );
       case ImageFormat.raster:
         return Image.memory(
           base64Decode(base64),
-          fit: BoxFit.cover,
+          fit: fit ?? BoxFit.cover,
         );
     }
   }

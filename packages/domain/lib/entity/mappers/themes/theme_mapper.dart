@@ -1,4 +1,5 @@
 import 'package:data/data.dart';
+import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../models/models.dart';
@@ -31,12 +32,12 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
       images: ImageCollectionDTO(
         primaryOnboardingLogo: model.images.primaryOnboardingLogo.url,
         secondaryOnboardingLogo: model.images.secondaryOnboardingLogo.url,
-        notificationLogo: model.images.notificationLogo.url,
-        adaptiveIconBackground: model.images.adaptiveIconBackground.url,
-        adaptiveIconForeground: model.images.adaptiveIconForeground.url,
-        androidLauncherIcon: model.images.androidLauncherIcon.url,
-        iosLauncherIcon: model.images.iosLauncherIcon.url,
-        webLauncherIcon: model.images.webLauncherIcon.url,
+        notificationLogo: model.systemAssets.notificationLogo.url,
+        adaptiveIconBackground: model.systemAssets.adaptiveIconBackground.url,
+        adaptiveIconForeground: model.systemAssets.adaptiveIconForeground.url,
+        androidLauncherIcon: model.systemAssets.androidLauncherIcon.url,
+        iosLauncherIcon: model.systemAssets.iosLauncherIcon.url,
+        webLauncherIcon: model.systemAssets.webLauncherIcon.url,
       ),
     );
   }
@@ -55,6 +56,8 @@ class ThemeMapper extends Mapper<ThemeDTO?, ThemeModel?> {
         images: ImageSchemeModel(
           primaryOnboardingLogo: ImageModel(url: dto.images?.primaryOnboardingLogo),
           secondaryOnboardingLogo: ImageModel(url: dto.images?.secondaryOnboardingLogo),
+        ),
+        systemAssets: SystemAssetsModel(
           notificationLogo: ImageModel(url: dto.images?.notificationLogo),
           adaptiveIconBackground: ImageModel(url: dto.images?.adaptiveIconBackground),
           adaptiveIconForeground: ImageModel(url: dto.images?.adaptiveIconForeground),

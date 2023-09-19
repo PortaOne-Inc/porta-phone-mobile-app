@@ -10458,21 +10458,25 @@ mixin _$UpdateThemeSchemeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String font) updateFont,
     required TResult Function(TextsModel? textsModel) updateTexts,
-    required TResult Function(ImageSchemeModel? image) updateImages,
+    required TResult Function(ImageSchemeModel? image) updateInAppImages,
+    required TResult Function(SystemAssetsModel? image)
+        updateSystemAssetsImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String font)? updateFont,
     TResult? Function(TextsModel? textsModel)? updateTexts,
-    TResult? Function(ImageSchemeModel? image)? updateImages,
+    TResult? Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult? Function(SystemAssetsModel? image)? updateSystemAssetsImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String font)? updateFont,
     TResult Function(TextsModel? textsModel)? updateTexts,
-    TResult Function(ImageSchemeModel? image)? updateImages,
+    TResult Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult Function(SystemAssetsModel? image)? updateSystemAssetsImages,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -10480,21 +10484,28 @@ mixin _$UpdateThemeSchemeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
     required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
-    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value)
+        updateInAppImages,
+    required TResult Function(_UpdateSystemAssetsImagesEvent value)
+        updateSystemAssetsImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult? Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -10529,7 +10540,9 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String font) updateFont,
     required TResult Function(TextsModel? textsModel) updateTexts,
-    required TResult Function(ImageSchemeModel? image) updateImages,
+    required TResult Function(ImageSchemeModel? image) updateInAppImages,
+    required TResult Function(SystemAssetsModel? image)
+        updateSystemAssetsImages,
   }) {
     return updateFont(font);
   }
@@ -10539,7 +10552,8 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String font)? updateFont,
     TResult? Function(TextsModel? textsModel)? updateTexts,
-    TResult? Function(ImageSchemeModel? image)? updateImages,
+    TResult? Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult? Function(SystemAssetsModel? image)? updateSystemAssetsImages,
   }) {
     return updateFont?.call(font);
   }
@@ -10549,7 +10563,8 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String font)? updateFont,
     TResult Function(TextsModel? textsModel)? updateTexts,
-    TResult Function(ImageSchemeModel? image)? updateImages,
+    TResult Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult Function(SystemAssetsModel? image)? updateSystemAssetsImages,
     required TResult orElse(),
   }) {
     if (updateFont != null) {
@@ -10563,7 +10578,10 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
     required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
-    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value)
+        updateInAppImages,
+    required TResult Function(_UpdateSystemAssetsImagesEvent value)
+        updateSystemAssetsImages,
   }) {
     return updateFont(this);
   }
@@ -10573,7 +10591,9 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult? Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
   }) {
     return updateFont?.call(this);
   }
@@ -10583,7 +10603,9 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
     required TResult orElse(),
   }) {
     if (updateFont != null) {
@@ -10630,7 +10652,9 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String font) updateFont,
     required TResult Function(TextsModel? textsModel) updateTexts,
-    required TResult Function(ImageSchemeModel? image) updateImages,
+    required TResult Function(ImageSchemeModel? image) updateInAppImages,
+    required TResult Function(SystemAssetsModel? image)
+        updateSystemAssetsImages,
   }) {
     return updateTexts(textsModel);
   }
@@ -10640,7 +10664,8 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String font)? updateFont,
     TResult? Function(TextsModel? textsModel)? updateTexts,
-    TResult? Function(ImageSchemeModel? image)? updateImages,
+    TResult? Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult? Function(SystemAssetsModel? image)? updateSystemAssetsImages,
   }) {
     return updateTexts?.call(textsModel);
   }
@@ -10650,7 +10675,8 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String font)? updateFont,
     TResult Function(TextsModel? textsModel)? updateTexts,
-    TResult Function(ImageSchemeModel? image)? updateImages,
+    TResult Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult Function(SystemAssetsModel? image)? updateSystemAssetsImages,
     required TResult orElse(),
   }) {
     if (updateTexts != null) {
@@ -10664,7 +10690,10 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
     required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
-    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value)
+        updateInAppImages,
+    required TResult Function(_UpdateSystemAssetsImagesEvent value)
+        updateSystemAssetsImages,
   }) {
     return updateTexts(this);
   }
@@ -10674,7 +10703,9 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult? Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
   }) {
     return updateTexts?.call(this);
   }
@@ -10684,7 +10715,9 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
     required TResult orElse(),
   }) {
     if (updateTexts != null) {
@@ -10711,7 +10744,7 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
 
   @override
   String toString() {
-    return 'UpdateThemeSchemeEvent.updateImages(image: $image)';
+    return 'UpdateThemeSchemeEvent.updateInAppImages(image: $image)';
   }
 
   @override
@@ -10730,9 +10763,11 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String font) updateFont,
     required TResult Function(TextsModel? textsModel) updateTexts,
-    required TResult Function(ImageSchemeModel? image) updateImages,
+    required TResult Function(ImageSchemeModel? image) updateInAppImages,
+    required TResult Function(SystemAssetsModel? image)
+        updateSystemAssetsImages,
   }) {
-    return updateImages(image);
+    return updateInAppImages(image);
   }
 
   @override
@@ -10740,9 +10775,10 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String font)? updateFont,
     TResult? Function(TextsModel? textsModel)? updateTexts,
-    TResult? Function(ImageSchemeModel? image)? updateImages,
+    TResult? Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult? Function(SystemAssetsModel? image)? updateSystemAssetsImages,
   }) {
-    return updateImages?.call(image);
+    return updateInAppImages?.call(image);
   }
 
   @override
@@ -10750,11 +10786,12 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String font)? updateFont,
     TResult Function(TextsModel? textsModel)? updateTexts,
-    TResult Function(ImageSchemeModel? image)? updateImages,
+    TResult Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult Function(SystemAssetsModel? image)? updateSystemAssetsImages,
     required TResult orElse(),
   }) {
-    if (updateImages != null) {
-      return updateImages(image);
+    if (updateInAppImages != null) {
+      return updateInAppImages(image);
     }
     return orElse();
   }
@@ -10764,9 +10801,12 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
     required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
-    required TResult Function(_UpdateThemeSchemeImagesEvent value) updateImages,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value)
+        updateInAppImages,
+    required TResult Function(_UpdateSystemAssetsImagesEvent value)
+        updateSystemAssetsImages,
   }) {
-    return updateImages(this);
+    return updateInAppImages(this);
   }
 
   @override
@@ -10774,9 +10814,11 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult? Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
   }) {
-    return updateImages?.call(this);
+    return updateInAppImages?.call(this);
   }
 
   @override
@@ -10784,11 +10826,13 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
     TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
-    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateImages,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
     required TResult orElse(),
   }) {
-    if (updateImages != null) {
-      return updateImages(this);
+    if (updateInAppImages != null) {
+      return updateInAppImages(this);
     }
     return orElse();
   }
@@ -10799,4 +10843,117 @@ abstract class _UpdateThemeSchemeImagesEvent implements UpdateThemeSchemeEvent {
       _$_UpdateThemeSchemeImagesEvent;
 
   ImageSchemeModel? get image;
+}
+
+/// @nodoc
+
+class _$_UpdateSystemAssetsImagesEvent
+    implements _UpdateSystemAssetsImagesEvent {
+  const _$_UpdateSystemAssetsImagesEvent(this.image);
+
+  @override
+  final SystemAssetsModel? image;
+
+  @override
+  String toString() {
+    return 'UpdateThemeSchemeEvent.updateSystemAssetsImages(image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateSystemAssetsImagesEvent &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, image);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String font) updateFont,
+    required TResult Function(TextsModel? textsModel) updateTexts,
+    required TResult Function(ImageSchemeModel? image) updateInAppImages,
+    required TResult Function(SystemAssetsModel? image)
+        updateSystemAssetsImages,
+  }) {
+    return updateSystemAssetsImages(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String font)? updateFont,
+    TResult? Function(TextsModel? textsModel)? updateTexts,
+    TResult? Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult? Function(SystemAssetsModel? image)? updateSystemAssetsImages,
+  }) {
+    return updateSystemAssetsImages?.call(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String font)? updateFont,
+    TResult Function(TextsModel? textsModel)? updateTexts,
+    TResult Function(ImageSchemeModel? image)? updateInAppImages,
+    TResult Function(SystemAssetsModel? image)? updateSystemAssetsImages,
+    required TResult orElse(),
+  }) {
+    if (updateSystemAssetsImages != null) {
+      return updateSystemAssetsImages(image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeSchemeFontEvent value) updateFont,
+    required TResult Function(_UpdateThemeSchemeTextsvent value) updateTexts,
+    required TResult Function(_UpdateThemeSchemeImagesEvent value)
+        updateInAppImages,
+    required TResult Function(_UpdateSystemAssetsImagesEvent value)
+        updateSystemAssetsImages,
+  }) {
+    return updateSystemAssetsImages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult? Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult? Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult? Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
+  }) {
+    return updateSystemAssetsImages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeSchemeFontEvent value)? updateFont,
+    TResult Function(_UpdateThemeSchemeTextsvent value)? updateTexts,
+    TResult Function(_UpdateThemeSchemeImagesEvent value)? updateInAppImages,
+    TResult Function(_UpdateSystemAssetsImagesEvent value)?
+        updateSystemAssetsImages,
+    required TResult orElse(),
+  }) {
+    if (updateSystemAssetsImages != null) {
+      return updateSystemAssetsImages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSystemAssetsImagesEvent
+    implements UpdateThemeSchemeEvent {
+  const factory _UpdateSystemAssetsImagesEvent(final SystemAssetsModel? image) =
+      _$_UpdateSystemAssetsImagesEvent;
+
+  SystemAssetsModel? get image;
 }

@@ -18,12 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ImageSchemeModel {
   ImageModel get primaryOnboardingLogo => throw _privateConstructorUsedError;
   ImageModel get secondaryOnboardingLogo => throw _privateConstructorUsedError;
-  ImageModel get notificationLogo => throw _privateConstructorUsedError;
-  ImageModel get adaptiveIconBackground => throw _privateConstructorUsedError;
-  ImageModel get adaptiveIconForeground => throw _privateConstructorUsedError;
-  ImageModel get androidLauncherIcon => throw _privateConstructorUsedError;
-  ImageModel get iosLauncherIcon => throw _privateConstructorUsedError;
-  ImageModel get webLauncherIcon => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ImageSchemeModelCopyWith<ImageSchemeModel> get copyWith =>
@@ -37,23 +31,10 @@ abstract class $ImageSchemeModelCopyWith<$Res> {
       _$ImageSchemeModelCopyWithImpl<$Res, ImageSchemeModel>;
   @useResult
   $Res call(
-      {ImageModel primaryOnboardingLogo,
-      ImageModel secondaryOnboardingLogo,
-      ImageModel notificationLogo,
-      ImageModel adaptiveIconBackground,
-      ImageModel adaptiveIconForeground,
-      ImageModel androidLauncherIcon,
-      ImageModel iosLauncherIcon,
-      ImageModel webLauncherIcon});
+      {ImageModel primaryOnboardingLogo, ImageModel secondaryOnboardingLogo});
 
   $ImageModelCopyWith<$Res> get primaryOnboardingLogo;
   $ImageModelCopyWith<$Res> get secondaryOnboardingLogo;
-  $ImageModelCopyWith<$Res> get notificationLogo;
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground;
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground;
-  $ImageModelCopyWith<$Res> get androidLauncherIcon;
-  $ImageModelCopyWith<$Res> get iosLauncherIcon;
-  $ImageModelCopyWith<$Res> get webLauncherIcon;
 }
 
 /// @nodoc
@@ -71,12 +52,6 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
   $Res call({
     Object? primaryOnboardingLogo = null,
     Object? secondaryOnboardingLogo = null,
-    Object? notificationLogo = null,
-    Object? adaptiveIconBackground = null,
-    Object? adaptiveIconForeground = null,
-    Object? androidLauncherIcon = null,
-    Object? iosLauncherIcon = null,
-    Object? webLauncherIcon = null,
   }) {
     return _then(_value.copyWith(
       primaryOnboardingLogo: null == primaryOnboardingLogo
@@ -86,30 +61,6 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
       secondaryOnboardingLogo: null == secondaryOnboardingLogo
           ? _value.secondaryOnboardingLogo
           : secondaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      notificationLogo: null == notificationLogo
-          ? _value.notificationLogo
-          : notificationLogo // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconBackground: null == adaptiveIconBackground
-          ? _value.adaptiveIconBackground
-          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconForeground: null == adaptiveIconForeground
-          ? _value.adaptiveIconForeground
-          : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      androidLauncherIcon: null == androidLauncherIcon
-          ? _value.androidLauncherIcon
-          : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      iosLauncherIcon: null == iosLauncherIcon
-          ? _value.iosLauncherIcon
-          : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      webLauncherIcon: null == webLauncherIcon
-          ? _value.webLauncherIcon
-          : webLauncherIcon // ignore: cast_nullable_to_non_nullable
               as ImageModel,
     ) as $Val);
   }
@@ -129,54 +80,6 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
       return _then(_value.copyWith(secondaryOnboardingLogo: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get notificationLogo {
-    return $ImageModelCopyWith<$Res>(_value.notificationLogo, (value) {
-      return _then(_value.copyWith(notificationLogo: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground {
-    return $ImageModelCopyWith<$Res>(_value.adaptiveIconBackground, (value) {
-      return _then(_value.copyWith(adaptiveIconBackground: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground {
-    return $ImageModelCopyWith<$Res>(_value.adaptiveIconForeground, (value) {
-      return _then(_value.copyWith(adaptiveIconForeground: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get androidLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.androidLauncherIcon, (value) {
-      return _then(_value.copyWith(androidLauncherIcon: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get iosLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.iosLauncherIcon, (value) {
-      return _then(_value.copyWith(iosLauncherIcon: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get webLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.webLauncherIcon, (value) {
-      return _then(_value.copyWith(webLauncherIcon: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -188,31 +91,12 @@ abstract class _$$_ImageSchemeModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ImageModel primaryOnboardingLogo,
-      ImageModel secondaryOnboardingLogo,
-      ImageModel notificationLogo,
-      ImageModel adaptiveIconBackground,
-      ImageModel adaptiveIconForeground,
-      ImageModel androidLauncherIcon,
-      ImageModel iosLauncherIcon,
-      ImageModel webLauncherIcon});
+      {ImageModel primaryOnboardingLogo, ImageModel secondaryOnboardingLogo});
 
   @override
   $ImageModelCopyWith<$Res> get primaryOnboardingLogo;
   @override
   $ImageModelCopyWith<$Res> get secondaryOnboardingLogo;
-  @override
-  $ImageModelCopyWith<$Res> get notificationLogo;
-  @override
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground;
-  @override
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground;
-  @override
-  $ImageModelCopyWith<$Res> get androidLauncherIcon;
-  @override
-  $ImageModelCopyWith<$Res> get iosLauncherIcon;
-  @override
-  $ImageModelCopyWith<$Res> get webLauncherIcon;
 }
 
 /// @nodoc
@@ -228,12 +112,6 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
   $Res call({
     Object? primaryOnboardingLogo = null,
     Object? secondaryOnboardingLogo = null,
-    Object? notificationLogo = null,
-    Object? adaptiveIconBackground = null,
-    Object? adaptiveIconForeground = null,
-    Object? androidLauncherIcon = null,
-    Object? iosLauncherIcon = null,
-    Object? webLauncherIcon = null,
   }) {
     return _then(_$_ImageSchemeModel(
       primaryOnboardingLogo: null == primaryOnboardingLogo
@@ -244,30 +122,6 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
           ? _value.secondaryOnboardingLogo
           : secondaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
               as ImageModel,
-      notificationLogo: null == notificationLogo
-          ? _value.notificationLogo
-          : notificationLogo // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconBackground: null == adaptiveIconBackground
-          ? _value.adaptiveIconBackground
-          : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconForeground: null == adaptiveIconForeground
-          ? _value.adaptiveIconForeground
-          : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      androidLauncherIcon: null == androidLauncherIcon
-          ? _value.androidLauncherIcon
-          : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      iosLauncherIcon: null == iosLauncherIcon
-          ? _value.iosLauncherIcon
-          : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      webLauncherIcon: null == webLauncherIcon
-          ? _value.webLauncherIcon
-          : webLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
     ));
   }
 }
@@ -277,13 +131,7 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
 class _$_ImageSchemeModel extends _ImageSchemeModel {
   const _$_ImageSchemeModel(
       {this.primaryOnboardingLogo = const ImageModel(),
-      this.secondaryOnboardingLogo = const ImageModel(),
-      this.notificationLogo = const ImageModel(),
-      this.adaptiveIconBackground = const ImageModel(),
-      this.adaptiveIconForeground = const ImageModel(),
-      this.androidLauncherIcon = const ImageModel(),
-      this.iosLauncherIcon = const ImageModel(),
-      this.webLauncherIcon = const ImageModel()})
+      this.secondaryOnboardingLogo = const ImageModel()})
       : super._();
 
   @override
@@ -292,28 +140,10 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
   @override
   @JsonKey()
   final ImageModel secondaryOnboardingLogo;
-  @override
-  @JsonKey()
-  final ImageModel notificationLogo;
-  @override
-  @JsonKey()
-  final ImageModel adaptiveIconBackground;
-  @override
-  @JsonKey()
-  final ImageModel adaptiveIconForeground;
-  @override
-  @JsonKey()
-  final ImageModel androidLauncherIcon;
-  @override
-  @JsonKey()
-  final ImageModel iosLauncherIcon;
-  @override
-  @JsonKey()
-  final ImageModel webLauncherIcon;
 
   @override
   String toString() {
-    return 'ImageSchemeModel(primaryOnboardingLogo: $primaryOnboardingLogo, secondaryOnboardingLogo: $secondaryOnboardingLogo, notificationLogo: $notificationLogo, adaptiveIconBackground: $adaptiveIconBackground, adaptiveIconForeground: $adaptiveIconForeground, androidLauncherIcon: $androidLauncherIcon, iosLauncherIcon: $iosLauncherIcon, webLauncherIcon: $webLauncherIcon)';
+    return 'ImageSchemeModel(primaryOnboardingLogo: $primaryOnboardingLogo, secondaryOnboardingLogo: $secondaryOnboardingLogo)';
   }
 
   @override
@@ -325,32 +155,12 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
                 other.primaryOnboardingLogo == primaryOnboardingLogo) &&
             (identical(
                     other.secondaryOnboardingLogo, secondaryOnboardingLogo) ||
-                other.secondaryOnboardingLogo == secondaryOnboardingLogo) &&
-            (identical(other.notificationLogo, notificationLogo) ||
-                other.notificationLogo == notificationLogo) &&
-            (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
-                other.adaptiveIconBackground == adaptiveIconBackground) &&
-            (identical(other.adaptiveIconForeground, adaptiveIconForeground) ||
-                other.adaptiveIconForeground == adaptiveIconForeground) &&
-            (identical(other.androidLauncherIcon, androidLauncherIcon) ||
-                other.androidLauncherIcon == androidLauncherIcon) &&
-            (identical(other.iosLauncherIcon, iosLauncherIcon) ||
-                other.iosLauncherIcon == iosLauncherIcon) &&
-            (identical(other.webLauncherIcon, webLauncherIcon) ||
-                other.webLauncherIcon == webLauncherIcon));
+                other.secondaryOnboardingLogo == secondaryOnboardingLogo));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      primaryOnboardingLogo,
-      secondaryOnboardingLogo,
-      notificationLogo,
-      adaptiveIconBackground,
-      adaptiveIconForeground,
-      androidLauncherIcon,
-      iosLauncherIcon,
-      webLauncherIcon);
+  int get hashCode =>
+      Object.hash(runtimeType, primaryOnboardingLogo, secondaryOnboardingLogo);
 
   @JsonKey(ignore: true)
   @override
@@ -362,31 +172,13 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
 abstract class _ImageSchemeModel extends ImageSchemeModel {
   const factory _ImageSchemeModel(
       {final ImageModel primaryOnboardingLogo,
-      final ImageModel secondaryOnboardingLogo,
-      final ImageModel notificationLogo,
-      final ImageModel adaptiveIconBackground,
-      final ImageModel adaptiveIconForeground,
-      final ImageModel androidLauncherIcon,
-      final ImageModel iosLauncherIcon,
-      final ImageModel webLauncherIcon}) = _$_ImageSchemeModel;
+      final ImageModel secondaryOnboardingLogo}) = _$_ImageSchemeModel;
   const _ImageSchemeModel._() : super._();
 
   @override
   ImageModel get primaryOnboardingLogo;
   @override
   ImageModel get secondaryOnboardingLogo;
-  @override
-  ImageModel get notificationLogo;
-  @override
-  ImageModel get adaptiveIconBackground;
-  @override
-  ImageModel get adaptiveIconForeground;
-  @override
-  ImageModel get androidLauncherIcon;
-  @override
-  ImageModel get iosLauncherIcon;
-  @override
-  ImageModel get webLauncherIcon;
   @override
   @JsonKey(ignore: true)
   _$$_ImageSchemeModelCopyWith<_$_ImageSchemeModel> get copyWith =>

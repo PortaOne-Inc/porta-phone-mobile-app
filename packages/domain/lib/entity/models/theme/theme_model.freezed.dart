@@ -21,6 +21,7 @@ mixin _$ThemeModel {
   String? get fontFamily => throw _privateConstructorUsedError;
   ColorSchemeModel? get colors => throw _privateConstructorUsedError;
   ImageSchemeModel get images => throw _privateConstructorUsedError;
+  SystemAssetsModel get systemAssets => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,10 +41,12 @@ abstract class $ThemeModelCopyWith<$Res> {
       String? fontFamily,
       ColorSchemeModel? colors,
       ImageSchemeModel images,
+      SystemAssetsModel systemAssets,
       TextsModel? texts});
 
   $ColorSchemeModelCopyWith<$Res>? get colors;
   $ImageSchemeModelCopyWith<$Res> get images;
+  $SystemAssetsModelCopyWith<$Res> get systemAssets;
   $TextsModelCopyWith<$Res>? get texts;
 }
 
@@ -65,6 +68,7 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     Object? fontFamily = freezed,
     Object? colors = freezed,
     Object? images = null,
+    Object? systemAssets = null,
     Object? texts = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,6 +92,10 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as ImageSchemeModel,
+      systemAssets: null == systemAssets
+          ? _value.systemAssets
+          : systemAssets // ignore: cast_nullable_to_non_nullable
+              as SystemAssetsModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -112,6 +120,14 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
   $ImageSchemeModelCopyWith<$Res> get images {
     return $ImageSchemeModelCopyWith<$Res>(_value.images, (value) {
       return _then(_value.copyWith(images: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SystemAssetsModelCopyWith<$Res> get systemAssets {
+    return $SystemAssetsModelCopyWith<$Res>(_value.systemAssets, (value) {
+      return _then(_value.copyWith(systemAssets: value) as $Val);
     });
   }
 
@@ -142,12 +158,15 @@ abstract class _$$_ThemeModelCopyWith<$Res>
       String? fontFamily,
       ColorSchemeModel? colors,
       ImageSchemeModel images,
+      SystemAssetsModel systemAssets,
       TextsModel? texts});
 
   @override
   $ColorSchemeModelCopyWith<$Res>? get colors;
   @override
   $ImageSchemeModelCopyWith<$Res> get images;
+  @override
+  $SystemAssetsModelCopyWith<$Res> get systemAssets;
   @override
   $TextsModelCopyWith<$Res>? get texts;
 }
@@ -168,6 +187,7 @@ class __$$_ThemeModelCopyWithImpl<$Res>
     Object? fontFamily = freezed,
     Object? colors = freezed,
     Object? images = null,
+    Object? systemAssets = null,
     Object? texts = freezed,
   }) {
     return _then(_$_ThemeModel(
@@ -191,6 +211,10 @@ class __$$_ThemeModelCopyWithImpl<$Res>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as ImageSchemeModel,
+      systemAssets: null == systemAssets
+          ? _value.systemAssets
+          : systemAssets // ignore: cast_nullable_to_non_nullable
+              as SystemAssetsModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -208,6 +232,7 @@ class _$_ThemeModel extends _ThemeModel {
       this.fontFamily,
       this.colors,
       this.images = const ImageSchemeModel(),
+      this.systemAssets = const SystemAssetsModel(),
       this.texts})
       : super._();
 
@@ -223,11 +248,14 @@ class _$_ThemeModel extends _ThemeModel {
   @JsonKey()
   final ImageSchemeModel images;
   @override
+  @JsonKey()
+  final SystemAssetsModel systemAssets;
+  @override
   final TextsModel? texts;
 
   @override
   String toString() {
-    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colors: $colors, images: $images, texts: $texts)';
+    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colors: $colors, images: $images, systemAssets: $systemAssets, texts: $texts)';
   }
 
   @override
@@ -241,12 +269,14 @@ class _$_ThemeModel extends _ThemeModel {
                 other.fontFamily == fontFamily) &&
             (identical(other.colors, colors) || other.colors == colors) &&
             (identical(other.images, images) || other.images == images) &&
+            (identical(other.systemAssets, systemAssets) ||
+                other.systemAssets == systemAssets) &&
             (identical(other.texts, texts) || other.texts == texts));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, fontFamily, colors, images, texts);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, fontFamily, colors, images, systemAssets, texts);
 
   @JsonKey(ignore: true)
   @override
@@ -262,6 +292,7 @@ abstract class _ThemeModel extends ThemeModel {
       final String? fontFamily,
       final ColorSchemeModel? colors,
       final ImageSchemeModel images,
+      final SystemAssetsModel systemAssets,
       final TextsModel? texts}) = _$_ThemeModel;
   const _ThemeModel._() : super._();
 
@@ -275,6 +306,8 @@ abstract class _ThemeModel extends ThemeModel {
   ColorSchemeModel? get colors;
   @override
   ImageSchemeModel get images;
+  @override
+  SystemAssetsModel get systemAssets;
   @override
   TextsModel? get texts;
   @override

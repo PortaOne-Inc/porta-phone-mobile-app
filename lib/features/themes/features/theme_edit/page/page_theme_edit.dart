@@ -1,3 +1,5 @@
+import 'package:domain/domain.dart';
+import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +43,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             onSaveTheme: () => _updateTheme(context),
             onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
             onPreload: () => _openTemplates(state),
+            onImportAssetsFromSvg: () => _importAssetsFromSvg(state),
             themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
             onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
           ),
@@ -87,6 +90,20 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         },
       ),
     );
+  }
+
+  void _importAssetsFromSvg(ThemePropertyState state) async {
+    final result = await _leftPageNavigatorKey.currentState?.push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const ImportAssetsSvg(),
+      ),
+    );
+
+    if (result is SystemAssetsModel) {
+      if (mounted) {
+        BlocProvider.of<ThemePropertyCubit>(context).add(UpdateThemeSchemeEvent.updateSystemAssetsImages(result));
+      }
+    }
   }
 
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {

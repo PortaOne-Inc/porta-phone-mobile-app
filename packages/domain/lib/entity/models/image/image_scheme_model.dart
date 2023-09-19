@@ -11,11 +11,5 @@ class ImageSchemeModel with _$ImageSchemeModel {
   const factory ImageSchemeModel({
     @Default(ImageModel()) ImageModel primaryOnboardingLogo,
     @Default(ImageModel()) ImageModel secondaryOnboardingLogo,
-    @Default(ImageModel()) ImageModel notificationLogo,
-    @Default(ImageModel()) ImageModel adaptiveIconBackground,
-    @Default(ImageModel()) ImageModel adaptiveIconForeground,
-    @Default(ImageModel()) ImageModel androidLauncherIcon,
-    @Default(ImageModel()) ImageModel iosLauncherIcon,
-    @Default(ImageModel()) ImageModel webLauncherIcon,
   }) = _ImageSchemeModel;
 }

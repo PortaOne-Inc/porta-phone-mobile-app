@@ -39,12 +39,12 @@ class UsecaseThemeStaticUpdateImpl extends UsecaseThemeUpdate {
     final images = ImageCollectionDTO(
       primaryOnboardingLogo: await _getImageUrl(themeModel.images.primaryOnboardingLogo),
       secondaryOnboardingLogo: await _getImageUrl(themeModel.images.secondaryOnboardingLogo),
-      notificationLogo: await _getImageUrl(themeModel.images.notificationLogo),
-      adaptiveIconBackground: await _getImageUrl(themeModel.images.adaptiveIconBackground),
-      adaptiveIconForeground: await _getImageUrl(themeModel.images.adaptiveIconForeground),
-      iosLauncherIcon: await _getImageUrl(themeModel.images.iosLauncherIcon),
-      androidLauncherIcon: await _getImageUrl(themeModel.images.androidLauncherIcon),
-      webLauncherIcon: await _getImageUrl(themeModel.images.webLauncherIcon),
+      notificationLogo: await _getImageUrl(themeModel.systemAssets.notificationLogo),
+      adaptiveIconBackground: await _getImageUrl(themeModel.systemAssets.adaptiveIconBackground),
+      adaptiveIconForeground: await _getImageUrl(themeModel.systemAssets.adaptiveIconForeground),
+      iosLauncherIcon: await _getImageUrl(themeModel.systemAssets.iosLauncherIcon),
+      androidLauncherIcon: await _getImageUrl(themeModel.systemAssets.androidLauncherIcon),
+      webLauncherIcon: await _getImageUrl(themeModel.systemAssets.webLauncherIcon),
     );
 
     final theme = await themeRepository.updateStaticTheme(dtoTheme?.copyWith(images: images));
@@ -95,12 +95,12 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
     final images = ImageCollectionDTO(
       primaryOnboardingLogo: await _getImageUrl(themeModel.images.primaryOnboardingLogo),
       secondaryOnboardingLogo: await _getImageUrl(themeModel.images.secondaryOnboardingLogo),
-      notificationLogo: await _getImageUrl(themeModel.images.notificationLogo),
-      adaptiveIconBackground: await _getImageUrl(themeModel.images.adaptiveIconBackground),
-      adaptiveIconForeground: await _getImageUrl(themeModel.images.adaptiveIconForeground),
-      iosLauncherIcon: await _getImageUrl(themeModel.images.iosLauncherIcon),
-      androidLauncherIcon: await _getImageUrl(themeModel.images.androidLauncherIcon),
-      webLauncherIcon: await _getImageUrl(themeModel.images.webLauncherIcon),
+      notificationLogo: await _getImageUrl(themeModel.systemAssets.notificationLogo),
+      adaptiveIconBackground: await _getImageUrl(themeModel.systemAssets.adaptiveIconBackground),
+      adaptiveIconForeground: await _getImageUrl(themeModel.systemAssets.adaptiveIconForeground),
+      iosLauncherIcon: await _getImageUrl(themeModel.systemAssets.iosLauncherIcon),
+      androidLauncherIcon: await _getImageUrl(themeModel.systemAssets.androidLauncherIcon),
+      webLauncherIcon: await _getImageUrl(themeModel.systemAssets.webLauncherIcon),
     );
 
     final theme = await themeRepository.updateTheme(applicationId, dtoTheme?.copyWith(images: images));

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../entity/entity.dart';
@@ -23,6 +24,8 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
       images: const ImageSchemeModel(
         primaryOnboardingLogo: ImageModel(),
         secondaryOnboardingLogo: ImageModel(),
+      ),
+      systemAssets: const SystemAssetsModel(
         notificationLogo: ImageModel(),
         adaptiveIconBackground: ImageModel(),
         adaptiveIconForeground: ImageModel(),

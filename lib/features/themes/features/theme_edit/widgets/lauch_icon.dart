@@ -56,7 +56,7 @@ class LaunchIcon extends StatelessWidget {
             SizedBox(
               child: ImageResource(
                 imageModel: foreground,
-                fit: BoxFit.none,
+                fit: BoxFit.cover,
                 defaultWidget: const SizedBox(),
               ),
             ),

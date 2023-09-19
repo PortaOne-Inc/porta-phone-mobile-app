@@ -278,14 +278,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  dart_casing:
-    dependency: transitive
-    description:
-      name: dart_casing
-      sha256: "103ab12ecc536b955feedddb3c3b41de6282cd4517008e9087e6293781369d07"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -1385,6 +1377,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  screenshot:
+    dependency: "direct main"
+    description:
+      name: screenshot
+      sha256: "455284ff1f5b911d94a43c25e1385485cf6b4f288293eba68f15dad711c7b81c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   screenshots:
     dependency: "direct main"
     description:
@@ -1838,35 +1838,7 @@ packages:
   webtrit_callkeep:
     dependency: transitive
     description:
-      path: "../webtrit_callkeep/webtrit_callkeep"
-      relative: true
-    source: path
-    version: "0.0.1"
-  webtrit_callkeep_android:
-    dependency: transitive
-    description:
-      path: "../webtrit_callkeep/webtrit_callkeep_android"
-      relative: true
-    source: path
-    version: "0.0.1"
-  webtrit_callkeep_ios:
-    dependency: transitive
-    description:
-      path: "../webtrit_callkeep/webtrit_callkeep_ios"
-      relative: true
-    source: path
-    version: "0.0.1"
-  webtrit_callkeep_platform_interface:
-    dependency: transitive
-    description:
-      path: "../webtrit_callkeep/webtrit_callkeep_platform_interface"
-      relative: true
-    source: path
-    version: "0.0.1"
-  webtrit_callkeep_web:
-    dependency: transitive
-    description:
-      path: "../webtrit_callkeep/webtrit_callkeep_web"
+      path: "../webtrit_phone/packages/webtrit_callkeep"
       relative: true
     source: path
     version: "0.0.1"
@@ -1876,7 +1848,7 @@ packages:
       path: "../webtrit_phone"
       relative: true
     source: path
-    version: "1.2.0+1020020"
+    version: "1.1.0+1010000"
   webtrit_phone_number:
     dependency: transitive
     description:
