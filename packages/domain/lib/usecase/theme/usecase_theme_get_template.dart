@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../entity/entity.dart';

@@ -7,22 +7,12 @@ import 'package:injectable/injectable.dart';
 late GetIt di;
 
 @InjectableInit.microPackage()
-initMicroPackage(){}
-
+initMicroPackage() {}
 
 @module
 abstract class RegisterModule {
   @LazySingleton()
-  FirebaseAuth auth() {
-    final firebaseAuth = FirebaseAuth.instance;
-    // final env = _getIt.get<AppEnvironment>();
-    // final authorizationOption = env.authorizationEmulator;
-    //
-    // if (authorizationOption != null) {
-    //   firebaseAuth.useAuthEmulator(authorizationOption.host, authorizationOption.port);
-    // }
-    return firebaseAuth;
-  }
+  FirebaseAuth auth() => FirebaseAuth.instance;
 
   @LazySingleton()
   FirebaseStorage storage() => FirebaseStorage.instance;
