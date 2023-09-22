@@ -37,7 +37,6 @@ dependencies:
   # Firebase
   firebase_core: ^2.15.1
 
-
   # UI
   device_preview: ^1.1.0
   responsive_framework: ^1.1.0
