@@ -1,6 +1,6 @@
-import 'package:data/data.dart';
-import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:data/data.dart';
 
 import '../../models/models.dart';
 import '../mapper.dart';
