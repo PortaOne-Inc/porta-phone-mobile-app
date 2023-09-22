@@ -28,22 +28,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   var _layoutType = LayoutType.layout;
   var _focusScreenPosition = 0;
 
-  final _phoneScreenshots = [
-    const LoginScreenScreenshot(LoginStep.modeSelect),
-    const LoginScreenScreenshot(LoginStep.coreUrlAssign),
-    const LoginScreenScreenshot(LoginStep.otpRequest),
-    const MainScreenScreenshot(MainFlavor.favorites),
-    const MainScreenScreenshot(MainFlavor.recents),
-    const MainScreenScreenshot(MainFlavor.keypad),
-    const SettingScreenScreenshot(),
-    const CallScreenScreenshot(false),
-    const CallScreenScreenshot(
-      true,
-      localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
-      remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +59,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                     case LayoutType.layout:
                       layout = PreviewDetails(
                         type: _previewType,
-                        screens: _getThemedPreview(state.theme),
+                        screens: _phoneScreenshots(state.theme),
                         screenFocus: _focusScreenPosition,
                         isFrameVisible: _isFrameVisible,
                         onFocusPosition: _setFocusedScreen,
@@ -96,7 +80,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                     childPrimary: (context, size) => layout,
                     childSecondary: _previewType == PreviewType.single && _layoutType == LayoutType.layout
                         ? (context, size) => DrawerPreview(
-                              screenshots: _getThemedPreview(state.theme),
+                              screenshots: _phoneScreenshots(state.theme),
                               focusScreenPosition: _focusScreenPosition,
                               onTapScreen: _setFocusedScreen,
                             )
@@ -112,6 +96,42 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
+  List<Widget> _phoneScreenshots(ThemeModel? theme) {
+    final appBloc = MockAppBloc.allScreen(
+      themeSettings: (theme ?? const ThemeModel()).toThemeSettings(),
+      themeMode: ThemeMode.light,
+      locale: const Locale('en'),
+    );
+    return [
+      LoginScreenScreenshot(
+        LoginStep.modeSelect,
+        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
+      ),
+      const LoginScreenScreenshot(
+        LoginStep.coreUrlAssign,
+      ),
+      const LoginScreenScreenshot(
+        LoginStep.otpRequest,
+      ),
+      const MainScreenScreenshot(
+        MainFlavor.favorites,
+      ),
+      const MainScreenScreenshot(
+        MainFlavor.recents,
+      ),
+      const MainScreenScreenshot(
+        MainFlavor.keypad,
+      ),
+      const SettingScreenScreenshot(),
+      const CallScreenScreenshot(false),
+      const CallScreenScreenshot(
+        true,
+        localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+        remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
+      ),
+    ].map((e) => ScreenshotApp(appBloc: appBloc, child: e)).toList();
+  }
+
   void _listenBloc(BuildContext context, ThemePropertyState state) {
     if (state is ThemePropertFocusState) {
       _setFocusedScreen(state.position!);
@@ -121,14 +141,5 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   void _setFocusedScreen(int position) {
     _focusScreenPosition = position;
     setState(() {});
-  }
-
-  List<Widget> _getThemedPreview(ThemeModel? theme) {
-    final appBloc = MockAppBloc.allScreen(
-      themeSettings: (theme ?? const ThemeModel()).toThemeSettings(),
-      themeMode: ThemeMode.light,
-      locale: const Locale('en'),
-    );
-    return _phoneScreenshots.map((e) => ScreenshotApp(appBloc: appBloc, child: e)).toList();
   }
 }
