@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:device_preview/device_preview.dart';
 
-import 'package:webtrit_configurator/core/entity/models/models.dart';
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 class PageThemePreviewLaunchSplash extends StatelessWidget {
@@ -31,7 +32,7 @@ class PageThemePreviewLaunchSplash extends StatelessWidget {
             color: theme.colors?.launch?.splashBackground ?? Colors.green,
             child: Center(
               child: ImageResource(
-                imageModel: theme.images.adaptiveIconForeground,
+                imageModel: theme.systemAssets.adaptiveIconBackground,
                 fit: BoxFit.none,
                 defaultWidget: const SizedBox(),
               ),

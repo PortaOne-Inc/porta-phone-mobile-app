@@ -11,12 +11,14 @@ class ThemesEditToolbar extends StatelessWidget {
     required this.onSaveTheme,
     required this.onLogout,
     required this.onPreload,
+    required this.onImportAssetsFromSvg,
     required this.themeMode,
     required this.onThemeChange,
   });
 
   static const _menuLeftSave = '_menuLeftSave';
   static const _menuLeftPreload = '_menuLeftPreload';
+  static const _menuLeftImportAssetsFromSvg = '_menuLeftImportAssetsFromSvg';
   static const _menuRightLogout = '_menuRightLogout';
 
   final String title;
@@ -26,6 +28,7 @@ class ThemesEditToolbar extends StatelessWidget {
   final Function() onSaveTheme;
   final Function() onLogout;
   final Function() onPreload;
+  final Function() onImportAssetsFromSvg;
   final Function(ThemeMode) onThemeChange;
 
   @override
@@ -105,6 +108,10 @@ class ThemesEditToolbar extends StatelessWidget {
             value: _menuLeftPreload,
             text: context.l10n.feature_theme_edit_Template,
           ),
+          ToolbarMenuItem(
+            value: _menuLeftImportAssetsFromSvg,
+            text: 'Import launch assets from svg',
+          ),
         ],
         child: const ToolbarLabelItem(
           text: 'Theme',
@@ -119,6 +126,9 @@ class ThemesEditToolbar extends StatelessWidget {
     }
     if (value == _menuLeftPreload) {
       onPreload();
+    }
+    if (value == _menuLeftImportAssetsFromSvg) {
+      onImportAssetsFromSvg();
     }
   }
 

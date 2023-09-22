@@ -1,9 +1,10 @@
+import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:domain/domain.dart';
 
 import '../../model/models.dart';
 
@@ -17,7 +18,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
-    required this.getUserUseCase,
     this.applicationId,
     this.themeId,
   }) : super(ThemePropertyState.progress()) {
@@ -50,7 +50,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
-  final UsecaseUserGet getUserUseCase;
 
   Future<void> _onReplaceColorEvent(ReplaceColorSchemeEvent event, Emitter<ThemePropertyState> emit) async {
     _updateColor(event.colorScheme, emit);
@@ -60,7 +59,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     return event.map(
         updateFont: (_UpdateThemeSchemeFontEvent value) async => _updateFont(value.font, emit),
         updateTexts: (_UpdateThemeSchemeTextsvent value) async => _updateTexts(value.textsModel, emit),
-        updateImages: (_UpdateThemeSchemeImagesEvent value) async => _updateImageResources(value.image, emit));
+        updateInAppImages: (_UpdateThemeSchemeImagesEvent value) async => _updateImageResources(value.image, emit),
+        updateSystemAssetsImages: (_UpdateSystemAssetsImagesEvent value) async =>
+            _updateSystemAssetImageResources(value.image, emit));
   }
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<ThemePropertyState> emit) {
@@ -182,6 +183,12 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   void _updateImageResources(ImageSchemeModel? image, Emitter<ThemePropertyState> emit) {
     emit(state.updateTheme(
       theme: state.theme?.copyWith(images: image ?? const ImageSchemeModel()),
+    ));
+  }
+
+  void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<ThemePropertyState> emit) {
+    emit(state.updateTheme(
+      theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel()),
     ));
   }
 

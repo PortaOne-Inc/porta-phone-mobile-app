@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../consts/image.dart';
 import '../widgets/widgets.dart';
+
 import 'page_theme_preview_launch_icons.dart';
 import 'page_theme_preview_native_splash.dart';
 
@@ -91,14 +94,13 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                   }
                   return FlexibleBinaryLayout(
                     childPrimary: (context, size) => layout,
-                    childSecondary: (context, size) =>
-                        _previewType == PreviewType.single && _layoutType == LayoutType.layout
-                            ? DrawerPreview(
-                                screenshots: _getThemedPreview(state.theme),
-                                focusScreenPosition: _focusScreenPosition,
-                                onTapScreen: _setFocusedScreen,
-                              )
-                            : Container(),
+                    childSecondary: _previewType == PreviewType.single && _layoutType == LayoutType.layout
+                        ? (context, size) => DrawerPreview(
+                              screenshots: _getThemedPreview(state.theme),
+                              focusScreenPosition: _focusScreenPosition,
+                              onTapScreen: _setFocusedScreen,
+                            )
+                        : null,
                     orientation: ResizableOrientation.vertical,
                   );
                 },

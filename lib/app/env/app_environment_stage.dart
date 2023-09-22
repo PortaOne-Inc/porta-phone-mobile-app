@@ -11,7 +11,7 @@ class DevEnvironment extends AppEnvironment {
 
   @override
   Endpoints get endpoints => Endpoints(
-        host: 'https://us-central1-webtrit-configurator-stage.cloudfunctions.net/api',
+        host: 'https://us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1',
         apiVersion: '/v1',
         docs: '/docs',
       );
