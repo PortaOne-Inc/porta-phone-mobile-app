@@ -28,7 +28,6 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
 
       await (FirebaseAuth.instance).setPersistence(Persistence.LOCAL);
 
-      _initializeFirebaseEnv();
 
       return runApp(await builder(diContainer));
     },
@@ -38,11 +37,4 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       }
     },
   );
-}
-
-void _initializeFirebaseEnv() {
-  if (kIsWeb) {
-    js.context[EnvironmentConfig.ENV_KEY] = EnvironmentConfig.ENV;
-    html.document.dispatchEvent(html.CustomEvent('initialize_firebase_env'));
-  }
 }
