@@ -69,12 +69,12 @@ jobs:
 
       - name: Build prod web
         if: ${{github.event_name == 'push'&& github.ref == 'refs/heads/main' }}
-        run: flutter build web --dart-define ENV="prod"
+        run: flutter build web --release --dart-define-from-file=launcher/prod.env.json
         working-directory: ${{env.WORKING_DIRECTORY}}
 
       - name: Build stage web
         if: startsWith(github.ref, 'refs/tags/v')
-        run: flutter build web --dart-define ENV="dev"
+        run: flutter build web --release --dart-define-from-file=launcher/stage.env.json
         working-directory: ${{env.WORKING_DIRECTORY}}
 
       - name: Archive artifacts
