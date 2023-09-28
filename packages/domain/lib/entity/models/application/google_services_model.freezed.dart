@@ -63,22 +63,22 @@ class _$GoogleServicesModelCopyWithImpl<$Res, $Val extends GoogleServicesModel>
 }
 
 /// @nodoc
-abstract class _$$_GoogleServicesModelCopyWith<$Res>
+abstract class _$$GoogleServicesModelImplCopyWith<$Res>
     implements $GoogleServicesModelCopyWith<$Res> {
-  factory _$$_GoogleServicesModelCopyWith(_$_GoogleServicesModel value,
-          $Res Function(_$_GoogleServicesModel) then) =
-      __$$_GoogleServicesModelCopyWithImpl<$Res>;
+  factory _$$GoogleServicesModelImplCopyWith(_$GoogleServicesModelImpl value,
+          $Res Function(_$GoogleServicesModelImpl) then) =
+      __$$GoogleServicesModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? androidUrl, String? iosUrl});
 }
 
 /// @nodoc
-class __$$_GoogleServicesModelCopyWithImpl<$Res>
-    extends _$GoogleServicesModelCopyWithImpl<$Res, _$_GoogleServicesModel>
-    implements _$$_GoogleServicesModelCopyWith<$Res> {
-  __$$_GoogleServicesModelCopyWithImpl(_$_GoogleServicesModel _value,
-      $Res Function(_$_GoogleServicesModel) _then)
+class __$$GoogleServicesModelImplCopyWithImpl<$Res>
+    extends _$GoogleServicesModelCopyWithImpl<$Res, _$GoogleServicesModelImpl>
+    implements _$$GoogleServicesModelImplCopyWith<$Res> {
+  __$$GoogleServicesModelImplCopyWithImpl(_$GoogleServicesModelImpl _value,
+      $Res Function(_$GoogleServicesModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_GoogleServicesModelCopyWithImpl<$Res>
     Object? androidUrl = freezed,
     Object? iosUrl = freezed,
   }) {
-    return _then(_$_GoogleServicesModel(
+    return _then(_$GoogleServicesModelImpl(
       androidUrl: freezed == androidUrl
           ? _value.androidUrl
           : androidUrl // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_GoogleServicesModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GoogleServicesModel extends _GoogleServicesModel {
-  const _$_GoogleServicesModel({this.androidUrl, this.iosUrl}) : super._();
+class _$GoogleServicesModelImpl extends _GoogleServicesModel {
+  const _$GoogleServicesModelImpl({this.androidUrl, this.iosUrl}) : super._();
 
   @override
   final String? androidUrl;
@@ -119,7 +119,7 @@ class _$_GoogleServicesModel extends _GoogleServicesModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GoogleServicesModel &&
+            other is _$GoogleServicesModelImpl &&
             (identical(other.androidUrl, androidUrl) ||
                 other.androidUrl == androidUrl) &&
             (identical(other.iosUrl, iosUrl) || other.iosUrl == iosUrl));
@@ -131,15 +131,15 @@ class _$_GoogleServicesModel extends _GoogleServicesModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GoogleServicesModelCopyWith<_$_GoogleServicesModel> get copyWith =>
-      __$$_GoogleServicesModelCopyWithImpl<_$_GoogleServicesModel>(
+  _$$GoogleServicesModelImplCopyWith<_$GoogleServicesModelImpl> get copyWith =>
+      __$$GoogleServicesModelImplCopyWithImpl<_$GoogleServicesModelImpl>(
           this, _$identity);
 }
 
 abstract class _GoogleServicesModel extends GoogleServicesModel {
   const factory _GoogleServicesModel(
       {final String? androidUrl,
-      final String? iosUrl}) = _$_GoogleServicesModel;
+      final String? iosUrl}) = _$GoogleServicesModelImpl;
   const _GoogleServicesModel._() : super._();
 
   @override
@@ -148,6 +148,6 @@ abstract class _GoogleServicesModel extends GoogleServicesModel {
   String? get iosUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_GoogleServicesModelCopyWith<_$_GoogleServicesModel> get copyWith =>
+  _$$GoogleServicesModelImplCopyWith<_$GoogleServicesModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

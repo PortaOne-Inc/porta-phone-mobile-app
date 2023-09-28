@@ -112,11 +112,11 @@ class _$ImageCollectionDTOCopyWithImpl<$Res, $Val extends ImageCollectionDTO>
 }
 
 /// @nodoc
-abstract class _$$_ImageCollectionDTOCopyWith<$Res>
+abstract class _$$ImageCollectionDTOImplCopyWith<$Res>
     implements $ImageCollectionDTOCopyWith<$Res> {
-  factory _$$_ImageCollectionDTOCopyWith(_$_ImageCollectionDTO value,
-          $Res Function(_$_ImageCollectionDTO) then) =
-      __$$_ImageCollectionDTOCopyWithImpl<$Res>;
+  factory _$$ImageCollectionDTOImplCopyWith(_$ImageCollectionDTOImpl value,
+          $Res Function(_$ImageCollectionDTOImpl) then) =
+      __$$ImageCollectionDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_ImageCollectionDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageCollectionDTOCopyWithImpl<$Res>
-    extends _$ImageCollectionDTOCopyWithImpl<$Res, _$_ImageCollectionDTO>
-    implements _$$_ImageCollectionDTOCopyWith<$Res> {
-  __$$_ImageCollectionDTOCopyWithImpl(
-      _$_ImageCollectionDTO _value, $Res Function(_$_ImageCollectionDTO) _then)
+class __$$ImageCollectionDTOImplCopyWithImpl<$Res>
+    extends _$ImageCollectionDTOCopyWithImpl<$Res, _$ImageCollectionDTOImpl>
+    implements _$$ImageCollectionDTOImplCopyWith<$Res> {
+  __$$ImageCollectionDTOImplCopyWithImpl(_$ImageCollectionDTOImpl _value,
+      $Res Function(_$ImageCollectionDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +150,7 @@ class __$$_ImageCollectionDTOCopyWithImpl<$Res>
     Object? iosLauncherIcon = freezed,
     Object? webLauncherIcon = freezed,
   }) {
-    return _then(_$_ImageCollectionDTO(
+    return _then(_$ImageCollectionDTOImpl(
       primaryOnboardingLogo: freezed == primaryOnboardingLogo
           ? _value.primaryOnboardingLogo
           : primaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$$_ImageCollectionDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageCollectionDTO implements _ImageCollectionDTO {
-  const _$_ImageCollectionDTO(
+class _$ImageCollectionDTOImpl implements _ImageCollectionDTO {
+  const _$ImageCollectionDTOImpl(
       {this.primaryOnboardingLogo,
       this.secondaryOnboardingLogo,
       this.notificationLogo,
@@ -200,8 +200,8 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
       this.iosLauncherIcon,
       this.webLauncherIcon});
 
-  factory _$_ImageCollectionDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageCollectionDTOFromJson(json);
+  factory _$ImageCollectionDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageCollectionDTOImplFromJson(json);
 
   @override
   final String? primaryOnboardingLogo;
@@ -229,7 +229,7 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageCollectionDTO &&
+            other is _$ImageCollectionDTOImpl &&
             (identical(other.primaryOnboardingLogo, primaryOnboardingLogo) ||
                 other.primaryOnboardingLogo == primaryOnboardingLogo) &&
             (identical(
@@ -265,13 +265,13 @@ class _$_ImageCollectionDTO implements _ImageCollectionDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageCollectionDTOCopyWith<_$_ImageCollectionDTO> get copyWith =>
-      __$$_ImageCollectionDTOCopyWithImpl<_$_ImageCollectionDTO>(
+  _$$ImageCollectionDTOImplCopyWith<_$ImageCollectionDTOImpl> get copyWith =>
+      __$$ImageCollectionDTOImplCopyWithImpl<_$ImageCollectionDTOImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageCollectionDTOToJson(
+    return _$$ImageCollectionDTOImplToJson(
       this,
     );
   }
@@ -286,10 +286,10 @@ abstract class _ImageCollectionDTO implements ImageCollectionDTO {
       final String? adaptiveIconForeground,
       final String? androidLauncherIcon,
       final String? iosLauncherIcon,
-      final String? webLauncherIcon}) = _$_ImageCollectionDTO;
+      final String? webLauncherIcon}) = _$ImageCollectionDTOImpl;
 
   factory _ImageCollectionDTO.fromJson(Map<String, dynamic> json) =
-      _$_ImageCollectionDTO.fromJson;
+      _$ImageCollectionDTOImpl.fromJson;
 
   @override
   String? get primaryOnboardingLogo;
@@ -309,6 +309,6 @@ abstract class _ImageCollectionDTO implements ImageCollectionDTO {
   String? get webLauncherIcon;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageCollectionDTOCopyWith<_$_ImageCollectionDTO> get copyWith =>
+  _$$ImageCollectionDTOImplCopyWith<_$ImageCollectionDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

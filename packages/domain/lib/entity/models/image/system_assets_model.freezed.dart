@@ -148,11 +148,11 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
 }
 
 /// @nodoc
-abstract class _$$_SystemAssetsModelCopyWith<$Res>
+abstract class _$$SystemAssetsModelImplCopyWith<$Res>
     implements $SystemAssetsModelCopyWith<$Res> {
-  factory _$$_SystemAssetsModelCopyWith(_$_SystemAssetsModel value,
-          $Res Function(_$_SystemAssetsModel) then) =
-      __$$_SystemAssetsModelCopyWithImpl<$Res>;
+  factory _$$SystemAssetsModelImplCopyWith(_$SystemAssetsModelImpl value,
+          $Res Function(_$SystemAssetsModelImpl) then) =
+      __$$SystemAssetsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -178,11 +178,11 @@ abstract class _$$_SystemAssetsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SystemAssetsModelCopyWithImpl<$Res>
-    extends _$SystemAssetsModelCopyWithImpl<$Res, _$_SystemAssetsModel>
-    implements _$$_SystemAssetsModelCopyWith<$Res> {
-  __$$_SystemAssetsModelCopyWithImpl(
-      _$_SystemAssetsModel _value, $Res Function(_$_SystemAssetsModel) _then)
+class __$$SystemAssetsModelImplCopyWithImpl<$Res>
+    extends _$SystemAssetsModelCopyWithImpl<$Res, _$SystemAssetsModelImpl>
+    implements _$$SystemAssetsModelImplCopyWith<$Res> {
+  __$$SystemAssetsModelImplCopyWithImpl(_$SystemAssetsModelImpl _value,
+      $Res Function(_$SystemAssetsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -195,7 +195,7 @@ class __$$_SystemAssetsModelCopyWithImpl<$Res>
     Object? iosLauncherIcon = null,
     Object? webLauncherIcon = null,
   }) {
-    return _then(_$_SystemAssetsModel(
+    return _then(_$SystemAssetsModelImpl(
       notificationLogo: null == notificationLogo
           ? _value.notificationLogo
           : notificationLogo // ignore: cast_nullable_to_non_nullable
@@ -226,8 +226,8 @@ class __$$_SystemAssetsModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SystemAssetsModel extends _SystemAssetsModel {
-  const _$_SystemAssetsModel(
+class _$SystemAssetsModelImpl extends _SystemAssetsModel {
+  const _$SystemAssetsModelImpl(
       {this.notificationLogo = const ImageModel(),
       this.adaptiveIconBackground = const ImageModel(),
       this.adaptiveIconForeground = const ImageModel(),
@@ -264,7 +264,7 @@ class _$_SystemAssetsModel extends _SystemAssetsModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SystemAssetsModel &&
+            other is _$SystemAssetsModelImpl &&
             (identical(other.notificationLogo, notificationLogo) ||
                 other.notificationLogo == notificationLogo) &&
             (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
@@ -292,8 +292,8 @@ class _$_SystemAssetsModel extends _SystemAssetsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SystemAssetsModelCopyWith<_$_SystemAssetsModel> get copyWith =>
-      __$$_SystemAssetsModelCopyWithImpl<_$_SystemAssetsModel>(
+  _$$SystemAssetsModelImplCopyWith<_$SystemAssetsModelImpl> get copyWith =>
+      __$$SystemAssetsModelImplCopyWithImpl<_$SystemAssetsModelImpl>(
           this, _$identity);
 }
 
@@ -304,7 +304,7 @@ abstract class _SystemAssetsModel extends SystemAssetsModel {
       final ImageModel adaptiveIconForeground,
       final ImageModel androidLauncherIcon,
       final ImageModel iosLauncherIcon,
-      final ImageModel webLauncherIcon}) = _$_SystemAssetsModel;
+      final ImageModel webLauncherIcon}) = _$SystemAssetsModelImpl;
   const _SystemAssetsModel._() : super._();
 
   @override
@@ -321,6 +321,6 @@ abstract class _SystemAssetsModel extends SystemAssetsModel {
   ImageModel get webLauncherIcon;
   @override
   @JsonKey(ignore: true)
-  _$$_SystemAssetsModelCopyWith<_$_SystemAssetsModel> get copyWith =>
+  _$$SystemAssetsModelImplCopyWith<_$SystemAssetsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

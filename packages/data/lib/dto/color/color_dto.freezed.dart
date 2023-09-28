@@ -167,10 +167,11 @@ class _$ColorDTOCopyWithImpl<$Res, $Val extends ColorDTO>
 }
 
 /// @nodoc
-abstract class _$$_ColorDTOCopyWith<$Res> implements $ColorDTOCopyWith<$Res> {
-  factory _$$_ColorDTOCopyWith(
-          _$_ColorDTO value, $Res Function(_$_ColorDTO) then) =
-      __$$_ColorDTOCopyWithImpl<$Res>;
+abstract class _$$ColorDTOImplCopyWith<$Res>
+    implements $ColorDTOCopyWith<$Res> {
+  factory _$$ColorDTOImplCopyWith(
+          _$ColorDTOImpl value, $Res Function(_$ColorDTOImpl) then) =
+      __$$ColorDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -194,11 +195,11 @@ abstract class _$$_ColorDTOCopyWith<$Res> implements $ColorDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ColorDTOCopyWithImpl<$Res>
-    extends _$ColorDTOCopyWithImpl<$Res, _$_ColorDTO>
-    implements _$$_ColorDTOCopyWith<$Res> {
-  __$$_ColorDTOCopyWithImpl(
-      _$_ColorDTO _value, $Res Function(_$_ColorDTO) _then)
+class __$$ColorDTOImplCopyWithImpl<$Res>
+    extends _$ColorDTOCopyWithImpl<$Res, _$ColorDTOImpl>
+    implements _$$ColorDTOImplCopyWith<$Res> {
+  __$$ColorDTOImplCopyWithImpl(
+      _$ColorDTOImpl _value, $Res Function(_$ColorDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -219,7 +220,7 @@ class __$$_ColorDTOCopyWithImpl<$Res>
     Object? gradientTabColor = freezed,
     Object? launch = freezed,
   }) {
-    return _then(_$_ColorDTO(
+    return _then(_$ColorDTOImpl(
       primary: freezed == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
@@ -282,8 +283,8 @@ class __$$_ColorDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ColorDTO implements _ColorDTO {
-  const _$_ColorDTO(
+class _$ColorDTOImpl implements _ColorDTO {
+  const _$ColorDTOImpl(
       {this.primary,
       this.onPrimary,
       this.secondary,
@@ -299,8 +300,8 @@ class _$_ColorDTO implements _ColorDTO {
       this.gradientTabColor,
       this.launch});
 
-  factory _$_ColorDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ColorDTOFromJson(json);
+  factory _$ColorDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ColorDTOImplFromJson(json);
 
   @override
   final String? primary;
@@ -340,7 +341,7 @@ class _$_ColorDTO implements _ColorDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ColorDTO &&
+            other is _$ColorDTOImpl &&
             (identical(other.primary, primary) || other.primary == primary) &&
             (identical(other.onPrimary, onPrimary) ||
                 other.onPrimary == onPrimary) &&
@@ -388,12 +389,12 @@ class _$_ColorDTO implements _ColorDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ColorDTOCopyWith<_$_ColorDTO> get copyWith =>
-      __$$_ColorDTOCopyWithImpl<_$_ColorDTO>(this, _$identity);
+  _$$ColorDTOImplCopyWith<_$ColorDTOImpl> get copyWith =>
+      __$$ColorDTOImplCopyWithImpl<_$ColorDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ColorDTOToJson(
+    return _$$ColorDTOImplToJson(
       this,
     );
   }
@@ -414,9 +415,10 @@ abstract class _ColorDTO implements ColorDTO {
       final String? surface,
       final String? onSurface,
       final List<String>? gradientTabColor,
-      final LaunchDTO? launch}) = _$_ColorDTO;
+      final LaunchDTO? launch}) = _$ColorDTOImpl;
 
-  factory _ColorDTO.fromJson(Map<String, dynamic> json) = _$_ColorDTO.fromJson;
+  factory _ColorDTO.fromJson(Map<String, dynamic> json) =
+      _$ColorDTOImpl.fromJson;
 
   @override
   String? get primary;
@@ -448,7 +450,7 @@ abstract class _ColorDTO implements ColorDTO {
   LaunchDTO? get launch;
   @override
   @JsonKey(ignore: true)
-  _$$_ColorDTOCopyWith<_$_ColorDTO> get copyWith =>
+  _$$ColorDTOImplCopyWith<_$ColorDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -505,21 +507,22 @@ class _$LaunchDTOCopyWithImpl<$Res, $Val extends LaunchDTO>
 }
 
 /// @nodoc
-abstract class _$$_LaunchDTOCopyWith<$Res> implements $LaunchDTOCopyWith<$Res> {
-  factory _$$_LaunchDTOCopyWith(
-          _$_LaunchDTO value, $Res Function(_$_LaunchDTO) then) =
-      __$$_LaunchDTOCopyWithImpl<$Res>;
+abstract class _$$LaunchDTOImplCopyWith<$Res>
+    implements $LaunchDTOCopyWith<$Res> {
+  factory _$$LaunchDTOImplCopyWith(
+          _$LaunchDTOImpl value, $Res Function(_$LaunchDTOImpl) then) =
+      __$$LaunchDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? adaptiveIconBackground, String? splashBackground});
 }
 
 /// @nodoc
-class __$$_LaunchDTOCopyWithImpl<$Res>
-    extends _$LaunchDTOCopyWithImpl<$Res, _$_LaunchDTO>
-    implements _$$_LaunchDTOCopyWith<$Res> {
-  __$$_LaunchDTOCopyWithImpl(
-      _$_LaunchDTO _value, $Res Function(_$_LaunchDTO) _then)
+class __$$LaunchDTOImplCopyWithImpl<$Res>
+    extends _$LaunchDTOCopyWithImpl<$Res, _$LaunchDTOImpl>
+    implements _$$LaunchDTOImplCopyWith<$Res> {
+  __$$LaunchDTOImplCopyWithImpl(
+      _$LaunchDTOImpl _value, $Res Function(_$LaunchDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -528,7 +531,7 @@ class __$$_LaunchDTOCopyWithImpl<$Res>
     Object? adaptiveIconBackground = freezed,
     Object? splashBackground = freezed,
   }) {
-    return _then(_$_LaunchDTO(
+    return _then(_$LaunchDTOImpl(
       adaptiveIconBackground: freezed == adaptiveIconBackground
           ? _value.adaptiveIconBackground
           : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
@@ -544,11 +547,11 @@ class __$$_LaunchDTOCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false)
-class _$_LaunchDTO implements _LaunchDTO {
-  const _$_LaunchDTO({this.adaptiveIconBackground, this.splashBackground});
+class _$LaunchDTOImpl implements _LaunchDTO {
+  const _$LaunchDTOImpl({this.adaptiveIconBackground, this.splashBackground});
 
-  factory _$_LaunchDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_LaunchDTOFromJson(json);
+  factory _$LaunchDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LaunchDTOImplFromJson(json);
 
   @override
   final String? adaptiveIconBackground;
@@ -564,7 +567,7 @@ class _$_LaunchDTO implements _LaunchDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LaunchDTO &&
+            other is _$LaunchDTOImpl &&
             (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
                 other.adaptiveIconBackground == adaptiveIconBackground) &&
             (identical(other.splashBackground, splashBackground) ||
@@ -579,12 +582,12 @@ class _$_LaunchDTO implements _LaunchDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LaunchDTOCopyWith<_$_LaunchDTO> get copyWith =>
-      __$$_LaunchDTOCopyWithImpl<_$_LaunchDTO>(this, _$identity);
+  _$$LaunchDTOImplCopyWith<_$LaunchDTOImpl> get copyWith =>
+      __$$LaunchDTOImplCopyWithImpl<_$LaunchDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LaunchDTOToJson(
+    return _$$LaunchDTOImplToJson(
       this,
     );
   }
@@ -593,10 +596,10 @@ class _$_LaunchDTO implements _LaunchDTO {
 abstract class _LaunchDTO implements LaunchDTO {
   const factory _LaunchDTO(
       {final String? adaptiveIconBackground,
-      final String? splashBackground}) = _$_LaunchDTO;
+      final String? splashBackground}) = _$LaunchDTOImpl;
 
   factory _LaunchDTO.fromJson(Map<String, dynamic> json) =
-      _$_LaunchDTO.fromJson;
+      _$LaunchDTOImpl.fromJson;
 
   @override
   String? get adaptiveIconBackground;
@@ -604,6 +607,6 @@ abstract class _LaunchDTO implements LaunchDTO {
   String? get splashBackground;
   @override
   @JsonKey(ignore: true)
-  _$$_LaunchDTOCopyWith<_$_LaunchDTO> get copyWith =>
+  _$$LaunchDTOImplCopyWith<_$LaunchDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

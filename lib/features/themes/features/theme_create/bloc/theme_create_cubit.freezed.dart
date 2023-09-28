@@ -93,11 +93,12 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
 }
 
 /// @nodoc
-abstract class _$$_ThemeCreateStateInitialCopyWith<$Res>
+abstract class _$$ThemeCreateStateInitialImplCopyWith<$Res>
     implements $ThemeCreateStateCopyWith<$Res> {
-  factory _$$_ThemeCreateStateInitialCopyWith(_$_ThemeCreateStateInitial value,
-          $Res Function(_$_ThemeCreateStateInitial) then) =
-      __$$_ThemeCreateStateInitialCopyWithImpl<$Res>;
+  factory _$$ThemeCreateStateInitialImplCopyWith(
+          _$ThemeCreateStateInitialImpl value,
+          $Res Function(_$ThemeCreateStateInitialImpl) then) =
+      __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,11 +112,12 @@ abstract class _$$_ThemeCreateStateInitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ThemeCreateStateInitialCopyWithImpl<$Res>
-    extends _$ThemeCreateStateCopyWithImpl<$Res, _$_ThemeCreateStateInitial>
-    implements _$$_ThemeCreateStateInitialCopyWith<$Res> {
-  __$$_ThemeCreateStateInitialCopyWithImpl(_$_ThemeCreateStateInitial _value,
-      $Res Function(_$_ThemeCreateStateInitial) _then)
+class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
+    extends _$ThemeCreateStateCopyWithImpl<$Res, _$ThemeCreateStateInitialImpl>
+    implements _$$ThemeCreateStateInitialImplCopyWith<$Res> {
+  __$$ThemeCreateStateInitialImplCopyWithImpl(
+      _$ThemeCreateStateInitialImpl _value,
+      $Res Function(_$ThemeCreateStateInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +128,7 @@ class __$$_ThemeCreateStateInitialCopyWithImpl<$Res>
     Object? nameInput = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$_ThemeCreateStateInitial(
+    return _then(_$ThemeCreateStateInitialImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -149,8 +151,8 @@ class __$$_ThemeCreateStateInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemeCreateStateInitial implements _ThemeCreateStateInitial {
-  const _$_ThemeCreateStateInitial(
+class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
+  const _$ThemeCreateStateInitialImpl(
       {required this.status, this.themeModel, this.nameInput, this.error});
 
   @override
@@ -171,7 +173,7 @@ class _$_ThemeCreateStateInitial implements _ThemeCreateStateInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemeCreateStateInitial &&
+            other is _$ThemeCreateStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.themeModel, themeModel) ||
                 other.themeModel == themeModel) &&
@@ -187,10 +189,9 @@ class _$_ThemeCreateStateInitial implements _ThemeCreateStateInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemeCreateStateInitialCopyWith<_$_ThemeCreateStateInitial>
-      get copyWith =>
-          __$$_ThemeCreateStateInitialCopyWithImpl<_$_ThemeCreateStateInitial>(
-              this, _$identity);
+  _$$ThemeCreateStateInitialImplCopyWith<_$ThemeCreateStateInitialImpl>
+      get copyWith => __$$ThemeCreateStateInitialImplCopyWithImpl<
+          _$ThemeCreateStateInitialImpl>(this, _$identity);
 }
 
 abstract class _ThemeCreateStateInitial implements ThemeCreateState {
@@ -198,7 +199,7 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
       {required final ThemeCreateStateStatus status,
       final ThemeModel? themeModel,
       final ThemeNameInput? nameInput,
-      final BaseException? error}) = _$_ThemeCreateStateInitial;
+      final BaseException? error}) = _$ThemeCreateStateInitialImpl;
 
   @override
   ThemeCreateStateStatus get status;
@@ -210,6 +211,6 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemeCreateStateInitialCopyWith<_$_ThemeCreateStateInitial>
+  _$$ThemeCreateStateInitialImplCopyWith<_$ThemeCreateStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

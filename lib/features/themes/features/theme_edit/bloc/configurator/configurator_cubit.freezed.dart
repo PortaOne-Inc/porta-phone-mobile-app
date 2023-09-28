@@ -154,11 +154,11 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
 }
 
 /// @nodoc
-abstract class _$$_ThemePropertyStateCopyWith<$Res>
+abstract class _$$ThemePropertyStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$_ThemePropertyStateCopyWith(_$_ThemePropertyState value,
-          $Res Function(_$_ThemePropertyState) then) =
-      __$$_ThemePropertyStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertyStateImplCopyWith(_$ThemePropertyStateImpl value,
+          $Res Function(_$ThemePropertyStateImpl) then) =
+      __$$ThemePropertyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
@@ -168,11 +168,11 @@ abstract class _$$_ThemePropertyStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ThemePropertyStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$_ThemePropertyState>
-    implements _$$_ThemePropertyStateCopyWith<$Res> {
-  __$$_ThemePropertyStateCopyWithImpl(
-      _$_ThemePropertyState _value, $Res Function(_$_ThemePropertyState) _then)
+class __$$ThemePropertyStateImplCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertyStateImpl>
+    implements _$$ThemePropertyStateImplCopyWith<$Res> {
+  __$$ThemePropertyStateImplCopyWithImpl(_$ThemePropertyStateImpl _value,
+      $Res Function(_$ThemePropertyStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -181,7 +181,7 @@ class __$$_ThemePropertyStateCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? nameField = freezed,
   }) {
-    return _then(_$_ThemePropertyState(
+    return _then(_$ThemePropertyStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -196,8 +196,8 @@ class __$$_ThemePropertyStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemePropertyState implements _ThemePropertyState {
-  _$_ThemePropertyState({this.theme, this.nameField});
+class _$ThemePropertyStateImpl implements _ThemePropertyState {
+  _$ThemePropertyStateImpl({this.theme, this.nameField});
 
   @override
   final ThemeModel? theme;
@@ -213,7 +213,7 @@ class _$_ThemePropertyState implements _ThemePropertyState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemePropertyState &&
+            other is _$ThemePropertyStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField));
@@ -225,8 +225,8 @@ class _$_ThemePropertyState implements _ThemePropertyState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemePropertyStateCopyWith<_$_ThemePropertyState> get copyWith =>
-      __$$_ThemePropertyStateCopyWithImpl<_$_ThemePropertyState>(
+  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
+      __$$ThemePropertyStateImplCopyWithImpl<_$ThemePropertyStateImpl>(
           this, _$identity);
 
   @override
@@ -334,7 +334,7 @@ class _$_ThemePropertyState implements _ThemePropertyState {
 abstract class _ThemePropertyState implements ThemePropertyState {
   factory _ThemePropertyState(
       {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$_ThemePropertyState;
+      final ThemeNameInput? nameField}) = _$ThemePropertyStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -342,17 +342,17 @@ abstract class _ThemePropertyState implements ThemePropertyState {
   ThemeNameInput? get nameField;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemePropertyStateCopyWith<_$_ThemePropertyState> get copyWith =>
+  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ThemePropertyProgressStateCopyWith<$Res>
+abstract class _$$ThemePropertyProgressStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertyProgressStateCopyWith(
-          _$ThemePropertyProgressState value,
-          $Res Function(_$ThemePropertyProgressState) then) =
-      __$$ThemePropertyProgressStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertyProgressStateImplCopyWith(
+          _$ThemePropertyProgressStateImpl value,
+          $Res Function(_$ThemePropertyProgressStateImpl) then) =
+      __$$ThemePropertyProgressStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
@@ -362,12 +362,13 @@ abstract class _$$ThemePropertyProgressStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ThemePropertyProgressStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertyProgressState>
-    implements _$$ThemePropertyProgressStateCopyWith<$Res> {
-  __$$ThemePropertyProgressStateCopyWithImpl(
-      _$ThemePropertyProgressState _value,
-      $Res Function(_$ThemePropertyProgressState) _then)
+class __$$ThemePropertyProgressStateImplCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res,
+        _$ThemePropertyProgressStateImpl>
+    implements _$$ThemePropertyProgressStateImplCopyWith<$Res> {
+  __$$ThemePropertyProgressStateImplCopyWithImpl(
+      _$ThemePropertyProgressStateImpl _value,
+      $Res Function(_$ThemePropertyProgressStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -376,7 +377,7 @@ class __$$ThemePropertyProgressStateCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? nameField = freezed,
   }) {
-    return _then(_$ThemePropertyProgressState(
+    return _then(_$ThemePropertyProgressStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -391,8 +392,8 @@ class __$$ThemePropertyProgressStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ThemePropertyProgressState implements ThemePropertyProgressState {
-  _$ThemePropertyProgressState({this.theme, this.nameField});
+class _$ThemePropertyProgressStateImpl implements ThemePropertyProgressState {
+  _$ThemePropertyProgressStateImpl({this.theme, this.nameField});
 
   @override
   final ThemeModel? theme;
@@ -408,7 +409,7 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyProgressState &&
+            other is _$ThemePropertyProgressStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField));
@@ -420,9 +421,9 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemePropertyProgressStateCopyWith<_$ThemePropertyProgressState>
-      get copyWith => __$$ThemePropertyProgressStateCopyWithImpl<
-          _$ThemePropertyProgressState>(this, _$identity);
+  _$$ThemePropertyProgressStateImplCopyWith<_$ThemePropertyProgressStateImpl>
+      get copyWith => __$$ThemePropertyProgressStateImplCopyWithImpl<
+          _$ThemePropertyProgressStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -529,7 +530,7 @@ class _$ThemePropertyProgressState implements ThemePropertyProgressState {
 abstract class ThemePropertyProgressState implements ThemePropertyState {
   factory ThemePropertyProgressState(
       {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$ThemePropertyProgressState;
+      final ThemeNameInput? nameField}) = _$ThemePropertyProgressStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -537,17 +538,17 @@ abstract class ThemePropertyProgressState implements ThemePropertyState {
   ThemeNameInput? get nameField;
   @override
   @JsonKey(ignore: true)
-  _$$ThemePropertyProgressStateCopyWith<_$ThemePropertyProgressState>
+  _$$ThemePropertyProgressStateImplCopyWith<_$ThemePropertyProgressStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ThemePropertyValidationStateCopyWith<$Res>
+abstract class _$$ThemePropertyValidationStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$_ThemePropertyValidationStateCopyWith(
-          _$_ThemePropertyValidationState value,
-          $Res Function(_$_ThemePropertyValidationState) then) =
-      __$$_ThemePropertyValidationStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertyValidationStateImplCopyWith(
+          _$ThemePropertyValidationStateImpl value,
+          $Res Function(_$ThemePropertyValidationStateImpl) then) =
+      __$$ThemePropertyValidationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
@@ -557,13 +558,13 @@ abstract class _$$_ThemePropertyValidationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ThemePropertyValidationStateCopyWithImpl<$Res>
+class __$$ThemePropertyValidationStateImplCopyWithImpl<$Res>
     extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$_ThemePropertyValidationState>
-    implements _$$_ThemePropertyValidationStateCopyWith<$Res> {
-  __$$_ThemePropertyValidationStateCopyWithImpl(
-      _$_ThemePropertyValidationState _value,
-      $Res Function(_$_ThemePropertyValidationState) _then)
+        _$ThemePropertyValidationStateImpl>
+    implements _$$ThemePropertyValidationStateImplCopyWith<$Res> {
+  __$$ThemePropertyValidationStateImplCopyWithImpl(
+      _$ThemePropertyValidationStateImpl _value,
+      $Res Function(_$ThemePropertyValidationStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -572,7 +573,7 @@ class __$$_ThemePropertyValidationStateCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? nameField = freezed,
   }) {
-    return _then(_$_ThemePropertyValidationState(
+    return _then(_$ThemePropertyValidationStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -587,8 +588,9 @@ class __$$_ThemePropertyValidationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
-  _$_ThemePropertyValidationState({this.theme, this.nameField});
+class _$ThemePropertyValidationStateImpl
+    implements _ThemePropertyValidationState {
+  _$ThemePropertyValidationStateImpl({this.theme, this.nameField});
 
   @override
   final ThemeModel? theme;
@@ -604,7 +606,7 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemePropertyValidationState &&
+            other is _$ThemePropertyValidationStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField));
@@ -616,9 +618,10 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemePropertyValidationStateCopyWith<_$_ThemePropertyValidationState>
-      get copyWith => __$$_ThemePropertyValidationStateCopyWithImpl<
-          _$_ThemePropertyValidationState>(this, _$identity);
+  _$$ThemePropertyValidationStateImplCopyWith<
+          _$ThemePropertyValidationStateImpl>
+      get copyWith => __$$ThemePropertyValidationStateImplCopyWithImpl<
+          _$ThemePropertyValidationStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -725,7 +728,7 @@ class _$_ThemePropertyValidationState implements _ThemePropertyValidationState {
 abstract class _ThemePropertyValidationState implements ThemePropertyState {
   factory _ThemePropertyValidationState(
       {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$_ThemePropertyValidationState;
+      final ThemeNameInput? nameField}) = _$ThemePropertyValidationStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -733,17 +736,18 @@ abstract class _ThemePropertyValidationState implements ThemePropertyState {
   ThemeNameInput? get nameField;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemePropertyValidationStateCopyWith<_$_ThemePropertyValidationState>
+  _$$ThemePropertyValidationStateImplCopyWith<
+          _$ThemePropertyValidationStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ThemePropertSuccessStateCopyWith<$Res>
+abstract class _$$ThemePropertSuccessStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$_ThemePropertSuccessStateCopyWith(
-          _$_ThemePropertSuccessState value,
-          $Res Function(_$_ThemePropertSuccessState) then) =
-      __$$_ThemePropertSuccessStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertSuccessStateImplCopyWith(
+          _$ThemePropertSuccessStateImpl value,
+          $Res Function(_$ThemePropertSuccessStateImpl) then) =
+      __$$ThemePropertSuccessStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField});
@@ -753,11 +757,13 @@ abstract class _$$_ThemePropertSuccessStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ThemePropertSuccessStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$_ThemePropertSuccessState>
-    implements _$$_ThemePropertSuccessStateCopyWith<$Res> {
-  __$$_ThemePropertSuccessStateCopyWithImpl(_$_ThemePropertSuccessState _value,
-      $Res Function(_$_ThemePropertSuccessState) _then)
+class __$$ThemePropertSuccessStateImplCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res,
+        _$ThemePropertSuccessStateImpl>
+    implements _$$ThemePropertSuccessStateImplCopyWith<$Res> {
+  __$$ThemePropertSuccessStateImplCopyWithImpl(
+      _$ThemePropertSuccessStateImpl _value,
+      $Res Function(_$ThemePropertSuccessStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -766,7 +772,7 @@ class __$$_ThemePropertSuccessStateCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? nameField = freezed,
   }) {
-    return _then(_$_ThemePropertSuccessState(
+    return _then(_$ThemePropertSuccessStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -781,8 +787,8 @@ class __$$_ThemePropertSuccessStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
-  _$_ThemePropertSuccessState({this.theme, this.nameField});
+class _$ThemePropertSuccessStateImpl implements _ThemePropertSuccessState {
+  _$ThemePropertSuccessStateImpl({this.theme, this.nameField});
 
   @override
   final ThemeModel? theme;
@@ -798,7 +804,7 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemePropertSuccessState &&
+            other is _$ThemePropertSuccessStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField));
@@ -810,9 +816,9 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemePropertSuccessStateCopyWith<_$_ThemePropertSuccessState>
-      get copyWith => __$$_ThemePropertSuccessStateCopyWithImpl<
-          _$_ThemePropertSuccessState>(this, _$identity);
+  _$$ThemePropertSuccessStateImplCopyWith<_$ThemePropertSuccessStateImpl>
+      get copyWith => __$$ThemePropertSuccessStateImplCopyWithImpl<
+          _$ThemePropertSuccessStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -919,7 +925,7 @@ class _$_ThemePropertSuccessState implements _ThemePropertSuccessState {
 abstract class _ThemePropertSuccessState implements ThemePropertyState {
   factory _ThemePropertSuccessState(
       {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$_ThemePropertSuccessState;
+      final ThemeNameInput? nameField}) = _$ThemePropertSuccessStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -927,16 +933,17 @@ abstract class _ThemePropertSuccessState implements ThemePropertyState {
   ThemeNameInput? get nameField;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemePropertSuccessStateCopyWith<_$_ThemePropertSuccessState>
+  _$$ThemePropertSuccessStateImplCopyWith<_$ThemePropertSuccessStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ThemePropertFocusStateCopyWith<$Res>
+abstract class _$$ThemePropertFocusStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertFocusStateCopyWith(_$ThemePropertFocusState value,
-          $Res Function(_$ThemePropertFocusState) then) =
-      __$$ThemePropertFocusStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertFocusStateImplCopyWith(
+          _$ThemePropertFocusStateImpl value,
+          $Res Function(_$ThemePropertFocusStateImpl) then) =
+      __$$ThemePropertFocusStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeModel? theme, ThemeNameInput? nameField, int? position});
@@ -946,11 +953,12 @@ abstract class _$$ThemePropertFocusStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ThemePropertFocusStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertFocusState>
-    implements _$$ThemePropertFocusStateCopyWith<$Res> {
-  __$$ThemePropertFocusStateCopyWithImpl(_$ThemePropertFocusState _value,
-      $Res Function(_$ThemePropertFocusState) _then)
+class __$$ThemePropertFocusStateImplCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertFocusStateImpl>
+    implements _$$ThemePropertFocusStateImplCopyWith<$Res> {
+  __$$ThemePropertFocusStateImplCopyWithImpl(
+      _$ThemePropertFocusStateImpl _value,
+      $Res Function(_$ThemePropertFocusStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -960,7 +968,7 @@ class __$$ThemePropertFocusStateCopyWithImpl<$Res>
     Object? nameField = freezed,
     Object? position = freezed,
   }) {
-    return _then(_$ThemePropertFocusState(
+    return _then(_$ThemePropertFocusStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -979,8 +987,8 @@ class __$$ThemePropertFocusStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ThemePropertFocusState implements ThemePropertFocusState {
-  _$ThemePropertFocusState({this.theme, this.nameField, this.position});
+class _$ThemePropertFocusStateImpl implements ThemePropertFocusState {
+  _$ThemePropertFocusStateImpl({this.theme, this.nameField, this.position});
 
   @override
   final ThemeModel? theme;
@@ -998,7 +1006,7 @@ class _$ThemePropertFocusState implements ThemePropertFocusState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemePropertFocusState &&
+            other is _$ThemePropertFocusStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField) &&
@@ -1012,9 +1020,9 @@ class _$ThemePropertFocusState implements ThemePropertFocusState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemePropertFocusStateCopyWith<_$ThemePropertFocusState> get copyWith =>
-      __$$ThemePropertFocusStateCopyWithImpl<_$ThemePropertFocusState>(
-          this, _$identity);
+  _$$ThemePropertFocusStateImplCopyWith<_$ThemePropertFocusStateImpl>
+      get copyWith => __$$ThemePropertFocusStateImplCopyWithImpl<
+          _$ThemePropertFocusStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1122,7 +1130,7 @@ abstract class ThemePropertFocusState implements ThemePropertyState {
   factory ThemePropertFocusState(
       {final ThemeModel? theme,
       final ThemeNameInput? nameField,
-      final int? position}) = _$ThemePropertFocusState;
+      final int? position}) = _$ThemePropertFocusStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -1131,16 +1139,17 @@ abstract class ThemePropertFocusState implements ThemePropertyState {
   int? get position;
   @override
   @JsonKey(ignore: true)
-  _$$ThemePropertFocusStateCopyWith<_$ThemePropertFocusState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ThemePropertFocusStateImplCopyWith<_$ThemePropertFocusStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ThemePropertyErrorStateCopyWith<$Res>
+abstract class _$$ThemePropertyErrorStateImplCopyWith<$Res>
     implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertyErrorStateCopyWith(_$ThemePropertyErrorState value,
-          $Res Function(_$ThemePropertyErrorState) then) =
-      __$$ThemePropertyErrorStateCopyWithImpl<$Res>;
+  factory _$$ThemePropertyErrorStateImplCopyWith(
+          _$ThemePropertyErrorStateImpl value,
+          $Res Function(_$ThemePropertyErrorStateImpl) then) =
+      __$$ThemePropertyErrorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1151,11 +1160,13 @@ abstract class _$$ThemePropertyErrorStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ThemePropertyErrorStateCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertyErrorState>
-    implements _$$ThemePropertyErrorStateCopyWith<$Res> {
-  __$$ThemePropertyErrorStateCopyWithImpl(_$ThemePropertyErrorState _value,
-      $Res Function(_$ThemePropertyErrorState) _then)
+class __$$ThemePropertyErrorStateImplCopyWithImpl<$Res>
+    extends _$ThemePropertyStateCopyWithImpl<$Res,
+        _$ThemePropertyErrorStateImpl>
+    implements _$$ThemePropertyErrorStateImplCopyWith<$Res> {
+  __$$ThemePropertyErrorStateImplCopyWithImpl(
+      _$ThemePropertyErrorStateImpl _value,
+      $Res Function(_$ThemePropertyErrorStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1165,7 +1176,7 @@ class __$$ThemePropertyErrorStateCopyWithImpl<$Res>
     Object? nameField = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$ThemePropertyErrorState(
+    return _then(_$ThemePropertyErrorStateImpl(
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -1184,8 +1195,8 @@ class __$$ThemePropertyErrorStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ThemePropertyErrorState implements ThemePropertyErrorState {
-  _$ThemePropertyErrorState({this.theme, this.nameField, this.error});
+class _$ThemePropertyErrorStateImpl implements ThemePropertyErrorState {
+  _$ThemePropertyErrorStateImpl({this.theme, this.nameField, this.error});
 
   @override
   final ThemeModel? theme;
@@ -1203,7 +1214,7 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyErrorState &&
+            other is _$ThemePropertyErrorStateImpl &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField) &&
@@ -1216,9 +1227,9 @@ class _$ThemePropertyErrorState implements ThemePropertyErrorState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemePropertyErrorStateCopyWith<_$ThemePropertyErrorState> get copyWith =>
-      __$$ThemePropertyErrorStateCopyWithImpl<_$ThemePropertyErrorState>(
-          this, _$identity);
+  _$$ThemePropertyErrorStateImplCopyWith<_$ThemePropertyErrorStateImpl>
+      get copyWith => __$$ThemePropertyErrorStateImplCopyWithImpl<
+          _$ThemePropertyErrorStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1326,7 +1337,7 @@ abstract class ThemePropertyErrorState implements ThemePropertyState {
   factory ThemePropertyErrorState(
       {final ThemeModel? theme,
       final ThemeNameInput? nameField,
-      final BaseException? error}) = _$ThemePropertyErrorState;
+      final BaseException? error}) = _$ThemePropertyErrorStateImpl;
 
   @override
   ThemeModel? get theme;
@@ -1335,8 +1346,8 @@ abstract class ThemePropertyErrorState implements ThemePropertyState {
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ThemePropertyErrorStateCopyWith<_$ThemePropertyErrorState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ThemePropertyErrorStateImplCopyWith<_$ThemePropertyErrorStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1346,8 +1357,8 @@ mixin _$ReplaceColorSchemeEvent {
 
 /// @nodoc
 
-class _$_ReplaceColorSchemeEvent implements _ReplaceColorSchemeEvent {
-  const _$_ReplaceColorSchemeEvent(this.colorScheme);
+class _$ReplaceColorSchemeEventImpl implements _ReplaceColorSchemeEvent {
+  const _$ReplaceColorSchemeEventImpl(this.colorScheme);
 
   @override
   final ColorSchemeModel colorScheme;
@@ -1361,7 +1372,7 @@ class _$_ReplaceColorSchemeEvent implements _ReplaceColorSchemeEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ReplaceColorSchemeEvent &&
+            other is _$ReplaceColorSchemeEventImpl &&
             (identical(other.colorScheme, colorScheme) ||
                 other.colorScheme == colorScheme));
   }
@@ -1372,7 +1383,7 @@ class _$_ReplaceColorSchemeEvent implements _ReplaceColorSchemeEvent {
 
 abstract class _ReplaceColorSchemeEvent implements ReplaceColorSchemeEvent {
   const factory _ReplaceColorSchemeEvent(final ColorSchemeModel colorScheme) =
-      _$_ReplaceColorSchemeEvent;
+      _$ReplaceColorSchemeEventImpl;
 
   @override
   ColorSchemeModel get colorScheme;
@@ -1383,8 +1394,8 @@ mixin _$GetThemeEvent {}
 
 /// @nodoc
 
-class _$_GetThemeEvent implements _GetThemeEvent {
-  const _$_GetThemeEvent();
+class _$GetThemeEventImpl implements _GetThemeEvent {
+  const _$GetThemeEventImpl();
 
   @override
   String toString() {
@@ -1394,7 +1405,7 @@ class _$_GetThemeEvent implements _GetThemeEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetThemeEvent);
+        (other.runtimeType == runtimeType && other is _$GetThemeEventImpl);
   }
 
   @override
@@ -1402,7 +1413,7 @@ class _$_GetThemeEvent implements _GetThemeEvent {
 }
 
 abstract class _GetThemeEvent implements GetThemeEvent {
-  const factory _GetThemeEvent() = _$_GetThemeEvent;
+  const factory _GetThemeEvent() = _$GetThemeEventImpl;
 }
 
 /// @nodoc
@@ -1412,8 +1423,8 @@ mixin _$UpdateThemeEvent {
 
 /// @nodoc
 
-class _$_UpdateThemeEvent implements _UpdateThemeEvent {
-  const _$_UpdateThemeEvent(this.model);
+class _$UpdateThemeEventImpl implements _UpdateThemeEvent {
+  const _$UpdateThemeEventImpl(this.model);
 
   @override
   final ThemeModel? model;
@@ -1427,7 +1438,7 @@ class _$_UpdateThemeEvent implements _UpdateThemeEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateThemeEvent &&
+            other is _$UpdateThemeEventImpl &&
             (identical(other.model, model) || other.model == model));
   }
 
@@ -1437,7 +1448,7 @@ class _$_UpdateThemeEvent implements _UpdateThemeEvent {
 
 abstract class _UpdateThemeEvent implements UpdateThemeEvent {
   const factory _UpdateThemeEvent(final ThemeModel? model) =
-      _$_UpdateThemeEvent;
+      _$UpdateThemeEventImpl;
 
   @override
   ThemeModel? get model;
@@ -1450,8 +1461,8 @@ mixin _$FocusScreenEvent {
 
 /// @nodoc
 
-class _$_FocusScreenEvent implements _FocusScreenEvent {
-  const _$_FocusScreenEvent(this.position);
+class _$FocusScreenEventImpl implements _FocusScreenEvent {
+  const _$FocusScreenEventImpl(this.position);
 
   @override
   final int position;
@@ -1465,7 +1476,7 @@ class _$_FocusScreenEvent implements _FocusScreenEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FocusScreenEvent &&
+            other is _$FocusScreenEventImpl &&
             (identical(other.position, position) ||
                 other.position == position));
   }
@@ -1475,7 +1486,7 @@ class _$_FocusScreenEvent implements _FocusScreenEvent {
 }
 
 abstract class _FocusScreenEvent implements FocusScreenEvent {
-  const factory _FocusScreenEvent(final int position) = _$_FocusScreenEvent;
+  const factory _FocusScreenEvent(final int position) = _$FocusScreenEventImpl;
 
   @override
   int get position;
@@ -1721,8 +1732,8 @@ mixin _$UpdateColorSchemeEvent {
 
 /// @nodoc
 
-class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
-  const _$_UpdateColorEventPrimary(this.color);
+class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
+  const _$UpdateColorEventPrimaryImpl(this.color);
 
   @override
   final Color? color;
@@ -1736,7 +1747,7 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventPrimary &&
+            other is _$UpdateColorEventPrimaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -2004,15 +2015,15 @@ class _$_UpdateColorEventPrimary implements _UpdateColorEventPrimary {
 
 abstract class _UpdateColorEventPrimary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventPrimary(final Color? color) =
-      _$_UpdateColorEventPrimary;
+      _$UpdateColorEventPrimaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
-  const _$_UpdateColorEventOnPrimary(this.color);
+class _$UpdateColorEventOnPrimaryImpl implements _UpdateColorEventOnPrimary {
+  const _$UpdateColorEventOnPrimaryImpl(this.color);
 
   @override
   final Color? color;
@@ -2026,7 +2037,7 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnPrimary &&
+            other is _$UpdateColorEventOnPrimaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -2294,16 +2305,16 @@ class _$_UpdateColorEventOnPrimary implements _UpdateColorEventOnPrimary {
 
 abstract class _UpdateColorEventOnPrimary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnPrimary(final Color? color) =
-      _$_UpdateColorEventOnPrimary;
+      _$UpdateColorEventOnPrimaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventPrimaryContainer
+class _$UpdateColorEventPrimaryContainerImpl
     implements _UpdateColorEventPrimaryContainer {
-  const _$_UpdateColorEventPrimaryContainer(this.color);
+  const _$UpdateColorEventPrimaryContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -2317,7 +2328,7 @@ class _$_UpdateColorEventPrimaryContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventPrimaryContainer &&
+            other is _$UpdateColorEventPrimaryContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -2586,16 +2597,16 @@ class _$_UpdateColorEventPrimaryContainer
 abstract class _UpdateColorEventPrimaryContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventPrimaryContainer(final Color? color) =
-      _$_UpdateColorEventPrimaryContainer;
+      _$UpdateColorEventPrimaryContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnPrimaryContainer
+class _$UpdateColorEventOnPrimaryContainerImpl
     implements _UpdateColorEventOnPrimaryContainer {
-  const _$_UpdateColorEventOnPrimaryContainer(this.color);
+  const _$UpdateColorEventOnPrimaryContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -2609,7 +2620,7 @@ class _$_UpdateColorEventOnPrimaryContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnPrimaryContainer &&
+            other is _$UpdateColorEventOnPrimaryContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -2878,15 +2889,15 @@ class _$_UpdateColorEventOnPrimaryContainer
 abstract class _UpdateColorEventOnPrimaryContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnPrimaryContainer(final Color? color) =
-      _$_UpdateColorEventOnPrimaryContainer;
+      _$UpdateColorEventOnPrimaryContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
-  const _$_UpdateColorEventSecondary(this.color);
+class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
+  const _$UpdateColorEventSecondaryImpl(this.color);
 
   @override
   final Color? color;
@@ -2900,7 +2911,7 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventSecondary &&
+            other is _$UpdateColorEventSecondaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -3168,15 +3179,16 @@ class _$_UpdateColorEventSecondary implements _UpdateColorEventSecondary {
 
 abstract class _UpdateColorEventSecondary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSecondary(final Color? color) =
-      _$_UpdateColorEventSecondary;
+      _$UpdateColorEventSecondaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
-  const _$_UpdateColorEventOnSecondary(this.color);
+class _$UpdateColorEventOnSecondaryImpl
+    implements _UpdateColorEventOnSecondary {
+  const _$UpdateColorEventOnSecondaryImpl(this.color);
 
   @override
   final Color? color;
@@ -3190,7 +3202,7 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnSecondary &&
+            other is _$UpdateColorEventOnSecondaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -3458,16 +3470,16 @@ class _$_UpdateColorEventOnSecondary implements _UpdateColorEventOnSecondary {
 
 abstract class _UpdateColorEventOnSecondary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnSecondary(final Color? color) =
-      _$_UpdateColorEventOnSecondary;
+      _$UpdateColorEventOnSecondaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventSecondaryContainer
+class _$UpdateColorEventSecondaryContainerImpl
     implements _UpdateColorEventSecondaryContainer {
-  const _$_UpdateColorEventSecondaryContainer(this.color);
+  const _$UpdateColorEventSecondaryContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -3481,7 +3493,7 @@ class _$_UpdateColorEventSecondaryContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventSecondaryContainer &&
+            other is _$UpdateColorEventSecondaryContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -3750,16 +3762,16 @@ class _$_UpdateColorEventSecondaryContainer
 abstract class _UpdateColorEventSecondaryContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSecondaryContainer(final Color? color) =
-      _$_UpdateColorEventSecondaryContainer;
+      _$UpdateColorEventSecondaryContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnSecondaryContainer
+class _$UpdateColorEventOnSecondaryContainerImpl
     implements _UpdateColorEventOnSecondaryContainer {
-  const _$_UpdateColorEventOnSecondaryContainer(this.color);
+  const _$UpdateColorEventOnSecondaryContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -3773,7 +3785,7 @@ class _$_UpdateColorEventOnSecondaryContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnSecondaryContainer &&
+            other is _$UpdateColorEventOnSecondaryContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -4042,15 +4054,15 @@ class _$_UpdateColorEventOnSecondaryContainer
 abstract class _UpdateColorEventOnSecondaryContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnSecondaryContainer(final Color? color) =
-      _$_UpdateColorEventOnSecondaryContainer;
+      _$UpdateColorEventOnSecondaryContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
-  const _$_UpdateColorEventTertiary(this.color);
+class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
+  const _$UpdateColorEventTertiaryImpl(this.color);
 
   @override
   final Color? color;
@@ -4064,7 +4076,7 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventTertiary &&
+            other is _$UpdateColorEventTertiaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -4332,15 +4344,15 @@ class _$_UpdateColorEventTertiary implements _UpdateColorEventTertiary {
 
 abstract class _UpdateColorEventTertiary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventTertiary(final Color? color) =
-      _$_UpdateColorEventTertiary;
+      _$UpdateColorEventTertiaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
-  const _$_UpdateColorEventOnTertiary(this.color);
+class _$UpdateColorEventOnTertiaryImpl implements _UpdateColorEventOnTertiary {
+  const _$UpdateColorEventOnTertiaryImpl(this.color);
 
   @override
   final Color? color;
@@ -4354,7 +4366,7 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnTertiary &&
+            other is _$UpdateColorEventOnTertiaryImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -4622,16 +4634,16 @@ class _$_UpdateColorEventOnTertiary implements _UpdateColorEventOnTertiary {
 
 abstract class _UpdateColorEventOnTertiary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnTertiary(final Color? color) =
-      _$_UpdateColorEventOnTertiary;
+      _$UpdateColorEventOnTertiaryImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventTertiaryContainer
+class _$UpdateColorEventTertiaryContainerImpl
     implements _UpdateColorEventTertiaryContainer {
-  const _$_UpdateColorEventTertiaryContainer(this.color);
+  const _$UpdateColorEventTertiaryContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -4645,7 +4657,7 @@ class _$_UpdateColorEventTertiaryContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventTertiaryContainer &&
+            other is _$UpdateColorEventTertiaryContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -4914,15 +4926,15 @@ class _$_UpdateColorEventTertiaryContainer
 abstract class _UpdateColorEventTertiaryContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventTertiaryContainer(final Color? color) =
-      _$_UpdateColorEventTertiaryContainer;
+      _$UpdateColorEventTertiaryContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventError implements _UpdateColorEventError {
-  const _$_UpdateColorEventError(this.color);
+class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
+  const _$UpdateColorEventErrorImpl(this.color);
 
   @override
   final Color? color;
@@ -4936,7 +4948,7 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventError &&
+            other is _$UpdateColorEventErrorImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -5204,15 +5216,15 @@ class _$_UpdateColorEventError implements _UpdateColorEventError {
 
 abstract class _UpdateColorEventError implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventError(final Color? color) =
-      _$_UpdateColorEventError;
+      _$UpdateColorEventErrorImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
-  const _$_UpdateColorEventOnError(this.color);
+class _$UpdateColorEventOnErrorImpl implements _UpdateColorEventOnError {
+  const _$UpdateColorEventOnErrorImpl(this.color);
 
   @override
   final Color? color;
@@ -5226,7 +5238,7 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnError &&
+            other is _$UpdateColorEventOnErrorImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -5494,16 +5506,16 @@ class _$_UpdateColorEventOnError implements _UpdateColorEventOnError {
 
 abstract class _UpdateColorEventOnError implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnError(final Color? color) =
-      _$_UpdateColorEventOnError;
+      _$UpdateColorEventOnErrorImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventErrorContainer
+class _$UpdateColorEventErrorContainerImpl
     implements _UpdateColorEventErrorContainer {
-  const _$_UpdateColorEventErrorContainer(this.color);
+  const _$UpdateColorEventErrorContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -5517,7 +5529,7 @@ class _$_UpdateColorEventErrorContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventErrorContainer &&
+            other is _$UpdateColorEventErrorContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -5786,16 +5798,16 @@ class _$_UpdateColorEventErrorContainer
 abstract class _UpdateColorEventErrorContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventErrorContainer(final Color? color) =
-      _$_UpdateColorEventErrorContainer;
+      _$UpdateColorEventErrorContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnErrorContainer
+class _$UpdateColorEventOnErrorContainerImpl
     implements _UpdateColorEventOnErrorContainer {
-  const _$_UpdateColorEventOnErrorContainer(this.color);
+  const _$UpdateColorEventOnErrorContainerImpl(this.color);
 
   @override
   final Color? color;
@@ -5809,7 +5821,7 @@ class _$_UpdateColorEventOnErrorContainer
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnErrorContainer &&
+            other is _$UpdateColorEventOnErrorContainerImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -6078,15 +6090,15 @@ class _$_UpdateColorEventOnErrorContainer
 abstract class _UpdateColorEventOnErrorContainer
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnErrorContainer(final Color? color) =
-      _$_UpdateColorEventOnErrorContainer;
+      _$UpdateColorEventOnErrorContainerImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
-  const _$_UpdateColorEventOutline(this.color);
+class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
+  const _$UpdateColorEventOutlineImpl(this.color);
 
   @override
   final Color? color;
@@ -6100,7 +6112,7 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOutline &&
+            other is _$UpdateColorEventOutlineImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -6368,16 +6380,16 @@ class _$_UpdateColorEventOutline implements _UpdateColorEventOutline {
 
 abstract class _UpdateColorEventOutline implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOutline(final Color? color) =
-      _$_UpdateColorEventOutline;
+      _$UpdateColorEventOutlineImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOutlineVariant
+class _$UpdateColorEventOutlineVariantImpl
     implements _UpdateColorEventOutlineVariant {
-  const _$_UpdateColorEventOutlineVariant(this.color);
+  const _$UpdateColorEventOutlineVariantImpl(this.color);
 
   @override
   final Color? color;
@@ -6391,7 +6403,7 @@ class _$_UpdateColorEventOutlineVariant
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOutlineVariant &&
+            other is _$UpdateColorEventOutlineVariantImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -6660,15 +6672,15 @@ class _$_UpdateColorEventOutlineVariant
 abstract class _UpdateColorEventOutlineVariant
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOutlineVariant(final Color? color) =
-      _$_UpdateColorEventOutlineVariant;
+      _$UpdateColorEventOutlineVariantImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
-  const _$_UpdateColorEventBackground(this.color);
+class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
+  const _$UpdateColorEventBackgroundImpl(this.color);
 
   @override
   final Color? color;
@@ -6682,7 +6694,7 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventBackground &&
+            other is _$UpdateColorEventBackgroundImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -6950,15 +6962,16 @@ class _$_UpdateColorEventBackground implements _UpdateColorEventBackground {
 
 abstract class _UpdateColorEventBackground implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventBackground(final Color? color) =
-      _$_UpdateColorEventBackground;
+      _$UpdateColorEventBackgroundImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
-  const _$_UpdateColorEventOnBackground(this.color);
+class _$UpdateColorEventOnBackgroundImpl
+    implements _UpdateColorEventOnBackground {
+  const _$UpdateColorEventOnBackgroundImpl(this.color);
 
   @override
   final Color? color;
@@ -6972,7 +6985,7 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnBackground &&
+            other is _$UpdateColorEventOnBackgroundImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -7240,15 +7253,15 @@ class _$_UpdateColorEventOnBackground implements _UpdateColorEventOnBackground {
 
 abstract class _UpdateColorEventOnBackground implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnBackground(final Color? color) =
-      _$_UpdateColorEventOnBackground;
+      _$UpdateColorEventOnBackgroundImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
-  const _$_UpdateColorEventSurface(this.color);
+class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
+  const _$UpdateColorEventSurfaceImpl(this.color);
 
   @override
   final Color? color;
@@ -7262,7 +7275,7 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventSurface &&
+            other is _$UpdateColorEventSurfaceImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -7530,15 +7543,15 @@ class _$_UpdateColorEventSurface implements _UpdateColorEventSurface {
 
 abstract class _UpdateColorEventSurface implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSurface(final Color? color) =
-      _$_UpdateColorEventSurface;
+      _$UpdateColorEventSurfaceImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
-  const _$_UpdateColorEventOnSurface(this.color);
+class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
+  const _$UpdateColorEventOnSurfaceImpl(this.color);
 
   @override
   final Color? color;
@@ -7552,7 +7565,7 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnSurface &&
+            other is _$UpdateColorEventOnSurfaceImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -7820,16 +7833,16 @@ class _$_UpdateColorEventOnSurface implements _UpdateColorEventOnSurface {
 
 abstract class _UpdateColorEventOnSurface implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnSurface(final Color? color) =
-      _$_UpdateColorEventOnSurface;
+      _$UpdateColorEventOnSurfaceImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventSurfaceVariant
+class _$UpdateColorEventSurfaceVariantImpl
     implements _UpdateColorEventSurfaceVariant {
-  const _$_UpdateColorEventSurfaceVariant(this.color);
+  const _$UpdateColorEventSurfaceVariantImpl(this.color);
 
   @override
   final Color? color;
@@ -7843,7 +7856,7 @@ class _$_UpdateColorEventSurfaceVariant
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventSurfaceVariant &&
+            other is _$UpdateColorEventSurfaceVariantImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -8112,16 +8125,16 @@ class _$_UpdateColorEventSurfaceVariant
 abstract class _UpdateColorEventSurfaceVariant
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSurfaceVariant(final Color? color) =
-      _$_UpdateColorEventSurfaceVariant;
+      _$UpdateColorEventSurfaceVariantImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventOnSurfaceVariant
+class _$UpdateColorEventOnSurfaceVariantImpl
     implements _UpdateColorEventOnSurfaceVariant {
-  const _$_UpdateColorEventOnSurfaceVariant(this.color);
+  const _$UpdateColorEventOnSurfaceVariantImpl(this.color);
 
   @override
   final Color? color;
@@ -8135,7 +8148,7 @@ class _$_UpdateColorEventOnSurfaceVariant
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventOnSurfaceVariant &&
+            other is _$UpdateColorEventOnSurfaceVariantImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -8404,16 +8417,16 @@ class _$_UpdateColorEventOnSurfaceVariant
 abstract class _UpdateColorEventOnSurfaceVariant
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnSurfaceVariant(final Color? color) =
-      _$_UpdateColorEventOnSurfaceVariant;
+      _$UpdateColorEventOnSurfaceVariantImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventInverseSurface
+class _$UpdateColorEventInverseSurfaceImpl
     implements _UpdateColorEventInverseSurface {
-  const _$_UpdateColorEventInverseSurface(this.color);
+  const _$UpdateColorEventInverseSurfaceImpl(this.color);
 
   @override
   final Color? color;
@@ -8427,7 +8440,7 @@ class _$_UpdateColorEventInverseSurface
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventInverseSurface &&
+            other is _$UpdateColorEventInverseSurfaceImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -8696,15 +8709,15 @@ class _$_UpdateColorEventInverseSurface
 abstract class _UpdateColorEventInverseSurface
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventInverseSurface(final Color? color) =
-      _$_UpdateColorEventInverseSurface;
+      _$UpdateColorEventInverseSurfaceImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
-  const _$_UpdateColorEventShadow(this.color);
+class _$UpdateColorEventShadowImpl implements _UpdateColorEventShadow {
+  const _$UpdateColorEventShadowImpl(this.color);
 
   @override
   final Color? color;
@@ -8718,7 +8731,7 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventShadow &&
+            other is _$UpdateColorEventShadowImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -8986,15 +8999,15 @@ class _$_UpdateColorEventShadow implements _UpdateColorEventShadow {
 
 abstract class _UpdateColorEventShadow implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventShadow(final Color? color) =
-      _$_UpdateColorEventShadow;
+      _$UpdateColorEventShadowImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
-  const _$_UpdateColorEventScrim(this.color);
+class _$UpdateColorEventScrimImpl implements _UpdateColorEventScrim {
+  const _$UpdateColorEventScrimImpl(this.color);
 
   @override
   final Color? color;
@@ -9008,7 +9021,7 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventScrim &&
+            other is _$UpdateColorEventScrimImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -9276,15 +9289,16 @@ class _$_UpdateColorEventScrim implements _UpdateColorEventScrim {
 
 abstract class _UpdateColorEventScrim implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventScrim(final Color? color) =
-      _$_UpdateColorEventScrim;
+      _$UpdateColorEventScrimImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
-  const _$_UpdateColorEventSurfaceTint(this.color);
+class _$UpdateColorEventSurfaceTintImpl
+    implements _UpdateColorEventSurfaceTint {
+  const _$UpdateColorEventSurfaceTintImpl(this.color);
 
   @override
   final Color? color;
@@ -9298,7 +9312,7 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventSurfaceTint &&
+            other is _$UpdateColorEventSurfaceTintImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -9566,15 +9580,16 @@ class _$_UpdateColorEventSurfaceTint implements _UpdateColorEventSurfaceTint {
 
 abstract class _UpdateColorEventSurfaceTint implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSurfaceTint(final Color? color) =
-      _$_UpdateColorEventSurfaceTint;
+      _$UpdateColorEventSurfaceTintImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
-  const _$_UpdateColorEventGradientTab(final List<Color> colors)
+class _$UpdateColorEventGradientTabImpl
+    implements _UpdateColorEventGradientTab {
+  const _$UpdateColorEventGradientTabImpl(final List<Color> colors)
       : _colors = colors;
 
   final List<Color> _colors;
@@ -9594,7 +9609,7 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventGradientTab &&
+            other is _$UpdateColorEventGradientTabImpl &&
             const DeepCollectionEquality().equals(other._colors, _colors));
   }
 
@@ -9863,16 +9878,16 @@ class _$_UpdateColorEventGradientTab implements _UpdateColorEventGradientTab {
 
 abstract class _UpdateColorEventGradientTab implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventGradientTab(final List<Color> colors) =
-      _$_UpdateColorEventGradientTab;
+      _$UpdateColorEventGradientTabImpl;
 
   List<Color> get colors;
 }
 
 /// @nodoc
 
-class _$_UpdateColorLaunchAdaptiveIcon
+class _$UpdateColorLaunchAdaptiveIconImpl
     implements _UpdateColorLaunchAdaptiveIcon {
-  const _$_UpdateColorLaunchAdaptiveIcon(this.color);
+  const _$UpdateColorLaunchAdaptiveIconImpl(this.color);
 
   @override
   final Color? color;
@@ -9886,7 +9901,7 @@ class _$_UpdateColorLaunchAdaptiveIcon
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorLaunchAdaptiveIcon &&
+            other is _$UpdateColorLaunchAdaptiveIconImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -10155,16 +10170,16 @@ class _$_UpdateColorLaunchAdaptiveIcon
 abstract class _UpdateColorLaunchAdaptiveIcon
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorLaunchAdaptiveIcon(final Color? color) =
-      _$_UpdateColorLaunchAdaptiveIcon;
+      _$UpdateColorLaunchAdaptiveIconImpl;
 
   Color? get color;
 }
 
 /// @nodoc
 
-class _$_UpdateColorEventlaunchSplashBackground
+class _$UpdateColorEventlaunchSplashBackgroundImpl
     implements _UpdateColorEventlaunchSplashBackground {
-  const _$_UpdateColorEventlaunchSplashBackground(this.color);
+  const _$UpdateColorEventlaunchSplashBackgroundImpl(this.color);
 
   @override
   final Color? color;
@@ -10178,7 +10193,7 @@ class _$_UpdateColorEventlaunchSplashBackground
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateColorEventlaunchSplashBackground &&
+            other is _$UpdateColorEventlaunchSplashBackgroundImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -10447,7 +10462,7 @@ class _$_UpdateColorEventlaunchSplashBackground
 abstract class _UpdateColorEventlaunchSplashBackground
     implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventlaunchSplashBackground(final Color? color) =
-      _$_UpdateColorEventlaunchSplashBackground;
+      _$UpdateColorEventlaunchSplashBackgroundImpl;
 
   Color? get color;
 }
@@ -10513,8 +10528,8 @@ mixin _$UpdateThemeSchemeEvent {
 
 /// @nodoc
 
-class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
-  const _$_UpdateThemeSchemeFontEvent(this.font);
+class _$UpdateThemeSchemeFontEventImpl implements _UpdateThemeSchemeFontEvent {
+  const _$UpdateThemeSchemeFontEventImpl(this.font);
 
   @override
   final String font;
@@ -10528,7 +10543,7 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateThemeSchemeFontEvent &&
+            other is _$UpdateThemeSchemeFontEventImpl &&
             (identical(other.font, font) || other.font == font));
   }
 
@@ -10617,15 +10632,15 @@ class _$_UpdateThemeSchemeFontEvent implements _UpdateThemeSchemeFontEvent {
 
 abstract class _UpdateThemeSchemeFontEvent implements UpdateThemeSchemeEvent {
   const factory _UpdateThemeSchemeFontEvent(final String font) =
-      _$_UpdateThemeSchemeFontEvent;
+      _$UpdateThemeSchemeFontEventImpl;
 
   String get font;
 }
 
 /// @nodoc
 
-class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
-  const _$_UpdateThemeSchemeTextsvent(this.textsModel);
+class _$UpdateThemeSchemeTextsventImpl implements _UpdateThemeSchemeTextsvent {
+  const _$UpdateThemeSchemeTextsventImpl(this.textsModel);
 
   @override
   final TextsModel? textsModel;
@@ -10639,7 +10654,7 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateThemeSchemeTextsvent &&
+            other is _$UpdateThemeSchemeTextsventImpl &&
             (identical(other.textsModel, textsModel) ||
                 other.textsModel == textsModel));
   }
@@ -10729,15 +10744,16 @@ class _$_UpdateThemeSchemeTextsvent implements _UpdateThemeSchemeTextsvent {
 
 abstract class _UpdateThemeSchemeTextsvent implements UpdateThemeSchemeEvent {
   const factory _UpdateThemeSchemeTextsvent(final TextsModel? textsModel) =
-      _$_UpdateThemeSchemeTextsvent;
+      _$UpdateThemeSchemeTextsventImpl;
 
   TextsModel? get textsModel;
 }
 
 /// @nodoc
 
-class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
-  const _$_UpdateThemeSchemeImagesEvent(this.image);
+class _$UpdateThemeSchemeImagesEventImpl
+    implements _UpdateThemeSchemeImagesEvent {
+  const _$UpdateThemeSchemeImagesEventImpl(this.image);
 
   @override
   final ImageSchemeModel? image;
@@ -10751,7 +10767,7 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateThemeSchemeImagesEvent &&
+            other is _$UpdateThemeSchemeImagesEventImpl &&
             (identical(other.image, image) || other.image == image));
   }
 
@@ -10840,16 +10856,16 @@ class _$_UpdateThemeSchemeImagesEvent implements _UpdateThemeSchemeImagesEvent {
 
 abstract class _UpdateThemeSchemeImagesEvent implements UpdateThemeSchemeEvent {
   const factory _UpdateThemeSchemeImagesEvent(final ImageSchemeModel? image) =
-      _$_UpdateThemeSchemeImagesEvent;
+      _$UpdateThemeSchemeImagesEventImpl;
 
   ImageSchemeModel? get image;
 }
 
 /// @nodoc
 
-class _$_UpdateSystemAssetsImagesEvent
+class _$UpdateSystemAssetsImagesEventImpl
     implements _UpdateSystemAssetsImagesEvent {
-  const _$_UpdateSystemAssetsImagesEvent(this.image);
+  const _$UpdateSystemAssetsImagesEventImpl(this.image);
 
   @override
   final SystemAssetsModel? image;
@@ -10863,7 +10879,7 @@ class _$_UpdateSystemAssetsImagesEvent
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateSystemAssetsImagesEvent &&
+            other is _$UpdateSystemAssetsImagesEventImpl &&
             (identical(other.image, image) || other.image == image));
   }
 
@@ -10953,7 +10969,7 @@ class _$_UpdateSystemAssetsImagesEvent
 abstract class _UpdateSystemAssetsImagesEvent
     implements UpdateThemeSchemeEvent {
   const factory _UpdateSystemAssetsImagesEvent(final SystemAssetsModel? image) =
-      _$_UpdateSystemAssetsImagesEvent;
+      _$UpdateSystemAssetsImagesEventImpl;
 
   SystemAssetsModel? get image;
 }

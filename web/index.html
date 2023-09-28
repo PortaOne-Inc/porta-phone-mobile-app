@@ -128,15 +128,5 @@
 
 
 </script>
-<script>
-    document.addEventListener("initialize_firebase_env", function () {
-        if (window.ENV === "prod") {
-            navigator.serviceWorker.register("/firebase/firebase-prod-sw.js");
-        } else {
-            navigator.serviceWorker.register("/firebase/firebase-stage-sw.js");
-        }
-    });
-
-</script>
 </body>
 </html>

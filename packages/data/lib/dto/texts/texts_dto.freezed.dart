@@ -67,21 +67,22 @@ class _$TextsDTOCopyWithImpl<$Res, $Val extends TextsDTO>
 }
 
 /// @nodoc
-abstract class _$$_TextsDTOCopyWith<$Res> implements $TextsDTOCopyWith<$Res> {
-  factory _$$_TextsDTOCopyWith(
-          _$_TextsDTO value, $Res Function(_$_TextsDTO) then) =
-      __$$_TextsDTOCopyWithImpl<$Res>;
+abstract class _$$TextsDTOImplCopyWith<$Res>
+    implements $TextsDTOCopyWith<$Res> {
+  factory _$$TextsDTOImplCopyWith(
+          _$TextsDTOImpl value, $Res Function(_$TextsDTOImpl) then) =
+      __$$TextsDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? greeting, String? contactEmail});
 }
 
 /// @nodoc
-class __$$_TextsDTOCopyWithImpl<$Res>
-    extends _$TextsDTOCopyWithImpl<$Res, _$_TextsDTO>
-    implements _$$_TextsDTOCopyWith<$Res> {
-  __$$_TextsDTOCopyWithImpl(
-      _$_TextsDTO _value, $Res Function(_$_TextsDTO) _then)
+class __$$TextsDTOImplCopyWithImpl<$Res>
+    extends _$TextsDTOCopyWithImpl<$Res, _$TextsDTOImpl>
+    implements _$$TextsDTOImplCopyWith<$Res> {
+  __$$TextsDTOImplCopyWithImpl(
+      _$TextsDTOImpl _value, $Res Function(_$TextsDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_TextsDTOCopyWithImpl<$Res>
     Object? greeting = freezed,
     Object? contactEmail = freezed,
   }) {
-    return _then(_$_TextsDTO(
+    return _then(_$TextsDTOImpl(
       greeting: freezed == greeting
           ? _value.greeting
           : greeting // ignore: cast_nullable_to_non_nullable
@@ -105,11 +106,11 @@ class __$$_TextsDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TextsDTO implements _TextsDTO {
-  const _$_TextsDTO({this.greeting, this.contactEmail});
+class _$TextsDTOImpl implements _TextsDTO {
+  const _$TextsDTOImpl({this.greeting, this.contactEmail});
 
-  factory _$_TextsDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_TextsDTOFromJson(json);
+  factory _$TextsDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TextsDTOImplFromJson(json);
 
   @override
   final String? greeting;
@@ -125,7 +126,7 @@ class _$_TextsDTO implements _TextsDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TextsDTO &&
+            other is _$TextsDTOImpl &&
             (identical(other.greeting, greeting) ||
                 other.greeting == greeting) &&
             (identical(other.contactEmail, contactEmail) ||
@@ -139,12 +140,12 @@ class _$_TextsDTO implements _TextsDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TextsDTOCopyWith<_$_TextsDTO> get copyWith =>
-      __$$_TextsDTOCopyWithImpl<_$_TextsDTO>(this, _$identity);
+  _$$TextsDTOImplCopyWith<_$TextsDTOImpl> get copyWith =>
+      __$$TextsDTOImplCopyWithImpl<_$TextsDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TextsDTOToJson(
+    return _$$TextsDTOImplToJson(
       this,
     );
   }
@@ -152,9 +153,10 @@ class _$_TextsDTO implements _TextsDTO {
 
 abstract class _TextsDTO implements TextsDTO {
   const factory _TextsDTO(
-      {final String? greeting, final String? contactEmail}) = _$_TextsDTO;
+      {final String? greeting, final String? contactEmail}) = _$TextsDTOImpl;
 
-  factory _TextsDTO.fromJson(Map<String, dynamic> json) = _$_TextsDTO.fromJson;
+  factory _TextsDTO.fromJson(Map<String, dynamic> json) =
+      _$TextsDTOImpl.fromJson;
 
   @override
   String? get greeting;
@@ -162,6 +164,6 @@ abstract class _TextsDTO implements TextsDTO {
   String? get contactEmail;
   @override
   @JsonKey(ignore: true)
-  _$$_TextsDTOCopyWith<_$_TextsDTO> get copyWith =>
+  _$$TextsDTOImplCopyWith<_$TextsDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

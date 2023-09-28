@@ -83,11 +83,11 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
 }
 
 /// @nodoc
-abstract class _$$_ImageSchemeModelCopyWith<$Res>
+abstract class _$$ImageSchemeModelImplCopyWith<$Res>
     implements $ImageSchemeModelCopyWith<$Res> {
-  factory _$$_ImageSchemeModelCopyWith(
-          _$_ImageSchemeModel value, $Res Function(_$_ImageSchemeModel) then) =
-      __$$_ImageSchemeModelCopyWithImpl<$Res>;
+  factory _$$ImageSchemeModelImplCopyWith(_$ImageSchemeModelImpl value,
+          $Res Function(_$ImageSchemeModelImpl) then) =
+      __$$ImageSchemeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -100,11 +100,11 @@ abstract class _$$_ImageSchemeModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageSchemeModelCopyWithImpl<$Res>
-    extends _$ImageSchemeModelCopyWithImpl<$Res, _$_ImageSchemeModel>
-    implements _$$_ImageSchemeModelCopyWith<$Res> {
-  __$$_ImageSchemeModelCopyWithImpl(
-      _$_ImageSchemeModel _value, $Res Function(_$_ImageSchemeModel) _then)
+class __$$ImageSchemeModelImplCopyWithImpl<$Res>
+    extends _$ImageSchemeModelCopyWithImpl<$Res, _$ImageSchemeModelImpl>
+    implements _$$ImageSchemeModelImplCopyWith<$Res> {
+  __$$ImageSchemeModelImplCopyWithImpl(_$ImageSchemeModelImpl _value,
+      $Res Function(_$ImageSchemeModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +113,7 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
     Object? primaryOnboardingLogo = null,
     Object? secondaryOnboardingLogo = null,
   }) {
-    return _then(_$_ImageSchemeModel(
+    return _then(_$ImageSchemeModelImpl(
       primaryOnboardingLogo: null == primaryOnboardingLogo
           ? _value.primaryOnboardingLogo
           : primaryOnboardingLogo // ignore: cast_nullable_to_non_nullable
@@ -128,8 +128,8 @@ class __$$_ImageSchemeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ImageSchemeModel extends _ImageSchemeModel {
-  const _$_ImageSchemeModel(
+class _$ImageSchemeModelImpl extends _ImageSchemeModel {
+  const _$ImageSchemeModelImpl(
       {this.primaryOnboardingLogo = const ImageModel(),
       this.secondaryOnboardingLogo = const ImageModel()})
       : super._();
@@ -150,7 +150,7 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageSchemeModel &&
+            other is _$ImageSchemeModelImpl &&
             (identical(other.primaryOnboardingLogo, primaryOnboardingLogo) ||
                 other.primaryOnboardingLogo == primaryOnboardingLogo) &&
             (identical(
@@ -165,14 +165,15 @@ class _$_ImageSchemeModel extends _ImageSchemeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageSchemeModelCopyWith<_$_ImageSchemeModel> get copyWith =>
-      __$$_ImageSchemeModelCopyWithImpl<_$_ImageSchemeModel>(this, _$identity);
+  _$$ImageSchemeModelImplCopyWith<_$ImageSchemeModelImpl> get copyWith =>
+      __$$ImageSchemeModelImplCopyWithImpl<_$ImageSchemeModelImpl>(
+          this, _$identity);
 }
 
 abstract class _ImageSchemeModel extends ImageSchemeModel {
   const factory _ImageSchemeModel(
       {final ImageModel primaryOnboardingLogo,
-      final ImageModel secondaryOnboardingLogo}) = _$_ImageSchemeModel;
+      final ImageModel secondaryOnboardingLogo}) = _$ImageSchemeModelImpl;
   const _ImageSchemeModel._() : super._();
 
   @override
@@ -181,6 +182,6 @@ abstract class _ImageSchemeModel extends ImageSchemeModel {
   ImageModel get secondaryOnboardingLogo;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageSchemeModelCopyWith<_$_ImageSchemeModel> get copyWith =>
+  _$$ImageSchemeModelImplCopyWith<_$ImageSchemeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -63,22 +63,22 @@ class _$TextsModelCopyWithImpl<$Res, $Val extends TextsModel>
 }
 
 /// @nodoc
-abstract class _$$_TextsModelCopyWith<$Res>
+abstract class _$$TextsModelImplCopyWith<$Res>
     implements $TextsModelCopyWith<$Res> {
-  factory _$$_TextsModelCopyWith(
-          _$_TextsModel value, $Res Function(_$_TextsModel) then) =
-      __$$_TextsModelCopyWithImpl<$Res>;
+  factory _$$TextsModelImplCopyWith(
+          _$TextsModelImpl value, $Res Function(_$TextsModelImpl) then) =
+      __$$TextsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? greeting, String? contactEmail});
 }
 
 /// @nodoc
-class __$$_TextsModelCopyWithImpl<$Res>
-    extends _$TextsModelCopyWithImpl<$Res, _$_TextsModel>
-    implements _$$_TextsModelCopyWith<$Res> {
-  __$$_TextsModelCopyWithImpl(
-      _$_TextsModel _value, $Res Function(_$_TextsModel) _then)
+class __$$TextsModelImplCopyWithImpl<$Res>
+    extends _$TextsModelCopyWithImpl<$Res, _$TextsModelImpl>
+    implements _$$TextsModelImplCopyWith<$Res> {
+  __$$TextsModelImplCopyWithImpl(
+      _$TextsModelImpl _value, $Res Function(_$TextsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_TextsModelCopyWithImpl<$Res>
     Object? greeting = freezed,
     Object? contactEmail = freezed,
   }) {
-    return _then(_$_TextsModel(
+    return _then(_$TextsModelImpl(
       greeting: freezed == greeting
           ? _value.greeting
           : greeting // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_TextsModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TextsModel implements _TextsModel {
-  const _$_TextsModel({this.greeting, this.contactEmail});
+class _$TextsModelImpl implements _TextsModel {
+  const _$TextsModelImpl({this.greeting, this.contactEmail});
 
   @override
   final String? greeting;
@@ -119,7 +119,7 @@ class _$_TextsModel implements _TextsModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TextsModel &&
+            other is _$TextsModelImpl &&
             (identical(other.greeting, greeting) ||
                 other.greeting == greeting) &&
             (identical(other.contactEmail, contactEmail) ||
@@ -132,13 +132,13 @@ class _$_TextsModel implements _TextsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TextsModelCopyWith<_$_TextsModel> get copyWith =>
-      __$$_TextsModelCopyWithImpl<_$_TextsModel>(this, _$identity);
+  _$$TextsModelImplCopyWith<_$TextsModelImpl> get copyWith =>
+      __$$TextsModelImplCopyWithImpl<_$TextsModelImpl>(this, _$identity);
 }
 
 abstract class _TextsModel implements TextsModel {
   const factory _TextsModel(
-      {final String? greeting, final String? contactEmail}) = _$_TextsModel;
+      {final String? greeting, final String? contactEmail}) = _$TextsModelImpl;
 
   @override
   String? get greeting;
@@ -146,6 +146,6 @@ abstract class _TextsModel implements TextsModel {
   String? get contactEmail;
   @override
   @JsonKey(ignore: true)
-  _$$_TextsModelCopyWith<_$_TextsModel> get copyWith =>
+  _$$TextsModelImplCopyWith<_$TextsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

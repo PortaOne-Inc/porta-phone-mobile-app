@@ -6,8 +6,8 @@ part of 'application_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
-    _$_ApplicationDTO(
+_$ApplicationDTOImpl _$$ApplicationDTOImplFromJson(Map<String, dynamic> json) =>
+    _$ApplicationDTOImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       platformIdentifier: json['platformIdentifier'] as String?,
@@ -20,7 +20,8 @@ _$_ApplicationDTO _$$_ApplicationDTOFromJson(Map<String, dynamic> json) =>
               json['googleServices'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
+Map<String, dynamic> _$$ApplicationDTOImplToJson(
+    _$ApplicationDTOImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -39,8 +40,9 @@ Map<String, dynamic> _$$_ApplicationDTOToJson(_$_ApplicationDTO instance) {
   return val;
 }
 
-_$_GoogleServicesDTO _$$_GoogleServicesDTOFromJson(Map<String, dynamic> json) =>
-    _$_GoogleServicesDTO(
+_$GoogleServicesDTOImpl _$$GoogleServicesDTOImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GoogleServicesDTOImpl(
       androidUrl: json['androidUrl'] as String?,
       androidPath: json['androidPath'] as String?,
       iosUrl: json['iosUrl'] as String?,
@@ -48,8 +50,8 @@ _$_GoogleServicesDTO _$$_GoogleServicesDTOFromJson(Map<String, dynamic> json) =>
       projectId: json['projectId'] as String?,
     );
 
-Map<String, dynamic> _$$_GoogleServicesDTOToJson(
-    _$_GoogleServicesDTO instance) {
+Map<String, dynamic> _$$GoogleServicesDTOImplToJson(
+    _$GoogleServicesDTOImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

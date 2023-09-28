@@ -101,20 +101,22 @@ class _$CommonStateCopyWithImpl<$Res, $Val extends CommonState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> implements $CommonStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $CommonStateCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$CommonStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -122,7 +124,7 @@ class __$$_InitialCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$_Initial(
+    return _then(_$InitialImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -133,8 +135,8 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial({this.themeMode = ThemeMode.system});
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -149,7 +151,7 @@ class _$_Initial implements _Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$InitialImpl &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode));
   }
@@ -160,8 +162,8 @@ class _$_Initial implements _Initial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -233,33 +235,33 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements CommonState {
-  const factory _Initial({final ThemeMode themeMode}) = _$_Initial;
+  const factory _Initial({final ThemeMode themeMode}) = _$InitialImpl;
 
   @override
   ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CommonStateLogoutCopyWith<$Res>
+abstract class _$$CommonStateLogoutImplCopyWith<$Res>
     implements $CommonStateCopyWith<$Res> {
-  factory _$$CommonStateLogoutCopyWith(
-          _$CommonStateLogout value, $Res Function(_$CommonStateLogout) then) =
-      __$$CommonStateLogoutCopyWithImpl<$Res>;
+  factory _$$CommonStateLogoutImplCopyWith(_$CommonStateLogoutImpl value,
+          $Res Function(_$CommonStateLogoutImpl) then) =
+      __$$CommonStateLogoutImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$CommonStateLogoutCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateLogout>
-    implements _$$CommonStateLogoutCopyWith<$Res> {
-  __$$CommonStateLogoutCopyWithImpl(
-      _$CommonStateLogout _value, $Res Function(_$CommonStateLogout) _then)
+class __$$CommonStateLogoutImplCopyWithImpl<$Res>
+    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateLogoutImpl>
+    implements _$$CommonStateLogoutImplCopyWith<$Res> {
+  __$$CommonStateLogoutImplCopyWithImpl(_$CommonStateLogoutImpl _value,
+      $Res Function(_$CommonStateLogoutImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -267,7 +269,7 @@ class __$$CommonStateLogoutCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$CommonStateLogout(
+    return _then(_$CommonStateLogoutImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -278,8 +280,8 @@ class __$$CommonStateLogoutCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommonStateLogout implements CommonStateLogout {
-  const _$CommonStateLogout({this.themeMode = ThemeMode.system});
+class _$CommonStateLogoutImpl implements CommonStateLogout {
+  const _$CommonStateLogoutImpl({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -294,7 +296,7 @@ class _$CommonStateLogout implements CommonStateLogout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommonStateLogout &&
+            other is _$CommonStateLogoutImpl &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode));
   }
@@ -305,8 +307,9 @@ class _$CommonStateLogout implements CommonStateLogout {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommonStateLogoutCopyWith<_$CommonStateLogout> get copyWith =>
-      __$$CommonStateLogoutCopyWithImpl<_$CommonStateLogout>(this, _$identity);
+  _$$CommonStateLogoutImplCopyWith<_$CommonStateLogoutImpl> get copyWith =>
+      __$$CommonStateLogoutImplCopyWithImpl<_$CommonStateLogoutImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -379,33 +382,33 @@ class _$CommonStateLogout implements CommonStateLogout {
 
 abstract class CommonStateLogout implements CommonState {
   const factory CommonStateLogout({final ThemeMode themeMode}) =
-      _$CommonStateLogout;
+      _$CommonStateLogoutImpl;
 
   @override
   ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$CommonStateLogoutCopyWith<_$CommonStateLogout> get copyWith =>
+  _$$CommonStateLogoutImplCopyWith<_$CommonStateLogoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CommonStateThemeModeCopyWith<$Res>
+abstract class _$$CommonStateThemeModeImplCopyWith<$Res>
     implements $CommonStateCopyWith<$Res> {
-  factory _$$CommonStateThemeModeCopyWith(_$CommonStateThemeMode value,
-          $Res Function(_$CommonStateThemeMode) then) =
-      __$$CommonStateThemeModeCopyWithImpl<$Res>;
+  factory _$$CommonStateThemeModeImplCopyWith(_$CommonStateThemeModeImpl value,
+          $Res Function(_$CommonStateThemeModeImpl) then) =
+      __$$CommonStateThemeModeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$CommonStateThemeModeCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateThemeMode>
-    implements _$$CommonStateThemeModeCopyWith<$Res> {
-  __$$CommonStateThemeModeCopyWithImpl(_$CommonStateThemeMode _value,
-      $Res Function(_$CommonStateThemeMode) _then)
+class __$$CommonStateThemeModeImplCopyWithImpl<$Res>
+    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateThemeModeImpl>
+    implements _$$CommonStateThemeModeImplCopyWith<$Res> {
+  __$$CommonStateThemeModeImplCopyWithImpl(_$CommonStateThemeModeImpl _value,
+      $Res Function(_$CommonStateThemeModeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -413,7 +416,7 @@ class __$$CommonStateThemeModeCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$CommonStateThemeMode(
+    return _then(_$CommonStateThemeModeImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -424,8 +427,8 @@ class __$$CommonStateThemeModeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommonStateThemeMode implements CommonStateThemeMode {
-  const _$CommonStateThemeMode({this.themeMode = ThemeMode.system});
+class _$CommonStateThemeModeImpl implements CommonStateThemeMode {
+  const _$CommonStateThemeModeImpl({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
@@ -440,7 +443,7 @@ class _$CommonStateThemeMode implements CommonStateThemeMode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommonStateThemeMode &&
+            other is _$CommonStateThemeModeImpl &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode));
   }
@@ -451,9 +454,10 @@ class _$CommonStateThemeMode implements CommonStateThemeMode {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommonStateThemeModeCopyWith<_$CommonStateThemeMode> get copyWith =>
-      __$$CommonStateThemeModeCopyWithImpl<_$CommonStateThemeMode>(
-          this, _$identity);
+  _$$CommonStateThemeModeImplCopyWith<_$CommonStateThemeModeImpl>
+      get copyWith =>
+          __$$CommonStateThemeModeImplCopyWithImpl<_$CommonStateThemeModeImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -526,12 +530,12 @@ class _$CommonStateThemeMode implements CommonStateThemeMode {
 
 abstract class CommonStateThemeMode implements CommonState {
   const factory CommonStateThemeMode({final ThemeMode themeMode}) =
-      _$CommonStateThemeMode;
+      _$CommonStateThemeModeImpl;
 
   @override
   ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$CommonStateThemeModeCopyWith<_$CommonStateThemeMode> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CommonStateThemeModeImplCopyWith<_$CommonStateThemeModeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

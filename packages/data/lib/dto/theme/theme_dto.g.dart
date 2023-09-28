@@ -6,7 +6,8 @@ part of 'theme_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ThemeDTO _$$_ThemeDTOFromJson(Map<String, dynamic> json) => _$_ThemeDTO(
+_$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
+    _$ThemeDTOImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       fontFamily: json['fontFamily'] as String?,
@@ -22,7 +23,7 @@ _$_ThemeDTO _$$_ThemeDTOFromJson(Map<String, dynamic> json) => _$_ThemeDTO(
       style: json['style'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$_ThemeDTOToJson(_$_ThemeDTO instance) =>
+Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
