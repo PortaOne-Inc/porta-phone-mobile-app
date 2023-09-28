@@ -144,10 +144,11 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
 }
 
 /// @nodoc
-abstract class _$$_ThemeDTOCopyWith<$Res> implements $ThemeDTOCopyWith<$Res> {
-  factory _$$_ThemeDTOCopyWith(
-          _$_ThemeDTO value, $Res Function(_$_ThemeDTO) then) =
-      __$$_ThemeDTOCopyWithImpl<$Res>;
+abstract class _$$ThemeDTOImplCopyWith<$Res>
+    implements $ThemeDTOCopyWith<$Res> {
+  factory _$$ThemeDTOImplCopyWith(
+          _$ThemeDTOImpl value, $Res Function(_$ThemeDTOImpl) then) =
+      __$$ThemeDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -168,11 +169,11 @@ abstract class _$$_ThemeDTOCopyWith<$Res> implements $ThemeDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ThemeDTOCopyWithImpl<$Res>
-    extends _$ThemeDTOCopyWithImpl<$Res, _$_ThemeDTO>
-    implements _$$_ThemeDTOCopyWith<$Res> {
-  __$$_ThemeDTOCopyWithImpl(
-      _$_ThemeDTO _value, $Res Function(_$_ThemeDTO) _then)
+class __$$ThemeDTOImplCopyWithImpl<$Res>
+    extends _$ThemeDTOCopyWithImpl<$Res, _$ThemeDTOImpl>
+    implements _$$ThemeDTOImplCopyWith<$Res> {
+  __$$ThemeDTOImplCopyWithImpl(
+      _$ThemeDTOImpl _value, $Res Function(_$ThemeDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -186,7 +187,7 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
     Object? texts = freezed,
     Object? style = freezed,
   }) {
-    return _then(_$_ThemeDTO(
+    return _then(_$ThemeDTOImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -221,8 +222,8 @@ class __$$_ThemeDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ThemeDTO implements _ThemeDTO {
-  const _$_ThemeDTO(
+class _$ThemeDTOImpl implements _ThemeDTO {
+  const _$ThemeDTOImpl(
       {this.id,
       this.name,
       this.fontFamily,
@@ -231,8 +232,8 @@ class _$_ThemeDTO implements _ThemeDTO {
       this.texts,
       this.style});
 
-  factory _$_ThemeDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ThemeDTOFromJson(json);
+  factory _$ThemeDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThemeDTOImplFromJson(json);
 
   @override
   final String? id;
@@ -258,7 +259,7 @@ class _$_ThemeDTO implements _ThemeDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemeDTO &&
+            other is _$ThemeDTOImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fontFamily, fontFamily) ||
@@ -277,12 +278,12 @@ class _$_ThemeDTO implements _ThemeDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemeDTOCopyWith<_$_ThemeDTO> get copyWith =>
-      __$$_ThemeDTOCopyWithImpl<_$_ThemeDTO>(this, _$identity);
+  _$$ThemeDTOImplCopyWith<_$ThemeDTOImpl> get copyWith =>
+      __$$ThemeDTOImplCopyWithImpl<_$ThemeDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ThemeDTOToJson(
+    return _$$ThemeDTOImplToJson(
       this,
     );
   }
@@ -296,9 +297,10 @@ abstract class _ThemeDTO implements ThemeDTO {
       final ImageCollectionDTO? images,
       final ColorDTO? colors,
       final TextsDTO? texts,
-      final Map<String, dynamic>? style}) = _$_ThemeDTO;
+      final Map<String, dynamic>? style}) = _$ThemeDTOImpl;
 
-  factory _ThemeDTO.fromJson(Map<String, dynamic> json) = _$_ThemeDTO.fromJson;
+  factory _ThemeDTO.fromJson(Map<String, dynamic> json) =
+      _$ThemeDTOImpl.fromJson;
 
   @override
   String? get id;
@@ -316,6 +318,6 @@ abstract class _ThemeDTO implements ThemeDTO {
   Map<String, dynamic>? get style;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemeDTOCopyWith<_$_ThemeDTO> get copyWith =>
+  _$$ThemeDTOImplCopyWith<_$ThemeDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

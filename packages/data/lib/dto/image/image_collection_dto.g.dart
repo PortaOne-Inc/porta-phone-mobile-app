@@ -6,9 +6,9 @@ part of 'image_collection_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ImageCollectionDTO _$$_ImageCollectionDTOFromJson(
+_$ImageCollectionDTOImpl _$$ImageCollectionDTOImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ImageCollectionDTO(
+    _$ImageCollectionDTOImpl(
       primaryOnboardingLogo: json['primaryOnboardingLogo'] as String?,
       secondaryOnboardingLogo: json['secondaryOnboardingLogo'] as String?,
       notificationLogo: json['notificationLogo'] as String?,
@@ -19,8 +19,8 @@ _$_ImageCollectionDTO _$$_ImageCollectionDTOFromJson(
       webLauncherIcon: json['webLauncherIcon'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageCollectionDTOToJson(
-        _$_ImageCollectionDTO instance) =>
+Map<String, dynamic> _$$ImageCollectionDTOImplToJson(
+        _$ImageCollectionDTOImpl instance) =>
     <String, dynamic>{
       'primaryOnboardingLogo': instance.primaryOnboardingLogo,
       'secondaryOnboardingLogo': instance.secondaryOnboardingLogo,

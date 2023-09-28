@@ -148,21 +148,22 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 }
 
 /// @nodoc
-abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$$_AuthStateCopyWith(
-          _$_AuthState value, $Res Function(_$_AuthState) then) =
-      __$$_AuthStateCopyWithImpl<$Res>;
+abstract class _$$AuthStateImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
+  factory _$$AuthStateImplCopyWith(
+          _$AuthStateImpl value, $Res Function(_$AuthStateImpl) then) =
+      __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$_AuthStateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState>
-    implements _$$_AuthStateCopyWith<$Res> {
-  __$$_AuthStateCopyWithImpl(
-      _$_AuthState _value, $Res Function(_$_AuthState) _then)
+class __$$AuthStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateImpl>
+    implements _$$AuthStateImplCopyWith<$Res> {
+  __$$AuthStateImplCopyWithImpl(
+      _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -171,7 +172,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$_AuthState(
+    return _then(_$AuthStateImpl(
       emailInput: freezed == emailInput
           ? _value.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
@@ -186,8 +187,8 @@ class __$$_AuthStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AuthState implements _AuthState {
-  _$_AuthState({this.emailInput, this.passwordInput});
+class _$AuthStateImpl implements _AuthState {
+  _$AuthStateImpl({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
@@ -203,7 +204,7 @@ class _$_AuthState implements _AuthState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AuthState &&
+            other is _$AuthStateImpl &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -216,8 +217,8 @@ class _$_AuthState implements _AuthState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
-      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
+      __$$AuthStateImplCopyWithImpl<_$AuthStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -333,7 +334,7 @@ class _$_AuthState implements _AuthState {
 abstract class _AuthState implements AuthState {
   factory _AuthState(
       {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$_AuthState;
+      final AuthPasswordInput? passwordInput}) = _$AuthStateImpl;
 
   @override
   AuthEmailInput? get emailInput;
@@ -341,27 +342,27 @@ abstract class _AuthState implements AuthState {
   AuthPasswordInput? get passwordInput;
   @override
   @JsonKey(ignore: true)
-  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateProgressCopyWith<$Res>
+abstract class _$$AuthStateProgressImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$AuthStateProgressCopyWith(
-          _$AuthStateProgress value, $Res Function(_$AuthStateProgress) then) =
-      __$$AuthStateProgressCopyWithImpl<$Res>;
+  factory _$$AuthStateProgressImplCopyWith(_$AuthStateProgressImpl value,
+          $Res Function(_$AuthStateProgressImpl) then) =
+      __$$AuthStateProgressImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateProgressCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateProgress>
-    implements _$$AuthStateProgressCopyWith<$Res> {
-  __$$AuthStateProgressCopyWithImpl(
-      _$AuthStateProgress _value, $Res Function(_$AuthStateProgress) _then)
+class __$$AuthStateProgressImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateProgressImpl>
+    implements _$$AuthStateProgressImplCopyWith<$Res> {
+  __$$AuthStateProgressImplCopyWithImpl(_$AuthStateProgressImpl _value,
+      $Res Function(_$AuthStateProgressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -370,7 +371,7 @@ class __$$AuthStateProgressCopyWithImpl<$Res>
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateProgress(
+    return _then(_$AuthStateProgressImpl(
       emailInput: freezed == emailInput
           ? _value.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
@@ -385,8 +386,8 @@ class __$$AuthStateProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateProgress implements AuthStateProgress {
-  _$AuthStateProgress({this.emailInput, this.passwordInput});
+class _$AuthStateProgressImpl implements AuthStateProgress {
+  _$AuthStateProgressImpl({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
@@ -402,7 +403,7 @@ class _$AuthStateProgress implements AuthStateProgress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateProgress &&
+            other is _$AuthStateProgressImpl &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -415,8 +416,9 @@ class _$AuthStateProgress implements AuthStateProgress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateProgressCopyWith<_$AuthStateProgress> get copyWith =>
-      __$$AuthStateProgressCopyWithImpl<_$AuthStateProgress>(this, _$identity);
+  _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
+      __$$AuthStateProgressImplCopyWithImpl<_$AuthStateProgressImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -532,7 +534,7 @@ class _$AuthStateProgress implements AuthStateProgress {
 abstract class AuthStateProgress implements AuthState {
   factory AuthStateProgress(
       {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateProgress;
+      final AuthPasswordInput? passwordInput}) = _$AuthStateProgressImpl;
 
   @override
   AuthEmailInput? get emailInput;
@@ -540,27 +542,27 @@ abstract class AuthStateProgress implements AuthState {
   AuthPasswordInput? get passwordInput;
   @override
   @JsonKey(ignore: true)
-  _$$AuthStateProgressCopyWith<_$AuthStateProgress> get copyWith =>
+  _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateSuccessCopyWith<$Res>
+abstract class _$$AuthStateSuccessImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$AuthStateSuccessCopyWith(
-          _$AuthStateSuccess value, $Res Function(_$AuthStateSuccess) then) =
-      __$$AuthStateSuccessCopyWithImpl<$Res>;
+  factory _$$AuthStateSuccessImplCopyWith(_$AuthStateSuccessImpl value,
+          $Res Function(_$AuthStateSuccessImpl) then) =
+      __$$AuthStateSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateSuccessCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateSuccess>
-    implements _$$AuthStateSuccessCopyWith<$Res> {
-  __$$AuthStateSuccessCopyWithImpl(
-      _$AuthStateSuccess _value, $Res Function(_$AuthStateSuccess) _then)
+class __$$AuthStateSuccessImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateSuccessImpl>
+    implements _$$AuthStateSuccessImplCopyWith<$Res> {
+  __$$AuthStateSuccessImplCopyWithImpl(_$AuthStateSuccessImpl _value,
+      $Res Function(_$AuthStateSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -569,7 +571,7 @@ class __$$AuthStateSuccessCopyWithImpl<$Res>
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateSuccess(
+    return _then(_$AuthStateSuccessImpl(
       emailInput: freezed == emailInput
           ? _value.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
@@ -584,8 +586,8 @@ class __$$AuthStateSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateSuccess implements AuthStateSuccess {
-  _$AuthStateSuccess({this.emailInput, this.passwordInput});
+class _$AuthStateSuccessImpl implements AuthStateSuccess {
+  _$AuthStateSuccessImpl({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
@@ -601,7 +603,7 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateSuccess &&
+            other is _$AuthStateSuccessImpl &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -614,8 +616,9 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateSuccessCopyWith<_$AuthStateSuccess> get copyWith =>
-      __$$AuthStateSuccessCopyWithImpl<_$AuthStateSuccess>(this, _$identity);
+  _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
+      __$$AuthStateSuccessImplCopyWithImpl<_$AuthStateSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -731,7 +734,7 @@ class _$AuthStateSuccess implements AuthStateSuccess {
 abstract class AuthStateSuccess implements AuthState {
   factory AuthStateSuccess(
       {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateSuccess;
+      final AuthPasswordInput? passwordInput}) = _$AuthStateSuccessImpl;
 
   @override
   AuthEmailInput? get emailInput;
@@ -739,27 +742,27 @@ abstract class AuthStateSuccess implements AuthState {
   AuthPasswordInput? get passwordInput;
   @override
   @JsonKey(ignore: true)
-  _$$AuthStateSuccessCopyWith<_$AuthStateSuccess> get copyWith =>
+  _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateValidationCopyWith<$Res>
+abstract class _$$AuthStateValidationImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$AuthStateValidationCopyWith(_$AuthStateValidation value,
-          $Res Function(_$AuthStateValidation) then) =
-      __$$AuthStateValidationCopyWithImpl<$Res>;
+  factory _$$AuthStateValidationImplCopyWith(_$AuthStateValidationImpl value,
+          $Res Function(_$AuthStateValidationImpl) then) =
+      __$$AuthStateValidationImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateValidationCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateValidation>
-    implements _$$AuthStateValidationCopyWith<$Res> {
-  __$$AuthStateValidationCopyWithImpl(
-      _$AuthStateValidation _value, $Res Function(_$AuthStateValidation) _then)
+class __$$AuthStateValidationImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateValidationImpl>
+    implements _$$AuthStateValidationImplCopyWith<$Res> {
+  __$$AuthStateValidationImplCopyWithImpl(_$AuthStateValidationImpl _value,
+      $Res Function(_$AuthStateValidationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -768,7 +771,7 @@ class __$$AuthStateValidationCopyWithImpl<$Res>
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateValidation(
+    return _then(_$AuthStateValidationImpl(
       emailInput: freezed == emailInput
           ? _value.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
@@ -783,8 +786,8 @@ class __$$AuthStateValidationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateValidation implements AuthStateValidation {
-  _$AuthStateValidation({this.emailInput, this.passwordInput});
+class _$AuthStateValidationImpl implements AuthStateValidation {
+  _$AuthStateValidationImpl({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
@@ -800,7 +803,7 @@ class _$AuthStateValidation implements AuthStateValidation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateValidation &&
+            other is _$AuthStateValidationImpl &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -813,8 +816,8 @@ class _$AuthStateValidation implements AuthStateValidation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateValidationCopyWith<_$AuthStateValidation> get copyWith =>
-      __$$AuthStateValidationCopyWithImpl<_$AuthStateValidation>(
+  _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
+      __$$AuthStateValidationImplCopyWithImpl<_$AuthStateValidationImpl>(
           this, _$identity);
 
   @override
@@ -931,7 +934,7 @@ class _$AuthStateValidation implements AuthStateValidation {
 abstract class AuthStateValidation implements AuthState {
   factory AuthStateValidation(
       {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateValidation;
+      final AuthPasswordInput? passwordInput}) = _$AuthStateValidationImpl;
 
   @override
   AuthEmailInput? get emailInput;
@@ -939,16 +942,16 @@ abstract class AuthStateValidation implements AuthState {
   AuthPasswordInput? get passwordInput;
   @override
   @JsonKey(ignore: true)
-  _$$AuthStateValidationCopyWith<_$AuthStateValidation> get copyWith =>
+  _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateErrorCopyWith<$Res>
+abstract class _$$AuthStateErrorImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$AuthStateErrorCopyWith(
-          _$AuthStateError value, $Res Function(_$AuthStateError) then) =
-      __$$AuthStateErrorCopyWithImpl<$Res>;
+  factory _$$AuthStateErrorImplCopyWith(_$AuthStateErrorImpl value,
+          $Res Function(_$AuthStateErrorImpl) then) =
+      __$$AuthStateErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -958,11 +961,11 @@ abstract class _$$AuthStateErrorCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AuthStateErrorCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateError>
-    implements _$$AuthStateErrorCopyWith<$Res> {
-  __$$AuthStateErrorCopyWithImpl(
-      _$AuthStateError _value, $Res Function(_$AuthStateError) _then)
+class __$$AuthStateErrorImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateErrorImpl>
+    implements _$$AuthStateErrorImplCopyWith<$Res> {
+  __$$AuthStateErrorImplCopyWithImpl(
+      _$AuthStateErrorImpl _value, $Res Function(_$AuthStateErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -972,7 +975,7 @@ class __$$AuthStateErrorCopyWithImpl<$Res>
     Object? passwordInput = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$AuthStateError(
+    return _then(_$AuthStateErrorImpl(
       emailInput: freezed == emailInput
           ? _value.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
@@ -991,8 +994,8 @@ class __$$AuthStateErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateError implements AuthStateError {
-  _$AuthStateError({this.emailInput, this.passwordInput, this.error});
+class _$AuthStateErrorImpl implements AuthStateError {
+  _$AuthStateErrorImpl({this.emailInput, this.passwordInput, this.error});
 
   @override
   final AuthEmailInput? emailInput;
@@ -1010,7 +1013,7 @@ class _$AuthStateError implements AuthStateError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateError &&
+            other is _$AuthStateErrorImpl &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -1025,8 +1028,9 @@ class _$AuthStateError implements AuthStateError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateErrorCopyWith<_$AuthStateError> get copyWith =>
-      __$$AuthStateErrorCopyWithImpl<_$AuthStateError>(this, _$identity);
+  _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
+      __$$AuthStateErrorImplCopyWithImpl<_$AuthStateErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1143,7 +1147,7 @@ abstract class AuthStateError implements AuthState {
   factory AuthStateError(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput,
-      final AuthException? error}) = _$AuthStateError;
+      final AuthException? error}) = _$AuthStateErrorImpl;
 
   @override
   AuthEmailInput? get emailInput;
@@ -1152,6 +1156,6 @@ abstract class AuthStateError implements AuthState {
   AuthException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$AuthStateErrorCopyWith<_$AuthStateError> get copyWith =>
+  _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

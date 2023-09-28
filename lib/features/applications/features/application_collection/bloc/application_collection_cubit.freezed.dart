@@ -114,25 +114,25 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ApplicationCollectionStateCopyWith<$Res>
+abstract class _$$ApplicationCollectionStateImplCopyWith<$Res>
     implements $ApplicationCollectionStateCopyWith<$Res> {
-  factory _$$_ApplicationCollectionStateCopyWith(
-          _$_ApplicationCollectionState value,
-          $Res Function(_$_ApplicationCollectionState) then) =
-      __$$_ApplicationCollectionStateCopyWithImpl<$Res>;
+  factory _$$ApplicationCollectionStateImplCopyWith(
+          _$ApplicationCollectionStateImpl value,
+          $Res Function(_$ApplicationCollectionStateImpl) then) =
+      __$$ApplicationCollectionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ApplicationModel> applications});
 }
 
 /// @nodoc
-class __$$_ApplicationCollectionStateCopyWithImpl<$Res>
+class __$$ApplicationCollectionStateImplCopyWithImpl<$Res>
     extends _$ApplicationCollectionStateCopyWithImpl<$Res,
-        _$_ApplicationCollectionState>
-    implements _$$_ApplicationCollectionStateCopyWith<$Res> {
-  __$$_ApplicationCollectionStateCopyWithImpl(
-      _$_ApplicationCollectionState _value,
-      $Res Function(_$_ApplicationCollectionState) _then)
+        _$ApplicationCollectionStateImpl>
+    implements _$$ApplicationCollectionStateImplCopyWith<$Res> {
+  __$$ApplicationCollectionStateImplCopyWithImpl(
+      _$ApplicationCollectionStateImpl _value,
+      $Res Function(_$ApplicationCollectionStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -140,7 +140,7 @@ class __$$_ApplicationCollectionStateCopyWithImpl<$Res>
   $Res call({
     Object? applications = null,
   }) {
-    return _then(_$_ApplicationCollectionState(
+    return _then(_$ApplicationCollectionStateImpl(
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -151,8 +151,8 @@ class __$$_ApplicationCollectionStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApplicationCollectionState implements _ApplicationCollectionState {
-  _$_ApplicationCollectionState(
+class _$ApplicationCollectionStateImpl implements _ApplicationCollectionState {
+  _$ApplicationCollectionStateImpl(
       {final List<ApplicationModel> applications = const []})
       : _applications = applications;
 
@@ -174,7 +174,7 @@ class _$_ApplicationCollectionState implements _ApplicationCollectionState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApplicationCollectionState &&
+            other is _$ApplicationCollectionStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications));
   }
@@ -186,9 +186,9 @@ class _$_ApplicationCollectionState implements _ApplicationCollectionState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApplicationCollectionStateCopyWith<_$_ApplicationCollectionState>
-      get copyWith => __$$_ApplicationCollectionStateCopyWithImpl<
-          _$_ApplicationCollectionState>(this, _$identity);
+  _$$ApplicationCollectionStateImplCopyWith<_$ApplicationCollectionStateImpl>
+      get copyWith => __$$ApplicationCollectionStateImplCopyWithImpl<
+          _$ApplicationCollectionStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -274,36 +274,36 @@ abstract class _ApplicationCollectionState
     implements ApplicationCollectionState {
   factory _ApplicationCollectionState(
           {final List<ApplicationModel> applications}) =
-      _$_ApplicationCollectionState;
+      _$ApplicationCollectionStateImpl;
 
   @override
   List<ApplicationModel> get applications;
   @override
   @JsonKey(ignore: true)
-  _$$_ApplicationCollectionStateCopyWith<_$_ApplicationCollectionState>
+  _$$ApplicationCollectionStateImplCopyWith<_$ApplicationCollectionStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ApplicationCollectionProgressCopyWith<$Res>
+abstract class _$$ApplicationCollectionProgressImplCopyWith<$Res>
     implements $ApplicationCollectionStateCopyWith<$Res> {
-  factory _$$ApplicationCollectionProgressCopyWith(
-          _$ApplicationCollectionProgress value,
-          $Res Function(_$ApplicationCollectionProgress) then) =
-      __$$ApplicationCollectionProgressCopyWithImpl<$Res>;
+  factory _$$ApplicationCollectionProgressImplCopyWith(
+          _$ApplicationCollectionProgressImpl value,
+          $Res Function(_$ApplicationCollectionProgressImpl) then) =
+      __$$ApplicationCollectionProgressImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ApplicationModel> applications});
 }
 
 /// @nodoc
-class __$$ApplicationCollectionProgressCopyWithImpl<$Res>
+class __$$ApplicationCollectionProgressImplCopyWithImpl<$Res>
     extends _$ApplicationCollectionStateCopyWithImpl<$Res,
-        _$ApplicationCollectionProgress>
-    implements _$$ApplicationCollectionProgressCopyWith<$Res> {
-  __$$ApplicationCollectionProgressCopyWithImpl(
-      _$ApplicationCollectionProgress _value,
-      $Res Function(_$ApplicationCollectionProgress) _then)
+        _$ApplicationCollectionProgressImpl>
+    implements _$$ApplicationCollectionProgressImplCopyWith<$Res> {
+  __$$ApplicationCollectionProgressImplCopyWithImpl(
+      _$ApplicationCollectionProgressImpl _value,
+      $Res Function(_$ApplicationCollectionProgressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -311,7 +311,7 @@ class __$$ApplicationCollectionProgressCopyWithImpl<$Res>
   $Res call({
     Object? applications = null,
   }) {
-    return _then(_$ApplicationCollectionProgress(
+    return _then(_$ApplicationCollectionProgressImpl(
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -322,8 +322,9 @@ class __$$ApplicationCollectionProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplicationCollectionProgress implements ApplicationCollectionProgress {
-  _$ApplicationCollectionProgress(
+class _$ApplicationCollectionProgressImpl
+    implements ApplicationCollectionProgress {
+  _$ApplicationCollectionProgressImpl(
       {final List<ApplicationModel> applications = const []})
       : _applications = applications;
 
@@ -345,7 +346,7 @@ class _$ApplicationCollectionProgress implements ApplicationCollectionProgress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplicationCollectionProgress &&
+            other is _$ApplicationCollectionProgressImpl &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications));
   }
@@ -357,9 +358,10 @@ class _$ApplicationCollectionProgress implements ApplicationCollectionProgress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplicationCollectionProgressCopyWith<_$ApplicationCollectionProgress>
-      get copyWith => __$$ApplicationCollectionProgressCopyWithImpl<
-          _$ApplicationCollectionProgress>(this, _$identity);
+  _$$ApplicationCollectionProgressImplCopyWith<
+          _$ApplicationCollectionProgressImpl>
+      get copyWith => __$$ApplicationCollectionProgressImplCopyWithImpl<
+          _$ApplicationCollectionProgressImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -445,36 +447,37 @@ abstract class ApplicationCollectionProgress
     implements ApplicationCollectionState {
   factory ApplicationCollectionProgress(
           {final List<ApplicationModel> applications}) =
-      _$ApplicationCollectionProgress;
+      _$ApplicationCollectionProgressImpl;
 
   @override
   List<ApplicationModel> get applications;
   @override
   @JsonKey(ignore: true)
-  _$$ApplicationCollectionProgressCopyWith<_$ApplicationCollectionProgress>
+  _$$ApplicationCollectionProgressImplCopyWith<
+          _$ApplicationCollectionProgressImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ApplicationCollectionSuccessCopyWith<$Res>
+abstract class _$$ApplicationCollectionSuccessImplCopyWith<$Res>
     implements $ApplicationCollectionStateCopyWith<$Res> {
-  factory _$$ApplicationCollectionSuccessCopyWith(
-          _$ApplicationCollectionSuccess value,
-          $Res Function(_$ApplicationCollectionSuccess) then) =
-      __$$ApplicationCollectionSuccessCopyWithImpl<$Res>;
+  factory _$$ApplicationCollectionSuccessImplCopyWith(
+          _$ApplicationCollectionSuccessImpl value,
+          $Res Function(_$ApplicationCollectionSuccessImpl) then) =
+      __$$ApplicationCollectionSuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ApplicationModel> applications});
 }
 
 /// @nodoc
-class __$$ApplicationCollectionSuccessCopyWithImpl<$Res>
+class __$$ApplicationCollectionSuccessImplCopyWithImpl<$Res>
     extends _$ApplicationCollectionStateCopyWithImpl<$Res,
-        _$ApplicationCollectionSuccess>
-    implements _$$ApplicationCollectionSuccessCopyWith<$Res> {
-  __$$ApplicationCollectionSuccessCopyWithImpl(
-      _$ApplicationCollectionSuccess _value,
-      $Res Function(_$ApplicationCollectionSuccess) _then)
+        _$ApplicationCollectionSuccessImpl>
+    implements _$$ApplicationCollectionSuccessImplCopyWith<$Res> {
+  __$$ApplicationCollectionSuccessImplCopyWithImpl(
+      _$ApplicationCollectionSuccessImpl _value,
+      $Res Function(_$ApplicationCollectionSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -482,7 +485,7 @@ class __$$ApplicationCollectionSuccessCopyWithImpl<$Res>
   $Res call({
     Object? applications = null,
   }) {
-    return _then(_$ApplicationCollectionSuccess(
+    return _then(_$ApplicationCollectionSuccessImpl(
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -493,8 +496,9 @@ class __$$ApplicationCollectionSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplicationCollectionSuccess implements ApplicationCollectionSuccess {
-  _$ApplicationCollectionSuccess(
+class _$ApplicationCollectionSuccessImpl
+    implements ApplicationCollectionSuccess {
+  _$ApplicationCollectionSuccessImpl(
       {final List<ApplicationModel> applications = const []})
       : _applications = applications;
 
@@ -516,7 +520,7 @@ class _$ApplicationCollectionSuccess implements ApplicationCollectionSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplicationCollectionSuccess &&
+            other is _$ApplicationCollectionSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications));
   }
@@ -528,9 +532,10 @@ class _$ApplicationCollectionSuccess implements ApplicationCollectionSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplicationCollectionSuccessCopyWith<_$ApplicationCollectionSuccess>
-      get copyWith => __$$ApplicationCollectionSuccessCopyWithImpl<
-          _$ApplicationCollectionSuccess>(this, _$identity);
+  _$$ApplicationCollectionSuccessImplCopyWith<
+          _$ApplicationCollectionSuccessImpl>
+      get copyWith => __$$ApplicationCollectionSuccessImplCopyWithImpl<
+          _$ApplicationCollectionSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -616,36 +621,37 @@ abstract class ApplicationCollectionSuccess
     implements ApplicationCollectionState {
   factory ApplicationCollectionSuccess(
           {final List<ApplicationModel> applications}) =
-      _$ApplicationCollectionSuccess;
+      _$ApplicationCollectionSuccessImpl;
 
   @override
   List<ApplicationModel> get applications;
   @override
   @JsonKey(ignore: true)
-  _$$ApplicationCollectionSuccessCopyWith<_$ApplicationCollectionSuccess>
+  _$$ApplicationCollectionSuccessImplCopyWith<
+          _$ApplicationCollectionSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ApplicationCollectionErrorCopyWith<$Res>
+abstract class _$$ApplicationCollectionErrorImplCopyWith<$Res>
     implements $ApplicationCollectionStateCopyWith<$Res> {
-  factory _$$ApplicationCollectionErrorCopyWith(
-          _$ApplicationCollectionError value,
-          $Res Function(_$ApplicationCollectionError) then) =
-      __$$ApplicationCollectionErrorCopyWithImpl<$Res>;
+  factory _$$ApplicationCollectionErrorImplCopyWith(
+          _$ApplicationCollectionErrorImpl value,
+          $Res Function(_$ApplicationCollectionErrorImpl) then) =
+      __$$ApplicationCollectionErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ApplicationModel> applications, BaseException? error});
 }
 
 /// @nodoc
-class __$$ApplicationCollectionErrorCopyWithImpl<$Res>
+class __$$ApplicationCollectionErrorImplCopyWithImpl<$Res>
     extends _$ApplicationCollectionStateCopyWithImpl<$Res,
-        _$ApplicationCollectionError>
-    implements _$$ApplicationCollectionErrorCopyWith<$Res> {
-  __$$ApplicationCollectionErrorCopyWithImpl(
-      _$ApplicationCollectionError _value,
-      $Res Function(_$ApplicationCollectionError) _then)
+        _$ApplicationCollectionErrorImpl>
+    implements _$$ApplicationCollectionErrorImplCopyWith<$Res> {
+  __$$ApplicationCollectionErrorImplCopyWithImpl(
+      _$ApplicationCollectionErrorImpl _value,
+      $Res Function(_$ApplicationCollectionErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -654,7 +660,7 @@ class __$$ApplicationCollectionErrorCopyWithImpl<$Res>
     Object? applications = null,
     Object? error = freezed,
   }) {
-    return _then(_$ApplicationCollectionError(
+    return _then(_$ApplicationCollectionErrorImpl(
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -669,8 +675,8 @@ class __$$ApplicationCollectionErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplicationCollectionError implements ApplicationCollectionError {
-  _$ApplicationCollectionError(
+class _$ApplicationCollectionErrorImpl implements ApplicationCollectionError {
+  _$ApplicationCollectionErrorImpl(
       {final List<ApplicationModel> applications = const [], this.error})
       : _applications = applications;
 
@@ -695,7 +701,7 @@ class _$ApplicationCollectionError implements ApplicationCollectionError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplicationCollectionError &&
+            other is _$ApplicationCollectionErrorImpl &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications) &&
             (identical(other.error, error) || other.error == error));
@@ -708,9 +714,9 @@ class _$ApplicationCollectionError implements ApplicationCollectionError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplicationCollectionErrorCopyWith<_$ApplicationCollectionError>
-      get copyWith => __$$ApplicationCollectionErrorCopyWithImpl<
-          _$ApplicationCollectionError>(this, _$identity);
+  _$$ApplicationCollectionErrorImplCopyWith<_$ApplicationCollectionErrorImpl>
+      get copyWith => __$$ApplicationCollectionErrorImplCopyWithImpl<
+          _$ApplicationCollectionErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -796,13 +802,13 @@ abstract class ApplicationCollectionError
     implements ApplicationCollectionState {
   factory ApplicationCollectionError(
       {final List<ApplicationModel> applications,
-      final BaseException? error}) = _$ApplicationCollectionError;
+      final BaseException? error}) = _$ApplicationCollectionErrorImpl;
 
   @override
   List<ApplicationModel> get applications;
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ApplicationCollectionErrorCopyWith<_$ApplicationCollectionError>
+  _$$ApplicationCollectionErrorImplCopyWith<_$ApplicationCollectionErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

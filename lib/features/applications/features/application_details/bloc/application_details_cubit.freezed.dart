@@ -95,12 +95,12 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApplicationDetailsStateInitialCopyWith<$Res>
+abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
     implements $ApplicationDetailsStateCopyWith<$Res> {
-  factory _$$ApplicationDetailsStateInitialCopyWith(
-          _$ApplicationDetailsStateInitial value,
-          $Res Function(_$ApplicationDetailsStateInitial) then) =
-      __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>;
+  factory _$$ApplicationDetailsStateInitialImplCopyWith(
+          _$ApplicationDetailsStateInitialImpl value,
+          $Res Function(_$ApplicationDetailsStateInitialImpl) then) =
+      __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -114,13 +114,13 @@ abstract class _$$ApplicationDetailsStateInitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>
+class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
     extends _$ApplicationDetailsStateCopyWithImpl<$Res,
-        _$ApplicationDetailsStateInitial>
-    implements _$$ApplicationDetailsStateInitialCopyWith<$Res> {
-  __$$ApplicationDetailsStateInitialCopyWithImpl(
-      _$ApplicationDetailsStateInitial _value,
-      $Res Function(_$ApplicationDetailsStateInitial) _then)
+        _$ApplicationDetailsStateInitialImpl>
+    implements _$$ApplicationDetailsStateInitialImplCopyWith<$Res> {
+  __$$ApplicationDetailsStateInitialImplCopyWithImpl(
+      _$ApplicationDetailsStateInitialImpl _value,
+      $Res Function(_$ApplicationDetailsStateInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -131,7 +131,7 @@ class __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>
     Object? application = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$ApplicationDetailsStateInitial(
+    return _then(_$ApplicationDetailsStateInitialImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -154,9 +154,9 @@ class __$$ApplicationDetailsStateInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplicationDetailsStateInitial
+class _$ApplicationDetailsStateInitialImpl
     implements ApplicationDetailsStateInitial {
-  const _$ApplicationDetailsStateInitial(
+  const _$ApplicationDetailsStateInitialImpl(
       {required this.status,
       final List<ThemeModel> themes = const [],
       this.application,
@@ -188,7 +188,7 @@ class _$ApplicationDetailsStateInitial
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplicationDetailsStateInitial &&
+            other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
             (identical(other.application, application) ||
@@ -203,9 +203,10 @@ class _$ApplicationDetailsStateInitial
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplicationDetailsStateInitialCopyWith<_$ApplicationDetailsStateInitial>
-      get copyWith => __$$ApplicationDetailsStateInitialCopyWithImpl<
-          _$ApplicationDetailsStateInitial>(this, _$identity);
+  _$$ApplicationDetailsStateInitialImplCopyWith<
+          _$ApplicationDetailsStateInitialImpl>
+      get copyWith => __$$ApplicationDetailsStateInitialImplCopyWithImpl<
+          _$ApplicationDetailsStateInitialImpl>(this, _$identity);
 }
 
 abstract class ApplicationDetailsStateInitial
@@ -214,7 +215,7 @@ abstract class ApplicationDetailsStateInitial
       {required final ApplicationDetailsStateStatus status,
       final List<ThemeModel> themes,
       final ApplicationModel? application,
-      final BaseException? error}) = _$ApplicationDetailsStateInitial;
+      final BaseException? error}) = _$ApplicationDetailsStateInitialImpl;
 
   @override
   ApplicationDetailsStateStatus get status;
@@ -226,6 +227,7 @@ abstract class ApplicationDetailsStateInitial
   BaseException? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ApplicationDetailsStateInitialCopyWith<_$ApplicationDetailsStateInitial>
+  _$$ApplicationDetailsStateInitialImplCopyWith<
+          _$ApplicationDetailsStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

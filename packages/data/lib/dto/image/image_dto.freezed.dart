@@ -79,21 +79,22 @@ class _$ImageDTOCopyWithImpl<$Res, $Val extends ImageDTO>
 }
 
 /// @nodoc
-abstract class _$$_ImageDTOCopyWith<$Res> implements $ImageDTOCopyWith<$Res> {
-  factory _$$_ImageDTOCopyWith(
-          _$_ImageDTO value, $Res Function(_$_ImageDTO) then) =
-      __$$_ImageDTOCopyWithImpl<$Res>;
+abstract class _$$ImageDTOImplCopyWith<$Res>
+    implements $ImageDTOCopyWith<$Res> {
+  factory _$$ImageDTOImplCopyWith(
+          _$ImageDTOImpl value, $Res Function(_$ImageDTOImpl) then) =
+      __$$ImageDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? data, String? name, String? mime, String? extension});
 }
 
 /// @nodoc
-class __$$_ImageDTOCopyWithImpl<$Res>
-    extends _$ImageDTOCopyWithImpl<$Res, _$_ImageDTO>
-    implements _$$_ImageDTOCopyWith<$Res> {
-  __$$_ImageDTOCopyWithImpl(
-      _$_ImageDTO _value, $Res Function(_$_ImageDTO) _then)
+class __$$ImageDTOImplCopyWithImpl<$Res>
+    extends _$ImageDTOCopyWithImpl<$Res, _$ImageDTOImpl>
+    implements _$$ImageDTOImplCopyWith<$Res> {
+  __$$ImageDTOImplCopyWithImpl(
+      _$ImageDTOImpl _value, $Res Function(_$ImageDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,7 +105,7 @@ class __$$_ImageDTOCopyWithImpl<$Res>
     Object? mime = freezed,
     Object? extension = freezed,
   }) {
-    return _then(_$_ImageDTO(
+    return _then(_$ImageDTOImpl(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -127,11 +128,11 @@ class __$$_ImageDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageDTO implements _ImageDTO {
-  const _$_ImageDTO({this.data, this.name, this.mime, this.extension});
+class _$ImageDTOImpl implements _ImageDTO {
+  const _$ImageDTOImpl({this.data, this.name, this.mime, this.extension});
 
-  factory _$_ImageDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageDTOFromJson(json);
+  factory _$ImageDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageDTOImplFromJson(json);
 
   @override
   final String? data;
@@ -151,7 +152,7 @@ class _$_ImageDTO implements _ImageDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageDTO &&
+            other is _$ImageDTOImpl &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.mime, mime) || other.mime == mime) &&
@@ -166,12 +167,12 @@ class _$_ImageDTO implements _ImageDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageDTOCopyWith<_$_ImageDTO> get copyWith =>
-      __$$_ImageDTOCopyWithImpl<_$_ImageDTO>(this, _$identity);
+  _$$ImageDTOImplCopyWith<_$ImageDTOImpl> get copyWith =>
+      __$$ImageDTOImplCopyWithImpl<_$ImageDTOImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageDTOToJson(
+    return _$$ImageDTOImplToJson(
       this,
     );
   }
@@ -182,9 +183,10 @@ abstract class _ImageDTO implements ImageDTO {
       {final String? data,
       final String? name,
       final String? mime,
-      final String? extension}) = _$_ImageDTO;
+      final String? extension}) = _$ImageDTOImpl;
 
-  factory _ImageDTO.fromJson(Map<String, dynamic> json) = _$_ImageDTO.fromJson;
+  factory _ImageDTO.fromJson(Map<String, dynamic> json) =
+      _$ImageDTOImpl.fromJson;
 
   @override
   String? get data;
@@ -196,6 +198,6 @@ abstract class _ImageDTO implements ImageDTO {
   String? get extension;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageDTOCopyWith<_$_ImageDTO> get copyWith =>
+  _$$ImageDTOImplCopyWith<_$ImageDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -114,11 +114,11 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
 }
 
 /// @nodoc
-abstract class _$$_ApplicationModelCopyWith<$Res>
+abstract class _$$ApplicationModelImplCopyWith<$Res>
     implements $ApplicationModelCopyWith<$Res> {
-  factory _$$_ApplicationModelCopyWith(
-          _$_ApplicationModel value, $Res Function(_$_ApplicationModel) then) =
-      __$$_ApplicationModelCopyWithImpl<$Res>;
+  factory _$$ApplicationModelImplCopyWith(_$ApplicationModelImpl value,
+          $Res Function(_$ApplicationModelImpl) then) =
+      __$$ApplicationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -135,11 +135,11 @@ abstract class _$$_ApplicationModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApplicationModelCopyWithImpl<$Res>
-    extends _$ApplicationModelCopyWithImpl<$Res, _$_ApplicationModel>
-    implements _$$_ApplicationModelCopyWith<$Res> {
-  __$$_ApplicationModelCopyWithImpl(
-      _$_ApplicationModel _value, $Res Function(_$_ApplicationModel) _then)
+class __$$ApplicationModelImplCopyWithImpl<$Res>
+    extends _$ApplicationModelCopyWithImpl<$Res, _$ApplicationModelImpl>
+    implements _$$ApplicationModelImplCopyWith<$Res> {
+  __$$ApplicationModelImplCopyWithImpl(_$ApplicationModelImpl _value,
+      $Res Function(_$ApplicationModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -153,7 +153,7 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
     Object? googleServices = freezed,
     Object? version = null,
   }) {
-    return _then(_$_ApplicationModel(
+    return _then(_$ApplicationModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -188,8 +188,8 @@ class __$$_ApplicationModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApplicationModel extends _ApplicationModel {
-  const _$_ApplicationModel(
+class _$ApplicationModelImpl extends _ApplicationModel {
+  const _$ApplicationModelImpl(
       {this.id,
       this.name,
       this.platformIdentifier,
@@ -224,7 +224,7 @@ class _$_ApplicationModel extends _ApplicationModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApplicationModel &&
+            other is _$ApplicationModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
@@ -243,8 +243,9 @@ class _$_ApplicationModel extends _ApplicationModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApplicationModelCopyWith<_$_ApplicationModel> get copyWith =>
-      __$$_ApplicationModelCopyWithImpl<_$_ApplicationModel>(this, _$identity);
+  _$$ApplicationModelImplCopyWith<_$ApplicationModelImpl> get copyWith =>
+      __$$ApplicationModelImplCopyWithImpl<_$ApplicationModelImpl>(
+          this, _$identity);
 }
 
 abstract class _ApplicationModel extends ApplicationModel {
@@ -255,7 +256,7 @@ abstract class _ApplicationModel extends ApplicationModel {
       final String? coreUrl,
       final String? theme,
       final GoogleServicesModel? googleServices,
-      final int version}) = _$_ApplicationModel;
+      final int version}) = _$ApplicationModelImpl;
   const _ApplicationModel._() : super._();
 
   @override
@@ -274,6 +275,6 @@ abstract class _ApplicationModel extends ApplicationModel {
   int get version;
   @override
   @JsonKey(ignore: true)
-  _$$_ApplicationModelCopyWith<_$_ApplicationModel> get copyWith =>
+  _$$ApplicationModelImplCopyWith<_$ApplicationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

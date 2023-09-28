@@ -6,7 +6,8 @@ part of 'color_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ColorDTO _$$_ColorDTOFromJson(Map<String, dynamic> json) => _$_ColorDTO(
+_$ColorDTOImpl _$$ColorDTOImplFromJson(Map<String, dynamic> json) =>
+    _$ColorDTOImpl(
       primary: json['primary'] as String?,
       onPrimary: json['onPrimary'] as String?,
       secondary: json['secondary'] as String?,
@@ -27,7 +28,7 @@ _$_ColorDTO _$$_ColorDTOFromJson(Map<String, dynamic> json) => _$_ColorDTO(
           : LaunchDTO.fromJson(json['launch'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ColorDTOToJson(_$_ColorDTO instance) =>
+Map<String, dynamic> _$$ColorDTOImplToJson(_$ColorDTOImpl instance) =>
     <String, dynamic>{
       'primary': instance.primary,
       'onPrimary': instance.onPrimary,
@@ -45,12 +46,13 @@ Map<String, dynamic> _$$_ColorDTOToJson(_$_ColorDTO instance) =>
       'launch': instance.launch,
     };
 
-_$_LaunchDTO _$$_LaunchDTOFromJson(Map<String, dynamic> json) => _$_LaunchDTO(
+_$LaunchDTOImpl _$$LaunchDTOImplFromJson(Map<String, dynamic> json) =>
+    _$LaunchDTOImpl(
       adaptiveIconBackground: json['adaptiveIconBackground'] as String?,
       splashBackground: json['splashBackground'] as String?,
     );
 
-Map<String, dynamic> _$$_LaunchDTOToJson(_$_LaunchDTO instance) {
+Map<String, dynamic> _$$LaunchDTOImplToJson(_$LaunchDTOImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
