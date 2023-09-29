@@ -8,9 +8,6 @@ environment:
   flutter: ^3.13.6
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   #DI
   injectable: ^2.3.0
   get_it: ^7.6.4
@@ -18,14 +15,19 @@ dependencies:
   # Generators
   freezed_annotation: ^2.4.1
   freezed: ^2.4.3
-  build_runner: ^2.4.6
 
   data:
     path: ../data
 
+  dto:
+    path: ../dto
+
 dependency_overrides:
   # Generators
   freezed: 2.4.3
+
+  # Linter
+  analyzer: ^6.2.0
 
 dev_dependencies:
   flutter_test:

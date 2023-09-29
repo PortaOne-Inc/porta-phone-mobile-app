@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:data/dto/dto.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:dto/dto.dart';
 
 import '../../entity/entity.dart';
 import '../../repository/repository.dart';
-
 
 abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({

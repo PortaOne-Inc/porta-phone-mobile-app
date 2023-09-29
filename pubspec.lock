@@ -380,6 +380,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.1"
+  dto:
+    dependency: transitive
+    description:
+      path: "packages/dto"
+      relative: true
+    source: path
+    version: "0.0.1"
   equatable:
     dependency: transitive
     description:

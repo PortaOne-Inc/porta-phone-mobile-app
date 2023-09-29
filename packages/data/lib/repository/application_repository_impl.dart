@@ -1,12 +1,11 @@
-import 'package:data/data/data.dart';
-import 'package:data/dto/application/application_dto.dart';
 import 'package:dio/dio.dart';
+
+import 'package:dto/dto.dart';
+import 'package:data/data/data.dart';
 import 'package:domain/exception/exception.dart';
 import 'package:domain/repository/repository.dart';
+
 import 'package:injectable/injectable.dart';
-
-
-
 
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {

@@ -31,6 +31,9 @@ dependencies:
   domain:
     path: ../domain
 
+  dto:
+    path: ../dto
+
 dependency_overrides:
   # Generators
   freezed: 2.4.3
