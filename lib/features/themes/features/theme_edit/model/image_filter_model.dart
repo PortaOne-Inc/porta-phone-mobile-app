@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 enum SupportFormat {
-  svg(format: 'image/svg+xml'),
-  png(format: 'image/png');
+  svg(format: 'svg'),
+  png(format: 'png');
 
   const SupportFormat({
     required this.format,
