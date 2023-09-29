@@ -1,4 +1,4 @@
-import 'package:flutter/painting.dart';
+import 'dart:ui';
 
 class UtilityColor {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
