@@ -28,7 +28,6 @@ class UtilityImage {
     return ImageModel(
       data: base64Encode(bytes),
       name: name,
-      mime: filter.format.format,
       extension: extension,
     );
   }

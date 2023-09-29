@@ -26,7 +26,6 @@ class ImageMapper extends Mapper<ImageDTO?, ImageModel?> {
         : ImageModel(
             data: dto.data,
             name: dto.name,
-            mime: dto.mime,
             extension: dto.extension,
           );
   }

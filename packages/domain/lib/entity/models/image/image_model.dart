@@ -21,20 +21,25 @@ class ImageModel with _$ImageModel {
     final String? data,
     final String? url,
     final String? name,
-    final String? mime,
     final String? extension,
   }) = _ImageModel;
 
-  static String mimeSVG = 'image/svg+xml';
-  static String mimePNG = 'image/png';
-  static String mimeJPEG = 'image/jpeg';
-  static String mimeBMB = 'image/bmp';
+  factory ImageModel.svg(String base64) => ImageModel(
+        data: base64,
+        extension: formatSVG,
+      );
 
-  static List<String> get supportedMIME => [
-        mimeSVG,
-        mimePNG,
-        mimeJPEG,
-        mimeBMB,
+  factory ImageModel.png(String base64) => ImageModel(
+        data: base64,
+        extension: formatPNG,
+      );
+
+  static String formatSVG = 'svg';
+  static String formatPNG = 'png';
+
+  static List<String> get supportedFormats => [
+        formatSVG,
+        formatPNG,
       ];
 
   bool get isAvailable => location != ImageLocation.empty;
@@ -42,7 +47,7 @@ class ImageModel with _$ImageModel {
   bool get isNotAvailable => !isAvailable;
 
   ImageFormat get type {
-    if (mimeSVG.contains(mime ?? '')) {
+    if (formatSVG == extension) {
       return ImageFormat.vector;
     } else {
       return ImageFormat.raster;
