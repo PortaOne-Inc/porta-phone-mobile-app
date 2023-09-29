@@ -44,7 +44,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
           },
           builder: (BuildContext context, CommonState state) {
             return MaterialApp.router(
-              title: EnvironmentConfig.APP_NAME,
+              title: ApplicationEnvironment.APP_NAME,
               theme: FlexThemeData.light(scheme: FlexScheme.sakura),
               darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
               themeMode: state.themeMode,
