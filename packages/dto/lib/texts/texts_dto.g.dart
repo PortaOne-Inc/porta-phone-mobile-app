@@ -6,12 +6,13 @@ part of 'texts_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TextsDTO _$$_TextsDTOFromJson(Map<String, dynamic> json) => _$_TextsDTO(
+_$TextsDTOImpl _$$TextsDTOImplFromJson(Map<String, dynamic> json) =>
+    _$TextsDTOImpl(
       greeting: json['greeting'] as String?,
       contactEmail: json['contactEmail'] as String?,
     );
 
-Map<String, dynamic> _$$_TextsDTOToJson(_$_TextsDTO instance) =>
+Map<String, dynamic> _$$TextsDTOImplToJson(_$TextsDTOImpl instance) =>
     <String, dynamic>{
       'greeting': instance.greeting,
       'contactEmail': instance.contactEmail,

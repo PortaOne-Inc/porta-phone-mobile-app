@@ -1,6 +1,6 @@
-import 'package:data/data.dart';
-
 import 'package:injectable/injectable.dart';
+
+import 'package:dto/dto.dart';
 
 import '../../models/application/application_model.dart';
 import '../../models/application/google_services_model.dart';

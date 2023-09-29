@@ -1,4 +1,3 @@
-
 import 'package:injectable/injectable.dart';
 import 'package:get_it/get_it.dart';
 
@@ -14,12 +13,12 @@ import 'injection.config.dart';
     ExternalModule(DomainPackageModule),
   ],
 )
-Future<GetIt> configureDependencies(String environment) async => GetIt.asNewInstance().init(environment: environment);
+Future<GetIt> configureDependencies() async => GetIt.asNewInstance().init();
 
 @module
 abstract class RegisterModule {
   @Named('baseUrl')
-  String baseUrl(AppEnvironment appEnvironment) {
-    return appEnvironment.endpoints.host;
+  String baseUrl() {
+    return ApplicationEnvironment.CONFIGURATOR_API_URL;
   }
 }

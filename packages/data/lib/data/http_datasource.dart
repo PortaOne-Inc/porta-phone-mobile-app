@@ -1,6 +1,7 @@
-import 'package:data/data.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:dto/dto.dart';
 
 @lazySingleton
 class HttpDatasource {

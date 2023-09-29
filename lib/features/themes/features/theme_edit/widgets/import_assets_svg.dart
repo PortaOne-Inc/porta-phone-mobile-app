@@ -199,11 +199,11 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
       Navigator.pop(
         context,
         SystemAssetsModel(
-          androidLauncherIcon: ImageModel(data: screenshotAndroidLaunch),
-          adaptiveIconForeground: ImageModel(data: screenshotForegroundIcon),
-          iosLauncherIcon: ImageModel(data: screenshotIosLaunchIcon),
-          webLauncherIcon: ImageModel(data: screenshotWebLaunchIcon),
-          adaptiveIconBackground: ImageModel(data: screenshotSplashIco),
+          androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
+          adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
+          iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
+          webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
+          adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
         ),
       );
     }

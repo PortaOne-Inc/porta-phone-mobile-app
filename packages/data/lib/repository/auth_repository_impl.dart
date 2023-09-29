@@ -1,10 +1,9 @@
-import 'package:data/data/data.dart';
-import 'package:domain/exception/exception.dart';
-import 'package:domain/repository/repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-
+import 'package:data/data/data.dart';
+import 'package:domain/exception/exception.dart';
+import 'package:domain/repository/repository.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository {

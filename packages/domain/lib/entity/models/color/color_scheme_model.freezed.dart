@@ -268,11 +268,11 @@ class _$ColorSchemeModelCopyWithImpl<$Res, $Val extends ColorSchemeModel>
 }
 
 /// @nodoc
-abstract class _$$_ColorModelCopyWith<$Res>
+abstract class _$$ColorModelImplCopyWith<$Res>
     implements $ColorSchemeModelCopyWith<$Res> {
-  factory _$$_ColorModelCopyWith(
-          _$_ColorModel value, $Res Function(_$_ColorModel) then) =
-      __$$_ColorModelCopyWithImpl<$Res>;
+  factory _$$ColorModelImplCopyWith(
+          _$ColorModelImpl value, $Res Function(_$ColorModelImpl) then) =
+      __$$ColorModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -311,11 +311,11 @@ abstract class _$$_ColorModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ColorModelCopyWithImpl<$Res>
-    extends _$ColorSchemeModelCopyWithImpl<$Res, _$_ColorModel>
-    implements _$$_ColorModelCopyWith<$Res> {
-  __$$_ColorModelCopyWithImpl(
-      _$_ColorModel _value, $Res Function(_$_ColorModel) _then)
+class __$$ColorModelImplCopyWithImpl<$Res>
+    extends _$ColorSchemeModelCopyWithImpl<$Res, _$ColorModelImpl>
+    implements _$$ColorModelImplCopyWith<$Res> {
+  __$$ColorModelImplCopyWithImpl(
+      _$ColorModelImpl _value, $Res Function(_$ColorModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -351,7 +351,7 @@ class __$$_ColorModelCopyWithImpl<$Res>
     Object? gradientTabColor = freezed,
     Object? launch = freezed,
   }) {
-    return _then(_$_ColorModel(
+    return _then(_$ColorModelImpl(
       primary: freezed == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
@@ -474,8 +474,8 @@ class __$$_ColorModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ColorModel extends _ColorModel {
-  const _$_ColorModel(
+class _$ColorModelImpl extends _ColorModel {
+  const _$ColorModelImpl(
       {this.primary,
       this.onPrimary,
       this.primaryContainer,
@@ -585,7 +585,7 @@ class _$_ColorModel extends _ColorModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ColorModel &&
+            other is _$ColorModelImpl &&
             (identical(other.primary, primary) || other.primary == primary) &&
             (identical(other.onPrimary, onPrimary) ||
                 other.onPrimary == onPrimary) &&
@@ -675,8 +675,8 @@ class _$_ColorModel extends _ColorModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ColorModelCopyWith<_$_ColorModel> get copyWith =>
-      __$$_ColorModelCopyWithImpl<_$_ColorModel>(this, _$identity);
+  _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
+      __$$ColorModelImplCopyWithImpl<_$ColorModelImpl>(this, _$identity);
 }
 
 abstract class _ColorModel extends ColorSchemeModel {
@@ -709,7 +709,7 @@ abstract class _ColorModel extends ColorSchemeModel {
       final Color? scrim,
       final Color? surfaceTint,
       final List<Color>? gradientTabColor,
-      final LaunchModel? launch}) = _$_ColorModel;
+      final LaunchModel? launch}) = _$ColorModelImpl;
   const _ColorModel._() : super._();
 
   @override
@@ -772,7 +772,7 @@ abstract class _ColorModel extends ColorSchemeModel {
   LaunchModel? get launch;
   @override
   @JsonKey(ignore: true)
-  _$$_ColorModelCopyWith<_$_ColorModel> get copyWith =>
+  _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -825,22 +825,22 @@ class _$LaunchModelCopyWithImpl<$Res, $Val extends LaunchModel>
 }
 
 /// @nodoc
-abstract class _$$_LaunchModelCopyWith<$Res>
+abstract class _$$LaunchModelImplCopyWith<$Res>
     implements $LaunchModelCopyWith<$Res> {
-  factory _$$_LaunchModelCopyWith(
-          _$_LaunchModel value, $Res Function(_$_LaunchModel) then) =
-      __$$_LaunchModelCopyWithImpl<$Res>;
+  factory _$$LaunchModelImplCopyWith(
+          _$LaunchModelImpl value, $Res Function(_$LaunchModelImpl) then) =
+      __$$LaunchModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Color? adaptiveIconBackground, Color? splashBackground});
 }
 
 /// @nodoc
-class __$$_LaunchModelCopyWithImpl<$Res>
-    extends _$LaunchModelCopyWithImpl<$Res, _$_LaunchModel>
-    implements _$$_LaunchModelCopyWith<$Res> {
-  __$$_LaunchModelCopyWithImpl(
-      _$_LaunchModel _value, $Res Function(_$_LaunchModel) _then)
+class __$$LaunchModelImplCopyWithImpl<$Res>
+    extends _$LaunchModelCopyWithImpl<$Res, _$LaunchModelImpl>
+    implements _$$LaunchModelImplCopyWith<$Res> {
+  __$$LaunchModelImplCopyWithImpl(
+      _$LaunchModelImpl _value, $Res Function(_$LaunchModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -849,7 +849,7 @@ class __$$_LaunchModelCopyWithImpl<$Res>
     Object? adaptiveIconBackground = freezed,
     Object? splashBackground = freezed,
   }) {
-    return _then(_$_LaunchModel(
+    return _then(_$LaunchModelImpl(
       adaptiveIconBackground: freezed == adaptiveIconBackground
           ? _value.adaptiveIconBackground
           : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
@@ -864,8 +864,8 @@ class __$$_LaunchModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LaunchModel implements _LaunchModel {
-  const _$_LaunchModel({this.adaptiveIconBackground, this.splashBackground});
+class _$LaunchModelImpl implements _LaunchModel {
+  const _$LaunchModelImpl({this.adaptiveIconBackground, this.splashBackground});
 
   @override
   final Color? adaptiveIconBackground;
@@ -881,7 +881,7 @@ class _$_LaunchModel implements _LaunchModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LaunchModel &&
+            other is _$LaunchModelImpl &&
             (identical(other.adaptiveIconBackground, adaptiveIconBackground) ||
                 other.adaptiveIconBackground == adaptiveIconBackground) &&
             (identical(other.splashBackground, splashBackground) ||
@@ -895,14 +895,14 @@ class _$_LaunchModel implements _LaunchModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LaunchModelCopyWith<_$_LaunchModel> get copyWith =>
-      __$$_LaunchModelCopyWithImpl<_$_LaunchModel>(this, _$identity);
+  _$$LaunchModelImplCopyWith<_$LaunchModelImpl> get copyWith =>
+      __$$LaunchModelImplCopyWithImpl<_$LaunchModelImpl>(this, _$identity);
 }
 
 abstract class _LaunchModel implements LaunchModel {
   const factory _LaunchModel(
       {final Color? adaptiveIconBackground,
-      final Color? splashBackground}) = _$_LaunchModel;
+      final Color? splashBackground}) = _$LaunchModelImpl;
 
   @override
   Color? get adaptiveIconBackground;
@@ -910,6 +910,6 @@ abstract class _LaunchModel implements LaunchModel {
   Color? get splashBackground;
   @override
   @JsonKey(ignore: true)
-  _$$_LaunchModelCopyWith<_$_LaunchModel> get copyWith =>
+  _$$LaunchModelImplCopyWith<_$LaunchModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

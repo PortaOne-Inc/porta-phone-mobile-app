@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:data/data.dart';
+import 'package:dto/dto.dart';
 
 import '../../models/models.dart';
 import '../mapper.dart';

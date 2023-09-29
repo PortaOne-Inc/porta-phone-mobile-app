@@ -1,4 +1,4 @@
-import 'package:data/data.dart';
+import 'package:dto/dto.dart';
 
 abstract class ApplicationRepository {
   Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO);

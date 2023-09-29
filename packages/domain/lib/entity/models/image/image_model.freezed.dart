@@ -86,11 +86,11 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
 }
 
 /// @nodoc
-abstract class _$$_ImageModelCopyWith<$Res>
+abstract class _$$ImageModelImplCopyWith<$Res>
     implements $ImageModelCopyWith<$Res> {
-  factory _$$_ImageModelCopyWith(
-          _$_ImageModel value, $Res Function(_$_ImageModel) then) =
-      __$$_ImageModelCopyWithImpl<$Res>;
+  factory _$$ImageModelImplCopyWith(
+          _$ImageModelImpl value, $Res Function(_$ImageModelImpl) then) =
+      __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$_ImageModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageModelCopyWithImpl<$Res>
-    extends _$ImageModelCopyWithImpl<$Res, _$_ImageModel>
-    implements _$$_ImageModelCopyWith<$Res> {
-  __$$_ImageModelCopyWithImpl(
-      _$_ImageModel _value, $Res Function(_$_ImageModel) _then)
+class __$$ImageModelImplCopyWithImpl<$Res>
+    extends _$ImageModelCopyWithImpl<$Res, _$ImageModelImpl>
+    implements _$$ImageModelImplCopyWith<$Res> {
+  __$$ImageModelImplCopyWithImpl(
+      _$ImageModelImpl _value, $Res Function(_$ImageModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_ImageModelCopyWithImpl<$Res>
     Object? mime = freezed,
     Object? extension = freezed,
   }) {
-    return _then(_$_ImageModel(
+    return _then(_$ImageModelImpl(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$_ImageModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ImageModel extends _ImageModel {
-  const _$_ImageModel(
+class _$ImageModelImpl extends _ImageModel {
+  const _$ImageModelImpl(
       {this.data, this.url, this.name, this.mime, this.extension})
       : super._();
 
@@ -170,7 +170,7 @@ class _$_ImageModel extends _ImageModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageModel &&
+            other is _$ImageModelImpl &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.name, name) || other.name == name) &&
@@ -186,8 +186,8 @@ class _$_ImageModel extends _ImageModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
-      __$$_ImageModelCopyWithImpl<_$_ImageModel>(this, _$identity);
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
+      __$$ImageModelImplCopyWithImpl<_$ImageModelImpl>(this, _$identity);
 }
 
 abstract class _ImageModel extends ImageModel {
@@ -196,7 +196,7 @@ abstract class _ImageModel extends ImageModel {
       final String? url,
       final String? name,
       final String? mime,
-      final String? extension}) = _$_ImageModel;
+      final String? extension}) = _$ImageModelImpl;
   const _ImageModel._() : super._();
 
   @override
@@ -211,6 +211,6 @@ abstract class _ImageModel extends ImageModel {
   String? get extension;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

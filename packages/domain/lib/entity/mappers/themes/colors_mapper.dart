@@ -1,8 +1,8 @@
-import 'package:domain/extension/extension.dart';
-import 'package:domain/utility/utility.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:data/dto/dto.dart';
+import 'package:dto/dto.dart';
+import 'package:domain/extension/extension.dart';
+import 'package:domain/utility/utility.dart';
 
 import '../../models/models.dart';
 import '../mapper.dart';

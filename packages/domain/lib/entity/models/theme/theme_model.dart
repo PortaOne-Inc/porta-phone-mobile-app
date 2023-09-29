@@ -1,7 +1,8 @@
-import 'package:domain/entity/models/image/system_assets_model.dart';
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:domain/entity/models/image/system_assets_model.dart';
 
 import '../color/color_scheme_model.dart';
 import '../image/image_scheme_model.dart';

@@ -117,12 +117,12 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApplicationEditStateInitialCopyWith<$Res>
+abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
     implements $ApplicationEditStateCopyWith<$Res> {
-  factory _$$ApplicationEditStateInitialCopyWith(
-          _$ApplicationEditStateInitial value,
-          $Res Function(_$ApplicationEditStateInitial) then) =
-      __$$ApplicationEditStateInitialCopyWithImpl<$Res>;
+  factory _$$ApplicationEditStateInitialImplCopyWith(
+          _$ApplicationEditStateInitialImpl value,
+          $Res Function(_$ApplicationEditStateInitialImpl) then) =
+      __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -138,13 +138,13 @@ abstract class _$$ApplicationEditStateInitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
+class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
     extends _$ApplicationEditStateCopyWithImpl<$Res,
-        _$ApplicationEditStateInitial>
-    implements _$$ApplicationEditStateInitialCopyWith<$Res> {
-  __$$ApplicationEditStateInitialCopyWithImpl(
-      _$ApplicationEditStateInitial _value,
-      $Res Function(_$ApplicationEditStateInitial) _then)
+        _$ApplicationEditStateInitialImpl>
+    implements _$$ApplicationEditStateInitialImplCopyWith<$Res> {
+  __$$ApplicationEditStateInitialImplCopyWithImpl(
+      _$ApplicationEditStateInitialImpl _value,
+      $Res Function(_$ApplicationEditStateInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -160,7 +160,7 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
     Object? iosGoogleServicesUrl = freezed,
     Object? exception = freezed,
   }) {
-    return _then(_$ApplicationEditStateInitial(
+    return _then(_$ApplicationEditStateInitialImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -203,8 +203,8 @@ class __$$ApplicationEditStateInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
-  const _$ApplicationEditStateInitial(
+class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
+  const _$ApplicationEditStateInitialImpl(
       {this.status = ApplicationEditStatus.initial,
       this.nameInput,
       this.applicationIdentifierInput,
@@ -244,7 +244,7 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplicationEditStateInitial &&
+            other is _$ApplicationEditStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
@@ -283,9 +283,9 @@ class _$ApplicationEditStateInitial implements ApplicationEditStateInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplicationEditStateInitialCopyWith<_$ApplicationEditStateInitial>
-      get copyWith => __$$ApplicationEditStateInitialCopyWithImpl<
-          _$ApplicationEditStateInitial>(this, _$identity);
+  _$$ApplicationEditStateInitialImplCopyWith<_$ApplicationEditStateInitialImpl>
+      get copyWith => __$$ApplicationEditStateInitialImplCopyWithImpl<
+          _$ApplicationEditStateInitialImpl>(this, _$identity);
 }
 
 abstract class ApplicationEditStateInitial implements ApplicationEditState {
@@ -298,7 +298,7 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
       final Uint8List? iosGoogleServices,
       final String? androidGoogleServicesUrl,
       final String? iosGoogleServicesUrl,
-      final Exception? exception}) = _$ApplicationEditStateInitial;
+      final Exception? exception}) = _$ApplicationEditStateInitialImpl;
 
   @override
   ApplicationEditStatus get status;
@@ -320,6 +320,6 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   Exception? get exception;
   @override
   @JsonKey(ignore: true)
-  _$$ApplicationEditStateInitialCopyWith<_$ApplicationEditStateInitial>
+  _$$ApplicationEditStateInitialImplCopyWith<_$ApplicationEditStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

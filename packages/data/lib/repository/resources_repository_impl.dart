@@ -1,8 +1,9 @@
 import 'dart:typed_data';
 
-import 'package:domain/repository/repository.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:domain/repository/repository.dart';
 
 @Injectable(as: ResourcesRepository)
 class ResourcesRepositoryImpl extends ResourcesRepository {

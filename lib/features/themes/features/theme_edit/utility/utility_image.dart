@@ -1,13 +1,9 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
+import 'package:file_picker/file_picker.dart';
+import 'package:image_size_getter/image_size_getter.dart';
 
 import 'package:domain/domain.dart';
 
@@ -15,46 +11,38 @@ import '../model/models.dart';
 
 class UtilityImage {
   static Future<ImageModel> pickImage(ImageFilterModel filter) async {
-    final file = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      requestFullMetadata: true,
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [filter.format.format],
     );
 
-    final imageBytes = await file!.readAsBytes();
+    final file = result?.files.first;
+    final name = file?.name ?? DateTime.now().microsecondsSinceEpoch.toString();
+    final extension = file?.extension;
+    final bytes = file?.bytes ?? Uint8List(0);
 
-    final isImageInFormatRequirements = filter.format.format == file.mimeType;
-    final isImageInSizeRangeAvailable = filter.size != null && filter.format != SupportFormat.svg;
-
-    if (!isImageInFormatRequirements) {
-      throw InvalidFormatImageException(file.mimeType ?? '');
-    }
-
-    if (isImageInSizeRangeAvailable) {
-      final imageSize = await getImageSize(imageBytes);
-      final isImageOutOfSizeRange = filter.size!.width < imageSize.width || filter.size!.height < imageSize.height;
-      if (isImageOutOfSizeRange) {
-        throw InvalidSizeImageException(
-          maxWidth: filter.size?.width.toString() ?? '',
-          maxHeight: filter.size?.width.toString() ?? '',
-        );
-      }
+    if (extension == SupportFormat.png.format) {
+      await _validateImageSize(bytes, filter);
     }
 
     return ImageModel(
-      data: base64Encode(imageBytes),
-      name: file.name,
-      mime: file.mimeType,
-      extension: path.extension(file.name),
+      data: base64Encode(bytes),
+      name: name,
+      extension: extension,
     );
   }
 
+  static Future<void> _validateImageSize(Uint8List bytes, ImageFilterModel filter) async {
+    final imageSize = await getImageSize(bytes);
+    if (filter.size!.width != imageSize.width || filter.size!.height != imageSize.height) {
+      throw InvalidSizeImageException(
+        maxWidth: filter.size?.width.toString() ?? '',
+        maxHeight: filter.size?.width.toString() ?? '',
+      );
+    }
+  }
+
   static Future<Size> getImageSize(Uint8List bytes) async {
-    final completer = Completer<Size>();
-    final image = html.ImageElement(src: html.Url.createObjectUrlFromBlob(html.Blob([bytes])));
-    image.onLoad.listen((_) {
-      completer.complete(Size(image.width as double, image.height as double));
-      html.Url.revokeObjectUrl(image.src!);
-    });
-    return completer.future;
+    return ImageSizeGetter.getSize(MemoryInput(bytes));
   }
 }

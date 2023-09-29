@@ -1,5 +1,4 @@
-import 'package:data/dto/theme/theme_dto.dart';
-
+import 'package:dto/dto.dart';
 
 abstract class ThemeRepository {
   Future<ThemeDTO> createTheme(

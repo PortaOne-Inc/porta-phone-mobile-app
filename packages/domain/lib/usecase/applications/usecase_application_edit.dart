@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:data/dto/dto.dart';
+import 'package:dto/dto.dart';
 
 import '../../entity/entity.dart';
 import '../../repository/repository.dart';

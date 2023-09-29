@@ -145,11 +145,11 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
 }
 
 /// @nodoc
-abstract class _$$_ThemeModelCopyWith<$Res>
+abstract class _$$ThemeModelImplCopyWith<$Res>
     implements $ThemeModelCopyWith<$Res> {
-  factory _$$_ThemeModelCopyWith(
-          _$_ThemeModel value, $Res Function(_$_ThemeModel) then) =
-      __$$_ThemeModelCopyWithImpl<$Res>;
+  factory _$$ThemeModelImplCopyWith(
+          _$ThemeModelImpl value, $Res Function(_$ThemeModelImpl) then) =
+      __$$ThemeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -172,11 +172,11 @@ abstract class _$$_ThemeModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ThemeModelCopyWithImpl<$Res>
-    extends _$ThemeModelCopyWithImpl<$Res, _$_ThemeModel>
-    implements _$$_ThemeModelCopyWith<$Res> {
-  __$$_ThemeModelCopyWithImpl(
-      _$_ThemeModel _value, $Res Function(_$_ThemeModel) _then)
+class __$$ThemeModelImplCopyWithImpl<$Res>
+    extends _$ThemeModelCopyWithImpl<$Res, _$ThemeModelImpl>
+    implements _$$ThemeModelImplCopyWith<$Res> {
+  __$$ThemeModelImplCopyWithImpl(
+      _$ThemeModelImpl _value, $Res Function(_$ThemeModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -190,7 +190,7 @@ class __$$_ThemeModelCopyWithImpl<$Res>
     Object? systemAssets = null,
     Object? texts = freezed,
   }) {
-    return _then(_$_ThemeModel(
+    return _then(_$ThemeModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -225,8 +225,8 @@ class __$$_ThemeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThemeModel extends _ThemeModel {
-  const _$_ThemeModel(
+class _$ThemeModelImpl extends _ThemeModel {
+  const _$ThemeModelImpl(
       {this.id,
       this.name,
       this.fontFamily,
@@ -262,7 +262,7 @@ class _$_ThemeModel extends _ThemeModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThemeModel &&
+            other is _$ThemeModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fontFamily, fontFamily) ||
@@ -281,8 +281,8 @@ class _$_ThemeModel extends _ThemeModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThemeModelCopyWith<_$_ThemeModel> get copyWith =>
-      __$$_ThemeModelCopyWithImpl<_$_ThemeModel>(this, _$identity);
+  _$$ThemeModelImplCopyWith<_$ThemeModelImpl> get copyWith =>
+      __$$ThemeModelImplCopyWithImpl<_$ThemeModelImpl>(this, _$identity);
 }
 
 abstract class _ThemeModel extends ThemeModel {
@@ -293,7 +293,7 @@ abstract class _ThemeModel extends ThemeModel {
       final ColorSchemeModel? colors,
       final ImageSchemeModel images,
       final SystemAssetsModel systemAssets,
-      final TextsModel? texts}) = _$_ThemeModel;
+      final TextsModel? texts}) = _$ThemeModelImpl;
   const _ThemeModel._() : super._();
 
   @override
@@ -312,6 +312,6 @@ abstract class _ThemeModel extends ThemeModel {
   TextsModel? get texts;
   @override
   @JsonKey(ignore: true)
-  _$$_ThemeModelCopyWith<_$_ThemeModel> get copyWith =>
+  _$$ThemeModelImplCopyWith<_$ThemeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

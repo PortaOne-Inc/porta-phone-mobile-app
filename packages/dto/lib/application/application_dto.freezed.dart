@@ -119,11 +119,11 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
 }
 
 /// @nodoc
-abstract class _$$_ApplicationDTOCopyWith<$Res>
+abstract class _$$ApplicationDTOImplCopyWith<$Res>
     implements $ApplicationDTOCopyWith<$Res> {
-  factory _$$_ApplicationDTOCopyWith(
-          _$_ApplicationDTO value, $Res Function(_$_ApplicationDTO) then) =
-      __$$_ApplicationDTOCopyWithImpl<$Res>;
+  factory _$$ApplicationDTOImplCopyWith(_$ApplicationDTOImpl value,
+          $Res Function(_$ApplicationDTOImpl) then) =
+      __$$ApplicationDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -140,11 +140,11 @@ abstract class _$$_ApplicationDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApplicationDTOCopyWithImpl<$Res>
-    extends _$ApplicationDTOCopyWithImpl<$Res, _$_ApplicationDTO>
-    implements _$$_ApplicationDTOCopyWith<$Res> {
-  __$$_ApplicationDTOCopyWithImpl(
-      _$_ApplicationDTO _value, $Res Function(_$_ApplicationDTO) _then)
+class __$$ApplicationDTOImplCopyWithImpl<$Res>
+    extends _$ApplicationDTOCopyWithImpl<$Res, _$ApplicationDTOImpl>
+    implements _$$ApplicationDTOImplCopyWith<$Res> {
+  __$$ApplicationDTOImplCopyWithImpl(
+      _$ApplicationDTOImpl _value, $Res Function(_$ApplicationDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -158,7 +158,7 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
     Object? version = freezed,
     Object? googleServices = freezed,
   }) {
-    return _then(_$_ApplicationDTO(
+    return _then(_$ApplicationDTOImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -194,8 +194,8 @@ class __$$_ApplicationDTOCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false)
-class _$_ApplicationDTO implements _ApplicationDTO {
-  const _$_ApplicationDTO(
+class _$ApplicationDTOImpl implements _ApplicationDTO {
+  const _$ApplicationDTOImpl(
       {this.id,
       this.name,
       this.platformIdentifier,
@@ -204,8 +204,8 @@ class _$_ApplicationDTO implements _ApplicationDTO {
       this.version,
       this.googleServices});
 
-  factory _$_ApplicationDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_ApplicationDTOFromJson(json);
+  factory _$ApplicationDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApplicationDTOImplFromJson(json);
 
   @override
   final String? id;
@@ -231,7 +231,7 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApplicationDTO &&
+            other is _$ApplicationDTOImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
@@ -251,12 +251,13 @@ class _$_ApplicationDTO implements _ApplicationDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApplicationDTOCopyWith<_$_ApplicationDTO> get copyWith =>
-      __$$_ApplicationDTOCopyWithImpl<_$_ApplicationDTO>(this, _$identity);
+  _$$ApplicationDTOImplCopyWith<_$ApplicationDTOImpl> get copyWith =>
+      __$$ApplicationDTOImplCopyWithImpl<_$ApplicationDTOImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApplicationDTOToJson(
+    return _$$ApplicationDTOImplToJson(
       this,
     );
   }
@@ -270,10 +271,10 @@ abstract class _ApplicationDTO implements ApplicationDTO {
       final String? coreUrl,
       final String? theme,
       final int? version,
-      final GoogleServices? googleServices}) = _$_ApplicationDTO;
+      final GoogleServices? googleServices}) = _$ApplicationDTOImpl;
 
   factory _ApplicationDTO.fromJson(Map<String, dynamic> json) =
-      _$_ApplicationDTO.fromJson;
+      _$ApplicationDTOImpl.fromJson;
 
   @override
   String? get id;
@@ -291,7 +292,7 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   GoogleServices? get googleServices;
   @override
   @JsonKey(ignore: true)
-  _$$_ApplicationDTOCopyWith<_$_ApplicationDTO> get copyWith =>
+  _$$ApplicationDTOImplCopyWith<_$ApplicationDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -372,11 +373,11 @@ class _$GoogleServicesCopyWithImpl<$Res, $Val extends GoogleServices>
 }
 
 /// @nodoc
-abstract class _$$_GoogleServicesDTOCopyWith<$Res>
+abstract class _$$GoogleServicesDTOImplCopyWith<$Res>
     implements $GoogleServicesCopyWith<$Res> {
-  factory _$$_GoogleServicesDTOCopyWith(_$_GoogleServicesDTO value,
-          $Res Function(_$_GoogleServicesDTO) then) =
-      __$$_GoogleServicesDTOCopyWithImpl<$Res>;
+  factory _$$GoogleServicesDTOImplCopyWith(_$GoogleServicesDTOImpl value,
+          $Res Function(_$GoogleServicesDTOImpl) then) =
+      __$$GoogleServicesDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -388,11 +389,11 @@ abstract class _$$_GoogleServicesDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GoogleServicesDTOCopyWithImpl<$Res>
-    extends _$GoogleServicesCopyWithImpl<$Res, _$_GoogleServicesDTO>
-    implements _$$_GoogleServicesDTOCopyWith<$Res> {
-  __$$_GoogleServicesDTOCopyWithImpl(
-      _$_GoogleServicesDTO _value, $Res Function(_$_GoogleServicesDTO) _then)
+class __$$GoogleServicesDTOImplCopyWithImpl<$Res>
+    extends _$GoogleServicesCopyWithImpl<$Res, _$GoogleServicesDTOImpl>
+    implements _$$GoogleServicesDTOImplCopyWith<$Res> {
+  __$$GoogleServicesDTOImplCopyWithImpl(_$GoogleServicesDTOImpl _value,
+      $Res Function(_$GoogleServicesDTOImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -404,7 +405,7 @@ class __$$_GoogleServicesDTOCopyWithImpl<$Res>
     Object? iosPath = freezed,
     Object? projectId = freezed,
   }) {
-    return _then(_$_GoogleServicesDTO(
+    return _then(_$GoogleServicesDTOImpl(
       androidUrl: freezed == androidUrl
           ? _value.androidUrl
           : androidUrl // ignore: cast_nullable_to_non_nullable
@@ -432,16 +433,16 @@ class __$$_GoogleServicesDTOCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false)
-class _$_GoogleServicesDTO implements _GoogleServicesDTO {
-  const _$_GoogleServicesDTO(
+class _$GoogleServicesDTOImpl implements _GoogleServicesDTO {
+  const _$GoogleServicesDTOImpl(
       {this.androidUrl,
       this.androidPath,
       this.iosUrl,
       this.iosPath,
       this.projectId});
 
-  factory _$_GoogleServicesDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_GoogleServicesDTOFromJson(json);
+  factory _$GoogleServicesDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GoogleServicesDTOImplFromJson(json);
 
   @override
   final String? androidUrl;
@@ -463,7 +464,7 @@ class _$_GoogleServicesDTO implements _GoogleServicesDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GoogleServicesDTO &&
+            other is _$GoogleServicesDTOImpl &&
             (identical(other.androidUrl, androidUrl) ||
                 other.androidUrl == androidUrl) &&
             (identical(other.androidPath, androidPath) ||
@@ -482,13 +483,13 @@ class _$_GoogleServicesDTO implements _GoogleServicesDTO {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GoogleServicesDTOCopyWith<_$_GoogleServicesDTO> get copyWith =>
-      __$$_GoogleServicesDTOCopyWithImpl<_$_GoogleServicesDTO>(
+  _$$GoogleServicesDTOImplCopyWith<_$GoogleServicesDTOImpl> get copyWith =>
+      __$$GoogleServicesDTOImplCopyWithImpl<_$GoogleServicesDTOImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GoogleServicesDTOToJson(
+    return _$$GoogleServicesDTOImplToJson(
       this,
     );
   }
@@ -500,10 +501,10 @@ abstract class _GoogleServicesDTO implements GoogleServices {
       final String? androidPath,
       final String? iosUrl,
       final String? iosPath,
-      final String? projectId}) = _$_GoogleServicesDTO;
+      final String? projectId}) = _$GoogleServicesDTOImpl;
 
   factory _GoogleServicesDTO.fromJson(Map<String, dynamic> json) =
-      _$_GoogleServicesDTO.fromJson;
+      _$GoogleServicesDTOImpl.fromJson;
 
   @override
   String? get androidUrl;
@@ -517,6 +518,6 @@ abstract class _GoogleServicesDTO implements GoogleServices {
   String? get projectId;
   @override
   @JsonKey(ignore: true)
-  _$$_GoogleServicesDTOCopyWith<_$_GoogleServicesDTO> get copyWith =>
+  _$$GoogleServicesDTOImplCopyWith<_$GoogleServicesDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

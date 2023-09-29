@@ -6,14 +6,15 @@ part of 'image_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ImageDTO _$$_ImageDTOFromJson(Map<String, dynamic> json) => _$_ImageDTO(
+_$ImageDTOImpl _$$ImageDTOImplFromJson(Map<String, dynamic> json) =>
+    _$ImageDTOImpl(
       data: json['data'] as String?,
       name: json['name'] as String?,
       mime: json['mime'] as String?,
       extension: json['extension'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageDTOToJson(_$_ImageDTO instance) =>
+Map<String, dynamic> _$$ImageDTOImplToJson(_$ImageDTOImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
       'name': instance.name,

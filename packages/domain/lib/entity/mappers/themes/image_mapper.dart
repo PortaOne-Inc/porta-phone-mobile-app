@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:data/data.dart';
+import 'package:dto/dto.dart';
 
 import '../../models/models.dart';
 import '../mapper.dart';
@@ -26,7 +26,6 @@ class ImageMapper extends Mapper<ImageDTO?, ImageModel?> {
         : ImageModel(
             data: dto.data,
             name: dto.name,
-            mime: dto.mime,
             extension: dto.extension,
           );
   }

@@ -103,10 +103,11 @@ class _$ApplicationCreateStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$InitialCopyWith<$Res>
+abstract class _$$InitialImplCopyWith<$Res>
     implements $ApplicationCreateStateCopyWith<$Res> {
-  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
-      __$$InitialCopyWithImpl<$Res>;
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,10 +121,11 @@ abstract class _$$InitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InitialCopyWithImpl<$Res>
-    extends _$ApplicationCreateStateCopyWithImpl<$Res, _$Initial>
-    implements _$$InitialCopyWith<$Res> {
-  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$ApplicationCreateStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +139,7 @@ class __$$InitialCopyWithImpl<$Res>
     Object? iosGoogleServices = freezed,
     Object? exception = freezed,
   }) {
-    return _then(_$Initial(
+    return _then(_$InitialImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -172,8 +174,8 @@ class __$$InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial(
+class _$InitialImpl implements Initial {
+  const _$InitialImpl(
       {this.status = ApplicationCreateStatus.initial,
       this.nameInput,
       this.applicationIdentifierInput,
@@ -207,7 +209,7 @@ class _$Initial implements Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initial &&
+            other is _$InitialImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
@@ -239,8 +241,8 @@ class _$Initial implements Initial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitialCopyWith<_$Initial> get copyWith =>
-      __$$InitialCopyWithImpl<_$Initial>(this, _$identity);
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 }
 
 abstract class Initial implements ApplicationCreateState {
@@ -251,7 +253,7 @@ abstract class Initial implements ApplicationCreateState {
       final ApplicationCoreInput? applicationCoreInput,
       final Uint8List? androidGoogleServices,
       final Uint8List? iosGoogleServices,
-      final Exception? exception}) = _$Initial;
+      final Exception? exception}) = _$InitialImpl;
 
   @override
   ApplicationCreateStatus get status;
@@ -269,6 +271,6 @@ abstract class Initial implements ApplicationCreateState {
   Exception? get exception;
   @override
   @JsonKey(ignore: true)
-  _$$InitialCopyWith<_$Initial> get copyWith =>
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
