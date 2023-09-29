@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/app/environment_config.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
-
 import 'package:webtrit_configurator/localization/localization.dart';
 
 import '../model/models.dart';
@@ -71,8 +69,7 @@ class ApplicationManage extends StatelessWidget {
                   maxLength: ApplicationConsts.maxNameLimit,
                   decoration: InputDecoration(
                       errorText: nameInput?.errorL10n(context),
-                      hintText: context.l10n.feature_application_Input_title,
-                      hintStyle: textScheme.bodyMedium,
+                      hintText: 'Will be displayed in the app',
                       suffixIcon: Tooltip(
                         message: context.l10n.feature_application_create_Tooltip_name_info,
                         child: Icon(Icons.info_outlined, color: colorScheme.secondary),
@@ -91,21 +88,10 @@ class ApplicationManage extends StatelessWidget {
                   maxLength: ApplicationConsts.maxIdentifierLimit,
                   decoration: InputDecoration(
                     errorText: applicationIdentifierInput?.errorL10n(context),
+                    hintText: 'Bundle ID is an app\'s unique identifier.',
                     suffixIcon: Tooltip(
                       message: context.l10n.feature_application_create_Tooltip_identifier_info,
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),
-                    ),
-                    prefixIcon: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Text(
-                            EnvironmentConfig.IDENTIFIER_PREFIX,
-                            style: textScheme.bodyMedium?.copyWith(),
-                          ),
-                        )
-                      ],
                     ),
                   ),
                 ),
@@ -121,6 +107,7 @@ class ApplicationManage extends StatelessWidget {
                   onChanged: onChangedCoreInput,
                   maxLength: ApplicationConsts.maxCoreLimit,
                   decoration: InputDecoration(
+                    hintText: 'Url which will be used for phone by default',
                     errorText: applicationCoreInput?.errorL10n(context),
                     suffixIcon: Tooltip(
                       message: 'Link to the backend',
