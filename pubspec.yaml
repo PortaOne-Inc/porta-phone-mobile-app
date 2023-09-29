@@ -1,7 +1,7 @@
 name: webtrit_configurator
 description: A project that allows you to customize the style of the mobile application.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -51,7 +51,6 @@ dependencies:
   file_picker: ^5.5.0
   flutter_svg: ^2.0.7
   flex_color_scheme: ^7.3.1
-  flutter_launcher_icons: ^0.13.1
   google_fonts: ^5.1.0
   infinite_scroll_pagination: ^4.0.0
 
@@ -96,9 +95,7 @@ dev_dependencies:
 
   # Generators
   flutter_gen_runner: ^5.3.1
-  json_serializable: ^6.7.1
   injectable_generator: ^2.4.0
-  build_runner_core: ^7.2.9
   build_runner: ^2.4.6
 
 flutter:
