@@ -199,7 +199,7 @@ packages:
     source: hosted
     version: "4.5.0"
   collection:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       name: collection
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
@@ -1137,7 +1137,7 @@ packages:
     source: hosted
     version: "2.0.1"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
