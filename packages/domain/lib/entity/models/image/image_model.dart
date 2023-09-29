@@ -42,7 +42,7 @@ class ImageModel with _$ImageModel {
   bool get isNotAvailable => !isAvailable;
 
   ImageFormat get type {
-    if (mimeSVG == mime) {
+    if (mimeSVG.contains(mime ?? '')) {
       return ImageFormat.vector;
     } else {
       return ImageFormat.raster;
