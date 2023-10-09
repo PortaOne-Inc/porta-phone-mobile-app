@@ -154,21 +154,12 @@ class AppRoute {
     UsecaseAuthIsLoggedIn isLoggedIn,
   ) async {
     final isAuth = await isLoggedIn.execute();
+    final currentLocation = state.fullPath;
 
-    final currentLocation = state.path;
-
-    // TODO: Do more pretty
     if (isAuth) {
-      if (currentLocation == AppRoutInfo.login.path) {
-        return AppRoutInfo.applicationCollection.path;
-      }
+      return currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null;
     } else {
-      if (state.path == AppRoutInfo.reset.path) {
-        return null;
-      } else {
-        return AppRoutInfo.login.path;
-      }
+      return currentLocation == AppRoutInfo.reset.path ? null : AppRoutInfo.login.path;
     }
-    return null;
   }
 }
