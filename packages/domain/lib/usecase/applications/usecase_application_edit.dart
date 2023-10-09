@@ -77,18 +77,18 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     final dto = await applicationRepository.updateApplication(id, mapper.mapToDto(model));
 
     if (newAndroidGoogleServices != null) {
-      _deleteDeprecatedGoogleServices(applicationAndroidGoogleServicesUrl);
+      await _deleteDeprecatedGoogleServices(applicationAndroidGoogleServicesUrl);
     }
     if (newAndroidGoogleServices != null) {
-      _deleteDeprecatedGoogleServices(applicationIosGoogleServicesUrl);
+      await _deleteDeprecatedGoogleServices(applicationIosGoogleServicesUrl);
     }
 
     return mapper.mapToModel(dto);
   }
 
-  void _deleteDeprecatedGoogleServices(String? applicationAndroidGoogleServicesUrl) {
+  Future _deleteDeprecatedGoogleServices(String? applicationAndroidGoogleServicesUrl) async {
     if (applicationAndroidGoogleServicesUrl != null) {
-      resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
+     await resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
     }
   }
 

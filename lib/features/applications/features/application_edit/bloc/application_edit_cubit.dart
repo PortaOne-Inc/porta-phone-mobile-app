@@ -55,12 +55,21 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
 
   void tryEditApplication() async {
     try {
-      await _editApplication(
-        projectName: state.nameInput!.value,
-        applicationIdentifier: state.applicationIdentifierInput!.value,
+      emit(state.copyWith(status: ApplicationEditStatus.loading));
+
+      await applicationEditUsecase.execute(
+        id: applicationId,
+        name: state.nameInput!.value,
+        platformIdentifier: state.applicationIdentifierInput!.value,
         coreUrl: state.applicationCoreInput!.value,
+        applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
+        applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
+        newIosGoogleServices: state.androidGoogleServices,
+        newAndroidGoogleServices: state.androidGoogleServices,
       );
-    } on BaseException catch (e) {
+
+      emit(state.copyWith(status: ApplicationEditStatus.success));
+    } on Exception catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationEditStatus.error));
     }
   }
@@ -84,27 +93,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     }
   }
 
-  Future _editApplication({
-    required String projectName,
-    required String applicationIdentifier,
-    String? coreUrl,
-  }) async {
-    emit(state.copyWith(status: ApplicationEditStatus.loading));
-
-    await applicationEditUsecase.execute(
-      id: applicationId,
-      name: projectName,
-      platformIdentifier: applicationIdentifier,
-      coreUrl: coreUrl,
-      applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
-      applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
-      newIosGoogleServices: state.androidGoogleServices,
-      newAndroidGoogleServices: state.androidGoogleServices,
-    );
-
-    emit(state.copyWith(status: ApplicationEditStatus.success));
-  }
-
   Future<void> chooseIosGoogleServices() async {
     if (state.iosGoogleServices == null) {
       final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['plist']);
@@ -114,7 +102,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     }
   }
 
-  Future<void> chooseIosAndroidServices() async {
+  Future<void> chooseAndroidServices() async {
     if (state.androidGoogleServices == null) {
       final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['json']);
       emit(state.copyWith(androidGoogleServices: result?.files.first.bytes));

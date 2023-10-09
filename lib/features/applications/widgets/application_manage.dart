@@ -152,9 +152,9 @@ class ApplicationManage extends StatelessWidget {
                     ),
                     const SizedBox(width: 16),
                     GoogleServicesPreview(
+                      platform: TargetPlatform.iOS,
                       type:
                           isIosGoogleServiceSelected ? GoogleServicesPreviewType.remove : GoogleServicesPreviewType.add,
-                      platform: TargetPlatform.iOS,
                       onTap: updateIosGoogleService,
                     ),
                   ],
