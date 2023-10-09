@@ -73,6 +73,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
         ApplicationEditState(
           applicationIdentifierInput: ApplicationIdentifierInput.dirty(app.platformIdentifier ?? ''),
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
+          applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
           status: ApplicationEditStatus.initial,
           androidGoogleServicesUrl: app.googleServices?.androidUrl,
           iosGoogleServicesUrl: app.googleServices?.iosUrl,
