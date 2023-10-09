@@ -95,7 +95,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   void _importAssetsFromSvg(ThemePropertyState state) async {
     final result = await _leftPageNavigatorKey.currentState?.push(
       MaterialPageRoute(
-        builder: (BuildContext context) => const ImportAssetsSvg(),
+        builder: (BuildContext context) => ImportAssetsSvg(
+          themeModel: state.theme!,
+        ),
       ),
     );
 
