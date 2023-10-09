@@ -19,7 +19,6 @@ mixin _$ImageModel {
   String? get data => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get mime => throw _privateConstructorUsedError;
   String? get extension => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,12 +32,7 @@ abstract class $ImageModelCopyWith<$Res> {
           ImageModel value, $Res Function(ImageModel) then) =
       _$ImageModelCopyWithImpl<$Res, ImageModel>;
   @useResult
-  $Res call(
-      {String? data,
-      String? url,
-      String? name,
-      String? mime,
-      String? extension});
+  $Res call({String? data, String? url, String? name, String? extension});
 }
 
 /// @nodoc
@@ -57,7 +51,6 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
     Object? data = freezed,
     Object? url = freezed,
     Object? name = freezed,
-    Object? mime = freezed,
     Object? extension = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,10 +65,6 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mime: freezed == mime
-          ? _value.mime
-          : mime // ignore: cast_nullable_to_non_nullable
               as String?,
       extension: freezed == extension
           ? _value.extension
@@ -93,12 +82,7 @@ abstract class _$$ImageModelImplCopyWith<$Res>
       __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? data,
-      String? url,
-      String? name,
-      String? mime,
-      String? extension});
+  $Res call({String? data, String? url, String? name, String? extension});
 }
 
 /// @nodoc
@@ -115,7 +99,6 @@ class __$$ImageModelImplCopyWithImpl<$Res>
     Object? data = freezed,
     Object? url = freezed,
     Object? name = freezed,
-    Object? mime = freezed,
     Object? extension = freezed,
   }) {
     return _then(_$ImageModelImpl(
@@ -131,10 +114,6 @@ class __$$ImageModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      mime: freezed == mime
-          ? _value.mime
-          : mime // ignore: cast_nullable_to_non_nullable
-              as String?,
       extension: freezed == extension
           ? _value.extension
           : extension // ignore: cast_nullable_to_non_nullable
@@ -146,8 +125,7 @@ class __$$ImageModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ImageModelImpl extends _ImageModel {
-  const _$ImageModelImpl(
-      {this.data, this.url, this.name, this.mime, this.extension})
+  const _$ImageModelImpl({this.data, this.url, this.name, this.extension})
       : super._();
 
   @override
@@ -157,13 +135,11 @@ class _$ImageModelImpl extends _ImageModel {
   @override
   final String? name;
   @override
-  final String? mime;
-  @override
   final String? extension;
 
   @override
   String toString() {
-    return 'ImageModel(data: $data, url: $url, name: $name, mime: $mime, extension: $extension)';
+    return 'ImageModel(data: $data, url: $url, name: $name, extension: $extension)';
   }
 
   @override
@@ -174,14 +150,12 @@ class _$ImageModelImpl extends _ImageModel {
             (identical(other.data, data) || other.data == data) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.mime, mime) || other.mime == mime) &&
             (identical(other.extension, extension) ||
                 other.extension == extension));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, data, url, name, mime, extension);
+  int get hashCode => Object.hash(runtimeType, data, url, name, extension);
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +169,6 @@ abstract class _ImageModel extends ImageModel {
       {final String? data,
       final String? url,
       final String? name,
-      final String? mime,
       final String? extension}) = _$ImageModelImpl;
   const _ImageModel._() : super._();
 
@@ -205,8 +178,6 @@ abstract class _ImageModel extends ImageModel {
   String? get url;
   @override
   String? get name;
-  @override
-  String? get mime;
   @override
   String? get extension;
   @override

@@ -43,19 +43,6 @@ class AppRoute {
               ),
             ),
             GoRoute(
-              path: AppRoutInfo.admin.path,
-              name: AppRoutInfo.admin.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
-                create: (BuildContext context) => ThemePropertyCubit(
-                  updateThemeUseCase: getIt.get(instanceName: UsecaseThemeUpdate.staticEditUsecaseKey),
-                  getThemeUseCase: getIt.get(instanceName: UsecaseThemeGet.staticUsecaseKey),
-                ),
-                child: PageThemeEdit(
-                  title: context.l10n.feature_admin_title,
-                ),
-              ),
-            ),
-            GoRoute(
               path: AppRoutInfo.applicationCollection.path,
               name: AppRoutInfo.applicationCollection.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationCollectionCubit>(
@@ -122,7 +109,6 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
                   updateThemeUseCase: getIt<UsecaseThemeUpdate>(
-                    instanceName: UsecaseThemeUpdate.applicationEditUsecaseKey,
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   ),
                   getThemeUseCase: getIt<UsecaseThemeGet>(

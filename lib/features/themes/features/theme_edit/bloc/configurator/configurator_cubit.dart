@@ -134,7 +134,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
           emit(state.updateTheme());
         } on BaseException catch (e) {
           state.showError(e);
-        } on Exception catch (e) {
+        } catch (e, stackTrace) {
           state.showError(BaseException(message: e.toString()));
         }
       } else {

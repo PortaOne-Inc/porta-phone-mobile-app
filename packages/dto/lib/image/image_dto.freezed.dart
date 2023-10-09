@@ -22,7 +22,6 @@ ImageDTO _$ImageDTOFromJson(Map<String, dynamic> json) {
 mixin _$ImageDTO {
   String? get data => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get mime => throw _privateConstructorUsedError;
   String? get extension => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +35,7 @@ abstract class $ImageDTOCopyWith<$Res> {
   factory $ImageDTOCopyWith(ImageDTO value, $Res Function(ImageDTO) then) =
       _$ImageDTOCopyWithImpl<$Res, ImageDTO>;
   @useResult
-  $Res call({String? data, String? name, String? mime, String? extension});
+  $Res call({String? data, String? name, String? extension});
 }
 
 /// @nodoc
@@ -54,7 +53,6 @@ class _$ImageDTOCopyWithImpl<$Res, $Val extends ImageDTO>
   $Res call({
     Object? data = freezed,
     Object? name = freezed,
-    Object? mime = freezed,
     Object? extension = freezed,
   }) {
     return _then(_value.copyWith(
@@ -65,10 +63,6 @@ class _$ImageDTOCopyWithImpl<$Res, $Val extends ImageDTO>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mime: freezed == mime
-          ? _value.mime
-          : mime // ignore: cast_nullable_to_non_nullable
               as String?,
       extension: freezed == extension
           ? _value.extension
@@ -86,7 +80,7 @@ abstract class _$$ImageDTOImplCopyWith<$Res>
       __$$ImageDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? data, String? name, String? mime, String? extension});
+  $Res call({String? data, String? name, String? extension});
 }
 
 /// @nodoc
@@ -102,7 +96,6 @@ class __$$ImageDTOImplCopyWithImpl<$Res>
   $Res call({
     Object? data = freezed,
     Object? name = freezed,
-    Object? mime = freezed,
     Object? extension = freezed,
   }) {
     return _then(_$ImageDTOImpl(
@@ -113,10 +106,6 @@ class __$$ImageDTOImplCopyWithImpl<$Res>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mime: freezed == mime
-          ? _value.mime
-          : mime // ignore: cast_nullable_to_non_nullable
               as String?,
       extension: freezed == extension
           ? _value.extension
@@ -129,7 +118,7 @@ class __$$ImageDTOImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImageDTOImpl implements _ImageDTO {
-  const _$ImageDTOImpl({this.data, this.name, this.mime, this.extension});
+  const _$ImageDTOImpl({this.data, this.name, this.extension});
 
   factory _$ImageDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageDTOImplFromJson(json);
@@ -139,13 +128,11 @@ class _$ImageDTOImpl implements _ImageDTO {
   @override
   final String? name;
   @override
-  final String? mime;
-  @override
   final String? extension;
 
   @override
   String toString() {
-    return 'ImageDTO(data: $data, name: $name, mime: $mime, extension: $extension)';
+    return 'ImageDTO(data: $data, name: $name, extension: $extension)';
   }
 
   @override
@@ -155,14 +142,13 @@ class _$ImageDTOImpl implements _ImageDTO {
             other is _$ImageDTOImpl &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.mime, mime) || other.mime == mime) &&
             (identical(other.extension, extension) ||
                 other.extension == extension));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, data, name, mime, extension);
+  int get hashCode => Object.hash(runtimeType, data, name, extension);
 
   @JsonKey(ignore: true)
   @override
@@ -182,7 +168,6 @@ abstract class _ImageDTO implements ImageDTO {
   const factory _ImageDTO(
       {final String? data,
       final String? name,
-      final String? mime,
       final String? extension}) = _$ImageDTOImpl;
 
   factory _ImageDTO.fromJson(Map<String, dynamic> json) =
@@ -192,8 +177,6 @@ abstract class _ImageDTO implements ImageDTO {
   String? get data;
   @override
   String? get name;
-  @override
-  String? get mime;
   @override
   String? get extension;
   @override
