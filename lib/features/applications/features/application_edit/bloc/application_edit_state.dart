@@ -20,5 +20,5 @@ class ApplicationEditState with _$ApplicationEditState {
 extension ApplicationEditStateExtension on ApplicationEditState {
   get isAndroidGoogleServiceSelected => androidGoogleServices != null || androidGoogleServicesUrl != null;
 
-  get isIosGoogleServiceSelected => androidGoogleServices != null || iosGoogleServicesUrl != null;
+  get isIosGoogleServiceSelected => iosGoogleServices != null || iosGoogleServicesUrl != null;
 }
