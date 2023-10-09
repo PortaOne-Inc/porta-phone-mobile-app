@@ -9,7 +9,6 @@ class ImageDTO with _$ImageDTO {
   const factory ImageDTO({
     String? data,
     String? name,
-    String? mime,
     String? extension,
   }) = _ImageDTO;
 

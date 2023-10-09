@@ -166,29 +166,17 @@ class DomainPackageModule extends _i1.MicroPackageModule {
           authRepository: gh<_i15.AuthRepository>(),
           mapper: gh<_i26.Mapper<_i4.ThemeDTO?, _i26.ThemeModel?>>(),
         ));
-    gh.factoryParam<_i38.UsecaseThemeUpdate, String, dynamic>(
-      (
-        applicationId,
-        _,
-      ) =>
-          _i38.UsecaseThemeUpdateImpl(
-        themeRepository: gh<_i15.ThemeRepository>(),
-        authRepository: gh<_i15.AuthRepository>(),
-        resourcesRepository: gh<_i15.ResourcesRepository>(),
-        mapper: gh<_i26.Mapper<_i4.ThemeDTO?, _i26.ThemeModel?>>(),
-        applicationId: applicationId,
-      ),
-      instanceName: 'applicationEditUsecaseKey',
-    );
-    gh.factory<_i38.UsecaseThemeUpdate>(
-      () => _i38.UsecaseThemeStaticUpdateImpl(
-        themeRepository: gh<_i15.ThemeRepository>(),
-        authRepository: gh<_i15.AuthRepository>(),
-        resourcesRepository: gh<_i15.ResourcesRepository>(),
-        mapper: gh<_i26.Mapper<_i4.ThemeDTO?, _i26.ThemeModel?>>(),
-      ),
-      instanceName: 'staticEditUsecaseKey',
-    );
+    gh.factoryParam<_i38.UsecaseThemeUpdate, String, dynamic>((
+      applicationId,
+      _,
+    ) =>
+        _i38.UsecaseThemeUpdateImpl(
+          themeRepository: gh<_i15.ThemeRepository>(),
+          authRepository: gh<_i15.AuthRepository>(),
+          resourcesRepository: gh<_i15.ResourcesRepository>(),
+          mapper: gh<_i26.Mapper<_i4.ThemeDTO?, _i26.ThemeModel?>>(),
+          applicationId: applicationId,
+        ));
     gh.factory<_i39.ApplicationCreate>(() => _i39.ApplicationCreateImpl(
           gh<_i15.ApplicationRepository>(),
           gh<_i15.AuthRepository>(),
