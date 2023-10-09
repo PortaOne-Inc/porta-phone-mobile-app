@@ -13,7 +13,12 @@ import '../model/image_filter_model.dart';
 import '../utility/utility.dart';
 
 class ImportAssetsSvg extends StatefulWidget {
-  const ImportAssetsSvg({super.key});
+  const ImportAssetsSvg({
+    super.key,
+    required this.themeModel,
+  });
+
+  final ThemeModel themeModel;
 
   @override
   State<ImportAssetsSvg> createState() => _ImportAssetsSvgState();
@@ -110,6 +115,7 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                             size: const Size(192, 192),
                             imageModel: _image,
                             padding: const EdgeInsets.all(24),
+                            color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                             title: '<=Android 12 (Launch icon)\n 192px:192px',
                             fit: _fitBox,
                           ),
@@ -134,6 +140,7 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                         size: const Size(1024, 1024),
                         imageModel: _image,
                         padding: const EdgeInsets.all(48),
+                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         title: 'iOS 1024px:1024px',
                         fit: _fitBox,
                       ),
@@ -144,6 +151,7 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                         screenshotStreamController: _screenshotWebLaunchIconController,
                         size: const Size(1024, 1024),
                         padding: const EdgeInsets.all(48),
+                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Web 1024px:1024px',
                         fit: _fitBox,
@@ -155,6 +163,7 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                         screenshotStreamController: _screenshotSplashIconController,
                         size: const Size(640, 640),
                         padding: EdgeInsets.zero,
+                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Android / iOS 640px:640px',
                         fit: _fitBox,
@@ -233,6 +242,7 @@ class GenerateLaunchIcon extends StatelessWidget {
     required this.padding,
     required this.title,
     required this.fit,
+    this.color,
   });
 
   final ScreenshotController screenshotStreamController;
@@ -241,6 +251,7 @@ class GenerateLaunchIcon extends StatelessWidget {
   final Size size;
   final BoxFit fit;
   final String title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -254,6 +265,7 @@ class GenerateLaunchIcon extends StatelessWidget {
             child: Container(
               padding: padding,
               width: size.width,
+              color: color,
               height: size.height,
               child: ImageResource(
                 imageModel: imageModel ?? const ImageModel(),
