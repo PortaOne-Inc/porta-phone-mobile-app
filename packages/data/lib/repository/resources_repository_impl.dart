@@ -22,7 +22,7 @@ class ResourcesRepositoryImpl extends ResourcesRepository {
   @override
   Future<String> putBase64(String folder, String name, String data) async {
     final storageRef = firebaseStorage.ref();
-    final ref = storageRef.child('$folder/$name}');
+    final ref = storageRef.child('$folder/$name');
     final res = await ref.putString(data, format: PutStringFormat.base64);
     return res.ref.getDownloadURL();
   }
