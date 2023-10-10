@@ -11,7 +11,6 @@ abstract class UsecaseThemeUpdate {
   });
 }
 
-
 @Injectable(as: UsecaseThemeUpdate)
 class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   UsecaseThemeUpdateImpl({
@@ -60,7 +59,10 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   // Get url for dto if base64 resource available in data
   Future<String?> _getImageUrl(ImageModel imageModel) async {
     if (_isShouldBeUploadedImage(imageModel)) {
-      return await resourcesRepository.putBase64('theme', imageModel.name!, imageModel.data!);
+      String originalName = imageModel.name ?? DateTime.now().microsecondsSinceEpoch.toString();
+      String fileName = '$originalName.${imageModel.extension}';
+
+      return await resourcesRepository.putBase64('theme', fileName, imageModel.data!);
     } else {
       return imageModel.url;
     }
