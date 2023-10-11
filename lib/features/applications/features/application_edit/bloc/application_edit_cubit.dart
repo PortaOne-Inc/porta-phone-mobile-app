@@ -69,6 +69,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       );
 
       emit(state.copyWith(status: ApplicationEditStatus.success));
+      emit(state.copyWith(status: ApplicationEditStatus.initial));
     } on Exception catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationEditStatus.error));
     }
