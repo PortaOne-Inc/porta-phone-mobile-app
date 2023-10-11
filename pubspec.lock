@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: eb376e9acf6938204f90eb3b1f00b578640d3188b4c8a8ec054f9f479af8d051
+      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
       url: "https://pub.dev"
     source: hosted
-    version: "64.0.0"
+    version: "61.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -32,13 +32,13 @@ packages:
     source: path
     version: "1.0.0"
   analyzer:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: analyzer
-      sha256: "69f54f967773f6c26c7dcb13e93d7ccee8b17a641689da39e878d5cf13b06893"
+      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.0"
+    version: "5.13.0"
   app_database:
     dependency: transitive
     description:
@@ -202,10 +202,10 @@ packages:
     dependency: "direct main"
     description:
       name: collection
-      sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
+      sha256: f092b211a4319e98e5ff58223576de6c2803db36221657b46c82574721240687
       url: "https://pub.dev"
     source: hosted
-    version: "1.18.0"
+    version: "1.17.2"
   color:
     dependency: transitive
     description:
@@ -262,6 +262,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  dart_casing:
+    dependency: transitive
+    description:
+      name: dart_casing
+      sha256: "103ab12ecc536b955feedddb3c3b41de6282cd4517008e9087e6293781369d07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -756,10 +764,10 @@ packages:
     dependency: "direct main"
     description:
       name: freezed
-      sha256: be7826ed5d87e98c924a839542674fc14edbcb3e4fc0adbc058d680f2b241837
+      sha256: "21bf2825311de65501d22e563e3d7605dff57fb5e6da982db785ae5372ff018a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.3"
+    version: "2.4.5"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -985,13 +993,13 @@ packages:
     source: hosted
     version: "0.5.0"
   meta:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: meta
-      sha256: a6e590c838b18133bb482a2745ad77c5bb7715fb0451209e1a7567d416678b8e
+      sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.9.1"
   mime:
     dependency: transitive
     description:
@@ -1709,7 +1717,35 @@ packages:
   webtrit_callkeep:
     dependency: transitive
     description:
-      path: "../webtrit_phone/packages/webtrit_callkeep"
+      path: "../webtrit_callkeep/webtrit_callkeep"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_android:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_android"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_ios:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_ios"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_platform_interface:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_platform_interface"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webtrit_callkeep_web:
+    dependency: transitive
+    description:
+      path: "../webtrit_callkeep/webtrit_callkeep_web"
       relative: true
     source: path
     version: "0.0.1"
@@ -1719,7 +1755,7 @@ packages:
       path: "../webtrit_phone"
       relative: true
     source: path
-    version: "1.1.0+1010000"
+    version: "1.2.0+1020020"
   webtrit_phone_number:
     dependency: transitive
     description:
