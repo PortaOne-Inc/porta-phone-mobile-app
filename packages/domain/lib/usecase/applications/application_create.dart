@@ -13,6 +13,7 @@ abstract class ApplicationCreate {
     required final String name,
     required final String platformIdentifier,
     final String? coreUrl,
+    final String? termConditionsUrl,
     final String? theme,
     final Uint8List? androidGoogleServices,
     final Uint8List? iosGoogleServices,
@@ -20,15 +21,14 @@ abstract class ApplicationCreate {
   });
 }
 
-
 @Injectable(as: ApplicationCreate)
 class ApplicationCreateImpl extends ApplicationCreate {
   ApplicationCreateImpl(
-      this.applicationRepository,
-      this.authRepository,
-      this.resourcesRepository,
-      this.mapper,
-      );
+    this.applicationRepository,
+    this.authRepository,
+    this.resourcesRepository,
+    this.mapper,
+  );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
@@ -41,6 +41,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
     required String name,
     required String platformIdentifier,
     String? coreUrl,
+    String? termConditionsUrl,
     String? theme,
     Uint8List? androidGoogleServices,
     Uint8List? iosGoogleServices,
@@ -57,6 +58,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
         name: name,
         platformIdentifier: platformIdentifier,
         coreUrl: coreUrl,
+        termsConditionsUrl: termConditionsUrl,
         googleServices: googleService,
         version: version,
       );
@@ -69,10 +71,10 @@ class ApplicationCreateImpl extends ApplicationCreate {
   }
 
   Future<GoogleServicesModel?> _generateGoogleService(
-      String platformIdentifier,
-      Uint8List? androidGoogleServices,
-      Uint8List? iosGoogleServices,
-      ) async {
+    String platformIdentifier,
+    Uint8List? androidGoogleServices,
+    Uint8List? iosGoogleServices,
+  ) async {
     String? iosGoogleServiceUrl;
     String? androidGoogleServiceUrl;
 
@@ -97,9 +99,9 @@ class ApplicationCreateImpl extends ApplicationCreate {
     return androidGoogleServiceUrl == null && iosGoogleServiceUrl == null
         ? null
         : GoogleServicesModel(
-      androidUrl: androidGoogleServiceUrl,
-      iosUrl: iosGoogleServiceUrl,
-    );
+            androidUrl: androidGoogleServiceUrl,
+            iosUrl: iosGoogleServiceUrl,
+          );
   }
 
   String _generateGoogleServiceName(String platformIdentifier, String extension) {

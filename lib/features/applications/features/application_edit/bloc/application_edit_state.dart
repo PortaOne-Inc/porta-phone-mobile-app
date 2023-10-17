@@ -8,6 +8,7 @@ class ApplicationEditState with _$ApplicationEditState {
     @Default(ApplicationEditStatus.initial) ApplicationEditStatus status,
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
+    ApplicationTermsConditionsInput? applicationTermsConditionsInput,
     ApplicationCoreInput? applicationCoreInput,
     Uint8List? androidGoogleServices,
     Uint8List? iosGoogleServices,

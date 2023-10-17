@@ -14,6 +14,7 @@ abstract class UsecaseApplicationEdit {
     required final String name,
     required final String platformIdentifier,
     final String? coreUrl,
+    String? termConditionsUrl,
     final String? theme,
     Uint8List? newAndroidGoogleServices,
     Uint8List? newIosGoogleServices,
@@ -44,6 +45,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     required String name,
     required String platformIdentifier,
     String? coreUrl,
+    String? termConditionsUrl,
     String? theme,
     Uint8List? newAndroidGoogleServices,
     Uint8List? newIosGoogleServices,
@@ -66,6 +68,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
       name: name,
       platformIdentifier: platformIdentifier,
       coreUrl: coreUrl,
+      termsConditionsUrl: termConditionsUrl,
       googleServices: GoogleServicesModel(
         iosUrl: iosGoogleServicesUrl,
         androidUrl: androidGoogleServicesUrl,
@@ -88,7 +91,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
 
   Future _deleteDeprecatedGoogleServices(String? applicationAndroidGoogleServicesUrl) async {
     if (applicationAndroidGoogleServicesUrl != null) {
-     await resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
+      await resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
     }
   }
 
