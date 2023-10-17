@@ -26,11 +26,12 @@ export default class ApplicationsService implements IApplicationsService {
                                 name,
                                 theme,
                                 platformIdentifier,
+                                termsConditionsUrl,
                                 coreUrl,
                                 googleServices
                             }: Application, {uid}: User): Promise<Application | null> {
         const googleServicesModel = googleServices?.androidUrl != null || googleServices?.iosUrl != null ? new GoogleServices(googleServices?.androidUrl ?? null, googleServices?.iosUrl ?? null) : null;
-        const userModel = new Application(undefined, uid, name, theme, platformIdentifier, coreUrl, googleServicesModel);
+        const userModel = new Application(undefined, uid, name, theme, platformIdentifier, coreUrl, termsConditionsUrl, googleServicesModel);
         return this.applicationRepository.create(userModel);
     }
 
