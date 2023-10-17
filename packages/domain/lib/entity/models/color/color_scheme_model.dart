@@ -54,6 +54,30 @@ class ColorSchemeModel with _$ColorSchemeModel {
         if (surface != null) surface!,
         if (onSurface != null) onSurface!,
       ];
+
+  bool get areAllFieldsFilled {
+    return primary != null &&
+        onPrimary != null &&
+        primaryContainer != null &&
+        onPrimaryContainer != null &&
+        secondary != null &&
+        onSecondary != null &&
+        secondaryContainer != null &&
+        onSecondaryContainer != null &&
+        tertiary != null &&
+        onTertiary != null &&
+        tertiaryContainer != null &&
+        error != null &&
+        onError != null &&
+        errorContainer != null &&
+        onErrorContainer != null &&
+        outline != null &&
+        outlineVariant != null &&
+        background != null &&
+        onBackground != null &&
+        surface != null &&
+        onSurface != null;
+  }
 }
 
 @freezed

@@ -128,14 +128,18 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   void _validateAndTryUpdateTheme(UpdateThemeEvent event, Emitter<ThemePropertyState> emit) async {
     if (event.model != null) {
       if ((event.model?.name ?? '').isNotEmpty) {
-        try {
-          emit(state.showProgress());
-          await updateThemeUseCase.execute(themeModel: event.model!);
-          emit(state.updateTheme());
-        } on BaseException catch (e) {
-          state.showError(e);
-        } catch (e, stackTrace) {
-          state.showError(BaseException(message: e.toString()));
+        if (state.theme?.colors?.areAllFieldsFilled ?? false) {
+          try {
+            emit(state.showProgress());
+            await updateThemeUseCase.execute(themeModel: event.model!);
+            emit(state.updateTheme());
+          } on BaseException catch (e) {
+            state.showError(e);
+          } catch (e, stackTrace) {
+            state.showError(BaseException(message: e.toString()));
+          }
+        } else {
+          emit(state.showError(ThemeIsNotValidException()));
         }
       } else {
         emit(state.showError(ThemeIsNotValidException()));
