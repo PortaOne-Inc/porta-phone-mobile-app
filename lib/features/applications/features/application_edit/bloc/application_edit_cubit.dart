@@ -38,6 +38,10 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
 
+  void updateTermsConditions(String core) {
+    emit(state.copyWith(applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(core)));
+  }
+
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryEditApplication();
@@ -62,6 +66,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
         name: state.nameInput!.value,
         platformIdentifier: state.applicationIdentifierInput!.value,
         coreUrl: state.applicationCoreInput!.value,
+        termConditionsUrl: state.applicationTermsConditionsInput!.value,
         applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
         applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
         newIosGoogleServices: state.androidGoogleServices,

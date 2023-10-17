@@ -7,6 +7,7 @@ export default class Application {
                 public theme?: string,
                 public platformIdentifier?: string,
                 public coreUrl?: string,
+                public termsConditionsUrl?: string,
                 public googleServices?: GoogleServices | null,
                 public version: number = 0,
     ) {

@@ -105,7 +105,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     return [
       LoginScreenScreenshot(
         LoginStep.modeSelect,
-        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
+        // appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
       ),
       const LoginScreenScreenshot(
         LoginStep.coreUrlAssign,

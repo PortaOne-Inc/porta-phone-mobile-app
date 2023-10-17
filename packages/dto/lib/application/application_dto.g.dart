@@ -11,6 +11,7 @@ _$ApplicationDTOImpl _$$ApplicationDTOImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       name: json['name'] as String?,
       platformIdentifier: json['platformIdentifier'] as String?,
+      termsConditionsUrl: json['termsConditionsUrl'] as String?,
       coreUrl: json['coreUrl'] as String?,
       theme: json['theme'] as String?,
       version: json['version'] as int?,
@@ -33,6 +34,7 @@ Map<String, dynamic> _$$ApplicationDTOImplToJson(
   writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
   writeNotNull('platformIdentifier', instance.platformIdentifier);
+  writeNotNull('termsConditionsUrl', instance.termsConditionsUrl);
   writeNotNull('coreUrl', instance.coreUrl);
   writeNotNull('theme', instance.theme);
   writeNotNull('version', instance.version);

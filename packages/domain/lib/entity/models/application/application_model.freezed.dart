@@ -19,6 +19,7 @@ mixin _$ApplicationModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
+  String? get termsConditionsUrl => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
   GoogleServicesModel? get googleServices => throw _privateConstructorUsedError;
@@ -39,6 +40,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
@@ -63,6 +65,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
@@ -80,6 +83,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsConditionsUrl: freezed == termsConditionsUrl
+          ? _value.termsConditionsUrl
+          : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
@@ -125,6 +132,7 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
@@ -148,6 +156,7 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
@@ -165,6 +174,10 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsConditionsUrl: freezed == termsConditionsUrl
+          ? _value.termsConditionsUrl
+          : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
@@ -193,6 +206,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       {this.id,
       this.name,
       this.platformIdentifier,
+      this.termsConditionsUrl,
       this.coreUrl,
       this.theme,
       this.googleServices,
@@ -206,6 +220,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   @override
   final String? platformIdentifier;
   @override
+  final String? termsConditionsUrl;
+  @override
   final String? coreUrl;
   @override
   final String? theme;
@@ -217,7 +233,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
+    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, termsConditionsUrl: $termsConditionsUrl, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
   }
 
   @override
@@ -229,6 +245,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
+            (identical(other.termsConditionsUrl, termsConditionsUrl) ||
+                other.termsConditionsUrl == termsConditionsUrl) &&
             (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.googleServices, googleServices) ||
@@ -238,7 +256,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
-      coreUrl, theme, googleServices, version);
+      termsConditionsUrl, coreUrl, theme, googleServices, version);
 
   @JsonKey(ignore: true)
   @override
@@ -253,6 +271,7 @@ abstract class _ApplicationModel extends ApplicationModel {
       {final String? id,
       final String? name,
       final String? platformIdentifier,
+      final String? termsConditionsUrl,
       final String? coreUrl,
       final String? theme,
       final GoogleServicesModel? googleServices,
@@ -265,6 +284,8 @@ abstract class _ApplicationModel extends ApplicationModel {
   String? get name;
   @override
   String? get platformIdentifier;
+  @override
+  String? get termsConditionsUrl;
   @override
   String? get coreUrl;
   @override

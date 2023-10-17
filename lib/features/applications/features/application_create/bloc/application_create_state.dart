@@ -8,6 +8,7 @@ class ApplicationCreateState with _$ApplicationCreateState {
     @Default(ApplicationCreateStatus.initial) ApplicationCreateStatus status,
     ApplicationNameInput? nameInput,
     ApplicationIdentifierInput? applicationIdentifierInput,
+    ApplicationTermsConditionsInput? applicationTermsConditionsInput,
     ApplicationCoreInput? applicationCoreInput,
     Uint8List? androidGoogleServices,
     Uint8List? iosGoogleServices,

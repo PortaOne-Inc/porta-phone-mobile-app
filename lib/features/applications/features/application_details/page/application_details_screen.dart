@@ -64,6 +64,15 @@ class ApplicationDetailsScreen extends StatelessWidget {
           ),
         ),
         ListTile(
+          title: const Text('Term and conditions: '),
+          subtitle: SelectableText(application?.termsConditionsUrl ?? 'Not define'),
+          minLeadingWidth: 4,
+          leading: Container(
+            width: 8,
+            color: colorScheme.primary.withOpacity(0.2),
+          ),
+        ),
+        ListTile(
           title: const Text('Version:'),
           subtitle: SelectableText(application?.version.toString() ?? '0'),
           minLeadingWidth: 4,

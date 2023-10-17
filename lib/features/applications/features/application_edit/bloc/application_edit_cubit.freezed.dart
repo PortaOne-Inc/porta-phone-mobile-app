@@ -20,6 +20,8 @@ mixin _$ApplicationEditState {
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get applicationIdentifierInput =>
       throw _privateConstructorUsedError;
+  ApplicationTermsConditionsInput? get applicationTermsConditionsInput =>
+      throw _privateConstructorUsedError;
   ApplicationCoreInput? get applicationCoreInput =>
       throw _privateConstructorUsedError;
   Uint8List? get androidGoogleServices => throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
       ApplicationIdentifierInput? applicationIdentifierInput,
+      ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
       Uint8List? androidGoogleServices,
       Uint8List? iosGoogleServices,
@@ -68,6 +71,7 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
     Object? status = null,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
+    Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
     Object? androidGoogleServices = freezed,
     Object? iosGoogleServices = freezed,
@@ -88,6 +92,11 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.applicationIdentifierInput
           : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
               as ApplicationIdentifierInput?,
+      applicationTermsConditionsInput: freezed ==
+              applicationTermsConditionsInput
+          ? _value.applicationTermsConditionsInput
+          : applicationTermsConditionsInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationTermsConditionsInput?,
       applicationCoreInput: freezed == applicationCoreInput
           ? _value.applicationCoreInput
           : applicationCoreInput // ignore: cast_nullable_to_non_nullable
@@ -129,6 +138,7 @@ abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
       ApplicationIdentifierInput? applicationIdentifierInput,
+      ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
       Uint8List? androidGoogleServices,
       Uint8List? iosGoogleServices,
@@ -153,6 +163,7 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
     Object? status = null,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
+    Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
     Object? androidGoogleServices = freezed,
     Object? iosGoogleServices = freezed,
@@ -173,6 +184,11 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
           ? _value.applicationIdentifierInput
           : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
               as ApplicationIdentifierInput?,
+      applicationTermsConditionsInput: freezed ==
+              applicationTermsConditionsInput
+          ? _value.applicationTermsConditionsInput
+          : applicationTermsConditionsInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationTermsConditionsInput?,
       applicationCoreInput: freezed == applicationCoreInput
           ? _value.applicationCoreInput
           : applicationCoreInput // ignore: cast_nullable_to_non_nullable
@@ -208,6 +224,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       {this.status = ApplicationEditStatus.initial,
       this.nameInput,
       this.applicationIdentifierInput,
+      this.applicationTermsConditionsInput,
       this.applicationCoreInput,
       this.androidGoogleServices,
       this.iosGoogleServices,
@@ -223,6 +240,8 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   @override
   final ApplicationIdentifierInput? applicationIdentifierInput;
   @override
+  final ApplicationTermsConditionsInput? applicationTermsConditionsInput;
+  @override
   final ApplicationCoreInput? applicationCoreInput;
   @override
   final Uint8List? androidGoogleServices;
@@ -237,7 +256,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, applicationCoreInput: $applicationCoreInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
   }
 
   @override
@@ -252,6 +271,10 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
                     applicationIdentifierInput) ||
                 other.applicationIdentifierInput ==
                     applicationIdentifierInput) &&
+            (identical(other.applicationTermsConditionsInput,
+                    applicationTermsConditionsInput) ||
+                other.applicationTermsConditionsInput ==
+                    applicationTermsConditionsInput) &&
             (identical(other.applicationCoreInput, applicationCoreInput) ||
                 other.applicationCoreInput == applicationCoreInput) &&
             const DeepCollectionEquality()
@@ -273,6 +296,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       status,
       nameInput,
       applicationIdentifierInput,
+      applicationTermsConditionsInput,
       applicationCoreInput,
       const DeepCollectionEquality().hash(androidGoogleServices),
       const DeepCollectionEquality().hash(iosGoogleServices),
@@ -293,6 +317,7 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
       {final ApplicationEditStatus status,
       final ApplicationNameInput? nameInput,
       final ApplicationIdentifierInput? applicationIdentifierInput,
+      final ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       final ApplicationCoreInput? applicationCoreInput,
       final Uint8List? androidGoogleServices,
       final Uint8List? iosGoogleServices,
@@ -306,6 +331,8 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   ApplicationNameInput? get nameInput;
   @override
   ApplicationIdentifierInput? get applicationIdentifierInput;
+  @override
+  ApplicationTermsConditionsInput? get applicationTermsConditionsInput;
   @override
   ApplicationCoreInput? get applicationCoreInput;
   @override

@@ -10,10 +10,12 @@ class ApplicationManage extends StatelessWidget {
     super.key,
     required this.updateName,
     required this.updateIdentifier,
+    required this.onChangedTermsConditionsInput,
     required this.onChangedCoreInput,
     required this.nameInput,
     required this.applicationIdentifierInput,
     required this.applicationCoreInput,
+    required this.applicationTermsConditionsInput,
     required this.updateAndroidGoogleService,
     required this.updateIosGoogleService,
     required this.actionManage,
@@ -25,6 +27,7 @@ class ApplicationManage extends StatelessWidget {
   final Function(String value) updateName;
   final Function(String value) updateIdentifier;
   final Function(String value) onChangedCoreInput;
+  final Function(String value) onChangedTermsConditionsInput;
 
   final bool isAndroidGoogleServiceSelected;
   final bool isIosGoogleServiceSelected;
@@ -38,6 +41,7 @@ class ApplicationManage extends StatelessWidget {
   final ApplicationNameInput? nameInput;
   final ApplicationIdentifierInput? applicationIdentifierInput;
   final ApplicationCoreInput? applicationCoreInput;
+  final ApplicationTermsConditionsInput? applicationTermsConditionsInput;
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +111,31 @@ class ApplicationManage extends StatelessWidget {
                   onChanged: onChangedCoreInput,
                   maxLength: ApplicationConsts.maxCoreLimit,
                   decoration: InputDecoration(
-                    hintText: 'Url which will be used for phone by default',
+                    hintText: 'Url for resource',
                     errorText: applicationCoreInput?.errorL10n(context),
                     suffixIcon: Tooltip(
                       message: 'Link to the backend',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Terms and conditions',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: applicationTermsConditionsInput?.value,
+                  onChanged: onChangedTermsConditionsInput,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  decoration: InputDecoration(
+                    hintText: 'Url for resource',
+                    errorText: applicationTermsConditionsInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message:
+                          'Provide a direct web link to the page that contains the legal terms and conditions for using a product or service.',
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),
                     ),
                   ),

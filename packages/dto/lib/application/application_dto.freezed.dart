@@ -23,6 +23,7 @@ mixin _$ApplicationDTO {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get platformIdentifier => throw _privateConstructorUsedError;
+  String? get termsConditionsUrl => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
   int? get version => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $ApplicationDTOCopyWith<$Res> {
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
       int? version,
@@ -68,6 +70,7 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? version = freezed,
@@ -85,6 +88,10 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsConditionsUrl: freezed == termsConditionsUrl
+          ? _value.termsConditionsUrl
+          : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
@@ -130,6 +137,7 @@ abstract class _$$ApplicationDTOImplCopyWith<$Res>
       {String? id,
       String? name,
       String? platformIdentifier,
+      String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
       int? version,
@@ -153,6 +161,7 @@ class __$$ApplicationDTOImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? version = freezed,
@@ -170,6 +179,10 @@ class __$$ApplicationDTOImplCopyWithImpl<$Res>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsConditionsUrl: freezed == termsConditionsUrl
+          ? _value.termsConditionsUrl
+          : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
@@ -199,6 +212,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
       {this.id,
       this.name,
       this.platformIdentifier,
+      this.termsConditionsUrl,
       this.coreUrl,
       this.theme,
       this.version,
@@ -214,6 +228,8 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
   @override
   final String? platformIdentifier;
   @override
+  final String? termsConditionsUrl;
+  @override
   final String? coreUrl;
   @override
   final String? theme;
@@ -224,7 +240,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
 
   @override
   String toString() {
-    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, coreUrl: $coreUrl, theme: $theme, version: $version, googleServices: $googleServices)';
+    return 'ApplicationDTO(id: $id, name: $name, platformIdentifier: $platformIdentifier, termsConditionsUrl: $termsConditionsUrl, coreUrl: $coreUrl, theme: $theme, version: $version, googleServices: $googleServices)';
   }
 
   @override
@@ -236,6 +252,8 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
+            (identical(other.termsConditionsUrl, termsConditionsUrl) ||
+                other.termsConditionsUrl == termsConditionsUrl) &&
             (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.version, version) || other.version == version) &&
@@ -246,7 +264,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
-      coreUrl, theme, version, googleServices);
+      termsConditionsUrl, coreUrl, theme, version, googleServices);
 
   @JsonKey(ignore: true)
   @override
@@ -268,6 +286,7 @@ abstract class _ApplicationDTO implements ApplicationDTO {
       {final String? id,
       final String? name,
       final String? platformIdentifier,
+      final String? termsConditionsUrl,
       final String? coreUrl,
       final String? theme,
       final int? version,
@@ -282,6 +301,8 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   String? get name;
   @override
   String? get platformIdentifier;
+  @override
+  String? get termsConditionsUrl;
   @override
   String? get coreUrl;
   @override

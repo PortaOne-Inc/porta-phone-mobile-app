@@ -32,6 +32,10 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
 
+  void updateTermsConditions(String core) {
+    emit(state.copyWith(applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(core)));
+  }
+
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryCreateApplication();
@@ -53,6 +57,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
         projectName: state.nameInput!.value,
         applicationIdentifier: state.applicationIdentifierInput!.value,
         coreUrl: state.applicationCoreInput!.value,
+        termConditionsUrl: state.applicationTermsConditionsInput!.value,
         iosGoogleServices: state.iosGoogleServices,
         androidGoogleServices: state.androidGoogleServices,
       );
@@ -83,6 +88,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     required String projectName,
     required String applicationIdentifier,
     String? coreUrl,
+    String? termConditionsUrl,
     Uint8List? iosGoogleServices,
     Uint8List? androidGoogleServices,
   }) async {
@@ -91,9 +97,10 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     await applicationCreateUsecase.execute(
       name: projectName,
       platformIdentifier: applicationIdentifier,
+      coreUrl: coreUrl,
+      termConditionsUrl: termConditionsUrl,
       iosGoogleServices: iosGoogleServices,
       androidGoogleServices: androidGoogleServices,
-      coreUrl: coreUrl,
     );
 
     emit(state.copyWith(status: ApplicationCreateStatus.success));
