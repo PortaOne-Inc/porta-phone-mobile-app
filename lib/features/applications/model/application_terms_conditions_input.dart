@@ -40,11 +40,11 @@ extension ExtensionTermsConditionsErrorL10n on ApplicationTermsConditionsInput {
     } else {
       switch (error!) {
         case ApplicationTermsConditionsValidationError.blank:
-          return context.l10n.feature_application_identifier_error;
+          return context.l10n.feature_application_terms_and_conditions_error;
         case ApplicationTermsConditionsValidationError.toLong:
-          return context.l10n.feature_application_identifier_error;
+          return context.l10n.feature_application_terms_and_conditions_error;
         case ApplicationTermsConditionsValidationError.toShort:
-          return context.l10n.feature_application_identifier_error;
+          return context.l10n.feature_application_terms_and_conditions_error;
       }
     }
   }
