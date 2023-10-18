@@ -83,7 +83,7 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
   }
 
   void _openApplications() {
-    GoRouter.of(context).pushNamed(AppRoutInfo.applicationCollection.name);
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
   }
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
