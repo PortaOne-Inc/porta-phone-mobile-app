@@ -124,6 +124,7 @@
   "feature_application_android_package_name_error": "Android package name not correct",
   "feature_application_identifier": "Application identifier: ",
   "feature_application_identifier_error": "Identifier not correct",
+  "feature_application_terms_and_conditions_error": "Terms and Conditions URL not correct",
   "feature_auth_logout": "Logout",
   "feature_auth_SnakeBar_success_auth": "You success authorized",
   "feature_auth_Input_invalid_email_address": "Invalid email address",
