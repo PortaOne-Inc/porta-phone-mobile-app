@@ -43,7 +43,7 @@ abstract class AppRoutInfo {
   );
   static const themesEdit = RouteData(
     name: 'themes/edit',
-    path: '/applications/:$keyApplicationId/themes/:$keyThemeId',
+    path: '/applications/:$keyApplicationId/:$keyThemeId',
   );
 
   static const String keyApplicationId = 'applicationId';

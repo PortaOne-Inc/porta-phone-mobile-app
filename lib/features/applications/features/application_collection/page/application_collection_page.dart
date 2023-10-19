@@ -98,12 +98,10 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _openApplication(ApplicationModel applicationModel) {
-    GoRouter.of(context).pushNamed(
+    GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetails.name,
+      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationModel.id!},
       extra: applicationModel,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationModel.id!,
-      },
     );
   }
 
