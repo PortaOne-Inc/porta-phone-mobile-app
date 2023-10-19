@@ -124,6 +124,10 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
     if (state.status == ApplicationDetailsStateStatus.error) {
       showFailureMessage(context, state.error!.message);
     }
+
+    if (state.status == ApplicationDetailsStateStatus.deleted) {
+      GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+    }
   }
 
   void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
@@ -134,6 +138,8 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
         GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
           AppRoutInfo.keyApplicationId: getBloc(context).applicationId,
         });
+      case ApplicationDetailFile.deleteApplication:
+        getBloc(context).tryDeleteApplication();
     }
   }
 

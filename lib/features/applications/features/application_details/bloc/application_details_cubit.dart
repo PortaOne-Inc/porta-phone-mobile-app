@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
-
 part 'application_details_state.dart';
 
 part 'application_details_cubit.freezed.dart';
@@ -15,6 +14,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.getApplicationGet,
     required this.makeThemeAsDefaultUseCase,
     required this.deleteThemeUseCase,
+    required this.applicationDeleteUsecase,
     required this.applicationId,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -31,12 +31,23 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseThemeGetAll getThemesUseCase;
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
+  final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
 
   void tryDeleteTheme(ThemeModel themeModel) async {
     try {
       await _deleteTheme(themeModel);
     } on BaseException catch (e) {
       emit(state.copyWith(error: e));
+    }
+  }
+
+  void tryDeleteApplication() async {
+    try {
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+      await applicationDeleteUsecase.execute(applicationId: applicationId);
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.deleted));
+    } on BaseException catch (e) {
+      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
     }
   }
 

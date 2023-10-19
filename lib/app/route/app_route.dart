@@ -100,6 +100,7 @@ class AppRoute {
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
                   getApplicationGet: getIt.get(),
+                  applicationDeleteUsecase: getIt.get(),
                 ),
               ),
             ),
