@@ -28,15 +28,7 @@ class FocusScreenEvent with _$FocusScreenEvent implements ConfiguratorEvent {
 class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements ConfiguratorEvent {
   const factory UpdateColorSchemeEvent.primary(Color? color) = _UpdateColorEventPrimary;
 
-  const factory UpdateColorSchemeEvent.onPrimary(Color? color) = _UpdateColorEventOnPrimary;
-
-  const factory UpdateColorSchemeEvent.primaryContainer(Color? color) = _UpdateColorEventPrimaryContainer;
-
-  const factory UpdateColorSchemeEvent.onPrimaryContainer(Color? color) = _UpdateColorEventOnPrimaryContainer;
-
   const factory UpdateColorSchemeEvent.secondary(Color? color) = _UpdateColorEventSecondary;
-
-  const factory UpdateColorSchemeEvent.onSecondary(Color? color) = _UpdateColorEventOnSecondary;
 
   const factory UpdateColorSchemeEvent.secondaryContainer(Color? color) = _UpdateColorEventSecondaryContainer;
 
@@ -44,21 +36,9 @@ class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements Configurat
 
   const factory UpdateColorSchemeEvent.tertiary(Color? color) = _UpdateColorEventTertiary;
 
-  const factory UpdateColorSchemeEvent.onTertiary(Color? color) = _UpdateColorEventOnTertiary;
-
-  const factory UpdateColorSchemeEvent.tertiaryContainer(Color? color) = _UpdateColorEventTertiaryContainer;
-
   const factory UpdateColorSchemeEvent.error(Color? color) = _UpdateColorEventError;
 
-  const factory UpdateColorSchemeEvent.onError(Color? color) = _UpdateColorEventOnError;
-
-  const factory UpdateColorSchemeEvent.errorContainer(Color? color) = _UpdateColorEventErrorContainer;
-
-  const factory UpdateColorSchemeEvent.onErrorContainer(Color? color) = _UpdateColorEventOnErrorContainer;
-
   const factory UpdateColorSchemeEvent.outline(Color? color) = _UpdateColorEventOutline;
-
-  const factory UpdateColorSchemeEvent.outlineVariant(Color? color) = _UpdateColorEventOutlineVariant;
 
   const factory UpdateColorSchemeEvent.background(Color? color) = _UpdateColorEventBackground;
 
@@ -67,18 +47,6 @@ class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements Configurat
   const factory UpdateColorSchemeEvent.surface(Color? color) = _UpdateColorEventSurface;
 
   const factory UpdateColorSchemeEvent.onSurface(Color? color) = _UpdateColorEventOnSurface;
-
-  const factory UpdateColorSchemeEvent.surfaceVariant(Color? color) = _UpdateColorEventSurfaceVariant;
-
-  const factory UpdateColorSchemeEvent.onSurfaceVariant(Color? color) = _UpdateColorEventOnSurfaceVariant;
-
-  const factory UpdateColorSchemeEvent.inverseSurface(Color? color) = _UpdateColorEventInverseSurface;
-
-  const factory UpdateColorSchemeEvent.shadow(Color? color) = _UpdateColorEventShadow;
-
-  const factory UpdateColorSchemeEvent.scrim(Color? color) = _UpdateColorEventScrim;
-
-  const factory UpdateColorSchemeEvent.surfaceTint(Color? color) = _UpdateColorEventSurfaceTint;
 
   const factory UpdateColorSchemeEvent.gradientTab(List<Color> colors) = _UpdateColorEventGradientTab;
 

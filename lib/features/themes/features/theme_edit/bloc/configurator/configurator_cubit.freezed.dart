@@ -1497,32 +1497,16 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -1531,32 +1515,16 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -1565,32 +1533,16 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -1600,43 +1552,18 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -1647,39 +1574,18 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -1690,36 +1596,18 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -1758,32 +1646,16 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -1795,32 +1667,16 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -1832,32 +1688,16 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -1873,43 +1713,18 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -1923,39 +1738,18 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -1969,36 +1763,18 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -2016,880 +1792,6 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
 abstract class _UpdateColorEventPrimary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventPrimary(final Color? color) =
       _$UpdateColorEventPrimaryImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnPrimaryImpl implements _UpdateColorEventOnPrimary {
-  const _$UpdateColorEventOnPrimaryImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onPrimary(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnPrimaryImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onPrimary(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onPrimary?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onPrimary != null) {
-      return onPrimary(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onPrimary(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onPrimary?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onPrimary != null) {
-      return onPrimary(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnPrimary implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnPrimary(final Color? color) =
-      _$UpdateColorEventOnPrimaryImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventPrimaryContainerImpl
-    implements _UpdateColorEventPrimaryContainer {
-  const _$UpdateColorEventPrimaryContainerImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.primaryContainer(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventPrimaryContainerImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return primaryContainer(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return primaryContainer?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (primaryContainer != null) {
-      return primaryContainer(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return primaryContainer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return primaryContainer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (primaryContainer != null) {
-      return primaryContainer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventPrimaryContainer
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventPrimaryContainer(final Color? color) =
-      _$UpdateColorEventPrimaryContainerImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnPrimaryContainerImpl
-    implements _UpdateColorEventOnPrimaryContainer {
-  const _$UpdateColorEventOnPrimaryContainerImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onPrimaryContainer(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnPrimaryContainerImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onPrimaryContainer(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onPrimaryContainer?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onPrimaryContainer != null) {
-      return onPrimaryContainer(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onPrimaryContainer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onPrimaryContainer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onPrimaryContainer != null) {
-      return onPrimaryContainer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnPrimaryContainer
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnPrimaryContainer(final Color? color) =
-      _$UpdateColorEventOnPrimaryContainerImpl;
 
   Color? get color;
 }
@@ -2922,32 +1824,16 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -2959,32 +1845,16 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -2996,32 +1866,16 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -3037,43 +1891,18 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -3087,39 +1916,18 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -3133,36 +1941,18 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -3180,297 +1970,6 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
 abstract class _UpdateColorEventSecondary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventSecondary(final Color? color) =
       _$UpdateColorEventSecondaryImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnSecondaryImpl
-    implements _UpdateColorEventOnSecondary {
-  const _$UpdateColorEventOnSecondaryImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onSecondary(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnSecondaryImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onSecondary(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onSecondary?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onSecondary != null) {
-      return onSecondary(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onSecondary(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onSecondary?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onSecondary != null) {
-      return onSecondary(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnSecondary implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnSecondary(final Color? color) =
-      _$UpdateColorEventOnSecondaryImpl;
 
   Color? get color;
 }
@@ -3504,32 +2003,16 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -3541,32 +2024,16 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -3578,32 +2045,16 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -3619,43 +2070,18 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -3669,39 +2095,18 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -3715,36 +2120,18 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -3796,32 +2183,16 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -3833,32 +2204,16 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -3870,32 +2225,16 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -3911,43 +2250,18 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -3961,39 +2275,18 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -4007,36 +2300,18 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -4087,32 +2362,16 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -4124,32 +2383,16 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -4161,32 +2404,16 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -4202,43 +2429,18 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -4252,39 +2454,18 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -4298,36 +2479,18 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -4345,588 +2508,6 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
 abstract class _UpdateColorEventTertiary implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventTertiary(final Color? color) =
       _$UpdateColorEventTertiaryImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnTertiaryImpl implements _UpdateColorEventOnTertiary {
-  const _$UpdateColorEventOnTertiaryImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onTertiary(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnTertiaryImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onTertiary(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onTertiary?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onTertiary != null) {
-      return onTertiary(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onTertiary(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onTertiary?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onTertiary != null) {
-      return onTertiary(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnTertiary implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnTertiary(final Color? color) =
-      _$UpdateColorEventOnTertiaryImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventTertiaryContainerImpl
-    implements _UpdateColorEventTertiaryContainer {
-  const _$UpdateColorEventTertiaryContainerImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.tertiaryContainer(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventTertiaryContainerImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return tertiaryContainer(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return tertiaryContainer?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (tertiaryContainer != null) {
-      return tertiaryContainer(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return tertiaryContainer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return tertiaryContainer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (tertiaryContainer != null) {
-      return tertiaryContainer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventTertiaryContainer
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventTertiaryContainer(final Color? color) =
-      _$UpdateColorEventTertiaryContainerImpl;
 
   Color? get color;
 }
@@ -4959,32 +2540,16 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -4996,32 +2561,16 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -5033,32 +2582,16 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -5074,43 +2607,18 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -5124,39 +2632,18 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -5170,36 +2657,18 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -5217,880 +2686,6 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
 abstract class _UpdateColorEventError implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventError(final Color? color) =
       _$UpdateColorEventErrorImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnErrorImpl implements _UpdateColorEventOnError {
-  const _$UpdateColorEventOnErrorImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onError(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnErrorImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onError(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onError?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onError != null) {
-      return onError(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onError != null) {
-      return onError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnError implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnError(final Color? color) =
-      _$UpdateColorEventOnErrorImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventErrorContainerImpl
-    implements _UpdateColorEventErrorContainer {
-  const _$UpdateColorEventErrorContainerImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.errorContainer(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventErrorContainerImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return errorContainer(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return errorContainer?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (errorContainer != null) {
-      return errorContainer(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return errorContainer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return errorContainer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (errorContainer != null) {
-      return errorContainer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventErrorContainer
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventErrorContainer(final Color? color) =
-      _$UpdateColorEventErrorContainerImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnErrorContainerImpl
-    implements _UpdateColorEventOnErrorContainer {
-  const _$UpdateColorEventOnErrorContainerImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onErrorContainer(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnErrorContainerImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onErrorContainer(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onErrorContainer?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onErrorContainer != null) {
-      return onErrorContainer(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onErrorContainer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onErrorContainer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onErrorContainer != null) {
-      return onErrorContainer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnErrorContainer
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnErrorContainer(final Color? color) =
-      _$UpdateColorEventOnErrorContainerImpl;
 
   Color? get color;
 }
@@ -6123,32 +2718,16 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -6160,32 +2739,16 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -6197,32 +2760,16 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -6238,43 +2785,18 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -6288,39 +2810,18 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -6334,36 +2835,18 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -6381,298 +2864,6 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
 abstract class _UpdateColorEventOutline implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOutline(final Color? color) =
       _$UpdateColorEventOutlineImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOutlineVariantImpl
-    implements _UpdateColorEventOutlineVariant {
-  const _$UpdateColorEventOutlineVariantImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.outlineVariant(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOutlineVariantImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return outlineVariant(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return outlineVariant?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (outlineVariant != null) {
-      return outlineVariant(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return outlineVariant(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return outlineVariant?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (outlineVariant != null) {
-      return outlineVariant(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOutlineVariant
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOutlineVariant(final Color? color) =
-      _$UpdateColorEventOutlineVariantImpl;
 
   Color? get color;
 }
@@ -6705,32 +2896,16 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -6742,32 +2917,16 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -6779,32 +2938,16 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -6820,43 +2963,18 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -6870,39 +2988,18 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -6916,36 +3013,18 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -6996,32 +3075,16 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -7033,32 +3096,16 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -7070,32 +3117,16 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -7111,43 +3142,18 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -7161,39 +3167,18 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7207,36 +3192,18 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7286,32 +3253,16 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -7323,32 +3274,16 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -7360,32 +3295,16 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -7401,43 +3320,18 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -7451,39 +3345,18 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7497,36 +3370,18 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7576,32 +3431,16 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -7613,32 +3452,16 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -7650,32 +3473,16 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -7691,43 +3498,18 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -7741,39 +3523,18 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7787,36 +3548,18 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -7834,1753 +3577,6 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
 abstract class _UpdateColorEventOnSurface implements UpdateColorSchemeEvent {
   const factory _UpdateColorEventOnSurface(final Color? color) =
       _$UpdateColorEventOnSurfaceImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventSurfaceVariantImpl
-    implements _UpdateColorEventSurfaceVariant {
-  const _$UpdateColorEventSurfaceVariantImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.surfaceVariant(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventSurfaceVariantImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return surfaceVariant(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return surfaceVariant?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (surfaceVariant != null) {
-      return surfaceVariant(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return surfaceVariant(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return surfaceVariant?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (surfaceVariant != null) {
-      return surfaceVariant(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventSurfaceVariant
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventSurfaceVariant(final Color? color) =
-      _$UpdateColorEventSurfaceVariantImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventOnSurfaceVariantImpl
-    implements _UpdateColorEventOnSurfaceVariant {
-  const _$UpdateColorEventOnSurfaceVariantImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.onSurfaceVariant(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventOnSurfaceVariantImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return onSurfaceVariant(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return onSurfaceVariant?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onSurfaceVariant != null) {
-      return onSurfaceVariant(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return onSurfaceVariant(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return onSurfaceVariant?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (onSurfaceVariant != null) {
-      return onSurfaceVariant(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventOnSurfaceVariant
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventOnSurfaceVariant(final Color? color) =
-      _$UpdateColorEventOnSurfaceVariantImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventInverseSurfaceImpl
-    implements _UpdateColorEventInverseSurface {
-  const _$UpdateColorEventInverseSurfaceImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.inverseSurface(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventInverseSurfaceImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return inverseSurface(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return inverseSurface?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (inverseSurface != null) {
-      return inverseSurface(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return inverseSurface(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return inverseSurface?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (inverseSurface != null) {
-      return inverseSurface(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventInverseSurface
-    implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventInverseSurface(final Color? color) =
-      _$UpdateColorEventInverseSurfaceImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventShadowImpl implements _UpdateColorEventShadow {
-  const _$UpdateColorEventShadowImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.shadow(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventShadowImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return shadow(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return shadow?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (shadow != null) {
-      return shadow(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return shadow(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return shadow?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (shadow != null) {
-      return shadow(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventShadow implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventShadow(final Color? color) =
-      _$UpdateColorEventShadowImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventScrimImpl implements _UpdateColorEventScrim {
-  const _$UpdateColorEventScrimImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.scrim(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventScrimImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return scrim(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return scrim?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (scrim != null) {
-      return scrim(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return scrim(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return scrim?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (scrim != null) {
-      return scrim(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventScrim implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventScrim(final Color? color) =
-      _$UpdateColorEventScrimImpl;
-
-  Color? get color;
-}
-
-/// @nodoc
-
-class _$UpdateColorEventSurfaceTintImpl
-    implements _UpdateColorEventSurfaceTint {
-  const _$UpdateColorEventSurfaceTintImpl(this.color);
-
-  @override
-  final Color? color;
-
-  @override
-  String toString() {
-    return 'UpdateColorSchemeEvent.surfaceTint(color: $color)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateColorEventSurfaceTintImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
-    required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
-    required TResult Function(Color? color) secondaryContainer,
-    required TResult Function(Color? color) onSecondaryContainer,
-    required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
-    required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
-    required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
-    required TResult Function(Color? color) background,
-    required TResult Function(Color? color) onBackground,
-    required TResult Function(Color? color) surface,
-    required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
-    required TResult Function(List<Color> colors) gradientTab,
-    required TResult Function(Color? color) launchAdaptiveIconColor,
-    required TResult Function(Color? color) launchSplashBackgroundColor,
-  }) {
-    return surfaceTint(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
-    TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
-    TResult? Function(Color? color)? secondaryContainer,
-    TResult? Function(Color? color)? onSecondaryContainer,
-    TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
-    TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
-    TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
-    TResult? Function(Color? color)? background,
-    TResult? Function(Color? color)? onBackground,
-    TResult? Function(Color? color)? surface,
-    TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
-    TResult? Function(List<Color> colors)? gradientTab,
-    TResult? Function(Color? color)? launchAdaptiveIconColor,
-    TResult? Function(Color? color)? launchSplashBackgroundColor,
-  }) {
-    return surfaceTint?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
-    TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
-    TResult Function(Color? color)? secondaryContainer,
-    TResult Function(Color? color)? onSecondaryContainer,
-    TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
-    TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
-    TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
-    TResult Function(Color? color)? background,
-    TResult Function(Color? color)? onBackground,
-    TResult Function(Color? color)? surface,
-    TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
-    TResult Function(List<Color> colors)? gradientTab,
-    TResult Function(Color? color)? launchAdaptiveIconColor,
-    TResult Function(Color? color)? launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (surfaceTint != null) {
-      return surfaceTint(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
-    required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
-    required TResult Function(_UpdateColorEventSecondaryContainer value)
-        secondaryContainer,
-    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
-        onSecondaryContainer,
-    required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
-    required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
-    required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
-    required TResult Function(_UpdateColorEventBackground value) background,
-    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
-    required TResult Function(_UpdateColorEventSurface value) surface,
-    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
-    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
-    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
-        launchAdaptiveIconColor,
-    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
-        launchSplashBackgroundColor,
-  }) {
-    return surfaceTint(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult? Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
-    TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult? Function(_UpdateColorEventBackground value)? background,
-    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult? Function(_UpdateColorEventSurface value)? surface,
-    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-  }) {
-    return surfaceTint?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
-    TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
-    TResult Function(_UpdateColorEventSecondaryContainer value)?
-        secondaryContainer,
-    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
-        onSecondaryContainer,
-    TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
-    TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
-    TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
-    TResult Function(_UpdateColorEventBackground value)? background,
-    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
-    TResult Function(_UpdateColorEventSurface value)? surface,
-    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
-    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
-    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
-        launchAdaptiveIconColor,
-    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
-        launchSplashBackgroundColor,
-    required TResult orElse(),
-  }) {
-    if (surfaceTint != null) {
-      return surfaceTint(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateColorEventSurfaceTint implements UpdateColorSchemeEvent {
-  const factory _UpdateColorEventSurfaceTint(final Color? color) =
-      _$UpdateColorEventSurfaceTintImpl;
 
   Color? get color;
 }
@@ -9621,32 +3617,16 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -9658,32 +3638,16 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -9695,32 +3659,16 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -9736,43 +3684,18 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -9786,39 +3709,18 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -9832,36 +3734,18 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -9912,32 +3796,16 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -9949,32 +3817,16 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -9986,32 +3838,16 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -10027,43 +3863,18 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -10077,39 +3888,18 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -10123,36 +3913,18 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -10204,32 +3976,16 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
-    required TResult Function(Color? color) onPrimary,
-    required TResult Function(Color? color) primaryContainer,
-    required TResult Function(Color? color) onPrimaryContainer,
     required TResult Function(Color? color) secondary,
-    required TResult Function(Color? color) onSecondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
     required TResult Function(Color? color) tertiary,
-    required TResult Function(Color? color) onTertiary,
-    required TResult Function(Color? color) tertiaryContainer,
     required TResult Function(Color? color) error,
-    required TResult Function(Color? color) onError,
-    required TResult Function(Color? color) errorContainer,
-    required TResult Function(Color? color) onErrorContainer,
     required TResult Function(Color? color) outline,
-    required TResult Function(Color? color) outlineVariant,
     required TResult Function(Color? color) background,
     required TResult Function(Color? color) onBackground,
     required TResult Function(Color? color) surface,
     required TResult Function(Color? color) onSurface,
-    required TResult Function(Color? color) surfaceVariant,
-    required TResult Function(Color? color) onSurfaceVariant,
-    required TResult Function(Color? color) inverseSurface,
-    required TResult Function(Color? color) shadow,
-    required TResult Function(Color? color) scrim,
-    required TResult Function(Color? color) surfaceTint,
     required TResult Function(List<Color> colors) gradientTab,
     required TResult Function(Color? color) launchAdaptiveIconColor,
     required TResult Function(Color? color) launchSplashBackgroundColor,
@@ -10241,32 +3997,16 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
-    TResult? Function(Color? color)? onPrimary,
-    TResult? Function(Color? color)? primaryContainer,
-    TResult? Function(Color? color)? onPrimaryContainer,
     TResult? Function(Color? color)? secondary,
-    TResult? Function(Color? color)? onSecondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
     TResult? Function(Color? color)? tertiary,
-    TResult? Function(Color? color)? onTertiary,
-    TResult? Function(Color? color)? tertiaryContainer,
     TResult? Function(Color? color)? error,
-    TResult? Function(Color? color)? onError,
-    TResult? Function(Color? color)? errorContainer,
-    TResult? Function(Color? color)? onErrorContainer,
     TResult? Function(Color? color)? outline,
-    TResult? Function(Color? color)? outlineVariant,
     TResult? Function(Color? color)? background,
     TResult? Function(Color? color)? onBackground,
     TResult? Function(Color? color)? surface,
     TResult? Function(Color? color)? onSurface,
-    TResult? Function(Color? color)? surfaceVariant,
-    TResult? Function(Color? color)? onSurfaceVariant,
-    TResult? Function(Color? color)? inverseSurface,
-    TResult? Function(Color? color)? shadow,
-    TResult? Function(Color? color)? scrim,
-    TResult? Function(Color? color)? surfaceTint,
     TResult? Function(List<Color> colors)? gradientTab,
     TResult? Function(Color? color)? launchAdaptiveIconColor,
     TResult? Function(Color? color)? launchSplashBackgroundColor,
@@ -10278,32 +4018,16 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
-    TResult Function(Color? color)? onPrimary,
-    TResult Function(Color? color)? primaryContainer,
-    TResult Function(Color? color)? onPrimaryContainer,
     TResult Function(Color? color)? secondary,
-    TResult Function(Color? color)? onSecondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
     TResult Function(Color? color)? tertiary,
-    TResult Function(Color? color)? onTertiary,
-    TResult Function(Color? color)? tertiaryContainer,
     TResult Function(Color? color)? error,
-    TResult Function(Color? color)? onError,
-    TResult Function(Color? color)? errorContainer,
-    TResult Function(Color? color)? onErrorContainer,
     TResult Function(Color? color)? outline,
-    TResult Function(Color? color)? outlineVariant,
     TResult Function(Color? color)? background,
     TResult Function(Color? color)? onBackground,
     TResult Function(Color? color)? surface,
     TResult Function(Color? color)? onSurface,
-    TResult Function(Color? color)? surfaceVariant,
-    TResult Function(Color? color)? onSurfaceVariant,
-    TResult Function(Color? color)? inverseSurface,
-    TResult Function(Color? color)? shadow,
-    TResult Function(Color? color)? scrim,
-    TResult Function(Color? color)? surfaceTint,
     TResult Function(List<Color> colors)? gradientTab,
     TResult Function(Color? color)? launchAdaptiveIconColor,
     TResult Function(Color? color)? launchSplashBackgroundColor,
@@ -10319,43 +4043,18 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
-    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
-    required TResult Function(_UpdateColorEventPrimaryContainer value)
-        primaryContainer,
-    required TResult Function(_UpdateColorEventOnPrimaryContainer value)
-        onPrimaryContainer,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
-    required TResult Function(_UpdateColorEventOnSecondary value) onSecondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
     required TResult Function(_UpdateColorEventOnSecondaryContainer value)
         onSecondaryContainer,
     required TResult Function(_UpdateColorEventTertiary value) tertiary,
-    required TResult Function(_UpdateColorEventOnTertiary value) onTertiary,
-    required TResult Function(_UpdateColorEventTertiaryContainer value)
-        tertiaryContainer,
     required TResult Function(_UpdateColorEventError value) error,
-    required TResult Function(_UpdateColorEventOnError value) onError,
-    required TResult Function(_UpdateColorEventErrorContainer value)
-        errorContainer,
-    required TResult Function(_UpdateColorEventOnErrorContainer value)
-        onErrorContainer,
     required TResult Function(_UpdateColorEventOutline value) outline,
-    required TResult Function(_UpdateColorEventOutlineVariant value)
-        outlineVariant,
     required TResult Function(_UpdateColorEventBackground value) background,
     required TResult Function(_UpdateColorEventOnBackground value) onBackground,
     required TResult Function(_UpdateColorEventSurface value) surface,
     required TResult Function(_UpdateColorEventOnSurface value) onSurface,
-    required TResult Function(_UpdateColorEventSurfaceVariant value)
-        surfaceVariant,
-    required TResult Function(_UpdateColorEventOnSurfaceVariant value)
-        onSurfaceVariant,
-    required TResult Function(_UpdateColorEventInverseSurface value)
-        inverseSurface,
-    required TResult Function(_UpdateColorEventShadow value) shadow,
-    required TResult Function(_UpdateColorEventScrim value) scrim,
-    required TResult Function(_UpdateColorEventSurfaceTint value) surfaceTint,
     required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
     required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
         launchAdaptiveIconColor,
@@ -10369,39 +4068,18 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
-    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult? Function(_UpdateColorEventPrimaryContainer value)?
-        primaryContainer,
-    TResult? Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
-    TResult? Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult? Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult? Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult? Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult? Function(_UpdateColorEventError value)? error,
-    TResult? Function(_UpdateColorEventOnError value)? onError,
-    TResult? Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult? Function(_UpdateColorEventOnErrorContainer value)?
-        onErrorContainer,
     TResult? Function(_UpdateColorEventOutline value)? outline,
-    TResult? Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult? Function(_UpdateColorEventBackground value)? background,
     TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult? Function(_UpdateColorEventSurface value)? surface,
     TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult? Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult? Function(_UpdateColorEventOnSurfaceVariant value)?
-        onSurfaceVariant,
-    TResult? Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult? Function(_UpdateColorEventShadow value)? shadow,
-    TResult? Function(_UpdateColorEventScrim value)? scrim,
-    TResult? Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,
@@ -10415,36 +4093,18 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
-    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
-    TResult Function(_UpdateColorEventPrimaryContainer value)? primaryContainer,
-    TResult Function(_UpdateColorEventOnPrimaryContainer value)?
-        onPrimaryContainer,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
-    TResult Function(_UpdateColorEventOnSecondary value)? onSecondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
     TResult Function(_UpdateColorEventOnSecondaryContainer value)?
         onSecondaryContainer,
     TResult Function(_UpdateColorEventTertiary value)? tertiary,
-    TResult Function(_UpdateColorEventOnTertiary value)? onTertiary,
-    TResult Function(_UpdateColorEventTertiaryContainer value)?
-        tertiaryContainer,
     TResult Function(_UpdateColorEventError value)? error,
-    TResult Function(_UpdateColorEventOnError value)? onError,
-    TResult Function(_UpdateColorEventErrorContainer value)? errorContainer,
-    TResult Function(_UpdateColorEventOnErrorContainer value)? onErrorContainer,
     TResult Function(_UpdateColorEventOutline value)? outline,
-    TResult Function(_UpdateColorEventOutlineVariant value)? outlineVariant,
     TResult Function(_UpdateColorEventBackground value)? background,
     TResult Function(_UpdateColorEventOnBackground value)? onBackground,
     TResult Function(_UpdateColorEventSurface value)? surface,
     TResult Function(_UpdateColorEventOnSurface value)? onSurface,
-    TResult Function(_UpdateColorEventSurfaceVariant value)? surfaceVariant,
-    TResult Function(_UpdateColorEventOnSurfaceVariant value)? onSurfaceVariant,
-    TResult Function(_UpdateColorEventInverseSurface value)? inverseSurface,
-    TResult Function(_UpdateColorEventShadow value)? shadow,
-    TResult Function(_UpdateColorEventScrim value)? scrim,
-    TResult Function(_UpdateColorEventSurfaceTint value)? surfaceTint,
     TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
     TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
         launchAdaptiveIconColor,

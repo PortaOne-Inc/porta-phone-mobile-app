@@ -11,31 +11,16 @@ class ColorSchemeModel with _$ColorSchemeModel {
   const factory ColorSchemeModel({
     Color? primary,
     Color? onPrimary,
-    Color? primaryContainer,
-    Color? onPrimaryContainer,
     Color? secondary,
-    Color? onSecondary,
     Color? secondaryContainer,
     Color? onSecondaryContainer,
     Color? tertiary,
-    Color? onTertiary,
-    Color? tertiaryContainer,
     Color? error,
-    Color? onError,
-    Color? errorContainer,
-    Color? onErrorContainer,
     Color? outline,
-    Color? outlineVariant,
     Color? background,
     Color? onBackground,
     Color? surface,
     Color? onSurface,
-    Color? surfaceVariant,
-    Color? onSurfaceVariant,
-    Color? inverseSurface,
-    Color? shadow,
-    Color? scrim,
-    Color? surfaceTint,
     List<Color>? gradientTabColor,
     LaunchModel? launch,
   }) = _ColorModel;
@@ -58,21 +43,12 @@ class ColorSchemeModel with _$ColorSchemeModel {
   bool get areAllFieldsFilled {
     return primary != null &&
         onPrimary != null &&
-        primaryContainer != null &&
-        onPrimaryContainer != null &&
         secondary != null &&
-        onSecondary != null &&
         secondaryContainer != null &&
         onSecondaryContainer != null &&
         tertiary != null &&
-        onTertiary != null &&
-        tertiaryContainer != null &&
         error != null &&
-        onError != null &&
-        errorContainer != null &&
-        onErrorContainer != null &&
         outline != null &&
-        outlineVariant != null &&
         background != null &&
         onBackground != null &&
         surface != null &&

@@ -134,25 +134,10 @@ class _PreloadPickerState extends State<PreloadPicker> {
         themeColorScheme.onPrimary,
         ColorSchemeKeys.onPrimaryContainer,
       ),
-      primaryContainer: _useColorByExclude(
-        widget.current.primaryContainer,
-        themeColorScheme.primaryContainer,
-        ColorSchemeKeys.primaryContainer,
-      ),
-      onPrimaryContainer: _useColorByExclude(
-        widget.current.onPrimaryContainer,
-        themeColorScheme.onPrimaryContainer,
-        ColorSchemeKeys.onPrimaryContainer,
-      ),
       secondary: _useColorByExclude(
         widget.current.secondary,
         themeColorScheme.secondary,
         ColorSchemeKeys.secondary,
-      ),
-      onSecondary: _useColorByExclude(
-        widget.current.onSecondary,
-        themeColorScheme.onSecondary,
-        ColorSchemeKeys.onSecondary,
       ),
       secondaryContainer: _useColorByExclude(
         widget.current.secondaryContainer,
@@ -169,45 +154,15 @@ class _PreloadPickerState extends State<PreloadPicker> {
         themeColorScheme.tertiary,
         ColorSchemeKeys.tertiary,
       ),
-      onTertiary: _useColorByExclude(
-        widget.current.onTertiary,
-        themeColorScheme.onTertiary,
-        ColorSchemeKeys.onTertiary,
-      ),
-      tertiaryContainer: _useColorByExclude(
-        widget.current.tertiaryContainer,
-        themeColorScheme.tertiaryContainer,
-        ColorSchemeKeys.tertiaryContainer,
-      ),
       error: _useColorByExclude(
         widget.current.error,
         themeColorScheme.error,
         ColorSchemeKeys.error,
       ),
-      onError: _useColorByExclude(
-        widget.current.onError,
-        themeColorScheme.onError,
-        ColorSchemeKeys.onError,
-      ),
-      errorContainer: _useColorByExclude(
-        widget.current.errorContainer,
-        themeColorScheme.errorContainer,
-        ColorSchemeKeys.error,
-      ),
-      onErrorContainer: _useColorByExclude(
-        widget.current.onErrorContainer,
-        themeColorScheme.onErrorContainer,
-        ColorSchemeKeys.onErrorContainer,
-      ),
       outline: _useColorByExclude(
         widget.current.outline,
         themeColorScheme.outline,
         ColorSchemeKeys.outline,
-      ),
-      outlineVariant: _useColorByExclude(
-        widget.current.outlineVariant,
-        themeColorScheme.outlineVariant,
-        ColorSchemeKeys.outlineVariant,
       ),
       background: _useColorByExclude(
         widget.current.background,
@@ -228,36 +183,6 @@ class _PreloadPickerState extends State<PreloadPicker> {
         widget.current.onSurface,
         themeColorScheme.onSurface,
         ColorSchemeKeys.onSurface,
-      ),
-      surfaceVariant: _useColorByExclude(
-        widget.current.surfaceVariant,
-        themeColorScheme.surfaceVariant,
-        ColorSchemeKeys.surfaceVariant,
-      ),
-      onSurfaceVariant: _useColorByExclude(
-        widget.current.onSurfaceVariant,
-        themeColorScheme.onSurfaceVariant,
-        ColorSchemeKeys.onSurfaceVariant,
-      ),
-      inverseSurface: _useColorByExclude(
-        widget.current.inverseSurface,
-        themeColorScheme.inverseSurface,
-        ColorSchemeKeys.inverseSurface,
-      ),
-      shadow: _useColorByExclude(
-        widget.current.shadow,
-        themeColorScheme.shadow,
-        ColorSchemeKeys.shadow,
-      ),
-      scrim: _useColorByExclude(
-        widget.current.scrim,
-        themeColorScheme.scrim,
-        ColorSchemeKeys.scrim,
-      ),
-      surfaceTint: _useColorByExclude(
-        widget.current.surfaceTint,
-        themeColorScheme.surfaceTint,
-        ColorSchemeKeys.surfaceTint,
       ),
     );
     return scheme;
