@@ -8,7 +8,9 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 
+import '../models/models.dart';
 import '../bloc/application_collection_cubit.dart';
 import '../widgets/widgets.dart';
 
@@ -28,13 +30,18 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
       listener: (BuildContext context, ApplicationCollectionState state) {},
       builder: (ctx, state) {
         return Scaffold(
-          appBar: BaseToolBar(
+          appBar: AppToolbar(
             isVisibleProgress: state.isProgress,
-            child: ApplicationCollectionToolbar(
-              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-              onLogout: () => _onLogout(context),
-              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            ),
+            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+            name: context.l10n.feature_applications_title,
+            right: [
+              Menu<ApplicationDetailProfile>(
+                iconData: Icons.account_circle,
+                items: ApplicationDetailProfile.values,
+                callback: _onProfile,
+              ),
+            ],
           ),
           body: Stack(
             children: [
@@ -48,13 +55,13 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                       ? ItemOfListButton(
                           name: 'New application',
                           description: 'Create an application for initial configuration and style binding',
-                          onTab: _createApplication,
+                          onTab: _onCreateApplication,
                         )
                       : ApplicationPreviewItem(
                           application: state.applications[index - 1],
                           onDelete: BlocProvider.of<ApplicationCollectionCubit>(context).deleteApplication,
                           onEdit: _onEditApplication,
-                          onOpen: _openApplication,
+                          onOpen: _onOpenApplication,
                           incrementVersion: _incrementApplicationVersion,
                         ),
                   itemCount: state.applications.length + 1,
@@ -79,17 +86,13 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
     );
   }
 
-  void _onLogout(BuildContext context) {
-    BlocProvider.of<CommonBloc>(context).logout();
-  }
-
   void _onEditApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
       AppRoutInfo.keyApplicationId: applicationModel.id!,
     });
   }
 
-  void _createApplication() {
+  void _onCreateApplication() {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
   }
 
@@ -97,17 +100,22 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
     BlocProvider.of<ApplicationCollectionCubit>(context).incrementApplicationVersion(applicationModel);
   }
 
-  void _openApplication(ApplicationModel applicationModel) {
-    GoRouter.of(context).pushNamed(
+  void _onOpenApplication(ApplicationModel applicationModel) {
+    GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetails.name,
+      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationModel.id!},
       extra: applicationModel,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationModel.id!,
-      },
     );
   }
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
+  }
+
+  void _onProfile(BuildContext context, ApplicationDetailProfile profile) {
+    switch (profile) {
+      case ApplicationDetailProfile.logOut:
+        BlocProvider.of<CommonBloc>(context).logout();
+    }
   }
 }

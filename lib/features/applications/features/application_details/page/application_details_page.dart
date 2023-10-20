@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/applications/features/application_details/page/application_themes_screen.dart';
+import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
-import 'package:webtrit_configurator/core/core.dart';
 
-import '../../../../common/bloc/common_bloc.dart';
 import '../bloc/application_details_cubit.dart';
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 import 'application_details_screen.dart';
@@ -20,23 +21,37 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
     super.key,
   });
 
+  ApplicationDetailsCubit getBloc(BuildContext context) => BlocProvider.of<ApplicationDetailsCubit>(context);
+
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
         return Scaffold(
-          appBar: BaseToolBar(
-            isVisibleProgress: state.isProgress,
-            child: ThemesToolbar(
-              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-              onSwitchedLanguage: () => _onLanguageChanged(context),
-              onNewTheme: () => _onNewTheme(context, state.application!.id!),
-              onLogout: () => _onLogout(context),
-              onInfo: () => _onInfo(context),
-              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            ),
+          appBar: AppToolbar(
+            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+            name: context.l10n.feature_application_details_Toolbar_title,
+            left: [
+              Menu<ApplicationDetailFile>(
+                name: 'File',
+                items: ApplicationDetailFile.values,
+                callback: _onFileListener,
+              ),
+              Menu<ApplicationDetailNavigate>(
+                name: 'Navigate',
+                items: ApplicationDetailNavigate.values,
+                callback: _onNavigateListener,
+              )
+            ],
+            right: [
+              Menu<ApplicationDetailProfile>(
+                iconData: Icons.account_circle,
+                items: ApplicationDetailProfile.values,
+                callback: _onProfile,
+              ),
+            ],
           ),
           body: FlexibleBinaryLayout(
             orientation: ResizableOrientation.horizontal,
@@ -84,9 +99,10 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
                           themes: state.themes,
                           crossAxisCount: dimension < 500 ? 1 : 2,
                           onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                          onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
-                          onMakeDefault: bloc.tryMakeThemeAsDefault,
-                          onDelete: bloc.tryDeleteTheme,
+                          onOpenBranding: (String themeId) =>
+                              _openTheme(context, getBloc(context).applicationId, themeId),
+                          onMakeDefault: getBloc(context).tryMakeThemeAsDefault,
+                          onDelete: getBloc(context).tryDeleteTheme,
                           onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
                         ),
                       ),
@@ -108,10 +124,37 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
     if (state.status == ApplicationDetailsStateStatus.error) {
       showFailureMessage(context, state.error!.message);
     }
+
+    if (state.status == ApplicationDetailsStateStatus.deleted) {
+      GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+    }
   }
 
-  void _onLanguageChanged(BuildContext context) {
-    showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
+  void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
+    switch (applicationDetailFile) {
+      case ApplicationDetailFile.newApplication:
+        GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
+      case ApplicationDetailFile.editApplication:
+        GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
+          AppRoutInfo.keyApplicationId: getBloc(context).applicationId,
+        });
+      case ApplicationDetailFile.deleteApplication:
+        getBloc(context).tryDeleteApplication();
+    }
+  }
+
+  void _onNavigateListener(BuildContext context, ApplicationDetailNavigate navigate) {
+    switch (navigate) {
+      case ApplicationDetailNavigate.application:
+        GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+    }
+  }
+
+  void _onProfile(BuildContext context, ApplicationDetailProfile profile) {
+    switch (profile) {
+      case ApplicationDetailProfile.logOut:
+        BlocProvider.of<CommonBloc>(context).logout();
+    }
   }
 
   void _onNewTheme(BuildContext context, String applicationId) {
@@ -120,20 +163,6 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationId,
       },
-    );
-  }
-
-  void _onLogout(BuildContext context) {
-    BlocProvider.of<CommonBloc>(context).logout();
-  }
-
-  void _onInfo(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => InfoDialog(
-        title: context.l10n.feature_theme_Tooltip_description_title,
-        message: context.l10n.feature_theme_Tooltip_description_message,
-      ),
     );
   }
 

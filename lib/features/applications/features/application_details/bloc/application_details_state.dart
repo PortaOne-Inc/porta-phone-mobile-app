@@ -4,6 +4,7 @@ enum ApplicationDetailsStateStatus {
   initial,
   progress,
   error,
+  deleted,
   success,
 }
 
