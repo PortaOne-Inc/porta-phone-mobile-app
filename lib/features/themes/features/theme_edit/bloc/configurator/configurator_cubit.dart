@@ -67,6 +67,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     return event.map(
       primary: (value) async =>
           _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primary: color), emit)),
+      onPrimary: (value) async =>
+          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onPrimary: color), emit)),
       secondary: (value) async =>
           _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(secondary: color), emit)),
       tertiary: (value) async =>

@@ -28,6 +28,8 @@ class FocusScreenEvent with _$FocusScreenEvent implements ConfiguratorEvent {
 class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements ConfiguratorEvent {
   const factory UpdateColorSchemeEvent.primary(Color? color) = _UpdateColorEventPrimary;
 
+  const factory UpdateColorSchemeEvent.onPrimary(Color? color) = _UpdateColorEventOnPrimary;
+
   const factory UpdateColorSchemeEvent.secondary(Color? color) = _UpdateColorEventSecondary;
 
   const factory UpdateColorSchemeEvent.secondaryContainer(Color? color) = _UpdateColorEventSecondaryContainer;
