@@ -1497,6 +1497,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -1515,6 +1516,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -1533,6 +1535,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -1552,6 +1555,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -1574,6 +1578,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -1596,6 +1601,7 @@ mixin _$UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -1646,6 +1652,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -1667,6 +1674,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -1688,6 +1696,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -1713,6 +1722,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -1738,6 +1748,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -1763,6 +1774,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -1798,6 +1810,190 @@ abstract class _UpdateColorEventPrimary implements UpdateColorSchemeEvent {
 
 /// @nodoc
 
+class _$UpdateColorEventOnPrimaryImpl implements _UpdateColorEventOnPrimary {
+  const _$UpdateColorEventOnPrimaryImpl(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.onPrimary(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateColorEventOnPrimaryImpl &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
+    required TResult Function(Color? color) secondary,
+    required TResult Function(Color? color) secondaryContainer,
+    required TResult Function(Color? color) onSecondaryContainer,
+    required TResult Function(Color? color) tertiary,
+    required TResult Function(Color? color) error,
+    required TResult Function(Color? color) outline,
+    required TResult Function(Color? color) background,
+    required TResult Function(Color? color) onBackground,
+    required TResult Function(Color? color) surface,
+    required TResult Function(Color? color) onSurface,
+    required TResult Function(List<Color> colors) gradientTab,
+    required TResult Function(Color? color) launchAdaptiveIconColor,
+    required TResult Function(Color? color) launchSplashBackgroundColor,
+  }) {
+    return onPrimary(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
+    TResult? Function(Color? color)? secondary,
+    TResult? Function(Color? color)? secondaryContainer,
+    TResult? Function(Color? color)? onSecondaryContainer,
+    TResult? Function(Color? color)? tertiary,
+    TResult? Function(Color? color)? error,
+    TResult? Function(Color? color)? outline,
+    TResult? Function(Color? color)? background,
+    TResult? Function(Color? color)? onBackground,
+    TResult? Function(Color? color)? surface,
+    TResult? Function(Color? color)? onSurface,
+    TResult? Function(List<Color> colors)? gradientTab,
+    TResult? Function(Color? color)? launchAdaptiveIconColor,
+    TResult? Function(Color? color)? launchSplashBackgroundColor,
+  }) {
+    return onPrimary?.call(color);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
+    TResult Function(Color? color)? secondary,
+    TResult Function(Color? color)? secondaryContainer,
+    TResult Function(Color? color)? onSecondaryContainer,
+    TResult Function(Color? color)? tertiary,
+    TResult Function(Color? color)? error,
+    TResult Function(Color? color)? outline,
+    TResult Function(Color? color)? background,
+    TResult Function(Color? color)? onBackground,
+    TResult Function(Color? color)? surface,
+    TResult Function(Color? color)? onSurface,
+    TResult Function(List<Color> colors)? gradientTab,
+    TResult Function(Color? color)? launchAdaptiveIconColor,
+    TResult Function(Color? color)? launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (onPrimary != null) {
+      return onPrimary(color);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
+    required TResult Function(_UpdateColorEventSecondary value) secondary,
+    required TResult Function(_UpdateColorEventSecondaryContainer value)
+        secondaryContainer,
+    required TResult Function(_UpdateColorEventOnSecondaryContainer value)
+        onSecondaryContainer,
+    required TResult Function(_UpdateColorEventTertiary value) tertiary,
+    required TResult Function(_UpdateColorEventError value) error,
+    required TResult Function(_UpdateColorEventOutline value) outline,
+    required TResult Function(_UpdateColorEventBackground value) background,
+    required TResult Function(_UpdateColorEventOnBackground value) onBackground,
+    required TResult Function(_UpdateColorEventSurface value) surface,
+    required TResult Function(_UpdateColorEventOnSurface value) onSurface,
+    required TResult Function(_UpdateColorEventGradientTab value) gradientTab,
+    required TResult Function(_UpdateColorLaunchAdaptiveIcon value)
+        launchAdaptiveIconColor,
+    required TResult Function(_UpdateColorEventlaunchSplashBackground value)
+        launchSplashBackgroundColor,
+  }) {
+    return onPrimary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult? Function(_UpdateColorEventSecondary value)? secondary,
+    TResult? Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult? Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult? Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult? Function(_UpdateColorEventError value)? error,
+    TResult? Function(_UpdateColorEventOutline value)? outline,
+    TResult? Function(_UpdateColorEventBackground value)? background,
+    TResult? Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult? Function(_UpdateColorEventSurface value)? surface,
+    TResult? Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult? Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult? Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult? Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+  }) {
+    return onPrimary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
+    TResult Function(_UpdateColorEventSecondary value)? secondary,
+    TResult Function(_UpdateColorEventSecondaryContainer value)?
+        secondaryContainer,
+    TResult Function(_UpdateColorEventOnSecondaryContainer value)?
+        onSecondaryContainer,
+    TResult Function(_UpdateColorEventTertiary value)? tertiary,
+    TResult Function(_UpdateColorEventError value)? error,
+    TResult Function(_UpdateColorEventOutline value)? outline,
+    TResult Function(_UpdateColorEventBackground value)? background,
+    TResult Function(_UpdateColorEventOnBackground value)? onBackground,
+    TResult Function(_UpdateColorEventSurface value)? surface,
+    TResult Function(_UpdateColorEventOnSurface value)? onSurface,
+    TResult Function(_UpdateColorEventGradientTab value)? gradientTab,
+    TResult Function(_UpdateColorLaunchAdaptiveIcon value)?
+        launchAdaptiveIconColor,
+    TResult Function(_UpdateColorEventlaunchSplashBackground value)?
+        launchSplashBackgroundColor,
+    required TResult orElse(),
+  }) {
+    if (onPrimary != null) {
+      return onPrimary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateColorEventOnPrimary implements UpdateColorSchemeEvent {
+  const factory _UpdateColorEventOnPrimary(final Color? color) =
+      _$UpdateColorEventOnPrimaryImpl;
+
+  Color? get color;
+}
+
+/// @nodoc
+
 class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   const _$UpdateColorEventSecondaryImpl(this.color);
 
@@ -1824,6 +2020,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -1845,6 +2042,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -1866,6 +2064,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -1891,6 +2090,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -1916,6 +2116,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -1941,6 +2142,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2003,6 +2205,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2024,6 +2227,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2045,6 +2249,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2070,6 +2275,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2095,6 +2301,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2120,6 +2327,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2183,6 +2391,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2204,6 +2413,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2225,6 +2435,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2250,6 +2461,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2275,6 +2487,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2300,6 +2513,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2362,6 +2576,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2383,6 +2598,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2404,6 +2620,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2429,6 +2646,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2454,6 +2672,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2479,6 +2698,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2540,6 +2760,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2561,6 +2782,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2582,6 +2804,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2607,6 +2830,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2632,6 +2856,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2657,6 +2882,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2718,6 +2944,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2739,6 +2966,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2760,6 +2988,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2785,6 +3014,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2810,6 +3040,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2835,6 +3066,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -2896,6 +3128,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -2917,6 +3150,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -2938,6 +3172,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -2963,6 +3198,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -2988,6 +3224,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3013,6 +3250,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3075,6 +3313,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3096,6 +3335,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -3117,6 +3357,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -3142,6 +3383,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -3167,6 +3409,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3192,6 +3435,7 @@ class _$UpdateColorEventOnBackgroundImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3253,6 +3497,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3274,6 +3519,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -3295,6 +3541,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -3320,6 +3567,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -3345,6 +3593,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3370,6 +3619,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3431,6 +3681,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3452,6 +3703,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -3473,6 +3725,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -3498,6 +3751,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -3523,6 +3777,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3548,6 +3803,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3617,6 +3873,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3638,6 +3895,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -3659,6 +3917,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -3684,6 +3943,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -3709,6 +3969,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3734,6 +3995,7 @@ class _$UpdateColorEventGradientTabImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3796,6 +4058,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3817,6 +4080,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -3838,6 +4102,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -3863,6 +4128,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -3888,6 +4154,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3913,6 +4180,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -3976,6 +4244,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Color? color) primary,
+    required TResult Function(Color? color) onPrimary,
     required TResult Function(Color? color) secondary,
     required TResult Function(Color? color) secondaryContainer,
     required TResult Function(Color? color) onSecondaryContainer,
@@ -3997,6 +4266,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Color? color)? primary,
+    TResult? Function(Color? color)? onPrimary,
     TResult? Function(Color? color)? secondary,
     TResult? Function(Color? color)? secondaryContainer,
     TResult? Function(Color? color)? onSecondaryContainer,
@@ -4018,6 +4288,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Color? color)? primary,
+    TResult Function(Color? color)? onPrimary,
     TResult Function(Color? color)? secondary,
     TResult Function(Color? color)? secondaryContainer,
     TResult Function(Color? color)? onSecondaryContainer,
@@ -4043,6 +4314,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorEventPrimary value) primary,
+    required TResult Function(_UpdateColorEventOnPrimary value) onPrimary,
     required TResult Function(_UpdateColorEventSecondary value) secondary,
     required TResult Function(_UpdateColorEventSecondaryContainer value)
         secondaryContainer,
@@ -4068,6 +4340,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorEventPrimary value)? primary,
+    TResult? Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult? Function(_UpdateColorEventSecondary value)? secondary,
     TResult? Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,
@@ -4093,6 +4366,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorEventPrimary value)? primary,
+    TResult Function(_UpdateColorEventOnPrimary value)? onPrimary,
     TResult Function(_UpdateColorEventSecondary value)? secondary,
     TResult Function(_UpdateColorEventSecondaryContainer value)?
         secondaryContainer,

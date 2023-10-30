@@ -148,6 +148,17 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_on_primary,
+                            color: state.theme?.colors?.onPrimary,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onPrimary(color)),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: _marginBetweenComponent),

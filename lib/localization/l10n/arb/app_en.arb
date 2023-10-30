@@ -34,6 +34,7 @@
   "configurator_font_add": "Add font style",
   "configurator_image_resource_onboarding": "Onboarding image",
   "configurator_color_primary": "Primary",
+  "configurator_color_on_primary": "On primary",
   "configurator_color_secondary": "Secondary",
   "configurator_color_secondary_container": "Secondary container",
   "configurator_color_on_secondary_container": "On secondary container",
