@@ -553,7 +553,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         title: Container(
                           margin: const EdgeInsets.only(bottom: 8, top: 8),
                           child: Text(
-                            'Notification icons',
+                            'System icons',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleSmall
@@ -566,8 +566,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           runSpacing: 16,
                           children: [
                             SelectedImage(
-                              name: 'IOS push notification icon',
-                              imageFilter: ImageFilterModel.svg(),
+                              name: 'IOS callkeep notification icon',
+                              imageFilter: ImageFilterModel.png(const Size.square(40)),
                               image: state.theme!.systemAssets.notificationLogo,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
