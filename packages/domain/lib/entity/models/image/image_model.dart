@@ -13,6 +13,7 @@ enum ImageLocation {
   empty,
 }
 
+// TODO: Complicated class, simplify it
 @freezed
 class ImageModel with _$ImageModel {
   const ImageModel._();
@@ -47,10 +48,18 @@ class ImageModel with _$ImageModel {
   bool get isNotAvailable => !isAvailable;
 
   ImageFormat get type {
-    if (formatSVG == extension) {
-      return ImageFormat.vector;
+    if (extension != null) {
+      if (formatSVG == extension) {
+        return ImageFormat.vector;
+      } else {
+        return ImageFormat.raster;
+      }
     } else {
-      return ImageFormat.raster;
+      if ((url ?? '').contains(formatSVG)) {
+        return ImageFormat.vector;
+      } else {
+        return ImageFormat.raster;
+      }
     }
   }
 
