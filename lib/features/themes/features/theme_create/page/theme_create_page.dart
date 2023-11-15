@@ -53,7 +53,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        context.l10n.feature_application_Input_title,
+                        context.l10n.feature_theme_create_title,
                         style: textScheme.labelLarge,
                       ),
                       const SizedBox(
@@ -64,10 +64,10 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                         maxLength: 24,
                         decoration: InputDecoration(
                             errorText: state.nameInput?.errorL10n(context),
-                            hintText: context.l10n.feature_application_Input_title,
+                            hintText: context.l10n.feature_theme_create_title,
                             // hintStyle: textScheme.bodyMedium,
                             suffixIcon: Tooltip(
-                              message: context.l10n.feature_application_create_Tooltip_name_info,
+                              message: context.l10n.feature_theme_create_title,
                               child: Icon(
                                 Icons.info_outlined,
                                 color: colorScheme.secondary,
