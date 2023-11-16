@@ -1,14 +1,14 @@
-import 'package:domain/domain.dart';
-import 'package:domain/entity/models/image/system_assets_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../model/exception/exception.dart';
+import '../model/models.dart';
 import '../theme_edit.dart';
 import '../widgets/widgets.dart';
 
@@ -28,7 +28,6 @@ class PageThemeEdit extends StatefulWidget with MixinMessages {
 
 class _PageThemeEditState extends State<PageThemeEdit> {
   final _leftPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Left edit theme page');
-
   final _rightPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Right edit theme page');
 
   @override
@@ -36,21 +35,25 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     return BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
       listener: (BuildContext context, ThemePropertyState state) => _listenSynchronizeState(context, state),
       builder: (ctx, state) => Scaffold(
-        appBar: BaseToolBar(
+        appBar: AppToolbar(
           isVisibleProgress: state is ThemePropertyProgressState,
-          child: ThemesEditToolbar(
-            title: widget.title,
-            onSaveTheme: () => _updateTheme(context),
-            onLogout: () => BlocProvider.of<CommonBloc>(context).logout(),
-            onPreload: () => _openTemplates(state),
-            onImportAssetsFromSvg: () => _importAssetsFromSvg(state),
-            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-            onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
-          ),
+          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+          onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
+          name: context.l10n.feature_applications_title,
+          left: [
+            Menu<ApplicationEditFile>(
+              name: 'File',
+              items: ApplicationEditFile.values,
+              callback: _onMenuFileSelect,
+            ),
+            Menu<ApplicationEditTheme>(
+              name: 'Theme',
+              items: ApplicationEditTheme.values,
+              callback: _onMenuThemeSelect,
+            ),
+          ],
         ),
         body: FlexibleBinaryLayout(
-          // Move left vertical divider
-          // dividerPosition: -MediaQuery.of(context).size.width / 5,
           childPrimary: (context, size) {
             return ConditionalProgressBar(
               condition: state.theme != null,
@@ -76,13 +79,13 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _openTemplates(ThemePropertyState state) {
+  void _openTemplates(ThemeModel themeModel) {
     _leftPageNavigatorKey.currentState?.push(
       MaterialPageRoute(
         builder: (BuildContext context) {
           return Center(
             child: PreloadPicker(
-              current: state.theme!.colors!,
+              current: themeModel.colors!,
               onDeclineColor: () => Navigator.of(context).pop(),
               onSelect: (scheme) => BlocProvider.of<ThemePropertyCubit>(context).add(ReplaceColorSchemeEvent(scheme)),
             ),
@@ -92,11 +95,11 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _importAssetsFromSvg(ThemePropertyState state) async {
+  void _importAssetsFromSvg(ThemeModel themeModel) async {
     final result = await _leftPageNavigatorKey.currentState?.push(
       MaterialPageRoute(
         builder: (BuildContext context) => ImportAssetsSvg(
-          themeModel: state.theme!,
+          themeModel: themeModel,
         ),
       ),
     );
@@ -111,20 +114,38 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
     if (state is ThemePropertyErrorState) {
       if (state.error is ThemeIsNotValidException) {
-        _showFailureMessage(context, context.l10n.feature_theme_is_not_valid);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => FailureDialog(
+            message: context.l10n.feature_theme_is_not_valid,
+          ),
+        );
       } else {
-        _showFailureMessage(context, state.error?.message ?? context.l10n.common_failure_message);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => FailureDialog(
+            message: state.error?.message ?? context.l10n.common_failure_message,
+          ),
+        );
       }
     }
   }
 
-  void _showFailureMessage(BuildContext context, String message) {
-    final dialog = FailureDialog(message: message);
-    showDialog(context: context, builder: (BuildContext context) => dialog);
+  void _onMenuFileSelect(BuildContext context, ApplicationEditFile profile) {
+    final bloc = BlocProvider.of<ThemePropertyCubit>(context);
+    switch (profile) {
+      case ApplicationEditFile.save:
+        bloc.add(UpdateThemeEvent((bloc.state.theme)));
+    }
   }
 
-  void _updateTheme(BuildContext context) {
-    final theme = BlocProvider.of<ThemePropertyCubit>(context).state.theme;
-    BlocProvider.of<ThemePropertyCubit>(context).add(UpdateThemeEvent((theme)));
+  void _onMenuThemeSelect(BuildContext context, ApplicationEditTheme profile) {
+    final bloc = BlocProvider.of<ThemePropertyCubit>(context);
+    switch (profile) {
+      case ApplicationEditTheme.templates:
+        _openTemplates(bloc.state.theme!);
+      case ApplicationEditTheme.importAssetsFromSvg:
+        _importAssetsFromSvg(bloc.state.theme!);
+    }
   }
 }
