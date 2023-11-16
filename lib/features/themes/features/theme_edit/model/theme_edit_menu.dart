@@ -10,16 +10,13 @@ enum ApplicationEditFile implements SubMenu {
 }
 
 enum ApplicationEditTheme implements SubMenu {
-  templates,
-  importAssetsFromSvg;
+  templates;
 
   @override
   String translate(BuildContext context) {
     switch (this) {
       case ApplicationEditTheme.templates:
         return 'Templated';
-      case ApplicationEditTheme.importAssetsFromSvg:
-        return 'Import launch assets from svg';
     }
   }
 }

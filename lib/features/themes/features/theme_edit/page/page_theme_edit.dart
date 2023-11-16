@@ -95,22 +95,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _importAssetsFromSvg(ThemeModel themeModel) async {
-    final result = await _leftPageNavigatorKey.currentState?.push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => ImportAssetsSvg(
-          themeModel: themeModel,
-        ),
-      ),
-    );
-
-    if (result is SystemAssetsModel) {
-      if (mounted) {
-        BlocProvider.of<ThemePropertyCubit>(context).add(UpdateThemeSchemeEvent.updateSystemAssetsImages(result));
-      }
-    }
-  }
-
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
     if (state is ThemePropertyErrorState) {
       if (state.error is ThemeIsNotValidException) {
@@ -144,8 +128,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     switch (profile) {
       case ApplicationEditTheme.templates:
         _openTemplates(bloc.state.theme!);
-      case ApplicationEditTheme.importAssetsFromSvg:
-        _importAssetsFromSvg(bloc.state.theme!);
     }
   }
 }

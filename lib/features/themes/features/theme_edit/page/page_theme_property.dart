@@ -436,6 +436,34 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                     tilePadding: const EdgeInsets.only(left: 24, right: 8),
                     expandedAlignment: Alignment.centerLeft,
                     children: [
+                      Card(
+                        margin: const EdgeInsets.only(left: 16),
+                        child: Container(
+                          margin: const EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              PropertyIconTextButton(
+                                text: 'Import from svg',
+                                icon: Icons.import_export_outlined,
+                                onTap: () => _onImportAssets(context, bloc),
+                              ),
+                              Container(
+                                height: 16,
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                              PropertyIconTextButton(
+                                text: 'Clear assets',
+                                icon: Icons.clear,
+                                onTap: () => _onClearAssets(context, bloc),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Divider(
+                        indent: 16,
+                      ),
                       ListTile(
                         title: Container(
                           margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -616,6 +644,30 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
         useRootNavigator: false);
     if (font is String) cubit.add(UpdateThemeSchemeEvent.updateFont(font));
+  }
+
+  void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
+    final result = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => ImportAssetsSvg(
+          themeModel: cubit.state.theme!,
+        ),
+      ),
+    );
+
+    if (result is SystemAssetsModel) {
+      if (context.mounted) {
+        BlocProvider.of<ThemePropertyCubit>(context).add(
+          UpdateThemeSchemeEvent.updateSystemAssetsImages(result),
+        );
+      }
+    }
+  }
+
+  void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
+    BlocProvider.of<ThemePropertyCubit>(context).add(
+      const UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel()),
+    );
   }
 
   void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
