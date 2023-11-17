@@ -32,6 +32,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<UpdateColorSchemeEvent>(
       _onChangeColorEvent,
     );
+    on<ThemeDraftSchemeEvent>(
+      _onDraftEvent,
+    );
     on<ReplaceColorSchemeEvent>(
       _onReplaceColorEvent,
     );
@@ -61,6 +64,15 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
         updateInAppImages: (_UpdateThemeSchemeImagesEvent value) async => _updateImageResources(value.image, emit),
         updateSystemAssetsImages: (_UpdateSystemAssetsImagesEvent value) async =>
             _updateSystemAssetImageResources(value.image, emit));
+  }
+
+  Future<void> _onDraftEvent(ThemeDraftSchemeEvent event, Emitter<ThemePropertyState> emit) {
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    return event.map(moveCurrentThemeToDrat: (_UpdateThemeMoveDraftThemToCurrentEvent value) async {
+      emit(state.copyWith(theme: state.draftTheme));
+    }, moveDraftThemToCurrent: (_UpdateThememoveDraftThemToCurrentEnt value) async {
+      emit(state.copyWith(draftTheme: state.theme));
+    });
   }
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<ThemePropertyState> emit) {

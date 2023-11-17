@@ -76,3 +76,10 @@ class UpdateThemeSchemeEvent with _$UpdateThemeSchemeEvent implements Configurat
   const factory UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel? image) =
       _UpdateSystemAssetsImagesEvent;
 }
+
+@Freezed(copyWith: false)
+class ThemeDraftSchemeEvent with _$ThemeDraftSchemeEvent implements ConfiguratorEvent {
+  const factory ThemeDraftSchemeEvent.moveCurrentThemeToDrat() = _UpdateThemeMoveDraftThemToCurrentEvent;
+
+  const factory ThemeDraftSchemeEvent.moveDraftThemToCurrent() = _UpdateThememoveDraftThemToCurrentEnt;
+}
