@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:screenshot/screenshot.dart';
 
@@ -9,11 +10,12 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../bloc/configurator/configurator_cubit.dart';
 import '../model/image_filter_model.dart';
 import '../utility/utility.dart';
 
-class ImportAssetsSvg extends StatefulWidget {
-  const ImportAssetsSvg({
+class PageThemeImportAssets extends StatefulWidget {
+  const PageThemeImportAssets({
     super.key,
     required this.themeModel,
   });
@@ -21,10 +23,10 @@ class ImportAssetsSvg extends StatefulWidget {
   final ThemeModel themeModel;
 
   @override
-  State<ImportAssetsSvg> createState() => _ImportAssetsSvgState();
+  State<PageThemeImportAssets> createState() => _PageThemeImportAssetsState();
 }
 
-class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
+class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with MixinMessages {
   final ScreenshotController _screenshotAndroidLaunchIconController = ScreenshotController();
   final ScreenshotController _screenshotForegroundIconController = ScreenshotController();
   final ScreenshotController _screenshotIosLaunchIconController = ScreenshotController();
@@ -205,16 +207,18 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
     final screenshotSplashIco = await _screenshotSplashIconController.captureBase64();
 
     if (mounted) {
-      Navigator.pop(
-        context,
-        SystemAssetsModel(
-          androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
-          adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
-          iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
-          webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
-          adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
+      BlocProvider.of<ThemePropertyCubit>(context).add(
+        UpdateThemeSchemeEvent.updateSystemAssetsImages(
+          SystemAssetsModel(
+            androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
+            adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
+            iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
+            webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
+            adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
+          ),
         ),
       );
+      Navigator.pop(context);
     }
   }
 

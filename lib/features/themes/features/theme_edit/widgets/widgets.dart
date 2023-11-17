@@ -4,7 +4,6 @@ export 'drawer_preview.dart';
 export 'font_item.dart';
 export 'fonts_picker.dart';
 export 'gradient_field.dart';
-export 'import_assets_svg.dart';
 export 'menu_space.dart';
 export 'mock_device.dart';
 export 'package:google_fonts/google_fonts.dart';

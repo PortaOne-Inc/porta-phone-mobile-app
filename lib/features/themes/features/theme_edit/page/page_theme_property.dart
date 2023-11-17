@@ -14,6 +14,8 @@ import '../theme_edit.dart';
 import '../utility/utility.dart';
 import '../widgets/widgets.dart';
 
+import 'page_theme_import_assets.dart';
+
 class PageThemeProperty extends StatelessWidget with MixinMessages {
   const PageThemeProperty({
     super.key,
@@ -454,10 +456,10 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               Container(
                                 height: 16,
                                 width: 1,
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.onBackground,
                               ),
                               PropertyIconTextButton(
-                                text: 'Clear assets',
+                                text: 'Remove all assets',
                                 icon: Icons.clear,
                                 onTap: () => _onClearAssets(context, bloc),
                               ),
@@ -663,21 +665,13 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
   }
 
   void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
-    final result = await Navigator.of(context).push(
+    await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => ImportAssetsSvg(
+        builder: (BuildContext context) => PageThemeImportAssets(
           themeModel: cubit.state.theme!,
         ),
       ),
     );
-
-    if (result is SystemAssetsModel) {
-      if (context.mounted) {
-        BlocProvider.of<ThemePropertyCubit>(context).add(
-          UpdateThemeSchemeEvent.updateSystemAssetsImages(result),
-        );
-      }
-    }
   }
 
   void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
