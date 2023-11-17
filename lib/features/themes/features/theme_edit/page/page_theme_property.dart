@@ -403,9 +403,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.primaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
-                                    bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
-                                  ));
+                                  if (image != null) {
+                                    bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
+                                      bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
+                                    ));
+                                  }
                                 }),
                                 onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(primaryOnboardingLogo: const ImageModel()),
@@ -417,9 +419,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.secondaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
-                                    bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
-                                  ));
+                                  if (image != null) {
+                                    bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
+                                      bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
+                                    ));
+                                  }
                                 }),
                                 onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(
@@ -488,9 +492,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.adaptiveIconForeground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: const ImageModel()),
@@ -502,9 +508,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.androidLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: const ImageModel()),
@@ -516,9 +524,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.iosLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: const ImageModel()),
@@ -530,9 +540,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.webLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: const ImageModel()),
@@ -566,9 +578,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.adaptiveIconBackground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: const ImageModel()),
@@ -599,9 +613,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.notificationLogo,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(notificationLogo: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(notificationLogo: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(notificationLogo: const ImageModel()),
