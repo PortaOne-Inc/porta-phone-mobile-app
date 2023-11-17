@@ -36,7 +36,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
       listener: (BuildContext context, ThemePropertyState state) => _listenSynchronizeState(context, state),
       builder: (ctx, state) => Scaffold(
         appBar: AppToolbar(
-          isVisibleProgress: state is ThemePropertyProgressState,
+          isVisibleProgress: state.isProgress,
           themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
           onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
           name: context.l10n.feature_applications_title,
@@ -96,7 +96,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   }
 
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
-    if (state is ThemePropertyErrorState) {
+    if (state.isHasError) {
       if (state.error is ThemeIsNotValidException) {
         showDialog(
           context: context,
@@ -108,7 +108,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         showDialog(
           context: context,
           builder: (BuildContext context) => FailureDialog(
-            message: state.error?.message ?? context.l10n.common_failure_message,
+            message: state.error?.toString() ?? context.l10n.common_failure_message,
           ),
         );
       }

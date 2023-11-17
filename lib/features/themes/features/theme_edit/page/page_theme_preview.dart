@@ -141,7 +141,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   }
 
   void _listenBloc(BuildContext context, ThemePropertyState state) {
-    if (state is ThemePropertFocusState) {
+    if (state.isHasFocus) {
       _setFocusedScreen(state.position!);
     }
   }

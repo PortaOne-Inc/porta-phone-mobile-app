@@ -19,7 +19,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     required this.getThemeUseCase,
     this.applicationId,
     this.themeId,
-  }) : super(ThemePropertyState.progress()) {
+  }) : super(ThemePropertyState(status: ThemePropertyStatus.progress)) {
     on<FocusScreenEvent>(
       _focusScreen,
     );
@@ -29,15 +29,12 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<UpdateColorSchemeEvent>(
       _onChangeColorEvent,
     );
-
     on<ReplaceColorSchemeEvent>(
       _onReplaceColorEvent,
     );
-
     on<GetThemeEvent>(
       _tryGetTheme,
     );
-
     on<UpdateThemeEvent>(
       _validateAndTryUpdateTheme,
     );
@@ -100,49 +97,64 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       if ((event.model?.name ?? '').isNotEmpty) {
         if (state.theme?.colors?.areAllFieldsFilled ?? false) {
           try {
-            emit(state.showProgress());
+            emit(state.copyWith(
+              status: ThemePropertyStatus.progress,
+            ));
             await updateThemeUseCase.execute(themeModel: event.model!);
-            emit(state.updateTheme());
-          } on BaseException catch (e) {
-            state.showError(e);
-          } catch (e, stackTrace) {
-            state.showError(BaseException(message: e.toString()));
+            emit(state.copyWith(
+              status: ThemePropertyStatus.success,
+            ));
+          } on Exception catch (e) {
+            emit(state.copyWith(
+              status: ThemePropertyStatus.error,
+              error: e,
+            ));
           }
         } else {
-          emit(state.showError(ThemeIsNotValidException()));
+          emit(state.copyWith(
+            status: ThemePropertyStatus.error,
+            error: ThemeIsNotValidException(),
+          ));
         }
       } else {
-        emit(state.showError(ThemeIsNotValidException()));
+        emit(state.copyWith(
+          status: ThemePropertyStatus.error,
+          error: ThemeIsNotValidException(),
+        ));
       }
     }
   }
 
   Future<void> _tryGetTheme(GetThemeEvent event, Emitter<ThemePropertyState> emit) async {
     try {
-      emit(state.showProgress());
+      emit(state.copyWith(status: ThemePropertyStatus.progress));
 
       final model = await getThemeUseCase.execute();
 
-      emit(state.updateTheme(
+      emit(state.copyWith(
+        status: ThemePropertyStatus.success,
         theme: model,
       ));
-    } on NoContentException catch (e) {
-      state.showError(e);
-    } on BaseException catch (e) {
-      state.showError(e);
     } on Exception catch (e) {
-      state.showError(BaseException(message: e.toString()));
+      emit(state.copyWith(
+        status: ThemePropertyStatus.error,
+        error: e,
+      ));
     }
   }
 
   void _updateFont(String font, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(fontFamily: font),
     ));
   }
 
   void _updateTexts(TextsModel? textsModel, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         texts: textsModel,
       ),
@@ -150,23 +162,37 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _focusScreen(FocusScreenEvent event, Emitter<ThemePropertyState> emit) {
-    emit(state.focus(event.position));
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.focus,
+      position: event.position,
+    ));
   }
 
   void _updateImageResources(ImageSchemeModel? image, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
-      theme: state.theme?.copyWith(images: image ?? const ImageSchemeModel()),
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
+      theme: state.theme?.copyWith(
+        images: image ?? const ImageSchemeModel(),
+      ),
     ));
   }
 
   void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
-      theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel()),
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
+      theme: state.theme?.copyWith(
+        systemAssets: image ?? const SystemAssetsModel(),
+      ),
     ));
   }
 
   void _updateColor(ColorSchemeModel? color, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(colors: color),
     ));
   }
@@ -179,8 +205,10 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     final newAdaptiveIconBackground = adaptiveIconBackground ?? launchColors?.adaptiveIconBackground;
     final newSplashBackground = splashBackground ?? launchColors?.splashBackground;
 
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
     emit(
-      state.updateTheme(
+      state.copyWith(
+        status: ThemePropertyStatus.success,
         theme: theme?.copyWith(
           colors: colors?.copyWith(
             launch: launchColors?.copyWith(
@@ -203,7 +231,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateGradientTab(List<Color> colors, Emitter<ThemePropertyState> emit) {
-    emit(state.updateTheme(
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copyWith(
+      status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         colors: state.theme?.colors?.copyWith(
           gradientTabColor: colors.map((color) => color).toList(),

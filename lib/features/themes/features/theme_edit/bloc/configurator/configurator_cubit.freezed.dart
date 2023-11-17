@@ -16,85 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ThemePropertyState {
+  ThemePropertyStatus? get status => throw _privateConstructorUsedError;
   ThemeModel? get theme => throw _privateConstructorUsedError;
   ThemeNameInput? get nameField => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  int? get position => throw _privateConstructorUsedError;
+  Exception? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemePropertyStateCopyWith<ThemePropertyState> get copyWith =>
@@ -107,7 +33,12 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
           ThemePropertyState value, $Res Function(ThemePropertyState) then) =
       _$ThemePropertyStateCopyWithImpl<$Res, ThemePropertyState>;
   @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+  $Res call(
+      {ThemePropertyStatus? status,
+      ThemeModel? theme,
+      ThemeNameInput? nameField,
+      int? position,
+      Exception? error});
 
   $ThemeModelCopyWith<$Res>? get theme;
 }
@@ -125,10 +56,17 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = freezed,
     Object? theme = freezed,
     Object? nameField = freezed,
+    Object? position = freezed,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ThemePropertyStatus?,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -137,6 +75,14 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
           ? _value.nameField
           : nameField // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Exception?,
     ) as $Val);
   }
 
@@ -161,7 +107,12 @@ abstract class _$$ThemePropertyStateImplCopyWith<$Res>
       __$$ThemePropertyStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField});
+  $Res call(
+      {ThemePropertyStatus? status,
+      ThemeModel? theme,
+      ThemeNameInput? nameField,
+      int? position,
+      Exception? error});
 
   @override
   $ThemeModelCopyWith<$Res>? get theme;
@@ -178,797 +129,17 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-  }) {
-    return _then(_$ThemePropertyStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertyStateImpl implements _ThemePropertyState {
-  _$ThemePropertyStateImpl({this.theme, this.nameField});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState(theme: $theme, nameField: $nameField)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
-      __$$ThemePropertyStateImplCopyWithImpl<_$ThemePropertyStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return $default(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return $default?.call(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(theme, nameField);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ThemePropertyState implements ThemePropertyState {
-  factory _ThemePropertyState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$ThemePropertyStateImpl;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertyProgressStateImplCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertyProgressStateImplCopyWith(
-          _$ThemePropertyProgressStateImpl value,
-          $Res Function(_$ThemePropertyProgressStateImpl) then) =
-      __$$ThemePropertyProgressStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField});
-
-  @override
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemePropertyProgressStateImplCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$ThemePropertyProgressStateImpl>
-    implements _$$ThemePropertyProgressStateImplCopyWith<$Res> {
-  __$$ThemePropertyProgressStateImplCopyWithImpl(
-      _$ThemePropertyProgressStateImpl _value,
-      $Res Function(_$ThemePropertyProgressStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-  }) {
-    return _then(_$ThemePropertyProgressStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertyProgressStateImpl implements ThemePropertyProgressState {
-  _$ThemePropertyProgressStateImpl({this.theme, this.nameField});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState.progress(theme: $theme, nameField: $nameField)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyProgressStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertyProgressStateImplCopyWith<_$ThemePropertyProgressStateImpl>
-      get copyWith => __$$ThemePropertyProgressStateImplCopyWithImpl<
-          _$ThemePropertyProgressStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return progress(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return progress?.call(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(theme, nameField);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemePropertyProgressState implements ThemePropertyState {
-  factory ThemePropertyProgressState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$ThemePropertyProgressStateImpl;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertyProgressStateImplCopyWith<_$ThemePropertyProgressStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertyValidationStateImplCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertyValidationStateImplCopyWith(
-          _$ThemePropertyValidationStateImpl value,
-          $Res Function(_$ThemePropertyValidationStateImpl) then) =
-      __$$ThemePropertyValidationStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField});
-
-  @override
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemePropertyValidationStateImplCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$ThemePropertyValidationStateImpl>
-    implements _$$ThemePropertyValidationStateImplCopyWith<$Res> {
-  __$$ThemePropertyValidationStateImplCopyWithImpl(
-      _$ThemePropertyValidationStateImpl _value,
-      $Res Function(_$ThemePropertyValidationStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-  }) {
-    return _then(_$ThemePropertyValidationStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertyValidationStateImpl
-    implements _ThemePropertyValidationState {
-  _$ThemePropertyValidationStateImpl({this.theme, this.nameField});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState.validation(theme: $theme, nameField: $nameField)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyValidationStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertyValidationStateImplCopyWith<
-          _$ThemePropertyValidationStateImpl>
-      get copyWith => __$$ThemePropertyValidationStateImplCopyWithImpl<
-          _$ThemePropertyValidationStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return validation(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return validation?.call(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(theme, nameField);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return validation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return validation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ThemePropertyValidationState implements ThemePropertyState {
-  factory _ThemePropertyValidationState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$ThemePropertyValidationStateImpl;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertyValidationStateImplCopyWith<
-          _$ThemePropertyValidationStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertSuccessStateImplCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertSuccessStateImplCopyWith(
-          _$ThemePropertSuccessStateImpl value,
-          $Res Function(_$ThemePropertSuccessStateImpl) then) =
-      __$$ThemePropertSuccessStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField});
-
-  @override
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemePropertSuccessStateImplCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$ThemePropertSuccessStateImpl>
-    implements _$$ThemePropertSuccessStateImplCopyWith<$Res> {
-  __$$ThemePropertSuccessStateImplCopyWithImpl(
-      _$ThemePropertSuccessStateImpl _value,
-      $Res Function(_$ThemePropertSuccessStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-  }) {
-    return _then(_$ThemePropertSuccessStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertSuccessStateImpl implements _ThemePropertSuccessState {
-  _$ThemePropertSuccessStateImpl({this.theme, this.nameField});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState.success(theme: $theme, nameField: $nameField)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertSuccessStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertSuccessStateImplCopyWith<_$ThemePropertSuccessStateImpl>
-      get copyWith => __$$ThemePropertSuccessStateImplCopyWithImpl<
-          _$ThemePropertSuccessStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return success(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return success?.call(theme, nameField);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(theme, nameField);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ThemePropertSuccessState implements ThemePropertyState {
-  factory _ThemePropertSuccessState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField}) = _$ThemePropertSuccessStateImpl;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertSuccessStateImplCopyWith<_$ThemePropertSuccessStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertFocusStateImplCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertFocusStateImplCopyWith(
-          _$ThemePropertFocusStateImpl value,
-          $Res Function(_$ThemePropertFocusStateImpl) then) =
-      __$$ThemePropertFocusStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeModel? theme, ThemeNameInput? nameField, int? position});
-
-  @override
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemePropertFocusStateImplCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res, _$ThemePropertFocusStateImpl>
-    implements _$$ThemePropertFocusStateImplCopyWith<$Res> {
-  __$$ThemePropertFocusStateImplCopyWithImpl(
-      _$ThemePropertFocusStateImpl _value,
-      $Res Function(_$ThemePropertFocusStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
+    Object? status = freezed,
     Object? theme = freezed,
     Object? nameField = freezed,
     Object? position = freezed,
+    Object? error = freezed,
   }) {
-    return _then(_$ThemePropertFocusStateImpl(
+    return _then(_$ThemePropertyStateImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ThemePropertyStatus?,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -981,373 +152,84 @@ class __$$ThemePropertFocusStateImplCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Exception?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ThemePropertFocusStateImpl implements ThemePropertFocusState {
-  _$ThemePropertFocusStateImpl({this.theme, this.nameField, this.position});
+class _$ThemePropertyStateImpl implements _ThemePropertyState {
+  _$ThemePropertyStateImpl(
+      {this.status, this.theme, this.nameField, this.position, this.error});
 
+  @override
+  final ThemePropertyStatus? status;
   @override
   final ThemeModel? theme;
   @override
   final ThemeNameInput? nameField;
   @override
   final int? position;
+  @override
+  final Exception? error;
 
   @override
   String toString() {
-    return 'ThemePropertyState.focus(theme: $theme, nameField: $nameField, position: $position)';
+    return 'ThemePropertyState(status: $status, theme: $theme, nameField: $nameField, position: $position, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemePropertFocusStateImpl &&
+            other is _$ThemePropertyStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField) &&
             (identical(other.position, position) ||
-                other.position == position));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField, position);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropertFocusStateImplCopyWith<_$ThemePropertFocusStateImpl>
-      get copyWith => __$$ThemePropertFocusStateImplCopyWithImpl<
-          _$ThemePropertFocusStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return focus(theme, nameField, position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return focus?.call(theme, nameField, position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (focus != null) {
-      return focus(theme, nameField, position);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return focus(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return focus?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (focus != null) {
-      return focus(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ThemePropertFocusState implements ThemePropertyState {
-  factory ThemePropertFocusState(
-      {final ThemeModel? theme,
-      final ThemeNameInput? nameField,
-      final int? position}) = _$ThemePropertFocusStateImpl;
-
-  @override
-  ThemeModel? get theme;
-  @override
-  ThemeNameInput? get nameField;
-  int? get position;
-  @override
-  @JsonKey(ignore: true)
-  _$$ThemePropertFocusStateImplCopyWith<_$ThemePropertFocusStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ThemePropertyErrorStateImplCopyWith<$Res>
-    implements $ThemePropertyStateCopyWith<$Res> {
-  factory _$$ThemePropertyErrorStateImplCopyWith(
-          _$ThemePropertyErrorStateImpl value,
-          $Res Function(_$ThemePropertyErrorStateImpl) then) =
-      __$$ThemePropertyErrorStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ThemeModel? theme, ThemeNameInput? nameField, BaseException? error});
-
-  @override
-  $ThemeModelCopyWith<$Res>? get theme;
-}
-
-/// @nodoc
-class __$$ThemePropertyErrorStateImplCopyWithImpl<$Res>
-    extends _$ThemePropertyStateCopyWithImpl<$Res,
-        _$ThemePropertyErrorStateImpl>
-    implements _$$ThemePropertyErrorStateImplCopyWith<$Res> {
-  __$$ThemePropertyErrorStateImplCopyWithImpl(
-      _$ThemePropertyErrorStateImpl _value,
-      $Res Function(_$ThemePropertyErrorStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? theme = freezed,
-    Object? nameField = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$ThemePropertyErrorStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      nameField: freezed == nameField
-          ? _value.nameField
-          : nameField // ignore: cast_nullable_to_non_nullable
-              as ThemeNameInput?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ThemePropertyErrorStateImpl implements ThemePropertyErrorState {
-  _$ThemePropertyErrorStateImpl({this.theme, this.nameField, this.error});
-
-  @override
-  final ThemeModel? theme;
-  @override
-  final ThemeNameInput? nameField;
-  @override
-  final BaseException? error;
-
-  @override
-  String toString() {
-    return 'ThemePropertyState.error(theme: $theme, nameField: $nameField, error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropertyErrorStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.nameField, nameField) ||
-                other.nameField == nameField) &&
+                other.position == position) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theme, nameField, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, theme, nameField, position, error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemePropertyErrorStateImplCopyWith<_$ThemePropertyErrorStateImpl>
-      get copyWith => __$$ThemePropertyErrorStateImplCopyWithImpl<
-          _$ThemePropertyErrorStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField) $default, {
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        progress,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        validation,
-    required TResult Function(ThemeModel? theme, ThemeNameInput? nameField)
-        success,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)
-        focus,
-    required TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)
-        error,
-  }) {
-    return error(theme, nameField, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult? Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult? Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-  }) {
-    return error?.call(theme, nameField, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? $default, {
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? progress,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? validation,
-    TResult Function(ThemeModel? theme, ThemeNameInput? nameField)? success,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, int? position)?
-        focus,
-    TResult Function(
-            ThemeModel? theme, ThemeNameInput? nameField, BaseException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(theme, nameField, this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value) $default, {
-    required TResult Function(ThemePropertyProgressState value) progress,
-    required TResult Function(_ThemePropertyValidationState value) validation,
-    required TResult Function(_ThemePropertSuccessState value) success,
-    required TResult Function(ThemePropertFocusState value) focus,
-    required TResult Function(ThemePropertyErrorState value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ThemePropertyState value)? $default, {
-    TResult? Function(ThemePropertyProgressState value)? progress,
-    TResult? Function(_ThemePropertyValidationState value)? validation,
-    TResult? Function(_ThemePropertSuccessState value)? success,
-    TResult? Function(ThemePropertFocusState value)? focus,
-    TResult? Function(ThemePropertyErrorState value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ThemePropertyState value)? $default, {
-    TResult Function(ThemePropertyProgressState value)? progress,
-    TResult Function(_ThemePropertyValidationState value)? validation,
-    TResult Function(_ThemePropertSuccessState value)? success,
-    TResult Function(ThemePropertFocusState value)? focus,
-    TResult Function(ThemePropertyErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
+      __$$ThemePropertyStateImplCopyWithImpl<_$ThemePropertyStateImpl>(
+          this, _$identity);
 }
 
-abstract class ThemePropertyErrorState implements ThemePropertyState {
-  factory ThemePropertyErrorState(
-      {final ThemeModel? theme,
+abstract class _ThemePropertyState implements ThemePropertyState {
+  factory _ThemePropertyState(
+      {final ThemePropertyStatus? status,
+      final ThemeModel? theme,
       final ThemeNameInput? nameField,
-      final BaseException? error}) = _$ThemePropertyErrorStateImpl;
+      final int? position,
+      final Exception? error}) = _$ThemePropertyStateImpl;
 
+  @override
+  ThemePropertyStatus? get status;
   @override
   ThemeModel? get theme;
   @override
   ThemeNameInput? get nameField;
-  BaseException? get error;
+  @override
+  int? get position;
+  @override
+  Exception? get error;
   @override
   @JsonKey(ignore: true)
-  _$$ThemePropertyErrorStateImplCopyWith<_$ThemePropertyErrorStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

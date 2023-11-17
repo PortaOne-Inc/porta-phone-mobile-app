@@ -1,73 +1,24 @@
 part of 'configurator_cubit.dart';
 
+enum ThemePropertyStatus { progress, validation, success, focus, error }
+
 @freezed
 class ThemePropertyState with _$ThemePropertyState {
   factory ThemePropertyState({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = _ThemePropertyState;
-
-  factory ThemePropertyState.progress({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = ThemePropertyProgressState;
-
-  factory ThemePropertyState.validation({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = _ThemePropertyValidationState;
-
-  factory ThemePropertyState.success({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = _ThemePropertSuccessState;
-
-  factory ThemePropertyState.focus({
+    ThemePropertyStatus? status,
     ThemeModel? theme,
     ThemeNameInput? nameField,
     int? position,
-  }) = ThemePropertFocusState;
-
-  factory ThemePropertyState.error({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-    BaseException? error,
-  }) = ThemePropertyErrorState;
+    Exception? error,
+  }) = _ThemePropertyState;
 }
 
-extension _StateCopyWith on ThemePropertyState {
-  ThemePropertyState focus(int position) {
-    return ThemePropertyState.focus(
-      nameField: nameField,
-      theme: theme,
-      position: position,
-    );
-  }
-
-  ThemePropertyState showError(BaseException exception) {
-    return ThemePropertyState.error(
-      nameField: nameField,
-      theme: theme,
-      error: exception,
-    );
-  }
-
-  ThemePropertyState showProgress() {
-    return ThemePropertyState.progress(
-      nameField: nameField,
-      theme: theme,
-    );
-  }
-
-  ThemePropertyState updateTheme({
-    ThemeNameInput? nameField,
-    ThemeModel? theme,
-  }) {
-    return ThemePropertyState.success(
-      nameField: nameField ?? this.nameField,
-      theme: theme ?? this.theme,
-    );
-  }
-
+extension ThemePropertyStateExtension on ThemePropertyState {
   ColorSchemeModel? get colors => theme?.colors;
+
+  bool get isProgress => status == ThemePropertyStatus.progress;
+
+  bool get isHasError => status == ThemePropertyStatus.error;
+
+  bool get isHasFocus => status == ThemePropertyStatus.focus && position != null;
 }
