@@ -20,6 +20,13 @@ class UpdateThemeEvent with _$UpdateThemeEvent implements ConfiguratorEvent {
 }
 
 @Freezed(copyWith: false)
+class UpdatePreviewScreen with _$UpdatePreviewScreen implements ConfiguratorEvent {
+  const factory UpdatePreviewScreen(
+    ThemePreviewScreen themePreviewScreen,
+  ) = _UpdatePreviewScreen;
+}
+
+@Freezed(copyWith: false)
 class FocusScreenEvent with _$FocusScreenEvent implements ConfiguratorEvent {
   const factory FocusScreenEvent(int position) = _FocusScreenEvent;
 }

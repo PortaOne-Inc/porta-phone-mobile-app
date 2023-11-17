@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../consts/image.dart';
+import '../model/models.dart';
 import '../widgets/widgets.dart';
 
 import 'page_theme_preview_launch_icons.dart';
@@ -25,7 +26,6 @@ class PageThemePreview extends StatefulWidget {
 class _PageThemePreviewState extends State<PageThemePreview> {
   var _isFrameVisible = true;
   var _previewType = PreviewType.single;
-  var _layoutType = LayoutType.layout;
   var _focusScreenPosition = 0;
 
   @override
@@ -44,9 +44,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                 _isFrameVisible = visibility;
                 setState(() {});
               },
-              onTypeOfPreview: (LayoutType type) {
-                _layoutType = type;
-                setState(() {});
+              onTypeOfPreview: (ThemePreviewScreen type) {
+                context.read<ThemePropertyCubit>().add(UpdatePreviewScreen(type));
               },
             ),
             Expanded(
@@ -55,8 +54,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                 builder: (BuildContext context, state) {
                   Widget layout;
 
-                  switch (_layoutType) {
-                    case LayoutType.layout:
+                  switch (state.themePreviewScreen) {
+                    case ThemePreviewScreen.layouts:
                       layout = PreviewDetails(
                         type: _previewType,
                         screens: _phoneScreenshots(state.theme),
@@ -65,12 +64,12 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                         onFocusPosition: _setFocusedScreen,
                       );
                       break;
-                    case LayoutType.splash:
+                    case ThemePreviewScreen.splash:
                       layout = PageThemePreviewLaunchSplash(
                         theme: state.theme!,
                       );
                       break;
-                    case LayoutType.icons:
+                    case ThemePreviewScreen.icons:
                       layout = PageThemePreviewLaunchIcons(
                         theme: state.theme!,
                       );
@@ -78,13 +77,14 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                   }
                   return FlexibleBinaryLayout(
                     childPrimary: (context, size) => layout,
-                    childSecondary: _previewType == PreviewType.single && _layoutType == LayoutType.layout
-                        ? (context, size) => DrawerPreview(
-                              screenshots: _phoneScreenshots(state.theme),
-                              focusScreenPosition: _focusScreenPosition,
-                              onTapScreen: _setFocusedScreen,
-                            )
-                        : null,
+                    childSecondary:
+                        _previewType == PreviewType.single && state.themePreviewScreen == ThemePreviewScreen.layouts
+                            ? (context, size) => DrawerPreview(
+                                  screenshots: _phoneScreenshots(state.theme),
+                                  focusScreenPosition: _focusScreenPosition,
+                                  onTapScreen: _setFocusedScreen,
+                                )
+                            : null,
                     orientation: ResizableOrientation.vertical,
                   );
                 },

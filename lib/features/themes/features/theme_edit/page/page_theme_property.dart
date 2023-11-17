@@ -9,7 +9,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import '../consts/consts.dart';
 import '../extension/extension.dart';
-import '../model/image_filter_model.dart';
+import '../model/models.dart';
 import '../theme_edit.dart';
 import '../utility/utility.dart';
 import '../widgets/widgets.dart';
@@ -665,7 +665,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
   }
 
   void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
-    await Navigator.of(context).push(
+    cubit.add(const UpdatePreviewScreen(ThemePreviewScreen.icons));
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => PageThemeImportAssets(
           themeModel: cubit.state.theme!,

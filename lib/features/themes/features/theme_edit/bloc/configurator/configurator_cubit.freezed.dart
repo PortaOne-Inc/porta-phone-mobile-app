@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemePropertyState {
   ThemePropertyStatus? get status => throw _privateConstructorUsedError;
+  ThemePreviewScreen get themePreviewScreen =>
+      throw _privateConstructorUsedError;
   ThemeModel? get theme => throw _privateConstructorUsedError;
   ThemeNameInput? get nameField => throw _privateConstructorUsedError;
   int? get position => throw _privateConstructorUsedError;
@@ -35,6 +37,7 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ThemePropertyStatus? status,
+      ThemePreviewScreen themePreviewScreen,
       ThemeModel? theme,
       ThemeNameInput? nameField,
       int? position,
@@ -57,6 +60,7 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? themePreviewScreen = null,
     Object? theme = freezed,
     Object? nameField = freezed,
     Object? position = freezed,
@@ -67,6 +71,10 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePropertyStatus?,
+      themePreviewScreen: null == themePreviewScreen
+          ? _value.themePreviewScreen
+          : themePreviewScreen // ignore: cast_nullable_to_non_nullable
+              as ThemePreviewScreen,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -109,6 +117,7 @@ abstract class _$$ThemePropertyStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {ThemePropertyStatus? status,
+      ThemePreviewScreen themePreviewScreen,
       ThemeModel? theme,
       ThemeNameInput? nameField,
       int? position,
@@ -130,6 +139,7 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? themePreviewScreen = null,
     Object? theme = freezed,
     Object? nameField = freezed,
     Object? position = freezed,
@@ -140,6 +150,10 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePropertyStatus?,
+      themePreviewScreen: null == themePreviewScreen
+          ? _value.themePreviewScreen
+          : themePreviewScreen // ignore: cast_nullable_to_non_nullable
+              as ThemePreviewScreen,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -164,10 +178,18 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
 
 class _$ThemePropertyStateImpl implements _ThemePropertyState {
   _$ThemePropertyStateImpl(
-      {this.status, this.theme, this.nameField, this.position, this.error});
+      {this.status,
+      this.themePreviewScreen = ThemePreviewScreen.layouts,
+      this.theme,
+      this.nameField,
+      this.position,
+      this.error});
 
   @override
   final ThemePropertyStatus? status;
+  @override
+  @JsonKey()
+  final ThemePreviewScreen themePreviewScreen;
   @override
   final ThemeModel? theme;
   @override
@@ -179,7 +201,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 
   @override
   String toString() {
-    return 'ThemePropertyState(status: $status, theme: $theme, nameField: $nameField, position: $position, error: $error)';
+    return 'ThemePropertyState(status: $status, themePreviewScreen: $themePreviewScreen, theme: $theme, nameField: $nameField, position: $position, error: $error)';
   }
 
   @override
@@ -188,6 +210,8 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
         (other.runtimeType == runtimeType &&
             other is _$ThemePropertyStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.themePreviewScreen, themePreviewScreen) ||
+                other.themePreviewScreen == themePreviewScreen) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField) &&
@@ -197,8 +221,8 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, theme, nameField, position, error);
+  int get hashCode => Object.hash(runtimeType, status, themePreviewScreen,
+      theme, nameField, position, error);
 
   @JsonKey(ignore: true)
   @override
@@ -211,6 +235,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 abstract class _ThemePropertyState implements ThemePropertyState {
   factory _ThemePropertyState(
       {final ThemePropertyStatus? status,
+      final ThemePreviewScreen themePreviewScreen,
       final ThemeModel? theme,
       final ThemeNameInput? nameField,
       final int? position,
@@ -218,6 +243,8 @@ abstract class _ThemePropertyState implements ThemePropertyState {
 
   @override
   ThemePropertyStatus? get status;
+  @override
+  ThemePreviewScreen get themePreviewScreen;
   @override
   ThemeModel? get theme;
   @override
@@ -334,6 +361,46 @@ abstract class _UpdateThemeEvent implements UpdateThemeEvent {
 
   @override
   ThemeModel? get model;
+}
+
+/// @nodoc
+mixin _$UpdatePreviewScreen {
+  ThemePreviewScreen get themePreviewScreen =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$UpdatePreviewScreenImpl implements _UpdatePreviewScreen {
+  const _$UpdatePreviewScreenImpl(this.themePreviewScreen);
+
+  @override
+  final ThemePreviewScreen themePreviewScreen;
+
+  @override
+  String toString() {
+    return 'UpdatePreviewScreen(themePreviewScreen: $themePreviewScreen)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatePreviewScreenImpl &&
+            (identical(other.themePreviewScreen, themePreviewScreen) ||
+                other.themePreviewScreen == themePreviewScreen));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themePreviewScreen);
+}
+
+abstract class _UpdatePreviewScreen implements UpdatePreviewScreen {
+  const factory _UpdatePreviewScreen(
+      final ThemePreviewScreen themePreviewScreen) = _$UpdatePreviewScreenImpl;
+
+  @override
+  ThemePreviewScreen get themePreviewScreen;
 }
 
 /// @nodoc

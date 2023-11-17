@@ -23,6 +23,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<FocusScreenEvent>(
       _focusScreen,
     );
+    on<UpdatePreviewScreen>(
+      _updateThemePreviewScreen,
+    );
     on<UpdateThemeSchemeEvent>(
       _onChangeSchemeEvent,
     );
@@ -159,6 +162,10 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
         texts: textsModel,
       ),
     ));
+  }
+
+  void _updateThemePreviewScreen(UpdatePreviewScreen event, Emitter<ThemePropertyState> emit) {
+    emit(state.copyWith(themePreviewScreen: event.themePreviewScreen));
   }
 
   void _focusScreen(FocusScreenEvent event, Emitter<ThemePropertyState> emit) {

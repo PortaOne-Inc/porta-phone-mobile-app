@@ -6,6 +6,7 @@ enum ThemePropertyStatus { progress, validation, success, focus, error }
 class ThemePropertyState with _$ThemePropertyState {
   factory ThemePropertyState({
     ThemePropertyStatus? status,
+    @Default(ThemePreviewScreen.layouts) ThemePreviewScreen themePreviewScreen,
     ThemeModel? theme,
     ThemeNameInput? nameField,
     int? position,
