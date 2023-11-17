@@ -105,7 +105,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     return [
       LoginScreenScreenshot(
         LoginStep.modeSelect,
-        // appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
+        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
       ),
 
       // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
