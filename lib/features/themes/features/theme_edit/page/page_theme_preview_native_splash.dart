@@ -33,7 +33,7 @@ class PageThemePreviewLaunchSplash extends StatelessWidget {
             child: Center(
               child: ImageResource(
                 imageModel: theme.systemAssets.adaptiveIconBackground,
-                fit: BoxFit.none,
+                fit: BoxFit.contain,
                 defaultWidget: const SizedBox(),
               ),
             ),
