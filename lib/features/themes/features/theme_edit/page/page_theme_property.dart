@@ -665,47 +665,58 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
   }
 
   void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
-    cubit.add(const UpdatePreviewScreen(ThemePreviewScreen.icons));
-    Navigator.of(context).push(
+    cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.importSvg));
+
+    await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => PageThemeImportAssets(
           themeModel: cubit.state.theme!,
+          // onPreview: (SystemAssetsModel systemAssetsModel) {
+          //
+          // },
+          // onSave: (SystemAssetsModel systemAssetsModel) {
+          //
+          // },
         ),
       ),
     );
-  }
+    cubit.add(const ThemeDraftSchemeEvent.disableDraftTheme());
+    cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.property));
 
-  void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
-    BlocProvider.of<ThemePropertyCubit>(context).add(
-      const UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel()),
-    );
+    // BlocProvider.of<ThemePropertyCubit>(context).add(const ThemeDraftSchemeEvent.moveDraftThemToCurrent());
   }
+}
 
-  void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
-    final result = await showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: color,
-              ),
+void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
+  BlocProvider.of<ThemePropertyCubit>(context).add(
+    const UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel()),
+  );
+}
+
+void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
+  final result = await showDialog(
+      context: context,
+      builder: (context) => Center(
+            child: ColorPicker(
+              onDeclineColor: () => Navigator.of(context).pop(),
+              onAcceptColor: (color) => Navigator.of(context).pop(color),
+              initialColor: color,
             ),
-        useRootNavigator: false);
-    if (result is Color) callback(result);
-  }
+          ),
+      useRootNavigator: false);
+  if (result is Color) callback(result);
+}
 
-  void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
-    final result = await showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: Colors.white,
-              ),
+void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
+  final result = await showDialog(
+      context: context,
+      builder: (context) => Center(
+            child: ColorPicker(
+              onDeclineColor: () => Navigator.of(context).pop(),
+              onAcceptColor: (color) => Navigator.of(context).pop(color),
+              initialColor: Colors.white,
             ),
-        useRootNavigator: false);
-    if (result is Color) callback([...colors, result]);
-  }
+          ),
+      useRootNavigator: false);
+  if (result is Color) callback([...colors, result]);
 }

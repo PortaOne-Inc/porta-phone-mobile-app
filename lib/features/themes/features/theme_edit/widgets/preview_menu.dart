@@ -33,12 +33,9 @@ class MenuPreview extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 224),
           items: const [
             'Layouts',
-            'Launch icons',
-            'Native splash screen',
+            'Launch assets',
           ],
-          onSelect: (int position) {
-            onTypeOfPreview(ThemePreviewScreen.values[position]);
-          },
+          onSelect: (int position) => onTypeOfPreview(ThemePreviewScreen.values[position]),
           icon: const Icon(Icons.menu_open),
         ),
         const Spacer(),

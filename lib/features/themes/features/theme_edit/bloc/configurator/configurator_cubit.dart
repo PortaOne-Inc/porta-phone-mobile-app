@@ -26,11 +26,17 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<UpdatePreviewScreen>(
       _updateThemePreviewScreen,
     );
+    on<UpdatePropertyStateScreen>(
+      _updatePropertyStateScreen,
+    );
     on<UpdateThemeSchemeEvent>(
       _onChangeSchemeEvent,
     );
     on<UpdateColorSchemeEvent>(
       _onChangeColorEvent,
+    );
+    on<ThemeDraftSchemeEvent>(
+      _onDraftEvent,
     );
     on<ReplaceColorSchemeEvent>(
       _onReplaceColorEvent,
@@ -61,6 +67,14 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
         updateInAppImages: (_UpdateThemeSchemeImagesEvent value) async => _updateImageResources(value.image, emit),
         updateSystemAssetsImages: (_UpdateSystemAssetsImagesEvent value) async =>
             _updateSystemAssetImageResources(value.image, emit));
+  }
+
+  Future<void> _onDraftEvent(ThemeDraftSchemeEvent event, Emitter<ThemePropertyState> emit) {
+    return event.map(enableDraftTheme: (_UpdateThemeMoveDraftThemToCurrentEvent value) async {
+      emit(state.copy(isDraft: true));
+    }, disableDraftTheme: (_UpdateThememoveDraftThemToCurrentEnt value) async {
+      emit(state.copy(isDraft: false));
+    });
   }
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<ThemePropertyState> emit) {
@@ -100,27 +114,27 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       if ((event.model?.name ?? '').isNotEmpty) {
         if (state.theme?.colors?.areAllFieldsFilled ?? false) {
           try {
-            emit(state.copyWith(
+            emit(state.copy(
               status: ThemePropertyStatus.progress,
             ));
             await updateThemeUseCase.execute(themeModel: event.model!);
-            emit(state.copyWith(
+            emit(state.copy(
               status: ThemePropertyStatus.success,
             ));
           } on Exception catch (e) {
-            emit(state.copyWith(
+            emit(state.copy(
               status: ThemePropertyStatus.error,
               error: e,
             ));
           }
         } else {
-          emit(state.copyWith(
+          emit(state.copy(
             status: ThemePropertyStatus.error,
             error: ThemeIsNotValidException(),
           ));
         }
       } else {
-        emit(state.copyWith(
+        emit(state.copy(
           status: ThemePropertyStatus.error,
           error: ThemeIsNotValidException(),
         ));
@@ -130,16 +144,14 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   Future<void> _tryGetTheme(GetThemeEvent event, Emitter<ThemePropertyState> emit) async {
     try {
-      emit(state.copyWith(status: ThemePropertyStatus.progress));
+      emit(state.copy(status: ThemePropertyStatus.progress));
 
       final model = await getThemeUseCase.execute();
 
-      emit(state.copyWith(
-        status: ThemePropertyStatus.success,
-        theme: model,
-      ));
+      emit(state.initTheme(theme: model));
+      emit(state.copy(status: ThemePropertyStatus.success));
     } on Exception catch (e) {
-      emit(state.copyWith(
+      emit(state.copy(
         status: ThemePropertyStatus.error,
         error: e,
       ));
@@ -147,16 +159,16 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateFont(String font, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(fontFamily: font),
     ));
   }
 
   void _updateTexts(TextsModel? textsModel, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         texts: textsModel,
@@ -164,21 +176,25 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     ));
   }
 
+  void _updatePropertyStateScreen(UpdatePropertyStateScreen event, Emitter<ThemePropertyState> emit) {
+    emit(state.copy(themePropertyScreens: event.propertyStateScreen));
+  }
+
   void _updateThemePreviewScreen(UpdatePreviewScreen event, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(themePreviewScreen: event.themePreviewScreen));
+    emit(state.copy(themePreviewScreen: event.themePreviewScreen));
   }
 
   void _focusScreen(FocusScreenEvent event, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.focus,
       position: event.position,
     ));
   }
 
   void _updateImageResources(ImageSchemeModel? image, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         images: image ?? const ImageSchemeModel(),
@@ -187,8 +203,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         systemAssets: image ?? const SystemAssetsModel(),
@@ -197,8 +213,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateColor(ColorSchemeModel? color, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(colors: color),
     ));
@@ -212,9 +228,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     final newAdaptiveIconBackground = adaptiveIconBackground ?? launchColors?.adaptiveIconBackground;
     final newSplashBackground = splashBackground ?? launchColors?.splashBackground;
 
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
+    emit(state.copy(status: ThemePropertyStatus.progress));
     emit(
-      state.copyWith(
+      state.copy(
         status: ThemePropertyStatus.success,
         theme: theme?.copyWith(
           colors: colors?.copyWith(
@@ -238,8 +254,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateGradientTab(List<Color> colors, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.progress));
-    emit(state.copyWith(
+    emit(state.copy(status: ThemePropertyStatus.progress));
+    emit(state.copy(
       status: ThemePropertyStatus.success,
       theme: state.theme?.copyWith(
         colors: state.theme?.colors?.copyWith(

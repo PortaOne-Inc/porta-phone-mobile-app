@@ -19,7 +19,11 @@ mixin _$ThemePropertyState {
   ThemePropertyStatus? get status => throw _privateConstructorUsedError;
   ThemePreviewScreen get themePreviewScreen =>
       throw _privateConstructorUsedError;
-  ThemeModel? get theme => throw _privateConstructorUsedError;
+  ThemePropertyScreens get themePropertyScreens =>
+      throw _privateConstructorUsedError;
+  bool get isDraft => throw _privateConstructorUsedError;
+  ThemeModel? get currentTheme => throw _privateConstructorUsedError;
+  ThemeModel? get draftTheme => throw _privateConstructorUsedError;
   ThemeNameInput? get nameField => throw _privateConstructorUsedError;
   int? get position => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
@@ -38,12 +42,16 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
   $Res call(
       {ThemePropertyStatus? status,
       ThemePreviewScreen themePreviewScreen,
-      ThemeModel? theme,
+      ThemePropertyScreens themePropertyScreens,
+      bool isDraft,
+      ThemeModel? currentTheme,
+      ThemeModel? draftTheme,
       ThemeNameInput? nameField,
       int? position,
       Exception? error});
 
-  $ThemeModelCopyWith<$Res>? get theme;
+  $ThemeModelCopyWith<$Res>? get currentTheme;
+  $ThemeModelCopyWith<$Res>? get draftTheme;
 }
 
 /// @nodoc
@@ -61,7 +69,10 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   $Res call({
     Object? status = freezed,
     Object? themePreviewScreen = null,
-    Object? theme = freezed,
+    Object? themePropertyScreens = null,
+    Object? isDraft = null,
+    Object? currentTheme = freezed,
+    Object? draftTheme = freezed,
     Object? nameField = freezed,
     Object? position = freezed,
     Object? error = freezed,
@@ -75,9 +86,21 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
               as ThemePreviewScreen,
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
+      themePropertyScreens: null == themePropertyScreens
+          ? _value.themePropertyScreens
+          : themePropertyScreens // ignore: cast_nullable_to_non_nullable
+              as ThemePropertyScreens,
+      isDraft: null == isDraft
+          ? _value.isDraft
+          : isDraft // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentTheme: freezed == currentTheme
+          ? _value.currentTheme
+          : currentTheme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
+      draftTheme: freezed == draftTheme
+          ? _value.draftTheme
+          : draftTheme // ignore: cast_nullable_to_non_nullable
               as ThemeModel?,
       nameField: freezed == nameField
           ? _value.nameField
@@ -96,13 +119,25 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
 
   @override
   @pragma('vm:prefer-inline')
-  $ThemeModelCopyWith<$Res>? get theme {
-    if (_value.theme == null) {
+  $ThemeModelCopyWith<$Res>? get currentTheme {
+    if (_value.currentTheme == null) {
       return null;
     }
 
-    return $ThemeModelCopyWith<$Res>(_value.theme!, (value) {
-      return _then(_value.copyWith(theme: value) as $Val);
+    return $ThemeModelCopyWith<$Res>(_value.currentTheme!, (value) {
+      return _then(_value.copyWith(currentTheme: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeModelCopyWith<$Res>? get draftTheme {
+    if (_value.draftTheme == null) {
+      return null;
+    }
+
+    return $ThemeModelCopyWith<$Res>(_value.draftTheme!, (value) {
+      return _then(_value.copyWith(draftTheme: value) as $Val);
     });
   }
 }
@@ -118,13 +153,18 @@ abstract class _$$ThemePropertyStateImplCopyWith<$Res>
   $Res call(
       {ThemePropertyStatus? status,
       ThemePreviewScreen themePreviewScreen,
-      ThemeModel? theme,
+      ThemePropertyScreens themePropertyScreens,
+      bool isDraft,
+      ThemeModel? currentTheme,
+      ThemeModel? draftTheme,
       ThemeNameInput? nameField,
       int? position,
       Exception? error});
 
   @override
-  $ThemeModelCopyWith<$Res>? get theme;
+  $ThemeModelCopyWith<$Res>? get currentTheme;
+  @override
+  $ThemeModelCopyWith<$Res>? get draftTheme;
 }
 
 /// @nodoc
@@ -140,7 +180,10 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? themePreviewScreen = null,
-    Object? theme = freezed,
+    Object? themePropertyScreens = null,
+    Object? isDraft = null,
+    Object? currentTheme = freezed,
+    Object? draftTheme = freezed,
     Object? nameField = freezed,
     Object? position = freezed,
     Object? error = freezed,
@@ -154,9 +197,21 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
               as ThemePreviewScreen,
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
+      themePropertyScreens: null == themePropertyScreens
+          ? _value.themePropertyScreens
+          : themePropertyScreens // ignore: cast_nullable_to_non_nullable
+              as ThemePropertyScreens,
+      isDraft: null == isDraft
+          ? _value.isDraft
+          : isDraft // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentTheme: freezed == currentTheme
+          ? _value.currentTheme
+          : currentTheme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
+      draftTheme: freezed == draftTheme
+          ? _value.draftTheme
+          : draftTheme // ignore: cast_nullable_to_non_nullable
               as ThemeModel?,
       nameField: freezed == nameField
           ? _value.nameField
@@ -180,7 +235,10 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   _$ThemePropertyStateImpl(
       {this.status,
       this.themePreviewScreen = ThemePreviewScreen.layouts,
-      this.theme,
+      this.themePropertyScreens = ThemePropertyScreens.property,
+      this.isDraft = false,
+      this.currentTheme,
+      this.draftTheme,
       this.nameField,
       this.position,
       this.error});
@@ -191,7 +249,15 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   @JsonKey()
   final ThemePreviewScreen themePreviewScreen;
   @override
-  final ThemeModel? theme;
+  @JsonKey()
+  final ThemePropertyScreens themePropertyScreens;
+  @override
+  @JsonKey()
+  final bool isDraft;
+  @override
+  final ThemeModel? currentTheme;
+  @override
+  final ThemeModel? draftTheme;
   @override
   final ThemeNameInput? nameField;
   @override
@@ -201,7 +267,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 
   @override
   String toString() {
-    return 'ThemePropertyState(status: $status, themePreviewScreen: $themePreviewScreen, theme: $theme, nameField: $nameField, position: $position, error: $error)';
+    return 'ThemePropertyState(status: $status, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, isDraft: $isDraft, currentTheme: $currentTheme, draftTheme: $draftTheme, nameField: $nameField, position: $position, error: $error)';
   }
 
   @override
@@ -212,7 +278,13 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.themePreviewScreen, themePreviewScreen) ||
                 other.themePreviewScreen == themePreviewScreen) &&
-            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.themePropertyScreens, themePropertyScreens) ||
+                other.themePropertyScreens == themePropertyScreens) &&
+            (identical(other.isDraft, isDraft) || other.isDraft == isDraft) &&
+            (identical(other.currentTheme, currentTheme) ||
+                other.currentTheme == currentTheme) &&
+            (identical(other.draftTheme, draftTheme) ||
+                other.draftTheme == draftTheme) &&
             (identical(other.nameField, nameField) ||
                 other.nameField == nameField) &&
             (identical(other.position, position) ||
@@ -221,8 +293,17 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, themePreviewScreen,
-      theme, nameField, position, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      themePreviewScreen,
+      themePropertyScreens,
+      isDraft,
+      currentTheme,
+      draftTheme,
+      nameField,
+      position,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +317,10 @@ abstract class _ThemePropertyState implements ThemePropertyState {
   factory _ThemePropertyState(
       {final ThemePropertyStatus? status,
       final ThemePreviewScreen themePreviewScreen,
-      final ThemeModel? theme,
+      final ThemePropertyScreens themePropertyScreens,
+      final bool isDraft,
+      final ThemeModel? currentTheme,
+      final ThemeModel? draftTheme,
       final ThemeNameInput? nameField,
       final int? position,
       final Exception? error}) = _$ThemePropertyStateImpl;
@@ -246,7 +330,13 @@ abstract class _ThemePropertyState implements ThemePropertyState {
   @override
   ThemePreviewScreen get themePreviewScreen;
   @override
-  ThemeModel? get theme;
+  ThemePropertyScreens get themePropertyScreens;
+  @override
+  bool get isDraft;
+  @override
+  ThemeModel? get currentTheme;
+  @override
+  ThemeModel? get draftTheme;
   @override
   ThemeNameInput? get nameField;
   @override
@@ -401,6 +491,47 @@ abstract class _UpdatePreviewScreen implements UpdatePreviewScreen {
 
   @override
   ThemePreviewScreen get themePreviewScreen;
+}
+
+/// @nodoc
+mixin _$UpdatePropertyStateScreen {
+  ThemePropertyScreens get propertyStateScreen =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$UpdatePropertyStateScreenImpl implements _UpdatePropertyStateScreen {
+  const _$UpdatePropertyStateScreenImpl(this.propertyStateScreen);
+
+  @override
+  final ThemePropertyScreens propertyStateScreen;
+
+  @override
+  String toString() {
+    return 'UpdatePropertyStateScreen(propertyStateScreen: $propertyStateScreen)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatePropertyStateScreenImpl &&
+            (identical(other.propertyStateScreen, propertyStateScreen) ||
+                other.propertyStateScreen == propertyStateScreen));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, propertyStateScreen);
+}
+
+abstract class _UpdatePropertyStateScreen implements UpdatePropertyStateScreen {
+  const factory _UpdatePropertyStateScreen(
+          final ThemePropertyScreens propertyStateScreen) =
+      _$UpdatePropertyStateScreenImpl;
+
+  @override
+  ThemePropertyScreens get propertyStateScreen;
 }
 
 /// @nodoc
@@ -3855,4 +3986,244 @@ abstract class _UpdateSystemAssetsImagesEvent
       _$UpdateSystemAssetsImagesEventImpl;
 
   SystemAssetsModel? get image;
+}
+
+/// @nodoc
+mixin _$ThemeDraftSchemeEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() enableDraftTheme,
+    required TResult Function() disableDraftTheme,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? enableDraftTheme,
+    TResult? Function()? disableDraftTheme,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? enableDraftTheme,
+    TResult Function()? disableDraftTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)
+        enableDraftTheme,
+    required TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)
+        disableDraftTheme,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult? Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$UpdateThemeMoveDraftThemToCurrentEventImpl
+    implements _UpdateThemeMoveDraftThemToCurrentEvent {
+  const _$UpdateThemeMoveDraftThemToCurrentEventImpl();
+
+  @override
+  String toString() {
+    return 'ThemeDraftSchemeEvent.enableDraftTheme()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateThemeMoveDraftThemToCurrentEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() enableDraftTheme,
+    required TResult Function() disableDraftTheme,
+  }) {
+    return enableDraftTheme();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? enableDraftTheme,
+    TResult? Function()? disableDraftTheme,
+  }) {
+    return enableDraftTheme?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? enableDraftTheme,
+    TResult Function()? disableDraftTheme,
+    required TResult orElse(),
+  }) {
+    if (enableDraftTheme != null) {
+      return enableDraftTheme();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)
+        enableDraftTheme,
+    required TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)
+        disableDraftTheme,
+  }) {
+    return enableDraftTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult? Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+  }) {
+    return enableDraftTheme?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+    required TResult orElse(),
+  }) {
+    if (enableDraftTheme != null) {
+      return enableDraftTheme(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateThemeMoveDraftThemToCurrentEvent
+    implements ThemeDraftSchemeEvent {
+  const factory _UpdateThemeMoveDraftThemToCurrentEvent() =
+      _$UpdateThemeMoveDraftThemToCurrentEventImpl;
+}
+
+/// @nodoc
+
+class _$UpdateThememoveDraftThemToCurrentEntImpl
+    implements _UpdateThememoveDraftThemToCurrentEnt {
+  const _$UpdateThememoveDraftThemToCurrentEntImpl();
+
+  @override
+  String toString() {
+    return 'ThemeDraftSchemeEvent.disableDraftTheme()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateThememoveDraftThemToCurrentEntImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() enableDraftTheme,
+    required TResult Function() disableDraftTheme,
+  }) {
+    return disableDraftTheme();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? enableDraftTheme,
+    TResult? Function()? disableDraftTheme,
+  }) {
+    return disableDraftTheme?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? enableDraftTheme,
+    TResult Function()? disableDraftTheme,
+    required TResult orElse(),
+  }) {
+    if (disableDraftTheme != null) {
+      return disableDraftTheme();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)
+        enableDraftTheme,
+    required TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)
+        disableDraftTheme,
+  }) {
+    return disableDraftTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult? Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+  }) {
+    return disableDraftTheme?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateThemeMoveDraftThemToCurrentEvent value)?
+        enableDraftTheme,
+    TResult Function(_UpdateThememoveDraftThemToCurrentEnt value)?
+        disableDraftTheme,
+    required TResult orElse(),
+  }) {
+    if (disableDraftTheme != null) {
+      return disableDraftTheme(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateThememoveDraftThemToCurrentEnt
+    implements ThemeDraftSchemeEvent {
+  const factory _UpdateThememoveDraftThemToCurrentEnt() =
+      _$UpdateThememoveDraftThemToCurrentEntImpl;
 }
