@@ -1,73 +1,68 @@
 part of 'configurator_cubit.dart';
 
+enum ThemePropertyStatus { progress, validation, success, focus, error }
+
+enum ThemePropertyScreens { property, importSvg }
+
 @freezed
 class ThemePropertyState with _$ThemePropertyState {
   factory ThemePropertyState({
-    ThemeModel? theme,
+    ThemePropertyStatus? status,
+    @Default(ThemePreviewScreen.layouts) ThemePreviewScreen themePreviewScreen,
+    @Default(ThemePropertyScreens.property) ThemePropertyScreens themePropertyScreens,
+    @Default(false) bool isDraft,
+    ThemeModel? currentTheme,
+    ThemeModel? draftTheme,
     ThemeNameInput? nameField,
+    int? position,
+    Exception? error,
   }) = _ThemePropertyState;
+}
 
-  factory ThemePropertyState.progress({
+extension ThemePropertyStateExtension on ThemePropertyState {
+  bool get isProgress => status == ThemePropertyStatus.progress;
+
+  bool get isHasError => status == ThemePropertyStatus.error;
+
+  bool get isHasFocus => status == ThemePropertyStatus.focus && position != null;
+}
+
+extension ThemePropertyThemeExtension on ThemePropertyState {
+  ThemeModel? get theme => isDraft ? draftTheme : currentTheme;
+
+  ColorSchemeModel? get colors => theme?.colors;
+
+  ThemePropertyState initTheme({
     ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = ThemePropertyProgressState;
+  }) {
+    return copyWith(
+      currentTheme: theme ?? currentTheme,
+      draftTheme: theme ?? draftTheme,
+    );
+  }
 
-  factory ThemePropertyState.validation({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = _ThemePropertyValidationState;
-
-  factory ThemePropertyState.success({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-  }) = _ThemePropertSuccessState;
-
-  factory ThemePropertyState.focus({
+  ThemePropertyState copy({
+    ThemePropertyStatus? status,
+    ThemePreviewScreen? themePreviewScreen,
+    ThemePropertyScreens? themePropertyScreens,
+    bool? isDraft,
     ThemeModel? theme,
     ThemeNameInput? nameField,
     int? position,
-  }) = ThemePropertFocusState;
-
-  factory ThemePropertyState.error({
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-    BaseException? error,
-  }) = ThemePropertyErrorState;
-}
-
-extension _StateCopyWith on ThemePropertyState {
-  ThemePropertyState focus(int position) {
-    return ThemePropertyState.focus(
-      nameField: nameField,
-      theme: theme,
-      position: position,
-    );
-  }
-
-  ThemePropertyState showError(BaseException exception) {
-    return ThemePropertyState.error(
-      nameField: nameField,
-      theme: theme,
-      error: exception,
-    );
-  }
-
-  ThemePropertyState showProgress() {
-    return ThemePropertyState.progress(
-      nameField: nameField,
-      theme: theme,
-    );
-  }
-
-  ThemePropertyState updateTheme({
-    ThemeNameInput? nameField,
-    ThemeModel? theme,
+    Exception? error,
   }) {
-    return ThemePropertyState.success(
+    final isDraftTheme = isDraft ?? this.isDraft;
+
+    return copyWith(
+      status: status ?? this.status,
+      themePreviewScreen: themePreviewScreen ?? this.themePreviewScreen,
+      themePropertyScreens: themePropertyScreens ?? this.themePropertyScreens,
+      isDraft: isDraftTheme,
+      currentTheme: !isDraftTheme ? (theme ?? currentTheme) : currentTheme,
+      draftTheme: isDraftTheme ? (theme ?? draftTheme) : draftTheme,
       nameField: nameField ?? this.nameField,
-      theme: theme ?? this.theme,
+      position: position ?? this.position,
+      error: error ?? this.error,
     );
   }
-
-  ColorSchemeModel? get colors => theme?.colors;
 }

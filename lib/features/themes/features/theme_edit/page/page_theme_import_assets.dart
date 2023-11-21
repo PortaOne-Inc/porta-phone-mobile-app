@@ -1,4 +1,8 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:async/async.dart';
 
 import 'package:screenshot/screenshot.dart';
 
@@ -9,22 +13,28 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../bloc/configurator/configurator_cubit.dart';
 import '../model/image_filter_model.dart';
 import '../utility/utility.dart';
 
-class ImportAssetsSvg extends StatefulWidget {
-  const ImportAssetsSvg({
+class PageThemeImportAssets extends StatefulWidget {
+  const PageThemeImportAssets({
     super.key,
     required this.themeModel,
+    // required this.onPreview,
+    // required this.onSave,
   });
 
   final ThemeModel themeModel;
 
+  // final Function(SystemAssetsModel systemAssetsModel) onPreview;
+  // final Function(SystemAssetsModel systemAssetsModel) onSave;
+
   @override
-  State<ImportAssetsSvg> createState() => _ImportAssetsSvgState();
+  State<PageThemeImportAssets> createState() => _PageThemeImportAssetsState();
 }
 
-class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
+class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with MixinMessages {
   final ScreenshotController _screenshotAndroidLaunchIconController = ScreenshotController();
   final ScreenshotController _screenshotForegroundIconController = ScreenshotController();
   final ScreenshotController _screenshotIosLaunchIconController = ScreenshotController();
@@ -32,7 +42,16 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
   final ScreenshotController _screenshotSplashIconController = ScreenshotController();
 
   ImageModel? _image;
-  BoxFit _fitBox = BoxFit.scaleDown;
+  BoxFit _launchIconsFitBox = BoxFit.scaleDown;
+  BoxFit _splashIconsFitBox = BoxFit.fitWidth;
+
+  double _scaleSplash = 0;
+  double _scaleAndroidAdaptive = 0;
+  double _scaleAndroidLaunch = 0;
+  double _scaleAndroidIOS = 0;
+  double _scaleAndroidWEB = 0;
+
+  late final bloc = BlocProvider.of<ThemePropertyCubit>(context);
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +79,20 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                 Visibility(
                   visible: _image != null,
                   child: IconButton(
+                    icon: const Icon(Icons.refresh),
+                    tooltip: 'Refresh',
+                    onPressed: () => _previewCurrentConfig(),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Visibility(
+                  visible: _image != null,
+                  child: IconButton(
                     icon: const Icon(Icons.save),
                     tooltip: 'Save',
-                    onPressed: () => _generateSystemAssetsResources(context),
+                    onPressed: () => _save(),
                   ),
                 ),
               ],
@@ -84,13 +114,143 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
             const Divider(),
             Row(
               children: [
-                const Text('Fit type'),
+                const Text('Splash icon fit type'),
                 const Spacer(),
                 Dropdown(
                   constraints: const BoxConstraints(maxWidth: 224),
                   items: BoxFit.values.map((e) => e.name).toList(),
-                  onSelect: (int position) => _changeFitType(position),
+                  position: _splashIconsFitBox.index,
+                  onSelect: (int position) => _changeSplashIconFitType(position),
                   icon: const Icon(Icons.expand_more_rounded),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('Launch icons fit type'),
+                const Spacer(),
+                Dropdown(
+                  constraints: const BoxConstraints(maxWidth: 224),
+                  items: BoxFit.values.map((e) => e.name).toList(),
+                  position: _launchIconsFitBox.index,
+                  onSelect: (int position) => _changeLaunchIconFitType(position),
+                  icon: const Icon(Icons.expand_more_rounded),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('Splash adaptive scale'),
+                const Spacer(),
+                Slider(
+                  value: _scaleSplash,
+                  max: 100,
+                  divisions: 100,
+                  label: _scaleSplash.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _scaleSplash = value;
+                      EasyDebounce.debounce(
+                        'my-debouncer',
+                        const Duration(milliseconds: 500),
+                        () => _previewCurrentConfig(),
+                      );
+                    });
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('Android adaptive scale'),
+                const Spacer(),
+                Slider(
+                  value: _scaleAndroidAdaptive,
+                  max: 100,
+                  divisions: 100,
+                  label: _scaleAndroidAdaptive.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _scaleAndroidAdaptive = value;
+                      EasyDebounce.debounce(
+                        'my-debouncer', // <-- An ID for this particular debouncer
+                        const Duration(milliseconds: 500), // <-- The debounce duration
+                        () => _previewCurrentConfig(),
+                      );
+                    });
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('Android launcher scale'),
+                const Spacer(),
+                Slider(
+                  value: _scaleAndroidLaunch,
+                  max: 100,
+                  divisions: 100,
+                  label: _scaleAndroidLaunch.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _scaleAndroidLaunch = value;
+                      EasyDebounce.debounce(
+                        'my-debouncer', // <-- An ID for this particular debouncer
+                        const Duration(milliseconds: 500), // <-- The debounce duration
+                        () => _previewCurrentConfig(),
+                      );
+                    });
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('IOS scale'),
+                const Spacer(),
+                Slider(
+                  value: _scaleAndroidIOS,
+                  max: 100,
+                  divisions: 100,
+                  label: _scaleAndroidIOS.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _scaleAndroidIOS = value;
+                      EasyDebounce.debounce(
+                        'my-debouncer', // <-- An ID for this particular debouncer
+                        const Duration(milliseconds: 500), // <-- The debounce duration
+                        () => _previewCurrentConfig(),
+                      );
+                    });
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              children: [
+                const Text('Web scale'),
+                const Spacer(),
+                Slider(
+                  value: _scaleAndroidWEB,
+                  max: 100,
+                  divisions: 100,
+                  label: _scaleAndroidWEB.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _scaleAndroidWEB = value;
+                      EasyDebounce.debounce(
+                        'my-debouncer', // <-- An ID for this particular debouncer
+                        const Duration(milliseconds: 500), // <-- The debounce duration
+                        () => _previewCurrentConfig(),
+                      );
+                    });
+                  },
                 ),
               ],
             ),
@@ -114,10 +274,10 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                             screenshotStreamController: _screenshotAndroidLaunchIconController,
                             size: const Size(192, 192),
                             imageModel: _image,
-                            padding: const EdgeInsets.all(24),
+                            padding: EdgeInsets.all(24 + _scaleAndroidLaunch),
                             color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                             title: '<=Android 12 (Launch icon)\n 192px:192px',
-                            fit: _fitBox,
+                            fit: _launchIconsFitBox,
                           ),
                           const SizedBox(
                             width: 56,
@@ -125,10 +285,10 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                           GenerateLaunchIcon(
                             screenshotStreamController: _screenshotForegroundIconController,
                             size: const Size(432, 432),
-                            padding: const EdgeInsets.all(112),
+                            padding: EdgeInsets.all(112 + _scaleAndroidAdaptive),
                             imageModel: _image,
                             title: '>=Android 13 (Adaptive foreground) 432px:432px',
-                            fit: _fitBox,
+                            fit: _launchIconsFitBox,
                           ),
                         ],
                       ),
@@ -139,10 +299,10 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                         screenshotStreamController: _screenshotIosLaunchIconController,
                         size: const Size(1024, 1024),
                         imageModel: _image,
-                        padding: const EdgeInsets.all(48),
+                        padding: EdgeInsets.all(48 + _scaleAndroidIOS),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         title: 'iOS 1024px:1024px',
-                        fit: _fitBox,
+                        fit: _launchIconsFitBox,
                       ),
                       const SizedBox(
                         height: 56,
@@ -150,11 +310,11 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                       GenerateLaunchIcon(
                         screenshotStreamController: _screenshotWebLaunchIconController,
                         size: const Size(1024, 1024),
-                        padding: const EdgeInsets.all(48),
+                        padding: EdgeInsets.all(48 + _scaleAndroidWEB),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Web 1024px:1024px',
-                        fit: _fitBox,
+                        fit: _launchIconsFitBox,
                       ),
                       const SizedBox(
                         height: 56,
@@ -162,11 +322,11 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
                       GenerateLaunchIcon(
                         screenshotStreamController: _screenshotSplashIconController,
                         size: const Size(640, 640),
-                        padding: EdgeInsets.zero,
+                        padding: EdgeInsets.all(_scaleSplash),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Android / iOS 640px:640px',
-                        fit: _fitBox,
+                        fit: _splashIconsFitBox,
                       ),
                     ],
                   ),
@@ -179,9 +339,16 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
     );
   }
 
-  void _changeFitType(int position) {
-    _fitBox = BoxFit.values[position];
+  void _changeLaunchIconFitType(int position) {
+    _launchIconsFitBox = BoxFit.values[position];
     setState(() {});
+    _previewCurrentConfig();
+  }
+
+  void _changeSplashIconFitType(int position) {
+    _splashIconsFitBox = BoxFit.values[position];
+    setState(() {});
+    _previewCurrentConfig();
   }
 
   void _removeOriginalSvg() {
@@ -194,28 +361,40 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
       final image = await UtilityImage.pickImage(format);
       _image = image;
       setState(() {});
+      _previewCurrentConfig();
     });
   }
 
-  Future<void> _generateSystemAssetsResources(BuildContext context) async {
+  void _previewCurrentConfig() async {
+    final image = await _generateSystemAssetsResources(context);
+    bloc.add(const ThemeDraftSchemeEvent.enableDraftTheme());
+    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+  }
+
+  void _save() async {
+    final image = await _generateSystemAssetsResources(context);
+    bloc.add(const ThemeDraftSchemeEvent.disableDraftTheme());
+    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<SystemAssetsModel> _generateSystemAssetsResources(BuildContext context) async {
     final screenshotAndroidLaunch = await _screenshotAndroidLaunchIconController.captureBase64();
     final screenshotForegroundIcon = await _screenshotForegroundIconController.captureBase64();
     final screenshotIosLaunchIcon = await _screenshotIosLaunchIconController.captureBase64();
     final screenshotWebLaunchIcon = await _screenshotWebLaunchIconController.captureBase64();
     final screenshotSplashIco = await _screenshotSplashIconController.captureBase64();
 
-    if (mounted) {
-      Navigator.pop(
-        context,
-        SystemAssetsModel(
-          androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
-          adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
-          iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
-          webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
-          adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
-        ),
-      );
-    }
+    return SystemAssetsModel(
+      androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
+      adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
+      iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
+      webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
+      adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
+    );
   }
 
   void _catchExceptions(BuildContext context, Function function) async {
@@ -230,6 +409,12 @@ class _ImportAssetsSvgState extends State<ImportAssetsSvg> with MixinMessages {
         showFailureMessage(context, context.l10n.feature_theme_edit_Validation_image_size(e.toString()));
       }
     }
+  }
+
+  @override
+  void dispose() {
+    bloc.add(const ThemeDraftSchemeEvent.disableDraftTheme());
+    super.dispose();
   }
 }
 

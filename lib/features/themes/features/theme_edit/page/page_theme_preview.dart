@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/page/page_theme_import_assets.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../consts/image.dart';
+import '../model/models.dart';
 import '../widgets/widgets.dart';
 
 import 'page_theme_preview_launch_icons.dart';
-import 'page_theme_preview_native_splash.dart';
 
 class PageThemePreview extends StatefulWidget {
   const PageThemePreview({
@@ -25,74 +26,83 @@ class PageThemePreview extends StatefulWidget {
 class _PageThemePreviewState extends State<PageThemePreview> {
   var _isFrameVisible = true;
   var _previewType = PreviewType.single;
-  var _layoutType = LayoutType.layout;
   var _focusScreenPosition = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) => Column(
-          children: [
-            MenuPreview(
-              isEnableFrame: _isFrameVisible,
-              onScaleTab: (PreviewType type) {
-                _previewType = type;
-                setState(() {});
-              },
-              onFrameTab: (visibility) {
-                _isFrameVisible = visibility;
-                setState(() {});
-              },
-              onTypeOfPreview: (LayoutType type) {
-                _layoutType = type;
-                setState(() {});
-              },
-            ),
-            Expanded(
-              child: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
-                listener: _listenBloc,
-                builder: (BuildContext context, state) {
-                  Widget layout;
-
-                  switch (_layoutType) {
-                    case LayoutType.layout:
-                      layout = PreviewDetails(
-                        type: _previewType,
-                        screens: _phoneScreenshots(state.theme),
-                        screenFocus: _focusScreenPosition,
-                        isFrameVisible: _isFrameVisible,
-                        onFocusPosition: _setFocusedScreen,
-                      );
-                      break;
-                    case LayoutType.splash:
-                      layout = PageThemePreviewLaunchSplash(
-                        theme: state.theme!,
-                      );
-                      break;
-                    case LayoutType.icons:
-                      layout = PageThemePreviewLaunchIcons(
-                        theme: state.theme!,
-                      );
-                      break;
-                  }
-                  return FlexibleBinaryLayout(
-                    childPrimary: (context, size) => layout,
-                    childSecondary: _previewType == PreviewType.single && _layoutType == LayoutType.layout
-                        ? (context, size) => DrawerPreview(
-                              screenshots: _phoneScreenshots(state.theme),
-                              focusScreenPosition: _focusScreenPosition,
-                              onTapScreen: _setFocusedScreen,
-                            )
-                        : null,
-                    orientation: ResizableOrientation.vertical,
-                  );
+      body: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
+          listener: _listenBloc,
+          builder: (BuildContext context, state) {
+            return Builder(
+              builder: (context) => AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(scale: animation, child: child);
                 },
+                child: state.themePropertyScreens == ThemePropertyScreens.importSvg
+                    ? PageThemePreviewLaunchAssets(
+                        theme: state.draftTheme!,
+                        key: const ValueKey('PageThemePreviewLaunchAssets'),
+                      )
+                    : Column(
+                        key: const ValueKey('ScreenPreview'),
+                        children: [
+                          MenuPreview(
+                            isEnableFrame: _isFrameVisible,
+                            onScaleTab: (PreviewType type) {
+                              _previewType = type;
+                              setState(() {});
+                            },
+                            onFrameTab: (visibility) {
+                              _isFrameVisible = visibility;
+                              setState(() {});
+                            },
+                            onTypeOfPreview: (ThemePreviewScreen type) {
+                              context.read<ThemePropertyCubit>().add(UpdatePreviewScreen(type));
+                            },
+                          ),
+                          Expanded(
+                            child: Builder(
+                              builder: (BuildContext context) {
+                                Widget layout;
+
+                                switch (state.themePreviewScreen) {
+                                  case ThemePreviewScreen.layouts:
+                                    layout = PreviewDetails(
+                                      type: _previewType,
+                                      screens: _phoneScreenshots(state.theme),
+                                      screenFocus: _focusScreenPosition,
+                                      isFrameVisible: _isFrameVisible,
+                                      onFocusPosition: _setFocusedScreen,
+                                    );
+                                    break;
+                                  case ThemePreviewScreen.assets:
+                                    layout = PageThemePreviewLaunchAssets(
+                                      theme: state.theme!,
+                                    );
+                                    break;
+                                }
+                                return FlexibleBinaryLayout(
+                                  childPrimary: (context, size) => layout,
+                                  childSecondary: _previewType == PreviewType.single &&
+                                          state.themePreviewScreen == ThemePreviewScreen.layouts
+                                      ? (context, size) => DrawerPreview(
+                                            screenshots: _phoneScreenshots(state.theme),
+                                            focusScreenPosition: _focusScreenPosition,
+                                            onTapScreen: _setFocusedScreen,
+                                          )
+                                      : null,
+                                  orientation: ResizableOrientation.vertical,
+                                );
+                              },
+                            ),
+                          )
+                        ],
+                      ),
               ),
-            )
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 
@@ -105,13 +115,21 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     return [
       LoginScreenScreenshot(
         LoginStep.modeSelect,
-        // appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
+        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
       ),
-      const LoginScreenScreenshot(
-        LoginStep.coreUrlAssign,
+
+      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
+      const OverflowBox(
+        child: LoginScreenScreenshot(
+          LoginStep.coreUrlAssign,
+        ),
       ),
-      const LoginScreenScreenshot(
-        LoginStep.otpRequest,
+
+      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
+      const OverflowBox(
+        child: LoginScreenScreenshot(
+          LoginStep.otpRequest,
+        ),
       ),
       const MainScreenScreenshot(
         MainFlavor.favorites,
@@ -133,9 +151,41 @@ class _PageThemePreviewState extends State<PageThemePreview> {
   }
 
   void _listenBloc(BuildContext context, ThemePropertyState state) {
-    if (state is ThemePropertFocusState) {
+    if (state.isHasFocus) {
       _setFocusedScreen(state.position!);
     }
+    //
+    // if (state.themePropertyScreens == ThemePropertyScreens.importSvg) {
+    //   Navigator.of(context).pushReplacement(
+    //     PageRouteBuilder(
+    //       pageBuilder: (context, animation, secondaryAnimation) =>
+    //           PageThemePreviewLaunchIcons(theme: state.draftTheme!),
+    //       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+    //         const begin = Offset(0.0, 1.0);
+    //         const end = Offset.zero;
+    //         var tween = Tween(begin: begin, end: end);
+    //
+    //         var offsetAnimation = animation.drive(
+    //           Tween<Offset>(
+    //             begin: begin,
+    //             end: end,
+    //           ).chain(
+    //             CurveTween(
+    //               curve: Curves.easeInOut,
+    //             ),
+    //           ),
+    //         );
+    //
+    //         return SlideTransition(
+    //           position: offsetAnimation,
+    //           child: child,
+    //         );
+    //       },
+    //     ),
+    //   );
+    // } else {
+    //   Navigator.of(context).maybePop();
+    // }
   }
 
   void _setFocusedScreen(int position) {

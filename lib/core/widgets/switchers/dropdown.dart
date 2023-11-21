@@ -10,9 +10,11 @@ class Dropdown extends StatefulWidget {
     required this.onSelect,
     this.constraints,
     this.icon,
+    this.position = 0,
   });
 
   final List<String> items;
+  final int position;
   final Icon? icon;
   final BoxConstraints? constraints;
   final Function(int position) onSelect;
@@ -23,6 +25,12 @@ class Dropdown extends StatefulWidget {
 
 class _DropDownState extends State<Dropdown> {
   int _selectedPosition = 0;
+
+  @override
+  void initState() {
+    _selectedPosition = widget.position;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

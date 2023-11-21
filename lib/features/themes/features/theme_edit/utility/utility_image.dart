@@ -10,16 +10,17 @@ import 'package:domain/domain.dart';
 import '../model/models.dart';
 
 class UtilityImage {
-  static Future<ImageModel> pickImage(ImageFilterModel filter) async {
+  static Future<ImageModel?> pickImage(ImageFilterModel filter) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [filter.format.format],
     );
+    if (result == null) return null;
 
-    final file = result?.files.first;
-    final name = file?.name ?? DateTime.now().microsecondsSinceEpoch.toString();
-    final extension = file?.extension;
-    final bytes = file?.bytes ?? Uint8List(0);
+    final file = result.files.first;
+    final name = file.name;
+    final extension = file.extension;
+    final bytes = file.bytes ?? Uint8List(0);
 
     if (extension == SupportFormat.png.format) {
       await _validateImageSize(bytes, filter);

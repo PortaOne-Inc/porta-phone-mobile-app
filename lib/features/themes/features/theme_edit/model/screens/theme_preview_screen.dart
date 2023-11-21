@@ -1,0 +1,4 @@
+enum ThemePreviewScreen {
+  layouts,
+  assets,
+}

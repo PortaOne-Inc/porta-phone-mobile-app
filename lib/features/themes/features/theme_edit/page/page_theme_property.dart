@@ -9,10 +9,12 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import '../consts/consts.dart';
 import '../extension/extension.dart';
-import '../model/image_filter_model.dart';
+import '../model/models.dart';
 import '../theme_edit.dart';
 import '../utility/utility.dart';
 import '../widgets/widgets.dart';
+
+import 'page_theme_import_assets.dart';
 
 class PageThemeProperty extends StatelessWidget with MixinMessages {
   const PageThemeProperty({
@@ -403,9 +405,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.primaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
-                                    bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
-                                  ));
+                                  if (image != null) {
+                                    bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
+                                      bloc.state.theme?.images.copyWith(primaryOnboardingLogo: image),
+                                    ));
+                                  }
                                 }),
                                 onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(primaryOnboardingLogo: const ImageModel()),
@@ -417,9 +421,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                                 image: state.theme!.images.secondaryOnboardingLogo,
                                 onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                   final image = await UtilityImage.pickImage(format);
-                                  bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
-                                    bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
-                                  ));
+                                  if (image != null) {
+                                    bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
+                                      bloc.state.theme?.images.copyWith(secondaryOnboardingLogo: image),
+                                    ));
+                                  }
                                 }),
                                 onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateInAppImages(
                                   bloc.state.theme?.images.copyWith(
@@ -436,6 +442,34 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                     tilePadding: const EdgeInsets.only(left: 24, right: 8),
                     expandedAlignment: Alignment.centerLeft,
                     children: [
+                      Card(
+                        margin: const EdgeInsets.only(left: 16),
+                        child: Container(
+                          margin: const EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              PropertyIconTextButton(
+                                text: 'Import from svg',
+                                icon: Icons.import_export_outlined,
+                                onTap: () => _onImportAssets(context, bloc),
+                              ),
+                              Container(
+                                height: 16,
+                                width: 1,
+                                color: Theme.of(context).colorScheme.onBackground,
+                              ),
+                              PropertyIconTextButton(
+                                text: 'Remove all assets',
+                                icon: Icons.clear,
+                                onTap: () => _onClearAssets(context, bloc),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Divider(
+                        indent: 16,
+                      ),
                       ListTile(
                         title: Container(
                           margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -460,9 +494,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.adaptiveIconForeground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(adaptiveIconForeground: const ImageModel()),
@@ -474,9 +510,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.androidLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(androidLauncherIcon: const ImageModel()),
@@ -488,9 +526,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.iosLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(iosLauncherIcon: const ImageModel()),
@@ -502,9 +542,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.webLauncherIcon,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(webLauncherIcon: const ImageModel()),
@@ -538,9 +580,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.adaptiveIconBackground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(adaptiveIconBackground: const ImageModel()),
@@ -571,9 +615,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               image: state.theme!.systemAssets.notificationLogo,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
-                                bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
-                                  bloc.state.theme?.systemAssets.copyWith(notificationLogo: image),
-                                ));
+                                if (image != null) {
+                                  bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
+                                    bloc.state.theme?.systemAssets.copyWith(notificationLogo: image),
+                                  ));
+                                }
                               }),
                               onRemove: () => bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(
                                 bloc.state.theme?.systemAssets.copyWith(notificationLogo: const ImageModel()),
@@ -618,31 +664,59 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     if (font is String) cubit.add(UpdateThemeSchemeEvent.updateFont(font));
   }
 
-  void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
-    final result = await showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: color,
-              ),
-            ),
-        useRootNavigator: false);
-    if (result is Color) callback(result);
-  }
+  void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
+    cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.importSvg));
 
-  void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
-    final result = await showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: Colors.white,
-              ),
-            ),
-        useRootNavigator: false);
-    if (result is Color) callback([...colors, result]);
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => PageThemeImportAssets(
+          themeModel: cubit.state.theme!,
+          // onPreview: (SystemAssetsModel systemAssetsModel) {
+          //
+          // },
+          // onSave: (SystemAssetsModel systemAssetsModel) {
+          //
+          // },
+        ),
+      ),
+    );
+    cubit.add(const ThemeDraftSchemeEvent.disableDraftTheme());
+    cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.property));
+
+    // BlocProvider.of<ThemePropertyCubit>(context).add(const ThemeDraftSchemeEvent.moveDraftThemToCurrent());
   }
+}
+
+void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
+  BlocProvider.of<ThemePropertyCubit>(context).add(
+    const UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel()),
+  );
+}
+
+void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
+  final result = await showDialog(
+      context: context,
+      builder: (context) => Center(
+            child: ColorPicker(
+              onDeclineColor: () => Navigator.of(context).pop(),
+              onAcceptColor: (color) => Navigator.of(context).pop(color),
+              initialColor: color,
+            ),
+          ),
+      useRootNavigator: false);
+  if (result is Color) callback(result);
+}
+
+void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
+  final result = await showDialog(
+      context: context,
+      builder: (context) => Center(
+            child: ColorPicker(
+              onDeclineColor: () => Navigator.of(context).pop(),
+              onAcceptColor: (color) => Navigator.of(context).pop(color),
+              initialColor: Colors.white,
+            ),
+          ),
+      useRootNavigator: false);
+  if (result is Color) callback([...colors, result]);
 }

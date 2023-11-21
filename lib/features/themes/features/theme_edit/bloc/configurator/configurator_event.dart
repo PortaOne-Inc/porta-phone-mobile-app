@@ -20,6 +20,20 @@ class UpdateThemeEvent with _$UpdateThemeEvent implements ConfiguratorEvent {
 }
 
 @Freezed(copyWith: false)
+class UpdatePreviewScreen with _$UpdatePreviewScreen implements ConfiguratorEvent {
+  const factory UpdatePreviewScreen(
+    ThemePreviewScreen themePreviewScreen,
+  ) = _UpdatePreviewScreen;
+}
+
+@Freezed(copyWith: false)
+class UpdatePropertyStateScreen with _$UpdatePropertyStateScreen implements ConfiguratorEvent {
+  const factory UpdatePropertyStateScreen(
+    ThemePropertyScreens propertyStateScreen,
+  ) = _UpdatePropertyStateScreen;
+}
+
+@Freezed(copyWith: false)
 class FocusScreenEvent with _$FocusScreenEvent implements ConfiguratorEvent {
   const factory FocusScreenEvent(int position) = _FocusScreenEvent;
 }
@@ -68,4 +82,11 @@ class UpdateThemeSchemeEvent with _$UpdateThemeSchemeEvent implements Configurat
 
   const factory UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel? image) =
       _UpdateSystemAssetsImagesEvent;
+}
+
+@Freezed(copyWith: false)
+class ThemeDraftSchemeEvent with _$ThemeDraftSchemeEvent implements ConfiguratorEvent {
+  const factory ThemeDraftSchemeEvent.enableDraftTheme() = _UpdateThemeMoveDraftThemToCurrentEvent;
+
+  const factory ThemeDraftSchemeEvent.disableDraftTheme() = _UpdateThememoveDraftThemToCurrentEnt;
 }

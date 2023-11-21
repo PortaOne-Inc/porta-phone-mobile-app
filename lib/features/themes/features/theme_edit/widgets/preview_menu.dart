@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../model/models.dart';
+
 import 'type_of_preview.dart';
 import 'menu_space.dart';
 
@@ -17,7 +19,7 @@ class MenuPreview extends StatelessWidget {
 
   final Function(PreviewType type) onScaleTab;
   final Function(bool isEnableFrame) onFrameTab;
-  final Function(LayoutType type) onTypeOfPreview;
+  final Function(ThemePreviewScreen type) onTypeOfPreview;
 
   final bool isEnableFrame;
 
@@ -31,12 +33,9 @@ class MenuPreview extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 224),
           items: const [
             'Layouts',
-            'Launch icons',
-            'Native splash screen',
+            'Launch assets',
           ],
-          onSelect: (int position) {
-            onTypeOfPreview(LayoutType.values[position]);
-          },
+          onSelect: (int position) => onTypeOfPreview(ThemePreviewScreen.values[position]),
           icon: const Icon(Icons.menu_open),
         ),
         const Spacer(),
