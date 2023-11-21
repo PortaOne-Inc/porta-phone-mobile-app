@@ -6,8 +6,8 @@ import 'package:domain/domain.dart';
 import '../../../../../core/widgets/image/image_resource.dart';
 import '../widgets/lauch_icon.dart';
 
-class PageThemePreviewLaunchIcons extends StatelessWidget {
-  const PageThemePreviewLaunchIcons({
+class PageThemePreviewLaunchAssets extends StatelessWidget {
+  const PageThemePreviewLaunchAssets({
     super.key,
     required this.theme,
   });

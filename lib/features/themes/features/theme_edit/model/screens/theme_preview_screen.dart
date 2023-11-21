@@ -1,5 +1,4 @@
 enum ThemePreviewScreen {
   layouts,
-  icons,
-  splash,
+  assets,
 }

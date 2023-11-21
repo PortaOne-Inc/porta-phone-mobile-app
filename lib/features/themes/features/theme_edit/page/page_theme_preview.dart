@@ -13,7 +13,6 @@ import '../model/models.dart';
 import '../widgets/widgets.dart';
 
 import 'page_theme_preview_launch_icons.dart';
-import 'page_theme_preview_native_splash.dart';
 
 class PageThemePreview extends StatefulWidget {
   const PageThemePreview({
@@ -78,13 +77,8 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                                       onFocusPosition: _setFocusedScreen,
                                     );
                                     break;
-                                  case ThemePreviewScreen.splash:
-                                    layout = PageThemePreviewLaunchSplash(
-                                      theme: state.theme!,
-                                    );
-                                    break;
-                                  case ThemePreviewScreen.icons:
-                                    layout = PageThemePreviewLaunchIcons(
+                                  case ThemePreviewScreen.assets:
+                                    layout = PageThemePreviewLaunchAssets(
                                       theme: state.theme!,
                                     );
                                     break;
