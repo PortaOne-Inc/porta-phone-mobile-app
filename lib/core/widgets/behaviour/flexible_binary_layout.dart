@@ -15,11 +15,16 @@ class FlexibleBinaryLayout extends StatelessWidget {
     required this.childSecondary,
     required this.orientation,
     this.dividerThickness = 2,
+    this.landslide = 0,
+    this.draggable = true,
   });
 
   final ResizableOrientation orientation;
   final WidgetBuilder childPrimary;
   final WidgetBuilder? childSecondary;
+
+  final double landslide;
+  final bool draggable;
 
   final double dividerThickness;
 
@@ -37,8 +42,9 @@ class FlexibleBinaryLayout extends StatelessWidget {
             dimension: size + dividerThickness,
             dividerThickness: dividerThickness,
             minColumHeight: size / 4,
-            dividerPosition: 0,
+            dividerPosition: landslide,
             orientation: orientation,
+            draggable: draggable,
           );
         }
       },
@@ -57,6 +63,7 @@ class BackgroundBinaryResizableRow extends StatefulWidget {
     required this.dimension,
     required this.orientation,
     required this.dividerThickness,
+    required this.draggable,
   });
 
   final WidgetBuilder topChild;
@@ -71,6 +78,8 @@ class BackgroundBinaryResizableRow extends StatefulWidget {
 
   final double dimension;
   final ResizableOrientation orientation;
+
+  final bool draggable;
 
   @override
   State<BackgroundBinaryResizableRow> createState() => _BackgroundBinaryResizableRowState();
@@ -107,8 +116,12 @@ class _BackgroundBinaryResizableRowState extends State<BackgroundBinaryResizable
         child: MouseRegion(
           cursor: _getMouseCursor(),
           child: Container(
-            height: widget.orientation == ResizableOrientation.horizontal ? double.infinity : widget.dividerThickness,
-            width: widget.orientation == ResizableOrientation.vertical ? double.infinity : widget.dividerThickness,
+            height: widget.draggable
+                ? (widget.orientation == ResizableOrientation.horizontal ? double.infinity : widget.dividerThickness)
+                : null,
+            width: widget.draggable
+                ? (widget.orientation == ResizableOrientation.vertical ? double.infinity : widget.dividerThickness)
+                : null,
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
         ),
