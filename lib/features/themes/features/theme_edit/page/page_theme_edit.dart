@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:domain/domain.dart';
 
+import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../bloc/configurator/configurator_cubit.dart';
 import '../model/models.dart';
-import '../theme_edit.dart';
 import '../widgets/widgets.dart';
 
 import 'page_theme_preview.dart';
+import 'page_theme_property.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   PageThemeEdit({
@@ -128,6 +131,14 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     switch (profile) {
       case ApplicationEditTheme.templates:
         _openTemplates(bloc.state.theme!);
+      case ApplicationEditTheme.preview:
+        GoRouter.of(context).goNamed(
+          AppRoutInfo.themesPreview.name,
+          pathParameters: <String, String>{
+            AppRoutInfo.keyApplicationId: bloc.applicationId!,
+            AppRoutInfo.keyThemeId: bloc.themeId!
+          },
+        );
     }
   }
 }

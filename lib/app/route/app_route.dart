@@ -124,6 +124,24 @@ class AppRoute {
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
                 ),
               ),
+            ),
+            GoRoute(
+              path: AppRoutInfo.themesPreview.path,
+              name: AppRoutInfo.themesPreview.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
+                create: (BuildContext context) => ThemePreviewCubit(
+                  getThemeUseCase: getIt<UsecaseThemeGet>(
+                    instanceName: UsecaseThemeGet.applicationUsecaseKey,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                    param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                  ),
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                ),
+                child: ThemePreviewPage(
+                  title: context.l10n.feature_theme_edit_Toolbar_dashboard,
+                ),
+              ),
             )
           ],
         )
@@ -146,7 +164,11 @@ class AppRoute {
     if (isAuth) {
       return currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null;
     } else {
-      return currentLocation == AppRoutInfo.reset.path ? null : AppRoutInfo.login.path;
+      return currentLocation == AppRoutInfo.reset.path
+          ? null
+          : currentLocation == AppRoutInfo.themesPreview.path
+              ? null
+              : AppRoutInfo.login.path;
     }
   }
 }

@@ -45,6 +45,10 @@ abstract class AppRoutInfo {
     name: 'themes/edit',
     path: '/applications/:$keyApplicationId/:$keyThemeId',
   );
+  static const themesPreview = RouteData(
+    name: 'themes/edit/preview',
+    path: '/applications/:$keyApplicationId/:$keyThemeId/preview',
+  );
 
   static const String keyApplicationId = 'applicationId';
   static const String keyThemeId = 'themeId';
