@@ -5,6 +5,6 @@ class ApplicationConsts {
   static int maxIdentifierLimit = 64;
   static int minIdentifierLimit = 4;
 
-  static int maxCoreLimit = 100;
+  static int maxCoreLimit = 999;
 
 }
