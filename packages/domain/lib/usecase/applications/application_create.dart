@@ -11,7 +11,7 @@ import '../../repository/repository.dart';
 abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required final String name,
-    required final String platformIdentifier,
+    final String? platformIdentifier,
     final String? coreUrl,
     final String? termConditionsUrl,
     final String? theme,
@@ -39,7 +39,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
   @override
   FutureOr<ApplicationModel> execute({
     required String name,
-    required String platformIdentifier,
+    String? platformIdentifier,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -71,7 +71,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
   }
 
   Future<GoogleServicesModel?> _generateGoogleService(
-    String platformIdentifier,
+    String? platformIdentifier,
     Uint8List? androidGoogleServices,
     Uint8List? iosGoogleServices,
   ) async {
@@ -79,7 +79,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
     String? androidGoogleServiceUrl;
 
     if (iosGoogleServices != null) {
-      final iosGoogleServiceName = _generateGoogleServiceName(platformIdentifier, 'plist');
+      final iosGoogleServiceName = _generateGoogleServiceName(platformIdentifier ?? 'unknown', 'plist');
       iosGoogleServiceUrl = await resourcesRepository.putBytes(
         'google-services',
         iosGoogleServiceName,
@@ -88,7 +88,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
     }
 
     if (androidGoogleServices != null) {
-      final androidGoogleServiceName = _generateGoogleServiceName(platformIdentifier, 'json');
+      final androidGoogleServiceName = _generateGoogleServiceName(platformIdentifier ?? 'unknown', 'json');
       androidGoogleServiceUrl = await resourcesRepository.putBytes(
         'google-services',
         androidGoogleServiceName,
