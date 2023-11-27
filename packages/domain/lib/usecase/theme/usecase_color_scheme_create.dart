@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 import 'package:material_color_utilities/scheme/scheme.dart';
 
-import 'package:dto/dto.dart';
 import 'package:domain/domain.dart';
 
 abstract class UsecaseColorSchemeCreate {

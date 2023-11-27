@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemePropertyState {
   ThemePropertyStatus? get status => throw _privateConstructorUsedError;
+  ApplicationModel? get applicationModel => throw _privateConstructorUsedError;
   ThemePreviewScreen get themePreviewScreen =>
       throw _privateConstructorUsedError;
   ThemePropertyScreens get themePropertyScreens =>
@@ -41,6 +42,7 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ThemePropertyStatus? status,
+      ApplicationModel? applicationModel,
       ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       bool isDraft,
@@ -50,6 +52,7 @@ abstract class $ThemePropertyStateCopyWith<$Res> {
       int? position,
       Exception? error});
 
+  $ApplicationModelCopyWith<$Res>? get applicationModel;
   $ThemeModelCopyWith<$Res>? get currentTheme;
   $ThemeModelCopyWith<$Res>? get draftTheme;
 }
@@ -68,6 +71,7 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? applicationModel = freezed,
     Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? isDraft = null,
@@ -82,6 +86,10 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePropertyStatus?,
+      applicationModel: freezed == applicationModel
+          ? _value.applicationModel
+          : applicationModel // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       themePreviewScreen: null == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
@@ -119,6 +127,18 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
 
   @override
   @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get applicationModel {
+    if (_value.applicationModel == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_value.applicationModel!, (value) {
+      return _then(_value.copyWith(applicationModel: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get currentTheme {
     if (_value.currentTheme == null) {
       return null;
@@ -152,6 +172,7 @@ abstract class _$$ThemePropertyStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {ThemePropertyStatus? status,
+      ApplicationModel? applicationModel,
       ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       bool isDraft,
@@ -161,6 +182,8 @@ abstract class _$$ThemePropertyStateImplCopyWith<$Res>
       int? position,
       Exception? error});
 
+  @override
+  $ApplicationModelCopyWith<$Res>? get applicationModel;
   @override
   $ThemeModelCopyWith<$Res>? get currentTheme;
   @override
@@ -179,6 +202,7 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? applicationModel = freezed,
     Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? isDraft = null,
@@ -193,6 +217,10 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePropertyStatus?,
+      applicationModel: freezed == applicationModel
+          ? _value.applicationModel
+          : applicationModel // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       themePreviewScreen: null == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
@@ -234,6 +262,7 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
 class _$ThemePropertyStateImpl implements _ThemePropertyState {
   _$ThemePropertyStateImpl(
       {this.status,
+      this.applicationModel,
       this.themePreviewScreen = ThemePreviewScreen.layouts,
       this.themePropertyScreens = ThemePropertyScreens.property,
       this.isDraft = false,
@@ -245,6 +274,8 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 
   @override
   final ThemePropertyStatus? status;
+  @override
+  final ApplicationModel? applicationModel;
   @override
   @JsonKey()
   final ThemePreviewScreen themePreviewScreen;
@@ -267,7 +298,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 
   @override
   String toString() {
-    return 'ThemePropertyState(status: $status, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, isDraft: $isDraft, currentTheme: $currentTheme, draftTheme: $draftTheme, nameField: $nameField, position: $position, error: $error)';
+    return 'ThemePropertyState(status: $status, applicationModel: $applicationModel, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, isDraft: $isDraft, currentTheme: $currentTheme, draftTheme: $draftTheme, nameField: $nameField, position: $position, error: $error)';
   }
 
   @override
@@ -276,6 +307,8 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
         (other.runtimeType == runtimeType &&
             other is _$ThemePropertyStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.applicationModel, applicationModel) ||
+                other.applicationModel == applicationModel) &&
             (identical(other.themePreviewScreen, themePreviewScreen) ||
                 other.themePreviewScreen == themePreviewScreen) &&
             (identical(other.themePropertyScreens, themePropertyScreens) ||
@@ -296,6 +329,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   int get hashCode => Object.hash(
       runtimeType,
       status,
+      applicationModel,
       themePreviewScreen,
       themePropertyScreens,
       isDraft,
@@ -316,6 +350,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
 abstract class _ThemePropertyState implements ThemePropertyState {
   factory _ThemePropertyState(
       {final ThemePropertyStatus? status,
+      final ApplicationModel? applicationModel,
       final ThemePreviewScreen themePreviewScreen,
       final ThemePropertyScreens themePropertyScreens,
       final bool isDraft,
@@ -327,6 +362,8 @@ abstract class _ThemePropertyState implements ThemePropertyState {
 
   @override
   ThemePropertyStatus? get status;
+  @override
+  ApplicationModel? get applicationModel;
   @override
   ThemePreviewScreen get themePreviewScreen;
   @override

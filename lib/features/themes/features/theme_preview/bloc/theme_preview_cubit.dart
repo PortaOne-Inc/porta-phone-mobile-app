@@ -10,6 +10,7 @@ part 'theme_preview_cubit.freezed.dart';
 class ThemePreviewCubit extends Cubit<ThemePreviewState> {
   ThemePreviewCubit({
     required this.getThemeUseCase,
+    required this.getApplicationUseCase,
     this.applicationId,
     this.themeId,
   }) : super(ThemePreviewState(status: ThemePreviewStatus.progress)) {
@@ -20,14 +21,16 @@ class ThemePreviewCubit extends Cubit<ThemePreviewState> {
   final String? themeId;
 
   final UsecaseThemeGet getThemeUseCase;
+  final UsecaseApplicationGet getApplicationUseCase;
 
   Future<void> _tryGetTheme() async {
     try {
       emit(state.copyWith(status: ThemePreviewStatus.progress));
 
       final model = await getThemeUseCase.execute();
+      final application = await getApplicationUseCase.execute(id: applicationId!);
 
-      emit(state.copyWith(status: ThemePreviewStatus.success, theme: model));
+      emit(state.copyWith(status: ThemePreviewStatus.success, theme: model, applicationModel: application));
     } on Exception catch (e) {
       emit(state.copyWith(
         status: ThemePreviewStatus.error,

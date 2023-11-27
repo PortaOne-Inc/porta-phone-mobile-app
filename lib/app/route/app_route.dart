@@ -112,6 +112,9 @@ class AppRoute {
                   updateThemeUseCase: getIt<UsecaseThemeUpdate>(
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   ),
+                  getApplicationUseCase: getIt<UsecaseApplicationGet>(
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  ),
                   getThemeUseCase: getIt<UsecaseThemeGet>(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
@@ -131,6 +134,9 @@ class AppRoute {
               name: AppRoutInfo.themesPreview.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
                 create: (BuildContext context) => ThemePreviewCubit(
+                  getApplicationUseCase: getIt<UsecaseApplicationGet>(
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  ),
                   getThemeUseCase: getIt<UsecaseThemeGet>(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,

@@ -17,6 +17,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
+    required this.getApplicationUseCase,
     required this.colorSchemeCreate,
     this.applicationId,
     this.themeId,
@@ -60,6 +61,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
+  final UsecaseApplicationGet getApplicationUseCase;
   final UsecaseColorSchemeCreate colorSchemeCreate;
 
   Future<void> _onReplaceColorEvent(ReplaceColorSchemeEvent event, Emitter<ThemePropertyState> emit) async {
@@ -153,9 +155,10 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       emit(state.copy(status: ThemePropertyStatus.progress));
 
       final model = await getThemeUseCase.execute();
+      final application = await getApplicationUseCase.execute(id: applicationId!);
 
       emit(state.initTheme(theme: model));
-      emit(state.copy(status: ThemePropertyStatus.success));
+      emit(state.copy(status: ThemePropertyStatus.success, applicationModel: application));
     } on Exception catch (e) {
       emit(state.copy(
         status: ThemePropertyStatus.error,

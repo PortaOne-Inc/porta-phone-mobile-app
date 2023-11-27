@@ -71,7 +71,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                     case ThemePreviewScreen.layouts:
                       layout = PreviewDetails(
                         type: _previewType,
-                        screens: _phoneScreenshots(state.theme),
+                        screens: _phoneScreenshots(state.theme, state.applicationModel),
                         screenFocus: _focusScreenPosition,
                         isFrameVisible: _isFrameVisible,
                         onFocusPosition: _setFocusedScreen,
@@ -90,7 +90,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                     childPrimary: (context, size) => layout,
                     childSecondary: _previewType == PreviewType.single && _typeScreen == ThemePreviewScreen.layouts
                         ? (context, size) => DrawerPreview(
-                              screenshots: _phoneScreenshots(state.theme),
+                              screenshots: _phoneScreenshots(state.theme, state.applicationModel),
                               focusScreenPosition: _focusScreenPosition,
                               onTapScreen: _setFocusedScreen,
                             )
@@ -106,7 +106,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
     });
   }
 
-  List<Widget> _phoneScreenshots(ThemeModel? theme) {
+  List<Widget> _phoneScreenshots(ThemeModel? theme, ApplicationModel? applicationModel) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: (theme ?? const ThemeModel()).toThemeSettings(),
       themeMode: ThemeMode.light,
@@ -131,14 +131,17 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
           LoginStep.otpRequest,
         ),
       ),
-      const MainScreenScreenshot(
+      MainScreenScreenshot(
         MainFlavor.favorites,
+        Text(applicationModel?.name ?? ''),
       ),
-      const MainScreenScreenshot(
+      MainScreenScreenshot(
         MainFlavor.recents,
+        Text(applicationModel?.name ?? ''),
       ),
-      const MainScreenScreenshot(
+      MainScreenScreenshot(
         MainFlavor.keypad,
+        Text(applicationModel?.name ?? ''),
       ),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/page/page_theme_import_assets.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../consts/image.dart';
@@ -71,7 +70,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                                   case ThemePreviewScreen.layouts:
                                     layout = PreviewDetails(
                                       type: _previewType,
-                                      screens: _phoneScreenshots(state.theme),
+                                      screens: _phoneScreenshots(state.theme, state.applicationModel),
                                       screenFocus: _focusScreenPosition,
                                       isFrameVisible: _isFrameVisible,
                                       onFocusPosition: _setFocusedScreen,
@@ -88,7 +87,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                                   childSecondary: _previewType == PreviewType.single &&
                                           state.themePreviewScreen == ThemePreviewScreen.layouts
                                       ? (context, size) => DrawerPreview(
-                                            screenshots: _phoneScreenshots(state.theme),
+                                            screenshots: _phoneScreenshots(state.theme, state.applicationModel),
                                             focusScreenPosition: _focusScreenPosition,
                                             onTapScreen: _setFocusedScreen,
                                           )
@@ -106,7 +105,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
   }
 
-  List<Widget> _phoneScreenshots(ThemeModel? theme) {
+  List<Widget> _phoneScreenshots(ThemeModel? theme, ApplicationModel? applicationModel) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: (theme ?? const ThemeModel()).toThemeSettings(),
       themeMode: ThemeMode.light,
@@ -131,15 +130,9 @@ class _PageThemePreviewState extends State<PageThemePreview> {
           LoginStep.otpRequest,
         ),
       ),
-      const MainScreenScreenshot(
-        MainFlavor.favorites,
-      ),
-      const MainScreenScreenshot(
-        MainFlavor.recents,
-      ),
-      const MainScreenScreenshot(
-        MainFlavor.keypad,
-      ),
+      MainScreenScreenshot(MainFlavor.favorites, Text(applicationModel?.name ?? '')),
+      MainScreenScreenshot(MainFlavor.recents, Text(applicationModel?.name ?? '')),
+      MainScreenScreenshot(MainFlavor.keypad, Text(applicationModel?.name ?? '')),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
