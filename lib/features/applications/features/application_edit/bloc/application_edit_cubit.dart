@@ -47,13 +47,8 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       tryEditApplication();
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
-      final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
-      final appCore = state.applicationCoreInput ?? const ApplicationCoreInput.dirty();
 
-      emit(state.copyWith(
-          nameInput: nameInput.toDirty(),
-          applicationIdentifierInput: appIdentifier.toDirty(),
-          applicationCoreInput: appCore.toDirty()));
+      emit(state.copyWith(nameInput: nameInput.toDirty()));
     }
   }
 
@@ -119,12 +114,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   bool _isValidFields() {
-    return state.nameInput == null || state.applicationIdentifierInput == null || state.applicationCoreInput == null
-        ? false
-        : Formz.validate([
-            state.nameInput!,
-            state.applicationIdentifierInput!,
-            state.applicationCoreInput!,
-          ]);
+    return state.nameInput == null ? false : Formz.validate([state.nameInput!]);
   }
 }

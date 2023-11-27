@@ -10,7 +10,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ImageResource extends StatelessWidget {
   const ImageResource({
-    Key? key,
+    super.key,
     required this.imageModel,
     this.fit = BoxFit.cover,
     this.defaultWidget = const Center(
@@ -18,7 +18,7 @@ class ImageResource extends StatelessWidget {
         density: 8,
       ),
     ),
-  }) : super(key: key);
+  });
 
   final ImageModel imageModel;
   final Widget defaultWidget;

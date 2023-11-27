@@ -4,33 +4,20 @@ import 'package:injectable/injectable.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 import 'package:material_color_utilities/scheme/scheme.dart';
 
-import 'package:dto/dto.dart';
 import 'package:domain/domain.dart';
 
-abstract class UsecaseThemeCreate {
-  Future<ThemeModel> execute({
-    required String applicationId,
-    required ThemeModel themeModel,
+abstract class UsecaseColorSchemeCreate {
+  Future<ColorSchemeModel> execute({
     Color? colorsScheme,
   });
 }
 
-@Injectable(as: UsecaseThemeCreate)
-class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
-  UsecaseThemeCreateImpl(
-    this._themeRepository,
-    this.authRepository,
-    this.mapper,
-  );
-
-  final AuthRepository authRepository;
-  final ThemeRepository _themeRepository;
-  final Mapper<ThemeDTO?, ThemeModel?> mapper;
+@Injectable(as: UsecaseColorSchemeCreate)
+class UsecaseColorSchemeCreateImpl implements UsecaseColorSchemeCreate {
+  UsecaseColorSchemeCreateImpl();
 
   @override
-  Future<ThemeModel> execute({
-    required String applicationId,
-    required ThemeModel themeModel,
+  Future<ColorSchemeModel> execute({
     Color? colorsScheme,
   }) async {
     ColorSchemeModel colorScheme;
@@ -55,8 +42,6 @@ class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
       ],
     );
 
-    final newTheme = themeModel.copyWith(colors: themeModel.colors == null ? colorScheme : null);
-    final theme = await _themeRepository.createTheme(applicationId, mapper.mapToDto(newTheme)!);
-    return mapper.mapToModel(theme)!;
+    return colorScheme;
   }
 }

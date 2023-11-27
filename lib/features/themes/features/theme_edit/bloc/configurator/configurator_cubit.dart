@@ -17,9 +17,15 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
+    required this.getApplicationUseCase,
+    required this.colorSchemeCreate,
     this.applicationId,
     this.themeId,
   }) : super(ThemePropertyState(status: ThemePropertyStatus.progress)) {
+    on<GenerateColorSchemeByColorSeedEvent>(
+      _generateColorSchemeBySeed,
+    );
+
     on<FocusScreenEvent>(
       _focusScreen,
     );
@@ -55,6 +61,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
+  final UsecaseApplicationGet getApplicationUseCase;
+  final UsecaseColorSchemeCreate colorSchemeCreate;
 
   Future<void> _onReplaceColorEvent(ReplaceColorSchemeEvent event, Emitter<ThemePropertyState> emit) async {
     _updateColor(event.colorScheme, emit);
@@ -147,9 +155,10 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       emit(state.copy(status: ThemePropertyStatus.progress));
 
       final model = await getThemeUseCase.execute();
+      final application = await getApplicationUseCase.execute(id: applicationId!);
 
       emit(state.initTheme(theme: model));
-      emit(state.copy(status: ThemePropertyStatus.success));
+      emit(state.copy(status: ThemePropertyStatus.success, applicationModel: application));
     } on Exception catch (e) {
       emit(state.copy(
         status: ThemePropertyStatus.error,
@@ -182,6 +191,11 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   void _updateThemePreviewScreen(UpdatePreviewScreen event, Emitter<ThemePropertyState> emit) {
     emit(state.copy(themePreviewScreen: event.themePreviewScreen));
+  }
+
+  void _generateColorSchemeBySeed(GenerateColorSchemeByColorSeedEvent event, Emitter<ThemePropertyState> emit) async {
+    final colorScheme = await colorSchemeCreate.execute(colorsScheme: event.color);
+    emit(state.copy(theme: state.theme?.copyWith(colors: colorScheme)));
   }
 
   void _focusScreen(FocusScreenEvent event, Emitter<ThemePropertyState> emit) {

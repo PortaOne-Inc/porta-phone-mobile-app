@@ -6,6 +6,7 @@ enum ThemePreviewStatus { progress, validation, success, focus, error }
 class ThemePreviewState with _$ThemePreviewState {
   factory ThemePreviewState({
     ThemePreviewStatus? status,
+    ApplicationModel? applicationModel,
     ThemeModel? theme,
     Exception? error,
   }) = _ThemePreviewState;

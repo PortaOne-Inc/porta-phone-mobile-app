@@ -7,7 +7,6 @@ import 'package:webtrit_configurator/localization/localization.dart';
 import 'applications_consts.dart';
 
 enum ApplicationIdentifierValidationError {
-  blank,
   toLong,
   toShort,
 }
@@ -22,7 +21,7 @@ class ApplicationIdentifierInput extends FormzInput<String, ApplicationIdentifie
   @override
   ApplicationIdentifierValidationError? validator(String value) {
     if (value.isEmpty) {
-      return ApplicationIdentifierValidationError.blank;
+      return null;
     } else if (value.length > ApplicationConsts.maxIdentifierLimit) {
       return ApplicationIdentifierValidationError.toLong;
     } else if (value.length < ApplicationConsts.minIdentifierLimit) {
@@ -39,8 +38,6 @@ extension ExtensionIdentifierErrorL10n on ApplicationIdentifierInput {
       return null;
     } else {
       switch (error!) {
-        case ApplicationIdentifierValidationError.blank:
-          return context.l10n.feature_application_identifier_error;
         case ApplicationIdentifierValidationError.toLong:
           return context.l10n.feature_application_identifier_error;
         case ApplicationIdentifierValidationError.toShort:

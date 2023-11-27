@@ -137,6 +137,28 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               children: <Widget>[
                 Column(
                   children: [
+                    Card(
+                      margin: EdgeInsets.zero,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          children: [
+                            PropertyIconTextButton(
+                              text: 'Generate scheme by color seed',
+                              icon: Icons.format_color_fill,
+                              onTap: () => _selectColor(
+                                context,
+                                state.theme?.colors?.primary ?? Colors.white,
+                                (color) => bloc.add(GenerateColorSchemeByColorSeedEvent(color)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      indent: 16,
+                    ),
                     Row(
                       children: [
                         Expanded(
@@ -671,19 +693,11 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
       MaterialPageRoute(
         builder: (BuildContext context) => PageThemeImportAssets(
           themeModel: cubit.state.theme!,
-          // onPreview: (SystemAssetsModel systemAssetsModel) {
-          //
-          // },
-          // onSave: (SystemAssetsModel systemAssetsModel) {
-          //
-          // },
         ),
       ),
     );
     cubit.add(const ThemeDraftSchemeEvent.disableDraftTheme());
     cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.property));
-
-    // BlocProvider.of<ThemePropertyCubit>(context).add(const ThemeDraftSchemeEvent.moveDraftThemToCurrent());
   }
 }
 

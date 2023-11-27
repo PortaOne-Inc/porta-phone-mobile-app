@@ -1,15 +1,15 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:formz/formz.dart';
+import 'package:validated/validated.dart' as validate;
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
 enum ApplicationCoreValidationError {
-  blank,
   toLong,
-  toShort,
+  invalid,
 }
 
 class ApplicationCoreInput extends FormzInput<String, ApplicationCoreValidationError> {
@@ -21,12 +21,10 @@ class ApplicationCoreInput extends FormzInput<String, ApplicationCoreValidationE
 
   @override
   ApplicationCoreValidationError? validator(String value) {
-    if (value.isEmpty) {
-      return ApplicationCoreValidationError.blank;
-    } else if (value.length > ApplicationConsts.maxCoreLimit) {
+    if (value.length > ApplicationConsts.maxCoreLimit) {
       return ApplicationCoreValidationError.toLong;
-    } else if (value.length < ApplicationConsts.minIdentifierLimit) {
-      return ApplicationCoreValidationError.toShort;
+    } else if (!validate.isURL(value) && value.isNotEmpty) {
+      return ApplicationCoreValidationError.invalid;
     } else {
       return null;
     }
@@ -39,12 +37,10 @@ extension ExtensionCoreErrorL10n on ApplicationCoreInput {
       return null;
     } else {
       switch (error!) {
-        case ApplicationCoreValidationError.blank:
-          return context.l10n.feature_application_identifier_error;
         case ApplicationCoreValidationError.toLong:
           return context.l10n.feature_application_identifier_error;
-        case ApplicationCoreValidationError.toShort:
-          return context.l10n.feature_application_identifier_error;
+        case ApplicationCoreValidationError.invalid:
+          return context.l10n.common_url_is_not_valid;
       }
     }
   }

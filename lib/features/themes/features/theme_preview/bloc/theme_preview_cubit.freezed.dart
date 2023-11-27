@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemePreviewState {
   ThemePreviewStatus? get status => throw _privateConstructorUsedError;
+  ApplicationModel? get applicationModel => throw _privateConstructorUsedError;
   ThemeModel? get theme => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
@@ -31,8 +32,13 @@ abstract class $ThemePreviewStateCopyWith<$Res> {
           ThemePreviewState value, $Res Function(ThemePreviewState) then) =
       _$ThemePreviewStateCopyWithImpl<$Res, ThemePreviewState>;
   @useResult
-  $Res call({ThemePreviewStatus? status, ThemeModel? theme, Exception? error});
+  $Res call(
+      {ThemePreviewStatus? status,
+      ApplicationModel? applicationModel,
+      ThemeModel? theme,
+      Exception? error});
 
+  $ApplicationModelCopyWith<$Res>? get applicationModel;
   $ThemeModelCopyWith<$Res>? get theme;
 }
 
@@ -50,6 +56,7 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? applicationModel = freezed,
     Object? theme = freezed,
     Object? error = freezed,
   }) {
@@ -58,6 +65,10 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePreviewStatus?,
+      applicationModel: freezed == applicationModel
+          ? _value.applicationModel
+          : applicationModel // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -67,6 +78,18 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
           : error // ignore: cast_nullable_to_non_nullable
               as Exception?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get applicationModel {
+    if (_value.applicationModel == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_value.applicationModel!, (value) {
+      return _then(_value.copyWith(applicationModel: value) as $Val);
+    });
   }
 
   @override
@@ -90,8 +113,14 @@ abstract class _$$ThemePreviewStateImplCopyWith<$Res>
       __$$ThemePreviewStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemePreviewStatus? status, ThemeModel? theme, Exception? error});
+  $Res call(
+      {ThemePreviewStatus? status,
+      ApplicationModel? applicationModel,
+      ThemeModel? theme,
+      Exception? error});
 
+  @override
+  $ApplicationModelCopyWith<$Res>? get applicationModel;
   @override
   $ThemeModelCopyWith<$Res>? get theme;
 }
@@ -108,6 +137,7 @@ class __$$ThemePreviewStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? applicationModel = freezed,
     Object? theme = freezed,
     Object? error = freezed,
   }) {
@@ -116,6 +146,10 @@ class __$$ThemePreviewStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemePreviewStatus?,
+      applicationModel: freezed == applicationModel
+          ? _value.applicationModel
+          : applicationModel // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       theme: freezed == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -131,10 +165,13 @@ class __$$ThemePreviewStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ThemePreviewStateImpl implements _ThemePreviewState {
-  _$ThemePreviewStateImpl({this.status, this.theme, this.error});
+  _$ThemePreviewStateImpl(
+      {this.status, this.applicationModel, this.theme, this.error});
 
   @override
   final ThemePreviewStatus? status;
+  @override
+  final ApplicationModel? applicationModel;
   @override
   final ThemeModel? theme;
   @override
@@ -142,7 +179,7 @@ class _$ThemePreviewStateImpl implements _ThemePreviewState {
 
   @override
   String toString() {
-    return 'ThemePreviewState(status: $status, theme: $theme, error: $error)';
+    return 'ThemePreviewState(status: $status, applicationModel: $applicationModel, theme: $theme, error: $error)';
   }
 
   @override
@@ -151,12 +188,15 @@ class _$ThemePreviewStateImpl implements _ThemePreviewState {
         (other.runtimeType == runtimeType &&
             other is _$ThemePreviewStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.applicationModel, applicationModel) ||
+                other.applicationModel == applicationModel) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, theme, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, applicationModel, theme, error);
 
   @JsonKey(ignore: true)
   @override
@@ -169,11 +209,14 @@ class _$ThemePreviewStateImpl implements _ThemePreviewState {
 abstract class _ThemePreviewState implements ThemePreviewState {
   factory _ThemePreviewState(
       {final ThemePreviewStatus? status,
+      final ApplicationModel? applicationModel,
       final ThemeModel? theme,
       final Exception? error}) = _$ThemePreviewStateImpl;
 
   @override
   ThemePreviewStatus? get status;
+  @override
+  ApplicationModel? get applicationModel;
   @override
   ThemeModel? get theme;
   @override

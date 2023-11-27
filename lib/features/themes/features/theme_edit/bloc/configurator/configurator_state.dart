@@ -8,6 +8,7 @@ enum ThemePropertyScreens { property, importSvg }
 class ThemePropertyState with _$ThemePropertyState {
   factory ThemePropertyState({
     ThemePropertyStatus? status,
+    ApplicationModel? applicationModel,
     @Default(ThemePreviewScreen.layouts) ThemePreviewScreen themePreviewScreen,
     @Default(ThemePropertyScreens.property) ThemePropertyScreens themePropertyScreens,
     @Default(false) bool isDraft,
@@ -43,6 +44,7 @@ extension ThemePropertyThemeExtension on ThemePropertyState {
 
   ThemePropertyState copy({
     ThemePropertyStatus? status,
+    ApplicationModel? applicationModel,
     ThemePreviewScreen? themePreviewScreen,
     ThemePropertyScreens? themePropertyScreens,
     bool? isDraft,
@@ -55,6 +57,7 @@ extension ThemePropertyThemeExtension on ThemePropertyState {
 
     return copyWith(
       status: status ?? this.status,
+      applicationModel: applicationModel ?? this.applicationModel,
       themePreviewScreen: themePreviewScreen ?? this.themePreviewScreen,
       themePropertyScreens: themePropertyScreens ?? this.themePropertyScreens,
       isDraft: isDraftTheme,

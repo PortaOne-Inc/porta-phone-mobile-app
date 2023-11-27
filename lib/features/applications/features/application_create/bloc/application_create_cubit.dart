@@ -41,13 +41,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       tryCreateApplication();
     } else {
       final nameInput = state.nameInput ?? const ApplicationNameInput.dirty();
-      final appIdentifier = state.applicationIdentifierInput ?? const ApplicationIdentifierInput.dirty();
-      final appCore = state.applicationCoreInput ?? const ApplicationCoreInput.dirty();
 
-      emit(state.copyWith(
-          nameInput: nameInput.toDirty(),
-          applicationIdentifierInput: appIdentifier.toDirty(),
-          applicationCoreInput: appCore));
+      emit(state.copyWith(nameInput: nameInput.toDirty()));
     }
   }
 
@@ -55,9 +50,9 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     try {
       await _createApplication(
         projectName: state.nameInput!.value,
-        applicationIdentifier: state.applicationIdentifierInput!.value,
-        coreUrl: state.applicationCoreInput!.value,
-        termConditionsUrl: state.applicationTermsConditionsInput!.value,
+        applicationIdentifier: state.applicationIdentifierInput?.value,
+        coreUrl: state.applicationCoreInput?.value,
+        termConditionsUrl: state.applicationTermsConditionsInput?.value,
         iosGoogleServices: state.iosGoogleServices,
         androidGoogleServices: state.androidGoogleServices,
       );
@@ -86,7 +81,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
   Future _createApplication({
     required String projectName,
-    required String applicationIdentifier,
+    String? applicationIdentifier,
     String? coreUrl,
     String? termConditionsUrl,
     Uint8List? iosGoogleServices,
@@ -107,12 +102,6 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   }
 
   bool _isValidFields() {
-    return state.nameInput == null || state.applicationIdentifierInput == null || state.applicationCoreInput == null
-        ? false
-        : Formz.validate([
-            state.nameInput!,
-            state.applicationIdentifierInput!,
-            state.applicationCoreInput!,
-          ]);
+    return state.nameInput == null ? false : Formz.validate([state.nameInput!]);
   }
 }

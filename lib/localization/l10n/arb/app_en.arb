@@ -158,6 +158,7 @@
   "feature_applications_version": "Version: {version}",
   "feature_applications_Menu_increment": "Inc version",
   "common_not_implemented": "Not implemented",
+  "common_url_is_not_valid": "The provided URL is invalid",
   "configurator_common_description": "Description",
   "@locale_default": {
   },
