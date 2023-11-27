@@ -23,9 +23,6 @@ class PropertyIconTextButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
-            width: 8,
-          ),
           Text(
             text,
             style: theme.textTheme.titleMedium,

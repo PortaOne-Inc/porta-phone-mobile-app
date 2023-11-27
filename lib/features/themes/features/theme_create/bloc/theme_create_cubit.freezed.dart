@@ -19,6 +19,7 @@ mixin _$ThemeCreateState {
   ThemeCreateStateStatus get status => throw _privateConstructorUsedError;
   ThemeModel? get themeModel => throw _privateConstructorUsedError;
   ThemeNameInput? get nameInput => throw _privateConstructorUsedError;
+  Color? get seedColor => throw _privateConstructorUsedError;
   BaseException? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,6 +37,7 @@ abstract class $ThemeCreateStateCopyWith<$Res> {
       {ThemeCreateStateStatus status,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
+      Color? seedColor,
       BaseException? error});
 
   $ThemeModelCopyWith<$Res>? get themeModel;
@@ -57,6 +59,7 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
     Object? status = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
+    Object? seedColor = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +75,10 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
+      seedColor: freezed == seedColor
+          ? _value.seedColor
+          : seedColor // ignore: cast_nullable_to_non_nullable
+              as Color?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -105,6 +112,7 @@ abstract class _$$ThemeCreateStateInitialImplCopyWith<$Res>
       {ThemeCreateStateStatus status,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
+      Color? seedColor,
       BaseException? error});
 
   @override
@@ -126,6 +134,7 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
     Object? status = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
+    Object? seedColor = freezed,
     Object? error = freezed,
   }) {
     return _then(_$ThemeCreateStateInitialImpl(
@@ -141,6 +150,10 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
+      seedColor: freezed == seedColor
+          ? _value.seedColor
+          : seedColor // ignore: cast_nullable_to_non_nullable
+              as Color?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -153,7 +166,11 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
 
 class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   const _$ThemeCreateStateInitialImpl(
-      {required this.status, this.themeModel, this.nameInput, this.error});
+      {required this.status,
+      this.themeModel,
+      this.nameInput,
+      this.seedColor,
+      this.error});
 
   @override
   final ThemeCreateStateStatus status;
@@ -162,11 +179,13 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   @override
   final ThemeNameInput? nameInput;
   @override
+  final Color? seedColor;
+  @override
   final BaseException? error;
 
   @override
   String toString() {
-    return 'ThemeCreateState(status: $status, themeModel: $themeModel, nameInput: $nameInput, error: $error)';
+    return 'ThemeCreateState(status: $status, themeModel: $themeModel, nameInput: $nameInput, seedColor: $seedColor, error: $error)';
   }
 
   @override
@@ -179,12 +198,14 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
                 other.themeModel == themeModel) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
+            (identical(other.seedColor, seedColor) ||
+                other.seedColor == seedColor) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, status, themeModel, nameInput, error);
+      Object.hash(runtimeType, status, themeModel, nameInput, seedColor, error);
 
   @JsonKey(ignore: true)
   @override
@@ -199,6 +220,7 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
       {required final ThemeCreateStateStatus status,
       final ThemeModel? themeModel,
       final ThemeNameInput? nameInput,
+      final Color? seedColor,
       final BaseException? error}) = _$ThemeCreateStateInitialImpl;
 
   @override
@@ -207,6 +229,8 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
   ThemeModel? get themeModel;
   @override
   ThemeNameInput? get nameInput;
+  @override
+  Color? get seedColor;
   @override
   BaseException? get error;
   @override

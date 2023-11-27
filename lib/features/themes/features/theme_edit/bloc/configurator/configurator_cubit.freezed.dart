@@ -416,6 +416,46 @@ abstract class _GetThemeEvent implements GetThemeEvent {
 }
 
 /// @nodoc
+mixin _$GenerateColorSchemeByColorSeedEvent {
+  Color? get color => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$GenerateColorSchemeByColorSeedEventImpl
+    implements _GenerateColorSchemeByColorSeedEvent {
+  const _$GenerateColorSchemeByColorSeedEventImpl(this.color);
+
+  @override
+  final Color? color;
+
+  @override
+  String toString() {
+    return 'GenerateColorSchemeByColorSeedEvent(color: $color)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GenerateColorSchemeByColorSeedEventImpl &&
+            (identical(other.color, color) || other.color == color));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, color);
+}
+
+abstract class _GenerateColorSchemeByColorSeedEvent
+    implements GenerateColorSchemeByColorSeedEvent {
+  const factory _GenerateColorSchemeByColorSeedEvent(final Color? color) =
+      _$GenerateColorSchemeByColorSeedEventImpl;
+
+  @override
+  Color? get color;
+}
+
+/// @nodoc
 mixin _$UpdateThemeEvent {
   ThemeModel? get model => throw _privateConstructorUsedError;
 }
