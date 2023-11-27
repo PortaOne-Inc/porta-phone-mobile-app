@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -37,6 +39,7 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
         themeModel: defaultTheme.copyWith(
           name: name,
         ),
+        colorsScheme: state.seedColor,
         applicationId: applicationId,
       );
       emit(state.copyWith(
@@ -46,5 +49,13 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
     } on BaseException catch (e) {
       emit(state.copyWith(error: e, status: ThemeCreateStateStatus.error));
     }
+  }
+
+  void updateSeedColor(Color color) {
+    emit(state.copyWith(seedColor: color, status: ThemeCreateStateStatus.initial));
+  }
+
+  void deleteSeedColor() {
+    emit(state.copyWith(seedColor: null, status: ThemeCreateStateStatus.initial));
   }
 }

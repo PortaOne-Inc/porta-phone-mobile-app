@@ -13,6 +13,7 @@ class ThemeCreateState with _$ThemeCreateState {
     required ThemeCreateStateStatus status,
     ThemeModel? themeModel,
     ThemeNameInput? nameInput,
+    Color? seedColor,
     BaseException? error,
   }) = _ThemeCreateStateInitial;
 }

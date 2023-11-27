@@ -15,6 +15,11 @@ class GetThemeEvent with _$GetThemeEvent implements ConfiguratorEvent {
 }
 
 @Freezed(copyWith: false)
+class GenerateColorSchemeByColorSeedEvent with _$GenerateColorSchemeByColorSeedEvent implements ConfiguratorEvent {
+  const factory GenerateColorSchemeByColorSeedEvent(Color? color) = _GenerateColorSchemeByColorSeedEvent;
+}
+
+@Freezed(copyWith: false)
 class UpdateThemeEvent with _$UpdateThemeEvent implements ConfiguratorEvent {
   const factory UpdateThemeEvent(ThemeModel? model) = _UpdateThemeEvent;
 }
