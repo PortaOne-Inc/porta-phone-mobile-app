@@ -48,9 +48,22 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   void tryDeleteApplication() async {
+    emit(state.copyWith(deleteApplication: state.application));
+  }
+
+  void confirmDeleteApplication() async {
+    if (state.deleteApplication != null) _tryDeleteApplication(state.deleteApplication!);
+    emit(state.copyWith(deleteApplication: null));
+  }
+
+  void declineDeleteApplication() async {
+    emit(state.copyWith(deleteApplication: null));
+  }
+
+  void _tryDeleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-      await applicationDeleteUsecase.execute(applicationId: applicationId);
+      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
       emit(state.copyWith(status: ApplicationDetailsStateStatus.deleted));
     } on BaseException catch (e) {
       emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));

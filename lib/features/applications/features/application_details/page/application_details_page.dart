@@ -62,27 +62,39 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
           body: FlexibleBinaryLayout(
             orientation: ResizableOrientation.horizontal,
             childPrimary: (context, dimension) {
-              return Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(top: 8),
-                    padding: const EdgeInsets.all(16),
-                    child: const Center(
-                      child: Text('Config'),
+              return Stack(children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.only(top: 8),
+                      padding: const EdgeInsets.all(16),
+                      child: const Center(
+                        child: Text('Config'),
+                      ),
                     ),
-                  ),
-                  const Divider(),
-                  ApplicationDetailsScreen(
-                    application: state.application,
-                    onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
-                      context,
-                      applicationId,
-                      themeId,
-                    ),
-                  )
-                ],
-              );
+                    const Divider(),
+                    ApplicationDetailsScreen(
+                      application: state.application,
+                      onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
+                        context,
+                        applicationId,
+                        themeId,
+                      ),
+                    )
+                  ],
+                ),
+                FadeBackground(
+                  visibility: state.deleteApplication != null,
+                ),
+                ConfirmationDialog(
+                  visibility: state.deleteApplication != null,
+                  title: 'Please Confirm',
+                  description: 'Are you sure to delete the application?',
+                  onConfirm: bloc.confirmDeleteApplication,
+                  onDecline: bloc.declineDeleteApplication,
+                ),
+              ]);
             },
             childSecondary: (context, dimension) {
               return Stack(children: [

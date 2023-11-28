@@ -15,6 +15,7 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
     @Default([]) List<ThemeModel> themes,
     ThemeModel? deleteTheme,
     ApplicationModel? application,
+    ApplicationModel? deleteApplication,
     BaseException? error,
   }) = ApplicationDetailsStateInitial;
 }
