@@ -15,6 +15,7 @@ class ThemePreviewCubit extends Cubit<ThemePreviewState> {
     this.themeId,
   }) : super(ThemePreviewState(status: ThemePreviewStatus.progress)) {
     _tryGetTheme();
+    _tryGetApplication();
   }
 
   final String? applicationId;
@@ -28,9 +29,22 @@ class ThemePreviewCubit extends Cubit<ThemePreviewState> {
       emit(state.copyWith(status: ThemePreviewStatus.progress));
 
       final model = await getThemeUseCase.execute();
+
+      emit(state.copyWith(status: ThemePreviewStatus.success, theme: model));
+    } on Exception catch (e) {
+      emit(state.copyWith(
+        status: ThemePreviewStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> _tryGetApplication() async {
+    try {
+      emit(state.copyWith(status: ThemePreviewStatus.progress));
       final application = await getApplicationUseCase.execute(id: applicationId!);
 
-      emit(state.copyWith(status: ThemePreviewStatus.success, theme: model, applicationModel: application));
+      emit(state.copyWith(status: ThemePreviewStatus.success, applicationModel: application));
     } on Exception catch (e) {
       emit(state.copyWith(
         status: ThemePreviewStatus.error,

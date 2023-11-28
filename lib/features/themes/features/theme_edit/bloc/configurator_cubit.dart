@@ -52,10 +52,14 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<GetThemeEvent>(
       _tryGetTheme,
     );
+    on<GetApplicationEvent>(
+      _tryGetApplication,
+    );
     on<UpdateThemeEvent>(
       _validateAndTryUpdateTheme,
     );
     add(const GetThemeEvent());
+    add(const GetApplicationEvent());
   }
 
   final String? applicationId;
@@ -156,10 +160,23 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     try {
       emit(state.copyWith(status: ThemePropertyStatus.progress));
 
-      final model = await getThemeUseCase.execute();
+      final theme = await getThemeUseCase.execute();
+
+      emit(state.initTheme(theme: theme));
+      emit(state.copyWith(status: ThemePropertyStatus.success));
+    } on Exception catch (e) {
+      emit(state.copyWith(
+        status: ThemePropertyStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> _tryGetApplication(GetApplicationEvent event, Emitter<ThemePropertyState> emit) async {
+    try {
+      emit(state.copyWith(status: ThemePropertyStatus.progress));
       final application = await getApplicationUseCase.execute(id: applicationId!);
 
-      emit(state.initTheme(theme: model));
       emit(state.copyWith(status: ThemePropertyStatus.success, applicationModel: application));
     } on Exception catch (e) {
       emit(state.copyWith(
