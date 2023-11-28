@@ -29,16 +29,6 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     }
   }
 
-  void deleteApplication(ApplicationModel applicationModel) async {
-    try {
-      emit(state.copyWith(status: ApplicationsStateStatus.progress));
-      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
-      tryGetApplications();
-    } on Exception catch (e) {
-      emit(state.copyWith(error: e));
-    }
-  }
-
   void incrementApplicationVersion(ApplicationModel applicationModel) async {
     await applicationIncVersion.execute(applicationId: applicationModel.id!);
     tryGetApplications();
@@ -46,6 +36,32 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
 
   Future _getApplications() async {
     final result = await applicationCollectionUsecase.execute();
-    emit(state.copyWith(applications: result));
+    emit(state.copyWith(
+      status: ApplicationsStateStatus.success,
+      applications: result,
+    ));
+  }
+
+  void tryDeleteApplication(ApplicationModel application) async {
+    emit(state.copyWith(deleteApplication: application));
+  }
+
+  void confirmDeleteApplication() async {
+    if (state.deleteApplication != null) _tryDeleteApplication(state.deleteApplication!);
+    emit(state.copyWith(deleteApplication: null));
+  }
+
+  void _tryDeleteApplication(ApplicationModel applicationModel) async {
+    try {
+      emit(state.copyWith(status: ApplicationsStateStatus.progress));
+      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
+      _getApplications();
+    } on BaseException catch (e) {
+      emit(state.copyWith(error: e));
+    }
+  }
+
+  void declineDeleteApplication() async {
+    emit(state.copyWith(deleteApplication: null));
   }
 }

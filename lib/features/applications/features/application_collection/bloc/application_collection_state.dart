@@ -13,6 +13,7 @@ class ApplicationCollectionState with _$ApplicationCollectionState {
   const factory ApplicationCollectionState({
     required ApplicationsStateStatus status,
     @Default([]) List<ApplicationModel> applications,
+    ApplicationModel? deleteApplication,
     Exception? error,
   }) = ApplicationCollectionStateInitial;
 }

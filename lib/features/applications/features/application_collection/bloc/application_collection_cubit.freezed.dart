@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationCollectionState {
   ApplicationsStateStatus get status => throw _privateConstructorUsedError;
   List<ApplicationModel> get applications => throw _privateConstructorUsedError;
+  ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +36,10 @@ abstract class $ApplicationCollectionStateCopyWith<$Res> {
   $Res call(
       {ApplicationsStateStatus status,
       List<ApplicationModel> applications,
+      ApplicationModel? deleteApplication,
       Exception? error});
+
+  $ApplicationModelCopyWith<$Res>? get deleteApplication;
 }
 
 /// @nodoc
@@ -54,6 +58,7 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? applications = null,
+    Object? deleteApplication = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -65,11 +70,27 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
           ? _value.applications
           : applications // ignore: cast_nullable_to_non_nullable
               as List<ApplicationModel>,
+      deleteApplication: freezed == deleteApplication
+          ? _value.deleteApplication
+          : deleteApplication // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as Exception?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get deleteApplication {
+    if (_value.deleteApplication == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_value.deleteApplication!, (value) {
+      return _then(_value.copyWith(deleteApplication: value) as $Val);
+    });
   }
 }
 
@@ -85,7 +106,11 @@ abstract class _$$ApplicationCollectionStateInitialImplCopyWith<$Res>
   $Res call(
       {ApplicationsStateStatus status,
       List<ApplicationModel> applications,
+      ApplicationModel? deleteApplication,
       Exception? error});
+
+  @override
+  $ApplicationModelCopyWith<$Res>? get deleteApplication;
 }
 
 /// @nodoc
@@ -103,6 +128,7 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? applications = null,
+    Object? deleteApplication = freezed,
     Object? error = freezed,
   }) {
     return _then(_$ApplicationCollectionStateInitialImpl(
@@ -114,6 +140,10 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
               as List<ApplicationModel>,
+      deleteApplication: freezed == deleteApplication
+          ? _value.deleteApplication
+          : deleteApplication // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -129,6 +159,7 @@ class _$ApplicationCollectionStateInitialImpl
   const _$ApplicationCollectionStateInitialImpl(
       {required this.status,
       final List<ApplicationModel> applications = const [],
+      this.deleteApplication,
       this.error})
       : _applications = applications;
 
@@ -144,11 +175,13 @@ class _$ApplicationCollectionStateInitialImpl
   }
 
   @override
+  final ApplicationModel? deleteApplication;
+  @override
   final Exception? error;
 
   @override
   String toString() {
-    return 'ApplicationCollectionState(status: $status, applications: $applications, error: $error)';
+    return 'ApplicationCollectionState(status: $status, applications: $applications, deleteApplication: $deleteApplication, error: $error)';
   }
 
   @override
@@ -159,12 +192,18 @@ class _$ApplicationCollectionStateInitialImpl
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications) &&
+            (identical(other.deleteApplication, deleteApplication) ||
+                other.deleteApplication == deleteApplication) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_applications), error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_applications),
+      deleteApplication,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -180,12 +219,15 @@ abstract class ApplicationCollectionStateInitial
   const factory ApplicationCollectionStateInitial(
       {required final ApplicationsStateStatus status,
       final List<ApplicationModel> applications,
+      final ApplicationModel? deleteApplication,
       final Exception? error}) = _$ApplicationCollectionStateInitialImpl;
 
   @override
   ApplicationsStateStatus get status;
   @override
   List<ApplicationModel> get applications;
+  @override
+  ApplicationModel? get deleteApplication;
   @override
   Exception? get error;
   @override
