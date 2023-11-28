@@ -19,6 +19,7 @@ mixin _$ApplicationDetailsState {
   ApplicationDetailsStateStatus get status =>
       throw _privateConstructorUsedError;
   List<ThemeModel> get themes => throw _privateConstructorUsedError;
+  ThemeModel? get deleteTheme => throw _privateConstructorUsedError;
   ApplicationModel? get application => throw _privateConstructorUsedError;
   BaseException? get error => throw _privateConstructorUsedError;
 
@@ -36,9 +37,11 @@ abstract class $ApplicationDetailsStateCopyWith<$Res> {
   $Res call(
       {ApplicationDetailsStateStatus status,
       List<ThemeModel> themes,
+      ThemeModel? deleteTheme,
       ApplicationModel? application,
       BaseException? error});
 
+  $ThemeModelCopyWith<$Res>? get deleteTheme;
   $ApplicationModelCopyWith<$Res>? get application;
 }
 
@@ -58,6 +61,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? themes = null,
+    Object? deleteTheme = freezed,
     Object? application = freezed,
     Object? error = freezed,
   }) {
@@ -70,6 +74,10 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
+      deleteTheme: freezed == deleteTheme
+          ? _value.deleteTheme
+          : deleteTheme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
       application: freezed == application
           ? _value.application
           : application // ignore: cast_nullable_to_non_nullable
@@ -79,6 +87,18 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           : error // ignore: cast_nullable_to_non_nullable
               as BaseException?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeModelCopyWith<$Res>? get deleteTheme {
+    if (_value.deleteTheme == null) {
+      return null;
+    }
+
+    return $ThemeModelCopyWith<$Res>(_value.deleteTheme!, (value) {
+      return _then(_value.copyWith(deleteTheme: value) as $Val);
+    });
   }
 
   @override
@@ -106,9 +126,12 @@ abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
   $Res call(
       {ApplicationDetailsStateStatus status,
       List<ThemeModel> themes,
+      ThemeModel? deleteTheme,
       ApplicationModel? application,
       BaseException? error});
 
+  @override
+  $ThemeModelCopyWith<$Res>? get deleteTheme;
   @override
   $ApplicationModelCopyWith<$Res>? get application;
 }
@@ -128,6 +151,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? themes = null,
+    Object? deleteTheme = freezed,
     Object? application = freezed,
     Object? error = freezed,
   }) {
@@ -140,6 +164,10 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
+      deleteTheme: freezed == deleteTheme
+          ? _value.deleteTheme
+          : deleteTheme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
       application: freezed == application
           ? _value.application
           : application // ignore: cast_nullable_to_non_nullable
@@ -159,6 +187,7 @@ class _$ApplicationDetailsStateInitialImpl
   const _$ApplicationDetailsStateInitialImpl(
       {required this.status,
       final List<ThemeModel> themes = const [],
+      this.deleteTheme,
       this.application,
       this.error})
       : _themes = themes;
@@ -175,13 +204,15 @@ class _$ApplicationDetailsStateInitialImpl
   }
 
   @override
+  final ThemeModel? deleteTheme;
+  @override
   final ApplicationModel? application;
   @override
   final BaseException? error;
 
   @override
   String toString() {
-    return 'ApplicationDetailsState(status: $status, themes: $themes, application: $application, error: $error)';
+    return 'ApplicationDetailsState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, error: $error)';
   }
 
   @override
@@ -191,14 +222,21 @@ class _$ApplicationDetailsStateInitialImpl
             other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
+            (identical(other.deleteTheme, deleteTheme) ||
+                other.deleteTheme == deleteTheme) &&
             (identical(other.application, application) ||
                 other.application == application) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_themes), application, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_themes),
+      deleteTheme,
+      application,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -214,6 +252,7 @@ abstract class ApplicationDetailsStateInitial
   const factory ApplicationDetailsStateInitial(
       {required final ApplicationDetailsStateStatus status,
       final List<ThemeModel> themes,
+      final ThemeModel? deleteTheme,
       final ApplicationModel? application,
       final BaseException? error}) = _$ApplicationDetailsStateInitialImpl;
 
@@ -221,6 +260,8 @@ abstract class ApplicationDetailsStateInitial
   ApplicationDetailsStateStatus get status;
   @override
   List<ThemeModel> get themes;
+  @override
+  ThemeModel? get deleteTheme;
   @override
   ApplicationModel? get application;
   @override

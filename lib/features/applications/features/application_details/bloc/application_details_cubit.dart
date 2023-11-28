@@ -34,11 +34,17 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
 
   void tryDeleteTheme(ThemeModel themeModel) async {
-    try {
-      await _deleteTheme(themeModel);
-    } on BaseException catch (e) {
-      emit(state.copyWith(error: e));
-    }
+    emit(state.copyWith(deleteTheme: themeModel));
+  }
+
+  void confirmDeleteTheme() async {
+    if (state.deleteTheme != null) _deleteTheme(state.deleteTheme!);
+
+    emit(state.copyWith(deleteTheme: null));
+  }
+
+  void declineDeleteTheme() async {
+    emit(state.copyWith(deleteTheme: null));
   }
 
   void tryDeleteApplication() async {

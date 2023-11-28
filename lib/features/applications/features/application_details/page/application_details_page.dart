@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/app/application.dart';
@@ -17,11 +17,16 @@ import '../widgets/widgets.dart';
 import 'application_details_screen.dart';
 import 'application_themes_screen.dart';
 
-class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
+class ApplicationDetailsPage extends StatefulWidget with MixinMessages {
   const ApplicationDetailsPage({
     super.key,
   });
 
+  @override
+  State<ApplicationDetailsPage> createState() => _ApplicationDetailsPageState();
+}
+
+class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
@@ -80,36 +85,48 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
               );
             },
             childSecondary: (context, dimension) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(top: 8),
-                    padding: const EdgeInsets.all(16),
-                    child: const Center(child: Text('Themes')),
-                  ),
-                  const Divider(),
-                  Expanded(
-                    child: ConditionalProgressBar(
-                      condition: !state.isProgress,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16, left: 16),
-                        child: ApplicationThemesScreen(
-                          themes: state.themes,
-                          crossAxisCount: dimension < 500 ? 1 : 2,
-                          onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                          onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
-                          onMakeDefault: bloc.tryMakeThemeAsDefault,
-                          onDelete: bloc.tryDeleteTheme,
-                          onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+              return Stack(children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.only(top: 8),
+                      padding: const EdgeInsets.all(16),
+                      child: const Center(child: Text('Themes')),
+                    ),
+                    const Divider(),
+                    Expanded(
+                      child: ConditionalProgressBar(
+                        condition: !state.isProgress,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 16, left: 16),
+                          child: ApplicationThemesScreen(
+                            themes: state.themes,
+                            crossAxisCount: dimension < 500 ? 1 : 2,
+                            onNewBranding: () => _onNewTheme(context, state.application!.id!),
+                            onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
+                            onMakeDefault: bloc.tryMakeThemeAsDefault,
+                            onDelete: (theme) => bloc.tryDeleteTheme(theme),
+                            onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              );
+                    )
+                  ],
+                ),
+                FadeBackground(
+                  visibility: state.deleteTheme != null,
+                ),
+                ConfirmationDialog(
+                  visibility: state.deleteTheme != null,
+                  title: 'Please Confirm',
+                  description: 'Are you sure to delete the theme?',
+                  onConfirm: bloc.confirmDeleteTheme,
+                  onDecline: bloc.declineDeleteTheme,
+                ),
+              ]);
             },
           ),
         );
