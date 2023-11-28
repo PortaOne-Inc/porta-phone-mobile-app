@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'mock_device.dart';
+import '../features/theme_edit/widgets/mock_device.dart';
 
 enum PreviewType {
   single(position: 0),
@@ -16,8 +16,8 @@ enum PreviewType {
   final int position;
 }
 
-class PreviewDetails extends StatelessWidget {
-  const PreviewDetails({
+class TypePreview extends StatelessWidget {
+  const TypePreview({
     super.key,
     required this.type,
     required this.screens,

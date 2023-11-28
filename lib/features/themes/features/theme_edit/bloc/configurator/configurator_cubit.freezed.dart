@@ -72,7 +72,7 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   $Res call({
     Object? status = freezed,
     Object? applicationModel = freezed,
-    Object? themePreviewScreen = null,
+    Object? themePreviewScreen = freezed,
     Object? themePropertyScreens = null,
     Object? isDraft = null,
     Object? currentTheme = freezed,
@@ -90,7 +90,7 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
           ? _value.applicationModel
           : applicationModel // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      themePreviewScreen: null == themePreviewScreen
+      themePreviewScreen: freezed == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
               as ThemePreviewScreen,
@@ -203,7 +203,7 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? applicationModel = freezed,
-    Object? themePreviewScreen = null,
+    Object? themePreviewScreen = freezed,
     Object? themePropertyScreens = null,
     Object? isDraft = null,
     Object? currentTheme = freezed,
@@ -221,7 +221,7 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
           ? _value.applicationModel
           : applicationModel // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      themePreviewScreen: null == themePreviewScreen
+      themePreviewScreen: freezed == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
               as ThemePreviewScreen,
@@ -309,8 +309,8 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.applicationModel, applicationModel) ||
                 other.applicationModel == applicationModel) &&
-            (identical(other.themePreviewScreen, themePreviewScreen) ||
-                other.themePreviewScreen == themePreviewScreen) &&
+            const DeepCollectionEquality()
+                .equals(other.themePreviewScreen, themePreviewScreen) &&
             (identical(other.themePropertyScreens, themePropertyScreens) ||
                 other.themePropertyScreens == themePropertyScreens) &&
             (identical(other.isDraft, isDraft) || other.isDraft == isDraft) &&
@@ -330,7 +330,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
       runtimeType,
       status,
       applicationModel,
-      themePreviewScreen,
+      const DeepCollectionEquality().hash(themePreviewScreen),
       themePropertyScreens,
       isDraft,
       currentTheme,
@@ -554,12 +554,13 @@ class _$UpdatePreviewScreenImpl implements _UpdatePreviewScreen {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePreviewScreenImpl &&
-            (identical(other.themePreviewScreen, themePreviewScreen) ||
-                other.themePreviewScreen == themePreviewScreen));
+            const DeepCollectionEquality()
+                .equals(other.themePreviewScreen, themePreviewScreen));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themePreviewScreen);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(themePreviewScreen));
 }
 
 abstract class _UpdatePreviewScreen implements UpdatePreviewScreen {
