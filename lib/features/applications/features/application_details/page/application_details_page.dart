@@ -1,12 +1,12 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/app/application.dart';
-import 'package:webtrit_configurator/features/applications/features/application_details/page/application_themes_screen.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
@@ -15,16 +15,17 @@ import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 import 'application_details_screen.dart';
+import 'application_themes_screen.dart';
 
 class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
   const ApplicationDetailsPage({
     super.key,
   });
 
-  ApplicationDetailsCubit getBloc(BuildContext context) => BlocProvider.of<ApplicationDetailsCubit>(context);
-
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
+
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
@@ -99,10 +100,9 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
                           themes: state.themes,
                           crossAxisCount: dimension < 500 ? 1 : 2,
                           onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                          onOpenBranding: (String themeId) =>
-                              _openTheme(context, getBloc(context).applicationId, themeId),
-                          onMakeDefault: getBloc(context).tryMakeThemeAsDefault,
-                          onDelete: getBloc(context).tryDeleteTheme,
+                          onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
+                          onMakeDefault: bloc.tryMakeThemeAsDefault,
+                          onDelete: bloc.tryDeleteTheme,
                           onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
                         ),
                       ),
@@ -131,15 +131,17 @@ class ApplicationDetailsPage extends StatelessWidget with MixinMessages {
   }
 
   void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
+    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
+
     switch (applicationDetailFile) {
       case ApplicationDetailFile.newApplication:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
       case ApplicationDetailFile.editApplication:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
-          AppRoutInfo.keyApplicationId: getBloc(context).applicationId,
+          AppRoutInfo.keyApplicationId: bloc.applicationId,
         });
       case ApplicationDetailFile.deleteApplication:
-        getBloc(context).tryDeleteApplication();
+        bloc.tryDeleteApplication();
     }
   }
 
