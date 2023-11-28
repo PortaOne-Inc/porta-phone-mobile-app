@@ -42,30 +42,11 @@ extension ThemePropertyThemeExtension on ThemePropertyState {
     );
   }
 
-  ThemePropertyState copy({
-    ThemePropertyStatus? status,
-    ApplicationModel? applicationModel,
-    ThemePreviewScreen? themePreviewScreen,
-    ThemePropertyScreens? themePropertyScreens,
-    bool? isDraft,
-    ThemeModel? theme,
-    ThemeNameInput? nameField,
-    int? position,
-    Exception? error,
-  }) {
-    final isDraftTheme = isDraft ?? this.isDraft;
-
+  ThemePropertyState copyTheme({ThemeModel? theme}) {
+    final isDraftTheme = isDraft;
     return copyWith(
-      status: status ?? this.status,
-      applicationModel: applicationModel ?? this.applicationModel,
-      themePreviewScreen: themePreviewScreen ?? this.themePreviewScreen,
-      themePropertyScreens: themePropertyScreens ?? this.themePropertyScreens,
-      isDraft: isDraftTheme,
       currentTheme: !isDraftTheme ? (theme ?? currentTheme) : currentTheme,
       draftTheme: isDraftTheme ? (theme ?? draftTheme) : draftTheme,
-      nameField: nameField ?? this.nameField,
-      position: position ?? this.position,
-      error: error ?? this.error,
     );
   }
 }
