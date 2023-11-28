@@ -4,9 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 
-import '../../model/models.dart';
+import '../model/models.dart';
 
 part 'configurator_state.dart';
 

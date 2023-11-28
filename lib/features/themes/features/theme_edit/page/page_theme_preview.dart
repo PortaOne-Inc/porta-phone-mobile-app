@@ -9,7 +9,7 @@ import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 
-import '../bloc/configurator/configurator_cubit.dart';
+import '../bloc/configurator_cubit.dart';
 
 class PageThemePreview extends StatefulWidget {
   const PageThemePreview({

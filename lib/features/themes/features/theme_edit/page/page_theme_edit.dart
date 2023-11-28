@@ -10,7 +10,7 @@ import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../bloc/configurator/configurator_cubit.dart';
+import '../bloc/configurator_cubit.dart';
 import '../model/models.dart';
 import '../widgets/widgets.dart';
 
