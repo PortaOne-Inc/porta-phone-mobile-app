@@ -78,7 +78,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
             name: name,
             left: left.map((it) => _buildMenu(context, it)).toList(),
             right: [
-              ...right.map((it) => _buildMenu(context, it)).toList(),
+              ...right.map((it) => _buildMenu(context, it)),
               ThemeModeSwitcher(
                 themeMode: themeMode,
                 onThemeChange: onThemeChange,

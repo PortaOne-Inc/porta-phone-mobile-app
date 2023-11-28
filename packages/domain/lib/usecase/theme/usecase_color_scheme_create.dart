@@ -40,6 +40,10 @@ class UsecaseColorSchemeCreateImpl implements UsecaseColorSchemeCreate {
         Color(scheme?.primary ?? 0xff5CACE3),
         Color(scheme?.onSurface ?? 0xff123752),
       ],
+      launch: LaunchModel(
+        adaptiveIconBackground: Color(scheme?.primary ?? 0xFFF95A14),
+        splashBackground: Color(scheme?.primary ?? 0xFFF95A14),
+      ),
     );
 
     return colorScheme;

@@ -26,6 +26,8 @@ class ApplicationCollectionPage extends StatefulWidget {
 class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<ApplicationCollectionCubit>(context);
+
     return BlocConsumer<ApplicationCollectionCubit, ApplicationCollectionState>(
       listener: (BuildContext context, ApplicationCollectionState state) {},
       builder: (ctx, state) {
@@ -59,7 +61,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         )
                       : ApplicationPreviewItem(
                           application: state.applications[index - 1],
-                          onDelete: BlocProvider.of<ApplicationCollectionCubit>(context).deleteApplication,
+                          onDelete: bloc.tryDeleteApplication,
                           onEdit: _onEditApplication,
                           onOpen: _onOpenApplication,
                           incrementVersion: _incrementApplicationVersion,
@@ -78,6 +80,16 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                 child: const Center(
                   child: CircularProgressIndicator(),
                 ),
+              ),
+              FadeBackground(
+                visibility: state.deleteApplication != null,
+              ),
+              ConfirmationDialog(
+                visibility: state.deleteApplication != null,
+                title: 'Please Confirm',
+                description: 'Are you sure to delete the application?',
+                onConfirm: bloc.confirmDeleteApplication,
+                onDecline: bloc.declineDeleteApplication,
               ),
             ],
           ),

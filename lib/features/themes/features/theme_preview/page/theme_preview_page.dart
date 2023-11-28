@@ -6,12 +6,9 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
-
-// TODO: Do this widgets common for both features
-import '../../theme_edit/consts/consts.dart';
-import '../../theme_edit/model/models.dart';
-import '../../theme_edit/page/page_theme_preview_launch_icons.dart';
-import '../../theme_edit/widgets/widgets.dart';
+import 'package:webtrit_configurator/features/themes/models/models.dart';
+import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
+import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 
 import '../bloc/theme_preview_cubit.dart';
 
@@ -43,7 +40,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
           isVisibleProgress: state.status == ThemePreviewStatus.progress,
           themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
           onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
-          name: 'Preview of \"${state.theme?.name}\" theme',
+          name: 'Preview of "${state.theme?.name}" theme',
         ),
         body: Column(
           children: [
@@ -69,7 +66,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
 
                   switch (_typeScreen) {
                     case ThemePreviewScreen.layouts:
-                      layout = PreviewDetails(
+                      layout = TypePreview(
                         type: _previewType,
                         screens: _phoneScreenshots(state.theme, state.applicationModel),
                         screenFocus: _focusScreenPosition,
@@ -78,7 +75,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                       );
                       break;
                     case ThemePreviewScreen.assets:
-                      layout = PageThemePreviewLaunchAssets(
+                      layout = ThemeAssetsPreview(
                         theme: state.theme!,
                       );
                       break;

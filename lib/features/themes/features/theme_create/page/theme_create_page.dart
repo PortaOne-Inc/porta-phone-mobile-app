@@ -10,7 +10,6 @@ import 'package:webtrit_configurator/features/themes/features/theme_create/exten
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../../theme_edit/widgets/color_field.dart';
 import '../bloc/theme_create_cubit.dart';
 import '../widgets/widgets.dart';
 

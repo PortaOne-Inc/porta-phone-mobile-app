@@ -13,9 +13,9 @@ enum ApplicationTermsConditionsValidationError {
 }
 
 class ApplicationTermsConditionsInput extends FormzInput<String, ApplicationTermsConditionsValidationError> {
-  const ApplicationTermsConditionsInput.pure([String value = '']) : super.pure(value);
+  const ApplicationTermsConditionsInput.pure([super.value = '']) : super.pure();
 
-  const ApplicationTermsConditionsInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationTermsConditionsInput.dirty([super.value = '']) : super.dirty();
 
   ApplicationTermsConditionsInput toDirty() => ApplicationTermsConditionsInput.dirty(value);
 

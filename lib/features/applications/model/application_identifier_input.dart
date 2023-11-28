@@ -12,9 +12,9 @@ enum ApplicationIdentifierValidationError {
 }
 
 class ApplicationIdentifierInput extends FormzInput<String, ApplicationIdentifierValidationError> {
-  const ApplicationIdentifierInput.pure([String value = '']) : super.pure(value);
+  const ApplicationIdentifierInput.pure([super.value = '']) : super.pure();
 
-  const ApplicationIdentifierInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationIdentifierInput.dirty([super.value = '']) : super.dirty();
 
   ApplicationIdentifierInput toDirty() => ApplicationIdentifierInput.dirty(value);
 

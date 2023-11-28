@@ -13,7 +13,9 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
   const factory ApplicationDetailsState({
     required ApplicationDetailsStateStatus status,
     @Default([]) List<ThemeModel> themes,
+    ThemeModel? deleteTheme,
     ApplicationModel? application,
+    ApplicationModel? deleteApplication,
     BaseException? error,
   }) = ApplicationDetailsStateInitial;
 }

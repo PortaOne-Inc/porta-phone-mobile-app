@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../model/models.dart';
+import '../models/theme_preview_screen.dart';
 
-import 'type_of_preview.dart';
 import 'menu_space.dart';
+import 'type_preview.dart';
 
 class MenuPreview extends StatelessWidget {
   const MenuPreview({

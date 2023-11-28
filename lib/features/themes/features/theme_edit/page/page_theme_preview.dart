@@ -5,13 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/constants/constants.dart';
+import 'package:webtrit_configurator/features/themes/models/models.dart';
+import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 
-import '../bloc/configurator/configurator_cubit.dart';
-import '../consts/image.dart';
-import '../model/models.dart';
-import '../widgets/widgets.dart';
-
-import 'page_theme_preview_launch_icons.dart';
+import '../bloc/configurator_cubit.dart';
 
 class PageThemePreview extends StatefulWidget {
   const PageThemePreview({
@@ -40,7 +38,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                   return ScaleTransition(scale: animation, child: child);
                 },
                 child: state.themePropertyScreens == ThemePropertyScreens.importSvg
-                    ? PageThemePreviewLaunchAssets(
+                    ? ThemeAssetsPreview(
                         theme: state.draftTheme!,
                         key: const ValueKey('PageThemePreviewLaunchAssets'),
                       )
@@ -64,26 +62,23 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                           Expanded(
                             child: Builder(
                               builder: (BuildContext context) {
-                                Widget layout;
-
-                                switch (state.themePreviewScreen) {
-                                  case ThemePreviewScreen.layouts:
-                                    layout = PreviewDetails(
-                                      type: _previewType,
-                                      screens: _phoneScreenshots(state.theme, state.applicationModel),
-                                      screenFocus: _focusScreenPosition,
-                                      isFrameVisible: _isFrameVisible,
-                                      onFocusPosition: _setFocusedScreen,
-                                    );
-                                    break;
-                                  case ThemePreviewScreen.assets:
-                                    layout = PageThemePreviewLaunchAssets(
-                                      theme: state.theme!,
-                                    );
-                                    break;
-                                }
                                 return FlexibleBinaryLayout(
-                                  childPrimary: (context, size) => layout,
+                                  childPrimary: (context, size) {
+                                    switch (state.themePreviewScreen) {
+                                      case ThemePreviewScreen.layouts:
+                                        return TypePreview(
+                                          type: _previewType,
+                                          screens: _phoneScreenshots(state.theme, state.applicationModel),
+                                          screenFocus: _focusScreenPosition,
+                                          isFrameVisible: _isFrameVisible,
+                                          onFocusPosition: _setFocusedScreen,
+                                        );
+                                      case ThemePreviewScreen.assets:
+                                        return ThemeAssetsPreview(
+                                          theme: state.theme!,
+                                        );
+                                    }
+                                  },
                                   childSecondary: _previewType == PreviewType.single &&
                                           state.themePreviewScreen == ThemePreviewScreen.layouts
                                       ? (context, size) => DrawerPreview(
