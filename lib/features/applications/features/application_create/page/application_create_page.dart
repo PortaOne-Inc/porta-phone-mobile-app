@@ -9,8 +9,8 @@ import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../../../widgets/widgets.dart';
-import '../bloc/application_create_cubit.dart';
 
+import '../bloc/application_create_cubit.dart';
 import '../widgets/widgets.dart';
 
 class ApplicationCreatePage extends StatefulWidget {
