@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
-
 part 'application_collection_state.dart';
 
 part 'application_collection_cubit.freezed.dart';
@@ -13,7 +12,7 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     required this.applicationCollectionUsecase,
     required this.applicationDeleteUsecase,
     required this.applicationIncVersion,
-  }) : super(ApplicationCollectionState.progress()) {
+  }) : super(const ApplicationCollectionState(status: ApplicationsStateStatus.initial)) {
     tryGetApplications();
   }
 
@@ -23,24 +22,20 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
 
   void tryGetApplications() async {
     try {
-      emit(state.copyWithProgress());
+      emit(state.copyWith(status: ApplicationsStateStatus.progress));
       await _getApplications();
-    } on BaseException catch (e) {
-      _showNotCaughtFailure(e.message);
-    } catch (e) {
-      _showNotCaughtFailure(e.toString());
+    } on Exception catch (e) {
+      emit(state.copyWith(error: e));
     }
   }
 
   void deleteApplication(ApplicationModel applicationModel) async {
     try {
-      emit(state.copyWithProgress());
+      emit(state.copyWith(status: ApplicationsStateStatus.progress));
       await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
       tryGetApplications();
-    } on BaseException catch (e) {
-      _showNotCaughtFailure(e.message);
-    } catch (e) {
-      _showNotCaughtFailure(e.toString());
+    } on Exception catch (e) {
+      emit(state.copyWith(error: e));
     }
   }
 
@@ -49,12 +44,8 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     tryGetApplications();
   }
 
-  void _showNotCaughtFailure(String message) {
-    emit(state.copyWithSuccess());
-  }
-
   Future _getApplications() async {
     final result = await applicationCollectionUsecase.execute();
-    emit(state.copyWithSuccess(applications: result));
+    emit(state.copyWith(applications: result));
   }
 }
