@@ -1,13 +1,15 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+
+import 'package:device_preview/device_preview.dart';
 
 import 'package:domain/domain.dart';
 
-import '../../../../../core/widgets/image/image_resource.dart';
-import '../widgets/lauch_icon.dart';
+import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
-class PageThemePreviewLaunchAssets extends StatelessWidget {
-  const PageThemePreviewLaunchAssets({
+import 'launch_icon.dart';
+
+class ThemeAssetsPreview extends StatelessWidget {
+  const ThemeAssetsPreview({
     super.key,
     required this.theme,
   });

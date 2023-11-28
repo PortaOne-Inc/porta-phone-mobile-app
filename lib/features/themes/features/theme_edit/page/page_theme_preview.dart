@@ -5,13 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 
 import '../bloc/configurator/configurator_cubit.dart';
 import '../consts/image.dart';
 import '../model/models.dart';
 import '../widgets/widgets.dart';
-
-import 'page_theme_preview_launch_icons.dart';
 
 class PageThemePreview extends StatefulWidget {
   const PageThemePreview({
@@ -40,7 +39,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                   return ScaleTransition(scale: animation, child: child);
                 },
                 child: state.themePropertyScreens == ThemePropertyScreens.importSvg
-                    ? PageThemePreviewLaunchAssets(
+                    ? ThemeAssetsPreview(
                         theme: state.draftTheme!,
                         key: const ValueKey('PageThemePreviewLaunchAssets'),
                       )
@@ -77,7 +76,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                                     );
                                     break;
                                   case ThemePreviewScreen.assets:
-                                    layout = PageThemePreviewLaunchAssets(
+                                    layout = ThemeAssetsPreview(
                                       theme: state.theme!,
                                     );
                                     break;

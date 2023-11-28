@@ -6,11 +6,11 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
+import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 
 // TODO: Do this widgets common for both features
 import '../../theme_edit/consts/consts.dart';
 import '../../theme_edit/model/models.dart';
-import '../../theme_edit/page/page_theme_preview_launch_icons.dart';
 import '../../theme_edit/widgets/widgets.dart';
 
 import '../bloc/theme_preview_cubit.dart';
@@ -78,7 +78,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                       );
                       break;
                     case ThemePreviewScreen.assets:
-                      layout = PageThemePreviewLaunchAssets(
+                      layout = ThemeAssetsPreview(
                         theme: state.theme!,
                       );
                       break;
