@@ -1,5 +1,6 @@
 export 'behaviour/behaviour.dart';
 export 'buttons/buttons.dart';
+export 'decoration/decoration.dart';
 export 'decoration/grid_widget.dart';
 export 'dialogs/dialogs.dart';
 export 'image/image.dart';
