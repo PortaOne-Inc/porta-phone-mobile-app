@@ -78,7 +78,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                                           theme: state.theme!,
                                         );
                                     }
-                                    return Container();
                                   },
                                   childSecondary: _previewType == PreviewType.single &&
                                           state.themePreviewScreen == ThemePreviewScreen.layouts
