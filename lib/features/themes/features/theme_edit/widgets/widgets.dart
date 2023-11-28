@@ -1,4 +1,3 @@
-export 'color_field.dart';
 export 'color_picker.dart';
 export 'font_item.dart';
 export 'fonts_picker.dart';
