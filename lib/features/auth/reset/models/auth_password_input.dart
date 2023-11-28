@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:formz/formz.dart';
 
 enum PasswordValidationError {
@@ -6,7 +8,7 @@ enum PasswordValidationError {
 }
 
 class AuthPasswordInput extends FormzInput<String, PasswordValidationError> {
-  const AuthPasswordInput.pure([String value = '']) : super.pure(value);
+  const AuthPasswordInput.pure([super.value = '']) : super.pure();
 
   const AuthPasswordInput.dirty([String value = '']) : super.dirty(value);
 

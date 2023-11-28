@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:formz/formz.dart';
 
 enum ThemeDescriptionValidationError {

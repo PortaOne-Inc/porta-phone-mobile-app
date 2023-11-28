@@ -9,7 +9,7 @@ export 'mock_device.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'preload_picker.dart';
 export 'preview_menu.dart';
-export 'property_Icon_text_button.dart';
+export 'icon_text_button.dart';
 export 'selected_image.dart';
 export 'themes_edit_toolbar.dart';
 export 'type_of_preview.dart';

@@ -13,8 +13,9 @@ enum ApplicationNameValidationError {
 }
 
 class ApplicationNameInput extends FormzInput<String, ApplicationNameValidationError> {
-  const ApplicationNameInput.pure([String value = '']) : super.pure(value);
+  const ApplicationNameInput.pure([super.value = '']) : super.pure();
 
+  // ignore: use_super_parameters
   const ApplicationNameInput.dirty([String value = '']) : super.dirty(value);
 
   ApplicationNameInput toDirty() => ApplicationNameInput.dirty(value);

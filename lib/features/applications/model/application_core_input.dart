@@ -13,9 +13,9 @@ enum ApplicationCoreValidationError {
 }
 
 class ApplicationCoreInput extends FormzInput<String, ApplicationCoreValidationError> {
-  const ApplicationCoreInput.pure([String value = '']) : super.pure(value);
+  const ApplicationCoreInput.pure([super.value = '']) : super.pure();
 
-  const ApplicationCoreInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationCoreInput.dirty([super.value = '']) : super.dirty();
 
   ApplicationCoreInput toDirty() => ApplicationCoreInput.dirty(value);
 

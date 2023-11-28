@@ -7,9 +7,9 @@ enum ThemeNameValidationError {
 }
 
 class ThemeNameInput extends FormzInput<String, ThemeNameValidationError> {
-  const ThemeNameInput.pure([String value = '']) : super.pure(value);
+  const ThemeNameInput.pure([super.value = '']) : super.pure();
 
-  const ThemeNameInput.dirty([String value = '']) : super.dirty(value);
+  const ThemeNameInput.dirty([super.value = '']) : super.dirty();
 
   ThemeNameInput toDirty() => ThemeNameInput.dirty(value);
 

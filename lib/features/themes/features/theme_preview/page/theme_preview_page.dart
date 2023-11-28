@@ -43,7 +43,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
           isVisibleProgress: state.status == ThemePreviewStatus.progress,
           themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
           onThemeChange: (mode) => BlocProvider.of<CommonBloc>(context).setThemeMode(mode),
-          name: 'Preview of \"${state.theme?.name}\" theme',
+          name: 'Preview of "${state.theme?.name}" theme',
         ),
         body: Column(
           children: [
