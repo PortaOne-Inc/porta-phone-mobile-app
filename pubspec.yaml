@@ -58,7 +58,6 @@ dependencies:
   collection: ^1.17.2
   path: ^1.8.3
   image_size_getter: ^2.1.2
-  easy_debounce: ^2.0.3
 
   # Validation
   formz: ^0.6.1

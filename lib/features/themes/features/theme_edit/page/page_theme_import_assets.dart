@@ -1,4 +1,3 @@
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +6,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/extension/screenshot_controller.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/input_padding.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/selected_image.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
@@ -19,14 +19,9 @@ class PageThemeImportAssets extends StatefulWidget {
   const PageThemeImportAssets({
     super.key,
     required this.themeModel,
-    // required this.onPreview,
-    // required this.onSave,
   });
 
   final ThemeModel themeModel;
-
-  // final Function(SystemAssetsModel systemAssetsModel) onPreview;
-  // final Function(SystemAssetsModel systemAssetsModel) onSave;
 
   @override
   State<PageThemeImportAssets> createState() => _PageThemeImportAssetsState();
@@ -43,11 +38,11 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
   BoxFit _launchIconsFitBox = BoxFit.scaleDown;
   BoxFit _splashIconsFitBox = BoxFit.fitWidth;
 
-  double _scaleSplash = 0;
-  double _scaleAndroidAdaptive = 0;
-  double _scaleAndroidLaunch = 0;
-  double _scaleAndroidIOS = 0;
-  double _scaleAndroidWEB = 0;
+  double _paddingSplash = 0;
+  double _paddingAndroidAdaptive = 0;
+  double _paddingAndroidLaunch = 0;
+  double _paddingAndroidIOS = 0;
+  double _paddingAndroidWEB = 0;
 
   late final bloc = BlocProvider.of<ThemePropertyCubit>(context);
 
@@ -142,22 +137,11 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
               children: [
                 const Text('Splash adaptive scale'),
                 const Spacer(),
-                Slider(
-                  value: _scaleSplash,
-                  max: 100,
-                  divisions: 100,
-                  label: _scaleSplash.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _scaleSplash = value;
-                      EasyDebounce.debounce(
-                        'my-debouncer',
-                        const Duration(milliseconds: 500),
-                        () => _previewCurrentConfig(),
-                      );
-                    });
-                  },
-                ),
+                InputPadding(onChange: (padding) {
+                  _paddingSplash = padding;
+                  _previewCurrentConfig();
+                  setState(() {});
+                })
               ],
             ),
             const Divider(),
@@ -165,22 +149,10 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
               children: [
                 const Text('Android adaptive scale'),
                 const Spacer(),
-                Slider(
-                  value: _scaleAndroidAdaptive,
-                  max: 100,
-                  divisions: 100,
-                  label: _scaleAndroidAdaptive.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _scaleAndroidAdaptive = value;
-                      EasyDebounce.debounce(
-                        'my-debouncer', // <-- An ID for this particular debouncer
-                        const Duration(milliseconds: 500), // <-- The debounce duration
-                        () => _previewCurrentConfig(),
-                      );
-                    });
-                  },
-                ),
+                InputPadding(onChange: (padding) {
+                  _paddingAndroidAdaptive = padding;
+                  _previewCurrentConfig();
+                })
               ],
             ),
             const Divider(),
@@ -188,22 +160,10 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
               children: [
                 const Text('Android launcher scale'),
                 const Spacer(),
-                Slider(
-                  value: _scaleAndroidLaunch,
-                  max: 100,
-                  divisions: 100,
-                  label: _scaleAndroidLaunch.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _scaleAndroidLaunch = value;
-                      EasyDebounce.debounce(
-                        'my-debouncer', // <-- An ID for this particular debouncer
-                        const Duration(milliseconds: 500), // <-- The debounce duration
-                        () => _previewCurrentConfig(),
-                      );
-                    });
-                  },
-                ),
+                InputPadding(onChange: (padding) {
+                  _paddingAndroidLaunch = padding;
+                  _previewCurrentConfig();
+                }),
               ],
             ),
             const Divider(),
@@ -211,22 +171,10 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
               children: [
                 const Text('IOS scale'),
                 const Spacer(),
-                Slider(
-                  value: _scaleAndroidIOS,
-                  max: 100,
-                  divisions: 100,
-                  label: _scaleAndroidIOS.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _scaleAndroidIOS = value;
-                      EasyDebounce.debounce(
-                        'my-debouncer', // <-- An ID for this particular debouncer
-                        const Duration(milliseconds: 500), // <-- The debounce duration
-                        () => _previewCurrentConfig(),
-                      );
-                    });
-                  },
-                ),
+                InputPadding(onChange: (padding) {
+                  _paddingAndroidIOS = padding;
+                  _previewCurrentConfig();
+                }),
               ],
             ),
             const Divider(),
@@ -234,22 +182,10 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
               children: [
                 const Text('Web scale'),
                 const Spacer(),
-                Slider(
-                  value: _scaleAndroidWEB,
-                  max: 100,
-                  divisions: 100,
-                  label: _scaleAndroidWEB.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _scaleAndroidWEB = value;
-                      EasyDebounce.debounce(
-                        'my-debouncer', // <-- An ID for this particular debouncer
-                        const Duration(milliseconds: 500), // <-- The debounce duration
-                        () => _previewCurrentConfig(),
-                      );
-                    });
-                  },
-                ),
+                InputPadding(onChange: (padding) {
+                  _paddingAndroidWEB = padding;
+                  _previewCurrentConfig();
+                }),
               ],
             ),
             const Divider(),
@@ -272,7 +208,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                             screenshotStreamController: _screenshotAndroidLaunchIconController,
                             size: const Size(192, 192),
                             imageModel: _image,
-                            padding: EdgeInsets.all(24 + _scaleAndroidLaunch),
+                            padding: EdgeInsets.all(24 + _paddingAndroidLaunch),
                             color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                             title: '<=Android 12 (Launch icon)\n 192px:192px',
                             fit: _launchIconsFitBox,
@@ -283,7 +219,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                           GenerateLaunchIcon(
                             screenshotStreamController: _screenshotForegroundIconController,
                             size: const Size(432, 432),
-                            padding: EdgeInsets.all(112 + _scaleAndroidAdaptive),
+                            padding: EdgeInsets.all(112 + _paddingAndroidAdaptive),
                             imageModel: _image,
                             title: '>=Android 13 (Adaptive foreground) 432px:432px',
                             fit: _launchIconsFitBox,
@@ -297,7 +233,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                         screenshotStreamController: _screenshotIosLaunchIconController,
                         size: const Size(1024, 1024),
                         imageModel: _image,
-                        padding: EdgeInsets.all(48 + _scaleAndroidIOS),
+                        padding: EdgeInsets.all(48 + _paddingAndroidIOS),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         title: 'iOS 1024px:1024px',
                         fit: _launchIconsFitBox,
@@ -308,7 +244,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                       GenerateLaunchIcon(
                         screenshotStreamController: _screenshotWebLaunchIconController,
                         size: const Size(1024, 1024),
-                        padding: EdgeInsets.all(48 + _scaleAndroidWEB),
+                        padding: EdgeInsets.all(48 + _paddingAndroidWEB),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Web 1024px:1024px',
@@ -320,7 +256,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                       GenerateLaunchIcon(
                         screenshotStreamController: _screenshotSplashIconController,
                         size: const Size(640, 640),
-                        padding: EdgeInsets.all(_scaleSplash),
+                        padding: EdgeInsets.all(_paddingSplash),
                         color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
                         imageModel: _image,
                         title: 'Android / iOS 640px:640px',
