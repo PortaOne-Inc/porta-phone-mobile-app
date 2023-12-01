@@ -14,6 +14,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import '../bloc/configurator_cubit.dart';
 import '../model/image_filter_model.dart';
 import '../utility/utility.dart';
+import '../widgets/widgets.dart';
 
 class PageThemeImportAssets extends StatefulWidget {
   const PageThemeImportAssets({
@@ -90,183 +91,131 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                 ),
               ],
             ),
-            Row(
-              children: [
-                const Text('Svg file'),
-                const Spacer(),
-                SelectedImage(
-                  name: 'Original image ',
-                  description: 'A resource for forming system pictures',
-                  imageFilter: ImageFilterModel.svg(),
-                  image: _image ?? const ImageModel(),
-                  onTap: (ImageFilterModel format) => _selectOriginalSvg(context, format),
-                  onRemove: () => _removeOriginalSvg(),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Splash icon fit type'),
-                const Spacer(),
-                Dropdown(
-                  constraints: const BoxConstraints(maxWidth: 224),
-                  items: BoxFit.values.map((e) => e.name).toList(),
-                  position: _splashIconsFitBox.index,
-                  onSelect: (int position) => _changeSplashIconFitType(position),
-                  icon: const Icon(Icons.expand_more_rounded),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Launch icons fit type'),
-                const Spacer(),
-                Dropdown(
-                  constraints: const BoxConstraints(maxWidth: 224),
-                  items: BoxFit.values.map((e) => e.name).toList(),
-                  position: _launchIconsFitBox.index,
-                  onSelect: (int position) => _changeLaunchIconFitType(position),
-                  icon: const Icon(Icons.expand_more_rounded),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Splash adaptive scale'),
-                const Spacer(),
-                InputPadding(onChange: (padding) {
-                  _paddingSplash = padding;
-                  _previewCurrentConfig();
-                  setState(() {});
-                })
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Android adaptive scale'),
-                const Spacer(),
-                InputPadding(onChange: (padding) {
-                  _paddingAndroidAdaptive = padding;
-                  _previewCurrentConfig();
-                })
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Android launcher scale'),
-                const Spacer(),
-                InputPadding(onChange: (padding) {
-                  _paddingAndroidLaunch = padding;
-                  _previewCurrentConfig();
-                }),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('IOS scale'),
-                const Spacer(),
-                InputPadding(onChange: (padding) {
-                  _paddingAndroidIOS = padding;
-                  _previewCurrentConfig();
-                }),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text('Web scale'),
-                const Spacer(),
-                InputPadding(onChange: (padding) {
-                  _paddingAndroidWEB = padding;
-                  _previewCurrentConfig();
-                }),
-              ],
-            ),
-            const Divider(),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Exports: ',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
             Expanded(
               child: SingleChildScrollView(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          GenerateLaunchIcon(
-                            screenshotStreamController: _screenshotAndroidLaunchIconController,
-                            size: const Size(192, 192),
-                            imageModel: _image,
-                            padding: EdgeInsets.all(24 + _paddingAndroidLaunch),
-                            color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
-                            title: '<=Android 12 (Launch icon)\n 192px:192px',
-                            fit: _launchIconsFitBox,
-                          ),
-                          const SizedBox(
-                            width: 56,
-                          ),
-                          GenerateLaunchIcon(
-                            screenshotStreamController: _screenshotForegroundIconController,
-                            size: const Size(432, 432),
-                            padding: EdgeInsets.all(112 + _paddingAndroidAdaptive),
-                            imageModel: _image,
-                            title: '>=Android 13 (Adaptive foreground) 432px:432px',
-                            fit: _launchIconsFitBox,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 56,
-                      ),
-                      GenerateLaunchIcon(
-                        screenshotStreamController: _screenshotIosLaunchIconController,
-                        size: const Size(1024, 1024),
-                        imageModel: _image,
-                        padding: EdgeInsets.all(48 + _paddingAndroidIOS),
-                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
-                        title: 'iOS 1024px:1024px',
-                        fit: _launchIconsFitBox,
-                      ),
-                      const SizedBox(
-                        height: 56,
-                      ),
-                      GenerateLaunchIcon(
-                        screenshotStreamController: _screenshotWebLaunchIconController,
-                        size: const Size(1024, 1024),
-                        padding: EdgeInsets.all(48 + _paddingAndroidWEB),
-                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
-                        imageModel: _image,
-                        title: 'Web 1024px:1024px',
-                        fit: _launchIconsFitBox,
-                      ),
-                      const SizedBox(
-                        height: 56,
-                      ),
-                      GenerateLaunchIcon(
-                        screenshotStreamController: _screenshotSplashIconController,
-                        size: const Size(640, 640),
-                        padding: EdgeInsets.all(_paddingSplash),
-                        color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
-                        imageModel: _image,
-                        title: 'Android / iOS 640px:640px',
-                        fit: _splashIconsFitBox,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        const Text('Svg file'),
+                        const Spacer(),
+                        SelectedImage(
+                          name: 'Original image ',
+                          description: 'A resource for forming system pictures',
+                          imageFilter: ImageFilterModel.svg(),
+                          image: _image ?? const ImageModel(),
+                          onTap: (ImageFilterModel format) => _selectOriginalSvg(context, format),
+                          onRemove: () => _removeOriginalSvg(),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Splash icon fit type'),
+                        const Spacer(),
+                        Dropdown(
+                          constraints: const BoxConstraints(maxWidth: 224),
+                          items: BoxFit.values.map((e) => e.name).toList(),
+                          position: _splashIconsFitBox.index,
+                          onSelect: (int position) => _changeSplashIconFitType(position),
+                          icon: const Icon(Icons.expand_more_rounded),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Launch icons fit type'),
+                        const Spacer(),
+                        Dropdown(
+                          constraints: const BoxConstraints(maxWidth: 224),
+                          items: BoxFit.values.map((e) => e.name).toList(),
+                          position: _launchIconsFitBox.index,
+                          onSelect: (int position) => _changeLaunchIconFitType(position),
+                          icon: const Icon(Icons.expand_more_rounded),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Splash adaptive scale'),
+                        const Spacer(),
+                        InputPadding(onChange: (padding) {
+                          _paddingSplash = padding;
+                          _previewCurrentConfig();
+                          setState(() {});
+                        })
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Android adaptive scale'),
+                        const Spacer(),
+                        InputPadding(onChange: (padding) {
+                          _paddingAndroidAdaptive = padding;
+                          _previewCurrentConfig();
+                        })
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Android launcher scale'),
+                        const Spacer(),
+                        InputPadding(onChange: (padding) {
+                          _paddingAndroidLaunch = padding;
+                          _previewCurrentConfig();
+                        }),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('IOS scale'),
+                        const Spacer(),
+                        InputPadding(onChange: (padding) {
+                          _paddingAndroidIOS = padding;
+                          _previewCurrentConfig();
+                        }),
+                      ],
+                    ),
+                    const Divider(),
+                    Row(
+                      children: [
+                        const Text('Web scale'),
+                        const Spacer(),
+                        InputPadding(onChange: (padding) {
+                          _paddingAndroidWEB = padding;
+                          _previewCurrentConfig();
+                        }),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
+            RenderWidget(
+                screenshotAndroidLaunchIconController: _screenshotAndroidLaunchIconController,
+                image: _image,
+                paddingAndroidLaunch: _paddingAndroidLaunch,
+                widget: widget,
+                launchIconsFitBox: _launchIconsFitBox,
+                screenshotForegroundIconController: _screenshotForegroundIconController,
+                paddingAndroidAdaptive: _paddingAndroidAdaptive,
+                screenshotIosLaunchIconController: _screenshotIosLaunchIconController,
+                paddingAndroidIOS: _paddingAndroidIOS,
+                screenshotWebLaunchIconController: _screenshotWebLaunchIconController,
+                paddingAndroidWEB: _paddingAndroidWEB,
+                screenshotSplashIconController: _screenshotSplashIconController,
+                paddingSplash: _paddingSplash,
+                splashIconsFitBox: _splashIconsFitBox)
           ],
         ),
       ),

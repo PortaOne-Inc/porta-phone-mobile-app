@@ -1,3 +1,4 @@
+export 'asset_render_widget.dart';
 export 'color_picker.dart';
 export 'font_item.dart';
 export 'fonts_picker.dart';
