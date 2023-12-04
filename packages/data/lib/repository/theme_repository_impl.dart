@@ -94,4 +94,15 @@ class ThemeRepositoryImpl extends ThemeRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future downloadTheme(String applicationId, String themeId) {
+    try {
+      return httpDatasource.downloadTheme(applicationId, themeId);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

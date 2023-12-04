@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -73,6 +75,18 @@ class HttpDatasource {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future downloadTheme(String applicationId, String themeId) async {
+    final url = Uri.parse('$host/applications/$applicationId/themes/$themeId');
+    final response = await dio.getUri(url);
+    final blob = html.Blob([response.data]);
+    final anchorElement = html.AnchorElement(
+      href: html.Url.createObjectUrlFromBlob(blob).toString(),
+    )..setAttribute('download', 'theme-$themeId.json');
+    html.document.body!.children.add(anchorElement);
+    anchorElement.click();
+    html.document.body!.children.remove(anchorElement);
   }
 
   Future<ThemeDTO> getStaticTheme() async {

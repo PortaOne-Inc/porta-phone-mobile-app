@@ -17,6 +17,7 @@ part 'configurator_cubit.freezed.dart';
 
 class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
+    required this.downloadThemeUseCase,
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
     required this.getApplicationUseCase,
@@ -55,6 +56,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     on<GetApplicationEvent>(
       _tryGetApplication,
     );
+    on<DownloadThemeEvent>(
+      _tryDownloadTheme,
+    );
     on<UpdateThemeEvent>(
       _validateAndTryUpdateTheme,
     );
@@ -67,6 +71,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
+  final UsecaseThemeDownload downloadThemeUseCase;
   final UsecaseApplicationGet getApplicationUseCase;
   final UsecaseColorSchemeCreate colorSchemeCreate;
 
@@ -178,6 +183,19 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       final application = await getApplicationUseCase.execute(id: applicationId!);
 
       emit(state.copyWith(status: ThemePropertyStatus.success, applicationModel: application));
+    } on Exception catch (e) {
+      emit(state.copyWith(
+        status: ThemePropertyStatus.error,
+        error: e,
+      ));
+    }
+  }
+
+  Future<void> _tryDownloadTheme(DownloadThemeEvent event, Emitter<ThemePropertyState> emit) async {
+    try {
+      emit(state.copyWith(status: ThemePropertyStatus.progress));
+      await downloadThemeUseCase.execute();
+      emit(state.copyWith(status: ThemePropertyStatus.success));
     } on Exception catch (e) {
       emit(state.copyWith(
         status: ThemePropertyStatus.error,
