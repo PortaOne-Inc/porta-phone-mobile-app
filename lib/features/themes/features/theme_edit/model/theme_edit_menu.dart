@@ -3,10 +3,18 @@ import 'package:flutter/widgets.dart';
 import 'package:webtrit_configurator/core/widgets/toolbars/toolbars.dart';
 
 enum ApplicationEditFile implements SubMenu {
-  save;
+  save,
+  download;
 
   @override
-  String translate(BuildContext context) => 'Save';
+  String translate(BuildContext context) {
+    switch (this) {
+      case ApplicationEditFile.save:
+        return 'Save';
+      case ApplicationEditFile.download:
+        return 'Download';
+    }
+  }
 }
 
 enum ApplicationEditTheme implements SubMenu {

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:screenshot/screenshot.dart';
-
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/extension/screenshot_controller.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/input_padding.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/selected_image.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
