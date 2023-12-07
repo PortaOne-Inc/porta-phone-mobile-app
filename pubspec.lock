@@ -368,8 +368,10 @@ packages:
     dependency: transitive
     description:
       path: "packages/dto"
-      relative: true
-    source: path
+      ref: develop
+      resolved-ref: dac65bb179eeb219d47ff1e522d159c9e18f22f5
+      url: "https://github.com/WebTrit/webtrit_phone_configurator_common.git"
+    source: git
     version: "0.0.1"
   equatable:
     dependency: transitive
