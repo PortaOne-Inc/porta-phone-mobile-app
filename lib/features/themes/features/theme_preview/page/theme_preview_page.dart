@@ -110,24 +110,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
       locale: const Locale('en'),
     );
     return [
-      LoginScreenScreenshot(
-        LoginStep.modeSelect,
-        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
-      ),
-
-      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
-      const OverflowBox(
-        child: LoginScreenScreenshot(
-          LoginStep.coreUrlAssign,
-        ),
-      ),
-
-      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
-      const OverflowBox(
-        child: LoginScreenScreenshot(
-          LoginStep.otpRequest,
-        ),
-      ),
+      const LoginModeSelectScreenScreenshot(),
       MainScreenScreenshot(
         MainFlavor.favorites,
         Text(applicationModel?.name ?? ''),

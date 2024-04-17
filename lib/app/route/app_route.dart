@@ -109,10 +109,6 @@ class AppRoute {
               name: AppRoutInfo.themesEdit.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
-                  downloadThemeUseCase: getIt<UsecaseThemeDownload>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                    param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
-                  ),
                   updateThemeUseCase: getIt<UsecaseThemeUpdate>(
                     param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   ),

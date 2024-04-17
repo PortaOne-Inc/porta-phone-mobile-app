@@ -17,7 +17,6 @@ part 'configurator_cubit.freezed.dart';
 
 class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   ThemePropertyCubit({
-    required this.downloadThemeUseCase,
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
     required this.getApplicationUseCase,
@@ -71,7 +70,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
-  final UsecaseThemeDownload downloadThemeUseCase;
   final UsecaseApplicationGet getApplicationUseCase;
   final UsecaseColorSchemeCreate colorSchemeCreate;
 
@@ -192,16 +190,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   Future<void> _tryDownloadTheme(DownloadThemeEvent event, Emitter<ThemePropertyState> emit) async {
-    try {
-      emit(state.copyWith(status: ThemePropertyStatus.progress));
-      await downloadThemeUseCase.execute();
-      emit(state.copyWith(status: ThemePropertyStatus.success));
-    } on Exception catch (e) {
-      emit(state.copyWith(
-        status: ThemePropertyStatus.error,
-        error: e,
-      ));
-    }
+    //TODO(ThemePropertyCubit): Not implemented
   }
 
   void _updateFont(String font, Emitter<ThemePropertyState> emit) {

@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:dto/dto.dart';
 
 import '../../models/application/application_model.dart';
-import '../../models/application/google_services_model.dart';
 import '../../models/theme/theme_model.dart';
 import '../mapper_contract.dart';
 
@@ -23,10 +22,6 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       platformIdentifier: model.platformIdentifier,
       termsConditionsUrl: model.termsConditionsUrl,
       coreUrl: model.coreUrl,
-      googleServices: GoogleServices(
-        androidUrl: model.googleServices?.androidUrl,
-        iosUrl: model.googleServices?.iosUrl,
-      ),
     );
   }
 
@@ -40,10 +35,6 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       platformIdentifier: dto.platformIdentifier,
       termsConditionsUrl: dto.termsConditionsUrl,
       coreUrl: dto.coreUrl,
-      googleServices: GoogleServicesModel(
-        androidUrl: dto.googleServices?.androidUrl,
-        iosUrl: dto.googleServices?.iosUrl,
-      ),
     );
   }
 }

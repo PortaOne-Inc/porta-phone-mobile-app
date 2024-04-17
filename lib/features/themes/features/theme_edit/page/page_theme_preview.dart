@@ -107,24 +107,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       locale: const Locale('en'),
     );
     return [
-      LoginScreenScreenshot(
-        LoginStep.modeSelect,
-        appGreeting: theme?.texts?.greeting?.isEmpty ?? false ? null : theme?.texts?.greeting,
-      ),
-
-      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
-      const OverflowBox(
-        child: LoginScreenScreenshot(
-          LoginStep.coreUrlAssign,
-        ),
-      ),
-
-      // TODO: Workaround for remove issues in logs, there are Assertion failed: text_painter.dart  error
-      const OverflowBox(
-        child: LoginScreenScreenshot(
-          LoginStep.otpRequest,
-        ),
-      ),
+      const LoginModeSelectScreenScreenshot(),
       MainScreenScreenshot(MainFlavor.favorites, Text(applicationModel?.name ?? '')),
       MainScreenScreenshot(MainFlavor.recents, Text(applicationModel?.name ?? '')),
       MainScreenScreenshot(MainFlavor.keypad, Text(applicationModel?.name ?? '')),
@@ -142,38 +125,6 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     if (state.isHasFocus) {
       _setFocusedScreen(state.position!);
     }
-    //
-    // if (state.themePropertyScreens == ThemePropertyScreens.importSvg) {
-    //   Navigator.of(context).pushReplacement(
-    //     PageRouteBuilder(
-    //       pageBuilder: (context, animation, secondaryAnimation) =>
-    //           PageThemePreviewLaunchIcons(theme: state.draftTheme!),
-    //       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    //         const begin = Offset(0.0, 1.0);
-    //         const end = Offset.zero;
-    //         var tween = Tween(begin: begin, end: end);
-    //
-    //         var offsetAnimation = animation.drive(
-    //           Tween<Offset>(
-    //             begin: begin,
-    //             end: end,
-    //           ).chain(
-    //             CurveTween(
-    //               curve: Curves.easeInOut,
-    //             ),
-    //           ),
-    //         );
-    //
-    //         return SlideTransition(
-    //           position: offsetAnimation,
-    //           child: child,
-    //         );
-    //       },
-    //     ),
-    //   );
-    // } else {
-    //   Navigator.of(context).maybePop();
-    // }
   }
 
   void _setFocusedScreen(int position) {
