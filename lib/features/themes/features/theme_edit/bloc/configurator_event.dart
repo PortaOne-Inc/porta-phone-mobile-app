@@ -15,6 +15,16 @@ class GetThemeEvent with _$GetThemeEvent implements ConfiguratorEvent {
 }
 
 @Freezed(copyWith: false)
+class DownloadThemeEvent with _$DownloadThemeEvent implements ConfiguratorEvent {
+  const factory DownloadThemeEvent() = _DownloadThemeEvent;
+}
+
+@Freezed(copyWith: false)
+class GetApplicationEvent with _$GetApplicationEvent implements ConfiguratorEvent {
+  const factory GetApplicationEvent() = _GetApplicationEvent;
+}
+
+@Freezed(copyWith: false)
 class GenerateColorSchemeByColorSeedEvent with _$GenerateColorSchemeByColorSeedEvent implements ConfiguratorEvent {
   const factory GenerateColorSchemeByColorSeedEvent(Color? color) = _GenerateColorSchemeByColorSeedEvent;
 }

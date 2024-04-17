@@ -453,6 +453,61 @@ abstract class _GetThemeEvent implements GetThemeEvent {
 }
 
 /// @nodoc
+mixin _$DownloadThemeEvent {}
+
+/// @nodoc
+
+class _$DownloadThemeEventImpl implements _DownloadThemeEvent {
+  const _$DownloadThemeEventImpl();
+
+  @override
+  String toString() {
+    return 'DownloadThemeEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DownloadThemeEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class _DownloadThemeEvent implements DownloadThemeEvent {
+  const factory _DownloadThemeEvent() = _$DownloadThemeEventImpl;
+}
+
+/// @nodoc
+mixin _$GetApplicationEvent {}
+
+/// @nodoc
+
+class _$GetApplicationEventImpl implements _GetApplicationEvent {
+  const _$GetApplicationEventImpl();
+
+  @override
+  String toString() {
+    return 'GetApplicationEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetApplicationEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class _GetApplicationEvent implements GetApplicationEvent {
+  const factory _GetApplicationEvent() = _$GetApplicationEventImpl;
+}
+
+/// @nodoc
 mixin _$GenerateColorSchemeByColorSeedEvent {
   Color? get color => throw _privateConstructorUsedError;
 }

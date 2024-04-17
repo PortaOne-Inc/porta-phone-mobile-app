@@ -10,7 +10,7 @@ class LaunchIcon extends StatelessWidget {
     required this.size,
     required this.radius,
     required this.foreground,
-    required this.backgroundImage,
+    this.backgroundImage,
     this.backgroundColor,
     required this.safeZone,
   });
@@ -18,7 +18,7 @@ class LaunchIcon extends StatelessWidget {
   final Size size;
   final Size safeZone;
   final ImageModel foreground;
-  final ImageModel backgroundImage;
+  final ImageModel? backgroundImage;
   final Color? backgroundColor;
   final BorderRadius radius;
 
@@ -38,11 +38,15 @@ class LaunchIcon extends StatelessWidget {
           children: [
             backgroundColor != null
                 ? Container(
+                    width: double.infinity,
+                    height: double.infinity,
                     color: backgroundColor,
                   )
-                : ImageResource(
-                    imageModel: backgroundImage,
-                  ),
+                : backgroundImage != null
+                    ? ImageResource(
+                        imageModel: backgroundImage!,
+                      )
+                    : const SizedBox(),
             Container(
               width: 48,
               height: 48,
@@ -56,7 +60,7 @@ class LaunchIcon extends StatelessWidget {
             SizedBox(
               child: ImageResource(
                 imageModel: foreground,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 defaultWidget: const SizedBox(),
               ),
             ),

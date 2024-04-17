@@ -149,7 +149,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                     radius: const BorderRadius.all(Radius.circular(1)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
                     backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
-                    backgroundImage: theme.systemAssets.adaptiveIconBackground,
+                    // backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
@@ -157,7 +157,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                     radius: const BorderRadius.all(Radius.circular(180)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
                     backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
-                    backgroundImage: theme.systemAssets.adaptiveIconBackground,
+                    // backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
@@ -170,7 +170,6 @@ class ThemeAssetsPreview extends StatelessWidget {
                     ),
                     foreground: theme.systemAssets.adaptiveIconForeground,
                     backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
-                    backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
@@ -178,7 +177,6 @@ class ThemeAssetsPreview extends StatelessWidget {
                     radius: const BorderRadius.all(Radius.circular(4)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
                     backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
-                    backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
@@ -186,7 +184,6 @@ class ThemeAssetsPreview extends StatelessWidget {
                     radius: const BorderRadius.all(Radius.circular(16)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
                     backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
-                    backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                 ],
               ),

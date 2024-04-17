@@ -123,6 +123,8 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     switch (profile) {
       case ApplicationEditFile.save:
         bloc.add(UpdateThemeEvent((bloc.state.theme)));
+      case ApplicationEditFile.download:
+        bloc.add(const DownloadThemeEvent());
     }
   }
 

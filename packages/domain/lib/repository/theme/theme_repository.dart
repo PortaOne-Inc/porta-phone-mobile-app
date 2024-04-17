@@ -29,5 +29,10 @@ abstract class ThemeRepository {
     String themeId,
   );
 
+  Future downloadTheme(
+    String applicationId,
+    String themeId,
+  );
+
   Future<ThemeDTO> getStaticTheme();
 }
