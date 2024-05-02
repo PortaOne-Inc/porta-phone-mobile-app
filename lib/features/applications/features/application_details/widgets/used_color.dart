@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class UsedColor extends StatelessWidget {
   const UsedColor({
-    super.key,
     required this.color,
     this.blurRadius = 16,
     this.boxShadow,
     this.size = 8,
-  }) ;
+    super.key,
+  });
 
   final Color color;
   final double size;

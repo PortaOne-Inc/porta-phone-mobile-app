@@ -19,8 +19,8 @@ import 'page_theme_property.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   PageThemeEdit({
-    super.key,
     required this.title,
+    super.key,
   });
 
   final String title;
@@ -36,7 +36,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
-      listener: (BuildContext context, ThemePropertyState state) => _listenSynchronizeState(context, state),
+      listener: _listenSynchronizeState,
       builder: (ctx, state) => Scaffold(
         appBar: AppToolbar(
           isVisibleProgress: state.isProgress,
@@ -60,7 +60,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           childPrimary: (context, size) {
             return ConditionalProgressBar(
               condition: state.theme != null,
-              //TODO: Don't like this implementation with SingleStack
+              // TODO(dmitry): Don't like this implementation with SingleStack
               child: SingleStack(
                 key: const ValueKey('leftStack'),
                 navigator: _leftPageNavigatorKey,
@@ -68,7 +68,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
               ),
             );
           },
-          //TODO: Don't like this implementation with SingleStack
+          // TODO(dmitry): Don't like this implementation with SingleStack
           childSecondary: (context, size) {
             return SingleStack(
               key: const ValueKey('rightStack'),
@@ -84,7 +84,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
 
   void _openTemplates(ThemeModel themeModel) {
     _leftPageNavigatorKey.currentState?.push(
-      MaterialPageRoute(
+      MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return Center(
             child: PreloadPicker(
@@ -101,14 +101,14 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
     if (state.isHasError) {
       if (state.error is ThemeIsNotValidException) {
-        showDialog(
+        showDialog<void>(
           context: context,
           builder: (BuildContext context) => FailureDialog(
             message: context.l10n.feature_theme_is_not_valid,
           ),
         );
       } else {
-        showDialog(
+        showDialog<void>(
           context: context,
           builder: (BuildContext context) => FailureDialog(
             message: state.error?.toString() ?? context.l10n.common_failure_message,
@@ -122,7 +122,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     final bloc = BlocProvider.of<ThemePropertyCubit>(context);
     switch (profile) {
       case ApplicationEditFile.save:
-        bloc.add(UpdateThemeEvent((bloc.state.theme)));
+        bloc.add(UpdateThemeEvent(bloc.state.theme));
       case ApplicationEditFile.download:
         bloc.add(const DownloadThemeEvent());
     }

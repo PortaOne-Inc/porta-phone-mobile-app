@@ -61,9 +61,9 @@ extension _StateCopyWith on AuthState {
   }
 
   AuthState copyWithError({
+    required AuthException failure,
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
-    required AuthException failure,
   }) {
     return AuthState.error(
       emailInput: emailInput ?? this.emailInput,

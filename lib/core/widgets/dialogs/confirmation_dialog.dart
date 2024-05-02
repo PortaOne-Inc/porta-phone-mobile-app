@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   const ConfirmationDialog({
-    super.key,
     required this.title,
     required this.description,
     required this.visibility,
     required this.onConfirm,
     required this.onDecline,
+    super.key,
   });
 
-  final Function() onConfirm;
-  final Function() onDecline;
+  final void Function() onConfirm;
+  final void Function() onDecline;
 
   final String title;
   final String description;
@@ -39,8 +39,6 @@ class ConfirmationDialog extends StatelessWidget {
                 ),
                 CupertinoDialogAction(
                   onPressed: onDecline,
-                  isDefaultAction: false,
-                  isDestructiveAction: false,
                   child: const Text('No'),
                 )
               ],

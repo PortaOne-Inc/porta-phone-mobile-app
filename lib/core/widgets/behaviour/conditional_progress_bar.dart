@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ConditionalProgressBar extends StatelessWidget {
   const ConditionalProgressBar({
-    super.key,
     required this.condition,
     required this.child,
+    super.key,
   });
 
   final bool condition;

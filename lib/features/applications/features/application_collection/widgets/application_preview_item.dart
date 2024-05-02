@@ -6,20 +6,20 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 class ApplicationPreviewItem extends StatelessWidget {
   const ApplicationPreviewItem({
-    super.key,
     required this.application,
     required this.onDelete,
     required this.onEdit,
     required this.onOpen,
     required this.incrementVersion,
+    super.key,
   });
 
   final ApplicationModel application;
 
-  final Function(ApplicationModel model) onOpen;
-  final Function(ApplicationModel model) onDelete;
-  final Function(ApplicationModel model) onEdit;
-  final Function(ApplicationModel model) incrementVersion;
+  final void Function(ApplicationModel model) onOpen;
+  final void Function(ApplicationModel model) onDelete;
+  final void Function(ApplicationModel model) onEdit;
+  final void Function(ApplicationModel model) incrementVersion;
 
   static const _menuKeyEdit = '_menuKeyEdit';
   static const _menuKeyUpdateVersion = '_menuKeyUpdateVersion';
@@ -35,7 +35,6 @@ class ApplicationPreviewItem extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -97,13 +96,10 @@ class ApplicationPreviewItem extends StatelessWidget {
     switch (key) {
       case _menuKeyDelete:
         onDelete.call(application);
-        break;
       case _menuKeyEdit:
         onEdit.call(application);
-        break;
       case _menuKeyUpdateVersion:
         incrementVersion.call(application);
-        break;
     }
   }
 }

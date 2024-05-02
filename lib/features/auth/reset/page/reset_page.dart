@@ -26,7 +26,7 @@ class _ResetPageState extends State<ResetPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
-      listener: (BuildContext context, ResetPasswordState state) => _listenResetState(context, state),
+      listener: _listenResetState,
       builder: (ctx, state) {
         return Scaffold(
           appBar: BaseToolBar(
@@ -43,7 +43,6 @@ class _ResetPageState extends State<ResetPage> with MixinMessages {
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 64, horizontal: 16),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(

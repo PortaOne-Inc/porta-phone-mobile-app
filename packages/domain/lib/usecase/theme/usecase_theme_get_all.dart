@@ -35,7 +35,7 @@ class UsecaseThemeGetAllImpl extends UsecaseThemeGetAll {
     if (countThemes == null) {
       return models.toList();
     } else {
-      return models.take((countThemes)).toList();
+      return models.take(countThemes).toList();
     }
   }
 }

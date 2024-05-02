@@ -6,7 +6,6 @@ import '../page/page_theme_import_assets.dart';
 
 class RenderWidget extends StatelessWidget {
   const RenderWidget({
-    super.key,
     required ScreenshotController screenshotAndroidLaunchIconController,
     required ImageModel? image,
     required double paddingAndroidLaunch,
@@ -21,6 +20,7 @@ class RenderWidget extends StatelessWidget {
     required ScreenshotController screenshotSplashIconController,
     required double paddingSplash,
     required BoxFit splashIconsFitBox,
+    super.key,
   })  : _screenshotAndroidLaunchIconController = screenshotAndroidLaunchIconController,
         _image = image,
         _paddingAndroidLaunch = paddingAndroidLaunch,

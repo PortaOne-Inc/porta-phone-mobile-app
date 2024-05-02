@@ -8,9 +8,8 @@ import '../mapper_contract.dart';
 
 @Injectable(as: Mapper<ApplicationDTO, ApplicationModel>)
 class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
-  final Mapper<ThemeDTO?, ThemeModel?> mapper;
-
   ApplicationMapper(this.mapper);
+  final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   @override
   ApplicationDTO mapToDto(ApplicationModel model) {

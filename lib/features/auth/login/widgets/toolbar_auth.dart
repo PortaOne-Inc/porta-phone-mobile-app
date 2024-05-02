@@ -5,16 +5,16 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ApplicationsToolbar extends StatelessWidget {
   const ApplicationsToolbar({
-    super.key,
     required this.themeMode,
     required this.onLanguageChanged,
     required this.onThemeChange,
+    super.key,
   });
 
   final ThemeMode themeMode;
 
   final Function onLanguageChanged;
-  final Function(ThemeMode) onThemeChange;
+  final void Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +23,11 @@ class ApplicationsToolbar extends StatelessWidget {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8, right: 8),
-            child: const Row(
-              children: [],
-            ),
+            child: const Row(),
           ),
         ),
         Expanded(
           child: Align(
-            alignment: Alignment.center,
             child: Text(
               context.l10n.feature_auth_Toolbar_title_phone_configurator,
               textAlign: TextAlign.center,

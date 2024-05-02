@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ToolbarPopupMenu extends PopupMenuButton {
+class ToolbarPopupMenu<T> extends PopupMenuButton<T> {
   ToolbarPopupMenu({
-    super.key,
-    super.onSelected,
+    required List<PopupMenuItem<T>> items,
     super.child,
-    required List<PopupMenuItem> items,
+    super.onSelected,
+    super.key,
   }) : super(
           itemBuilder: (context) => items,
           offset: const Offset(8, kToolbarHeight),

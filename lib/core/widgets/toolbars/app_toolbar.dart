@@ -13,44 +13,42 @@ abstract class SubMenu {
 
 class Menu<T extends Enum> {
   Menu({
-    this.name,
     required this.items,
     required this.callback,
+    this.name,
     this.iconData,
-  }) {
-    assert(!(name == null && iconData == null), 'name or iconData must not be null');
-  }
+  }) : assert(!(name == null && iconData == null), 'name or iconData must not be null');
 
   final String? name;
   final IconData? iconData;
   final List<T> items;
-  final Function(BuildContext context, T item) callback;
+  final void Function(BuildContext context, T item) callback;
 
-  void _call(BuildContext context, dynamic data) => callback.call(context, data);
+  void _call(BuildContext context, T data) => callback.call(context, data);
 }
 
 class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
   const AppToolbar({
-    super.key,
-    this.isVisibleProgress = false,
+    required this.name,
     required this.themeMode,
     required this.onThemeChange,
-    required this.name,
     this.right = const [],
     this.left = const [],
+    this.isVisibleProgress = false,
+    super.key,
   });
 
   final List<Menu> right;
   final List<Menu> left;
 
   final ThemeMode themeMode;
-  final Function(ThemeMode) onThemeChange;
+  final void Function(ThemeMode) onThemeChange;
 
   final String name;
   final bool isVisibleProgress;
 
   @override
-  final Size preferredSize = const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,6 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Opacity(
             opacity: isVisibleProgress ? 1.0 : 0.0,
@@ -99,10 +96,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: left,
-          ),
+          child: Row(children: left),
         ),
         Text(
           name,
@@ -130,7 +124,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
     return ToolbarPopupMenu(
-      onSelected: (value) => menu._call(context, value),
+      onSelected: (value) => menu._call(context, value as T),
       items: items.toList(),
       child: menu.name != null
           ? ToolbarLabelItem(

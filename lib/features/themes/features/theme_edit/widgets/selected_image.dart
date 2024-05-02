@@ -8,25 +8,25 @@ import '../model/models.dart';
 
 class SelectedImage extends StatelessWidget {
   const SelectedImage({
-    super.key,
     required this.image,
     required this.name,
     required this.onTap,
     required this.onRemove,
     required this.imageFilter,
     this.description,
+    super.key,
   });
 
   final String name;
   final String? description;
 
-  final Size _size = const Size.square(200);
+  Size get _size => const Size.square(200);
 
   final ImageModel image;
   final ImageFilterModel imageFilter;
 
-  final Function(ImageFilterModel format) onTap;
-  final Function() onRemove;
+  final void Function(ImageFilterModel format) onTap;
+  final void Function() onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class SelectedImage extends StatelessWidget {
                       child: Text(
                         name,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.labelMedium!,
+                        style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ),
                   ),
@@ -98,10 +98,11 @@ class SelectedImage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //TODO: Remove also on server if user delete image
+                  // TODO(dmitry): Remove also on server if user delete image
                   Visibility(
-                    visible: (image.isAvailable),
+                    visible: image.isAvailable,
                     child: GestureDetector(
+                      onTap: onRemove,
                       child: Container(
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
@@ -115,7 +116,6 @@ class SelectedImage extends StatelessWidget {
                           color: Theme.of(context).colorScheme.error,
                         ),
                       ),
-                      onTap: () => onRemove(),
                     ),
                   ),
                 ],

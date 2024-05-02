@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class ToolbarLabelWidgetItem extends StatelessWidget {
   const ToolbarLabelWidgetItem({
-    super.key,
     required this.icon,
     this.onTap,
     this.color,
     this.margin,
+    super.key,
   });
 
-  final Function()? onTap;
+  final void Function()? onTap;
   final Color? color;
   final IconData icon;
   final EdgeInsets? margin;

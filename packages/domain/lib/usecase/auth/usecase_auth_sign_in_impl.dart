@@ -15,7 +15,7 @@ class UsecaseAuthSignInImpl extends UsecaseAuthSignIn {
   final AuthRepository authRepository;
 
   @override
-  FutureOr execute({
+  FutureOr<void> execute({
     required String email,
     required String password,
   }) {

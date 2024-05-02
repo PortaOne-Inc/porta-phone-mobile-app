@@ -4,15 +4,15 @@ import '../features/theme_edit/widgets/widgets.dart';
 
 class DrawerPreview extends StatelessWidget {
   const DrawerPreview({
-    super.key,
     required this.screenshots,
     required this.focusScreenPosition,
     required this.onTapScreen,
+    super.key,
   });
 
   final int focusScreenPosition;
   final List<Widget> screenshots;
-  final Function(int position) onTapScreen;
+  final void Function(int position) onTapScreen;
 
   @override
   Widget build(BuildContext context) {

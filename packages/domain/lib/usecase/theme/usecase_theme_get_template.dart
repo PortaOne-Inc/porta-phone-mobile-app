@@ -6,8 +6,8 @@ import '../../entity/entity.dart';
 
 abstract class UsecaseThemeGetTemplate {
   FutureOr<ThemeModel> execute({
-    final String? primaryColor,
-    final String? themeName,
+    String? primaryColor,
+    String? themeName,
   });
 }
 
@@ -20,18 +20,6 @@ class GetThemTemplateUseCase extends UsecaseThemeGetTemplate {
   }) {
     return ThemeModel(
       name: themeName,
-      images: const ImageSchemeModel(
-        primaryOnboardingLogo: ImageModel(),
-        secondaryOnboardingLogo: ImageModel(),
-      ),
-      systemAssets: const SystemAssetsModel(
-        notificationLogo: ImageModel(),
-        adaptiveIconBackground: ImageModel(),
-        adaptiveIconForeground: ImageModel(),
-        androidLauncherIcon: ImageModel(),
-        iosLauncherIcon: ImageModel(),
-        webLauncherIcon: ImageModel(),
-      ),
     );
   }
 }

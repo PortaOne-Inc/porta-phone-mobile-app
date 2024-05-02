@@ -50,8 +50,8 @@ extension _StateCopyWith on ResetPasswordState {
   }
 
   ResetPasswordState copyWithError({
-    AuthEmailInput? emailInput,
     required AuthException failure,
+    AuthEmailInput? emailInput,
   }) {
     return ResetPasswordState.error(
       emailInput: emailInput ?? this.emailInput,

@@ -59,10 +59,10 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   // Get url for dto if base64 resource available in data
   Future<String?> _getImageUrl(ImageModel imageModel) async {
     if (_isShouldBeUploadedImage(imageModel)) {
-      String originalName = imageModel.name ?? DateTime.now().microsecondsSinceEpoch.toString();
-      String fileName = '$originalName.${imageModel.extension}';
+      final originalName = imageModel.name ?? DateTime.now().microsecondsSinceEpoch.toString();
+      final fileName = '$originalName.${imageModel.extension}';
 
-      return await resourcesRepository.putBase64('theme', fileName, imageModel.data!);
+      return resourcesRepository.putBase64('theme', fileName, imageModel.data!);
     } else {
       return imageModel.url;
     }

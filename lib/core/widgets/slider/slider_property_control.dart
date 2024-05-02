@@ -51,7 +51,6 @@ class SliderPropertyControlState extends State<SliderPropertyControl> {
         direction: widget.vertical ? Axis.vertical : Axis.horizontal,
         children: [
           Expanded(
-            flex: 1,
             child: Container(
               margin: const EdgeInsets.only(left: 8),
               child: RichText(

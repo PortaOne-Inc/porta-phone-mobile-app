@@ -1,4 +1,5 @@
 class FocusModel {
+  FocusModel({required this.groups});
   static const String colorPrimary = 'a1';
   static const String colorOnPrimary = 'colorOnPrimary';
   static const String colorSecondary = 'colorSecondary';
@@ -14,6 +15,4 @@ class FocusModel {
   static const String gradientTabColor = 'gradientTabColor';
 
   final Map<int, Map<String, bool>> groups;
-
-  FocusModel({required this.groups});
 }

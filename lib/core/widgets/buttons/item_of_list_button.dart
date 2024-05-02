@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ItemOfListButton extends StatelessWidget {
-  final String name;
-  final String description;
-  final Function() onTab;
-
   const ItemOfListButton({
-    super.key,
     required this.name,
     required this.description,
     required this.onTab,
+    super.key,
   });
+  final String name;
+  final String description;
+  final void Function() onTab;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +58,6 @@ class ItemOfListButton extends StatelessWidget {
               Expanded(
                 flex: 0,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'Create',

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class BaseToolBar extends StatefulWidget implements PreferredSizeWidget {
   const BaseToolBar({
-    super.key,
     required this.child,
     this.isVisibleProgress = false,
+    super.key,
   });
 
   final Widget child;
   final bool isVisibleProgress;
 
   @override
-  final Size preferredSize = const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  createState() => _BaseToolBarState();
+  State<StatefulWidget> createState() => _BaseToolBarState();
 }
 
 class _BaseToolBarState extends State<BaseToolBar> {
@@ -32,7 +32,6 @@ class _BaseToolBarState extends State<BaseToolBar> {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Opacity(
             opacity: widget.isVisibleProgress ? 1.0 : 0.0,

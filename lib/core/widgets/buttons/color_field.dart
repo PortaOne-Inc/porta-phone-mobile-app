@@ -4,17 +4,17 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ColorField extends StatelessWidget {
   const ColorField({
-    super.key,
     required this.title,
     this.color = Colors.white,
     this.margin = EdgeInsets.zero,
     this.onTap,
+    super.key,
   });
 
   final String title;
   final Color? color;
   final EdgeInsets margin;
-  final Function(Color color)? onTap;
+  final void Function(Color color)? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,6 @@ class ColorField extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [

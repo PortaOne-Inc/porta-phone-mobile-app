@@ -126,7 +126,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     );
   }
 
-  void _validateAndTryUpdateTheme(UpdateThemeEvent event, Emitter<ThemePropertyState> emit) async {
+  Future<void> _validateAndTryUpdateTheme(UpdateThemeEvent event, Emitter<ThemePropertyState> emit) async {
     if (event.model != null) {
       if ((event.model?.name ?? '').isNotEmpty) {
         if (state.theme?.colors?.areAllFieldsFilled ?? false) {
@@ -190,7 +190,7 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   Future<void> _tryDownloadTheme(DownloadThemeEvent event, Emitter<ThemePropertyState> emit) async {
-    //TODO(ThemePropertyCubit): Not implemented
+    // TODO(ThemePropertyCubit): Not implemented.
   }
 
   void _updateFont(String font, Emitter<ThemePropertyState> emit) {
@@ -211,7 +211,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     emit(state.copyWith(themePreviewScreen: event.themePreviewScreen));
   }
 
-  void _generateColorSchemeBySeed(GenerateColorSchemeByColorSeedEvent event, Emitter<ThemePropertyState> emit) async {
+  Future<void> _generateColorSchemeBySeed(
+      GenerateColorSchemeByColorSeedEvent event, Emitter<ThemePropertyState> emit) async {
     final colorScheme = await colorSchemeCreate.execute(colorsScheme: event.color);
     emit(state.copyTheme(theme: state.theme?.copyWith(colors: colorScheme)));
   }
@@ -259,11 +260,11 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     ));
   }
 
-  void _animateColor(Color? color, Function onUpdate) async {
-    List<Color> colors = [Colors.red, Colors.green, if (color != null) color];
+  Future<void> _animateColor(Color? color, void Function(Color c) onUpdate) async {
+    final colors = [Colors.red, Colors.green, if (color != null) color];
 
-    for (int i = 0; i < colors.length; i++) {
-      await Future.delayed(Duration(milliseconds: i * 100));
+    for (var i = 0; i < colors.length; i++) {
+      await Future<void>.delayed(Duration(milliseconds: i * 100));
       onUpdate(colors[i]);
     }
   }

@@ -34,7 +34,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
           children: <Widget>[
             ExpansionTile(
               title: Text(context.l10n.feature_theme_edit_ExpansionTile_common_property),
-              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16),
               tilePadding: const EdgeInsets.only(left: 16, right: 8),
               children: <Widget>[
                 Row(
@@ -117,7 +117,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
             ExpansionTile(
               title: Text(context.l10n.feature_theme_edit_TextStyle_title),
-              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16),
               tilePadding: const EdgeInsets.only(left: 16, right: 8),
               children: [
                 Column(
@@ -132,7 +132,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
             ExpansionTile(
               title: Text(context.l10n.configurator_color_template_title),
-              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16),
               tilePadding: const EdgeInsets.only(left: 16, right: 8),
               children: <Widget>[
                 Column(
@@ -395,7 +395,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
             ),
             ExpansionTile(
               title: Text(context.l10n.configurator_image_resources),
-              childrenPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              childrenPadding: const EdgeInsets.symmetric(vertical: 16),
               tilePadding: const EdgeInsets.only(left: 16, right: 8),
               expandedAlignment: Alignment.centerLeft,
               children: [
@@ -417,7 +417,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                           subtitle: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.start,
                             spacing: 16,
                             runSpacing: 16,
                             children: [
@@ -504,7 +503,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           ),
                         ),
                         subtitle: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.start,
                           spacing: 16,
                           runSpacing: 16,
                           children: [
@@ -589,7 +587,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           ),
                         ),
                         subtitle: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.start,
                           spacing: 16,
                           runSpacing: 16,
                           children: [
@@ -598,7 +595,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               description:
                                   'This icon will be displayed on the home screen when the application initializes, usually this screen is visible for a short time',
                               imageFilter: ImageFilterModel.png(Size.square(ImageSizeConsts.splashImageSize)),
-                              //TODO: RENAME adaptiveIconBackground to splash icon
+                              // TODO(dmitry): RENAME adaptiveIconBackground to splash icon
                               image: state.theme!.systemAssets.adaptiveIconBackground,
                               onTap: (ImageFilterModel format) => _catchExceptions(context, () async {
                                 final image = await UtilityImage.pickImage(format);
@@ -627,7 +624,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                           ),
                         ),
                         subtitle: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.start,
                           spacing: 16,
                           runSpacing: 16,
                           children: [
@@ -659,7 +655,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     );
   }
 
-  void _catchExceptions(BuildContext context, Function function) async {
+  Future<void> _catchExceptions(BuildContext context, Future<void> Function() function) async {
     try {
       await function.call();
     } on InvalidFormatImageException catch (e) {
@@ -673,8 +669,8 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     }
   }
 
-  void _onChangeBaseFont(BuildContext context, ThemePropertyCubit cubit) async {
-    final font = await showDialog(
+  Future<void> _onChangeBaseFont(BuildContext context, ThemePropertyCubit cubit) async {
+    final font = await showDialog<String?>(
         context: context,
         builder: (context) => Center(
               child: FontsPicker(
@@ -686,29 +682,30 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     if (font is String) cubit.add(UpdateThemeSchemeEvent.updateFont(font));
   }
 
-  void _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
+  Future<void> _onImportAssets(BuildContext context, ThemePropertyCubit cubit) async {
     cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.importSvg));
 
     await Navigator.of(context).push(
-      MaterialPageRoute(
+      MaterialPageRoute<void>(
         builder: (BuildContext context) => PageThemeImportAssets(
           themeModel: cubit.state.theme!,
         ),
       ),
     );
-    cubit.add(const ThemeDraftSchemeEvent.disableDraftTheme());
-    cubit.add(const UpdatePropertyStateScreen(ThemePropertyScreens.property));
+    cubit
+      ..add(const ThemeDraftSchemeEvent.disableDraftTheme())
+      ..add(const UpdatePropertyStateScreen(ThemePropertyScreens.property));
   }
 }
 
-void _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
+Future<void> _onClearAssets(BuildContext context, ThemePropertyCubit cubit) async {
   BlocProvider.of<ThemePropertyCubit>(context).add(
     const UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel()),
   );
 }
 
-void _selectColor(BuildContext context, Color color, Function(Color) callback) async {
-  final result = await showDialog(
+Future<void> _selectColor(BuildContext context, Color color, void Function(Color) callback) async {
+  final result = await showDialog<Color?>(
       context: context,
       builder: (context) => Center(
             child: ColorPicker(
@@ -721,14 +718,13 @@ void _selectColor(BuildContext context, Color color, Function(Color) callback) a
   if (result is Color) callback(result);
 }
 
-void _addGradientColor(BuildContext context, List<Color> colors, Function(List<Color>) callback) async {
-  final result = await showDialog(
+Future<void> _addGradientColor(BuildContext context, List<Color> colors, void Function(List<Color>) callback) async {
+  final result = await showDialog<Color?>(
       context: context,
       builder: (context) => Center(
             child: ColorPicker(
               onDeclineColor: () => Navigator.of(context).pop(),
               onAcceptColor: (color) => Navigator.of(context).pop(color),
-              initialColor: Colors.white,
             ),
           ),
       useRootNavigator: false);

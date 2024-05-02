@@ -9,7 +9,6 @@ import '../widgets/widgets.dart';
 
 class ApplicationThemesScreen extends StatelessWidget {
   const ApplicationThemesScreen({
-    super.key,
     required this.onNewBranding,
     required this.onOpenBranding,
     required this.onMakeDefault,
@@ -17,13 +16,14 @@ class ApplicationThemesScreen extends StatelessWidget {
     required this.onShowInfo,
     required this.themes,
     required this.crossAxisCount,
+    super.key,
   });
 
-  final Function() onNewBranding;
-  final Function(String themeId) onOpenBranding;
-  final Function(ThemeModel themeModel) onMakeDefault;
-  final Function(ThemeModel themeModel) onDelete;
-  final Function(ThemeModel themeModel) onShowInfo;
+  final void Function() onNewBranding;
+  final void Function(String themeId) onOpenBranding;
+  final void Function(ThemeModel themeModel) onMakeDefault;
+  final void Function(ThemeModel themeModel) onDelete;
+  final void Function(ThemeModel themeModel) onShowInfo;
 
   final List<ThemeModel> themes;
   final int crossAxisCount;
@@ -58,8 +58,8 @@ class ApplicationThemesScreen extends StatelessWidget {
             itemCount: themes.length + 1,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
               childAspectRatio: 1.75,
             ),
           ),

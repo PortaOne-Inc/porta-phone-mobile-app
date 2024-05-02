@@ -69,8 +69,8 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                   itemCount: state.applications.length + 1,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
-                    mainAxisSpacing: 8.0,
-                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
                     childAspectRatio: 1.5,
                   ),
                 ),

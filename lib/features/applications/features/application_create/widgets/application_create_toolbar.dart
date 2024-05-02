@@ -5,16 +5,16 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ApplicationCreateToolbar extends StatelessWidget {
   const ApplicationCreateToolbar({
-    super.key,
     required this.onSwitchedLanguage,
     required this.themeMode,
     required this.onThemeChange,
+    super.key,
   });
 
   final ThemeMode themeMode;
 
-  final Function() onSwitchedLanguage;
-  final Function(ThemeMode) onThemeChange;
+  final void Function() onSwitchedLanguage;
+  final void Function(ThemeMode) onThemeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,6 @@ class ApplicationCreateToolbar extends StatelessWidget {
           ),
           Expanded(
             child: Align(
-              alignment: Alignment.center,
               child: Text(
                 context.l10n.feature_application_Toolbar_title,
                 textAlign: TextAlign.center,

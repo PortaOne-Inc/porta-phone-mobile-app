@@ -7,8 +7,6 @@ enum AuthStateEnum {
 }
 
 class AuthException extends BaseException {
-  final AuthStateEnum state;
-
   AuthException({
     required this.state,
     required super.message,
@@ -25,7 +23,9 @@ class AuthException extends BaseException {
   });
 
   AuthException.another({
-    this.state = AuthStateEnum.another,
     required super.message,
+    this.state = AuthStateEnum.another,
   });
+
+  final AuthStateEnum state;
 }

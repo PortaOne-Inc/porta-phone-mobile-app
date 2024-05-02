@@ -12,8 +12,8 @@ class ColorPicker extends StatefulWidget {
     this.initialColor = Colors.white,
   });
 
-  final Function(Color color)? onAcceptColor;
-  final Function()? onDeclineColor;
+  final void Function(Color color)? onAcceptColor;
+  final void Function()? onDeclineColor;
   final Color initialColor;
 
   @override
@@ -41,7 +41,6 @@ class _ColorPickerState extends State<ColorPicker> {
             color_picker.ColorPicker(
               color: _currentColor,
               onChanged: (value) => _currentColor = value,
-              initialPicker: color_picker.Picker.paletteHue,
             ),
             const SizedBox(
               height: 16,
@@ -49,15 +48,15 @@ class _ColorPickerState extends State<ColorPicker> {
             Row(
               children: [
                 ElevatedButton(
+                  onPressed: _hide,
                   child: Text(context.l10n.configurator_cancel),
-                  onPressed: () => _hide(),
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 ElevatedButton(
+                  onPressed: _hideColorChooserAndReturnResult,
                   child: Text(context.l10n.configurator_got_it),
-                  onPressed: () => _hideColorChooserAndReturnResult(),
                 ),
               ],
             )

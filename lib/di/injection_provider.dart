@@ -3,9 +3,9 @@ import 'package:get_it/get_it.dart';
 
 class InjectionProvider extends InheritedWidget {
   const InjectionProvider({
-    super.key,
     required this.getIt,
     required super.child,
+    super.key,
   }) : super();
 
   final GetIt getIt;

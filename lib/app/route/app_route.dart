@@ -110,18 +110,18 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
                 create: (BuildContext context) => ThemePropertyCubit(
                   updateThemeUseCase: getIt<UsecaseThemeUpdate>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                   ),
                   getApplicationUseCase: getIt<UsecaseApplicationGet>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                   ),
                   getThemeUseCase: getIt<UsecaseThemeGet>(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                    param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+                    param2: state.pathParameters[AppRoutInfo.keyThemeId],
                   ),
-                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                  themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
+                  themeId: state.pathParameters[AppRoutInfo.keyThemeId],
                   colorSchemeCreate: getIt<UsecaseColorSchemeCreate>(),
                 ),
                 child: PageThemeEdit(
@@ -135,15 +135,15 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
                 create: (BuildContext context) => ThemePreviewCubit(
                   getApplicationUseCase: getIt<UsecaseApplicationGet>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                   ),
                   getThemeUseCase: getIt<UsecaseThemeGet>(
                     instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                    param2: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+                    param2: state.pathParameters[AppRoutInfo.keyThemeId],
                   ),
-                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                  themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
+                  themeId: state.pathParameters[AppRoutInfo.keyThemeId],
                 ),
                 child: ThemePreviewPage(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
@@ -155,7 +155,6 @@ class AppRoute {
       ],
       redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
       errorBuilder: (context, state) => const NotFoundPage(),
-      routerNeglect: false,
       initialLocation: AppRoutInfo.applicationCollection.path,
     );
   }

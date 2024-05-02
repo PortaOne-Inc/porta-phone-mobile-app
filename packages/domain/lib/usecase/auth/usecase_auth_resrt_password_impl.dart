@@ -14,7 +14,7 @@ class UsecaseAuthResetPasswordImpl extends UsecaseAuthResetPassword {
   final AuthRepository authRepository;
 
   @override
-  FutureOr execute({
+  FutureOr<void> execute({
     required String email,
   }) {
     return authRepository.reset(email);

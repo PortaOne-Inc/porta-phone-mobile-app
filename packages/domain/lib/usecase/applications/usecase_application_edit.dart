@@ -10,17 +10,17 @@ import '../../repository/repository.dart';
 
 abstract class UsecaseApplicationEdit {
   FutureOr<ApplicationModel> execute({
-    required final String id,
-    required final String name,
-    required final String platformIdentifier,
-    final String? coreUrl,
+    required String id,
+    required String name,
+    required String platformIdentifier,
+    String? coreUrl,
     String? termConditionsUrl,
-    final String? theme,
+    String? theme,
     Uint8List? newAndroidGoogleServices,
     Uint8List? newIosGoogleServices,
     String? applicationAndroidGoogleServicesUrl,
     String? applicationIosGoogleServicesUrl,
-    final int version = 0,
+    int version = 0,
   });
 }
 
@@ -53,8 +53,8 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     String? applicationIosGoogleServicesUrl,
     int version = 0,
   }) async {
-    String? iosGoogleServicesUrl = applicationIosGoogleServicesUrl;
-    String? androidGoogleServicesUrl = applicationAndroidGoogleServicesUrl;
+    var iosGoogleServicesUrl = applicationIosGoogleServicesUrl;
+    var androidGoogleServicesUrl = applicationAndroidGoogleServicesUrl;
 
     if (newAndroidGoogleServices != null) {
       iosGoogleServicesUrl = await _uploadIosGoogleServices(platformIdentifier, newAndroidGoogleServices);
@@ -76,7 +76,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
       version: version,
     );
 
-    // TODO: The API does not work quite correctly, if there is no field, it makes it null instead of ignoring it.
+    // TODO(dmitry): The API does not work quite correctly, if there is no field, it makes it null instead of ignoring it.
     final dto = await applicationRepository.updateApplication(id, mapper.mapToDto(model));
 
     if (newAndroidGoogleServices != null) {
@@ -89,7 +89,7 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     return mapper.mapToModel(dto);
   }
 
-  Future _deleteDeprecatedGoogleServices(String? applicationAndroidGoogleServicesUrl) async {
+  Future<void> _deleteDeprecatedGoogleServices(String? applicationAndroidGoogleServicesUrl) async {
     if (applicationAndroidGoogleServicesUrl != null) {
       await resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
     }

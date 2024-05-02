@@ -4,8 +4,8 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 class ResetToolbar extends StatelessWidget {
   const ResetToolbar({
-    super.key,
     required this.onLanguageChanged,
+    super.key,
   });
 
   final Function onLanguageChanged;
@@ -17,14 +17,11 @@ class ResetToolbar extends StatelessWidget {
         Expanded(
           child: Container(
             margin: const EdgeInsets.only(left: 8, right: 8),
-            child: const Row(
-              children: [],
-            ),
+            child: const Row(),
           ),
         ),
         Expanded(
           child: Align(
-            alignment: Alignment.center,
             child: Text(
               context.l10n.feature_auth_reset_toolbar_title,
               textAlign: TextAlign.center,
@@ -35,7 +32,6 @@ class ResetToolbar extends StatelessWidget {
         const Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [],
           ),
         ),
       ],

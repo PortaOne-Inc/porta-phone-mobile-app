@@ -1,5 +1,4 @@
 class UserModel {
-  final String id;
-
   UserModel(this.id);
+  final String id;
 }

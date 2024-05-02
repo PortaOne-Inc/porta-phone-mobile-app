@@ -4,12 +4,12 @@ import 'package:device_preview/device_preview.dart';
 
 class TypeOfPreview extends StatelessWidget {
   const TypeOfPreview({
-    super.key,
     required this.child,
+    required this.constraints,
     this.size = const Size(400, 800),
     this.isFrameVisible = true,
-    required this.constraints,
     this.focusIndicator,
+    super.key,
   });
 
   final Widget child;
@@ -23,7 +23,6 @@ class TypeOfPreview extends StatelessWidget {
     return ConstrainedBox(
       constraints: constraints,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Card(
@@ -40,7 +39,6 @@ class TypeOfPreview extends StatelessWidget {
                   screenSize: size,
                 ),
                 isFrameVisible: isFrameVisible,
-                orientation: Orientation.portrait,
                 screen: IgnorePointer(
                   child: child,
                 ),

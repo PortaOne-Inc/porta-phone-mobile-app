@@ -20,10 +20,9 @@ class UsecaseColorSchemeCreateImpl implements UsecaseColorSchemeCreate {
   Future<ColorSchemeModel> execute({
     Color? colorsScheme,
   }) async {
-    ColorSchemeModel colorScheme;
     final scheme = colorsScheme?.value != null ? Scheme.light(colorsScheme!.value) : null;
 
-    colorScheme = ColorSchemeModel(
+    return ColorSchemeModel(
       primary: Color(scheme?.primary ?? 0xFFF95A14),
       onPrimary: Color(scheme?.onPrimary ?? 0xFFFFFFFF),
       secondary: Color(scheme?.secondary ?? 0xFF123752),
@@ -45,7 +44,5 @@ class UsecaseColorSchemeCreateImpl implements UsecaseColorSchemeCreate {
         splashBackground: Color(scheme?.primary ?? 0xFFF95A14),
       ),
     );
-
-    return colorScheme;
   }
 }

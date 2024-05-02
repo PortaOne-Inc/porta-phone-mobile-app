@@ -46,7 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void _tryLogin() async {
+  Future<void> _tryLogin() async {
     try {
       await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
     } on AuthUserNotFountException catch (_) {
@@ -58,15 +58,20 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future _loginInServerSuccess(String email, String password) async {
+  Future<void> _loginInServerSuccess(String email, String password) async {
     emit(state.copyWithProgress());
     await usecaseAuthSignIn.execute(email: email, password: password);
     emit(state.copyWithSuccess());
   }
 
   bool _isValidFields() {
-    return state.passwordInput == null || state.emailInput == null
-        ? false
-        : Formz.validate([state.passwordInput!, state.emailInput!]);
+    final passwordInputEmpty = state.passwordInput == null;
+    final emailInputEmpty = state.emailInput == null;
+
+    if (passwordInputEmpty || emailInputEmpty) {
+      return false;
+    } else {
+      return Formz.validate([state.passwordInput!, state.emailInput!]);
+    }
   }
 }

@@ -15,7 +15,7 @@ abstract class ThemeRepository {
     ThemeDTO? theme,
   );
 
-  Future deleteTheme(
+  Future<void> deleteTheme(
     String applicationId,
     String themeId,
   );
@@ -29,7 +29,7 @@ abstract class ThemeRepository {
     String themeId,
   );
 
-  Future downloadTheme(
+  Future<void> downloadTheme(
     String applicationId,
     String themeId,
   );

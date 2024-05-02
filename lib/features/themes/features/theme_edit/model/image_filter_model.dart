@@ -1,3 +1,4 @@
+// ignore_for_file: cascade_invocations
 import 'package:flutter/material.dart';
 
 enum SupportFormat {

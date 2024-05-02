@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class SingleStack extends StatelessWidget {
   const SingleStack({
-    super.key,
-    this.navigator,
     required this.child,
+    this.navigator,
+    super.key,
   });
 
   final Widget child;

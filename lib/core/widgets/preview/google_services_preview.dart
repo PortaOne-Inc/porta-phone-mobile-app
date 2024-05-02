@@ -8,15 +8,15 @@ enum GoogleServicesPreviewType {
 
 class GoogleServicesPreview extends StatelessWidget {
   const GoogleServicesPreview({
-    super.key,
-    this.type = GoogleServicesPreviewType.add,
     required this.platform,
     required this.onTap,
+    this.type = GoogleServicesPreviewType.add,
+    super.key,
   });
 
   final GoogleServicesPreviewType type;
   final TargetPlatform platform;
-  final Function onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,8 @@ class GoogleServicesPreview extends StatelessWidget {
         margin: EdgeInsets.zero,
         child: InkWell(
           hoverColor: _getActiveColor(context).withOpacity(0.1),
-          onTap: () => onTap(),
+          onTap: onTap,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -46,7 +44,6 @@ class GoogleServicesPreview extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Spacer(),
@@ -92,13 +89,8 @@ class GoogleServicesPreview extends StatelessWidget {
   }
 
   String _getPlatformNameFile() {
-    switch (platform) {
-      case TargetPlatform.android:
-        return 'google-services.json';
-      case TargetPlatform.iOS:
-        return 'GoogleService-Info.plist';
-      default:
-        return 'Google services config';
-    }
+    if (platform == TargetPlatform.android) return 'google-services.json';
+    if (platform == TargetPlatform.iOS) return 'GoogleService-Info.plist';
+    return 'Google services config';
   }
 }

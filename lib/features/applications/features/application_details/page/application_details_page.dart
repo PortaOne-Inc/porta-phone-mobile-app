@@ -99,7 +99,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
             childSecondary: (context, dimension) {
               return Stack(children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
@@ -120,7 +119,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                             onNewBranding: () => _onNewTheme(context, state.application!.id!),
                             onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
                             onMakeDefault: bloc.tryMakeThemeAsDefault,
-                            onDelete: (theme) => bloc.tryDeleteTheme(theme),
+                            onDelete: bloc.tryDeleteTheme,
                             onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
                           ),
                         ),
@@ -204,8 +203,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  void _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
-    showDialog(
+  Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
+    await showDialog<void>(
       context: context,
       builder: (context) => CredentialToolbar(
         themeId: model.id!,

@@ -8,6 +8,6 @@ extension ScreenshotControllerExtension on ScreenshotController {
     Duration delay = const Duration(milliseconds: 20),
   }) async {
     final data = await capture(pixelRatio: pixelRatio, delay: delay);
-    return base64Encode(data as List<int>);
+    return base64Encode(data! as List<int>);
   }
 }

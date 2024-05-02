@@ -9,13 +9,13 @@ part 'application_details_cubit.freezed.dart';
 
 class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   ApplicationDetailsCubit({
-    ApplicationModel? applicationModel,
     required this.getThemesUseCase,
     required this.getApplicationGet,
     required this.makeThemeAsDefaultUseCase,
     required this.deleteThemeUseCase,
     required this.applicationDeleteUsecase,
     required this.applicationId,
+    ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
           application: applicationModel,
@@ -33,34 +33,34 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
 
-  void tryDeleteTheme(ThemeModel themeModel) async {
+  Future<void> tryDeleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(deleteTheme: themeModel));
   }
 
-  void confirmDeleteTheme() async {
-    if (state.deleteTheme != null) _deleteTheme(state.deleteTheme!);
+  Future<void> confirmDeleteTheme() async {
+    if (state.deleteTheme != null) await _deleteTheme(state.deleteTheme!);
 
     emit(state.copyWith(deleteTheme: null));
   }
 
-  void declineDeleteTheme() async {
+  Future<void> declineDeleteTheme() async {
     emit(state.copyWith(deleteTheme: null));
   }
 
-  void tryDeleteApplication() async {
+  Future<void> tryDeleteApplication() async {
     emit(state.copyWith(deleteApplication: state.application));
   }
 
-  void confirmDeleteApplication() async {
-    if (state.deleteApplication != null) _tryDeleteApplication(state.deleteApplication!);
+  Future<void> confirmDeleteApplication() async {
+    if (state.deleteApplication != null) await _tryDeleteApplication(state.deleteApplication!);
     emit(state.copyWith(deleteApplication: null));
   }
 
-  void declineDeleteApplication() async {
+  Future<void> declineDeleteApplication() async {
     emit(state.copyWith(deleteApplication: null));
   }
 
-  void _tryDeleteApplication(ApplicationModel applicationModel) async {
+  Future<void> _tryDeleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
       await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
@@ -70,7 +70,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  void tryMakeThemeAsDefault(ThemeModel themeModel) async {
+  Future<void> tryMakeThemeAsDefault(ThemeModel themeModel) async {
     try {
       await makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
     } on BaseException catch (e) {
@@ -78,7 +78,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future getThemes() async {
+  Future<void> getThemes() async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
       final themes = await getThemesUseCase.execute(applicationId: applicationId);
@@ -88,7 +88,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future _getApplication() async {
+  Future<void> _getApplication() async {
     if (state.application == null) {
       try {
         emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
@@ -100,9 +100,9 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future _deleteTheme(ThemeModel themeModel) async {
+  Future<void> _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
-    getThemes();
+    await getThemes();
   }
 }

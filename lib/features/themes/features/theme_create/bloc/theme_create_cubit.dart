@@ -25,13 +25,13 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
     emit(state.copyWith(nameInput: ThemeNameInput.dirty(name)));
   }
 
-  void tryCreateTheme() async {
-    if (state.nameInput?.isValid == true) {
+  Future<void> tryCreateTheme() async {
+    if (state.nameInput?.isValid ?? false) {
       await _tryCreateTheme(state.nameInput!.value);
     }
   }
 
-  Future _tryCreateTheme(String name) async {
+  Future<void> _tryCreateTheme(String name) async {
     emit(state.copyWith(status: ThemeCreateStateStatus.progress));
     try {
       final defaultTheme = await getTemplateThemeUseCase.execute();

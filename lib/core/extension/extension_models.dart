@@ -26,8 +26,8 @@ extension ImageModelExtension on ImageModel {
 
 extension ThemeModelExtension on ThemeModel {
   ThemeSettings toThemeSettings() {
-    ThemeSvgAsset primarySvg = images.primaryOnboardingLogo.toThemeSvgAsset();
-    ThemeSvgAsset secondarySvg = images.secondaryOnboardingLogo.toThemeSvgAsset();
+    final primarySvg = images.primaryOnboardingLogo.toThemeSvgAsset();
+    final secondarySvg = images.secondaryOnboardingLogo.toThemeSvgAsset();
     return ThemeSettings(
       seedColor: colors?.primary ?? Colors.transparent,
       lightColorSchemeOverride: ColorSchemeOverride(
@@ -44,7 +44,7 @@ extension ThemeModelExtension on ThemeModel {
         surface: colors?.surface,
         onSurface: colors?.onSurface,
       ),
-      //TODO: Add possibility to add null
+      // TODO(dmitry): Add possibility to add null
       primaryGradientColors: toCustomColorGradientCollection(),
       fontFamily: fontFamily,
       primaryOnboardingLogo: primarySvg,

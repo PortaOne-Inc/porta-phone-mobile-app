@@ -20,7 +20,7 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
   final UsecaseApplicationIncVersion applicationIncVersion;
 
-  void tryGetApplications() async {
+  Future<void> tryGetApplications() async {
     try {
       emit(state.copyWith(status: ApplicationsStateStatus.progress));
       await _getApplications();
@@ -29,12 +29,12 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     }
   }
 
-  void incrementApplicationVersion(ApplicationModel applicationModel) async {
+  Future<void> incrementApplicationVersion(ApplicationModel applicationModel) async {
     await applicationIncVersion.execute(applicationId: applicationModel.id!);
-    tryGetApplications();
+    await tryGetApplications();
   }
 
-  Future _getApplications() async {
+  Future<void> _getApplications() async {
     final result = await applicationCollectionUsecase.execute();
     emit(state.copyWith(
       status: ApplicationsStateStatus.success,
@@ -42,26 +42,26 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     ));
   }
 
-  void tryDeleteApplication(ApplicationModel application) async {
+  Future<void> tryDeleteApplication(ApplicationModel application) async {
     emit(state.copyWith(deleteApplication: application));
   }
 
-  void confirmDeleteApplication() async {
-    if (state.deleteApplication != null) _tryDeleteApplication(state.deleteApplication!);
+  Future<void> confirmDeleteApplication() async {
+    if (state.deleteApplication != null) await _tryDeleteApplication(state.deleteApplication!);
     emit(state.copyWith(deleteApplication: null));
   }
 
-  void _tryDeleteApplication(ApplicationModel applicationModel) async {
+  Future<void> _tryDeleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWith(status: ApplicationsStateStatus.progress));
       await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
-      _getApplications();
+      await _getApplications();
     } on BaseException catch (e) {
       emit(state.copyWith(error: e));
     }
   }
 
-  void declineDeleteApplication() async {
+  Future<void> declineDeleteApplication() async {
     emit(state.copyWith(deleteApplication: null));
   }
 }

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
   const Button({
-    super.key,
     required this.title,
     required this.onPressed,
     this.isEnable = true,
+    super.key,
   });
 
   final String title;
-  final Function() onPressed;
+  final void Function() onPressed;
   final bool isEnable;
 
   @override

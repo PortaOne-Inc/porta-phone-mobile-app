@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class GridWidget extends StatelessWidget {
   const GridWidget({
-    super.key,
     required this.density,
+    super.key,
   });
 
   final int density;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Theme.of(context).colorScheme.background.withOpacity(0.5),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

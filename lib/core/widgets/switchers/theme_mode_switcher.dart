@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class ThemeModeSwitcher extends StatefulWidget {
   const ThemeModeSwitcher({
-    super.key,
     required this.themeMode,
     required this.onThemeChange,
+    super.key,
   });
 
   final ThemeMode themeMode;
-  final Function(ThemeMode) onThemeChange;
+  final void Function(ThemeMode) onThemeChange;
 
   @override
   State<ThemeModeSwitcher> createState() => _ThemeModeSwitcherState();

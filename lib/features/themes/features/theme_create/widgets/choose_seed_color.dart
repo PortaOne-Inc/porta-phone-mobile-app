@@ -4,13 +4,13 @@ import '../../theme_edit/widgets/color_picker.dart';
 
 class ChooseSeedColor extends StatelessWidget {
   const ChooseSeedColor({
-    super.key,
     required this.onCancel,
     required this.onApply,
+    super.key,
   });
 
-  final Function() onCancel;
-  final Function(Color color) onApply;
+  final void Function() onCancel;
+  final void Function(Color color) onApply;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ChooseSeedColor extends StatelessWidget {
           ),
           ColorPicker(
             onDeclineColor: onCancel,
-            onAcceptColor: (color) => onApply(color),
+            onAcceptColor: onApply,
           )
         ],
       ),

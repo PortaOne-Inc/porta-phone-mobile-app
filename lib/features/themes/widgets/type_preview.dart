@@ -18,19 +18,19 @@ enum PreviewType {
 
 class TypePreview extends StatelessWidget {
   const TypePreview({
-    super.key,
     required this.type,
     required this.screens,
     required this.screenFocus,
     required this.isFrameVisible,
     required this.onFocusPosition,
+    super.key,
   });
 
   final PreviewType type;
   final int screenFocus;
   final bool isFrameVisible;
   final List<Widget> screens;
-  final Function(int position) onFocusPosition;
+  final void Function(int position) onFocusPosition;
 
   @override
   Widget build(BuildContext context) {

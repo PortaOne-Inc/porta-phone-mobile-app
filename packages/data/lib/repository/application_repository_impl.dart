@@ -38,7 +38,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future deleteApplication(String applicationId) async {
+  Future<void> deleteApplication(String applicationId) async {
     try {
       return await httpDatasource.deleteApplications(applicationId);
     } on DioException catch (e) {

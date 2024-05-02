@@ -11,7 +11,7 @@ import '../model/models.dart';
 
 class UtilityImage {
   static Future<ImageModel?> pickImage(ImageFilterModel filter) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [filter.format.format],
     );

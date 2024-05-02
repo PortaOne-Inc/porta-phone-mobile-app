@@ -16,8 +16,8 @@ import '../widgets/widgets.dart';
 
 class PageThemeImportAssets extends StatefulWidget {
   const PageThemeImportAssets({
-    super.key,
     required this.themeModel,
+    super.key,
   });
 
   final ThemeModel themeModel;
@@ -73,7 +73,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                   child: IconButton(
                     icon: const Icon(Icons.refresh),
                     tooltip: 'Refresh',
-                    onPressed: () => _previewCurrentConfig(),
+                    onPressed: _previewCurrentConfig,
                   ),
                 ),
                 const SizedBox(
@@ -84,7 +84,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                   child: IconButton(
                     icon: const Icon(Icons.save),
                     tooltip: 'Save',
-                    onPressed: () => _save(),
+                    onPressed: _save,
                   ),
                 ),
               ],
@@ -104,7 +104,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                           imageFilter: ImageFilterModel.svg(),
                           image: _image ?? const ImageModel(),
                           onTap: (ImageFilterModel format) => _selectOriginalSvg(context, format),
-                          onRemove: () => _removeOriginalSvg(),
+                          onRemove: _removeOriginalSvg,
                         ),
                       ],
                     ),
@@ -120,7 +120,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                           constraints: const BoxConstraints(maxWidth: 224),
                           items: BoxFit.values.map((e) => e.name).toList(),
                           position: _splashIconsFitBox.index,
-                          onSelect: (int position) => _changeSplashIconFitType(position),
+                          onSelect: _changeSplashIconFitType,
                           icon: const Icon(Icons.expand_more_rounded),
                         ),
                       ],
@@ -134,7 +134,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
                           constraints: const BoxConstraints(maxWidth: 224),
                           items: BoxFit.values.map((e) => e.name).toList(),
                           position: _launchIconsFitBox.index,
-                          onSelect: (int position) => _changeLaunchIconFitType(position),
+                          onSelect: _changeLaunchIconFitType,
                           icon: const Icon(Icons.expand_more_rounded),
                         ),
                       ],
@@ -237,29 +237,30 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
     setState(() {});
   }
 
-  void _selectOriginalSvg(BuildContext context, ImageFilterModel format) {
+  Future<void> _selectOriginalSvg(BuildContext context, ImageFilterModel format) {
     return _catchExceptions(context, () async {
       final image = await UtilityImage.pickImage(format);
       _image = image;
       setState(() {});
-      _previewCurrentConfig();
+      await _previewCurrentConfig();
     });
   }
 
-  void _previewCurrentConfig() async {
+  Future<void> _previewCurrentConfig() async {
     final image = await _generateSystemAssetsResources(context);
-    bloc.add(const ThemeDraftSchemeEvent.enableDraftTheme());
-    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+    bloc
+      ..add(const ThemeDraftSchemeEvent.enableDraftTheme())
+      ..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
   }
 
-  void _save() async {
+  Future<void> _save() async {
     final image = await _generateSystemAssetsResources(context);
-    bloc.add(const ThemeDraftSchemeEvent.disableDraftTheme());
-    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+    bloc
+      ..add(const ThemeDraftSchemeEvent.disableDraftTheme())
+      ..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
 
-    if (context.mounted) {
-      Navigator.of(context).pop();
-    }
+    if (!mounted) return;
+    Navigator.of(context).pop();
   }
 
   Future<SystemAssetsModel> _generateSystemAssetsResources(BuildContext context) async {
@@ -278,7 +279,7 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
     );
   }
 
-  void _catchExceptions(BuildContext context, Function function) async {
+  Future<void> _catchExceptions(BuildContext context, Future<void> Function() function) async {
     try {
       await function.call();
     } on InvalidFormatImageException catch (e) {
@@ -301,14 +302,14 @@ class _PageThemeImportAssetsState extends State<PageThemeImportAssets> with Mixi
 
 class GenerateLaunchIcon extends StatelessWidget {
   const GenerateLaunchIcon({
-    super.key,
     required this.screenshotStreamController,
-    this.imageModel,
     required this.size,
     required this.padding,
     required this.title,
     required this.fit,
+    this.imageModel,
     this.color,
+    super.key,
   });
 
   final ScreenshotController screenshotStreamController;
@@ -324,7 +325,7 @@ class GenerateLaunchIcon extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
+        ColoredBox(
           color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
           child: Screenshot(
             controller: screenshotStreamController,

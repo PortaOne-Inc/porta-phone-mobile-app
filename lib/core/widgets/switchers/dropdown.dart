@@ -5,19 +5,19 @@ import '../toolbars/toolbars.dart';
 
 class Dropdown extends StatefulWidget {
   const Dropdown({
-    super.key,
     required this.items,
     required this.onSelect,
     this.constraints,
     this.icon,
     this.position = 0,
+    super.key,
   });
 
   final List<String> items;
   final int position;
   final Icon? icon;
   final BoxConstraints? constraints;
-  final Function(int position) onSelect;
+  final void Function(int position) onSelect;
 
   @override
   State<Dropdown> createState() => _DropDownState();

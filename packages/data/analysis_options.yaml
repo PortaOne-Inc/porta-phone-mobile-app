@@ -1,12 +1,1 @@
-include: package:flutter_lints/flutter.yaml
-
-linter:
-  rules:
-    prefer_single_quotes: true
-
-analyzer:
-  exclude:
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-  errors:
-    invalid_annotation_target: ignore
+include: package:webtrit_analysis/analysis_options.yaml

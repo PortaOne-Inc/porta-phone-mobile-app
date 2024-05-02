@@ -10,14 +10,14 @@ import '../../repository/repository.dart';
 
 abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
-    required final String name,
-    final String? platformIdentifier,
-    final String? coreUrl,
-    final String? termConditionsUrl,
-    final String? theme,
-    final Uint8List? androidGoogleServices,
-    final Uint8List? iosGoogleServices,
-    final int version = 0,
+    required String name,
+    String? platformIdentifier,
+    String? coreUrl,
+    String? termConditionsUrl,
+    String? theme,
+    Uint8List? androidGoogleServices,
+    Uint8List? iosGoogleServices,
+    int version = 0,
   });
 }
 

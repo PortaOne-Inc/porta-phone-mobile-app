@@ -10,13 +10,13 @@ import '../consts/font_const.dart';
 
 class FontsPicker extends StatefulWidget {
   const FontsPicker({
-    super.key,
     required this.onChoose,
     required this.onClose,
+    super.key,
   });
 
-  final Function(String name) onChoose;
-  final Function() onClose;
+  final void Function(String name) onChoose;
+  final void Function() onClose;
 
   @override
   State<FontsPicker> createState() => _FontsPickerState();
@@ -43,16 +43,15 @@ class _FontsPickerState extends State<FontsPicker> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _pageSize = 5;
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
+    _pagingController.addPageRequestListener(_fetchPage);
   }
 
   @override
   void dispose() {
     _pagingController.dispose();
-    _textEditingController.removeListener(_onTextChanged);
-    _textEditingController.dispose();
+    _textEditingController
+      ..removeListener(_onTextChanged)
+      ..dispose();
     super.dispose();
   }
 
@@ -63,8 +62,9 @@ class _FontsPickerState extends State<FontsPicker> {
       final isAvailable = element.toLowerCase().startsWith(currentText.toLowerCase());
       return isAvailable;
     }).toList();
-    _filteredFonts.clear();
-    _filteredFonts.addAll(filteredList);
+    _filteredFonts
+      ..clear()
+      ..addAll(filteredList);
     _pagingController.refresh();
     setState(() {});
   }
@@ -79,7 +79,7 @@ class _FontsPickerState extends State<FontsPicker> {
         final newItems = _filteredFonts.sublist(loadedItems, loadedItems + _pageSize).toList();
 
         // Time for render font items
-        if (loadedItems > 24) await Future.delayed(const Duration(seconds: 1));
+        if (loadedItems > 24) await Future<void>.delayed(const Duration(seconds: 1));
 
         if (newItems.length < _pageSize) {
           _pagingController.appendLastPage(newItems);
@@ -153,7 +153,7 @@ class _FontsPickerState extends State<FontsPicker> {
                                 if (await canLaunchUrl(url)) {
                                   await launchUrl(url);
                                 } else {
-                                  throw 'error launching $url';
+                                  throw Exception('error launching $url');
                                 }
                               }
                             },

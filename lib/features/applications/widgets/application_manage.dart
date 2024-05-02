@@ -7,7 +7,6 @@ import '../model/models.dart';
 
 class ApplicationManage extends StatelessWidget {
   const ApplicationManage({
-    super.key,
     required this.updateName,
     required this.updateIdentifier,
     required this.onChangedTermsConditionsInput,
@@ -22,20 +21,21 @@ class ApplicationManage extends StatelessWidget {
     required this.isAndroidGoogleServiceSelected,
     required this.isIosGoogleServiceSelected,
     required this.action,
+    super.key,
   });
 
-  final Function(String value) updateName;
-  final Function(String value) updateIdentifier;
-  final Function(String value) onChangedCoreInput;
-  final Function(String value) onChangedTermsConditionsInput;
+  final void Function(String value) updateName;
+  final void Function(String value) updateIdentifier;
+  final void Function(String value) onChangedCoreInput;
+  final void Function(String value) onChangedTermsConditionsInput;
 
   final bool isAndroidGoogleServiceSelected;
   final bool isIosGoogleServiceSelected;
 
-  final Function() updateAndroidGoogleService;
-  final Function() updateIosGoogleService;
+  final void Function() updateAndroidGoogleService;
+  final void Function() updateIosGoogleService;
 
-  final Function() actionManage;
+  final void Function() actionManage;
   final String action;
 
   final ApplicationNameInput? nameInput;
@@ -92,7 +92,7 @@ class ApplicationManage extends StatelessWidget {
                   maxLength: ApplicationConsts.maxIdentifierLimit,
                   decoration: InputDecoration(
                     errorText: applicationIdentifierInput?.errorL10n(context),
-                    hintText: 'Bundle ID is an app\'s unique identifier.',
+                    hintText: "Bundle ID is an app's unique identifier.",
                     suffixIcon: Tooltip(
                       message: context.l10n.feature_application_create_Tooltip_identifier_info,
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),

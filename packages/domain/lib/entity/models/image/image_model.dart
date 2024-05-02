@@ -13,17 +13,16 @@ enum ImageLocation {
   empty,
 }
 
-// TODO: Complicated class, simplify it
+// TODO(dmitry): Complicated class, simplify it
 @freezed
 class ImageModel with _$ImageModel {
-  const ImageModel._();
-
   const factory ImageModel({
-    final String? data,
-    final String? url,
-    final String? name,
-    final String? extension,
+    String? data,
+    String? url,
+    String? name,
+    String? extension,
   }) = _ImageModel;
+  const ImageModel._();
 
   factory ImageModel.svg(String base64) => ImageModel(
         data: base64,

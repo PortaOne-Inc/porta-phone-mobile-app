@@ -33,6 +33,6 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
     final applications = await applicationRepository.getUserApplications();
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);
     final applicationDTO = fountApplication.copyWith(theme: themeModel.id);
-    applicationRepository.updateApplication(applicationID, applicationDTO);
+    await applicationRepository.updateApplication(applicationID, applicationDTO);
   }
 }

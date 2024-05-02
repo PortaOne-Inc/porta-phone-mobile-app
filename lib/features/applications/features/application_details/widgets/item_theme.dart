@@ -8,19 +8,19 @@ import 'used_color.dart';
 
 class ItemTheme extends StatelessWidget {
   const ItemTheme({
-    super.key,
     required this.themeMode,
     required this.onTap,
     required this.onMakeDefault,
     required this.onDelete,
     required this.onInfo,
+    super.key,
   });
 
   final ThemeModel themeMode;
-  final Function(ThemeModel model) onTap;
-  final Function(ThemeModel model) onDelete;
-  final Function(ThemeModel model) onInfo;
-  final Function(ThemeModel model) onMakeDefault;
+  final void Function(ThemeModel model) onTap;
+  final void Function(ThemeModel model) onDelete;
+  final void Function(ThemeModel model) onInfo;
+  final void Function(ThemeModel model) onMakeDefault;
 
   static const _menuKeyDelete = '_menuKeyDelete';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';
@@ -48,7 +48,7 @@ class ItemTheme extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,13 +148,10 @@ class ItemTheme extends StatelessWidget {
     switch (key) {
       case _menuKeyInfo:
         onInfo.call(themeMode);
-        break;
       case _menuKeyDelete:
         onDelete.call(themeMode);
-        break;
       case _menuKeyThemeDefault:
         onMakeDefault.call(themeMode);
-        break;
     }
   }
 }

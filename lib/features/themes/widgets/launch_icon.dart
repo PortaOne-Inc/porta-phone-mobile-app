@@ -6,13 +6,13 @@ import 'package:webtrit_configurator/core/widgets/image/image_resource.dart';
 
 class LaunchIcon extends StatelessWidget {
   const LaunchIcon({
-    super.key,
     required this.size,
     required this.radius,
     required this.foreground,
+    required this.safeZone,
     this.backgroundImage,
     this.backgroundColor,
-    required this.safeZone,
+    super.key,
   });
 
   final Size size;
@@ -36,24 +36,24 @@ class LaunchIcon extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            backgroundColor != null
-                ? Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: backgroundColor,
-                  )
-                : backgroundImage != null
-                    ? ImageResource(
-                        imageModel: backgroundImage!,
-                      )
-                    : const SizedBox(),
+            if (backgroundColor != null)
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: backgroundColor,
+              )
+            else
+              backgroundImage != null
+                  ? ImageResource(
+                      imageModel: backgroundImage!,
+                    )
+                  : const SizedBox(),
             Container(
               width: 48,
               height: 48,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5), // Border color
-                  width: 1.0, // Border width
                 ),
               ),
             ),
@@ -71,7 +71,6 @@ class LaunchIcon extends StatelessWidget {
                 borderRadius: radius,
                 border: Border.all(
                   color: Theme.of(context).colorScheme.tertiary.withOpacity(0.75), // Border color
-                  width: 1.0, // Border width
                 ),
               ),
             ),

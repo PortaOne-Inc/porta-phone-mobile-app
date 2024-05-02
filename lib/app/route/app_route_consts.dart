@@ -1,11 +1,10 @@
 class RouteData {
-  final String name;
-  final String path;
-
   const RouteData({
     required this.name,
     required this.path,
   });
+  final String name;
+  final String path;
 }
 
 abstract class AppRoutInfo {

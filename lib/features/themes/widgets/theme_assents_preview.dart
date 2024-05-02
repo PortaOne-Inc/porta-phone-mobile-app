@@ -10,8 +10,8 @@ import 'launch_icon.dart';
 
 class ThemeAssetsPreview extends StatelessWidget {
   const ThemeAssetsPreview({
-    super.key,
     required this.theme,
+    super.key,
   });
 
   final ThemeModel theme;
@@ -36,40 +36,35 @@ class ThemeAssetsPreview extends StatelessWidget {
                 runSpacing: 8,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8),
-                          child: Text(
-                            'Splash screen',
-                            style: titleStyle,
-                          ),
+                  Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(
+                        'Splash screen',
+                        style: titleStyle,
+                      ),
+                    ),
+                    DeviceFrame(
+                        device: DeviceInfo.genericPhone(
+                          platform: TargetPlatform.iOS,
+                          id: 'ios_id',
+                          name: 'IOS',
+                          screenSize: const Size(200, 400),
                         ),
-                        DeviceFrame(
-                            device: DeviceInfo.genericPhone(
-                              platform: TargetPlatform.iOS,
-                              id: 'ios_id',
-                              name: 'IOS',
-                              screenSize: const Size(200, 400),
-                            ),
-                            isFrameVisible: false,
-                            orientation: Orientation.portrait,
-                            screen: IgnorePointer(
-                              child: Container(
-                                color: theme.colors?.launch?.splashBackground ?? Colors.green,
-                                child: Center(
-                                  child: ImageResource(
-                                    imageModel: theme.systemAssets.adaptiveIconBackground,
-                                    fit: BoxFit.contain,
-                                    defaultWidget: const SizedBox(),
-                                  ),
-                                ),
+                        isFrameVisible: false,
+                        screen: IgnorePointer(
+                          child: ColoredBox(
+                            color: theme.colors?.launch?.splashBackground ?? Colors.green,
+                            child: Center(
+                              child: ImageResource(
+                                imageModel: theme.systemAssets.adaptiveIconBackground,
+                                fit: BoxFit.contain,
+                                defaultWidget: const SizedBox(),
                               ),
-                            ))
-                      ]),
+                            ),
+                          ),
+                        ))
+                  ]),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

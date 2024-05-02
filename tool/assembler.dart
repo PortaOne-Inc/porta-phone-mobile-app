@@ -18,8 +18,9 @@ void main(List<String> arguments) async {
     inputPath,
     outputPath,
   ]).then((p) => utf8.decodeStream(p.stdout)).then((s) {
-    stdout.writeln('Move build web  resources:');
-    stdout.writeln('From: $inputPath');
-    stdout.writeln('To: $outputPath');
+    stdout
+      ..writeln('Move build web  resources:')
+      ..writeln('From: $inputPath')
+      ..writeln('To: $outputPath');
   });
 }

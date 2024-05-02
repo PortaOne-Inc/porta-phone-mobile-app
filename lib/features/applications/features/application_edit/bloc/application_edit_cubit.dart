@@ -52,7 +52,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     }
   }
 
-  void tryEditApplication() async {
+  Future<void> tryEditApplication() async {
     try {
       emit(state.copyWith(status: ApplicationEditStatus.loading));
 
@@ -75,7 +75,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     }
   }
 
-  void tryGetApplication(String id) async {
+  Future<void> tryGetApplication(String id) async {
     try {
       emit(state.copyWith(status: ApplicationEditStatus.loading));
       final app = await applicationGetUsecase.execute(id: id);
@@ -85,7 +85,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
           applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
           applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(app.termsConditionsUrl ?? ''),
-          status: ApplicationEditStatus.initial,
           androidGoogleServicesUrl: app.googleServices?.androidUrl,
           iosGoogleServicesUrl: app.googleServices?.iosUrl,
         ),
@@ -114,6 +113,11 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   bool _isValidFields() {
-    return state.nameInput == null ? false : Formz.validate([state.nameInput!]);
+    final nameInputEmpty = state.nameInput == null;
+    if (nameInputEmpty) {
+      return false;
+    } else {
+      return Formz.validate([state.nameInput!]);
+    }
   }
 }

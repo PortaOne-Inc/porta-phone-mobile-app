@@ -38,10 +38,16 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   }
 
   bool _isValidFields() {
-    return state.emailInput == null ? false : Formz.validate([state.emailInput!]);
+    final emailInputEmpty = state.emailInput == null;
+
+    if (emailInputEmpty) {
+      return false;
+    } else {
+      return Formz.validate([state.emailInput!]);
+    }
   }
 
-  void _tryToReset() async {
+  Future<void> _tryToReset() async {
     try {
       await _resetPassword(state.emailInput!.value);
     } on AuthUserNotFountException catch (_) {
@@ -53,7 +59,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     }
   }
 
-  Future _resetPassword(String email) async {
+  Future<void> _resetPassword(String email) async {
     emit(state.copyWithProgress());
     await usecaseAuthResetPassword.execute(email: email);
     emit(state.copyWithSuccess());

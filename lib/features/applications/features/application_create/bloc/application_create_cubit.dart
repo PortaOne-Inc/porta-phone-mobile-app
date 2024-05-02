@@ -46,7 +46,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     }
   }
 
-  void tryCreateApplication() async {
+  Future<void> tryCreateApplication() async {
     try {
       await _createApplication(
         projectName: state.nameInput!.value,
@@ -79,7 +79,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     }
   }
 
-  Future _createApplication({
+  Future<void> _createApplication({
     required String projectName,
     String? applicationIdentifier,
     String? coreUrl,
@@ -102,6 +102,11 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   }
 
   bool _isValidFields() {
-    return state.nameInput == null ? false : Formz.validate([state.nameInput!]);
+    final nameInputEmpty = state.nameInput == null;
+    if (nameInputEmpty) {
+      return false;
+    } else {
+      return Formz.validate([state.nameInput!]);
+    }
   }
 }

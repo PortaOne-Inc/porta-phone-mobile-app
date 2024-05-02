@@ -74,7 +74,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future deleteTheme(String applicationId, String themeId) async {
+  Future<void> deleteTheme(String applicationId, String themeId) async {
     try {
       return httpDatasource.deleteTheme(applicationId, themeId);
     } on DioException catch (e) {
@@ -96,7 +96,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future downloadTheme(String applicationId, String themeId) {
+  Future<void> downloadTheme(String applicationId, String themeId) {
     try {
       return httpDatasource.downloadTheme(applicationId, themeId);
     } on DioException catch (e) {

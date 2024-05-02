@@ -10,16 +10,16 @@ import 'type_preview.dart';
 
 class MenuPreview extends StatelessWidget {
   const MenuPreview({
-    super.key,
     required this.onScaleTab,
     required this.onFrameTab,
     required this.isEnableFrame,
     required this.onTypeOfPreview,
+    super.key,
   });
 
-  final Function(PreviewType type) onScaleTab;
-  final Function(bool isEnableFrame) onFrameTab;
-  final Function(ThemePreviewScreen type) onTypeOfPreview;
+  final void Function(PreviewType type) onScaleTab;
+  final void Function(bool isEnableFrame) onFrameTab;
+  final void Function(ThemePreviewScreen type) onTypeOfPreview;
 
   final bool isEnableFrame;
 

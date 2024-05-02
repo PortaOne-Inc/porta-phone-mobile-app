@@ -14,9 +14,9 @@ import '../bloc/theme_preview_cubit.dart';
 
 class ThemePreviewPage extends StatefulWidget with MixinMessages {
   ThemePreviewPage({
-    super.key,
     required this.title,
     this.draggable = false,
+    super.key,
   });
 
   final String title;
@@ -73,12 +73,10 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                         isFrameVisible: _isFrameVisible,
                         onFocusPosition: _setFocusedScreen,
                       );
-                      break;
                     case ThemePreviewScreen.assets:
                       layout = ThemeAssetsPreview(
                         theme: state.theme!,
                       );
-                      break;
                   }
                   return FlexibleBinaryLayout(
                     draggable: false,

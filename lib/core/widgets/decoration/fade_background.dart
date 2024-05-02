@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class FadeBackground extends StatelessWidget {
   const FadeBackground({
-    super.key,
     required this.visibility,
+    super.key,
   });
 
   final bool visibility;

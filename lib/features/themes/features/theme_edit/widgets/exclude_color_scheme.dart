@@ -5,14 +5,14 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ExcludeColorScheme extends StatefulWidget {
   const ExcludeColorScheme({
-    super.key,
     required this.selectedSchemeKeys,
     required this.onUpdate,
+    super.key,
   });
 
   final List<ColorSchemeKeys> selectedSchemeKeys;
 
-  final Function onUpdate;
+  final void Function() onUpdate;
 
   @override
   State<ExcludeColorScheme> createState() => _ExcludeColorSchemeState();
@@ -46,17 +46,17 @@ class _ExcludeColorSchemeState extends State<ExcludeColorScheme> {
               ),
             ),
             PopupMenuButton(
-              child: const Chip(
-                key: ValueKey('Add'),
-                label: Icon(Icons.add),
-              ),
-              onSelected: (value) => _addExclude(value),
+              onSelected: _addExclude,
               itemBuilder: (BuildContext bc) => _schemeKeys
                   .map((key) => PopupMenuItem(
                         value: key,
                         child: Text(key.name.capitalize),
                       ))
                   .toList(),
+              child: const Chip(
+                key: ValueKey('Add'),
+                label: Icon(Icons.add),
+              ),
             )
           ],
         )

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class InputPadding extends StatelessWidget {
-  final Function(double) onChange;
-
   const InputPadding({
-    super.key,
     required this.onChange,
+    super.key,
   });
+  final void Function(double) onChange;
 
   @override
   Widget build(BuildContext context) {

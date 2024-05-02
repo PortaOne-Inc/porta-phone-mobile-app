@@ -4,8 +4,8 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 class FailureDialog extends StatelessWidget {
   const FailureDialog({
-    super.key,
     required this.message,
+    super.key,
   });
 
   final String message;

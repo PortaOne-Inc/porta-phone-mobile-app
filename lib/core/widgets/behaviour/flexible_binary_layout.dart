@@ -10,13 +10,13 @@ typedef WidgetBuilder = Widget Function(BuildContext context, double dimension);
 
 class FlexibleBinaryLayout extends StatelessWidget {
   const FlexibleBinaryLayout({
-    super.key,
     required this.childPrimary,
     required this.childSecondary,
     required this.orientation,
     this.dividerThickness = 2,
     this.landslide = 0,
     this.draggable = true,
+    super.key,
   });
 
   final ResizableOrientation orientation;
@@ -54,16 +54,16 @@ class FlexibleBinaryLayout extends StatelessWidget {
 
 class BackgroundBinaryResizableRow extends StatefulWidget {
   const BackgroundBinaryResizableRow({
-    super.key,
     required this.topChild,
     required this.bottomChild,
-    this.minColumHeight = 100.0,
-    this.minScrollHeight = 500.0,
-    this.dividerPosition = 0,
     required this.dimension,
     required this.orientation,
     required this.dividerThickness,
     required this.draggable,
+    this.minColumHeight = 100.0,
+    this.minScrollHeight = 500.0,
+    this.dividerPosition = 0,
+    super.key,
   });
 
   final WidgetBuilder topChild;

@@ -9,13 +9,13 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   const ApplicationDetailsScreen({
-    super.key,
     required this.application,
     required this.onOpenDefaultTheme,
+    super.key,
   });
 
   final ApplicationModel? application;
-  final Function(String applicationId, String themeId) onOpenDefaultTheme;
+  final void Function(String applicationId, String themeId) onOpenDefaultTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +144,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
     );
   }
 
-  // TODO: Move logic of downloading to helper
+  // TODO(dmitry): Move logic of downloading to helper
   void _downloadFile(String url) {
-    html.AnchorElement anchorElement = html.AnchorElement(href: url);
-    anchorElement.download = url;
-    anchorElement.click();
+    html.AnchorElement(href: url)
+      ..download = url
+      ..click();
   }
 }

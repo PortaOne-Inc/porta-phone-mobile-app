@@ -6,10 +6,9 @@ part 'image_scheme_model.freezed.dart';
 
 @freezed
 class ImageSchemeModel with _$ImageSchemeModel {
-  const ImageSchemeModel._();
-
   const factory ImageSchemeModel({
     @Default(ImageModel()) ImageModel primaryOnboardingLogo,
     @Default(ImageModel()) ImageModel secondaryOnboardingLogo,
   }) = _ImageSchemeModel;
+  const ImageSchemeModel._();
 }

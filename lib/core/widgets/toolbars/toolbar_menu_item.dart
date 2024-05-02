@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 const double menuItemHeight = 32;
 
-class ToolbarMenuItem extends PopupMenuItem {
+class ToolbarMenuItem<T> extends PopupMenuItem<T> {
   ToolbarMenuItem({
-    super.key,
-    super.value,
     required String text,
+    super.value,
+    super.key,
   }) : super(
           child: Text(text),
           height: menuItemHeight,

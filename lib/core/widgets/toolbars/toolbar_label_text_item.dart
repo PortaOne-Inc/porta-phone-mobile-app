@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class ToolbarLabelItem extends StatelessWidget {
   const ToolbarLabelItem({
-    super.key,
     required this.text,
     this.onTap,
     this.color,
+    super.key,
   });
 
-  final Function()? onTap;
+  final void Function()? onTap;
   final Color? color;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: kToolbarHeight-8,
+      height: kToolbarHeight - 8,
       child: TextButton(
         style: TextButton.styleFrom(
             backgroundColor: Colors.transparent,

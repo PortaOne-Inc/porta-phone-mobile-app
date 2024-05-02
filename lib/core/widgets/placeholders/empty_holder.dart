@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class EmptyHolder extends StatelessWidget {
   const EmptyHolder({
-    super.key,
     required this.visibility,
     required this.onPressed,
     required this.title,
     required this.description,
     required this.button,
+    super.key,
   });
 
   final bool visibility;
-  final Function() onPressed;
+  final void Function() onPressed;
 
   final String title;
   final String description;

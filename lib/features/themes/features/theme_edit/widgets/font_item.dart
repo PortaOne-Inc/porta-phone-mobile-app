@@ -4,12 +4,12 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 class FontItem extends StatelessWidget {
   const FontItem({
-    super.key,
     required this.onTap,
     this.fontName = '',
+    super.key,
   });
 
-  final Function() onTap;
+  final void Function() onTap;
   final String? fontName;
 
   @override

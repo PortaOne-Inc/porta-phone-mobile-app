@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class MenuSpace extends StatelessWidget {
   const MenuSpace({
-    super.key,
     required this.children,
     required this.isTopPosition,
     this.border = Colors.black87,
     this.borderWidth = 0.1,
     this.background = const Color(0xffececec),
+    super.key,
   });
 
   final List<Widget> children;

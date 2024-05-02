@@ -6,18 +6,17 @@ part 'application_model.freezed.dart';
 
 @freezed
 class ApplicationModel with _$ApplicationModel {
-  const ApplicationModel._();
-
   const factory ApplicationModel({
-    final String? id,
-    final String? name,
-    final String? platformIdentifier,
-    final String? termsConditionsUrl,
-    final String? coreUrl,
-    final String? theme,
-    final GoogleServicesModel? googleServices,
-    @Default(0) final int version,
+    String? id,
+    String? name,
+    String? platformIdentifier,
+    String? termsConditionsUrl,
+    String? coreUrl,
+    String? theme,
+    GoogleServicesModel? googleServices,
+    @Default(0) int version,
   }) = _ApplicationModel;
+  const ApplicationModel._();
 }
 
 extension ApplicationModelGetters on ApplicationModel {

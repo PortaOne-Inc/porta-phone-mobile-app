@@ -11,14 +11,14 @@ import 'exclude_color_scheme.dart';
 
 class PreloadPicker extends StatefulWidget {
   const PreloadPicker({
-    super.key,
+    required this.current,
     this.onSelect,
     this.onDeclineColor,
-    required this.current,
+    super.key,
   });
 
-  final Function(ColorSchemeModel scheme)? onSelect;
-  final Function()? onDeclineColor;
+  final void Function(ColorSchemeModel scheme)? onSelect;
+  final void Function()? onDeclineColor;
   final ColorSchemeModel current;
 
   @override
@@ -114,7 +114,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
       widget.onSelect?.call(widget.current);
     } else {
       _selectedTemplatePosition = index;
-      ColorSchemeModel scheme = _getNewScheme(index);
+      final scheme = _getNewScheme(index);
       widget.onSelect?.call(scheme);
     }
     setState(() {});
@@ -122,7 +122,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
 
   ColorSchemeModel _getNewScheme(int index) {
     final themeColorScheme = FlexThemeData.light(scheme: FlexScheme.values[index]).colorScheme;
-    //TODO: Improve this part
+    // TODO(dmitry): Improve this part
     final scheme = ColorSchemeModel(
       primary: _useColorByExclude(
         widget.current.primary,
@@ -196,7 +196,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
     if (_selectedTemplatePosition == null) {
       widget.onSelect?.call(widget.current);
     } else {
-      ColorSchemeModel scheme = _getNewScheme(_selectedTemplatePosition!);
+      final scheme = _getNewScheme(_selectedTemplatePosition!);
       widget.onSelect?.call(scheme);
     }
   }

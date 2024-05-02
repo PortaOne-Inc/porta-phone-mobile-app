@@ -6,9 +6,9 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class CredentialToolbar extends StatelessWidget {
   const CredentialToolbar({
-    super.key,
     required this.themeId,
     required this.applicationId,
+    super.key,
   });
 
   final String themeId;
@@ -18,7 +18,7 @@ class CredentialToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8),
       ),
       title: const Text('Credentials'),
       content: Column(
@@ -63,7 +63,7 @@ class CredentialToolbar extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 8.0,
+            height: 8,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

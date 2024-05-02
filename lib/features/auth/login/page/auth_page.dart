@@ -28,7 +28,7 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (BuildContext context, AuthState state) => _listenAuthState(context, state),
+      listener: _listenAuthState,
       builder: (ctx, state) {
         return Scaffold(
           appBar: BaseToolBar(
@@ -47,7 +47,6 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 64, horizontal: 16),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
@@ -92,7 +91,7 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.titleSmall),
-                            onPressed: () => _resetPassword(),
+                            onPressed: _resetPassword,
                             child: Text(context.l10n.feature_authorization_reset_password),
                           ),
                         ),

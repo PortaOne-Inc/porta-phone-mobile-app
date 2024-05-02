@@ -14,12 +14,11 @@ import 'application.dart';
 import 'route/app_route.dart';
 
 class MaterialApplication extends StatefulWidget {
-  final GetIt getIt;
-
   const MaterialApplication({
-    super.key,
     required this.getIt,
+    super.key,
   });
+  final GetIt getIt;
 
   @override
   State<MaterialApplication> createState() => _MaterialApplicationState();
@@ -60,7 +59,6 @@ class _MaterialApplicationState extends State<MaterialApplication> {
               ],
               builder: (context, widget) => ResponsiveBreakpoints.builder(
                 child: BouncingScrollWrapper.builder(context, widget!),
-                debugLog: false,
                 breakpoints: [
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
                   const Breakpoint(start: 451, end: 800, name: TABLET),

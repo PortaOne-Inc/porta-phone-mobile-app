@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class PropertyIconTextButton extends StatelessWidget {
   const PropertyIconTextButton({
-    super.key,
     required this.text,
     required this.icon,
     required this.onTap,
+    super.key,
   });
 
   final String text;
   final IconData icon;
-  final Function() onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {

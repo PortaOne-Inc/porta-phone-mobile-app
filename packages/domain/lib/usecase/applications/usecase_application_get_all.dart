@@ -26,6 +26,6 @@ class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
   @override
   FutureOr<List<ApplicationModel>> execute({void argument}) async {
     final result = await applicationRepository.getUserApplications();
-    return result.map((e) => applicationMapper.mapToModel(e)).toList();
+    return result.map(applicationMapper.mapToModel).toList();
   }
 }

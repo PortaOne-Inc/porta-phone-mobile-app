@@ -4,19 +4,19 @@ import 'package:webtrit_configurator/core/core.dart';
 
 class GradientField extends StatefulWidget {
   const GradientField({
-    super.key,
     required this.title,
     required this.colors,
-    this.margin = EdgeInsets.zero,
     required this.onAddColor,
     required this.onRemoveColor,
+    this.margin = EdgeInsets.zero,
+    super.key,
   });
 
   final String title;
   final List<Color> colors;
   final EdgeInsets margin;
-  final Function(Color) onRemoveColor;
-  final Function(List<Color> colors) onAddColor;
+  final void Function(Color) onRemoveColor;
+  final void Function(List<Color> colors) onAddColor;
 
   @override
   State<GradientField> createState() => _GradientFieldState();
@@ -46,7 +46,6 @@ class _GradientFieldState extends State<GradientField> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -95,10 +94,7 @@ class _GradientFieldState extends State<GradientField> {
                             width: MediaQuery.of(context).size.width / 10,
                             height: 40,
                             decoration: BoxDecoration(
-                              gradient: widget.colors.length >= 2
-                                  ? LinearGradient(
-                                      begin: Alignment.centerLeft, end: Alignment.centerRight, colors: widget.colors)
-                                  : null,
+                              gradient: widget.colors.length >= 2 ? LinearGradient(colors: widget.colors) : null,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(4),
                               ),
