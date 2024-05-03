@@ -90,7 +90,7 @@ jobs:
         working-directory: ${{env.WORKING_DIRECTORY}}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: web-build
           path: ${{env.WORKING_DIRECTORY}}/build/web
