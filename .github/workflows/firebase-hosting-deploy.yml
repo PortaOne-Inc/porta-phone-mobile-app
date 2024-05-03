@@ -16,6 +16,10 @@ env:
   REPOSITORY_PHONE_BRANCH: beta/develop
   REPOSITORY_PHONE_OUT_DIR: webtrit/webtrit_phone
 
+  REPOSITORY_CALLKEEP_NAME: WebTrit/webtrit_callkeep
+  REPOSITORY_CALLKEEP_BRANCH: main
+  REPOSITORY_CALLKEEP_OUT_DIR: webtrit/webtrit_callkeep
+  
   WORKING_DIRECTORY: webtrit/webtrit_configurator
 
 jobs:
@@ -53,6 +57,14 @@ jobs:
           repository: ${{env.REPOSITORY_PHONE_NAME}}
           ref: ${{env.REPOSITORY_PHONE_BRANCH}}
           path: ${{env.REPOSITORY_PHONE_OUT_DIR}}
+
+      - name: Get callkeep repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: ${{env.REPOSITORY_CALLKEEP_NAME}}
+          ref: ${{env.REPOSITORY_CALLKEEP_BRANCH}}
+          path: ${{env.REPOSITORY_CALLKEEP_OUT_DIR}}
 
       - name: Build Flutter Web project
         uses: subosito/flutter-action@v2
