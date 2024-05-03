@@ -27,7 +27,7 @@ dev_dependencies:
     sdk: flutter
 
   webtrit_analysis:
-    git: git@github.com:WebTrit/webtrit_analysis.git
+    git: https://github.com/WebTrit/webtrit_analysis.git
   flutter_gen_runner: ^5.4.0
   json_serializable: ^6.7.1
   injectable_generator: ^2.6.1
