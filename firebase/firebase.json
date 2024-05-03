@@ -37,7 +37,7 @@
       "port": 7984
     },
     "ui": {
-      "enabled": true,
+      "enabled": false,
       "port": 7985
     },
     "singleProjectMode": true

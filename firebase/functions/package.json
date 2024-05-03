@@ -4,7 +4,7 @@
     "debug": "lsof -t -i :7980 -i:7981 -i:7982 -i:7983 -i:7984 -i:7985 -i:9229 | xargs kill -9 && tsc && firebase emulators:start --inspect-functions",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions",
+    "serve": "npm run build && firebase emulators:start --only functions --inspect-functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",

@@ -14,8 +14,8 @@ class HttpDatasource {
   final String host;
 
   Future<List<ApplicationDTO>> getApplications() async {
-    final response = await dio.get<List<Map<String, dynamic>>>('$host/applications/');
-    return (response.data!).map(ApplicationDTO.fromJson).toList();
+    final response = await dio.get<List<dynamic>>('$host/applications/');
+    return (response.data!).cast<Map<String, dynamic>>().map(ApplicationDTO.fromJson).toList();
   }
 
   Future<ApplicationDTO> createApplications(ApplicationDTO applicationDTO) async {
@@ -44,8 +44,8 @@ class HttpDatasource {
   }
 
   Future<List<ThemeDTO>> getThemes(String applicationId) async {
-    final response = await dio.get<List<Map<String, dynamic>>>('$host/applications/$applicationId/themes');
-    return (response.data!).map(ThemeDTO.fromJson).toList();
+    final response = await dio.get<List<dynamic>>('$host/applications/$applicationId/themes');
+    return (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
   }
 
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO themeDTO) async {
