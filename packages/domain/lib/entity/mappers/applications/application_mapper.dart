@@ -19,6 +19,8 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: model.theme,
       version: model.version,
       platformIdentifier: model.platformIdentifier,
+      androidPlatformId: model.androidPlatformId,
+      iosPlatformId: model.iosPlatformId,
       termsConditionsUrl: model.termsConditionsUrl,
       coreUrl: model.coreUrl,
     );
@@ -32,6 +34,8 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       theme: dto.theme,
       version: dto.version ?? 0,
       platformIdentifier: dto.platformIdentifier,
+      androidPlatformId: dto.androidPlatformId,
+      iosPlatformId: dto.iosPlatformId,
       termsConditionsUrl: dto.termsConditionsUrl,
       coreUrl: dto.coreUrl,
     );

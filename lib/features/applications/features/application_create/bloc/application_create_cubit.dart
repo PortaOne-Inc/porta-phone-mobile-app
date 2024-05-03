@@ -28,6 +28,14 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier)));
   }
 
+  void updateAndroidPlatformId(String platformId) {
+    emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+  }
+
+  void updateIosPlatformId(String platformId) {
+    emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+  }
+
   void updateCore(String core) {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
@@ -51,6 +59,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       await _createApplication(
         projectName: state.nameInput!.value,
         applicationIdentifier: state.applicationIdentifierInput?.value,
+        androidPlatformId: state.androidPlatformIdInput?.value,
+        iosPlatformId: state.iosPlatformIdInput?.value,
         coreUrl: state.applicationCoreInput?.value,
         termConditionsUrl: state.applicationTermsConditionsInput?.value,
         iosGoogleServices: state.iosGoogleServices,
@@ -82,6 +92,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   Future<void> _createApplication({
     required String projectName,
     String? applicationIdentifier,
+    String? androidPlatformId,
+    String? iosPlatformId,
     String? coreUrl,
     String? termConditionsUrl,
     Uint8List? iosGoogleServices,
@@ -92,6 +104,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     await applicationCreateUsecase.execute(
       name: projectName,
       platformIdentifier: applicationIdentifier,
+      androidPlatformId: androidPlatformId,
+      iosPlatformId: iosPlatformId,
       coreUrl: coreUrl,
       termConditionsUrl: termConditionsUrl,
       iosGoogleServices: iosGoogleServices,

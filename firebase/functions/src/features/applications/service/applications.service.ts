@@ -1,37 +1,45 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import {inject, injectable} from 'inversify';
+import { inject, injectable } from "inversify";
 
-import IApplicationsService from './applications.service.interface';
-import IApplicationRepository from '../repository/application.repository.interface';
+import IApplicationsService from "./applications.service.interface";
+import IApplicationRepository from "../repository/application.repository.interface";
 
-import Application from '../../../core/models/application';
-import User from '../../../core/models/user';
+import Application from "../../../core/models/application";
+import User from "../../../core/models/user";
 
-import {TYPES} from '../../../di';
+import { TYPES } from "../../../di";
 import GoogleServices from "../../../core/models/google_services";
 
 @injectable()
 export default class ApplicationsService implements IApplicationsService {
+    constructor(@inject(TYPES.ApplicationRepository) private applicationRepository: IApplicationRepository) { }
 
-    constructor(@inject(TYPES.ApplicationRepository) private applicationRepository: IApplicationRepository,
-    ) {
-    }
-
-    async getApplications({uid}: User): Promise<Application[] | null> {
+    async getApplications({ uid }: User): Promise<Application[] | null> {
         return this.applicationRepository.getByUser(uid!);
     }
 
-    async createApplication({
-                                name,
-                                theme,
-                                platformIdentifier,
-                                termsConditionsUrl,
-                                coreUrl,
-                                googleServices
-                            }: Application, {uid}: User): Promise<Application | null> {
-        const googleServicesModel = googleServices?.androidUrl != null || googleServices?.iosUrl != null ? new GoogleServices(googleServices?.androidUrl ?? null, googleServices?.iosUrl ?? null) : null;
-        const userModel = new Application(undefined, uid, name, theme, platformIdentifier, coreUrl, termsConditionsUrl, googleServicesModel);
+    // TODO: extract create app dto
+    async createApplication(
+        { name, theme, platformIdentifier, androidPlatformId, iosPlatformId, termsConditionsUrl, coreUrl, googleServices }: Application,
+        { uid }: User
+    ): Promise<Application | null> {
+        const googleServicesModel =
+            googleServices?.androidUrl != null || googleServices?.iosUrl != null
+                ? new GoogleServices(googleServices?.androidUrl ?? null, googleServices?.iosUrl ?? null)
+                : null;
+        const userModel = new Application(
+            undefined,
+            uid,
+            name,
+            theme,
+            platformIdentifier,
+            androidPlatformId,
+            iosPlatformId,
+            coreUrl,
+            termsConditionsUrl,
+            googleServicesModel
+        );
         return this.applicationRepository.create(userModel);
     }
 
@@ -53,7 +61,7 @@ export default class ApplicationsService implements IApplicationsService {
         return this.applicationRepository.patch(id, application);
     }
 
-    async deleteApplication(id: string, {uid}: User): Promise<void | null> {
+    async deleteApplication(id: string, { uid }: User): Promise<void | null> {
         try {
             const application = await this.applicationRepository.getById(id);
 

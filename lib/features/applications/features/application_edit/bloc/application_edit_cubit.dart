@@ -34,6 +34,14 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier)));
   }
 
+  void updateAndroidPlatformId(String platformId) {
+    emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+  }
+
+  void updateIosPlatformId(String platformId) {
+    emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+  }
+
   void updateCore(String core) {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
@@ -60,6 +68,8 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
         id: applicationId,
         name: state.nameInput!.value,
         platformIdentifier: state.applicationIdentifierInput!.value,
+        androidPlatformId: state.androidPlatformIdInput!.value,
+        iosPlatformId: state.iosPlatformIdInput!.value,
         coreUrl: state.applicationCoreInput!.value,
         termConditionsUrl: state.applicationTermsConditionsInput!.value,
         applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
@@ -82,6 +92,8 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       emit(
         ApplicationEditState(
           applicationIdentifierInput: ApplicationIdentifierInput.dirty(app.platformIdentifier ?? ''),
+          androidPlatformIdInput: ApplicationIdentifierInput.dirty(app.androidPlatformId ?? ''),
+          iosPlatformIdInput: ApplicationIdentifierInput.dirty(app.iosPlatformId ?? ''),
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
           applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
           applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(app.termsConditionsUrl ?? ''),

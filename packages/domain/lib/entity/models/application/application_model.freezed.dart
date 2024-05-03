@@ -18,7 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  @Deprecated('Use will be removed soon, use ios/android instead')
   String? get platformIdentifier => throw _privateConstructorUsedError;
+  String? get iosPlatformId => throw _privateConstructorUsedError;
+  String? get androidPlatformId => throw _privateConstructorUsedError;
   String? get termsConditionsUrl => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
@@ -39,7 +42,10 @@ abstract class $ApplicationModelCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       String? platformIdentifier,
+      String? iosPlatformId,
+      String? androidPlatformId,
       String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
@@ -65,6 +71,8 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? iosPlatformId = freezed,
+    Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
@@ -83,6 +91,14 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosPlatformId: freezed == iosPlatformId
+          ? _value.iosPlatformId
+          : iosPlatformId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      androidPlatformId: freezed == androidPlatformId
+          ? _value.androidPlatformId
+          : androidPlatformId // ignore: cast_nullable_to_non_nullable
               as String?,
       termsConditionsUrl: freezed == termsConditionsUrl
           ? _value.termsConditionsUrl
@@ -131,7 +147,10 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? name,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       String? platformIdentifier,
+      String? iosPlatformId,
+      String? androidPlatformId,
       String? termsConditionsUrl,
       String? coreUrl,
       String? theme,
@@ -156,6 +175,8 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? platformIdentifier = freezed,
+    Object? iosPlatformId = freezed,
+    Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
@@ -174,6 +195,14 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
       platformIdentifier: freezed == platformIdentifier
           ? _value.platformIdentifier
           : platformIdentifier // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosPlatformId: freezed == iosPlatformId
+          ? _value.iosPlatformId
+          : iosPlatformId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      androidPlatformId: freezed == androidPlatformId
+          ? _value.androidPlatformId
+          : androidPlatformId // ignore: cast_nullable_to_non_nullable
               as String?,
       termsConditionsUrl: freezed == termsConditionsUrl
           ? _value.termsConditionsUrl
@@ -205,7 +234,10 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   const _$ApplicationModelImpl(
       {this.id,
       this.name,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       this.platformIdentifier,
+      this.iosPlatformId,
+      this.androidPlatformId,
       this.termsConditionsUrl,
       this.coreUrl,
       this.theme,
@@ -218,7 +250,12 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   @override
   final String? name;
   @override
+  @Deprecated('Use will be removed soon, use ios/android instead')
   final String? platformIdentifier;
+  @override
+  final String? iosPlatformId;
+  @override
+  final String? androidPlatformId;
   @override
   final String? termsConditionsUrl;
   @override
@@ -233,7 +270,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, termsConditionsUrl: $termsConditionsUrl, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
+    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
   }
 
   @override
@@ -245,6 +282,10 @@ class _$ApplicationModelImpl extends _ApplicationModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.platformIdentifier, platformIdentifier) ||
                 other.platformIdentifier == platformIdentifier) &&
+            (identical(other.iosPlatformId, iosPlatformId) ||
+                other.iosPlatformId == iosPlatformId) &&
+            (identical(other.androidPlatformId, androidPlatformId) ||
+                other.androidPlatformId == androidPlatformId) &&
             (identical(other.termsConditionsUrl, termsConditionsUrl) ||
                 other.termsConditionsUrl == termsConditionsUrl) &&
             (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
@@ -255,8 +296,18 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, platformIdentifier,
-      termsConditionsUrl, coreUrl, theme, googleServices, version);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      platformIdentifier,
+      iosPlatformId,
+      androidPlatformId,
+      termsConditionsUrl,
+      coreUrl,
+      theme,
+      googleServices,
+      version);
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +321,10 @@ abstract class _ApplicationModel extends ApplicationModel {
   const factory _ApplicationModel(
       {final String? id,
       final String? name,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       final String? platformIdentifier,
+      final String? iosPlatformId,
+      final String? androidPlatformId,
       final String? termsConditionsUrl,
       final String? coreUrl,
       final String? theme,
@@ -283,7 +337,12 @@ abstract class _ApplicationModel extends ApplicationModel {
   @override
   String? get name;
   @override
+  @Deprecated('Use will be removed soon, use ios/android instead')
   String? get platformIdentifier;
+  @override
+  String? get iosPlatformId;
+  @override
+  String? get androidPlatformId;
   @override
   String? get termsConditionsUrl;
   @override

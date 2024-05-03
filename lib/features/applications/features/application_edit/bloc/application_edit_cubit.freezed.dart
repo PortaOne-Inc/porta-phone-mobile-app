@@ -12,13 +12,18 @@ part of 'application_edit_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ApplicationEditState {
   ApplicationEditStatus get status => throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
+  @Deprecated('will be removed, use android/ios instead')
   ApplicationIdentifierInput? get applicationIdentifierInput =>
+      throw _privateConstructorUsedError;
+  ApplicationIdentifierInput? get androidPlatformIdInput =>
+      throw _privateConstructorUsedError;
+  ApplicationIdentifierInput? get iosPlatformIdInput =>
       throw _privateConstructorUsedError;
   ApplicationTermsConditionsInput? get applicationTermsConditionsInput =>
       throw _privateConstructorUsedError;
@@ -44,7 +49,10 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
+      @Deprecated('will be removed, use android/ios instead')
       ApplicationIdentifierInput? applicationIdentifierInput,
+      ApplicationIdentifierInput? androidPlatformIdInput,
+      ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
       Uint8List? androidGoogleServices,
@@ -71,6 +79,8 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
     Object? status = null,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
+    Object? androidPlatformIdInput = freezed,
+    Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
     Object? androidGoogleServices = freezed,
@@ -91,6 +101,14 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
       applicationIdentifierInput: freezed == applicationIdentifierInput
           ? _value.applicationIdentifierInput
           : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
+      androidPlatformIdInput: freezed == androidPlatformIdInput
+          ? _value.androidPlatformIdInput
+          : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
+      iosPlatformIdInput: freezed == iosPlatformIdInput
+          ? _value.iosPlatformIdInput
+          : iosPlatformIdInput // ignore: cast_nullable_to_non_nullable
               as ApplicationIdentifierInput?,
       applicationTermsConditionsInput: freezed ==
               applicationTermsConditionsInput
@@ -137,7 +155,10 @@ abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
+      @Deprecated('will be removed, use android/ios instead')
       ApplicationIdentifierInput? applicationIdentifierInput,
+      ApplicationIdentifierInput? androidPlatformIdInput,
+      ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
       Uint8List? androidGoogleServices,
@@ -163,6 +184,8 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
     Object? status = null,
     Object? nameInput = freezed,
     Object? applicationIdentifierInput = freezed,
+    Object? androidPlatformIdInput = freezed,
+    Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
     Object? androidGoogleServices = freezed,
@@ -183,6 +206,14 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
       applicationIdentifierInput: freezed == applicationIdentifierInput
           ? _value.applicationIdentifierInput
           : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
+      androidPlatformIdInput: freezed == androidPlatformIdInput
+          ? _value.androidPlatformIdInput
+          : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationIdentifierInput?,
+      iosPlatformIdInput: freezed == iosPlatformIdInput
+          ? _value.iosPlatformIdInput
+          : iosPlatformIdInput // ignore: cast_nullable_to_non_nullable
               as ApplicationIdentifierInput?,
       applicationTermsConditionsInput: freezed ==
               applicationTermsConditionsInput
@@ -223,7 +254,10 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   const _$ApplicationEditStateInitialImpl(
       {this.status = ApplicationEditStatus.initial,
       this.nameInput,
+      @Deprecated('will be removed, use android/ios instead')
       this.applicationIdentifierInput,
+      this.androidPlatformIdInput,
+      this.iosPlatformIdInput,
       this.applicationTermsConditionsInput,
       this.applicationCoreInput,
       this.androidGoogleServices,
@@ -238,7 +272,12 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   @override
   final ApplicationNameInput? nameInput;
   @override
+  @Deprecated('will be removed, use android/ios instead')
   final ApplicationIdentifierInput? applicationIdentifierInput;
+  @override
+  final ApplicationIdentifierInput? androidPlatformIdInput;
+  @override
+  final ApplicationIdentifierInput? iosPlatformIdInput;
   @override
   final ApplicationTermsConditionsInput? applicationTermsConditionsInput;
   @override
@@ -256,11 +295,11 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ApplicationEditStateInitialImpl &&
@@ -271,6 +310,10 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
                     applicationIdentifierInput) ||
                 other.applicationIdentifierInput ==
                     applicationIdentifierInput) &&
+            (identical(other.androidPlatformIdInput, androidPlatformIdInput) ||
+                other.androidPlatformIdInput == androidPlatformIdInput) &&
+            (identical(other.iosPlatformIdInput, iosPlatformIdInput) ||
+                other.iosPlatformIdInput == iosPlatformIdInput) &&
             (identical(other.applicationTermsConditionsInput,
                     applicationTermsConditionsInput) ||
                 other.applicationTermsConditionsInput ==
@@ -296,6 +339,8 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       status,
       nameInput,
       applicationIdentifierInput,
+      androidPlatformIdInput,
+      iosPlatformIdInput,
       applicationTermsConditionsInput,
       applicationCoreInput,
       const DeepCollectionEquality().hash(androidGoogleServices),
@@ -316,7 +361,10 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   const factory ApplicationEditStateInitial(
       {final ApplicationEditStatus status,
       final ApplicationNameInput? nameInput,
+      @Deprecated('will be removed, use android/ios instead')
       final ApplicationIdentifierInput? applicationIdentifierInput,
+      final ApplicationIdentifierInput? androidPlatformIdInput,
+      final ApplicationIdentifierInput? iosPlatformIdInput,
       final ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       final ApplicationCoreInput? applicationCoreInput,
       final Uint8List? androidGoogleServices,
@@ -330,7 +378,12 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   @override
   ApplicationNameInput? get nameInput;
   @override
+  @Deprecated('will be removed, use android/ios instead')
   ApplicationIdentifierInput? get applicationIdentifierInput;
+  @override
+  ApplicationIdentifierInput? get androidPlatformIdInput;
+  @override
+  ApplicationIdentifierInput? get iosPlatformIdInput;
   @override
   ApplicationTermsConditionsInput? get applicationTermsConditionsInput;
   @override

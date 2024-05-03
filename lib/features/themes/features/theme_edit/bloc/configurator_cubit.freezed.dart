@@ -12,7 +12,7 @@ part of 'configurator_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ThemePropertyState {
@@ -302,7 +302,7 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemePropertyStateImpl &&
@@ -405,7 +405,7 @@ class _$ReplaceColorSchemeEventImpl implements _ReplaceColorSchemeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReplaceColorSchemeEventImpl &&
@@ -439,7 +439,7 @@ class _$GetThemeEventImpl implements _GetThemeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetThemeEventImpl);
   }
@@ -466,7 +466,7 @@ class _$DownloadThemeEventImpl implements _DownloadThemeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$DownloadThemeEventImpl);
   }
@@ -493,7 +493,7 @@ class _$GetApplicationEventImpl implements _GetApplicationEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetApplicationEventImpl);
@@ -527,7 +527,7 @@ class _$GenerateColorSchemeByColorSeedEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerateColorSchemeByColorSeedEventImpl &&
@@ -566,7 +566,7 @@ class _$UpdateThemeEventImpl implements _UpdateThemeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeEventImpl &&
@@ -605,7 +605,7 @@ class _$UpdatePreviewScreenImpl implements _UpdatePreviewScreen {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePreviewScreenImpl &&
@@ -645,7 +645,7 @@ class _$UpdatePropertyStateScreenImpl implements _UpdatePropertyStateScreen {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePropertyStateScreenImpl &&
@@ -685,7 +685,7 @@ class _$FocusScreenEventImpl implements _FocusScreenEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FocusScreenEventImpl &&
@@ -850,7 +850,7 @@ class _$UpdateColorEventPrimaryImpl implements _UpdateColorEventPrimary {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventPrimaryImpl &&
@@ -1034,7 +1034,7 @@ class _$UpdateColorEventOnPrimaryImpl implements _UpdateColorEventOnPrimary {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventOnPrimaryImpl &&
@@ -1218,7 +1218,7 @@ class _$UpdateColorEventSecondaryImpl implements _UpdateColorEventSecondary {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventSecondaryImpl &&
@@ -1403,7 +1403,7 @@ class _$UpdateColorEventSecondaryContainerImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventSecondaryContainerImpl &&
@@ -1589,7 +1589,7 @@ class _$UpdateColorEventOnSecondaryContainerImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventOnSecondaryContainerImpl &&
@@ -1774,7 +1774,7 @@ class _$UpdateColorEventTertiaryImpl implements _UpdateColorEventTertiary {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventTertiaryImpl &&
@@ -1958,7 +1958,7 @@ class _$UpdateColorEventErrorImpl implements _UpdateColorEventError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventErrorImpl &&
@@ -2142,7 +2142,7 @@ class _$UpdateColorEventOutlineImpl implements _UpdateColorEventOutline {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventOutlineImpl &&
@@ -2326,7 +2326,7 @@ class _$UpdateColorEventBackgroundImpl implements _UpdateColorEventBackground {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventBackgroundImpl &&
@@ -2511,7 +2511,7 @@ class _$UpdateColorEventOnBackgroundImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventOnBackgroundImpl &&
@@ -2695,7 +2695,7 @@ class _$UpdateColorEventSurfaceImpl implements _UpdateColorEventSurface {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventSurfaceImpl &&
@@ -2879,7 +2879,7 @@ class _$UpdateColorEventOnSurfaceImpl implements _UpdateColorEventOnSurface {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventOnSurfaceImpl &&
@@ -3070,7 +3070,7 @@ class _$UpdateColorEventGradientTabImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventGradientTabImpl &&
@@ -3256,7 +3256,7 @@ class _$UpdateColorLaunchAdaptiveIconImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorLaunchAdaptiveIconImpl &&
@@ -3442,7 +3442,7 @@ class _$UpdateColorEventlaunchSplashBackgroundImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateColorEventlaunchSplashBackgroundImpl &&
@@ -3686,7 +3686,7 @@ class _$UpdateThemeSchemeFontEventImpl implements _UpdateThemeSchemeFontEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeSchemeFontEventImpl &&
@@ -3797,7 +3797,7 @@ class _$UpdateThemeSchemeTextsventImpl implements _UpdateThemeSchemeTextsvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeSchemeTextsventImpl &&
@@ -3910,7 +3910,7 @@ class _$UpdateThemeSchemeImagesEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeSchemeImagesEventImpl &&
@@ -4022,7 +4022,7 @@ class _$UpdateSystemAssetsImagesEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateSystemAssetsImagesEventImpl &&
@@ -4180,7 +4180,7 @@ class _$UpdateThemeMoveDraftThemToCurrentEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeMoveDraftThemToCurrentEventImpl);
@@ -4276,7 +4276,7 @@ class _$UpdateThememoveDraftThemToCurrentEntImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThememoveDraftThemToCurrentEntImpl);

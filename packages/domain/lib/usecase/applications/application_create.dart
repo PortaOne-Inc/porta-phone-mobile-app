@@ -12,6 +12,8 @@ abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required String name,
     String? platformIdentifier,
+    String? androidPlatformId,
+    String? iosPlatformId,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -40,6 +42,8 @@ class ApplicationCreateImpl extends ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required String name,
     String? platformIdentifier,
+    String? androidPlatformId,
+    String? iosPlatformId,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -57,6 +61,8 @@ class ApplicationCreateImpl extends ApplicationCreate {
       final model = ApplicationModel(
         name: name,
         platformIdentifier: platformIdentifier,
+        androidPlatformId: androidPlatformId,
+        iosPlatformId: iosPlatformId,
         coreUrl: coreUrl,
         termsConditionsUrl: termConditionsUrl,
         googleServices: googleService,

@@ -7,7 +7,9 @@ class ApplicationEditState with _$ApplicationEditState {
   const factory ApplicationEditState({
     @Default(ApplicationEditStatus.initial) ApplicationEditStatus status,
     ApplicationNameInput? nameInput,
-    ApplicationIdentifierInput? applicationIdentifierInput,
+    @Deprecated('will be removed, use android/ios instead') ApplicationIdentifierInput? applicationIdentifierInput,
+    ApplicationIdentifierInput? androidPlatformIdInput,
+    ApplicationIdentifierInput? iosPlatformIdInput,
     ApplicationTermsConditionsInput? applicationTermsConditionsInput,
     ApplicationCoreInput? applicationCoreInput,
     Uint8List? androidGoogleServices,

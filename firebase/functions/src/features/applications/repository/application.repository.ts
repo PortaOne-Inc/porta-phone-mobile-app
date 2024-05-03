@@ -55,4 +55,21 @@ export default class ApplicationRepository implements IApplicationRepository {
         const reference = (await this.collection.where('user', '==', id).get()).docs;
         return reference.map((snapshot) => this.applicationMapper.toClass(snapshot));
     }
+
+    // TODO remove after migration
+    async migrateAppId(): Promise<void> {
+        const reference = await this.collection.get();
+        reference.docs.forEach((snapshot) => {
+            
+            const application = this.applicationMapper.toClass(snapshot);
+            const appId = application.platformIdentifier;
+            if (appId != null) {
+                this.collection.doc(snapshot.id).update({
+                    androidPlatformId: appId,
+                    iosPlatformId: appId,
+                });
+            }
+        });
+        return;
+    }
 }

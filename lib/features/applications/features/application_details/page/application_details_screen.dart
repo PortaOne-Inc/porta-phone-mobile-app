@@ -55,6 +55,24 @@ class ApplicationDetailsScreen extends StatelessWidget {
           ),
         ),
         ListTile(
+          title: const Text('Android planform ID: '),
+          subtitle: SelectableText(application?.androidPlatformId ?? ''),
+          minLeadingWidth: 4,
+          leading: Container(
+            width: 8,
+            color: colorScheme.primary.withOpacity(0.2),
+          ),
+        ),
+        ListTile(
+          title: const Text('IOS planform ID: '),
+          subtitle: SelectableText(application?.iosPlatformId ?? ''),
+          minLeadingWidth: 4,
+          leading: Container(
+            width: 8,
+            color: colorScheme.primary.withOpacity(0.2),
+          ),
+        ),
+        ListTile(
           title: const Text('Application core: '),
           subtitle: SelectableText(application?.coreUrl ?? 'Not define'),
           minLeadingWidth: 4,

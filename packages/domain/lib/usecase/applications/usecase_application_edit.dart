@@ -13,6 +13,8 @@ abstract class UsecaseApplicationEdit {
     required String id,
     required String name,
     required String platformIdentifier,
+    String? androidPlatformId,
+    String? iosPlatformId,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -44,6 +46,8 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     required String id,
     required String name,
     required String platformIdentifier,
+    String? androidPlatformId,
+    String? iosPlatformId,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -67,6 +71,8 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     final model = ApplicationModel(
       name: name,
       platformIdentifier: platformIdentifier,
+      androidPlatformId: androidPlatformId,
+      iosPlatformId: iosPlatformId,
       coreUrl: coreUrl,
       termsConditionsUrl: termConditionsUrl,
       googleServices: GoogleServicesModel(

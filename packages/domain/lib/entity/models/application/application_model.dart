@@ -9,7 +9,9 @@ class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     String? id,
     String? name,
-    String? platformIdentifier,
+    @Deprecated('Use will be removed soon, use ios/android instead') String? platformIdentifier,
+    String? iosPlatformId,
+    String? androidPlatformId,
     String? termsConditionsUrl,
     String? coreUrl,
     String? theme,

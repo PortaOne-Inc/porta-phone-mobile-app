@@ -7,7 +7,9 @@ class ApplicationCreateState with _$ApplicationCreateState {
   const factory ApplicationCreateState({
     @Default(ApplicationCreateStatus.initial) ApplicationCreateStatus status,
     ApplicationNameInput? nameInput,
-    ApplicationIdentifierInput? applicationIdentifierInput,
+    @Deprecated('will be removed, use android/ios instead') ApplicationIdentifierInput? applicationIdentifierInput,
+    ApplicationIdentifierInput? androidPlatformIdInput,
+    ApplicationIdentifierInput? iosPlatformIdInput,
     ApplicationTermsConditionsInput? applicationTermsConditionsInput,
     ApplicationCoreInput? applicationCoreInput,
     Uint8List? androidGoogleServices,
