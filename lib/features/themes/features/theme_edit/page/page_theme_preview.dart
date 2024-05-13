@@ -108,6 +108,12 @@ class _PageThemePreviewState extends State<PageThemePreview> {
     );
     return [
       const LoginModeSelectScreenScreenshot(),
+      const LoginCoreUrlAssignScreenScreenshot(),
+      const LoginOtpSignInScreenshot(),
+      const LoginOtpVerifyInScreenshot(),
+      const LoginPasswordSignInScreenshot(),
+      const LoginSignUpScreenshot(),
+      const LoginSignUpVerifyScreenshot(),
       MainScreenScreenshot(MainFlavor.favorites, Text(applicationModel?.name ?? '')),
       MainScreenScreenshot(MainFlavor.recents, Text(applicationModel?.name ?? '')),
       MainScreenScreenshot(MainFlavor.keypad, Text(applicationModel?.name ?? '')),

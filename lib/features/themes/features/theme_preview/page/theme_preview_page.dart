@@ -109,6 +109,12 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
     );
     return [
       const LoginModeSelectScreenScreenshot(),
+      const LoginCoreUrlAssignScreenScreenshot(),
+      const LoginOtpSignInScreenshot(),
+      const LoginOtpVerifyInScreenshot(),
+      const LoginPasswordSignInScreenshot(),
+      const LoginSignUpScreenshot(),
+      const LoginSignUpVerifyScreenshot(),
       MainScreenScreenshot(
         MainFlavor.favorites,
         Text(applicationModel?.name ?? ''),
