@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
@@ -11,12 +12,20 @@ class ApplicationManage extends StatelessWidget {
     required this.updateIdentifier,
     required this.updateAndroidPlatformId,
     required this.updateIosPlatformId,
+    required this.updateAndroidBuildName,
+    required this.updateAndroidBuildNumber,
+    required this.updateIosBuildName,
+    required this.updateIosBuildNumber,
     required this.onChangedTermsConditionsInput,
     required this.onChangedCoreInput,
     required this.nameInput,
     required this.applicationIdentifierInput,
     required this.androidPlatformIdInput,
     required this.iosPlatformIdInput,
+    required this.androidBuildNameInput,
+    required this.androidBuildNumberInput,
+    required this.iosBuildNameInput,
+    required this.iosBuildNumberInput,
     required this.applicationCoreInput,
     required this.applicationTermsConditionsInput,
     required this.updateAndroidGoogleService,
@@ -32,6 +41,10 @@ class ApplicationManage extends StatelessWidget {
   final void Function(String value) updateIdentifier;
   final void Function(String value) updateAndroidPlatformId;
   final void Function(String value) updateIosPlatformId;
+  final void Function(String value) updateAndroidBuildName;
+  final void Function(String value) updateAndroidBuildNumber;
+  final void Function(String value) updateIosBuildName;
+  final void Function(String value) updateIosBuildNumber;
   final void Function(String value) onChangedCoreInput;
   final void Function(String value) onChangedTermsConditionsInput;
 
@@ -48,6 +61,10 @@ class ApplicationManage extends StatelessWidget {
   final ApplicationIdentifierInput? applicationIdentifierInput;
   final ApplicationIdentifierInput? androidPlatformIdInput;
   final ApplicationIdentifierInput? iosPlatformIdInput;
+  final ApplicationBuildNameInput? androidBuildNameInput;
+  final ApplicationBuildNumberInput? androidBuildNumberInput;
+  final ApplicationBuildNameInput? iosBuildNameInput;
+  final ApplicationBuildNumberInput? iosBuildNumberInput;
   final ApplicationCoreInput? applicationCoreInput;
   final ApplicationTermsConditionsInput? applicationTermsConditionsInput;
 
@@ -184,6 +201,90 @@ class ApplicationManage extends StatelessWidget {
                     suffixIcon: Tooltip(
                       message:
                           'Provide a direct web link to the page that contains the legal terms and conditions for using a product or service.',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Android build name',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: androidBuildNameInput?.value,
+                  onChanged: updateAndroidBuildName,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
+                  decoration: InputDecoration(
+                    hintText: '1.0.0',
+                    errorText: androidBuildNameInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message: 'The version name shown to users',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Android build number',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: androidBuildNumberInput?.value,
+                  onChanged: updateAndroidBuildNumber,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    hintText: '1',
+                    errorText: androidBuildNumberInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message: 'The version code shown to users',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'iOS build name',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: iosBuildNameInput?.value,
+                  onChanged: updateIosBuildName,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
+                  decoration: InputDecoration(
+                    hintText: '1.0.0',
+                    errorText: iosBuildNameInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message: 'The version name shown to users',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'iOS build number',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: iosBuildNumberInput?.value,
+                  onChanged: updateIosBuildNumber,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    hintText: '1',
+                    errorText: iosBuildNumberInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message: 'The version code shown to users',
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),
                     ),
                   ),

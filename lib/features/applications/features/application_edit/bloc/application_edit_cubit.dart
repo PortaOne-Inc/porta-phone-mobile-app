@@ -42,6 +42,22 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
 
+  void updateAndroidBuildName(String buildName) {
+    emit(state.copyWith(androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateAndroidBuildNumber(String buildNumber) {
+    emit(state.copyWith(androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+  }
+
+  void updateIosBuildName(String buildName) {
+    emit(state.copyWith(iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateIosBuildNumber(String buildNumber) {
+    emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+  }
+
   void updateCore(String core) {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
@@ -70,6 +86,14 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
         platformIdentifier: state.applicationIdentifierInput!.value,
         androidPlatformId: state.androidPlatformIdInput!.value,
         iosPlatformId: state.iosPlatformIdInput!.value,
+        androidVersion: BuildVersionModel(
+          buildName: state.androidBuildNameInput!.value,
+          buildNumber: int.tryParse(state.androidBuildNumberInput!.value),
+        ),
+        iosVersion: BuildVersionModel(
+          buildName: state.iosBuildNameInput!.value,
+          buildNumber: int.tryParse(state.iosBuildNumberInput!.value),
+        ),
         coreUrl: state.applicationCoreInput!.value,
         termConditionsUrl: state.applicationTermsConditionsInput!.value,
         applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
@@ -94,6 +118,10 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           applicationIdentifierInput: ApplicationIdentifierInput.dirty(app.platformIdentifier ?? ''),
           androidPlatformIdInput: ApplicationIdentifierInput.dirty(app.androidPlatformId ?? ''),
           iosPlatformIdInput: ApplicationIdentifierInput.dirty(app.iosPlatformId ?? ''),
+          androidBuildNameInput: ApplicationBuildNameInput.dirty(app.androidVersion?.buildName ?? ''),
+          androidBuildNumberInput: ApplicationBuildNumberInput.dirty(app.androidVersion?.buildNumber?.toString() ?? ''),
+          iosBuildNameInput: ApplicationBuildNameInput.dirty(app.iosVersion?.buildName ?? ''),
+          iosBuildNumberInput: ApplicationBuildNumberInput.dirty(app.iosVersion?.buildNumber?.toString() ?? ''),
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
           applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
           applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(app.termsConditionsUrl ?? ''),

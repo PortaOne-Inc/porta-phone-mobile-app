@@ -36,6 +36,22 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
 
+  void updateAndroidBuildName(String buildName) {
+    emit(state.copyWith(androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateAndroidBuildNumber(String buildNumber) {
+    emit(state.copyWith(androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+  }
+
+  void updateIosBuildName(String buildName) {
+    emit(state.copyWith(iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateIosBuildNumber(String buildNumber) {
+    emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+  }
+
   void updateCore(String core) {
     emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
   }
@@ -61,6 +77,14 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
         applicationIdentifier: state.applicationIdentifierInput?.value,
         androidPlatformId: state.androidPlatformIdInput?.value,
         iosPlatformId: state.iosPlatformIdInput?.value,
+        androidVersion: BuildVersionModel(
+          buildName: state.androidBuildNameInput?.value,
+          buildNumber: int.tryParse(state.androidBuildNumberInput?.value ?? ''),
+        ),
+        iosVersion: BuildVersionModel(
+          buildName: state.iosBuildNameInput?.value,
+          buildNumber: int.tryParse(state.iosBuildNumberInput?.value ?? ''),
+        ),
         coreUrl: state.applicationCoreInput?.value,
         termConditionsUrl: state.applicationTermsConditionsInput?.value,
         iosGoogleServices: state.iosGoogleServices,
@@ -94,6 +118,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     String? applicationIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
+    BuildVersionModel? androidVersion,
+    BuildVersionModel? iosVersion,
     String? coreUrl,
     String? termConditionsUrl,
     Uint8List? iosGoogleServices,
@@ -106,6 +132,8 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
       platformIdentifier: applicationIdentifier,
       androidPlatformId: androidPlatformId,
       iosPlatformId: iosPlatformId,
+      androidVersion: androidVersion,
+      iosVersion: iosVersion,
       coreUrl: coreUrl,
       termConditionsUrl: termConditionsUrl,
       iosGoogleServices: iosGoogleServices,

@@ -21,145 +21,181 @@ class ApplicationDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListTile(
-          title: const Text('Project name:'),
-          subtitle: SelectableText(application?.name ?? ''),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Project id:'),
-          subtitle: SelectableText(
-            application?.id ?? '',
-          ),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Platform identifier: '),
-          subtitle: SelectableText(application?.platformIdentifier ?? ''),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Android planform ID: '),
-          subtitle: SelectableText(application?.androidPlatformId ?? ''),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('IOS planform ID: '),
-          subtitle: SelectableText(application?.iosPlatformId ?? ''),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Application core: '),
-          subtitle: SelectableText(application?.coreUrl ?? 'Not define'),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Term and conditions: '),
-          subtitle: SelectableText(application?.termsConditionsUrl ?? 'Not define'),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Version:'),
-          subtitle: SelectableText(application?.version.toString() ?? '0'),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-        ListTile(
-          title: const Text('Default theme:'),
-          trailing: InkWell(
-            child: Visibility(
-              visible: application?.isApplicationHasDefaultThem ?? false,
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Open'),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(Icons.open_in_new_outlined),
-                ],
-              ),
+    return LayoutBuilder(builder: (context, constrains) {
+      return ListView(
+        children: [
+          ListTile(
+            title: const Text('Project name:'),
+            subtitle: SelectableText(application?.name ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
             ),
-            onTap: () => onOpenDefaultTheme(application!.id!, application!.theme!),
           ),
-          subtitle: application?.isApplicationHasDefaultThem ?? false
-              ? SelectableText(application?.theme ?? '')
-              : const Text('Not selected default theme yet'),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
+          ListTile(
+            title: const Text('Project id:'),
+            subtitle: SelectableText(
+              application?.id ?? '',
+            ),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
           ),
-        ),
-        ListTile(
-          title: const Text('Google services:'),
-          subtitle: Container(
-            margin: const EdgeInsets.only(top: 8),
-            child: application?.isGoogleServicesAvailable ?? false
-                ? Row(
-                    children: [
-                      if (application?.googleServices?.androidUrl != null)
-                        GoogleServicesPreview(
-                          type: GoogleServicesPreviewType.download,
-                          platform: TargetPlatform.android,
-                          onTap: () => _downloadFile(application!.googleServices!.androidUrl!),
+          ListTile(
+            title: const Text('Platform identifier: '),
+            subtitle: SelectableText(application?.platformIdentifier ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Android planform ID: '),
+            subtitle: SelectableText(application?.androidPlatformId ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('IOS planform ID: '),
+            subtitle: SelectableText(application?.iosPlatformId ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Android build name: '),
+            subtitle: SelectableText(application?.androidVersion?.buildName ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Android build number: '),
+            subtitle: SelectableText(application?.androidVersion?.buildNumber?.toString() ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('IOS build name: '),
+            subtitle: SelectableText(application?.iosVersion?.buildName ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('IOS build number: '),
+            subtitle: SelectableText(application?.iosVersion?.buildNumber?.toString() ?? ''),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Application core: '),
+            subtitle: SelectableText(application?.coreUrl ?? 'Not define'),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Term and conditions: '),
+            subtitle: SelectableText(application?.termsConditionsUrl ?? 'Not define'),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Version:'),
+            subtitle: SelectableText(application?.version.toString() ?? '0'),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Default theme:'),
+            trailing: InkWell(
+              child: Visibility(
+                visible: application?.isApplicationHasDefaultThem ?? false,
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Open'),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Icon(Icons.open_in_new_outlined),
+                  ],
+                ),
+              ),
+              onTap: () => onOpenDefaultTheme(application!.id!, application!.theme!),
+            ),
+            subtitle: application?.isApplicationHasDefaultThem ?? false
+                ? SelectableText(application?.theme ?? '')
+                : const Text('Not selected default theme yet'),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          ListTile(
+            title: const Text('Google services:'),
+            subtitle: Container(
+              margin: const EdgeInsets.only(top: 8),
+              child: application?.isGoogleServicesAvailable ?? false
+                  ? Row(
+                      children: [
+                        if (application?.googleServices?.androidUrl != null)
+                          GoogleServicesPreview(
+                            type: GoogleServicesPreviewType.download,
+                            platform: TargetPlatform.android,
+                            onTap: () => _downloadFile(application!.googleServices!.androidUrl!),
+                          ),
+                        const SizedBox(
+                          width: 8,
                         ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      if (application?.googleServices?.iosUrl != null)
-                        GoogleServicesPreview(
-                          platform: TargetPlatform.iOS,
-                          type: GoogleServicesPreviewType.download,
-                          onTap: () => _downloadFile(application!.googleServices!.iosUrl!),
-                        )
-                    ],
-                  )
-                : const Text('Google services has not uploaded'),
+                        if (application?.googleServices?.iosUrl != null)
+                          GoogleServicesPreview(
+                            platform: TargetPlatform.iOS,
+                            type: GoogleServicesPreviewType.download,
+                            onTap: () => _downloadFile(application!.googleServices!.iosUrl!),
+                          )
+                      ],
+                    )
+                  : const Text('Google services has not uploaded'),
+            ),
+            minLeadingWidth: 4,
+            leading: Container(
+              width: 8,
+              color: colorScheme.primary.withOpacity(0.2),
+            ),
           ),
-          minLeadingWidth: 4,
-          leading: Container(
-            width: 8,
-            color: colorScheme.primary.withOpacity(0.2),
-          ),
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 
   // TODO(dmitry): Move logic of downloading to helper

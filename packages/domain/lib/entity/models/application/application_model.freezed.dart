@@ -23,9 +23,12 @@ mixin _$ApplicationModel {
   String? get iosPlatformId => throw _privateConstructorUsedError;
   String? get androidPlatformId => throw _privateConstructorUsedError;
   String? get termsConditionsUrl => throw _privateConstructorUsedError;
+  BuildVersionModel? get androidVersion => throw _privateConstructorUsedError;
+  BuildVersionModel? get iosVersion => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
   GoogleServicesModel? get googleServices => throw _privateConstructorUsedError;
+  @Deprecated('Use will be removed soon, use ios/android instead')
   int get version => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -47,11 +50,16 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
+      BuildVersionModel? androidVersion,
+      BuildVersionModel? iosVersion,
       String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       int version});
 
+  $BuildVersionModelCopyWith<$Res>? get androidVersion;
+  $BuildVersionModelCopyWith<$Res>? get iosVersion;
   $GoogleServicesModelCopyWith<$Res>? get googleServices;
 }
 
@@ -74,6 +82,8 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
+    Object? androidVersion = freezed,
+    Object? iosVersion = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
@@ -104,6 +114,14 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.termsConditionsUrl
           : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      androidVersion: freezed == androidVersion
+          ? _value.androidVersion
+          : androidVersion // ignore: cast_nullable_to_non_nullable
+              as BuildVersionModel?,
+      iosVersion: freezed == iosVersion
+          ? _value.iosVersion
+          : iosVersion // ignore: cast_nullable_to_non_nullable
+              as BuildVersionModel?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
           : coreUrl // ignore: cast_nullable_to_non_nullable
@@ -121,6 +139,30 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           : version // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BuildVersionModelCopyWith<$Res>? get androidVersion {
+    if (_value.androidVersion == null) {
+      return null;
+    }
+
+    return $BuildVersionModelCopyWith<$Res>(_value.androidVersion!, (value) {
+      return _then(_value.copyWith(androidVersion: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BuildVersionModelCopyWith<$Res>? get iosVersion {
+    if (_value.iosVersion == null) {
+      return null;
+    }
+
+    return $BuildVersionModelCopyWith<$Res>(_value.iosVersion!, (value) {
+      return _then(_value.copyWith(iosVersion: value) as $Val);
+    });
   }
 
   @override
@@ -152,11 +194,18 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
+      BuildVersionModel? androidVersion,
+      BuildVersionModel? iosVersion,
       String? coreUrl,
       String? theme,
       GoogleServicesModel? googleServices,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       int version});
 
+  @override
+  $BuildVersionModelCopyWith<$Res>? get androidVersion;
+  @override
+  $BuildVersionModelCopyWith<$Res>? get iosVersion;
   @override
   $GoogleServicesModelCopyWith<$Res>? get googleServices;
 }
@@ -178,6 +227,8 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
+    Object? androidVersion = freezed,
+    Object? iosVersion = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
     Object? googleServices = freezed,
@@ -208,6 +259,14 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
           ? _value.termsConditionsUrl
           : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      androidVersion: freezed == androidVersion
+          ? _value.androidVersion
+          : androidVersion // ignore: cast_nullable_to_non_nullable
+              as BuildVersionModel?,
+      iosVersion: freezed == iosVersion
+          ? _value.iosVersion
+          : iosVersion // ignore: cast_nullable_to_non_nullable
+              as BuildVersionModel?,
       coreUrl: freezed == coreUrl
           ? _value.coreUrl
           : coreUrl // ignore: cast_nullable_to_non_nullable
@@ -239,9 +298,12 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       this.iosPlatformId,
       this.androidPlatformId,
       this.termsConditionsUrl,
+      this.androidVersion,
+      this.iosVersion,
       this.coreUrl,
       this.theme,
       this.googleServices,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       this.version = 0})
       : super._();
 
@@ -259,6 +321,10 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   @override
   final String? termsConditionsUrl;
   @override
+  final BuildVersionModel? androidVersion;
+  @override
+  final BuildVersionModel? iosVersion;
+  @override
   final String? coreUrl;
   @override
   final String? theme;
@@ -266,11 +332,12 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   final GoogleServicesModel? googleServices;
   @override
   @JsonKey()
+  @Deprecated('Use will be removed soon, use ios/android instead')
   final int version;
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
+    return 'ApplicationModel(id: $id, name: $name, platformIdentifier: $platformIdentifier, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, googleServices: $googleServices, version: $version)';
   }
 
   @override
@@ -288,6 +355,10 @@ class _$ApplicationModelImpl extends _ApplicationModel {
                 other.androidPlatformId == androidPlatformId) &&
             (identical(other.termsConditionsUrl, termsConditionsUrl) ||
                 other.termsConditionsUrl == termsConditionsUrl) &&
+            (identical(other.androidVersion, androidVersion) ||
+                other.androidVersion == androidVersion) &&
+            (identical(other.iosVersion, iosVersion) ||
+                other.iosVersion == iosVersion) &&
             (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.googleServices, googleServices) ||
@@ -304,6 +375,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       iosPlatformId,
       androidPlatformId,
       termsConditionsUrl,
+      androidVersion,
+      iosVersion,
       coreUrl,
       theme,
       googleServices,
@@ -326,9 +399,12 @@ abstract class _ApplicationModel extends ApplicationModel {
       final String? iosPlatformId,
       final String? androidPlatformId,
       final String? termsConditionsUrl,
+      final BuildVersionModel? androidVersion,
+      final BuildVersionModel? iosVersion,
       final String? coreUrl,
       final String? theme,
       final GoogleServicesModel? googleServices,
+      @Deprecated('Use will be removed soon, use ios/android instead')
       final int version}) = _$ApplicationModelImpl;
   const _ApplicationModel._() : super._();
 
@@ -346,12 +422,17 @@ abstract class _ApplicationModel extends ApplicationModel {
   @override
   String? get termsConditionsUrl;
   @override
+  BuildVersionModel? get androidVersion;
+  @override
+  BuildVersionModel? get iosVersion;
+  @override
   String? get coreUrl;
   @override
   String? get theme;
   @override
   GoogleServicesModel? get googleServices;
   @override
+  @Deprecated('Use will be removed soon, use ios/android instead')
   int get version;
   @override
   @JsonKey(ignore: true)

@@ -74,12 +74,14 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                       ),
                     ),
                     const Divider(),
-                    ApplicationDetailsScreen(
-                      application: state.application,
-                      onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
-                        context,
-                        applicationId,
-                        themeId,
+                    Expanded(
+                      child: ApplicationDetailsScreen(
+                        application: state.application,
+                        onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
+                          context,
+                          applicationId,
+                          themeId,
+                        ),
                       ),
                     )
                   ],
