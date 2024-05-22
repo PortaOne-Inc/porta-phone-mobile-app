@@ -101,6 +101,7 @@ class AppRoute {
                   deleteThemeUseCase: getIt.get(),
                   getApplicationGet: getIt.get(),
                   applicationDeleteUsecase: getIt.get(),
+                  usecaseDeployBuilds: getIt.get(),
                 ),
               ),
             ),

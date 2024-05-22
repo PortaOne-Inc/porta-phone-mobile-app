@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
+
 part 'application_details_state.dart';
 
 part 'application_details_cubit.freezed.dart';
@@ -15,10 +17,12 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.deleteThemeUseCase,
     required this.applicationDeleteUsecase,
     required this.applicationId,
+    required this.usecaseDeployBuilds,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
           application: applicationModel,
+          applicationDeploy: ApplicationDeploy.init(),
         )) {
     getThemes();
     _getApplication();
@@ -32,6 +36,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
+  final UsecaseDeployBuilds usecaseDeployBuilds;
 
   Future<void> tryDeleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(deleteTheme: themeModel));
@@ -104,5 +109,25 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
     await getThemes();
+  }
+
+  Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
+    emit(state.copyWith(applicationDeploy: model));
+  }
+
+  Future<void> deployBuilds() async {
+    emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deployConfirm));
+  }
+
+  Future<void> confirmDeployBuilds() async {
+    try {
+      await usecaseDeployBuilds.execute(
+        applicationId: state.application!.id!,
+        applicationDeploy: state.applicationDeploy,
+      );
+      emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deploySuccess));
+    } catch (e) {
+      emitRollback(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+    }
   }
 }

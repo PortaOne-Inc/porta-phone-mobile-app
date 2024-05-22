@@ -18,11 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationDetailsState {
   ApplicationDetailsStateStatus get status =>
       throw _privateConstructorUsedError;
+  ApplicationDeploy get applicationDeploy => throw _privateConstructorUsedError;
   List<ThemeModel> get themes => throw _privateConstructorUsedError;
   ThemeModel? get deleteTheme => throw _privateConstructorUsedError;
   ApplicationModel? get application => throw _privateConstructorUsedError;
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
-  BaseException? get error => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ApplicationDetailsStateCopyWith<ApplicationDetailsState> get copyWith =>
@@ -37,12 +38,14 @@ abstract class $ApplicationDetailsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ApplicationDetailsStateStatus status,
+      ApplicationDeploy applicationDeploy,
       List<ThemeModel> themes,
       ThemeModel? deleteTheme,
       ApplicationModel? application,
       ApplicationModel? deleteApplication,
-      BaseException? error});
+      Object? error});
 
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   $ApplicationModelCopyWith<$Res>? get application;
   $ApplicationModelCopyWith<$Res>? get deleteApplication;
@@ -63,6 +66,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
+    Object? applicationDeploy = null,
     Object? themes = null,
     Object? deleteTheme = freezed,
     Object? application = freezed,
@@ -74,6 +78,10 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
+      applicationDeploy: null == applicationDeploy
+          ? _value.applicationDeploy
+          : applicationDeploy // ignore: cast_nullable_to_non_nullable
+              as ApplicationDeploy,
       themes: null == themes
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -90,11 +98,16 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.deleteApplication
           : deleteApplication // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
+      error: freezed == error ? _value.error : error,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy {
+    return $ApplicationDeployCopyWith<$Res>(_value.applicationDeploy, (value) {
+      return _then(_value.copyWith(applicationDeploy: value) as $Val);
+    });
   }
 
   @override
@@ -145,12 +158,15 @@ abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {ApplicationDetailsStateStatus status,
+      ApplicationDeploy applicationDeploy,
       List<ThemeModel> themes,
       ThemeModel? deleteTheme,
       ApplicationModel? application,
       ApplicationModel? deleteApplication,
-      BaseException? error});
+      Object? error});
 
+  @override
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
   @override
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   @override
@@ -173,6 +189,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? applicationDeploy = null,
     Object? themes = null,
     Object? deleteTheme = freezed,
     Object? application = freezed,
@@ -184,6 +201,10 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
+      applicationDeploy: null == applicationDeploy
+          ? _value.applicationDeploy
+          : applicationDeploy // ignore: cast_nullable_to_non_nullable
+              as ApplicationDeploy,
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
@@ -200,10 +221,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value.deleteApplication
           : deleteApplication // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
@@ -211,18 +229,22 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ApplicationDetailsStateInitialImpl
-    implements ApplicationDetailsStateInitial {
+    extends ApplicationDetailsStateInitial {
   const _$ApplicationDetailsStateInitialImpl(
       {required this.status,
+      required this.applicationDeploy,
       final List<ThemeModel> themes = const [],
       this.deleteTheme,
       this.application,
       this.deleteApplication,
       this.error})
-      : _themes = themes;
+      : _themes = themes,
+        super._();
 
   @override
   final ApplicationDetailsStateStatus status;
+  @override
+  final ApplicationDeploy applicationDeploy;
   final List<ThemeModel> _themes;
   @override
   @JsonKey()
@@ -239,11 +261,11 @@ class _$ApplicationDetailsStateInitialImpl
   @override
   final ApplicationModel? deleteApplication;
   @override
-  final BaseException? error;
+  final Object? error;
 
   @override
   String toString() {
-    return 'ApplicationDetailsState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
+    return 'ApplicationDetailsState(status: $status, applicationDeploy: $applicationDeploy, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
   }
 
   @override
@@ -252,6 +274,8 @@ class _$ApplicationDetailsStateInitialImpl
         (other.runtimeType == runtimeType &&
             other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.applicationDeploy, applicationDeploy) ||
+                other.applicationDeploy == applicationDeploy) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
             (identical(other.deleteTheme, deleteTheme) ||
                 other.deleteTheme == deleteTheme) &&
@@ -259,18 +283,19 @@ class _$ApplicationDetailsStateInitialImpl
                 other.application == application) &&
             (identical(other.deleteApplication, deleteApplication) ||
                 other.deleteApplication == deleteApplication) &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       status,
+      applicationDeploy,
       const DeepCollectionEquality().hash(_themes),
       deleteTheme,
       application,
       deleteApplication,
-      error);
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -281,18 +306,21 @@ class _$ApplicationDetailsStateInitialImpl
           _$ApplicationDetailsStateInitialImpl>(this, _$identity);
 }
 
-abstract class ApplicationDetailsStateInitial
-    implements ApplicationDetailsState {
+abstract class ApplicationDetailsStateInitial extends ApplicationDetailsState {
   const factory ApplicationDetailsStateInitial(
       {required final ApplicationDetailsStateStatus status,
+      required final ApplicationDeploy applicationDeploy,
       final List<ThemeModel> themes,
       final ThemeModel? deleteTheme,
       final ApplicationModel? application,
       final ApplicationModel? deleteApplication,
-      final BaseException? error}) = _$ApplicationDetailsStateInitialImpl;
+      final Object? error}) = _$ApplicationDetailsStateInitialImpl;
+  const ApplicationDetailsStateInitial._() : super._();
 
   @override
   ApplicationDetailsStateStatus get status;
+  @override
+  ApplicationDeploy get applicationDeploy;
   @override
   List<ThemeModel> get themes;
   @override
@@ -302,7 +330,7 @@ abstract class ApplicationDetailsStateInitial
   @override
   ApplicationModel? get deleteApplication;
   @override
-  BaseException? get error;
+  Object? get error;
   @override
   @JsonKey(ignore: true)
   _$$ApplicationDetailsStateInitialImplCopyWith<

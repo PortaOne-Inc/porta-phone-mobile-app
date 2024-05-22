@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-late GetIt di;
+import 'package:data/data/interceptors/interceptors.dart';
 
 @InjectableInit.microPackage()
 void initMicroPackage() {}
@@ -18,16 +17,25 @@ abstract class RegisterModule {
   FirebaseStorage storage() => FirebaseStorage.instance;
 
   @LazySingleton()
-  Dio dio() {
-    final dio = Dio();
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        final token = await auth().currentUser?.getIdToken();
-        final authToken = 'Bearer $token';
-        options.headers['Authorization'] = authToken;
-        return handler.next(options);
-      },
-    ));
-    return dio;
+  Dio dio() => Dio()
+    ..interceptors.addAll([
+      FirebaseAuthInterceptor(auth()),
+      LoggingInterceptor(),
+    ]);
+
+  @Named('github_client')
+  @LazySingleton()
+  Dio githubClient(@Named('deployPlatformBuildsToken') String token) {
+    final option = BaseOptions(headers: {
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+
+    return Dio(option)
+      ..interceptors.addAll([
+        LoggingInterceptor(),
+      ]);
   }
 }

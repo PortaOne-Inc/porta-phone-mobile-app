@@ -82,6 +82,9 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                           applicationId,
                           themeId,
                         ),
+                        applicationDeploy: state.applicationDeploy,
+                        onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
+                        onDeploy: bloc.deployBuilds,
                       ),
                     )
                   ],
@@ -152,7 +155,19 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     ApplicationDetailsState state,
   ) {
     if (state.status == ApplicationDetailsStateStatus.error) {
-      showFailureMessage(context, state.error!.message);
+      showFailureMessage(context, state.error.toString());
+    }
+
+    if (state.status == ApplicationDetailsStateStatus.deployConfirm) {
+      _showDeployConfirm(state);
+    }
+
+    if (state.status == ApplicationDetailsStateStatus.deploySuccess) {
+      showTopSnakeMessageSuccess(
+        context,
+        context.l10n.feature_application_details_ApplicationDetailsScreen_deploy_success_message,
+        duration: const Duration(seconds: 4),
+      );
     }
 
     if (state.status == ApplicationDetailsStateStatus.deleted) {
@@ -208,10 +223,28 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
     await showDialog<void>(
       context: context,
-      builder: (context) => CredentialToolbar(
+      builder: (context) => CredentialsDialog(
         themeId: model.id!,
         applicationId: applicationId,
       ),
+    );
+  }
+
+  Future<void> _showDeployConfirm(ApplicationDetailsState state) async {
+    await showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return DeployConfirmDialog(
+          deployInfo: state.applicationDeploy,
+          onCancel: () {
+            Navigator.maybePop(context);
+          },
+          onAccept: () {
+            Navigator.maybePop(context);
+            this.context.read<ApplicationDetailsCubit>().confirmDeployBuilds();
+          },
+        );
+      },
     );
   }
 

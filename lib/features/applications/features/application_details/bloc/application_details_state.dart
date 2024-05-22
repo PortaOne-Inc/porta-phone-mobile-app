@@ -6,18 +6,23 @@ enum ApplicationDetailsStateStatus {
   error,
   deleted,
   success,
+  deployConfirm,
+  deploySuccess,
 }
 
 @freezed
 class ApplicationDetailsState with _$ApplicationDetailsState {
   const factory ApplicationDetailsState({
     required ApplicationDetailsStateStatus status,
+    required ApplicationDeploy applicationDeploy,
     @Default([]) List<ThemeModel> themes,
     ThemeModel? deleteTheme,
     ApplicationModel? application,
     ApplicationModel? deleteApplication,
-    BaseException? error,
+    Object? error,
   }) = ApplicationDetailsStateInitial;
+
+  const ApplicationDetailsState._();
 }
 
 extension ThemeCollectionStateGetters on ApplicationDetailsState {
