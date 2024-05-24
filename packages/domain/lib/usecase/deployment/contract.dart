@@ -6,3 +6,18 @@ abstract class UsecaseDeployBuilds {
     required ApplicationDeploy applicationDeploy,
   });
 }
+
+abstract class UpdateBuildNameUseCase {
+  Future<BuildVersionModel?> execute({
+    required ApplicationModel application,
+    required BuildPlatform platform,
+    required VersionPart part,
+  });
+}
+
+abstract class UpdateBuildNumberUseCase {
+  Future<BuildVersionModel?> execute({
+    required ApplicationModel application,
+    required BuildPlatform platform,
+  });
+}

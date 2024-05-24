@@ -46,6 +46,10 @@ import 'package:domain/usecase/auth/usecase_auth_resrt_password_impl.dart'
 import 'package:domain/usecase/auth/usecase_auth_sign_in.dart' as _i23;
 import 'package:domain/usecase/auth/usecase_auth_sign_in_impl.dart' as _i24;
 import 'package:domain/usecase/deployment/usecase_deploy_builds.dart' as _i10;
+import 'package:domain/usecase/deployment/usecase_update_build_name.dart'
+    as _i43;
+import 'package:domain/usecase/deployment/usecase_update_build_number.dart'
+    as _i44;
 import 'package:domain/usecase/theme/usecase_color_scheme_create.dart' as _i3;
 import 'package:domain/usecase/theme/usecase_set_theme_default.dart' as _i35;
 import 'package:domain/usecase/theme/usecase_theme_create.dart' as _i33;
@@ -54,6 +58,7 @@ import 'package:domain/usecase/theme/usecase_theme_get.dart' as _i15;
 import 'package:domain/usecase/theme/usecase_theme_get_all.dart' as _i27;
 import 'package:domain/usecase/theme/usecase_theme_get_template.dart' as _i13;
 import 'package:domain/usecase/theme/usecase_theme_update.dart' as _i28;
+import 'package:domain/usecase/usecase.dart' as _i42;
 import 'package:dto/dto.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i1;
 
@@ -188,5 +193,9 @@ class DomainPackageModule extends _i1.MicroPackageModule {
           authRepository: gh<_i16.AuthRepository>(),
           mapper: gh<_i17.Mapper<_i5.ApplicationDTO, _i17.ApplicationModel>>(),
         ));
+    gh.factory<_i42.UpdateBuildNameUseCase>(() =>
+        _i43.IncrementBuildNameUseCase(gh<_i42.UsecaseApplicationEdit>()));
+    gh.factory<_i42.UpdateBuildNumberUseCase>(() =>
+        _i44.UpdateBuildNumberUseCaseImpl(gh<_i42.UsecaseApplicationEdit>()));
   }
 }

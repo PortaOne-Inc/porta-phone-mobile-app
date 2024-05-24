@@ -16,6 +16,8 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
     required ApplicationDetailsStateStatus status,
     required ApplicationDeploy applicationDeploy,
     @Default([]) List<ThemeModel> themes,
+    @Default(ApplicationBuildVersionProgress(progressNameUpdating: [], progressNumberUpdating: []))
+    ApplicationBuildVersionProgress buildVersionProgress,
     ThemeModel? deleteTheme,
     ApplicationModel? application,
     ApplicationModel? deleteApplication,
@@ -23,6 +25,82 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
   }) = ApplicationDetailsStateInitial;
 
   const ApplicationDetailsState._();
+
+  ApplicationDetailsState copyWithVersions({
+    BuildVersionModel? android,
+    BuildVersionModel? ios,
+  }) {
+    return copyWith(
+      application: application?.copyWith(
+        androidVersion: android ?? application?.androidVersion,
+        iosVersion: ios ?? application?.iosVersion,
+      ),
+    );
+  }
+
+  ApplicationDetailsState copyWithAddingProgressName(BuildPlatform platform) {
+    return copyWith(
+      buildVersionProgress: buildVersionProgress.copyWith(
+        progressNameUpdating: _updateProgressStatuses(
+          platform,
+          buildVersionProgress.progressNameUpdating,
+          true,
+        ),
+      ),
+    );
+  }
+
+  ApplicationDetailsState copyWithAddingProgressNumber(BuildPlatform platform) {
+    return copyWith(
+      buildVersionProgress: buildVersionProgress.copyWith(
+        progressNumberUpdating: _updateProgressStatuses(
+          platform,
+          buildVersionProgress.progressNumberUpdating,
+          true,
+        ),
+      ),
+    );
+  }
+
+  ApplicationDetailsState copyWithRemovingProgressName(BuildPlatform platform) {
+    return copyWith(
+      buildVersionProgress: buildVersionProgress.copyWith(
+        progressNameUpdating: _updateProgressStatuses(
+          platform,
+          buildVersionProgress.progressNameUpdating,
+          false,
+        ),
+      ),
+    );
+  }
+
+  ApplicationDetailsState copyWithRemovingProgressNumber(BuildPlatform platform) {
+    return copyWith(
+      buildVersionProgress: buildVersionProgress.copyWith(
+        progressNumberUpdating: _updateProgressStatuses(
+          platform,
+          buildVersionProgress.progressNumberUpdating,
+          false,
+        ),
+      ),
+    );
+  }
+
+  List<BuildPlatform> _updateProgressStatuses(
+    BuildPlatform platform,
+    List<BuildPlatform> statuses,
+    bool addProgress,
+  ) {
+    final progressUpdating = List<BuildPlatform>.from(statuses);
+
+    if (addProgress) {
+      progressUpdating.add(platform);
+    } else {
+      progressUpdating.remove(platform);
+    }
+
+    return progressUpdating;
+  }
 }
 
 extension ThemeCollectionStateGetters on ApplicationDetailsState {

@@ -8,8 +8,8 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
-import '../models/models.dart';
 import '../widgets/widgets.dart';
+import '../models/models.dart';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   const ApplicationDetailsScreen({
@@ -18,15 +18,22 @@ class ApplicationDetailsScreen extends StatelessWidget {
     required this.onOpenDefaultTheme,
     required this.onUpdateApplicationDeploy,
     required this.onDeploy,
+    required this.onUpdateBuildNameVersion,
+    required this.onUpdateBuildNumberVersion,
+    required this.applicationBuildVersionProgress,
     super.key,
   });
 
   final ApplicationModel? application;
   final ApplicationDeploy applicationDeploy;
+  final ApplicationBuildVersionProgress applicationBuildVersionProgress;
 
   final void Function(String applicationId, String themeId) onOpenDefaultTheme;
   final ObjectCallback<ApplicationDeploy> onUpdateApplicationDeploy;
   final VoidCallback onDeploy;
+
+  final ObjectCallbackPair<BuildPlatform, VersionPart> onUpdateBuildNameVersion;
+  final ObjectCallback<BuildPlatform> onUpdateBuildNumberVersion;
 
   @override
   Widget build(BuildContext context) {
@@ -54,69 +61,6 @@ class ApplicationDetailsScreen extends StatelessWidget {
               ListTile(
                 title: const Text('Project id:'),
                 subtitle: SelectableText(application?.id ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Platform identifier: '),
-                subtitle: SelectableText(application?.platformIdentifier ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Android platform ID: '),
-                subtitle: SelectableText(application?.androidPlatformId ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('iOS platform ID: '),
-                subtitle: SelectableText(application?.iosPlatformId ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Android build name: '),
-                subtitle: SelectableText(application?.androidVersion?.buildName ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Android build number: '),
-                subtitle: SelectableText(application?.androidVersion?.buildNumber?.toString() ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('iOS build name: '),
-                subtitle: SelectableText(application?.iosVersion?.buildName ?? ''),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('iOS build number: '),
-                subtitle: SelectableText(application?.iosVersion?.buildNumber?.toString() ?? ''),
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
@@ -209,6 +153,120 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
+            ],
+          ),
+          // Builds configuration section
+          Section(
+            title: context.l10n.feature_application_details_ApplicationDetailsScreen_builds_configuration,
+            children: [
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_platform_id),
+                subtitle: SelectableText(application?.androidPlatformId ?? ''),
+                minLeadingWidth: 4,
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_platform_id),
+                subtitle: SelectableText(application?.iosPlatformId ?? ''),
+                minLeadingWidth: 4,
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_build_name),
+                subtitle: SelectableText(application?.androidVersion?.buildName ?? ''),
+                minLeadingWidth: 4,
+                trailing: Builder(
+                  builder: (context) {
+                    const platform = BuildPlatform.android;
+                    final isUpdating = applicationBuildVersionProgress.isNameProgress(platform);
+
+                    return UpdaterChooserButton(
+                      progress: isUpdating,
+                      onPressed: (it) => onUpdateBuildNameVersion(platform, VersionPart.values.byName(it)),
+                      initial: VersionPart.patch.name,
+                      items: VersionPart.values.map((it) => it.name).toList(),
+                    );
+                  },
+                ),
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_build_number),
+                subtitle: SelectableText(application?.androidVersion?.buildNumber?.toString() ?? ''),
+                minLeadingWidth: 4,
+                trailing: Builder(
+                  builder: (context) {
+                    const platform = BuildPlatform.android;
+                    final isUpdating = applicationBuildVersionProgress.isNumberProgress(platform);
+
+                    return UpdaterButton(
+                      progress: isUpdating,
+                      onPressed: () => onUpdateBuildNumberVersion(platform),
+                    );
+                  },
+                ),
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_build_name),
+                subtitle: SelectableText(application?.iosVersion?.buildName ?? ''),
+                minLeadingWidth: 4,
+                trailing: Builder(
+                  builder: (context) {
+                    const platform = BuildPlatform.ios;
+                    final isUpdating = applicationBuildVersionProgress.isNameProgress(platform);
+
+                    return UpdaterChooserButton(
+                      progress: isUpdating,
+                      onPressed: (it) => onUpdateBuildNameVersion(platform, VersionPart.values.byName(it)),
+                      initial: VersionPart.patch.name,
+                      items: VersionPart.values.map((it) => it.name).toList(),
+                    );
+                  },
+                ),
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_build_number),
+                subtitle: SelectableText(application?.iosVersion?.buildNumber?.toString() ?? ''),
+                minLeadingWidth: 4,
+                trailing: Builder(
+                  builder: (context) {
+                    const platform = BuildPlatform.ios;
+                    final isUpdating = applicationBuildVersionProgress.isNumberProgress(platform);
+
+                    return UpdaterButton(
+                      progress: isUpdating,
+                      onPressed: () => onUpdateBuildNumberVersion(platform),
+                    );
+                  },
+                ),
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withOpacity(0.2),
+                ),
+              ),
+              const Divider(),
             ],
           ),
           // Deployment Section

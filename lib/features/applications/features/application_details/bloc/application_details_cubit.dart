@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+
+import '../models/models.dart';
 
 part 'application_details_state.dart';
 
@@ -15,9 +19,12 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.getApplicationGet,
     required this.makeThemeAsDefaultUseCase,
     required this.deleteThemeUseCase,
+    required this.applicationEditUsecase,
     required this.applicationDeleteUsecase,
     required this.applicationId,
     required this.usecaseDeployBuilds,
+    required this.updateBuildNameUseCase,
+    required this.updateBuildNumberUseCase,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -36,7 +43,10 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
+  final UsecaseApplicationEdit applicationEditUsecase;
   final UsecaseDeployBuilds usecaseDeployBuilds;
+  final UpdateBuildNameUseCase updateBuildNameUseCase;
+  final UpdateBuildNumberUseCase updateBuildNumberUseCase;
 
   Future<void> tryDeleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(deleteTheme: themeModel));
@@ -128,6 +138,57 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
       emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deploySuccess));
     } catch (e) {
       emitRollback(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+    }
+  }
+
+  Future<void> updateBuildName(BuildPlatform platform, VersionPart part) async {
+    try {
+      emit(state.copyWithAddingProgressName(platform));
+
+      final version = await updateBuildNameUseCase.execute(
+        application: state.application!,
+        platform: platform,
+        part: part,
+      );
+
+      final versionState = state.copyWithVersions(
+        android: platform == BuildPlatform.android ? version : null,
+        ios: platform == BuildPlatform.ios ? version : null,
+      );
+
+      emit(versionState.copyWithRemovingProgressName(platform));
+    } catch (e) {
+      final errorState = state.copyWith(
+        error: e,
+        status: ApplicationDetailsStateStatus.error,
+      );
+
+      emit(errorState.copyWithRemovingProgressName(platform));
+    }
+  }
+
+  Future<void> updateBuildNumber(BuildPlatform platform) async {
+    try {
+      emit(state.copyWithAddingProgressNumber(platform));
+
+      final version = await updateBuildNumberUseCase.execute(
+        application: state.application!,
+        platform: platform,
+      );
+
+      final versionState = state.copyWithVersions(
+        android: platform == BuildPlatform.android ? version : null,
+        ios: platform == BuildPlatform.ios ? version : null,
+      );
+
+      emit(versionState.copyWithRemovingProgressNumber(platform));
+    } catch (e) {
+      final errorState = state.copyWith(
+        error: e,
+        status: ApplicationDetailsStateStatus.error,
+      );
+
+      emit(errorState.copyWithRemovingProgressNumber(platform));
     }
   }
 }

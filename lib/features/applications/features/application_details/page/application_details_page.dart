@@ -85,6 +85,9 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                         applicationDeploy: state.applicationDeploy,
                         onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
                         onDeploy: bloc.deployBuilds,
+                        applicationBuildVersionProgress: state.buildVersionProgress,
+                        onUpdateBuildNameVersion: bloc.updateBuildName,
+                        onUpdateBuildNumberVersion: bloc.updateBuildNumber,
                       ),
                     )
                   ],
