@@ -9,7 +9,7 @@ on:
         default: 'main'
 
 env:
-  FLUTTER_VERSION: 3.19.6
+  FLUTTER_VERSION: 3.22.0
   FLUTTER_CHANNEL: 'stable'
   DART_VERSION: 3.3.4
 
