@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:webtrit_configurator/core/widgets/toolbars/toolbars.dart';
-import 'package:webtrit_configurator/localization/l10n/l10n.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 
 enum ApplicationDetailNavigate implements SubMenu {
   application;
