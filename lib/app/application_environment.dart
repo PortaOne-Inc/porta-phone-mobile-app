@@ -14,30 +14,9 @@ class ApplicationEnvironment {
     'WEBTRIT_CONFIGURATOR_API_URL',
   );
 
-  // URL for the GitHub API endpoint to dispatch a workflow for building the platform.
-  // This URL will be used in the HTTP POST request to trigger the workflow in the GitHub repository.
-  // Example usage:
-  // curl --location 'https://api.github.com/repos/WebTrit/webtrit_phone_builder/actions/workflows/build_phone.yml/dispatches' \
-  // --header 'Accept: application/vnd.github+json' \
-  // --header 'Authorization: Bearer xxxxxxxxxxxxxxxx' \
-  // --header 'X-GitHub-Api-Version: 2022-11-28' \
-  // --header 'Content-Type: application/json' \
-  // --data '{...}'
-  static const CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_URL = String.fromEnvironment(
-    'WEBTRIT_CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_URL',
-  );
-
-  // Token for authorization to dispatch a workflow in the GitHub repository.
-  // This token will be included in the Authorization header of the HTTP POST request.
-  // Example usage:
-  // curl --location 'https://api.github.com/repos/WebTrit/webtrit_phone_builder/actions/workflows/build_phone.yml/dispatches' \
-  // --header 'Accept: application/vnd.github+json' \
-  // --header 'Authorization: Bearer xxxxxxxxxxxxxxxx' \
-  // --header 'X-GitHub-Api-Version: 2022-11-28' \
-  // --header 'Content-Type: application/json' \
-  // --data '{...}'
-  static const CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_TOKEN = String.fromEnvironment(
-    'WEBTRIT_CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_TOKEN',
+  // TODO(SERDUN): Change this variable name to 'CONFIGURATOR_API_URL' after migrating to nest all features
+  static const CONFIGURATOR_API_URL_V1 = String.fromEnvironment(
+    'WEBTRIT_CONFIGURATOR_API_URL_V1',
   );
 
   static const CONFIGURATOR_DOC_URL = String.fromEnvironment(

@@ -22,13 +22,8 @@ abstract class RegisterModule {
     return ApplicationEnvironment.CONFIGURATOR_API_URL;
   }
 
-  @Named('deployPlatformBuildsURL')
+  @Named('newBaseUrl')
   String deployPlatformBuildsURL() {
-    return ApplicationEnvironment.CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_URL;
-  }
-
-  @Named('deployPlatformBuildsToken')
-  String deployPlatformBuildsToken() {
-    return ApplicationEnvironment.CONFIGURATOR_DEPLOY_PLATFORM_BUILDS_TOKEN;
+    return ApplicationEnvironment.CONFIGURATOR_API_URL_V1;
   }
 }

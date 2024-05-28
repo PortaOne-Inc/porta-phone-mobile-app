@@ -8,11 +8,9 @@ import 'package:injectable/injectable.dart';
 class GithubDatasource {
   const GithubDatasource(
     @Named('github_client') this.dio,
-    @Named('deployPlatformBuildsURL') this.deployPlatformBuildsURL,
   );
 
   final Dio dio;
-  final String deployPlatformBuildsURL;
 
   Future<void> deployBuilds({
     required String applicationId,
@@ -33,14 +31,9 @@ class GithubDatasource {
       'androidPlayStoreConfig': androidPlayStoreConfig,
     };
 
-    final data = {
-      'ref': 'main',
-      'inputs': inputs,
-    };
-
     await dio.post<Map<String, dynamic>>(
-      deployPlatformBuildsURL,
-      data: jsonEncode(data),
+      '/github-proxy/dispatch-workflow',
+      data: jsonEncode(inputs),
     );
   }
 }

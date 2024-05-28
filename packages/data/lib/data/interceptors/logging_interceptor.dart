@@ -15,7 +15,7 @@ class LoggingInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) {
     _logger.i(
-      'REQUEST[${options.method}] => ${options.path}'
+      'REQUEST[${options.method}] => ${options.baseUrl}${options.path}'
       '=> BODY: ${options.data} => PARAMS: ${options.queryParameters}',
     );
     super.onRequest(options, handler);

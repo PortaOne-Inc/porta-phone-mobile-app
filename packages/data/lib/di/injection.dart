@@ -25,13 +25,8 @@ abstract class RegisterModule {
 
   @Named('github_client')
   @LazySingleton()
-  Dio githubClient(@Named('deployPlatformBuildsToken') String token) {
-    final option = BaseOptions(headers: {
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token',
-    });
+  Dio githubClient(@Named('newBaseUrl') String baseUrl) {
+    final option = BaseOptions(baseUrl: baseUrl);
 
     return Dio(option)
       ..interceptors.addAll([
