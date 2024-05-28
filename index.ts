@@ -17,7 +17,7 @@ const createFunction = async (expressInstance): Promise<void> => {
 };
 
 // TODO(SERDUN): Change this variable name to 'api' after migrating to nest all features
-export const new-api = functions.https.onRequest(async (request, response) => {
+export const newapi = functions.https.onRequest(async (request, response) => {
   await createFunction(expressServer);
   expressServer(request, response);
 });
