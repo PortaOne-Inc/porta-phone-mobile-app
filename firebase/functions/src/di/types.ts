@@ -1,3 +1,4 @@
+
 export const TYPES = {
 	Applications: Symbol.for('Application'),
 	FirestoreDatasource: Symbol.for('FirestoreDatasource'),
@@ -14,6 +15,9 @@ export const TYPES = {
 	AuthTrigger: Symbol.for('AuthTrigger'),
 	ApplicationTrigger: Symbol.for('ApplicationTrigger'),
 	ExceptionFilter: Symbol.for('ExceptionFilter'),
+	TranslationsController: Symbol.for('TranslationsController'),
+	TranslationsService: Symbol.for('TranslationsService'),
+	TranslationsRepository: Symbol.for('TranslationsRepository'),
 	// Mapper
 	FirestoreApplicationMapper: Symbol.for('FirestoreApplicationMapper'),
 	FirestoreThemeMapper: Symbol.for('FirestoreThemeMapper'),

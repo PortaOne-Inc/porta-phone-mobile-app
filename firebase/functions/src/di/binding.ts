@@ -6,6 +6,8 @@ import ApplicationRepository from '../features/applications/repository/applicati
 import IThemeRepository from '../features/themes/repository/themes.repository.interface';
 import ThemeRepository from '../features/themes/repository/themes.repository';
 import StaticRepository from '../features/static/repository/static.repository';
+import ITranslationsRepository from '../features/translations/repository/translations.repository.interface';
+import TranslationsRepository from '../features/translations/repository/translations.repository';
 
 import IExceptionFilter from '../core/errorrs/exception.filter.interface';
 import ExceptionFilter from '../core/errorrs/exception.filter';
@@ -14,6 +16,7 @@ import {BaseController} from '../core';
 import ThemeController from '../features/themes/controller/theme.controller';
 import ApplicationController from '../features/applications/controller/application.controller';
 import StaticController from '../features/static/controller/static.controller';
+import TranslationsController from '../features/translations/controller/translations.controller';
 
 import StaticTrigger from '../features/static/controller/static.trigger';
 import AuthTrigger from '../features/auth/contoller/auth.trigger';
@@ -25,6 +28,8 @@ import ApplicationsService from '../features/applications/service/applications.s
 import ThemesService from '../features/themes/service/themes.service';
 import IThemesService from '../features/themes/service/themes.service.interface';
 import IStaticService from '../features/static/service/static.service.interface';
+import ITranslationsService from '../features/translations/service/translations.service.interface';
+import TranslationsService from '../features/translations/service/translations.service';
 
 import {TYPES} from './types';
 import {App} from '../app';
@@ -47,6 +52,7 @@ const controllerModule = new ContainerModule((bind: interfaces.Bind) => {
 	bind<BaseController>(TYPES.ApplicationController).to(ApplicationController);
 	bind<BaseController>(TYPES.StaticController).to(StaticController);
 	bind<BaseController>(TYPES.ThemeController).to(ThemeController);
+	bind<BaseController>(TYPES.TranslationsController).to(TranslationsController);
 	bind<BaseTrigger>(TYPES.ApplicationTrigger).to(StaticTrigger);
 });
 
@@ -55,18 +61,19 @@ const serviceModule = new ContainerModule((bind: interfaces.Bind) => {
 	bind<IAuthService>(TYPES.AuthService).to(AuthService);
 	bind<IApplicationsService>(TYPES.ApplicationsService).to(ApplicationsService);
 	bind<IThemesService>(TYPES.ThemeService).to(ThemesService);
+	bind<ITranslationsService>(TYPES.TranslationsService).to(TranslationsService);
 });
 
 const repositoryModule = new ContainerModule((bind: interfaces.Bind) => {
 	bind<IStaticRepository>(TYPES.StaticRepository).to(StaticRepository);
 	bind<IThemeRepository>(TYPES.ThemeRepository).to(ThemeRepository).inSingletonScope();
 	bind<IApplicationRepository>(TYPES.ApplicationRepository).to(ApplicationRepository).inSingletonScope();
+	bind<ITranslationsRepository>(TYPES.TranslationsRepository).to(TranslationsRepository).inSingletonScope();
 });
 
 const componentsModule = new ContainerModule((bind: interfaces.Bind) => {
 	bind<App>(TYPES.Applications).to(App);
 	bind<AuthTrigger>(TYPES.AuthTrigger).to(AuthTrigger);
-
 });
 
 export const appContainer = new Container();

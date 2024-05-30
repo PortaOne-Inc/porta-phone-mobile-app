@@ -109,6 +109,20 @@ class AppRoute {
               ),
             ),
             GoRoute(
+              path: AppRoutInfo.translations.path,
+              name: AppRoutInfo.translations.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<TranslationsCubit>(
+                create: (context) => TranslationsCubit(
+                  appId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                  usecaseTranslationsGetAll: getIt.get(),
+                  usecaseTranslationsGetOverridesByAppId: getIt.get(),
+                  usecaseTranslationsSetOverride: getIt.get(),
+                  usecaseTranslationsDeleteOverride: getIt.get(),
+                ),
+                child: const TranslationsPage(),
+              ),
+            ),
+            GoRoute(
               path: AppRoutInfo.themesEdit.path,
               name: AppRoutInfo.themesEdit.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
@@ -153,7 +167,7 @@ class AppRoute {
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
                 ),
               ),
-            )
+            ),
           ],
         )
       ],
@@ -178,7 +192,9 @@ class AppRoute {
           ? null
           : currentLocation == AppRoutInfo.themesPreview.path
               ? null
-              : AppRoutInfo.login.path;
+              : currentLocation == AppRoutInfo.translations.path
+                  ? null
+                  : AppRoutInfo.login.path;
     }
   }
 }

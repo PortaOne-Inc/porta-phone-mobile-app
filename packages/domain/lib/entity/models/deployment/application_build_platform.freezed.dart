@@ -137,7 +137,7 @@ class _$AndroidBuildPlatformImpl extends _AndroidBuildPlatform {
           track: _kPlayStoreTrackBeta,
           status: _kPlayStoreStatusDraft,
           updatePriority: 0,
-          userFraction: 0.99)})
+          userFraction: _kPlayStoreUserFractionMax)})
       : super._();
 
   @override

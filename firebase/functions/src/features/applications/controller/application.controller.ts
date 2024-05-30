@@ -5,7 +5,7 @@ import {NextFunction, Request, Response} from 'express';
 
 import {BaseController, AuthMiddleware} from '../../../core';
 
-import ApplicationsService from '../service/applications.service';
+import IApplicationsService from '../service/applications.service.interface';
 
 import Application from '../../../core/models/application';
 
@@ -16,7 +16,7 @@ import {TYPES} from '../../../di';
 export default class ApplicationController extends BaseController {
 
 	constructor(
-		@inject(TYPES.ApplicationsService) protected applicationsService: ApplicationsService
+		@inject(TYPES.ApplicationsService) protected applicationsService: IApplicationsService
 	) {
 		super();
 		this.bindRoute([

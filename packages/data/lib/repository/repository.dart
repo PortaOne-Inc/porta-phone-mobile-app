@@ -3,3 +3,4 @@ export 'auth_repository_impl.dart';
 export 'deployment_repository_impl.dart';
 export 'resources_repository_impl.dart';
 export 'theme_repository_impl.dart';
+export 'translations_repository_impl.dart';

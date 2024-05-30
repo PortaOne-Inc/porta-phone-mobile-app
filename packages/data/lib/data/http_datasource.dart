@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:dto/dto.dart';
+import 'package:data/models/http/translation_http_model.dart';
 
 @lazySingleton
 class HttpDatasource {
@@ -95,6 +96,26 @@ class HttpDatasource {
 
   Future<void> deleteTheme(String applicationId, String themeId) async {
     await dio.delete<void>('$host/applications/$applicationId/themes/$themeId');
+    return;
+  }
+
+  Future<List<TranslationHttpModel>> getTranslations() async {
+    final response = await dio.get<List<dynamic>>('$host/translations');
+    return (response.data!).cast<Map<String, dynamic>>().map(TranslationHttpModel.fromJson).toList();
+  }
+
+  Future<List<TranslationHttpModel>> getTranslationOverrides(String applicationId) async {
+    final response = await dio.get<List<dynamic>>('$host/translations/overrides/$applicationId');
+    return (response.data!).cast<Map<String, dynamic>>().map(TranslationHttpModel.fromJson).toList();
+  }
+
+  Future<void> setTranslationOverride(String applicationId, TranslationHttpModel translation) async {
+    await dio.post<void>('$host/translations/overrides/$applicationId', data: translation.toJson());
+    return;
+  }
+
+  Future<void> deleteTranslationOverride(String applicationId, TranslationHttpModel translation) async {
+    await dio.delete<void>('$host/translations/overrides/$applicationId', data: translation.toJson());
     return;
   }
 }

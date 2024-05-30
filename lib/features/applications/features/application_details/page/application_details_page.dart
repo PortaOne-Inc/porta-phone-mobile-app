@@ -27,10 +27,10 @@ class ApplicationDetailsPage extends StatefulWidget with MixinMessages {
 }
 
 class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
+  late final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
+
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
-
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
@@ -179,8 +179,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   }
 
   void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
-    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
-
     switch (applicationDetailFile) {
       case ApplicationDetailFile.newApplication:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
@@ -197,6 +195,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     switch (navigate) {
       case ApplicationDetailNavigate.application:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+      case ApplicationDetailNavigate.translations:
+        GoRouter.of(context).goNamed(AppRoutInfo.translations.name, pathParameters: <String, String>{
+          AppRoutInfo.keyApplicationId: bloc.applicationId,
+        });
     }
   }
 
