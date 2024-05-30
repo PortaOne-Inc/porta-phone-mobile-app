@@ -3,12 +3,12 @@ import 'reflect-metadata';
 import { injectable } from 'inversify';
 import axios from 'axios';
 import * as unzipper from 'unzipper';
+import * as archiver from 'archiver';
 
 import ITranslationsRepository from './translations.repository.interface';
 import { Translation } from '../../../core/models/translation';
 import { database } from '../../../config/firebase';
-import { localizely_api_key, localizely_download_url_arb, localizely_download_url_json } from '../../../config/localizely';
-import * as archiver from 'archiver';
+import { localizely_api_key, localizely_download_url } from '../../../config/localizely';
 
 
 // TODO: split by source, move logic to service
@@ -21,7 +21,7 @@ export default class TranslationsRepository implements ITranslationsRepository {
 		const appOverrides = await this.getOverridesByAppId(appId);
 
 		const response = await axios({
-			url: localizely_download_url_arb,
+			url: localizely_download_url + '?type=flutter_arb&export_empty_as=empty',
 			headers: { 'X-Api-Token': localizely_api_key, 'accept-encoding': 'gzip,deflate' },
 			method: 'GET',
 			responseType: 'stream',
@@ -56,7 +56,7 @@ export default class TranslationsRepository implements ITranslationsRepository {
 
 	async getTranslations() {
 		const response = await axios({
-			url: localizely_download_url_json,
+			url: localizely_download_url + '?type=json&export_empty_as=empty',
 			headers: { 'X-Api-Token': localizely_api_key },
 			method: 'GET',
 			responseType: 'stream',
@@ -75,7 +75,6 @@ export default class TranslationsRepository implements ITranslationsRepository {
 			const locale = filename.split('.')[0];
 			for (const key in json) {
 				const value = json[key];
-				if (value === '') continue;
 				translations.push({ locale, key, value });
 			}
 		}
