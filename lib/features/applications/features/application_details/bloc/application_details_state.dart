@@ -15,6 +15,7 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
   const factory ApplicationDetailsState({
     required ApplicationDetailsStateStatus status,
     required ApplicationDeploy applicationDeploy,
+    @Default([]) List<ApplicationValidateError> applicationValidateErrors,
     @Default([]) List<ThemeModel> themes,
     @Default(ApplicationBuildVersionProgress(progressNameUpdating: [], progressNumberUpdating: []))
     ApplicationBuildVersionProgress buildVersionProgress,
@@ -25,6 +26,10 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
   }) = ApplicationDetailsStateInitial;
 
   const ApplicationDetailsState._();
+
+  bool get isProgress => status == ApplicationDetailsStateStatus.progress;
+
+  bool get isApplicationHasDefaultThem => application?.theme != null;
 
   ApplicationDetailsState copyWithVersions({
     BuildVersionModel? android,
@@ -101,13 +106,4 @@ class ApplicationDetailsState with _$ApplicationDetailsState {
 
     return progressUpdating;
   }
-}
-
-extension ThemeCollectionStateGetters on ApplicationDetailsState {
-  bool get isProgress => status == ApplicationDetailsStateStatus.progress;
-
-  bool get isGoogleServicesAvailable =>
-      application?.googleServices?.iosUrl != null && application?.googleServices?.androidUrl != null;
-
-  bool get isApplicationHasDefaultThem => application?.theme != null;
 }

@@ -11,6 +11,8 @@ import '../models/models.dart';
 
 part 'application_details_state.dart';
 
+part 'application_details_cubit_utility.dart';
+
 part 'application_details_cubit.freezed.dart';
 
 class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
@@ -31,8 +33,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
           application: applicationModel,
           applicationDeploy: ApplicationDeploy.init(),
         )) {
-    getThemes();
-    _getApplication();
+    _init();
   }
 
   final String applicationId;
@@ -47,6 +48,13 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseDeployBuilds usecaseDeployBuilds;
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
+
+  Future<void> _init() async {
+    await _getThemes();
+    await _getApplication();
+
+    _checkValidationOfApplication();
+  }
 
   Future<void> tryDeleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(deleteTheme: themeModel));
@@ -93,7 +101,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future<void> getThemes() async {
+  Future<void> _getThemes() async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
       final themes = await getThemesUseCase.execute(applicationId: applicationId);
@@ -108,17 +116,28 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
       try {
         emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
         final application = await getApplicationGet.execute(id: applicationId);
-        emit(state.copyWith(application: application, status: ApplicationDetailsStateStatus.success));
+
+        emit(state.copyWith(
+          application: application,
+          status: ApplicationDetailsStateStatus.success,
+        ));
       } on BaseException catch (e) {
         emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
       }
     }
   }
 
+  void _checkValidationOfApplication() {
+    if (state.application != null) {
+      final applicationValidation = _validateApplication(state.application!);
+      emit(state.copyWith(applicationValidateErrors: applicationValidation));
+    }
+  }
+
   Future<void> _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
-    await getThemes();
+    await _getThemes();
   }
 
   Future<void> updateApplicationDeploy(ApplicationDeploy model) async {

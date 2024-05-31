@@ -77,6 +77,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                     Expanded(
                       child: ApplicationDetailsScreen(
                         application: state.application,
+                        applicationValidateErrors: state.applicationValidateErrors,
                         onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
                           context,
                           applicationId,

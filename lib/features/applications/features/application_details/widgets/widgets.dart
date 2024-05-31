@@ -7,3 +7,4 @@ export 'play_store_config_form.dart';
 export 'updater_button.dart';
 export 'updater_chooser_button.dart';
 export 'used_color.dart';
+export 'validation_label.dart';

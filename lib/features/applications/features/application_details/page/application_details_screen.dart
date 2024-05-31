@@ -9,12 +9,14 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 import '../widgets/widgets.dart';
+import '../extensions/extensions.dart';
 import '../models/models.dart';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   const ApplicationDetailsScreen({
     required this.application,
     required this.applicationDeploy,
+    required this.applicationValidateErrors,
     required this.onOpenDefaultTheme,
     required this.onUpdateApplicationDeploy,
     required this.onDeploy,
@@ -26,6 +28,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
 
   final ApplicationModel? application;
   final ApplicationDeploy applicationDeploy;
+  final List<ApplicationValidateError> applicationValidateErrors;
   final ApplicationBuildVersionProgress applicationBuildVersionProgress;
 
   final void Function(String applicationId, String themeId) onOpenDefaultTheme;
@@ -41,6 +44,8 @@ class ApplicationDetailsScreen extends StatelessWidget {
 
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
+
+    final applicationValidateErrorMessages = applicationValidateErrors.map((it) => it.l10n(context));
 
     return LayoutBuilder(builder: (context, constrains) {
       return ListView(
@@ -115,38 +120,6 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 subtitle: application?.isApplicationHasDefaultThem ?? false
                     ? SelectableText(application?.theme ?? '')
                     : const Text('Not selected default theme yet'),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Google services:'),
-                subtitle: Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  child: application?.isGoogleServicesAvailable ?? false
-                      ? Row(
-                          children: [
-                            if (application?.googleServices?.androidUrl != null)
-                              GoogleServicesPreview(
-                                type: GoogleServicesPreviewType.download,
-                                platform: TargetPlatform.android,
-                                onTap: () => _downloadFile(application!.googleServices!.androidUrl!),
-                              ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            if (application?.googleServices?.iosUrl != null)
-                              GoogleServicesPreview(
-                                platform: TargetPlatform.iOS,
-                                type: GoogleServicesPreviewType.download,
-                                onTap: () => _downloadFile(application!.googleServices!.iosUrl!),
-                              )
-                          ],
-                        )
-                      : const Text('Google services have not been uploaded'),
-                ),
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
@@ -273,6 +246,8 @@ class ApplicationDetailsScreen extends StatelessWidget {
           Section(
             title: context.l10n.feature_application_details_ApplicationDetailsScreen_deployment,
             children: [
+              if (applicationValidateErrorMessages.isNotEmpty)
+                ValidationLabel(messages: applicationValidateErrorMessages),
               const Divider(),
               ListTile(
                 title: Text(
@@ -440,7 +415,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Button(
-                  isEnable: applicationDeploy.anyDeployPlatformAvailable,
+                  isEnable: applicationDeploy.anyDeployPlatformAvailable && applicationValidateErrorMessages.isEmpty,
                   title: context.l10n.feature_application_details_ApplicationDetailsScreen_deploy,
                   onPressed: onDeploy,
                 ),
