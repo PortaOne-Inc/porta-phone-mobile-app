@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ApplicationCollectionState {
   ApplicationsStateStatus get status => throw _privateConstructorUsedError;
-  List<ApplicationModel> get applications => throw _privateConstructorUsedError;
+  List<(ApplicationModel, Iterable<ApplicationValidateError>)>
+      get applications => throw _privateConstructorUsedError;
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $ApplicationCollectionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ApplicationsStateStatus status,
-      List<ApplicationModel> applications,
+      List<(ApplicationModel, Iterable<ApplicationValidateError>)> applications,
       ApplicationModel? deleteApplication,
       Exception? error});
 
@@ -69,7 +70,7 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
       applications: null == applications
           ? _value.applications
           : applications // ignore: cast_nullable_to_non_nullable
-              as List<ApplicationModel>,
+              as List<(ApplicationModel, Iterable<ApplicationValidateError>)>,
       deleteApplication: freezed == deleteApplication
           ? _value.deleteApplication
           : deleteApplication // ignore: cast_nullable_to_non_nullable
@@ -105,7 +106,7 @@ abstract class _$$ApplicationCollectionStateInitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {ApplicationsStateStatus status,
-      List<ApplicationModel> applications,
+      List<(ApplicationModel, Iterable<ApplicationValidateError>)> applications,
       ApplicationModel? deleteApplication,
       Exception? error});
 
@@ -139,7 +140,7 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
-              as List<ApplicationModel>,
+              as List<(ApplicationModel, Iterable<ApplicationValidateError>)>,
       deleteApplication: freezed == deleteApplication
           ? _value.deleteApplication
           : deleteApplication // ignore: cast_nullable_to_non_nullable
@@ -155,20 +156,24 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ApplicationCollectionStateInitialImpl
-    implements ApplicationCollectionStateInitial {
+    extends ApplicationCollectionStateInitial {
   const _$ApplicationCollectionStateInitialImpl(
       {required this.status,
-      final List<ApplicationModel> applications = const [],
+      final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
+          applications = const [],
       this.deleteApplication,
       this.error})
-      : _applications = applications;
+      : _applications = applications,
+        super._();
 
   @override
   final ApplicationsStateStatus status;
-  final List<ApplicationModel> _applications;
+  final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
+      _applications;
   @override
   @JsonKey()
-  List<ApplicationModel> get applications {
+  List<(ApplicationModel, Iterable<ApplicationValidateError>)>
+      get applications {
     if (_applications is EqualUnmodifiableListView) return _applications;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_applications);
@@ -215,17 +220,19 @@ class _$ApplicationCollectionStateInitialImpl
 }
 
 abstract class ApplicationCollectionStateInitial
-    implements ApplicationCollectionState {
+    extends ApplicationCollectionState {
   const factory ApplicationCollectionStateInitial(
       {required final ApplicationsStateStatus status,
-      final List<ApplicationModel> applications,
+      final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
+          applications,
       final ApplicationModel? deleteApplication,
       final Exception? error}) = _$ApplicationCollectionStateInitialImpl;
+  const ApplicationCollectionStateInitial._() : super._();
 
   @override
   ApplicationsStateStatus get status;
   @override
-  List<ApplicationModel> get applications;
+  List<(ApplicationModel, Iterable<ApplicationValidateError>)> get applications;
   @override
   ApplicationModel? get deleteApplication;
   @override

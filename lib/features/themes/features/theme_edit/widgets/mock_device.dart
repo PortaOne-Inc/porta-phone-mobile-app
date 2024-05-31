@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:device_preview/device_preview.dart';
+import 'package:webtrit_configurator/core/utility/utility.dart';
 
 class TypeOfPreview extends StatelessWidget {
   const TypeOfPreview({
     required this.child,
     required this.constraints,
-    this.size = const Size(400, 800),
+    this.size = const Size(360, 800),
     this.isFrameVisible = true,
     this.focusIndicator,
     super.key,
@@ -26,23 +26,18 @@ class TypeOfPreview extends StatelessWidget {
         children: [
           Expanded(
             child: Card(
+              clipBehavior: Clip.antiAlias,
               elevation: isFrameVisible ? 0 : 4,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(isFrameVisible ? 0.0 : 1.0),
               ),
               child: FittedBox(
-                  child: DeviceFrame(
-                device: DeviceInfo.genericPhone(
-                  platform: TargetPlatform.android,
-                  id: 'device_id',
-                  name: 'Device',
-                  screenSize: size,
-                ),
-                isFrameVisible: isFrameVisible,
-                screen: IgnorePointer(
+                child: DeviceFrame(
+                  size: size,
+                  isFrameVisible: isFrameVisible,
                   child: child,
                 ),
-              )),
+              ),
             ),
           ),
           focusIndicator ?? const SizedBox()

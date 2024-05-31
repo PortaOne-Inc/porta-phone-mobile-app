@@ -24,16 +24,28 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(nameInput: ApplicationNameInput.dirty(name)));
   }
 
-  void updateApplicationIdentifier(String identifier) {
-    emit(state.copyWith(applicationIdentifierInput: ApplicationIdentifierInput.dirty(identifier)));
-  }
-
   void updateAndroidPlatformId(String platformId) {
     emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
 
   void updateIosPlatformId(String platformId) {
     emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+  }
+
+  void updateAndroidBuildName(String buildName) {
+    emit(state.copyWith(androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateAndroidBuildNumber(String buildNumber) {
+    emit(state.copyWith(androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+  }
+
+  void updateIosBuildName(String buildName) {
+    emit(state.copyWith(iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+  }
+
+  void updateIosBuildNumber(String buildNumber) {
+    emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
   }
 
   void updateCore(String core) {
@@ -58,9 +70,16 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     try {
       await _createApplication(
         projectName: state.nameInput!.value,
-        applicationIdentifier: state.applicationIdentifierInput?.value,
         androidPlatformId: state.androidPlatformIdInput?.value,
         iosPlatformId: state.iosPlatformIdInput?.value,
+        androidVersion: BuildVersionModel(
+          buildName: state.androidBuildNameInput?.value,
+          buildNumber: int.tryParse(state.androidBuildNumberInput?.value ?? ''),
+        ),
+        iosVersion: BuildVersionModel(
+          buildName: state.iosBuildNameInput?.value,
+          buildNumber: int.tryParse(state.iosBuildNumberInput?.value ?? ''),
+        ),
         coreUrl: state.applicationCoreInput?.value,
         termConditionsUrl: state.applicationTermsConditionsInput?.value,
         iosGoogleServices: state.iosGoogleServices,
@@ -91,9 +110,10 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
   Future<void> _createApplication({
     required String projectName,
-    String? applicationIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
+    BuildVersionModel? androidVersion,
+    BuildVersionModel? iosVersion,
     String? coreUrl,
     String? termConditionsUrl,
     Uint8List? iosGoogleServices,
@@ -103,9 +123,10 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
     await applicationCreateUsecase.execute(
       name: projectName,
-      platformIdentifier: applicationIdentifier,
       androidPlatformId: androidPlatformId,
       iosPlatformId: iosPlatformId,
+      androidVersion: androidVersion,
+      iosVersion: iosVersion,
       coreUrl: coreUrl,
       termConditionsUrl: termConditionsUrl,
       iosGoogleServices: iosGoogleServices,

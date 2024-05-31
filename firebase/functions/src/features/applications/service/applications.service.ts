@@ -21,7 +21,7 @@ export default class ApplicationsService implements IApplicationsService {
 
     // TODO: extract create app dto
     async createApplication(
-        { name, theme, platformIdentifier, androidPlatformId, iosPlatformId, termsConditionsUrl, coreUrl, googleServices }: Application,
+        { name, theme, platformIdentifier, androidPlatformId, iosPlatformId, androidVersion, iosVersion, termsConditionsUrl, coreUrl, googleServices, }: Application,
         { uid }: User
     ): Promise<Application | null> {
         const googleServicesModel =
@@ -36,6 +36,8 @@ export default class ApplicationsService implements IApplicationsService {
             platformIdentifier,
             androidPlatformId,
             iosPlatformId,
+            androidVersion,
+            iosVersion,
             coreUrl,
             termsConditionsUrl,
             googleServicesModel

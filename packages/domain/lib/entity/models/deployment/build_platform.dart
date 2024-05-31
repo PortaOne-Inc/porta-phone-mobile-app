@@ -1,0 +1,4 @@
+enum BuildPlatform {
+  android,
+  ios,
+}

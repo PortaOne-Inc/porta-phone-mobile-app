@@ -18,9 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationEditState {
   ApplicationEditStatus get status => throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
-  @Deprecated('will be removed, use android/ios instead')
-  ApplicationIdentifierInput? get applicationIdentifierInput =>
-      throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get androidPlatformIdInput =>
       throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get iosPlatformIdInput =>
@@ -29,10 +26,14 @@ mixin _$ApplicationEditState {
       throw _privateConstructorUsedError;
   ApplicationCoreInput? get applicationCoreInput =>
       throw _privateConstructorUsedError;
-  Uint8List? get androidGoogleServices => throw _privateConstructorUsedError;
-  Uint8List? get iosGoogleServices => throw _privateConstructorUsedError;
-  String? get androidGoogleServicesUrl => throw _privateConstructorUsedError;
-  String? get iosGoogleServicesUrl => throw _privateConstructorUsedError;
+  ApplicationBuildNameInput? get androidBuildNameInput =>
+      throw _privateConstructorUsedError;
+  ApplicationBuildNumberInput? get androidBuildNumberInput =>
+      throw _privateConstructorUsedError;
+  ApplicationBuildNameInput? get iosBuildNameInput =>
+      throw _privateConstructorUsedError;
+  ApplicationBuildNumberInput? get iosBuildNumberInput =>
+      throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,16 +50,14 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
-      @Deprecated('will be removed, use android/ios instead')
-      ApplicationIdentifierInput? applicationIdentifierInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
-      Uint8List? androidGoogleServices,
-      Uint8List? iosGoogleServices,
-      String? androidGoogleServicesUrl,
-      String? iosGoogleServicesUrl,
+      ApplicationBuildNameInput? androidBuildNameInput,
+      ApplicationBuildNumberInput? androidBuildNumberInput,
+      ApplicationBuildNameInput? iosBuildNameInput,
+      ApplicationBuildNumberInput? iosBuildNumberInput,
       Exception? exception});
 }
 
@@ -78,15 +77,14 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
-    Object? applicationIdentifierInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
-    Object? androidGoogleServices = freezed,
-    Object? iosGoogleServices = freezed,
-    Object? androidGoogleServicesUrl = freezed,
-    Object? iosGoogleServicesUrl = freezed,
+    Object? androidBuildNameInput = freezed,
+    Object? androidBuildNumberInput = freezed,
+    Object? iosBuildNameInput = freezed,
+    Object? iosBuildNumberInput = freezed,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,10 +96,6 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      applicationIdentifierInput: freezed == applicationIdentifierInput
-          ? _value.applicationIdentifierInput
-          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIdentifierInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -119,22 +113,22 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.applicationCoreInput
           : applicationCoreInput // ignore: cast_nullable_to_non_nullable
               as ApplicationCoreInput?,
-      androidGoogleServices: freezed == androidGoogleServices
-          ? _value.androidGoogleServices
-          : androidGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      iosGoogleServices: freezed == iosGoogleServices
-          ? _value.iosGoogleServices
-          : iosGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
-          ? _value.androidGoogleServicesUrl
-          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
-          ? _value.iosGoogleServicesUrl
-          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      androidBuildNameInput: freezed == androidBuildNameInput
+          ? _value.androidBuildNameInput
+          : androidBuildNameInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNameInput?,
+      androidBuildNumberInput: freezed == androidBuildNumberInput
+          ? _value.androidBuildNumberInput
+          : androidBuildNumberInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNumberInput?,
+      iosBuildNameInput: freezed == iosBuildNameInput
+          ? _value.iosBuildNameInput
+          : iosBuildNameInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNameInput?,
+      iosBuildNumberInput: freezed == iosBuildNumberInput
+          ? _value.iosBuildNumberInput
+          : iosBuildNumberInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNumberInput?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -155,16 +149,14 @@ abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
-      @Deprecated('will be removed, use android/ios instead')
-      ApplicationIdentifierInput? applicationIdentifierInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       ApplicationCoreInput? applicationCoreInput,
-      Uint8List? androidGoogleServices,
-      Uint8List? iosGoogleServices,
-      String? androidGoogleServicesUrl,
-      String? iosGoogleServicesUrl,
+      ApplicationBuildNameInput? androidBuildNameInput,
+      ApplicationBuildNumberInput? androidBuildNumberInput,
+      ApplicationBuildNameInput? iosBuildNameInput,
+      ApplicationBuildNumberInput? iosBuildNumberInput,
       Exception? exception});
 }
 
@@ -183,15 +175,14 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
-    Object? applicationIdentifierInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
     Object? applicationCoreInput = freezed,
-    Object? androidGoogleServices = freezed,
-    Object? iosGoogleServices = freezed,
-    Object? androidGoogleServicesUrl = freezed,
-    Object? iosGoogleServicesUrl = freezed,
+    Object? androidBuildNameInput = freezed,
+    Object? androidBuildNumberInput = freezed,
+    Object? iosBuildNameInput = freezed,
+    Object? iosBuildNumberInput = freezed,
     Object? exception = freezed,
   }) {
     return _then(_$ApplicationEditStateInitialImpl(
@@ -203,10 +194,6 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
-      applicationIdentifierInput: freezed == applicationIdentifierInput
-          ? _value.applicationIdentifierInput
-          : applicationIdentifierInput // ignore: cast_nullable_to_non_nullable
-              as ApplicationIdentifierInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -224,22 +211,22 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
           ? _value.applicationCoreInput
           : applicationCoreInput // ignore: cast_nullable_to_non_nullable
               as ApplicationCoreInput?,
-      androidGoogleServices: freezed == androidGoogleServices
-          ? _value.androidGoogleServices
-          : androidGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      iosGoogleServices: freezed == iosGoogleServices
-          ? _value.iosGoogleServices
-          : iosGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
-          ? _value.androidGoogleServicesUrl
-          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
-          ? _value.iosGoogleServicesUrl
-          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      androidBuildNameInput: freezed == androidBuildNameInput
+          ? _value.androidBuildNameInput
+          : androidBuildNameInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNameInput?,
+      androidBuildNumberInput: freezed == androidBuildNumberInput
+          ? _value.androidBuildNumberInput
+          : androidBuildNumberInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNumberInput?,
+      iosBuildNameInput: freezed == iosBuildNameInput
+          ? _value.iosBuildNameInput
+          : iosBuildNameInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNameInput?,
+      iosBuildNumberInput: freezed == iosBuildNumberInput
+          ? _value.iosBuildNumberInput
+          : iosBuildNumberInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildNumberInput?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -254,16 +241,14 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   const _$ApplicationEditStateInitialImpl(
       {this.status = ApplicationEditStatus.initial,
       this.nameInput,
-      @Deprecated('will be removed, use android/ios instead')
-      this.applicationIdentifierInput,
       this.androidPlatformIdInput,
       this.iosPlatformIdInput,
       this.applicationTermsConditionsInput,
       this.applicationCoreInput,
-      this.androidGoogleServices,
-      this.iosGoogleServices,
-      this.androidGoogleServicesUrl,
-      this.iosGoogleServicesUrl,
+      this.androidBuildNameInput,
+      this.androidBuildNumberInput,
+      this.iosBuildNameInput,
+      this.iosBuildNumberInput,
       this.exception});
 
   @override
@@ -271,9 +256,6 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   final ApplicationEditStatus status;
   @override
   final ApplicationNameInput? nameInput;
-  @override
-  @Deprecated('will be removed, use android/ios instead')
-  final ApplicationIdentifierInput? applicationIdentifierInput;
   @override
   final ApplicationIdentifierInput? androidPlatformIdInput;
   @override
@@ -283,19 +265,19 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   @override
   final ApplicationCoreInput? applicationCoreInput;
   @override
-  final Uint8List? androidGoogleServices;
+  final ApplicationBuildNameInput? androidBuildNameInput;
   @override
-  final Uint8List? iosGoogleServices;
+  final ApplicationBuildNumberInput? androidBuildNumberInput;
   @override
-  final String? androidGoogleServicesUrl;
+  final ApplicationBuildNameInput? iosBuildNameInput;
   @override
-  final String? iosGoogleServicesUrl;
+  final ApplicationBuildNumberInput? iosBuildNumberInput;
   @override
   final Exception? exception;
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, exception: $exception)';
   }
 
   @override
@@ -306,10 +288,6 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.applicationIdentifierInput,
-                    applicationIdentifierInput) ||
-                other.applicationIdentifierInput ==
-                    applicationIdentifierInput) &&
             (identical(other.androidPlatformIdInput, androidPlatformIdInput) ||
                 other.androidPlatformIdInput == androidPlatformIdInput) &&
             (identical(other.iosPlatformIdInput, iosPlatformIdInput) ||
@@ -320,15 +298,15 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
                     applicationTermsConditionsInput) &&
             (identical(other.applicationCoreInput, applicationCoreInput) ||
                 other.applicationCoreInput == applicationCoreInput) &&
-            const DeepCollectionEquality()
-                .equals(other.androidGoogleServices, androidGoogleServices) &&
-            const DeepCollectionEquality()
-                .equals(other.iosGoogleServices, iosGoogleServices) &&
+            (identical(other.androidBuildNameInput, androidBuildNameInput) ||
+                other.androidBuildNameInput == androidBuildNameInput) &&
             (identical(
-                    other.androidGoogleServicesUrl, androidGoogleServicesUrl) ||
-                other.androidGoogleServicesUrl == androidGoogleServicesUrl) &&
-            (identical(other.iosGoogleServicesUrl, iosGoogleServicesUrl) ||
-                other.iosGoogleServicesUrl == iosGoogleServicesUrl) &&
+                    other.androidBuildNumberInput, androidBuildNumberInput) ||
+                other.androidBuildNumberInput == androidBuildNumberInput) &&
+            (identical(other.iosBuildNameInput, iosBuildNameInput) ||
+                other.iosBuildNameInput == iosBuildNameInput) &&
+            (identical(other.iosBuildNumberInput, iosBuildNumberInput) ||
+                other.iosBuildNumberInput == iosBuildNumberInput) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
@@ -338,15 +316,14 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       runtimeType,
       status,
       nameInput,
-      applicationIdentifierInput,
       androidPlatformIdInput,
       iosPlatformIdInput,
       applicationTermsConditionsInput,
       applicationCoreInput,
-      const DeepCollectionEquality().hash(androidGoogleServices),
-      const DeepCollectionEquality().hash(iosGoogleServices),
-      androidGoogleServicesUrl,
-      iosGoogleServicesUrl,
+      androidBuildNameInput,
+      androidBuildNumberInput,
+      iosBuildNameInput,
+      iosBuildNumberInput,
       exception);
 
   @JsonKey(ignore: true)
@@ -361,25 +338,20 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   const factory ApplicationEditStateInitial(
       {final ApplicationEditStatus status,
       final ApplicationNameInput? nameInput,
-      @Deprecated('will be removed, use android/ios instead')
-      final ApplicationIdentifierInput? applicationIdentifierInput,
       final ApplicationIdentifierInput? androidPlatformIdInput,
       final ApplicationIdentifierInput? iosPlatformIdInput,
       final ApplicationTermsConditionsInput? applicationTermsConditionsInput,
       final ApplicationCoreInput? applicationCoreInput,
-      final Uint8List? androidGoogleServices,
-      final Uint8List? iosGoogleServices,
-      final String? androidGoogleServicesUrl,
-      final String? iosGoogleServicesUrl,
+      final ApplicationBuildNameInput? androidBuildNameInput,
+      final ApplicationBuildNumberInput? androidBuildNumberInput,
+      final ApplicationBuildNameInput? iosBuildNameInput,
+      final ApplicationBuildNumberInput? iosBuildNumberInput,
       final Exception? exception}) = _$ApplicationEditStateInitialImpl;
 
   @override
   ApplicationEditStatus get status;
   @override
   ApplicationNameInput? get nameInput;
-  @override
-  @Deprecated('will be removed, use android/ios instead')
-  ApplicationIdentifierInput? get applicationIdentifierInput;
   @override
   ApplicationIdentifierInput? get androidPlatformIdInput;
   @override
@@ -389,13 +361,13 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   @override
   ApplicationCoreInput? get applicationCoreInput;
   @override
-  Uint8List? get androidGoogleServices;
+  ApplicationBuildNameInput? get androidBuildNameInput;
   @override
-  Uint8List? get iosGoogleServices;
+  ApplicationBuildNumberInput? get androidBuildNumberInput;
   @override
-  String? get androidGoogleServicesUrl;
+  ApplicationBuildNameInput? get iosBuildNameInput;
   @override
-  String? get iosGoogleServicesUrl;
+  ApplicationBuildNumberInput? get iosBuildNumberInput;
   @override
   Exception? get exception;
   @override

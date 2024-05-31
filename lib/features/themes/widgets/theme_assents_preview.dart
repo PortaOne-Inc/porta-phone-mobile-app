@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:device_preview/device_preview.dart';
-
 import 'package:domain/domain.dart';
 
+import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import 'launch_icon.dart';
@@ -45,25 +44,33 @@ class ThemeAssetsPreview extends StatelessWidget {
                       ),
                     ),
                     DeviceFrame(
-                        device: DeviceInfo.genericPhone(
-                          platform: TargetPlatform.iOS,
-                          id: 'ios_id',
-                          name: 'IOS',
-                          screenSize: const Size(200, 400),
-                        ),
-                        isFrameVisible: false,
-                        screen: IgnorePointer(
-                          child: ColoredBox(
-                            color: theme.colors?.launch?.splashBackground ?? Colors.green,
-                            child: Center(
-                              child: ImageResource(
-                                imageModel: theme.systemAssets.adaptiveIconBackground,
-                                fit: BoxFit.contain,
-                                defaultWidget: const SizedBox(),
-                              ),
+                      size: const Size(200, 400),
+                      isFrameVisible: false,
+                      child: IgnorePointer(
+                        child: ColoredBox(
+                          color: theme.colors?.launch?.splashBackground ?? Colors.green,
+                          child: Center(
+                            child: ImageResource(
+                              imageModel: theme.systemAssets.adaptiveIconBackground,
+                              fit: BoxFit.contain,
+                              defaultWidget: const SizedBox(),
                             ),
                           ),
-                        ))
+                        ),
+                      ),
+                    ),
+                    IgnorePointer(
+                      child: ColoredBox(
+                        color: theme.colors?.launch?.splashBackground ?? Colors.green,
+                        child: Center(
+                          child: ImageResource(
+                            imageModel: theme.systemAssets.adaptiveIconBackground,
+                            fit: BoxFit.contain,
+                            defaultWidget: const SizedBox(),
+                          ),
+                        ),
+                      ),
+                    ),
                   ]),
                   Column(
                     mainAxisSize: MainAxisSize.min,

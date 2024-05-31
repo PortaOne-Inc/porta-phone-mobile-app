@@ -7,6 +7,8 @@ import 'package:domain/repository/repository.dart';
 
 import 'package:injectable/injectable.dart';
 
+// TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
+// TODO(DMITRO): The domain layer should be aware of DTOs
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {
   ApplicationRepositoryImpl({

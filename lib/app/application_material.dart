@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 import 'package:webtrit_configurator/features/common/common.dart';
 
@@ -18,6 +17,7 @@ class MaterialApplication extends StatefulWidget {
     required this.getIt,
     super.key,
   });
+
   final GetIt getIt;
 
   @override
@@ -48,14 +48,13 @@ class _MaterialApplicationState extends State<MaterialApplication> {
               darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
               themeMode: state.themeMode,
               localizationsDelegates: const [
-                AppLocalizations.delegate, // Add this line
+                AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
               supportedLocales: const [
-                Locale('en', ''), // English, no country code
-                Locale('ar', ''), // Spanish, no country code
+                Locale('en', ''),
               ],
               builder: (context, widget) => ResponsiveBreakpoints.builder(
                 child: BouncingScrollWrapper.builder(context, widget!),

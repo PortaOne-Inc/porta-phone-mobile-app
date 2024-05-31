@@ -27,10 +27,10 @@ class ApplicationDetailsPage extends StatefulWidget with MixinMessages {
 }
 
 class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
+  late final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
+
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
-
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
@@ -74,12 +74,21 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                       ),
                     ),
                     const Divider(),
-                    ApplicationDetailsScreen(
-                      application: state.application,
-                      onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
-                        context,
-                        applicationId,
-                        themeId,
+                    Expanded(
+                      child: ApplicationDetailsScreen(
+                        application: state.application,
+                        applicationValidateErrors: state.applicationValidateErrors,
+                        onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
+                          context,
+                          applicationId,
+                          themeId,
+                        ),
+                        applicationDeploy: state.applicationDeploy,
+                        onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
+                        onDeploy: bloc.deployBuilds,
+                        applicationBuildVersionProgress: state.buildVersionProgress,
+                        onUpdateBuildNameVersion: bloc.updateBuildName,
+                        onUpdateBuildNumberVersion: bloc.updateBuildNumber,
                       ),
                     )
                   ],
@@ -150,7 +159,19 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     ApplicationDetailsState state,
   ) {
     if (state.status == ApplicationDetailsStateStatus.error) {
-      showFailureMessage(context, state.error!.message);
+      showFailureMessage(context, state.error.toString());
+    }
+
+    if (state.status == ApplicationDetailsStateStatus.deployConfirm) {
+      _showDeployConfirm(state);
+    }
+
+    if (state.status == ApplicationDetailsStateStatus.deploySuccess) {
+      showTopSnakeMessageSuccess(
+        context,
+        context.l10n.feature_application_details_ApplicationDetailsScreen_deploy_success_message,
+        duration: const Duration(seconds: 4),
+      );
     }
 
     if (state.status == ApplicationDetailsStateStatus.deleted) {
@@ -159,8 +180,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   }
 
   void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
-    final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
-
     switch (applicationDetailFile) {
       case ApplicationDetailFile.newApplication:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
@@ -177,6 +196,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     switch (navigate) {
       case ApplicationDetailNavigate.application:
         GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+      case ApplicationDetailNavigate.translations:
+        GoRouter.of(context).goNamed(AppRoutInfo.translations.name, pathParameters: <String, String>{
+          AppRoutInfo.keyApplicationId: bloc.applicationId,
+        });
     }
   }
 
@@ -206,10 +229,28 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
     await showDialog<void>(
       context: context,
-      builder: (context) => CredentialToolbar(
+      builder: (context) => CredentialsDialog(
         themeId: model.id!,
         applicationId: applicationId,
       ),
+    );
+  }
+
+  Future<void> _showDeployConfirm(ApplicationDetailsState state) async {
+    await showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return DeployConfirmDialog(
+          deployInfo: state.applicationDeploy,
+          onCancel: () {
+            Navigator.maybePop(context);
+          },
+          onAccept: () {
+            Navigator.maybePop(context);
+            this.context.read<ApplicationDetailsCubit>().confirmDeployBuilds();
+          },
+        );
+      },
     );
   }
 

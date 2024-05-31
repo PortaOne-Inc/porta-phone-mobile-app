@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-class CredentialToolbar extends StatelessWidget {
-  const CredentialToolbar({
+class CredentialsDialog extends StatelessWidget {
+  const CredentialsDialog({
     required this.themeId,
     required this.applicationId,
     super.key,

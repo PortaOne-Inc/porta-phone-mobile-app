@@ -36,6 +36,10 @@ abstract class AppRoutInfo {
     name: 'applications/detail',
     path: '/applications/:$keyApplicationId',
   );
+  static const translations = RouteData(
+    name: 'applications/translations',
+    path: '/applications/:$keyApplicationId/translations',
+  );
   static const themesCreate = RouteData(
     name: 'themes/create',
     path: '/applications/:$keyApplicationId/create',
@@ -52,3 +56,5 @@ abstract class AppRoutInfo {
   static const String keyApplicationId = 'applicationId';
   static const String keyThemeId = 'themeId';
 }
+
+// TODO(vlad): Add theme segment key to theme paths to avoid interfering with new features

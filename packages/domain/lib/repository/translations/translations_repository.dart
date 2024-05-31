@@ -1,0 +1,8 @@
+import 'package:domain/entity/entity.dart';
+
+abstract class TranslationsRepository {
+  Future<List<Translation>> getTranslations();
+  Future<List<Translation>> getOverridesByAppId(String appId);
+  Future<void> setOverrideByAppId(String appId, Translation translation);
+  Future<void> deleteOverrideByAppId(String appId, Translation translation);
+}

@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:dto/dto.dart';
 
 import '../../models/application/application_model.dart';
+import '../../models/application/build_version_model.dart';
 import '../../models/theme/theme_model.dart';
 import '../mapper_contract.dart';
 
@@ -17,9 +18,15 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       name: model.name,
       id: model.id,
       theme: model.theme,
-      version: model.version,
-      platformIdentifier: model.platformIdentifier,
       androidPlatformId: model.androidPlatformId,
+      androidVersion: BuildVersionDTO(
+        buildName: model.androidVersion?.buildName,
+        buildNumber: model.androidVersion?.buildNumber,
+      ),
+      iosVersion: BuildVersionDTO(
+        buildName: model.iosVersion?.buildName,
+        buildNumber: model.iosVersion?.buildNumber,
+      ),
       iosPlatformId: model.iosPlatformId,
       termsConditionsUrl: model.termsConditionsUrl,
       coreUrl: model.coreUrl,
@@ -32,11 +39,17 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
       name: dto.name,
       id: dto.id,
       theme: dto.theme,
-      version: dto.version ?? 0,
-      platformIdentifier: dto.platformIdentifier,
       androidPlatformId: dto.androidPlatformId,
       iosPlatformId: dto.iosPlatformId,
       termsConditionsUrl: dto.termsConditionsUrl,
+      androidVersion: BuildVersionModel(
+        buildName: dto.androidVersion?.buildName,
+        buildNumber: dto.androidVersion?.buildNumber,
+      ),
+      iosVersion: BuildVersionModel(
+        buildName: dto.iosVersion?.buildName,
+        buildNumber: dto.iosVersion?.buildNumber,
+      ),
       coreUrl: dto.coreUrl,
     );
   }

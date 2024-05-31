@@ -14,6 +14,11 @@ class ApplicationEnvironment {
     'WEBTRIT_CONFIGURATOR_API_URL',
   );
 
+  // TODO(SERDUN): Change this variable name to 'CONFIGURATOR_API_URL' after migrating to nest all features
+  static const CONFIGURATOR_API_URL_V1 = String.fromEnvironment(
+    'WEBTRIT_CONFIGURATOR_API_URL_V1',
+  );
+
   static const CONFIGURATOR_DOC_URL = String.fromEnvironment(
     'WEBTRIT_CONFIGURATOR_DOC_URL',
   );

@@ -11,3 +11,5 @@ node_modules/
 # Generated files
 /lib
 public/swagger.json
+
+.env

@@ -14,5 +14,6 @@ class SystemAssetsModel with _$SystemAssetsModel {
     @Default(ImageModel()) ImageModel iosLauncherIcon,
     @Default(ImageModel()) ImageModel webLauncherIcon,
   }) = _SystemAssetsModel;
+
   const SystemAssetsModel._();
 }

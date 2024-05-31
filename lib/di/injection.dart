@@ -8,7 +8,7 @@ import '../app/application.dart';
 import 'injection.config.dart';
 
 @InjectableInit(
-  externalPackageModulesBefore: [
+  externalPackageModulesAfter: [
     ExternalModule(DataPackageModule),
     ExternalModule(DomainPackageModule),
   ],
@@ -20,5 +20,10 @@ abstract class RegisterModule {
   @Named('baseUrl')
   String baseUrl() {
     return ApplicationEnvironment.CONFIGURATOR_API_URL;
+  }
+
+  @Named('newBaseUrl')
+  String deployPlatformBuildsURL() {
+    return ApplicationEnvironment.CONFIGURATOR_API_URL_V1;
   }
 }

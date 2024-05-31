@@ -10,5 +10,6 @@ class ImageSchemeModel with _$ImageSchemeModel {
     @Default(ImageModel()) ImageModel primaryOnboardingLogo,
     @Default(ImageModel()) ImageModel secondaryOnboardingLogo,
   }) = _ImageSchemeModel;
+
   const ImageSchemeModel._();
 }

@@ -25,8 +25,6 @@ class ApplicationEditPage extends StatefulWidget {
 class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMessages {
   late final ApplicationEditCubit _bloc = BlocProvider.of<ApplicationEditCubit>(context);
 
-  final _nameEditController = TextEditingController();
-
   final _identifierEditController = TextEditingController();
 
   @override
@@ -46,22 +44,24 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
           child: ApplicationManage(
             key: ValueKey(state.status),
             updateName: _bloc.updateNameChange,
-            updateIdentifier: _bloc.updateApplicationIdentifier,
             updateAndroidPlatformId: _bloc.updateAndroidPlatformId,
             updateIosPlatformId: _bloc.updateIosPlatformId,
+            updateAndroidBuildName: _bloc.updateAndroidBuildName,
+            updateAndroidBuildNumber: _bloc.updateAndroidBuildNumber,
+            updateIosBuildName: _bloc.updateIosBuildName,
+            updateIosBuildNumber: _bloc.updateIosBuildNumber,
             onChangedCoreInput: _bloc.updateCore,
             onChangedTermsConditionsInput: _bloc.updateTermsConditions,
             nameInput: state.nameInput,
-            applicationIdentifierInput: state.applicationIdentifierInput,
             androidPlatformIdInput: state.androidPlatformIdInput,
             iosPlatformIdInput: state.iosPlatformIdInput,
+            androidBuildNameInput: state.androidBuildNameInput,
+            androidBuildNumberInput: state.androidBuildNumberInput,
+            iosBuildNameInput: state.iosBuildNameInput,
+            iosBuildNumberInput: state.iosBuildNumberInput,
             applicationCoreInput: state.applicationCoreInput,
             applicationTermsConditionsInput: state.applicationTermsConditionsInput,
             actionManage: _bloc.validateAndTryCreateApplication,
-            updateAndroidGoogleService: _bloc.chooseAndroidServices,
-            isAndroidGoogleServiceSelected: state.isAndroidGoogleServiceSelected,
-            updateIosGoogleService: _bloc.chooseIosGoogleServices,
-            isIosGoogleServiceSelected: state.isIosGoogleServiceSelected,
             action: context.l10n.theme_update,
           ),
         ),
@@ -73,12 +73,11 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
     if (state.status == ApplicationEditStatus.error) {
       showFailureMessage(context, state.exception.toString());
     }
-    if (state.status == ApplicationEditStatus.success) {
+    if (state.status == ApplicationEditStatus.finish) {
       _openApplications();
     }
     if (state.status == ApplicationEditStatus.initial) {
       _identifierEditController.text = state.nameInput!.value;
-      _nameEditController.text = state.applicationIdentifierInput!.value;
     }
   }
 

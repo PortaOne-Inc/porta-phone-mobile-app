@@ -8,6 +8,8 @@ import 'package:domain/repository/repository.dart';
 
 import '../data/http_datasource.dart';
 
+// TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
+// TODO(DMITRO): The domain layer should be aware of DTOs
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({

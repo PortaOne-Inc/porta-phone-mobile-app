@@ -14,6 +14,8 @@ abstract class ApplicationCreate {
     String? platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
+    BuildVersionModel? androidVersion,
+    BuildVersionModel? iosVersion,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -44,6 +46,8 @@ class ApplicationCreateImpl extends ApplicationCreate {
     String? platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
+    BuildVersionModel? androidVersion,
+    BuildVersionModel? iosVersion,
     String? coreUrl,
     String? termConditionsUrl,
     String? theme,
@@ -52,21 +56,14 @@ class ApplicationCreateImpl extends ApplicationCreate {
     int version = 0,
   }) async {
     try {
-      final googleService = await _generateGoogleService(
-        platformIdentifier,
-        androidGoogleServices,
-        iosGoogleServices,
-      );
-
       final model = ApplicationModel(
         name: name,
-        platformIdentifier: platformIdentifier,
         androidPlatformId: androidPlatformId,
         iosPlatformId: iosPlatformId,
+        androidVersion: androidVersion,
+        iosVersion: iosVersion,
         coreUrl: coreUrl,
         termsConditionsUrl: termConditionsUrl,
-        googleServices: googleService,
-        version: version,
       );
 
       final dto = await applicationRepository.createApplication(mapper.mapToDto(model));
@@ -74,43 +71,5 @@ class ApplicationCreateImpl extends ApplicationCreate {
     } catch (e) {
       rethrow;
     }
-  }
-
-  Future<GoogleServicesModel?> _generateGoogleService(
-    String? platformIdentifier,
-    Uint8List? androidGoogleServices,
-    Uint8List? iosGoogleServices,
-  ) async {
-    String? iosGoogleServiceUrl;
-    String? androidGoogleServiceUrl;
-
-    if (iosGoogleServices != null) {
-      final iosGoogleServiceName = _generateGoogleServiceName(platformIdentifier ?? 'unknown', 'plist');
-      iosGoogleServiceUrl = await resourcesRepository.putBytes(
-        'google-services',
-        iosGoogleServiceName,
-        iosGoogleServices,
-      );
-    }
-
-    if (androidGoogleServices != null) {
-      final androidGoogleServiceName = _generateGoogleServiceName(platformIdentifier ?? 'unknown', 'json');
-      androidGoogleServiceUrl = await resourcesRepository.putBytes(
-        'google-services',
-        androidGoogleServiceName,
-        androidGoogleServices,
-      );
-    }
-
-    return androidGoogleServiceUrl == null && iosGoogleServiceUrl == null
-        ? null
-        : GoogleServicesModel(
-            androidUrl: androidGoogleServiceUrl,
-            iosUrl: iosGoogleServiceUrl,
-          );
-  }
-
-  String _generateGoogleServiceName(String platformIdentifier, String extension) {
-    return '${DateTime.now().microsecondsSinceEpoch}-$platformIdentifier-google-services.$extension';
   }
 }

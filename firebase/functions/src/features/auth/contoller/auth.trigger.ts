@@ -7,7 +7,7 @@ import BaseTrigger from '../../../core/controllers/base.trigger';
 
 import {auth} from 'firebase-admin';
 
-import AuthService from '../service/auth.service';
+import IAuthService from '../service/auth.service.interface';
 
 import User from '../../../core/models/user';
 
@@ -16,7 +16,7 @@ import {TYPES} from '../../../di';
 @injectable()
 export default class AuthTrigger extends BaseTrigger {
 	constructor(
-		@inject(TYPES.AuthService) private authService: AuthService,
+		@inject(TYPES.AuthService) private authService: IAuthService,
 	) {
 		super();
 		this.auth = this.getAuth().onCreate(this.onCreate.bind(this))
