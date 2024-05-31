@@ -1,6 +1,5 @@
 export 'application/application_model.dart';
 export 'application/build_version_model.dart';
-export 'application/google_services_model.dart';
 export 'color/color_scheme_keys.dart';
 export 'color/color_scheme_model.dart';
 export 'deployment/deployment.dart';

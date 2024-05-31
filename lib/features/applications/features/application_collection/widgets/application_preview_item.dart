@@ -82,10 +82,6 @@ class ApplicationPreviewItem extends StatelessWidget {
                 ],
               ),
               Text(
-                context.l10n.feature_applications_version(application.version),
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              Text(
                 'android: ${application.androidVersion?.viewString}',
                 style: Theme.of(context).textTheme.labelLarge,
               ),

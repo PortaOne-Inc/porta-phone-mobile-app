@@ -41,7 +41,6 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
         body: Center(
           child: ApplicationManage(
             updateName: _bloc.updateNameChange,
-            updateIdentifier: _bloc.updateApplicationIdentifier,
             updateAndroidPlatformId: _bloc.updateAndroidPlatformId,
             updateIosPlatformId: _bloc.updateIosPlatformId,
             updateAndroidBuildName: _bloc.updateAndroidBuildName,
@@ -50,10 +49,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             updateIosBuildNumber: _bloc.updateIosBuildNumber,
             onChangedCoreInput: _bloc.updateCore,
             onChangedTermsConditionsInput: _bloc.updateTermsConditions,
-            updateAndroidGoogleService: _bloc.chooseAndroidServices,
-            updateIosGoogleService: _bloc.chooseIosGoogleServices,
             nameInput: state.nameInput,
-            applicationIdentifierInput: state.applicationIdentifierInput,
             androidPlatformIdInput: state.androidPlatformIdInput,
             iosPlatformIdInput: state.iosPlatformIdInput,
             androidBuildNameInput: state.androidBuildNameInput,
@@ -63,8 +59,6 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             applicationCoreInput: state.applicationCoreInput,
             applicationTermsConditionsInput: state.applicationTermsConditionsInput,
             actionManage: _bloc.validateAndTryCreateApplication,
-            isAndroidGoogleServiceSelected: state.androidGoogleServices != null,
-            isIosGoogleServiceSelected: state.iosGoogleServices != null,
             action: context.l10n.common_feature_create,
           ),
         ),

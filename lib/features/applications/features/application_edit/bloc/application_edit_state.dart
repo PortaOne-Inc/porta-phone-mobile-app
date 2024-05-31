@@ -16,16 +16,7 @@ class ApplicationEditState with _$ApplicationEditState {
     ApplicationBuildNumberInput? androidBuildNumberInput,
     ApplicationBuildNameInput? iosBuildNameInput,
     ApplicationBuildNumberInput? iosBuildNumberInput,
-    Uint8List? androidGoogleServices,
-    Uint8List? iosGoogleServices,
-    String? androidGoogleServicesUrl,
-    String? iosGoogleServicesUrl,
     Exception? exception,
   }) = ApplicationEditStateInitial;
 }
 
-extension ApplicationEditStateExtension on ApplicationEditState {
-  bool get isAndroidGoogleServiceSelected => androidGoogleServices != null || androidGoogleServicesUrl != null;
-
-  bool get isIosGoogleServiceSelected => iosGoogleServices != null || iosGoogleServicesUrl != null;
-}

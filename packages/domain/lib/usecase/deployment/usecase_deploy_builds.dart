@@ -4,8 +4,6 @@ import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
 
-import 'contract.dart';
-
 @Injectable(as: UsecaseDeployBuilds)
 class UsecaseDeployBuildsImpl extends UsecaseDeployBuilds {
   UsecaseDeployBuildsImpl({

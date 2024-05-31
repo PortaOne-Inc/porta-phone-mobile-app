@@ -91,19 +91,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('Version:'),
-                subtitle: SelectableText(application?.version.toString() ?? '0'),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
-                ),
-              ),
-              ListTile(
                 title: const Text('Default theme:'),
                 trailing: InkWell(
                   child: Visibility(
-                    visible: application?.isApplicationHasDefaultThem ?? false,
+                    visible: application?.theme != null,
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -117,7 +108,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   ),
                   onTap: () => onOpenDefaultTheme(application!.id!, application!.theme!),
                 ),
-                subtitle: application?.isApplicationHasDefaultThem ?? false
+                subtitle: application?.theme != null
                     ? SelectableText(application?.theme ?? '')
                     : const Text('Not selected default theme yet'),
                 minLeadingWidth: 4,

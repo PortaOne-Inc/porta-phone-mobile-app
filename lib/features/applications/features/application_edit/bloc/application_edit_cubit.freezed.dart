@@ -37,10 +37,6 @@ mixin _$ApplicationEditState {
       throw _privateConstructorUsedError;
   ApplicationBuildNumberInput? get iosBuildNumberInput =>
       throw _privateConstructorUsedError;
-  Uint8List? get androidGoogleServices => throw _privateConstructorUsedError;
-  Uint8List? get iosGoogleServices => throw _privateConstructorUsedError;
-  String? get androidGoogleServicesUrl => throw _privateConstructorUsedError;
-  String? get iosGoogleServicesUrl => throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -67,10 +63,6 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
       ApplicationBuildNumberInput? androidBuildNumberInput,
       ApplicationBuildNameInput? iosBuildNameInput,
       ApplicationBuildNumberInput? iosBuildNumberInput,
-      Uint8List? androidGoogleServices,
-      Uint8List? iosGoogleServices,
-      String? androidGoogleServicesUrl,
-      String? iosGoogleServicesUrl,
       Exception? exception});
 }
 
@@ -99,10 +91,6 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
     Object? androidBuildNumberInput = freezed,
     Object? iosBuildNameInput = freezed,
     Object? iosBuildNumberInput = freezed,
-    Object? androidGoogleServices = freezed,
-    Object? iosGoogleServices = freezed,
-    Object? androidGoogleServicesUrl = freezed,
-    Object? iosGoogleServicesUrl = freezed,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
@@ -151,22 +139,6 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.iosBuildNumberInput
           : iosBuildNumberInput // ignore: cast_nullable_to_non_nullable
               as ApplicationBuildNumberInput?,
-      androidGoogleServices: freezed == androidGoogleServices
-          ? _value.androidGoogleServices
-          : androidGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      iosGoogleServices: freezed == iosGoogleServices
-          ? _value.iosGoogleServices
-          : iosGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
-          ? _value.androidGoogleServicesUrl
-          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
-          ? _value.iosGoogleServicesUrl
-          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -197,10 +169,6 @@ abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
       ApplicationBuildNumberInput? androidBuildNumberInput,
       ApplicationBuildNameInput? iosBuildNameInput,
       ApplicationBuildNumberInput? iosBuildNumberInput,
-      Uint8List? androidGoogleServices,
-      Uint8List? iosGoogleServices,
-      String? androidGoogleServicesUrl,
-      String? iosGoogleServicesUrl,
       Exception? exception});
 }
 
@@ -228,10 +196,6 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
     Object? androidBuildNumberInput = freezed,
     Object? iosBuildNameInput = freezed,
     Object? iosBuildNumberInput = freezed,
-    Object? androidGoogleServices = freezed,
-    Object? iosGoogleServices = freezed,
-    Object? androidGoogleServicesUrl = freezed,
-    Object? iosGoogleServicesUrl = freezed,
     Object? exception = freezed,
   }) {
     return _then(_$ApplicationEditStateInitialImpl(
@@ -280,22 +244,6 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
           ? _value.iosBuildNumberInput
           : iosBuildNumberInput // ignore: cast_nullable_to_non_nullable
               as ApplicationBuildNumberInput?,
-      androidGoogleServices: freezed == androidGoogleServices
-          ? _value.androidGoogleServices
-          : androidGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      iosGoogleServices: freezed == iosGoogleServices
-          ? _value.iosGoogleServices
-          : iosGoogleServices // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
-      androidGoogleServicesUrl: freezed == androidGoogleServicesUrl
-          ? _value.androidGoogleServicesUrl
-          : androidGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosGoogleServicesUrl: freezed == iosGoogleServicesUrl
-          ? _value.iosGoogleServicesUrl
-          : iosGoogleServicesUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -320,10 +268,6 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       this.androidBuildNumberInput,
       this.iosBuildNameInput,
       this.iosBuildNumberInput,
-      this.androidGoogleServices,
-      this.iosGoogleServices,
-      this.androidGoogleServicesUrl,
-      this.iosGoogleServicesUrl,
       this.exception});
 
   @override
@@ -351,19 +295,11 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   @override
   final ApplicationBuildNumberInput? iosBuildNumberInput;
   @override
-  final Uint8List? androidGoogleServices;
-  @override
-  final Uint8List? iosGoogleServices;
-  @override
-  final String? androidGoogleServicesUrl;
-  @override
-  final String? iosGoogleServicesUrl;
-  @override
   final Exception? exception;
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, androidGoogleServicesUrl: $androidGoogleServicesUrl, iosGoogleServicesUrl: $iosGoogleServicesUrl, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, applicationIdentifierInput: $applicationIdentifierInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, exception: $exception)';
   }
 
   @override
@@ -397,15 +333,6 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
                 other.iosBuildNameInput == iosBuildNameInput) &&
             (identical(other.iosBuildNumberInput, iosBuildNumberInput) ||
                 other.iosBuildNumberInput == iosBuildNumberInput) &&
-            const DeepCollectionEquality()
-                .equals(other.androidGoogleServices, androidGoogleServices) &&
-            const DeepCollectionEquality()
-                .equals(other.iosGoogleServices, iosGoogleServices) &&
-            (identical(
-                    other.androidGoogleServicesUrl, androidGoogleServicesUrl) ||
-                other.androidGoogleServicesUrl == androidGoogleServicesUrl) &&
-            (identical(other.iosGoogleServicesUrl, iosGoogleServicesUrl) ||
-                other.iosGoogleServicesUrl == iosGoogleServicesUrl) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
@@ -424,10 +351,6 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       androidBuildNumberInput,
       iosBuildNameInput,
       iosBuildNumberInput,
-      const DeepCollectionEquality().hash(androidGoogleServices),
-      const DeepCollectionEquality().hash(iosGoogleServices),
-      androidGoogleServicesUrl,
-      iosGoogleServicesUrl,
       exception);
 
   @JsonKey(ignore: true)
@@ -452,10 +375,6 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
       final ApplicationBuildNumberInput? androidBuildNumberInput,
       final ApplicationBuildNameInput? iosBuildNameInput,
       final ApplicationBuildNumberInput? iosBuildNumberInput,
-      final Uint8List? androidGoogleServices,
-      final Uint8List? iosGoogleServices,
-      final String? androidGoogleServicesUrl,
-      final String? iosGoogleServicesUrl,
       final Exception? exception}) = _$ApplicationEditStateInitialImpl;
 
   @override
@@ -481,14 +400,6 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   ApplicationBuildNameInput? get iosBuildNameInput;
   @override
   ApplicationBuildNumberInput? get iosBuildNumberInput;
-  @override
-  Uint8List? get androidGoogleServices;
-  @override
-  Uint8List? get iosGoogleServices;
-  @override
-  String? get androidGoogleServicesUrl;
-  @override
-  String? get iosGoogleServicesUrl;
   @override
   Exception? get exception;
   @override

@@ -9,5 +9,6 @@ class Translation with _$Translation {
     required String key,
     required String value,
   }) = _Translation;
+
   const Translation._();
 }

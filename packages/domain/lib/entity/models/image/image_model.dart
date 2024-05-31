@@ -22,6 +22,7 @@ class ImageModel with _$ImageModel {
     String? name,
     String? extension,
   }) = _ImageModel;
+
   const ImageModel._();
 
   factory ImageModel.svg(String base64) => ImageModel(

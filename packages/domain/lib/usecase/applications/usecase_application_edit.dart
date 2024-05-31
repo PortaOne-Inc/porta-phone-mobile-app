@@ -12,7 +12,6 @@ abstract class UsecaseApplicationEdit {
   FutureOr<ApplicationModel> execute({
     required String id,
     required String name,
-    required String platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
     BuildVersionModel? androidVersion,
@@ -47,7 +46,6 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
   FutureOr<ApplicationModel> execute({
     required String id,
     required String name,
-    required String platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
     BuildVersionModel? androidVersion,
@@ -61,31 +59,14 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     String? applicationIosGoogleServicesUrl,
     int version = 0,
   }) async {
-    var iosGoogleServicesUrl = applicationIosGoogleServicesUrl;
-    var androidGoogleServicesUrl = applicationAndroidGoogleServicesUrl;
-
-    if (newAndroidGoogleServices != null) {
-      iosGoogleServicesUrl = await _uploadIosGoogleServices(platformIdentifier, newAndroidGoogleServices);
-    }
-
-    if (newIosGoogleServices != null) {
-      androidGoogleServicesUrl = await _uploadAndroidGoogleServices(platformIdentifier, newIosGoogleServices);
-    }
-
     final model = ApplicationModel(
       name: name,
-      platformIdentifier: platformIdentifier,
       androidPlatformId: androidPlatformId,
       iosPlatformId: iosPlatformId,
       androidVersion: androidVersion,
       iosVersion: iosVersion,
       coreUrl: coreUrl,
       termsConditionsUrl: termConditionsUrl,
-      googleServices: GoogleServicesModel(
-        iosUrl: iosGoogleServicesUrl,
-        androidUrl: androidGoogleServicesUrl,
-      ),
-      version: version,
     );
 
     // TODO(dmitry): The API does not work quite correctly, if there is no field, it makes it null instead of ignoring it.
@@ -105,29 +86,5 @@ class UsecaseApplicationEditImpl extends UsecaseApplicationEdit {
     if (applicationAndroidGoogleServicesUrl != null) {
       await resourcesRepository.delete(applicationAndroidGoogleServicesUrl);
     }
-  }
-
-  Future<String> _uploadAndroidGoogleServices(String platformIdentifier, Uint8List? newIosGoogleServices) async {
-    final androidGoogleServiceName = _generateGoogleServiceName(platformIdentifier, 'json');
-    final androidGoogleServiceUrl = await resourcesRepository.putBytes(
-      'google-services',
-      androidGoogleServiceName,
-      newIosGoogleServices!,
-    );
-    return androidGoogleServiceUrl;
-  }
-
-  Future<String> _uploadIosGoogleServices(String platformIdentifier, Uint8List? newAndroidGoogleServices) async {
-    final iosGoogleServiceName = _generateGoogleServiceName(platformIdentifier, 'plist');
-    final iosGoogleServiceUrl = await resourcesRepository.putBytes(
-      'google-services',
-      iosGoogleServiceName,
-      newAndroidGoogleServices!,
-    );
-    return iosGoogleServiceUrl;
-  }
-
-  String _generateGoogleServiceName(String platformIdentifier, String extension) {
-    return '${DateTime.now().microsecondsSinceEpoch}-$platformIdentifier-google-services.$extension';
   }
 }

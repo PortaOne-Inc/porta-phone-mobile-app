@@ -83,7 +83,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       await applicationEditUsecase.execute(
         id: applicationId,
         name: state.nameInput!.value,
-        platformIdentifier: state.applicationIdentifierInput!.value,
         androidPlatformId: state.androidPlatformIdInput!.value,
         iosPlatformId: state.iosPlatformIdInput!.value,
         androidVersion: BuildVersionModel(
@@ -96,10 +95,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
         ),
         coreUrl: state.applicationCoreInput!.value,
         termConditionsUrl: state.applicationTermsConditionsInput!.value,
-        applicationAndroidGoogleServicesUrl: state.androidGoogleServicesUrl,
-        applicationIosGoogleServicesUrl: state.iosGoogleServicesUrl,
-        newIosGoogleServices: state.androidGoogleServices,
-        newAndroidGoogleServices: state.androidGoogleServices,
       );
 
       emit(state.copyWith(status: ApplicationEditStatus.success));
@@ -115,7 +110,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       final app = await applicationGetUsecase.execute(id: id);
       emit(
         ApplicationEditState(
-          applicationIdentifierInput: ApplicationIdentifierInput.dirty(app.platformIdentifier ?? ''),
           androidPlatformIdInput: ApplicationIdentifierInput.dirty(app.androidPlatformId ?? ''),
           iosPlatformIdInput: ApplicationIdentifierInput.dirty(app.iosPlatformId ?? ''),
           androidBuildNameInput: ApplicationBuildNameInput.dirty(app.androidVersion?.buildName ?? ''),
@@ -125,30 +119,10 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
           applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
           applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(app.termsConditionsUrl ?? ''),
-          androidGoogleServicesUrl: app.googleServices?.androidUrl,
-          iosGoogleServicesUrl: app.googleServices?.iosUrl,
         ),
       );
     } on BaseException catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationEditStatus.error));
-    }
-  }
-
-  Future<void> chooseIosGoogleServices() async {
-    if (state.iosGoogleServices == null) {
-      final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['plist']);
-      emit(state.copyWith(iosGoogleServices: result?.files.first.bytes));
-    } else {
-      emit(state.copyWith(iosGoogleServices: null));
-    }
-  }
-
-  Future<void> chooseAndroidServices() async {
-    if (state.androidGoogleServices == null) {
-      final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['json']);
-      emit(state.copyWith(androidGoogleServices: result?.files.first.bytes));
-    } else {
-      emit(state.copyWith(androidGoogleServices: null));
     }
   }
 

@@ -9,7 +9,6 @@ import '../model/models.dart';
 class ApplicationManage extends StatelessWidget {
   const ApplicationManage({
     required this.updateName,
-    required this.updateIdentifier,
     required this.updateAndroidPlatformId,
     required this.updateIosPlatformId,
     required this.updateAndroidBuildName,
@@ -19,7 +18,6 @@ class ApplicationManage extends StatelessWidget {
     required this.onChangedTermsConditionsInput,
     required this.onChangedCoreInput,
     required this.nameInput,
-    required this.applicationIdentifierInput,
     required this.androidPlatformIdInput,
     required this.iosPlatformIdInput,
     required this.androidBuildNameInput,
@@ -28,17 +26,12 @@ class ApplicationManage extends StatelessWidget {
     required this.iosBuildNumberInput,
     required this.applicationCoreInput,
     required this.applicationTermsConditionsInput,
-    required this.updateAndroidGoogleService,
-    required this.updateIosGoogleService,
     required this.actionManage,
-    required this.isAndroidGoogleServiceSelected,
-    required this.isIosGoogleServiceSelected,
     required this.action,
     super.key,
   });
 
   final void Function(String value) updateName;
-  final void Function(String value) updateIdentifier;
   final void Function(String value) updateAndroidPlatformId;
   final void Function(String value) updateIosPlatformId;
   final void Function(String value) updateAndroidBuildName;
@@ -48,17 +41,10 @@ class ApplicationManage extends StatelessWidget {
   final void Function(String value) onChangedCoreInput;
   final void Function(String value) onChangedTermsConditionsInput;
 
-  final bool isAndroidGoogleServiceSelected;
-  final bool isIosGoogleServiceSelected;
-
-  final void Function() updateAndroidGoogleService;
-  final void Function() updateIosGoogleService;
-
   final void Function() actionManage;
   final String action;
 
   final ApplicationNameInput? nameInput;
-  final ApplicationIdentifierInput? applicationIdentifierInput;
   final ApplicationIdentifierInput? androidPlatformIdInput;
   final ApplicationIdentifierInput? iosPlatformIdInput;
   final ApplicationBuildNameInput? androidBuildNameInput;
@@ -103,26 +89,6 @@ class ApplicationManage extends StatelessWidget {
                         message: context.l10n.feature_application_create_Tooltip_name_info,
                         child: Icon(Icons.info_outlined, color: colorScheme.secondary),
                       )),
-                ),
-                Text(
-                  context.l10n.feature_application_identifier,
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                TextFormField(
-                  initialValue: applicationIdentifierInput?.value,
-                  onChanged: updateIdentifier,
-                  maxLength: ApplicationConsts.maxIdentifierLimit,
-                  decoration: InputDecoration(
-                    errorText: applicationIdentifierInput?.errorL10n(context),
-                    hintText: "Bundle ID is an app's unique identifier.",
-                    suffixIcon: Tooltip(
-                      message: context.l10n.feature_application_create_Tooltip_identifier_info,
-                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
-                    ),
-                  ),
                 ),
                 Text(
                   context.l10n.feature_application_android_identifier,

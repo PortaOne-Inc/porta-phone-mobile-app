@@ -24,15 +24,12 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     final updatedApplication = await applicationEditUsecase.execute(
       id: application.id!,
       name: application.name!,
-      platformIdentifier: application.platformIdentifier!,
       androidPlatformId: application.androidPlatformId,
       iosPlatformId: application.iosPlatformId,
       androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
       iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
       coreUrl: application.coreUrl,
       termConditionsUrl: application.termsConditionsUrl,
-      applicationAndroidGoogleServicesUrl: application.googleServices?.androidUrl,
-      applicationIosGoogleServicesUrl: application.googleServices?.iosUrl,
     );
 
     return platform == BuildPlatform.android ? updatedApplication.androidVersion : updatedApplication.iosVersion;

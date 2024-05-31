@@ -21,6 +21,7 @@ class ThemeModel with _$ThemeModel {
     @Default(SystemAssetsModel()) SystemAssetsModel systemAssets,
     TextsModel? texts,
   }) = _ThemeModel;
+
   const ThemeModel._();
 
   List<Color> get colorSchemeCollection {
