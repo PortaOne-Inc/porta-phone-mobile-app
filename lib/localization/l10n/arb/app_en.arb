@@ -153,6 +153,8 @@
   "feature_application_create_Text_new_application_theme": "New application theme",
   "feature_application_collection_ApplicationPreviewItem_delete": "Delete",
   "feature_application_collection_ApplicationPreviewItem_edit": "Edit",
+  "feature_application_collection_ApplicationStatus_ready_to_deploy": "Application ready to deploy",
+  "feature_application_collection_ApplicationStatus_not_resolved_issues": "Not resolved {count} issues",
   "feature_application_details_PlayStoreConfigForm_track_label": "Track",
   "feature_application_details_PlayStoreConfigForm_status_label": "Status",
   "feature_application_details_PlayStoreConfigForm_update_priority_label": "Update Priority",

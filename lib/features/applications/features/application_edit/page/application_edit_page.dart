@@ -25,8 +25,6 @@ class ApplicationEditPage extends StatefulWidget {
 class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMessages {
   late final ApplicationEditCubit _bloc = BlocProvider.of<ApplicationEditCubit>(context);
 
-  final _nameEditController = TextEditingController();
-
   final _identifierEditController = TextEditingController();
 
   @override
@@ -75,12 +73,11 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
     if (state.status == ApplicationEditStatus.error) {
       showFailureMessage(context, state.exception.toString());
     }
-    if (state.status == ApplicationEditStatus.success) {
+    if (state.status == ApplicationEditStatus.finish) {
       _openApplications();
     }
     if (state.status == ApplicationEditStatus.initial) {
       _identifierEditController.text = state.nameInput!.value;
-      _nameEditController.text = state.applicationIdentifierInput!.value;
     }
   }
 

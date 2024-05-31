@@ -4,6 +4,10 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
+import '../../../model/models.dart';
+
+import 'application_status.dart';
+
 class ApplicationPreviewItem extends StatelessWidget {
   const ApplicationPreviewItem({
     required this.application,
@@ -11,10 +15,12 @@ class ApplicationPreviewItem extends StatelessWidget {
     required this.onEdit,
     required this.onOpen,
     required this.incrementVersion,
+    required this.applicationValidateErrors,
     super.key,
   });
 
   final ApplicationModel application;
+  final Iterable<ApplicationValidateError> applicationValidateErrors;
 
   final void Function(ApplicationModel model) onOpen;
   final void Function(ApplicationModel model) onDelete;
@@ -27,6 +33,9 @@ class ApplicationPreviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
       margin: EdgeInsets.zero,
       clipBehavior: Clip.antiAlias,
@@ -44,7 +53,7 @@ class ApplicationPreviewItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                       application.name ?? context.l10n.common_text_undefine,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: textTheme.titleLarge,
                     ),
                   ),
                   PopupMenuButton(
@@ -58,15 +67,14 @@ class ApplicationPreviewItem extends StatelessWidget {
                       PopupMenuItem(
                         value: _menuKeyUpdateVersion,
                         padding: const EdgeInsets.all(8),
-                        child: Text(context.l10n.feature_applications_Menu_increment,
-                            style: Theme.of(context).textTheme.bodyMedium),
+                        child: Text(context.l10n.feature_applications_Menu_increment, style: textTheme.bodyMedium),
                       ),
                       PopupMenuItem(
                         value: _menuKeyEdit,
                         padding: const EdgeInsets.all(8),
                         child: Text(
                           context.l10n.feature_application_collection_ApplicationPreviewItem_edit,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: textTheme.bodyMedium,
                         ),
                       ),
                       PopupMenuItem(
@@ -74,20 +82,16 @@ class ApplicationPreviewItem extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         child: Text(
                           context.l10n.feature_application_collection_ApplicationPreviewItem_delete,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
+                          style: textTheme.bodyMedium?.copyWith(color: colorScheme.error),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-              Text(
-                'android: ${application.androidVersion?.viewString}',
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              Text(
-                'ios: ${application.iosVersion?.viewString}',
-                style: Theme.of(context).textTheme.labelLarge,
+              const Divider(),
+              ApplicationStatus(
+                countValidationErrors: applicationValidateErrors.length,
               ),
             ],
           ),

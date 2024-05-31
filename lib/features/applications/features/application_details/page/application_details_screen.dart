@@ -8,9 +8,10 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
+import '../../../model/models.dart';
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 import '../extensions/extensions.dart';
-import '../models/models.dart';
 
 class ApplicationDetailsScreen extends StatelessWidget {
   const ApplicationDetailsScreen({

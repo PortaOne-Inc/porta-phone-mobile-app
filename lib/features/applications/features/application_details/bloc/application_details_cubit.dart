@@ -7,6 +7,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../../../model/models.dart';
 import '../models/models.dart';
 
 part 'application_details_state.dart';

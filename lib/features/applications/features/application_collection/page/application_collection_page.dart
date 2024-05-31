@@ -53,22 +53,28 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemBuilder: (ctx, index) => index == 0
-                      ? ItemOfListButton(
-                          name: 'New application',
-                          description: 'Create an application for initial configuration and style binding',
-                          onTab: _onCreateApplication,
-                        )
-                      : ApplicationPreviewItem(
-                          application: state.applications[index - 1],
-                          onDelete: bloc.tryDeleteApplication,
-                          onEdit: _onEditApplication,
-                          onOpen: _onOpenApplication,
-                          incrementVersion: _incrementApplicationVersion,
-                        ),
+                  itemBuilder: (ctx, index) {
+                    if (index == 0) {
+                      return ItemOfListButton(
+                        name: 'New application',
+                        description: 'Create an application for initial configuration and style binding',
+                        onTab: _onCreateApplication,
+                      );
+                    } else {
+                      final application = state.applications[index - 1];
+                      return ApplicationPreviewItem(
+                        application: application.$1,
+                        applicationValidateErrors: application.$2,
+                        onDelete: bloc.tryDeleteApplication,
+                        onEdit: _onEditApplication,
+                        onOpen: _onOpenApplication,
+                        incrementVersion: _incrementApplicationVersion,
+                      );
+                    }
+                  },
                   itemCount: state.applications.length + 1,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 300,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
                     childAspectRatio: 1.5,

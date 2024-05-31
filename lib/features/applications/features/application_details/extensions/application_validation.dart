@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../models/models.dart';
+import '../../../model/models.dart';
 
 extension ApplicationValidateErrorL10n on ApplicationValidateError {
   String l10n(BuildContext context) {
