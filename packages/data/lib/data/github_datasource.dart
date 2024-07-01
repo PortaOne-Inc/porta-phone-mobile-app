@@ -28,6 +28,8 @@ class GithubDatasource {
       'type': type,
       'phoneSourceBranch': phoneSourceBranch,
       'phoneConfiguratorToolSourceBranch': phoneConfiguratorToolSourceBranch,
+      'callkeepSourceBranch': callkeepSourceBranch,
+      'commonDependencySourceBranch': commonDependencySourceBranch,
       'androidPlayStoreConfig': androidPlayStoreConfig,
     };
 

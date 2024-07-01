@@ -35,7 +35,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       phoneConfiguratorToolSourceBranch: branches.phoneConfiguratorToolSourceBranch,
       androidPlayStoreConfig: androidPlayStoreConfig,
       callkeepSourceBranch: branches.callkeepSourceBranch,
-      commonDependencySourceBranch: branches.callkeepSourceBranch,
+      commonDependencySourceBranch: branches.commonDependencySourceBranch,
     );
   }
 
