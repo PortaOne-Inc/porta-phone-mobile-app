@@ -28,7 +28,7 @@ class PreloadPicker extends StatefulWidget {
 class _PreloadPickerState extends State<PreloadPicker> {
   int? _selectedTemplatePosition;
 
-  final _selectedExcludeColorFields = [ColorSchemeKeys.background];
+  final _selectedExcludeColorFields = [ColorSchemeKeys.onSurface];
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _PreloadPickerState extends State<PreloadPicker> {
 
   ColorSchemeModel _getNewScheme(int index) {
     final themeColorScheme = FlexThemeData.light(scheme: FlexScheme.values[index]).colorScheme;
-    // TODO(dmitry): Improve this part
+
     final scheme = ColorSchemeModel(
       primary: _useColorByExclude(
         widget.current.primary,
@@ -132,12 +132,47 @@ class _PreloadPickerState extends State<PreloadPicker> {
       onPrimary: _useColorByExclude(
         widget.current.onPrimary,
         themeColorScheme.onPrimary,
+        ColorSchemeKeys.onPrimary,
+      ),
+      primaryContainer: _useColorByExclude(
+        widget.current.primaryContainer,
+        themeColorScheme.primaryContainer,
+        ColorSchemeKeys.primaryContainer,
+      ),
+      onPrimaryContainer: _useColorByExclude(
+        widget.current.onPrimaryContainer,
+        themeColorScheme.onPrimaryContainer,
         ColorSchemeKeys.onPrimaryContainer,
+      ),
+      primaryFixed: _useColorByExclude(
+        widget.current.primaryFixed,
+        themeColorScheme.primaryFixed,
+        ColorSchemeKeys.primaryFixed,
+      ),
+      primaryFixedDim: _useColorByExclude(
+        widget.current.primaryFixedDim,
+        themeColorScheme.primaryFixedDim,
+        ColorSchemeKeys.primaryFixedDim,
+      ),
+      onPrimaryFixed: _useColorByExclude(
+        widget.current.onPrimaryFixed,
+        themeColorScheme.onPrimaryFixed,
+        ColorSchemeKeys.onPrimaryFixed,
+      ),
+      onPrimaryFixedVariant: _useColorByExclude(
+        widget.current.onPrimaryFixedVariant,
+        themeColorScheme.onPrimaryFixedVariant,
+        ColorSchemeKeys.onPrimaryFixedVariant,
       ),
       secondary: _useColorByExclude(
         widget.current.secondary,
         themeColorScheme.secondary,
         ColorSchemeKeys.secondary,
+      ),
+      onSecondary: _useColorByExclude(
+        widget.current.onSecondary,
+        themeColorScheme.onSecondary,
+        ColorSchemeKeys.onSecondary,
       ),
       secondaryContainer: _useColorByExclude(
         widget.current.secondaryContainer,
@@ -149,30 +184,95 @@ class _PreloadPickerState extends State<PreloadPicker> {
         themeColorScheme.onSecondaryContainer,
         ColorSchemeKeys.onSecondaryContainer,
       ),
+      secondaryFixed: _useColorByExclude(
+        widget.current.secondaryFixed,
+        themeColorScheme.secondaryFixed,
+        ColorSchemeKeys.secondaryFixed,
+      ),
+      secondaryFixedDim: _useColorByExclude(
+        widget.current.secondaryFixedDim,
+        themeColorScheme.secondaryFixedDim,
+        ColorSchemeKeys.secondaryFixedDim,
+      ),
+      onSecondaryFixed: _useColorByExclude(
+        widget.current.onSecondaryFixed,
+        themeColorScheme.onSecondaryFixed,
+        ColorSchemeKeys.onSecondaryFixed,
+      ),
+      onSecondaryFixedVariant: _useColorByExclude(
+        widget.current.onSecondaryFixedVariant,
+        themeColorScheme.onSecondaryFixedVariant,
+        ColorSchemeKeys.onSecondaryFixedVariant,
+      ),
       tertiary: _useColorByExclude(
         widget.current.tertiary,
         themeColorScheme.tertiary,
         ColorSchemeKeys.tertiary,
+      ),
+      onTertiary: _useColorByExclude(
+        widget.current.onTertiary,
+        themeColorScheme.onTertiary,
+        ColorSchemeKeys.onTertiary,
+      ),
+      tertiaryContainer: _useColorByExclude(
+        widget.current.tertiaryContainer,
+        themeColorScheme.tertiaryContainer,
+        ColorSchemeKeys.tertiaryContainer,
+      ),
+      onTertiaryContainer: _useColorByExclude(
+        widget.current.onTertiaryContainer,
+        themeColorScheme.onTertiaryContainer,
+        ColorSchemeKeys.onTertiaryContainer,
+      ),
+      tertiaryFixed: _useColorByExclude(
+        widget.current.tertiaryFixed,
+        themeColorScheme.tertiaryFixed,
+        ColorSchemeKeys.tertiaryFixed,
+      ),
+      tertiaryFixedDim: _useColorByExclude(
+        widget.current.tertiaryFixedDim,
+        themeColorScheme.tertiaryFixedDim,
+        ColorSchemeKeys.tertiaryFixedDim,
+      ),
+      onTertiaryFixed: _useColorByExclude(
+        widget.current.onTertiaryFixed,
+        themeColorScheme.onTertiaryFixed,
+        ColorSchemeKeys.onTertiaryFixed,
+      ),
+      onTertiaryFixedVariant: _useColorByExclude(
+        widget.current.onTertiaryFixedVariant,
+        themeColorScheme.onTertiaryFixedVariant,
+        ColorSchemeKeys.onTertiaryFixedVariant,
       ),
       error: _useColorByExclude(
         widget.current.error,
         themeColorScheme.error,
         ColorSchemeKeys.error,
       ),
+      onError: _useColorByExclude(
+        widget.current.onError,
+        themeColorScheme.onError,
+        ColorSchemeKeys.onError,
+      ),
+      errorContainer: _useColorByExclude(
+        widget.current.errorContainer,
+        themeColorScheme.errorContainer,
+        ColorSchemeKeys.errorContainer,
+      ),
+      onErrorContainer: _useColorByExclude(
+        widget.current.onErrorContainer,
+        themeColorScheme.onErrorContainer,
+        ColorSchemeKeys.onErrorContainer,
+      ),
       outline: _useColorByExclude(
         widget.current.outline,
         themeColorScheme.outline,
         ColorSchemeKeys.outline,
       ),
-      background: _useColorByExclude(
-        widget.current.background,
-        themeColorScheme.background,
-        ColorSchemeKeys.background,
-      ),
-      onBackground: _useColorByExclude(
-        widget.current.onBackground,
-        themeColorScheme.onBackground,
-        ColorSchemeKeys.onBackground,
+      outlineVariant: _useColorByExclude(
+        widget.current.outlineVariant,
+        themeColorScheme.outlineVariant,
+        ColorSchemeKeys.outlineVariant,
       ),
       surface: _useColorByExclude(
         widget.current.surface,
@@ -184,7 +284,73 @@ class _PreloadPickerState extends State<PreloadPicker> {
         themeColorScheme.onSurface,
         ColorSchemeKeys.onSurface,
       ),
+      surfaceDim: _useColorByExclude(
+        widget.current.surfaceDim,
+        themeColorScheme.surfaceDim,
+        ColorSchemeKeys.surfaceDim,
+      ),
+      surfaceBright: _useColorByExclude(
+        widget.current.surfaceBright,
+        themeColorScheme.surfaceBright,
+        ColorSchemeKeys.surfaceBright,
+      ),
+      surfaceContainerLowest: _useColorByExclude(
+        widget.current.surfaceContainerLowest,
+        themeColorScheme.surfaceContainerLowest,
+        ColorSchemeKeys.surfaceContainerLowest,
+      ),
+      surfaceContainerLow: _useColorByExclude(
+        widget.current.surfaceContainerLow,
+        themeColorScheme.surfaceContainerLow,
+        ColorSchemeKeys.surfaceContainerLow,
+      ),
+      surfaceContainer: _useColorByExclude(
+        widget.current.surfaceContainer,
+        themeColorScheme.surfaceContainer,
+        ColorSchemeKeys.surfaceContainer,
+      ),
+      surfaceContainerHigh: _useColorByExclude(
+        widget.current.surfaceContainerHigh,
+        themeColorScheme.surfaceContainerHigh,
+        ColorSchemeKeys.surfaceContainerHigh,
+      ),
+      surfaceContainerHighest: _useColorByExclude(
+        widget.current.surfaceContainerHighest,
+        themeColorScheme.surfaceContainerHighest,
+        ColorSchemeKeys.surfaceContainerHighest,
+      ),
+      onSurfaceVariant: _useColorByExclude(
+        widget.current.onSurfaceVariant,
+        themeColorScheme.onSurfaceVariant,
+        ColorSchemeKeys.onSurfaceVariant,
+      ),
+      inverseSurface: _useColorByExclude(
+        widget.current.inverseSurface,
+        themeColorScheme.inverseSurface,
+        ColorSchemeKeys.inverseSurface,
+      ),
+      inversePrimary: _useColorByExclude(
+        widget.current.inversePrimary,
+        themeColorScheme.inversePrimary,
+        ColorSchemeKeys.inversePrimary,
+      ),
+      shadow: _useColorByExclude(
+        widget.current.shadow,
+        themeColorScheme.shadow,
+        ColorSchemeKeys.shadow,
+      ),
+      scrim: _useColorByExclude(
+        widget.current.scrim,
+        themeColorScheme.scrim,
+        ColorSchemeKeys.scrim,
+      ),
+      surfaceTint: _useColorByExclude(
+        widget.current.surfaceTint,
+        themeColorScheme.surfaceTint,
+        ColorSchemeKeys.surfaceTint,
+      ),
     );
+
     return scheme;
   }
 

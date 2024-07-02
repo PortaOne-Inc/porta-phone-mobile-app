@@ -187,24 +187,60 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       ],
                     ),
                     const SizedBox(height: _marginBetweenComponent),
-                    ColorField(
-                      title: context.l10n.configurator_color_secondary,
-                      color: state.theme?.colors?.secondary,
-                      onTap: (color) async => _selectColor(
-                        context,
-                        color,
-                        (color) => bloc.add(UpdateColorSchemeEvent.secondary(color)),
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_primary_container,
+                            color: state.theme?.colors?.primaryContainer,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.primaryContainer(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_on_primary_container,
+                            color: state.theme?.colors?.onPrimaryContainer,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onPrimaryContainer(color)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: _marginBetweenComponent),
-                    ColorField(
-                      title: context.l10n.configurator_color_outline,
-                      color: state.theme?.colors?.outline,
-                      onTap: (color) async => _selectColor(
-                        context,
-                        color,
-                        (color) => bloc.add(UpdateColorSchemeEvent.outline(color)),
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_secondary,
+                            color: state.theme?.colors?.secondary,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.secondary(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_on_secondary,
+                            color: state.theme?.colors?.onSecondary,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onSecondary(color)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: _marginBetweenComponent),
                     Row(
@@ -251,12 +287,12 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
-                            title: context.l10n.configurator_color_error,
-                            color: state.theme?.colors?.error,
+                            title: context.l10n.configurator_color_on_tertiary,
+                            color: state.theme?.colors?.onTertiary,
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.add(UpdateColorSchemeEvent.error(color)),
+                              (color) => bloc.add(UpdateColorSchemeEvent.onTertiary(color)),
                             ),
                           ),
                         ),
@@ -267,24 +303,108 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       children: [
                         Expanded(
                           child: ColorField(
-                            title: context.l10n.configurator_color_background,
-                            color: state.theme?.colors?.background,
+                            title: context.l10n.configurator_color_tertiary_container,
+                            color: state.theme?.colors?.tertiaryContainer,
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.add(UpdateColorSchemeEvent.background(color)),
+                              (color) => bloc.add(UpdateColorSchemeEvent.tertiaryContainer(color)),
                             ),
                           ),
                         ),
                         const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
-                            title: context.l10n.feature_theme_edit_Color_on_background,
-                            color: state.theme?.colors?.onBackground,
+                            title: context.l10n.configurator_color_on_tertiary_container,
+                            color: state.theme?.colors?.onTertiaryContainer,
                             onTap: (color) async => _selectColor(
                               context,
                               color,
-                              (color) => bloc.add(UpdateColorSchemeEvent.onBackground(color)),
+                              (color) => bloc.add(UpdateColorSchemeEvent.onTertiaryContainer(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_error,
+                            color: state.theme?.colors?.error,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.error(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_on_error,
+                            color: state.theme?.colors?.onError,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onError(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: "context.l10n.configurator_color_error_container",
+                            color: state.theme?.colors?.errorContainer,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.errorContainer(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: "context.l10n.configurator_color_on_error_container",
+                            color: state.theme?.colors?.onErrorContainer,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onErrorContainer(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_outline,
+                            color: state.theme?.colors?.outline,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.outline(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_outline_variant,
+                            color: state.theme?.colors?.outlineVariant,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.outlineVariant(color)),
                             ),
                           ),
                         ),
@@ -319,23 +439,207 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       ],
                     ),
                     const SizedBox(height: _marginBetweenComponent),
-                    GradientField(
-                      title: context.l10n.configurator_color_gradient_tab,
-                      colors: state.theme?.colorGradientCollection ?? [],
-                      onAddColor: (colors) async => _addGradientColor(
-                        context,
-                        colors,
-                        (colors) => bloc.add(UpdateColorSchemeEvent.gradientTab(colors)),
-                      ),
-                      onRemoveColor: (color) {
-                        bloc.add(UpdateColorSchemeEvent.gradientTab(
-                          (state.theme?.colorGradientCollection ?? [])
-                              .where(
-                                (element) => element != color,
-                              )
-                              .toList(),
-                        ));
-                      },
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_dim,
+                            color: state.theme?.colors?.surfaceDim,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceDim(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_bright,
+                            color: state.theme?.colors?.surfaceBright,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceBright(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_container_lowest,
+                            color: state.theme?.colors?.surfaceContainerLowest,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceContainerLowest(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_container_low,
+                            color: state.theme?.colors?.surfaceContainerLow,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceContainerLow(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_container,
+                            color: state.theme?.colors?.surfaceContainer,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceContainer(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_container_high,
+                            color: state.theme?.colors?.surfaceContainerHigh,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceContainerHigh(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_container_highest,
+                            color: state.theme?.colors?.surfaceContainerHighest,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceContainerHighest(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_on_surface_variant,
+                            color: state.theme?.colors?.onSurfaceVariant,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.onSurfaceVariant(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_inverse_surface,
+                            color: state.theme?.colors?.inverseSurface,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.inverseSurface(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_inverse_primary,
+                            color: state.theme?.colors?.inversePrimary,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.inversePrimary(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_shadow,
+                            color: state.theme?.colors?.shadow,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.shadow(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_scrim,
+                            color: state.theme?.colors?.scrim,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.scrim(color)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: _marginBetweenComponent),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ColorField(
+                            title: context.l10n.configurator_color_surface_tint,
+                            color: state.theme?.colors?.surfaceTint,
+                            onTap: (color) async => _selectColor(
+                              context,
+                              color,
+                              (color) => bloc.add(UpdateColorSchemeEvent.surfaceTint(color)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: _marginBetweenComponent),
+                        // Expanded(
+                        //   child: ColorField(
+                        //     title: context.l10n.configurator_color_gradient_tab,
+                        //     colors: state.theme?.colorGradientCollection ?? [],
+                        //     onAddColor: (colors) async => _addGradientColor(
+                        //       context,
+                        //       colors,
+                        //       (colors) => bloc.add(UpdateColorSchemeEvent.gradientTab(colors)),
+                        //     ),
+                        //     onRemoveColor: (color) {
+                        //       bloc.add(UpdateColorSchemeEvent.gradientTab(
+                        //         (state.theme?.colorGradientCollection ?? [])
+                        //             .where((element) => element != color)
+                        //             .toList(),
+                        //       ));
+                        //     },
+                        //   ),
+                        // ),
+                      ],
                     ),
                     const SizedBox(height: _marginBetweenComponent * 3),
                     Row(
@@ -349,9 +653,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             margin: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               border: Border.all(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.4)),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(24),
-                              ),
+                              borderRadius: const BorderRadius.all(Radius.circular(24)),
                             ),
                             child: Icon(
                               Icons.info_outline,

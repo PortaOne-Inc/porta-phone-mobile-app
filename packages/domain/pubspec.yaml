@@ -5,14 +5,12 @@ publish_to: none
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
-  flutter: ^3.19.0
 
 dependencies:
   injectable: ^2.4.1
   get_it: ^7.7.0
   freezed_annotation: ^2.4.1
   freezed: ^2.5.2
-  material_color_utilities: ^0.8.0
   data:
     path: ../data
   dto:
@@ -21,10 +19,8 @@ dependencies:
       ref: main
       path: packages/dto
 
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+dependency_overrides:
+  material_color_utilities: 0.12.0
 
   webtrit_analysis:
     git: https://github.com/WebTrit/webtrit_analysis.git
@@ -33,6 +29,3 @@ dev_dependencies:
   injectable_generator: ^2.6.1
   build_runner_core: ^7.3.0
   build_runner: ^2.4.9
-
-flutter:
-  generate: true
