@@ -18,53 +18,87 @@ class ColorField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      child: GestureDetector(
-        child: Card(
-          margin: margin,
-          elevation: 1,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          title,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          color == null ? '' : color!.toHex(),
-                          style: Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 4),
-                  ],
-                ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+    return GestureDetector(
+      onTap: () => onTap?.call(color ?? Colors.white),
+      child: Card(
+        margin: margin,
+        elevation: 1,
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _TitleAndColorText(title: title, color: color),
+              _ColorIndicator(color: color),
+            ],
           ),
         ),
-        onTap: () => onTap?.call(color ?? Colors.white),
       ),
+    );
+  }
+}
+
+class _TitleAndColorText extends StatelessWidget {
+  const _TitleAndColorText({
+    required this.title,
+    required this.color,
+  });
+
+  final String title;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          color != null ? color!.toHex() : 'The color is not defined.',
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: color != null ? colorScheme.onPrimaryContainer : colorScheme.error,
+              ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ColorIndicator extends StatelessWidget {
+  const _ColorIndicator({
+    required this.color,
+  });
+
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: color ?? Colors.transparent,
+        border: Border.all(color: color == null ? colorScheme.error : colorScheme.onPrimaryContainer, width: 0.5),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: color == null
+          ? Center(
+              child: Icon(
+                Icons.info,
+                color: colorScheme.error,
+                size: 24,
+              ),
+            )
+          : null,
     );
   }
 }
