@@ -359,7 +359,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                       children: [
                         Expanded(
                           child: ColorField(
-                            title: "context.l10n.configurator_color_error_container",
+                            title: context.l10n.configurator_color_error_container,
                             color: state.theme?.colors?.errorContainer,
                             onTap: (color) async => _selectColor(
                               context,
@@ -371,7 +371,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         const SizedBox(width: _marginBetweenComponent),
                         Expanded(
                           child: ColorField(
-                            title: "context.l10n.configurator_color_on_error_container",
+                            title: context.l10n.configurator_color_on_error_container,
                             color: state.theme?.colors?.onErrorContainer,
                             onTap: (color) async => _selectColor(
                               context,
@@ -620,25 +620,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                             ),
                           ),
                         ),
-                        const SizedBox(width: _marginBetweenComponent),
-                        // Expanded(
-                        //   child: ColorField(
-                        //     title: context.l10n.configurator_color_gradient_tab,
-                        //     colors: state.theme?.colorGradientCollection ?? [],
-                        //     onAddColor: (colors) async => _addGradientColor(
-                        //       context,
-                        //       colors,
-                        //       (colors) => bloc.add(UpdateColorSchemeEvent.gradientTab(colors)),
-                        //     ),
-                        //     onRemoveColor: (color) {
-                        //       bloc.add(UpdateColorSchemeEvent.gradientTab(
-                        //         (state.theme?.colorGradientCollection ?? [])
-                        //             .where((element) => element != color)
-                        //             .toList(),
-                        //       ));
-                        //     },
-                        //   ),
-                        // ),
                       ],
                     ),
                     const SizedBox(height: _marginBetweenComponent * 3),

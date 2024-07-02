@@ -61,6 +61,8 @@
   "configurator_color_on_tertiary_container": "On Tertiary Container",
   "configurator_color_error": "Error",
   "configurator_color_on_error": "On Error",
+  "configurator_color_error_container": "Error container",
+  "configurator_color_on_error_container": "On Error Error",
   "configurator_color_outline": "Outline",
   "configurator_color_outline_variant": "Outline Variant",
   "configurator_color_background": "Background",
