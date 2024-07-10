@@ -2,17 +2,19 @@ import 'dart:convert';
 
 import 'package:domain/domain.dart';
 
-import 'package:data/data/data.dart';
+import 'package:data/datasource/datasource.dart';
 
 import 'package:injectable/injectable.dart';
+
+import '../dto/dto.dart';
 
 @Injectable(as: DeploymentRepository)
 class DeploymentRepositoryImpl extends DeploymentRepository {
   DeploymentRepositoryImpl({
-    required this.githubDatasource,
+    required this.configuratorBackandDatasource,
   });
 
-  final GithubDatasource githubDatasource;
+  final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
   @override
   Future<void> deploy({
@@ -27,7 +29,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
 
     final androidPlayStoreConfig = jsonEncode(_mapAndroidPlayStoreConfigToJson(android?.playStoreConfig));
 
-    return githubDatasource.deployBuilds(
+    final deployApplication = DeployApplicationDto(
       applicationId: applicationId,
       platforms: deployPlatform,
       type: deployFlow,
@@ -37,6 +39,8 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       callkeepSourceBranch: branches.callkeepSourceBranch,
       commonDependencySourceBranch: branches.commonDependencySourceBranch,
     );
+
+    return configuratorBackandDatasource.deployBuilds(deployApplication);
   }
 
   String _getDeployPlatform(AndroidBuildPlatform? android, IOSBuildPlatform? ios) {

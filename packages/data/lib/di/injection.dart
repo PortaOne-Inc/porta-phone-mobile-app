@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:data/data/interceptors/interceptors.dart';
+import 'package:data/datasource/datasource.dart';
 
 @InjectableInit.microPackage()
 void initMicroPackage() {}
@@ -11,25 +11,18 @@ void initMicroPackage() {}
 @module
 abstract class RegisterModule {
   @LazySingleton()
-  FirebaseAuth auth() => FirebaseAuth.instance;
-
-  @LazySingleton()
   FirebaseStorage storage() => FirebaseStorage.instance;
 
-  @LazySingleton()
-  Dio dio() => Dio()
-    ..interceptors.addAll([
-      FirebaseAuthInterceptor(auth()),
-      LoggingInterceptor(),
-    ]);
+  @preResolve
+  Future<SharedPreferences> prefs() => SharedPreferences.getInstance();
 
-  @Named('github_client')
   @LazySingleton()
-  Dio githubClient(@Named('newBaseUrl') String baseUrl) {
+  Dio serverApiClient(@Named('newBaseUrl') String baseUrl, AuthPrefDatasource authPref) {
     final option = BaseOptions(baseUrl: baseUrl);
 
     return Dio(option)
       ..interceptors.addAll([
+        AuthInterceptor(authPref),
         LoggingInterceptor(),
       ]);
   }

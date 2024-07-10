@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 
 import 'package:dto/dto.dart';
-import 'package:data/data/data.dart';
+
 import 'package:domain/exception/exception.dart';
 import 'package:domain/repository/repository.dart';
+
+import 'package:data/datasource/datasource.dart';
 
 import 'package:injectable/injectable.dart';
 
@@ -12,15 +14,15 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {
   ApplicationRepositoryImpl({
-    required this.httpDatasource,
+    required this.configuratorBackandDatasource,
   });
 
-  final HttpDatasource httpDatasource;
+  final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
   @override
   Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO) async {
     try {
-      return await httpDatasource.createApplications(applicationDTO);
+      return await configuratorBackandDatasource.createApplications(applicationDTO);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -31,7 +33,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<List<ApplicationDTO>> getUserApplications() async {
     try {
-      return await httpDatasource.getApplications();
+      return await configuratorBackandDatasource.getApplications();
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -42,7 +44,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<void> deleteApplication(String applicationId) async {
     try {
-      return await httpDatasource.deleteApplications(applicationId);
+      return await configuratorBackandDatasource.deleteApplications(applicationId);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -53,7 +55,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
     try {
-      return await httpDatasource.updateApplications(applicationId, applicationDTO);
+      return await configuratorBackandDatasource.updateApplications(applicationId, applicationDTO);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -64,7 +66,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationDTO> getApplication(String id) async {
     try {
-      return await httpDatasource.getApplication(id);
+      return await configuratorBackandDatasource.getApplication(id);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -75,7 +77,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationDTO> incApplicationVersion(String applicationId) async {
     try {
-      return await httpDatasource.incApplicationVersion(applicationId);
+      return await configuratorBackandDatasource.incApplicationVersion(applicationId);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {

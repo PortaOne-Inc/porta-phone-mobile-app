@@ -17,10 +17,11 @@ dependencies:
   json_annotation: ^4.8.1
   freezed: ^2.5.2
   firebase_core: ^2.26.0
-  firebase_auth: ^4.17.0
   firebase_storage: ^11.6.5
   dio: ^5.4.3+1
   logger: ^2.3.0
+  shared_preferences: ^2.2.3
+  jwt_decoder: ^2.0.1
 
   domain:
     path: ../domain

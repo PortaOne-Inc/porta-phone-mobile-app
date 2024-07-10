@@ -1,72 +1,63 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
-import 'package:data/data/data.dart';
-import 'package:domain/exception/exception.dart';
-import 'package:domain/repository/repository.dart';
+import 'package:data/dto/auth/auth.dart';
+
+import 'package:domain/domain.dart';
+
+import 'package:data/datasource/datasource.dart';
 
 // TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
 // TODO(DMITRO): The domain layer should be aware of DTOs
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository {
   AuthRepositoryImpl({
-    required this.datasource,
+    required this.configuratorBackandDatasource,
+    required this.authPrefDataSource,
+    required this.userPrefDataSource,
   });
 
-  static const String _exceptionCodeNoUser = 'user-not-found';
-  static const String _exceptionCodeWrongPassword = 'wrong-password';
-
-  final AuthFirebaseData datasource;
+  final AuthPrefDatasource authPrefDataSource;
+  final UserPrefDatasource userPrefDataSource;
+  final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
   @override
-  Future<void> login(String email, String password) async {
-    try {
-      await _tryLogin(email, password);
-    } on FirebaseAuthException catch (e) {
-      _handleFirebaseAuthException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
+  Future<String> login(String email, String password) async {
+    final authResponse = await configuratorBackandDatasource.login(LoginCredentials(email: email, password: password));
+
+    final jwtToken = authResponse.token;
+    final jwtPayload = JwtPayload.fromJson(JwtDecoder.decode(jwtToken));
+
+    await authPrefDataSource.saveAuthToken(jwtToken, jwtPayload.exp);
+    await userPrefDataSource.saveUserId(jwtPayload.userId);
+    await userPrefDataSource.saveEmail(jwtPayload.email);
+
+    return jwtToken;
   }
 
   @override
   Future<void> logout() async {
     try {
-      return await datasource.logout();
-    } on FirebaseAuthException catch (e) {
-      _handleFirebaseAuthException(e);
+      return await authPrefDataSource.clean();
     } catch (e) {
       throw BaseException(message: e.toString());
     }
   }
 
-  void _handleFirebaseAuthException(FirebaseAuthException? e) {
-    switch (e?.code) {
-      case _exceptionCodeNoUser:
-        throw AuthUserNotFountException();
-      case _exceptionCodeWrongPassword:
-        throw AuthUserNotFountException();
-    }
-
-    throw BaseException(message: e.toString());
-  }
-
   @override
   Future<String?> getUserUID() async {
-    return datasource.getUID();
-  }
-
-  Future<UserCredential> _tryLogin(String email, String password) async {
-    return datasource.checkCredential(email, password);
+    // TODO(Serdun): remove this method
+    return userPrefDataSource.getUserId();
   }
 
   @override
   Future<bool> isUserAuthorized() {
-    return datasource.isAuthorized();
+    return Future.value(authPrefDataSource.isAuthTokenExist());
   }
 
   @override
   Future<void> reset(String email) {
-    return datasource.reset(email);
+    // TODO(Serdun): implement method
+    return Future.value();
   }
 }
