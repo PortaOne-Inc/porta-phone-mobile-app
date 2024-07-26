@@ -17,48 +17,59 @@ import {localizely_api_key, localizely_download_url} from '../../../config/local
 export default class TranslationsRepository implements ITranslationsRepository {
     private appsCollection = database.collection('applications');
 
-    async composeArb(appId: string) {
-        const appOverrides = await this.getOverridesByAppId(appId);
+async composeArb(appId: string) {
+    const appOverrides = await this.getOverridesByAppId(appId);
 
-        const response = await axios({
-            url: localizely_download_url + '?type=flutter_arb&export_empty_as=empty',
-            headers: {'X-Api-Token': localizely_api_key, 'accept-encoding': 'gzip,deflate'},
-            method: 'GET',
-            responseType: 'stream',
-        });
+    const response = await axios({
+        url: localizely_download_url + '?type=flutter_arb&export_empty_as=empty',
+        headers: {'X-Api-Token': localizely_api_key, 'accept-encoding': 'gzip,deflate'},
+        method: 'GET',
+        responseType: 'stream',
+    });
 
-        const zipStream = response.data as NodeJS.ReadableStream;
-        const filesStream = zipStream.pipe(unzipper.Parse({forceStream: true}));
+    const zipStream = response.data as NodeJS.ReadableStream;
+    const filesStream = zipStream.pipe(unzipper.Parse({forceStream: true}));
 
-        const responseZipStream = archiver('zip');
+    const responseZipStream = archiver('zip');
 
-        for await (let entry of filesStream) {
-            const file = entry as unzipper.Entry;
-            const filename = file.path;
-            const data = (await file.buffer()).toString();
-            const json = JSON.parse(data) as { [key: string]: string };
-            const locale = filename.split('.')[0].split('_')[1];
-            console.log(`Processing file: ${filename}, locale: ${locale}`);
+    for await (let entry of filesStream) {
+        const file = entry as unzipper.Entry;
+        const filename = file.path;
+        const data = (await file.buffer()).toString();
+        const json = JSON.parse(data) as { [key: string]: string };
+        const locale = filename.split('.')[0].split('_')[1];
+        console.log(`Processing file: ${filename}, locale: ${locale}`);
+        console.log(`Json: ${JSON.stringify(json, null, 2)}`);
 
-            for (const override of appOverrides) {
-                const prefixedKey = `${locale}_${override.key}`;
-                console.log(`Checking override: ${prefixedKey}`);
-                if (locale === override.locale) {
-                    if (json[prefixedKey]) {
-                        json[prefixedKey] = override.value;
-                        console.log(`Updated key: ${prefixedKey} with value: ${override.value}`);
-                    } else {
-                        console.log(`Key not found in JSON: ${prefixedKey}`);
-                    }
+        for (const override of appOverrides) {
+            const prefixedKey = `${locale}_${override.key}`;
+            console.log(`Checking override: ${override.key}`);
+
+            console.log(`Prefixed key: ${prefixedKey}`);
+            console.log(`Locale: ${locale} Override locale: ${override.locale}`);
+            console.log(`Override key: ${override.key}`);
+            console.log(`Override value: ${override.value}`);
+
+            if (locale === override.locale) {
+                console.log(`Locale found`);
+
+                // Enhanced logging for debugging
+                if (json.hasOwnProperty(override.key)) {
+                    json[override.key] = override.value;
+                    console.log(`Updated key: ${override.key} with value: ${override.value}`);
+                } else {
+                    console.log(`Key not found in JSON: ${override.key}`);
+                    console.log(`Available keys in JSON: ${Object.keys(json).join(', ')}`);
                 }
             }
-
-            responseZipStream.append(JSON.stringify(json), {name: locale + '.arb'});
         }
 
-        responseZipStream.finalize();
-        return responseZipStream;
+        responseZipStream.append(JSON.stringify(json), { name: `${locale}.arb` });
     }
+
+    responseZipStream.finalize();
+    return responseZipStream;
+}
 
     async getTranslations() {
         const response = await axios({
