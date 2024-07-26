@@ -1,114 +1,120 @@
 import 'reflect-metadata';
 
-import { injectable } from 'inversify';
+import {injectable} from 'inversify';
 import axios from 'axios';
 import * as unzipper from 'unzipper';
 import * as archiver from 'archiver';
 
 import ITranslationsRepository from './translations.repository.interface';
-import { Translation } from '../../../core/models/translation';
-import { database } from '../../../config/firebase';
-import { localizely_api_key, localizely_download_url } from '../../../config/localizely';
+import {Translation} from '../../../core/models/translation';
+import {database} from '../../../config/firebase';
+import {localizely_api_key, localizely_download_url} from '../../../config/localizely';
 
 
 // TODO: split by source, move logic to service
 
 @injectable()
 export default class TranslationsRepository implements ITranslationsRepository {
-	private appsCollection = database.collection('applications');
+    private appsCollection = database.collection('applications');
 
-	async composeArb(appId: string) {
-		const appOverrides = await this.getOverridesByAppId(appId);
+    async composeArb(appId: string) {
+        const appOverrides = await this.getOverridesByAppId(appId);
 
-		const response = await axios({
-			url: localizely_download_url + '?type=flutter_arb&export_empty_as=empty',
-			headers: { 'X-Api-Token': localizely_api_key, 'accept-encoding': 'gzip,deflate' },
-			method: 'GET',
-			responseType: 'stream',
-		})
+        const response = await axios({
+            url: localizely_download_url + '?type=flutter_arb&export_empty_as=empty',
+            headers: {'X-Api-Token': localizely_api_key, 'accept-encoding': 'gzip,deflate'},
+            method: 'GET',
+            responseType: 'stream',
+        });
 
-		const zipStream = response.data as NodeJS.ReadableStream;
-		const filesStream = zipStream.pipe(unzipper.Parse({ forceStream: true }));
+        const zipStream = response.data as NodeJS.ReadableStream;
+        const filesStream = zipStream.pipe(unzipper.Parse({forceStream: true}));
 
-		const responseZipStream = archiver('zip');
+        const responseZipStream = archiver('zip');
 
-		for await (let entry of filesStream) {
-			const file = entry as unzipper.Entry;
-			const filename = file.path;
-			const data = (await file.buffer()).toString();
-			const json = JSON.parse(data) as { [key: string]: string };
-			const locale = filename.split('.')[0].split('_')[1];
+        for await (let entry of filesStream) {
+            const file = entry as unzipper.Entry;
+            const filename = file.path;
+            const data = (await file.buffer()).toString();
+            const json = JSON.parse(data) as { [key: string]: string };
+            const locale = filename.split('.')[0].split('_')[1];
+            console.log(`Processing file: ${filename}, locale: ${locale}`);
 
-			for (const override of appOverrides) {
-				if(locale === override.locale) {
-					if (json[override.key]) {
-						json[override.key] = override.value;
-					}
-				}
-			}
+            for (const override of appOverrides) {
+                const prefixedKey = `${locale}_${override.key}`;
+                console.log(`Checking override: ${prefixedKey}`);
+                if (locale === override.locale) {
+                    if (json[prefixedKey]) {
+                        json[prefixedKey] = override.value;
+                        console.log(`Updated key: ${prefixedKey} with value: ${override.value}`);
+                    } else {
+                        console.log(`Key not found in JSON: ${prefixedKey}`);
+                    }
+                }
+            }
 
-			responseZipStream.append(JSON.stringify(json), { name: locale + '.arb' });
-		}
+            responseZipStream.append(JSON.stringify(json), {name: locale + '.arb'});
+        }
 
-		responseZipStream.finalize();
-		return responseZipStream;
-	}
+        responseZipStream.finalize();
+        return responseZipStream;
+    }
 
-	async getTranslations() {
-		const response = await axios({
-			url: localizely_download_url + '?type=json&export_empty_as=empty',
-			headers: { 'X-Api-Token': localizely_api_key },
-			method: 'GET',
-			responseType: 'stream',
-		})
+    async getTranslations() {
+        const response = await axios({
+            url: localizely_download_url + '?type=json&export_empty_as=empty',
+            headers: {'X-Api-Token': localizely_api_key},
+            method: 'GET',
+            responseType: 'stream',
+        })
 
-		let translations: Translation[] = [];
+        let translations: Translation[] = [];
 
-		const zipStream = response.data as NodeJS.ReadableStream;
-		const filesStream = zipStream.pipe(unzipper.Parse({ forceStream: true }));
+        const zipStream = response.data as NodeJS.ReadableStream;
+        const filesStream = zipStream.pipe(unzipper.Parse({forceStream: true}));
 
-		for await (let entry of filesStream) {
-			const file = entry as unzipper.Entry;
-			const filename = file.path;
-			const data = (await file.buffer()).toString();
-			const json = JSON.parse(data) as { [key: string]: string };
-			const locale = filename.split('.')[0];
-			for (const key in json) {
-				const value = json[key];
-				translations.push({ locale, key, value });
-			}
-		}
+        for await (let entry of filesStream) {
+            const file = entry as unzipper.Entry;
+            const filename = file.path;
+            const data = (await file.buffer()).toString();
+            const json = JSON.parse(data) as { [key: string]: string };
+            const locale = filename.split('.')[0];
+            for (const key in json) {
+                const value = json[key];
+                translations.push({locale, key, value});
+            }
+        }
 
-		translations.sort((a, b) => a.key.localeCompare(b.key));
+        translations.sort((a, b) => a.key.localeCompare(b.key));
 
-		return translations;
+        return translations;
 
-	}
+    }
 
-	async getOverridesByAppId(appId: string) {
-		const snapshot = await this.overridesCollection(appId).get();
-		const translations = snapshot.docs.map(doc => doc.data() as Translation);
-		return translations
-	}
+    async getOverridesByAppId(appId: string) {
+        const snapshot = await this.overridesCollection(appId).get();
+        const translations = snapshot.docs.map(doc => doc.data() as Translation);
+        return translations
+    }
 
-	async setOverrideByAppId(appId: string, translation: Translation) {
-		const key = this.compositeKey(translation);
-		await this.overridesCollection(appId).doc(key).set(translation);
-	}
+    async setOverrideByAppId(appId: string, translation: Translation) {
+        const key = this.compositeKey(translation);
+        await this.overridesCollection(appId).doc(key).set(translation);
+    }
 
-	async deleteOverrideByAppId(appId: string, translation: Translation) {
-		const key = this.compositeKey(translation);
-		await this.overridesCollection(appId).doc(key).delete();
-	}
+    async deleteOverrideByAppId(appId: string, translation: Translation) {
+        const key = this.compositeKey(translation);
+        await this.overridesCollection(appId).doc(key).delete();
+    }
 
 
-	private compositeKey(translation: Translation) {
-		return `${translation.locale}_${translation.key}`;
-	}
+    private compositeKey(translation: Translation) {
+        return `${translation.locale}_${translation.key}`;
+    }
 
-	private overridesCollection(appId: string) {
-		return this.appsCollection.doc(appId).collection('translation_overrides');
-	}
+    private overridesCollection(appId: string) {
+        return this.appsCollection.doc(appId).collection('translation_overrides');
+    }
 }
 
 
