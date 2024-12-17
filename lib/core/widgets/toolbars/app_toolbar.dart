@@ -52,6 +52,8 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       height: kToolbarHeight,
       decoration: BoxDecoration(
@@ -60,7 +62,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
           bottomRight: Radius.circular(4),
         ),
         boxShadow: _getBoxShadow(context),
-        color: Theme.of(context).colorScheme.inversePrimary,
+        color: colorScheme.primaryContainer,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -25,9 +25,11 @@ class MenuPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return MenuSpace(
       isTopPosition: true,
-      background: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
+      background: colorScheme.surfaceDim.withOpacity(0.2),
       children: [
         Dropdown(
           constraints: const BoxConstraints(maxWidth: 224),

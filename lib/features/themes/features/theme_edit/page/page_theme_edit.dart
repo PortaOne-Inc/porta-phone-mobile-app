@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
@@ -13,7 +11,6 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/configurator_cubit.dart';
 import '../model/models.dart';
-import '../widgets/widgets.dart';
 
 import 'page_theme_preview.dart';
 import 'page_theme_property.dart';
@@ -82,22 +79,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _openTemplates(ThemeModel themeModel) {
-    _leftPageNavigatorKey.currentState?.push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return Center(
-            child: PreloadPicker(
-              current: themeModel.colors!,
-              onDeclineColor: () => Navigator.of(context).pop(),
-              onSelect: (scheme) => BlocProvider.of<ThemePropertyCubit>(context).add(ReplaceColorSchemeEvent(scheme)),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   void _listenSynchronizeState(BuildContext context, ThemePropertyState state) {
     if (state.isHasError) {
       if (state.error is ThemeIsNotValidException) {
@@ -131,8 +112,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   void _onMenuThemeSelect(BuildContext context, ApplicationEditTheme profile) {
     final bloc = BlocProvider.of<ThemePropertyCubit>(context);
     switch (profile) {
-      case ApplicationEditTheme.templates:
-        _openTemplates(bloc.state.theme!);
       case ApplicationEditTheme.preview:
         GoRouter.of(context).goNamed(
           AppRoutInfo.themesPreview.name,

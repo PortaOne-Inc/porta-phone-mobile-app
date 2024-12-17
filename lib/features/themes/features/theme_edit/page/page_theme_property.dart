@@ -25,6 +25,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final bloc = context.read<ThemePropertyCubit>();
 
     return BlocBuilder<ThemePropertyCubit, ThemePropertyState>(
@@ -760,7 +761,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                               Container(
                                 height: 16,
                                 width: 1,
-                                color: Theme.of(context).colorScheme.onBackground,
+                                color: colorScheme.surface,
                               ),
                               PropertyIconTextButton(
                                 text: 'Remove all assets',

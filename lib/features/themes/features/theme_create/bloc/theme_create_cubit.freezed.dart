@@ -22,7 +22,9 @@ mixin _$ThemeCreateState {
   Color? get seedColor => throw _privateConstructorUsedError;
   BaseException? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ThemeCreateStateCopyWith<ThemeCreateState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +55,8 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +90,8 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
     ) as $Val);
   }
 
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get themeModel {
@@ -128,6 +134,8 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
       $Res Function(_$ThemeCreateStateInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -207,7 +215,9 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   int get hashCode =>
       Object.hash(runtimeType, status, themeModel, nameInput, seedColor, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ThemeCreateStateInitialImplCopyWith<_$ThemeCreateStateInitialImpl>
@@ -233,8 +243,11 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
   Color? get seedColor;
   @override
   BaseException? get error;
+
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ThemeCreateStateInitialImplCopyWith<_$ThemeCreateStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

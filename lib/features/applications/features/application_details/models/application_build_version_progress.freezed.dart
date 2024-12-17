@@ -21,7 +21,9 @@ mixin _$ApplicationBuildVersionProgress {
   List<BuildPlatform> get progressNumberUpdating =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationBuildVersionProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationBuildVersionProgressCopyWith<ApplicationBuildVersionProgress>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -50,6 +52,8 @@ class _$ApplicationBuildVersionProgressCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationBuildVersionProgress
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$ApplicationBuildVersionProgressImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationBuildVersionProgressImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationBuildVersionProgress
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,7 +169,9 @@ class _$ApplicationBuildVersionProgressImpl
       const DeepCollectionEquality().hash(_progressNameUpdating),
       const DeepCollectionEquality().hash(_progressNumberUpdating));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationBuildVersionProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationBuildVersionProgressImplCopyWith<
@@ -184,8 +192,11 @@ abstract class _ApplicationBuildVersionProgress
   List<BuildPlatform> get progressNameUpdating;
   @override
   List<BuildPlatform> get progressNumberUpdating;
+
+  /// Create a copy of ApplicationBuildVersionProgress
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationBuildVersionProgressImplCopyWith<
           _$ApplicationBuildVersionProgressImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -41,7 +41,7 @@ class _UpdaterChooserButtonState extends State<UpdaterChooserButton> {
         SizedBox(
           height: 32,
           child: DropdownButton<String>(
-            focusColor: colorScheme.background,
+            focusColor: colorScheme.surface,
             icon: const Icon(Icons.arrow_drop_down_outlined),
             value: _currentSelect,
             elevation: 1,

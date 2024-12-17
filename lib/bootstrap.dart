@@ -10,6 +10,8 @@ import 'package:get_it/get_it.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/di/di.dart';
 
+import 'data/data.dart';
+
 Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
   await runZonedGuarded(
     () async {
@@ -18,8 +20,9 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
 
       final diContainer = await configureDependencies();
 
+      diContainer.registerSingleton(await AppThemes.init());
+
       await Firebase.initializeApp(options: ApplicationEnvironment.firebaseOptions);
-      // await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
 
       return runApp(await builder(diContainer));
     },

@@ -31,6 +31,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textScheme = Theme.of(context).textTheme;
+
     return BlocConsumer<ThemeCreateCubit, ThemeCreateState>(
       listener: (BuildContext context, ThemeCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
@@ -120,7 +121,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                               if (state.seedColor == null)
                                 Container(
                                   decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.surfaceVariant,
+                                      color: colorScheme.surfaceContainer,
                                       borderRadius: const BorderRadius.all(Radius.circular(4))),
                                   width: double.infinity,
                                   height: 56,
@@ -183,8 +184,9 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                                         height: double.infinity,
                                         width: 56,
                                         decoration: BoxDecoration(
-                                            color: Theme.of(context).colorScheme.surfaceVariant,
-                                            borderRadius: const BorderRadius.all(Radius.circular(4))),
+                                          color: Theme.of(context).colorScheme.surfaceContainer,
+                                          borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                        ),
                                         child: GestureDetector(
                                           child: Icon(
                                             Icons.remove_circle_outlined,

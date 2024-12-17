@@ -21,7 +21,9 @@ mixin _$ThemePreviewState {
   ThemeModel? get theme => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ThemePreviewStateCopyWith<ThemePreviewState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +54,8 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +84,8 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
     ) as $Val);
   }
 
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get applicationModel {
@@ -92,6 +98,8 @@ class _$ThemePreviewStateCopyWithImpl<$Res, $Val extends ThemePreviewState>
     });
   }
 
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get theme {
@@ -133,6 +141,8 @@ class __$$ThemePreviewStateImplCopyWithImpl<$Res>
       $Res Function(_$ThemePreviewStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,7 +208,9 @@ class _$ThemePreviewStateImpl implements _ThemePreviewState {
   int get hashCode =>
       Object.hash(runtimeType, status, applicationModel, theme, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ThemePreviewStateImplCopyWith<_$ThemePreviewStateImpl> get copyWith =>
@@ -221,8 +233,11 @@ abstract class _ThemePreviewState implements ThemePreviewState {
   ThemeModel? get theme;
   @override
   Exception? get error;
+
+  /// Create a copy of ThemePreviewState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ThemePreviewStateImplCopyWith<_$ThemePreviewStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

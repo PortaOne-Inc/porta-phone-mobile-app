@@ -7,15 +7,19 @@ class ItemOfListButton extends StatelessWidget {
     required this.onTab,
     super.key,
   });
+
   final String name;
   final String description;
   final void Function() onTab;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
       margin: EdgeInsets.zero,
-      color: Theme.of(context).colorScheme.primary,
+      color: colorScheme.primary,
       child: InkWell(
         onTap: onTab,
         child: Padding(
@@ -26,10 +30,10 @@ class ItemOfListButton extends StatelessWidget {
               Text(
                 name,
                 textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.background,
-                    ),
+                style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: colorScheme.surface,
+                ),
                 overflow: TextOverflow.fade,
               ),
               const SizedBox(
@@ -41,16 +45,16 @@ class ItemOfListButton extends StatelessWidget {
                     description,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).colorScheme.background.withOpacity(0.75),
-                        ),
+                    style: textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: colorScheme.surface.withOpacity(0.75),
+                    ),
                   ),
                 ),
               ),
               Divider(
                 height: 0,
-                color: Theme.of(context).colorScheme.background.withOpacity(0.5),
+                color: colorScheme.surface.withOpacity(0.5),
               ),
               const SizedBox(
                 height: 8,
@@ -61,15 +65,15 @@ class ItemOfListButton extends StatelessWidget {
                   children: [
                     Text(
                       'Create',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.background,
-                          ),
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.surface,
+                      ),
                     ),
                     const Spacer(),
                     Icon(
                       Icons.arrow_right_alt_outlined,
-                      color: Theme.of(context).colorScheme.background,
+                      color: colorScheme.surface,
                     ),
                   ],
                 ),

@@ -75,7 +75,9 @@ mixin _$ResetPasswordState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResetPasswordStateCopyWith<ResetPasswordState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -99,6 +101,8 @@ class _$ResetPasswordStateCopyWithImpl<$Res, $Val extends ResetPasswordState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,6 +136,8 @@ class __$$ResetPasswordStateImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -171,7 +177,9 @@ class _$ResetPasswordStateImpl implements _ResetPasswordState {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordStateImplCopyWith<_$ResetPasswordStateImpl> get copyWith =>
@@ -266,8 +274,11 @@ abstract class _ResetPasswordState implements ResetPasswordState {
 
   @override
   AuthEmailInput? get emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordStateImplCopyWith<_$ResetPasswordStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -294,6 +305,8 @@ class __$$ResetPasswordStateProgressImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordStateProgressImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -333,7 +346,9 @@ class _$ResetPasswordStateProgressImpl implements ResetPasswordStateProgress {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordStateProgressImplCopyWith<_$ResetPasswordStateProgressImpl>
@@ -428,8 +443,11 @@ abstract class ResetPasswordStateProgress implements ResetPasswordState {
 
   @override
   AuthEmailInput? get emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordStateProgressImplCopyWith<_$ResetPasswordStateProgressImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -456,6 +474,8 @@ class __$$ResetPasswordStateSuccessImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordStateSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -495,7 +515,9 @@ class _$ResetPasswordStateSuccessImpl implements ResetPasswordStateSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordStateSuccessImplCopyWith<_$ResetPasswordStateSuccessImpl>
@@ -590,8 +612,11 @@ abstract class ResetPasswordStateSuccess implements ResetPasswordState {
 
   @override
   AuthEmailInput? get emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordStateSuccessImplCopyWith<_$ResetPasswordStateSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -618,6 +643,8 @@ class __$$ResetPasswordStateValidationImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordStateValidationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -658,7 +685,9 @@ class _$ResetPasswordStateValidationImpl
   @override
   int get hashCode => Object.hash(runtimeType, emailInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordStateValidationImplCopyWith<
@@ -754,8 +783,11 @@ abstract class ResetPasswordStateValidation implements ResetPasswordState {
 
   @override
   AuthEmailInput? get emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordStateValidationImplCopyWith<
           _$ResetPasswordStateValidationImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -783,6 +815,8 @@ class __$$ResetPasswordStateErrorImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -830,7 +864,9 @@ class _$ResetPasswordStateErrorImpl implements ResetPasswordStateError {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordStateErrorImplCopyWith<_$ResetPasswordStateErrorImpl>
@@ -927,8 +963,11 @@ abstract class ResetPasswordStateError implements ResetPasswordState {
   @override
   AuthEmailInput? get emailInput;
   AuthException? get error;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordStateErrorImplCopyWith<_$ResetPasswordStateErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

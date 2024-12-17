@@ -21,7 +21,9 @@ mixin _$TranslationsState {
   Translations get translations => throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationsStateCopyWith<TranslationsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +54,8 @@ class _$TranslationsStateCopyWithImpl<$Res, $Val extends TranslationsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +84,8 @@ class _$TranslationsStateCopyWithImpl<$Res, $Val extends TranslationsState>
     ) as $Val);
   }
 
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FilterCopyWith<$Res> get filter {
@@ -88,6 +94,8 @@ class _$TranslationsStateCopyWithImpl<$Res, $Val extends TranslationsState>
     });
   }
 
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TranslationsCopyWith<$Res> get translations {
@@ -125,6 +133,8 @@ class __$$TranslationsStateImplCopyWithImpl<$Res>
       $Res Function(_$TranslationsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,7 +208,9 @@ class _$TranslationsStateImpl extends _TranslationsState {
   int get hashCode =>
       Object.hash(runtimeType, state, filter, translations, exception);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationsStateImplCopyWith<_$TranslationsStateImpl> get copyWith =>
@@ -222,8 +234,11 @@ abstract class _TranslationsState extends TranslationsState {
   Translations get translations;
   @override
   Exception? get exception;
+
+  /// Create a copy of TranslationsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationsStateImplCopyWith<_$TranslationsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -233,7 +248,9 @@ mixin _$Translations {
   List<Translation> get original => throw _privateConstructorUsedError;
   List<Translation> get overrided => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Translations
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationsCopyWith<Translations> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -257,6 +274,8 @@ class _$TranslationsCopyWithImpl<$Res, $Val extends Translations>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Translations
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -295,6 +314,8 @@ class __$$TranslationsImplCopyWithImpl<$Res>
       _$TranslationsImpl _value, $Res Function(_$TranslationsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Translations
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,7 +383,9 @@ class _$TranslationsImpl implements _Translations {
       const DeepCollectionEquality().hash(_original),
       const DeepCollectionEquality().hash(_overrided));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Translations
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationsImplCopyWith<_$TranslationsImpl> get copyWith =>
@@ -378,8 +401,11 @@ abstract class _Translations implements Translations {
   List<Translation> get original;
   @override
   List<Translation> get overrided;
+
+  /// Create a copy of Translations
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationsImplCopyWith<_$TranslationsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -389,7 +415,9 @@ mixin _$Filter {
   String get localeFilter => throw _privateConstructorUsedError;
   String get searchFilter => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Filter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FilterCopyWith<Filter> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -411,6 +439,8 @@ class _$FilterCopyWithImpl<$Res, $Val extends Filter>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Filter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -448,6 +478,8 @@ class __$$FilterImplCopyWithImpl<$Res>
       _$FilterImpl _value, $Res Function(_$FilterImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Filter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -498,7 +530,9 @@ class _$FilterImpl implements _Filter {
   @override
   int get hashCode => Object.hash(runtimeType, localeFilter, searchFilter);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Filter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterImplCopyWith<_$FilterImpl> get copyWith =>
@@ -513,8 +547,11 @@ abstract class _Filter implements Filter {
   String get localeFilter;
   @override
   String get searchFilter;
+
+  /// Create a copy of Filter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterImplCopyWith<_$FilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

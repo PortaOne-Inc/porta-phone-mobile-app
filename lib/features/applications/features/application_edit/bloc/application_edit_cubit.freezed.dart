@@ -36,7 +36,9 @@ mixin _$ApplicationEditState {
       throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationEditStateCopyWith<ApplicationEditState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +74,8 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,6 +174,8 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationEditStateInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -326,7 +332,9 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       iosBuildNumberInput,
       exception);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationEditStateInitialImplCopyWith<_$ApplicationEditStateInitialImpl>
@@ -370,8 +378,11 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   ApplicationBuildNumberInput? get iosBuildNumberInput;
   @override
   Exception? get exception;
+
+  /// Create a copy of ApplicationEditState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationEditStateInitialImplCopyWith<_$ApplicationEditStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

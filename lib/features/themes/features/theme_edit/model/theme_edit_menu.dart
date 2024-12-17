@@ -18,14 +18,11 @@ enum ApplicationEditFile implements SubMenu {
 }
 
 enum ApplicationEditTheme implements SubMenu {
-  preview,
-  templates;
+  preview;
 
   @override
   String translate(BuildContext context) {
     switch (this) {
-      case ApplicationEditTheme.templates:
-        return 'Templates';
       case ApplicationEditTheme.preview:
         return 'Preview';
     }

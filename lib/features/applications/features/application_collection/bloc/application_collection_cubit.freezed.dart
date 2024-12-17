@@ -22,7 +22,9 @@ mixin _$ApplicationCollectionState {
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationCollectionStateCopyWith<ApplicationCollectionState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -54,6 +56,8 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +86,8 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get deleteApplication {
@@ -124,6 +130,8 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationCollectionStateInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,7 +218,9 @@ class _$ApplicationCollectionStateInitialImpl
       deleteApplication,
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationCollectionStateInitialImplCopyWith<
@@ -237,8 +247,11 @@ abstract class ApplicationCollectionStateInitial
   ApplicationModel? get deleteApplication;
   @override
   Exception? get error;
+
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationCollectionStateInitialImplCopyWith<
           _$ApplicationCollectionStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;

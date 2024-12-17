@@ -30,14 +30,17 @@ class SelectedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(
-              color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(8))),
+          border: Border.all(
+            color: colorScheme.surfaceDim.withOpacity(0.5),
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
         width: _size.width,
         height: _size.height,
         child: Stack(
@@ -63,7 +66,7 @@ class SelectedImage extends StatelessWidget {
                   height: _size.height / 5,
                   padding: const EdgeInsets.all(8),
                   width: double.infinity,
-                  color: Theme.of(context).colorScheme.tertiaryContainer.withOpacity(0.95),
+                  color: colorScheme.tertiaryContainer.withOpacity(0.95),
                   child: Center(
                     child: FittedBox(
                       fit: BoxFit.cover,
@@ -87,14 +90,14 @@ class SelectedImage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.4)),
+                        border: Border.all(color: colorScheme.tertiary.withOpacity(0.4)),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(24),
                         ),
                       ),
                       child: Icon(
                         Icons.info_outline,
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: colorScheme.tertiary,
                       ),
                     ),
                   ),
@@ -106,14 +109,14 @@ class SelectedImage extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Theme.of(context).colorScheme.error.withOpacity(0.5)),
+                          border: Border.all(color: colorScheme.error.withOpacity(0.5)),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(24),
                           ),
                         ),
                         child: Icon(
                           Icons.remove_circle,
-                          color: Theme.of(context).colorScheme.error,
+                          color: colorScheme.error,
                         ),
                       ),
                     ),

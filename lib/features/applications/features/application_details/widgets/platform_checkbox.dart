@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import  'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
@@ -16,10 +16,8 @@ class PlatformCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final textTheme = theme.textTheme;
-    final colorScheme = theme.colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
       child: InkWell(
@@ -35,7 +33,7 @@ class PlatformCheckbox extends StatelessWidget {
               const SizedBox(width: 8),
               Icon(
                 deploy ? Icons.check_box : Icons.check_box_outline_blank,
-                color: deploy ? colorScheme.primary : colorScheme.onBackground.withOpacity(.5),
+                color: deploy ? colorScheme.primary : colorScheme.surfaceDim.withOpacity(.5),
               ),
             ],
           ),

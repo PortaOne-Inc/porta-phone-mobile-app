@@ -29,7 +29,9 @@ mixin _$ApplicationDetailsState {
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
   Object? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationDetailsStateCopyWith<ApplicationDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,7 +53,6 @@ abstract class $ApplicationDetailsStateCopyWith<$Res> {
       ApplicationModel? deleteApplication,
       Object? error});
 
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   $ApplicationModelCopyWith<$Res>? get application;
@@ -69,11 +70,13 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = null,
+    Object? applicationDeploy = freezed,
     Object? applicationValidateErrors = null,
     Object? themes = null,
     Object? buildVersionProgress = null,
@@ -87,7 +90,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: null == applicationDeploy
+      applicationDeploy: freezed == applicationDeploy
           ? _value.applicationDeploy
           : applicationDeploy // ignore: cast_nullable_to_non_nullable
               as ApplicationDeploy,
@@ -119,14 +122,8 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  @override
-  @pragma('vm:prefer-inline')
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy {
-    return $ApplicationDeployCopyWith<$Res>(_value.applicationDeploy, (value) {
-      return _then(_value.copyWith(applicationDeploy: value) as $Val);
-    });
-  }
-
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress {
@@ -136,6 +133,8 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get deleteTheme {
@@ -148,6 +147,8 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get application {
@@ -160,6 +161,8 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get deleteApplication {
@@ -194,8 +197,6 @@ abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
       Object? error});
 
   @override
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
-  @override
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   @override
   $ThemeModelCopyWith<$Res>? get deleteTheme;
@@ -215,11 +216,13 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationDetailsStateInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = null,
+    Object? applicationDeploy = freezed,
     Object? applicationValidateErrors = null,
     Object? themes = null,
     Object? buildVersionProgress = null,
@@ -233,7 +236,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: null == applicationDeploy
+      applicationDeploy: freezed == applicationDeploy
           ? _value.applicationDeploy
           : applicationDeploy // ignore: cast_nullable_to_non_nullable
               as ApplicationDeploy,
@@ -331,8 +334,8 @@ class _$ApplicationDetailsStateInitialImpl
         (other.runtimeType == runtimeType &&
             other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.applicationDeploy, applicationDeploy) ||
-                other.applicationDeploy == applicationDeploy) &&
+            const DeepCollectionEquality()
+                .equals(other.applicationDeploy, applicationDeploy) &&
             const DeepCollectionEquality().equals(
                 other._applicationValidateErrors, _applicationValidateErrors) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
@@ -351,7 +354,7 @@ class _$ApplicationDetailsStateInitialImpl
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      applicationDeploy,
+      const DeepCollectionEquality().hash(applicationDeploy),
       const DeepCollectionEquality().hash(_applicationValidateErrors),
       const DeepCollectionEquality().hash(_themes),
       buildVersionProgress,
@@ -360,7 +363,9 @@ class _$ApplicationDetailsStateInitialImpl
       deleteApplication,
       const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationDetailsStateInitialImplCopyWith<
@@ -400,8 +405,11 @@ abstract class ApplicationDetailsStateInitial extends ApplicationDetailsState {
   ApplicationModel? get deleteApplication;
   @override
   Object? get error;
+
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationDetailsStateInitialImplCopyWith<
           _$ApplicationDetailsStateInitialImpl>
       get copyWith => throw _privateConstructorUsedError;

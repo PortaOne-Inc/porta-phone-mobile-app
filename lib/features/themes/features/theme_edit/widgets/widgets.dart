@@ -7,5 +7,4 @@ export 'icon_text_button.dart';
 export 'input_padding.dart';
 export 'mock_device.dart';
 export 'package:google_fonts/google_fonts.dart';
-export 'preload_picker.dart';
 export 'selected_image.dart';

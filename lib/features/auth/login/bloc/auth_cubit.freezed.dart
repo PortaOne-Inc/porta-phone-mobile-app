@@ -105,7 +105,9 @@ mixin _$AuthState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -128,6 +130,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,6 +170,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
       _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -214,7 +220,9 @@ class _$AuthStateImpl implements _AuthState {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
@@ -340,8 +348,11 @@ abstract class _AuthState implements AuthState {
   AuthEmailInput? get emailInput;
   @override
   AuthPasswordInput? get passwordInput;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -365,6 +376,8 @@ class __$$AuthStateProgressImplCopyWithImpl<$Res>
       $Res Function(_$AuthStateProgressImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -413,7 +426,9 @@ class _$AuthStateProgressImpl implements AuthStateProgress {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
@@ -540,8 +555,11 @@ abstract class AuthStateProgress implements AuthState {
   AuthEmailInput? get emailInput;
   @override
   AuthPasswordInput? get passwordInput;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -565,6 +583,8 @@ class __$$AuthStateSuccessImplCopyWithImpl<$Res>
       $Res Function(_$AuthStateSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -613,7 +633,9 @@ class _$AuthStateSuccessImpl implements AuthStateSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
@@ -740,8 +762,11 @@ abstract class AuthStateSuccess implements AuthState {
   AuthEmailInput? get emailInput;
   @override
   AuthPasswordInput? get passwordInput;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -765,6 +790,8 @@ class __$$AuthStateValidationImplCopyWithImpl<$Res>
       $Res Function(_$AuthStateValidationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -813,7 +840,9 @@ class _$AuthStateValidationImpl implements AuthStateValidation {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
@@ -940,8 +969,11 @@ abstract class AuthStateValidation implements AuthState {
   AuthEmailInput? get emailInput;
   @override
   AuthPasswordInput? get passwordInput;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -968,6 +1000,8 @@ class __$$AuthStateErrorImplCopyWithImpl<$Res>
       _$AuthStateErrorImpl _value, $Res Function(_$AuthStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1025,7 +1059,9 @@ class _$AuthStateErrorImpl implements AuthStateError {
   int get hashCode =>
       Object.hash(runtimeType, emailInput, passwordInput, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
@@ -1154,8 +1190,11 @@ abstract class AuthStateError implements AuthState {
   @override
   AuthPasswordInput? get passwordInput;
   AuthException? get error;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

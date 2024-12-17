@@ -29,7 +29,9 @@ mixin _$ThemePropertyState {
   int? get position => throw _privateConstructorUsedError;
   Exception? get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ThemePropertyStateCopyWith<ThemePropertyState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -67,6 +69,8 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,6 +129,8 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
     ) as $Val);
   }
 
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get applicationModel {
@@ -137,6 +143,8 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
     });
   }
 
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get currentTheme {
@@ -149,6 +157,8 @@ class _$ThemePropertyStateCopyWithImpl<$Res, $Val extends ThemePropertyState>
     });
   }
 
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get draftTheme {
@@ -198,6 +208,8 @@ class __$$ThemePropertyStateImplCopyWithImpl<$Res>
       $Res Function(_$ThemePropertyStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,7 +351,9 @@ class _$ThemePropertyStateImpl implements _ThemePropertyState {
       position,
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
@@ -380,8 +394,11 @@ abstract class _ThemePropertyState implements ThemePropertyState {
   int? get position;
   @override
   Exception? get error;
+
+  /// Create a copy of ThemePropertyState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ThemePropertyStateImplCopyWith<_$ThemePropertyStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -409,12 +426,13 @@ class _$ReplaceColorSchemeEventImpl implements _ReplaceColorSchemeEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReplaceColorSchemeEventImpl &&
-            (identical(other.colorScheme, colorScheme) ||
-                other.colorScheme == colorScheme));
+            const DeepCollectionEquality()
+                .equals(other.colorScheme, colorScheme));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, colorScheme);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(colorScheme));
 }
 
 abstract class _ReplaceColorSchemeEvent implements ReplaceColorSchemeEvent {
@@ -22439,11 +22457,12 @@ class _$UpdateThemeSchemeImagesEventImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeSchemeImagesEventImpl &&
-            (identical(other.image, image) || other.image == image));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
 
   @override
   @optionalTypeArgs
@@ -22551,11 +22570,12 @@ class _$UpdateSystemAssetsImagesEventImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateSystemAssetsImagesEventImpl &&
-            (identical(other.image, image) || other.image == image));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
 
   @override
   @optionalTypeArgs
