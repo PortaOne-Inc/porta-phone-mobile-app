@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:domain/domain.dart';
 
@@ -63,32 +64,37 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                           Expanded(
                             child: Builder(
                               builder: (BuildContext context) {
-                                return FlexibleBinaryLayout(
-                                  childPrimary: (context, size) {
-                                    switch (state.themePreviewScreen) {
-                                      case ThemePreviewScreen.layouts:
-                                        return TypePreview(
-                                          type: _previewType,
-                                          screens: _phoneScreenshots(state.theme, state.applicationModel),
-                                          screenFocus: _focusScreenPosition,
-                                          isFrameVisible: _isFrameVisible,
-                                          onFocusPosition: _setFocusedScreen,
-                                        );
-                                      case ThemePreviewScreen.assets:
-                                        return ThemeAssetsPreview(
-                                          theme: state.theme!,
-                                        );
-                                    }
-                                  },
-                                  childSecondary: _previewType == PreviewType.single &&
-                                          state.themePreviewScreen == ThemePreviewScreen.layouts
-                                      ? (context, size) => DrawerPreview(
+                                return ResizableColumns(
+                                  orientation: ResizableOrientation.vertical,
+                                  dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+                                  dividerThickness: 4,
+                                  minChildSize: 200,
+                                  children: [
+                                    (context) {
+                                      // Primary content based on the theme preview screen
+                                      switch (state.themePreviewScreen) {
+                                        case ThemePreviewScreen.layouts:
+                                          return TypePreview(
+                                            type: _previewType,
+                                            screens: _phoneScreenshots(state.theme, state.applicationModel),
+                                            screenFocus: _focusScreenPosition,
+                                            isFrameVisible: _isFrameVisible,
+                                            onFocusPosition: _setFocusedScreen,
+                                          );
+                                        case ThemePreviewScreen.assets:
+                                          return ThemeAssetsPreview(
+                                            theme: state.theme!,
+                                          );
+                                      }
+                                    },
+                                    if (_previewType == PreviewType.single &&
+                                        state.themePreviewScreen == ThemePreviewScreen.layouts)
+                                      (context) => DrawerPreview(
                                             screenshots: _phoneScreenshots(state.theme, state.applicationModel),
                                             focusScreenPosition: _focusScreenPosition,
                                             onTapScreen: _setFocusedScreen,
-                                          )
-                                      : null,
-                                  orientation: ResizableOrientation.vertical,
+                                          ),
+                                  ],
                                 );
                               },
                             ),

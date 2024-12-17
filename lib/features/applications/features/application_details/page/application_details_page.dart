@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:domain/domain.dart';
 
@@ -59,95 +60,97 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
               ),
             ],
           ),
-          body: FlexibleBinaryLayout(
+          body: ResizableColumns(
             orientation: ResizableOrientation.horizontal,
-            childPrimary: (context, dimension) {
-              return Stack(children: [
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(top: 8),
-                      padding: const EdgeInsets.all(16),
-                      child: const Center(
-                        child: Text('Config'),
-                      ),
-                    ),
-                    const Divider(),
-                    Expanded(
-                      child: ApplicationDetailsScreen(
-                        application: state.application,
-                        applicationValidateErrors: state.applicationValidateErrors,
-                        onOpenDefaultTheme: (String applicationId, String themeId) => _openTheme(
-                          context,
-                          applicationId,
-                          themeId,
-                        ),
-                        applicationDeploy: state.applicationDeploy,
-                        onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
-                        onDeploy: bloc.deployBuilds,
-                        applicationBuildVersionProgress: state.buildVersionProgress,
-                        onUpdateBuildNameVersion: bloc.updateBuildName,
-                        onUpdateBuildNumberVersion: bloc.updateBuildNumber,
-                      ),
-                    )
-                  ],
-                ),
-                FadeBackground(
-                  visibility: state.deleteApplication != null,
-                ),
-                ConfirmationDialog(
-                  visibility: state.deleteApplication != null,
-                  title: 'Please Confirm',
-                  description: 'Are you sure to delete the application?',
-                  onConfirm: bloc.confirmDeleteApplication,
-                  onDecline: bloc.declineDeleteApplication,
-                ),
-              ]);
-            },
-            childSecondary: (context, dimension) {
-              return Stack(children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(top: 8),
-                      padding: const EdgeInsets.all(16),
-                      child: const Center(child: Text('Themes')),
-                    ),
-                    const Divider(),
-                    Expanded(
-                      child: ConditionalProgressBar(
-                        condition: !state.isProgress,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 16, left: 16),
-                          child: ApplicationThemesScreen(
-                            themes: state.themes,
-                            crossAxisCount: dimension < 500 ? 1 : 2,
-                            onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                            onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
-                            onMakeDefault: bloc.tryMakeThemeAsDefault,
-                            onDelete: bloc.tryDeleteTheme,
-                            onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+            dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+            dividerThickness: 4,
+            minChildSize: 100,
+            children: [
+              (context) => Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.all(16),
+                            child: const Center(
+                              child: Text('Config'),
+                            ),
                           ),
-                        ),
+                          const Divider(),
+                          Expanded(
+                            child: ApplicationDetailsScreen(
+                              application: state.application,
+                              applicationValidateErrors: state.applicationValidateErrors,
+                              onOpenDefaultTheme: (String applicationId, String themeId) =>
+                                  _openTheme(context, applicationId, themeId),
+                              applicationDeploy: state.applicationDeploy,
+                              onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
+                              onDeploy: bloc.deployBuilds,
+                              applicationBuildVersionProgress: state.buildVersionProgress,
+                              onUpdateBuildNameVersion: bloc.updateBuildName,
+                              onUpdateBuildNumberVersion: bloc.updateBuildNumber,
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                FadeBackground(
-                  visibility: state.deleteTheme != null,
-                ),
-                ConfirmationDialog(
-                  visibility: state.deleteTheme != null,
-                  title: 'Please Confirm',
-                  description: 'Are you sure to delete the theme?',
-                  onConfirm: bloc.confirmDeleteTheme,
-                  onDecline: bloc.declineDeleteTheme,
-                ),
-              ]);
-            },
+                      FadeBackground(
+                        visibility: state.deleteApplication != null,
+                      ),
+                      ConfirmationDialog(
+                        visibility: state.deleteApplication != null,
+                        title: 'Please Confirm',
+                        description: 'Are you sure to delete the application?',
+                        onConfirm: bloc.confirmDeleteApplication,
+                        onDecline: bloc.declineDeleteApplication,
+                      ),
+                    ],
+                  ),
+              (context) => Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.all(16),
+                            child: const Center(child: Text('Themes')),
+                          ),
+                          const Divider(),
+                          Expanded(
+                            child: ConditionalProgressBar(
+                              condition: !state.isProgress,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 16, left: 16),
+                                child: ApplicationThemesScreen(
+                                  themes: state.themes,
+                                  crossAxisCount: MediaQuery.of(context).size.width < 500 ? 1 : 2,
+                                  onNewBranding: () => _onNewTheme(context, state.application!.id!),
+                                  onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
+                                  onMakeDefault: bloc.tryMakeThemeAsDefault,
+                                  onDelete: bloc.tryDeleteTheme,
+                                  onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      FadeBackground(
+                        visibility: state.deleteTheme != null,
+                      ),
+                      ConfirmationDialog(
+                        visibility: state.deleteTheme != null,
+                        title: 'Please Confirm',
+                        description: 'Are you sure to delete the theme?',
+                        onConfirm: bloc.confirmDeleteTheme,
+                        onDecline: bloc.declineDeleteTheme,
+                      ),
+                    ],
+                  ),
+            ],
           ),
         );
       },

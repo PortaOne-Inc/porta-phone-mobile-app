@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:domain/domain.dart';
 
@@ -56,27 +57,26 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             ),
           ],
         ),
-        body: FlexibleBinaryLayout(
-          childPrimary: (context, size) {
-            return ConditionalProgressBar(
-              condition: state.theme != null,
-              // TODO(dmitry): Don't like this implementation with SingleStack
-              child: SingleStack(
-                key: const ValueKey('leftStack'),
-                navigator: _leftPageNavigatorKey,
-                child: const PageThemeProperty(),
-              ),
-            );
-          },
-          // TODO(dmitry): Don't like this implementation with SingleStack
-          childSecondary: (context, size) {
-            return SingleStack(
-              key: const ValueKey('rightStack'),
-              navigator: _rightPageNavigatorKey,
-              child: const PageThemePreview(),
-            );
-          },
+        body: ResizableColumns(
           orientation: ResizableOrientation.horizontal,
+          dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+          dividerThickness: 4,
+          minChildSize: 200,
+          children: [
+            (context) => ConditionalProgressBar(
+                  condition: state.theme != null,
+                  child: SingleStack(
+                    key: const ValueKey('leftStack'),
+                    navigator: _leftPageNavigatorKey,
+                    child: const PageThemeProperty(),
+                  ),
+                ),
+            (context) => SingleStack(
+                  key: const ValueKey('rightStack'),
+                  navigator: _rightPageNavigatorKey,
+                  child: const PageThemePreview(),
+                ),
+          ],
         ),
       ),
     );

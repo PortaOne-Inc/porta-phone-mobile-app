@@ -10,6 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  domain:
+    path: ../domain
+  dto:
+    git:
+      url: https://github.com/WebTrit/webtrit_phone_configurator_common.git
+      ref: main
+      path: packages/dto
 
   injectable: ^2.5.0
   get_it: ^8.0.3
@@ -23,21 +30,12 @@ dependencies:
   shared_preferences: ^2.3.3
   jwt_decoder: ^2.0.1
 
-  domain:
-    path: ../domain
-
-  dto:
-    git:
-      url: https://github.com/WebTrit/webtrit_phone_configurator_common.git
-      ref: main
-      path: packages/dto
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   webtrit_analysis:
     git: https://github.com/WebTrit/webtrit_analysis.git
+
   flutter_gen_runner: ^5.8.0
   json_serializable: ^6.9.0
   injectable_generator: ^2.6.2

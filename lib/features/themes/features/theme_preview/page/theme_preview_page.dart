@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:domain/domain.dart';
 
@@ -79,19 +80,20 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                         theme: state.theme!,
                       );
                   }
-                  return FlexibleBinaryLayout(
-                    draggable: false,
+                  return ResizableColumns(
+                    orientation: ResizableOrientation.vertical,
+                    dividerColor: Theme.of(context).colorScheme.surfaceContainer,
                     dividerThickness: 4,
-                    landslide: MediaQuery.of(context).size.height * 0.3,
-                    childPrimary: (context, size) => layout,
-                    childSecondary: _previewType == PreviewType.single && _typeScreen == ThemePreviewScreen.layouts
-                        ? (context, size) => DrawerPreview(
+                    minChildSize: MediaQuery.of(context).size.height * 0.3,
+                    children: [
+                      (context) => layout,
+                      if (_previewType == PreviewType.single && _typeScreen == ThemePreviewScreen.layouts)
+                        (context) => DrawerPreview(
                               screenshots: _phoneScreenshots(state.theme, state.applicationModel),
                               focusScreenPosition: _focusScreenPosition,
                               onTapScreen: _setFocusedScreen,
-                            )
-                        : null,
-                    orientation: ResizableOrientation.vertical,
+                            ),
+                    ],
                   );
                 },
               ),

@@ -7,10 +7,6 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  injectable: ^2.5.0
-  get_it: ^8.0.3
-  freezed_annotation: ^2.4.4
-  freezed: ^2.5.7
   data:
     path: ../data
   dto:
@@ -18,13 +14,18 @@ dependencies:
       url: https://github.com/WebTrit/webtrit_phone_configurator_common.git
       ref: main
       path: packages/dto
+
+  injectable: ^2.5.0
+  get_it: ^8.0.3
+  freezed_annotation: ^2.4.4
+  freezed: ^2.5.7
   json_annotation: ^4.9.0
 
 dependency_overrides:
-  material_color_utilities: 0.12.0
-
   webtrit_analysis:
     git: https://github.com/WebTrit/webtrit_analysis.git
+
+  material_color_utilities: 0.12.0
   flutter_gen_runner: ^5.8.0
   json_serializable: ^6.9.0
   injectable_generator: ^2.6.2
