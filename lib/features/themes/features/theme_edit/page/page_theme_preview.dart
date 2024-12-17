@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
+import 'package:webtrit_phone/models/models.dart';
 
 import '../bloc/configurator_cubit.dart';
 
