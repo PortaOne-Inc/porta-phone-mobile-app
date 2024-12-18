@@ -66,7 +66,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
                               builder: (BuildContext context) {
                                 return ResizableColumns(
                                   orientation: ResizableOrientation.vertical,
-                                  dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+                                  dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
                                   dividerThickness: 4,
                                   minChildSize: 200,
                                   children: [

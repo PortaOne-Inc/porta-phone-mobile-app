@@ -133,7 +133,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_platform_id),
                 subtitle: SelectableText(application?.iosPlatformId ?? ''),
@@ -143,7 +146,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_build_name),
                 subtitle: SelectableText(application?.androidVersion?.buildName ?? ''),
@@ -166,7 +172,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_build_number),
                 subtitle: SelectableText(application?.androidVersion?.buildNumber?.toString() ?? ''),
@@ -187,7 +196,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_build_name),
                 subtitle: SelectableText(application?.iosVersion?.buildName ?? ''),
@@ -210,7 +222,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_ios_build_number),
                 subtitle: SelectableText(application?.iosVersion?.buildNumber?.toString() ?? ''),
@@ -231,7 +246,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
             ],
           ),
           // Deployment Section
@@ -240,7 +258,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
             children: [
               if (applicationValidateErrorMessages.isNotEmpty)
                 ValidationLabel(messages: applicationValidateErrorMessages),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               ListTile(
                 title: Text(
                   context.l10n.feature_application_details_ApplicationDetailsScreen_platforms,
@@ -305,7 +326,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               CheckboxListTile(
                 value: applicationDeploy.isBuildDemoFlow,
                 onChanged: (demo) {
@@ -323,7 +347,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 controlAffinity: ListTileControlAffinity.trailing,
               ),
-              const Divider(),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               BranchSelector(
                 title: context.l10n.feature_application_details_ApplicationDetailsScreen_select_branch_for_phone,
                 titleStyle: Theme.of(context).textTheme.titleMedium,

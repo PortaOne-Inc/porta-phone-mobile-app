@@ -82,7 +82,7 @@ class _ThemePreviewPageState extends State<ThemePreviewPage> {
                   }
                   return ResizableColumns(
                     orientation: ResizableOrientation.vertical,
-                    dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+                    dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
                     dividerThickness: 4,
                     minChildSize: MediaQuery.of(context).size.height * 0.3,
                     children: [

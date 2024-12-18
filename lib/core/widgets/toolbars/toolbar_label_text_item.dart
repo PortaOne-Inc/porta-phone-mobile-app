@@ -14,17 +14,25 @@ class ToolbarLabelItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textStyle = textTheme.titleSmall?.copyWith(
+      color: colorScheme.secondary,
+      fontWeight: FontWeight.bold,
+    );
+
     return SizedBox(
       height: kToolbarHeight - 8,
       child: TextButton(
         style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            padding: const EdgeInsets.all(8),
-            textStyle: Theme.of(context).textTheme.titleSmall),
+          backgroundColor: Colors.transparent,
+          padding: const EdgeInsets.all(8),
+          textStyle: textStyle,
+        ),
         onPressed: onTap,
         child: Text(
           text,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: textStyle,
           textAlign: TextAlign.center,
         ),
       ),

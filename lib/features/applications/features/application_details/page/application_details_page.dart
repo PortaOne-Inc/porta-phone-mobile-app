@@ -62,7 +62,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
           ),
           body: ResizableColumns(
             orientation: ResizableOrientation.horizontal,
-            dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+            dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
             dividerThickness: 4,
             minChildSize: 100,
             children: [
@@ -70,15 +70,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.only(top: 8),
-                            padding: const EdgeInsets.all(16),
-                            child: const Center(
-                              child: Text('Config'),
-                            ),
-                          ),
-                          const Divider(),
                           Expanded(
                             child: ApplicationDetailsScreen(
                               application: state.application,
@@ -112,13 +103,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.only(top: 8),
-                            padding: const EdgeInsets.all(16),
-                            child: const Center(child: Text('Themes')),
-                          ),
-                          const Divider(),
                           Expanded(
                             child: ConditionalProgressBar(
                               condition: !state.isProgress,

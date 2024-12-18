@@ -56,7 +56,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         ),
         body: ResizableColumns(
           orientation: ResizableOrientation.horizontal,
-          dividerColor: Theme.of(context).colorScheme.surfaceContainer,
+          dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
           dividerThickness: 4,
           minChildSize: 200,
           children: [
