@@ -48,6 +48,11 @@ class _AuthPageState extends State<AuthPage> with MixinMessages {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Opacity(
+                          opacity: state is AuthStateProgress ? 1.0 : 0.0,
+                          child: const LinearProgressIndicator(),
+                        ),
+                        const SizedBox(height: 16),
                         ThemeModeSwitcher(
                           themeMode: commonBloc.state.themeMode,
                           onThemeChange: commonBloc.setThemeMode,
