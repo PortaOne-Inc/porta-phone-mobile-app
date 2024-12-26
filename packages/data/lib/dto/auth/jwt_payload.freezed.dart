@@ -59,8 +59,12 @@ mixin _$JwtPayload {
   JwtPayloadFirebase get firebase => throw _privateConstructorUsedError;
   set firebase(JwtPayloadFirebase value) => throw _privateConstructorUsedError;
 
+  /// Serializes this JwtPayload to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $JwtPayloadCopyWith<JwtPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -96,6 +100,8 @@ class _$JwtPayloadCopyWithImpl<$Res, $Val extends JwtPayload>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,6 +160,8 @@ class _$JwtPayloadCopyWithImpl<$Res, $Val extends JwtPayload>
     ) as $Val);
   }
 
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $JwtPayloadFirebaseCopyWith<$Res> get firebase {
@@ -195,6 +203,8 @@ class __$$JwtPayloadImplCopyWithImpl<$Res>
       _$JwtPayloadImpl _value, $Res Function(_$JwtPayloadImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -307,7 +317,9 @@ class _$JwtPayloadImpl implements _JwtPayload {
     return 'JwtPayload(iss: $iss, aud: $aud, authTime: $authTime, userId: $userId, sub: $sub, iat: $iat, exp: $exp, email: $email, emailVerified: $emailVerified, firebase: $firebase)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$JwtPayloadImplCopyWith<_$JwtPayloadImpl> get copyWith =>
@@ -344,15 +356,15 @@ abstract class _JwtPayload implements JwtPayload {
   set iss(String value);
   @override
   String get aud;
-  set aud(String value);
-  @override // ignore: invalid_annotation_target
+  set aud(String value); // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'auth_time')
   @TimestampConverter()
   DateTime get authTime; // ignore: invalid_annotation_target
   @JsonKey(name: 'auth_time')
   @TimestampConverter()
-  set authTime(DateTime value);
-  @override // ignore: invalid_annotation_target
+  set authTime(DateTime value); // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'user_id')
   String get userId; // ignore: invalid_annotation_target
   @JsonKey(name: 'user_id')
@@ -372,8 +384,8 @@ abstract class _JwtPayload implements JwtPayload {
   set exp(DateTime value);
   @override
   String get email;
-  set email(String value);
-  @override // ignore: invalid_annotation_target
+  set email(String value); // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'email_verified')
   bool get emailVerified; // ignore: invalid_annotation_target
   @JsonKey(name: 'email_verified')
@@ -381,8 +393,11 @@ abstract class _JwtPayload implements JwtPayload {
   @override
   JwtPayloadFirebase get firebase;
   set firebase(JwtPayloadFirebase value);
+
+  /// Create a copy of JwtPayload
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JwtPayloadImplCopyWith<_$JwtPayloadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -403,8 +418,12 @@ mixin _$JwtPayloadFirebase {
   @JsonKey(name: 'sign_in_provider')
   set signInProvider(String value) => throw _privateConstructorUsedError;
 
+  /// Serializes this JwtPayloadFirebase to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $JwtPayloadFirebaseCopyWith<JwtPayloadFirebase> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -432,6 +451,8 @@ class _$JwtPayloadFirebaseCopyWithImpl<$Res, $Val extends JwtPayloadFirebase>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -450,6 +471,8 @@ class _$JwtPayloadFirebaseCopyWithImpl<$Res, $Val extends JwtPayloadFirebase>
     ) as $Val);
   }
 
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities {
@@ -484,6 +507,8 @@ class __$$JwtPayloadFirebaseImplCopyWithImpl<$Res>
       $Res Function(_$JwtPayloadFirebaseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -525,7 +550,9 @@ class _$JwtPayloadFirebaseImpl implements _JwtPayloadFirebase {
     return 'JwtPayloadFirebase(identities: $identities, signInProvider: $signInProvider)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$JwtPayloadFirebaseImplCopyWith<_$JwtPayloadFirebaseImpl> get copyWith =>
@@ -551,14 +578,18 @@ abstract class _JwtPayloadFirebase implements JwtPayloadFirebase {
 
   @override
   JwtPayloadFirebaseIdentities get identities;
-  set identities(JwtPayloadFirebaseIdentities value);
-  @override // ignore: invalid_annotation_target
+  set identities(
+      JwtPayloadFirebaseIdentities value); // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'sign_in_provider')
   String get signInProvider; // ignore: invalid_annotation_target
   @JsonKey(name: 'sign_in_provider')
   set signInProvider(String value);
+
+  /// Create a copy of JwtPayloadFirebase
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JwtPayloadFirebaseImplCopyWith<_$JwtPayloadFirebaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -573,8 +604,12 @@ mixin _$JwtPayloadFirebaseIdentities {
   List<String> get email => throw _privateConstructorUsedError;
   set email(List<String> value) => throw _privateConstructorUsedError;
 
+  /// Serializes this JwtPayloadFirebaseIdentities to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of JwtPayloadFirebaseIdentities
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $JwtPayloadFirebaseIdentitiesCopyWith<JwtPayloadFirebaseIdentities>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -601,6 +636,8 @@ class _$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of JwtPayloadFirebaseIdentities
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -637,6 +674,8 @@ class __$$JwtPayloadFirebaseIdentitiesImplCopyWithImpl<$Res>
       $Res Function(_$JwtPayloadFirebaseIdentitiesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of JwtPayloadFirebaseIdentities
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -669,7 +708,9 @@ class _$JwtPayloadFirebaseIdentitiesImpl
     return 'JwtPayloadFirebaseIdentities(email: $email)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of JwtPayloadFirebaseIdentities
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$JwtPayloadFirebaseIdentitiesImplCopyWith<
@@ -696,8 +737,11 @@ abstract class _JwtPayloadFirebaseIdentities
   @override
   List<String> get email;
   set email(List<String> value);
+
+  /// Create a copy of JwtPayloadFirebaseIdentities
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JwtPayloadFirebaseIdentitiesImplCopyWith<
           _$JwtPayloadFirebaseIdentitiesImpl>
       get copyWith => throw _privateConstructorUsedError;

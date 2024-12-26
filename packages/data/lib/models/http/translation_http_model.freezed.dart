@@ -24,8 +24,12 @@ mixin _$TranslationHttpModel {
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
+  /// Serializes this TranslationHttpModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TranslationHttpModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationHttpModelCopyWith<TranslationHttpModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$TranslationHttpModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TranslationHttpModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$TranslationHttpModelImplCopyWithImpl<$Res>
       $Res Function(_$TranslationHttpModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TranslationHttpModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$TranslationHttpModelImpl extends _TranslationHttpModel {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, locale, key, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TranslationHttpModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationHttpModelImplCopyWith<_$TranslationHttpModelImpl>
@@ -185,8 +195,11 @@ abstract class _TranslationHttpModel extends TranslationHttpModel {
   String get key;
   @override
   String get value;
+
+  /// Create a copy of TranslationHttpModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationHttpModelImplCopyWith<_$TranslationHttpModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

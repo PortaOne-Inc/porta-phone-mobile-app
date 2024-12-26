@@ -25,8 +25,12 @@ mixin _$AuthResponseDTO {
   String get token => throw _privateConstructorUsedError;
   set token(String value) => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthResponseDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthResponseDTO
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthResponseDTOCopyWith<AuthResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$AuthResponseDTOCopyWithImpl<$Res, $Val extends AuthResponseDTO>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthResponseDTO
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,6 +94,8 @@ class __$$AuthResponseDTOImplCopyWithImpl<$Res>
       _$AuthResponseDTOImpl _value, $Res Function(_$AuthResponseDTOImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthResponseDTO
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,7 +133,9 @@ class _$AuthResponseDTOImpl implements _AuthResponseDTO {
     return 'AuthResponseDTO(status: $status, token: $token)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthResponseDTO
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResponseDTOImplCopyWith<_$AuthResponseDTOImpl> get copyWith =>
@@ -153,8 +163,11 @@ abstract class _AuthResponseDTO implements AuthResponseDTO {
   @override
   String get token;
   set token(String value);
+
+  /// Create a copy of AuthResponseDTO
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthResponseDTOImplCopyWith<_$AuthResponseDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

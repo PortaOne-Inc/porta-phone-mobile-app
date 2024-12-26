@@ -41,8 +41,12 @@ mixin _$DeployApplicationDto {
   set androidPlayStoreConfig(String value) =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this DeployApplicationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeployApplicationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeployApplicationDtoCopyWith<DeployApplicationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +79,8 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeployApplicationDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,6 +158,8 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
       $Res Function(_$DeployApplicationDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeployApplicationDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -240,7 +248,9 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
     return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeployApplicationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeployApplicationDtoImplCopyWith<_$DeployApplicationDtoImpl>
@@ -294,8 +304,11 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
   @override
   String get androidPlayStoreConfig;
   set androidPlayStoreConfig(String value);
+
+  /// Create a copy of DeployApplicationDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeployApplicationDtoImplCopyWith<_$DeployApplicationDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
