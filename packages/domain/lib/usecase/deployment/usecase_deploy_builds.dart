@@ -22,7 +22,7 @@ class UsecaseDeployBuildsImpl extends UsecaseDeployBuilds {
       android: applicationDeploy.android.normalize(),
       ios: applicationDeploy.ios,
       branches: applicationDeploy.applicationDependencyBranches,
-      flow: applicationDeploy.appFlow,
+      demo: applicationDeploy.demo,
     );
   }
 }

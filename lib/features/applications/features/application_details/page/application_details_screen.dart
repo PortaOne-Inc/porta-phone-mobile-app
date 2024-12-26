@@ -331,12 +331,9 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 color: colorScheme.surfaceContainerLow,
               ),
               CheckboxListTile(
-                value: applicationDeploy.isBuildDemoFlow,
+                value: applicationDeploy.demo,
                 onChanged: (demo) {
-                  final flow = true == demo ? ApplicationFlow.demo : ApplicationFlow.classic;
-                  onUpdateApplicationDeploy(applicationDeploy.copyWith(
-                    appFlow: flow,
-                  ));
+                  onUpdateApplicationDeploy(applicationDeploy.copyWith(demo: demo!));
                 },
                 title: Text(
                   context.l10n.feature_application_details_ApplicationDetailsScreen_demo_flow_title,

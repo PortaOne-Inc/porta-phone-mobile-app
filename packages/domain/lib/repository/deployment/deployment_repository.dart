@@ -5,7 +5,7 @@ abstract class DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    ApplicationFlow flow = ApplicationFlow.classic,
+    bool demo = false,
     ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
   });
 }

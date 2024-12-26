@@ -5,38 +5,22 @@ import 'application_dependency_branches.dart';
 
 part 'application_deploy.freezed.dart';
 
-enum ApplicationFlow {
-  demo,
-  classic,
-}
-
 @freezed
 class ApplicationDeploy with _$ApplicationDeploy {
   const factory ApplicationDeploy({
-    required AndroidBuildPlatform android,
-    required IOSBuildPlatform ios,
-    required ApplicationDependencyBranches applicationDependencyBranches,
-    required ApplicationFlow appFlow,
+    @Default(AndroidBuildPlatform()) AndroidBuildPlatform android,
+    @Default(IOSBuildPlatform()) IOSBuildPlatform ios,
+    @Default(ApplicationDependencyBranches()) ApplicationDependencyBranches applicationDependencyBranches,
+    @Default(false) bool demo,
   }) = _ApplicationDeploy;
 
   const ApplicationDeploy._();
-
-  factory ApplicationDeploy.init() {
-    return const ApplicationDeploy(
-      android: AndroidBuildPlatform(),
-      ios: IOSBuildPlatform(),
-      applicationDependencyBranches: ApplicationDependencyBranches(),
-      appFlow: ApplicationFlow.classic,
-    );
-  }
 
   bool get anyDeployPlatformAvailable => android.deploy || ios.deploy;
 
   bool get isAndroidPlatformSelected => android.deploy == true;
 
   bool get isIOSPlatformSelected => ios.deploy == true;
-
-  bool get isBuildDemoFlow => appFlow == ApplicationFlow.demo;
 
   // Custom copyWith methods
   ApplicationDeploy copyWithAndroid(AndroidBuildPlatform? android) {

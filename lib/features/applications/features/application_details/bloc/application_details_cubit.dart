@@ -33,7 +33,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
           application: applicationModel,
-          applicationDeploy: ApplicationDeploy.init(),
+          applicationDeploy: const ApplicationDeploy(),
         )) {
     _init();
   }
@@ -124,7 +124,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
         emit(state.copyWith(
           application: application,
           applicationDeploy: state.applicationDeploy.copyWith(
-            appFlow: application.demo ? ApplicationFlow.demo : ApplicationFlow.classic,
+            demo: application.demo,
           ),
           status: ApplicationDetailsStateStatus.success,
         ));
@@ -134,9 +134,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     } else {
       emit(state.copyWith(
         application: state.application,
-        applicationDeploy: state.applicationDeploy.copyWith(
-          appFlow: (state.application?.demo == true) ? ApplicationFlow.demo : ApplicationFlow.classic,
-        ),
+        applicationDeploy: state.applicationDeploy.copyWith(demo: state.application!.demo),
         status: ApplicationDetailsStateStatus.success,
       ));
     }
@@ -156,7 +154,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
-    updateApplicationUsecase.execute(state.application!.copyWith(demo: model.isBuildDemoFlow));
+    updateApplicationUsecase.execute(state.application!.copyWith(demo: model.demo));
     emit(state.copyWith(applicationDeploy: model));
   }
 

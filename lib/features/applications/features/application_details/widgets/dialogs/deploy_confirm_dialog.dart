@@ -39,7 +39,7 @@ class DeployConfirmDialog extends StatelessWidget {
             const Divider(),
             ConfigInfoRow(
               title: context.l10n.feature_application_details_DeployConfirmDialog_flow,
-              value: deployInfo.appFlow.name,
+              value: deployInfo.demo.toString(),
             ),
             const Divider(),
             const SizedBox(height: 8),

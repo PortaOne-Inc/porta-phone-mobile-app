@@ -21,11 +21,11 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    ApplicationFlow flow = ApplicationFlow.classic,
+    bool demo = false,
     ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
   }) {
     final deployPlatform = _getDeployPlatform(android, ios);
-    final deployFlow = flow == ApplicationFlow.classic ? 'classic' : 'demo';
+    final deployFlow = demo ? 'classic' : 'demo';
 
     final androidPlayStoreConfig = jsonEncode(_mapAndroidPlayStoreConfigToJson(android?.playStoreConfig));
 

@@ -20,7 +20,7 @@ mixin _$ApplicationDeploy {
   IOSBuildPlatform get ios => throw _privateConstructorUsedError;
   ApplicationDependencyBranches get applicationDependencyBranches =>
       throw _privateConstructorUsedError;
-  ApplicationFlow get appFlow => throw _privateConstructorUsedError;
+  bool get demo => throw _privateConstructorUsedError;
 
   /// Create a copy of ApplicationDeploy
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +39,7 @@ abstract class $ApplicationDeployCopyWith<$Res> {
       {AndroidBuildPlatform android,
       IOSBuildPlatform ios,
       ApplicationDependencyBranches applicationDependencyBranches,
-      ApplicationFlow appFlow});
+      bool demo});
 
   $AndroidBuildPlatformCopyWith<$Res> get android;
   $IOSBuildPlatformCopyWith<$Res> get ios;
@@ -65,7 +65,7 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
     Object? android = null,
     Object? ios = null,
     Object? applicationDependencyBranches = null,
-    Object? appFlow = null,
+    Object? demo = null,
   }) {
     return _then(_value.copyWith(
       android: null == android
@@ -80,10 +80,10 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
           ? _value.applicationDependencyBranches
           : applicationDependencyBranches // ignore: cast_nullable_to_non_nullable
               as ApplicationDependencyBranches,
-      appFlow: null == appFlow
-          ? _value.appFlow
-          : appFlow // ignore: cast_nullable_to_non_nullable
-              as ApplicationFlow,
+      demo: null == demo
+          ? _value.demo
+          : demo // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -133,7 +133,7 @@ abstract class _$$ApplicationDeployImplCopyWith<$Res>
       {AndroidBuildPlatform android,
       IOSBuildPlatform ios,
       ApplicationDependencyBranches applicationDependencyBranches,
-      ApplicationFlow appFlow});
+      bool demo});
 
   @override
   $AndroidBuildPlatformCopyWith<$Res> get android;
@@ -160,7 +160,7 @@ class __$$ApplicationDeployImplCopyWithImpl<$Res>
     Object? android = null,
     Object? ios = null,
     Object? applicationDependencyBranches = null,
-    Object? appFlow = null,
+    Object? demo = null,
   }) {
     return _then(_$ApplicationDeployImpl(
       android: null == android
@@ -175,10 +175,10 @@ class __$$ApplicationDeployImplCopyWithImpl<$Res>
           ? _value.applicationDependencyBranches
           : applicationDependencyBranches // ignore: cast_nullable_to_non_nullable
               as ApplicationDependencyBranches,
-      appFlow: null == appFlow
-          ? _value.appFlow
-          : appFlow // ignore: cast_nullable_to_non_nullable
-              as ApplicationFlow,
+      demo: null == demo
+          ? _value.demo
+          : demo // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -187,24 +187,29 @@ class __$$ApplicationDeployImplCopyWithImpl<$Res>
 
 class _$ApplicationDeployImpl extends _ApplicationDeploy {
   const _$ApplicationDeployImpl(
-      {required this.android,
-      required this.ios,
-      required this.applicationDependencyBranches,
-      required this.appFlow})
+      {this.android = const AndroidBuildPlatform(),
+      this.ios = const IOSBuildPlatform(),
+      this.applicationDependencyBranches =
+          const ApplicationDependencyBranches(),
+      this.demo = false})
       : super._();
 
   @override
+  @JsonKey()
   final AndroidBuildPlatform android;
   @override
+  @JsonKey()
   final IOSBuildPlatform ios;
   @override
+  @JsonKey()
   final ApplicationDependencyBranches applicationDependencyBranches;
   @override
-  final ApplicationFlow appFlow;
+  @JsonKey()
+  final bool demo;
 
   @override
   String toString() {
-    return 'ApplicationDeploy(android: $android, ios: $ios, applicationDependencyBranches: $applicationDependencyBranches, appFlow: $appFlow)';
+    return 'ApplicationDeploy(android: $android, ios: $ios, applicationDependencyBranches: $applicationDependencyBranches, demo: $demo)';
   }
 
   @override
@@ -218,12 +223,12 @@ class _$ApplicationDeployImpl extends _ApplicationDeploy {
                     applicationDependencyBranches) ||
                 other.applicationDependencyBranches ==
                     applicationDependencyBranches) &&
-            (identical(other.appFlow, appFlow) || other.appFlow == appFlow));
+            (identical(other.demo, demo) || other.demo == demo));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, android, ios, applicationDependencyBranches, appFlow);
+      runtimeType, android, ios, applicationDependencyBranches, demo);
 
   /// Create a copy of ApplicationDeploy
   /// with the given fields replaced by the non-null parameter values.
@@ -237,11 +242,10 @@ class _$ApplicationDeployImpl extends _ApplicationDeploy {
 
 abstract class _ApplicationDeploy extends ApplicationDeploy {
   const factory _ApplicationDeploy(
-      {required final AndroidBuildPlatform android,
-      required final IOSBuildPlatform ios,
-      required final ApplicationDependencyBranches
-          applicationDependencyBranches,
-      required final ApplicationFlow appFlow}) = _$ApplicationDeployImpl;
+      {final AndroidBuildPlatform android,
+      final IOSBuildPlatform ios,
+      final ApplicationDependencyBranches applicationDependencyBranches,
+      final bool demo}) = _$ApplicationDeployImpl;
   const _ApplicationDeploy._() : super._();
 
   @override
@@ -251,7 +255,7 @@ abstract class _ApplicationDeploy extends ApplicationDeploy {
   @override
   ApplicationDependencyBranches get applicationDependencyBranches;
   @override
-  ApplicationFlow get appFlow;
+  bool get demo;
 
   /// Create a copy of ApplicationDeploy
   /// with the given fields replaced by the non-null parameter values.
