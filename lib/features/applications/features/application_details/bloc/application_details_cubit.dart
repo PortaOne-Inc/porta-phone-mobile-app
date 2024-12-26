@@ -22,7 +22,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.getApplicationGet,
     required this.makeThemeAsDefaultUseCase,
     required this.deleteThemeUseCase,
-    required this.applicationEditUsecase,
     required this.applicationDeleteUsecase,
     required this.applicationId,
     required this.usecaseDeployBuilds,
@@ -46,7 +45,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
-  final UsecaseApplicationEdit applicationEditUsecase;
   final UsecaseDeployBuilds usecaseDeployBuilds;
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;

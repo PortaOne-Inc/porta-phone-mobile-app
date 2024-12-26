@@ -69,7 +69,7 @@ class AppRoute {
               name: AppRoutInfo.applicationEdit.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ApplicationEditCubit>(
                 create: (BuildContext context) => ApplicationEditCubit(
-                  applicationEditUsecase: getIt.get(),
+                  updateApplicationUsecase: getIt.get(),
                   applicationGetUsecase: getIt.get(),
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                 ),
@@ -98,7 +98,6 @@ class AppRoute {
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   getThemesUseCase: getIt.get(),
                   makeThemeAsDefaultUseCase: getIt.get(),
-                  applicationEditUsecase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
                   getApplicationGet: getIt.get(),
                   applicationDeleteUsecase: getIt.get(),

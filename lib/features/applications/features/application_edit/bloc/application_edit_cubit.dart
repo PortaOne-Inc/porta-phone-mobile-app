@@ -12,7 +12,7 @@ part 'application_edit_cubit.freezed.dart';
 
 class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   ApplicationEditCubit({
-    required this.applicationEditUsecase,
+    required this.updateApplicationUsecase,
     required this.applicationGetUsecase,
     required this.applicationId,
   }) : super(const ApplicationEditState()) {
@@ -20,7 +20,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   final String applicationId;
-  final UsecaseApplicationEdit applicationEditUsecase;
+  final UpdateApplicationUsecase updateApplicationUsecase;
   final UsecaseApplicationGet applicationGetUsecase;
 
   void updateNameChange(String name) {
@@ -69,11 +69,12 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     }
   }
 
+  // TODO(Serdun): Use model instead of group of fields
   Future<void> tryEditApplication() async {
     try {
       emit(state.copyWith(status: ApplicationEditStatus.loading));
 
-      await applicationEditUsecase.execute(
+      updateApplicationUsecase.execute(ApplicationModel(
         id: applicationId,
         name: state.nameInput!.value,
         androidPlatformId: state.androidPlatformIdInput!.value,
@@ -87,8 +88,8 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           buildNumber: int.tryParse(state.iosBuildNumberInput!.value),
         ),
         coreUrl: state.applicationCoreInput!.value,
-        termConditionsUrl: state.applicationTermsConditionsInput!.value,
-      );
+        termsConditionsUrl: state.applicationTermsConditionsInput!.value,
+      ));
 
       emit(state.copyWith(status: ApplicationEditStatus.finish));
     } on Exception catch (e) {

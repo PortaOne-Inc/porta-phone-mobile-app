@@ -29,8 +29,6 @@ import 'package:domain/usecase/applications/usecase_application_add_theme.dart'
     as _i434;
 import 'package:domain/usecase/applications/usecase_application_delete.dart'
     as _i81;
-import 'package:domain/usecase/applications/usecase_application_edit.dart'
-    as _i24;
 import 'package:domain/usecase/applications/usecase_application_get.dart'
     as _i548;
 import 'package:domain/usecase/applications/usecase_application_get_all.dart'
@@ -199,14 +197,6 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i562.Mapper<_i698.ApplicationDTO, _i562.ApplicationModel>>(),
               gh<_i562.Mapper<_i698.ThemeDTO?, _i562.ThemeModel>>(),
             ));
-    gh.factory<_i24.UsecaseApplicationEdit>(() =>
-        _i24.UsecaseApplicationEditImpl(
-          applicationRepository: gh<_i174.ApplicationRepository>(),
-          authRepository: gh<_i174.AuthRepository>(),
-          resourcesRepository: gh<_i174.ResourcesRepository>(),
-          mapper:
-              gh<_i562.Mapper<_i698.ApplicationDTO, _i562.ApplicationModel>>(),
-        ));
     gh.factory<_i189.UpdateApplicationUsecase>(() =>
         _i189.UpdateApplicationUsecaseImpl(
           applicationRepository: gh<_i174.ApplicationRepository>(),
@@ -228,8 +218,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i562.Mapper<_i698.ApplicationDTO, _i562.ApplicationModel>>(),
         ));
     gh.factory<_i651.UpdateBuildNameUseCase>(() =>
-        _i638.IncrementBuildNameUseCase(gh<_i651.UsecaseApplicationEdit>()));
+        _i638.IncrementBuildNameUseCase(gh<_i651.UpdateApplicationUsecase>()));
     gh.factory<_i651.UpdateBuildNumberUseCase>(() =>
-        _i95.UpdateBuildNumberUseCaseImpl(gh<_i651.UsecaseApplicationEdit>()));
+        _i95.UpdateBuildNumberUseCaseImpl(
+            gh<_i651.UpdateApplicationUsecase>()));
   }
 }

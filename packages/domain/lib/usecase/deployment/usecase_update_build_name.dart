@@ -5,9 +5,9 @@ import 'package:domain/usecase/usecase.dart';
 
 @Injectable(as: UpdateBuildNameUseCase)
 class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
-  IncrementBuildNameUseCase(this.applicationEditUsecase);
+  IncrementBuildNameUseCase(this.updateApplicationUsecase);
 
-  final UsecaseApplicationEdit applicationEditUsecase;
+  final UpdateApplicationUsecase updateApplicationUsecase;
 
   @override
   Future<BuildVersionModel?> execute({
@@ -21,16 +21,10 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
         ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0000000)
         : _incrementBuildName(currentVersion, part);
 
-    final updatedApplication = await applicationEditUsecase.execute(
-      id: application.id!,
-      name: application.name!,
-      androidPlatformId: application.androidPlatformId,
-      iosPlatformId: application.iosPlatformId,
+    final updatedApplication = await updateApplicationUsecase.execute(application.copyWith(
       androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
       iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
-      coreUrl: application.coreUrl,
-      termConditionsUrl: application.termsConditionsUrl,
-    );
+    ));
 
     return platform == BuildPlatform.android ? updatedApplication.androidVersion : updatedApplication.iosVersion;
   }
