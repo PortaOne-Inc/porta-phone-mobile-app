@@ -11,7 +11,6 @@ import 'package:webtrit_configurator/core/core.dart';
 import '../../../widgets/widgets.dart';
 
 import '../bloc/application_create_cubit.dart';
-import '../widgets/widgets.dart';
 
 class ApplicationCreatePage extends StatefulWidget {
   const ApplicationCreatePage({
@@ -30,13 +29,10 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
     return BlocConsumer<ApplicationCreateCubit, ApplicationCreateState>(
       listener: (BuildContext context, ApplicationCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
-        appBar: BaseToolBar(
-          isVisibleProgress: state.status == ApplicationCreateStatus.loading,
-          child: ApplicationCreateToolbar(
-            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            onSwitchedLanguage: () => _languageChanged(context),
-          ),
+        appBar: AppToolbar(
+          name: context.l10n.feature_application_Toolbar_title,
+          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+          onThemeChange: (mode) => _onThemeModeChanged(context, mode),
         ),
         body: Center(
           child: ApplicationManage(

@@ -11,7 +11,6 @@ import 'package:webtrit_configurator/features/common/common.dart';
 import '../../../widgets/widgets.dart';
 
 import '../bloc/application_edit_cubit.dart';
-import '../widgets/application_edit_toolbar.dart';
 
 class ApplicationEditPage extends StatefulWidget {
   const ApplicationEditPage({
@@ -32,13 +31,10 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
     return BlocConsumer<ApplicationEditCubit, ApplicationEditState>(
       listener: (BuildContext context, ApplicationEditState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
-        appBar: BaseToolBar(
-          isVisibleProgress: state.status == ApplicationEditStatus.loading,
-          child: ApplicationEditToolbar(
-            onSwitchedLanguage: () => _languageChanged(context),
-            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-          ),
+        appBar: AppToolbar(
+          name: context.l10n.feature_application_Toolbar_edit,
+          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+          onThemeChange: (mode) => _onThemeModeChanged(context, mode),
         ),
         body: Center(
           child: ApplicationManage(
@@ -79,10 +75,6 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
     if (state.status == ApplicationEditStatus.initial) {
       _identifierEditController.text = state.nameInput!.value;
     }
-  }
-
-  void _languageChanged(BuildContext context) {
-    showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
   }
 
   void _openApplications() {
