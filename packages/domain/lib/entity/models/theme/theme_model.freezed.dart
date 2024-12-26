@@ -24,7 +24,9 @@ mixin _$ThemeModel {
   SystemAssetsModel get systemAssets => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ThemeModelCopyWith<ThemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +62,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +107,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     ) as $Val);
   }
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorSchemeModelCopyWith<$Res>? get colors {
@@ -115,6 +121,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     });
   }
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageSchemeModelCopyWith<$Res> get images {
@@ -123,6 +131,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     });
   }
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SystemAssetsModelCopyWith<$Res> get systemAssets {
@@ -131,6 +141,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     });
   }
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TextsModelCopyWith<$Res>? get texts {
@@ -179,6 +191,8 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
       _$ThemeModelImpl _value, $Res Function(_$ThemeModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,7 +292,9 @@ class _$ThemeModelImpl extends _ThemeModel {
   int get hashCode => Object.hash(
       runtimeType, id, name, fontFamily, colors, images, systemAssets, texts);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ThemeModelImplCopyWith<_$ThemeModelImpl> get copyWith =>
@@ -310,8 +326,11 @@ abstract class _ThemeModel extends ThemeModel {
   SystemAssetsModel get systemAssets;
   @override
   TextsModel? get texts;
+
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ThemeModelImplCopyWith<_$ThemeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

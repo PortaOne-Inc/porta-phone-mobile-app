@@ -16,6 +16,7 @@ class ApplicationModel with _$ApplicationModel {
     BuildVersionModel? iosVersion,
     String? coreUrl,
     String? theme,
+    @Default(false) bool demo,
   }) = _ApplicationModel;
 
   const ApplicationModel._();

@@ -63,8 +63,8 @@ class ConfiguratorBackandDatasource {
     return ApplicationDTO.fromJson(response.data!);
   }
 
-  Future<ApplicationDTO> updateApplications(String applicationId, ApplicationDTO application) async {
-    final response = await client.patch<Map<String, dynamic>>(
+  Future<ApplicationDTO> putApplication(String applicationId, ApplicationDTO application) async {
+    final response = await client.put<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.application(applicationId),
       data: application.toJson(),
     );

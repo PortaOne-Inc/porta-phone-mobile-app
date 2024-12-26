@@ -65,7 +65,9 @@ mixin _$ColorSchemeModel {
   List<Color>? get gradientTabColor => throw _privateConstructorUsedError;
   LaunchModel? get launch => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ColorSchemeModelCopyWith<ColorSchemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -139,6 +141,8 @@ class _$ColorSchemeModelCopyWithImpl<$Res, $Val extends ColorSchemeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -387,6 +391,8 @@ class _$ColorSchemeModelCopyWithImpl<$Res, $Val extends ColorSchemeModel>
     ) as $Val);
   }
 
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LaunchModelCopyWith<$Res>? get launch {
@@ -470,6 +476,8 @@ class __$$ColorModelImplCopyWithImpl<$Res>
       _$ColorModelImpl _value, $Res Function(_$ColorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1030,7 +1038,9 @@ class _$ColorModelImpl extends _ColorModel {
         launch
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
@@ -1185,8 +1195,11 @@ abstract class _ColorModel extends ColorSchemeModel {
   List<Color>? get gradientTabColor;
   @override
   LaunchModel? get launch;
+
+  /// Create a copy of ColorSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1196,7 +1209,9 @@ mixin _$LaunchModel {
   Color? get adaptiveIconBackground => throw _privateConstructorUsedError;
   Color? get splashBackground => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LaunchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LaunchModelCopyWith<LaunchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1220,6 +1235,8 @@ class _$LaunchModelCopyWithImpl<$Res, $Val extends LaunchModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LaunchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1258,6 +1275,8 @@ class __$$LaunchModelImplCopyWithImpl<$Res>
       _$LaunchModelImpl _value, $Res Function(_$LaunchModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LaunchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1307,7 +1326,9 @@ class _$LaunchModelImpl implements _LaunchModel {
   int get hashCode =>
       Object.hash(runtimeType, adaptiveIconBackground, splashBackground);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LaunchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LaunchModelImplCopyWith<_$LaunchModelImpl> get copyWith =>
@@ -1323,8 +1344,11 @@ abstract class _LaunchModel implements LaunchModel {
   Color? get adaptiveIconBackground;
   @override
   Color? get splashBackground;
+
+  /// Create a copy of LaunchModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LaunchModelImplCopyWith<_$LaunchModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -19,7 +19,9 @@ mixin _$ImageSchemeModel {
   ImageModel get primaryOnboardingLogo => throw _privateConstructorUsedError;
   ImageModel get secondaryOnboardingLogo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImageSchemeModelCopyWith<ImageSchemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -65,6 +69,8 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
     ) as $Val);
   }
 
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get primaryOnboardingLogo {
@@ -73,6 +79,8 @@ class _$ImageSchemeModelCopyWithImpl<$Res, $Val extends ImageSchemeModel>
     });
   }
 
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get secondaryOnboardingLogo {
@@ -107,6 +115,8 @@ class __$$ImageSchemeModelImplCopyWithImpl<$Res>
       $Res Function(_$ImageSchemeModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,7 +172,9 @@ class _$ImageSchemeModelImpl extends _ImageSchemeModel {
   int get hashCode =>
       Object.hash(runtimeType, primaryOnboardingLogo, secondaryOnboardingLogo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImageSchemeModelImplCopyWith<_$ImageSchemeModelImpl> get copyWith =>
@@ -180,8 +192,11 @@ abstract class _ImageSchemeModel extends ImageSchemeModel {
   ImageModel get primaryOnboardingLogo;
   @override
   ImageModel get secondaryOnboardingLogo;
+
+  /// Create a copy of ImageSchemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImageSchemeModelImplCopyWith<_$ImageSchemeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

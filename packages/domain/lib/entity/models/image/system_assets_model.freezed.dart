@@ -23,7 +23,9 @@ mixin _$SystemAssetsModel {
   ImageModel get iosLauncherIcon => throw _privateConstructorUsedError;
   ImageModel get webLauncherIcon => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SystemAssetsModelCopyWith<SystemAssetsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +62,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +102,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     ) as $Val);
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get notificationLogo {
@@ -106,6 +112,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     });
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get adaptiveIconBackground {
@@ -114,6 +122,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     });
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get adaptiveIconForeground {
@@ -122,6 +132,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     });
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get androidLauncherIcon {
@@ -130,6 +142,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     });
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get iosLauncherIcon {
@@ -138,6 +152,8 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
     });
   }
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ImageModelCopyWith<$Res> get webLauncherIcon {
@@ -185,6 +201,8 @@ class __$$SystemAssetsModelImplCopyWithImpl<$Res>
       $Res Function(_$SystemAssetsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -289,7 +307,9 @@ class _$SystemAssetsModelImpl extends _SystemAssetsModel {
       iosLauncherIcon,
       webLauncherIcon);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SystemAssetsModelImplCopyWith<_$SystemAssetsModelImpl> get copyWith =>
@@ -319,8 +339,11 @@ abstract class _SystemAssetsModel extends SystemAssetsModel {
   ImageModel get iosLauncherIcon;
   @override
   ImageModel get webLauncherIcon;
+
+  /// Create a copy of SystemAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SystemAssetsModelImplCopyWith<_$SystemAssetsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

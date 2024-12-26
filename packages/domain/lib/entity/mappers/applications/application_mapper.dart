@@ -10,27 +10,28 @@ import '../mapper_contract.dart';
 @Injectable(as: Mapper<ApplicationDTO, ApplicationModel>)
 class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
   ApplicationMapper(this.mapper);
+
   final Mapper<ThemeDTO?, ThemeModel?> mapper;
 
   @override
   ApplicationDTO mapToDto(ApplicationModel model) {
     return ApplicationDTO(
-      name: model.name,
-      id: model.id,
-      theme: model.theme,
-      androidPlatformId: model.androidPlatformId,
-      androidVersion: BuildVersionDTO(
-        buildName: model.androidVersion?.buildName,
-        buildNumber: model.androidVersion?.buildNumber,
-      ),
-      iosVersion: BuildVersionDTO(
-        buildName: model.iosVersion?.buildName,
-        buildNumber: model.iosVersion?.buildNumber,
-      ),
-      iosPlatformId: model.iosPlatformId,
-      termsConditionsUrl: model.termsConditionsUrl,
-      coreUrl: model.coreUrl,
-    );
+        name: model.name,
+        id: model.id,
+        theme: model.theme,
+        androidPlatformId: model.androidPlatformId,
+        androidVersion: BuildVersionDTO(
+          buildName: model.androidVersion?.buildName,
+          buildNumber: model.androidVersion?.buildNumber,
+        ),
+        iosVersion: BuildVersionDTO(
+          buildName: model.iosVersion?.buildName,
+          buildNumber: model.iosVersion?.buildNumber,
+        ),
+        iosPlatformId: model.iosPlatformId,
+        termsConditionsUrl: model.termsConditionsUrl,
+        coreUrl: model.coreUrl,
+        demo: model.demo);
   }
 
   @override
@@ -51,6 +52,7 @@ class ApplicationMapper extends Mapper<ApplicationDTO, ApplicationModel> {
         buildNumber: dto.iosVersion?.buildNumber,
       ),
       coreUrl: dto.coreUrl,
+      demo: dto.demo,
     );
   }
 }

@@ -25,8 +25,11 @@ mixin _$ApplicationModel {
   BuildVersionModel? get iosVersion => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
   String? get theme => throw _privateConstructorUsedError;
+  bool get demo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationModelCopyWith<ApplicationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,7 +49,8 @@ abstract class $ApplicationModelCopyWith<$Res> {
       BuildVersionModel? androidVersion,
       BuildVersionModel? iosVersion,
       String? coreUrl,
-      String? theme});
+      String? theme,
+      bool demo});
 
   $BuildVersionModelCopyWith<$Res>? get androidVersion;
   $BuildVersionModelCopyWith<$Res>? get iosVersion;
@@ -62,6 +66,8 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? iosVersion = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
+    Object? demo = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -112,9 +119,15 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      demo: null == demo
+          ? _value.demo
+          : demo // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BuildVersionModelCopyWith<$Res>? get androidVersion {
@@ -127,6 +140,8 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     });
   }
 
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BuildVersionModelCopyWith<$Res>? get iosVersion {
@@ -157,7 +172,8 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
       BuildVersionModel? androidVersion,
       BuildVersionModel? iosVersion,
       String? coreUrl,
-      String? theme});
+      String? theme,
+      bool demo});
 
   @override
   $BuildVersionModelCopyWith<$Res>? get androidVersion;
@@ -173,6 +189,8 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -185,6 +203,7 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
     Object? iosVersion = freezed,
     Object? coreUrl = freezed,
     Object? theme = freezed,
+    Object? demo = null,
   }) {
     return _then(_$ApplicationModelImpl(
       id: freezed == id
@@ -223,6 +242,10 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String?,
+      demo: null == demo
+          ? _value.demo
+          : demo // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -239,7 +262,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       this.androidVersion,
       this.iosVersion,
       this.coreUrl,
-      this.theme})
+      this.theme,
+      this.demo = false})
       : super._();
 
   @override
@@ -260,10 +284,13 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   final String? coreUrl;
   @override
   final String? theme;
+  @override
+  @JsonKey()
+  final bool demo;
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme)';
+    return 'ApplicationModel(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, demo: $demo)';
   }
 
   @override
@@ -284,7 +311,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
             (identical(other.iosVersion, iosVersion) ||
                 other.iosVersion == iosVersion) &&
             (identical(other.coreUrl, coreUrl) || other.coreUrl == coreUrl) &&
-            (identical(other.theme, theme) || other.theme == theme));
+            (identical(other.theme, theme) || other.theme == theme) &&
+            (identical(other.demo, demo) || other.demo == demo));
   }
 
   @override
@@ -298,9 +326,12 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       androidVersion,
       iosVersion,
       coreUrl,
-      theme);
+      theme,
+      demo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationModelImplCopyWith<_$ApplicationModelImpl> get copyWith =>
@@ -318,7 +349,8 @@ abstract class _ApplicationModel extends ApplicationModel {
       final BuildVersionModel? androidVersion,
       final BuildVersionModel? iosVersion,
       final String? coreUrl,
-      final String? theme}) = _$ApplicationModelImpl;
+      final String? theme,
+      final bool demo}) = _$ApplicationModelImpl;
   const _ApplicationModel._() : super._();
 
   @override
@@ -340,7 +372,12 @@ abstract class _ApplicationModel extends ApplicationModel {
   @override
   String? get theme;
   @override
-  @JsonKey(ignore: true)
+  bool get demo;
+
+  /// Create a copy of ApplicationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationModelImplCopyWith<_$ApplicationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

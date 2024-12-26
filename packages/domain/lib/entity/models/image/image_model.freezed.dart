@@ -21,7 +21,9 @@ mixin _$ImageModel {
   String? get name => throw _privateConstructorUsedError;
   String? get extension => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ImageModelCopyWith<ImageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$ImageModelImplCopyWithImpl<$Res>
       _$ImageModelImpl _value, $Res Function(_$ImageModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,7 +163,9 @@ class _$ImageModelImpl extends _ImageModel {
   @override
   int get hashCode => Object.hash(runtimeType, data, url, name, extension);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
@@ -180,8 +188,11 @@ abstract class _ImageModel extends ImageModel {
   String? get name;
   @override
   String? get extension;
+
+  /// Create a copy of ImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

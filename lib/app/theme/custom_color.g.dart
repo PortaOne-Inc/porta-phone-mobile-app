@@ -10,6 +10,7 @@ CustomColor _$CustomColorFromJson(Map<String, dynamic> json) => CustomColor(
       color: const CSSColorConverter().fromJson(json['color'] as String),
     );
 
-Map<String, dynamic> _$CustomColorToJson(CustomColor instance) => <String, dynamic>{
+Map<String, dynamic> _$CustomColorToJson(CustomColor instance) =>
+    <String, dynamic>{
       'color': const CSSColorConverter().toJson(instance.color),
     };

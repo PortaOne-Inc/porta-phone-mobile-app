@@ -20,7 +20,9 @@ mixin _$Translation {
   String get key => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Translation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationCopyWith<Translation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$TranslationCopyWithImpl<$Res, $Val extends Translation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Translation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$TranslationImplCopyWithImpl<$Res>
       _$TranslationImpl _value, $Res Function(_$TranslationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Translation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,7 +149,9 @@ class _$TranslationImpl extends _Translation {
   @override
   int get hashCode => Object.hash(runtimeType, locale, key, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Translation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationImplCopyWith<_$TranslationImpl> get copyWith =>
@@ -163,8 +171,11 @@ abstract class _Translation extends Translation {
   String get key;
   @override
   String get value;
+
+  /// Create a copy of Translation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationImplCopyWith<_$TranslationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

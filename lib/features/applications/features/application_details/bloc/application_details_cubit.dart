@@ -28,6 +28,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.usecaseDeployBuilds,
     required this.updateBuildNameUseCase,
     required this.updateBuildNumberUseCase,
+    required this.updateApplicationUsecase,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -49,6 +50,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UsecaseDeployBuilds usecaseDeployBuilds;
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
+  final UpdateApplicationUsecase updateApplicationUsecase;
 
   Future<void> _init() async {
     await _getThemes();
@@ -112,6 +114,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
+  // TODO(Serdun): Clean up code
   Future<void> _getApplication() async {
     if (state.application == null) {
       try {
@@ -120,11 +123,22 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
 
         emit(state.copyWith(
           application: application,
+          applicationDeploy: state.applicationDeploy.copyWith(
+            appFlow: application.demo ? ApplicationFlow.demo : ApplicationFlow.classic,
+          ),
           status: ApplicationDetailsStateStatus.success,
         ));
       } on BaseException catch (e) {
         emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
       }
+    } else {
+      emit(state.copyWith(
+        application: state.application,
+        applicationDeploy: state.applicationDeploy.copyWith(
+          appFlow: (state.application?.demo == true) ? ApplicationFlow.demo : ApplicationFlow.classic,
+        ),
+        status: ApplicationDetailsStateStatus.success,
+      ));
     }
   }
 
@@ -142,6 +156,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
+    updateApplicationUsecase.execute(state.application!.copyWith(demo: model.isBuildDemoFlow));
     emit(state.copyWith(applicationDeploy: model));
   }
 

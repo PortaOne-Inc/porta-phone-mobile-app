@@ -23,7 +23,9 @@ mixin _$ApplicationDependencyBranches {
       throw _privateConstructorUsedError;
   String get keystoreSourceBranch => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDependencyBranches
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationDependencyBranchesCopyWith<ApplicationDependencyBranches>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationDependencyBranches
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -117,6 +121,8 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationDependencyBranchesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationDependencyBranches
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -216,7 +222,9 @@ class _$ApplicationDependencyBranchesImpl
       phoneConfiguratorToolSourceBranch,
       keystoreSourceBranch);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDependencyBranches
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationDependencyBranchesImplCopyWith<
@@ -245,8 +253,11 @@ abstract class _ApplicationDependencyBranches
   String get phoneConfiguratorToolSourceBranch;
   @override
   String get keystoreSourceBranch;
+
+  /// Create a copy of ApplicationDependencyBranches
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationDependencyBranchesImplCopyWith<
           _$ApplicationDependencyBranchesImpl>
       get copyWith => throw _privateConstructorUsedError;

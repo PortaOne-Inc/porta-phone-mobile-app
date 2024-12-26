@@ -53,6 +53,7 @@ abstract class $ApplicationDetailsStateCopyWith<$Res> {
       ApplicationModel? deleteApplication,
       Object? error});
 
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   $ApplicationModelCopyWith<$Res>? get application;
@@ -76,7 +77,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = freezed,
+    Object? applicationDeploy = null,
     Object? applicationValidateErrors = null,
     Object? themes = null,
     Object? buildVersionProgress = null,
@@ -90,7 +91,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: freezed == applicationDeploy
+      applicationDeploy: null == applicationDeploy
           ? _value.applicationDeploy
           : applicationDeploy // ignore: cast_nullable_to_non_nullable
               as ApplicationDeploy,
@@ -120,6 +121,16 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
               as ApplicationModel?,
       error: freezed == error ? _value.error : error,
     ) as $Val);
+  }
+
+  /// Create a copy of ApplicationDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy {
+    return $ApplicationDeployCopyWith<$Res>(_value.applicationDeploy, (value) {
+      return _then(_value.copyWith(applicationDeploy: value) as $Val);
+    });
   }
 
   /// Create a copy of ApplicationDetailsState
@@ -197,6 +208,8 @@ abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
       Object? error});
 
   @override
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
+  @override
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   @override
   $ThemeModelCopyWith<$Res>? get deleteTheme;
@@ -222,7 +235,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = freezed,
+    Object? applicationDeploy = null,
     Object? applicationValidateErrors = null,
     Object? themes = null,
     Object? buildVersionProgress = null,
@@ -236,7 +249,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: freezed == applicationDeploy
+      applicationDeploy: null == applicationDeploy
           ? _value.applicationDeploy
           : applicationDeploy // ignore: cast_nullable_to_non_nullable
               as ApplicationDeploy,
@@ -334,8 +347,8 @@ class _$ApplicationDetailsStateInitialImpl
         (other.runtimeType == runtimeType &&
             other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other.applicationDeploy, applicationDeploy) &&
+            (identical(other.applicationDeploy, applicationDeploy) ||
+                other.applicationDeploy == applicationDeploy) &&
             const DeepCollectionEquality().equals(
                 other._applicationValidateErrors, _applicationValidateErrors) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
@@ -354,7 +367,7 @@ class _$ApplicationDetailsStateInitialImpl
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      const DeepCollectionEquality().hash(applicationDeploy),
+      applicationDeploy,
       const DeepCollectionEquality().hash(_applicationValidateErrors),
       const DeepCollectionEquality().hash(_themes),
       buildVersionProgress,

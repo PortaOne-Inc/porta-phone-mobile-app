@@ -21,7 +21,9 @@ mixin _$AndroidBuildPlatform {
   AndroidPlayStoreConfig get playStoreConfig =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AndroidBuildPlatformCopyWith<AndroidBuildPlatform> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$AndroidBuildPlatformCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -71,6 +75,8 @@ class _$AndroidBuildPlatformCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AndroidPlayStoreConfigCopyWith<$Res> get playStoreConfig {
@@ -103,6 +109,8 @@ class __$$AndroidBuildPlatformImplCopyWithImpl<$Res>
       $Res Function(_$AndroidBuildPlatformImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,7 +177,9 @@ class _$AndroidBuildPlatformImpl extends _AndroidBuildPlatform {
   @override
   int get hashCode => Object.hash(runtimeType, key, deploy, playStoreConfig);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AndroidBuildPlatformImplCopyWith<_$AndroidBuildPlatformImpl>
@@ -192,8 +202,11 @@ abstract class _AndroidBuildPlatform extends AndroidBuildPlatform {
   bool get deploy;
   @override
   AndroidPlayStoreConfig get playStoreConfig;
+
+  /// Create a copy of AndroidBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AndroidBuildPlatformImplCopyWith<_$AndroidBuildPlatformImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -203,7 +216,9 @@ mixin _$IOSBuildPlatform {
   String get key => throw _privateConstructorUsedError;
   bool get deploy => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of IOSBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $IOSBuildPlatformCopyWith<IOSBuildPlatform> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -227,6 +242,8 @@ class _$IOSBuildPlatformCopyWithImpl<$Res, $Val extends IOSBuildPlatform>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of IOSBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -265,6 +282,8 @@ class __$$IOSBuildPlatformImplCopyWithImpl<$Res>
       $Res Function(_$IOSBuildPlatformImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of IOSBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -315,7 +334,9 @@ class _$IOSBuildPlatformImpl extends _IOSBuildPlatform {
   @override
   int get hashCode => Object.hash(runtimeType, key, deploy);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of IOSBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$IOSBuildPlatformImplCopyWith<_$IOSBuildPlatformImpl> get copyWith =>
@@ -332,8 +353,11 @@ abstract class _IOSBuildPlatform extends IOSBuildPlatform {
   String get key;
   @override
   bool get deploy;
+
+  /// Create a copy of IOSBuildPlatform
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$IOSBuildPlatformImplCopyWith<_$IOSBuildPlatformImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -345,7 +369,9 @@ mixin _$AndroidPlayStoreConfig {
   int get updatePriority => throw _privateConstructorUsedError;
   double? get userFraction => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AndroidPlayStoreConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AndroidPlayStoreConfigCopyWith<AndroidPlayStoreConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -371,6 +397,8 @@ class _$AndroidPlayStoreConfigCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AndroidPlayStoreConfig
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -423,6 +451,8 @@ class __$$AndroidPlayStoreConfigImplCopyWithImpl<$Res>
       $Res Function(_$AndroidPlayStoreConfigImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AndroidPlayStoreConfig
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -493,7 +523,9 @@ class _$AndroidPlayStoreConfigImpl extends _AndroidPlayStoreConfig {
   int get hashCode =>
       Object.hash(runtimeType, track, status, updatePriority, userFraction);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AndroidPlayStoreConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AndroidPlayStoreConfigImplCopyWith<_$AndroidPlayStoreConfigImpl>
@@ -517,8 +549,11 @@ abstract class _AndroidPlayStoreConfig extends AndroidPlayStoreConfig {
   int get updatePriority;
   @override
   double? get userFraction;
+
+  /// Create a copy of AndroidPlayStoreConfig
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AndroidPlayStoreConfigImplCopyWith<_$AndroidPlayStoreConfigImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

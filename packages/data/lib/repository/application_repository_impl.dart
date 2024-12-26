@@ -55,7 +55,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
     try {
-      return await configuratorBackandDatasource.updateApplications(applicationId, applicationDTO);
+      return await configuratorBackandDatasource.putApplication(applicationId, applicationDTO);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {

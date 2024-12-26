@@ -426,13 +426,12 @@ class _$ReplaceColorSchemeEventImpl implements _ReplaceColorSchemeEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReplaceColorSchemeEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other.colorScheme, colorScheme));
+            (identical(other.colorScheme, colorScheme) ||
+                other.colorScheme == colorScheme));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(colorScheme));
+  int get hashCode => Object.hash(runtimeType, colorScheme);
 }
 
 abstract class _ReplaceColorSchemeEvent implements ReplaceColorSchemeEvent {
@@ -22457,12 +22456,11 @@ class _$UpdateThemeSchemeImagesEventImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeSchemeImagesEventImpl &&
-            const DeepCollectionEquality().equals(other.image, image));
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(runtimeType, image);
 
   @override
   @optionalTypeArgs
@@ -22570,12 +22568,11 @@ class _$UpdateSystemAssetsImagesEventImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateSystemAssetsImagesEventImpl &&
-            const DeepCollectionEquality().equals(other.image, image));
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(runtimeType, image);
 
   @override
   @optionalTypeArgs

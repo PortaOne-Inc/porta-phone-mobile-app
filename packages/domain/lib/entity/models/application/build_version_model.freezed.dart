@@ -23,8 +23,12 @@ mixin _$BuildVersionModel {
   String? get buildName => throw _privateConstructorUsedError;
   int? get buildNumber => throw _privateConstructorUsedError;
 
+  /// Serializes this BuildVersionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BuildVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BuildVersionModelCopyWith<BuildVersionModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$BuildVersionModelCopyWithImpl<$Res, $Val extends BuildVersionModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BuildVersionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$BuildVersionModelImplCopyWithImpl<$Res>
       $Res Function(_$BuildVersionModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BuildVersionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,11 +142,13 @@ class _$BuildVersionModelImpl implements _BuildVersionModel {
                 other.buildNumber == buildNumber));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, buildName, buildNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BuildVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BuildVersionModelImplCopyWith<_$BuildVersionModelImpl> get copyWith =>
@@ -165,8 +175,11 @@ abstract class _BuildVersionModel implements BuildVersionModel {
   String? get buildName;
   @override
   int? get buildNumber;
+
+  /// Create a copy of BuildVersionModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BuildVersionModelImplCopyWith<_$BuildVersionModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

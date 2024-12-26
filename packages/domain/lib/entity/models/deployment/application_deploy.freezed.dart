@@ -22,7 +22,9 @@ mixin _$ApplicationDeploy {
       throw _privateConstructorUsedError;
   ApplicationFlow get appFlow => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApplicationDeployCopyWith<ApplicationDeploy> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,6 +87,8 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
     ) as $Val);
   }
 
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AndroidBuildPlatformCopyWith<$Res> get android {
@@ -91,6 +97,8 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
     });
   }
 
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IOSBuildPlatformCopyWith<$Res> get ios {
@@ -99,6 +107,8 @@ class _$ApplicationDeployCopyWithImpl<$Res, $Val extends ApplicationDeploy>
     });
   }
 
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ApplicationDependencyBranchesCopyWith<$Res>
@@ -142,6 +152,8 @@ class __$$ApplicationDeployImplCopyWithImpl<$Res>
       $Res Function(_$ApplicationDeployImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -213,7 +225,9 @@ class _$ApplicationDeployImpl extends _ApplicationDeploy {
   int get hashCode => Object.hash(
       runtimeType, android, ios, applicationDependencyBranches, appFlow);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApplicationDeployImplCopyWith<_$ApplicationDeployImpl> get copyWith =>
@@ -238,8 +252,11 @@ abstract class _ApplicationDeploy extends ApplicationDeploy {
   ApplicationDependencyBranches get applicationDependencyBranches;
   @override
   ApplicationFlow get appFlow;
+
+  /// Create a copy of ApplicationDeploy
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApplicationDeployImplCopyWith<_$ApplicationDeployImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

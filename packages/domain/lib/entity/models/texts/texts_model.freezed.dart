@@ -19,7 +19,9 @@ mixin _$TextsModel {
   String? get greeting => throw _privateConstructorUsedError;
   String? get contactEmail => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TextsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TextsModelCopyWith<TextsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$TextsModelCopyWithImpl<$Res, $Val extends TextsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TextsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$TextsModelImplCopyWithImpl<$Res>
       _$TextsModelImpl _value, $Res Function(_$TextsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TextsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +135,9 @@ class _$TextsModelImpl implements _TextsModel {
   @override
   int get hashCode => Object.hash(runtimeType, greeting, contactEmail);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TextsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TextsModelImplCopyWith<_$TextsModelImpl> get copyWith =>
@@ -144,8 +152,11 @@ abstract class _TextsModel implements TextsModel {
   String? get greeting;
   @override
   String? get contactEmail;
+
+  /// Create a copy of TextsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TextsModelImplCopyWith<_$TextsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

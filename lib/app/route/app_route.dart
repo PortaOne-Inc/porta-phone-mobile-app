@@ -105,6 +105,7 @@ class AppRoute {
                   usecaseDeployBuilds: getIt.get(),
                   updateBuildNameUseCase: getIt.get(),
                   updateBuildNumberUseCase: getIt.get(),
+                  updateApplicationUsecase: getIt.get(),
                 ),
               ),
             ),
