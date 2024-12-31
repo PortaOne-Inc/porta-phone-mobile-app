@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/app/theme/custom_color.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
@@ -41,7 +42,7 @@ class ItemTheme extends StatelessWidget {
                 ? LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.withOpacity(0.25)).toList(),
+                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.toColor().withOpacity(0.25)).toList(),
                   )
                 : null,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -76,7 +77,7 @@ class ItemTheme extends StatelessWidget {
                               child: UsedColor(
                                 blurRadius: 2,
                                 size: 16,
-                                color: themeMode.colorSchemeCollection[index],
+                                color: themeMode.colorSchemeCollection[index].toColor(),
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Colors.black12,

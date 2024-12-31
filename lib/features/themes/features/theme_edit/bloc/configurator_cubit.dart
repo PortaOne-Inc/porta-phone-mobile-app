@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/app/theme/custom_color.dart';
+import 'package:webtrit_configurator/core/extension/extension.dart';
 
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 
@@ -20,14 +24,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
     required this.getApplicationUseCase,
-    required this.colorSchemeCreate,
     this.applicationId,
     this.themeId,
   }) : super(ThemePropertyState(status: ThemePropertyStatus.progress)) {
-    on<GenerateColorSchemeByColorSeedEvent>(
-      _generateColorSchemeBySeed,
-    );
-
     on<FocusScreenEvent>(
       _focusScreen,
     );
@@ -71,7 +70,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   final UsecaseThemeUpdate updateThemeUseCase;
   final UsecaseThemeGet getThemeUseCase;
   final UsecaseApplicationGet getApplicationUseCase;
-  final UsecaseColorSchemeCreate colorSchemeCreate;
 
   Future<void> _onReplaceColorEvent(ReplaceColorSchemeEvent event, Emitter<ThemePropertyState> emit) async {
     _updateColor(event.colorScheme, emit);
@@ -96,101 +94,29 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<ThemePropertyState> emit) {
     return event.map(
-      primary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primary: color), emit)),
-      onPrimary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onPrimary: color), emit)),
-      secondary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(secondary: color), emit)),
-      tertiary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(tertiary: color), emit)),
-      error: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(error: color), emit)),
-      outline: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(outline: color), emit)),
-      surface: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surface: color), emit)),
-      onSurface: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onSurface: color), emit)),
-      secondaryContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(secondaryContainer: color), emit)),
-      onSecondaryContainer: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(onSecondaryContainer: color), emit)),
+      // chane: (_UpdateColorEventChange value) async => {},
+      chane: (_UpdateColorEventChange value) async {
+        // Create a mutable copy of the original map
+        final originalColorScheme = Map<String, String?>.from(state.theme?.colors?.colors ?? {});
+        final mappedColorScheme = Map<String, String?>.from(
+          originalColorScheme.map(
+            (key, value) => MapEntry(key, value?.toColor()),
+          ),
+        );
+        // Modify the mutable map
+        mappedColorScheme[value.key] = value.color?.toHex();
+
+        // Perform the update with the modified map
+        return _updateColor(state.colors?.copyWith(colors: originalColorScheme), emit);
+      },
       gradientTab: (_UpdateColorEventGradientTab value) async => _updateGradientTab(value.colors, emit),
       launchAdaptiveIconColor: (value) async => _updateLaunchColor(emit, adaptiveIconBackground: value.color),
       launchSplashBackgroundColor: (value) async => _updateLaunchColor(emit, splashBackground: value.color),
-      primaryContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primaryContainer: color), emit)),
-      onPrimaryContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onPrimaryContainer: color), emit)),
-      primaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primaryFixed: color), emit)),
-      primaryFixedDim: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primaryFixedDim: color), emit)),
-      onPrimaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onPrimaryFixed: color), emit)),
-      onPrimaryFixedVariant: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(onPrimaryFixedVariant: color), emit)),
-      onSecondary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onSecondary: color), emit)),
-      secondaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(secondaryFixed: color), emit)),
-      secondaryFixedDim: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(secondaryFixedDim: color), emit)),
-      onSecondaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onSecondaryFixed: color), emit)),
-      onSecondaryFixedVariant: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(onSecondaryFixedVariant: color), emit)),
-      onTertiary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onTertiary: color), emit)),
-      tertiaryContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(tertiaryContainer: color), emit)),
-      onTertiaryContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onTertiaryContainer: color), emit)),
-      tertiaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(tertiaryFixed: color), emit)),
-      tertiaryFixedDim: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(tertiaryFixedDim: color), emit)),
-      onTertiaryFixed: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onTertiaryFixed: color), emit)),
-      onTertiaryFixedVariant: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(onTertiaryFixedVariant: color), emit)),
-      onError: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onError: color), emit)),
-      errorContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(errorContainer: color), emit)),
-      onErrorContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onErrorContainer: color), emit)),
-      outlineVariant: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(outlineVariant: color), emit)),
-      surfaceDim: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surfaceDim: color), emit)),
-      surfaceBright: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surfaceBright: color), emit)),
-      surfaceContainerLowest: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(surfaceContainerLowest: color), emit)),
-      surfaceContainerLow: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surfaceContainerLow: color), emit)),
-      surfaceContainer: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surfaceContainer: color), emit)),
-      surfaceContainerHigh: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(surfaceContainerHigh: color), emit)),
-      surfaceContainerHighest: (value) async => _animateColor(
-          value.color, (color) => _updateColor(state.colors?.copyWith(surfaceContainerHighest: color), emit)),
-      onSurfaceVariant: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(onSurfaceVariant: color), emit)),
-      inverseSurface: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(inverseSurface: color), emit)),
-      inversePrimary: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(inversePrimary: color), emit)),
-      shadow: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(shadow: color), emit)),
-      scrim: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(scrim: color), emit)),
-      surfaceTint: (value) async =>
-          _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(surfaceTint: color), emit)),
     );
   }
+
+//  primary: (value) async =>
+  // _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primary: color), emit)),
 
   Future<void> _validateAndTryUpdateTheme(UpdateThemeEvent event, Emitter<ThemePropertyState> emit) async {
     if (event.model != null) {
@@ -270,12 +196,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     emit(state.copyWith(themePreviewScreen: event.themePreviewScreen));
   }
 
-  Future<void> _generateColorSchemeBySeed(
-      GenerateColorSchemeByColorSeedEvent event, Emitter<ThemePropertyState> emit) async {
-    final colorScheme = await colorSchemeCreate.execute(colorsScheme: event.color);
-    emit(state.copyTheme(theme: state.theme?.copyWith(colors: colorScheme)));
-  }
-
   void _focusScreen(FocusScreenEvent event, Emitter<ThemePropertyState> emit) {
     emit(state.copyWith(status: ThemePropertyStatus.success));
     emit(state.copyWith(
@@ -295,8 +215,9 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
   }
 
   void _updateColor(ColorSchemeModel? color, Emitter<ThemePropertyState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.success));
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
     emit(state.copyTheme(theme: state.theme?.copyWith(colors: color)));
+    emit(state.copyWith(status: ThemePropertyStatus.success));
   }
 
   void _updateLaunchColor(Emitter<ThemePropertyState> emit, {Color? adaptiveIconBackground, Color? splashBackground}) {
@@ -311,21 +232,13 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
       theme: state.theme?.copyWith(
         colors: colors?.copyWith(
           launch: launchColors?.copyWith(
-            adaptiveIconBackground: newAdaptiveIconBackground,
-            splashBackground: newSplashBackground,
-          ),
+              // TODO(Serdun): Fix
+              // adaptiveIconBackground: newAdaptiveIconBackground?.toHex(),
+              // splashBackground: newSplashBackground?.toHex(),
+              ),
         ),
       ),
     ));
-  }
-
-  Future<void> _animateColor(Color? color, void Function(Color c) onUpdate) async {
-    final colors = [Colors.red, Colors.green, if (color != null) color];
-
-    for (var i = 0; i < colors.length; i++) {
-      await Future<void>.delayed(Duration(milliseconds: i * 100));
-      onUpdate(colors[i]);
-    }
   }
 
   void _updateGradientTab(List<Color> colors, Emitter<ThemePropertyState> emit) {
@@ -333,7 +246,8 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     emit(state.copyTheme(
       theme: state.theme?.copyWith(
         colors: state.theme?.colors?.copyWith(
-          gradientTabColor: colors.map((color) => color).toList(),
+          // TODO(Serdun): Check
+          gradientTabColor: colors.map((color) => color.toHex()).nonNulls.toList(),
         ),
       ),
     ));

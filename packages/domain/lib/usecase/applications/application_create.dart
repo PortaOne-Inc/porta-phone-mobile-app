@@ -3,8 +3,6 @@ import 'dart:typed_data';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:dto/dto.dart';
-
 import '../../entity/entity.dart';
 import '../../repository/repository.dart';
 
@@ -31,14 +29,11 @@ class ApplicationCreateImpl extends ApplicationCreate {
     this.applicationRepository,
     this.authRepository,
     this.resourcesRepository,
-    this.mapper,
   );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
   final ResourcesRepository resourcesRepository;
-
-  final Mapper<ApplicationDTO, ApplicationModel> mapper;
 
   @override
   FutureOr<ApplicationModel> execute({
@@ -66,8 +61,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
         termsConditionsUrl: termConditionsUrl,
       );
 
-      final dto = await applicationRepository.createApplication(mapper.mapToDto(model));
-      return mapper.mapToModel(dto);
+      return applicationRepository.createApplication(model);
     } catch (e) {
       rethrow;
     }

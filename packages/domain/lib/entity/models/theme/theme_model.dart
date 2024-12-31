@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/entity/models/image/system_assets_model.dart';
@@ -24,11 +22,11 @@ class ThemeModel with _$ThemeModel {
 
   const ThemeModel._();
 
-  List<Color> get colorSchemeCollection {
-    return colors?.asList ?? <Color>[];
+  List<String> get colorSchemeCollection {
+    return colors?.asList ?? <String>[];
   }
 
-  List<Color>? get colorGradientCollection {
+  List<String>? get colorGradientCollection {
     return colors?.gradientTabColor;
   }
 }

@@ -1,4 +1,3 @@
-export 'usecase_color_scheme_create.dart';
 export 'usecase_set_theme_default.dart';
 export 'usecase_theme_create.dart';
 export 'usecase_theme_delete.dart';

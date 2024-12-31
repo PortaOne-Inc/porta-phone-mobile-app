@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'package:webtrit_configurator/app/theme/theme_provider.dart';
 import 'package:webtrit_configurator/data/app_themes.dart';
 
 import 'package:webtrit_configurator/features/common/common.dart';

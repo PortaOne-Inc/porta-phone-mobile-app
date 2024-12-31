@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:webtrit_configurator/app/theme/custom_color.dart';
 
 import '../page/page_theme_import_assets.dart';
 
@@ -66,7 +67,7 @@ class RenderWidget extends StatelessWidget {
                     size: const Size(192, 192),
                     imageModel: _image,
                     padding: EdgeInsets.all(24 + _paddingAndroidLaunch),
-                    color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
+                    color: widget.themeModel.colors?.launch?.adaptiveIconBackground?.toColor(),
                     title: '<=Android 12 (Launch icon)\n 192px:192px',
                     fit: _launchIconsFitBox,
                   ),
@@ -91,7 +92,7 @@ class RenderWidget extends StatelessWidget {
                 size: const Size(1024, 1024),
                 imageModel: _image,
                 padding: EdgeInsets.all(48 + _paddingAndroidIOS),
-                color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
+                color: widget.themeModel.colors?.launch?.adaptiveIconBackground?.toColor(),
                 title: 'iOS 1024px:1024px',
                 fit: _launchIconsFitBox,
               ),
@@ -102,7 +103,7 @@ class RenderWidget extends StatelessWidget {
                 screenshotStreamController: _screenshotWebLaunchIconController,
                 size: const Size(1024, 1024),
                 padding: EdgeInsets.all(48 + _paddingAndroidWEB),
-                color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
+                color: widget.themeModel.colors?.launch?.adaptiveIconBackground?.toColor(),
                 imageModel: _image,
                 title: 'Web 1024px:1024px',
                 fit: _launchIconsFitBox,
@@ -114,7 +115,7 @@ class RenderWidget extends StatelessWidget {
                 screenshotStreamController: _screenshotSplashIconController,
                 size: const Size(640, 640),
                 padding: EdgeInsets.all(_paddingSplash),
-                color: widget.themeModel.colors?.launch?.adaptiveIconBackground,
+                color: widget.themeModel.colors?.launch?.adaptiveIconBackground?.toColor(),
                 imageModel: _image,
                 title: 'Android / iOS 640px:640px',
                 fit: _splashIconsFitBox,

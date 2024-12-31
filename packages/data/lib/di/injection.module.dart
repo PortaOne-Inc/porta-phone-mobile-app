@@ -13,6 +13,13 @@ import 'package:data/datasource/preferences/auth_pref_datasource.dart' as _i808;
 import 'package:data/datasource/preferences/preferences.dart' as _i385;
 import 'package:data/datasource/preferences/user_pref_datasource.dart' as _i759;
 import 'package:data/di/injection.dart' as _i237;
+import 'package:data/mappers/applications/application_mapper.dart' as _i518;
+import 'package:data/mappers/mapper.dart' as _i602;
+import 'package:data/mappers/mappers.dart' as _i1058;
+import 'package:data/mappers/themes/colors_mapper.dart' as _i1068;
+import 'package:data/mappers/themes/image_mapper.dart' as _i254;
+import 'package:data/mappers/themes/texts_mapper.dart' as _i478;
+import 'package:data/mappers/themes/theme_mapper.dart' as _i177;
 import 'package:data/repository/application_repository_impl.dart' as _i747;
 import 'package:data/repository/auth_repository_impl.dart' as _i442;
 import 'package:data/repository/deployment_repository_impl.dart' as _i123;
@@ -22,6 +29,7 @@ import 'package:data/repository/translations_repository_impl.dart' as _i591;
 import 'package:dio/dio.dart' as _i361;
 import 'package:domain/domain.dart' as _i494;
 import 'package:domain/repository/repository.dart' as _i174;
+import 'package:dto/dto.dart' as _i698;
 import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -40,10 +48,19 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i759.UserPrefDatasource(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i808.AuthPrefDatasource>(
         () => _i808.AuthPrefDatasource(gh<_i460.SharedPreferences>()));
+    gh.factory<
+            _i602.CommonMapper<_i494.ApplicationModel, _i698.ApplicationDTO>>(
+        () => _i518.ApplicationMapper());
     gh.lazySingleton<_i361.Dio>(() => registerModule.serverApiClient(
           gh<String>(instanceName: 'newBaseUrl'),
           gh<_i822.AuthPrefDatasource>(),
         ));
+    gh.factory<_i602.CommonMapper<_i494.ColorSchemeModel, _i698.ColorDTO>>(
+        () => _i1068.ColorsMapper());
+    gh.factory<_i602.CommonMapper<_i494.ImageModel?, _i698.ImageDTO?>>(
+        () => _i254.ImageMapper());
+    gh.factory<_i602.CommonMapper<_i494.TextsModel?, _i698.TextsDTO?>>(
+        () => _i478.TextsMapper());
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
         () => _i342.ConfiguratorBackandDatasource(
               gh<_i361.Dio>(),
@@ -57,19 +74,32 @@ class DataPackageModule extends _i526.MicroPackageModule {
           authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
           userPrefDataSource: gh<_i822.UserPrefDatasource>(),
         ));
-    gh.factory<_i174.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
-        configuratorBackandDatasource:
-            gh<_i822.ConfiguratorBackandDatasource>()));
+    gh.factory<_i602.CommonMapper<_i494.ThemeModel, _i698.ThemeDTO>>(
+        () => _i177.ThemeMapper(
+              gh<_i602.CommonMapper<_i494.ColorSchemeModel, _i698.ColorDTO>>(),
+              gh<_i602.CommonMapper<_i494.ImageModel?, _i698.ImageDTO?>>(),
+              gh<_i602.CommonMapper<_i494.TextsModel?, _i698.TextsDTO?>>(),
+            ));
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
             gh<_i822.ConfiguratorBackandDatasource>()));
     gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
         configuratorBackandDatasource:
             gh<_i822.ConfiguratorBackandDatasource>()));
-    gh.factory<_i174.ApplicationRepository>(() =>
+    gh.factory<_i494.ApplicationRepository>(() =>
         _i747.ApplicationRepositoryImpl(
-            configuratorBackandDatasource:
-                gh<_i822.ConfiguratorBackandDatasource>()));
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          applicationMapper: gh<
+              _i1058
+              .CommonMapper<_i494.ApplicationModel, _i698.ApplicationDTO>>(),
+        ));
+    gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          themeMapper:
+              gh<_i1058.CommonMapper<_i494.ThemeModel, _i698.ThemeDTO>>(),
+        ));
   }
 }
 

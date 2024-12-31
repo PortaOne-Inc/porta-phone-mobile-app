@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:dto/dto.dart';
-
 import '../../entity/entity.dart';
 import '../../repository/repository.dart';
 
@@ -19,14 +17,10 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
   UsecaseApplicationAddThemeImpl(
     this.applicationRepository,
     this.authRepository,
-    this.applicationMapper,
-    this.themeMapper,
   );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
-  final Mapper<ThemeDTO?, ThemeModel> themeMapper;
 
   @override
   FutureOr<void> execute({required String applicationID, required ThemeModel themeModel}) async {

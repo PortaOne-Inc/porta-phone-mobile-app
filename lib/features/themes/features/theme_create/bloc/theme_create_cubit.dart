@@ -39,7 +39,6 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
         themeModel: defaultTheme.copyWith(
           name: name,
         ),
-        colorsScheme: state.seedColor,
         applicationId: applicationId,
       );
       emit(state.copyWith(

@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:dto/dto.dart';
 
-import 'package:domain/exception/exception.dart';
-import 'package:domain/repository/repository.dart';
+import 'package:domain/domain.dart';
 
 import 'package:data/datasource/datasource.dart';
-
-import 'package:injectable/injectable.dart';
+import 'package:data/mappers/mappers.dart';
 
 // TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
 // TODO(DMITRO): The domain layer should be aware of DTOs
@@ -15,14 +14,18 @@ import 'package:injectable/injectable.dart';
 class ApplicationRepositoryImpl extends ApplicationRepository {
   ApplicationRepositoryImpl({
     required this.configuratorBackandDatasource,
+    required this.applicationMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
+  final CommonMapper<ApplicationModel, ApplicationDTO> applicationMapper;
 
   @override
-  Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO) async {
+  Future<ApplicationModel> createApplication(ApplicationModel model) async {
     try {
-      return await configuratorBackandDatasource.createApplications(applicationDTO);
+      final dtoParam = applicationMapper.convertTo(model);
+      final dto = await configuratorBackandDatasource.createApplications(dtoParam);
+      return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -31,9 +34,10 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<List<ApplicationDTO>> getUserApplications() async {
+  Future<List<ApplicationModel>> getUserApplications() async {
     try {
-      return await configuratorBackandDatasource.getApplications();
+      final dto = await configuratorBackandDatasource.getApplications();
+      return applicationMapper.convertListFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -53,9 +57,11 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO) async {
+  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model) async {
     try {
-      return await configuratorBackandDatasource.putApplication(applicationId, applicationDTO);
+      final dtoParam = applicationMapper.convertTo(model);
+      final dto = await configuratorBackandDatasource.putApplication(applicationId, dtoParam);
+      return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -64,9 +70,10 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationDTO> getApplication(String id) async {
+  Future<ApplicationModel> getApplication(String id) async {
     try {
-      return await configuratorBackandDatasource.getApplication(id);
+      final dto = await configuratorBackandDatasource.getApplication(id);
+      return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -75,9 +82,10 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationDTO> incApplicationVersion(String applicationId) async {
+  Future<ApplicationModel> incApplicationVersion(String applicationId) async {
     try {
-      return await configuratorBackandDatasource.incApplicationVersion(applicationId);
+      final dto = await configuratorBackandDatasource.incApplicationVersion(applicationId);
+      return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {

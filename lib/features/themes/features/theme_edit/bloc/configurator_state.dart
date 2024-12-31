@@ -26,6 +26,9 @@ extension ThemePropertyStateExtension on ThemePropertyState {
   bool get isHasError => status == ThemePropertyStatus.error;
 
   bool get isHasFocus => status == ThemePropertyStatus.focus && position != null;
+
+  List<MapEntry<String, Color?>> get colorsScheme =>
+      theme?.colors?.colors.entries.map((entry) => MapEntry<String, Color?>(entry.key, entry.value?.toColor())).toList() ?? [];
 }
 
 extension ThemePropertyThemeExtension on ThemePropertyState {

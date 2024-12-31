@@ -1,15 +1,15 @@
-import 'package:dto/dto.dart';
+import 'package:domain/domain.dart';
 
 abstract class ApplicationRepository {
-  Future<ApplicationDTO> updateApplication(String applicationId, ApplicationDTO applicationDTO);
+  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model);
 
-  Future<ApplicationDTO> createApplication(ApplicationDTO applicationDTO);
+  Future<ApplicationModel> createApplication(ApplicationModel model);
 
   Future<void> deleteApplication(String applicationId);
 
-  Future<ApplicationDTO> incApplicationVersion(String applicationId);
+  Future<ApplicationModel> incApplicationVersion(String applicationId);
 
-  Future<List<ApplicationDTO>> getUserApplications();
+  Future<List<ApplicationModel>> getUserApplications();
 
-  Future<ApplicationDTO> getApplication(String id);
+  Future<ApplicationModel> getApplication(String id);
 }

@@ -2,27 +2,27 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:dto/dto.dart';
+import 'package:domain/domain.dart';
 
-import 'package:domain/exception/common/base_exception.dart';
-import 'package:domain/exception/no_content_exception.dart';
-import 'package:domain/repository/repository.dart';
-
+import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
 
-// TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
-// TODO(DMITRO): The domain layer should be aware of DTOs
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({
     required this.configuratorBackandDatasource,
+    required this.themeMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
+  final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
 
   @override
-  Future<ThemeDTO> updateTheme(String applicationId, ThemeDTO? theme) async {
+  Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
     try {
-      return await configuratorBackandDatasource.updateTheme(applicationId, theme!);
+      final param = themeMapper.convertTo(theme!);
+      final dto = await configuratorBackandDatasource.updateTheme(applicationId, param);
+      return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -31,15 +31,17 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeDTO> updateStaticTheme(ThemeDTO? theme) {
-    // TODO(Serdun): remove this method
-    throw UnimplementedError();
+  Future<ThemeModel> updateStaticTheme(ThemeModel? theme) {
+    // Method retained for backward compatibility; planned for removal.
+    throw UnimplementedError('This method is scheduled for removal.');
   }
 
   @override
-  Future<ThemeDTO> createTheme(String applicationId, ThemeDTO theme) async {
+  Future<ThemeModel> createTheme(String applicationId, ThemeModel theme) async {
     try {
-      return await configuratorBackandDatasource.createTheme(applicationId, theme);
+      final param = themeMapper.convertTo(theme);
+      final dto = await configuratorBackandDatasource.createTheme(applicationId, param);
+      return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -48,33 +50,21 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<List<ThemeDTO>> getThemes(String applicationId) async {
-    try {
-      return configuratorBackandDatasource.getThemes(applicationId);
-    } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
+  Future<List<ThemeModel>> getThemes(String applicationId) async {
+    final dtos = await configuratorBackandDatasource.getThemes(applicationId);
+    return dtos.map(themeMapper.convertFrom).toList();
   }
 
   @override
-  Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
-    try {
-      return await configuratorBackandDatasource.getTheme(applicationId, themeId);
-    } on NoContentException catch (_) {
-      rethrow;
-    } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
+  Future<ThemeModel> getTheme(String applicationId, String themeId) async {
+    final dto = await configuratorBackandDatasource.getTheme(applicationId, themeId);
+    return themeMapper.convertFrom(dto);
   }
 
   @override
   Future<void> deleteTheme(String applicationId, String themeId) async {
     try {
-      return configuratorBackandDatasource.deleteTheme(applicationId, themeId);
+      await configuratorBackandDatasource.deleteTheme(applicationId, themeId);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -83,14 +73,14 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeDTO> getStaticTheme() async {
-    // TODO(Serdun): remove this method
-    throw UnimplementedError();
+  Future<ThemeModel> getStaticTheme() async {
+    // Method retained for backward compatibility; planned for removal.
+    throw UnimplementedError('This method is scheduled for removal.');
   }
 
   @override
   Future<void> downloadTheme(String applicationId, String themeId) {
-    // TODO(Serdun): remove this method
-    throw UnimplementedError();
+    // Method retained for backward compatibility; planned for removal.
+    throw UnimplementedError('This method is scheduled for removal.');
   }
 }

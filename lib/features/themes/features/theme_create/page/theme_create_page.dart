@@ -172,6 +172,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                                         child: ColorField(
                                             title: 'Seed color',
                                             color: state.seedColor,
+                                            constraints: const BoxConstraints(maxWidth: 200, maxHeight: 100),
                                             onTap: (color) {
                                               _colorGeneratorEnabled = true;
                                               setState(() {});

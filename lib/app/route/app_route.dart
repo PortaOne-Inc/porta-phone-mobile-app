@@ -140,7 +140,6 @@ class AppRoute {
                   ),
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
                   themeId: state.pathParameters[AppRoutInfo.keyThemeId],
-                  colorSchemeCreate: getIt<UsecaseColorSchemeCreate>(),
                 ),
                 child: PageThemeEdit(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,

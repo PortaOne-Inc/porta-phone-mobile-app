@@ -7,14 +7,6 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  data:
-    path: ../data
-  dto:
-    git:
-      url: https://github.com/WebTrit/webtrit_phone_configurator_common.git
-      ref: main
-      path: packages/dto
-
   injectable: ^2.5.0
   get_it: ^8.0.3
   freezed_annotation: ^2.4.4

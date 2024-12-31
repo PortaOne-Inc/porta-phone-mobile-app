@@ -33,6 +33,7 @@ class _PageThemePreviewState extends State<PageThemePreview> {
       body: BlocConsumer<ThemePropertyCubit, ThemePropertyState>(
           listener: _listenBloc,
           builder: (BuildContext context, state) {
+            print('_PageThemePreviewState: ${state.colors?.colors}');
             return Builder(
               builder: (context) => AnimatedSwitcher(
                 duration: const Duration(milliseconds: 250),

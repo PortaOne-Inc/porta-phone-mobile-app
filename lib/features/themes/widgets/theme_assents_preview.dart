@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/app/theme/custom_color.dart';
 
 import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
@@ -48,7 +49,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                       isFrameVisible: false,
                       child: IgnorePointer(
                         child: ColoredBox(
-                          color: theme.colors?.launch?.splashBackground ?? Colors.green,
+                          color: theme.colors?.launch?.splashBackground?.toColor()  ?? Colors.green,
                           child: Center(
                             child: ImageResource(
                               imageModel: theme.systemAssets.adaptiveIconBackground,
@@ -61,7 +62,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                     ),
                     IgnorePointer(
                       child: ColoredBox(
-                        color: theme.colors?.launch?.splashBackground ?? Colors.green,
+                        color: theme.colors?.launch?.splashBackground?.toColor() ?? Colors.green,
                         child: Center(
                           child: ImageResource(
                             imageModel: theme.systemAssets.adaptiveIconBackground,
@@ -150,7 +151,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                     safeZone: const Size.square(72),
                     radius: const BorderRadius.all(Radius.circular(1)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
+                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
                     // backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
@@ -158,7 +159,7 @@ class ThemeAssetsPreview extends StatelessWidget {
                     safeZone: const Size.square(72),
                     radius: const BorderRadius.all(Radius.circular(180)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
+                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
                     // backgroundImage: theme.systemAssets.adaptiveIconBackground,
                   ),
                   LaunchIcon(
@@ -171,21 +172,21 @@ class ThemeAssetsPreview extends StatelessWidget {
                       bottomRight: Radius.circular(4),
                     ),
                     foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
+                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
                     safeZone: const Size.square(72),
                     radius: const BorderRadius.all(Radius.circular(4)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
+                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
                   ),
                   LaunchIcon(
                     size: const Size.square(108),
                     safeZone: const Size.square(72),
                     radius: const BorderRadius.all(Radius.circular(16)),
                     foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground,
+                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
                   ),
                 ],
               ),

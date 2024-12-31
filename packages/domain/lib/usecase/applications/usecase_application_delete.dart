@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:dto/dto.dart';
-
-import '../../entity/entity.dart';
 import '../../repository/repository.dart';
 
 abstract class UsecaseApplicationDeleteTemplate {
@@ -18,12 +15,10 @@ class UsecaseApplicationDeleteTemplateImpl implements UsecaseApplicationDeleteTe
   UsecaseApplicationDeleteTemplateImpl(
     this.applicationRepository,
     this.authRepository,
-    this.applicationMapper,
   );
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;
-  final Mapper<ApplicationDTO, ApplicationModel> applicationMapper;
 
   @override
   FutureOr<void> execute({required String applicationId}) async {

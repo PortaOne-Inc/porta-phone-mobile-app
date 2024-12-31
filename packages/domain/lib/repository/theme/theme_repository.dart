@@ -1,18 +1,18 @@
-import 'package:dto/dto.dart';
+import 'package:domain/domain.dart';
 
 abstract class ThemeRepository {
-  Future<ThemeDTO> createTheme(
+  Future<ThemeModel> createTheme(
     String applicationId,
-    ThemeDTO theme,
+    ThemeModel theme,
   );
 
-  Future<ThemeDTO> updateTheme(
+  Future<ThemeModel> updateTheme(
     String applicationId,
-    ThemeDTO? theme,
+    ThemeModel? theme,
   );
 
-  Future<ThemeDTO> updateStaticTheme(
-    ThemeDTO? theme,
+  Future<ThemeModel> updateStaticTheme(
+    ThemeModel? theme,
   );
 
   Future<void> deleteTheme(
@@ -20,11 +20,11 @@ abstract class ThemeRepository {
     String themeId,
   );
 
-  Future<List<ThemeDTO>> getThemes(
+  Future<List<ThemeModel>> getThemes(
     String applicationId,
   );
 
-  Future<ThemeDTO> getTheme(
+  Future<ThemeModel> getTheme(
     String applicationId,
     String themeId,
   );
@@ -34,5 +34,5 @@ abstract class ThemeRepository {
     String themeId,
   );
 
-  Future<ThemeDTO> getStaticTheme();
+  Future<ThemeModel> getStaticTheme();
 }
