@@ -47,14 +47,14 @@ class ItemOfListButton extends StatelessWidget {
                     overflow: TextOverflow.fade,
                     style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w400,
-                      color: colorScheme.surface.withOpacity(0.75),
+                      color: colorScheme.surface.withValues(alpha: 0.75),
                     ),
                   ),
                 ),
               ),
               Divider(
                 height: 0,
-                color: colorScheme.surface.withOpacity(0.5),
+                color: colorScheme.surface.withValues(alpha: 0.5),
               ),
               const SizedBox(
                 height: 8,

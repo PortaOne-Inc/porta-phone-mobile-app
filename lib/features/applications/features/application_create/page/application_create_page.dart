@@ -71,10 +71,6 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
     }
   }
 
-  void _languageChanged(BuildContext context) {
-    showTopSnakeMessageSuccess(context, context.l10n.common_not_implemented);
-  }
-
   void _openApplications() {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
   }

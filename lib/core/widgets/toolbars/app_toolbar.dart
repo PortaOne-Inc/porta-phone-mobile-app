@@ -64,7 +64,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.onSurface.withOpacity(0.25),
+            color: colorScheme.onSurface.withValues(alpha: 0.25),
             spreadRadius: 2,
             blurRadius: 4,
             offset: const Offset(1, 1),

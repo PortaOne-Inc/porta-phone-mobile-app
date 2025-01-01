@@ -29,7 +29,7 @@ class MenuPreview extends StatelessWidget {
 
     return MenuSpace(
       isTopPosition: true,
-      background: colorScheme.surfaceDim.withOpacity(0.2),
+      background: colorScheme.surfaceDim.withValues(alpha: 0.2),
       children: [
         Dropdown(
           constraints: const BoxConstraints(maxWidth: 224),

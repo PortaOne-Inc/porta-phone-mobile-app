@@ -53,7 +53,7 @@ class LaunchIcon extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withOpacity(0.5), // Border color
+                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.5), // Border color
                 ),
               ),
             ),
@@ -70,7 +70,7 @@ class LaunchIcon extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: radius,
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withOpacity(0.75), // Border color
+                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.75), // Border color
                 ),
               ),
             ),

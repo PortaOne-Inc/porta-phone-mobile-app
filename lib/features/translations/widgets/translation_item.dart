@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -60,7 +62,7 @@ class _TranslationItemState extends State<TranslationItem> {
                 cursor: SystemMouseCursors.click,
                 child: Text(
                   widget.originalTranslation.key,
-                  style: textTheme.labelLarge?.copyWith(color: colorScheme.onSurface.withOpacity(.25)),
+                  style: textTheme.labelLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: .25)),
                 ),
               ),
               onTap: () => Clipboard.setData(ClipboardData(text: widget.originalTranslation.key)),
@@ -72,7 +74,7 @@ class _TranslationItemState extends State<TranslationItem> {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: colorScheme.secondary.withOpacity(0.25),
+                  color: colorScheme.secondary.withValues(alpha: 0.25),
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                 ),
                 child: Center(

@@ -326,7 +326,7 @@ class GenerateLaunchIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ColoredBox(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
           child: Screenshot(
             controller: screenshotStreamController,
             child: Container(

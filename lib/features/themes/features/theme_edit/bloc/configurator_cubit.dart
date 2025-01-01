@@ -94,29 +94,23 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<ThemePropertyState> emit) {
     return event.map(
-      // chane: (_UpdateColorEventChange value) async => {},
       chane: (_UpdateColorEventChange value) async {
         // Create a mutable copy of the original map
         final originalColorScheme = Map<String, String?>.from(state.theme?.colors?.colors ?? {});
         final mappedColorScheme = Map<String, String?>.from(
-          originalColorScheme.map(
-            (key, value) => MapEntry(key, value?.toColor()),
-          ),
+          originalColorScheme.map(MapEntry.new),
         );
         // Modify the mutable map
         mappedColorScheme[value.key] = value.color?.toHex();
 
         // Perform the update with the modified map
-        return _updateColor(state.colors?.copyWith(colors: originalColorScheme), emit);
+        return _updateColor(state.colors?.copyWith(colors: mappedColorScheme), emit);
       },
       gradientTab: (_UpdateColorEventGradientTab value) async => _updateGradientTab(value.colors, emit),
       launchAdaptiveIconColor: (value) async => _updateLaunchColor(emit, adaptiveIconBackground: value.color),
       launchSplashBackgroundColor: (value) async => _updateLaunchColor(emit, splashBackground: value.color),
     );
   }
-
-//  primary: (value) async =>
-  // _animateColor(value.color, (color) => _updateColor(state.colors?.copyWith(primary: color), emit)),
 
   Future<void> _validateAndTryUpdateTheme(UpdateThemeEvent event, Emitter<ThemePropertyState> emit) async {
     if (event.model != null) {
@@ -224,18 +218,17 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     final colors = state.colors;
     final launchColors = colors?.launch;
 
-    final newAdaptiveIconBackground = adaptiveIconBackground ?? launchColors?.adaptiveIconBackground;
-    final newSplashBackground = splashBackground ?? launchColors?.splashBackground;
+    final newAdaptiveIconBackground = adaptiveIconBackground?.toHex() ?? launchColors?.adaptiveIconBackground;
+    final newSplashBackground = splashBackground?.toHex() ?? launchColors?.splashBackground;
 
     emit(state.copyWith(status: ThemePropertyStatus.success));
     emit(state.copyTheme(
       theme: state.theme?.copyWith(
         colors: colors?.copyWith(
           launch: launchColors?.copyWith(
-              // TODO(Serdun): Fix
-              // adaptiveIconBackground: newAdaptiveIconBackground?.toHex(),
-              // splashBackground: newSplashBackground?.toHex(),
-              ),
+            adaptiveIconBackground: newAdaptiveIconBackground,
+            splashBackground: newSplashBackground,
+          ),
         ),
       ),
     ));
@@ -246,7 +239,6 @@ class ThemePropertyCubit extends Bloc<ConfiguratorEvent, ThemePropertyState> {
     emit(state.copyTheme(
       theme: state.theme?.copyWith(
         colors: state.theme?.colors?.copyWith(
-          // TODO(Serdun): Check
           gradientTabColor: colors.map((color) => color.toHex()).nonNulls.toList(),
         ),
       ),

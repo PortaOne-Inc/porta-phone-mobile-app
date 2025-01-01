@@ -33,7 +33,7 @@ class PlatformCheckbox extends StatelessWidget {
               const SizedBox(width: 8),
               Icon(
                 deploy ? Icons.check_box : Icons.check_box_outline_blank,
-                color: deploy ? colorScheme.primary : colorScheme.surfaceDim.withOpacity(.5),
+                color: deploy ? colorScheme.primary : colorScheme.surfaceDim.withValues(alpha: .5),
               ),
             ],
           ),

@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
-import 'package:webtrit_configurator/app/theme/custom_color.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/gen/assets.gen.dart';
+import 'package:webtrit_phone/theme/models/theme_json_serializable.dart';
 
 extension ImageModelExtension on ImageModel {
   ThemeSvgAsset toThemeSvgAsset() {
@@ -31,7 +31,7 @@ extension ThemeModelExtension on ThemeModel {
     final secondarySvg = images.secondaryOnboardingLogo.toThemeSvgAsset();
     final colorMap = colors?.colors ?? {};
 
-    return ThemeSettings(
+    final theme= ThemeSettings(
       seedColor: colors?.colors['primary']?.toColor() ?? Colors.transparent,
       lightColorSchemeOverride: ColorSchemeOverride(
         primary: colorMap['primary']?.toColor(),
@@ -81,19 +81,19 @@ extension ThemeModelExtension on ThemeModel {
         scrim: colorMap['scrim']?.toColor(),
         surfaceTint: colorMap['surfaceTint']?.toColor(),
       ),
-      //TODO(Serdun): FIx
-      // primaryGradientColors: toCustomColorGradientCollection(),
+      primaryGradientColors: toCustomColorGradientCollection(),
       fontFamily: fontFamily,
       primaryOnboardingLogo: primarySvg,
       secondaryOnboardingLogo: secondarySvg,
-      primaryGradientColors: [],
     );
+
+    return theme;
   }
 
-// List<CustomColor> toCustomColorGradientCollection() {
-//   const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
-//   final isEnoughGradientColor = (colorGradientCollection ?? []).length < 2;
-//   final colors = isEnoughGradientColor ? emptyGradient : colorGradientCollection;
-//   return colors!.map((color) => CustomColor(color: color, blend: false)).toList();
-// }
+  List<CustomColor> toCustomColorGradientCollection() {
+    const emptyGradient = <Color>[Colors.transparent, Colors.transparent];
+    final isEnoughGradientColor = (colorGradientCollection ?? []).length < 2;
+    final colors = isEnoughGradientColor ? emptyGradient : colorGradientCollection?.map((it) => it.toColor());
+    return colors!.map((color) => CustomColor(color: color, blend: false)).toList();
+  }
 }

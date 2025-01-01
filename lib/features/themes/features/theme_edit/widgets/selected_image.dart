@@ -37,7 +37,7 @@ class SelectedImage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: colorScheme.surfaceDim.withOpacity(0.5),
+            color: colorScheme.surfaceDim.withValues(alpha: 0.5),
           ),
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
@@ -66,7 +66,7 @@ class SelectedImage extends StatelessWidget {
                   height: _size.height / 5,
                   padding: const EdgeInsets.all(8),
                   width: double.infinity,
-                  color: colorScheme.tertiaryContainer.withOpacity(0.95),
+                  color: colorScheme.tertiaryContainer.withValues(alpha: 0.95),
                   child: Center(
                     child: FittedBox(
                       fit: BoxFit.cover,
@@ -90,7 +90,7 @@ class SelectedImage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        border: Border.all(color: colorScheme.tertiary.withOpacity(0.4)),
+                        border: Border.all(color: colorScheme.tertiary.withValues(alpha: 0.4)),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(24),
                         ),
@@ -109,7 +109,7 @@ class SelectedImage extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          border: Border.all(color: colorScheme.error.withOpacity(0.5)),
+                          border: Border.all(color: colorScheme.error.withValues(alpha: 0.5)),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(24),
                           ),

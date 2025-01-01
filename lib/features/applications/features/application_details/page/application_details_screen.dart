@@ -61,7 +61,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               ListTile(
@@ -70,7 +70,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               ListTile(
@@ -79,7 +79,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               ListTile(
@@ -88,7 +88,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               ListTile(
@@ -115,7 +115,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
             ],
@@ -130,7 +130,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -143,7 +143,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 minLeadingWidth: 4,
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -169,7 +169,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -193,7 +193,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -219,7 +219,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -243,7 +243,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 leading: Container(
                   width: 8,
-                  color: colorScheme.primary.withOpacity(0.2),
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
               Divider(
@@ -292,7 +292,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                         Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_configuration),
                     childrenPadding: const EdgeInsets.symmetric(vertical: 16),
                     tilePadding: const EdgeInsets.only(left: 16, right: 8),
-                    collapsedBackgroundColor: Theme.of(context).colorScheme.primary.withOpacity(.05),
+                    collapsedBackgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: .05),
                     children: <Widget>[
                       PlayStoreConfigForm(
                         track: applicationDeploy.android.playStoreConfig.track,
@@ -368,7 +368,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 subtitle: ExpansionTile(
                   title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_branches),
-                  collapsedBackgroundColor: Theme.of(context).colorScheme.primary.withOpacity(.05),
+                  collapsedBackgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: .05),
                   children: <Widget>[
                     BranchSelector(
                       title:

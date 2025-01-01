@@ -42,7 +42,7 @@ class ItemTheme extends StatelessWidget {
                 ? LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.toColor().withOpacity(0.25)).toList(),
+                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.toColor().withValues(alpha: 0.25)).toList(),
                   )
                 : null,
             borderRadius: const BorderRadius.all(Radius.circular(8)),

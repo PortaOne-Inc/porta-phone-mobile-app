@@ -4,7 +4,7 @@ class ToolbarPopupMenu<T> extends PopupMenuButton<T> {
   ToolbarPopupMenu({
     required List<PopupMenuItem<T>> items,
     required Color background,
-    ButtonStyle? style,
+    super.style,
     super.child,
     super.onSelected,
     super.key,
@@ -12,7 +12,6 @@ class ToolbarPopupMenu<T> extends PopupMenuButton<T> {
           itemBuilder: (context) => items,
           offset: const Offset(8, kToolbarHeight),
           color: background,
-          style: style,
           elevation: 1,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(

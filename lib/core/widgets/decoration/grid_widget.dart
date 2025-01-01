@@ -13,7 +13,7 @@ class GridWidget extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return ColoredBox(
-      color: colorScheme.surface.withOpacity(0.5),
+      color: colorScheme.surface.withValues(alpha: 0.5),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: density,
@@ -22,7 +22,7 @@ class GridWidget extends StatelessWidget {
           return Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: colorScheme.primary.withOpacity(0.1),
+                color: colorScheme.primary.withValues(alpha: 0.1),
                 width: .5,
               ),
             ),

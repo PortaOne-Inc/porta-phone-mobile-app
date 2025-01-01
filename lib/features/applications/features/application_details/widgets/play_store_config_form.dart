@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
@@ -61,7 +63,7 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final borderSideColor = theme.colorScheme.primary.withOpacity(.10);
+    final borderSideColor = theme.colorScheme.primary.withValues(alpha: .10);
     final decoration = InputDecoration(
       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),

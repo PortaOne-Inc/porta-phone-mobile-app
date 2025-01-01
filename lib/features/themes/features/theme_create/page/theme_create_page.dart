@@ -137,7 +137,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                                                 TextSpan(
                                                   text: 'Will be used default WebTrit color scheme',
                                                   style: textScheme.labelLarge
-                                                      ?.copyWith(color: colorScheme.onSurfaceVariant.withOpacity(0.75)),
+                                                      ?.copyWith(color: colorScheme.onSurfaceVariant.withValues(alpha: 0.75)),
                                                 ),
                                                 TextSpan(
                                                   text: ' or ',

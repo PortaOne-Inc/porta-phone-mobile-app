@@ -17,7 +17,7 @@ class FadeBackground extends StatelessWidget {
       },
       child: visibility
           ? Container(
-              color: Colors.white.withOpacity(0.3),
+              color: Colors.white.withValues(alpha: 0.3),
               key: const ValueKey('FadeBackgroundVisible'),
             )
           : const SizedBox(
