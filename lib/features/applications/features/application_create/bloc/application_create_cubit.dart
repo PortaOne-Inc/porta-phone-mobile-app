@@ -24,6 +24,10 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(nameInput: ApplicationNameInput.dirty(name)));
   }
 
+  void updateContactEmailChange(String email) {
+    emit(state.copyWith(contactEmailInput: ApplicationEmailInput.dirty(email)));
+  }
+
   void updateAndroidPlatformId(String platformId) {
     emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
@@ -70,6 +74,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     try {
       await _createApplication(
         projectName: state.nameInput!.value,
+        contactEmail: state.contactEmailInput?.value,
         androidPlatformId: state.androidPlatformIdInput?.value,
         iosPlatformId: state.iosPlatformIdInput?.value,
         androidVersion: BuildVersionModel(
@@ -110,6 +115,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
   Future<void> _createApplication({
     required String projectName,
+    String? contactEmail,
     String? androidPlatformId,
     String? iosPlatformId,
     BuildVersionModel? androidVersion,
@@ -123,6 +129,7 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
     await applicationCreateUsecase.execute(
       name: projectName,
+      contactEmail: contactEmail,
       androidPlatformId: androidPlatformId,
       iosPlatformId: iosPlatformId,
       androidVersion: androidVersion,

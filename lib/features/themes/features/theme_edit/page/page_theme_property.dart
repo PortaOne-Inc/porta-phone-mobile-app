@@ -60,56 +60,6 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
                         ),
                       ),
                     ),
-                    const SizedBox(width: _marginBetweenComponent),
-                    Tooltip(
-                      message: context.l10n.feature_theme_edit_open_screen,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.open_in_new_sharp,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        onPressed: () => bloc.add(const FocusScreenEvent(0)),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        onChanged: (value) => bloc.add(
-                          UpdateThemeSchemeEvent.updateTexts(bloc.state.theme?.texts?.copyWith(contactEmail: value)),
-                        ),
-                        initialValue: bloc.state.theme?.texts?.contactEmail,
-                        decoration: InputDecoration(
-                          hintText: context.l10n.feature_theme_contact_email,
-                          errorText: state.nameField?.errorL10n(context),
-                          suffixIcon: Tooltip(
-                            message: context.l10n.feature_theme_edit_contact_us_info,
-                            child: Icon(
-                              Icons.info_rounded,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: _marginBetweenComponent,
-                    ),
-                    Tooltip(
-                      message: context.l10n.feature_theme_edit_open_screen,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.open_in_new_sharp,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        onPressed: () => bloc.add(const FocusScreenEvent(1)),
-                      ),
-                    )
                   ],
                 ),
                 const SizedBox(

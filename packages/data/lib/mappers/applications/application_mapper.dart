@@ -29,6 +29,7 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
       termsConditionsUrl: it.termsConditionsUrl,
       coreUrl: it.coreUrl,
       demo: it.demo,
+      contactInfo: ContactInfo(appSalesEmail: it.contactEmail),
     );
   }
 
@@ -44,16 +45,16 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
     );
 
     return ApplicationModel(
-      id: it.id,
-      name: it.name,
-      theme: it.theme,
-      iosPlatformId: it.iosPlatformId,
-      androidPlatformId: it.androidPlatformId,
-      termsConditionsUrl: it.termsConditionsUrl,
-      androidVersion: androidVersion,
-      iosVersion: iosVersion,
-      coreUrl: it.coreUrl,
-      demo: it.demo,
-    );
+        id: it.id,
+        name: it.name,
+        theme: it.theme,
+        iosPlatformId: it.iosPlatformId,
+        androidPlatformId: it.androidPlatformId,
+        termsConditionsUrl: it.termsConditionsUrl,
+        androidVersion: androidVersion,
+        iosVersion: iosVersion,
+        coreUrl: it.coreUrl,
+        demo: it.demo,
+        contactEmail: it.contactInfo?.appSalesEmail);
   }
 }

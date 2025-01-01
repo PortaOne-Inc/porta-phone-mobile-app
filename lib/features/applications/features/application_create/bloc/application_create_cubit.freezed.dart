@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationCreateState {
   ApplicationCreateStatus get status => throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
+  ApplicationEmailInput? get contactEmailInput =>
+      throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get androidPlatformIdInput =>
       throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get iosPlatformIdInput =>
@@ -54,6 +56,7 @@ abstract class $ApplicationCreateStateCopyWith<$Res> {
   $Res call(
       {ApplicationCreateStatus status,
       ApplicationNameInput? nameInput,
+      ApplicationEmailInput? contactEmailInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -85,6 +88,7 @@ class _$ApplicationCreateStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
+    Object? contactEmailInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
@@ -106,6 +110,10 @@ class _$ApplicationCreateStateCopyWithImpl<$Res,
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
+      contactEmailInput: freezed == contactEmailInput
+          ? _value.contactEmailInput
+          : contactEmailInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationEmailInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -166,6 +174,7 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {ApplicationCreateStatus status,
       ApplicationNameInput? nameInput,
+      ApplicationEmailInput? contactEmailInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -194,6 +203,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
+    Object? contactEmailInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
@@ -215,6 +225,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
+      contactEmailInput: freezed == contactEmailInput
+          ? _value.contactEmailInput
+          : contactEmailInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationEmailInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -270,6 +284,7 @@ class _$InitialImpl implements Initial {
   const _$InitialImpl(
       {this.status = ApplicationCreateStatus.initial,
       this.nameInput,
+      this.contactEmailInput,
       this.androidPlatformIdInput,
       this.iosPlatformIdInput,
       this.applicationTermsConditionsInput,
@@ -287,6 +302,8 @@ class _$InitialImpl implements Initial {
   final ApplicationCreateStatus status;
   @override
   final ApplicationNameInput? nameInput;
+  @override
+  final ApplicationEmailInput? contactEmailInput;
   @override
   final ApplicationIdentifierInput? androidPlatformIdInput;
   @override
@@ -312,7 +329,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'ApplicationCreateState(status: $status, nameInput: $nameInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, exception: $exception)';
+    return 'ApplicationCreateState(status: $status, nameInput: $nameInput, contactEmailInput: $contactEmailInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, androidGoogleServices: $androidGoogleServices, iosGoogleServices: $iosGoogleServices, exception: $exception)';
   }
 
   @override
@@ -323,6 +340,8 @@ class _$InitialImpl implements Initial {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
+            (identical(other.contactEmailInput, contactEmailInput) ||
+                other.contactEmailInput == contactEmailInput) &&
             (identical(other.androidPlatformIdInput, androidPlatformIdInput) ||
                 other.androidPlatformIdInput == androidPlatformIdInput) &&
             (identical(other.iosPlatformIdInput, iosPlatformIdInput) ||
@@ -355,6 +374,7 @@ class _$InitialImpl implements Initial {
       runtimeType,
       status,
       nameInput,
+      contactEmailInput,
       androidPlatformIdInput,
       iosPlatformIdInput,
       applicationTermsConditionsInput,
@@ -380,6 +400,7 @@ abstract class Initial implements ApplicationCreateState {
   const factory Initial(
       {final ApplicationCreateStatus status,
       final ApplicationNameInput? nameInput,
+      final ApplicationEmailInput? contactEmailInput,
       final ApplicationIdentifierInput? androidPlatformIdInput,
       final ApplicationIdentifierInput? iosPlatformIdInput,
       final ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -396,6 +417,8 @@ abstract class Initial implements ApplicationCreateState {
   ApplicationCreateStatus get status;
   @override
   ApplicationNameInput? get nameInput;
+  @override
+  ApplicationEmailInput? get contactEmailInput;
   @override
   ApplicationIdentifierInput? get androidPlatformIdInput;
   @override

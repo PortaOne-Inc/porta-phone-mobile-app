@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationEditState {
   ApplicationEditStatus get status => throw _privateConstructorUsedError;
   ApplicationNameInput? get nameInput => throw _privateConstructorUsedError;
+  ApplicationEmailInput? get contactEmailInput =>
+      throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get androidPlatformIdInput =>
       throw _privateConstructorUsedError;
   ApplicationIdentifierInput? get iosPlatformIdInput =>
@@ -52,6 +54,7 @@ abstract class $ApplicationEditStateCopyWith<$Res> {
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
+      ApplicationEmailInput? contactEmailInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -81,6 +84,7 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
+    Object? contactEmailInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
@@ -100,6 +104,10 @@ class _$ApplicationEditStateCopyWithImpl<$Res,
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
+      contactEmailInput: freezed == contactEmailInput
+          ? _value.contactEmailInput
+          : contactEmailInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationEmailInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -153,6 +161,7 @@ abstract class _$$ApplicationEditStateInitialImplCopyWith<$Res>
   $Res call(
       {ApplicationEditStatus status,
       ApplicationNameInput? nameInput,
+      ApplicationEmailInput? contactEmailInput,
       ApplicationIdentifierInput? androidPlatformIdInput,
       ApplicationIdentifierInput? iosPlatformIdInput,
       ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -181,6 +190,7 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? nameInput = freezed,
+    Object? contactEmailInput = freezed,
     Object? androidPlatformIdInput = freezed,
     Object? iosPlatformIdInput = freezed,
     Object? applicationTermsConditionsInput = freezed,
@@ -200,6 +210,10 @@ class __$$ApplicationEditStateInitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ApplicationNameInput?,
+      contactEmailInput: freezed == contactEmailInput
+          ? _value.contactEmailInput
+          : contactEmailInput // ignore: cast_nullable_to_non_nullable
+              as ApplicationEmailInput?,
       androidPlatformIdInput: freezed == androidPlatformIdInput
           ? _value.androidPlatformIdInput
           : androidPlatformIdInput // ignore: cast_nullable_to_non_nullable
@@ -247,6 +261,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   const _$ApplicationEditStateInitialImpl(
       {this.status = ApplicationEditStatus.initial,
       this.nameInput,
+      this.contactEmailInput,
       this.androidPlatformIdInput,
       this.iosPlatformIdInput,
       this.applicationTermsConditionsInput,
@@ -262,6 +277,8 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
   final ApplicationEditStatus status;
   @override
   final ApplicationNameInput? nameInput;
+  @override
+  final ApplicationEmailInput? contactEmailInput;
   @override
   final ApplicationIdentifierInput? androidPlatformIdInput;
   @override
@@ -283,7 +300,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
 
   @override
   String toString() {
-    return 'ApplicationEditState(status: $status, nameInput: $nameInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, exception: $exception)';
+    return 'ApplicationEditState(status: $status, nameInput: $nameInput, contactEmailInput: $contactEmailInput, androidPlatformIdInput: $androidPlatformIdInput, iosPlatformIdInput: $iosPlatformIdInput, applicationTermsConditionsInput: $applicationTermsConditionsInput, applicationCoreInput: $applicationCoreInput, androidBuildNameInput: $androidBuildNameInput, androidBuildNumberInput: $androidBuildNumberInput, iosBuildNameInput: $iosBuildNameInput, iosBuildNumberInput: $iosBuildNumberInput, exception: $exception)';
   }
 
   @override
@@ -294,6 +311,8 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
+            (identical(other.contactEmailInput, contactEmailInput) ||
+                other.contactEmailInput == contactEmailInput) &&
             (identical(other.androidPlatformIdInput, androidPlatformIdInput) ||
                 other.androidPlatformIdInput == androidPlatformIdInput) &&
             (identical(other.iosPlatformIdInput, iosPlatformIdInput) ||
@@ -322,6 +341,7 @@ class _$ApplicationEditStateInitialImpl implements ApplicationEditStateInitial {
       runtimeType,
       status,
       nameInput,
+      contactEmailInput,
       androidPlatformIdInput,
       iosPlatformIdInput,
       applicationTermsConditionsInput,
@@ -346,6 +366,7 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   const factory ApplicationEditStateInitial(
       {final ApplicationEditStatus status,
       final ApplicationNameInput? nameInput,
+      final ApplicationEmailInput? contactEmailInput,
       final ApplicationIdentifierInput? androidPlatformIdInput,
       final ApplicationIdentifierInput? iosPlatformIdInput,
       final ApplicationTermsConditionsInput? applicationTermsConditionsInput,
@@ -360,6 +381,8 @@ abstract class ApplicationEditStateInitial implements ApplicationEditState {
   ApplicationEditStatus get status;
   @override
   ApplicationNameInput? get nameInput;
+  @override
+  ApplicationEmailInput? get contactEmailInput;
   @override
   ApplicationIdentifierInput? get androidPlatformIdInput;
   @override

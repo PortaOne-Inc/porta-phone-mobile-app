@@ -9,21 +9,11 @@ import '../mapper.dart';
 class TextsMapper extends CommonMapper<TextsModel?, TextsDTO?> {
   @override
   TextsDTO? convertTo(TextsModel? it) {
-    return it == null
-        ? const TextsDTO()
-        : TextsDTO(
-            greeting: it.greeting,
-            contactEmail: it.contactEmail,
-          );
+    return it == null ? const TextsDTO() : TextsDTO(greeting: it.greeting);
   }
 
   @override
   TextsModel? convertFrom(TextsDTO? it) {
-    return it == null
-        ? const TextsModel()
-        : TextsModel(
-            greeting: it.greeting,
-            contactEmail: it.contactEmail,
-          );
+    return it == null ? const TextsModel() : TextsModel(greeting: it.greeting);
   }
 }

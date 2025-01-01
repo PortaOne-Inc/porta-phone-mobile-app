@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/app/theme/custom_color.dart';
-
 import 'package:webtrit_configurator/localization/localization.dart';
-
-import 'used_color.dart';
 
 class ItemTheme extends StatelessWidget {
   const ItemTheme({
@@ -42,7 +40,10 @@ class ItemTheme extends StatelessWidget {
                 ? LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: themeMode.colorGradientCollection!.toList().map((e) => e.toColor().withValues(alpha: 0.25)).toList(),
+                    colors: themeMode.colorGradientCollection!
+                        .toList()
+                        .map((e) => e.toColor().withValues(alpha: 0.25))
+                        .toList(),
                   )
                 : null,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -56,46 +57,23 @@ class ItemTheme extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(
-                    themeMode.name ?? '',
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.titleLarge,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: GridView.builder(
-                          itemBuilder: (ctx, index) {
-                            return FittedBox(
-                              child: UsedColor(
-                                blurRadius: 2,
-                                size: 16,
-                                color: themeMode.colorSchemeCollection[index].toColor(),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 2,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          itemCount: themeMode.colorSchemeCollection.length,
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 6,
-                          ),
-                        ),
+                      Text(
+                        themeMode.name ?? '',
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(
-                        width: 8,
+                        height: 8,
+                      ),
+                      Text(
+                        'Seed: ${themeMode.colors?.seed}',
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context).textTheme.titleSmall,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),

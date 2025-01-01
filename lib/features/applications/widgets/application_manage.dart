@@ -9,6 +9,7 @@ import '../model/models.dart';
 class ApplicationManage extends StatelessWidget {
   const ApplicationManage({
     required this.updateName,
+    required this.onUpdateContactEmail,
     required this.updateAndroidPlatformId,
     required this.updateIosPlatformId,
     required this.updateAndroidBuildName,
@@ -18,6 +19,7 @@ class ApplicationManage extends StatelessWidget {
     required this.onChangedTermsConditionsInput,
     required this.onChangedCoreInput,
     required this.nameInput,
+    required this.applicationEmailInput,
     required this.androidPlatformIdInput,
     required this.iosPlatformIdInput,
     required this.androidBuildNameInput,
@@ -32,6 +34,7 @@ class ApplicationManage extends StatelessWidget {
   });
 
   final void Function(String value) updateName;
+  final void Function(String value) onUpdateContactEmail;
   final void Function(String value) updateAndroidPlatformId;
   final void Function(String value) updateIosPlatformId;
   final void Function(String value) updateAndroidBuildName;
@@ -46,6 +49,7 @@ class ApplicationManage extends StatelessWidget {
 
   final ApplicationNameInput? nameInput;
   final ApplicationIdentifierInput? androidPlatformIdInput;
+  final ApplicationEmailInput? applicationEmailInput;
   final ApplicationIdentifierInput? iosPlatformIdInput;
   final ApplicationBuildNameInput? androidBuildNameInput;
   final ApplicationBuildNumberInput? androidBuildNumberInput;
@@ -167,6 +171,26 @@ class ApplicationManage extends StatelessWidget {
                     suffixIcon: Tooltip(
                       message:
                           'Provide a direct web link to the page that contains the legal terms and conditions for using a product or service.',
+                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Contact email',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  initialValue: applicationEmailInput?.value,
+                  onChanged: onUpdateContactEmail,
+                  maxLength: ApplicationConsts.maxCoreLimit,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    errorText: applicationEmailInput?.errorL10n(context),
+                    suffixIcon: Tooltip(
+                      message: 'Provide contact email.',
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),
                     ),
                   ),

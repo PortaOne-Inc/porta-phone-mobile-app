@@ -6,6 +6,5 @@ part 'texts_model.freezed.dart';
 class TextsModel with _$TextsModel {
   const factory TextsModel({
     String? greeting,
-    String? contactEmail,
   }) = _TextsModel;
 }

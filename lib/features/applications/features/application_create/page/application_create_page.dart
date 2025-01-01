@@ -56,6 +56,8 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             applicationTermsConditionsInput: state.applicationTermsConditionsInput,
             actionManage: _bloc.validateAndTryCreateApplication,
             action: context.l10n.common_feature_create,
+            onUpdateContactEmail: _bloc.updateContactEmailChange,
+            applicationEmailInput: state.contactEmailInput,
           ),
         ),
       ),

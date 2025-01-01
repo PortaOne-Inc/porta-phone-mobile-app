@@ -83,6 +83,15 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
+                title: const Text('Contact email: '),
+                subtitle: SelectableText(application?.contactEmail ?? 'Not defined'),
+                minLeadingWidth: 4,
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              ListTile(
                 title: const Text('Terms and conditions: '),
                 subtitle: SelectableText(application?.termsConditionsUrl ?? 'Not defined'),
                 minLeadingWidth: 4,

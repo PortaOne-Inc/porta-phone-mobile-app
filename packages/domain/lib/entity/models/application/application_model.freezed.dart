@@ -21,6 +21,7 @@ mixin _$ApplicationModel {
   String? get iosPlatformId => throw _privateConstructorUsedError;
   String? get androidPlatformId => throw _privateConstructorUsedError;
   String? get termsConditionsUrl => throw _privateConstructorUsedError;
+  String? get contactEmail => throw _privateConstructorUsedError;
   BuildVersionModel? get androidVersion => throw _privateConstructorUsedError;
   BuildVersionModel? get iosVersion => throw _privateConstructorUsedError;
   String? get coreUrl => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
+      String? contactEmail,
       BuildVersionModel? androidVersion,
       BuildVersionModel? iosVersion,
       String? coreUrl,
@@ -76,6 +78,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
+    Object? contactEmail = freezed,
     Object? androidVersion = freezed,
     Object? iosVersion = freezed,
     Object? coreUrl = freezed,
@@ -102,6 +105,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
       termsConditionsUrl: freezed == termsConditionsUrl
           ? _value.termsConditionsUrl
           : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
               as String?,
       androidVersion: freezed == androidVersion
           ? _value.androidVersion
@@ -169,6 +176,7 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
+      String? contactEmail,
       BuildVersionModel? androidVersion,
       BuildVersionModel? iosVersion,
       String? coreUrl,
@@ -199,6 +207,7 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
+    Object? contactEmail = freezed,
     Object? androidVersion = freezed,
     Object? iosVersion = freezed,
     Object? coreUrl = freezed,
@@ -225,6 +234,10 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
       termsConditionsUrl: freezed == termsConditionsUrl
           ? _value.termsConditionsUrl
           : termsConditionsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
               as String?,
       androidVersion: freezed == androidVersion
           ? _value.androidVersion
@@ -259,6 +272,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       this.iosPlatformId,
       this.androidPlatformId,
       this.termsConditionsUrl,
+      this.contactEmail,
       this.androidVersion,
       this.iosVersion,
       this.coreUrl,
@@ -277,6 +291,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   @override
   final String? termsConditionsUrl;
   @override
+  final String? contactEmail;
+  @override
   final BuildVersionModel? androidVersion;
   @override
   final BuildVersionModel? iosVersion;
@@ -290,7 +306,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, demo: $demo)';
+    return 'ApplicationModel(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, contactEmail: $contactEmail, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, demo: $demo)';
   }
 
   @override
@@ -306,6 +322,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
                 other.androidPlatformId == androidPlatformId) &&
             (identical(other.termsConditionsUrl, termsConditionsUrl) ||
                 other.termsConditionsUrl == termsConditionsUrl) &&
+            (identical(other.contactEmail, contactEmail) ||
+                other.contactEmail == contactEmail) &&
             (identical(other.androidVersion, androidVersion) ||
                 other.androidVersion == androidVersion) &&
             (identical(other.iosVersion, iosVersion) ||
@@ -323,6 +341,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       iosPlatformId,
       androidPlatformId,
       termsConditionsUrl,
+      contactEmail,
       androidVersion,
       iosVersion,
       coreUrl,
@@ -346,6 +365,7 @@ abstract class _ApplicationModel extends ApplicationModel {
       final String? iosPlatformId,
       final String? androidPlatformId,
       final String? termsConditionsUrl,
+      final String? contactEmail,
       final BuildVersionModel? androidVersion,
       final BuildVersionModel? iosVersion,
       final String? coreUrl,
@@ -363,6 +383,8 @@ abstract class _ApplicationModel extends ApplicationModel {
   String? get androidPlatformId;
   @override
   String? get termsConditionsUrl;
+  @override
+  String? get contactEmail;
   @override
   BuildVersionModel? get androidVersion;
   @override

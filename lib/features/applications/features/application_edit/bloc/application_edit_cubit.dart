@@ -27,6 +27,10 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(nameInput: ApplicationNameInput.dirty(name)));
   }
 
+  void updateContactEmailChange(String email) {
+    emit(state.copyWith(contactEmailInput: ApplicationEmailInput.dirty(email)));
+  }
+
   void updateAndroidPlatformId(String platformId) {
     emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
@@ -77,6 +81,7 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       updateApplicationUsecase.execute(ApplicationModel(
         id: applicationId,
         name: state.nameInput!.value,
+        contactEmail: state.contactEmailInput?.value,
         androidPlatformId: state.androidPlatformIdInput!.value,
         iosPlatformId: state.iosPlatformIdInput!.value,
         androidVersion: BuildVersionModel(

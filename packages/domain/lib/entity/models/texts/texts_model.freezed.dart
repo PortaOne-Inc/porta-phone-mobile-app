@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TextsModel {
   String? get greeting => throw _privateConstructorUsedError;
-  String? get contactEmail => throw _privateConstructorUsedError;
 
   /// Create a copy of TextsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +31,7 @@ abstract class $TextsModelCopyWith<$Res> {
           TextsModel value, $Res Function(TextsModel) then) =
       _$TextsModelCopyWithImpl<$Res, TextsModel>;
   @useResult
-  $Res call({String? greeting, String? contactEmail});
+  $Res call({String? greeting});
 }
 
 /// @nodoc
@@ -51,16 +50,11 @@ class _$TextsModelCopyWithImpl<$Res, $Val extends TextsModel>
   @override
   $Res call({
     Object? greeting = freezed,
-    Object? contactEmail = freezed,
   }) {
     return _then(_value.copyWith(
       greeting: freezed == greeting
           ? _value.greeting
           : greeting // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contactEmail: freezed == contactEmail
-          ? _value.contactEmail
-          : contactEmail // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -74,7 +68,7 @@ abstract class _$$TextsModelImplCopyWith<$Res>
       __$$TextsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? greeting, String? contactEmail});
+  $Res call({String? greeting});
 }
 
 /// @nodoc
@@ -91,16 +85,11 @@ class __$$TextsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? greeting = freezed,
-    Object? contactEmail = freezed,
   }) {
     return _then(_$TextsModelImpl(
       greeting: freezed == greeting
           ? _value.greeting
           : greeting // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contactEmail: freezed == contactEmail
-          ? _value.contactEmail
-          : contactEmail // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -109,16 +98,14 @@ class __$$TextsModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TextsModelImpl implements _TextsModel {
-  const _$TextsModelImpl({this.greeting, this.contactEmail});
+  const _$TextsModelImpl({this.greeting});
 
   @override
   final String? greeting;
-  @override
-  final String? contactEmail;
 
   @override
   String toString() {
-    return 'TextsModel(greeting: $greeting, contactEmail: $contactEmail)';
+    return 'TextsModel(greeting: $greeting)';
   }
 
   @override
@@ -127,13 +114,11 @@ class _$TextsModelImpl implements _TextsModel {
         (other.runtimeType == runtimeType &&
             other is _$TextsModelImpl &&
             (identical(other.greeting, greeting) ||
-                other.greeting == greeting) &&
-            (identical(other.contactEmail, contactEmail) ||
-                other.contactEmail == contactEmail));
+                other.greeting == greeting));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, greeting, contactEmail);
+  int get hashCode => Object.hash(runtimeType, greeting);
 
   /// Create a copy of TextsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -145,13 +130,10 @@ class _$TextsModelImpl implements _TextsModel {
 }
 
 abstract class _TextsModel implements TextsModel {
-  const factory _TextsModel(
-      {final String? greeting, final String? contactEmail}) = _$TextsModelImpl;
+  const factory _TextsModel({final String? greeting}) = _$TextsModelImpl;
 
   @override
   String? get greeting;
-  @override
-  String? get contactEmail;
 
   /// Create a copy of TextsModel
   /// with the given fields replaced by the non-null parameter values.

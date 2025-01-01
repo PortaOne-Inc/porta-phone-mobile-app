@@ -59,6 +59,8 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
             applicationTermsConditionsInput: state.applicationTermsConditionsInput,
             actionManage: _bloc.validateAndTryCreateApplication,
             action: context.l10n.theme_update,
+            onUpdateContactEmail: _bloc.updateContactEmailChange,
+            applicationEmailInput: state.contactEmailInput,
           ),
         ),
       ),

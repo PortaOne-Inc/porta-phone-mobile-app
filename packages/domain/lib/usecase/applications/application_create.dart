@@ -9,6 +9,7 @@ import '../../repository/repository.dart';
 abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required String name,
+    String? contactEmail,
     String? platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
@@ -38,6 +39,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
   @override
   FutureOr<ApplicationModel> execute({
     required String name,
+    String? contactEmail,
     String? platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
@@ -53,6 +55,7 @@ class ApplicationCreateImpl extends ApplicationCreate {
     try {
       final model = ApplicationModel(
         name: name,
+        contactEmail: contactEmail,
         androidPlatformId: androidPlatformId,
         iosPlatformId: iosPlatformId,
         androidVersion: androidVersion,
