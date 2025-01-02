@@ -22,6 +22,8 @@ class ThemeConfiguratorBackandAPI {
 
 class DeployConfiguratorBackandAPI {
   static String get deployApplications => '/github-proxy/dispatch-workflow';
+
+  static String get phoneBranched => '/github-proxy/phone-branches';
 }
 
 class TranslationConfiguratorBackandAPI {

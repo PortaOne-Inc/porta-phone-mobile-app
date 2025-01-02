@@ -13,7 +13,9 @@ import 'package:data/datasource/preferences/auth_pref_datasource.dart' as _i808;
 import 'package:data/datasource/preferences/preferences.dart' as _i385;
 import 'package:data/datasource/preferences/user_pref_datasource.dart' as _i759;
 import 'package:data/di/injection.dart' as _i237;
+import 'package:data/dto/dto.dart' as _i862;
 import 'package:data/mappers/applications/application_mapper.dart' as _i518;
+import 'package:data/mappers/deployment/phone_branch_mapper.dart' as _i729;
 import 'package:data/mappers/mapper.dart' as _i602;
 import 'package:data/mappers/mappers.dart' as _i1058;
 import 'package:data/mappers/themes/colors_mapper.dart' as _i1068;
@@ -55,6 +57,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
           gh<String>(instanceName: 'newBaseUrl'),
           gh<_i822.AuthPrefDatasource>(),
         ));
+    gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
+        () => _i729.PhoneBranchMapper());
     gh.factory<_i602.CommonMapper<_i494.ColorSchemeModel, _i698.ColorDTO>>(
         () => _i1068.ColorsMapper());
     gh.factory<_i602.CommonMapper<_i494.ImageModel?, _i698.ImageDTO?>>(
@@ -80,11 +84,14 @@ class DataPackageModule extends _i526.MicroPackageModule {
               gh<_i602.CommonMapper<_i494.ImageModel?, _i698.ImageDTO?>>(),
               gh<_i602.CommonMapper<_i494.TextsModel?, _i698.TextsDTO?>>(),
             ));
+    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          phoneBranchMapper: gh<
+              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+        ));
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
-            gh<_i822.ConfiguratorBackandDatasource>()));
-    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
-        configuratorBackandDatasource:
             gh<_i822.ConfiguratorBackandDatasource>()));
     gh.factory<_i494.ApplicationRepository>(() =>
         _i747.ApplicationRepositoryImpl(

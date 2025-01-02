@@ -32,6 +32,8 @@ import 'package:domain/usecase/auth/usecase_auth_resrt_password_impl.dart'
     as _i1038;
 import 'package:domain/usecase/auth/usecase_auth_sign_in.dart' as _i246;
 import 'package:domain/usecase/auth/usecase_auth_sign_in_impl.dart' as _i592;
+import 'package:domain/usecase/deployment/get_phone_branches_usecase.dart'
+    as _i902;
 import 'package:domain/usecase/deployment/usecase_deploy_builds.dart' as _i606;
 import 'package:domain/usecase/deployment/usecase_update_build_name.dart'
     as _i638;
@@ -117,6 +119,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               applicationRepository: gh<_i174.ApplicationRepository>(),
               authRepository: gh<_i174.AuthRepository>(),
             ));
+    gh.lazySingleton<_i902.GetPhoneBranchesUsecase>(() =>
+        _i902.GetPhoneBranchesUsecaseImpl(
+            deploymentRepository: gh<_i494.DeploymentRepository>()));
     gh.factory<_i189.UpdateApplicationUsecase>(
         () => _i189.UpdateApplicationUsecaseImpl(
               applicationRepository: gh<_i174.ApplicationRepository>(),

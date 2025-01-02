@@ -105,6 +105,7 @@ class AppRoute {
                   updateBuildNameUseCase: getIt.get(),
                   updateBuildNumberUseCase: getIt.get(),
                   updateApplicationUsecase: getIt.get(),
+                  getPhoneBranchesUsecase: getIt.get(),
                 ),
               ),
             ),

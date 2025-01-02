@@ -361,7 +361,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 title: context.l10n.feature_application_details_ApplicationDetailsScreen_select_branch_for_phone,
                 titleStyle: Theme.of(context).textTheme.titleMedium,
                 initialBranch: applicationDeploy.applicationDependencyBranches.phoneSourceBranch,
-                branches: applicationDeploy.applicationDependencyBranches.defaultPhoneBranches,
+                branches: applicationDeploy.applicationDependencyBranches.phoneBranches.map((it) => it.name).toList(),
                 onUpdate: (value) => onUpdateApplicationDeploy(
                   applicationDeploy.copyWith(
                     applicationDependencyBranches: applicationDeploy.applicationDependencyBranches.copyWith(

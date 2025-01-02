@@ -163,4 +163,14 @@ class ConfiguratorBackandDatasource {
     );
     return;
   }
+
+  // Phones branch data
+
+  Future<List<PhoneBranchDto>> getPhoneBranches() async {
+    final response = await client.get<List<dynamic>>(
+      DeployConfiguratorBackandAPI.phoneBranched,
+    );
+    final responseData = List.of(response.data?.toList() ?? []);
+    return responseData.map((it) => PhoneBranchDto.fromJson(it as Map<String, dynamic>)).toList();
+  }
 }

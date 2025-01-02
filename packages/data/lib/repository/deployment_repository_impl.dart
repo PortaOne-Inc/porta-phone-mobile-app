@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:data/mappers/mappers.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
 import 'package:data/datasource/datasource.dart';
@@ -12,9 +14,11 @@ import '../dto/dto.dart';
 class DeploymentRepositoryImpl extends DeploymentRepository {
   DeploymentRepositoryImpl({
     required this.configuratorBackandDatasource,
+    required this.phoneBranchMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
+  final CommonMapper<PhoneBranch, PhoneBranchDto> phoneBranchMapper;
 
   @override
   Future<void> deploy({
@@ -60,5 +64,17 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       if (config?.updatePriority != null) 'updatePriority': config?.updatePriority,
       if (config?.userFraction != null) 'userFraction': config?.userFraction,
     };
+  }
+
+  @override
+  Future<List<PhoneBranch>> getPhoneBranched() async {
+    try {
+      final dto = await configuratorBackandDatasource.getPhoneBranches();
+      return phoneBranchMapper.convertListFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 }

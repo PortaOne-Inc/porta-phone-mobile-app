@@ -8,4 +8,6 @@ abstract class DeploymentRepository {
     bool demo = false,
     ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
   });
+
+  Future<List<PhoneBranch>> getPhoneBranched();
 }

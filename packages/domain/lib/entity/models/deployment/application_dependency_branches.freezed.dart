@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ApplicationDependencyBranches {
+  List<PhoneBranch> get phoneBranches => throw _privateConstructorUsedError;
   String get phoneSourceBranch => throw _privateConstructorUsedError;
   String get callkeepSourceBranch => throw _privateConstructorUsedError;
   String get commonDependencySourceBranch => throw _privateConstructorUsedError;
@@ -39,7 +40,8 @@ abstract class $ApplicationDependencyBranchesCopyWith<$Res> {
           ApplicationDependencyBranches>;
   @useResult
   $Res call(
-      {String phoneSourceBranch,
+      {List<PhoneBranch> phoneBranches,
+      String phoneSourceBranch,
       String callkeepSourceBranch,
       String commonDependencySourceBranch,
       String phoneConfiguratorToolSourceBranch,
@@ -62,6 +64,7 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? phoneBranches = null,
     Object? phoneSourceBranch = null,
     Object? callkeepSourceBranch = null,
     Object? commonDependencySourceBranch = null,
@@ -69,6 +72,10 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res,
     Object? keystoreSourceBranch = null,
   }) {
     return _then(_value.copyWith(
+      phoneBranches: null == phoneBranches
+          ? _value.phoneBranches
+          : phoneBranches // ignore: cast_nullable_to_non_nullable
+              as List<PhoneBranch>,
       phoneSourceBranch: null == phoneSourceBranch
           ? _value.phoneSourceBranch
           : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
@@ -104,7 +111,8 @@ abstract class _$$ApplicationDependencyBranchesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String phoneSourceBranch,
+      {List<PhoneBranch> phoneBranches,
+      String phoneSourceBranch,
       String callkeepSourceBranch,
       String commonDependencySourceBranch,
       String phoneConfiguratorToolSourceBranch,
@@ -126,6 +134,7 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? phoneBranches = null,
     Object? phoneSourceBranch = null,
     Object? callkeepSourceBranch = null,
     Object? commonDependencySourceBranch = null,
@@ -133,6 +142,10 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
     Object? keystoreSourceBranch = null,
   }) {
     return _then(_$ApplicationDependencyBranchesImpl(
+      phoneBranches: null == phoneBranches
+          ? _value._phoneBranches
+          : phoneBranches // ignore: cast_nullable_to_non_nullable
+              as List<PhoneBranch>,
       phoneSourceBranch: null == phoneSourceBranch
           ? _value.phoneSourceBranch
           : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
@@ -163,13 +176,24 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
 class _$ApplicationDependencyBranchesImpl
     extends _ApplicationDependencyBranches {
   const _$ApplicationDependencyBranchesImpl(
-      {this.phoneSourceBranch = _kDefaultPhoneMainSourceBranch,
+      {final List<PhoneBranch> phoneBranches = const [],
+      this.phoneSourceBranch = _kDefaultPhoneMainSourceBranch,
       this.callkeepSourceBranch = _kDefaultCallkeepSourceBranch,
       this.commonDependencySourceBranch = _kDefaultCommonDependencySourceBranch,
       this.phoneConfiguratorToolSourceBranch =
           _kDefaultPhoneConfiguratorToolSourceBranch,
       this.keystoreSourceBranch = _kDefaultKeystoreSourceBranch})
-      : super._();
+      : _phoneBranches = phoneBranches,
+        super._();
+
+  final List<PhoneBranch> _phoneBranches;
+  @override
+  @JsonKey()
+  List<PhoneBranch> get phoneBranches {
+    if (_phoneBranches is EqualUnmodifiableListView) return _phoneBranches;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_phoneBranches);
+  }
 
   @override
   @JsonKey()
@@ -189,7 +213,7 @@ class _$ApplicationDependencyBranchesImpl
 
   @override
   String toString() {
-    return 'ApplicationDependencyBranches(phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
+    return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
   }
 
   @override
@@ -197,6 +221,8 @@ class _$ApplicationDependencyBranchesImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ApplicationDependencyBranchesImpl &&
+            const DeepCollectionEquality()
+                .equals(other._phoneBranches, _phoneBranches) &&
             (identical(other.phoneSourceBranch, phoneSourceBranch) ||
                 other.phoneSourceBranch == phoneSourceBranch) &&
             (identical(other.callkeepSourceBranch, callkeepSourceBranch) ||
@@ -216,6 +242,7 @@ class _$ApplicationDependencyBranchesImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_phoneBranches),
       phoneSourceBranch,
       callkeepSourceBranch,
       commonDependencySourceBranch,
@@ -236,13 +263,16 @@ class _$ApplicationDependencyBranchesImpl
 abstract class _ApplicationDependencyBranches
     extends ApplicationDependencyBranches {
   const factory _ApplicationDependencyBranches(
-      {final String phoneSourceBranch,
+      {final List<PhoneBranch> phoneBranches,
+      final String phoneSourceBranch,
       final String callkeepSourceBranch,
       final String commonDependencySourceBranch,
       final String phoneConfiguratorToolSourceBranch,
       final String keystoreSourceBranch}) = _$ApplicationDependencyBranchesImpl;
   const _ApplicationDependencyBranches._() : super._();
 
+  @override
+  List<PhoneBranch> get phoneBranches;
   @override
   String get phoneSourceBranch;
   @override

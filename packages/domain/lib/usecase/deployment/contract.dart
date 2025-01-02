@@ -1,5 +1,7 @@
 import 'package:domain/entity/models/models.dart';
 
+export 'get_phone_branches_usecase.dart';
+
 abstract class UsecaseDeployBuilds {
   Future<void> execute({
     required String applicationId,

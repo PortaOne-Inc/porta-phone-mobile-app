@@ -28,6 +28,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.updateBuildNameUseCase,
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
+    required this.getPhoneBranchesUsecase,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -49,8 +50,11 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
+  final GetPhoneBranchesUsecase getPhoneBranchesUsecase;
 
   Future<void> _init() async {
+    unawaited(_getPhoneBranches());
+
     await _getThemes();
     await _getApplication();
 
@@ -107,6 +111,34 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
       final themes = await getThemesUseCase.execute(applicationId: applicationId);
       emit(state.copyWith(themes: themes, status: ApplicationDetailsStateStatus.success));
+    } on BaseException catch (e) {
+      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+    }
+  }
+
+  Future<void> _getPhoneBranches() async {
+    await _executeWithErrorHandling(() async {
+      final branches = await getPhoneBranchesUsecase.execute();
+
+      final updatedDependencyBranches = state.applicationDeploy.applicationDependencyBranches.copyWith(
+        phoneBranches: branches,
+      );
+      final updatedApplicationDeploy = state.applicationDeploy.copyWith(
+        applicationDependencyBranches: updatedDependencyBranches,
+      );
+
+      emit(state.copyWith(
+        applicationDeploy: updatedApplicationDeploy,
+        status: ApplicationDetailsStateStatus.success,
+      ));
+    });
+  }
+
+  Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
+    try {
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+      await operation();
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.success));
     } on BaseException catch (e) {
       emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
     }
