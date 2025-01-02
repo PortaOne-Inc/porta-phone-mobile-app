@@ -14,6 +14,7 @@ import 'package:data/datasource/preferences/preferences.dart' as _i385;
 import 'package:data/datasource/preferences/user_pref_datasource.dart' as _i759;
 import 'package:data/di/injection.dart' as _i237;
 import 'package:data/dto/dto.dart' as _i862;
+import 'package:data/mappers/applications/app_version_mapper.dart' as _i377;
 import 'package:data/mappers/applications/application_mapper.dart' as _i518;
 import 'package:data/mappers/deployment/phone_branch_mapper.dart' as _i729;
 import 'package:data/mappers/mapper.dart' as _i602;
@@ -57,6 +58,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
           gh<String>(instanceName: 'newBaseUrl'),
           gh<_i822.AuthPrefDatasource>(),
         ));
+    gh.factory<_i602.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(
+        () => _i377.AppVersionMapper());
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
         () => _i729.PhoneBranchMapper());
     gh.factory<_i602.CommonMapper<_i494.ColorSchemeModel, _i698.ColorDTO>>(
@@ -89,6 +92,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
               gh<_i822.ConfiguratorBackandDatasource>(),
           phoneBranchMapper: gh<
               _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+          appVersionMapper: gh<
+              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
         ));
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(

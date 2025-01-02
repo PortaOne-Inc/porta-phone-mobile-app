@@ -145,8 +145,8 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   // TODO(Serdun): Clean up code
-  Future<void> _getApplication() async {
-    if (state.application == null) {
+  Future<void> _getApplication({bool force = false}) async {
+    if (state.application == null || force) {
       try {
         emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
         final application = await getApplicationGet.execute(id: applicationId);
@@ -198,6 +198,9 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
         applicationId: state.application!.id!,
         applicationDeploy: state.applicationDeploy,
       );
+
+      await _getApplication(force: true);
+
       emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deploySuccess));
     } catch (e) {
       emitRollback(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));

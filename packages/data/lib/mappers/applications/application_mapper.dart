@@ -9,6 +9,10 @@ import '../mapper.dart';
 class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
   @override
   ApplicationDTO convertTo(ApplicationModel it) {
+    final appVersion = BuildVersionDTO(
+      buildName: it.appVersion?.buildName,
+      buildNumber: it.appVersion?.buildNumber,
+    );
     final androidVersion = BuildVersionDTO(
       buildName: it.androidVersion?.buildName,
       buildNumber: it.androidVersion?.buildNumber,
@@ -24,6 +28,7 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
       theme: it.theme,
       iosPlatformId: it.iosPlatformId,
       androidPlatformId: it.androidPlatformId,
+      appVersion: appVersion,
       androidVersion: androidVersion,
       iosVersion: iosVersion,
       termsConditionsUrl: it.termsConditionsUrl,
@@ -35,6 +40,10 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
 
   @override
   ApplicationModel convertFrom(ApplicationDTO it) {
+    final appVersion = BuildVersionModel(
+      buildName: it.appVersion?.buildName,
+      buildNumber: it.appVersion?.buildNumber,
+    );
     final androidVersion = BuildVersionModel(
       buildName: it.androidVersion?.buildName,
       buildNumber: it.androidVersion?.buildNumber,
@@ -51,6 +60,7 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
         iosPlatformId: it.iosPlatformId,
         androidPlatformId: it.androidPlatformId,
         termsConditionsUrl: it.termsConditionsUrl,
+        appVersion: appVersion,
         androidVersion: androidVersion,
         iosVersion: iosVersion,
         coreUrl: it.coreUrl,

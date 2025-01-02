@@ -13,6 +13,7 @@ class ApplicationModel with _$ApplicationModel {
     String? androidPlatformId,
     String? termsConditionsUrl,
     String? contactEmail,
+    BuildVersionModel? appVersion,
     BuildVersionModel? androidVersion,
     BuildVersionModel? iosVersion,
     String? coreUrl,

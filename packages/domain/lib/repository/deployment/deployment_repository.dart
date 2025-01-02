@@ -10,4 +10,6 @@ abstract class DeploymentRepository {
   });
 
   Future<List<PhoneBranch>> getPhoneBranched();
+
+  Future<BuildVersionModel> getAppVersionByPhoneBranch(String branch);
 }

@@ -173,4 +173,44 @@ class ConfiguratorBackandDatasource {
     final responseData = List.of(response.data?.toList() ?? []);
     return responseData.map((it) => PhoneBranchDto.fromJson(it as Map<String, dynamic>)).toList();
   }
+
+  Future<AppVersion> getAppVersionByBranch(String branch) async {
+    try {
+      // Make sure the branch parameter is not empty
+      if (branch.isEmpty) {
+        throw ArgumentError('Branch name cannot be empty');
+      }
+
+      // Construct the full URL with query parameters
+      final response = await client.get<Map<String, dynamic>>(
+        DeployConfiguratorBackandAPI.getAppVersionByBranch,
+        queryParameters: {
+          'branch': branch,
+        },
+      );
+
+      // Check if the response contains the expected data
+      if (response.data == null || !response.data!.containsKey('app_version')) {
+        throw Exception('app_version not found in the response for branch: $branch');
+      }
+
+      // Parse the response data into AppVersion DTO
+      final appVersion = AppVersion.fromJson(response.data!);
+
+      return appVersion;
+    } on DioException catch (dioError) {
+      // Handle Dio-specific errors
+      if (dioError.response != null) {
+        // Server responded with a non-2xx status code
+        throw Exception(
+            'Failed to fetch app_version: ${dioError.response?.statusCode} ${dioError.response?.statusMessage}');
+      } else {
+        // Something happened while setting up the request
+        throw Exception('Failed to fetch app_version: ${dioError.message}');
+      }
+    } catch (e) {
+      // Handle any other errors
+      throw Exception('Failed to fetch app_version: $e');
+    }
+  }
 }

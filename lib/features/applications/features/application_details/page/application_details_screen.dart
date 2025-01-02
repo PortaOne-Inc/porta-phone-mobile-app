@@ -160,6 +160,19 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 color: colorScheme.surfaceContainerLow,
               ),
               ListTile(
+                title: const Text('App version'),
+                subtitle: SelectableText(application?.appVersion?.buildName ?? 'Latest build version data is missing.'),
+                minLeadingWidth: 4,
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
+              ListTile(
                 title: Text(context.l10n.feature_application_details_ApplicationDetailsScreen_android_build_name),
                 subtitle: SelectableText(application?.androidVersion?.buildName ?? ''),
                 minLeadingWidth: 4,

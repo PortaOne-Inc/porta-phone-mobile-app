@@ -24,6 +24,8 @@ class DeployConfiguratorBackandAPI {
   static String get deployApplications => '/github-proxy/dispatch-workflow';
 
   static String get phoneBranched => '/github-proxy/phone-branches';
+
+  static const String getAppVersionByBranch = '/github-proxy/app-version';
 }
 
 class TranslationConfiguratorBackandAPI {

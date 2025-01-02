@@ -66,8 +66,6 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i174.ApplicationRepository>(),
               gh<_i174.AuthRepository>(),
             ));
-    gh.factory<_i494.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
-        deploymentRepository: gh<_i494.DeploymentRepository>()));
     gh.factory<_i320.UsecaseThemeGet>(
       () => _i320.UsecaseThemeStaticGetImpl(
         themeRepository: gh<_i174.ThemeRepository>(),
@@ -141,6 +139,10 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i478.UsecaseTranslationsGetAll>(() =>
         _i478.UsecaseTranslationsGetAllImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
+    gh.factory<_i494.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
+          deploymentRepository: gh<_i494.DeploymentRepository>(),
+          applicationRepository: gh<_i494.ApplicationRepository>(),
+        ));
     gh.factory<_i314.UsecaseThemeDeleteCreate>(
         () => _i314.UsecaseThemeDeleteCreateImpl(
               gh<_i174.ThemeRepository>(),

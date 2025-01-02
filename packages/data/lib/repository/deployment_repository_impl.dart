@@ -15,10 +15,12 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
   DeploymentRepositoryImpl({
     required this.configuratorBackandDatasource,
     required this.phoneBranchMapper,
+    required this.appVersionMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<PhoneBranch, PhoneBranchDto> phoneBranchMapper;
+  final CommonMapper<AppVersion, BuildVersionModel> appVersionMapper;
 
   @override
   Future<void> deploy({
@@ -71,6 +73,18 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     try {
       final dto = await configuratorBackandDatasource.getPhoneBranches();
       return phoneBranchMapper.convertListFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<BuildVersionModel> getAppVersionByPhoneBranch(String branch) async {
+    try {
+      final dto = await configuratorBackandDatasource.getAppVersionByBranch(branch);
+      return appVersionMapper.convertTo(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
