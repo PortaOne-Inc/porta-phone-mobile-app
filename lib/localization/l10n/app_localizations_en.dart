@@ -63,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authorization_sign_in => 'Sign In';
 
   @override
-  String get configurator_color_template_title => 'Color Template';
+  String get configurator_color_template_title => 'Color scheme';
 
   @override
   String get configurator_text_font => 'Text font';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme_edit/widgets/color_picker.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 class ChooseSeedColor extends StatelessWidget {
   const ChooseSeedColor({

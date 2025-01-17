@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/app/theme/custom_color.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class ItemTheme extends StatelessWidget {
@@ -35,19 +34,19 @@ class ItemTheme extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         child: Container(
-          decoration: BoxDecoration(
-            gradient: themeMode.colorGradientCollection != null
-                ? LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: themeMode.colorGradientCollection!
-                        .toList()
-                        .map((e) => e.toColor().withValues(alpha: 0.25))
-                        .toList(),
-                  )
-                : null,
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-          ),
+          // decoration: BoxDecoration(
+          //   gradient: themeMode.colorGradientCollection != null
+          //       ? LinearGradient(
+          //           begin: Alignment.topCenter,
+          //           end: Alignment.bottomCenter,
+          //           colors: themeMode.colorGradientCollection!
+          //               .toList()
+          //               .map((e) => e.toColor().withValues(alpha: 0.25))
+          //               .toList(),
+          //         )
+          //       : null,
+          //   borderRadius: const BorderRadius.all(Radius.circular(8)),
+          // ),
           padding: const EdgeInsets.all(8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -69,12 +68,12 @@ class ItemTheme extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        'Seed: ${themeMode.colors?.seed}',
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.titleSmall,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      // Text(
+                      //   'Seed: ${themeMode.colors?.seed}',
+                      //   textAlign: TextAlign.start,
+                      //   style: Theme.of(context).textTheme.titleSmall,
+                      //   overflow: TextOverflow.ellipsis,
+                      // ),
                     ],
                   ),
                 ),

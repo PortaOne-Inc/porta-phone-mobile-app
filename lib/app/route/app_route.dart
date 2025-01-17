@@ -126,48 +126,53 @@ class AppRoute {
             GoRoute(
               path: AppRoutInfo.themesEdit.path,
               name: AppRoutInfo.themesEdit.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePropertyCubit>(
-                create: (BuildContext context) => ThemePropertyCubit(
-                  updateThemeUseCase: getIt<UsecaseThemeUpdate>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+              builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider<UpdateThemCubit>(
+                    create: (BuildContext context) => UpdateThemCubit(
+                      defaultThemeSettings: getIt.get<ThemeSettings>(),
+                      appConfig: getIt.get<AppConfig>(),
+                      updateThemeUseCase: getIt<UsecaseThemeUpdate>(
+                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+                      ),
+                      getApplicationUseCase: getIt<UsecaseApplicationGet>(
+                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+                      ),
+                      getThemeUseCase: getIt<UsecaseThemeGet>(
+                        instanceName: UsecaseThemeGet.applicationUsecaseKey,
+                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+                        param2: state.pathParameters[AppRoutInfo.keyThemeId],
+                      ),
+                      applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
+                      themeId: state.pathParameters[AppRoutInfo.keyThemeId],
+                    ),
                   ),
-                  getApplicationUseCase: getIt<UsecaseApplicationGet>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                  ),
-                  getThemeUseCase: getIt<UsecaseThemeGet>(
-                    instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                    param2: state.pathParameters[AppRoutInfo.keyThemeId],
-                  ),
-                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
-                  themeId: state.pathParameters[AppRoutInfo.keyThemeId],
-                ),
+                  BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
+                ],
                 child: PageThemeEdit(
                   title: context.l10n.feature_theme_edit_Toolbar_dashboard,
                 ),
               ),
             ),
-            GoRoute(
-              path: AppRoutInfo.themesPreview.path,
-              name: AppRoutInfo.themesPreview.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
-                create: (BuildContext context) => ThemePreviewCubit(
-                  getApplicationUseCase: getIt<UsecaseApplicationGet>(
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                  ),
-                  getThemeUseCase: getIt<UsecaseThemeGet>(
-                    instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                    param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                    param2: state.pathParameters[AppRoutInfo.keyThemeId],
-                  ),
-                  applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
-                  themeId: state.pathParameters[AppRoutInfo.keyThemeId],
-                ),
-                child: ThemePreviewPage(
-                  title: context.l10n.feature_theme_edit_Toolbar_dashboard,
-                ),
-              ),
-            ),
+            // GoRoute(
+            //   path: AppRoutInfo.themesPreview.path,
+            //   name: AppRoutInfo.themesPreview.name,
+            //   builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
+            //     create: (BuildContext context) => ThemePreviewCubit(
+            //       getApplicationUseCase: getIt<UsecaseApplicationGet>(
+            //         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+            //       ),
+            //       getThemeUseCase: getIt<UsecaseThemeGet>(
+            //         instanceName: UsecaseThemeGet.applicationUsecaseKey,
+            //         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+            //         param2: state.pathParameters[AppRoutInfo.keyThemeId],
+            //       ),
+            //       applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
+            //       themeId: state.pathParameters[AppRoutInfo.keyThemeId],
+            //     ),
+            //     child: Container(),
+            //   ),
+            // ),
           ],
         )
       ],

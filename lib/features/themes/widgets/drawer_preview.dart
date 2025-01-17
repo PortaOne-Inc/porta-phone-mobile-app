@@ -17,7 +17,8 @@ class DrawerPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.only(top: 16),
+      child: Center(
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -25,7 +26,8 @@ class DrawerPreview extends StatelessWidget {
             return const SizedBox(width: 8);
           },
           itemCount: screenshots.length,
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          // Symmetric padding for centering
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               child: TypeOfPreview(
@@ -40,6 +42,8 @@ class DrawerPreview extends StatelessWidget {
               onTap: () => onTapScreen.call(index),
             );
           },
-        ));
+        ),
+      ),
+    );
   }
 }

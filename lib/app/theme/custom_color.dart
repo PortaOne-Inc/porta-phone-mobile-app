@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'theme_provider.dart';
-
 part 'custom_color.g.dart';
 
 @themeJsonSerializable
@@ -17,10 +15,6 @@ class CustomColor {
   factory CustomColor.fromJson(Map<String, dynamic> json) => _$CustomColorFromJson(json);
 
   final Color color;
-
-  Color value(ThemeProvider provider) {
-    return provider.custom(this);
-  }
 
   Map<String, dynamic> toJson() => _$CustomColorToJson(this);
 }

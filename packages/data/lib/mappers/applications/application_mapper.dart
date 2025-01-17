@@ -1,7 +1,7 @@
+import 'package:data/dto/application/application.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
-import 'package:dto/dto.dart';
 
 import '../mapper.dart';
 

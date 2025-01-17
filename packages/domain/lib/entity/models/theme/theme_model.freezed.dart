@@ -19,8 +19,13 @@ mixin _$ThemeModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get fontFamily => throw _privateConstructorUsedError;
-  ColorSchemeModel? get colors => throw _privateConstructorUsedError;
-  ImageSchemeModel get images => throw _privateConstructorUsedError;
+  Map<String, dynamic> get colorSchemeConfig =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> get themeWidgetConfig =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> get themePageConfig =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> get appConfig => throw _privateConstructorUsedError;
   SystemAssetsModel get systemAssets => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
@@ -41,13 +46,13 @@ abstract class $ThemeModelCopyWith<$Res> {
       {String? id,
       String? name,
       String? fontFamily,
-      ColorSchemeModel? colors,
-      ImageSchemeModel images,
+      Map<String, dynamic> colorSchemeConfig,
+      Map<String, dynamic> themeWidgetConfig,
+      Map<String, dynamic> themePageConfig,
+      Map<String, dynamic> appConfig,
       SystemAssetsModel systemAssets,
       TextsModel? texts});
 
-  $ColorSchemeModelCopyWith<$Res>? get colors;
-  $ImageSchemeModelCopyWith<$Res> get images;
   $SystemAssetsModelCopyWith<$Res> get systemAssets;
   $TextsModelCopyWith<$Res>? get texts;
 }
@@ -70,8 +75,10 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
-    Object? colors = freezed,
-    Object? images = null,
+    Object? colorSchemeConfig = null,
+    Object? themeWidgetConfig = null,
+    Object? themePageConfig = null,
+    Object? appConfig = null,
     Object? systemAssets = null,
     Object? texts = freezed,
   }) {
@@ -88,14 +95,22 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           ? _value.fontFamily
           : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
-      colors: freezed == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeModel?,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as ImageSchemeModel,
+      colorSchemeConfig: null == colorSchemeConfig
+          ? _value.colorSchemeConfig
+          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      themeWidgetConfig: null == themeWidgetConfig
+          ? _value.themeWidgetConfig
+          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      themePageConfig: null == themePageConfig
+          ? _value.themePageConfig
+          : themePageConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      appConfig: null == appConfig
+          ? _value.appConfig
+          : appConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
       systemAssets: null == systemAssets
           ? _value.systemAssets
           : systemAssets // ignore: cast_nullable_to_non_nullable
@@ -105,30 +120,6 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           : texts // ignore: cast_nullable_to_non_nullable
               as TextsModel?,
     ) as $Val);
-  }
-
-  /// Create a copy of ThemeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorSchemeModelCopyWith<$Res>? get colors {
-    if (_value.colors == null) {
-      return null;
-    }
-
-    return $ColorSchemeModelCopyWith<$Res>(_value.colors!, (value) {
-      return _then(_value.copyWith(colors: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageSchemeModelCopyWith<$Res> get images {
-    return $ImageSchemeModelCopyWith<$Res>(_value.images, (value) {
-      return _then(_value.copyWith(images: value) as $Val);
-    });
   }
 
   /// Create a copy of ThemeModel
@@ -168,15 +159,13 @@ abstract class _$$ThemeModelImplCopyWith<$Res>
       {String? id,
       String? name,
       String? fontFamily,
-      ColorSchemeModel? colors,
-      ImageSchemeModel images,
+      Map<String, dynamic> colorSchemeConfig,
+      Map<String, dynamic> themeWidgetConfig,
+      Map<String, dynamic> themePageConfig,
+      Map<String, dynamic> appConfig,
       SystemAssetsModel systemAssets,
       TextsModel? texts});
 
-  @override
-  $ColorSchemeModelCopyWith<$Res>? get colors;
-  @override
-  $ImageSchemeModelCopyWith<$Res> get images;
   @override
   $SystemAssetsModelCopyWith<$Res> get systemAssets;
   @override
@@ -199,8 +188,10 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
-    Object? colors = freezed,
-    Object? images = null,
+    Object? colorSchemeConfig = null,
+    Object? themeWidgetConfig = null,
+    Object? themePageConfig = null,
+    Object? appConfig = null,
     Object? systemAssets = null,
     Object? texts = freezed,
   }) {
@@ -217,14 +208,22 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
           ? _value.fontFamily
           : fontFamily // ignore: cast_nullable_to_non_nullable
               as String?,
-      colors: freezed == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeModel?,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as ImageSchemeModel,
+      colorSchemeConfig: null == colorSchemeConfig
+          ? _value._colorSchemeConfig
+          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      themeWidgetConfig: null == themeWidgetConfig
+          ? _value._themeWidgetConfig
+          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      themePageConfig: null == themePageConfig
+          ? _value._themePageConfig
+          : themePageConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      appConfig: null == appConfig
+          ? _value._appConfig
+          : appConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
       systemAssets: null == systemAssets
           ? _value.systemAssets
           : systemAssets // ignore: cast_nullable_to_non_nullable
@@ -244,11 +243,17 @@ class _$ThemeModelImpl extends _ThemeModel {
       {this.id,
       this.name,
       this.fontFamily,
-      this.colors,
-      this.images = const ImageSchemeModel(),
+      final Map<String, dynamic> colorSchemeConfig = const {},
+      final Map<String, dynamic> themeWidgetConfig = const {},
+      final Map<String, dynamic> themePageConfig = const {},
+      final Map<String, dynamic> appConfig = const {},
       this.systemAssets = const SystemAssetsModel(),
       this.texts})
-      : super._();
+      : _colorSchemeConfig = colorSchemeConfig,
+        _themeWidgetConfig = themeWidgetConfig,
+        _themePageConfig = themePageConfig,
+        _appConfig = appConfig,
+        super._();
 
   @override
   final String? id;
@@ -256,11 +261,44 @@ class _$ThemeModelImpl extends _ThemeModel {
   final String? name;
   @override
   final String? fontFamily;
-  @override
-  final ColorSchemeModel? colors;
+  final Map<String, dynamic> _colorSchemeConfig;
   @override
   @JsonKey()
-  final ImageSchemeModel images;
+  Map<String, dynamic> get colorSchemeConfig {
+    if (_colorSchemeConfig is EqualUnmodifiableMapView)
+      return _colorSchemeConfig;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_colorSchemeConfig);
+  }
+
+  final Map<String, dynamic> _themeWidgetConfig;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get themeWidgetConfig {
+    if (_themeWidgetConfig is EqualUnmodifiableMapView)
+      return _themeWidgetConfig;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_themeWidgetConfig);
+  }
+
+  final Map<String, dynamic> _themePageConfig;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get themePageConfig {
+    if (_themePageConfig is EqualUnmodifiableMapView) return _themePageConfig;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_themePageConfig);
+  }
+
+  final Map<String, dynamic> _appConfig;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get appConfig {
+    if (_appConfig is EqualUnmodifiableMapView) return _appConfig;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_appConfig);
+  }
+
   @override
   @JsonKey()
   final SystemAssetsModel systemAssets;
@@ -269,7 +307,7 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   String toString() {
-    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colors: $colors, images: $images, systemAssets: $systemAssets, texts: $texts)';
+    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, systemAssets: $systemAssets, texts: $texts)';
   }
 
   @override
@@ -281,8 +319,14 @@ class _$ThemeModelImpl extends _ThemeModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fontFamily, fontFamily) ||
                 other.fontFamily == fontFamily) &&
-            (identical(other.colors, colors) || other.colors == colors) &&
-            (identical(other.images, images) || other.images == images) &&
+            const DeepCollectionEquality()
+                .equals(other._colorSchemeConfig, _colorSchemeConfig) &&
+            const DeepCollectionEquality()
+                .equals(other._themeWidgetConfig, _themeWidgetConfig) &&
+            const DeepCollectionEquality()
+                .equals(other._themePageConfig, _themePageConfig) &&
+            const DeepCollectionEquality()
+                .equals(other._appConfig, _appConfig) &&
             (identical(other.systemAssets, systemAssets) ||
                 other.systemAssets == systemAssets) &&
             (identical(other.texts, texts) || other.texts == texts));
@@ -290,7 +334,16 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, fontFamily, colors, images, systemAssets, texts);
+      runtimeType,
+      id,
+      name,
+      fontFamily,
+      const DeepCollectionEquality().hash(_colorSchemeConfig),
+      const DeepCollectionEquality().hash(_themeWidgetConfig),
+      const DeepCollectionEquality().hash(_themePageConfig),
+      const DeepCollectionEquality().hash(_appConfig),
+      systemAssets,
+      texts);
 
   /// Create a copy of ThemeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -306,8 +359,10 @@ abstract class _ThemeModel extends ThemeModel {
       {final String? id,
       final String? name,
       final String? fontFamily,
-      final ColorSchemeModel? colors,
-      final ImageSchemeModel images,
+      final Map<String, dynamic> colorSchemeConfig,
+      final Map<String, dynamic> themeWidgetConfig,
+      final Map<String, dynamic> themePageConfig,
+      final Map<String, dynamic> appConfig,
       final SystemAssetsModel systemAssets,
       final TextsModel? texts}) = _$ThemeModelImpl;
   const _ThemeModel._() : super._();
@@ -319,9 +374,13 @@ abstract class _ThemeModel extends ThemeModel {
   @override
   String? get fontFamily;
   @override
-  ColorSchemeModel? get colors;
+  Map<String, dynamic> get colorSchemeConfig;
   @override
-  ImageSchemeModel get images;
+  Map<String, dynamic> get themeWidgetConfig;
+  @override
+  Map<String, dynamic> get themePageConfig;
+  @override
+  Map<String, dynamic> get appConfig;
   @override
   SystemAssetsModel get systemAssets;
   @override

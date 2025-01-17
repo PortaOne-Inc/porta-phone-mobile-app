@@ -5,9 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'package:webtrit_configurator/data/app_themes.dart';
-
-import 'package:webtrit_configurator/features/common/common.dart';
+  import 'package:webtrit_configurator/features/common/common.dart';
 
 import '../localization/localization.dart';
 
@@ -31,7 +29,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
 
   @override
   Widget build(BuildContext context) {
-    final themeSettings = widget.getIt.get<AppThemes>().settings;
+    final themeSettings = widget.getIt.get<ConfiguratorThemeSettings>();
 
     final responsiveBreakpoints = [
       const Breakpoint(start: 0, end: 450, name: MOBILE),
@@ -51,43 +49,38 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       Locale('en', ''),
     ];
 
-    return ThemeProvider(
-      settings: themeSettings,
-      child: Builder(
-        builder: (context) => BlocProvider(
-          lazy: false,
-          create: (BuildContext context) => CommonBloc(
-            usecaseAuthLogOut: widget.getIt.get(),
-          ),
-          child: BlocConsumer<CommonBloc, CommonState>(
-            listener: (BuildContext context, CommonState state) {
-              if (state is CommonStateLogout) {
-                route.go(AppRoutInfo.login.name);
-              }
-            },
-            builder: (BuildContext context, CommonState state) {
-              final themeProvider = ThemeProvider.of(context);
-
-              return MaterialApp.router(
-                title: ApplicationEnvironment.APP_NAME,
-                theme: themeProvider.light(),
-                darkTheme: themeProvider.dark(),
-                themeMode: state.themeMode,
-                localizationsDelegates: localizationsDelegates,
-                supportedLocales: supportedLocales,
-                debugShowCheckedModeBanner: false,
-                restorationScopeId: 'App',
-                routeInformationProvider: route.routeInformationProvider,
-                routeInformationParser: route.routeInformationParser,
-                routerDelegate: route.routerDelegate,
-                backButtonDispatcher: route.backButtonDispatcher,
-                builder: (context, widget) =>  ResponsiveBreakpoints.builder(
-                  child: BouncingScrollWrapper.builder(context, widget!),
-                  breakpoints: responsiveBreakpoints,
-                ),
-              );
-            },
-          ),
+    return Builder(
+      builder: (context) => BlocProvider(
+        lazy: false,
+        create: (BuildContext context) => CommonBloc(
+          usecaseAuthLogOut: widget.getIt.get(),
+        ),
+        child: BlocConsumer<CommonBloc, CommonState>(
+          listener: (BuildContext context, CommonState state) {
+            if (state is CommonStateLogout) {
+              route.go(AppRoutInfo.login.name);
+            }
+          },
+          builder: (BuildContext context, CommonState state) {
+            return MaterialApp.router(
+              title: ApplicationEnvironment.APP_NAME,
+              theme: themeSettings.light(),
+              darkTheme: themeSettings.dark(),
+              themeMode: state.themeMode,
+              localizationsDelegates: localizationsDelegates,
+              supportedLocales: supportedLocales,
+              debugShowCheckedModeBanner: false,
+              restorationScopeId: 'App',
+              routeInformationProvider: route.routeInformationProvider,
+              routeInformationParser: route.routeInformationParser,
+              routerDelegate: route.routerDelegate,
+              backButtonDispatcher: route.backButtonDispatcher,
+              builder: (context, widget) => ResponsiveBreakpoints.builder(
+                child: BouncingScrollWrapper.builder(context, widget!),
+                breakpoints: responsiveBreakpoints,
+              ),
+            );
+          },
         ),
       ),
     );

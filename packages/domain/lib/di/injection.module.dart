@@ -66,13 +66,6 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i174.ApplicationRepository>(),
               gh<_i174.AuthRepository>(),
             ));
-    gh.factory<_i320.UsecaseThemeGet>(
-      () => _i320.UsecaseThemeStaticGetImpl(
-        themeRepository: gh<_i174.ThemeRepository>(),
-        authRepository: gh<_i174.AuthRepository>(),
-      ),
-      instanceName: 'staticUsecaseKey',
-    );
     gh.factory<_i140.UsecaseThemeGetAll>(() => _i140.UsecaseThemeGetAllImpl(
           themeRepository: gh<_i174.ThemeRepository>(),
           authRepository: gh<_i174.AuthRepository>(),

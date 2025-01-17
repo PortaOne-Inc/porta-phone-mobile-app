@@ -1,0 +1,238 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'preview_theme_cubit.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+/// @nodoc
+mixin _$PreviewThemeState {
+  ThemeSettings? get theme => throw _privateConstructorUsedError;
+  bool get frameVisible => throw _privateConstructorUsedError;
+  PreviewType get previewType => throw _privateConstructorUsedError;
+  WidgetPreviewType? get requestFocus => throw _privateConstructorUsedError;
+  ThemePreviewScreen get preview => throw _privateConstructorUsedError;
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PreviewThemeStateCopyWith<PreviewThemeState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PreviewThemeStateCopyWith<$Res> {
+  factory $PreviewThemeStateCopyWith(
+          PreviewThemeState value, $Res Function(PreviewThemeState) then) =
+      _$PreviewThemeStateCopyWithImpl<$Res, PreviewThemeState>;
+  @useResult
+  $Res call(
+      {ThemeSettings? theme,
+      bool frameVisible,
+      PreviewType previewType,
+      WidgetPreviewType? requestFocus,
+      ThemePreviewScreen preview});
+}
+
+/// @nodoc
+class _$PreviewThemeStateCopyWithImpl<$Res, $Val extends PreviewThemeState>
+    implements $PreviewThemeStateCopyWith<$Res> {
+  _$PreviewThemeStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? theme = freezed,
+    Object? frameVisible = null,
+    Object? previewType = null,
+    Object? requestFocus = freezed,
+    Object? preview = null,
+  }) {
+    return _then(_value.copyWith(
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings?,
+      frameVisible: null == frameVisible
+          ? _value.frameVisible
+          : frameVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      previewType: null == previewType
+          ? _value.previewType
+          : previewType // ignore: cast_nullable_to_non_nullable
+              as PreviewType,
+      requestFocus: freezed == requestFocus
+          ? _value.requestFocus
+          : requestFocus // ignore: cast_nullable_to_non_nullable
+              as WidgetPreviewType?,
+      preview: null == preview
+          ? _value.preview
+          : preview // ignore: cast_nullable_to_non_nullable
+              as ThemePreviewScreen,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PreviewThemeStateImplCopyWith<$Res>
+    implements $PreviewThemeStateCopyWith<$Res> {
+  factory _$$PreviewThemeStateImplCopyWith(_$PreviewThemeStateImpl value,
+          $Res Function(_$PreviewThemeStateImpl) then) =
+      __$$PreviewThemeStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {ThemeSettings? theme,
+      bool frameVisible,
+      PreviewType previewType,
+      WidgetPreviewType? requestFocus,
+      ThemePreviewScreen preview});
+}
+
+/// @nodoc
+class __$$PreviewThemeStateImplCopyWithImpl<$Res>
+    extends _$PreviewThemeStateCopyWithImpl<$Res, _$PreviewThemeStateImpl>
+    implements _$$PreviewThemeStateImplCopyWith<$Res> {
+  __$$PreviewThemeStateImplCopyWithImpl(_$PreviewThemeStateImpl _value,
+      $Res Function(_$PreviewThemeStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? theme = freezed,
+    Object? frameVisible = null,
+    Object? previewType = null,
+    Object? requestFocus = freezed,
+    Object? preview = null,
+  }) {
+    return _then(_$PreviewThemeStateImpl(
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings?,
+      frameVisible: null == frameVisible
+          ? _value.frameVisible
+          : frameVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      previewType: null == previewType
+          ? _value.previewType
+          : previewType // ignore: cast_nullable_to_non_nullable
+              as PreviewType,
+      requestFocus: freezed == requestFocus
+          ? _value.requestFocus
+          : requestFocus // ignore: cast_nullable_to_non_nullable
+              as WidgetPreviewType?,
+      preview: null == preview
+          ? _value.preview
+          : preview // ignore: cast_nullable_to_non_nullable
+              as ThemePreviewScreen,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PreviewThemeStateImpl implements _PreviewThemeState {
+  const _$PreviewThemeStateImpl(
+      {this.theme,
+      required this.frameVisible,
+      required this.previewType,
+      this.requestFocus,
+      this.preview = ThemePreviewScreen.layouts});
+
+  @override
+  final ThemeSettings? theme;
+  @override
+  final bool frameVisible;
+  @override
+  final PreviewType previewType;
+  @override
+  final WidgetPreviewType? requestFocus;
+  @override
+  @JsonKey()
+  final ThemePreviewScreen preview;
+
+  @override
+  String toString() {
+    return 'PreviewThemeState(theme: $theme, frameVisible: $frameVisible, previewType: $previewType, requestFocus: $requestFocus, preview: $preview)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PreviewThemeStateImpl &&
+            const DeepCollectionEquality().equals(other.theme, theme) &&
+            (identical(other.frameVisible, frameVisible) ||
+                other.frameVisible == frameVisible) &&
+            (identical(other.previewType, previewType) ||
+                other.previewType == previewType) &&
+            (identical(other.requestFocus, requestFocus) ||
+                other.requestFocus == requestFocus) &&
+            (identical(other.preview, preview) || other.preview == preview));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(theme),
+      frameVisible,
+      previewType,
+      requestFocus,
+      preview);
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PreviewThemeStateImplCopyWith<_$PreviewThemeStateImpl> get copyWith =>
+      __$$PreviewThemeStateImplCopyWithImpl<_$PreviewThemeStateImpl>(
+          this, _$identity);
+}
+
+abstract class _PreviewThemeState implements PreviewThemeState {
+  const factory _PreviewThemeState(
+      {final ThemeSettings? theme,
+      required final bool frameVisible,
+      required final PreviewType previewType,
+      final WidgetPreviewType? requestFocus,
+      final ThemePreviewScreen preview}) = _$PreviewThemeStateImpl;
+
+  @override
+  ThemeSettings? get theme;
+  @override
+  bool get frameVisible;
+  @override
+  PreviewType get previewType;
+  @override
+  WidgetPreviewType? get requestFocus;
+  @override
+  ThemePreviewScreen get preview;
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PreviewThemeStateImplCopyWith<_$PreviewThemeStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

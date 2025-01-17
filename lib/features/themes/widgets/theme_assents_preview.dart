@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
-import 'package:webtrit_configurator/app/theme/custom_color.dart';
-
-import 'package:webtrit_configurator/core/utility/utility.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import 'launch_icon.dart';
 
@@ -44,34 +40,34 @@ class ThemeAssetsPreview extends StatelessWidget {
                         style: titleStyle,
                       ),
                     ),
-                    DeviceFrame(
-                      size: const Size(200, 400),
-                      isFrameVisible: false,
-                      child: IgnorePointer(
-                        child: ColoredBox(
-                          color: theme.colors?.launch?.splashBackground?.toColor()  ?? Colors.green,
-                          child: Center(
-                            child: ImageResource(
-                              imageModel: theme.systemAssets.adaptiveIconBackground,
-                              fit: BoxFit.contain,
-                              defaultWidget: const SizedBox(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    IgnorePointer(
-                      child: ColoredBox(
-                        color: theme.colors?.launch?.splashBackground?.toColor() ?? Colors.green,
-                        child: Center(
-                          child: ImageResource(
-                            imageModel: theme.systemAssets.adaptiveIconBackground,
-                            fit: BoxFit.contain,
-                            defaultWidget: const SizedBox(),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // DeviceFrame(
+                    //   size: const Size(200, 400),
+                    //   isFrameVisible: false,
+                    //   child: IgnorePointer(
+                    //     child: ColoredBox(
+                    //       color: theme.colorScheme?.launch?.splashBackground?.toColor()  ?? Colors.green,
+                    //       child: Center(
+                    //         child: ImageResource(
+                    //           imageModel: theme.systemAssets.adaptiveIconBackground,
+                    //           fit: BoxFit.contain,
+                    //           defaultWidget: const SizedBox(),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // IgnorePointer(
+                    //   child: ColoredBox(
+                    //     color: theme.colorScheme?.launch?.splashBackground?.toColor() ?? Colors.green,
+                    //     child: Center(
+                    //       child: ImageResource(
+                    //         imageModel: theme.systemAssets.adaptiveIconBackground,
+                    //         fit: BoxFit.contain,
+                    //         defaultWidget: const SizedBox(),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ]),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -142,54 +138,54 @@ class ThemeAssetsPreview extends StatelessWidget {
                   style: titleStyle,
                 ),
               ),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  LaunchIcon(
-                    size: const Size.square(108),
-                    safeZone: const Size.square(72),
-                    radius: const BorderRadius.all(Radius.circular(1)),
-                    foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
-                    // backgroundImage: theme.systemAssets.adaptiveIconBackground,
-                  ),
-                  LaunchIcon(
-                    size: const Size.square(108),
-                    safeZone: const Size.square(72),
-                    radius: const BorderRadius.all(Radius.circular(180)),
-                    foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
-                    // backgroundImage: theme.systemAssets.adaptiveIconBackground,
-                  ),
-                  LaunchIcon(
-                    size: const Size.square(108),
-                    safeZone: const Size.square(72),
-                    radius: const BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(16),
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(4),
-                    ),
-                    foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
-                  ),
-                  LaunchIcon(
-                    size: const Size.square(108),
-                    safeZone: const Size.square(72),
-                    radius: const BorderRadius.all(Radius.circular(4)),
-                    foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
-                  ),
-                  LaunchIcon(
-                    size: const Size.square(108),
-                    safeZone: const Size.square(72),
-                    radius: const BorderRadius.all(Radius.circular(16)),
-                    foreground: theme.systemAssets.adaptiveIconForeground,
-                    backgroundColor: theme.colors?.launch?.adaptiveIconBackground?.toColor() ,
-                  ),
-                ],
-              ),
+              // Wrap(
+              //   spacing: 8,
+              //   runSpacing: 8,
+              //   children: [
+              //     LaunchIcon(
+              //       size: const Size.square(108),
+              //       safeZone: const Size.square(72),
+              //       radius: const BorderRadius.all(Radius.circular(1)),
+              //       foreground: theme.systemAssets.adaptiveIconForeground,
+              //       backgroundColor: theme.colorScheme?.launch?.adaptiveIconBackground?.toColor() ,
+              //       // backgroundImage: theme.systemAssets.adaptiveIconBackground,
+              //     ),
+              //     LaunchIcon(
+              //       size: const Size.square(108),
+              //       safeZone: const Size.square(72),
+              //       radius: const BorderRadius.all(Radius.circular(180)),
+              //       foreground: theme.systemAssets.adaptiveIconForeground,
+              //       backgroundColor: theme.colorScheme?.launch?.adaptiveIconBackground?.toColor() ,
+              //       // backgroundImage: theme.systemAssets.adaptiveIconBackground,
+              //     ),
+              //     LaunchIcon(
+              //       size: const Size.square(108),
+              //       safeZone: const Size.square(72),
+              //       radius: const BorderRadius.only(
+              //         topLeft: Radius.circular(40),
+              //         topRight: Radius.circular(16),
+              //         bottomLeft: Radius.circular(16),
+              //         bottomRight: Radius.circular(4),
+              //       ),
+              //       foreground: theme.systemAssets.adaptiveIconForeground,
+              //       backgroundColor: theme.colorScheme?.launch?.adaptiveIconBackground?.toColor() ,
+              //     ),
+              //     LaunchIcon(
+              //       size: const Size.square(108),
+              //       safeZone: const Size.square(72),
+              //       radius: const BorderRadius.all(Radius.circular(4)),
+              //       foreground: theme.systemAssets.adaptiveIconForeground,
+              //       backgroundColor: theme.colorScheme?.launch?.adaptiveIconBackground?.toColor() ,
+              //     ),
+              //     LaunchIcon(
+              //       size: const Size.square(108),
+              //       safeZone: const Size.square(72),
+              //       radius: const BorderRadius.all(Radius.circular(16)),
+              //       foreground: theme.systemAssets.adaptiveIconForeground,
+              //       backgroundColor: theme.colorScheme?.launch?.adaptiveIconBackground?.toColor() ,
+              //     ),
+              //   ],
+              // ),
               const Divider(),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),

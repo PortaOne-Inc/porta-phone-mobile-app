@@ -1,7 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 
-import 'package:dto/dto.dart';
+
+import '../../dto/theme/theme.dart' as inner;
+
 
 import 'package:domain/domain.dart';
 
@@ -93,11 +95,11 @@ class ConfiguratorBackandDatasource {
 
   // Themes
 
-  Future<List<ThemeDTO>> getThemes(String applicationId) async {
+  Future<List<inner.ThemeDTO>> getThemes(String applicationId) async {
     final response = await client.get<List<dynamic>>(
       ThemeConfiguratorBackandAPI.themes(applicationId),
     );
-    return (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
+    return (response.data!).cast<Map<String, dynamic>>().map(inner.ThemeDTO.fromJson).toList();
   }
 
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO themeDTO) async {
@@ -116,11 +118,11 @@ class ConfiguratorBackandDatasource {
     return ThemeDTO.fromJson(response.data!);
   }
 
-  Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
+  Future<inner.ThemeDTO> getTheme(String applicationId, String themeId) async {
     final response = await client.get<Map<String, dynamic>>(
       ThemeConfiguratorBackandAPI.theme(applicationId, themeId),
     );
-    return ThemeDTO.fromJson(response.data!);
+    return inner.ThemeDTO.fromJson(response.data!);
   }
 
   Future<void> deleteTheme(String applicationId, String themeId) async {

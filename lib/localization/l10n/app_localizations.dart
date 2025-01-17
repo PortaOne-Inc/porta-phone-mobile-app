@@ -204,7 +204,7 @@ abstract class AppLocalizations {
   /// No description provided for @configurator_color_template_title.
   ///
   /// In en, this message translates to:
-  /// **'Color Template'**
+  /// **'Color scheme'**
   String get configurator_color_template_title;
 
   /// No description provided for @configurator_text_font.

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:dto/dto.dart';
-
 import 'package:domain/domain.dart';
 
 import 'package:data/datasource/datasource.dart';
 import 'package:data/mappers/mappers.dart';
+
+import '../dto/dto.dart';
 
 // TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
 // TODO(DMITRO): The domain layer should be aware of DTOs

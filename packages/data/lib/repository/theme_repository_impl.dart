@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:dto/dto.dart';
 import 'package:domain/domain.dart';
 
 import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
+import 'package:data/dto/dto.dart';
 
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
@@ -28,12 +28,6 @@ class ThemeRepositoryImpl extends ThemeRepository {
     } catch (e) {
       throw BaseException(message: e.toString());
     }
-  }
-
-  @override
-  Future<ThemeModel> updateStaticTheme(ThemeModel? theme) {
-    // Method retained for backward compatibility; planned for removal.
-    throw UnimplementedError('This method is scheduled for removal.');
   }
 
   @override
@@ -70,12 +64,6 @@ class ThemeRepositoryImpl extends ThemeRepository {
     } catch (e) {
       throw BaseException(message: e.toString());
     }
-  }
-
-  @override
-  Future<ThemeModel> getStaticTheme() async {
-    // Method retained for backward compatibility; planned for removal.
-    throw UnimplementedError('This method is scheduled for removal.');
   }
 
   @override

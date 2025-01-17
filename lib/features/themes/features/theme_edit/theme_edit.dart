@@ -1,3 +1,3 @@
-export 'bloc/configurator_cubit.dart';
-export 'page/page_theme_edit.dart';
-export 'page/page_theme_property.dart';
+export 'bloc/bloc.dart';
+export 'view/page_theme_edit.dart';
+export 'view/page_theme_property.dart';

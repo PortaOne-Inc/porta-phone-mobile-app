@@ -1,9 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:domain/entity/models/image/system_assets_model.dart';
+import 'package:domain/entity/models/theme/system_assets_model.dart';
 
-import '../color/color_scheme_model.dart';
-import '../image/image_scheme_model.dart';
 import '../texts/texts_model.dart';
 
 part 'theme_model.freezed.dart';
@@ -14,8 +12,10 @@ class ThemeModel with _$ThemeModel {
     String? id,
     String? name,
     String? fontFamily,
-    ColorSchemeModel? colors,
-    @Default(ImageSchemeModel()) ImageSchemeModel images,
+    @Default({}) Map<String, dynamic> colorSchemeConfig,
+    @Default({}) Map<String, dynamic> themeWidgetConfig,
+    @Default({}) Map<String, dynamic> themePageConfig,
+    @Default({}) Map<String, dynamic> appConfig,
     @Default(SystemAssetsModel()) SystemAssetsModel systemAssets,
     TextsModel? texts,
   }) = _ThemeModel;
@@ -23,10 +23,10 @@ class ThemeModel with _$ThemeModel {
   const ThemeModel._();
 
   List<String> get colorSchemeCollection {
-    return colors?.asList ?? <String>[];
+    return [];
   }
 
   List<String>? get colorGradientCollection {
-    return colors?.gradientTabColor;
+    return [];
   }
 }

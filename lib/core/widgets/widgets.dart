@@ -1,7 +1,6 @@
 export 'behaviour/behaviour.dart';
 export 'buttons/buttons.dart';
 export 'decoration/decoration.dart';
-export 'decoration/grid_widget.dart';
 export 'dialogs/dialogs.dart';
 export 'image/image.dart';
 export 'page/not_found_page.dart';
@@ -9,3 +8,4 @@ export 'placeholders/placeholders.dart';
 export 'slider/sliders.dart';
 export 'switchers/switchers.dart';
 export 'toolbars/toolbars.dart';
+export 'color_picker.dart';

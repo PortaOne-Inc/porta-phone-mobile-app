@@ -30,20 +30,3 @@ class UsecaseThemeGetImpl implements UsecaseThemeGet {
     return themeRepository.getTheme(applicationId, themeId);
   }
 }
-
-@Named(UsecaseThemeGet.staticUsecaseKey)
-@Injectable(as: UsecaseThemeGet)
-class UsecaseThemeStaticGetImpl implements UsecaseThemeGet {
-  UsecaseThemeStaticGetImpl({
-    required this.themeRepository,
-    required this.authRepository,
-  });
-
-  final ThemeRepository themeRepository;
-  final AuthRepository authRepository;
-
-  @override
-  Future<ThemeModel> execute() async {
-    return themeRepository.getStaticTheme();
-  }
-}

@@ -11,10 +11,6 @@ abstract class ThemeRepository {
     ThemeModel? theme,
   );
 
-  Future<ThemeModel> updateStaticTheme(
-    ThemeModel? theme,
-  );
-
   Future<void> deleteTheme(
     String applicationId,
     String themeId,
@@ -33,6 +29,4 @@ abstract class ThemeRepository {
     String applicationId,
     String themeId,
   );
-
-  Future<ThemeModel> getStaticTheme();
 }

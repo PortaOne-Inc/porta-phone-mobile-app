@@ -12,8 +12,8 @@ dependencies:
     sdk: flutter
   domain:
     path: ../domain
-  dto:
-    path: ../../../webtrit_phone_configurator_common/packages/dto
+  webtrit_appearance_theme:
+    path: ../../../webtrit_phone/packages/webtrit_appearance_theme
 
   injectable: ^2.5.0
   get_it: ^8.0.3
