@@ -36,34 +36,34 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSection(
+            ConfigSection(
               title: 'Debug & Logging',
               fields: [
-                _buildDropdownField(
+                DropdownField(
                   label: 'Debug Level',
                   value: (config['DEBUG_LEVEL'] as String?) ?? 'INFO',
                   options: ['DEBUG', 'INFO', 'WARN', 'ERROR'],
                   onChanged: (value) => _updateConfig<String>('DEBUG_LEVEL', value),
                 ),
-                _buildSwitchField(
+                SwitchField(
                   label: 'Database Log Statements',
                   value: (config['DATABASE_LOG_STATEMENTS'] as bool?) ?? false,
                   onChanged: (value) => _updateConfig<bool>('DATABASE_LOG_STATEMENTS', value),
                 ),
-                _buildSection(
+                ConfigSection(
                   title: 'Logging Services',
                   fields: [
-                    _buildTextField(
+                    TextFieldConfig(
                       label: 'Logzio Logging URL',
                       value: (config['REMOTE_LOGZIO_LOGGING_URL'] as String?) ?? '',
                       onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_URL', value),
                     ),
-                    _buildTextField(
+                    TextFieldConfig(
                       label: 'Logzio Logging Token',
                       value: (config['REMOTE_LOGZIO_LOGGING_TOKEN'] as String?) ?? '',
                       onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_TOKEN', value),
                     ),
-                    _buildTextField(
+                    TextFieldConfig(
                       label: 'Logzio Buffer Size',
                       value: (config['REMOTE_LOGZIO_LOGGING_BUFFER_SIZE'] as int?).toString(),
                       onChanged: (value) => _updateConfig<int>(
@@ -75,55 +75,55 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                 ),
               ],
             ),
-            _buildSection(
+            ConfigSection(
               title: 'Core Settings',
               fields: [
-                _buildTextField(
+                TextFieldConfig(
                   label: 'Core URL',
                   value: (config['CORE_URL'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('CORE_URL', value),
                 ),
-                _buildTextField(
+                TextFieldConfig(
                   label: 'Demo Core URL',
                   value: (config['DEMO_CORE_URL'] as String?) ?? 'http://localhost:4000',
                   onChanged: (value) => _updateConfig<String>('DEMO_CORE_URL', value),
                 ),
-                _buildTextField(
+                TextFieldConfig(
                   label: 'Core Version Constraint',
                   value: (config['CORE_VERSION_CONSTRAINT'] as String?) ?? '>=0.7.0-alpha <2.0.0',
                   onChanged: (value) => _updateConfig<String>('CORE_VERSION_CONSTRAINT', value),
                 ),
               ],
             ),
-            _buildSection(
+            ConfigSection(
               title: 'App Details',
               fields: [
-                _buildTextField(
+                TextFieldConfig(
                   label: 'App Name',
                   value: (config['APP_NAME'] as String?) ?? 'WebTrit',
                   onChanged: (value) => _updateConfig<String>('APP_NAME', value),
                 ),
-                _buildTextField(
+                TextFieldConfig(
                   label: 'App Description',
                   value: (config['APP_DESCRIPTION'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_DESCRIPTION', value),
                 ),
               ],
             ),
-            _buildSection(
+            ConfigSection(
               title: 'Links & URLs',
               fields: [
-                _buildTextField(
+                TextFieldConfig(
                   label: 'App Help URL',
                   value: (config['APP_HELP_URL'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_HELP_URL', value),
                 ),
-                _buildTextField(
+                TextFieldConfig(
                   label: 'App About URL',
                   value: (config['APP_ABOUT_URL'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_ABOUT_URL', value),
                 ),
-                _buildTextField(
+                TextFieldConfig(
                   label: 'App Credentials Request URL',
                   value: (config['APP_CREDENTIALS_REQUEST_URL'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_CREDENTIALS_REQUEST_URL', value),
@@ -135,8 +135,20 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
       ),
     );
   }
+}
 
-  Widget _buildSection({required String title, required List<Widget> fields}) {
+class ConfigSection extends StatelessWidget {
+  const ConfigSection({
+    required this.title,
+    required this.fields,
+    super.key,
+  });
+
+  final String title;
+  final List<Widget> fields;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Column(
@@ -149,12 +161,22 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
       ),
     );
   }
+}
 
-  Widget _buildTextField({
-    required String label,
-    required String value,
-    required ValueChanged<String> onChanged,
-  }) {
+class TextFieldConfig extends StatelessWidget {
+  const TextFieldConfig({
+    required this.label,
+    required this.value,
+    required this.onChanged,
+    super.key,
+  });
+
+  final String label;
+  final String value;
+  final ValueChanged<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
@@ -164,13 +186,24 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
       ),
     );
   }
+}
 
-  Widget _buildDropdownField({
-    required String label,
-    required String value,
-    required List<String> options,
-    required ValueChanged<String> onChanged,
-  }) {
+class DropdownField extends StatelessWidget {
+  const DropdownField({
+    required this.label,
+    required this.value,
+    required this.options,
+    required this.onChanged,
+    super.key,
+  });
+
+  final String label;
+  final String value;
+  final List<String> options;
+  final ValueChanged<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: DropdownButtonFormField<String>(
@@ -182,16 +215,26 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                   child: Text(option),
                 ))
             .toList(),
-        onChanged: (it) => onChanged,
+        onChanged: (it) {},
       ),
     );
   }
+}
 
-  Widget _buildSwitchField({
-    required String label,
-    required bool value,
-    required ValueChanged<bool> onChanged,
-  }) {
+class SwitchField extends StatelessWidget {
+  const SwitchField({
+    required this.label,
+    required this.value,
+    required this.onChanged,
+    super.key,
+  });
+
+  final String label;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: SwitchListTile(
