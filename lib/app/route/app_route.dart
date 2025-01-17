@@ -83,7 +83,8 @@ class AppRoute {
                 create: (BuildContext context) => ThemeCreateCubit(
                   applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
                   createThemeUseCase: getIt.get(),
-                  getTemplateThemeUseCase: getIt.get(),
+                  defaultFeatureAccess: getIt.get(),
+                  defaultThemeConfig: getIt.get(),
                 ),
                 child: const ThemeCreatePage(),
               ),

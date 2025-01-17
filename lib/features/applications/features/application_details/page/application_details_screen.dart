@@ -489,9 +489,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Button(
-                  isEnable: applicationDeploy.anyDeployPlatformAvailable && applicationValidateErrorMessages.isEmpty,
                   title: context.l10n.feature_application_details_ApplicationDetailsScreen_deploy,
-                  onPressed: onDeploy,
+                  onPressed: applicationDeploy.anyDeployPlatformAvailable && applicationValidateErrorMessages.isEmpty
+                      ? onDeploy
+                      : null,
                 ),
               ),
             ],

@@ -4,18 +4,16 @@ class Button extends StatelessWidget {
   const Button({
     required this.title,
     required this.onPressed,
-    this.isEnable = true,
     super.key,
   });
 
   final String title;
-  final void Function() onPressed;
-  final bool isEnable;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isEnable ? onPressed : null,
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),

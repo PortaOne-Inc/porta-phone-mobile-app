@@ -41,6 +41,8 @@ abstract class $PreviewThemeStateCopyWith<$Res> {
       PreviewType previewType,
       WidgetPreviewType? requestFocus,
       ThemePreviewScreen preview});
+
+  $ThemeSettingsCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -87,6 +89,20 @@ class _$PreviewThemeStateCopyWithImpl<$Res, $Val extends PreviewThemeState>
               as ThemePreviewScreen,
     ) as $Val);
   }
+
+  /// Create a copy of PreviewThemeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeSettingsCopyWith<$Res>? get theme {
+    if (_value.theme == null) {
+      return null;
+    }
+
+    return $ThemeSettingsCopyWith<$Res>(_value.theme!, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -103,6 +119,9 @@ abstract class _$$PreviewThemeStateImplCopyWith<$Res>
       PreviewType previewType,
       WidgetPreviewType? requestFocus,
       ThemePreviewScreen preview});
+
+  @override
+  $ThemeSettingsCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -181,7 +200,7 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PreviewThemeStateImpl &&
-            const DeepCollectionEquality().equals(other.theme, theme) &&
+            (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.frameVisible, frameVisible) ||
                 other.frameVisible == frameVisible) &&
             (identical(other.previewType, previewType) ||
@@ -193,12 +212,7 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(theme),
-      frameVisible,
-      previewType,
-      requestFocus,
-      preview);
+      runtimeType, theme, frameVisible, previewType, requestFocus, preview);
 
   /// Create a copy of PreviewThemeState
   /// with the given fields replaced by the non-null parameter values.

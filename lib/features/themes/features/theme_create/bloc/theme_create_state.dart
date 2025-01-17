@@ -4,16 +4,19 @@ enum ThemeCreateStateStatus {
   initial,
   progress,
   error,
-  success,
+  success;
+
+  bool get isProgress => this == progress;
 }
 
 @freezed
 class ThemeCreateState with _$ThemeCreateState {
   const factory ThemeCreateState({
     required ThemeCreateStateStatus status,
+    required AppConfig defaultFeatureAccess,
+    required ThemeSettings defaultThemeConfig,
     ThemeModel? themeModel,
     ThemeNameInput? nameInput,
-    Color? seedColor,
-    BaseException? error,
+    Object? error,
   }) = _ThemeCreateStateInitial;
 }

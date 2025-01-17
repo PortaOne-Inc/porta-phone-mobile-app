@@ -17,10 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemeCreateState {
   ThemeCreateStateStatus get status => throw _privateConstructorUsedError;
+  AppConfig get defaultFeatureAccess => throw _privateConstructorUsedError;
+  ThemeSettings get defaultThemeConfig => throw _privateConstructorUsedError;
   ThemeModel? get themeModel => throw _privateConstructorUsedError;
   ThemeNameInput? get nameInput => throw _privateConstructorUsedError;
-  Color? get seedColor => throw _privateConstructorUsedError;
-  BaseException? get error => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of ThemeCreateState
   /// with the given fields replaced by the non-null parameter values.
@@ -37,11 +38,14 @@ abstract class $ThemeCreateStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ThemeCreateStateStatus status,
+      AppConfig defaultFeatureAccess,
+      ThemeSettings defaultThemeConfig,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
-      Color? seedColor,
-      BaseException? error});
+      Object? error});
 
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess;
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig;
   $ThemeModelCopyWith<$Res>? get themeModel;
 }
 
@@ -61,9 +65,10 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
   @override
   $Res call({
     Object? status = null,
+    Object? defaultFeatureAccess = null,
+    Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
-    Object? seedColor = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +76,14 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemeCreateStateStatus,
+      defaultFeatureAccess: null == defaultFeatureAccess
+          ? _value.defaultFeatureAccess
+          : defaultFeatureAccess // ignore: cast_nullable_to_non_nullable
+              as AppConfig,
+      defaultThemeConfig: null == defaultThemeConfig
+          ? _value.defaultThemeConfig
+          : defaultThemeConfig // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings,
       themeModel: freezed == themeModel
           ? _value.themeModel
           : themeModel // ignore: cast_nullable_to_non_nullable
@@ -79,15 +92,28 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
-      seedColor: freezed == seedColor
-          ? _value.seedColor
-          : seedColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
+      error: freezed == error ? _value.error : error,
     ) as $Val);
+  }
+
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess {
+    return $AppConfigCopyWith<$Res>(_value.defaultFeatureAccess, (value) {
+      return _then(_value.copyWith(defaultFeatureAccess: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig {
+    return $ThemeSettingsCopyWith<$Res>(_value.defaultThemeConfig, (value) {
+      return _then(_value.copyWith(defaultThemeConfig: value) as $Val);
+    });
   }
 
   /// Create a copy of ThemeCreateState
@@ -116,11 +142,16 @@ abstract class _$$ThemeCreateStateInitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {ThemeCreateStateStatus status,
+      AppConfig defaultFeatureAccess,
+      ThemeSettings defaultThemeConfig,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
-      Color? seedColor,
-      BaseException? error});
+      Object? error});
 
+  @override
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess;
+  @override
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig;
   @override
   $ThemeModelCopyWith<$Res>? get themeModel;
 }
@@ -140,9 +171,10 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? defaultFeatureAccess = null,
+    Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
-    Object? seedColor = freezed,
     Object? error = freezed,
   }) {
     return _then(_$ThemeCreateStateInitialImpl(
@@ -150,6 +182,14 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemeCreateStateStatus,
+      defaultFeatureAccess: null == defaultFeatureAccess
+          ? _value.defaultFeatureAccess
+          : defaultFeatureAccess // ignore: cast_nullable_to_non_nullable
+              as AppConfig,
+      defaultThemeConfig: null == defaultThemeConfig
+          ? _value.defaultThemeConfig
+          : defaultThemeConfig // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings,
       themeModel: freezed == themeModel
           ? _value.themeModel
           : themeModel // ignore: cast_nullable_to_non_nullable
@@ -158,14 +198,7 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
-      seedColor: freezed == seedColor
-          ? _value.seedColor
-          : seedColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as BaseException?,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
@@ -175,25 +208,28 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
 class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   const _$ThemeCreateStateInitialImpl(
       {required this.status,
+      required this.defaultFeatureAccess,
+      required this.defaultThemeConfig,
       this.themeModel,
       this.nameInput,
-      this.seedColor,
       this.error});
 
   @override
   final ThemeCreateStateStatus status;
   @override
+  final AppConfig defaultFeatureAccess;
+  @override
+  final ThemeSettings defaultThemeConfig;
+  @override
   final ThemeModel? themeModel;
   @override
   final ThemeNameInput? nameInput;
   @override
-  final Color? seedColor;
-  @override
-  final BaseException? error;
+  final Object? error;
 
   @override
   String toString() {
-    return 'ThemeCreateState(status: $status, themeModel: $themeModel, nameInput: $nameInput, seedColor: $seedColor, error: $error)';
+    return 'ThemeCreateState(status: $status, defaultFeatureAccess: $defaultFeatureAccess, defaultThemeConfig: $defaultThemeConfig, themeModel: $themeModel, nameInput: $nameInput, error: $error)';
   }
 
   @override
@@ -202,18 +238,26 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
         (other.runtimeType == runtimeType &&
             other is _$ThemeCreateStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.defaultFeatureAccess, defaultFeatureAccess) ||
+                other.defaultFeatureAccess == defaultFeatureAccess) &&
+            (identical(other.defaultThemeConfig, defaultThemeConfig) ||
+                other.defaultThemeConfig == defaultThemeConfig) &&
             (identical(other.themeModel, themeModel) ||
                 other.themeModel == themeModel) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
-            (identical(other.seedColor, seedColor) ||
-                other.seedColor == seedColor) &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, themeModel, nameInput, seedColor, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      defaultFeatureAccess,
+      defaultThemeConfig,
+      themeModel,
+      nameInput,
+      const DeepCollectionEquality().hash(error));
 
   /// Create a copy of ThemeCreateState
   /// with the given fields replaced by the non-null parameter values.
@@ -228,21 +272,24 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
 abstract class _ThemeCreateStateInitial implements ThemeCreateState {
   const factory _ThemeCreateStateInitial(
       {required final ThemeCreateStateStatus status,
+      required final AppConfig defaultFeatureAccess,
+      required final ThemeSettings defaultThemeConfig,
       final ThemeModel? themeModel,
       final ThemeNameInput? nameInput,
-      final Color? seedColor,
-      final BaseException? error}) = _$ThemeCreateStateInitialImpl;
+      final Object? error}) = _$ThemeCreateStateInitialImpl;
 
   @override
   ThemeCreateStateStatus get status;
+  @override
+  AppConfig get defaultFeatureAccess;
+  @override
+  ThemeSettings get defaultThemeConfig;
   @override
   ThemeModel? get themeModel;
   @override
   ThemeNameInput? get nameInput;
   @override
-  Color? get seedColor;
-  @override
-  BaseException? get error;
+  Object? get error;
 
   /// Create a copy of ThemeCreateState
   /// with the given fields replaced by the non-null parameter values.
