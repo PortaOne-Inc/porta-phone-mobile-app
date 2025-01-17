@@ -129,6 +129,42 @@ class ApplicationDetailsScreen extends StatelessWidget {
               ),
             ],
           ),
+          ListTile(
+            leading: Icon(Icons.line_weight_rounded, color: colorScheme.primary),
+            title: const Text(
+              'Dart define build Environment',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            subtitle: const Text(
+              'Set up and configure build environments .',
+            ),
+            trailing: const Icon(Icons.keyboard_arrow_right),
+            onTap: () => {},
+          ),
+          ListTile(
+            leading: Icon(Icons.history, color: colorScheme.primary),
+            title: const Text(
+              'Versioning',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            subtitle: const Text(
+              'Manage application versioning .',
+            ),
+            trailing: const Icon(Icons.keyboard_arrow_right),
+            onTap: () => {},
+          ),
+          ListTile(
+            leading: Icon(Icons.local_fire_department, color: colorScheme.primary),
+            title: const Text(
+              'Deployment',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            subtitle: const Text(
+              'Manage deployment process .',
+            ),
+            trailing: const Icon(Icons.keyboard_arrow_right),
+            onTap: () => {},
+          ),
           // Builds configuration section
           Section(
             title: context.l10n.feature_application_details_ApplicationDetailsScreen_builds_configuration,

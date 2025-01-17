@@ -50,6 +50,29 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                   value: (config['DATABASE_LOG_STATEMENTS'] as bool?) ?? false,
                   onChanged: (value) => _updateConfig<bool>('DATABASE_LOG_STATEMENTS', value),
                 ),
+                _buildSection(
+                  title: 'Logging Services',
+                  fields: [
+                    _buildTextField(
+                      label: 'Logzio Logging URL',
+                      value: (config['REMOTE_LOGZIO_LOGGING_URL'] as String?) ?? '',
+                      onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_URL', value),
+                    ),
+                    _buildTextField(
+                      label: 'Logzio Logging Token',
+                      value: (config['REMOTE_LOGZIO_LOGGING_TOKEN'] as String?) ?? '',
+                      onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_TOKEN', value),
+                    ),
+                    _buildTextField(
+                      label: 'Logzio Buffer Size',
+                      value: (config['REMOTE_LOGZIO_LOGGING_BUFFER_SIZE'] as int?).toString(),
+                      onChanged: (value) => _updateConfig<int>(
+                        'REMOTE_LOGZIO_LOGGING_BUFFER_SIZE',
+                        int.tryParse(value) ?? 0,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             _buildSection(
@@ -81,11 +104,6 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                   onChanged: (value) => _updateConfig<String>('APP_NAME', value),
                 ),
                 _buildTextField(
-                  label: 'App Greeting',
-                  value: (config['APP_GREETING'] as String?) ?? '',
-                  onChanged: (value) => _updateConfig<String>('APP_GREETING', value),
-                ),
-                _buildTextField(
                   label: 'App Description',
                   value: (config['APP_DESCRIPTION'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_DESCRIPTION', value),
@@ -109,29 +127,6 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                   label: 'App Credentials Request URL',
                   value: (config['APP_CREDENTIALS_REQUEST_URL'] as String?) ?? '',
                   onChanged: (value) => _updateConfig<String>('APP_CREDENTIALS_REQUEST_URL', value),
-                ),
-              ],
-            ),
-            _buildSection(
-              title: 'Logging Services',
-              fields: [
-                _buildTextField(
-                  label: 'Logzio Logging URL',
-                  value: (config['REMOTE_LOGZIO_LOGGING_URL'] as String?) ?? '',
-                  onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_URL', value),
-                ),
-                _buildTextField(
-                  label: 'Logzio Logging Token',
-                  value: (config['REMOTE_LOGZIO_LOGGING_TOKEN'] as String?) ?? '',
-                  onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_TOKEN', value),
-                ),
-                _buildTextField(
-                  label: 'Logzio Buffer Size',
-                  value: (config['REMOTE_LOGZIO_LOGGING_BUFFER_SIZE'] as int?).toString(),
-                  onChanged: (value) => _updateConfig<int>(
-                    'REMOTE_LOGZIO_LOGGING_BUFFER_SIZE',
-                    int.tryParse(value) ?? 0,
-                  ),
                 ),
               ],
             ),
@@ -200,6 +195,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: SwitchListTile(
+        contentPadding: EdgeInsets.zero,
         title: Text(label),
         value: value,
         onChanged: onChanged,
