@@ -38,12 +38,12 @@ class _AppConfigCallWidgetState extends State<AppConfigCallWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SwitchListTile(
-            title: const Text("Enable Video"),
+            title: const Text('Enable Video'),
             value: videoEnabled,
             onChanged: (value) {
               setState(() {
@@ -53,7 +53,7 @@ class _AppConfigCallWidgetState extends State<AppConfigCallWidget> {
             },
           ),
           SwitchListTile(
-            title: const Text("Enable Blind Transfer"),
+            title: const Text('Enable Blind Transfer'),
             value: blindTransferEnabled,
             onChanged: (value) {
               setState(() {
@@ -63,7 +63,7 @@ class _AppConfigCallWidgetState extends State<AppConfigCallWidget> {
             },
           ),
           SwitchListTile(
-            title: const Text("Enable Attended Transfer"),
+            title: const Text('Enable Attended Transfer'),
             value: attendedTransferEnabled,
             onChanged: (value) {
               setState(() {

@@ -20,12 +20,12 @@ class InputConfigTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Extract colors from inputDecorationTheme
-    final labelColor = inputDecorationTheme?.labelStyle?.color ?? Colors.black;
-    final disabledColor = inputDecorationTheme?.disabledBorder?.borderSide.color ?? Colors.grey;
-    final focusedColor = inputDecorationTheme?.focusedBorder?.borderSide.color ?? Colors.blue;
-    final errorColor = inputDecorationTheme?.errorStyle?.color ?? Colors.red;
-    final fillColor = inputDecorationTheme?.filled ?? false
-        ? (inputDecorationTheme?.fillColor ?? Colors.transparent)
+    final labelColor = inputDecorationTheme.labelStyle?.color ?? Colors.black;
+    final disabledColor = inputDecorationTheme.disabledBorder?.borderSide.color ?? Colors.grey;
+    final focusedColor = inputDecorationTheme.focusedBorder?.borderSide.color ?? Colors.blue;
+    final errorColor = inputDecorationTheme.errorStyle?.color ?? Colors.red;
+    final fillColor = inputDecorationTheme.filled
+        ? (inputDecorationTheme.fillColor ?? Colors.transparent)
         : Colors.transparent;
 
     return Padding(

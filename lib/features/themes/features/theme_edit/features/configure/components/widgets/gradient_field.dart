@@ -37,7 +37,6 @@ class GradientField extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (colors.isEmpty)

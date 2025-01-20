@@ -83,7 +83,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
                       TextFormField(
                         onChanged: (it) {},
                         maxLength: 24,
-                        initialValue: "",
+                        initialValue: '',
                         decoration: InputDecoration(
                           // errorText: state.nameInput?.errorL10n(context),
                           hintText: context.l10n.feature_theme_create_title,

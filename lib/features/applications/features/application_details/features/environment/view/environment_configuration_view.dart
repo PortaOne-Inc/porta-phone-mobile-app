@@ -42,7 +42,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                 DropdownField(
                   label: 'Debug Level',
                   value: (config['DEBUG_LEVEL'] as String?) ?? 'INFO',
-                  options: ['DEBUG', 'INFO', 'WARN', 'ERROR'],
+                  options: const ['DEBUG', 'INFO', 'WARN', 'ERROR'],
                   onChanged: (value) => _updateConfig<String>('DEBUG_LEVEL', value),
                 ),
                 SwitchField(

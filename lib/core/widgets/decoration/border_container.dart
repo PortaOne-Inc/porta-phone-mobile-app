@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class BorderContainer extends StatelessWidget {
   const BorderContainer({
-    super.key,
     required this.title,
+    super.key,
     this.margin = const EdgeInsets.all(20),
     this.padding = EdgeInsets.zero,
     this.borderRadius = const BorderRadius.all(Radius.circular(8)),

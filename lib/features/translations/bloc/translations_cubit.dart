@@ -8,8 +8,7 @@ part 'translations_state.dart';
 
 part 'translations_cubit.freezed.dart';
 
-// TODO: error handling and snackbars
-
+// TODO(Serdun): error handling and snackbars
 class TranslationsCubit extends Cubit<TranslationsState> {
   TranslationsCubit({
     required this.appId,

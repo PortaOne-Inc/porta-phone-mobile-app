@@ -1,7 +1,6 @@
 import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:webtrit_phone/theme/theme_provider.dart';
 
 import '../../../../bloc/update_theme_cubit.dart';
 

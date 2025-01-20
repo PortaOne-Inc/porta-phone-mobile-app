@@ -6,6 +6,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
+
 // ignore: unused_import
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
@@ -23,8 +24,8 @@ class AssetsPreview extends StatefulWidget {
 }
 
 class _AssetsPreviewState extends State<AssetsPreview> {
-  var _isFrameVisible = true;
-  var _previewType = PreviewType.single;
+  final _isFrameVisible = true;
+  final _previewType = PreviewType.single;
   var _focusScreenPosition = 0;
 
   @override

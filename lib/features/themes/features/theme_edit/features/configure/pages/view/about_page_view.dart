@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:webtrit_configurator/core/widgets/decoration/border_container.dart';
 
-import '../../../../../../../../core/exports/webtrit_phone.dart';
+import 'package:webtrit_configurator/core/widgets/decoration/border_container.dart';
 
 class AboutPageView extends StatelessWidget {
   const AboutPageView({super.key});

@@ -29,7 +29,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'callStart',
         data: sourceGroupWidgetConfig?.callActions.callStartBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(callStartBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(callStartBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -37,7 +37,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'keypad',
         data: sourceGroupWidgetConfig?.callActions.keypadBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(keypadBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(keypadBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -45,7 +45,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'keypadActive',
         data: sourceGroupWidgetConfig?.callActions.keypadActiveBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(keypadActiveBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(keypadActiveBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -53,7 +53,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'camera',
         data: sourceGroupWidgetConfig?.callActions.cameraBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(cameraBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(cameraBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -61,7 +61,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'cameraActive',
         data: sourceGroupWidgetConfig?.callActions.cameraActiveBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(cameraActiveBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(cameraActiveBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -69,7 +69,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'muted',
         data: sourceGroupWidgetConfig?.callActions.mutedBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(mutedBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(mutedBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -77,7 +77,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'mutedActive',
         data: sourceGroupWidgetConfig?.callActions.mutedActiveBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(mutedActiveBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(mutedActiveBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -85,7 +85,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'speaker',
         data: sourceGroupWidgetConfig?.callActions.speakerBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(speakerBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(speakerBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -93,7 +93,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'speakerActive',
         data: sourceGroupWidgetConfig?.callActions.speakerActiveBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(speakerActiveBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(speakerActiveBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -101,7 +101,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'transfer',
         data: sourceGroupWidgetConfig?.callActions.transferBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(transferBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(transferBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -109,7 +109,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'held',
         data: sourceGroupWidgetConfig?.callActions.heldBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(heldBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(heldBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -117,7 +117,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'heldActive',
         data: sourceGroupWidgetConfig?.callActions.heldActiveBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(heldActiveBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(heldActiveBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -125,7 +125,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'swap',
         data: sourceGroupWidgetConfig?.callActions.swapBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(swapBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(swapBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -133,7 +133,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'hangup',
         data: sourceGroupWidgetConfig?.callActions.hangupBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(hangupBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(hangupBackgroundColor: data),
         )),
       ),
       ObjectDescriptor<ButtonStyle, String>(
@@ -141,7 +141,7 @@ class GroupConfigTab extends StatelessWidget {
         title: 'key',
         data: sourceGroupWidgetConfig?.callActions.keyBackgroundColor,
         callback: (data) => callback(sourceGroupWidgetConfig?.copyWith(
-          callActions: sourceGroupWidgetConfig!.callActions!.copyWith(keyBackgroundColor: data!),
+          callActions: sourceGroupWidgetConfig!.callActions.copyWith(keyBackgroundColor: data),
         )),
       ),
     ].nonNulls;
@@ -165,7 +165,7 @@ class GroupConfigTab extends StatelessWidget {
                     initialColor: groupTitleListStylesPrimary?.background,
                     onColorSelected: (color) => callback(sourceGroupWidgetConfig?.copyWith(
                         groupTitleListTile:
-                            sourceGroupWidgetConfig!.groupTitleListTile!.copyWith(backgroundColor: color?.toHex()))),
+                            sourceGroupWidgetConfig!.groupTitleListTile.copyWith(backgroundColor: color.toHex()))),
                   ),
                 ),
                 ColorField(
@@ -176,7 +176,7 @@ class GroupConfigTab extends StatelessWidget {
                     initialColor: groupTitleListStylesPrimary?.textStyle?.color,
                     onColorSelected: (color) => callback(sourceGroupWidgetConfig?.copyWith(
                         groupTitleListTile:
-                            sourceGroupWidgetConfig!.groupTitleListTile!.copyWith(textColor: color?.toHex()))),
+                            sourceGroupWidgetConfig!.groupTitleListTile.copyWith(textColor: color.toHex()))),
                   ),
                 ),
               ],

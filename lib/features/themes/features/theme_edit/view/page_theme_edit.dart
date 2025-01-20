@@ -46,7 +46,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
       listener: _handleStateChanges,
       builder: (context, state) {
         final theme = state.toThemeSettings();
-        print("appConfig BlocConsumer: ${theme.appConfig}");
 
         return Scaffold(
           appBar: _AppBar(
@@ -72,7 +71,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                               child: PageThemeProperty(),
                             ),
                         (context) => FutureProvider<FeatureAccess>(
-                              key: ValueKey("${state.appConfig}${state.status}"),
+                              key: ValueKey('${state.appConfig}${state.status}'),
                               create: (context) async {
                                 final appConfig = state.appConfig;
                                 return FeatureAccess.init(appConfig, MockAppPreferences());

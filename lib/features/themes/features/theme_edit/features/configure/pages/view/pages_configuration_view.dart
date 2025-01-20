@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import '../../../../../../../../core/exports/webtrit_phone.dart';
 import '../../../../bloc/update_theme_cubit.dart';
@@ -59,7 +58,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
             loginPageConfig: themePageConfig.login,
             callback: (config) => bloc.add(UpdateSchemeEvent.pages(themePageConfig.copyWith(login: config))),
           ),
-          AboutPageView(),
+          const AboutPageView(),
         ],
       ),
     );

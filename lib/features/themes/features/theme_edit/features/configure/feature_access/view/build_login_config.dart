@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:file_picker/file_picker.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import '../models/models.dart';
 
@@ -158,8 +159,8 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
   Widget _buildHtmlFilePicker() {
     return Row(
       children: [
-        Expanded(
-          child: Text('HTML File Path:', style: const TextStyle(fontWeight: FontWeight.bold)),
+        const Expanded(
+          child: Text('HTML File Path:', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         OutlinedButton(
           onPressed: () async {
@@ -211,5 +212,3 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
     );
   }
 }
-
-

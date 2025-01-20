@@ -31,7 +31,7 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
       color: colorScheme.surfaceDim.withAlpha(50), // Adjusted for a subtle background
       child: MenuSpace(
         isTopPosition: true,
-        background: colorScheme.surfaceDim.withOpacity(0.2),
+        background: colorScheme.surfaceDim.withValues(alpha: 0.2),
         children: [
           Dropdown(
             constraints: const BoxConstraints(maxWidth: 224),
@@ -76,5 +76,5 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(56);
 }

@@ -10,7 +10,6 @@ import 'package:logging/logging.dart';
 import 'package:webtrit_configurator/core/extension/extension.dart';
 
 import 'package:webtrit_configurator/features/themes/models/models.dart';
-import 'package:webtrit_phone/app/app.dart';
 
 import '../../../../../core/exports/webtrit_phone.dart';
 import '../model/models.dart';

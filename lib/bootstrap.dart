@@ -16,7 +16,6 @@ import 'package:webtrit_configurator/di/di.dart';
 import 'package:webtrit_phone/data/app_themes.dart';
 import 'package:webtrit_phone/data/data.dart';
 
-import '../app/theme/theme.dart';
 import '../gen/assets.gen.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {

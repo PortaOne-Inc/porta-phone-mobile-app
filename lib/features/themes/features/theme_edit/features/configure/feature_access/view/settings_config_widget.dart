@@ -30,7 +30,7 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Text(
                   section.titleL10n,
                   style: Theme.of(context).textTheme.titleLarge,
@@ -38,7 +38,6 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
               ),
               ...section.items.map((item) {
                 return Visibility(
-                  visible: true,
                   child: ListTile(
                     leading: Icon(item.icon.toIconData()),
                     title: Text(item.titleL10n),
@@ -48,7 +47,6 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
                         setState(() {
                           // item.enabled = value;
                         });
-                        print("${item.titleL10n} is now ${value ? "enabled" : "disabled"}");
                       },
                     ),
                     onTap: () {
@@ -58,7 +56,7 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
                     },
                   ),
                 );
-              }).toList(),
+              }),
               const Divider(),
             ],
           ),

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 import '../../../../bloc/update_theme_cubit.dart';
 

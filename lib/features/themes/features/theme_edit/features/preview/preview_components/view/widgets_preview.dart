@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/phone_context.dart';
 import 'package:webtrit_phone/app/constants.dart';
-import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/features/login/widgets/onboarding_logo.dart';
 import 'package:webtrit_phone/features/login/widgets/onboarding_picture_logo.dart';
-import 'package:webtrit_phone/features/settings/widgets/session_status_list_tile.dart';
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
@@ -24,7 +21,6 @@ class WidgetsPreview extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (BuildContext context, PreviewThemeState state) {
-      print("state.requestFocus:${state.requestFocus }");
       return Scaffold(
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -160,12 +156,6 @@ class WidgetsPreview extends StatelessWidget {
 }
 
 class BottomMenuTab {
-  final bool enabled;
-  final bool initial;
-  final MainFlavor flavor;
-  final String title;
-  final IconData icon;
-
   BottomMenuTab({
     required this.enabled,
     required this.initial,
@@ -173,4 +163,10 @@ class BottomMenuTab {
     required this.title,
     required this.icon,
   });
+
+  final bool enabled;
+  final bool initial;
+  final MainFlavor flavor;
+  final String title;
+  final IconData icon;
 }

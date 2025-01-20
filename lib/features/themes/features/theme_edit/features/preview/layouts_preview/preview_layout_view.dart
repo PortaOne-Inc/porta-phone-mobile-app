@@ -5,9 +5,7 @@ import 'package:resizable_columns/resizable_columns.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
-import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/models/models.dart';
-import 'package:provider/provider.dart';
 
 class PreviewLayoutView extends StatefulWidget {
   const PreviewLayoutView({

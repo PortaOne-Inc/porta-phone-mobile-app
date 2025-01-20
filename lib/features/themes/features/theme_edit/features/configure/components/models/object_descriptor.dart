@@ -1,9 +1,9 @@
 class ObjectDescriptor<T, D> {
   ObjectDescriptor({
     required this.style,
+    required this.title,
     this.data,
     this.callback,
-    required this.title,
   });
 
   final T? style;
