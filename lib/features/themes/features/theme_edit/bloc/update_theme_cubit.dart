@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:domain/domain.dart';
+import 'package:logging/logging.dart';
 import 'package:webtrit_configurator/core/extension/extension.dart';
 
 import 'package:webtrit_configurator/features/themes/models/models.dart';
@@ -19,6 +20,8 @@ part 'update_theme_state.dart';
 part 'update_theme_event.dart';
 
 part 'update_theme_cubit.freezed.dart';
+
+final _logger = Logger('UpdateThemeCubit');
 
 class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   UpdateThemCubit({
@@ -93,7 +96,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   }
 
   void _onUpdateAppConfigPages(_UpdateAppConfigEventChange event, Emitter<UpdateThemeState> emit) {
-    emit(state.copyWith(appConfig: event.scheme, status: ThemePropertyStatus.progress));
+    _logger.info('Update App Config: ${event.scheme.mainConfig.bottomMenu.toJson()}');
+    emit(state.copyWith(status: ThemePropertyStatus.progress));
+
+    emit(state.copyWith(appConfig: event.scheme));
     emit(state.copyWith(status: ThemePropertyStatus.success));
   }
 
@@ -186,20 +192,12 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       final colorsScheme = ColorSchemeConfig.fromJson(theme.colorSchemeConfig);
       final appConfig = AppConfig.fromJson(theme.appConfig);
 
-      final resultAppConfig = appConfig.settingsConfig.sections.isEmpty ? state.appConfig : appConfig;
-      final gradientAppConfig = widgets.decorationConfig.primaryGradientColorsConfig.colors.isEmpty
-          ? state.themeWidgetConfig.decorationConfig.primaryGradientColorsConfig.colors
-          : widgets.decorationConfig.primaryGradientColorsConfig.colors;
-
       emit(state.copyWith(
         theme: theme,
         colorSchemeConfig: colorsScheme,
-        themeWidgetConfig: widgets.copyWith(
-            decorationConfig: widgets.decorationConfig.copyWith(
-                primaryGradientColorsConfig:
-                    widgets.decorationConfig.primaryGradientColorsConfig.copyWith(colors: gradientAppConfig))),
+        themeWidgetConfig: widgets,
+        appConfig: appConfig,
         themePageConfig: pages,
-        appConfig: resultAppConfig,
       ));
       emit(state.copyWith(status: ThemePropertyStatus.success));
     } on Exception catch (e) {

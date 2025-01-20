@@ -40,9 +40,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme
-        .of(context)
-        .colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return BlocConsumer<UpdateThemCubit, UpdateThemeState>(
       listener: _handleStateChanges,
@@ -62,37 +60,33 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             lightDynamic: null,
             darkDynamic: null,
             child: Builder(
-                builder: (context) =>
-                    ResizableColumns(
+                builder: (context) => ResizableColumns(
                       orientation: ResizableOrientation.horizontal,
                       dividerColor: colorScheme.surfaceContainerLow,
                       dividerThickness: 4,
                       minChildSize: 200,
                       initialProportions: const [.65, .35],
                       children: [
-                            (context) =>
-                            SingleStack(
+                        (context) => const SingleStack(
                               key: ValueKey('leftStack'),
                               child: PageThemeProperty(),
                             ),
-                            (context) =>
-                            FutureProvider<FeatureAccess>(
-                              key: ValueKey(state.appConfig),
+                        (context) => FutureProvider<FeatureAccess>(
+                              key: ValueKey("${state.appConfig}${state.status}"),
                               create: (context) async {
                                 final appConfig = state.appConfig;
-                                print("appConfig: ${appConfig.loginConfig}");
                                 return FeatureAccess.init(appConfig, MockAppPreferences());
                               },
                               initialData: FeatureAccess.init(state.appConfig, MockAppPreferences()),
                               child: SingleStack(
                                 navigator: _rightPageNavigatorKey,
-                                key: ValueKey('rightStack'),
-                                child: PageThemePreview(),
+                                key: const ValueKey('rightStack'),
+                                child: const PageThemePreview(),
                               ),
                             ),
                       ],
-                    )),)
-          ,
+                    )),
+          ),
         );
       },
     );
@@ -106,7 +100,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
 
   void _showErrorDialog(BuildContext context, Object? error) {
     final message =
-    (error is ThemeIsNotValidException) ? 'The theme is not valid.' : error?.toString() ?? 'An error occurred.';
+        (error is ThemeIsNotValidException) ? 'The theme is not valid.' : error?.toString() ?? 'An error occurred.';
 
     showDialog<void>(
       context: context,
@@ -152,10 +146,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeMode = context
-        .read<CommonBloc>()
-        .state
-        .themeMode;
+    final themeMode = context.read<CommonBloc>().state.themeMode;
 
     return AppToolbar(
       isVisibleProgress: state.isProgress,

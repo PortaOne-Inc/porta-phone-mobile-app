@@ -8,6 +8,8 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logging/logging.dart';
+import 'package:logging_appenders/logging_appenders.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/di/di.dart';
@@ -22,6 +24,13 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       usePathUrlStrategy();
+
+      hierarchicalLoggingEnabled = true;
+
+      Logger.root.clearListeners();
+      Logger.root.level = Level.ALL;
+
+      PrintAppender(formatter: const ColorFormatter()).attachToLogger(Logger.root);
 
       final diContainer = await configureDependencies();
 

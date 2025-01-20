@@ -52,6 +52,8 @@ dependencies:
   validated: ^2.0.0
   resizable_columns: ^0.0.2
   json_annotation: ^4.9.0
+  logging: ^1.2.0
+  logging_appenders: ^1.2.0
 
 dependency_overrides:
   material_color_utilities: 0.12.0

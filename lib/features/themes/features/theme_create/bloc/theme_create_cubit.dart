@@ -43,7 +43,7 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
         applicationId: applicationId,
         themeModel: ThemeModel(
           name: state.nameInput!.value,
-          appConfig: state.defaultThemeConfig.toJson(),
+          appConfig: state.defaultFeatureAccess.toJson(),
           themeWidgetConfig: state.defaultThemeConfig.themeWidgetLightConfig.toJson(),
           themePageConfig: state.defaultThemeConfig.themePageLightConfig.toJson(),
           colorSchemeConfig: state.defaultThemeConfig.lightColorSchemeConfig.toJson(),

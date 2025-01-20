@@ -1,45 +1,40 @@
-import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:webtrit_phone/extensions/extensions.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../../../../bloc/update_theme_cubit.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
-
-enum MainFlavor {
-  favorites,
-  recents,
-  contacts,
-  keypad,
-  embedded1,
-  embedded2,
-  embedded3,
-  messaging,
-}
 
 class MainConfigWidget extends StatefulWidget {
-  const MainConfigWidget({super.key});
+  const MainConfigWidget({
+    required this.mainConfig,
+    required this.onChange,
+    super.key,
+  });
+
+  final AppConfigMain mainConfig;
+  final ObjectCallback<AppConfigMain> onChange;
 
   @override
   State<MainConfigWidget> createState() => _MainConfigWidgetState();
 }
 
 class _MainConfigWidgetState extends State<MainConfigWidget> {
-  final List<AppConfigBottomMenuTab> _activeTabs = List.from(defaultTabs);
+  final List<AppConfigBottomMenuTab> _activeTabs = List.from([]);
   final List<AppConfigBottomMenuTab> _removedTabs = [];
 
-  void _removeTab(int index) {
-    setState(() {
-      final removedTab = _activeTabs.removeAt(index);
-      _removedTabs.add(removedTab);
-    });
-  }
-
-  void _restoreTab(AppConfigBottomMenuTab tab) {
-    setState(() {
-      _removedTabs.remove(tab);
-      _activeTabs.add(tab);
-    });
+  @override
+  void initState() {
+    for (final tab in widget.mainConfig.bottomMenu.tabs) {
+      if (tab.enabled) {
+        _activeTabs.add(tab);
+      } else {
+        _removedTabs.add(tab);
+      }
+    }
+    super.initState();
   }
 
   @override
@@ -53,7 +48,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min, // To avoid unbounded height conflicts
+        mainAxisSize: MainAxisSize.min,
         children: [
           BorderContainer(
             title: 'Bottom Menu',
@@ -89,6 +84,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                         }
                         final item = _activeTabs.removeAt(oldIndex);
                         _activeTabs.insert(newIndex, item);
+                        _updateAppConfig();
                       });
                     },
                     children: _activeTabs.asMap().entries.map((entry) {
@@ -179,63 +175,29 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
       ),
     );
   }
-}
 
-const List<AppConfigBottomMenuTab> defaultTabs = [
-  AppConfigBottomMenuTab(
-    type: 'favorites',
-    titleL10n: 'main_BottomNavigationBarItemLabel_favorites',
-    icon: '0xe5fd',
-  ),
-  AppConfigBottomMenuTab(
-    type: 'resents',
-    titleL10n: 'main_BottomNavigationBarItemLabel_recents',
-    icon: '0xe03a',
-  ),
-  AppConfigBottomMenuTab(
-    type: 'contacts',
-    titleL10n: 'main_BottomNavigationBarItemLabel_contacts',
-    icon: '0xee35',
-    data: {
-      AppConfigBottomMenuTab.dataContactSourceTypes: ['local', 'external']
-    },
-  ),
-  AppConfigBottomMenuTab(
-    initial: true,
-    type: 'keypad',
-    titleL10n: 'main_BottomNavigationBarItemLabel_keypad',
-    icon: '0xe1ce',
-  ),
-  AppConfigBottomMenuTab(
-    type: 'messaging',
-    titleL10n: 'main_BottomNavigationBarItemLabel_chats',
-    icon: '0xe155',
-  ),
-  AppConfigBottomMenuTab(
-    enabled: false,
-    type: 'embedded1',
-    titleL10n: 'embaded1TitleL10n',
-    icon: '0xe2ce',
-    data: {
-      AppConfigBottomMenuTab.dataResource: 'https://webtrit-app.web.app/example/example_embedded_advertisement.html',
-    },
-  ),
-  AppConfigBottomMenuTab(
-    enabled: false,
-    type: 'embedded2',
-    titleL10n: 'embaded2TitleL10n',
-    icon: '0xe2ce',
-    data: {
-      AppConfigBottomMenuTab.dataResource: 'https://webtrit-app.web.app/example/example_embedded_call.html',
-    },
-  ),
-  AppConfigBottomMenuTab(
-    enabled: false,
-    type: 'embedded3',
-    titleL10n: 'embaded3TitleL10n',
-    icon: '0xe2ce',
-    data: {
-      AppConfigBottomMenuTab.dataResource: 'https://webtrit-app.web.app/example/example_embedded_wallet_balance.html',
-    },
-  ),
-];
+  void _removeTab(int index) {
+    setState(() {
+      final removedTab = _activeTabs.removeAt(index);
+      _removedTabs.add(removedTab);
+      _updateAppConfig();
+    });
+  }
+
+  void _restoreTab(AppConfigBottomMenuTab tab) {
+    setState(() {
+      _removedTabs.remove(tab);
+      _activeTabs.add(tab);
+      _updateAppConfig();
+    });
+  }
+
+  void _updateAppConfig() {
+    final newMainConfig = widget.mainConfig.copyWith(
+      bottomMenu: widget.mainConfig.bottomMenu.copyWith(
+        tabs: _activeTabs,
+      ),
+    );
+    widget.onChange(newMainConfig);
+  }
+}

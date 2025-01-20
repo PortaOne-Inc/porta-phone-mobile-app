@@ -1,3 +1,4 @@
+import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_phone/theme/theme_provider.dart';
@@ -25,6 +26,12 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
 
   LoginType loginType = LoginType.defaultLogin;
   CustomLoginOption customLoginOption = CustomLoginOption.url;
+  final _tabs = const [
+    Tab(text: 'Login'),
+    Tab(text: 'Main'),
+    Tab(text: 'Settings'),
+    Tab(text: 'Call'),
+  ];
 
   @override
   void initState() {
@@ -49,12 +56,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
-          tabs: const [
-            Tab(text: 'Login'),
-            Tab(text: 'Main'),
-            Tab(text: 'Settings'),
-            Tab(text: 'Call'),
-          ],
+          tabs: _tabs,
         ),
       ),
       body: TabBarView(
@@ -65,7 +67,11 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
             sourceAppConfigLogin: appConfig.loginConfig,
             callback: (config) => cubit.add(UpdateSchemeEvent.featureAccess(appConfig.copyWith(loginConfig: config))),
           ),
-          const MainConfigWidget(),
+          MainConfigWidget(
+            mainConfig: appConfig.mainConfig,
+            onChange: (AppConfigMain value) =>
+                cubit.add(UpdateSchemeEvent.featureAccess(appConfig.copyWith(mainConfig: value))),
+          ),
           // _buildSettingsConfig(context, bloc),
           SettingsConfigWidget(
             config: appConfig.settingsConfig,
