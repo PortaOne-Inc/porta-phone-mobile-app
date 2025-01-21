@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,12 @@ class BuildLoginConfig extends StatefulWidget {
   const BuildLoginConfig({
     required this.callback,
     required this.sourceAppConfigLogin,
+    required this.assets,
     super.key,
   });
 
   final AppConfigLogin sourceAppConfigLogin;
+  final List<ThemeAssetModel> assets;
   final ObjectCallback<AppConfigLogin> callback;
 
   @override
@@ -53,11 +56,11 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                 if (_loginType == EnvLoginType.customLogin)
                   CustomLoginOptions(
                     customLoginOption: _customLoginOption,
-                    customUrl: _customUrl,
-                    htmlFilePath: _htmlFilePath,
+                    url: _customUrl,
                     onCustomLoginOptionChanged: _onCustomLoginOptionChanged,
                     onCustomUrlChanged: _onCustomUrlChanged,
-                    onSelectHtmlFile: _onSelectHtmlFile,
+                    onHtmlAssetChanged: _onSelectHtmlFile,
+                    assets: widget.assets,
                   ),
               ],
             ),
@@ -87,13 +90,19 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
     });
   }
 
-  Future<void> _onSelectHtmlFile() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['html'],
+  Future<void> _onSelectHtmlFile(ThemeAssetModel model) async {
+    const modeSelection = AppConfigModeSelectAction(
+      enabled: true,
+      type: 'embedded',
+      titleL10n: '',
+      embeddedId: 0,
     );
-    if (result != null && result.files.single.path != null) {
-      //     onHtmlFilePathChanged(result.files.single.path!);
-    }
+    final embedded = AppConfigLoginEmbedded(
+      id: 0,
+      titleL10n: '',
+      resource: "${model.id}.html",
+    );
+
+    widget.callback(widget.sourceAppConfigLogin.copyWith(modeSelectActions: [modeSelection], embedded: [embedded]));
   }
 }

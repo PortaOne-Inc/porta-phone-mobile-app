@@ -23,8 +23,6 @@ class ConfigureAppConfigView extends StatefulWidget {
 class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  LoginType loginType = LoginType.defaultLogin;
-  CustomLoginOption customLoginOption = CustomLoginOption.url;
   final _tabs = const [
     Tab(text: 'Login'),
     Tab(text: 'Main'),
@@ -35,7 +33,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: _tabs.length, vsync: this);
   }
 
   @override
@@ -46,9 +44,6 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<UpdateThemCubit>();
-    final appConfig = cubit.state.appConfig;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configure App Config'),
@@ -58,39 +53,47 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
           tabs: _tabs,
         ),
       ),
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _tabController,
-        children: [
-          BuildLoginConfig(
-            sourceAppConfigLogin: appConfig.loginConfig,
-            callback: (config) => cubit.add(UpdateSchemeEvent.featureAccess(appConfig.copyWith(loginConfig: config))),
-          ),
-          MainConfigWidget(
-            mainConfig: appConfig.mainConfig,
-            onChange: (AppConfigMain value) =>
-                cubit.add(UpdateSchemeEvent.featureAccess(appConfig.copyWith(mainConfig: value))),
-          ),
-          // _buildSettingsConfig(context, bloc),
-          SettingsConfigWidget(
-            config: appConfig.settingsConfig,
-          ),
+      body: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
+        builder: (context, state) {
+          final appConfig = state.appConfig;
 
-          AppConfigCallWidget(
-            initialVideoEnabled: true,
-            initialBlindTransferEnabled: true,
-            initialAttendedTransferEnabled: true,
-            onVideoEnabledChanged: (value) {
-              debugPrint('Video Enabled: $value');
-            },
-            onBlindTransferChanged: (value) {
-              debugPrint('Blind Transfer Enabled: $value');
-            },
-            onAttendedTransferChanged: (value) {
-              debugPrint('Attended Transfer Enabled: $value');
-            },
-          ),
-        ].map((it) => SingleChildScrollView(child: it)).toList(),
+          return TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _tabController,
+            children: [
+              BuildLoginConfig(
+                sourceAppConfigLogin: appConfig.loginConfig,
+                callback: (config) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(loginConfig: config)),
+                    ),
+                assets: state.assets,
+              ),
+              MainConfigWidget(
+                mainConfig: appConfig.mainConfig,
+                onChange: (AppConfigMain value) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(mainConfig: value)),
+                    ),
+              ),
+              SettingsConfigWidget(
+                config: appConfig.settingsConfig,
+              ),
+              AppConfigCallWidget(
+                initialVideoEnabled: true,
+                initialBlindTransferEnabled: true,
+                initialAttendedTransferEnabled: true,
+                onVideoEnabledChanged: (value) {
+                  debugPrint('Video Enabled: $value');
+                },
+                onBlindTransferChanged: (value) {
+                  debugPrint('Blind Transfer Enabled: $value');
+                },
+                onAttendedTransferChanged: (value) {
+                  debugPrint('Attended Transfer Enabled: $value');
+                },
+              ),
+            ].map((widget) => SingleChildScrollView(child: widget)).toList(),
+          );
+        },
       ),
     );
   }
