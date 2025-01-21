@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../models/models.dart';
+import '../widgets/widgets.dart';
 
 class BuildLoginConfig extends StatefulWidget {
   const BuildLoginConfig({
@@ -21,11 +21,10 @@ class BuildLoginConfig extends StatefulWidget {
 }
 
 class _BuildLoginConfigState extends State<BuildLoginConfig> {
-  EnvLoginType loginType = EnvLoginType.defaultLogin;
-  CustomLoginOption customLoginOption = CustomLoginOption.url;
-  String welcomeText = '';
-  String customUrl = '';
-  String htmlFilePath = '';
+  EnvLoginType _loginType = EnvLoginType.defaultLogin;
+  CustomLoginOption _customLoginOption = CustomLoginOption.url;
+  String _customUrl = '';
+  String _htmlFilePath = '';
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +38,27 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDropdownRow<EnvLoginType>(
+                DropdownRow<EnvLoginType>(
                   label: 'Login Type:',
-                  value: loginType,
+                  value: _loginType,
                   items: EnvLoginType.values,
                   itemLabelBuilder: (type) => type == EnvLoginType.defaultLogin ? 'Default Login' : 'Custom Login',
-                  onChanged: (value) {
-                    setState(() {
-                      loginType = value;
-                    });
-                  },
+                  onChanged: _onLoginTypeChanged,
                 ),
-                if (loginType == EnvLoginType.defaultLogin) _buildDefaultLoginOptions(),
-                if (loginType == EnvLoginType.customLogin) _buildCustomLoginOptions(),
+                if (_loginType == EnvLoginType.defaultLogin)
+                  DefaultLoginOption(
+                    sourceAppConfigLogin: widget.sourceAppConfigLogin,
+                    onWelcomeTextChanged: (it) => widget.callback(widget.sourceAppConfigLogin.copyWith(label: it)),
+                  ),
+                if (_loginType == EnvLoginType.customLogin)
+                  CustomLoginOptions(
+                    customLoginOption: _customLoginOption,
+                    customUrl: _customUrl,
+                    htmlFilePath: _htmlFilePath,
+                    onCustomLoginOptionChanged: _onCustomLoginOptionChanged,
+                    onCustomUrlChanged: _onCustomUrlChanged,
+                    onSelectHtmlFile: _onSelectHtmlFile,
+                  ),
               ],
             ),
           ),
@@ -60,155 +67,33 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
     );
   }
 
-  Widget _buildDropdownRow<T>({
-    required String label,
-    required T value,
-    required List<T> items,
-    required String Function(T) itemLabelBuilder,
-    required ValueChanged<T> onChanged,
-  }) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        ),
-        FocusScope(
-          canRequestFocus: false,
-          child: DropdownButton<T>(
-            value: value,
-            onChanged: (value) {
-              if (value != null) {
-                onChanged(value);
-              }
-            },
-            items: items
-                .map(
-                  (item) => DropdownMenuItem<T>(
-                    value: item,
-                    child: Text(itemLabelBuilder(item)),
-                  ),
-                )
-                .toList(),
-            focusColor: Colors.transparent,
-            underline: Container(),
-          ),
-        ),
-      ],
-    );
+  void _onLoginTypeChanged(EnvLoginType? value) {
+    if (value != null) {
+      setState(() {
+        _loginType = value;
+      });
+    }
   }
 
-  /// Builds UI for default login options.
-  Widget _buildDefaultLoginOptions() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        _buildLabeledInputField(
-          label: 'Welcome Text:',
-          value: widget.sourceAppConfigLogin.label ?? '',
-          onChanged: (value) {
-            setState(() {
-              widget.callback(widget.sourceAppConfigLogin.copyWith(label: value));
-            });
-          },
-        ),
-      ],
-    );
+  void _onCustomLoginOptionChanged(CustomLoginOption value) {
+    setState(() {
+      _customLoginOption = value;
+    });
   }
 
-  /// Builds UI for custom login options, including additional configuration fields.
-  Widget _buildCustomLoginOptions() {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Divider(
-          thickness: 2,
-          color: colorScheme.surfaceContainerLow,
-        ),
-        _buildDropdownRow<CustomLoginOption>(
-          label: 'Custom Option:',
-          value: customLoginOption,
-          items: CustomLoginOption.values,
-          itemLabelBuilder: (option) => option == CustomLoginOption.url ? 'Provide URL' : 'Provide HTML File',
-          onChanged: (value) {
-            setState(() {
-              customLoginOption = value;
-            });
-          },
-        ),
-        const SizedBox(height: 8),
-        if (customLoginOption == CustomLoginOption.url)
-          _buildLabeledInputField(
-            label: 'Custom Login URL:',
-            value: customUrl,
-            onChanged: (value) {
-              setState(() {
-                customUrl = value;
-              });
-            },
-          ),
-        if (customLoginOption == CustomLoginOption.html) _buildHtmlFilePicker(),
-      ],
-    );
+  void _onCustomUrlChanged(String value) {
+    setState(() {
+      _customUrl = value;
+    });
   }
 
-  /// Builds the file picker button for HTML file selection.
-  Widget _buildHtmlFilePicker() {
-    return Row(
-      children: [
-        const Expanded(
-          child: Text('HTML File Path:', style: TextStyle(fontWeight: FontWeight.bold)),
-        ),
-        OutlinedButton(
-          onPressed: () async {
-            final result = await FilePicker.platform.pickFiles(
-              type: FileType.custom,
-              allowedExtensions: ['html'],
-            );
-            if (result != null && result.files.single.path != null) {
-              setState(() {
-                htmlFilePath = result.files.single.path!;
-              });
-            }
-          },
-          child: Text(
-            htmlFilePath.isNotEmpty ? htmlFilePath : 'Select HTML File',
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: htmlFilePath.isNotEmpty ? Colors.black : Colors.grey,
-            ),
-          ),
-        ),
-      ],
+  Future<void> _onSelectHtmlFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['html'],
     );
-  }
-
-  /// Builds an input field with a label.
-  Widget _buildLabeledInputField({
-    required String label,
-    required String value,
-    required ValueChanged<String> onChanged,
-  }) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-        ),
-        Expanded(
-          flex: 2,
-          child: TextFormField(
-            initialValue: value,
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              border: OutlineInputBorder(),
-            ),
-            onChanged: onChanged,
-          ),
-        ),
-      ],
-    );
+    if (result != null && result.files.single.path != null) {
+      //     onHtmlFilePathChanged(result.files.single.path!);
+    }
   }
 }
