@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domain/entity/models/theme/theme_asset_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -31,13 +32,15 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     required this.defaultThemeSettings,
     this.applicationId,
     this.themeId,
-  }) : super(UpdateThemeState(
-          status: ThemePropertyStatus.progress,
-          appConfig: appConfig,
-          themeWidgetConfig: defaultThemeSettings.themeWidgetLightConfig,
-          themePageConfig: defaultThemeSettings.themePageDarkConfig,
-          colorSchemeConfig: defaultThemeSettings.lightColorSchemeConfig,
-        )) {
+  }) : super(
+          UpdateThemeState(
+              status: ThemePropertyStatus.progress,
+              appConfig: appConfig,
+              themeWidgetConfig: defaultThemeSettings.themeWidgetLightConfig,
+              themePageConfig: defaultThemeSettings.themePageDarkConfig,
+              colorSchemeConfig: defaultThemeSettings.lightColorSchemeConfig,
+              assets: []),
+        ) {
     //NEW
     on<UpdateSchemeEvent>(
       _onUpdateSchemeEvent,
@@ -84,6 +87,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       components: (_UpdateComponentsEventChange value) async => _onUpdateSchemeComponents(value, emit),
       pages: (_UpdatePagesEventChange value) async => _onUpdateSchemePages(value, emit),
       featureAccess: (_UpdateAppConfigEventChange value) async => _onUpdateAppConfigPages(value, emit),
+      assets: (_UpdateAssetsEventChange value) async => _onUpdateAssets(value, emit),
     );
   }
 
@@ -102,7 +106,14 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     emit(state.copyWith(status: ThemePropertyStatus.success));
   }
 
+  void _onUpdateAssets(_UpdateAssetsEventChange event, Emitter<UpdateThemeState> emit) {
+    _logger.info('Update Assets: ${event.scheme}');
+    emit(state.copyWith(assets: event.scheme, status: ThemePropertyStatus.progress));
+    emit(state.copyWith(status: ThemePropertyStatus.success));
+  }
+
   void _onUpdateSchemePages(_UpdatePagesEventChange event, Emitter<UpdateThemeState> emit) {
+    _logger.info('Update Pages: ${event.scheme.toJson()}');
     emit(state.copyWith(themePageConfig: event.scheme, status: ThemePropertyStatus.progress));
     emit(state.copyWith(status: ThemePropertyStatus.success));
   }
@@ -160,9 +171,12 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
             status: ThemePropertyStatus.progress,
           ));
           await updateThemeUseCase.execute(
-              themeModel: event.model!.copyWith(
-                  colorSchemeConfig: state.colorSchemeConfig.toJson(),
-                  themeWidgetConfig: state.themeWidgetConfig.toJson()));
+            themeModel: event.model!.copyWith(
+              colorSchemeConfig: state.colorSchemeConfig.toJson(),
+              themeWidgetConfig: state.themeWidgetConfig.toJson(),
+              assets: state.assets,
+            ),
+          );
           emit(state.copyWith(
             status: ThemePropertyStatus.success,
           ));
@@ -197,6 +211,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         themeWidgetConfig: widgets,
         appConfig: appConfig,
         themePageConfig: pages,
+        assets: theme.assets,
       ));
       emit(state.copyWith(status: ThemePropertyStatus.success));
     } on Exception catch (e) {

@@ -15,6 +15,7 @@ class UpdateThemeState with _$UpdateThemeState {
     @Default(ThemeWidgetConfig()) ThemeWidgetConfig themeWidgetConfig,
     @Default(ThemePageConfig()) ThemePageConfig themePageConfig,
     @Default(AppConfig()) AppConfig appConfig,
+    @Default([]) List<ThemeAssetModel> assets,
     //
     @Default(ThemePreviewScreen.layouts) ThemePreviewScreen themePreviewScreen,
     @Default(ThemePropertyScreens.property) ThemePropertyScreens themePropertyScreens,

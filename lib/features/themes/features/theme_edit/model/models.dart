@@ -1,3 +1,4 @@
+export 'asset_item.dart';
 export 'event_log_model.dart';
 export 'exception/exception.dart';
 export 'focus_model.dart';

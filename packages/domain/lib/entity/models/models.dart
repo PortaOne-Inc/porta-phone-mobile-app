@@ -7,3 +7,4 @@ export 'theme/system_assets_model.dart';
 export 'texts/texts_model.dart';
 export 'theme/theme_model.dart';
 export 'user/user_model.dart';
+export 'theme/theme.dart';

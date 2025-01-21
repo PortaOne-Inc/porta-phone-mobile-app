@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/assets/view/assets_page.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import '../features/features.dart';
 import '../theme_edit.dart';
@@ -74,7 +75,19 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               onTap: () => _navigateToChangeAppFeatureConfiguration(context, bloc),
             ),
             const GroupTitleListTile(
-              titleData: 'Static Data Preloaded Outside Application Runtime',
+              titleData: 'Static Data',
+            ),
+            ListTile(
+              leading: Icon(Icons.file_present_rounded, color: colorScheme.primary),
+              title: const Text(
+                'HTML assets',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              subtitle: const Text(
+                'Add HTML assets for app configuration.',
+              ),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () => _navigateToAssetsConfiguration(context, bloc),
             ),
             ListTile(
               leading: Icon(Icons.rocket_launch_outlined, color: colorScheme.primary),
@@ -122,6 +135,14 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) => const ConfigureAppConfigView(),
+      ),
+    );
+  }
+
+  Future<void> _navigateToAssetsConfiguration(BuildContext context, UpdateThemCubit cubit) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => AssetsPage(),
       ),
     );
   }

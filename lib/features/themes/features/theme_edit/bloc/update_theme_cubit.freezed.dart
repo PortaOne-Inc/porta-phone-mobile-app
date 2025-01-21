@@ -22,7 +22,8 @@ mixin _$UpdateThemeState {
   ColorSchemeConfig get colorSchemeConfig => throw _privateConstructorUsedError;
   ThemeWidgetConfig get themeWidgetConfig => throw _privateConstructorUsedError;
   ThemePageConfig get themePageConfig => throw _privateConstructorUsedError;
-  AppConfig get appConfig => throw _privateConstructorUsedError; //
+  AppConfig get appConfig => throw _privateConstructorUsedError;
+  List<ThemeAssetModel> get assets => throw _privateConstructorUsedError; //
   ThemePreviewScreen get themePreviewScreen =>
       throw _privateConstructorUsedError;
   ThemePropertyScreens get themePropertyScreens =>
@@ -51,6 +52,7 @@ abstract class $UpdateThemeStateCopyWith<$Res> {
       ThemeWidgetConfig themeWidgetConfig,
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
+      List<ThemeAssetModel> assets,
       ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       ThemeNameInput? nameField,
@@ -86,6 +88,7 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? assets = null,
     Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? nameField = freezed,
@@ -120,6 +123,10 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
           ? _value.appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as AppConfig,
+      assets: null == assets
+          ? _value.assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetModel>,
       themePreviewScreen: null == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
@@ -224,6 +231,7 @@ abstract class _$$UpdateThemeStateImplCopyWith<$Res>
       ThemeWidgetConfig themeWidgetConfig,
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
+      List<ThemeAssetModel> assets,
       ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       ThemeNameInput? nameField,
@@ -263,6 +271,7 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? assets = null,
     Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? nameField = freezed,
@@ -297,6 +306,10 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
           ? _value.appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as AppConfig,
+      assets: null == assets
+          ? _value._assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetModel>,
       themePreviewScreen: null == themePreviewScreen
           ? _value.themePreviewScreen
           : themePreviewScreen // ignore: cast_nullable_to_non_nullable
@@ -328,11 +341,13 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
       this.themeWidgetConfig = const ThemeWidgetConfig(),
       this.themePageConfig = const ThemePageConfig(),
       this.appConfig = const AppConfig(),
+      final List<ThemeAssetModel> assets = const [],
       this.themePreviewScreen = ThemePreviewScreen.layouts,
       this.themePropertyScreens = ThemePropertyScreens.property,
       this.nameField,
       this.error})
-      : super._();
+      : _assets = assets,
+        super._();
 
   @override
   final ThemePropertyStatus? status;
@@ -353,6 +368,15 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
   @override
   @JsonKey()
   final AppConfig appConfig;
+  final List<ThemeAssetModel> _assets;
+  @override
+  @JsonKey()
+  List<ThemeAssetModel> get assets {
+    if (_assets is EqualUnmodifiableListView) return _assets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assets);
+  }
+
 //
   @override
   @JsonKey()
@@ -367,7 +391,7 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
 
   @override
   String toString() {
-    return 'UpdateThemeState(status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
+    return 'UpdateThemeState(status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
   }
 
   @override
@@ -387,6 +411,7 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
                 other.themePageConfig == themePageConfig) &&
             (identical(other.appConfig, appConfig) ||
                 other.appConfig == appConfig) &&
+            const DeepCollectionEquality().equals(other._assets, _assets) &&
             (identical(other.themePreviewScreen, themePreviewScreen) ||
                 other.themePreviewScreen == themePreviewScreen) &&
             (identical(other.themePropertyScreens, themePropertyScreens) ||
@@ -406,6 +431,7 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
       themeWidgetConfig,
       themePageConfig,
       appConfig,
+      const DeepCollectionEquality().hash(_assets),
       themePreviewScreen,
       themePropertyScreens,
       nameField,
@@ -430,6 +456,7 @@ abstract class _UpdateThemeState extends UpdateThemeState {
       final ThemeWidgetConfig themeWidgetConfig,
       final ThemePageConfig themePageConfig,
       final AppConfig appConfig,
+      final List<ThemeAssetModel> assets,
       final ThemePreviewScreen themePreviewScreen,
       final ThemePropertyScreens themePropertyScreens,
       final ThemeNameInput? nameField,
@@ -449,7 +476,9 @@ abstract class _UpdateThemeState extends UpdateThemeState {
   @override
   ThemePageConfig get themePageConfig;
   @override
-  AppConfig get appConfig; //
+  AppConfig get appConfig;
+  @override
+  List<ThemeAssetModel> get assets; //
   @override
   ThemePreviewScreen get themePreviewScreen;
   @override
@@ -476,6 +505,7 @@ mixin _$UpdateSchemeEvent {
     required TResult Function(ThemeWidgetConfig scheme) components,
     required TResult Function(ThemePageConfig scheme) pages,
     required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -484,6 +514,7 @@ mixin _$UpdateSchemeEvent {
     TResult? Function(ThemeWidgetConfig scheme)? components,
     TResult? Function(ThemePageConfig scheme)? pages,
     TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -492,6 +523,7 @@ mixin _$UpdateSchemeEvent {
     TResult Function(ThemeWidgetConfig scheme)? components,
     TResult Function(ThemePageConfig scheme)? pages,
     TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -501,6 +533,7 @@ mixin _$UpdateSchemeEvent {
     required TResult Function(_UpdateComponentsEventChange value) components,
     required TResult Function(_UpdatePagesEventChange value) pages,
     required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -509,6 +542,7 @@ mixin _$UpdateSchemeEvent {
     TResult? Function(_UpdateComponentsEventChange value)? components,
     TResult? Function(_UpdatePagesEventChange value)? pages,
     TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -517,6 +551,7 @@ mixin _$UpdateSchemeEvent {
     TResult Function(_UpdateComponentsEventChange value)? components,
     TResult Function(_UpdatePagesEventChange value)? pages,
     TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -553,6 +588,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     required TResult Function(ThemeWidgetConfig scheme) components,
     required TResult Function(ThemePageConfig scheme) pages,
     required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
   }) {
     return colors(scheme);
   }
@@ -564,6 +600,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     TResult? Function(ThemeWidgetConfig scheme)? components,
     TResult? Function(ThemePageConfig scheme)? pages,
     TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
   }) {
     return colors?.call(scheme);
   }
@@ -575,6 +612,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     TResult Function(ThemeWidgetConfig scheme)? components,
     TResult Function(ThemePageConfig scheme)? pages,
     TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
     required TResult orElse(),
   }) {
     if (colors != null) {
@@ -590,6 +628,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     required TResult Function(_UpdateComponentsEventChange value) components,
     required TResult Function(_UpdatePagesEventChange value) pages,
     required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
   }) {
     return colors(this);
   }
@@ -601,6 +640,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     TResult? Function(_UpdateComponentsEventChange value)? components,
     TResult? Function(_UpdatePagesEventChange value)? pages,
     TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
   }) {
     return colors?.call(this);
   }
@@ -612,6 +652,7 @@ class _$UpdateColorsEventChangeImpl implements _UpdateColorsEventChange {
     TResult Function(_UpdateComponentsEventChange value)? components,
     TResult Function(_UpdatePagesEventChange value)? pages,
     TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
     required TResult orElse(),
   }) {
     if (colors != null) {
@@ -661,6 +702,7 @@ class _$UpdateComponentsEventChangeImpl
     required TResult Function(ThemeWidgetConfig scheme) components,
     required TResult Function(ThemePageConfig scheme) pages,
     required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
   }) {
     return components(scheme);
   }
@@ -672,6 +714,7 @@ class _$UpdateComponentsEventChangeImpl
     TResult? Function(ThemeWidgetConfig scheme)? components,
     TResult? Function(ThemePageConfig scheme)? pages,
     TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
   }) {
     return components?.call(scheme);
   }
@@ -683,6 +726,7 @@ class _$UpdateComponentsEventChangeImpl
     TResult Function(ThemeWidgetConfig scheme)? components,
     TResult Function(ThemePageConfig scheme)? pages,
     TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
     required TResult orElse(),
   }) {
     if (components != null) {
@@ -698,6 +742,7 @@ class _$UpdateComponentsEventChangeImpl
     required TResult Function(_UpdateComponentsEventChange value) components,
     required TResult Function(_UpdatePagesEventChange value) pages,
     required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
   }) {
     return components(this);
   }
@@ -709,6 +754,7 @@ class _$UpdateComponentsEventChangeImpl
     TResult? Function(_UpdateComponentsEventChange value)? components,
     TResult? Function(_UpdatePagesEventChange value)? pages,
     TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
   }) {
     return components?.call(this);
   }
@@ -720,6 +766,7 @@ class _$UpdateComponentsEventChangeImpl
     TResult Function(_UpdateComponentsEventChange value)? components,
     TResult Function(_UpdatePagesEventChange value)? pages,
     TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
     required TResult orElse(),
   }) {
     if (components != null) {
@@ -768,6 +815,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     required TResult Function(ThemeWidgetConfig scheme) components,
     required TResult Function(ThemePageConfig scheme) pages,
     required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
   }) {
     return pages(scheme);
   }
@@ -779,6 +827,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     TResult? Function(ThemeWidgetConfig scheme)? components,
     TResult? Function(ThemePageConfig scheme)? pages,
     TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
   }) {
     return pages?.call(scheme);
   }
@@ -790,6 +839,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     TResult Function(ThemeWidgetConfig scheme)? components,
     TResult Function(ThemePageConfig scheme)? pages,
     TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
     required TResult orElse(),
   }) {
     if (pages != null) {
@@ -805,6 +855,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     required TResult Function(_UpdateComponentsEventChange value) components,
     required TResult Function(_UpdatePagesEventChange value) pages,
     required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
   }) {
     return pages(this);
   }
@@ -816,6 +867,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     TResult? Function(_UpdateComponentsEventChange value)? components,
     TResult? Function(_UpdatePagesEventChange value)? pages,
     TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
   }) {
     return pages?.call(this);
   }
@@ -827,6 +879,7 @@ class _$UpdatePagesEventChangeImpl implements _UpdatePagesEventChange {
     TResult Function(_UpdateComponentsEventChange value)? components,
     TResult Function(_UpdatePagesEventChange value)? pages,
     TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
     required TResult orElse(),
   }) {
     if (pages != null) {
@@ -875,6 +928,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     required TResult Function(ThemeWidgetConfig scheme) components,
     required TResult Function(ThemePageConfig scheme) pages,
     required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
   }) {
     return featureAccess(scheme);
   }
@@ -886,6 +940,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     TResult? Function(ThemeWidgetConfig scheme)? components,
     TResult? Function(ThemePageConfig scheme)? pages,
     TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
   }) {
     return featureAccess?.call(scheme);
   }
@@ -897,6 +952,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     TResult Function(ThemeWidgetConfig scheme)? components,
     TResult Function(ThemePageConfig scheme)? pages,
     TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
     required TResult orElse(),
   }) {
     if (featureAccess != null) {
@@ -912,6 +968,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     required TResult Function(_UpdateComponentsEventChange value) components,
     required TResult Function(_UpdatePagesEventChange value) pages,
     required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
   }) {
     return featureAccess(this);
   }
@@ -923,6 +980,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     TResult? Function(_UpdateComponentsEventChange value)? components,
     TResult? Function(_UpdatePagesEventChange value)? pages,
     TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
   }) {
     return featureAccess?.call(this);
   }
@@ -934,6 +992,7 @@ class _$UpdateAppConfigEventChangeImpl implements _UpdateAppConfigEventChange {
     TResult Function(_UpdateComponentsEventChange value)? components,
     TResult Function(_UpdatePagesEventChange value)? pages,
     TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
     required TResult orElse(),
   }) {
     if (featureAccess != null) {
@@ -949,6 +1008,126 @@ abstract class _UpdateAppConfigEventChange implements UpdateSchemeEvent {
 
   @override
   AppConfig get scheme;
+}
+
+/// @nodoc
+
+class _$UpdateAssetsEventChangeImpl implements _UpdateAssetsEventChange {
+  const _$UpdateAssetsEventChangeImpl(final List<ThemeAssetModel> scheme)
+      : _scheme = scheme;
+
+  final List<ThemeAssetModel> _scheme;
+  @override
+  List<ThemeAssetModel> get scheme {
+    if (_scheme is EqualUnmodifiableListView) return _scheme;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_scheme);
+  }
+
+  @override
+  String toString() {
+    return 'UpdateSchemeEvent.assets(scheme: $scheme)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateAssetsEventChangeImpl &&
+            const DeepCollectionEquality().equals(other._scheme, _scheme));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_scheme));
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ColorSchemeConfig scheme) colors,
+    required TResult Function(ThemeWidgetConfig scheme) components,
+    required TResult Function(ThemePageConfig scheme) pages,
+    required TResult Function(AppConfig scheme) featureAccess,
+    required TResult Function(List<ThemeAssetModel> scheme) assets,
+  }) {
+    return assets(scheme);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ColorSchemeConfig scheme)? colors,
+    TResult? Function(ThemeWidgetConfig scheme)? components,
+    TResult? Function(ThemePageConfig scheme)? pages,
+    TResult? Function(AppConfig scheme)? featureAccess,
+    TResult? Function(List<ThemeAssetModel> scheme)? assets,
+  }) {
+    return assets?.call(scheme);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ColorSchemeConfig scheme)? colors,
+    TResult Function(ThemeWidgetConfig scheme)? components,
+    TResult Function(ThemePageConfig scheme)? pages,
+    TResult Function(AppConfig scheme)? featureAccess,
+    TResult Function(List<ThemeAssetModel> scheme)? assets,
+    required TResult orElse(),
+  }) {
+    if (assets != null) {
+      return assets(scheme);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateColorsEventChange value) colors,
+    required TResult Function(_UpdateComponentsEventChange value) components,
+    required TResult Function(_UpdatePagesEventChange value) pages,
+    required TResult Function(_UpdateAppConfigEventChange value) featureAccess,
+    required TResult Function(_UpdateAssetsEventChange value) assets,
+  }) {
+    return assets(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateColorsEventChange value)? colors,
+    TResult? Function(_UpdateComponentsEventChange value)? components,
+    TResult? Function(_UpdatePagesEventChange value)? pages,
+    TResult? Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult? Function(_UpdateAssetsEventChange value)? assets,
+  }) {
+    return assets?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateColorsEventChange value)? colors,
+    TResult Function(_UpdateComponentsEventChange value)? components,
+    TResult Function(_UpdatePagesEventChange value)? pages,
+    TResult Function(_UpdateAppConfigEventChange value)? featureAccess,
+    TResult Function(_UpdateAssetsEventChange value)? assets,
+    required TResult orElse(),
+  }) {
+    if (assets != null) {
+      return assets(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateAssetsEventChange implements UpdateSchemeEvent {
+  const factory _UpdateAssetsEventChange(final List<ThemeAssetModel> scheme) =
+      _$UpdateAssetsEventChangeImpl;
+
+  @override
+  List<ThemeAssetModel> get scheme;
 }
 
 /// @nodoc

@@ -25,6 +25,10 @@ _$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
       appConfig: json['appConfig'] == null
           ? const AppConfig()
           : AppConfig.fromJson(json['appConfig'] as Map<String, dynamic>),
+      assets: (json['assets'] as List<dynamic>?)
+              ?.map((e) => ThemeAssetDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
@@ -35,4 +39,21 @@ Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
       'themeWidgetConfig': instance.themeWidgetConfig,
       'themePageConfig': instance.themePageConfig,
       'appConfig': instance.appConfig,
+      'assets': instance.assets,
+    };
+
+_$ThemeAssetDtoImpl _$$ThemeAssetDtoImplFromJson(Map<String, dynamic> json) =>
+    _$ThemeAssetDtoImpl(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String? ?? '',
+      file: const Uint8ListConverter().fromJson(json['file'] as String?),
+    );
+
+Map<String, dynamic> _$$ThemeAssetDtoImplToJson(_$ThemeAssetDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'description': instance.description,
+      'file': const Uint8ListConverter().toJson(instance.file),
     };

@@ -20,6 +20,7 @@ import 'package:data/mappers/applications/application_mapper.dart' as _i518;
 import 'package:data/mappers/deployment/phone_branch_mapper.dart' as _i729;
 import 'package:data/mappers/mapper.dart' as _i602;
 import 'package:data/mappers/mappers.dart' as _i1058;
+import 'package:data/mappers/themes/theme_asset_mapper.dart' as _i414;
 import 'package:data/mappers/themes/theme_mapper.dart' as _i177;
 import 'package:data/repository/application_repository_impl.dart' as _i747;
 import 'package:data/repository/auth_repository_impl.dart' as _i442;
@@ -57,10 +58,14 @@ class DataPackageModule extends _i526.MicroPackageModule {
         ));
     gh.factory<_i602.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(
         () => _i377.AppVersionMapper());
+    gh.factory<_i1058.CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(
+        () => _i414.ThemeAssetMapper());
+    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(() =>
+        _i177.ThemeMapper(gh<
+            _i1058
+            .CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>()));
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
         () => _i729.PhoneBranchMapper());
-    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(
-        () => _i177.ThemeMapper());
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
         () => _i342.ConfiguratorBackandDatasource(
               gh<_i361.Dio>(),
@@ -90,15 +95,15 @@ class DataPackageModule extends _i526.MicroPackageModule {
               _i1058
               .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
         ));
+    gh.factory<_i174.TranslationsRepository>(() =>
+        _i591.TranslationsRepositoryImpl(
+            gh<_i822.ConfiguratorBackandDatasource>()));
     gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
           configuratorBackandDatasource:
               gh<_i822.ConfiguratorBackandDatasource>(),
           themeMapper:
               gh<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(),
         ));
-    gh.factory<_i174.TranslationsRepository>(() =>
-        _i591.TranslationsRepositoryImpl(
-            gh<_i822.ConfiguratorBackandDatasource>()));
   }
 }
 

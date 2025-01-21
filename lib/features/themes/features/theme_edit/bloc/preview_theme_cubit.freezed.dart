@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PreviewThemeState {
-  ThemeSettings? get theme => throw _privateConstructorUsedError;
   bool get frameVisible => throw _privateConstructorUsedError;
   PreviewType get previewType => throw _privateConstructorUsedError;
+  ThemeSettings? get theme => throw _privateConstructorUsedError;
   WidgetPreviewType? get requestFocus => throw _privateConstructorUsedError;
   ThemePreviewScreen get preview => throw _privateConstructorUsedError;
 
@@ -36,9 +36,9 @@ abstract class $PreviewThemeStateCopyWith<$Res> {
       _$PreviewThemeStateCopyWithImpl<$Res, PreviewThemeState>;
   @useResult
   $Res call(
-      {ThemeSettings? theme,
-      bool frameVisible,
+      {bool frameVisible,
       PreviewType previewType,
+      ThemeSettings? theme,
       WidgetPreviewType? requestFocus,
       ThemePreviewScreen preview});
 
@@ -60,17 +60,13 @@ class _$PreviewThemeStateCopyWithImpl<$Res, $Val extends PreviewThemeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
     Object? frameVisible = null,
     Object? previewType = null,
+    Object? theme = freezed,
     Object? requestFocus = freezed,
     Object? preview = null,
   }) {
     return _then(_value.copyWith(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeSettings?,
       frameVisible: null == frameVisible
           ? _value.frameVisible
           : frameVisible // ignore: cast_nullable_to_non_nullable
@@ -79,6 +75,10 @@ class _$PreviewThemeStateCopyWithImpl<$Res, $Val extends PreviewThemeState>
           ? _value.previewType
           : previewType // ignore: cast_nullable_to_non_nullable
               as PreviewType,
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings?,
       requestFocus: freezed == requestFocus
           ? _value.requestFocus
           : requestFocus // ignore: cast_nullable_to_non_nullable
@@ -114,9 +114,9 @@ abstract class _$$PreviewThemeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ThemeSettings? theme,
-      bool frameVisible,
+      {bool frameVisible,
       PreviewType previewType,
+      ThemeSettings? theme,
       WidgetPreviewType? requestFocus,
       ThemePreviewScreen preview});
 
@@ -137,17 +137,13 @@ class __$$PreviewThemeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
     Object? frameVisible = null,
     Object? previewType = null,
+    Object? theme = freezed,
     Object? requestFocus = freezed,
     Object? preview = null,
   }) {
     return _then(_$PreviewThemeStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeSettings?,
       frameVisible: null == frameVisible
           ? _value.frameVisible
           : frameVisible // ignore: cast_nullable_to_non_nullable
@@ -156,6 +152,10 @@ class __$$PreviewThemeStateImplCopyWithImpl<$Res>
           ? _value.previewType
           : previewType // ignore: cast_nullable_to_non_nullable
               as PreviewType,
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as ThemeSettings?,
       requestFocus: freezed == requestFocus
           ? _value.requestFocus
           : requestFocus // ignore: cast_nullable_to_non_nullable
@@ -172,18 +172,18 @@ class __$$PreviewThemeStateImplCopyWithImpl<$Res>
 
 class _$PreviewThemeStateImpl implements _PreviewThemeState {
   const _$PreviewThemeStateImpl(
-      {this.theme,
-      required this.frameVisible,
+      {required this.frameVisible,
       required this.previewType,
+      this.theme,
       this.requestFocus,
       this.preview = ThemePreviewScreen.layouts});
 
   @override
-  final ThemeSettings? theme;
-  @override
   final bool frameVisible;
   @override
   final PreviewType previewType;
+  @override
+  final ThemeSettings? theme;
   @override
   final WidgetPreviewType? requestFocus;
   @override
@@ -192,7 +192,7 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
 
   @override
   String toString() {
-    return 'PreviewThemeState(theme: $theme, frameVisible: $frameVisible, previewType: $previewType, requestFocus: $requestFocus, preview: $preview)';
+    return 'PreviewThemeState(frameVisible: $frameVisible, previewType: $previewType, theme: $theme, requestFocus: $requestFocus, preview: $preview)';
   }
 
   @override
@@ -200,11 +200,11 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PreviewThemeStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.frameVisible, frameVisible) ||
                 other.frameVisible == frameVisible) &&
             (identical(other.previewType, previewType) ||
                 other.previewType == previewType) &&
+            (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.requestFocus, requestFocus) ||
                 other.requestFocus == requestFocus) &&
             (identical(other.preview, preview) || other.preview == preview));
@@ -212,7 +212,7 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, theme, frameVisible, previewType, requestFocus, preview);
+      runtimeType, frameVisible, previewType, theme, requestFocus, preview);
 
   /// Create a copy of PreviewThemeState
   /// with the given fields replaced by the non-null parameter values.
@@ -226,18 +226,18 @@ class _$PreviewThemeStateImpl implements _PreviewThemeState {
 
 abstract class _PreviewThemeState implements PreviewThemeState {
   const factory _PreviewThemeState(
-      {final ThemeSettings? theme,
-      required final bool frameVisible,
+      {required final bool frameVisible,
       required final PreviewType previewType,
+      final ThemeSettings? theme,
       final WidgetPreviewType? requestFocus,
       final ThemePreviewScreen preview}) = _$PreviewThemeStateImpl;
 
   @override
-  ThemeSettings? get theme;
-  @override
   bool get frameVisible;
   @override
   PreviewType get previewType;
+  @override
+  ThemeSettings? get theme;
   @override
   WidgetPreviewType? get requestFocus;
   @override

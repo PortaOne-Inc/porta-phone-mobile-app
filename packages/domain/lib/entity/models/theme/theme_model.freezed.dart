@@ -26,6 +26,7 @@ mixin _$ThemeModel {
   Map<String, dynamic> get themePageConfig =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> get appConfig => throw _privateConstructorUsedError;
+  List<ThemeAssetModel> get assets => throw _privateConstructorUsedError;
   SystemAssetsModel get systemAssets => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
@@ -50,6 +51,7 @@ abstract class $ThemeModelCopyWith<$Res> {
       Map<String, dynamic> themeWidgetConfig,
       Map<String, dynamic> themePageConfig,
       Map<String, dynamic> appConfig,
+      List<ThemeAssetModel> assets,
       SystemAssetsModel systemAssets,
       TextsModel? texts});
 
@@ -79,6 +81,7 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? assets = null,
     Object? systemAssets = null,
     Object? texts = freezed,
   }) {
@@ -111,6 +114,10 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           ? _value.appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      assets: null == assets
+          ? _value.assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetModel>,
       systemAssets: null == systemAssets
           ? _value.systemAssets
           : systemAssets // ignore: cast_nullable_to_non_nullable
@@ -163,6 +170,7 @@ abstract class _$$ThemeModelImplCopyWith<$Res>
       Map<String, dynamic> themeWidgetConfig,
       Map<String, dynamic> themePageConfig,
       Map<String, dynamic> appConfig,
+      List<ThemeAssetModel> assets,
       SystemAssetsModel systemAssets,
       TextsModel? texts});
 
@@ -192,6 +200,7 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? assets = null,
     Object? systemAssets = null,
     Object? texts = freezed,
   }) {
@@ -224,6 +233,10 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
           ? _value._appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      assets: null == assets
+          ? _value._assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetModel>,
       systemAssets: null == systemAssets
           ? _value.systemAssets
           : systemAssets // ignore: cast_nullable_to_non_nullable
@@ -247,12 +260,14 @@ class _$ThemeModelImpl extends _ThemeModel {
       final Map<String, dynamic> themeWidgetConfig = const {},
       final Map<String, dynamic> themePageConfig = const {},
       final Map<String, dynamic> appConfig = const {},
+      final List<ThemeAssetModel> assets = const [],
       this.systemAssets = const SystemAssetsModel(),
       this.texts})
       : _colorSchemeConfig = colorSchemeConfig,
         _themeWidgetConfig = themeWidgetConfig,
         _themePageConfig = themePageConfig,
         _appConfig = appConfig,
+        _assets = assets,
         super._();
 
   @override
@@ -299,6 +314,15 @@ class _$ThemeModelImpl extends _ThemeModel {
     return EqualUnmodifiableMapView(_appConfig);
   }
 
+  final List<ThemeAssetModel> _assets;
+  @override
+  @JsonKey()
+  List<ThemeAssetModel> get assets {
+    if (_assets is EqualUnmodifiableListView) return _assets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assets);
+  }
+
   @override
   @JsonKey()
   final SystemAssetsModel systemAssets;
@@ -307,7 +331,7 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   String toString() {
-    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, systemAssets: $systemAssets, texts: $texts)';
+    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, systemAssets: $systemAssets, texts: $texts)';
   }
 
   @override
@@ -327,6 +351,7 @@ class _$ThemeModelImpl extends _ThemeModel {
                 .equals(other._themePageConfig, _themePageConfig) &&
             const DeepCollectionEquality()
                 .equals(other._appConfig, _appConfig) &&
+            const DeepCollectionEquality().equals(other._assets, _assets) &&
             (identical(other.systemAssets, systemAssets) ||
                 other.systemAssets == systemAssets) &&
             (identical(other.texts, texts) || other.texts == texts));
@@ -342,6 +367,7 @@ class _$ThemeModelImpl extends _ThemeModel {
       const DeepCollectionEquality().hash(_themeWidgetConfig),
       const DeepCollectionEquality().hash(_themePageConfig),
       const DeepCollectionEquality().hash(_appConfig),
+      const DeepCollectionEquality().hash(_assets),
       systemAssets,
       texts);
 
@@ -363,6 +389,7 @@ abstract class _ThemeModel extends ThemeModel {
       final Map<String, dynamic> themeWidgetConfig,
       final Map<String, dynamic> themePageConfig,
       final Map<String, dynamic> appConfig,
+      final List<ThemeAssetModel> assets,
       final SystemAssetsModel systemAssets,
       final TextsModel? texts}) = _$ThemeModelImpl;
   const _ThemeModel._() : super._();
@@ -381,6 +408,8 @@ abstract class _ThemeModel extends ThemeModel {
   Map<String, dynamic> get themePageConfig;
   @override
   Map<String, dynamic> get appConfig;
+  @override
+  List<ThemeAssetModel> get assets;
   @override
   SystemAssetsModel get systemAssets;
   @override

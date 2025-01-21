@@ -7,7 +7,9 @@ import 'package:data/mappers/mappers.dart';
 
 @Injectable(as: CommonMapper<ThemeModel, ThemeDTO>)
 class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
-  ThemeMapper();
+  ThemeMapper(this.themeAssetMapper);
+
+  final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
 
   @override
   ThemeDTO convertTo(ThemeModel it) {
@@ -17,6 +19,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
       colorSchemeConfig: ColorSchemeConfig.fromJson(it.colorSchemeConfig),
       themeWidgetConfig: ThemeWidgetConfig.fromJson(it.themeWidgetConfig),
       appConfig: AppConfig.fromJson(it.appConfig),
+      assets: themeAssetMapper.convertListTo(it.assets),
     );
   }
 
@@ -27,6 +30,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
         name: it.name,
         colorSchemeConfig: it.colorSchemeConfig.toJson(),
         themeWidgetConfig: it.themeWidgetConfig.toJson(),
-        appConfig: it.appConfig.toJson());
+        appConfig: it.appConfig.toJson(),
+        assets: themeAssetMapper.convertListFrom(it.assets));
   }
 }
