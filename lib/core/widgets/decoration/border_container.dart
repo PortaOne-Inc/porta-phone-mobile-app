@@ -12,6 +12,7 @@ class BorderContainer extends StatelessWidget {
     this.titleTextColor = Colors.black,
     this.titleFontSize = 12,
     this.child,
+    this.trailing,
   });
 
   final String title;
@@ -23,6 +24,7 @@ class BorderContainer extends StatelessWidget {
   final Color titleTextColor;
   final double titleFontSize;
   final Widget? child;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,14 @@ class BorderContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: textTheme.titleMedium),
+        Row(
+          children: [
+            Expanded(
+              child: Text(title, style: textTheme.titleMedium),
+            ),
+            if (trailing != null) trailing!,
+          ],
+        ),
         const SizedBox(
           height: 8,
         ),
