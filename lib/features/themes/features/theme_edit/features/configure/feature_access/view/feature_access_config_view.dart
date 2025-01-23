@@ -76,6 +76,11 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
               ),
               SettingsConfigWidget(
                 config: appConfig.settingsConfig,
+                callback: (AppConfigSettings value) {
+                  context.read<UpdateThemCubit>().add(
+                        UpdateSchemeEvent.featureAccess(appConfig.copyWith(settingsConfig: value)),
+                      );
+                },
               ),
               AppConfigCallWidget(
                 initialVideoEnabled: true,

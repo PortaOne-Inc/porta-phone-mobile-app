@@ -7,7 +7,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/feature
 import 'package:webtrit_configurator/localization/localization.dart';
 import '../features/features.dart';
 import '../theme_edit.dart';
-import '../widgets/group_title_list_tile.dart';
+import '../widgets/group_title_list_tile.dart' as widgets;
 
 class PageThemeProperty extends StatelessWidget with MixinMessages {
   const PageThemeProperty({
@@ -26,7 +26,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const GroupTitleListTile(
+            const widgets.GroupTitleListTile(
               titleData: 'Application Runtime configuration',
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               decoration: BoxDecoration(border: Border(bottom: borderSide)),
@@ -74,7 +74,7 @@ class PageThemeProperty extends StatelessWidget with MixinMessages {
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () => _navigateToChangeAppFeatureConfiguration(context, bloc),
             ),
-            const GroupTitleListTile(
+            const widgets.GroupTitleListTile(
               titleData: 'Static Data',
             ),
             ListTile(
