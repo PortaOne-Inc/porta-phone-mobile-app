@@ -8,7 +8,6 @@ import 'app_config_call_widget.dart';
 import 'build_login_config.dart';
 import 'main_config_widget.dart';
 import 'settings_config_widget.dart';
-import 'tmp.dart';
 
 enum LoginType { defaultLogin, customLogin }
 
@@ -62,11 +61,6 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
-              // Container(height: 800,child:
-              // ManageStructureWidget(
-              //   initialModeSelectActions: appConfig.loginConfig.modeSelectActions,
-              //   initialEmbedded: appConfig.loginConfig.embedded,
-              // ),),
               BuildLoginConfig(
                 sourceAppConfigLogin: appConfig.loginConfig,
                 callback: (config) => context.read<UpdateThemCubit>().add(
@@ -87,15 +81,20 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                 initialVideoEnabled: true,
                 initialBlindTransferEnabled: true,
                 initialAttendedTransferEnabled: true,
-                onVideoEnabledChanged: (value) {
-                  debugPrint('Video Enabled: $value');
-                },
-                onBlindTransferChanged: (value) {
-                  debugPrint('Blind Transfer Enabled: $value');
-                },
-                onAttendedTransferChanged: (value) {
-                  debugPrint('Attended Transfer Enabled: $value');
-                },
+                onVideoEnabledChanged: (value) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(
+                          appConfig.copyWith(callConfig: appConfig.callConfig.copyWith(videoEnabled: value))),
+                    ),
+                onBlindTransferChanged: (value) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(
+                          callConfig: appConfig.callConfig
+                              .copyWith(transfer: appConfig.callConfig.transfer.copyWith(enableBlindTransfer: value)))),
+                    ),
+                onAttendedTransferChanged: (value) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(
+                          callConfig: appConfig.callConfig.copyWith(
+                              transfer: appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: value)))),
+                    ),
               ),
             ].map((widget) => SingleChildScrollView(child: widget)).toList(),
           );
