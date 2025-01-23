@@ -44,7 +44,7 @@ Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
 
 _$ThemeAssetDtoImpl _$$ThemeAssetDtoImplFromJson(Map<String, dynamic> json) =>
     _$ThemeAssetDtoImpl(
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       description: json['description'] as String? ?? '',
       file: const Uint8ListConverter().fromJson(json['file'] as String?),

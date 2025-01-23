@@ -34,7 +34,7 @@ class ThemeDTO with _$ThemeDTO {
 @Freezed(makeCollectionsUnmodifiable: false)
 class ThemeAssetDto with _$ThemeAssetDto {
   const factory ThemeAssetDto({
-    required String id,
+    required int id,
     required String name,
     @Default('') String description,
     @Uint8ListConverter() Uint8List? file,

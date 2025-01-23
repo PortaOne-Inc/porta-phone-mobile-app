@@ -365,7 +365,7 @@ ThemeAssetDto _$ThemeAssetDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeAssetDto {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @Uint8ListConverter()
@@ -388,7 +388,7 @@ abstract class $ThemeAssetDtoCopyWith<$Res> {
       _$ThemeAssetDtoCopyWithImpl<$Res, ThemeAssetDto>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String name,
       String description,
       @Uint8ListConverter() Uint8List? file});
@@ -418,7 +418,7 @@ class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -444,7 +444,7 @@ abstract class _$$ThemeAssetDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String name,
       String description,
       @Uint8ListConverter() Uint8List? file});
@@ -472,7 +472,7 @@ class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -502,7 +502,7 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
       _$$ThemeAssetDtoImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
   @override
@@ -552,7 +552,7 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
 
 abstract class _ThemeAssetDto implements ThemeAssetDto {
   const factory _ThemeAssetDto(
-      {required final String id,
+      {required final int id,
       required final String name,
       final String description,
       @Uint8ListConverter() final Uint8List? file}) = _$ThemeAssetDtoImpl;
@@ -561,7 +561,7 @@ abstract class _ThemeAssetDto implements ThemeAssetDto {
       _$ThemeAssetDtoImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override

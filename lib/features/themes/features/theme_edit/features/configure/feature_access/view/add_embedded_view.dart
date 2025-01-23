@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:data/dto/dto.dart';
@@ -171,14 +172,35 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
     final titleL10n = _titleL10nController.text.trim();
     final resource = _customLoginOption == CustomLoginOption.url ? _resourceController.text.trim() : _asset?.id;
 
-    if (titleL10n.isEmpty || resource == null || resource.isEmpty) {
+    if (titleL10n.isEmpty || resource == null) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill in all required fields.')));
       return;
     }
 
+    final initialUrl = Uri.dataFromBytes(
+      _asset?.file?.toList() ?? [],
+      mimeType: 'text/html',
+    );
+//
+//     final htmlExample = """
+// <html>
+//   <body>
+//     <h1>My First Heading</h1>
+//     <p>My first paragraph.</p>
+//   </body>
+// </html>
+// """;
+
+    // final initialUrl = Uri.dataFromString(
+    //   htmlExample,
+    //   mimeType: 'text/html',
+    //   encoding: Encoding.getByName('utf-8'),
+    // );
+
+    // encoding: Encoding.getByName('utf-8'),);
     final embedded = AppConfigLoginEmbedded(
       id: _id,
-      resource: resource,
+      resource: initialUrl,
       titleL10n: titleL10n,
       launch: _launch,
       metadata: {'assetId': _asset?.id},

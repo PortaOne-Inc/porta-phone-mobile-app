@@ -99,7 +99,9 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   }
 
   void _onUpdateAppConfigPages(_UpdateAppConfigEventChange event, Emitter<UpdateThemeState> emit) {
-    _logger.info('Update App Config: ${event.scheme.mainConfig.bottomMenu.toJson()}');
+    _logger
+      ..info('Update App Config main: ${event.scheme.mainConfig.bottomMenu.toJson()}')
+      ..info('Update App Config login: ${event.scheme.loginConfig.toJson()}');
     emit(state.copyWith(status: ThemePropertyStatus.progress));
 
     emit(state.copyWith(appConfig: event.scheme));
@@ -174,6 +176,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
             themeModel: event.model!.copyWith(
               colorSchemeConfig: state.colorSchemeConfig.toJson(),
               themeWidgetConfig: state.themeWidgetConfig.toJson(),
+              themePageConfig: state.themePageConfig.toJson(),
+              appConfig: state.appConfig.toJson(),
               assets: state.assets,
             ),
           );

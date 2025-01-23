@@ -23,7 +23,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
   final _titleL10nController = TextEditingController();
   final _resourceController = TextEditingController();
   late ThemeAssetModel? _asset = widget.assets.firstOrNull;
-
+  AppConfigLoginEmbedded? _selectedEmbedded;
   bool _enable = false;
   String _selectedType = 'login'; // Default selected type
 
@@ -72,6 +72,9 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
               }).toList(),
               onChanged: (selectedEmbedded) {
                 if (selectedEmbedded != null) {
+                  setState(() {
+                    _selectedEmbedded = selectedEmbedded;
+                  });
                   // Logic when an embedded item is selected
                   // _onEmbeddedItemSelected(action, selectedEmbedded);
                 }
@@ -148,6 +151,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
     final embedded = AppConfigModeSelectAction(
       enabled: _enable,
       type: _selectedType,
+      embeddedId: _selectedEmbedded?.id,
       titleL10n: titleL10n,
     );
 

@@ -95,7 +95,7 @@ class CustomLoginOptions extends StatelessWidget {
                 flex: 2,
                 child: assets.isNotEmpty
                     ? DropdownButton<ThemeAssetModel>(
-                        value: assets.where((asset) => url.contains(asset.id)).firstOrNull,
+                        value: assets.where((asset) => url.contains(asset.id.toString())).firstOrNull,
                         items: assets.map((asset) {
                           return DropdownMenuItem<ThemeAssetModel>(
                             value: asset, // Use the full `ThemeAssetModel` object as the value

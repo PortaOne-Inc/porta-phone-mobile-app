@@ -7,7 +7,7 @@ part 'theme_asset_model.freezed.dart';
 @freezed
 class ThemeAssetModel with _$ThemeAssetModel {
   const factory ThemeAssetModel({
-    required String id,
+    required int id,
     required String name,
     @Default('') String description,
     Uint8List? file,
@@ -19,7 +19,7 @@ class ThemeAssetModel with _$ThemeAssetModel {
     Uint8List? file,
   }) {
     // Generate a unique ID using the current timestamp and a counter
-    final uniqueId = '${DateTime.now().millisecondsSinceEpoch}_${_counter++}';
+    final uniqueId = DateTime.now().millisecondsSinceEpoch;
     return ThemeAssetModel(
       id: uniqueId,
       name: name,
@@ -29,6 +29,4 @@ class ThemeAssetModel with _$ThemeAssetModel {
   }
 
   const ThemeAssetModel._();
-
-  static int _counter = 0;
 }

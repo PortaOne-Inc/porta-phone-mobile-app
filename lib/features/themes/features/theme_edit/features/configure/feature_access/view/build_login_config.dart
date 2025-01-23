@@ -196,6 +196,8 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
       ),
     );
 
+    print(res);
+
     if (res != null) {
       widget.callback(widget.sourceAppConfigLogin.copyWith(
         modeSelectActions: [...widget.sourceAppConfigLogin.modeSelectActions, res],

@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ThemeAssetModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Uint8List? get file => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $ThemeAssetModelCopyWith<$Res> {
           ThemeAssetModel value, $Res Function(ThemeAssetModel) then) =
       _$ThemeAssetModelCopyWithImpl<$Res, ThemeAssetModel>;
   @useResult
-  $Res call({String id, String name, String description, Uint8List? file});
+  $Res call({int id, String name, String description, Uint8List? file});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$ThemeAssetModelCopyWithImpl<$Res, $Val extends ThemeAssetModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,7 @@ abstract class _$$ThemeAssetModelImplCopyWith<$Res>
       __$$ThemeAssetModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String description, Uint8List? file});
+  $Res call({int id, String name, String description, Uint8List? file});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$ThemeAssetModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$ThemeAssetModelImpl extends _ThemeAssetModel {
       : super._();
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
   @override
@@ -178,14 +178,14 @@ class _$ThemeAssetModelImpl extends _ThemeAssetModel {
 
 abstract class _ThemeAssetModel extends ThemeAssetModel {
   const factory _ThemeAssetModel(
-      {required final String id,
+      {required final int id,
       required final String name,
       final String description,
       final Uint8List? file}) = _$ThemeAssetModelImpl;
   const _ThemeAssetModel._() : super._();
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override
