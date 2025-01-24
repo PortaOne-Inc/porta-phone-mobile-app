@@ -38,8 +38,6 @@ class ThemeRepositoryImpl extends ThemeRepository {
       return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
-    } catch (e) {
-      throw BaseException(message: e.toString());
     }
   }
 

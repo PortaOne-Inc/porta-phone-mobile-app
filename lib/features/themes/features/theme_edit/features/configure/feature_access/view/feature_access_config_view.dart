@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/update_theme_cubit.dart';
 
 import 'app_config_call_widget.dart';
-import 'build_login_config.dart';
+import '../features/login/view/build_login_config.dart';
 import 'main_config_widget.dart';
-import 'settings_config_widget.dart';
+import '../features/settings/view/settings_config_widget.dart';
 
 enum LoginType { defaultLogin, customLogin }
 
@@ -81,6 +81,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                         UpdateSchemeEvent.featureAccess(appConfig.copyWith(settingsConfig: value)),
                       );
                 },
+                assets: state.assets,
               ),
               AppConfigCallWidget(
                 initialVideoEnabled: true,

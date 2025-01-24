@@ -58,7 +58,8 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
-    final loginLabel = settings.appConfig?.loginConfig.label ?? '';
+    // final loginLabel = settings.appConfig?.loginConfig.label ?? '';
+    final loginLabel = '';
     return [
       LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
       const LoginCoreUrlAssignScreenScreenshot(),

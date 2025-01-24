@@ -6,28 +6,35 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-import '../models/custom_login_option.dart';
+import '../models/models.dart';
 
 final _logger = Logger('AddEmbeddedPage');
 
-class AddEmbeddedPage extends StatefulWidget {
-  const AddEmbeddedPage({super.key, required this.assets});
+class AddEmbeddedDataScreen extends StatefulWidget {
+  const AddEmbeddedDataScreen({
+    super.key,
+    required this.assets,
+    this.attributes = const {},
+  });
 
   final List<ThemeAssetModel> assets;
+  final Map<String, dynamic> attributes;
 
   @override
-  _AddEmbeddedPageState createState() => _AddEmbeddedPageState();
+  _AddEmbeddedDataScreenState createState() => _AddEmbeddedDataScreenState();
 }
 
-class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
+class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
   final _titleL10nController = TextEditingController();
   final _resourceController = TextEditingController();
   final int _id = DateTime.now().millisecondsSinceEpoch;
   late ThemeAssetModel? _asset = widget.assets.firstOrNull;
 
-  bool _launch = false;
   bool _showToolbar = true;
-  CustomLoginOption _customLoginOption = CustomLoginOption.url;
+  EmbeddedResourceType _customLoginOption = EmbeddedResourceType.url;
+
+  late final List<MapEntry<String, String>> _attributes =
+      widget.attributes.entries.map((entry) => MapEntry(entry.key, entry.value.toString())).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,10 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Embedded Data'),
+        title: Text(
+          'Add Embedded Data',
+          style: theme.textTheme.titleMedium,
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -50,28 +60,95 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildSectionTitle('Add Embedded Details', theme.textTheme.titleLarge),
             _buildReadOnlyField('ID', _id.toString(), Icons.numbers),
             _buildTextField('Title Localization (titleL10n)', Icons.title, _titleL10nController),
-            _buildSwitch('Launch', _launch, (value) => setState(() => _launch = value)),
             _buildSwitch('Show Toolbar', _showToolbar, (value) => setState(() => _showToolbar = value)),
             Divider(
               thickness: 4,
               color: colorScheme.surfaceContainerLow,
             ),
-            _buildDropdown('HTML source:', _customLoginOption, CustomLoginOption.values, _onCustomLoginOptionChanged),
-            if (_customLoginOption == CustomLoginOption.url) _buildTextField('URL', Icons.link, _resourceController),
-            if (_customLoginOption == CustomLoginOption.html) _buildAssetDropdown(widget.assets, _asset, theme),
+            _buildDropdown(
+                'HTML source:', _customLoginOption, EmbeddedResourceType.values, _onCustomLoginOptionChanged),
+            if (_customLoginOption == EmbeddedResourceType.url) _buildTextField('URL', Icons.link, _resourceController),
+            if (_customLoginOption == EmbeddedResourceType.html) _buildAssetDropdown(widget.assets, _asset, theme),
+            const SizedBox(height: 16),
+            Divider(
+              thickness: 4,
+              color: colorScheme.surfaceContainerLow,
+            ),
+            _buildAttributesSection(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSectionTitle(String title, TextStyle? style) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Text(title, style: style),
+  Widget _buildAttributesSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Attributes',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: _attributes.length,
+          itemBuilder: (context, index) {
+            final entry = _attributes[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        labelText: 'Key',
+                        border: OutlineInputBorder(),
+                      ),
+                      controller: TextEditingController.fromValue(
+                        TextEditingValue(
+                          text: entry.key,
+                          selection: TextSelection.collapsed(offset: entry.key.length),
+                        ),
+                      ),
+                      onChanged: (value) => setState(() => _attributes[index] = MapEntry(value, entry.value)),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Value',
+                        border: const OutlineInputBorder(),
+                      ),
+                      controller: TextEditingController.fromValue(
+                        TextEditingValue(
+                          text: entry.value,
+                          selection: TextSelection.collapsed(offset: entry.value.length),
+                        ),
+                      ),
+                      onChanged: (value) => setState(() => _attributes[index] = MapEntry(entry.key, value)),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => setState(() => _attributes.removeAt(index)),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        OutlinedButton.icon(
+          icon: const Icon(Icons.add),
+          label: const Text('Add Attribute'),
+          onPressed: () => setState(() => _attributes.add(const MapEntry('', ''))),
+        ),
+      ],
     );
   }
 
@@ -162,7 +239,7 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
     );
   }
 
-  void _onCustomLoginOptionChanged(CustomLoginOption? value) {
+  void _onCustomLoginOptionChanged(EmbeddedResourceType? value) {
     if (value != null) {
       setState(() => _customLoginOption = value);
     }
@@ -170,7 +247,7 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
 
   void _saveData() {
     final titleL10n = _titleL10nController.text.trim();
-    final resource = _customLoginOption == CustomLoginOption.url ? _resourceController.text.trim() : _asset?.id;
+    final resource = _customLoginOption == EmbeddedResourceType.url ? _resourceController.text.trim() : _asset?.id;
 
     if (titleL10n.isEmpty || resource == null) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill in all required fields.')));
@@ -181,30 +258,15 @@ class _AddEmbeddedPageState extends State<AddEmbeddedPage> {
       _asset?.file?.toList() ?? [],
       mimeType: 'text/html',
     );
-//
-//     final htmlExample = """
-// <html>
-//   <body>
-//     <h1>My First Heading</h1>
-//     <p>My first paragraph.</p>
-//   </body>
-// </html>
-// """;
 
-    // final initialUrl = Uri.dataFromString(
-    //   htmlExample,
-    //   mimeType: 'text/html',
-    //   encoding: Encoding.getByName('utf-8'),
-    // );
-
-    // encoding: Encoding.getByName('utf-8'),);
-    final embedded = AppConfigLoginEmbedded(
+    final embedded = EmbeddedData(
       id: _id,
       resource: initialUrl,
-      titleL10n: titleL10n,
-      launch: _launch,
-      metadata: {'assetId': _asset?.id},
-      showToolbar: _showToolbar,
+      toolbar: ToolbarConfig(
+        titleL10n: titleL10n,
+        showToolbar: _showToolbar,
+      ),
+      attributes: Map.fromEntries(_attributes),
     );
 
     Navigator.pop(context, embedded);

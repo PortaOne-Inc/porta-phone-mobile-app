@@ -2,9 +2,8 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/embedded/view/add_embedded_screen.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/view/add_mode_action_view.dart';
-
-import 'add_embedded_view.dart';
 
 class BuildLoginConfig extends StatefulWidget {
   const BuildLoginConfig({
@@ -58,15 +57,15 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min, // To align the trailing row correctly
                         children: [
-                          DropdownButton<AppConfigLoginEmbedded>(
+                          DropdownButton<EmbeddedData>(
                             hint: const Text('Select embedded'),
                             padding: EdgeInsets.zero,
                             underline: Container(),
                             // Removes the underline
                             items: widget.sourceAppConfigLogin.embedded.map((embedded) {
-                              return DropdownMenuItem<AppConfigLoginEmbedded>(
+                              return DropdownMenuItem<EmbeddedData>(
                                 value: embedded,
-                                child: Text(embedded.titleL10n.toString()),
+                                child: Text(embedded.toolbar.titleL10n.toString()),
                               );
                             }).toList(),
                             onChanged: (selectedEmbedded) {
@@ -126,8 +125,8 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     child: ListTile(
                       leading: const Icon(Icons.data_array),
-                      title: Text(action.titleL10n.toString()),
-                      subtitle: Text('Type: ${action.titleL10n}'),
+                      title: Text(action.toolbar.titleL10n.toString()),
+                      subtitle: Text('Type: ${action.toolbar.titleL10n}'),
                       trailing: PopupMenuButton<String>(
                         onSelected: (value) {
                           if (value == 'enable_disable') {
@@ -163,7 +162,7 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
     );
   }
 
-  void _onEmbeddedItemSelected(AppConfigModeSelectAction action, AppConfigLoginEmbedded selectedEmbedded) {
+  void _onEmbeddedItemSelected(AppConfigModeSelectAction action, EmbeddedData selectedEmbedded) {
     // Example logic when an embedded item is selected
     setState(() {
       ///     action.embeddedId = selectedEmbedded.id;
@@ -174,9 +173,12 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
 
   Future _addEmbeddedPage() async {
     final res = await Navigator.of(context).push(
-      MaterialPageRoute<AppConfigLoginEmbedded>(
-        builder: (BuildContext context) => AddEmbeddedPage(
+      MaterialPageRoute<EmbeddedData>(
+        builder: (BuildContext context) => AddEmbeddedDataScreen(
           assets: widget.assets,
+          attributes: const {
+            'launch': false,
+          },
         ),
       ),
     );

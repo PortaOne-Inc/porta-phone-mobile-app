@@ -1,18 +1,23 @@
+import 'package:domain/entity/models/theme/theme_asset_model.dart';
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/widgets/group_title_list_tile.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/settings/view/add_embedded_setting_screen.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
 
-import '../../../../../../../../core/exports/webtrit_phone.dart';
+import '../../../../../../../../../../core/exports/webtrit_phone.dart';
+import 'add_section_setting_screen.dart';
 
 class SettingsConfigWidget extends StatefulWidget {
   const SettingsConfigWidget({
     required this.config,
     super.key,
     required this.callback,
+    required this.assets,
   });
 
   final AppConfigSettings config;
   final ValueChanged<AppConfigSettings> callback;
+  final List<ThemeAssetModel> assets;
 
   @override
   _SettingsConfigWidgetState createState() => _SettingsConfigWidgetState();
@@ -47,22 +52,36 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0), // add padding as needed
             child: IconButton(
-              onPressed: () {
+              onPressed: () async {
+                final result = await Navigator.of(context).push<AppConfigSettingsSection>(
+                  MaterialPageRoute<AppConfigSettingsSection>(
+                    builder: (BuildContext context) => const AddSectionSettingScreen(
+                      assets: [],
+                      embedded: [],
+                    ),
+                  ),
+                );
                 widget.callback(widget.config.copyWith(
                   sections: [
                     ...widget.config.sections,
-                    const AppConfigSettingsSection(
-                      titleL10n: 'New section',
-                      items: [
-                        AppConfigSettingsItem(
-                          titleL10n: 'New item',
-                          type: 'embedded',
-                          icon: 'add',
-                        ),
-                      ],
-                    ),
+                    result!,
                   ],
                 ));
+                // widget.callback(widget.config.copyWith(
+                //   sections: [
+                //     ...widget.config.sections,
+                //     const AppConfigSettingsSection(
+                //       titleL10n: 'New section',
+                //       items: [
+                //         AppConfigSettingsItem(
+                //           titleL10n: 'New item',
+                //           type: 'embedded',
+                //           icon: 'add',
+                //         ),
+                //       ],
+                //     ),
+                //   ],
+                // ));
                 // Handle save action
               },
               icon: const Wrap(
@@ -96,7 +115,58 @@ class _SettingsConfigWidgetState extends State<SettingsConfigWidget> {
                   titleData: section.titleL10n,
                   style: textTheme.titleMedium,
                   backgroundColor: colorScheme.primaryFixed.withAlpha(12),
-                  trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+                  // trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+                  trailing: PopupMenuButton<String>(
+                    onSelected: (value) async {
+                      if (value == 'remove') {
+                        widget.callback(widget.config.copyWith(
+                          sections: widget.config.sections
+                              .where((element) => element.titleL10n != section.titleL10n)
+                              .toList(),
+                        ));
+                      } else if (value == 'add') {
+                        final result = await Navigator.of(context)
+                            .push<AppConfigSettingsItem>(MaterialPageRoute<AppConfigSettingsItem>(
+                          builder: (BuildContext context) => AddEmbeddedSettingScreen(
+                            assets: widget.assets,
+                            embedded: [],
+                          ),
+                        ));
+
+                        widget.callback(widget.config.copyWith(
+                          sections: [
+                            ...widget.config.sections.map((s) {
+                              if (s.titleL10n == section.titleL10n) {
+                                return s.copyWith(
+                                  items: [
+                                    ...s.items,
+                                    result!,
+                                  ],
+                                );
+                              }
+                              return s;
+                            }),
+                          ],
+                        ));
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'remove',
+                        child: ListTile(
+                          title: const Text('Remove section'),
+                          leading: const Icon(Icons.delete),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: 'add',
+                        child: ListTile(
+                          title: const Text('Add embedded item'),
+                          leading: const Icon(Icons.add),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 ...section.items.map((item) {
                   return Visibility(

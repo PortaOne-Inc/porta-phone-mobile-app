@@ -22,8 +22,8 @@ class MainConfigWidget extends StatefulWidget {
 }
 
 class _MainConfigWidgetState extends State<MainConfigWidget> {
-  final List<AppConfigBottomMenuTab> _activeTabs = List.from([]);
-  final List<AppConfigBottomMenuTab> _removedTabs = [];
+  final List<BottomMenuTabScheme> _activeTabs = List.from([]);
+  final List<BottomMenuTabScheme> _removedTabs = [];
 
   @override
   void initState() {
@@ -184,7 +184,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
     });
   }
 
-  void _restoreTab(AppConfigBottomMenuTab tab) {
+  void _restoreTab(BottomMenuTabScheme tab) {
     setState(() {
       _removedTabs.remove(tab);
       _activeTabs.add(tab);

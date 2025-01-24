@@ -13,7 +13,7 @@ class AddModeActionPage extends StatefulWidget {
   const AddModeActionPage({super.key, required this.assets, required this.embedded});
 
   final List<ThemeAssetModel> assets;
-  final List<AppConfigLoginEmbedded> embedded;
+  final List<EmbeddedData> embedded;
 
   @override
   _AddModeActionPageState createState() => _AddModeActionPageState();
@@ -23,7 +23,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
   final _titleL10nController = TextEditingController();
   final _resourceController = TextEditingController();
   late ThemeAssetModel? _asset = widget.assets.firstOrNull;
-  AppConfigLoginEmbedded? _selectedEmbedded;
+  EmbeddedData? _selectedEmbedded;
   bool _enable = false;
   String _selectedType = 'login'; // Default selected type
 
@@ -56,7 +56,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
               ['login', 'embedded'],
               (value) => setState(() => _selectedType = value!),
             ),
-            DropdownButtonFormField<AppConfigLoginEmbedded>(
+            DropdownButtonFormField<EmbeddedData>(
               hint: const Text('Select embedded'),
               padding: EdgeInsets.zero,
               decoration: InputDecoration(
@@ -65,9 +65,9 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
               ),
               // Removes the underline
               items: widget.embedded.map((embedded) {
-                return DropdownMenuItem<AppConfigLoginEmbedded>(
+                return DropdownMenuItem<EmbeddedData>(
                   value: embedded,
-                  child: Text(embedded.titleL10n.toString()),
+                  child: Text(embedded.toolbar.titleL10n.toString()),
                 );
               }).toList(),
               onChanged: (selectedEmbedded) {
