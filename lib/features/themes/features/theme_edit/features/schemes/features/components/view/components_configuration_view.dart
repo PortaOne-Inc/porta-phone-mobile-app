@@ -5,8 +5,8 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
-import '../../../../../../../../core/exports/webtrit_phone.dart';
 import 'action_pad_config_tab.dart';
 import 'bars_config_tab.dart';
 import 'button_config_tab.dart';

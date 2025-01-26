@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/exports/exports.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/feature_access/features/embedded/embedded.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/features/feature_access/features/embedded/embedded.dart';
 
 class AddSettingItemScreen extends StatefulWidget {
   const AddSettingItemScreen({

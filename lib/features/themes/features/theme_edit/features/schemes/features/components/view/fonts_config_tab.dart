@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-
-import '../../../../widgets/font_item.dart';
-import '../../../../widgets/fonts_picker.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class FontsConfigTab extends StatelessWidget {
   const FontsConfigTab({

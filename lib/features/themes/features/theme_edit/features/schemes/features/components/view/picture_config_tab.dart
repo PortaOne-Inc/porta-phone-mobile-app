@@ -1,9 +1,10 @@
 // picture_config_tab.dart
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class PictureConfigTab extends StatelessWidget {
   const PictureConfigTab({super.key});

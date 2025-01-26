@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
 
-import '../../../../../../../../core/exports/webtrit_phone.dart';
-import '../../../../bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+
 import 'about_page_view.dart';
 import 'login_page_view.dart';
 

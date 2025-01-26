@@ -2,8 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
-
-import '../../../../../../../../core/core.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 class DialogConfig extends StatelessWidget {
   const DialogConfig({
