@@ -1,7 +1,12 @@
 import 'dart:async';
 
+import 'package:domain/entity/models/models.dart';
+import 'package:domain/repository/repository.dart';
+
 import 'package:injectable/injectable.dart';
-import 'package:domain/domain.dart';
+import 'package:logging/logging.dart';
+
+final _logger = Logger('GetPhoneBranchesUsecase');
 
 abstract class GetPhoneBranchesUsecase {
   Future<List<PhoneBranch>> execute();
@@ -35,12 +40,8 @@ class GetPhoneBranchesUsecaseImpl extends GetPhoneBranchesUsecase {
 
       return phoneBranches;
     } catch (e, stackTrace) {
-      // Log the error if necessary
-      // For example, using a logging package like logger:
-      // logger.error('Failed to get phone branches', e, stackTrace);
-
-      // Re-throw the exception to be handled upstream
-      throw Exception('Unable to fetch phone branches: $e');
+      _logger.severe('Failed to get phone branches', e, stackTrace);
+      rethrow;
     }
   }
 }

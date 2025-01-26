@@ -1,9 +1,10 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/embedded/view/add_embedded_screen.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/view/add_mode_action_view.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/login/view/add_mode_action_view.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
 
 class BuildLoginConfig extends StatefulWidget {
   const BuildLoginConfig({
@@ -33,8 +34,8 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
           BorderContainer(
             title: 'Mode actions',
             trailing: InkWell(
-              child: const Icon(Icons.add),
               onTap: _addActionPage,
+              child: const Icon(Icons.add),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +50,7 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                       title: Text(
                         action.titleL10n,
                         style: TextStyle(
-                          color: action.enabled ? colorScheme.onSurface : colorScheme.onSurface.withOpacity(0.5),
+                          color: action.enabled ? colorScheme.onSurface : colorScheme.onSurface.withValues(alpha: 0.5),
                           fontWeight: action.enabled ? FontWeight.bold : FontWeight.normal,
                         ),
                       ),
@@ -106,16 +107,16 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                       ),
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           BorderContainer(
             title: 'Embedded data',
             trailing: InkWell(
-              child: const Icon(Icons.add),
               onTap: _addEmbeddedPage,
+              child: const Icon(Icons.add),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +154,7 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
                       ),
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
@@ -171,24 +172,16 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
 
   void _addOrEditModeSelectAction({AppConfigModeSelectAction? action, int? index}) {}
 
-  Future _addEmbeddedPage() async {
-    final res = await Navigator.of(context).push(
-      MaterialPageRoute<EmbeddedData>(
-        builder: (BuildContext context) => AddEmbeddedDataScreen(
-          assets: widget.assets,
-          attributes: const {
-            'launch': false,
-          },
-        ),
-      ),
-    );
-    if (res != null)
+  Future<void> _addEmbeddedPage() async {
+    final res = await GoRouter.of(context).pushNamed<EmbeddedData>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
+    if (res != null) {
       widget.callback(widget.sourceAppConfigLogin.copyWith(
         embedded: [...widget.sourceAppConfigLogin.embedded, res],
       ));
+    }
   }
 
-  Future _addActionPage() async {
+  Future<void> _addActionPage() async {
     final res = await Navigator.of(context).push(
       MaterialPageRoute<AppConfigModeSelectAction>(
         builder: (BuildContext context) => AddModeActionPage(
@@ -197,8 +190,6 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
         ),
       ),
     );
-
-    print(res);
 
     if (res != null) {
       widget.callback(widget.sourceAppConfigLogin.copyWith(

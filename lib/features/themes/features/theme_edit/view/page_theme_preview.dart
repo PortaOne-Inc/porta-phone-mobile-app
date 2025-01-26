@@ -4,14 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/phone_context.dart';
-
 import '../../../models/theme_preview_screen.dart';
 import '../../../widgets/menu_preview.dart';
-import '../bloc/bloc.dart';
 import '../features/preview/layouts_preview/preview_layout_view.dart';
 import '../features/preview/preview_assets/preview_layout_view.dart';
-import '../features/preview/preview_components/view/widgets_preview.dart';
 
 class PageThemePreview extends StatelessWidget {
   const PageThemePreview({
@@ -27,11 +23,6 @@ class PageThemePreview extends StatelessWidget {
         BlocListener<UpdateThemCubit, UpdateThemeState>(
           listener: (BuildContext context, UpdateThemeState state) => previewCubit.setTheme(state.toThemeSettings()),
         ),
-        BlocListener<PreviewThemeCubit, PreviewThemeState>(
-          listenWhen: (PreviewThemeState previous, PreviewThemeState now) => previous.requestFocus != now.requestFocus,
-          listener: (BuildContext context, PreviewThemeState state) =>
-              previewCubit.setPreviewScreen(ThemePreviewScreen.widgets),
-        )
       ],
       child:
           BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (BuildContext context, PreviewThemeState state) {
@@ -49,8 +40,6 @@ class PageThemePreview extends StatelessWidget {
             ),
             body: Builder(builder: (context) {
               switch (state.preview) {
-                case ThemePreviewScreen.widgets:
-                  return const WidgetsPreview();
                 case ThemePreviewScreen.layouts:
                   return PhoneContext(
                     child: PreviewLayoutView(

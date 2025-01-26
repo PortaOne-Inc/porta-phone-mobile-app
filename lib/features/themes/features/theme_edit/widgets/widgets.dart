@@ -7,3 +7,4 @@ export 'mock_device.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'selected_image.dart';
 export 'phone_context.dart';
+export 'outline_input.dart';

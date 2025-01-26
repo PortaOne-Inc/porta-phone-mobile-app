@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
@@ -22,7 +24,7 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
       builder: (ctx, state) => Column(
         children: [
           ColorSchemeActionBar(onBack: () {
-            Navigator.of(context).pop();
+            GoRouter.of(context).pop();
           }),
           Expanded(
             child: SingleChildScrollView(

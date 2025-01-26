@@ -5,14 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/extension/screenshot_controller.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
-import '../../../../model/image_filter_model.dart';
-import '../../../../utility/utility.dart';
-import '../../../../widgets/widgets.dart';
 
 class LaunchAssetsConfigurationView extends StatefulWidget {
   const LaunchAssetsConfigurationView({
@@ -296,7 +292,7 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
   @override
   void dispose() {
     // bloc.add(const ThemeDraftSchemeEvent.disableDraftTheme());
-    // super.dispose();
+    super.dispose();
   }
 }
 

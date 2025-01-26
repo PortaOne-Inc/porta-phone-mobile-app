@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
-import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/route/preview_route.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
-import 'package:webtrit_phone/data/data.dart';
-
-import '../model/models.dart';
-import 'mock_app_preferences.dart';
-import 'page_theme_preview.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   const PageThemeEdit({
@@ -28,15 +21,17 @@ class PageThemeEdit extends StatefulWidget with MixinMessages {
 }
 
 class _PageThemeEditState extends State<PageThemeEdit> {
-  final _leftPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Left edit theme page');
-  final _rightPageNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Right edit theme page');
+  late final schemeRoute = SchemeRoute().build(
+    context,
+    context.read<UpdateThemCubit>().state.applicationId,
+    context.read<UpdateThemCubit>().state.themeId,
+  );
 
-  @override
-  void dispose() {
-    _leftPageNavigatorKey.currentState?.dispose();
-    _rightPageNavigatorKey.currentState?.dispose();
-    super.dispose();
-  }
+  late final previewRoute = PreviewRoute().build(
+    context,
+    context.read<UpdateThemCubit>().state.applicationId,
+    context.read<UpdateThemCubit>().state.themeId,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -66,22 +61,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                       minChildSize: 200,
                       initialProportions: const [.65, .35],
                       children: [
-                        (context) => const SingleStack(
-                              key: ValueKey('leftStack'),
-                              child: PageThemeProperty(),
+                        (context) => Router(
+                              routerDelegate: schemeRoute.routerDelegate,
+                              routeInformationParser: schemeRoute.routeInformationParser,
+                              routeInformationProvider: schemeRoute.routeInformationProvider,
                             ),
-                        (context) => FutureProvider<FeatureAccess>(
-                              key: ValueKey('${state.appConfig}${state.status}'),
-                              create: (context) async {
-                                final appConfig = state.appConfig;
-                                return FeatureAccess.init(appConfig, MockAppPreferences());
-                              },
-                              initialData: FeatureAccess.init(state.appConfig, MockAppPreferences()),
-                              child: SingleStack(
-                                navigator: _rightPageNavigatorKey,
-                                key: const ValueKey('rightStack'),
-                                child: const PageThemePreview(),
-                              ),
+                        (context) => Router(
+                              routerDelegate: previewRoute.routerDelegate,
+                              routeInformationParser: previewRoute.routeInformationParser,
+                              routeInformationProvider: previewRoute.routeInformationProvider,
                             ),
                       ],
                     )),
@@ -115,19 +103,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     }
   }
 
-  void _handleThemeMenuSelection(BuildContext context, ApplicationEditTheme action) {
-    final cubit = context.read<UpdateThemCubit>();
-
-    if (action == ApplicationEditTheme.preview) {
-      GoRouter.of(context).goNamed(
-        AppRoutInfo.themesPreview.name,
-        pathParameters: {
-          AppRoutInfo.keyApplicationId: cubit.applicationId!,
-          AppRoutInfo.keyThemeId: cubit.themeId!,
-        },
-      );
-    }
-  }
+  void _handleThemeMenuSelection(BuildContext context, ApplicationEditTheme action) {}
 }
 
 class _AppBar extends StatelessWidget implements PreferredSizeWidget {

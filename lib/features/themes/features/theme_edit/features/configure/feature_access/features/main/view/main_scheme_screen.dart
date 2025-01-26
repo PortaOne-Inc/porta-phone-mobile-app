@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_configurator/core/core.dart';
-
-import '../../../../bloc/update_theme_cubit.dart';
 
 class MainConfigWidget extends StatefulWidget {
   const MainConfigWidget({
@@ -39,8 +38,6 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<UpdateThemCubit>().state;
-
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -62,7 +59,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                     'Cache Selected Tab',
                     style: textTheme.titleMedium,
                   ),
-                  value: state.appConfig.mainConfig.bottomMenu.cacheSelectedTab,
+                  value: widget.mainConfig.bottomMenu.cacheSelectedTab,
                   onChanged: (it) {},
                 ),
                 Divider(
@@ -104,8 +101,9 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                     Row(
                                       children: [
                                         IconButton(
-                                            icon: Icon(Icons.edit, size: 16, color: colorScheme.onSurface),
-                                            onPressed: () => {}),
+                                          icon: Icon(Icons.edit, size: 16, color: colorScheme.onSurface),
+                                          onPressed: () => _manageBottomMenuTab(tab),
+                                        ),
                                         IconButton(
                                           icon: Icon(Icons.close, size: 16, color: colorScheme.error),
                                           onPressed: () => _removeTab(index),
@@ -127,7 +125,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                                   tab.icon.toIconData(),
                                                 ),
                                                 Text(
-                                                  tab.type,
+                                                  tab.type.name,
                                                   maxLines: 1,
                                                   style: textTheme.labelMedium,
                                                   overflow: TextOverflow.fade,
@@ -162,7 +160,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                       return GestureDetector(
                         onTap: () => _restoreTab(tab),
                         child: Chip(
-                          label: Text(tab.type),
+                          label: Text(tab.type.name),
                         ),
                       );
                     }).toList(),
@@ -174,6 +172,20 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
         ],
       ),
     );
+  }
+
+  Future<void> _manageBottomMenuTab(BottomMenuTabScheme tab) async {
+    final result = await GoRouter.of(context)
+        .pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name, extra: tab);
+    if (result != null) {
+      _activeTabs[_activeTabs.indexWhere((it) => it.type == tab.type)] = result;
+
+      widget.onChange(widget.mainConfig.copyWith(
+        bottomMenu: widget.mainConfig.bottomMenu.copyWith(
+          tabs: _activeTabs,
+        ),
+      ));
+    }
   }
 
   void _removeTab(int index) {

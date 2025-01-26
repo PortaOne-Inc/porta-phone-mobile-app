@@ -7,6 +7,9 @@ enum ThemePropertyScreens { property, importSvg }
 @freezed
 class UpdateThemeState with _$UpdateThemeState {
   factory UpdateThemeState({
+    // ids
+    required String applicationId,
+    required String themeId,
     ThemePropertyStatus? status,
     ApplicationModel? applicationModel,
     ThemeModel? theme,

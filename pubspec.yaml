@@ -22,6 +22,7 @@ dependencies:
     path: ../webtrit_phone
   domain:
     path: ./packages/domain
+  # TODO(Serdun): Try to remove data dependency from presentation now it used for providing env data for http client
   data:
     path: ./packages/data
 
@@ -54,6 +55,8 @@ dependencies:
   json_annotation: ^4.9.0
   logging: ^1.2.0
   logging_appenders: ^1.2.0
+  provider: ^6.1.2
+  shared_preferences: ^2.4.0
 
 dependency_overrides:
   material_color_utilities: 0.12.0

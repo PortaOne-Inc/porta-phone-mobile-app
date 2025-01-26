@@ -1,13 +1,11 @@
-import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
-import 'app_config_call_widget.dart';
-import '../features/login/view/build_login_config.dart';
-import 'main_config_widget.dart';
-import '../features/settings/view/settings_config_widget.dart';
+import '../features/features.dart';
 
 enum LoginType { defaultLogin, customLogin }
 
@@ -44,9 +42,14 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Configure App Config'),
+        title: Text(
+          'Configure App Config',
+          style: textTheme.titleMedium,
+        ),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -74,7 +77,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                       UpdateSchemeEvent.featureAccess(appConfig.copyWith(mainConfig: value)),
                     ),
               ),
-              SettingsConfigWidget(
+              SettingSchemeScreen(
                 config: appConfig.settingsConfig,
                 callback: (AppConfigSettings value) {
                   context.read<UpdateThemCubit>().add(

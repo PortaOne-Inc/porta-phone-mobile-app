@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:domain/entity/models/theme/theme_asset_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,21 +24,24 @@ final _logger = Logger('UpdateThemeCubit');
 
 class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   UpdateThemCubit({
+    required String applicationId,
+    required String themeId,
     required AppConfig appConfig,
     required this.updateThemeUseCase,
     required this.getThemeUseCase,
     required this.getApplicationUseCase,
     required this.defaultThemeSettings,
-    this.applicationId,
-    this.themeId,
   }) : super(
           UpdateThemeState(
-              status: ThemePropertyStatus.progress,
-              appConfig: appConfig,
-              themeWidgetConfig: defaultThemeSettings.themeWidgetLightConfig,
-              themePageConfig: defaultThemeSettings.themePageDarkConfig,
-              colorSchemeConfig: defaultThemeSettings.lightColorSchemeConfig,
-              assets: []),
+            applicationId: applicationId,
+            themeId: themeId,
+            status: ThemePropertyStatus.progress,
+            appConfig: appConfig,
+            themeWidgetConfig: defaultThemeSettings.themeWidgetLightConfig,
+            themePageConfig: defaultThemeSettings.themePageDarkConfig,
+            colorSchemeConfig: defaultThemeSettings.lightColorSchemeConfig,
+            assets: [],
+          ),
         ) {
     //NEW
     on<UpdateSchemeEvent>(
@@ -72,8 +74,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     add(const GetApplicationEvent());
   }
 
-  final String? applicationId;
-  final String? themeId;
   final ThemeSettings defaultThemeSettings;
 
   final UsecaseThemeUpdate updateThemeUseCase;
@@ -229,7 +229,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   Future<void> _tryGetApplication(GetApplicationEvent event, Emitter<UpdateThemeState> emit) async {
     try {
       emit(state.copyWith(status: ThemePropertyStatus.progress));
-      final application = await getApplicationUseCase.execute(id: applicationId!);
+      final application = await getApplicationUseCase.execute(id: state.applicationId);
 
       emit(state.copyWith(status: ThemePropertyStatus.success, applicationModel: application));
     } on Exception catch (e) {

@@ -21,8 +21,6 @@ class DialogConfig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final light = ThemeProvider.of(context).light();
-
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(

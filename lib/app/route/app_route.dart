@@ -7,12 +7,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logging/logging.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 import 'app_route_consts.dart';
+import 'go_route_redirects.dart';
+
+final _logger = Logger('AppRoute');
 
 class AppRoute {
   GoRouter build(GetIt getIt, BuildContext context) {
@@ -124,6 +128,13 @@ class AppRoute {
                 child: const TranslationsPage(),
               ),
             ),
+
+            // Added redirect for all theme details paths for avoid conflicts with nested routes
+            ...GoRouteRedirects(
+              basePath: '/applications/:applicationId/:themeId/:path',
+              maxExtraPaths: 5,
+              redirectCallback: _handleThemeDetailsRedirects,
+            ).generateRoutes(),
             GoRoute(
               path: AppRoutInfo.themesEdit.path,
               name: AppRoutInfo.themesEdit.name,
@@ -144,8 +155,8 @@ class AppRoute {
                         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                         param2: state.pathParameters[AppRoutInfo.keyThemeId],
                       ),
-                      applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
-                      themeId: state.pathParameters[AppRoutInfo.keyThemeId],
+                      applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                      themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
                     ),
                   ),
                   BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
@@ -155,24 +166,7 @@ class AppRoute {
                 ),
               ),
             ),
-            // GoRoute(
-            //   path: AppRoutInfo.themesPreview.path,
-            //   name: AppRoutInfo.themesPreview.name,
-            //   builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemePreviewCubit>(
-            //     create: (BuildContext context) => ThemePreviewCubit(
-            //       getApplicationUseCase: getIt<UsecaseApplicationGet>(
-            //         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-            //       ),
-            //       getThemeUseCase: getIt<UsecaseThemeGet>(
-            //         instanceName: UsecaseThemeGet.applicationUsecaseKey,
-            //         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-            //         param2: state.pathParameters[AppRoutInfo.keyThemeId],
-            //       ),
-            //       applicationId: state.pathParameters[AppRoutInfo.keyApplicationId],
-            //       themeId: state.pathParameters[AppRoutInfo.keyThemeId],
-            //     ),
-            //     child: Container(),
-            //   ),
+
             // ),
           ],
         )
@@ -181,6 +175,19 @@ class AppRoute {
       errorBuilder: (context, state) => const NotFoundPage(),
       initialLocation: AppRoutInfo.applicationCollection.path,
     );
+  }
+
+  String? _handleThemeDetailsRedirects(GoRouterState state) {
+    final applicationId = state.pathParameters['applicationId'];
+    final themeId = state.pathParameters['themeId'];
+
+    _logger.info('Redirecting to applicationId: $applicationId, themeId: $themeId');
+
+    if (applicationId == null || themeId == null) {
+      return '/applications';
+    }
+
+    return '/applications/$applicationId';
   }
 
   FutureOr<String?> handleMain(

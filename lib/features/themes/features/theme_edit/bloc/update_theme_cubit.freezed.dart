@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UpdateThemeState {
+// ids
+  String get applicationId => throw _privateConstructorUsedError;
+  String get themeId => throw _privateConstructorUsedError;
   ThemePropertyStatus? get status => throw _privateConstructorUsedError;
   ApplicationModel? get applicationModel => throw _privateConstructorUsedError;
   ThemeModel? get theme => throw _privateConstructorUsedError; //
@@ -45,7 +48,9 @@ abstract class $UpdateThemeStateCopyWith<$Res> {
       _$UpdateThemeStateCopyWithImpl<$Res, UpdateThemeState>;
   @useResult
   $Res call(
-      {ThemePropertyStatus? status,
+      {String applicationId,
+      String themeId,
+      ThemePropertyStatus? status,
       ApplicationModel? applicationModel,
       ThemeModel? theme,
       ColorSchemeConfig colorSchemeConfig,
@@ -81,6 +86,8 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? applicationId = null,
+    Object? themeId = null,
     Object? status = freezed,
     Object? applicationModel = freezed,
     Object? theme = freezed,
@@ -95,6 +102,14 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
+      applicationId: null == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      themeId: null == themeId
+          ? _value.themeId
+          : themeId // ignore: cast_nullable_to_non_nullable
+              as String,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -224,7 +239,9 @@ abstract class _$$UpdateThemeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ThemePropertyStatus? status,
+      {String applicationId,
+      String themeId,
+      ThemePropertyStatus? status,
       ApplicationModel? applicationModel,
       ThemeModel? theme,
       ColorSchemeConfig colorSchemeConfig,
@@ -264,6 +281,8 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? applicationId = null,
+    Object? themeId = null,
     Object? status = freezed,
     Object? applicationModel = freezed,
     Object? theme = freezed,
@@ -278,6 +297,14 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
     Object? error = freezed,
   }) {
     return _then(_$UpdateThemeStateImpl(
+      applicationId: null == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      themeId: null == themeId
+          ? _value.themeId
+          : themeId // ignore: cast_nullable_to_non_nullable
+              as String,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -334,7 +361,9 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
 
 class _$UpdateThemeStateImpl extends _UpdateThemeState {
   _$UpdateThemeStateImpl(
-      {this.status,
+      {required this.applicationId,
+      required this.themeId,
+      this.status,
       this.applicationModel,
       this.theme,
       this.colorSchemeConfig = const ColorSchemeConfig(),
@@ -349,6 +378,11 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
       : _assets = assets,
         super._();
 
+// ids
+  @override
+  final String applicationId;
+  @override
+  final String themeId;
   @override
   final ThemePropertyStatus? status;
   @override
@@ -391,7 +425,7 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
 
   @override
   String toString() {
-    return 'UpdateThemeState(status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
+    return 'UpdateThemeState(applicationId: $applicationId, themeId: $themeId, status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
   }
 
   @override
@@ -399,6 +433,9 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateThemeStateImpl &&
+            (identical(other.applicationId, applicationId) ||
+                other.applicationId == applicationId) &&
+            (identical(other.themeId, themeId) || other.themeId == themeId) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.applicationModel, applicationModel) ||
                 other.applicationModel == applicationModel) &&
@@ -424,6 +461,8 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      applicationId,
+      themeId,
       status,
       applicationModel,
       theme,
@@ -449,7 +488,9 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
 
 abstract class _UpdateThemeState extends UpdateThemeState {
   factory _UpdateThemeState(
-      {final ThemePropertyStatus? status,
+      {required final String applicationId,
+      required final String themeId,
+      final ThemePropertyStatus? status,
       final ApplicationModel? applicationModel,
       final ThemeModel? theme,
       final ColorSchemeConfig colorSchemeConfig,
@@ -463,6 +504,11 @@ abstract class _UpdateThemeState extends UpdateThemeState {
       final Exception? error}) = _$UpdateThemeStateImpl;
   _UpdateThemeState._() : super._();
 
+// ids
+  @override
+  String get applicationId;
+  @override
+  String get themeId;
   @override
   ThemePropertyStatus? get status;
   @override

@@ -6,7 +6,6 @@ class PreviewThemeState with _$PreviewThemeState {
     required bool frameVisible,
     required PreviewType previewType,
     ThemeSettings? theme,
-    WidgetPreviewType? requestFocus,
     @Default(ThemePreviewScreen.layouts) ThemePreviewScreen preview,
   }) = _PreviewThemeState;
 }

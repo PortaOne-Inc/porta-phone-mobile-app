@@ -1,5 +1,4 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 
@@ -500,13 +499,6 @@ class ApplicationDetailsScreen extends StatelessWidget {
         ],
       );
     });
-  }
-
-  // TODO(dmitry): Move logic of downloading to helper
-  void _downloadFile(String url) {
-    html.AnchorElement(href: url)
-      ..download = url
-      ..click();
   }
 }
 

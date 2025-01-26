@@ -18,6 +18,8 @@ import 'package:webtrit_phone/data/data.dart';
 
 import '../gen/assets.gen.dart';
 
+final _logger = Logger('bootstrap');
+
 Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
   await runZonedGuarded(
     () async {
@@ -66,7 +68,7 @@ Future<ConfiguratorThemeSettings> _initializeAppThemes() async {
       ]);
     }
   } catch (e) {
-    print('Failed to preload Google Fonts: $e');
+    _logger.warning('Failed to load font: ${settings.fontFamily}');
   }
 
   return settings;

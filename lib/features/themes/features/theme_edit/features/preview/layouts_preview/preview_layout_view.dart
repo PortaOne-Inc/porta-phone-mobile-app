@@ -52,25 +52,24 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   }
 
   List<Widget> _phoneScreenshots() {
-    final settings = ThemeProvider.of(context).settings;
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeProvider.of(context).settings,
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
     // final loginLabel = settings.appConfig?.loginConfig.label ?? '';
-    final loginLabel = '';
+    const loginLabel = '';
     return [
-      LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
+      const LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
       const LoginCoreUrlAssignScreenScreenshot(),
       const LoginOtpSignInScreenshot(),
       const LoginOtpVerifyInScreenshot(),
       const LoginPasswordSignInScreenshot(),
       const LoginSignUpScreenshot(),
       const LoginSignUpVerifyScreenshot(),
-      MainScreenScreenshot(MainFlavor.favorites, Text(loginLabel)),
-      MainScreenScreenshot(MainFlavor.recents, Text(loginLabel)),
-      MainScreenScreenshot(MainFlavor.keypad, Text(loginLabel)),
+      const MainScreenScreenshot(MainFlavor.favorites, Text(loginLabel)),
+      const MainScreenScreenshot(MainFlavor.recents, Text(loginLabel)),
+      const MainScreenScreenshot(MainFlavor.keypad, Text(loginLabel)),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(

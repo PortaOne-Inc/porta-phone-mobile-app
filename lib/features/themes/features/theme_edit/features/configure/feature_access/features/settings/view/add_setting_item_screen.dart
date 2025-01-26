@@ -1,29 +1,29 @@
-import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:domain/domain.dart';
 
-import '../../embedded/view.dart';
+import 'package:webtrit_configurator/core/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/embedded/embedded.dart';
 
-class AddEmbeddedSettingScreen extends StatefulWidget {
-  const AddEmbeddedSettingScreen({
-    super.key,
+class AddSettingItemScreen extends StatefulWidget {
+  const AddSettingItemScreen({
     required this.assets,
     required this.embedded,
+    super.key,
   });
 
   final List<ThemeAssetModel> assets;
   final List<EmbeddedData> embedded;
 
   @override
-  _AddEmbeddedSettingScreenState createState() => _AddEmbeddedSettingScreenState();
+  _AddSettingItemScreenState createState() => _AddSettingItemScreenState();
 }
 
-class _AddEmbeddedSettingScreenState extends State<AddEmbeddedSettingScreen> {
+class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleL10nController = TextEditingController();
-  EmbeddedData? _selectedEmbedded = null;
-
-  String _selectedType = 'login';
+  EmbeddedData? _selectedEmbedded;
+  final String _selectedType = 'login';
   bool _enable = false;
 
   void _saveData() {
@@ -41,8 +41,6 @@ class _AddEmbeddedSettingScreenState extends State<AddEmbeddedSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Embedded Section'),
@@ -63,7 +61,7 @@ class _AddEmbeddedSettingScreenState extends State<AddEmbeddedSettingScreen> {
             children: [
               const SizedBox(height: 16),
               TextFormField(
-                controller: TextEditingController(text: "embedded"),
+                controller: TextEditingController(text: 'embedded'),
                 decoration: const InputDecoration(
                   labelText: 'Select Type',
                   border: OutlineInputBorder(),
@@ -79,7 +77,7 @@ class _AddEmbeddedSettingScreenState extends State<AddEmbeddedSettingScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.title),
                 ),
-                validator: (value) => value?.isEmpty == true ? 'Title is required' : null,
+                validator: (value) => (value?.trim().isEmpty ?? true) ? 'Title is required' : null,
               ),
               const SizedBox(height: 16),
               SwitchListTile(
@@ -92,14 +90,13 @@ class _AddEmbeddedSettingScreenState extends State<AddEmbeddedSettingScreen> {
               ListTile(
                 title: _selectedEmbedded == null
                     ? const Text('Add Embedded Data')
-                    : Text(_selectedEmbedded?.toString() ?? ""),
+                    : Text(_selectedEmbedded?.toString() ?? ''),
                 trailing: _selectedEmbedded == null ? const Icon(Icons.add) : const Icon(Icons.edit),
                 onTap: () async {
                   _selectedEmbedded = await Navigator.of(context).push(
                     MaterialPageRoute<EmbeddedData>(
-                      builder: (BuildContext context) => AddEmbeddedDataScreen(
-                        assets: widget.assets,
-                        attributes: const {
+                      builder: (BuildContext context) => const AddEmbeddedDataScreen(
+                        attributes: {
                           'launch': false,
                         },
                       ),

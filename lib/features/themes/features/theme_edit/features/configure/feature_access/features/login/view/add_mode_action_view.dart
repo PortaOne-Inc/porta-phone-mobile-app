@@ -1,16 +1,19 @@
-import 'dart:typed_data';
-
-import 'package:data/dto/dto.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+
 import 'package:logging/logging.dart';
 
-import '../models/custom_login_option.dart';
+import 'package:domain/domain.dart';
+
+import 'package:webtrit_configurator/core/core.dart';
 
 final _logger = Logger('AddEmbeddedPage');
 
 class AddModeActionPage extends StatefulWidget {
-  const AddModeActionPage({super.key, required this.assets, required this.embedded});
+  const AddModeActionPage({
+    required this.assets,
+    required this.embedded,
+    super.key,
+  });
 
   final List<ThemeAssetModel> assets;
   final List<EmbeddedData> embedded;
@@ -21,11 +24,9 @@ class AddModeActionPage extends StatefulWidget {
 
 class _AddModeActionPageState extends State<AddModeActionPage> {
   final _titleL10nController = TextEditingController();
-  final _resourceController = TextEditingController();
-  late ThemeAssetModel? _asset = widget.assets.firstOrNull;
   EmbeddedData? _selectedEmbedded;
   bool _enable = false;
-  String _selectedType = 'login'; // Default selected type
+  String _selectedType = 'login';
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +60,9 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
             DropdownButtonFormField<EmbeddedData>(
               hint: const Text('Select embedded'),
               padding: EdgeInsets.zero,
-              decoration: InputDecoration(
-                labelText: "Select embedded",
-                border: const OutlineInputBorder(),
+              decoration: const InputDecoration(
+                labelText: 'Select embedded',
+                border: OutlineInputBorder(),
               ),
               // Removes the underline
               items: widget.embedded.map((embedded) {

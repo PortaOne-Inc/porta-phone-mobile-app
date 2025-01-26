@@ -1,22 +1,24 @@
-import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:domain/domain.dart';
 
-class AddSectionSettingScreen extends StatefulWidget {
-  const AddSectionSettingScreen({
-    super.key,
+import 'package:webtrit_configurator/core/exports/exports.dart';
+
+class AddSettingSectionScreen extends StatefulWidget {
+  const AddSettingSectionScreen({
     required this.assets,
     required this.embedded,
+    super.key,
   });
 
   final List<ThemeAssetModel> assets;
   final List<EmbeddedData> embedded;
 
   @override
-  _AddSectionSettingScreenState createState() => _AddSectionSettingScreenState();
+  _AddSettingSectionScreenState createState() => _AddSettingSectionScreenState();
 }
 
-class _AddSectionSettingScreenState extends State<AddSectionSettingScreen> {
+class _AddSettingSectionScreenState extends State<AddSettingSectionScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleL10nController = TextEditingController();
 
@@ -35,7 +37,6 @@ class _AddSectionSettingScreenState extends State<AddSectionSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +64,7 @@ class _AddSectionSettingScreenState extends State<AddSectionSettingScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.title),
                 ),
-                validator: (value) => value?.isEmpty == true ? 'Title is required' : null,
+                validator: (value) => (value?.trim().isEmpty ?? true) ? 'Title is required' : null,
               ),
               SwitchListTile(
                 title: const Text('Enable'),
@@ -72,7 +73,6 @@ class _AddSectionSettingScreenState extends State<AddSectionSettingScreen> {
                   _enable = value;
                 }),
               ),
-
             ],
           ),
         ),

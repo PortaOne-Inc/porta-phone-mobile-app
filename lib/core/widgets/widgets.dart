@@ -10,3 +10,5 @@ export 'placeholders/placeholders.dart';
 export 'slider/sliders.dart';
 export 'switchers/switchers.dart';
 export 'toolbars/toolbars.dart';
+export 'attributes_widget.dart';
+export 'dropdown_button.dart';

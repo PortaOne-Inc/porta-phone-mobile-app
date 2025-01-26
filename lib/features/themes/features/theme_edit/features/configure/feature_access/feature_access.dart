@@ -1,1 +1,1 @@
-export 'view/feature_access_config_view.dart';
+export 'view/view.dart';
