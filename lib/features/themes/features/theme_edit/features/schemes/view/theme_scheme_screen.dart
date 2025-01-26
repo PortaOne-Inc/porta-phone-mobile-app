@@ -79,11 +79,11 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             ListTile(
               leading: Icon(Icons.file_present_rounded, color: colorScheme.primary),
               title: const Text(
-                'HTML assets',
+                'Assets',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: const Text(
-                'Add HTML assets for app configuration.',
+                'Add assets for app configuration.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () => GoRouter.of(context).goNamed(SchemeRoute.assetsConfiguration.name),

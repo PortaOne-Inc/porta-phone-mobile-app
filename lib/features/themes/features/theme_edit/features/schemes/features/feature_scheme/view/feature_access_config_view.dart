@@ -64,7 +64,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
-              BuildLoginConfig(
+              LoginSchemeScreen(
                 sourceAppConfigLogin: appConfig.loginConfig,
                 callback: (config) => context.read<UpdateThemCubit>().add(
                       UpdateSchemeEvent.featureAccess(appConfig.copyWith(loginConfig: config)),

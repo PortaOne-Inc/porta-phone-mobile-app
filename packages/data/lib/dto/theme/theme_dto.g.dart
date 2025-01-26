@@ -48,6 +48,8 @@ _$ThemeAssetDtoImpl _$$ThemeAssetDtoImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       description: json['description'] as String? ?? '',
       file: const Uint8ListConverter().fromJson(json['file'] as String?),
+      url: json['url'] as String?,
+      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$$ThemeAssetDtoImplToJson(_$ThemeAssetDtoImpl instance) =>
@@ -56,4 +58,6 @@ Map<String, dynamic> _$$ThemeAssetDtoImplToJson(_$ThemeAssetDtoImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'file': const Uint8ListConverter().toJson(instance.file),
+      'url': instance.url,
+      'type': instance.type,
     };

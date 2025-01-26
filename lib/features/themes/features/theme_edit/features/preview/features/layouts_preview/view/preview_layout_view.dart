@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
+import 'package:webtrit_phone/data/feature_access.dart';
 import 'package:webtrit_phone/models/models.dart';
 
 class PreviewLayoutView extends StatefulWidget {
@@ -57,19 +59,21 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
-    // final loginLabel = settings.appConfig?.loginConfig.label ?? '';
-    const loginLabel = '';
+
+    final loginFeature = context.read<FeatureAccess?>()?.loginFeature;
+    final loginLabel = loginFeature?.titleL10n;
+
     return [
-      const LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
+      LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
       const LoginCoreUrlAssignScreenScreenshot(),
       const LoginOtpSignInScreenshot(),
       const LoginOtpVerifyInScreenshot(),
       const LoginPasswordSignInScreenshot(),
       const LoginSignUpScreenshot(),
       const LoginSignUpVerifyScreenshot(),
-      const MainScreenScreenshot(MainFlavor.favorites, Text(loginLabel)),
-      const MainScreenScreenshot(MainFlavor.recents, Text(loginLabel)),
-      const MainScreenScreenshot(MainFlavor.keypad, Text(loginLabel)),
+      MainScreenScreenshot(MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
+      MainScreenScreenshot(MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
+      MainScreenScreenshot(MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(

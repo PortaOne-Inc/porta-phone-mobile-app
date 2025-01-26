@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/core/core.dart';
-
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/view/theme_scheme_screen.dart';
 
 import '../features/schemes/schemes.dart';
 import '../features/features.dart';
@@ -15,6 +15,8 @@ import '../features/features.dart';
 import 'assets_shell_route.dart';
 
 class SchemeRoute {
+  SchemeRoute(this.getIt);
+
   static DestinationInfo menu(String applicationId, String themeId) => DestinationInfo(
         name: 'theme_scheme_menu',
         path: '/applications/$applicationId/$themeId/edit',
@@ -77,13 +79,15 @@ class SchemeRoute {
     path: '/app/feature/scheme/main/manage/tab',
   );
 
+  final GetIt getIt;
+
   GoRouter build(BuildContext context, String applicationId, String themeId) {
     return GoRouter(
       initialLocation: menu(applicationId, themeId).path,
       routerNeglect: true,
       requestFocus: false,
       errorBuilder: (BuildContext context, GoRouterState state) {
-        return const ThemeSchemeScreen(); // Or any appropriate fallback widget
+        return const ThemeSchemeScreen();
       },
       routes: [
         ShellRoute(
@@ -161,20 +165,31 @@ class SchemeRoute {
                           })
                     ],
                   ),
-                  GoRoute(
-                      path: assetsConfiguration.path,
-                      name: assetsConfiguration.name,
-                      builder: (BuildContext context, GoRouterState state) {
-                        return const AssetsScreen();
-                      },
-                      routes: [
-                        GoRoute(
-                            path: assetsSchemeAddAsset.path,
-                            name: assetsSchemeAddAsset.name,
-                            builder: (BuildContext context, GoRouterState state) {
-                              return const AddAssetScreen();
-                            })
-                      ]),
+                  ShellRoute(
+                    builder: (BuildContext context, GoRouterState state, Widget child) {
+                      return BlocProvider(
+                        create: (BuildContext context) => AssetsCubit(getIt.get()),
+                        child: child,
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: assetsConfiguration.path,
+                        name: assetsConfiguration.name,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return const AssetsScreen();
+                        },
+                        routes: [
+                          GoRoute(
+                              path: assetsSchemeAddAsset.path,
+                              name: assetsSchemeAddAsset.name,
+                              builder: (BuildContext context, GoRouterState state) {
+                                return const AddAssetScreen();
+                              })
+                        ],
+                      ),
+                    ],
+                  ),
                   GoRoute(
                     path: launchAssetsConfiguration.path,
                     name: launchAssetsConfiguration.name,

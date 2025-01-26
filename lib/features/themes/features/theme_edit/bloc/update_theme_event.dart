@@ -16,6 +16,8 @@ class UpdateSchemeEvent with _$UpdateSchemeEvent implements ConfiguratorEvent {
   const factory UpdateSchemeEvent.featureAccess(AppConfig scheme) = _UpdateAppConfigEventChange;
 
   const factory UpdateSchemeEvent.assets(List<ThemeAssetModel> scheme) = _UpdateAssetsEventChange;
+
+  const factory UpdateSchemeEvent.launchAsset(ImageModel? image) = _UpdateImageModelEventChange;
 }
 
 // OLD

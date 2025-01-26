@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 import 'add_mode_action_view.dart';
 
-class BuildLoginConfig extends StatefulWidget {
-  const BuildLoginConfig({
+class LoginSchemeScreen extends StatefulWidget {
+  const LoginSchemeScreen({
     required this.callback,
     required this.sourceAppConfigLogin,
     required this.assets,
@@ -21,10 +22,26 @@ class BuildLoginConfig extends StatefulWidget {
   final ObjectCallback<AppConfigLogin> callback;
 
   @override
-  State<BuildLoginConfig> createState() => _BuildLoginConfigState();
+  State<LoginSchemeScreen> createState() => _LoginSchemeScreenState();
 }
 
-class _BuildLoginConfigState extends State<BuildLoginConfig> {
+class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
+  final _greetingLabelController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.sourceAppConfigLogin.greetingL10n != null) {
+      _greetingLabelController.text = widget.sourceAppConfigLogin.greetingL10n!;
+    }
+
+    _greetingLabelController.addListener(() {
+      widget.callback(widget.sourceAppConfigLogin.copyWith(
+        greetingL10n: _greetingLabelController.text,
+      ));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -33,6 +50,20 @@ class _BuildLoginConfigState extends State<BuildLoginConfig> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          BorderContainer(
+            title: 'Welcome page',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OutlineInput(
+                  controller: _greetingLabelController,
+                  label: 'Greeting',
+                  icon: Icons.title,
+                )
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
           BorderContainer(
             title: 'Mode actions',
             trailing: InkWell(

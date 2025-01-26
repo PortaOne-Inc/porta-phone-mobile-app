@@ -88,7 +88,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       pages: (_UpdatePagesEventChange value) async => _onUpdateSchemePages(value, emit),
       featureAccess: (_UpdateAppConfigEventChange value) async => _onUpdateAppConfigPages(value, emit),
       assets: (_UpdateAssetsEventChange value) async => _onUpdateAssets(value, emit),
+      launchAsset: (_UpdateImageModelEventChange value) async => _onUpdateLaunchAsset(value, emit),
     );
+  }
+
+  void _onUpdateLaunchAsset(_UpdateImageModelEventChange event, Emitter<UpdateThemeState> emit) {
+    // emit(
+    //   state.copyWith(
+    //     theme: state.theme?.copyWith(
+    //       systemAssets: state?.theme?.systemAssets.copyWith(webLauncherIcon: event.image!),
+    //     ),
+    //   ),
+    // );
   }
 
   void _onUpdateSchemeColors(_UpdateColorsEventChange event, Emitter<UpdateThemeState> emit) {}
@@ -261,7 +272,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
   void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<UpdateThemeState> emit) {
     emit(state.copyWith(status: ThemePropertyStatus.success));
-    // emit(state.copyTheme(theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel())));
+    emit(state.copyWith(theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel())));
   }
 
   void _updateColor(ColorSchemeModel? color, Emitter<UpdateThemeState> emit) {

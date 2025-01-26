@@ -9,7 +9,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-
+// TODO(Serdun): Refactor this widget. The ImageModel is complex, consider using ThemeAssetModel instead to simplify the logic.
 class LaunchAssetsConfigurationView extends StatefulWidget {
   const LaunchAssetsConfigurationView({
     required this.themeModel,
@@ -43,6 +43,7 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
 
   @override
   Widget build(BuildContext context) {
+    final assets = context.read<AssetsProvider>().assets;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -50,6 +51,17 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Dropdown(
+              constraints: const BoxConstraints(maxWidth: 224),
+              items: assets.map((asset) => asset.name).toList(),
+              position: 0,
+              onSelect: (int selectedIndex) {
+                setState(() {
+                  _image = ImageModel.svgNetwork(assets[selectedIndex].url ?? '');
+                });
+              },
+              icon: const Icon(Icons.expand_more_rounded),
+            ),
             Row(
               children: [
                 InkWell(
@@ -243,18 +255,14 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
   }
 
   Future<void> _previewCurrentConfig() async {
-    // final image = await _generateSystemAssetsResources(context);
-    // bloc
-    //   ..add(const ThemeDraftSchemeEvent.enableDraftTheme())
-    //   ..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+    final image = await _generateSystemAssetsResources(context);
+    bloc..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
   }
 
   Future<void> _save() async {
-    // final image = await _generateSystemAssetsResources(context);
-    // bloc
-    //   ..add(const ThemeDraftSchemeEvent.disableDraftTheme())
-    //   ..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
-    //
+    final image = await _generateSystemAssetsResources(context);
+    bloc..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+
     // if (!mounted) return;
     // Navigator.of(context).pop();
   }
@@ -295,4 +303,3 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
     super.dispose();
   }
 }
-

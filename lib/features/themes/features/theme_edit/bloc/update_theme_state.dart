@@ -10,6 +10,9 @@ class UpdateThemeState with _$UpdateThemeState {
     // ids
     required String applicationId,
     required String themeId,
+    //
+    ImageModel? launchImage,
+    //
     ThemePropertyStatus? status,
     ApplicationModel? applicationModel,
     ThemeModel? theme,

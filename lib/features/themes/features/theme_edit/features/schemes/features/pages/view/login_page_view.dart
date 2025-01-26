@@ -27,14 +27,6 @@ class LoginPageView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextFormField(
-                  initialValue: '',
-                  decoration: const InputDecoration(labelText: 'Title'),
-                  onChanged: (value) {
-                    // Update the title field
-                  },
-                ),
-                const SizedBox(height: 16),
                 DropdownButtonFormField<ElevatedButtonStyleType>(
                   value: ElevatedButtonStyleType.primary,
                   decoration: const InputDecoration(labelText: 'Login Button Style'),

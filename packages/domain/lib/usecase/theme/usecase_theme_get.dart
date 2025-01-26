@@ -4,13 +4,9 @@ import '../../entity/entity.dart';
 import '../../repository/repository.dart';
 
 abstract class UsecaseThemeGet {
-  static const String applicationUsecaseKey = 'applicationUsecaseKey';
-  static const String staticUsecaseKey = 'staticUsecaseKey';
-
   Future<ThemeModel> execute();
 }
 
-@Named(UsecaseThemeGet.applicationUsecaseKey)
 @Injectable(as: UsecaseThemeGet)
 class UsecaseThemeGetImpl implements UsecaseThemeGet {
   UsecaseThemeGetImpl({

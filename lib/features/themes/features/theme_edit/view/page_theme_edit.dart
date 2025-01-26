@@ -1,38 +1,31 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/route/preview_route.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   const PageThemeEdit({
     required this.title,
+    required this.schemeRoute,
+    required this.previewRoute,
     super.key,
   });
 
   final String title;
+
+  final GoRouter schemeRoute;
+  final GoRouter previewRoute;
 
   @override
   State<PageThemeEdit> createState() => _PageThemeEditState();
 }
 
 class _PageThemeEditState extends State<PageThemeEdit> {
-  late final schemeRoute = SchemeRoute().build(
-    context,
-    context.read<UpdateThemCubit>().state.applicationId,
-    context.read<UpdateThemCubit>().state.themeId,
-  );
-
-  late final previewRoute = PreviewRoute().build(
-    context,
-    context.read<UpdateThemCubit>().state.applicationId,
-    context.read<UpdateThemCubit>().state.themeId,
-  );
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -62,14 +55,14 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                       initialProportions: const [.65, .35],
                       children: [
                         (context) => Router(
-                              routerDelegate: schemeRoute.routerDelegate,
-                              routeInformationParser: schemeRoute.routeInformationParser,
-                              routeInformationProvider: schemeRoute.routeInformationProvider,
+                              routerDelegate: widget.schemeRoute.routerDelegate,
+                              routeInformationParser: widget.schemeRoute.routeInformationParser,
+                              routeInformationProvider: widget.schemeRoute.routeInformationProvider,
                             ),
                         (context) => Router(
-                              routerDelegate: previewRoute.routerDelegate,
-                              routeInformationParser: previewRoute.routeInformationParser,
-                              routeInformationProvider: previewRoute.routeInformationProvider,
+                              routerDelegate: widget.previewRoute.routerDelegate,
+                              routeInformationParser: widget.previewRoute.routeInformationParser,
+                              routeInformationProvider: widget.previewRoute.routeInformationProvider,
                             ),
                       ],
                     )),

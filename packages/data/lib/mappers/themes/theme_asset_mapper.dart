@@ -16,6 +16,8 @@ class ThemeAssetMapper extends CommonMapper<ThemeAssetModel, ThemeAssetDto> {
       name: it.name,
       description: it.description,
       file: it.file,
+      url: it.url,
+      type: it.type.name,
     );
   }
 
@@ -26,6 +28,8 @@ class ThemeAssetMapper extends CommonMapper<ThemeAssetModel, ThemeAssetDto> {
       name: it.name,
       description: it.description,
       file: it.file,
+      url: it.url,
+      type: ThemeAssetType.values.firstWhere((e) => e.name == it.type, orElse: () => ThemeAssetType.unknown),
     );
   }
 }

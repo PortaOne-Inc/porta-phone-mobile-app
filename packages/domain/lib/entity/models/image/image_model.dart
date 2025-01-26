@@ -25,6 +25,11 @@ class ImageModel with _$ImageModel {
 
   const ImageModel._();
 
+  factory ImageModel.svgNetwork(String url) => ImageModel(
+        url: url,
+        extension: formatSVG,
+      );
+
   factory ImageModel.svg(String base64) => ImageModel(
         data: base64,
         extension: formatSVG,

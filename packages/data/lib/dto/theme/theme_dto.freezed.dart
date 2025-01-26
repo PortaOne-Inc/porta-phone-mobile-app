@@ -370,6 +370,8 @@ mixin _$ThemeAssetDto {
   String get description => throw _privateConstructorUsedError;
   @Uint8ListConverter()
   Uint8List? get file => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
 
   /// Serializes this ThemeAssetDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -391,7 +393,9 @@ abstract class $ThemeAssetDtoCopyWith<$Res> {
       {int id,
       String name,
       String description,
-      @Uint8ListConverter() Uint8List? file});
+      @Uint8ListConverter() Uint8List? file,
+      String? url,
+      String? type});
 }
 
 /// @nodoc
@@ -413,6 +417,8 @@ class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
     Object? name = null,
     Object? description = null,
     Object? file = freezed,
+    Object? url = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -431,6 +437,14 @@ class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -447,7 +461,9 @@ abstract class _$$ThemeAssetDtoImplCopyWith<$Res>
       {int id,
       String name,
       String description,
-      @Uint8ListConverter() Uint8List? file});
+      @Uint8ListConverter() Uint8List? file,
+      String? url,
+      String? type});
 }
 
 /// @nodoc
@@ -467,6 +483,8 @@ class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? file = freezed,
+    Object? url = freezed,
+    Object? type = freezed,
   }) {
     return _then(_$ThemeAssetDtoImpl(
       id: null == id
@@ -485,6 +503,14 @@ class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as Uint8List?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -496,7 +522,9 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
       {required this.id,
       required this.name,
       this.description = '',
-      @Uint8ListConverter() this.file});
+      @Uint8ListConverter() this.file,
+      this.url,
+      this.type});
 
   factory _$ThemeAssetDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeAssetDtoImplFromJson(json);
@@ -511,10 +539,14 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
   @override
   @Uint8ListConverter()
   final Uint8List? file;
+  @override
+  final String? url;
+  @override
+  final String? type;
 
   @override
   String toString() {
-    return 'ThemeAssetDto(id: $id, name: $name, description: $description, file: $file)';
+    return 'ThemeAssetDto(id: $id, name: $name, description: $description, file: $file, url: $url, type: $type)';
   }
 
   @override
@@ -526,13 +558,15 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.file, file));
+            const DeepCollectionEquality().equals(other.file, file) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description,
-      const DeepCollectionEquality().hash(file));
+      const DeepCollectionEquality().hash(file), url, type);
 
   /// Create a copy of ThemeAssetDto
   /// with the given fields replaced by the non-null parameter values.
@@ -555,7 +589,9 @@ abstract class _ThemeAssetDto implements ThemeAssetDto {
       {required final int id,
       required final String name,
       final String description,
-      @Uint8ListConverter() final Uint8List? file}) = _$ThemeAssetDtoImpl;
+      @Uint8ListConverter() final Uint8List? file,
+      final String? url,
+      final String? type}) = _$ThemeAssetDtoImpl;
 
   factory _ThemeAssetDto.fromJson(Map<String, dynamic> json) =
       _$ThemeAssetDtoImpl.fromJson;
@@ -569,6 +605,10 @@ abstract class _ThemeAssetDto implements ThemeAssetDto {
   @override
   @Uint8ListConverter()
   Uint8List? get file;
+  @override
+  String? get url;
+  @override
+  String? get type;
 
   /// Create a copy of ThemeAssetDto
   /// with the given fields replaced by the non-null parameter values.

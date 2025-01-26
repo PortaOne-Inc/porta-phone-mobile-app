@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
@@ -138,36 +139,41 @@ class AppRoute {
             GoRoute(
               path: AppRoutInfo.themesEdit.path,
               name: AppRoutInfo.themesEdit.name,
-              builder: (BuildContext context, GoRouterState state) => MultiBlocProvider(
-                providers: [
-                  BlocProvider<UpdateThemCubit>(
-                    create: (BuildContext context) => UpdateThemCubit(
-                      defaultThemeSettings: getIt.get<ThemeSettings>(),
-                      appConfig: getIt.get<AppConfig>(),
-                      updateThemeUseCase: getIt<UsecaseThemeUpdate>(
-                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
+              builder: (BuildContext context, GoRouterState state) {
+                final applicationId = state.pathParameters[AppRoutInfo.keyApplicationId]!;
+                final themeId = state.pathParameters[AppRoutInfo.keyThemeId]!;
+
+                return MultiBlocProvider(
+                  providers: [
+                    BlocProvider<UpdateThemCubit>(
+                      create: (BuildContext context) => UpdateThemCubit(
+                        defaultThemeSettings: getIt.get<ThemeSettings>(),
+                        appConfig: getIt.get<AppConfig>(),
+                        updateThemeUseCase: getIt<UsecaseThemeUpdate>(param1: applicationId),
+                        getApplicationUseCase: getIt<UsecaseApplicationGet>(param1: applicationId),
+                        getThemeUseCase: getIt<UsecaseThemeGet>(param1: applicationId, param2: themeId),
+                        applicationId: applicationId,
+                        themeId: themeId,
                       ),
-                      getApplicationUseCase: getIt<UsecaseApplicationGet>(
-                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                      ),
-                      getThemeUseCase: getIt<UsecaseThemeGet>(
-                        instanceName: UsecaseThemeGet.applicationUsecaseKey,
-                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
-                        param2: state.pathParameters[AppRoutInfo.keyThemeId],
-                      ),
-                      applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                      themeId: state.pathParameters[AppRoutInfo.keyThemeId]!,
+                    ),
+                    BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
+                  ],
+                  child: PageThemeEdit(
+                    title: context.l10n.feature_theme_edit_Toolbar_dashboard,
+                    schemeRoute: SchemeRoute(getIt).build(
+                      context,
+                      state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                      state.pathParameters[AppRoutInfo.keyThemeId]!,
+                    ),
+                    previewRoute: PreviewRoute(getIt).build(
+                      context,
+                      state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                      state.pathParameters[AppRoutInfo.keyThemeId]!,
                     ),
                   ),
-                  BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
-                ],
-                child: PageThemeEdit(
-                  title: context.l10n.feature_theme_edit_Toolbar_dashboard,
-                ),
-              ),
+                );
+              },
             ),
-
-            // ),
           ],
         )
       ],

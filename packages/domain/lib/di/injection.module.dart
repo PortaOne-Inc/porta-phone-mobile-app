@@ -38,6 +38,7 @@ import 'package:domain/usecase/deployment/usecase_update_build_name.dart'
     as _i638;
 import 'package:domain/usecase/deployment/usecase_update_build_number.dart'
     as _i95;
+import 'package:domain/usecase/resources/upload_file_use_case.dart' as _i151;
 import 'package:domain/usecase/theme/usecase_set_theme_default.dart' as _i98;
 import 'package:domain/usecase/theme/usecase_theme_create.dart' as _i343;
 import 'package:domain/usecase/theme/usecase_theme_delete.dart' as _i314;
@@ -120,6 +121,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               authRepository: gh<_i174.AuthRepository>(),
               resourcesRepository: gh<_i174.ResourcesRepository>(),
             ));
+    gh.factory<_i151.UploadFileUsecase>(
+        () => _i151.UploadFileUsecaseImpl(gh<_i494.ResourcesRepository>()));
     gh.factory<_i298.UsecaseTranslationsDeleteOverride>(() =>
         _i298.UsecaseTranslationsDeleteOverrideImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
@@ -127,6 +130,16 @@ class DomainPackageModule extends _i526.MicroPackageModule {
         _i638.IncrementBuildNameUseCase(gh<_i651.UpdateApplicationUsecase>()));
     gh.factory<_i343.UsecaseThemeCreate>(
         () => _i343.UsecaseThemeCreateImpl(gh<_i494.ThemeRepository>()));
+    gh.factoryParam<_i320.UsecaseThemeGet, String, String>((
+      applicationId,
+      themeId,
+    ) =>
+        _i320.UsecaseThemeGetImpl(
+          themeRepository: gh<_i174.ThemeRepository>(),
+          authRepository: gh<_i174.AuthRepository>(),
+          applicationId: applicationId,
+          themeId: themeId,
+        ));
     gh.factory<_i236.UsecaseTranslationsSetOverride>(() =>
         _i236.UsecaseTranslationsSetOverrideImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
@@ -156,18 +169,5 @@ class DomainPackageModule extends _i526.MicroPackageModule {
             gh<_i651.UpdateApplicationUsecase>()));
     gh.factory<_i0.UsecaseAuthLogOut>(() => _i874.UsecaseAuthLogOutImpl(
         authRepository: gh<_i174.AuthRepository>()));
-    gh.factoryParam<_i320.UsecaseThemeGet, String, String>(
-      (
-        applicationId,
-        themeId,
-      ) =>
-          _i320.UsecaseThemeGetImpl(
-        themeRepository: gh<_i174.ThemeRepository>(),
-        authRepository: gh<_i174.AuthRepository>(),
-        applicationId: applicationId,
-        themeId: themeId,
-      ),
-      instanceName: 'applicationUsecaseKey',
-    );
   }
 }

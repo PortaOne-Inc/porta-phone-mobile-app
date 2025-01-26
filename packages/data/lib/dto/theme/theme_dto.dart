@@ -38,6 +38,8 @@ class ThemeAssetDto with _$ThemeAssetDto {
     required String name,
     @Default('') String description,
     @Uint8ListConverter() Uint8List? file,
+    String? url,
+    String? type,
   }) = _ThemeAssetDto;
 
   factory ThemeAssetDto.fromJson(Map<String, dynamic> json) => _$ThemeAssetDtoFromJson(json);
