@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import '../../../models/theme_preview_screen.dart';
-import '../../../widgets/menu_preview.dart';
-import '../features/preview/layouts_preview/preview_layout_view.dart';
-import '../features/preview/preview_assets/preview_layout_view.dart';
+import '../../../../../models/theme_preview_screen.dart';
+import '../../../../../widgets/menu_preview.dart';
+import '../features/features.dart';
+
 
 class PageThemePreview extends StatelessWidget {
   const PageThemePreview({

@@ -7,7 +7,7 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/view/theme_scheme_screen.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/view/theme_scheme_screen.dart';
 
 import '../features/schemes/schemes.dart';
 import '../features/features.dart';

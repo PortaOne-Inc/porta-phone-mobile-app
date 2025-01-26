@@ -8,7 +8,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
-import '../widgets/group_title_list_tile.dart' as widgets;
+import '../../../widgets/group_title_list_tile.dart' as widgets;
 
 class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
   const ThemeSchemeScreen({

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 
-import '../view/page_theme_preview.dart';
+import '../features/preview/view/page_theme_preview.dart';
 import 'feature_access_shell_route.dart';
 
 class PreviewRoute {
