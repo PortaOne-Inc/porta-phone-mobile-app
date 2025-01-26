@@ -1,2 +1,2 @@
 export 'preview/preview.dart';
-export 'configure/configure.dart';
+export 'schemes/schemes.dart';

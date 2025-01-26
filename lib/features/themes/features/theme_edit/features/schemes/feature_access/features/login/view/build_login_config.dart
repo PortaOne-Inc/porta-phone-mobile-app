@@ -1,10 +1,12 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/configure/feature_access/features/login/view/add_mode_action_view.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
+
+import 'add_mode_action_view.dart';
 
 class BuildLoginConfig extends StatefulWidget {
   const BuildLoginConfig({

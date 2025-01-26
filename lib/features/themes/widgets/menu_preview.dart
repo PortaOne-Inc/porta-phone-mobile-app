@@ -36,7 +36,6 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
           Dropdown(
             constraints: const BoxConstraints(maxWidth: 224),
             items: const [
-              'Launch widgets',
               'Layouts',
               'Launch assets',
             ],

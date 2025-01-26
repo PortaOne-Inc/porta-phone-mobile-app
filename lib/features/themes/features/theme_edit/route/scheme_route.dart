@@ -9,7 +9,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/view/theme_scheme_screen.dart';
 
-import '../features/configure/feature_access/features/features.dart';
+import '../features/schemes//feature_access/features/features.dart';
 import '../features/features.dart';
 
 import 'assets_shell_route.dart';
