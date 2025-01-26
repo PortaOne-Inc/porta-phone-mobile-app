@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
@@ -23,8 +22,8 @@ class PreviewThemeCubit extends Cubit<PreviewThemeState> {
   void setFrame(bool frame) {
     emit(state.copyWith(frameVisible: frame));
   }
-
-  void setPreviewScreen(ThemePreviewScreen screen) {
-    emit(state.copyWith(preview: screen));
-  }
+//
+// void setPreviewScreen(ThemePreviewScreen screen) {
+//   emit(state.copyWith(preview: screen));
+// }
 }
