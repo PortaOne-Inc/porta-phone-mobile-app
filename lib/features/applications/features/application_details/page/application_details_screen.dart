@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
+import 'package:go_router/go_router.dart';
+import 'package:webtrit_configurator/app/application.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
@@ -23,6 +25,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
     required this.onUpdateBuildNameVersion,
     required this.onUpdateBuildNumberVersion,
     required this.applicationBuildVersionProgress,
+    required this.onEnvironment,
     super.key,
   });
 
@@ -33,6 +36,7 @@ class ApplicationDetailsScreen extends StatelessWidget {
 
   final void Function(String applicationId, String themeId) onOpenDefaultTheme;
   final ObjectCallback<ApplicationDeploy> onUpdateApplicationDeploy;
+  final VoidCallback onEnvironment;
   final VoidCallback onDeploy;
 
   final ObjectCallbackPair<BuildPlatform, VersionPart> onUpdateBuildNameVersion;
@@ -115,7 +119,10 @@ class ApplicationDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: () => onOpenDefaultTheme(application!.id!, application!.theme!),
+                  onTap: () => onOpenDefaultTheme(
+                    application!.id!,
+                    application!.theme!,
+                  ),
                 ),
                 subtitle: application?.theme != null
                     ? SelectableText(application?.theme ?? '')
@@ -126,45 +133,24 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
+              Divider(
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
+              ListTile(
+                leading: Icon(Icons.line_weight_rounded, color: colorScheme.primary),
+                title: const Text(
+                  'Dart define build Environment',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text(
+                  'Set up and configure build environments .',
+                ),
+                trailing: const Icon(Icons.keyboard_arrow_right),
+                onTap: onEnvironment,
+              ),
             ],
           ),
-          ListTile(
-            leading: Icon(Icons.line_weight_rounded, color: colorScheme.primary),
-            title: const Text(
-              'Dart define build Environment',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            subtitle: const Text(
-              'Set up and configure build environments .',
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () => {},
-          ),
-          ListTile(
-            leading: Icon(Icons.history, color: colorScheme.primary),
-            title: const Text(
-              'Versioning',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            subtitle: const Text(
-              'Manage application versioning .',
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () => {},
-          ),
-          ListTile(
-            leading: Icon(Icons.local_fire_department, color: colorScheme.primary),
-            title: const Text(
-              'Deployment',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            subtitle: const Text(
-              'Manage deployment process .',
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () => {},
-          ),
-          // Builds configuration section
           Section(
             title: context.l10n.feature_application_details_ApplicationDetailsScreen_builds_configuration,
             children: [
@@ -501,4 +487,3 @@ class ApplicationDetailsScreen extends StatelessWidget {
     });
   }
 }
-

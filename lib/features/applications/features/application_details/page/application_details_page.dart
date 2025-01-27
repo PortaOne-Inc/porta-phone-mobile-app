@@ -82,6 +82,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                               applicationBuildVersionProgress: state.buildVersionProgress,
                               onUpdateBuildNameVersion: bloc.updateBuildName,
                               onUpdateBuildNumberVersion: bloc.updateBuildNumber,
+                              onEnvironment: () => _navigateToChangeEnvConfiguration(
+                                context,
+                                state.application!.id!,
+                              ),
                             ),
                           )
                         ],
@@ -245,32 +249,12 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 
-  // Future<void> _navigateToChangeEnvConfiguration(BuildContext context, UpdateThemCubit cubit) async {
-  //   await Navigator.of(context).push(MaterialPageRoute<void>(
-  //     builder: (BuildContext context) => const EnvironmentConfigurationView(
-  //       initialConfig: {
-  //         'DEBUG_LEVEL': 'INFO',
-  //         'DATABASE_LOG_STATEMENTS': false,
-  //         'PERIODIC_POLLING': true,
-  //         'ENABLE_ATTENDED_TRANSFER': true,
-  //         'CORE_URL': null,
-  //         'DEMO_CORE_URL': 'http://localhost:4000',
-  //         'CORE_VERSION_CONSTRAINT': '>=0.7.0-alpha <2.0.0',
-  //         'APP_LINK_DOMAIN': '',
-  //         'APP_NAME': 'WebTrit',
-  //         'APP_GREETING': null,
-  //         'APP_DESCRIPTION': null,
-  //         'APP_HELP_URL': null,
-  //         'APP_ABOUT_URL': null,
-  //         'APP_CREDENTIALS_REQUEST_URL': null,
-  //         'SALES_EMAIL': 'sales@webtrit.com',
-  //         'FCM_VAPID_KEY': null,
-  //         'REMOTE_LOGZIO_LOGGING_URL': null,
-  //         'REMOTE_LOGZIO_LOGGING_TOKEN': null,
-  //         'REMOTE_LOGZIO_LOGGING_BUFFER_SIZE': 0,
-  //       },
-  //     ),
-  //   ));
-  // }
-
+  Future<void> _navigateToChangeEnvConfiguration(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationDetailsEnv.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
 }

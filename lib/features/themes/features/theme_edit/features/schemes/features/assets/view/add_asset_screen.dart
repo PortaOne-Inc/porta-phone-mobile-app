@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 
 import 'package:domain/domain.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/features.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/features.dart';
 
 final _logger = Logger('AddAssetScreen');
 

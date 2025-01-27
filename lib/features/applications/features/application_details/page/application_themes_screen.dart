@@ -31,37 +31,41 @@ class ApplicationThemesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Section(
-        title: 'Schemes',
+      child: Column(
         children: [
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemBuilder: (ctx, index) {
-              if (index == 0) {
-                return ItemOfListButton(
-                  name: 'New theme',
-                  description: 'Create new theme for application and change this style when you want',
-                  onTab: onNewBranding,
-                );
-              } else {
-                return ItemTheme(
-                  themeMode: themes[index - 1],
-                  onTap: (theme) => onOpenBranding(theme.id!),
-                  onMakeDefault: onMakeDefault,
-                  onDelete: onDelete,
-                  onInfo: onShowInfo,
-                );
-              }
-            },
-            itemCount: themes.length + 1,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              childAspectRatio: 1.75,
-            ),
-          ),
+          Section(
+            title: 'Schemes',
+            children: [
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemBuilder: (ctx, index) {
+                  if (index == 0) {
+                    return ItemOfListButton(
+                      name: 'New theme',
+                      description: 'Create new theme for application and change this style when you want',
+                      onTab: onNewBranding,
+                    );
+                  } else {
+                    return ItemTheme(
+                      themeMode: themes[index - 1],
+                      onTap: (theme) => onOpenBranding(theme.id!),
+                      onMakeDefault: onMakeDefault,
+                      onDelete: onDelete,
+                      onInfo: onShowInfo,
+                    );
+                  }
+                },
+                itemCount: themes.length + 1,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 1.75,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
