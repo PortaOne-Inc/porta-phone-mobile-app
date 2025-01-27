@@ -22,6 +22,16 @@ class LoginPageView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BorderContainer(
+            title: 'Welcome image',
+            padding: const EdgeInsets.all(16),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              UrlImageField(
+                title: '',
+                constraints: BoxConstraints.loose(Size(200, 200)),
+              )
+            ]),
+          ),
+          BorderContainer(
             title: 'Login Mode Select Page Config',
             padding: const EdgeInsets.all(16),
             child: Column(

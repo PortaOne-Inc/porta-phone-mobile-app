@@ -18,45 +18,43 @@ class SchemeRoute {
   SchemeRoute(this.getIt);
 
   static DestinationInfo menu(String applicationId, String themeId) => DestinationInfo(
-        name: 'theme_scheme_menu',
+        name: 'theme-scheme-menu',
         path: '/applications/$applicationId/$themeId/edit',
       );
 
   static const colorScheme = DestinationInfo(
-    name: 'color_scheme',
-    path: '/color_scheme',
+    name: 'color-scheme',
+    path: '/colors',
   );
 
   static const widgetConfiguration = DestinationInfo(
-    name: 'widget_configuration',
-    path: '/widget_configuration',
+    name: 'widget-scheme',
+    path: '/widgets',
   );
 
   static const pagesConfiguration = DestinationInfo(
-    name: 'pages_configuration',
-    path: '/pages_configuration',
+    name: 'pages-configuration',
+    path: '/pages',
   );
 
-  static const assetsConfiguration = DestinationInfo(
-    name: 'assets_configuration',
-    path: '/assets_configuration',
+  static const assetsScheme = DestinationInfo(
+    name: 'asset-scheme',
+    path: '/assets',
   );
 
   static const assetsSchemeAddAsset = DestinationInfo(
-    name: 'assets_scheme_add_asset',
-    path: '/assets/scheme/add/asset',
+    name: 'asset-scheme-add',
+    path: '/assets/add',
   );
 
-  static const launchAssetsConfiguration = DestinationInfo(
-    name: 'launch_assets_configuration',
-    path: '/launch_assets_configuration',
+  static const launchScheme = DestinationInfo(
+    name: 'launch-scheme',
+    path: '/launch',
   );
-
-// App feature scheme
 
   static const appFeatureConfiguration = DestinationInfo(
-    name: 'app_feature_configuration',
-    path: '/app_feature_configuration',
+    name: 'feature-scheme',
+    path: '/features',
   );
 
   static const appFeatureSchemeAddSettingSection = DestinationInfo(
@@ -86,6 +84,7 @@ class SchemeRoute {
       initialLocation: menu(applicationId, themeId).path,
       routerNeglect: true,
       requestFocus: false,
+      restorationScopeId: 'scheme-route',
       errorBuilder: (BuildContext context, GoRouterState state) {
         return const ThemeSchemeScreen();
       },
@@ -103,29 +102,29 @@ class SchemeRoute {
                 },
                 routes: [
                   GoRoute(
-                    path: colorScheme.path,
                     name: colorScheme.name,
+                    path: colorScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
                       return const ColorSchemeConfigurationView();
                     },
                   ),
                   GoRoute(
-                    path: widgetConfiguration.path,
                     name: widgetConfiguration.name,
+                    path: widgetConfiguration.path,
                     builder: (BuildContext context, GoRouterState state) {
                       return const ConfigureWidgetsView();
                     },
                   ),
                   GoRoute(
-                    path: pagesConfiguration.path,
                     name: pagesConfiguration.name,
+                    path: pagesConfiguration.path,
                     builder: (BuildContext context, GoRouterState state) {
                       return const ConfigureThemePageView();
                     },
                   ),
                   GoRoute(
-                    path: appFeatureConfiguration.path,
                     name: appFeatureConfiguration.name,
+                    path: appFeatureConfiguration.path,
                     builder: (BuildContext context, GoRouterState state) {
                       return const ConfigureAppConfigView();
                     },
@@ -165,34 +164,29 @@ class SchemeRoute {
                           })
                     ],
                   ),
-                  ShellRoute(
-                    builder: (BuildContext context, GoRouterState state, Widget child) {
-                      return BlocProvider(
-                        create: (BuildContext context) => AssetsCubit(getIt.get()),
-                        child: child,
+                  GoRoute(
+                    name: assetsScheme.name,
+                    path: assetsScheme.path,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const Scaffold(
+                        body: AssetsScreen(),
                       );
                     },
                     routes: [
                       GoRoute(
-                        path: assetsConfiguration.path,
-                        name: assetsConfiguration.name,
-                        builder: (BuildContext context, GoRouterState state) {
-                          return const AssetsScreen();
-                        },
-                        routes: [
-                          GoRoute(
-                              path: assetsSchemeAddAsset.path,
-                              name: assetsSchemeAddAsset.name,
-                              builder: (BuildContext context, GoRouterState state) {
-                                return const AddAssetScreen();
-                              })
-                        ],
-                      ),
+                          name: assetsSchemeAddAsset.name,
+                          path: assetsSchemeAddAsset.path,
+                          builder: (BuildContext context, GoRouterState state) {
+                            return BlocProvider(
+                              create: (BuildContext context) => AssetsCubit(getIt.get()),
+                              child: const AddAssetScreen(),
+                            );
+                          })
                     ],
                   ),
                   GoRoute(
-                    path: launchAssetsConfiguration.path,
-                    name: launchAssetsConfiguration.name,
+                    name: launchScheme.name,
+                    path: launchScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
                       final themeModel = state.extra as ThemeModel?;
                       return LaunchAssetsConfigurationView(

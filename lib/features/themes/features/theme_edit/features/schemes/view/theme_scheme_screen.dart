@@ -40,7 +40,7 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             ListTile(
               leading: Icon(Icons.settings_display, color: colorScheme.primary),
               title: const Text(
-                'Special Widget Configuration',
+                'Widget style Configuration',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: const Text(
@@ -52,7 +52,7 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             ListTile(
               leading: Icon(Icons.screenshot_outlined, color: colorScheme.primary),
               title: const Text(
-                'Special page Configuration',
+                'Pages style configuration',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: const Text(
@@ -71,7 +71,7 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Manage and configure features available in the current build.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.appFeatureConfiguration.name),
+              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.appFeatureConfiguration.name,),
             ),
             const widgets.GroupTitleListTile(
               titleData: 'Static Data',
@@ -86,7 +86,9 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Add assets for app configuration.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.assetsConfiguration.name),
+              onTap: () => GoRouter.of(context).goNamed(
+                SchemeRoute.assetsScheme.name,
+              ),
             ),
             ListTile(
               leading: Icon(Icons.rocket_launch_outlined, color: colorScheme.primary),
@@ -99,8 +101,8 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () => GoRouter.of(context).goNamed(
-                SchemeRoute.launchAssetsConfiguration.name,
-                extra: state.theme, // Pass the `theme` from the current state
+                SchemeRoute.launchScheme.name,
+                extra: state.theme,
               ),
             ),
           ],

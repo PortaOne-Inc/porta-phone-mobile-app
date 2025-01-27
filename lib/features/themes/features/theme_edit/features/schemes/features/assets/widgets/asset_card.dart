@@ -12,10 +12,12 @@ final _logger = Logger('AssetCard');
 class AssetCard extends StatelessWidget {
   const AssetCard({
     required this.asset,
+    this.onTap,
     super.key,
   });
 
   final ThemeAssetModel asset;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -6,8 +6,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import 'about_page_view.dart';
-import 'login_page_view.dart';
+import '../features/features.dart';
 
 class ConfigureThemePageView extends StatefulWidget {
   const ConfigureThemePageView({super.key});
@@ -22,7 +21,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -46,6 +45,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
           controller: _tabController,
           isScrollable: true,
           tabs: const [
+            Tab(text: 'Common Pages scheme'),
             Tab(text: 'Login Page'),
             Tab(text: 'About Page'),
           ],
@@ -55,6 +55,11 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
         controller: _tabController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
+          CommonPageScheme(
+            loginModeSelectScreenStyles: loginModeSelectScreenStyles,
+            loginPageConfig: themePageConfig.login,
+            callback: (config) => bloc.add(UpdateSchemeEvent.pages(themePageConfig.copyWith(login: config))),
+          ),
           LoginPageView(
             loginModeSelectScreenStyles: loginModeSelectScreenStyles,
             loginPageConfig: themePageConfig.login,
