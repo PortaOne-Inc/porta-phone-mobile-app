@@ -31,11 +31,10 @@ class ApplicationThemesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Section(
+        title: 'Schemes',
         children: [
           GridView.builder(
-            padding: const EdgeInsets.only(top: 24),
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemBuilder: (ctx, index) {
@@ -63,10 +62,6 @@ class ApplicationThemesScreen extends StatelessWidget {
               childAspectRatio: 1.75,
             ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          const SizedBox(height: 16)
         ],
       ),
     );
