@@ -48,13 +48,22 @@ class _AssetsScreenState extends State<AssetsScreen> {
               child: Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: state.assets.map((file) => AssetCard(asset: file)).toList(),
+                children: state.assets
+                    .map((file) => AssetCard(
+                          asset: file,
+                          onTap: () => _onReturnFile(file),
+                        ))
+                    .toList(),
               ),
             ),
           ),
         );
       },
     );
+  }
+
+  Future<void> _onReturnFile(ThemeAssetModel asset) async {
+    GoRouter.of(context).pop(asset);
   }
 
   Future<void> _onAddAsset(List<ThemeAssetModel> assets) async {

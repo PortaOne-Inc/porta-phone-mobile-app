@@ -11,12 +11,19 @@ part 'assets_state.dart';
 
 part 'assets_cubit.freezed.dart';
 
-final _logger = Logger('AssetsCubit');
-
 class AssetsCubit extends Cubit<AssetsState> {
-  AssetsCubit(this.uploadFileUsecase) : super(const AssetsState());
+  AssetsCubit(
+    this._applicationId,
+    this._themeId,
+    this.uploadFileUsecase,
+    this.addAssetsThemeUsecase,
+  ) : super(const AssetsState());
 
   final UploadFileUsecase uploadFileUsecase;
+  final AddAssetsThemeUsecase addAssetsThemeUsecase;
+
+  final String _applicationId;
+  final String _themeId;
 
   Future<void> createAsset(
     String name,
@@ -25,18 +32,25 @@ class AssetsCubit extends Cubit<AssetsState> {
     String fileName,
     Uint8List file,
   ) async {
-    final data = await uploadFileUsecase.execute(fileName: fileName, data: file);
+    emit(state.copyWith(
+      status: AssetsStateEnum.loading,
+    ));
 
-    final assetModel = ThemeAssetModel.create(
-      name: name,
-      description: description,
-      type: ThemeAssetType.unknown,
-      url: data,
-      file: file,
+    final data = await uploadFileUsecase.execute(fileName: fileName, data: file);
+    final assets = await addAssetsThemeUsecase.execute(
+      applicationId: _applicationId,
+      themeId: _themeId,
+      asset: ThemeAssetModel.create(
+        name: name,
+        description: description,
+        type: type,
+        url: data,
+      ),
     );
 
     emit(state.copyWith(
-      asset: assetModel,
+      asset: assets.last,
+      status: AssetsStateEnum.initial,
     ));
   }
 }

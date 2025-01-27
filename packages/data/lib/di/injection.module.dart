@@ -79,6 +79,15 @@ class DataPackageModule extends _i526.MicroPackageModule {
           authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
           userPrefDataSource: gh<_i822.UserPrefDatasource>(),
         ));
+    gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          themeMapper:
+              gh<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(),
+          themeAssetMapper: gh<
+              _i1058
+              .CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
+        ));
     gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
           configuratorBackandDatasource:
               gh<_i822.ConfiguratorBackandDatasource>(),
@@ -98,12 +107,6 @@ class DataPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
             gh<_i822.ConfiguratorBackandDatasource>()));
-    gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          themeMapper:
-              gh<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(),
-        ));
   }
 }
 

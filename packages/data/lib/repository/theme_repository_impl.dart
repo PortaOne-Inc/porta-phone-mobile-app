@@ -12,10 +12,12 @@ class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({
     required this.configuratorBackandDatasource,
     required this.themeMapper,
+    required this.themeAssetMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
+  final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
 
   @override
   Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
@@ -68,5 +70,17 @@ class ThemeRepositoryImpl extends ThemeRepository {
   Future<void> downloadTheme(String applicationId, String themeId) {
     // Method retained for backward compatibility; planned for removal.
     throw UnimplementedError('This method is scheduled for removal.');
+  }
+
+  @override
+  Future<List<ThemeAssetModel>> addThemeAssets(
+    String applicationId,
+    String themeId,
+    List<ThemeAssetModel> assets,
+  ) async {
+    final assetDtos = themeAssetMapper.convertListTo(assets);
+    final response = await configuratorBackandDatasource.addAssets(applicationId, themeId, assetDtos);
+
+    return themeAssetMapper.convertListFrom(response);
   }
 }

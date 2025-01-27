@@ -23,12 +23,6 @@ class $AssetsThemesGen {
   /// File path: assets/themes/app.config.json
   String get appConfig => 'assets/themes/app.config.json';
 
-  /// File path: assets/themes/app.config_new.json
-  String get appConfigNew => 'assets/themes/app.config_new.json';
-
-  /// File path: assets/themes/app.config_old.json
-  String get appConfigOld => 'assets/themes/app.config_old.json';
-
   /// File path: assets/themes/custom_signup.html
   String get customSignup => 'assets/themes/custom_signup.html';
 
@@ -59,8 +53,6 @@ class $AssetsThemesGen {
   /// List of all assets
   List<String> get values => [
         appConfig,
-        appConfigNew,
-        appConfigOld,
         customSignup,
         originalColorSchemeDarkConfig,
         originalColorSchemeLightConfig,

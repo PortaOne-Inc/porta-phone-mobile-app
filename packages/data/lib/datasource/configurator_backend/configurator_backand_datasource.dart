@@ -1,9 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 
-
 import '../../dto/theme/theme.dart' as inner;
-
 
 import 'package:domain/domain.dart';
 
@@ -130,6 +128,58 @@ class ConfiguratorBackandDatasource {
       ThemeConfiguratorBackandAPI.theme(applicationId, themeId),
     );
     return Future.value();
+  }
+
+  // Assets
+
+  Future<List<inner.ThemeAssetDto>> addAssets(String applicationId, String themeId, List<ThemeAssetDto> assets) async {
+    final response = await client.patch<Map<String, dynamic>>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/add',
+      data: assets.map((it) => it.toJson()).toList(),
+    );
+
+    final theme = inner.ThemeDTO.fromJson(response.data!);
+
+    return theme.assets;
+  }
+
+  Future<List<inner.ThemeAssetDto>> removeAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+  ) async {
+    final response = await client.patch<Map<String, dynamic>>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/remove/$assetId',
+    );
+
+    final theme = inner.ThemeDTO.fromJson(response.data!);
+
+    return theme.assets;
+  }
+
+  Future<List<inner.ThemeAssetDto>> updateAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+    ThemeAssetDto updatedAsset,
+  ) async {
+    final response = await client.patch<Map<String, dynamic>>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/update/$assetId',
+      data: updatedAsset.toJson(),
+    );
+
+    final theme = inner.ThemeDTO.fromJson(response.data!);
+
+    return theme.assets;
+  }
+
+  Future<void> deleteAllAssets(
+    String applicationId,
+    String themeId,
+  ) async {
+    await client.delete<void>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets',
+    );
   }
 
   // Translations

@@ -39,6 +39,7 @@ import 'package:domain/usecase/deployment/usecase_update_build_name.dart'
 import 'package:domain/usecase/deployment/usecase_update_build_number.dart'
     as _i95;
 import 'package:domain/usecase/resources/upload_file_use_case.dart' as _i151;
+import 'package:domain/usecase/theme/add_assets_theme_usecase.dart' as _i911;
 import 'package:domain/usecase/theme/usecase_set_theme_default.dart' as _i98;
 import 'package:domain/usecase/theme/usecase_theme_create.dart' as _i343;
 import 'package:domain/usecase/theme/usecase_theme_delete.dart' as _i314;
@@ -169,5 +170,7 @@ class DomainPackageModule extends _i526.MicroPackageModule {
             gh<_i651.UpdateApplicationUsecase>()));
     gh.factory<_i0.UsecaseAuthLogOut>(() => _i874.UsecaseAuthLogOutImpl(
         authRepository: gh<_i174.AuthRepository>()));
+    gh.factory<_i911.AddAssetsThemeUsecase>(
+        () => _i911.AddAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
   }
 }

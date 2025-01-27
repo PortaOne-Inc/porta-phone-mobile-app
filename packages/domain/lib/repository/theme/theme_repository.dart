@@ -29,4 +29,12 @@ abstract class ThemeRepository {
     String applicationId,
     String themeId,
   );
+
+// Assets
+
+  Future<List<ThemeAssetModel>> addThemeAssets(
+    String applicationId,
+    String themeId,
+    List<ThemeAssetModel> assets,
+  );
 }

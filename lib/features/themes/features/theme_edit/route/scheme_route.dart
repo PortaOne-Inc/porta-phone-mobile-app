@@ -178,7 +178,12 @@ class SchemeRoute {
                           path: assetsSchemeAddAsset.path,
                           builder: (BuildContext context, GoRouterState state) {
                             return BlocProvider(
-                              create: (BuildContext context) => AssetsCubit(getIt.get()),
+                              create: (BuildContext context) => AssetsCubit(
+                                applicationId,
+                                themeId,
+                                getIt.get(),
+                                getIt.get(),
+                              ),
                               child: const AddAssetScreen(),
                             );
                           })

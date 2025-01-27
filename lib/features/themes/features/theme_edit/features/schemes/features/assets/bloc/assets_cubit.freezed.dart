@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AssetsState {
   ThemeAssetModel? get asset => throw _privateConstructorUsedError;
+  AssetsStateEnum get status => throw _privateConstructorUsedError;
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $AssetsStateCopyWith<$Res> {
           AssetsState value, $Res Function(AssetsState) then) =
       _$AssetsStateCopyWithImpl<$Res, AssetsState>;
   @useResult
-  $Res call({ThemeAssetModel? asset});
+  $Res call({ThemeAssetModel? asset, AssetsStateEnum status});
 
   $ThemeAssetModelCopyWith<$Res>? get asset;
 }
@@ -52,12 +53,17 @@ class _$AssetsStateCopyWithImpl<$Res, $Val extends AssetsState>
   @override
   $Res call({
     Object? asset = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       asset: freezed == asset
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as ThemeAssetModel?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AssetsStateEnum,
     ) as $Val);
   }
 
@@ -84,7 +90,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeAssetModel? asset});
+  $Res call({ThemeAssetModel? asset, AssetsStateEnum status});
 
   @override
   $ThemeAssetModelCopyWith<$Res>? get asset;
@@ -104,12 +110,17 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? asset = freezed,
+    Object? status = null,
   }) {
     return _then(_$InitialImpl(
       asset: freezed == asset
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as ThemeAssetModel?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AssetsStateEnum,
     ));
   }
 }
@@ -117,14 +128,17 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.asset});
+  const _$InitialImpl({this.asset, this.status = AssetsStateEnum.initial});
 
   @override
   final ThemeAssetModel? asset;
+  @override
+  @JsonKey()
+  final AssetsStateEnum status;
 
   @override
   String toString() {
-    return 'AssetsState(asset: $asset)';
+    return 'AssetsState(asset: $asset, status: $status)';
   }
 
   @override
@@ -132,11 +146,12 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.asset, asset) || other.asset == asset));
+            (identical(other.asset, asset) || other.asset == asset) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, asset);
+  int get hashCode => Object.hash(runtimeType, asset, status);
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -148,10 +163,14 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AssetsState {
-  const factory _Initial({final ThemeAssetModel? asset}) = _$InitialImpl;
+  const factory _Initial(
+      {final ThemeAssetModel? asset,
+      final AssetsStateEnum status}) = _$InitialImpl;
 
   @override
   ThemeAssetModel? get asset;
+  @override
+  AssetsStateEnum get status;
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.
