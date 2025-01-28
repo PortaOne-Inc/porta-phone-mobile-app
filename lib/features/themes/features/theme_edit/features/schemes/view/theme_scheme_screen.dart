@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
+// TODO(Serdun): Resolve
 import '../../../widgets/group_title_list_tile.dart' as widgets;
 
 class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
@@ -71,7 +71,9 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Manage and configure features available in the current build.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.appFeatureConfiguration.name,),
+              onTap: () => GoRouter.of(context).goNamed(
+                SchemeRoute.appFeatureConfiguration.name,
+              ),
             ),
             const widgets.GroupTitleListTile(
               titleData: 'Static Data',

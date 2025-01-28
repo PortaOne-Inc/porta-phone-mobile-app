@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_configurator/core/core.dart';
 

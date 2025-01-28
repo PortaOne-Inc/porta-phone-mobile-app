@@ -12,6 +12,8 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/themes.dart';
 
+import '../models/models.dart';
+
 part 'update_theme_state.dart';
 
 part 'update_theme_event.dart';

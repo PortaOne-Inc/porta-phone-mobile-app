@@ -7,7 +7,7 @@ import 'package:image_size_getter/image_size_getter.dart';
 
 import 'package:domain/domain.dart';
 
-import '../model/models.dart';
+import '../models/models.dart';
 
 class UtilityImage {
   static Future<ImageModel?> pickImage(ImageFilterModel filter) async {
