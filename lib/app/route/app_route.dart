@@ -16,6 +16,7 @@ import 'package:webtrit_configurator/core/core.dart';
 
 import 'app_route_consts.dart';
 import 'go_route_redirects.dart';
+import 'go_router_wrapper.dart';
 
 final _logger = Logger('AppRoute');
 
@@ -188,16 +189,22 @@ class AppRoute {
                   ],
                   child: PageThemeEdit(
                     title: context.l10n.feature_theme_edit_Toolbar_dashboard,
-                    schemeRoute: SchemeRoute(getIt).build(
-                      context,
-                      state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                      state.pathParameters[AppRoutInfo.keyThemeId]!,
-                    ),
-                    previewRoute: PreviewRoute(getIt).build(
-                      context,
-                      state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                      state.pathParameters[AppRoutInfo.keyThemeId]!,
-                    ),
+                    children: [
+                      GoRouterWrapper(
+                        router: SchemeRoute(getIt).build(
+                          context,
+                          state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                          state.pathParameters[AppRoutInfo.keyThemeId]!,
+                        ),
+                      ),
+                      GoRouterWrapper(
+                        router: PreviewRoute(getIt).build(
+                          context,
+                          state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                          state.pathParameters[AppRoutInfo.keyThemeId]!,
+                        ),
+                      ),
+                    ],
                   ),
                 );
               },

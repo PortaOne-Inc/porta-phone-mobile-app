@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
@@ -11,15 +10,13 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   const PageThemeEdit({
     required this.title,
-    required this.schemeRoute,
-    required this.previewRoute,
+    required this.children,
     super.key,
   });
 
   final String title;
 
-  final GoRouter schemeRoute;
-  final GoRouter previewRoute;
+  final List<Router<dynamic>> children;
 
   @override
   State<PageThemeEdit> createState() => _PageThemeEditState();
@@ -33,34 +30,35 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     return BlocConsumer<UpdateThemCubit, UpdateThemeState>(
       listener: _handleStateChanges,
       builder: (context, state) {
+        final themeMode = context.watch<CommonBloc>().state.themeMode;
+
         return Scaffold(
-          appBar: _AppBar(
-            state: state,
+          appBar: AppToolbar(
+            isVisibleProgress: state.isProgress,
+            themeMode: themeMode,
             onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
-            onFileMenuSelect: (item) => _handleFileMenuSelection(context, item),
-            onThemeMenuSelect: (item) => _handleThemeMenuSelection(context, item),
+            name: 'Applications',
+            left: [
+              Menu<ApplicationEditFile>(
+                name: 'File',
+                items: ApplicationEditFile.values,
+                callback: _handleFileMenuSelection,
+              ),
+              Menu<ApplicationEditTheme>(
+                name: 'Theme',
+                items: ApplicationEditTheme.values,
+                callback: _handleThemeMenuSelection,
+              ),
+            ],
           ),
           body: ThemeShellRoute(
-            child: Builder(
-              builder: (context) => ResizableColumns(
-                orientation: ResizableOrientation.horizontal,
-                dividerColor: colorScheme.surfaceContainerLow,
-                dividerThickness: 4,
-                minChildSize: 200,
-                initialProportions: const [.65, .35],
-                children: [
-                  (context) => Router(
-                        routerDelegate: widget.schemeRoute.routerDelegate,
-                        routeInformationParser: widget.schemeRoute.routeInformationParser,
-                        routeInformationProvider: widget.schemeRoute.routeInformationProvider,
-                      ),
-                  (context) => Router(
-                        routerDelegate: widget.previewRoute.routerDelegate,
-                        routeInformationParser: widget.previewRoute.routeInformationParser,
-                        routeInformationProvider: widget.previewRoute.routeInformationProvider,
-                      ),
-                ],
-              ),
+            child: ResizableColumns(
+              orientation: ResizableOrientation.horizontal,
+              dividerColor: colorScheme.surfaceContainerLow,
+              dividerThickness: 4,
+              minChildSize: 200,
+              initialProportions: const [.65, .35],
+              children: widget.children.map((child) => (_) => child).toList(),
             ),
           ),
         );
@@ -93,45 +91,4 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   }
 
   void _handleThemeMenuSelection(BuildContext context, ApplicationEditTheme action) {}
-}
-
-class _AppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _AppBar({
-    required this.state,
-    required this.onThemeChange,
-    required this.onFileMenuSelect,
-    required this.onThemeMenuSelect,
-  });
-
-  final UpdateThemeState state;
-  final ValueChanged<ThemeMode> onThemeChange;
-  final void Function(ApplicationEditFile) onFileMenuSelect;
-  final void Function(ApplicationEditTheme) onThemeMenuSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    final themeMode = context.read<CommonBloc>().state.themeMode;
-
-    return AppToolbar(
-      isVisibleProgress: state.isProgress,
-      themeMode: themeMode,
-      onThemeChange: onThemeChange,
-      name: 'Applications',
-      left: [
-        Menu<ApplicationEditFile>(
-          name: 'File',
-          items: ApplicationEditFile.values,
-          callback: (context, item) => onFileMenuSelect(item),
-        ),
-        Menu<ApplicationEditTheme>(
-          name: 'Theme',
-          items: ApplicationEditTheme.values,
-          callback: (context, item) => onThemeMenuSelect(item),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
