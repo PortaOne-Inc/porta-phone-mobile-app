@@ -74,6 +74,14 @@ class ImageRenderer extends StatelessWidget {
 
 abstract class Resource {
   const Resource();
+
+  factory Resource.byte(Uint8List bytes) {
+    return ByteResource(bytes);
+  }
+
+  factory Resource.url(String url) {
+    return UrlResource(url);
+  }
 }
 
 class UrlResource extends Resource {

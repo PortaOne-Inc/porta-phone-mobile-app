@@ -33,8 +33,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     return BlocConsumer<UpdateThemCubit, UpdateThemeState>(
       listener: _handleStateChanges,
       builder: (context, state) {
-        final theme = state.toThemeSettings();
-
         return Scaffold(
           appBar: _AppBar(
             state: state,
@@ -42,30 +40,28 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             onFileMenuSelect: (item) => _handleFileMenuSelection(context, item),
             onThemeMenuSelect: (item) => _handleThemeMenuSelection(context, item),
           ),
-          body: ThemeProvider(
-            settings: theme,
-            lightDynamic: null,
-            darkDynamic: null,
+          body: ThemeShellRoute(
             child: Builder(
-                builder: (context) => ResizableColumns(
-                      orientation: ResizableOrientation.horizontal,
-                      dividerColor: colorScheme.surfaceContainerLow,
-                      dividerThickness: 4,
-                      minChildSize: 200,
-                      initialProportions: const [.65, .35],
-                      children: [
-                        (context) => Router(
-                              routerDelegate: widget.schemeRoute.routerDelegate,
-                              routeInformationParser: widget.schemeRoute.routeInformationParser,
-                              routeInformationProvider: widget.schemeRoute.routeInformationProvider,
-                            ),
-                        (context) => Router(
-                              routerDelegate: widget.previewRoute.routerDelegate,
-                              routeInformationParser: widget.previewRoute.routeInformationParser,
-                              routeInformationProvider: widget.previewRoute.routeInformationProvider,
-                            ),
-                      ],
-                    )),
+              builder: (context) => ResizableColumns(
+                orientation: ResizableOrientation.horizontal,
+                dividerColor: colorScheme.surfaceContainerLow,
+                dividerThickness: 4,
+                minChildSize: 200,
+                initialProportions: const [.65, .35],
+                children: [
+                  (context) => Router(
+                        routerDelegate: widget.schemeRoute.routerDelegate,
+                        routeInformationParser: widget.schemeRoute.routeInformationParser,
+                        routeInformationProvider: widget.schemeRoute.routeInformationProvider,
+                      ),
+                  (context) => Router(
+                        routerDelegate: widget.previewRoute.routerDelegate,
+                        routeInformationParser: widget.previewRoute.routeInformationParser,
+                        routeInformationProvider: widget.previewRoute.routeInformationProvider,
+                      ),
+                ],
+              ),
+            ),
           ),
         );
       },

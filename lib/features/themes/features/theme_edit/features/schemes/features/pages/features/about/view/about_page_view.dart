@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webtrit_configurator/core/widgets/buttons/url_image_field.dart';
 
 import 'package:webtrit_configurator/core/widgets/decoration/border_container.dart';
 
@@ -17,18 +18,12 @@ class AboutPageView extends StatelessWidget {
           BorderContainer(
             title: 'About Page Config',
             padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  initialValue: '',
-                  decoration: const InputDecoration(labelText: 'Picture Path'),
-                  onChanged: (value) {
-                    // Update picture field
-                  },
-                ),
-              ],
-            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              UrlImageField(
+                title: 'Select image',
+                constraints: BoxConstraints.loose(const Size(200, 200)),
+              )
+            ]),
           ),
         ],
       ),

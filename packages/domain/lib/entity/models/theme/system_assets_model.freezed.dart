@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SystemAssetsModel {
-  ImageModel get notificationLogo => throw _privateConstructorUsedError;
-  ImageModel get adaptiveIconBackground => throw _privateConstructorUsedError;
-  ImageModel get adaptiveIconForeground => throw _privateConstructorUsedError;
-  ImageModel get androidLauncherIcon => throw _privateConstructorUsedError;
-  ImageModel get iosLauncherIcon => throw _privateConstructorUsedError;
-  ImageModel get webLauncherIcon => throw _privateConstructorUsedError;
+  String? get notificationLogo => throw _privateConstructorUsedError;
+  String? get adaptiveIconBackground => throw _privateConstructorUsedError;
+  String? get adaptiveIconForeground => throw _privateConstructorUsedError;
+  String? get androidLauncherIcon => throw _privateConstructorUsedError;
+  String? get iosLauncherIcon => throw _privateConstructorUsedError;
+  String? get webLauncherIcon => throw _privateConstructorUsedError;
 
   /// Create a copy of SystemAssetsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -37,19 +37,12 @@ abstract class $SystemAssetsModelCopyWith<$Res> {
       _$SystemAssetsModelCopyWithImpl<$Res, SystemAssetsModel>;
   @useResult
   $Res call(
-      {ImageModel notificationLogo,
-      ImageModel adaptiveIconBackground,
-      ImageModel adaptiveIconForeground,
-      ImageModel androidLauncherIcon,
-      ImageModel iosLauncherIcon,
-      ImageModel webLauncherIcon});
-
-  $ImageModelCopyWith<$Res> get notificationLogo;
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground;
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground;
-  $ImageModelCopyWith<$Res> get androidLauncherIcon;
-  $ImageModelCopyWith<$Res> get iosLauncherIcon;
-  $ImageModelCopyWith<$Res> get webLauncherIcon;
+      {String? notificationLogo,
+      String? adaptiveIconBackground,
+      String? adaptiveIconForeground,
+      String? androidLauncherIcon,
+      String? iosLauncherIcon,
+      String? webLauncherIcon});
 }
 
 /// @nodoc
@@ -67,99 +60,39 @@ class _$SystemAssetsModelCopyWithImpl<$Res, $Val extends SystemAssetsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notificationLogo = null,
-    Object? adaptiveIconBackground = null,
-    Object? adaptiveIconForeground = null,
-    Object? androidLauncherIcon = null,
-    Object? iosLauncherIcon = null,
-    Object? webLauncherIcon = null,
+    Object? notificationLogo = freezed,
+    Object? adaptiveIconBackground = freezed,
+    Object? adaptiveIconForeground = freezed,
+    Object? androidLauncherIcon = freezed,
+    Object? iosLauncherIcon = freezed,
+    Object? webLauncherIcon = freezed,
   }) {
     return _then(_value.copyWith(
-      notificationLogo: null == notificationLogo
+      notificationLogo: freezed == notificationLogo
           ? _value.notificationLogo
           : notificationLogo // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconBackground: null == adaptiveIconBackground
+              as String?,
+      adaptiveIconBackground: freezed == adaptiveIconBackground
           ? _value.adaptiveIconBackground
           : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconForeground: null == adaptiveIconForeground
+              as String?,
+      adaptiveIconForeground: freezed == adaptiveIconForeground
           ? _value.adaptiveIconForeground
           : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      androidLauncherIcon: null == androidLauncherIcon
+              as String?,
+      androidLauncherIcon: freezed == androidLauncherIcon
           ? _value.androidLauncherIcon
           : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      iosLauncherIcon: null == iosLauncherIcon
+              as String?,
+      iosLauncherIcon: freezed == iosLauncherIcon
           ? _value.iosLauncherIcon
           : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      webLauncherIcon: null == webLauncherIcon
+              as String?,
+      webLauncherIcon: freezed == webLauncherIcon
           ? _value.webLauncherIcon
           : webLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
+              as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get notificationLogo {
-    return $ImageModelCopyWith<$Res>(_value.notificationLogo, (value) {
-      return _then(_value.copyWith(notificationLogo: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground {
-    return $ImageModelCopyWith<$Res>(_value.adaptiveIconBackground, (value) {
-      return _then(_value.copyWith(adaptiveIconBackground: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground {
-    return $ImageModelCopyWith<$Res>(_value.adaptiveIconForeground, (value) {
-      return _then(_value.copyWith(adaptiveIconForeground: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get androidLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.androidLauncherIcon, (value) {
-      return _then(_value.copyWith(androidLauncherIcon: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get iosLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.iosLauncherIcon, (value) {
-      return _then(_value.copyWith(iosLauncherIcon: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SystemAssetsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageModelCopyWith<$Res> get webLauncherIcon {
-    return $ImageModelCopyWith<$Res>(_value.webLauncherIcon, (value) {
-      return _then(_value.copyWith(webLauncherIcon: value) as $Val);
-    });
   }
 }
 
@@ -172,25 +105,12 @@ abstract class _$$SystemAssetsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ImageModel notificationLogo,
-      ImageModel adaptiveIconBackground,
-      ImageModel adaptiveIconForeground,
-      ImageModel androidLauncherIcon,
-      ImageModel iosLauncherIcon,
-      ImageModel webLauncherIcon});
-
-  @override
-  $ImageModelCopyWith<$Res> get notificationLogo;
-  @override
-  $ImageModelCopyWith<$Res> get adaptiveIconBackground;
-  @override
-  $ImageModelCopyWith<$Res> get adaptiveIconForeground;
-  @override
-  $ImageModelCopyWith<$Res> get androidLauncherIcon;
-  @override
-  $ImageModelCopyWith<$Res> get iosLauncherIcon;
-  @override
-  $ImageModelCopyWith<$Res> get webLauncherIcon;
+      {String? notificationLogo,
+      String? adaptiveIconBackground,
+      String? adaptiveIconForeground,
+      String? androidLauncherIcon,
+      String? iosLauncherIcon,
+      String? webLauncherIcon});
 }
 
 /// @nodoc
@@ -206,38 +126,38 @@ class __$$SystemAssetsModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notificationLogo = null,
-    Object? adaptiveIconBackground = null,
-    Object? adaptiveIconForeground = null,
-    Object? androidLauncherIcon = null,
-    Object? iosLauncherIcon = null,
-    Object? webLauncherIcon = null,
+    Object? notificationLogo = freezed,
+    Object? adaptiveIconBackground = freezed,
+    Object? adaptiveIconForeground = freezed,
+    Object? androidLauncherIcon = freezed,
+    Object? iosLauncherIcon = freezed,
+    Object? webLauncherIcon = freezed,
   }) {
     return _then(_$SystemAssetsModelImpl(
-      notificationLogo: null == notificationLogo
+      notificationLogo: freezed == notificationLogo
           ? _value.notificationLogo
           : notificationLogo // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconBackground: null == adaptiveIconBackground
+              as String?,
+      adaptiveIconBackground: freezed == adaptiveIconBackground
           ? _value.adaptiveIconBackground
           : adaptiveIconBackground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      adaptiveIconForeground: null == adaptiveIconForeground
+              as String?,
+      adaptiveIconForeground: freezed == adaptiveIconForeground
           ? _value.adaptiveIconForeground
           : adaptiveIconForeground // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      androidLauncherIcon: null == androidLauncherIcon
+              as String?,
+      androidLauncherIcon: freezed == androidLauncherIcon
           ? _value.androidLauncherIcon
           : androidLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      iosLauncherIcon: null == iosLauncherIcon
+              as String?,
+      iosLauncherIcon: freezed == iosLauncherIcon
           ? _value.iosLauncherIcon
           : iosLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
-      webLauncherIcon: null == webLauncherIcon
+              as String?,
+      webLauncherIcon: freezed == webLauncherIcon
           ? _value.webLauncherIcon
           : webLauncherIcon // ignore: cast_nullable_to_non_nullable
-              as ImageModel,
+              as String?,
     ));
   }
 }
@@ -246,32 +166,26 @@ class __$$SystemAssetsModelImplCopyWithImpl<$Res>
 
 class _$SystemAssetsModelImpl extends _SystemAssetsModel {
   const _$SystemAssetsModelImpl(
-      {this.notificationLogo = const ImageModel(),
-      this.adaptiveIconBackground = const ImageModel(),
-      this.adaptiveIconForeground = const ImageModel(),
-      this.androidLauncherIcon = const ImageModel(),
-      this.iosLauncherIcon = const ImageModel(),
-      this.webLauncherIcon = const ImageModel()})
+      {this.notificationLogo,
+      this.adaptiveIconBackground,
+      this.adaptiveIconForeground,
+      this.androidLauncherIcon,
+      this.iosLauncherIcon,
+      this.webLauncherIcon})
       : super._();
 
   @override
-  @JsonKey()
-  final ImageModel notificationLogo;
+  final String? notificationLogo;
   @override
-  @JsonKey()
-  final ImageModel adaptiveIconBackground;
+  final String? adaptiveIconBackground;
   @override
-  @JsonKey()
-  final ImageModel adaptiveIconForeground;
+  final String? adaptiveIconForeground;
   @override
-  @JsonKey()
-  final ImageModel androidLauncherIcon;
+  final String? androidLauncherIcon;
   @override
-  @JsonKey()
-  final ImageModel iosLauncherIcon;
+  final String? iosLauncherIcon;
   @override
-  @JsonKey()
-  final ImageModel webLauncherIcon;
+  final String? webLauncherIcon;
 
   @override
   String toString() {
@@ -319,26 +233,26 @@ class _$SystemAssetsModelImpl extends _SystemAssetsModel {
 
 abstract class _SystemAssetsModel extends SystemAssetsModel {
   const factory _SystemAssetsModel(
-      {final ImageModel notificationLogo,
-      final ImageModel adaptiveIconBackground,
-      final ImageModel adaptiveIconForeground,
-      final ImageModel androidLauncherIcon,
-      final ImageModel iosLauncherIcon,
-      final ImageModel webLauncherIcon}) = _$SystemAssetsModelImpl;
+      {final String? notificationLogo,
+      final String? adaptiveIconBackground,
+      final String? adaptiveIconForeground,
+      final String? androidLauncherIcon,
+      final String? iosLauncherIcon,
+      final String? webLauncherIcon}) = _$SystemAssetsModelImpl;
   const _SystemAssetsModel._() : super._();
 
   @override
-  ImageModel get notificationLogo;
+  String? get notificationLogo;
   @override
-  ImageModel get adaptiveIconBackground;
+  String? get adaptiveIconBackground;
   @override
-  ImageModel get adaptiveIconForeground;
+  String? get adaptiveIconForeground;
   @override
-  ImageModel get androidLauncherIcon;
+  String? get androidLauncherIcon;
   @override
-  ImageModel get iosLauncherIcon;
+  String? get iosLauncherIcon;
   @override
-  ImageModel get webLauncherIcon;
+  String? get webLauncherIcon;
 
   /// Create a copy of SystemAssetsModel
   /// with the given fields replaced by the non-null parameter values.

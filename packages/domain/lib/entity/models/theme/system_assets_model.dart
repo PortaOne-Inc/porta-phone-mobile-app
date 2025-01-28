@@ -1,18 +1,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../image/image_model.dart';
-
 part 'system_assets_model.freezed.dart';
 
 @freezed
 class SystemAssetsModel with _$SystemAssetsModel {
   const factory SystemAssetsModel({
-    @Default(ImageModel()) ImageModel notificationLogo,
-    @Default(ImageModel()) ImageModel adaptiveIconBackground,
-    @Default(ImageModel()) ImageModel adaptiveIconForeground,
-    @Default(ImageModel()) ImageModel androidLauncherIcon,
-    @Default(ImageModel()) ImageModel iosLauncherIcon,
-    @Default(ImageModel()) ImageModel webLauncherIcon,
+    String? notificationLogo,
+    String? adaptiveIconBackground,
+    String? adaptiveIconForeground,
+    String? androidLauncherIcon,
+    String? iosLauncherIcon,
+    String? webLauncherIcon,
   }) = _SystemAssetsModel;
 
   const SystemAssetsModel._();

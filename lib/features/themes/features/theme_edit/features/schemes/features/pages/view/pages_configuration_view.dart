@@ -32,6 +32,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final bloc = context.read<UpdateThemCubit>();
     final light = ThemeProvider.of(context).light();
     final themePageConfig = bloc.state.themePageConfig;
@@ -40,12 +41,14 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Configure Theme Pages'),
+        title: Text(
+          'Configure Theme Pages',
+          style: textTheme.titleMedium,
+        ),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
           tabs: const [
-            Tab(text: 'Common Pages scheme'),
             Tab(text: 'Login Page'),
             Tab(text: 'About Page'),
           ],
@@ -55,11 +58,6 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
         controller: _tabController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          CommonPageScheme(
-            loginModeSelectScreenStyles: loginModeSelectScreenStyles,
-            loginPageConfig: themePageConfig.login,
-            callback: (config) => bloc.add(UpdateSchemeEvent.pages(themePageConfig.copyWith(login: config))),
-          ),
           LoginPageView(
             loginModeSelectScreenStyles: loginModeSelectScreenStyles,
             loginPageConfig: themePageConfig.login,

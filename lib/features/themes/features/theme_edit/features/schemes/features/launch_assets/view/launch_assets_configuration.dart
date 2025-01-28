@@ -274,12 +274,13 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
     final screenshotWebLaunchIcon = await _screenshotWebLaunchIconController.captureBase64();
     final screenshotSplashIco = await _screenshotSplashIconController.captureBase64();
 
+    //TODO(Serdun): Implement this method
     return SystemAssetsModel(
-      androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
-      adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
-      iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
-      webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
-      adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
+      // androidLauncherIcon: ImageModel.png(screenshotAndroidLaunch),
+      // adaptiveIconForeground: ImageModel.png(screenshotForegroundIcon),
+      // iosLauncherIcon: ImageModel.png(screenshotIosLaunchIcon),
+      // webLauncherIcon: ImageModel.png(screenshotWebLaunchIcon),
+      // adaptiveIconBackground: ImageModel.png(screenshotSplashIco),
     );
   }
 

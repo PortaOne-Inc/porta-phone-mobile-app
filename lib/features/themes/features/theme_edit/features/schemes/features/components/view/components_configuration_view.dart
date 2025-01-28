@@ -120,7 +120,11 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
             sourceBarWidgetConfig: themeWidgetConfig.bar,
             callback: (config) => cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(bar: config))),
           ),
-          const PictureConfigTab(),
+          PictureConfigTab(
+            pictureConfig: themeWidgetConfig.picture,
+            onChanged: (PictureWidgetConfig value) =>
+                cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(picture: value))),
+          ),
           InputConfigTab(
             callback: (config) => cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(input: config))),
             inputDecorationTheme: inputDecorationTheme!,
