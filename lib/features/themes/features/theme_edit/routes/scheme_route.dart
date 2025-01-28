@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:get_it/get_it.dart';
 
@@ -168,8 +168,9 @@ class SchemeRoute {
                     name: assetsScheme.name,
                     path: assetsScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
-                      return const Scaffold(
-                        body: AssetsScreen(),
+                      return BlocProvider(
+                        create: (BuildContext context) => AssetsCubit(),
+                        child: const AssetsScreen(),
                       );
                     },
                     routes: [
@@ -178,7 +179,7 @@ class SchemeRoute {
                           path: assetsSchemeAddAsset.path,
                           builder: (BuildContext context, GoRouterState state) {
                             return BlocProvider(
-                              create: (BuildContext context) => AssetsCubit(
+                              create: (BuildContext context) => AddAssetCubit(
                                 applicationId,
                                 themeId,
                                 getIt.get(),

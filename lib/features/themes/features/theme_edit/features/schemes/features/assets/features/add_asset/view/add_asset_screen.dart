@@ -14,7 +14,9 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/feature
 final _logger = Logger('AddAssetScreen');
 
 class AddAssetScreen extends StatefulWidget {
-  const AddAssetScreen({Key? key}) : super(key: key);
+  const AddAssetScreen({
+    super.key,
+  });
 
   @override
   _AddAssetScreenState createState() => _AddAssetScreenState();
@@ -53,7 +55,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AssetsCubit, AssetsState>(
+    return BlocConsumer<AddAssetCubit, AddAssetState>(
       listener: (context, state) {
         if (state.asset != null) {
           GoRouter.of(context).pop(state.asset);
@@ -130,7 +132,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
     final name = _nameController.text.trim();
     final description = _descriptionController.text.trim();
 
-    context.read<AssetsCubit>().createAsset(
+    context.read<AddAssetCubit>().createAsset(
           name,
           description,
           ThemeAssetType.unknown,
