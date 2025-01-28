@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:domain/domain.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:logging/logging.dart';
 
 part 'assets_state.dart';
 

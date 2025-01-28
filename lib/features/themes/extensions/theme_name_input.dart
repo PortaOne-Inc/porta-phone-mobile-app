@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
-import '../model/theme_name_input.dart';
+import '../models/theme_name_input.dart';
 
 extension ThemeNameInputErrorL10n on ThemeNameInput {
   String? errorL10n(BuildContext context) {

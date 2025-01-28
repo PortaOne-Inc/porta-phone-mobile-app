@@ -8,7 +8,6 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/route/route.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/widgets.dart';
 
 import '../models/models.dart';
 

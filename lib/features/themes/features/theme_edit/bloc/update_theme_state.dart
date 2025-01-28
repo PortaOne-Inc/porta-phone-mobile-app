@@ -37,7 +37,7 @@ class UpdateThemeState with _$UpdateThemeState {
 
   ThemeSettings toThemeSettings() {
     return ThemeSettings(
-      themeWidgetLightConfig: themeWidgetConfig,
+      themeWidgetLightConfig: themeWidgetConfig.copyWIthUrlResources(),
       lightColorSchemeConfig: colorSchemeConfig,
       themePageLightConfig: themePageConfig,
       appConfig: appConfig,

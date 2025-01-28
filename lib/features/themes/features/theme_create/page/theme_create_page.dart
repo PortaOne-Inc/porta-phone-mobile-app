@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:webtrit_configurator/app/application.dart';
 
 import 'package:webtrit_configurator/features/common/common.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_create/extension/extension.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/themes.dart';
 
 import '../bloc/theme_create_cubit.dart';
 

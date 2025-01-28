@@ -4,8 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-
-import '../model/theme_name_input.dart';
+import 'package:webtrit_configurator/features/themes/models/models.dart';
 
 part 'theme_create_state.dart';
 

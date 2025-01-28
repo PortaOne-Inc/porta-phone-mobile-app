@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:logging/logging.dart';
 
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
-final _logger = Logger('AddEmbeddedPage');
 
 class AddModeActionPage extends StatefulWidget {
   const AddModeActionPage({

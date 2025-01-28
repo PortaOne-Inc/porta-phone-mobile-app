@@ -7,12 +7,10 @@ import 'package:bloc/bloc.dart';
 
 import 'package:domain/domain.dart';
 import 'package:logging/logging.dart';
-import 'package:webtrit_configurator/core/extension/extension.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
-
-import '../../../../../core/exports/webtrit_phone.dart';
-import '../model/models.dart';
+import 'package:webtrit_configurator/features/themes/themes.dart';
 
 part 'update_theme_state.dart';
 
