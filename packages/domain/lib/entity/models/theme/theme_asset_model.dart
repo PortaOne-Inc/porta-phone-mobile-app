@@ -6,7 +6,8 @@ part 'theme_asset_model.freezed.dart';
 
 enum ThemeAssetType {
   unknown,
-  image,
+  rasterImage, // JPEG, PNG, BMP, etc.
+  vectorImage, // SVG, etc.
   html,
 }
 
@@ -28,7 +29,6 @@ class ThemeAssetModel with _$ThemeAssetModel {
     Uint8List? file,
     String? url,
   }) {
-    // Generate a unique ID using the current timestamp and a counter
     final uniqueId = DateTime.now().millisecondsSinceEpoch;
     return ThemeAssetModel(
       id: uniqueId,
@@ -48,28 +48,29 @@ class ThemeAssetModel with _$ThemeAssetModel {
       return ThemeAssetType.unknown;
     }
 
-    // Extract the meaningful part of the URL or path
     final uri = Uri.tryParse(url!);
     if (uri == null) {
       return ThemeAssetType.unknown;
     }
 
-    // Get the last segment of the path and remove query parameters
     final lastSegment = uri.pathSegments.isNotEmpty ? uri.pathSegments.last : '';
     final cleanedSegment = lastSegment.split('?').first.toLowerCase();
-
-    // Extract the extension and match it with known types
     final extension = cleanedSegment.split('.').last;
-    print('extension: $extension');
+
+    // Check extension for raster and vector images
     switch (extension) {
+      // Raster images
       case 'jpg':
       case 'jpeg':
       case 'png':
       case 'gif':
       case 'bmp':
-      case 'svg':
       case 'webp':
-        return ThemeAssetType.image;
+        return ThemeAssetType.rasterImage;
+      // Vector images
+      case 'svg':
+        return ThemeAssetType.vectorImage;
+      // HTML files
       case 'html':
       case 'htm':
         return ThemeAssetType.html;
