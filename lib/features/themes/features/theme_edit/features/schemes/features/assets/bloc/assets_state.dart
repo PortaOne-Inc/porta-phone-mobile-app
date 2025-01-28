@@ -12,7 +12,7 @@ enum AssetsStateEnum {
 @freezed
 class AssetsState with _$AssetsState {
   const factory AssetsState({
-    ThemeAssetModel? asset,
-    @Default(AssetsStateEnum.initial) AssetsStateEnum status,
+    @Default(false) bool lockFilters,
+    @Default(ThemeAssetType.values) List<ThemeAssetType> filters,
   }) = _Initial;
 }

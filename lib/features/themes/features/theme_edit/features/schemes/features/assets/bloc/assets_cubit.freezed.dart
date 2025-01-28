@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AssetsState {
-  ThemeAssetModel? get asset => throw _privateConstructorUsedError;
-  AssetsStateEnum get status => throw _privateConstructorUsedError;
+  bool get lockFilters => throw _privateConstructorUsedError;
+  List<ThemeAssetType> get filters => throw _privateConstructorUsedError;
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,9 +32,7 @@ abstract class $AssetsStateCopyWith<$Res> {
           AssetsState value, $Res Function(AssetsState) then) =
       _$AssetsStateCopyWithImpl<$Res, AssetsState>;
   @useResult
-  $Res call({ThemeAssetModel? asset, AssetsStateEnum status});
-
-  $ThemeAssetModelCopyWith<$Res>? get asset;
+  $Res call({bool lockFilters, List<ThemeAssetType> filters});
 }
 
 /// @nodoc
@@ -52,33 +50,19 @@ class _$AssetsStateCopyWithImpl<$Res, $Val extends AssetsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? asset = freezed,
-    Object? status = null,
+    Object? lockFilters = null,
+    Object? filters = null,
   }) {
     return _then(_value.copyWith(
-      asset: freezed == asset
-          ? _value.asset
-          : asset // ignore: cast_nullable_to_non_nullable
-              as ThemeAssetModel?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as AssetsStateEnum,
+      lockFilters: null == lockFilters
+          ? _value.lockFilters
+          : lockFilters // ignore: cast_nullable_to_non_nullable
+              as bool,
+      filters: null == filters
+          ? _value.filters
+          : filters // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetType>,
     ) as $Val);
-  }
-
-  /// Create a copy of AssetsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ThemeAssetModelCopyWith<$Res>? get asset {
-    if (_value.asset == null) {
-      return null;
-    }
-
-    return $ThemeAssetModelCopyWith<$Res>(_value.asset!, (value) {
-      return _then(_value.copyWith(asset: value) as $Val);
-    });
   }
 }
 
@@ -90,10 +74,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeAssetModel? asset, AssetsStateEnum status});
-
-  @override
-  $ThemeAssetModelCopyWith<$Res>? get asset;
+  $Res call({bool lockFilters, List<ThemeAssetType> filters});
 }
 
 /// @nodoc
@@ -109,18 +90,18 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? asset = freezed,
-    Object? status = null,
+    Object? lockFilters = null,
+    Object? filters = null,
   }) {
     return _then(_$InitialImpl(
-      asset: freezed == asset
-          ? _value.asset
-          : asset // ignore: cast_nullable_to_non_nullable
-              as ThemeAssetModel?,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as AssetsStateEnum,
+      lockFilters: null == lockFilters
+          ? _value.lockFilters
+          : lockFilters // ignore: cast_nullable_to_non_nullable
+              as bool,
+      filters: null == filters
+          ? _value._filters
+          : filters // ignore: cast_nullable_to_non_nullable
+              as List<ThemeAssetType>,
     ));
   }
 }
@@ -128,17 +109,26 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.asset, this.status = AssetsStateEnum.initial});
+  const _$InitialImpl(
+      {this.lockFilters = false,
+      final List<ThemeAssetType> filters = ThemeAssetType.values})
+      : _filters = filters;
 
   @override
-  final ThemeAssetModel? asset;
+  @JsonKey()
+  final bool lockFilters;
+  final List<ThemeAssetType> _filters;
   @override
   @JsonKey()
-  final AssetsStateEnum status;
+  List<ThemeAssetType> get filters {
+    if (_filters is EqualUnmodifiableListView) return _filters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filters);
+  }
 
   @override
   String toString() {
-    return 'AssetsState(asset: $asset, status: $status)';
+    return 'AssetsState(lockFilters: $lockFilters, filters: $filters)';
   }
 
   @override
@@ -146,12 +136,14 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.asset, asset) || other.asset == asset) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.lockFilters, lockFilters) ||
+                other.lockFilters == lockFilters) &&
+            const DeepCollectionEquality().equals(other._filters, _filters));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, asset, status);
+  int get hashCode => Object.hash(
+      runtimeType, lockFilters, const DeepCollectionEquality().hash(_filters));
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -164,13 +156,13 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements AssetsState {
   const factory _Initial(
-      {final ThemeAssetModel? asset,
-      final AssetsStateEnum status}) = _$InitialImpl;
+      {final bool lockFilters,
+      final List<ThemeAssetType> filters}) = _$InitialImpl;
 
   @override
-  ThemeAssetModel? get asset;
+  bool get lockFilters;
   @override
-  AssetsStateEnum get status;
+  List<ThemeAssetType> get filters;
 
   /// Create a copy of AssetsState
   /// with the given fields replaced by the non-null parameter values.

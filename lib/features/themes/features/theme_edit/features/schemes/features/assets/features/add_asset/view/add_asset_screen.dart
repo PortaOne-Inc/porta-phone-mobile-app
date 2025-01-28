@@ -135,7 +135,6 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
     context.read<AddAssetCubit>().createAsset(
           name,
           description,
-          ThemeAssetType.unknown,
           _fileName!,
           _file!,
         );

@@ -48,7 +48,10 @@ class PictureConfigTab extends StatelessWidget {
                 resource: primaryOnboardingLogoUrl != null ? Resource.url(primaryOnboardingLogoUrl) : null,
                 constraints: BoxConstraints.loose(const Size(200, 200)),
                 onTap: () async {
-                  final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(SchemeRoute.assetsScheme.name);
+                  final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
+                    SchemeRoute.assetsScheme.name,
+                    extra: [ThemeAssetType.vectorImage],
+                  );
                   onChanged(
                     pictureConfig.copyWith(
                       metadata: pictureConfig.metadata.copyWithKey(
@@ -64,7 +67,10 @@ class PictureConfigTab extends StatelessWidget {
                 resource: secondaryOnboardingLogoUrl != null ? Resource.url(secondaryOnboardingLogoUrl) : null,
                 constraints: BoxConstraints.loose(const Size(200, 200)),
                 onTap: () async {
-                  final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(SchemeRoute.assetsScheme.name);
+                  final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
+                    SchemeRoute.assetsScheme.name,
+                    extra: [ThemeAssetType.vectorImage],
+                  );
                   onChanged(pictureConfig.copyWith(
                     metadata: pictureConfig.metadata.copyWithKey(
                       PictureWidgetConfig.secondaryOnboardingLogoUrlKey,

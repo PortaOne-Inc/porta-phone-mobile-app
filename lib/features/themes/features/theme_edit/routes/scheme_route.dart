@@ -168,8 +168,15 @@ class SchemeRoute {
                     name: assetsScheme.name,
                     path: assetsScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
+                      final filters = state.extra is List<ThemeAssetType>
+                          ? state.extra as List<ThemeAssetType>?
+                          : ThemeAssetType.values;
+                      final lockFilters = state.extra is List<ThemeAssetType>;
                       return BlocProvider(
-                        create: (BuildContext context) => AssetsCubit(),
+                        create: (BuildContext context) => AssetsCubit(
+                          filters: filters ?? ThemeAssetType.values,
+                          lockFilters: lockFilters,
+                        ),
                         child: const AssetsScreen(),
                       );
                     },

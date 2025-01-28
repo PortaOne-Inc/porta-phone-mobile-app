@@ -26,7 +26,6 @@ class AddAssetCubit extends Cubit<AddAssetState> {
   Future<void> createAsset(
     String name,
     String description,
-    ThemeAssetType type,
     String fileName,
     Uint8List file,
   ) async {
@@ -41,7 +40,6 @@ class AddAssetCubit extends Cubit<AddAssetState> {
       asset: ThemeAssetModel.create(
         name: name,
         description: description,
-        type: type,
         url: data,
       ),
     );

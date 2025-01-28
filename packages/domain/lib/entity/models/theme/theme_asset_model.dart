@@ -16,7 +16,6 @@ class ThemeAssetModel with _$ThemeAssetModel {
   const factory ThemeAssetModel({
     required int id,
     required String name,
-    @Default(ThemeAssetType.unknown) ThemeAssetType type,
     @Default('') String description,
     Uint8List? file,
     String? url,
@@ -24,7 +23,6 @@ class ThemeAssetModel with _$ThemeAssetModel {
 
   factory ThemeAssetModel.create({
     required String name,
-    required ThemeAssetType type,
     String description = '',
     Uint8List? file,
     String? url,
@@ -33,7 +31,6 @@ class ThemeAssetModel with _$ThemeAssetModel {
     return ThemeAssetModel(
       id: uniqueId,
       name: name,
-      type: type,
       description: description,
       file: file,
       url: url,
