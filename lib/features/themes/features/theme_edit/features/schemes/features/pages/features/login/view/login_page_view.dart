@@ -1,6 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/features.dart';
 
 class LoginPageView extends StatelessWidget {
   const LoginPageView({
@@ -22,12 +25,22 @@ class LoginPageView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BorderContainer(
-            title: 'Welcome image',
+            title: 'Images',
             padding: const EdgeInsets.all(16),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               UrlImageField(
-                title: '',
-                constraints: BoxConstraints.loose(Size(200, 200)),
+                title: 'Welcome image',
+                resource: loginPageConfig.pictureUrl != null ? Resource.url(loginPageConfig.pictureUrl!) : null,
+                constraints: BoxConstraints.loose(const Size(200, 200)),
+                onTap: () async {
+                  final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
+                    SchemeRoute.assetsScheme.name,
+                    extra: [ThemeAssetType.vectorImage],
+                  );
+                  callback(loginPageConfig.copyWith(
+                    metadata: loginPageConfig.metadata.copyWithKey(LoginPageConfig.pictureKey, result?.url),
+                  ));
+                },
               )
             ]),
           ),

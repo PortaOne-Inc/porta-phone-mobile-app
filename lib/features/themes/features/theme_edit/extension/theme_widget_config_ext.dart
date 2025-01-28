@@ -13,3 +13,9 @@ extension ThemeWidgetConfigExt on ThemeWidgetConfig {
     );
   }
 }
+
+extension PictureWidgetConfigExt on PictureWidgetConfig {
+  String? get primaryOnboardingLogoUrl => metadata.getValue(PictureWidgetConfig.primaryOnboardingLogoUrlKey);
+
+  String? get secondaryOnboardingLogoUrl => metadata.getValue(PictureWidgetConfig.secondaryOnboardingLogoUrlKey);
+}

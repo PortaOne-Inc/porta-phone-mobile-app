@@ -29,11 +29,6 @@ class PictureConfigTab extends StatelessWidget {
     final state = bloc.state;
     final pictureConfig = state.themeWidgetConfig.picture;
 
-    final primaryOnboardingLogoUrl =
-        pictureConfig.metadata.attributes[PictureWidgetConfig.primaryOnboardingLogoUrlKey] as String?;
-    final secondaryOnboardingLogoUrl =
-        pictureConfig.metadata.attributes[PictureWidgetConfig.secondaryOnboardingLogoUrlKey] as String?;
-
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -45,7 +40,9 @@ class PictureConfigTab extends StatelessWidget {
             child: Wrap(spacing: 16, runSpacing: 16, children: [
               UrlImageField(
                 title: 'Primary image',
-                resource: primaryOnboardingLogoUrl != null ? Resource.url(primaryOnboardingLogoUrl) : null,
+                resource: pictureConfig.primaryOnboardingLogoUrl != null
+                    ? Resource.url(pictureConfig.primaryOnboardingLogoUrl!)
+                    : null,
                 constraints: BoxConstraints.loose(const Size(200, 200)),
                 onTap: () async {
                   final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
@@ -64,7 +61,9 @@ class PictureConfigTab extends StatelessWidget {
               ),
               UrlImageField(
                 title: 'Secondary image',
-                resource: secondaryOnboardingLogoUrl != null ? Resource.url(secondaryOnboardingLogoUrl) : null,
+                resource: pictureConfig.secondaryOnboardingLogoUrl != null
+                    ? Resource.url(pictureConfig.secondaryOnboardingLogoUrl!)
+                    : null,
                 constraints: BoxConstraints.loose(const Size(200, 200)),
                 onTap: () async {
                   final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(

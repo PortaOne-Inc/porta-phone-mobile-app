@@ -31,6 +31,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final lockFilters = context.read<AssetsCubit>().state.lockFilters;
 
+    // Not clean implementation, but it works for now
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
         final filteredAssets = selectedFilterTypes.isNotEmpty
