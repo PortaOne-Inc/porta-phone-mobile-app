@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import '../features/features.dart';
+import '../../features.dart';
 
 class PageThemePreview extends StatelessWidget {
   const PageThemePreview({
@@ -33,11 +33,9 @@ class PageThemePreview extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return PhoneContext(
-          child: PreviewLayoutView(
-            previewType: state.previewType,
-            frameVisibility: state.frameVisible,
-          ),
+        return PreviewLayoutView(
+          previewType: state.previewType,
+          frameVisibility: state.frameVisible,
         );
       }),
     );

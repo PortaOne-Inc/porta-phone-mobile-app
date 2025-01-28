@@ -8,8 +8,8 @@ import 'package:webtrit_configurator/features/themes/models/models.dart';
 
 import '../../../../../widgets/menu_preview.dart';
 
-class ThemePreviewShell extends StatelessWidget {
-  const ThemePreviewShell({
+class PreviewShellRoute extends StatelessWidget {
+  const PreviewShellRoute({
     required this.child,
     super.key,
   });

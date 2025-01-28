@@ -35,7 +35,7 @@ class PreviewRoute {
         ShellRoute(
             builder: (BuildContext context, GoRouterState state, Widget child) {
               return FeatureAccessShellRoute(
-                child: ThemePreviewShell(child: child),
+                child: PreviewShellRoute(child: child),
               );
             },
             routes: [

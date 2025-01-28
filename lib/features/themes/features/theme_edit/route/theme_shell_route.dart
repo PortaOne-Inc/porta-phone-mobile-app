@@ -18,7 +18,12 @@ class ThemeShellRoute extends StatelessWidget {
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
         final theme = state.toThemeSettings();
-        return ThemeProvider(settings: theme, lightDynamic: null, darkDynamic: null, child: child);
+        return ThemeProvider(
+          settings: theme,
+          lightDynamic: null,
+          darkDynamic: null,
+          child: child,
+        );
       },
     );
   }

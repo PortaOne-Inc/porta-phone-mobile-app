@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
@@ -81,7 +81,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
-    ].map((e) => ScreenshotApp(appBloc: appBloc, child: e)).toList();
+    ]
+        .map((it) => ScreenshotApp(
+              appBloc: appBloc,
+              child: Theme(data: ThemeProvider.of(context).light()!, child: it),
+            ))
+        .toList();
   }
 
   void _setFocusedScreen(int position) {
