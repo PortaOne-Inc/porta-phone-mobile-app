@@ -16,7 +16,7 @@ class ThemeAssetsPreview extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
 
-    final titleStyle = textTheme.titleMedium?.copyWith(color: colors.secondary);
+    textTheme.titleMedium?.copyWith(color: colors.secondary);
     return Container();
     // return Scaffold(
     //   body: SingleChildScrollView(

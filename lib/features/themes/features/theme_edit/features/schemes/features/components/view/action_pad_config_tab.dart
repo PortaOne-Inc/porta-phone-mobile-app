@@ -20,7 +20,7 @@ class ActionPadConfig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeLight = ThemeProvider.of(context).light();
-    final actionPadStyles = themeLight?.extension<ActionpadStyles>()?.primary;
+    final actionPadStyles = themeLight.extension<ActionpadStyles>()?.primary;
 
     final actionPadList = <ObjectDescriptor<ButtonStyle, ElevatedButtonWidgetConfig?>>[
       ObjectDescriptor(

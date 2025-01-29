@@ -28,7 +28,6 @@ class LoginSchemeScreen extends StatefulWidget {
 class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
   final _greetingLabelController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
@@ -92,24 +91,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min, // To align the trailing row correctly
                         children: [
-                          DropdownButton<EmbeddedData>(
-                            hint: const Text('Select embedded'),
-                            padding: EdgeInsets.zero,
-                            underline: Container(),
-                            // Removes the underline
-                            items: widget.sourceAppConfigLogin.embedded.map((embedded) {
-                              return DropdownMenuItem<EmbeddedData>(
-                                value: embedded,
-                                child: Text(embedded.toolbar.titleL10n.toString()),
-                              );
-                            }).toList(),
-                            onChanged: (selectedEmbedded) {
-                              if (selectedEmbedded != null) {
-                                // Logic when an embedded item is selected
-                                _onEmbeddedItemSelected(action, selectedEmbedded);
-                              }
-                            },
-                          ),
                           PopupMenuButton<String>(
                             onSelected: (value) {
                               if (value == 'enable_disable') {

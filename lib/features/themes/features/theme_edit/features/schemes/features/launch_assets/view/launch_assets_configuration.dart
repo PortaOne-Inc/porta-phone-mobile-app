@@ -54,7 +54,6 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
             Dropdown(
               constraints: const BoxConstraints(maxWidth: 224),
               items: assets.map((asset) => asset.name).toList(),
-              position: 0,
               onSelect: (int selectedIndex) {
                 setState(() {
                   _image = ImageModel.svgNetwork(assets[selectedIndex].url ?? '');
@@ -256,12 +255,12 @@ class _LaunchAssetsConfigurationViewState extends State<LaunchAssetsConfiguratio
 
   Future<void> _previewCurrentConfig() async {
     final image = await _generateSystemAssetsResources(context);
-    bloc..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
   }
 
   Future<void> _save() async {
     final image = await _generateSystemAssetsResources(context);
-    bloc..add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
+    bloc.add(UpdateThemeSchemeEvent.updateSystemAssetsImages(image));
 
     // if (!mounted) return;
     // Navigator.of(context).pop();

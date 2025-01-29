@@ -37,7 +37,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
     final light = ThemeProvider.of(context).light();
     final themePageConfig = bloc.state.themePageConfig;
 
-    final loginModeSelectScreenStyles = light?.extension<LoginModeSelectScreenStyles>();
+    final loginModeSelectScreenStyles = light.extension<LoginModeSelectScreenStyles>();
 
     return Scaffold(
       appBar: AppBar(

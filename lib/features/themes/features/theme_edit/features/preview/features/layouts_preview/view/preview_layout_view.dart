@@ -84,7 +84,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     ]
         .map((it) => ScreenshotApp(
               appBloc: appBloc,
-              child: Theme(data: ThemeProvider.of(context).light()!, child: it),
+              child: Theme(data: ThemeProvider.of(context).light(), child: it),
             ))
         .toList();
   }

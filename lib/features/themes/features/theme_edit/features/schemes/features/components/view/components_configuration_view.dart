@@ -64,22 +64,22 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
     final light = ThemeProvider.of(context).light();
 
     // Get provided theme extensions
-    final actionpadStyles = light?.extension<ActionpadStyles>();
-    final elevatedButtonStyles = light?.extension<ElevatedButtonStyles>();
-    final callStatusStyles = light?.extension<CallStatusStyles>();
-    final registeredStatusStyles = light?.extension<RegisteredStatusStyles>();
-    final confirmDialogStyles = light?.extension<ConfirmDialogStyles>();
-    final snackBarStyles = light?.extension<SnackBarStyles>();
-    final groupTitleListStyles = light?.extension<GroupTitleListStyles>();
-    final callActionsStyles = light?.extension<CallActionsStyles>();
-    final gradients = light?.extension<Gradients>();
-    final linkifyStyles = light?.extension<LinkifyStyles>();
-    final textSelectionThemeData = light?.textSelectionTheme;
-    final inputDecorationTheme = light?.inputDecorationTheme;
+    final actionpadStyles = light.extension<ActionpadStyles>();
+    final elevatedButtonStyles = light.extension<ElevatedButtonStyles>();
+    final callStatusStyles = light.extension<CallStatusStyles>();
+    final registeredStatusStyles = light.extension<RegisteredStatusStyles>();
+    final confirmDialogStyles = light.extension<ConfirmDialogStyles>();
+    final snackBarStyles = light.extension<SnackBarStyles>();
+    final groupTitleListStyles = light.extension<GroupTitleListStyles>();
+    final callActionsStyles = light.extension<CallActionsStyles>();
+    final gradients = light.extension<Gradients>();
+    final linkifyStyles = light.extension<LinkifyStyles>();
+    final textSelectionThemeData = light.textSelectionTheme;
+    final inputDecorationTheme = light.inputDecorationTheme;
 
-    final bottomNavigationBarThemeData = light?.bottomNavigationBarTheme;
-    final appBarTheme = light?.appBarTheme;
-    final fontFamily = light?.textTheme.bodyMedium?.fontFamily;
+    final bottomNavigationBarThemeData = light.bottomNavigationBarTheme;
+    final appBarTheme = light.appBarTheme;
+    final fontFamily = light.textTheme.bodyMedium?.fontFamily;
 
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
@@ -127,7 +127,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
           ),
           InputConfigTab(
             callback: (config) => cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(input: config))),
-            inputDecorationTheme: inputDecorationTheme!,
+            inputDecorationTheme: inputDecorationTheme,
             sourceInputWidgetConfig: themeWidgetConfig.input,
           ),
           TextConfigTab(

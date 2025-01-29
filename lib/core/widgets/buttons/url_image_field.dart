@@ -45,7 +45,6 @@ class UrlImageField extends StatelessWidget {
                 Positioned.fill(
                   child: ImageRenderer(
                     resource: resource!,
-                    fit: BoxFit.cover,
                   ),
                 ),
               Padding(
@@ -58,7 +57,7 @@ class UrlImageField extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       shadows: [
-                        Shadow(
+                        const Shadow(
                           offset: Offset(0, 1),
                           blurRadius: 3,
                           color: Colors.black54,
@@ -88,7 +87,7 @@ class _PatternPainter extends CustomPainter {
 
     for (var row = 0; row < (size.height / cellSize).ceil(); row++) {
       for (var col = 0; col < (size.width / cellSize).ceil(); col++) {
-        paint.color = (row + col).isEven ? primaryColor.withOpacity(0.85) : primaryColor.withOpacity(0.65);
+        paint.color = (row + col).isEven ? primaryColor.withValues(alpha: 0.85) : primaryColor.withValues(alpha: 0.65);
 
         final rect = Rect.fromLTWH(col * cellSize, row * cellSize, cellSize, cellSize);
         canvas.drawRect(rect, paint);

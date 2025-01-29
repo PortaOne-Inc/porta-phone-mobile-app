@@ -21,8 +21,8 @@ class BarsConfigTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = ThemeProvider.of(context).light();
-    final bottomBarTheme = bottomNavigationBarTheme ?? theme?.bottomNavigationBarTheme;
-    final appBarConfigTheme = appBarTheme ?? theme?.appBarTheme;
+    final bottomBarTheme = bottomNavigationBarTheme ?? theme.bottomNavigationBarTheme;
+    final appBarConfigTheme = appBarTheme ?? theme.appBarTheme;
 
     return Padding(
       padding: const EdgeInsets.all(16),

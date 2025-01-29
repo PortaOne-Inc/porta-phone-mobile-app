@@ -9,8 +9,6 @@ import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/themes.dart';
 
-import '../bloc/theme_create_cubit.dart';
-
 class ThemeCreatePage extends StatefulWidget {
   const ThemeCreatePage({
     super.key,

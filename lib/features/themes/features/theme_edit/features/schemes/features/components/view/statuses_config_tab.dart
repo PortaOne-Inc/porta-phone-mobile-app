@@ -22,8 +22,8 @@ class StatusesConfigTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final light = ThemeProvider.of(context).light();
-    final callStatusStyles = light?.extension<CallStatusStyles>()?.primary;
-    final registeredStatusStyles = light?.extension<RegisteredStatusStyles>()?.primary;
+    final callStatusStyles = light.extension<CallStatusStyles>()?.primary;
+    final registeredStatusStyles = light.extension<RegisteredStatusStyles>()?.primary;
 
     return Padding(
       padding: const EdgeInsets.all(16),
