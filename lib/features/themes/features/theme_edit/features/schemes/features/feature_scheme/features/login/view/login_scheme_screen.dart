@@ -95,8 +95,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                             onSelected: (value) {
                               if (value == 'enable_disable') {
                                 _manageModeSelectAvailability(action: action);
-                              } else if (value == 'edit') {
-                                _addOrEditModeSelectAction(action: action);
                               } else if (value == 'delete') {
                                 setState(() {
                                   widget.sourceAppConfigLogin.modeSelectActions.remove(action);
@@ -107,10 +105,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                               PopupMenuItem(
                                 value: 'enable_disable',
                                 child: Text(action.enabled ? 'Disable' : 'Enable'),
-                              ),
-                              const PopupMenuItem(
-                                value: 'edit',
-                                child: Text('Edit'),
                               ),
                               const PopupMenuItem(
                                 value: 'delete',
@@ -149,7 +143,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                             setState(() {
                               // action.enabled = !action.enabled;
                             });
-                          } else if (value == 'edit') {
                           } else if (value == 'delete') {
                             setState(() {
                               widget.sourceAppConfigLogin.modeSelectActions.remove(action);
@@ -157,10 +150,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                           }
                         },
                         itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: Text('Edit'),
-                          ),
                           const PopupMenuItem(
                             value: 'delete',
                             child: Text('Delete'),
@@ -177,15 +166,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
       ),
     );
   }
-
-  void _onEmbeddedItemSelected(AppConfigModeSelectAction action, EmbeddedData selectedEmbedded) {
-    // Example logic when an embedded item is selected
-    setState(() {
-      ///     action.embeddedId = selectedEmbedded.id;
-    });
-  }
-
-  void _addOrEditModeSelectAction({AppConfigModeSelectAction? action, int? index}) {}
 
   Future<void> _addEmbeddedPage() async {
     final res = await GoRouter.of(context).pushNamed<EmbeddedData>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
