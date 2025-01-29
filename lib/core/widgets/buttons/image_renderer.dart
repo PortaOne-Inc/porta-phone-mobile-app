@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ImageRenderer extends StatelessWidget {
@@ -24,7 +23,7 @@ class ImageRenderer extends StatelessWidget {
 
         if (resource is UrlResource) {
           final urlResource = resource as UrlResource;
-          if (urlResource.url.toLowerCase().contains('.svg')) {
+          if (_isSvgUrl(urlResource.url)) {
             return SvgPicture.network(
               urlResource.url,
               width: width,
@@ -59,9 +58,10 @@ class ImageRenderer extends StatelessWidget {
           }
         } else if (resource is ByteResource) {
           final byteResource = resource as ByteResource;
-          if (_isSvgBytes(byteResource.bytes)) {
+          final cleanSvgBytes = _cleanSvgBytes(byteResource.bytes);
+          if (_isSvgBytes(cleanSvgBytes)) {
             return SvgPicture.memory(
-              byteResource.bytes,
+              cleanSvgBytes,
               width: width,
               height: height,
               fit: fit,
@@ -75,6 +75,9 @@ class ImageRenderer extends StatelessWidget {
               width: width,
               height: height,
               fit: fit,
+              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                return const Center(child: Icon(Icons.broken_image, size: 48));
+              },
             );
           }
         } else {
@@ -84,9 +87,21 @@ class ImageRenderer extends StatelessWidget {
     );
   }
 
+  bool _isSvgUrl(String url) {
+    final uri = Uri.parse(url);
+    final path = uri.path.toLowerCase();
+    return path.endsWith('.svg');
+  }
+
   bool _isSvgBytes(Uint8List bytes) {
     final header = utf8.decode(bytes.take(100).toList(), allowMalformed: true).trimLeft();
-    return header.startsWith('<svg');
+    return header.startsWith('<svg') || header.contains('<svg');
+  }
+
+  Uint8List _cleanSvgBytes(Uint8List bytes) {
+    final svgString = utf8.decode(bytes, allowMalformed: true);
+    final cleanedSvg = svgString.replaceAll(RegExp(r'<\?xml.*?\?>|<!DOCTYPE[^>]*>', multiLine: true), '').trim();
+    return Uint8List.fromList(utf8.encode(cleanedSvg));
   }
 }
 
