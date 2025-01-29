@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
-
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/core/core.dart';
-
 
 class AddModeActionPage extends StatefulWidget {
   const AddModeActionPage({
-    required this.assets,
     required this.embedded,
     super.key,
   });
 
-  final List<ThemeAssetModel> assets;
   final List<EmbeddedData> embedded;
 
   @override

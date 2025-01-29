@@ -218,7 +218,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
     final res = await Navigator.of(context).push(
       MaterialPageRoute<AppConfigModeSelectAction>(
         builder: (BuildContext context) => AddModeActionPage(
-          assets: widget.assets,
           embedded: widget.sourceAppConfigLogin.embedded,
         ),
       ),

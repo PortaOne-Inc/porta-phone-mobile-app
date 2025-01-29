@@ -87,7 +87,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   UrlImageField(
-                    title: 'Select Image',
+                    title: 'Select file',
                     resource: _file != null ? ByteResource(_file!) : null,
                     constraints: BoxConstraints.loose(const Size(200, 200)),
                     onTap: _onSelectFile,

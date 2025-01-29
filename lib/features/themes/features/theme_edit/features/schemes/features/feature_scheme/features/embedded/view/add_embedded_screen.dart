@@ -88,12 +88,17 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                   ),
                   Visibility(
                     visible: _customLoginOption == EmbeddedResourceType.html,
-                    child: DropdownButtonExt<ThemeAssetModel>(
-                      label: 'Select HTML Asset',
-                      value: _asset,
-                      options: _assets,
-                      optionBuilder: (asset) => '${asset.name} (${asset.id}.html)',
-                      onChanged: (value) => setState(() => _asset = value),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text('Select HTML file'),
+                      subtitle: Text('Select the HTML file to use as the embedded resource.'),
+                      trailing: Icon(Icons.navigate_next),
+                      onTap: () async {
+                        final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
+                          SchemeRoute.assetsScheme.name,
+                          extra: [ThemeAssetType.html],
+                        );
+                      },
                     ),
                   ),
                   SwitchListTile(
