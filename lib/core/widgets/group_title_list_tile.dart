@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GroupTitleListTile extends StatelessWidget {
-  const GroupTitleListTile({
+class GroupTitleTile extends StatelessWidget {
+  const GroupTitleTile({
     required this.titleData,
     required this.style,
     required this.backgroundColor,

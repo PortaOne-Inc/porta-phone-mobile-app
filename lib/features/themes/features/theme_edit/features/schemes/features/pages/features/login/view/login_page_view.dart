@@ -83,6 +83,21 @@ class LoginPageView extends StatelessWidget {
                     }
                   },
                 ),
+                const SizedBox(height: 16),
+                Text(
+                  'Logo scale',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Slider(
+                  value: loginPageConfig.scale ?? .25,
+                  divisions: 100,
+                  label: (loginPageConfig.scale ?? .25).toStringAsFixed(2),
+                  onChanged: (value) {
+                    callback(loginPageConfig.copyWith(
+                      scale: value,
+                    ));
+                  },
+                ),
               ],
             ),
           ),

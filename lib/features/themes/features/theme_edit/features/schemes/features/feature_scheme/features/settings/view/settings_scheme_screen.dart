@@ -74,7 +74,7 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
                 Row(
                   children: [
                     Expanded(
-                      child: GroupTitleListTile(
+                      child: GroupTitleTile(
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                         titleData: section.titleL10n,
                         style: textTheme.titleMedium,

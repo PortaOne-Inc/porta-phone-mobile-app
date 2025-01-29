@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -84,10 +85,8 @@ class ImageRenderer extends StatelessWidget {
   }
 
   bool _isSvgBytes(Uint8List bytes) {
-    // Simple check to identify if the bytes represent an SVG file
-    const svgHeader = '<svg';
-    final content = String.fromCharCodes(bytes);
-    return content.trimLeft().startsWith(svgHeader);
+    final header = utf8.decode(bytes.take(100).toList(), allowMalformed: true).trimLeft();
+    return header.startsWith('<svg');
   }
 }
 

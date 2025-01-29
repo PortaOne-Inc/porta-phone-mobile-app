@@ -9,6 +9,7 @@ import 'package:domain/domain.dart';
 import 'package:logging/logging.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/extension/theme_page_config_ext.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 import 'package:webtrit_configurator/features/themes/themes.dart';
 
@@ -180,15 +181,19 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     if (event.model != null) {
       if ((event.model?.name ?? '').isNotEmpty) {
         try {
-          emit(state.copyWith(
-            status: ThemePropertyStatus.progress,
-          ));
+          emit(state.copyWith(status: ThemePropertyStatus.progress));
+
+          final colorScheme = state.colorSchemeConfig.toJson();
+          final themeWidgetConfig = state.themeWidgetConfig.toJson();
+          final themePageConfig = state.themePageConfig.toJson();
+          final appConfig = state.appConfig.toJson();
+
           await updateThemeUseCase.execute(
             themeModel: event.model!.copyWith(
-              colorSchemeConfig: state.colorSchemeConfig.toJson(),
-              themeWidgetConfig: state.themeWidgetConfig.toJson(),
-              themePageConfig: state.themePageConfig.toJson(),
-              appConfig: state.appConfig.toJson(),
+              colorSchemeConfig: colorScheme,
+              themeWidgetConfig: themeWidgetConfig,
+              themePageConfig: themePageConfig,
+              appConfig: appConfig,
               assets: state.assets,
             ),
           );

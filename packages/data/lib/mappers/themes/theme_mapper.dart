@@ -18,6 +18,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
       name: it.name,
       colorSchemeConfig: ColorSchemeConfig.fromJson(it.colorSchemeConfig),
       themeWidgetConfig: ThemeWidgetConfig.fromJson(it.themeWidgetConfig),
+      themePageConfig: ThemePageConfig.fromJson(it.themePageConfig),
       appConfig: AppConfig.fromJson(it.appConfig),
       assets: themeAssetMapper.convertListTo(it.assets),
     );
@@ -30,6 +31,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
         name: it.name,
         colorSchemeConfig: it.colorSchemeConfig.toJson(),
         themeWidgetConfig: it.themeWidgetConfig.toJson(),
+        themePageConfig: it.themePageConfig.toJson(),
         appConfig: it.appConfig.toJson(),
         assets: themeAssetMapper.convertListFrom(it.assets));
   }

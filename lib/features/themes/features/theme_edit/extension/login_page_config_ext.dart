@@ -7,5 +7,5 @@ extension LoginPageConfigExt on LoginPageConfig {
     );
   }
 
-  String? get pictureUrl => metadata.getValue(LoginPageConfig.pictureKey);
+  String? get pictureUrl => metadata.getString(LoginPageConfig.pictureKey);
 }

@@ -26,7 +26,7 @@ class AttributesWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GroupTitleListTile(
+        GroupTitleTile(
           titleData: 'Attributes',
           contentPadding: contentPadding,
           style: textTheme.titleMedium,
