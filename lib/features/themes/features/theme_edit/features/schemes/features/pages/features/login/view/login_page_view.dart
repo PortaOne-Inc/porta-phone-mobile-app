@@ -38,7 +38,7 @@ class LoginPageView extends StatelessWidget {
                     extra: [ThemeAssetType.vectorImage],
                   );
                   callback(loginPageConfig.copyWith(
-                    metadata: loginPageConfig.metadata.copyWithKey(LoginPageConfig.pictureKey, result?.url),
+                    metadata: loginPageConfig.metadata.copyWithKey(LoginPageConfig.metadataPictureUrl, result?.url),
                   ));
                 },
               )

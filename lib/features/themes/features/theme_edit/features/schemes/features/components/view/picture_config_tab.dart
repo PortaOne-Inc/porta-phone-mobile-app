@@ -52,7 +52,7 @@ class PictureConfigTab extends StatelessWidget {
                   onChanged(
                     pictureConfig.copyWith(
                       metadata: pictureConfig.metadata.copyWithKey(
-                        PictureWidgetConfig.primaryOnboardingLogoUrlKey,
+                        PictureWidgetConfig.metadataPrimaryOnboardingLogoUrl,
                         result?.url,
                       ),
                     ),
@@ -72,7 +72,7 @@ class PictureConfigTab extends StatelessWidget {
                   );
                   onChanged(pictureConfig.copyWith(
                     metadata: pictureConfig.metadata.copyWithKey(
-                      PictureWidgetConfig.secondaryOnboardingLogoUrlKey,
+                      PictureWidgetConfig.metadataSecondaryOnboardingLogoUrl,
                       result?.url,
                     ),
                   ));
