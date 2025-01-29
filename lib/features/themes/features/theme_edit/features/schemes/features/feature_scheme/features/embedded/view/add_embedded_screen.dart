@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:domain/domain.dart';
 
@@ -25,6 +26,7 @@ class AddEmbeddedDataScreen extends StatefulWidget {
 class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
   final _titleL10nController = TextEditingController();
   final _resourceController = TextEditingController();
+
   final int _id = DateTime.now().millisecondsSinceEpoch;
 
   List<ThemeAssetModel> get _assets => Provider.of<AssetsProvider>(context, listen: false).assets;
@@ -90,14 +92,18 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                     visible: _customLoginOption == EmbeddedResourceType.html,
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: Text('Select HTML file'),
-                      subtitle: Text('Select the HTML file to use as the embedded resource.'),
-                      trailing: Icon(Icons.navigate_next),
+                      title: Text(_asset == null ? 'Select HTML file' : 'Change HTML file'),
+                      subtitle: Text(
+                        _asset == null ? 'Select the HTML file to use as the embedded resource.' : _asset!.name,
+                      ),
+                      trailing: const Icon(Icons.navigate_next),
                       onTap: () async {
                         final result = await GoRouter.of(context).pushNamed<ThemeAssetModel>(
                           SchemeRoute.assetsScheme.name,
                           extra: [ThemeAssetType.html],
                         );
+
+                        setState(() => _asset = result);
                       },
                     ),
                   ),
@@ -137,9 +143,9 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
     );
   }
 
-  void _saveData() {
+  Future<void> _saveData() async {
     final titleL10n = _titleL10nController.text.trim();
-    final resource = _customLoginOption == EmbeddedResourceType.url ? _resourceController.text.trim() : _asset?.id;
+    final resource = _customLoginOption == EmbeddedResourceType.url ? _resourceController.text.trim() : _asset?.url;
 
     if (titleL10n.isEmpty || resource == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -148,21 +154,33 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
       return;
     }
 
+    final response = await http.get(Uri.parse(resource));
+
     final initialUrl = Uri.dataFromBytes(
-      _asset?.file?.toList() ?? [],
+      response.bodyBytes,
       mimeType: 'text/html',
+    );
+
+    final config = ToolbarConfig(
+      titleL10n: titleL10n,
+      showToolbar: _showToolbar,
+    );
+
+    final metadata = Metadata(
+      attributes: {
+        EmbeddedData.metadataResourceId: _asset?.id,
+        EmbeddedData.metadataResourceURI: _asset?.url,
+      },
     );
 
     final embedded = EmbeddedData(
       id: _id,
       resource: initialUrl,
-      toolbar: ToolbarConfig(
-        titleL10n: titleL10n,
-        showToolbar: _showToolbar,
-      ),
+      toolbar: config,
       attributes: Map.fromEntries(_attributes),
+      metadata: metadata,
     );
 
-    GoRouter.of(context).pop(embedded);
+    if (mounted) GoRouter.of(context).pop(embedded);
   }
 }
