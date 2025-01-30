@@ -18,12 +18,20 @@ abstract class RegisterModule {
 
   @LazySingleton()
   Dio serverApiClient(@Named('newBaseUrl') String baseUrl, AuthPrefDatasource authPref) {
-    final option = BaseOptions(baseUrl: baseUrl);
+    final options = BaseOptions(baseUrl: baseUrl);
+    final dio = Dio(options);
 
-    return Dio(option)
-      ..interceptors.addAll([
-        AuthInterceptor(authPref),
-        LoggingInterceptor(),
-      ]);
+    dio.interceptors.addAll([
+      AuthInterceptor(authPref),
+      LoggingInterceptor(),
+    ]);
+
+    return dio;
   }
+}
+
+@module
+abstract class StorageModule {
+  @preResolve
+  Future<LocalStorage> provideLocalStorage() => providePlatformSpecificStorage();
 }

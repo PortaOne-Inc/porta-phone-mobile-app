@@ -10,8 +10,10 @@ import 'package:data/datasource/configurator_backend/configurator_backand_dataso
     as _i342;
 import 'package:data/datasource/datasource.dart' as _i822;
 import 'package:data/datasource/preferences/auth_pref_datasource.dart' as _i808;
-import 'package:data/datasource/preferences/preferences.dart' as _i385;
 import 'package:data/datasource/preferences/user_pref_datasource.dart' as _i759;
+import 'package:data/datasource/storage/file_storage.dart' as _i99;
+import 'package:data/datasource/storage/local_storage.dart' as _i191;
+import 'package:data/datasource/storage/shared_preferences.dart' as _i578;
 import 'package:data/di/injection.dart' as _i237;
 import 'package:data/dto/application/application.dart' as _i499;
 import 'package:data/dto/dto.dart' as _i862;
@@ -40,18 +42,23 @@ class DataPackageModule extends _i526.MicroPackageModule {
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) async {
     final registerModule = _$RegisterModule();
+    final storageModule = _$StorageModule();
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs(),
       preResolve: true,
     );
+    await gh.factoryAsync<_i191.LocalStorage>(
+      () => storageModule.provideLocalStorage(),
+      preResolve: true,
+    );
     gh.lazySingleton<_i457.FirebaseStorage>(() => registerModule.storage());
-    gh.lazySingleton<_i759.UserPrefDatasource>(
-        () => _i759.UserPrefDatasource(gh<_i460.SharedPreferences>()));
-    gh.lazySingleton<_i808.AuthPrefDatasource>(
-        () => _i808.AuthPrefDatasource(gh<_i460.SharedPreferences>()));
     gh.factory<
             _i602.CommonMapper<_i494.ApplicationModel, _i499.ApplicationDTO>>(
         () => _i518.ApplicationMapper());
+    gh.lazySingleton<_i759.UserPrefDatasource>(
+        () => _i759.UserPrefDatasource(gh<_i191.LocalStorage>()));
+    gh.lazySingleton<_i808.AuthPrefDatasource>(
+        () => _i808.AuthPrefDatasource(gh<_i191.LocalStorage>()));
     gh.lazySingleton<_i361.Dio>(() => registerModule.serverApiClient(
           gh<String>(instanceName: 'newBaseUrl'),
           gh<_i822.AuthPrefDatasource>(),
@@ -67,10 +74,34 @@ class DataPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
         () => _i729.PhoneBranchMapper());
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
-        () => _i342.ConfiguratorBackandDatasource(
-              gh<_i361.Dio>(),
-              gh<_i385.AuthPrefDatasource>(),
-            ));
+        () => _i342.ConfiguratorBackandDatasource(gh<_i361.Dio>()));
+    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          phoneBranchMapper: gh<
+              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+          appVersionMapper: gh<
+              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
+        ));
+    gh.factory<_i191.LocalStorage>(
+      () => _i99.FileStorage(gh<String>()),
+      instanceName: 'FileStorage',
+    );
+    gh.factory<_i494.ApplicationRepository>(() =>
+        _i747.ApplicationRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          applicationMapper: gh<
+              _i1058
+              .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
+        ));
+    gh.factory<_i191.LocalStorage>(
+      () => _i578.SharedPreferencesStorage(gh<_i460.SharedPreferences>()),
+      instanceName: 'SharedPrefsStorage',
+    );
+    gh.factory<_i174.TranslationsRepository>(() =>
+        _i591.TranslationsRepositoryImpl(
+            gh<_i822.ConfiguratorBackandDatasource>()));
     gh.factory<_i174.ResourcesRepository>(
         () => _i136.ResourcesRepositoryImpl(gh<_i457.FirebaseStorage>()));
     gh.factory<_i494.AuthRepository>(() => _i442.AuthRepositoryImpl(
@@ -88,26 +119,9 @@ class DataPackageModule extends _i526.MicroPackageModule {
               _i1058
               .CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
         ));
-    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          phoneBranchMapper: gh<
-              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
-          appVersionMapper: gh<
-              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
-        ));
-    gh.factory<_i494.ApplicationRepository>(() =>
-        _i747.ApplicationRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          applicationMapper: gh<
-              _i1058
-              .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
-        ));
-    gh.factory<_i174.TranslationsRepository>(() =>
-        _i591.TranslationsRepositoryImpl(
-            gh<_i822.ConfiguratorBackandDatasource>()));
   }
 }
 
 class _$RegisterModule extends _i237.RegisterModule {}
+
+class _$StorageModule extends _i237.StorageModule {}

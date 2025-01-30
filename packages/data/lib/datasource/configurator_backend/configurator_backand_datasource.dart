@@ -7,19 +7,14 @@ import 'package:domain/domain.dart';
 
 import 'package:data/dto/dto.dart';
 import 'package:data/models/models.dart';
-import '../preferences/preferences.dart';
 
 import 'configurator_backand_api.dart';
 
 @lazySingleton
 class ConfiguratorBackandDatasource {
-  const ConfiguratorBackandDatasource(
-    this.client,
-    this.authTokenDataSource,
-  );
+  const ConfiguratorBackandDatasource(this.client,);
 
   final Dio client;
-  final AuthPrefDatasource authTokenDataSource;
 
   // Auth
 
@@ -81,6 +76,7 @@ class ConfiguratorBackandDatasource {
     final response = await client.get<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.application(applicationId),
     );
+
     return ApplicationDTO.fromJson(response.data!);
   }
 
@@ -143,11 +139,9 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<inner.ThemeAssetDto>> removeAssetById(
-    String applicationId,
-    String themeId,
-    int assetId,
-  ) async {
+  Future<List<inner.ThemeAssetDto>> removeAssetById(String applicationId,
+      String themeId,
+      int assetId,) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/remove/$assetId',
     );
@@ -157,12 +151,10 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<inner.ThemeAssetDto>> updateAssetById(
-    String applicationId,
-    String themeId,
-    int assetId,
-    ThemeAssetDto updatedAsset,
-  ) async {
+  Future<List<inner.ThemeAssetDto>> updateAssetById(String applicationId,
+      String themeId,
+      int assetId,
+      ThemeAssetDto updatedAsset,) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/update/$assetId',
       data: updatedAsset.toJson(),
@@ -173,10 +165,8 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<void> deleteAllAssets(
-    String applicationId,
-    String themeId,
-  ) async {
+  Future<void> deleteAllAssets(String applicationId,
+      String themeId,) async {
     await client.delete<void>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets',
     );

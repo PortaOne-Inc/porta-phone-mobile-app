@@ -1,39 +1,38 @@
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../storage/storage.dart';
 
 @lazySingleton
 class UserPrefDatasource {
-  UserPrefDatasource(this.prefs);
+  UserPrefDatasource(this.storage);
 
-  final SharedPreferences prefs;
+  final LocalStorage storage;
 
   static const _userIdKey = 'USER_ID_KEY';
   static const _emailKey = 'EMAIL_KEY';
 
   Future<void> saveUserId(String userId) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_userIdKey, userId);
+    await storage.setString(_userIdKey, userId);
   }
 
   Future<void> saveEmail(String email) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_emailKey, email);
+    await storage.setString(_emailKey, email);
   }
 
   String? getUserId() {
-    return prefs.getString(_userIdKey);
+    return storage.getString(_userIdKey);
   }
 
   String? getEmail() {
-    return prefs.getString(_emailKey);
+    return storage.getString(_emailKey);
   }
 
   Future<void> removeUserId() async {
-    await prefs.remove(_userIdKey);
+    await storage.remove(_userIdKey);
   }
 
   Future<void> removeEmail() async {
-    await prefs.remove(_emailKey);
+    await storage.remove(_emailKey);
   }
 
   Future<void> clean() async {

@@ -1,47 +1,41 @@
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../storage/storage.dart';
 
 @lazySingleton
 class AuthPrefDatasource {
-  AuthPrefDatasource(this.prefs);
+  AuthPrefDatasource(this.storage);
 
-  final SharedPreferences prefs;
+  final LocalStorage storage;
 
   static const _authTokenKey = 'AUTH_TOKEN_KEY';
   static const _expiredTimeKey = 'EXPIRED_TIME_KEY';
 
   Future<void> saveAuthToken(String token, DateTime expiredTime) async {
-    await prefs.setString(_authTokenKey, token);
-    await prefs.setString(_expiredTimeKey, expiredTime.toIso8601String());
+    await storage.setString(_authTokenKey, token);
+    await storage.setString(_expiredTimeKey, expiredTime.toIso8601String());
   }
 
   String? getAuthToken() {
-    return prefs.getString(_authTokenKey);
+    return storage.getString(_authTokenKey);
   }
 
   DateTime? getExpiredTime() {
-    final expiredTimeString = prefs.getString(_expiredTimeKey);
-    if (expiredTimeString != null) {
-      return DateTime.parse(expiredTimeString);
-    }
-    return null;
+    final expiredTimeString = storage.getString(_expiredTimeKey);
+    return expiredTimeString != null ? DateTime.parse(expiredTimeString) : null;
   }
 
   Future<void> clean() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_authTokenKey);
-    await prefs.remove(_expiredTimeKey);
+    await storage.remove(_authTokenKey);
+    await storage.remove(_expiredTimeKey);
   }
 
   bool isAuthTokenExist() {
-    return prefs.containsKey(_authTokenKey);
+    return storage.containsKey(_authTokenKey);
   }
 
   bool isAuthTokenExpired() {
     final expiredTime = getExpiredTime();
-    if (expiredTime != null) {
-      return DateTime.now().isAfter(expiredTime);
-    }
-    return true;
+    return expiredTime == null || DateTime.now().isAfter(expiredTime);
   }
 }
