@@ -93,17 +93,32 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.rocket_launch_outlined, color: colorScheme.primary),
+              leading: Icon(Icons.image_outlined, color: colorScheme.primary),
               title: const Text(
-                'Launch Icons & Splash Screen',
+                'Launch Icons',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               subtitle: const Text(
-                'Configure and prepare resources for app launch icons and splash screens.',
+                'Configure and prepare resources for app launch icons.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () => GoRouter.of(context).goNamed(
                 SchemeRoute.launchScheme.name,
+                extra: state.theme,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.rocket_launch_outlined, color: colorScheme.primary),
+              title: const Text(
+                'Splash Screen',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              subtitle: const Text(
+                'Configure and prepare resources for splash screens.',
+              ),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () => GoRouter.of(context).goNamed(
+                SchemeRoute.splashScreenScheme.name,
                 extra: state.theme,
               ),
             ),

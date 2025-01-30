@@ -1,4 +1,4 @@
-export 'asset_render_widget.dart';
+export '../features/schemes/features/launch_assets/widgets/asset_render_widget.dart';
 export 'font_item.dart';
 export 'fonts_picker.dart';
 export 'icon_text_button.dart';
@@ -6,3 +6,4 @@ export 'input_padding.dart';
 export 'mock_device.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'selected_image.dart';
+export 'full_size_render.dart';

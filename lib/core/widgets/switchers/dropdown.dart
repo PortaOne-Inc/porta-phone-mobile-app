@@ -35,9 +35,9 @@ class _DropDownState extends State<Dropdown> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      padding: EdgeInsets.zero,
       constraints: widget.constraints,
       elevation: 1,
-      offset: const Offset(8, kToolbarHeight),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(8),

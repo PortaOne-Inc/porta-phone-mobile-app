@@ -58,33 +58,52 @@ class ImageRenderer extends StatelessWidget {
           }
         } else if (resource is ByteResource) {
           final byteResource = resource as ByteResource;
-          final cleanSvgBytes = _cleanSvgBytes(byteResource.bytes);
-          if (_isSvgBytes(cleanSvgBytes)) {
-            return SvgPicture.memory(
-              cleanSvgBytes,
-              width: width,
-              height: height,
-              fit: fit,
-              placeholderBuilder: (BuildContext context) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else {
-            return Image.memory(
-              byteResource.bytes,
-              width: width,
-              height: height,
-              fit: fit,
-              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+          return _buildByteImage(byteResource.bytes, width, height);
+        } else if (resource is FutureByteResource) {
+          final futureByteResource = resource as FutureByteResource;
+          return FutureBuilder<Uint8List?>(
+            future: futureByteResource.bytesFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError || !snapshot.hasData || snapshot.data == null) {
                 return const Center(child: Icon(Icons.broken_image, size: 48));
-              },
-            );
-          }
+              }
+              return _buildByteImage(snapshot.data!, width, height);
+            },
+          );
+        } else if (resource is EmptyResource) {
+          return SizedBox(width: width, height: height);
         } else {
           return const Center(child: Icon(Icons.error, size: 48));
         }
       },
     );
+  }
+
+  Widget _buildByteImage(Uint8List bytes, double? width, double? height) {
+    final cleanSvgBytes = _cleanSvgBytes(bytes);
+    if (_isSvgBytes(cleanSvgBytes)) {
+      return SvgPicture.memory(
+        cleanSvgBytes,
+        width: width,
+        height: height,
+        fit: fit,
+        placeholderBuilder: (BuildContext context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      return Image.memory(
+        bytes,
+        width: width,
+        height: height,
+        fit: fit,
+        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+          return const Center(child: Icon(Icons.broken_image, size: 48));
+        },
+      );
+    }
   }
 
   bool _isSvgUrl(String url) {
@@ -112,8 +131,16 @@ abstract class Resource {
     return ByteResource(bytes);
   }
 
+  factory Resource.empty() {
+    return EmptyResource();
+  }
+
   factory Resource.url(String url) {
     return UrlResource(url);
+  }
+
+  factory Resource.futureByte(Future<Uint8List?> bytesFuture) {
+    return FutureByteResource(bytesFuture);
   }
 }
 
@@ -123,8 +150,16 @@ class UrlResource extends Resource {
   final String url;
 }
 
+class EmptyResource extends Resource {}
+
 class ByteResource extends Resource {
   const ByteResource(this.bytes);
 
   final Uint8List bytes;
+}
+
+class FutureByteResource extends Resource {
+  const FutureByteResource(this.bytesFuture);
+
+  final Future<Uint8List?> bytesFuture;
 }

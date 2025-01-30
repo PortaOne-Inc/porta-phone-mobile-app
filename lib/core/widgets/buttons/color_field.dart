@@ -5,11 +5,12 @@ import 'package:webtrit_configurator/core/core.dart';
 class ColorField extends StatelessWidget {
   const ColorField({
     required this.title,
-    required this.constraints,
     this.color = Colors.white,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.all(16),
+    this.constraints,
     this.onTap,
+    this.child,
     super.key,
   });
 
@@ -17,8 +18,9 @@ class ColorField extends StatelessWidget {
   final Color? color;
   final EdgeInsets margin;
   final EdgeInsets padding;
-  final BoxConstraints constraints;
+  final BoxConstraints? constraints;
   final void Function(Color color)? onTap;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ColorField extends StatelessWidget {
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
-    final effectiveColor = color ?? colorScheme.primary.withValues(alpha: 0.5);
+    final effectiveColor = color ?? colorScheme.primary.withOpacity(0.5);
     final inverseColor = _getTextColorForBackground(effectiveColor);
 
     return GestureDetector(
@@ -37,7 +39,7 @@ class ColorField extends StatelessWidget {
         margin: margin,
         elevation: 1,
         child: ConstrainedBox(
-          constraints: constraints,
+          constraints: constraints ?? const BoxConstraints(),
           child: Stack(
             children: [
               if (color == null)
@@ -55,6 +57,10 @@ class ColorField extends StatelessWidget {
                     _buildTitle(textTheme, inverseColor),
                     const SizedBox(height: 8),
                     _buildColorDisplay(context, effectiveColor, inverseColor),
+                    if (child != null) ...[
+                      const SizedBox(height: 8),
+                      child!,
+                    ],
                   ],
                 ),
               ),
@@ -119,7 +125,7 @@ class _PatternPainter extends CustomPainter {
 
     for (var row = 0; row < (size.height / cellSize).ceil(); row++) {
       for (var col = 0; col < (size.width / cellSize).ceil(); col++) {
-        paint.color = (row + col).isEven ? primaryColor.withValues(alpha: 0.85) : primaryColor.withValues(alpha: 0.65);
+        paint.color = (row + col).isEven ? primaryColor.withOpacity(0.85) : primaryColor.withOpacity(0.65);
 
         final rect = Rect.fromLTWH(col * cellSize, row * cellSize, cellSize, cellSize);
         canvas.drawRect(rect, paint);

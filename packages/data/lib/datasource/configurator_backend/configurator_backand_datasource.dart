@@ -10,6 +10,8 @@ import 'package:data/models/models.dart';
 
 import 'configurator_backand_api.dart';
 
+export 'package:dio/dio.dart';
+
 @lazySingleton
 class ConfiguratorBackandDatasource {
   const ConfiguratorBackandDatasource(this.client,);

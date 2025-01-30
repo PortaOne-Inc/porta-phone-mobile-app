@@ -25,6 +25,10 @@ _$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
       appConfig: json['appConfig'] == null
           ? const AppConfig()
           : AppConfig.fromJson(json['appConfig'] as Map<String, dynamic>),
+      launchAssets: json['launchAssets'] == null
+          ? const LaunchAssetsDto()
+          : LaunchAssetsDto.fromJson(
+              json['launchAssets'] as Map<String, dynamic>),
       assets: (json['assets'] as List<dynamic>?)
               ?.map((e) => ThemeAssetDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -39,6 +43,7 @@ Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
       'themeWidgetConfig': instance.themeWidgetConfig,
       'themePageConfig': instance.themePageConfig,
       'appConfig': instance.appConfig,
+      'launchAssets': instance.launchAssets,
       'assets': instance.assets,
     };
 

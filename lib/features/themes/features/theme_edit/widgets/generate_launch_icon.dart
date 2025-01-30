@@ -13,13 +13,13 @@ class GenerateLaunchIcon extends StatelessWidget {
     required this.padding,
     required this.title,
     required this.fit,
-    this.imageModel,
+    this.resource,
     this.color,
     super.key,
   });
 
   final ScreenshotController screenshotStreamController;
-  final ImageModel? imageModel;
+  final Resource? resource;
   final EdgeInsets padding;
   final Size size;
   final BoxFit fit;
@@ -40,8 +40,8 @@ class GenerateLaunchIcon extends StatelessWidget {
               width: size.width,
               color: color,
               height: size.height,
-              child: ImageResource(
-                imageModel: imageModel ?? const ImageModel(),
+              child: ImageRenderer(
+                resource: resource ?? Resource.empty(),
                 fit: fit,
               ),
             ),

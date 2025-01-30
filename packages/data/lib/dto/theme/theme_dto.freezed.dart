@@ -26,6 +26,7 @@ mixin _$ThemeDTO {
   ThemeWidgetConfig get themeWidgetConfig => throw _privateConstructorUsedError;
   ThemePageConfig get themePageConfig => throw _privateConstructorUsedError;
   AppConfig get appConfig => throw _privateConstructorUsedError;
+  LaunchAssetsDto get launchAssets => throw _privateConstructorUsedError;
   List<ThemeAssetDto> get assets => throw _privateConstructorUsedError;
 
   /// Serializes this ThemeDTO to a JSON map.
@@ -50,12 +51,14 @@ abstract class $ThemeDTOCopyWith<$Res> {
       ThemeWidgetConfig themeWidgetConfig,
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
+      LaunchAssetsDto launchAssets,
       List<ThemeAssetDto> assets});
 
   $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;
   $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;
   $ThemePageConfigCopyWith<$Res> get themePageConfig;
   $AppConfigCopyWith<$Res> get appConfig;
+  $LaunchAssetsDtoCopyWith<$Res> get launchAssets;
 }
 
 /// @nodoc
@@ -79,6 +82,7 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? launchAssets = null,
     Object? assets = null,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +110,10 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
           ? _value.appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as AppConfig,
+      launchAssets: null == launchAssets
+          ? _value.launchAssets
+          : launchAssets // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsDto,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
@@ -152,6 +160,16 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
       return _then(_value.copyWith(appConfig: value) as $Val);
     });
   }
+
+  /// Create a copy of ThemeDTO
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LaunchAssetsDtoCopyWith<$Res> get launchAssets {
+    return $LaunchAssetsDtoCopyWith<$Res>(_value.launchAssets, (value) {
+      return _then(_value.copyWith(launchAssets: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -169,6 +187,7 @@ abstract class _$$ThemeDTOImplCopyWith<$Res>
       ThemeWidgetConfig themeWidgetConfig,
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
+      LaunchAssetsDto launchAssets,
       List<ThemeAssetDto> assets});
 
   @override
@@ -179,6 +198,8 @@ abstract class _$$ThemeDTOImplCopyWith<$Res>
   $ThemePageConfigCopyWith<$Res> get themePageConfig;
   @override
   $AppConfigCopyWith<$Res> get appConfig;
+  @override
+  $LaunchAssetsDtoCopyWith<$Res> get launchAssets;
 }
 
 /// @nodoc
@@ -200,6 +221,7 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
     Object? themeWidgetConfig = null,
     Object? themePageConfig = null,
     Object? appConfig = null,
+    Object? launchAssets = null,
     Object? assets = null,
   }) {
     return _then(_$ThemeDTOImpl(
@@ -227,6 +249,10 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
           ? _value.appConfig
           : appConfig // ignore: cast_nullable_to_non_nullable
               as AppConfig,
+      launchAssets: null == launchAssets
+          ? _value.launchAssets
+          : launchAssets // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsDto,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
@@ -245,6 +271,7 @@ class _$ThemeDTOImpl extends _ThemeDTO {
       this.themeWidgetConfig = const ThemeWidgetConfig(),
       this.themePageConfig = const ThemePageConfig(),
       this.appConfig = const AppConfig(),
+      this.launchAssets = const LaunchAssetsDto(),
       this.assets = const []})
       : super._();
 
@@ -269,11 +296,14 @@ class _$ThemeDTOImpl extends _ThemeDTO {
   final AppConfig appConfig;
   @override
   @JsonKey()
+  final LaunchAssetsDto launchAssets;
+  @override
+  @JsonKey()
   final List<ThemeAssetDto> assets;
 
   @override
   String toString() {
-    return 'ThemeDTO(id: $id, name: $name, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets)';
+    return 'ThemeDTO(id: $id, name: $name, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, launchAssets: $launchAssets, assets: $assets)';
   }
 
   @override
@@ -291,6 +321,8 @@ class _$ThemeDTOImpl extends _ThemeDTO {
                 other.themePageConfig == themePageConfig) &&
             (identical(other.appConfig, appConfig) ||
                 other.appConfig == appConfig) &&
+            (identical(other.launchAssets, launchAssets) ||
+                other.launchAssets == launchAssets) &&
             const DeepCollectionEquality().equals(other.assets, assets));
   }
 
@@ -304,6 +336,7 @@ class _$ThemeDTOImpl extends _ThemeDTO {
       themeWidgetConfig,
       themePageConfig,
       appConfig,
+      launchAssets,
       const DeepCollectionEquality().hash(assets));
 
   /// Create a copy of ThemeDTO
@@ -330,6 +363,7 @@ abstract class _ThemeDTO extends ThemeDTO {
       final ThemeWidgetConfig themeWidgetConfig,
       final ThemePageConfig themePageConfig,
       final AppConfig appConfig,
+      final LaunchAssetsDto launchAssets,
       final List<ThemeAssetDto> assets}) = _$ThemeDTOImpl;
   const _ThemeDTO._() : super._();
 
@@ -348,6 +382,8 @@ abstract class _ThemeDTO extends ThemeDTO {
   ThemePageConfig get themePageConfig;
   @override
   AppConfig get appConfig;
+  @override
+  LaunchAssetsDto get launchAssets;
   @override
   List<ThemeAssetDto> get assets;
 

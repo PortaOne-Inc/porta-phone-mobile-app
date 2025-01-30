@@ -5,6 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_appearance_theme/models/models.dart';
 
+import 'system_assets_dto.dart';
+
 export 'package:webtrit_appearance_theme/models/models.dart';
 
 part 'theme_dto.freezed.dart';
@@ -20,6 +22,7 @@ class ThemeDTO with _$ThemeDTO {
     @Default(ThemeWidgetConfig()) ThemeWidgetConfig themeWidgetConfig,
     @Default(ThemePageConfig()) ThemePageConfig themePageConfig,
     @Default(AppConfig()) AppConfig appConfig,
+    @Default(LaunchAssetsDto()) LaunchAssetsDto launchAssets,
     @Default([]) List<ThemeAssetDto> assets,
   }) = _ThemeDTO;
 

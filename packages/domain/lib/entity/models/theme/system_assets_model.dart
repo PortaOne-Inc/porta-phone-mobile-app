@@ -5,13 +5,23 @@ part 'system_assets_model.freezed.dart';
 @freezed
 class SystemAssetsModel with _$SystemAssetsModel {
   const factory SystemAssetsModel({
-    String? notificationLogo,
-    String? adaptiveIconBackground,
-    String? adaptiveIconForeground,
-    String? androidLauncherIcon,
-    String? iosLauncherIcon,
-    String? webLauncherIcon,
+    LaunchImageResource? notificationLogo,
+    LaunchImageResource? adaptiveIconBackground,
+    LaunchImageResource? adaptiveIconForeground,
+    LaunchImageResource? androidLauncherIcon,
+    LaunchImageResource? iosLauncherIcon,
+    LaunchImageResource? webLauncherIcon,
   }) = _SystemAssetsModel;
 
   const SystemAssetsModel._();
+}
+
+@freezed
+class LaunchImageResource with _$LaunchImageResource {
+  const factory LaunchImageResource({
+    String? url,
+    String? originalAssetId,
+  }) = _LaunchImageResource;
+
+  const LaunchImageResource._();
 }

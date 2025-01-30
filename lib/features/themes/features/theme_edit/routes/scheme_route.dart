@@ -51,6 +51,10 @@ class SchemeRoute {
     name: 'launch-scheme',
     path: '/launch',
   );
+  static const splashScreenScheme = DestinationInfo(
+    name: 'splash-screen-scheme',
+    path: '/splash',
+  );
 
   static const appFeatureConfiguration = DestinationInfo(
     name: 'feature-scheme',
@@ -201,10 +205,14 @@ class SchemeRoute {
                     name: launchScheme.name,
                     path: launchScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
-                      final themeModel = state.extra as ThemeModel?;
-                      return LaunchAssetsConfigurationView(
-                        themeModel: themeModel!,
-                      );
+                      return LaunchAssetsScreen();
+                    },
+                  ),
+                  GoRoute(
+                    name: splashScreenScheme.name,
+                    path: splashScreenScheme.path,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return SplashScreen();
                     },
                   ),
                 ],
