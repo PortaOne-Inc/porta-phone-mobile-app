@@ -7,3 +7,5 @@ export 'usecase_theme_get_all.dart';
 export 'usecase_theme_get_template.dart';
 export 'usecase_theme_update.dart';
 export 'usecase_user_get.dart';
+export 'add_launch_assets_theme_usecase.dart';
+export 'update_splash_assets_theme_usecase.dart';

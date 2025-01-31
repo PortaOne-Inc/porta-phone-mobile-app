@@ -14,7 +14,9 @@ export 'package:dio/dio.dart';
 
 @lazySingleton
 class ConfiguratorBackandDatasource {
-  const ConfiguratorBackandDatasource(this.client,);
+  const ConfiguratorBackandDatasource(
+    this.client,
+  );
 
   final Dio client;
 
@@ -141,9 +143,11 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<inner.ThemeAssetDto>> removeAssetById(String applicationId,
-      String themeId,
-      int assetId,) async {
+  Future<List<inner.ThemeAssetDto>> removeAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+  ) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/remove/$assetId',
     );
@@ -153,10 +157,12 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<inner.ThemeAssetDto>> updateAssetById(String applicationId,
-      String themeId,
-      int assetId,
-      ThemeAssetDto updatedAsset,) async {
+  Future<List<inner.ThemeAssetDto>> updateAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+    ThemeAssetDto updatedAsset,
+  ) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/update/$assetId',
       data: updatedAsset.toJson(),
@@ -167,10 +173,40 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<void> deleteAllAssets(String applicationId,
-      String themeId,) async {
+  Future<void> deleteAllAssets(
+    String applicationId,
+    String themeId,
+  ) async {
     await client.delete<void>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets',
+    );
+  }
+
+  Future<ThemeDTO> updateLaunchAssets(String applicationId, String themeId, LaunchAssetsDto launchAssets) async {
+    final response = await client.patch<Map<String, dynamic>>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/launch-assets/update',
+      data: launchAssets.toJson(),
+    );
+    return ThemeDTO.fromJson(response.data!);
+  }
+
+  Future<void> deleteLaunchAssets(String applicationId, String themeId) async {
+    await client.delete<void>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/launch-assets',
+    );
+  }
+
+  Future<ThemeDTO> updateSplashAsset(String applicationId, String themeId, SplashAssetsDto splashAsset) async {
+    final response = await client.patch<Map<String, dynamic>>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/splash-asset/update',
+      data: splashAsset.toJson(),
+    );
+    return ThemeDTO.fromJson(response.data!);
+  }
+
+  Future<void> deleteSplashAsset(String applicationId, String themeId) async {
+    await client.delete<void>(
+      '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/splash-asset',
     );
   }
 

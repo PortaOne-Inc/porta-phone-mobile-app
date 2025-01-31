@@ -29,6 +29,10 @@ _$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
           ? const LaunchAssetsDto()
           : LaunchAssetsDto.fromJson(
               json['launchAssets'] as Map<String, dynamic>),
+      splashAssets: json['splashAssets'] == null
+          ? const SplashAssetsDto()
+          : SplashAssetsDto.fromJson(
+              json['splashAssets'] as Map<String, dynamic>),
       assets: (json['assets'] as List<dynamic>?)
               ?.map((e) => ThemeAssetDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -44,6 +48,7 @@ Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
       'themePageConfig': instance.themePageConfig,
       'appConfig': instance.appConfig,
       'launchAssets': instance.launchAssets,
+      'splashAssets': instance.splashAssets,
       'assets': instance.assets,
     };
 

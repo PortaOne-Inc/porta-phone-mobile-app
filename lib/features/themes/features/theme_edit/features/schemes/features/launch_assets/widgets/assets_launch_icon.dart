@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import 'package:webtrit_configurator/core/widgets/image/image_resource.dart';
+enum BackgroundType { color, resource, none }
 
+class Background {
+  const Background._({this.color, this.resource, required this.type});
+
+  factory Background.color(Color color) => Background._(color: color, type: BackgroundType.color);
+
+  factory Background.resource(Resource resource) => Background._(resource: resource, type: BackgroundType.resource);
+
+  static const Background none = Background._(type: BackgroundType.none);
+
+  final Color? color;
+  final Resource? resource;
+  final BackgroundType type;
+}
 
 class AssetsLaunchIcon extends StatelessWidget {
   const AssetsLaunchIcon({
@@ -12,16 +24,14 @@ class AssetsLaunchIcon extends StatelessWidget {
     required this.radius,
     required this.foreground,
     required this.safeZone,
-    this.backgroundImage,
-    this.backgroundColor,
+    this.background = Background.none,
     super.key,
   });
 
   final Size size;
   final Size safeZone;
   final Resource foreground;
-  final Resource? backgroundImage;
-  final Color? backgroundColor;
+  final Background background;
   final BorderRadius radius;
 
   @override
@@ -30,32 +40,26 @@ class AssetsLaunchIcon extends StatelessWidget {
       width: size.width,
       height: size.height,
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: radius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: radius),
         clipBehavior: Clip.antiAlias,
         elevation: 8,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            if (backgroundColor != null)
+            if (background.type == BackgroundType.color)
               Container(
-                width: double.infinity,
-                height: double.infinity,
-                color: backgroundColor,
+                color: background.color,
+                width: size.width,
+                height: size.height,
               )
-            else
-              backgroundImage != null
-                  ? ImageRender(
-                      resource: backgroundImage!,
-                    )
-                  : const SizedBox(),
+            else if (background.type == BackgroundType.resource)
+              ImageRender(resource: background.resource),
             Container(
               width: 48,
               height: 48,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.5), // Border color
+                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.5),
                 ),
               ),
             ),
@@ -71,7 +75,7 @@ class AssetsLaunchIcon extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: radius,
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.75), // Border color
+                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.75),
                 ),
               ),
             ),

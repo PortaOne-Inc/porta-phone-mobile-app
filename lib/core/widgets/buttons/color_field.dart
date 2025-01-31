@@ -5,7 +5,7 @@ import 'package:webtrit_configurator/core/core.dart';
 class ColorField extends StatelessWidget {
   const ColorField({
     required this.title,
-    this.color = Colors.white,
+    this.color,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.all(16),
     this.constraints,

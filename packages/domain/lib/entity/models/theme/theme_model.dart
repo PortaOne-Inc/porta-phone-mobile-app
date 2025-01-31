@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:domain/entity/models/theme/system_assets_model.dart';
-
 import '../texts/texts_model.dart';
+
+import 'launch_assets_model.dart';
+import 'splash_asset_model.dart';
 import 'theme_asset_model.dart';
 
 part 'theme_model.freezed.dart';
@@ -18,7 +19,8 @@ class ThemeModel with _$ThemeModel {
     @Default({}) Map<String, dynamic> themePageConfig,
     @Default({}) Map<String, dynamic> appConfig,
     @Default([]) List<ThemeAssetModel> assets,
-    @Default(SystemAssetsModel()) SystemAssetsModel systemAssets,
+    @Default(LaunchAssetsModel()) LaunchAssetsModel launchAssets,
+    @Default(SplashAssetModel()) SplashAssetModel splashAsset,
     TextsModel? texts,
   }) = _ThemeModel;
 

@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:domain/entity/models/theme/splash_asset_model.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
@@ -13,11 +13,15 @@ class ThemeRepositoryImpl extends ThemeRepository {
     required this.configuratorBackandDatasource,
     required this.themeMapper,
     required this.themeAssetMapper,
+    required this.launchAssetsMapper,
+    required this.splashAssetsMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
   final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
+  final CommonMapper<LaunchAssetsModel?, LaunchAssetsDto?> launchAssetsMapper;
+  final CommonMapper<SplashAssetModel?, SplashAssetsDto?> splashAssetsMapper;
 
   @override
   Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
@@ -82,5 +86,27 @@ class ThemeRepositoryImpl extends ThemeRepository {
     final response = await configuratorBackandDatasource.addAssets(applicationId, themeId, assetDtos);
 
     return themeAssetMapper.convertListFrom(response);
+  }
+
+  @override
+  Future<ThemeModel> updateLaunchAssets(String applicationId, String themeId, LaunchAssetsModel launchAssets) async {
+    final dto = await configuratorBackandDatasource.updateLaunchAssets(
+      applicationId,
+      themeId,
+      launchAssetsMapper.convertTo(launchAssets)!,
+    );
+    return themeMapper.convertFrom(dto);
+  }
+
+  @override
+  Future<void> deleteLaunchAssets(String applicationId, String themeId) async {
+    await configuratorBackandDatasource.deleteLaunchAssets(applicationId, themeId);
+  }
+
+  @override
+  Future<ThemeModel> updateSplashAsset(String applicationId, String themeId, SplashAssetModel splashAsset) async {
+    final dto = await configuratorBackandDatasource.updateSplashAsset(
+        applicationId, themeId, splashAssetsMapper.convertTo(splashAsset)!);
+    return themeMapper.convertFrom(dto);
   }
 }

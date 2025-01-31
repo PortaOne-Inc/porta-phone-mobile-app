@@ -40,6 +40,10 @@ import 'package:domain/usecase/deployment/usecase_update_build_number.dart'
     as _i95;
 import 'package:domain/usecase/resources/upload_file_use_case.dart' as _i151;
 import 'package:domain/usecase/theme/add_assets_theme_usecase.dart' as _i911;
+import 'package:domain/usecase/theme/add_launch_assets_theme_usecase.dart'
+    as _i939;
+import 'package:domain/usecase/theme/update_splash_assets_theme_usecase.dart'
+    as _i1010;
 import 'package:domain/usecase/theme/usecase_set_theme_default.dart' as _i98;
 import 'package:domain/usecase/theme/usecase_theme_create.dart' as _i343;
 import 'package:domain/usecase/theme/usecase_theme_delete.dart' as _i314;
@@ -124,6 +128,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
             ));
     gh.factory<_i151.UploadFileUsecase>(
         () => _i151.UploadFileUsecaseImpl(gh<_i494.ResourcesRepository>()));
+    gh.factory<_i939.AddLaunchAssetsThemeUsecase>(() =>
+        _i939.AddLaunchAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
     gh.factory<_i298.UsecaseTranslationsDeleteOverride>(() =>
         _i298.UsecaseTranslationsDeleteOverrideImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
@@ -159,6 +165,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i538.UsecaseAuthIsLoggedIn>(() =>
         _i987.UsecaseAuthIsLoggedInImpl(
             authRepository: gh<_i2.AuthRepository>()));
+    gh.factory<_i1010.UpdateSplashAssetsThemeUsecase>(() =>
+        _i1010.UpdateSplashAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
     gh.factory<_i745.UsecaseAuthResetPassword>(() =>
         _i1038.UsecaseAuthResetPasswordImpl(
             authRepository: gh<_i174.AuthRepository>()));

@@ -131,7 +131,7 @@ abstract class Resource {
     return ByteResource(bytes);
   }
 
-  factory Resource.empty() {
+   factory Resource.empty() {
     return EmptyResource();
   }
 

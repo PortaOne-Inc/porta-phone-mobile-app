@@ -9,6 +9,7 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../features/schemes/features/splash_screen/bloc/splash_assets_bloc.dart';
 import '../features/schemes/schemes.dart';
 import '../features/features.dart';
 
@@ -205,14 +206,30 @@ class SchemeRoute {
                     name: launchScheme.name,
                     path: launchScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
-                      return LaunchAssetsScreen();
+                      return BlocProvider(
+                        create: (context) => LaunchAssetsCubit(
+                          applicationId,
+                          themeId,
+                          getIt.get(),
+                          getIt.get(),
+                        ),
+                        child: const LaunchAssetsScreen(),
+                      );
                     },
                   ),
                   GoRoute(
                     name: splashScreenScheme.name,
                     path: splashScreenScheme.path,
                     builder: (BuildContext context, GoRouterState state) {
-                      return SplashScreen();
+                      return BlocProvider(
+                        create: (context) => SplashAssetsBloc(
+                          applicationId: applicationId,
+                          themeId: themeId,
+                          uploadFileUsecase: getIt.get(),
+                          updateSplashAssetsThemeUsecase: getIt.get(),
+                        ),
+                        child: const SplashScreen(),
+                      );
                     },
                   ),
                 ],

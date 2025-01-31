@@ -66,9 +66,4 @@ class UpdateThemeSchemeEvent with _$UpdateThemeSchemeEvent implements Configurat
   const factory UpdateThemeSchemeEvent.updateFont(String font) = _UpdateThemeSchemeFontEvent;
 
   const factory UpdateThemeSchemeEvent.updateTexts(TextsModel? textsModel) = _UpdateThemeSchemeTextsvent;
-
-  // const factory UpdateThemeSchemeEvent.updateInAppImages(ImageSchemeModel? image) = _UpdateThemeSchemeImagesEvent;
-
-  const factory UpdateThemeSchemeEvent.updateSystemAssetsImages(SystemAssetsModel? image) =
-      _UpdateSystemAssetsImagesEvent;
 }

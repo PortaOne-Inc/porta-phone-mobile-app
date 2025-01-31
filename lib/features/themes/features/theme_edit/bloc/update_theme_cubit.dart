@@ -140,10 +140,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     return event.map(
         updateFont: (_UpdateThemeSchemeFontEvent value) async => _updateFont(value.font, emit),
         updateTexts: (_UpdateThemeSchemeTextsvent value) async => _updateTexts(value.textsModel, emit),
-        // updateInAppImages: (_UpdateThemeSchemeImagesEvent value) async => _updateImageResources(value.image, emit),
-        // updateInAppImages: (_UpdateThemeSchemeImagesEvent value) async => {},
-        updateSystemAssetsImages: (_UpdateSystemAssetsImagesEvent value) async =>
-            _updateSystemAssetImageResources(value.image, emit));
+);
   }
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<UpdateThemeState> emit) {
@@ -272,11 +269,11 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   //   emit(state.copyWith(status: ThemePropertyStatus.success));
   //   // emit(state.copyTheme(theme: state.theme?.copyWith(images: image ?? const ImageSchemeModel())));
   // }
-
-  void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<UpdateThemeState> emit) {
-    emit(state.copyWith(status: ThemePropertyStatus.success));
-    emit(state.copyWith(theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel())));
-  }
+  //
+  // void _updateSystemAssetImageResources(SystemAssetsModel? image, Emitter<UpdateThemeState> emit) {
+  //   emit(state.copyWith(status: ThemePropertyStatus.success));
+  //   emit(state.copyWith(theme: state.theme?.copyWith(systemAssets: image ?? const SystemAssetsModel())));
+  // }
 
   void _updateColor(ColorSchemeModel? color, Emitter<UpdateThemeState> emit) {
     emit(state.copyWith(status: ThemePropertyStatus.progress));

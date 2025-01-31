@@ -8,13 +8,22 @@ import 'assets_launch_icon.dart';
 class AssetsPlatformPreview extends StatelessWidget {
   const AssetsPlatformPreview({
     required this.title,
+    required this.foregroundResource,
+    required this.size,
+    required this.safeZone,
+    this.backgroundResource,
+    this.backgroundColor,
     super.key,
     this.leading,
-    required this.resource,
   });
 
   final String title;
-  final Resource resource;
+  final Resource foregroundResource;
+  final Resource? backgroundResource;
+  final Color? backgroundColor;
+  final Size size;
+  final Size safeZone;
+
   final Widget? leading;
 
   @override
@@ -31,21 +40,15 @@ class AssetsPlatformPreview extends StatelessWidget {
             size: const Size.square(108),
             safeZone: const Size.square(81),
             radius: const BorderRadius.all(Radius.circular(1)),
-            foreground: resource,
-            backgroundColor: Colors.transparent,
-            // backgroundImage: theme.systemAssets.adaptiveIconBackground,
-            backgroundImage: Resource.empty(),
+            foreground: foregroundResource,
+            background: _background,
           ),
           AssetsLaunchIcon(
             size: const Size.square(108),
             safeZone: const Size.square(81),
             radius: const BorderRadius.all(Radius.circular(180)),
-            // foreground: theme.systemAssets.androidLauncherIcon,
-            foreground: resource,
-
-            backgroundColor: Colors.transparent,
-            // backgroundImage: theme.systemAssets.adaptiveIconBackground,
-            backgroundImage: Resource.empty(),
+            foreground: foregroundResource,
+            background: _background,
           ),
           AssetsLaunchIcon(
             size: const Size.square(108),
@@ -56,34 +59,31 @@ class AssetsPlatformPreview extends StatelessWidget {
               bottomLeft: Radius.circular(16),
               bottomRight: Radius.circular(4),
             ),
-            // foreground: theme.systemAssets.androidLauncherIcon,
-            foreground: resource,
-
-            backgroundColor: Colors.transparent,
-            // backgroundImage: theme.systemAssets.adaptiveIconBackground,
+            foreground: foregroundResource,
+            background: _background,
           ),
           AssetsLaunchIcon(
             size: const Size.square(108),
             safeZone: const Size.square(81),
             radius: const BorderRadius.all(Radius.circular(4)),
-            // foreground: theme.systemAssets.androidLauncherIcon,
-            foreground: resource,
-
-            backgroundColor: Colors.transparent,
-            // backgroundImage: theme.systemAssets.adaptiveIconBackground,
+            foreground: foregroundResource,
+            background: _background,
           ),
           AssetsLaunchIcon(
             size: const Size.square(108),
             safeZone: const Size.square(81),
             radius: const BorderRadius.all(Radius.circular(16)),
-            foreground: resource,
-
-            // foreground: theme.systemAssets.androidLauncherIcon,
-            backgroundColor: Colors.transparent,
-            // backgroundImage: theme.systemAssets.adaptiveIconBackground,
+            foreground: foregroundResource,
+            background: _background,
           ),
         ],
       ),
     );
   }
+
+  Background get _background => backgroundResource != null
+      ? Background.resource(backgroundResource!)
+      : backgroundColor != null
+          ? Background.color(backgroundColor!)
+          : Background.none;
 }

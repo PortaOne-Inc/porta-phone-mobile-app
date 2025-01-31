@@ -23,6 +23,8 @@ import 'package:data/mappers/applications/application_mapper.dart' as _i518;
 import 'package:data/mappers/deployment/phone_branch_mapper.dart' as _i729;
 import 'package:data/mappers/mapper.dart' as _i602;
 import 'package:data/mappers/mappers.dart' as _i1058;
+import 'package:data/mappers/themes/launch_asset_mapper.dart' as _i920;
+import 'package:data/mappers/themes/splash_asset_mapper.dart' as _i369;
 import 'package:data/mappers/themes/theme_asset_mapper.dart' as _i414;
 import 'package:data/mappers/themes/theme_mapper.dart' as _i177;
 import 'package:data/repository/application_repository_impl.dart' as _i747;
@@ -33,6 +35,7 @@ import 'package:data/repository/theme_repository_impl.dart' as _i165;
 import 'package:data/repository/translations_repository_impl.dart' as _i591;
 import 'package:dio/dio.dart' as _i361;
 import 'package:domain/domain.dart' as _i494;
+import 'package:domain/entity/models/theme/splash_asset_model.dart' as _i1065;
 import 'package:domain/repository/repository.dart' as _i174;
 import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:injectable/injectable.dart' as _i526;
@@ -60,12 +63,21 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i377.AppVersionMapper());
     gh.factory<_i1058.CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(
         () => _i414.ThemeAssetMapper());
-    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(() =>
-        _i177.ThemeMapper(gh<
-            _i1058
-            .CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>()));
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
         () => _i729.PhoneBranchMapper());
+    gh.factory<
+        _i602.CommonMapper<_i494.SplashAssetModel?,
+            _i862.SplashAssetsDto?>>(() => _i369.SplashAssetsMapper());
+    gh.factory<
+        _i602.CommonMapper<_i494.LaunchAssetsModel?,
+            _i862.LaunchAssetsDto?>>(() => _i920.LaunchAssetsMapper());
+    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(() =>
+        _i177.ThemeMapper(
+          gh<_i1058.CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
+          gh<
+              _i1058.CommonMapper<_i494.LaunchAssetsModel?,
+                  _i862.LaunchAssetsDto?>>(),
+        ));
     gh.factory<_i191.LocalStorage>(
       () => _i99.FileStorage(gh<String>()),
       instanceName: 'FileStorage',
@@ -89,12 +101,6 @@ class DataPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
             gh<_i822.ConfiguratorBackandDatasource>()));
-    gh.factory<_i494.AuthRepository>(() => _i442.AuthRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
-          userPrefDataSource: gh<_i822.UserPrefDatasource>(),
-        ));
     gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
           configuratorBackandDatasource:
               gh<_i822.ConfiguratorBackandDatasource>(),
@@ -103,6 +109,18 @@ class DataPackageModule extends _i526.MicroPackageModule {
           themeAssetMapper: gh<
               _i1058
               .CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
+          launchAssetsMapper: gh<
+              _i1058.CommonMapper<_i494.LaunchAssetsModel?,
+                  _i862.LaunchAssetsDto?>>(),
+          splashAssetsMapper: gh<
+              _i1058.CommonMapper<_i1065.SplashAssetModel?,
+                  _i862.SplashAssetsDto?>>(),
+        ));
+    gh.factory<_i494.AuthRepository>(() => _i442.AuthRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
+          userPrefDataSource: gh<_i822.UserPrefDatasource>(),
         ));
     gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
           configuratorBackandDatasource:

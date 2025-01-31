@@ -27,7 +27,8 @@ mixin _$ThemeModel {
       throw _privateConstructorUsedError;
   Map<String, dynamic> get appConfig => throw _privateConstructorUsedError;
   List<ThemeAssetModel> get assets => throw _privateConstructorUsedError;
-  SystemAssetsModel get systemAssets => throw _privateConstructorUsedError;
+  LaunchAssetsModel get launchAssets => throw _privateConstructorUsedError;
+  SplashAssetModel get splashAsset => throw _privateConstructorUsedError;
   TextsModel? get texts => throw _privateConstructorUsedError;
 
   /// Create a copy of ThemeModel
@@ -52,10 +53,12 @@ abstract class $ThemeModelCopyWith<$Res> {
       Map<String, dynamic> themePageConfig,
       Map<String, dynamic> appConfig,
       List<ThemeAssetModel> assets,
-      SystemAssetsModel systemAssets,
+      LaunchAssetsModel launchAssets,
+      SplashAssetModel splashAsset,
       TextsModel? texts});
 
-  $SystemAssetsModelCopyWith<$Res> get systemAssets;
+  $LaunchAssetsModelCopyWith<$Res> get launchAssets;
+  $SplashAssetModelCopyWith<$Res> get splashAsset;
   $TextsModelCopyWith<$Res>? get texts;
 }
 
@@ -82,7 +85,8 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
     Object? themePageConfig = null,
     Object? appConfig = null,
     Object? assets = null,
-    Object? systemAssets = null,
+    Object? launchAssets = null,
+    Object? splashAsset = null,
     Object? texts = freezed,
   }) {
     return _then(_value.copyWith(
@@ -118,10 +122,14 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<ThemeAssetModel>,
-      systemAssets: null == systemAssets
-          ? _value.systemAssets
-          : systemAssets // ignore: cast_nullable_to_non_nullable
-              as SystemAssetsModel,
+      launchAssets: null == launchAssets
+          ? _value.launchAssets
+          : launchAssets // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsModel,
+      splashAsset: null == splashAsset
+          ? _value.splashAsset
+          : splashAsset // ignore: cast_nullable_to_non_nullable
+              as SplashAssetModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -133,9 +141,19 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SystemAssetsModelCopyWith<$Res> get systemAssets {
-    return $SystemAssetsModelCopyWith<$Res>(_value.systemAssets, (value) {
-      return _then(_value.copyWith(systemAssets: value) as $Val);
+  $LaunchAssetsModelCopyWith<$Res> get launchAssets {
+    return $LaunchAssetsModelCopyWith<$Res>(_value.launchAssets, (value) {
+      return _then(_value.copyWith(launchAssets: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ThemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SplashAssetModelCopyWith<$Res> get splashAsset {
+    return $SplashAssetModelCopyWith<$Res>(_value.splashAsset, (value) {
+      return _then(_value.copyWith(splashAsset: value) as $Val);
     });
   }
 
@@ -171,11 +189,14 @@ abstract class _$$ThemeModelImplCopyWith<$Res>
       Map<String, dynamic> themePageConfig,
       Map<String, dynamic> appConfig,
       List<ThemeAssetModel> assets,
-      SystemAssetsModel systemAssets,
+      LaunchAssetsModel launchAssets,
+      SplashAssetModel splashAsset,
       TextsModel? texts});
 
   @override
-  $SystemAssetsModelCopyWith<$Res> get systemAssets;
+  $LaunchAssetsModelCopyWith<$Res> get launchAssets;
+  @override
+  $SplashAssetModelCopyWith<$Res> get splashAsset;
   @override
   $TextsModelCopyWith<$Res>? get texts;
 }
@@ -201,7 +222,8 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
     Object? themePageConfig = null,
     Object? appConfig = null,
     Object? assets = null,
-    Object? systemAssets = null,
+    Object? launchAssets = null,
+    Object? splashAsset = null,
     Object? texts = freezed,
   }) {
     return _then(_$ThemeModelImpl(
@@ -237,10 +259,14 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
           ? _value._assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<ThemeAssetModel>,
-      systemAssets: null == systemAssets
-          ? _value.systemAssets
-          : systemAssets // ignore: cast_nullable_to_non_nullable
-              as SystemAssetsModel,
+      launchAssets: null == launchAssets
+          ? _value.launchAssets
+          : launchAssets // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsModel,
+      splashAsset: null == splashAsset
+          ? _value.splashAsset
+          : splashAsset // ignore: cast_nullable_to_non_nullable
+              as SplashAssetModel,
       texts: freezed == texts
           ? _value.texts
           : texts // ignore: cast_nullable_to_non_nullable
@@ -261,7 +287,8 @@ class _$ThemeModelImpl extends _ThemeModel {
       final Map<String, dynamic> themePageConfig = const {},
       final Map<String, dynamic> appConfig = const {},
       final List<ThemeAssetModel> assets = const [],
-      this.systemAssets = const SystemAssetsModel(),
+      this.launchAssets = const LaunchAssetsModel(),
+      this.splashAsset = const SplashAssetModel(),
       this.texts})
       : _colorSchemeConfig = colorSchemeConfig,
         _themeWidgetConfig = themeWidgetConfig,
@@ -325,13 +352,16 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   @JsonKey()
-  final SystemAssetsModel systemAssets;
+  final LaunchAssetsModel launchAssets;
+  @override
+  @JsonKey()
+  final SplashAssetModel splashAsset;
   @override
   final TextsModel? texts;
 
   @override
   String toString() {
-    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, systemAssets: $systemAssets, texts: $texts)';
+    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, launchAssets: $launchAssets, splashAsset: $splashAsset, texts: $texts)';
   }
 
   @override
@@ -352,8 +382,10 @@ class _$ThemeModelImpl extends _ThemeModel {
             const DeepCollectionEquality()
                 .equals(other._appConfig, _appConfig) &&
             const DeepCollectionEquality().equals(other._assets, _assets) &&
-            (identical(other.systemAssets, systemAssets) ||
-                other.systemAssets == systemAssets) &&
+            (identical(other.launchAssets, launchAssets) ||
+                other.launchAssets == launchAssets) &&
+            (identical(other.splashAsset, splashAsset) ||
+                other.splashAsset == splashAsset) &&
             (identical(other.texts, texts) || other.texts == texts));
   }
 
@@ -368,7 +400,8 @@ class _$ThemeModelImpl extends _ThemeModel {
       const DeepCollectionEquality().hash(_themePageConfig),
       const DeepCollectionEquality().hash(_appConfig),
       const DeepCollectionEquality().hash(_assets),
-      systemAssets,
+      launchAssets,
+      splashAsset,
       texts);
 
   /// Create a copy of ThemeModel
@@ -390,7 +423,8 @@ abstract class _ThemeModel extends ThemeModel {
       final Map<String, dynamic> themePageConfig,
       final Map<String, dynamic> appConfig,
       final List<ThemeAssetModel> assets,
-      final SystemAssetsModel systemAssets,
+      final LaunchAssetsModel launchAssets,
+      final SplashAssetModel splashAsset,
       final TextsModel? texts}) = _$ThemeModelImpl;
   const _ThemeModel._() : super._();
 
@@ -411,7 +445,9 @@ abstract class _ThemeModel extends ThemeModel {
   @override
   List<ThemeAssetModel> get assets;
   @override
-  SystemAssetsModel get systemAssets;
+  LaunchAssetsModel get launchAssets;
+  @override
+  SplashAssetModel get splashAsset;
   @override
   TextsModel? get texts;
 
