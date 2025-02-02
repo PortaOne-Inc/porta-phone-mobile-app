@@ -7,6 +7,16 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
+class $AssetsEnvironmentGen {
+  const $AssetsEnvironmentGen();
+
+  /// File path: assets/environment/dart_define.json
+  String get dartDefine => 'assets/environment/dart_define.json';
+
+  /// List of all assets
+  List<String> get values => [dartDefine];
+}
+
 class $AssetsSchemeGen {
   const $AssetsSchemeGen();
 
@@ -67,6 +77,7 @@ class Assets {
   Assets._();
 
   static const String emptySvg = 'assets/empty_svg.svg';
+  static const $AssetsEnvironmentGen environment = $AssetsEnvironmentGen();
   static const $AssetsSchemeGen scheme = $AssetsSchemeGen();
   static const $AssetsThemesGen themes = $AssetsThemesGen();
 

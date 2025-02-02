@@ -119,7 +119,8 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
             AttributesWidget(
               attributes: _attributes,
               onAddAttribute: () => setState(() => _attributes.add(const MapEntry('', ''))),
-              onUpdateAttribute: (index, key, value) => setState(() => _attributes[index] = MapEntry(key, value)),
+              onUpdateAttribute: (index, key, value) =>
+                  setState(() => _attributes[index] = MapEntry(key, value as String)),
               onRemoveAttribute: (index) => setState(() => _attributes.removeAt(index)),
             ),
           ],

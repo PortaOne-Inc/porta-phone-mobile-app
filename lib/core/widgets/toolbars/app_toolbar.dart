@@ -35,6 +35,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
     this.right = const [],
     this.left = const [],
     this.isVisibleProgress = false,
+    this.automaticallyImplyLeading = true,
     super.key,
   });
 
@@ -46,6 +47,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
 
   final String name;
   final bool isVisibleProgress;
+  final bool automaticallyImplyLeading;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -54,6 +56,8 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+    final canPop = parentRoute?.canPop ?? false;
 
     return Container(
       height: kToolbarHeight,
@@ -82,6 +86,11 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
           Expanded(
             child: Row(
               children: <Widget>[
+                if (automaticallyImplyLeading && canPop)
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
                 Expanded(
                   child: Row(children: left.map((menu) => MenuWidget(menu: menu)).toList()),
                 ),

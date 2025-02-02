@@ -91,6 +91,24 @@ class ConfiguratorBackandDatasource {
     return ApplicationDTO.fromJson(response.data!);
   }
 
+  /// **Get Application Environment**
+  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
+    final response = await client.get<Map<String, dynamic>>(
+      ApplicationConfiguratorBackandAPI.applicationEnvironment(applicationId),
+    );
+    return response.data ?? {};
+  }
+
+  /// **Update Application Environment**
+  Future<Map<String, dynamic>> updateApplicationEnvironment(
+      String applicationId, Map<String, dynamic> environment) async {
+    final response = await client.put<Map<String, dynamic>>(
+      ApplicationConfiguratorBackandAPI.applicationEnvironment(applicationId),
+      data: environment,
+    );
+    return response.data ?? {};
+  }
+
   // Themes
 
   Future<List<inner.ThemeDTO>> getThemes(String applicationId) async {

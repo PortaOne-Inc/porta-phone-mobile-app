@@ -10,6 +10,8 @@ class ApplicationConfiguratorBackandAPI {
   static String application(String applicationId) => '/applications/$applicationId';
 
   static String applicationVersion(String applicationId) => '/applications/$applicationId/version';
+
+  static String applicationEnvironment(String applicationId) => '/applications/$applicationId/environment';
 }
 
 class ThemeConfiguratorBackandAPI {

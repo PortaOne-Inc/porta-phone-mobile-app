@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 
+import '../bloc/environment_cubit.dart';
+import '../widgets/floating_popup.dart';
 import '../widgets/widgets.dart';
 
 class EnvironmentConfigurationView extends StatefulWidget {
-  const EnvironmentConfigurationView({
-    required this.initialConfig,
-    super.key,
-  });
-
-  final Map<String, dynamic> initialConfig;
+  const EnvironmentConfigurationView({super.key});
 
   @override
   State<EnvironmentConfigurationView> createState() => _EnvironmentConfigurationViewState();
@@ -21,191 +18,312 @@ class EnvironmentConfigurationView extends StatefulWidget {
 
 class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationView> {
   late Map<String, dynamic> config;
+  FloatingPopupController popupController = FloatingPopupController();
+  TextEditingController keyController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    config = Map<String, dynamic>.from(widget.initialConfig);
+    config = {};
   }
 
   void _updateConfig<T>(String key, T value) {
-    setState(() {
-      config[key] = value;
-    });
+    context.read<EnvironmentCubit>().updateKeyValue(key, value);
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Scaffold(
-      appBar: AppToolbar(
-        name: 'Configure Environments',
-        themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-        onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<EnvironmentCubit, EnvironmentState>(
+      builder: (context, state) => Scaffold(
+        appBar: AppToolbar(
+          name: 'Configure Environments',
+          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+          onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+        ),
+        body: ResizableColumns(
+          dividerColor: colorScheme.surfaceContainerLow,
+          dividerThickness: 4,
           children: [
-            ConfigSection(
-              title: 'Debug & Logging',
-              fields: [
-                DropdownButtonExt<String>(
-                  label: 'Debug Level',
-                  value: (config['DEBUG_LEVEL'] as String?) ?? 'INFO',
-                  options: const ['DEBUG', 'INFO', 'WARN', 'ERROR'],
-                  onChanged: (value) => _updateConfig<String>('DEBUG_LEVEL', value ?? 'INFO'),
-                  optionBuilder: (option) => option,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: const Text('Database Log Statements'),
-                    value: (config['DATABASE_LOG_STATEMENTS'] as bool?) ?? false,
-                    onChanged: (value) => _updateConfig<bool>('DATABASE_LOG_STATEMENTS', value),
-                  ),
-                ),
-                ConfigSection(
-                  title: 'Logging Services',
-                  fields: [
-                    OutlineInput(
-                      label: 'Logzio Logging URL',
-                      controller: TextEditingController(
-                        text: (config['REMOTE_LOGZIO_LOGGING_URL'] as String?) ?? '',
-                      ),
-                      icon: Icons.link,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_URL', value),
+            (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AppBar(
+                      automaticallyImplyLeading: false,
+                      actions: [],
                     ),
-                    OutlineInput(
-                      label: 'Logzio Logging Token',
-                      controller: TextEditingController(
-                        text: (config['REMOTE_LOGZIO_LOGGING_TOKEN'] as String?) ?? '',
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ConfigSection(
+                              title: 'App Details',
+                              fields: [
+                                ConfigField(
+                                  label: 'App Name',
+                                  keyName: state.appNameKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                                ConfigField(
+                                  label: 'App Description',
+                                  keyName: state.appDescriptionKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                              ],
+                            ),
+                            Divider(thickness: 4, color: colorScheme.surfaceContainerLow),
+                            ConfigSection(
+                              title: 'Core Settings',
+                              fields: [
+                                ConfigField(
+                                    label: 'Core URL',
+                                    keyName: state.coreUrlKeyName,
+                                    config: state.environment,
+                                    onConfigUpdate: _updateConfig),
+                                ConfigField(
+                                    label: 'Demo Core URL',
+                                    keyName: state.demoCoreUrlKeyName,
+                                    config: state.environment,
+                                    onConfigUpdate: _updateConfig,
+                                    defaultValue: 'http://localhost:4000'),
+                                ConfigField(
+                                    label: 'Core Version Constraint',
+                                    keyName: state.coreVersionConstraintKeyName,
+                                    config: state.environment,
+                                    onConfigUpdate: _updateConfig,
+                                    defaultValue: '>=0.7.0-alpha <2.0.0'),
+                              ],
+                            ),
+                            Divider(thickness: 4, color: colorScheme.surfaceContainerLow),
+                            ConfigSection(
+                              title: 'Logging Services',
+                              fields: [
+                                ConfigField(
+                                    label: 'Logzio Logging URL',
+                                    keyName: state.remoteLogzioLoggingUrlKeyName,
+                                    config: state.environment,
+                                    onConfigUpdate: _updateConfig),
+                                ConfigField(
+                                  label: 'Logzio Logging Token',
+                                  keyName: state.remoteLogzioLoggingTokenKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                                ConfigField(
+                                  label: 'Logzio Buffer Size',
+                                  keyName: state.remoteLogzioLoggingBufferSizeKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      icon: Icons.lock,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      onChanged: (value) => _updateConfig<String>('REMOTE_LOGZIO_LOGGING_TOKEN', value),
+                    )
+                  ],
+                ),
+            (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AppBar(
+                      automaticallyImplyLeading: false,
+                      actions: [
+                        IconButton(
+                          icon: state.status.isLoading
+                              ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 1))
+                              : const Icon(Icons.save),
+                          onPressed: () => context.read<EnvironmentCubit>().updateEnvironment(),
+                        ),
+                      ],
                     ),
-                    OutlineInput(
-                      label: 'Logzio Buffer Size',
-                      controller: TextEditingController(
-                        text: (config['REMOTE_LOGZIO_LOGGING_BUFFER_SIZE'] as int?).toString(),
-                      ),
-                      icon: Icons.storage,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      onChanged: (value) => _updateConfig<int>(
-                        'REMOTE_LOGZIO_LOGGING_BUFFER_SIZE',
-                        int.tryParse(value) ?? 0,
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ConfigSection(
+                              title: 'Links & URLs',
+                              fields: [
+                                ConfigField(
+                                  label: 'App Help URL',
+                                  keyName: state.appHelpUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                                ConfigField(
+                                  label: 'App About URL',
+                                  keyName: state.appAboutUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                                ConfigField(
+                                  label: 'App Credentials Request URL',
+                                  keyName: state.appCredentialsRequestUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                ),
+                              ],
+                            ),
+                            Divider(thickness: 4, color: colorScheme.surfaceContainerLow),
+                            ConfigSection(
+                                title: 'Other keys',
+                                leading: FloatingPopup(
+                                  controller: popupController,
+                                  constraints: const BoxConstraints.expand(width: 224, height: 88),
+                                  trigger: const Icon(Icons.add),
+                                  floatingContent: Row(
+                                    children: [
+                                      Expanded(
+                                        child: OutlineInput(
+                                          controller: keyController,
+                                          label: 'Key',
+                                          icon: Icons.text_fields,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          popupController.hide();
+                                          context.read<EnvironmentCubit>().updateKeyValue(keyController.text, "");
+                                          keyController.clear();
+                                        },
+                                        icon: const Icon(Icons.save),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                fields: [
+                                  AdditionalKeysSection(
+                                    additionalKeys: state.filteredEnvironment,
+                                    onRemoveKey: (key) => context.read<EnvironmentCubit>().removeAttribute(key),
+                                    onUpdateKey: (String, dynamic) =>
+                                        context.read<EnvironmentCubit>().updateKeyValue(String, dynamic),
+                                  )
+                                ]),
+                          ],
+                        ),
                       ),
                     ),
                   ],
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 4,
-              color: colorScheme.surfaceContainerLow,
-            ),
-            ConfigSection(
-              title: 'Core Settings',
-              fields: [
-                OutlineInput(
-                  label: 'Core URL',
-                  controller: TextEditingController(
-                    text: (config['CORE_URL'] as String?) ?? '',
-                  ),
-                  icon: Icons.link,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('CORE_URL', value),
-                ),
-                OutlineInput(
-                  label: 'Demo Core URL',
-                  controller: TextEditingController(
-                    text: (config['DEMO_CORE_URL'] as String?) ?? 'http://localhost:4000',
-                  ),
-                  icon: Icons.link,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('DEMO_CORE_URL', value),
-                ),
-                OutlineInput(
-                  label: 'Core Version Constraint',
-                  controller: TextEditingController(
-                    text: (config['CORE_VERSION_CONSTRAINT'] as String?) ?? '>=0.7.0-alpha <2.0.0',
-                  ),
-                  icon: Icons.build,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('CORE_VERSION_CONSTRAINT', value),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 4,
-              color: colorScheme.surfaceContainerLow,
-            ),
-            ConfigSection(
-              title: 'App Details',
-              fields: [
-                OutlineInput(
-                  label: 'App Name',
-                  controller: TextEditingController(
-                    text: (config['APP_NAME'] as String?) ?? 'WebTrit',
-                  ),
-                  icon: Icons.app_settings_alt,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('APP_NAME', value),
-                ),
-                OutlineInput(
-                  label: 'App Description',
-                  controller: TextEditingController(
-                    text: (config['APP_DESCRIPTION'] as String?) ?? '',
-                  ),
-                  icon: Icons.description,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('APP_DESCRIPTION', value),
-                ),
-              ],
-            ),
-            Divider(
-              thickness: 4,
-              color: colorScheme.surfaceContainerLow,
-            ),
-            ConfigSection(
-              title: 'Links & URLs',
-              fields: [
-                OutlineInput(
-                  label: 'App Help URL',
-                  controller: TextEditingController(
-                    text: (config['APP_HELP_URL'] as String?) ?? '',
-                  ),
-                  icon: Icons.help,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('APP_HELP_URL', value),
-                ),
-                OutlineInput(
-                  label: 'App About URL',
-                  controller: TextEditingController(
-                    text: (config['APP_ABOUT_URL'] as String?) ?? '',
-                  ),
-                  icon: Icons.info,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('APP_ABOUT_URL', value),
-                ),
-                OutlineInput(
-                  label: 'App Credentials Request URL',
-                  controller: TextEditingController(
-                    text: (config['APP_CREDENTIALS_REQUEST_URL'] as String?) ?? '',
-                  ),
-                  icon: Icons.vpn_key,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  onChanged: (value) => _updateConfig<String>('APP_CREDENTIALS_REQUEST_URL', value),
-                ),
-              ],
-            ),
+                )
           ],
+          orientation: ResizableOrientation.horizontal,
         ),
+      ),
+    );
+  }
+}
+
+class ConfigField extends StatelessWidget {
+  const ConfigField({
+    required this.label,
+    required this.keyName,
+    required this.config,
+    required this.onConfigUpdate,
+    super.key,
+    this.defaultValue,
+  });
+
+  final String label;
+  final String keyName;
+  final Map<String, dynamic> config;
+  final void Function<T>(String key, T value) onConfigUpdate;
+  final String? defaultValue;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = (config[keyName] as String?) ?? defaultValue ?? '';
+    final controller = TextEditingController(text: text)..selection = TextSelection.collapsed(offset: text.length);
+
+    return OutlineInput(
+      label: label,
+      controller: controller,
+      icon: Icons.text_fields,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      onChanged: (value) => onConfigUpdate<String>(keyName, value),
+    );
+  }
+}
+
+class AdditionalKeysSection extends StatefulWidget {
+  const AdditionalKeysSection({
+    required this.additionalKeys,
+    required this.onRemoveKey,
+    required this.onUpdateKey,
+    super.key,
+  });
+
+  final Map<String, dynamic> additionalKeys;
+  final void Function(String) onRemoveKey;
+  final void Function(String, dynamic) onUpdateKey;
+
+  @override
+  State<AdditionalKeysSection> createState() => _AdditionalKeysSectionState();
+}
+
+class _AdditionalKeysSectionState extends State<AdditionalKeysSection> {
+  late List<TextEditingController> _valueControllers;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeValueControllers();
+  }
+
+  void _initializeValueControllers() {
+    _valueControllers =
+        widget.additionalKeys.entries.map((entry) => TextEditingController(text: entry.value.toString())).toList();
+  }
+
+  @override
+  void didUpdateWidget(covariant AdditionalKeysSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.additionalKeys.length != widget.additionalKeys.length) {
+      _initializeValueControllers();
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _valueControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: widget.additionalKeys.entries.map((entry) {
+          final index = widget.additionalKeys.keys.toList().indexOf(entry.key);
+          return Row(
+            children: [
+              Expanded(
+                child: OutlineInput(
+                  label: entry.key,
+                  controller: _valueControllers[index],
+                  icon: Icons.text_fields,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  onChanged: (value) {
+                    widget.onUpdateKey(entry.key, value);
+                  },
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.remove_circle, color: Colors.red),
+                onPressed: () => widget.onRemoveKey(entry.key),
+              ),
+            ],
+          );
+        }).toList(),
       ),
     );
   }

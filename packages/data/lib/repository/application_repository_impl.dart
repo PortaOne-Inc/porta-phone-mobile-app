@@ -92,4 +92,27 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
+    try {
+      return await configuratorBackandDatasource.getApplicationEnvironment(applicationId);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data.toString() ?? "Failed to fetch environment");
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> updateApplicationEnvironment(
+      String applicationId, Map<String, dynamic> environment) async {
+    try {
+      return await configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data.toString() ?? "Failed to update environment");
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

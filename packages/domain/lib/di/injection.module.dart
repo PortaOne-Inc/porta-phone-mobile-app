@@ -42,6 +42,10 @@ import 'package:domain/usecase/resources/upload_file_use_case.dart' as _i151;
 import 'package:domain/usecase/theme/add_assets_theme_usecase.dart' as _i911;
 import 'package:domain/usecase/theme/add_launch_assets_theme_usecase.dart'
     as _i939;
+import 'package:domain/usecase/theme/get_application_environment_usecase.dart'
+    as _i43;
+import 'package:domain/usecase/theme/update_application_environment_usecase.dart'
+    as _i431;
 import 'package:domain/usecase/theme/update_splash_assets_theme_usecase.dart'
     as _i1010;
 import 'package:domain/usecase/theme/usecase_set_theme_default.dart' as _i98;
@@ -153,6 +157,12 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i478.UsecaseTranslationsGetAll>(() =>
         _i478.UsecaseTranslationsGetAllImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
+    gh.factory<_i431.UpdateApplicationEnvironmentUsecase>(() =>
+        _i431.UpdateApplicationEnvironmentUsecaseImpl(
+            gh<_i494.ApplicationRepository>()));
+    gh.factory<_i43.GetApplicationEnvironmentUsecase>(() =>
+        _i43.GetApplicationEnvironmentUsecaseImpl(
+            gh<_i494.ApplicationRepository>()));
     gh.factory<_i494.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
           deploymentRepository: gh<_i494.DeploymentRepository>(),
           applicationRepository: gh<_i494.ApplicationRepository>(),

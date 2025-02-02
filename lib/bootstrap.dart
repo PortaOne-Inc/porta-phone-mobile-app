@@ -38,6 +38,10 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       // Initialize Firebase
       await Firebase.initializeApp(options: ApplicationEnvironment.firebaseOptions);
 
+      // Load phone environment
+      final phoneEnvironment = await _getJson(Assets.environment.dartDefine) as Map<String, dynamic>;
+      diContainer.registerSingleton(phoneEnvironment, instanceName: 'phoneEnvironment');
+
       // Load and configure themes
       final themeSettings = await _initializeAppThemes();
       diContainer.registerSingleton(themeSettings);

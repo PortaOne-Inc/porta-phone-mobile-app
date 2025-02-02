@@ -9,6 +9,7 @@ class OutlineInput extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     this.onChanged,
     this.constraints,
+    this.enabled = true,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class OutlineInput extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final BoxConstraints? constraints;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class OutlineInput extends StatelessWidget {
       child: ConstrainedBox(
         constraints: constraints ?? const BoxConstraints(minWidth: 0),
         child: TextField(
-
+          enabled: enabled,
           controller: controller,
           onChanged: onChanged,
           decoration: InputDecoration(

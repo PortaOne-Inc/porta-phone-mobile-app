@@ -23,7 +23,7 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
       hoverColor: Colors.transparent,
       onTap: _onThemeChanged,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
           _getIconForThemeMode(_currentTheme()),
           color: Theme.of(context).colorScheme.secondary,

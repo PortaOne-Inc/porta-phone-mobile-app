@@ -38,8 +38,8 @@ abstract class AppRoutInfo {
     path: '/applications/:$keyApplicationId',
   );
   static const applicationDetailsEnv = DestinationInfo(
-    name: 'applications/env',
-    path: 'env',
+    name: 'applications/environments',
+    path: 'environments',
   );
   static const translations = DestinationInfo(
     name: 'applications/translations',

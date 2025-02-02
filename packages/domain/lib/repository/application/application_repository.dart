@@ -12,4 +12,8 @@ abstract class ApplicationRepository {
   Future<List<ApplicationModel>> getUserApplications();
 
   Future<ApplicationModel> getApplication(String id);
+
+  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId);
+
+  Future<Map<String, dynamic>> updateApplicationEnvironment(String applicationId, Map<String, dynamic> environment);
 }
