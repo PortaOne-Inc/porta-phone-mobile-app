@@ -61,7 +61,13 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     );
 
     final loginFeature = context.read<FeatureAccess?>()?.loginFeature;
+    final bottomMenuFeature = context.read<FeatureAccess?>()?.bottomMenuFeature;
+
     final loginLabel = loginFeature?.titleL10n;
+
+    final isFavoritePreview = bottomMenuFeature?.isTabEnabled(MainFlavor.favorites) ?? false;
+    final isrResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
+    final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
 
     return [
       LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
@@ -71,9 +77,9 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const LoginPasswordSignInScreenshot(),
       const LoginSignUpScreenshot(),
       const LoginSignUpVerifyScreenshot(),
-      MainScreenScreenshot(MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
-      MainScreenScreenshot(MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
-      MainScreenScreenshot(MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
+      if (isFavoritePreview) MainScreenScreenshot(MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
+      if (isrResentsPreview) MainScreenScreenshot(MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
+      if (isKeypadPreview) MainScreenScreenshot(MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
