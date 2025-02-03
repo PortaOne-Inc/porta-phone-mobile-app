@@ -190,7 +190,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                       IconButton(
                                         onPressed: () {
                                           popupController.hide();
-                                          context.read<EnvironmentCubit>().updateKeyValue(keyController.text, "");
+                                          context.read<EnvironmentCubit>().updateKeyValue(keyController.text, '');
                                           keyController.clear();
                                         },
                                         icon: const Icon(Icons.save),
@@ -200,11 +200,9 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                 ),
                                 fields: [
                                   AdditionalKeysSection(
-                                    additionalKeys: state.filteredEnvironment,
-                                    onRemoveKey: (key) => context.read<EnvironmentCubit>().removeAttribute(key),
-                                    onUpdateKey: (String, dynamic) =>
-                                        context.read<EnvironmentCubit>().updateKeyValue(String, dynamic),
-                                  )
+                                      additionalKeys: state.filteredEnvironment,
+                                      onRemoveKey: context.read<EnvironmentCubit>().removeAttribute,
+                                      onUpdateKey: context.read<EnvironmentCubit>().updateKeyValue)
                                 ]),
                           ],
                         ),

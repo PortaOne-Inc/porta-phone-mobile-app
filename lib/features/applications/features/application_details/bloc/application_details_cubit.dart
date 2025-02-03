@@ -106,13 +106,15 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future<void> _getThemes() async {
-    try {
-      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-      final themes = await getThemesUseCase.execute(applicationId: applicationId);
-      emit(state.copyWith(themes: themes, status: ApplicationDetailsStateStatus.success));
-    } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+  Future<void> _getThemes({bool force = false}) async {
+    if (state.themes.isEmpty || force) {
+      try {
+        emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+        final themes = await getThemesUseCase.execute(applicationId: applicationId);
+        emit(state.copyWith(themes: themes, status: ApplicationDetailsStateStatus.success));
+      } on BaseException catch (e) {
+        emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+      }
     }
   }
 

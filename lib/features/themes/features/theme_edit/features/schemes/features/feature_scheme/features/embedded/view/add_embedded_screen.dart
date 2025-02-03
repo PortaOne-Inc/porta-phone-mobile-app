@@ -119,8 +119,7 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
             AttributesWidget(
               attributes: _attributes,
               onAddAttribute: () => setState(() => _attributes.add(const MapEntry('', ''))),
-              onUpdateAttribute: (index, key, value) =>
-                  setState(() => _attributes[index] = MapEntry(key, value as String)),
+              onUpdateAttribute: (index, key, value) => setState(() => _attributes[index] = MapEntry(key, value)),
               onRemoveAttribute: (index) => setState(() => _attributes.removeAt(index)),
             ),
           ],
@@ -148,19 +147,23 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
     final titleL10n = _titleL10nController.text.trim();
     final resource = _customLoginOption == EmbeddedResourceType.url ? _resourceController.text.trim() : _asset?.url;
 
-    if (titleL10n.isEmpty || resource == null) {
+    if (titleL10n.isEmpty || resource == null || resource.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all required fields.')),
       );
       return;
     }
 
-    final response = await http.get(Uri.parse(resource));
-
-    final initialUrl = Uri.dataFromBytes(
-      response.bodyBytes,
-      mimeType: 'text/html',
-    );
+    Uri initialUrl;
+    if (_customLoginOption == EmbeddedResourceType.url) {
+      initialUrl = Uri.parse(resource);
+    } else {
+      final response = await http.get(Uri.parse(resource));
+      initialUrl = Uri.dataFromBytes(
+        response.bodyBytes,
+        mimeType: 'text/html',
+      );
+    }
 
     final config = ToolbarConfig(
       titleL10n: titleL10n,
