@@ -156,7 +156,6 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
           ),
           ContainerConfigTab(
             decorationConfig: themeWidgetConfig.decorationConfig,
-            gradients: gradients,
             callback: (config) =>
                 cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(decorationConfig: config))),
           ),

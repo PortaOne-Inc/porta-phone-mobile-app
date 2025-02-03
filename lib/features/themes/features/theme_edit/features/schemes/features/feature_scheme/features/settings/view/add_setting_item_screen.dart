@@ -23,7 +23,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleL10nController = TextEditingController();
   EmbeddedData? _selectedEmbedded;
-  final String _selectedType = 'login';
+  final String _selectedType = 'embedded';
   bool _enable = false;
 
   void _saveData() {

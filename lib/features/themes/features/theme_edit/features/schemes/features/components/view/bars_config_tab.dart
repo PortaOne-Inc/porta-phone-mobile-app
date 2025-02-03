@@ -39,6 +39,7 @@ class BarsConfigTab extends StatelessWidget {
             sourceBarWidgetConfig: sourceBarWidgetConfig,
             theme: appBarConfigTheme,
             callback: callback,
+            tabBarTheme: theme.tabBarTheme,
           ),
         ],
       ),
@@ -120,11 +121,14 @@ class AppBarConfig extends StatelessWidget {
     required this.sourceBarWidgetConfig,
     required this.theme,
     required this.callback,
+    this.tabBarTheme,
     super.key,
+
   });
 
   final BarWidgetConfig sourceBarWidgetConfig;
   final AppBarTheme? theme;
+  final TabBarThemeData? tabBarTheme;
   final BarWidgetConfigCallback callback;
 
   @override
@@ -163,7 +167,7 @@ class AppBarConfig extends StatelessWidget {
             ),
           ),
           ColorField(
-            title: 'Surface tint color',
+            title: 'Selected item color',
             constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
             color: theme?.surfaceTintColor,
             onTap: (color) => context.selectColor(
@@ -171,6 +175,19 @@ class AppBarConfig extends StatelessWidget {
               onColorSelected: (color) => callback(
                 sourceBarWidgetConfig.copyWith(
                   extTabBar: sourceBarWidgetConfig.extTabBar.copyWith(selectedItemColor: color.toHex()),
+                ),
+              ),
+            ),
+          ),
+          ColorField(
+            title: 'Un selected item color',
+            constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+            color: tabBarTheme?.unselectedLabelColor,
+            onTap: (color) => context.selectColor(
+              initialColor: theme?.surfaceTintColor,
+              onColorSelected: (color) => callback(
+                sourceBarWidgetConfig.copyWith(
+                  extTabBar: sourceBarWidgetConfig.extTabBar.copyWith(unSelectedItemColor: color.toHex()),
                 ),
               ),
             ),

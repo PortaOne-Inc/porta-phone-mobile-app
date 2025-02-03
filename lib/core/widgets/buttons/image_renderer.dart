@@ -8,7 +8,7 @@ class ImageRenderer extends StatelessWidget {
   const ImageRenderer({
     required this.resource,
     super.key,
-    this.fit = BoxFit.cover,
+    this.fit = BoxFit.scaleDown,
   });
 
   final Resource resource;
@@ -131,7 +131,7 @@ abstract class Resource {
     return ByteResource(bytes);
   }
 
-   factory Resource.empty() {
+  factory Resource.empty() {
     return EmptyResource();
   }
 

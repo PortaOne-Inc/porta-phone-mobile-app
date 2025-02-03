@@ -34,7 +34,11 @@ class AssetCard extends StatelessWidget {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              if (asset.url != null) ImageRenderer(resource: UrlResource(asset.url!)),
+              if (asset.url != null)
+                ImageRenderer(
+                  resource: UrlResource(asset.url!),
+                  fit: BoxFit.scaleDown,
+                ),
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(

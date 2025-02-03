@@ -5,14 +5,15 @@ import '../widgets/widgets.dart';
 class ContainerConfigTab extends StatelessWidget {
   const ContainerConfigTab({
     required this.decorationConfig,
-    required this.gradients,
     required this.callback,
     super.key,
   });
 
   final DecorationConfig decorationConfig;
-  final Gradients? gradients;
   final ObjectCallback<DecorationConfig> callback;
+
+  List<Color> get gradients =>
+      decorationConfig.primaryGradientColorsConfig.colors.map((it) => it.color.toColor()).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class ContainerConfigTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GradientField(
+              colors: gradients,
               onAddColor: (List<Color?> colors) {
                 context.selectColor(
                   initialColor: Colors.white,
@@ -36,12 +38,17 @@ class ContainerConfigTab extends StatelessWidget {
                   },
                 );
               },
-              colors: gradients?.tab?.colors ?? [],
               onRemoveColor: (color) {
-                final updatedColors = (gradients?.tab?.colors ?? []).where((c) => c != color).toList();
+                final colors = List<Color>.from(gradients);
+                final index = colors.indexWhere((c) => c == color);
+
+                if (index != -1) {
+                  colors.removeAt(index);
+                }
+
                 callback(decorationConfig.copyWith(
                   primaryGradientColorsConfig: decorationConfig.primaryGradientColorsConfig.copyWith(
-                    colors: updatedColors.map((it) => CustomColor(color: it.toHex())).toList(),
+                    colors: colors.map((it) => CustomColor(color: it.toHex())).toList(),
                   ),
                 ));
               },
@@ -50,15 +57,15 @@ class ContainerConfigTab extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: (gradients?.tab?.colors ?? [])
+              children: gradients
                   .map(
                     (color) => ColorField(
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  title: 'color',
-                  color: color,
-                  onTap: (color) async {},
-                ),
-              )
+                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      title: 'color',
+                      color: color,
+                      onTap: (color) async {},
+                    ),
+                  )
                   .toList(),
             ),
           ],
