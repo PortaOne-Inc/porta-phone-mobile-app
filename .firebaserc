@@ -1,5 +1,10 @@
 {
   "projects": {
-    "default": "webtrit-configurator-stage"
-  }
+    "default": "webtrit-configurator-stage",
+    "prod": "webtrit-configurator",
+    "stage": "webtrit-configurator-stage"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

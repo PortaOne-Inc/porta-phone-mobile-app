@@ -20,11 +20,14 @@ export class AuthService {
   constructor(
     @InjectRepository(UserRole)
     private readonly userRoleRepository: BaseFirestoreRepository<UserRole>,
-    private readonly userService: UsersService
-  ) {
-  }
+    private readonly userService: UsersService,
+  ) {}
 
-  async register(email: string, password: string, role: string): Promise<string> {
+  async register(
+    email: string,
+    password: string,
+    role: string,
+  ): Promise<string> {
     if (!['admin', 'user', 'guest'].includes(role)) {
       throw new BadRequestException('Invalid role');
     }

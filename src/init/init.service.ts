@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as firebase from 'firebase/app';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
-import serviceAccount from '../../webtrit-configurator-stage-firebase-adminsdk.json';
+import serviceAccount from '../../service_account.json';
 
 @Injectable()
 export class InitService {

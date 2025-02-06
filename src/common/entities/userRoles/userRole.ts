@@ -1,6 +1,6 @@
 import { Collection } from 'fireorm';
 
-@Collection('userRoles')
+@Collection('user-roles')
 export class UserRole {
   id: string;
   role: string;

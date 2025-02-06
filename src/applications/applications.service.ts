@@ -70,4 +70,37 @@ export class ApplicationsService {
       return null;
     }
   }
+
+  async getApplicationEnvironment(
+    id: string,
+  ): Promise<Record<string, string | boolean | number> | null> {
+    try {
+      const application = await this.applicationRepository.findById(id);
+      return application ? application.environment || {} : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  // New method: Update environment configuration
+  async updateApplicationEnvironment(
+    id: string,
+    environmentData: Record<string, string | boolean | number>,
+  ): Promise<Application | null> {
+    try {
+      const application = await this.applicationRepository.findById(id);
+      if (application) {
+        application.environment = {
+          ...application.environment,
+          ...environmentData,
+        };
+        await this.applicationRepository.update(application);
+        return application;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
 }

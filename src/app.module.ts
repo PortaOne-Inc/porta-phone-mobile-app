@@ -15,6 +15,7 @@ import { Reflector } from '@nestjs/core';
 import { UsersService } from './users/users.service';
 import { FirebaseAuthGuard } from './auth/guard/firebase-auth.guard';
 import { UserRole } from './common/entities/userRoles/userRole';
+import { TranslationsModule } from './features/translations/translations.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserRole } from './common/entities/userRoles/userRole';
     AuthModule,
     ThemesModule,
     UsersModule,
+    TranslationsModule,
   ],
   controllers: [AppController, GithubProxyController],
   providers: [

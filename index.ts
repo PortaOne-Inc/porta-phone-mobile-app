@@ -46,9 +46,8 @@ const createFunction = async (expressInstance: Express): Promise<void> => {
   await app.init();
 };
 
-// TODO: Change this variable name to 'api' after migrating to nest all features
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const newapi = functions.https.onRequest(async (request, response) => {
+export const api = functions.https.onRequest(async (request, response) => {
   await createFunction(expressServer);
   expressServer(request, response);
 });

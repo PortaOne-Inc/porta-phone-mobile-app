@@ -85,4 +85,38 @@ export class ApplicationsController {
     }
     return applications;
   }
+
+  @Get(':id/environment')
+  async getApplicationEnvironment(
+    @Param('id') id: string,
+  ): Promise<Record<string, string | boolean | number> | null> {
+    const environment =
+      await this.applicationsService.getApplicationEnvironment(id);
+    if (!environment) {
+      throw new HttpException(
+        'Environment not found or application does not exist',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return environment;
+  }
+
+  @Put(':id/environment')
+  async updateApplicationEnvironment(
+    @Param('id') id: string,
+    @Body() environmentData: Record<string, string | boolean | number>,
+  ): Promise<Application | null> {
+    const updatedApplication =
+      await this.applicationsService.updateApplicationEnvironment(
+        id,
+        environmentData,
+      );
+    if (!updatedApplication) {
+      throw new HttpException(
+        'Failed to update environment',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return updatedApplication;
+  }
 }

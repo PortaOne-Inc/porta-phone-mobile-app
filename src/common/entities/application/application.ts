@@ -7,10 +7,11 @@ export class Application {
   user?: string;
   name?: string;
   theme?: string;
+  environment?: Record<string, string | boolean | number>;
   androidPlatformId?: string;
   iosPlatformId?: string;
   androidVersion?: BuildVersion;
   iosVersion?: BuildVersion;
-  coreUrl?: string;
-  termsConditionsUrl?: string;
+  coreUrl?: string; // DELETE AS MOVED TO ENV
+  termsConditionsUrl?: string; // DELETE AS MOVED TO ENV
 }
