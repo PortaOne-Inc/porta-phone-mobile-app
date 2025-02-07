@@ -38,7 +38,7 @@ class BorderContainer extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Text(title, style: textTheme.titleMedium),
+              child: Text(title, style: textTheme.labelLarge),
             ),
             if (trailing != null) trailing!,
           ],

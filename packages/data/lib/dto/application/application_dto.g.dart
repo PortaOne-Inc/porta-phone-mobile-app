@@ -10,6 +10,7 @@ _$ApplicationDTOImpl _$$ApplicationDTOImplFromJson(Map<String, dynamic> json) =>
     _$ApplicationDTOImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
+      environment: json['environment'] as Map<String, dynamic>?,
       iosPlatformId: json['iosPlatformId'] as String?,
       androidPlatformId: json['androidPlatformId'] as String?,
       termsConditionsUrl: json['termsConditionsUrl'] as String?,
@@ -38,6 +39,7 @@ Map<String, dynamic> _$$ApplicationDTOImplToJson(
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
       if (instance.name case final value?) 'name': value,
+      if (instance.environment case final value?) 'environment': value,
       if (instance.iosPlatformId case final value?) 'iosPlatformId': value,
       if (instance.androidPlatformId case final value?)
         'androidPlatformId': value,

@@ -9,6 +9,7 @@ class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     String? id,
     String? name,
+    Map<String, dynamic>? environment,
     String? iosPlatformId,
     String? androidPlatformId,
     String? termsConditionsUrl,

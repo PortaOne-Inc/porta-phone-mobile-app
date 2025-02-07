@@ -71,13 +71,6 @@ class DataPackageModule extends _i526.MicroPackageModule {
     gh.factory<
         _i602.CommonMapper<_i494.LaunchAssetsModel?,
             _i862.LaunchAssetsDto?>>(() => _i920.LaunchAssetsMapper());
-    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(() =>
-        _i177.ThemeMapper(
-          gh<_i1058.CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
-          gh<
-              _i1058.CommonMapper<_i494.LaunchAssetsModel?,
-                  _i862.LaunchAssetsDto?>>(),
-        ));
     gh.factory<_i191.LocalStorage>(
       () => _i99.FileStorage(gh<String>()),
       instanceName: 'FileStorage',
@@ -90,11 +83,21 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()));
     gh.lazySingleton<_i808.AuthPrefDatasource>(
         () => _i808.AuthPrefDatasource(gh<_i99.LocalStorage>()));
+    gh.lazySingleton<_i361.Dio>(() => registerModule.serverApiClient(
+          gh<String>(instanceName: 'baseUrl'),
+          gh<_i822.AuthPrefDatasource>(),
+        ));
     gh.factory<_i174.ResourcesRepository>(
         () => _i136.ResourcesRepositoryImpl(gh<_i457.FirebaseStorage>()));
-    gh.lazySingleton<_i361.Dio>(() => registerModule.serverApiClient(
-          gh<String>(instanceName: 'newBaseUrl'),
-          gh<_i822.AuthPrefDatasource>(),
+    gh.factory<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(() =>
+        _i177.ThemeMapper(
+          gh<_i1058.CommonMapper<_i494.ThemeAssetModel, _i862.ThemeAssetDto>>(),
+          gh<
+              _i1058.CommonMapper<_i494.LaunchAssetsModel?,
+                  _i862.LaunchAssetsDto?>>(),
+          gh<
+              _i1058
+              .CommonMapper<_i494.SplashAssetModel?, _i862.SplashAssetsDto?>>(),
         ));
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
         () => _i342.ConfiguratorBackandDatasource(gh<_i342.Dio>()));

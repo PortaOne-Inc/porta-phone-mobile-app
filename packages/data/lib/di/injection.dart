@@ -17,7 +17,7 @@ abstract class RegisterModule {
   Future<SharedPreferences> prefs() => SharedPreferences.getInstance();
 
   @LazySingleton()
-  Dio serverApiClient(@Named('newBaseUrl') String baseUrl, AuthPrefDatasource authPref) {
+  Dio serverApiClient(@Named('baseUrl') String baseUrl, AuthPrefDatasource authPref) {
     final options = BaseOptions(baseUrl: baseUrl);
     final dio = Dio(options);
 

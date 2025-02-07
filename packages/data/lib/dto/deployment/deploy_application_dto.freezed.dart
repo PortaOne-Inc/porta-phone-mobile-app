@@ -37,6 +37,8 @@ mixin _$DeployApplicationDto {
   String get commonDependencySourceBranch => throw _privateConstructorUsedError;
   set commonDependencySourceBranch(String value) =>
       throw _privateConstructorUsedError;
+  String get keystoreSourceBranch => throw _privateConstructorUsedError;
+  set keystoreSourceBranch(String value) => throw _privateConstructorUsedError;
   String get androidPlayStoreConfig => throw _privateConstructorUsedError;
   set androidPlayStoreConfig(String value) =>
       throw _privateConstructorUsedError;
@@ -65,6 +67,7 @@ abstract class $DeployApplicationDtoCopyWith<$Res> {
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
       String commonDependencySourceBranch,
+      String keystoreSourceBranch,
       String androidPlayStoreConfig});
 }
 
@@ -91,6 +94,7 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
     Object? commonDependencySourceBranch = null,
+    Object? keystoreSourceBranch = null,
     Object? androidPlayStoreConfig = null,
   }) {
     return _then(_value.copyWith(
@@ -123,6 +127,10 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
           ? _value.commonDependencySourceBranch
           : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
+      keystoreSourceBranch: null == keystoreSourceBranch
+          ? _value.keystoreSourceBranch
+          : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable
+              as String,
       androidPlayStoreConfig: null == androidPlayStoreConfig
           ? _value.androidPlayStoreConfig
           : androidPlayStoreConfig // ignore: cast_nullable_to_non_nullable
@@ -147,6 +155,7 @@ abstract class _$$DeployApplicationDtoImplCopyWith<$Res>
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
       String commonDependencySourceBranch,
+      String keystoreSourceBranch,
       String androidPlayStoreConfig});
 }
 
@@ -170,6 +179,7 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
     Object? commonDependencySourceBranch = null,
+    Object? keystoreSourceBranch = null,
     Object? androidPlayStoreConfig = null,
   }) {
     return _then(_$DeployApplicationDtoImpl(
@@ -202,6 +212,10 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
           ? _value.commonDependencySourceBranch
           : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
+      keystoreSourceBranch: null == keystoreSourceBranch
+          ? _value.keystoreSourceBranch
+          : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable
+              as String,
       androidPlayStoreConfig: null == androidPlayStoreConfig
           ? _value.androidPlayStoreConfig
           : androidPlayStoreConfig // ignore: cast_nullable_to_non_nullable
@@ -221,6 +235,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
       required this.phoneConfiguratorToolSourceBranch,
       required this.callkeepSourceBranch,
       required this.commonDependencySourceBranch,
+      required this.keystoreSourceBranch,
       required this.androidPlayStoreConfig});
 
   factory _$DeployApplicationDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -241,11 +256,13 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
   @override
   String commonDependencySourceBranch;
   @override
+  String keystoreSourceBranch;
+  @override
   String androidPlayStoreConfig;
 
   @override
   String toString() {
-    return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+    return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
   }
 
   /// Create a copy of DeployApplicationDto
@@ -275,6 +292,7 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
       required String phoneConfiguratorToolSourceBranch,
       required String callkeepSourceBranch,
       required String commonDependencySourceBranch,
+      required String keystoreSourceBranch,
       required String androidPlayStoreConfig}) = _$DeployApplicationDtoImpl;
 
   factory _DeployApplicationDto.fromJson(Map<String, dynamic> json) =
@@ -301,6 +319,9 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
   @override
   String get commonDependencySourceBranch;
   set commonDependencySourceBranch(String value);
+  @override
+  String get keystoreSourceBranch;
+  set keystoreSourceBranch(String value);
   @override
   String get androidPlayStoreConfig;
   set androidPlayStoreConfig(String value);

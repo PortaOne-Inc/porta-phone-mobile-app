@@ -11,6 +11,7 @@ class ColorField extends StatelessWidget {
     this.constraints,
     this.onTap,
     this.child,
+    this.showCopyButton = true,
     super.key,
   });
 
@@ -18,6 +19,7 @@ class ColorField extends StatelessWidget {
   final Color? color;
   final EdgeInsets margin;
   final EdgeInsets padding;
+  final bool showCopyButton;
   final BoxConstraints? constraints;
   final void Function(Color color)? onTap;
   final Widget? child;
@@ -56,7 +58,7 @@ class ColorField extends StatelessWidget {
                   children: [
                     _buildTitle(textTheme, inverseColor),
                     const SizedBox(height: 8),
-                    _buildColorDisplay(context, effectiveColor, inverseColor),
+                    if (showCopyButton) _buildColorDisplay(context, effectiveColor, inverseColor),
                     if (child != null) ...[
                       const SizedBox(height: 8),
                       child!,

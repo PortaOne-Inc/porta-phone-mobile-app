@@ -122,7 +122,6 @@ class AppRoute {
                     builder: (BuildContext context, GoRouterState state) => BlocProvider(
                       create: (context) => EnvironmentCubit(
                         applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                        defaultEnvironment: getIt.get(instanceName: 'phoneEnvironment'),
                         updateApplicationEnvironmentUsecase: getIt.get(),
                         getApplicationEnvironmentUsecase: getIt.get(),
                       ),

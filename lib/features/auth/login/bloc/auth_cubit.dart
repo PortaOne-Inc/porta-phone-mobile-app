@@ -33,9 +33,17 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  void validateAndTryLogin() {
+  Future<void> validateAndTryLogin() async {
     if (_isValidFields()) {
-      _tryLogin();
+      try {
+        await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
+      } on AuthUserNotFountException catch (_) {
+        emit(state.copyWithError(failure: AuthException.noUser()));
+      } on AuthWrongPasswordException catch (_) {
+        emit(state.copyWithError(failure: AuthException.wrongPassword()));
+      } on Exception catch (e) {
+        emit(state.copyWithError(failure: AuthException.another(message: e.toString())));
+      }
     } else {
       emit(
         state.copyWith(
@@ -43,18 +51,6 @@ class AuthCubit extends Cubit<AuthState> {
           emailInput: state.emailInput?.toDirty(),
         ),
       );
-    }
-  }
-
-  Future<void> _tryLogin() async {
-    try {
-      await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
-    } on AuthUserNotFountException catch (_) {
-      emit(state.copyWithError(failure: AuthException.noUser()));
-    } on AuthWrongPasswordException catch (_) {
-      emit(state.copyWithError(failure: AuthException.wrongPassword()));
-    } on BaseException catch (e) {
-      emit(state.copyWithError(failure: AuthException.another(message: e.message)));
     }
   }
 

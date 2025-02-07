@@ -22,6 +22,8 @@ mixin _$SplashAssetsState {
       throw _privateConstructorUsedError;
   Color? get backgroundColor => throw _privateConstructorUsedError;
   SplashAssetsStateEnum get status => throw _privateConstructorUsedError;
+  BoxFit get fit => throw _privateConstructorUsedError;
+  double get padding => throw _privateConstructorUsedError;
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +43,9 @@ abstract class $SplashAssetsStateCopyWith<$Res> {
       String themeId,
       ThemeAssetModel? selectedForegroundAsset,
       Color? backgroundColor,
-      SplashAssetsStateEnum status});
+      SplashAssetsStateEnum status,
+      BoxFit fit,
+      double padding});
 
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
 }
@@ -66,6 +70,8 @@ class _$SplashAssetsStateCopyWithImpl<$Res, $Val extends SplashAssetsState>
     Object? selectedForegroundAsset = freezed,
     Object? backgroundColor = freezed,
     Object? status = null,
+    Object? fit = null,
+    Object? padding = null,
   }) {
     return _then(_value.copyWith(
       applicationId: null == applicationId
@@ -88,6 +94,14 @@ class _$SplashAssetsStateCopyWithImpl<$Res, $Val extends SplashAssetsState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SplashAssetsStateEnum,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -120,7 +134,9 @@ abstract class _$$InitialImplCopyWith<$Res>
       String themeId,
       ThemeAssetModel? selectedForegroundAsset,
       Color? backgroundColor,
-      SplashAssetsStateEnum status});
+      SplashAssetsStateEnum status,
+      BoxFit fit,
+      double padding});
 
   @override
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
@@ -144,6 +160,8 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? selectedForegroundAsset = freezed,
     Object? backgroundColor = freezed,
     Object? status = null,
+    Object? fit = null,
+    Object? padding = null,
   }) {
     return _then(_$InitialImpl(
       applicationId: null == applicationId
@@ -166,6 +184,14 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SplashAssetsStateEnum,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -178,7 +204,9 @@ class _$InitialImpl extends _Initial {
       required this.themeId,
       this.selectedForegroundAsset,
       this.backgroundColor,
-      this.status = SplashAssetsStateEnum.initial})
+      this.status = SplashAssetsStateEnum.initial,
+      this.fit = BoxFit.scaleDown,
+      this.padding = 0})
       : super._();
 
   @override
@@ -192,10 +220,16 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final SplashAssetsStateEnum status;
+  @override
+  @JsonKey()
+  final BoxFit fit;
+  @override
+  @JsonKey()
+  final double padding;
 
   @override
   String toString() {
-    return 'SplashAssetsState(applicationId: $applicationId, themeId: $themeId, selectedForegroundAsset: $selectedForegroundAsset, backgroundColor: $backgroundColor, status: $status)';
+    return 'SplashAssetsState(applicationId: $applicationId, themeId: $themeId, selectedForegroundAsset: $selectedForegroundAsset, backgroundColor: $backgroundColor, status: $status, fit: $fit, padding: $padding)';
   }
 
   @override
@@ -211,12 +245,14 @@ class _$InitialImpl extends _Initial {
                 other.selectedForegroundAsset == selectedForegroundAsset) &&
             (identical(other.backgroundColor, backgroundColor) ||
                 other.backgroundColor == backgroundColor) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.fit, fit) || other.fit == fit) &&
+            (identical(other.padding, padding) || other.padding == padding));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, applicationId, themeId,
-      selectedForegroundAsset, backgroundColor, status);
+      selectedForegroundAsset, backgroundColor, status, fit, padding);
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -233,7 +269,9 @@ abstract class _Initial extends SplashAssetsState {
       required final String themeId,
       final ThemeAssetModel? selectedForegroundAsset,
       final Color? backgroundColor,
-      final SplashAssetsStateEnum status}) = _$InitialImpl;
+      final SplashAssetsStateEnum status,
+      final BoxFit fit,
+      final double padding}) = _$InitialImpl;
   _Initial._() : super._();
 
   @override
@@ -246,6 +284,10 @@ abstract class _Initial extends SplashAssetsState {
   Color? get backgroundColor;
   @override
   SplashAssetsStateEnum get status;
+  @override
+  BoxFit get fit;
+  @override
+  double get padding;
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.

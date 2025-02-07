@@ -8,6 +8,8 @@ class SplashAssetModel with _$SplashAssetModel {
     int? originalAssetId,
     String? pictureUrl,
     String? color,
+    @Default(0.0) double padding,
+    @Default('scaleDown') String fit,
   }) = _SplashAssetModel;
 
   const SplashAssetModel._();

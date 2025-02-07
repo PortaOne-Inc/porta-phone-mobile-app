@@ -26,6 +26,7 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
       id: it.id,
       name: it.name,
       theme: it.theme,
+      environment: it.environment,
       iosPlatformId: it.iosPlatformId,
       androidPlatformId: it.androidPlatformId,
       appVersion: appVersion,
@@ -56,6 +57,7 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
     return ApplicationModel(
         id: it.id,
         name: it.name,
+        environment: it.environment,
         theme: it.theme,
         iosPlatformId: it.iosPlatformId,
         androidPlatformId: it.androidPlatformId,

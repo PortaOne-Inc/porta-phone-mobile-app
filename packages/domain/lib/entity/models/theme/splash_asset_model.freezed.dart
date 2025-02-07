@@ -19,6 +19,8 @@ mixin _$SplashAssetModel {
   int? get originalAssetId => throw _privateConstructorUsedError;
   String? get pictureUrl => throw _privateConstructorUsedError;
   String? get color => throw _privateConstructorUsedError;
+  double get padding => throw _privateConstructorUsedError;
+  String get fit => throw _privateConstructorUsedError;
 
   /// Create a copy of SplashAssetModel
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,12 @@ abstract class $SplashAssetModelCopyWith<$Res> {
           SplashAssetModel value, $Res Function(SplashAssetModel) then) =
       _$SplashAssetModelCopyWithImpl<$Res, SplashAssetModel>;
   @useResult
-  $Res call({int? originalAssetId, String? pictureUrl, String? color});
+  $Res call(
+      {int? originalAssetId,
+      String? pictureUrl,
+      String? color,
+      double padding,
+      String fit});
 }
 
 /// @nodoc
@@ -54,6 +61,8 @@ class _$SplashAssetModelCopyWithImpl<$Res, $Val extends SplashAssetModel>
     Object? originalAssetId = freezed,
     Object? pictureUrl = freezed,
     Object? color = freezed,
+    Object? padding = null,
+    Object? fit = null,
   }) {
     return _then(_value.copyWith(
       originalAssetId: freezed == originalAssetId
@@ -68,6 +77,14 @@ class _$SplashAssetModelCopyWithImpl<$Res, $Val extends SplashAssetModel>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -80,7 +97,12 @@ abstract class _$$SplashAssetModelImplCopyWith<$Res>
       __$$SplashAssetModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? originalAssetId, String? pictureUrl, String? color});
+  $Res call(
+      {int? originalAssetId,
+      String? pictureUrl,
+      String? color,
+      double padding,
+      String fit});
 }
 
 /// @nodoc
@@ -99,6 +121,8 @@ class __$$SplashAssetModelImplCopyWithImpl<$Res>
     Object? originalAssetId = freezed,
     Object? pictureUrl = freezed,
     Object? color = freezed,
+    Object? padding = null,
+    Object? fit = null,
   }) {
     return _then(_$SplashAssetModelImpl(
       originalAssetId: freezed == originalAssetId
@@ -113,6 +137,14 @@ class __$$SplashAssetModelImplCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -121,7 +153,11 @@ class __$$SplashAssetModelImplCopyWithImpl<$Res>
 
 class _$SplashAssetModelImpl extends _SplashAssetModel {
   const _$SplashAssetModelImpl(
-      {this.originalAssetId, this.pictureUrl, this.color})
+      {this.originalAssetId,
+      this.pictureUrl,
+      this.color,
+      this.padding = 0.0,
+      this.fit = 'scaleDown'})
       : super._();
 
   @override
@@ -130,10 +166,16 @@ class _$SplashAssetModelImpl extends _SplashAssetModel {
   final String? pictureUrl;
   @override
   final String? color;
+  @override
+  @JsonKey()
+  final double padding;
+  @override
+  @JsonKey()
+  final String fit;
 
   @override
   String toString() {
-    return 'SplashAssetModel(originalAssetId: $originalAssetId, pictureUrl: $pictureUrl, color: $color)';
+    return 'SplashAssetModel(originalAssetId: $originalAssetId, pictureUrl: $pictureUrl, color: $color, padding: $padding, fit: $fit)';
   }
 
   @override
@@ -145,12 +187,14 @@ class _$SplashAssetModelImpl extends _SplashAssetModel {
                 other.originalAssetId == originalAssetId) &&
             (identical(other.pictureUrl, pictureUrl) ||
                 other.pictureUrl == pictureUrl) &&
-            (identical(other.color, color) || other.color == color));
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.padding, padding) || other.padding == padding) &&
+            (identical(other.fit, fit) || other.fit == fit));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, originalAssetId, pictureUrl, color);
+  int get hashCode => Object.hash(
+      runtimeType, originalAssetId, pictureUrl, color, padding, fit);
 
   /// Create a copy of SplashAssetModel
   /// with the given fields replaced by the non-null parameter values.
@@ -166,7 +210,9 @@ abstract class _SplashAssetModel extends SplashAssetModel {
   const factory _SplashAssetModel(
       {final int? originalAssetId,
       final String? pictureUrl,
-      final String? color}) = _$SplashAssetModelImpl;
+      final String? color,
+      final double padding,
+      final String fit}) = _$SplashAssetModelImpl;
   const _SplashAssetModel._() : super._();
 
   @override
@@ -175,6 +221,10 @@ abstract class _SplashAssetModel extends SplashAssetModel {
   String? get pictureUrl;
   @override
   String? get color;
+  @override
+  double get padding;
+  @override
+  String get fit;
 
   /// Create a copy of SplashAssetModel
   /// with the given fields replaced by the non-null parameter values.

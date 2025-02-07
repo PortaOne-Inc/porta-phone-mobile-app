@@ -15,6 +15,7 @@ class ApplicationDTO with _$ApplicationDTO {
   const factory ApplicationDTO({
     String? id,
     String? name,
+    Map<String, dynamic>? environment,
     String? iosPlatformId,
     String? androidPlatformId,
     String? termsConditionsUrl,

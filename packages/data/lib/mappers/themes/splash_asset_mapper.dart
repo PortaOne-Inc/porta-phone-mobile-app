@@ -15,6 +15,8 @@ class SplashAssetsMapper extends CommonMapper<SplashAssetModel?, SplashAssetsDto
       originalAssetId: it?.originalAssetId,
       pictureUrl: it?.pictureUrl,
       color: it?.color,
+      padding: it?.padding ?? 0.0,
+      fit: it?.fit ?? 'scaleDown',
     );
   }
 
@@ -24,6 +26,8 @@ class SplashAssetsMapper extends CommonMapper<SplashAssetModel?, SplashAssetsDto
       originalAssetId: it?.originalAssetId,
       pictureUrl: it?.pictureUrl,
       color: it?.color,
+      padding: it?.padding ?? 0.0,
+      fit: it?.fit ?? 'scaleDown',
     );
   }
 }

@@ -6,7 +6,7 @@ import 'screen_clipper.dart';
 class DeviceFrame extends StatelessWidget {
   const DeviceFrame({
     required this.child,
-    this.size = const Size(360, 800),
+    this.size = const Size(1344, 2992),
     this.statusBarHeight = 36,
     this.frameThickness = 16,
     this.isFrameVisible = true,
@@ -31,14 +31,19 @@ class DeviceFrame extends StatelessWidget {
             child: SizedBox(
               width: size.width,
               height: size.height,
-              child: Column(
-                children: [
-                  Container(
-                    height: statusBarHeight,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  Expanded(child: child),
-                ],
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  size: size,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: statusBarHeight,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Expanded(child: child),
+                  ],
+                ),
               ),
             ),
           ),

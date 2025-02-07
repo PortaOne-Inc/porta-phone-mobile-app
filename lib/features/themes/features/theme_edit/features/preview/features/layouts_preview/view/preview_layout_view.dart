@@ -33,7 +33,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
       dividerThickness: 4,
       children: [
-        (context) => Align(
+        (_) => Align(
               child: TypePreview(
                 type: widget.previewType,
                 screens: _phoneScreenshots(),
@@ -43,7 +43,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
               ),
             ),
         if (widget.previewType == PreviewType.single)
-          (context) => DrawerPreview(
+          (_) => DrawerPreview(
                 screenshots: _phoneScreenshots(),
                 focusScreenPosition: _focusScreenPosition,
                 onTapScreen: _setFocusedScreen,
@@ -65,6 +65,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final loginLabel = loginFeature?.titleL10n;
 
+    final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
     final isFavoritePreview = bottomMenuFeature?.isTabEnabled(MainFlavor.favorites) ?? false;
     final isrResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
     final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
@@ -75,7 +76,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const LoginOtpSignInScreenshot(),
       const LoginOtpVerifyInScreenshot(),
       const LoginPasswordSignInScreenshot(),
-      const LoginSignUpScreenshot(),
+      if (isCustomSignupPreview) const LoginSignUpScreenshot(),
       const LoginSignUpVerifyScreenshot(),
       if (isFavoritePreview) MainScreenScreenshot(MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
       if (isrResentsPreview) MainScreenScreenshot(MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
@@ -87,6 +88,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
+      const PrivacyScreenScreenshot(),
     ]
         .map((it) => ScreenshotApp(
               appBloc: appBloc,

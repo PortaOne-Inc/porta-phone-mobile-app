@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get environment => throw _privateConstructorUsedError;
   String? get iosPlatformId => throw _privateConstructorUsedError;
   String? get androidPlatformId => throw _privateConstructorUsedError;
   String? get termsConditionsUrl => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $ApplicationModelCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      Map<String, dynamic>? environment,
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
@@ -78,6 +80,7 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? environment = freezed,
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
@@ -98,6 +101,10 @@ class _$ApplicationModelCopyWithImpl<$Res, $Val extends ApplicationModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      environment: freezed == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       iosPlatformId: freezed == iosPlatformId
           ? _value.iosPlatformId
           : iosPlatformId // ignore: cast_nullable_to_non_nullable
@@ -195,6 +202,7 @@ abstract class _$$ApplicationModelImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? name,
+      Map<String, dynamic>? environment,
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
@@ -229,6 +237,7 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? environment = freezed,
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
@@ -249,6 +258,10 @@ class __$$ApplicationModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      environment: freezed == environment
+          ? _value._environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       iosPlatformId: freezed == iosPlatformId
           ? _value.iosPlatformId
           : iosPlatformId // ignore: cast_nullable_to_non_nullable
@@ -299,6 +312,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
   const _$ApplicationModelImpl(
       {this.id,
       this.name,
+      final Map<String, dynamic>? environment,
       this.iosPlatformId,
       this.androidPlatformId,
       this.termsConditionsUrl,
@@ -309,12 +323,23 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       this.coreUrl,
       this.theme,
       this.demo = false})
-      : super._();
+      : _environment = environment,
+        super._();
 
   @override
   final String? id;
   @override
   final String? name;
+  final Map<String, dynamic>? _environment;
+  @override
+  Map<String, dynamic>? get environment {
+    final value = _environment;
+    if (value == null) return null;
+    if (_environment is EqualUnmodifiableMapView) return _environment;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   final String? iosPlatformId;
   @override
@@ -339,7 +364,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
 
   @override
   String toString() {
-    return 'ApplicationModel(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, contactEmail: $contactEmail, appVersion: $appVersion, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, demo: $demo)';
+    return 'ApplicationModel(id: $id, name: $name, environment: $environment, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, contactEmail: $contactEmail, appVersion: $appVersion, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, theme: $theme, demo: $demo)';
   }
 
   @override
@@ -349,6 +374,8 @@ class _$ApplicationModelImpl extends _ApplicationModel {
             other is _$ApplicationModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._environment, _environment) &&
             (identical(other.iosPlatformId, iosPlatformId) ||
                 other.iosPlatformId == iosPlatformId) &&
             (identical(other.androidPlatformId, androidPlatformId) ||
@@ -373,6 +400,7 @@ class _$ApplicationModelImpl extends _ApplicationModel {
       runtimeType,
       id,
       name,
+      const DeepCollectionEquality().hash(_environment),
       iosPlatformId,
       androidPlatformId,
       termsConditionsUrl,
@@ -398,6 +426,7 @@ abstract class _ApplicationModel extends ApplicationModel {
   const factory _ApplicationModel(
       {final String? id,
       final String? name,
+      final Map<String, dynamic>? environment,
       final String? iosPlatformId,
       final String? androidPlatformId,
       final String? termsConditionsUrl,
@@ -414,6 +443,8 @@ abstract class _ApplicationModel extends ApplicationModel {
   String? get id;
   @override
   String? get name;
+  @override
+  Map<String, dynamic>? get environment;
   @override
   String? get iosPlatformId;
   @override

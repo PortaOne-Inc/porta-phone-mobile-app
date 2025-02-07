@@ -48,10 +48,8 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           BorderContainer(
-            title: 'Bottom Menu',
+            title: 'Common  configuration',
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
@@ -62,13 +60,22 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                   value: widget.mainConfig.bottomMenu.cacheSelectedTab,
                   onChanged: (it) {},
                 ),
-                Divider(
-                  color: colorScheme.primary.withValues(alpha: .25),
-                ),
-                Text(
-                  'Configuration tabs',
-                  style: textTheme.titleMedium,
-                ),
+              ],
+            ),
+          ),
+          Divider(
+            color: colorScheme.primary.withValues(alpha: .25),
+          ),
+          BorderContainer(
+            title: 'Manage  tabs',
+            trailing: TextButton(
+              onPressed: () {},
+              child: const Text('Add embedded tab'),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 SizedBox(
                   height: 200,
                   child: ReorderableListView(
@@ -150,7 +157,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                 const SizedBox(height: 16),
                 if (_removedTabs.isNotEmpty) ...[
                   Text(
-                    'Removed Tabs',
+                    'Disabled Tabs',
                     style: textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),

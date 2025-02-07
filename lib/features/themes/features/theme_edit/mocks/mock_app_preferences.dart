@@ -167,36 +167,6 @@ class MockAppPreferences implements AppPreferences {
   Future<void> setSystemInfo(WebtritSystemInfo systemInfo) async {}
 
   @override
-  AudioCodec? getPreferedAudioCodec() {
-    final codecString = _mockData['prefered-audio-codec'] as String?;
-    return codecString != null ? AudioCodec.values.byName(codecString) : null;
-  }
-
-  @override
-  Future<void> setPreferedAudioCodec(AudioCodec? value) async {
-    if (value != null) {
-      _mockData['prefered-audio-codec'] = value.name;
-    } else {
-      _mockData.remove('prefered-audio-codec');
-    }
-  }
-
-  @override
-  VideoCodec? getPreferedVideoCodec() {
-    final codecString = _mockData['prefered-video-codec'] as String?;
-    return codecString != null ? VideoCodec.values.byName(codecString) : null;
-  }
-
-  @override
-  Future<void> setPreferedVideoCodec(VideoCodec? value) async {
-    if (value != null) {
-      _mockData['prefered-video-codec'] = value.name;
-    } else {
-      _mockData.remove('prefered-video-codec');
-    }
-  }
-
-  @override
   AgreementStatus getContactsAgreementStatus({AgreementStatus defaultValue = AgreementStatus.pending}) {
     return AgreementStatus.pending;
   }
@@ -214,5 +184,15 @@ class MockAppPreferences implements AppPreferences {
   @override
   Future<bool> setUserAgreementStatus(AgreementStatus value) {
     return Future.value(true);
+  }
+
+  @override
+  EncodingSettings getEncodingSettings() {
+    return const EncodingSettings();
+  }
+
+  @override
+  Future<void> setEncodingSettings(EncodingSettings settings) {
+    return Future.value();
   }
 }

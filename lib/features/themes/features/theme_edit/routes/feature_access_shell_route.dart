@@ -19,13 +19,25 @@ class FeatureAccessShellRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mockAppPreferences = MockAppPreferences();
+    final packageInfoMock = PackageInfoMock();
+    final deviceInfo = DeviceInfoMock();
+
     return BlocSelector<UpdateThemCubit, UpdateThemeState, AppConfig>(
       selector: (state) => state.appConfig,
       builder: (context, appConfig) {
-        return FutureProvider<FeatureAccess>(
-          key: ValueKey(appConfig),
-          create: (_) async => FeatureAccess.init(appConfig, MockAppPreferences()),
-          initialData: FeatureAccess.init(appConfig, MockAppPreferences()),
+        final featureAccess = FeatureAccess.init(appConfig, mockAppPreferences);
+
+        return MultiProvider(
+          providers: [
+            Provider<MockAppPreferences>.value(value: mockAppPreferences),
+            Provider<DeviceInfo>.value(value: deviceInfo),
+            Provider<PackageInfo>.value(value: packageInfoMock),
+            FutureProvider<FeatureAccess>.value(
+              value: Future.value(featureAccess),
+              initialData: featureAccess,
+            ),
+          ],
           child: child,
         );
       },

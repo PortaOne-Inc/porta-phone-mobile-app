@@ -23,6 +23,8 @@ mixin _$SplashAssetsDto {
   int? get originalAssetId => throw _privateConstructorUsedError;
   String? get pictureUrl => throw _privateConstructorUsedError;
   String? get color => throw _privateConstructorUsedError;
+  double get padding => throw _privateConstructorUsedError;
+  String get fit => throw _privateConstructorUsedError;
 
   /// Serializes this SplashAssetsDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,12 @@ abstract class $SplashAssetsDtoCopyWith<$Res> {
           SplashAssetsDto value, $Res Function(SplashAssetsDto) then) =
       _$SplashAssetsDtoCopyWithImpl<$Res, SplashAssetsDto>;
   @useResult
-  $Res call({int? originalAssetId, String? pictureUrl, String? color});
+  $Res call(
+      {int? originalAssetId,
+      String? pictureUrl,
+      String? color,
+      double padding,
+      String fit});
 }
 
 /// @nodoc
@@ -61,6 +68,8 @@ class _$SplashAssetsDtoCopyWithImpl<$Res, $Val extends SplashAssetsDto>
     Object? originalAssetId = freezed,
     Object? pictureUrl = freezed,
     Object? color = freezed,
+    Object? padding = null,
+    Object? fit = null,
   }) {
     return _then(_value.copyWith(
       originalAssetId: freezed == originalAssetId
@@ -75,6 +84,14 @@ class _$SplashAssetsDtoCopyWithImpl<$Res, $Val extends SplashAssetsDto>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +104,12 @@ abstract class _$$SplashAssetsDtoImplCopyWith<$Res>
       __$$SplashAssetsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? originalAssetId, String? pictureUrl, String? color});
+  $Res call(
+      {int? originalAssetId,
+      String? pictureUrl,
+      String? color,
+      double padding,
+      String fit});
 }
 
 /// @nodoc
@@ -106,6 +128,8 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
     Object? originalAssetId = freezed,
     Object? pictureUrl = freezed,
     Object? color = freezed,
+    Object? padding = null,
+    Object? fit = null,
   }) {
     return _then(_$SplashAssetsDtoImpl(
       originalAssetId: freezed == originalAssetId
@@ -120,6 +144,14 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as double,
+      fit: null == fit
+          ? _value.fit
+          : fit // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -129,7 +161,11 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   const _$SplashAssetsDtoImpl(
-      {this.originalAssetId, this.pictureUrl, this.color});
+      {this.originalAssetId,
+      this.pictureUrl,
+      this.color,
+      this.padding = 0.0,
+      this.fit = 'scaleDown'});
 
   factory _$SplashAssetsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SplashAssetsDtoImplFromJson(json);
@@ -140,10 +176,16 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   final String? pictureUrl;
   @override
   final String? color;
+  @override
+  @JsonKey()
+  final double padding;
+  @override
+  @JsonKey()
+  final String fit;
 
   @override
   String toString() {
-    return 'SplashAssetsDto(originalAssetId: $originalAssetId, pictureUrl: $pictureUrl, color: $color)';
+    return 'SplashAssetsDto(originalAssetId: $originalAssetId, pictureUrl: $pictureUrl, color: $color, padding: $padding, fit: $fit)';
   }
 
   @override
@@ -155,13 +197,15 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
                 other.originalAssetId == originalAssetId) &&
             (identical(other.pictureUrl, pictureUrl) ||
                 other.pictureUrl == pictureUrl) &&
-            (identical(other.color, color) || other.color == color));
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.padding, padding) || other.padding == padding) &&
+            (identical(other.fit, fit) || other.fit == fit));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, originalAssetId, pictureUrl, color);
+  int get hashCode => Object.hash(
+      runtimeType, originalAssetId, pictureUrl, color, padding, fit);
 
   /// Create a copy of SplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -184,7 +228,9 @@ abstract class _SplashAssetsDto implements SplashAssetsDto {
   const factory _SplashAssetsDto(
       {final int? originalAssetId,
       final String? pictureUrl,
-      final String? color}) = _$SplashAssetsDtoImpl;
+      final String? color,
+      final double padding,
+      final String fit}) = _$SplashAssetsDtoImpl;
 
   factory _SplashAssetsDto.fromJson(Map<String, dynamic> json) =
       _$SplashAssetsDtoImpl.fromJson;
@@ -195,6 +241,10 @@ abstract class _SplashAssetsDto implements SplashAssetsDto {
   String? get pictureUrl;
   @override
   String? get color;
+  @override
+  double get padding;
+  @override
+  String get fit;
 
   /// Create a copy of SplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.

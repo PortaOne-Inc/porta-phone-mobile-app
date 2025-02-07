@@ -22,6 +22,7 @@ ApplicationDTO _$ApplicationDTOFromJson(Map<String, dynamic> json) {
 mixin _$ApplicationDTO {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get environment => throw _privateConstructorUsedError;
   String? get iosPlatformId => throw _privateConstructorUsedError;
   String? get androidPlatformId => throw _privateConstructorUsedError;
   String? get termsConditionsUrl => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $ApplicationDTOCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      Map<String, dynamic>? environment,
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
@@ -86,6 +88,7 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? environment = freezed,
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
@@ -106,6 +109,10 @@ class _$ApplicationDTOCopyWithImpl<$Res, $Val extends ApplicationDTO>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      environment: freezed == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       iosPlatformId: freezed == iosPlatformId
           ? _value.iosPlatformId
           : iosPlatformId // ignore: cast_nullable_to_non_nullable
@@ -217,6 +224,7 @@ abstract class _$$ApplicationDTOImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? name,
+      Map<String, dynamic>? environment,
       String? iosPlatformId,
       String? androidPlatformId,
       String? termsConditionsUrl,
@@ -253,6 +261,7 @@ class __$$ApplicationDTOImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? environment = freezed,
     Object? iosPlatformId = freezed,
     Object? androidPlatformId = freezed,
     Object? termsConditionsUrl = freezed,
@@ -273,6 +282,10 @@ class __$$ApplicationDTOImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      environment: freezed == environment
+          ? _value._environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       iosPlatformId: freezed == iosPlatformId
           ? _value.iosPlatformId
           : iosPlatformId // ignore: cast_nullable_to_non_nullable
@@ -324,6 +337,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
   const _$ApplicationDTOImpl(
       {this.id,
       this.name,
+      final Map<String, dynamic>? environment,
       this.iosPlatformId,
       this.androidPlatformId,
       this.termsConditionsUrl,
@@ -333,7 +347,8 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
       this.coreUrl,
       this.contactInfo,
       this.theme,
-      this.demo = false});
+      this.demo = false})
+      : _environment = environment;
 
   factory _$ApplicationDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$ApplicationDTOImplFromJson(json);
@@ -342,6 +357,16 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
   final String? id;
   @override
   final String? name;
+  final Map<String, dynamic>? _environment;
+  @override
+  Map<String, dynamic>? get environment {
+    final value = _environment;
+    if (value == null) return null;
+    if (_environment is EqualUnmodifiableMapView) return _environment;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   final String? iosPlatformId;
   @override
@@ -366,7 +391,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
 
   @override
   String toString() {
-    return 'ApplicationDTO(id: $id, name: $name, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, appVersion: $appVersion, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, contactInfo: $contactInfo, theme: $theme, demo: $demo)';
+    return 'ApplicationDTO(id: $id, name: $name, environment: $environment, iosPlatformId: $iosPlatformId, androidPlatformId: $androidPlatformId, termsConditionsUrl: $termsConditionsUrl, appVersion: $appVersion, androidVersion: $androidVersion, iosVersion: $iosVersion, coreUrl: $coreUrl, contactInfo: $contactInfo, theme: $theme, demo: $demo)';
   }
 
   @override
@@ -376,6 +401,8 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
             other is _$ApplicationDTOImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._environment, _environment) &&
             (identical(other.iosPlatformId, iosPlatformId) ||
                 other.iosPlatformId == iosPlatformId) &&
             (identical(other.androidPlatformId, androidPlatformId) ||
@@ -401,6 +428,7 @@ class _$ApplicationDTOImpl implements _ApplicationDTO {
       runtimeType,
       id,
       name,
+      const DeepCollectionEquality().hash(_environment),
       iosPlatformId,
       androidPlatformId,
       termsConditionsUrl,
@@ -433,6 +461,7 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   const factory _ApplicationDTO(
       {final String? id,
       final String? name,
+      final Map<String, dynamic>? environment,
       final String? iosPlatformId,
       final String? androidPlatformId,
       final String? termsConditionsUrl,
@@ -451,6 +480,8 @@ abstract class _ApplicationDTO implements ApplicationDTO {
   String? get id;
   @override
   String? get name;
+  @override
+  Map<String, dynamic>? get environment;
   @override
   String? get iosPlatformId;
   @override

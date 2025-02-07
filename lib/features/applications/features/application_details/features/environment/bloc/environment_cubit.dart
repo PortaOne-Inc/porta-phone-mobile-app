@@ -9,7 +9,6 @@ part 'environment_cubit.freezed.dart';
 class EnvironmentCubit extends Cubit<EnvironmentState> {
   EnvironmentCubit({
     required String applicationId,
-    required this.defaultEnvironment,
     required this.updateApplicationEnvironmentUsecase,
     required this.getApplicationEnvironmentUsecase,
   }) : super(EnvironmentState(
@@ -18,7 +17,6 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
     getEnvironment();
   }
 
-  final Map<String, dynamic> defaultEnvironment;
   final UpdateApplicationEnvironmentUsecase updateApplicationEnvironmentUsecase;
   final GetApplicationEnvironmentUsecase getApplicationEnvironmentUsecase;
 
@@ -28,10 +26,9 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
       final environment = await getApplicationEnvironmentUsecase.execute(
         applicationId: state.applicationId,
       );
-      final mergedEnvironment = _mergeWithDefault(environment);
       emit(state.copyWith(
         status: EnvironmentStatus.initial,
-        environment: mergedEnvironment,
+        environment: environment,
       ));
     } catch (error) {
       emit(state.copyWith(status: EnvironmentStatus.error, errorMessage: error.toString()));
@@ -66,9 +63,6 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
   }
 
   Map<String, dynamic> _mergeWithDefault(Map<String, dynamic> environment) {
-    return {
-      ...defaultEnvironment,
-      ...environment,
-    };
+    return environment;
   }
 }

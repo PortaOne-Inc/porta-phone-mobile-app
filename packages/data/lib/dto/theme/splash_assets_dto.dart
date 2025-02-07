@@ -11,6 +11,8 @@ class SplashAssetsDto with _$SplashAssetsDto {
     int? originalAssetId,
     String? pictureUrl,
     String? color,
+    @Default(0.0) double padding,
+    @Default('scaleDown') String fit,
   }) = _SplashAssetsDto;
 
   factory SplashAssetsDto.fromJson(Map<String, dynamic> json) => _$SplashAssetsDtoFromJson(json);

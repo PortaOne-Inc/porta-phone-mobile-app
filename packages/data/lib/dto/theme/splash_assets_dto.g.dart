@@ -12,6 +12,8 @@ _$SplashAssetsDtoImpl _$$SplashAssetsDtoImplFromJson(
       originalAssetId: (json['originalAssetId'] as num?)?.toInt(),
       pictureUrl: json['pictureUrl'] as String?,
       color: json['color'] as String?,
+      padding: (json['padding'] as num?)?.toDouble() ?? 0.0,
+      fit: json['fit'] as String? ?? 'scaleDown',
     );
 
 Map<String, dynamic> _$$SplashAssetsDtoImplToJson(
@@ -20,4 +22,6 @@ Map<String, dynamic> _$$SplashAssetsDtoImplToJson(
       'originalAssetId': instance.originalAssetId,
       'pictureUrl': instance.pictureUrl,
       'color': instance.color,
+      'padding': instance.padding,
+      'fit': instance.fit,
     };

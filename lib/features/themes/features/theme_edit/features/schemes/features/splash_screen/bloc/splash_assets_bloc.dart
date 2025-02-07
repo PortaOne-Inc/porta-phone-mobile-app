@@ -3,9 +3,10 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/core/widgets/buttons/image_renderer.dart';
 
 part 'splash_assets_state.dart';
 
@@ -21,18 +22,31 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
   final UploadFileUsecase uploadFileUsecase;
   final UpdateSplashAssetsThemeUsecase updateSplashAssetsThemeUsecase;
 
-  Future<void> selectForegroundAsset(ThemeAssetModel selectedAsset) async {
-    emit(state.copyWith(selectedForegroundAsset: selectedAsset));
+  Future<void> selectForegroundAsset(ThemeAssetModel? selectedAsset) async {
+    emit(state.copyWith(selectedForegroundAsset: selectedAsset, status: SplashAssetsStateEnum.loading));
+    emit(state.copyWith(status: SplashAssetsStateEnum.initial));
   }
 
-  Future<void> selectBackgroundColor(Color color) async {
-    emit(state.copyWith(backgroundColor: color));
+  Future<void> selectBackgroundColor(Color? color) async {
+    emit(state.copyWith(backgroundColor: color, status: SplashAssetsStateEnum.loading));
+    emit(state.copyWith(status: SplashAssetsStateEnum.initial));
+  }
+
+  Future<void> selectFit(BoxFit? fit) async {
+    emit(state.copyWith(fit: fit ?? state.fit, status: SplashAssetsStateEnum.loading));
+    emit(state.copyWith(status: SplashAssetsStateEnum.initial));
+  }
+
+  Future<void> selectPadding(double? padding) async {
+    emit(state.copyWith(padding: padding ?? state.padding, status: SplashAssetsStateEnum.loading));
+    emit(state.copyWith(status: SplashAssetsStateEnum.initial));
   }
 
   Future<void> uploadAsset(
     Future<Uint8List?> asset,
   ) async {
     emit(state.copyWith(status: SplashAssetsStateEnum.loading));
+
     final assetUint8List = await asset;
 
     final launchUrl = await uploadFileUsecase.execute(fileName: '${DateTime.now()}.png', data: assetUint8List!);
@@ -44,6 +58,8 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
           originalAssetId: state.selectedForegroundAsset!.id,
           pictureUrl: launchUrl,
           color: state.backgroundColor!.toHex(),
+          padding: state.padding,
+          fit: state.fit.name,
         ));
 
     emit(state.copyWith(status: SplashAssetsStateEnum.initial));

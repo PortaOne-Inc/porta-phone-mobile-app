@@ -31,6 +31,14 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
     context.read<EnvironmentCubit>().updateKeyValue(key, value);
   }
 
+  void _manageKey(bool isEnabled, String key, String value) {
+    if (isEnabled) {
+      context.read<EnvironmentCubit>().updateKeyValue(key, value);
+    } else {
+      context.read<EnvironmentCubit>().removeAttribute(key);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -67,12 +75,14 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   keyName: state.appNameKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
                                   label: 'App Description',
                                   keyName: state.appDescriptionKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                               ],
                             ),
@@ -81,22 +91,28 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                               title: 'Core Settings',
                               fields: [
                                 ConfigField(
-                                    label: 'Core URL',
-                                    keyName: state.coreUrlKeyName,
-                                    config: state.environment,
-                                    onConfigUpdate: _updateConfig),
+                                  label: 'Core URL',
+                                  keyName: state.coreUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
+                                ),
                                 ConfigField(
-                                    label: 'Demo Core URL',
-                                    keyName: state.demoCoreUrlKeyName,
-                                    config: state.environment,
-                                    onConfigUpdate: _updateConfig,
-                                    defaultValue: 'http://localhost:4000'),
+                                  label: 'Demo Core URL',
+                                  keyName: state.demoCoreUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                  defaultValue: 'http://localhost:4000',
+                                  onEnabledChanged: _manageKey,
+                                ),
                                 ConfigField(
-                                    label: 'Core Version Constraint',
-                                    keyName: state.coreVersionConstraintKeyName,
-                                    config: state.environment,
-                                    onConfigUpdate: _updateConfig,
-                                    defaultValue: '>=0.7.0-alpha <2.0.0'),
+                                  label: 'Core Version Constraint',
+                                  keyName: state.coreVersionConstraintKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                  defaultValue: '>=0.7.0-alpha <2.0.0',
+                                  onEnabledChanged: _manageKey,
+                                ),
                               ],
                             ),
                             Divider(thickness: 4, color: colorScheme.surfaceContainerLow),
@@ -104,21 +120,25 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                               title: 'Logging Services',
                               fields: [
                                 ConfigField(
-                                    label: 'Logzio Logging URL',
-                                    keyName: state.remoteLogzioLoggingUrlKeyName,
-                                    config: state.environment,
-                                    onConfigUpdate: _updateConfig),
+                                  label: 'Logzio Logging URL',
+                                  keyName: state.remoteLogzioLoggingUrlKeyName,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
+                                ),
                                 ConfigField(
                                   label: 'Logzio Logging Token',
                                   keyName: state.remoteLogzioLoggingTokenKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
                                   label: 'Logzio Buffer Size',
                                   keyName: state.remoteLogzioLoggingBufferSizeKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                               ],
                             ),
@@ -156,18 +176,21 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   keyName: state.appHelpUrlKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
                                   label: 'App About URL',
                                   keyName: state.appAboutUrlKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
                                   label: 'App Credentials Request URL',
                                   keyName: state.appCredentialsRequestUrlKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
                                 ),
                               ],
                             ),
@@ -214,37 +237,6 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
           orientation: ResizableOrientation.horizontal,
         ),
       ),
-    );
-  }
-}
-
-class ConfigField extends StatelessWidget {
-  const ConfigField({
-    required this.label,
-    required this.keyName,
-    required this.config,
-    required this.onConfigUpdate,
-    super.key,
-    this.defaultValue,
-  });
-
-  final String label;
-  final String keyName;
-  final Map<String, dynamic> config;
-  final void Function<T>(String key, T value) onConfigUpdate;
-  final String? defaultValue;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = (config[keyName] as String?) ?? defaultValue ?? '';
-    final controller = TextEditingController(text: text)..selection = TextSelection.collapsed(offset: text.length);
-
-    return OutlineInput(
-      label: label,
-      controller: controller,
-      icon: Icons.text_fields,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      onChanged: (value) => onConfigUpdate<String>(keyName, value),
     );
   }
 }

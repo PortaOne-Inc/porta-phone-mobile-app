@@ -21,9 +21,4 @@ abstract class RegisterModule {
   String baseUrl() {
     return ApplicationEnvironment.CONFIGURATOR_API_URL;
   }
-
-  @Named('newBaseUrl')
-  String deployPlatformBuildsURL() {
-    return ApplicationEnvironment.CONFIGURATOR_API_URL_V1;
-  }
 }

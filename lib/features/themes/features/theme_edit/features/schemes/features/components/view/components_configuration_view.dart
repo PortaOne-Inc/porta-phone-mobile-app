@@ -5,6 +5,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
 
 import 'action_pad_config_tab.dart';
@@ -14,8 +15,8 @@ import 'container_config_tab.dart';
 import 'dialog_config.dart';
 import 'fonts_config_tab.dart';
 import 'group_config_tab.dart';
+import 'image_assets_config_tab.dart';
 import 'input_config_tab.dart';
-import 'picture_config_tab.dart';
 import 'statuses_config_tab.dart';
 import 'text_config_tab.dart';
 
@@ -34,7 +35,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
     'Buttons',
     'Groups',
     'Bars',
-    'Pictures',
+    'Images && Icons',
     'Inputs',
     'Texts',
     'Dialogs',
@@ -120,10 +121,10 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
             sourceBarWidgetConfig: themeWidgetConfig.bar,
             callback: (config) => cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(bar: config))),
           ),
-          PictureConfigTab(
-            pictureConfig: themeWidgetConfig.picture,
-            onChanged: (PictureWidgetConfig value) =>
-                cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(picture: value))),
+          ImageAssetsConfigTab(
+            imageAssetsConfig: themeWidgetConfig.imageAssets,
+            onChanged: (ImageAssetsConfig value) =>
+                cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(imageAssets: value))),
           ),
           InputConfigTab(
             callback: (config) => cubit.add(UpdateSchemeEvent.components(themeWidgetConfig.copyWith(input: config))),

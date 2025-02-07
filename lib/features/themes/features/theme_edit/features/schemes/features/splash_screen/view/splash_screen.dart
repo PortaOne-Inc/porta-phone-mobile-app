@@ -9,7 +9,6 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../../launch_assets/bloc/launch_assets_bloc.dart';
 import '../bloc/splash_assets_bloc.dart';
 import '../widgets/widgets.dart';
 
@@ -24,16 +23,16 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
   final ScreenshotController _screenshotController = ScreenshotController();
   final TextEditingController _paddingController = TextEditingController();
 
-  BoxFit _iconFit = BoxFit.fitWidth;
-  double _padding = 0;
+  SplashAssetsBloc get _splashAssetsBloc => context.read<SplashAssetsBloc>();
 
   @override
   void initState() {
     super.initState();
-    _paddingController.addListener(() {
-      setState(() {
-        _padding = double.tryParse(_paddingController.text) ?? 0;
-      });
+    _paddingController.addListener(_updatePadding);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final state = context.read<UpdateThemCubit>().state;
+      _handleThemeUpdate(context, state);
     });
   }
 
@@ -41,26 +40,23 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return BlocBuilder<SplashAssetsBloc, SplashAssetsState>(
-      builder: (context, state) => Scaffold(
-        appBar: AppBar(
-          title: Text('Splash Screen', style: textTheme.titleMedium),
-          actions: [
-            IconButton(
-              onPressed: !state.status.isLoading ? _save : null,
-              icon: state.status.isLoading
-                  ? const SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircularProgressIndicator(strokeWidth: 1),
-                    )
-                  : const Icon(Icons.save),
-              tooltip: 'Save launch assets',
-            ),
-          ],
-        ),
-        body: Card(
-          child: Padding(
+    return BlocListener<UpdateThemCubit, UpdateThemeState>(
+      listener: _handleThemeUpdate,
+      child: BlocBuilder<SplashAssetsBloc, SplashAssetsState>(
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(
+            title: Text('Splash Screen', style: textTheme.titleMedium),
+            actions: [
+              IconButton(
+                onPressed: !state.status.isLoading ? _save : null,
+                icon: state.status.isLoading
+                    ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 1))
+                    : const Icon(Icons.save),
+                tooltip: 'Save launch assets',
+              ),
+            ],
+          ),
+          body: Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                             ),
                             const SizedBox(height: 16),
                             ColorField(
-                              title: "Background color",
+                              title: 'Background color',
                               color: state.backgroundColor,
                               onTap: (color) =>
                                   _selectColor(context, color, context.read<SplashAssetsBloc>().selectBackgroundColor),
@@ -92,8 +88,8 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                               label: 'Splash Icon Fit',
                               options: BoxFit.values,
                               constraints: const BoxConstraints.tightFor(width: 400),
-                              value: _iconFit,
-                              onChanged: (fit) => setState(() => _iconFit = fit ?? _iconFit),
+                              value: state.fit,
+                              onChanged: (fit) => _splashAssetsBloc.selectFit(fit),
                               optionBuilder: (fit) => fit.name,
                             ),
                             const SizedBox(height: 8),
@@ -109,6 +105,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                           size: const Size(200, 400),
                           child: IgnorePointer(
                             child: ColorField(
+                              showCopyButton: false,
                               color: state.backgroundColor,
                               title: '',
                               child: Center(
@@ -127,8 +124,8 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                 SplashIconWidget(
                   image: state.selectedForegroundAssetResource,
                   screenshotSplashIconController: _screenshotController,
-                  paddingSplash: _padding,
-                  splashIconsFitBox: _iconFit,
+                  paddingSplash: state.padding,
+                  splashIconsFitBox: state.fit,
                 ),
               ],
             ),
@@ -138,8 +135,31 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
     );
   }
 
+  void _updatePadding() {
+    final value = double.tryParse(_paddingController.text) ?? 0;
+    _splashAssetsBloc.selectPadding(value);
+  }
+
+  void _handleThemeUpdate(BuildContext context, UpdateThemeState state) {
+    final originalAssetId = state.theme?.splashAsset.originalAssetId;
+
+    final splashColor = state.theme?.splashAsset.color?.toColor();
+    final iconFit = BoxFit.values.firstWhere((element) => element.name == (state.theme?.splashAsset.fit ?? 'fitWidth'));
+    final padding = state.theme?.splashAsset.padding ?? 0;
+    final asset = state.assets.firstWhere((element) => element.id == originalAssetId);
+
+    _paddingController.text = padding.toString();
+
+    _splashAssetsBloc
+      ..selectForegroundAsset(asset)
+      ..selectBackgroundColor(splashColor)
+      ..selectFit(iconFit)
+      ..selectPadding(padding);
+    print('SplashScreen: _handleThemeUpdate');
+  }
+
   void _save() {
-    context.read<SplashAssetsBloc>().uploadAsset(_screenshotController.capture());
+    _splashAssetsBloc.uploadAsset(_screenshotController.capture());
   }
 
   Future<void> _selectImage() async {
@@ -147,28 +167,32 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
       SchemeRoute.assetsScheme.name,
       extra: [ThemeAssetType.vectorImage],
     );
+
     if (assetModel != null && mounted) {
-      unawaited(context.read<SplashAssetsBloc>().selectForegroundAsset(assetModel));
+      unawaited(_splashAssetsBloc.selectForegroundAsset(assetModel));
     }
   }
 
   Future<void> _selectColor(BuildContext context, Color color, void Function(Color) callback) async {
     final result = await showDialog<Color?>(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: color,
-              ),
-            ),
-        useRootNavigator: false);
+      context: context,
+      builder: (context) => Center(
+        child: ColorPicker(
+          onDeclineColor: () => Navigator.of(context).pop(),
+          onAcceptColor: (color) => Navigator.of(context).pop(color),
+          initialColor: color,
+        ),
+      ),
+      useRootNavigator: false,
+    );
     if (result is Color) callback(result);
   }
 
   @override
   void dispose() {
-    _paddingController.dispose();
+    _paddingController
+      ..removeListener(_updatePadding)
+      ..dispose();
     super.dispose();
   }
 }

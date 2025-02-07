@@ -7,10 +7,11 @@ import 'package:data/mappers/mappers.dart';
 
 @Injectable(as: CommonMapper<ThemeModel, ThemeDTO>)
 class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
-  ThemeMapper(this.themeAssetMapper, this.launchAssetsMapper);
+  ThemeMapper(this.themeAssetMapper, this.launchAssetsMapper, this.splashAssetsMapper);
 
   final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
   final CommonMapper<LaunchAssetsModel?, LaunchAssetsDto?> launchAssetsMapper;
+  final CommonMapper<SplashAssetModel?, SplashAssetsDto?> splashAssetsMapper;
 
   @override
   ThemeDTO convertTo(ThemeModel it) {
@@ -22,6 +23,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
       themePageConfig: ThemePageConfig.fromJson(it.themePageConfig),
       appConfig: AppConfig.fromJson(it.appConfig),
       assets: themeAssetMapper.convertListTo(it.assets),
+      splashAssets: splashAssetsMapper.convertTo(it.splashAsset) ?? const SplashAssetsDto(),
       launchAssets: launchAssetsMapper.convertTo(it.launchAssets) ?? const LaunchAssetsDto(),
     );
   }
@@ -36,6 +38,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
       themePageConfig: it.themePageConfig.toJson(),
       appConfig: it.appConfig.toJson(),
       assets: themeAssetMapper.convertListFrom(it.assets),
+      splashAsset: splashAssetsMapper.convertFrom(it.splashAssets) ?? const SplashAssetModel(),
       launchAssets: launchAssetsMapper.convertFrom(it.launchAssets) ?? const LaunchAssetsModel(),
     );
   }

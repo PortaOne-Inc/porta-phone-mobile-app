@@ -17,6 +17,8 @@ class SplashAssetsState with _$SplashAssetsState {
     ThemeAssetModel? selectedForegroundAsset,
     Color? backgroundColor,
     @Default(SplashAssetsStateEnum.initial) SplashAssetsStateEnum status,
+    @Default(BoxFit.scaleDown) BoxFit fit,
+    @Default(0) double padding,
   }) = _Initial;
 
   SplashAssetsState._();

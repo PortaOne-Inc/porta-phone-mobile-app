@@ -179,7 +179,7 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
 
     final embedded = EmbeddedData(
       id: _id,
-      resource: initialUrl,
+      resource: initialUrl.toString(),
       toolbar: config,
       attributes: Map.fromEntries(_attributes),
       metadata: metadata,
