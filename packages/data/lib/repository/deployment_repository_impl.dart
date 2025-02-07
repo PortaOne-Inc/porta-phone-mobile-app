@@ -44,7 +44,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       androidPlayStoreConfig: androidPlayStoreConfig,
       callkeepSourceBranch: branches.callkeepSourceBranch,
       keystoreSourceBranch: branches.keystoreSourceBranch,
-      commonDependencySourceBranch: branches.commonDependencySourceBranch,
+      configuratorSourceBranch: branches.configuratorSourceBranch,
     );
 
     return configuratorBackandDatasource.deployBuilds(deployApplication);

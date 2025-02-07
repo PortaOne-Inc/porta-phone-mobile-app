@@ -6,7 +6,7 @@ part 'application_dependency_branches.freezed.dart';
 
 const String _kDefaultPhoneMainSourceBranch = 'main';
 const String _kDefaultCallkeepSourceBranch = 'main';
-const String _kDefaultCommonDependencySourceBranch = 'develop';
+const String _kConfiguratorSourceBranch = 'develop';
 const String _kDefaultPhoneConfiguratorToolSourceBranch = 'develop';
 const String _kDefaultKeystoreSourceBranch = 'main';
 
@@ -16,7 +16,7 @@ class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
     @Default([]) List<PhoneBranch> phoneBranches,
     @Default(_kDefaultPhoneMainSourceBranch) String phoneSourceBranch,
     @Default(_kDefaultCallkeepSourceBranch) String callkeepSourceBranch,
-    @Default(_kDefaultCommonDependencySourceBranch) String commonDependencySourceBranch,
+    @Default(_kConfiguratorSourceBranch) String configuratorSourceBranch,
     @Default(_kDefaultPhoneConfiguratorToolSourceBranch) String phoneConfiguratorToolSourceBranch,
     @Default(_kDefaultKeystoreSourceBranch) String keystoreSourceBranch,
   }) = _ApplicationDependencyBranches;
@@ -27,8 +27,8 @@ class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
         _kDefaultCallkeepSourceBranch,
       ];
 
-  List<String> get defaultCommonDependencyBranches => [
-        _kDefaultCommonDependencySourceBranch,
+  List<String> get defaultConfiguratorBranches => [
+        _kConfiguratorSourceBranch,
       ];
 
   List<String> get defaultPhoneConfiguratorToolBranches => [

@@ -13,7 +13,7 @@ class DeployApplicationDto with _$DeployApplicationDto {
     required String phoneSourceBranch,
     required String phoneConfiguratorToolSourceBranch,
     required String callkeepSourceBranch,
-    required String commonDependencySourceBranch,
+    required String configuratorSourceBranch,
     required String keystoreSourceBranch,
     required String androidPlayStoreConfig,
   }) = _DeployApplicationDto;

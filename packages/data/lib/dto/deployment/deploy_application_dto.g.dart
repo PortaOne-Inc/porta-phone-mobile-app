@@ -16,8 +16,7 @@ _$DeployApplicationDtoImpl _$$DeployApplicationDtoImplFromJson(
       phoneConfiguratorToolSourceBranch:
           json['phoneConfiguratorToolSourceBranch'] as String,
       callkeepSourceBranch: json['callkeepSourceBranch'] as String,
-      commonDependencySourceBranch:
-          json['commonDependencySourceBranch'] as String,
+      configuratorSourceBranch: json['configuratorSourceBranch'] as String,
       keystoreSourceBranch: json['keystoreSourceBranch'] as String,
       androidPlayStoreConfig: json['androidPlayStoreConfig'] as String,
     );
@@ -32,7 +31,7 @@ Map<String, dynamic> _$$DeployApplicationDtoImplToJson(
       'phoneConfiguratorToolSourceBranch':
           instance.phoneConfiguratorToolSourceBranch,
       'callkeepSourceBranch': instance.callkeepSourceBranch,
-      'commonDependencySourceBranch': instance.commonDependencySourceBranch,
+      'configuratorSourceBranch': instance.configuratorSourceBranch,
       'keystoreSourceBranch': instance.keystoreSourceBranch,
       'androidPlayStoreConfig': instance.androidPlayStoreConfig,
     };

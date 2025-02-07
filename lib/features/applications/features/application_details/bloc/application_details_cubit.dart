@@ -5,14 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-
-import '../../../model/models.dart';
-import '../models/models.dart';
-
 part 'application_details_state.dart';
-
-part 'application_details_cubit_utility.dart';
 
 part 'application_details_cubit.freezed.dart';
 
@@ -24,16 +17,13 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.deleteThemeUseCase,
     required this.applicationDeleteUsecase,
     required this.applicationId,
-    required this.usecaseDeployBuilds,
     required this.updateBuildNameUseCase,
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
-    required this.getPhoneBranchesUsecase,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
           application: applicationModel,
-          applicationDeploy: const ApplicationDeploy(),
         )) {
     _init();
   }
@@ -46,19 +36,13 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UseCaseSetThemeDefault makeThemeAsDefaultUseCase;
   final UsecaseThemeDeleteCreate deleteThemeUseCase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
-  final UsecaseDeployBuilds usecaseDeployBuilds;
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
-  final GetPhoneBranchesUsecase getPhoneBranchesUsecase;
 
   Future<void> _init() async {
-    unawaited(_getPhoneBranches());
-
     await _getThemes();
     await _getApplication();
-
-    _checkValidationOfApplication();
   }
 
   Future<void> tryDeleteTheme(ThemeModel themeModel) async {
@@ -118,24 +102,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future<void> _getPhoneBranches() async {
-    await _executeWithErrorHandling(() async {
-      final branches = await getPhoneBranchesUsecase.execute();
-
-      final updatedDependencyBranches = state.applicationDeploy.applicationDependencyBranches.copyWith(
-        phoneBranches: branches,
-      );
-      final updatedApplicationDeploy = state.applicationDeploy.copyWith(
-        applicationDependencyBranches: updatedDependencyBranches,
-      );
-
-      emit(state.copyWith(
-        applicationDeploy: updatedApplicationDeploy,
-        status: ApplicationDetailsStateStatus.success,
-      ));
-    });
-  }
-
   Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
@@ -155,9 +121,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
 
         emit(state.copyWith(
           application: application,
-          applicationDeploy: state.applicationDeploy.copyWith(
-            demo: application.demo,
-          ),
           status: ApplicationDetailsStateStatus.success,
         ));
       } on BaseException catch (e) {
@@ -166,16 +129,8 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     } else {
       emit(state.copyWith(
         application: state.application,
-        applicationDeploy: state.applicationDeploy.copyWith(demo: state.application!.demo),
         status: ApplicationDetailsStateStatus.success,
       ));
-    }
-  }
-
-  void _checkValidationOfApplication() {
-    if (state.application != null) {
-      final applicationValidation = _validateApplication(state.application!);
-      emit(state.copyWith(applicationValidateErrors: applicationValidation));
     }
   }
 
@@ -183,80 +138,5 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
     await _getThemes();
-  }
-
-  Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
-    updateApplicationUsecase.execute(state.application!.copyWith(demo: model.demo));
-    emit(state.copyWith(applicationDeploy: model));
-  }
-
-  Future<void> deployBuilds() async {
-    emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deployConfirm));
-  }
-
-  Future<void> confirmDeployBuilds() async {
-    try {
-      await usecaseDeployBuilds.execute(
-        applicationId: state.application!.id!,
-        applicationDeploy: state.applicationDeploy,
-      );
-
-      await _getApplication(force: true);
-
-      emitRollback(state.copyWith(status: ApplicationDetailsStateStatus.deploySuccess));
-    } catch (e) {
-      emitRollback(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
-    }
-  }
-
-  Future<void> updateBuildName(BuildPlatform platform, VersionPart part) async {
-    try {
-      emit(state.copyWithAddingProgressName(platform));
-
-      final version = await updateBuildNameUseCase.execute(
-        application: state.application!,
-        platform: platform,
-        part: part,
-      );
-
-      final versionState = state.copyWithVersions(
-        android: platform == BuildPlatform.android ? version : null,
-        ios: platform == BuildPlatform.ios ? version : null,
-      );
-
-      emit(versionState.copyWithRemovingProgressName(platform));
-    } catch (e) {
-      final errorState = state.copyWith(
-        error: e,
-        status: ApplicationDetailsStateStatus.error,
-      );
-
-      emit(errorState.copyWithRemovingProgressName(platform));
-    }
-  }
-
-  Future<void> updateBuildNumber(BuildPlatform platform) async {
-    try {
-      emit(state.copyWithAddingProgressNumber(platform));
-
-      final version = await updateBuildNumberUseCase.execute(
-        application: state.application!,
-        platform: platform,
-      );
-
-      final versionState = state.copyWithVersions(
-        android: platform == BuildPlatform.android ? version : null,
-        ios: platform == BuildPlatform.ios ? version : null,
-      );
-
-      emit(versionState.copyWithRemovingProgressNumber(platform));
-    } catch (e) {
-      final errorState = state.copyWith(
-        error: e,
-        status: ApplicationDetailsStateStatus.error,
-      );
-
-      emit(errorState.copyWithRemovingProgressNumber(platform));
-    }
   }
 }

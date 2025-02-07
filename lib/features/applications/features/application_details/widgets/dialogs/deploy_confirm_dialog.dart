@@ -53,7 +53,7 @@ class DeployConfirmDialog extends StatelessWidget {
             ),
             BranchInfoRow(
               title: context.l10n.feature_application_details_DeployConfirmDialog_common_dependency_source_branch,
-              branch: deployInfo.applicationDependencyBranches.commonDependencySourceBranch,
+              branch: deployInfo.applicationDependencyBranches.configuratorSourceBranch,
             ),
             BranchInfoRow(
               title: context.l10n.feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch,

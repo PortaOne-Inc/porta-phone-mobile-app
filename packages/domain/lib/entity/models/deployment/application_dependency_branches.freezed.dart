@@ -19,7 +19,7 @@ mixin _$ApplicationDependencyBranches {
   List<PhoneBranch> get phoneBranches => throw _privateConstructorUsedError;
   String get phoneSourceBranch => throw _privateConstructorUsedError;
   String get callkeepSourceBranch => throw _privateConstructorUsedError;
-  String get commonDependencySourceBranch => throw _privateConstructorUsedError;
+  String get configuratorSourceBranch => throw _privateConstructorUsedError;
   String get phoneConfiguratorToolSourceBranch =>
       throw _privateConstructorUsedError;
   String get keystoreSourceBranch => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $ApplicationDependencyBranchesCopyWith<$Res> {
       {List<PhoneBranch> phoneBranches,
       String phoneSourceBranch,
       String callkeepSourceBranch,
-      String commonDependencySourceBranch,
+      String configuratorSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String keystoreSourceBranch});
 }
@@ -67,7 +67,7 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res,
     Object? phoneBranches = null,
     Object? phoneSourceBranch = null,
     Object? callkeepSourceBranch = null,
-    Object? commonDependencySourceBranch = null,
+    Object? configuratorSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? keystoreSourceBranch = null,
   }) {
@@ -84,9 +84,9 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res,
           ? _value.callkeepSourceBranch
           : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
-      commonDependencySourceBranch: null == commonDependencySourceBranch
-          ? _value.commonDependencySourceBranch
-          : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
+      configuratorSourceBranch: null == configuratorSourceBranch
+          ? _value.configuratorSourceBranch
+          : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
       phoneConfiguratorToolSourceBranch: null ==
               phoneConfiguratorToolSourceBranch
@@ -114,7 +114,7 @@ abstract class _$$ApplicationDependencyBranchesImplCopyWith<$Res>
       {List<PhoneBranch> phoneBranches,
       String phoneSourceBranch,
       String callkeepSourceBranch,
-      String commonDependencySourceBranch,
+      String configuratorSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String keystoreSourceBranch});
 }
@@ -137,7 +137,7 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
     Object? phoneBranches = null,
     Object? phoneSourceBranch = null,
     Object? callkeepSourceBranch = null,
-    Object? commonDependencySourceBranch = null,
+    Object? configuratorSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? keystoreSourceBranch = null,
   }) {
@@ -154,9 +154,9 @@ class __$$ApplicationDependencyBranchesImplCopyWithImpl<$Res>
           ? _value.callkeepSourceBranch
           : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
-      commonDependencySourceBranch: null == commonDependencySourceBranch
-          ? _value.commonDependencySourceBranch
-          : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
+      configuratorSourceBranch: null == configuratorSourceBranch
+          ? _value.configuratorSourceBranch
+          : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
       phoneConfiguratorToolSourceBranch: null ==
               phoneConfiguratorToolSourceBranch
@@ -179,7 +179,7 @@ class _$ApplicationDependencyBranchesImpl
       {final List<PhoneBranch> phoneBranches = const [],
       this.phoneSourceBranch = _kDefaultPhoneMainSourceBranch,
       this.callkeepSourceBranch = _kDefaultCallkeepSourceBranch,
-      this.commonDependencySourceBranch = _kDefaultCommonDependencySourceBranch,
+      this.configuratorSourceBranch = _kConfiguratorSourceBranch,
       this.phoneConfiguratorToolSourceBranch =
           _kDefaultPhoneConfiguratorToolSourceBranch,
       this.keystoreSourceBranch = _kDefaultKeystoreSourceBranch})
@@ -203,7 +203,7 @@ class _$ApplicationDependencyBranchesImpl
   final String callkeepSourceBranch;
   @override
   @JsonKey()
-  final String commonDependencySourceBranch;
+  final String configuratorSourceBranch;
   @override
   @JsonKey()
   final String phoneConfiguratorToolSourceBranch;
@@ -213,7 +213,7 @@ class _$ApplicationDependencyBranchesImpl
 
   @override
   String toString() {
-    return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
+    return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
   }
 
   @override
@@ -227,10 +227,9 @@ class _$ApplicationDependencyBranchesImpl
                 other.phoneSourceBranch == phoneSourceBranch) &&
             (identical(other.callkeepSourceBranch, callkeepSourceBranch) ||
                 other.callkeepSourceBranch == callkeepSourceBranch) &&
-            (identical(other.commonDependencySourceBranch,
-                    commonDependencySourceBranch) ||
-                other.commonDependencySourceBranch ==
-                    commonDependencySourceBranch) &&
+            (identical(
+                    other.configuratorSourceBranch, configuratorSourceBranch) ||
+                other.configuratorSourceBranch == configuratorSourceBranch) &&
             (identical(other.phoneConfiguratorToolSourceBranch,
                     phoneConfiguratorToolSourceBranch) ||
                 other.phoneConfiguratorToolSourceBranch ==
@@ -245,7 +244,7 @@ class _$ApplicationDependencyBranchesImpl
       const DeepCollectionEquality().hash(_phoneBranches),
       phoneSourceBranch,
       callkeepSourceBranch,
-      commonDependencySourceBranch,
+      configuratorSourceBranch,
       phoneConfiguratorToolSourceBranch,
       keystoreSourceBranch);
 
@@ -266,7 +265,7 @@ abstract class _ApplicationDependencyBranches
       {final List<PhoneBranch> phoneBranches,
       final String phoneSourceBranch,
       final String callkeepSourceBranch,
-      final String commonDependencySourceBranch,
+      final String configuratorSourceBranch,
       final String phoneConfiguratorToolSourceBranch,
       final String keystoreSourceBranch}) = _$ApplicationDependencyBranchesImpl;
   const _ApplicationDependencyBranches._() : super._();
@@ -278,7 +277,7 @@ abstract class _ApplicationDependencyBranches
   @override
   String get callkeepSourceBranch;
   @override
-  String get commonDependencySourceBranch;
+  String get configuratorSourceBranch;
   @override
   String get phoneConfiguratorToolSourceBranch;
   @override

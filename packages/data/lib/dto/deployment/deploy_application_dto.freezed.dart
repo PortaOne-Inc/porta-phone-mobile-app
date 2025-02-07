@@ -34,8 +34,8 @@ mixin _$DeployApplicationDto {
       throw _privateConstructorUsedError;
   String get callkeepSourceBranch => throw _privateConstructorUsedError;
   set callkeepSourceBranch(String value) => throw _privateConstructorUsedError;
-  String get commonDependencySourceBranch => throw _privateConstructorUsedError;
-  set commonDependencySourceBranch(String value) =>
+  String get configuratorSourceBranch => throw _privateConstructorUsedError;
+  set configuratorSourceBranch(String value) =>
       throw _privateConstructorUsedError;
   String get keystoreSourceBranch => throw _privateConstructorUsedError;
   set keystoreSourceBranch(String value) => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $DeployApplicationDtoCopyWith<$Res> {
       String phoneSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
-      String commonDependencySourceBranch,
+      String configuratorSourceBranch,
       String keystoreSourceBranch,
       String androidPlayStoreConfig});
 }
@@ -93,7 +93,7 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
     Object? phoneSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
-    Object? commonDependencySourceBranch = null,
+    Object? configuratorSourceBranch = null,
     Object? keystoreSourceBranch = null,
     Object? androidPlayStoreConfig = null,
   }) {
@@ -123,9 +123,9 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
           ? _value.callkeepSourceBranch
           : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
-      commonDependencySourceBranch: null == commonDependencySourceBranch
-          ? _value.commonDependencySourceBranch
-          : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
+      configuratorSourceBranch: null == configuratorSourceBranch
+          ? _value.configuratorSourceBranch
+          : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
       keystoreSourceBranch: null == keystoreSourceBranch
           ? _value.keystoreSourceBranch
@@ -154,7 +154,7 @@ abstract class _$$DeployApplicationDtoImplCopyWith<$Res>
       String phoneSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
-      String commonDependencySourceBranch,
+      String configuratorSourceBranch,
       String keystoreSourceBranch,
       String androidPlayStoreConfig});
 }
@@ -178,7 +178,7 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
     Object? phoneSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
-    Object? commonDependencySourceBranch = null,
+    Object? configuratorSourceBranch = null,
     Object? keystoreSourceBranch = null,
     Object? androidPlayStoreConfig = null,
   }) {
@@ -208,9 +208,9 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
           ? _value.callkeepSourceBranch
           : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
-      commonDependencySourceBranch: null == commonDependencySourceBranch
-          ? _value.commonDependencySourceBranch
-          : commonDependencySourceBranch // ignore: cast_nullable_to_non_nullable
+      configuratorSourceBranch: null == configuratorSourceBranch
+          ? _value.configuratorSourceBranch
+          : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
               as String,
       keystoreSourceBranch: null == keystoreSourceBranch
           ? _value.keystoreSourceBranch
@@ -234,7 +234,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
       required this.phoneSourceBranch,
       required this.phoneConfiguratorToolSourceBranch,
       required this.callkeepSourceBranch,
-      required this.commonDependencySourceBranch,
+      required this.configuratorSourceBranch,
       required this.keystoreSourceBranch,
       required this.androidPlayStoreConfig});
 
@@ -254,7 +254,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
   @override
   String callkeepSourceBranch;
   @override
-  String commonDependencySourceBranch;
+  String configuratorSourceBranch;
   @override
   String keystoreSourceBranch;
   @override
@@ -262,7 +262,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
 
   @override
   String toString() {
-    return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, commonDependencySourceBranch: $commonDependencySourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+    return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
   }
 
   /// Create a copy of DeployApplicationDto
@@ -291,7 +291,7 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
       required String phoneSourceBranch,
       required String phoneConfiguratorToolSourceBranch,
       required String callkeepSourceBranch,
-      required String commonDependencySourceBranch,
+      required String configuratorSourceBranch,
       required String keystoreSourceBranch,
       required String androidPlayStoreConfig}) = _$DeployApplicationDtoImpl;
 
@@ -317,8 +317,8 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
   String get callkeepSourceBranch;
   set callkeepSourceBranch(String value);
   @override
-  String get commonDependencySourceBranch;
-  set commonDependencySourceBranch(String value);
+  String get configuratorSourceBranch;
+  set configuratorSourceBranch(String value);
   @override
   String get keystoreSourceBranch;
   set keystoreSourceBranch(String value);

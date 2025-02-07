@@ -12,7 +12,9 @@ export 'package:dio/dio.dart';
 
 @lazySingleton
 class ConfiguratorBackandDatasource {
-  const ConfiguratorBackandDatasource(this.client,);
+  const ConfiguratorBackandDatasource(
+    this.client,
+  );
 
   final Dio client;
 
@@ -72,9 +74,13 @@ class ConfiguratorBackandDatasource {
     );
   }
 
-  Future<ApplicationDTO> getApplication(String applicationId) async {
+  Future<ApplicationDTO> getApplication({
+    required String applicationId,
+    Map<String, dynamic>? headers,
+  }) async {
     final response = await client.get<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.application(applicationId),
+      options: Options(headers: headers),
     );
 
     return ApplicationDTO.fromJson(response.data!);
@@ -96,8 +102,10 @@ class ConfiguratorBackandDatasource {
   }
 
   /// **Update Application Environment**
-  Future<Map<String, dynamic>> updateApplicationEnvironment(String applicationId,
-      Map<String, dynamic> environment) async {
+  Future<Map<String, dynamic>> updateApplicationEnvironment(
+    String applicationId,
+    Map<String, dynamic> environment,
+  ) async {
     final response = await client.put<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.applicationEnvironment(applicationId),
       data: environment,
@@ -130,11 +138,15 @@ class ConfiguratorBackandDatasource {
     return ThemeDTO.fromJson(response.data!);
   }
 
-  Future<ThemeDTO> getTheme(String applicationId, String themeId) async {
-    final url = ThemeConfiguratorBackandAPI.theme(applicationId, themeId);
-    final response = await client.get<Map<String, dynamic>>(url);
-    print('${url}');
-    print('${response}');
+  Future<ThemeDTO> getTheme({
+    required String applicationId,
+    required String themeId,
+    Map<String, dynamic>? headers,
+  }) async {
+    final response = await client.get<Map<String, dynamic>>(
+      ThemeConfiguratorBackandAPI.theme(applicationId, themeId),
+      options: Options(headers: headers),
+    );
 
     return ThemeDTO.fromJson(response.data!);
   }
@@ -159,9 +171,11 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<ThemeAssetDto>> removeAssetById(String applicationId,
-      String themeId,
-      int assetId,) async {
+  Future<List<ThemeAssetDto>> removeAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+  ) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/remove/$assetId',
     );
@@ -171,10 +185,12 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<List<ThemeAssetDto>> updateAssetById(String applicationId,
-      String themeId,
-      int assetId,
-      ThemeAssetDto updatedAsset,) async {
+  Future<List<ThemeAssetDto>> updateAssetById(
+    String applicationId,
+    String themeId,
+    int assetId,
+    ThemeAssetDto updatedAsset,
+  ) async {
     final response = await client.patch<Map<String, dynamic>>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets/update/$assetId',
       data: updatedAsset.toJson(),
@@ -185,8 +201,10 @@ class ConfiguratorBackandDatasource {
     return theme.assets;
   }
 
-  Future<void> deleteAllAssets(String applicationId,
-      String themeId,) async {
+  Future<void> deleteAllAssets(
+    String applicationId,
+    String themeId,
+  ) async {
     await client.delete<void>(
       '${ThemeConfiguratorBackandAPI.theme(applicationId, themeId)}/assets',
     );

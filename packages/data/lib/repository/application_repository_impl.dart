@@ -72,7 +72,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationModel> getApplication(String id) async {
     try {
-      final dto = await configuratorBackandDatasource.getApplication(id);
+      final dto = await configuratorBackandDatasource.getApplication(applicationId: id);
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());

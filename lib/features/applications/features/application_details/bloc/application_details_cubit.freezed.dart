@@ -18,12 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApplicationDetailsState {
   ApplicationDetailsStateStatus get status =>
       throw _privateConstructorUsedError;
-  ApplicationDeploy get applicationDeploy => throw _privateConstructorUsedError;
-  List<ApplicationValidateError> get applicationValidateErrors =>
-      throw _privateConstructorUsedError;
   List<ThemeModel> get themes => throw _privateConstructorUsedError;
-  ApplicationBuildVersionProgress get buildVersionProgress =>
-      throw _privateConstructorUsedError;
   ThemeModel? get deleteTheme => throw _privateConstructorUsedError;
   ApplicationModel? get application => throw _privateConstructorUsedError;
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
@@ -44,17 +39,12 @@ abstract class $ApplicationDetailsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ApplicationDetailsStateStatus status,
-      ApplicationDeploy applicationDeploy,
-      List<ApplicationValidateError> applicationValidateErrors,
       List<ThemeModel> themes,
-      ApplicationBuildVersionProgress buildVersionProgress,
       ThemeModel? deleteTheme,
       ApplicationModel? application,
       ApplicationModel? deleteApplication,
       Object? error});
 
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
-  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   $ApplicationModelCopyWith<$Res>? get application;
   $ApplicationModelCopyWith<$Res>? get deleteApplication;
@@ -77,10 +67,7 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = null,
-    Object? applicationValidateErrors = null,
     Object? themes = null,
-    Object? buildVersionProgress = null,
     Object? deleteTheme = freezed,
     Object? application = freezed,
     Object? deleteApplication = freezed,
@@ -91,22 +78,10 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: null == applicationDeploy
-          ? _value.applicationDeploy
-          : applicationDeploy // ignore: cast_nullable_to_non_nullable
-              as ApplicationDeploy,
-      applicationValidateErrors: null == applicationValidateErrors
-          ? _value.applicationValidateErrors
-          : applicationValidateErrors // ignore: cast_nullable_to_non_nullable
-              as List<ApplicationValidateError>,
       themes: null == themes
           ? _value.themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
-      buildVersionProgress: null == buildVersionProgress
-          ? _value.buildVersionProgress
-          : buildVersionProgress // ignore: cast_nullable_to_non_nullable
-              as ApplicationBuildVersionProgress,
       deleteTheme: freezed == deleteTheme
           ? _value.deleteTheme
           : deleteTheme // ignore: cast_nullable_to_non_nullable
@@ -121,27 +96,6 @@ class _$ApplicationDetailsStateCopyWithImpl<$Res,
               as ApplicationModel?,
       error: freezed == error ? _value.error : error,
     ) as $Val);
-  }
-
-  /// Create a copy of ApplicationDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy {
-    return $ApplicationDeployCopyWith<$Res>(_value.applicationDeploy, (value) {
-      return _then(_value.copyWith(applicationDeploy: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ApplicationDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress {
-    return $ApplicationBuildVersionProgressCopyWith<$Res>(
-        _value.buildVersionProgress, (value) {
-      return _then(_value.copyWith(buildVersionProgress: value) as $Val);
-    });
   }
 
   /// Create a copy of ApplicationDetailsState
@@ -198,19 +152,12 @@ abstract class _$$ApplicationDetailsStateInitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {ApplicationDetailsStateStatus status,
-      ApplicationDeploy applicationDeploy,
-      List<ApplicationValidateError> applicationValidateErrors,
       List<ThemeModel> themes,
-      ApplicationBuildVersionProgress buildVersionProgress,
       ThemeModel? deleteTheme,
       ApplicationModel? application,
       ApplicationModel? deleteApplication,
       Object? error});
 
-  @override
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
-  @override
-  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
   @override
   $ThemeModelCopyWith<$Res>? get deleteTheme;
   @override
@@ -235,10 +182,7 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? applicationDeploy = null,
-    Object? applicationValidateErrors = null,
     Object? themes = null,
-    Object? buildVersionProgress = null,
     Object? deleteTheme = freezed,
     Object? application = freezed,
     Object? deleteApplication = freezed,
@@ -249,22 +193,10 @@ class __$$ApplicationDetailsStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationDetailsStateStatus,
-      applicationDeploy: null == applicationDeploy
-          ? _value.applicationDeploy
-          : applicationDeploy // ignore: cast_nullable_to_non_nullable
-              as ApplicationDeploy,
-      applicationValidateErrors: null == applicationValidateErrors
-          ? _value._applicationValidateErrors
-          : applicationValidateErrors // ignore: cast_nullable_to_non_nullable
-              as List<ApplicationValidateError>,
       themes: null == themes
           ? _value._themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
-      buildVersionProgress: null == buildVersionProgress
-          ? _value.buildVersionProgress
-          : buildVersionProgress // ignore: cast_nullable_to_non_nullable
-              as ApplicationBuildVersionProgress,
       deleteTheme: freezed == deleteTheme
           ? _value.deleteTheme
           : deleteTheme // ignore: cast_nullable_to_non_nullable
@@ -288,33 +220,16 @@ class _$ApplicationDetailsStateInitialImpl
     extends ApplicationDetailsStateInitial {
   const _$ApplicationDetailsStateInitialImpl(
       {required this.status,
-      required this.applicationDeploy,
-      final List<ApplicationValidateError> applicationValidateErrors = const [],
       final List<ThemeModel> themes = const [],
-      this.buildVersionProgress = const ApplicationBuildVersionProgress(
-          progressNameUpdating: [], progressNumberUpdating: []),
       this.deleteTheme,
       this.application,
       this.deleteApplication,
       this.error})
-      : _applicationValidateErrors = applicationValidateErrors,
-        _themes = themes,
+      : _themes = themes,
         super._();
 
   @override
   final ApplicationDetailsStateStatus status;
-  @override
-  final ApplicationDeploy applicationDeploy;
-  final List<ApplicationValidateError> _applicationValidateErrors;
-  @override
-  @JsonKey()
-  List<ApplicationValidateError> get applicationValidateErrors {
-    if (_applicationValidateErrors is EqualUnmodifiableListView)
-      return _applicationValidateErrors;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_applicationValidateErrors);
-  }
-
   final List<ThemeModel> _themes;
   @override
   @JsonKey()
@@ -324,9 +239,6 @@ class _$ApplicationDetailsStateInitialImpl
     return EqualUnmodifiableListView(_themes);
   }
 
-  @override
-  @JsonKey()
-  final ApplicationBuildVersionProgress buildVersionProgress;
   @override
   final ThemeModel? deleteTheme;
   @override
@@ -338,7 +250,7 @@ class _$ApplicationDetailsStateInitialImpl
 
   @override
   String toString() {
-    return 'ApplicationDetailsState(status: $status, applicationDeploy: $applicationDeploy, applicationValidateErrors: $applicationValidateErrors, themes: $themes, buildVersionProgress: $buildVersionProgress, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
+    return 'ApplicationDetailsState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
   }
 
   @override
@@ -347,13 +259,7 @@ class _$ApplicationDetailsStateInitialImpl
         (other.runtimeType == runtimeType &&
             other is _$ApplicationDetailsStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.applicationDeploy, applicationDeploy) ||
-                other.applicationDeploy == applicationDeploy) &&
-            const DeepCollectionEquality().equals(
-                other._applicationValidateErrors, _applicationValidateErrors) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
-            (identical(other.buildVersionProgress, buildVersionProgress) ||
-                other.buildVersionProgress == buildVersionProgress) &&
             (identical(other.deleteTheme, deleteTheme) ||
                 other.deleteTheme == deleteTheme) &&
             (identical(other.application, application) ||
@@ -367,10 +273,7 @@ class _$ApplicationDetailsStateInitialImpl
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      applicationDeploy,
-      const DeepCollectionEquality().hash(_applicationValidateErrors),
       const DeepCollectionEquality().hash(_themes),
-      buildVersionProgress,
       deleteTheme,
       application,
       deleteApplication,
@@ -390,10 +293,7 @@ class _$ApplicationDetailsStateInitialImpl
 abstract class ApplicationDetailsStateInitial extends ApplicationDetailsState {
   const factory ApplicationDetailsStateInitial(
       {required final ApplicationDetailsStateStatus status,
-      required final ApplicationDeploy applicationDeploy,
-      final List<ApplicationValidateError> applicationValidateErrors,
       final List<ThemeModel> themes,
-      final ApplicationBuildVersionProgress buildVersionProgress,
       final ThemeModel? deleteTheme,
       final ApplicationModel? application,
       final ApplicationModel? deleteApplication,
@@ -403,13 +303,7 @@ abstract class ApplicationDetailsStateInitial extends ApplicationDetailsState {
   @override
   ApplicationDetailsStateStatus get status;
   @override
-  ApplicationDeploy get applicationDeploy;
-  @override
-  List<ApplicationValidateError> get applicationValidateErrors;
-  @override
   List<ThemeModel> get themes;
-  @override
-  ApplicationBuildVersionProgress get buildVersionProgress;
   @override
   ThemeModel? get deleteTheme;
   @override

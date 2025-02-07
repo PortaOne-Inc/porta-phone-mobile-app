@@ -73,19 +73,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                           Expanded(
                             child: ApplicationDetailsScreen(
                               application: state.application,
-                              applicationValidateErrors: state.applicationValidateErrors,
                               onOpenDefaultTheme: (String applicationId, String themeId) =>
                                   _openTheme(context, applicationId, themeId),
-                              applicationDeploy: state.applicationDeploy,
-                              onUpdateApplicationDeploy: bloc.updateApplicationDeploy,
-                              onDeploy: bloc.deployBuilds,
-                              applicationBuildVersionProgress: state.buildVersionProgress,
-                              onUpdateBuildNameVersion: bloc.updateBuildName,
-                              onUpdateBuildNumberVersion: bloc.updateBuildNumber,
-                              onEnvironment: () => _navigateToChangeEnvConfiguration(
-                                context,
-                                state.application!.id!,
-                              ),
+                              onDeploy: () => _navigateToDeployment(context, state.application!.id!),
+                              onEnvironment: () => _navigateToChangeEnvConfiguration(context, state.application!.id!),
                             ),
                           )
                         ],
@@ -153,18 +144,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
       showFailureMessage(context, state.error.toString());
     }
 
-    if (state.status == ApplicationDetailsStateStatus.deployConfirm) {
-      _showDeployConfirm(state);
-    }
-
-    if (state.status == ApplicationDetailsStateStatus.deploySuccess) {
-      showTopSnakeMessageSuccess(
-        context,
-        context.l10n.feature_application_details_ApplicationDetailsScreen_deploy_success_message,
-        duration: const Duration(seconds: 4),
-      );
-    }
-
     if (state.status == ApplicationDetailsStateStatus.deleted) {
       GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
     }
@@ -227,23 +206,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _showDeployConfirm(ApplicationDetailsState state) async {
-    await showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return DeployConfirmDialog(
-          deployInfo: state.applicationDeploy,
-          onCancel: () {
-            Navigator.maybePop(context);
-          },
-          onAccept: () {
-            Navigator.maybePop(context);
-            this.context.read<ApplicationDetailsCubit>().confirmDeployBuilds();
-          },
-        );
-      },
-    );
-  }
+
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
@@ -252,6 +215,15 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   Future<void> _navigateToChangeEnvConfiguration(BuildContext context, String applicationId) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetailsEnv.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  Future<void> _navigateToDeployment(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationDeployment.name,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationId,
       },

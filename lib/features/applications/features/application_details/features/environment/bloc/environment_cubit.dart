@@ -62,7 +62,4 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
     emit(state.copyWith(environment: updatedEnvironment));
   }
 
-  Map<String, dynamic> _mergeWithDefault(Map<String, dynamic> environment) {
-    return environment;
-  }
 }

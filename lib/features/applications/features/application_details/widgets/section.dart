@@ -4,11 +4,13 @@ class Section extends StatelessWidget {
   const Section({
     required this.title,
     required this.children,
+    this.titleStyle,
     super.key,
   });
 
   final String title;
   final List<Widget> children;
+  final TextStyle? titleStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class Section extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: titleStyle ?? Theme.of(context).textTheme.headlineMedium,
             ),
           ),
           ...children,

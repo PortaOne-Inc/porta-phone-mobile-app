@@ -4,6 +4,13 @@ import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
 
+abstract class UsecaseDeployBuilds {
+  Future<void> execute({
+    required String applicationId,
+    required ApplicationDeploy applicationDeploy,
+  });
+}
+
 @Injectable(as: UsecaseDeployBuilds)
 class UsecaseDeployBuildsImpl extends UsecaseDeployBuilds {
   UsecaseDeployBuildsImpl({
@@ -27,9 +34,11 @@ class UsecaseDeployBuildsImpl extends UsecaseDeployBuilds {
       demo: applicationDeploy.demo,
     );
 
-    final appVersion = await deploymentRepository
-        .getAppVersionByPhoneBranch(applicationDeploy.applicationDependencyBranches.phoneSourceBranch);
-
-    await applicationRepository.updateApplication(applicationId, ApplicationModel(appVersion: appVersion));
+    // TODO(Serdun): Fix update app version after deployment, now if i call it version stay null
+    //
+    // final appVersion = await deploymentRepository
+    //     .getAppVersionByPhoneBranch(applicationDeploy.applicationDependencyBranches.phoneSourceBranch);
+    //
+    // await applicationRepository.updateApplication(applicationId, ApplicationModel(appVersion: appVersion));
   }
 }

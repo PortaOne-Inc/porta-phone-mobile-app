@@ -55,7 +55,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    final dto = await configuratorBackandDatasource.getTheme(applicationId, themeId);
+    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
     return themeMapper.convertFrom(dto);
   }
 
