@@ -10,6 +10,7 @@ _$DeployApplicationDtoImpl _$$DeployApplicationDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$DeployApplicationDtoImpl(
       applicationId: json['applicationId'] as String,
+      token: json['token'] as String,
       platforms: json['platforms'] as String,
       type: json['type'] as String,
       phoneSourceBranch: json['phoneSourceBranch'] as String,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$DeployApplicationDtoImplToJson(
         _$DeployApplicationDtoImpl instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
+      'token': instance.token,
       'platforms': instance.platforms,
       'type': instance.type,
       'phoneSourceBranch': instance.phoneSourceBranch,

@@ -7,6 +7,7 @@ import 'package:domain/domain.dart';
 import 'package:data/datasource/datasource.dart';
 
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dto/dto.dart';
 
@@ -16,8 +17,10 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     required this.configuratorBackandDatasource,
     required this.phoneBranchMapper,
     required this.appVersionMapper,
+    required this.authPrefDataSource,
   });
 
+  final AuthPrefDatasource authPrefDataSource;
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<PhoneBranch, PhoneBranchDto> phoneBranchMapper;
   final CommonMapper<AppVersion, BuildVersionModel> appVersionMapper;
@@ -37,6 +40,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
 
     final deployApplication = DeployApplicationDto(
       applicationId: applicationId,
+      token: authPrefDataSource.getAuthToken()!,
       platforms: deployPlatform,
       type: deployFlow,
       phoneSourceBranch: branches.phoneSourceBranch,

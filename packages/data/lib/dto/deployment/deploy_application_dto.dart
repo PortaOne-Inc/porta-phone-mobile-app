@@ -8,6 +8,7 @@ part 'deploy_application_dto.g.dart';
 class DeployApplicationDto with _$DeployApplicationDto {
   factory DeployApplicationDto({
     required String applicationId,
+    required String token,
     required String platforms,
     required String type,
     required String phoneSourceBranch,

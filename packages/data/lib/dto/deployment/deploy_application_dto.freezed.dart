@@ -22,6 +22,8 @@ DeployApplicationDto _$DeployApplicationDtoFromJson(Map<String, dynamic> json) {
 mixin _$DeployApplicationDto {
   String get applicationId => throw _privateConstructorUsedError;
   set applicationId(String value) => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  set token(String value) => throw _privateConstructorUsedError;
   String get platforms => throw _privateConstructorUsedError;
   set platforms(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
@@ -61,6 +63,7 @@ abstract class $DeployApplicationDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String applicationId,
+      String token,
       String platforms,
       String type,
       String phoneSourceBranch,
@@ -88,6 +91,7 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? applicationId = null,
+    Object? token = null,
     Object? platforms = null,
     Object? type = null,
     Object? phoneSourceBranch = null,
@@ -101,6 +105,10 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
       applicationId: null == applicationId
           ? _value.applicationId
           : applicationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
       platforms: null == platforms
           ? _value.platforms
@@ -149,6 +157,7 @@ abstract class _$$DeployApplicationDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String applicationId,
+      String token,
       String platforms,
       String type,
       String phoneSourceBranch,
@@ -173,6 +182,7 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? applicationId = null,
+    Object? token = null,
     Object? platforms = null,
     Object? type = null,
     Object? phoneSourceBranch = null,
@@ -186,6 +196,10 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
       applicationId: null == applicationId
           ? _value.applicationId
           : applicationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
       platforms: null == platforms
           ? _value.platforms
@@ -229,6 +243,7 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
 class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
   _$DeployApplicationDtoImpl(
       {required this.applicationId,
+      required this.token,
       required this.platforms,
       required this.type,
       required this.phoneSourceBranch,
@@ -243,6 +258,8 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
 
   @override
   String applicationId;
+  @override
+  String token;
   @override
   String platforms;
   @override
@@ -262,7 +279,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
 
   @override
   String toString() {
-    return 'DeployApplicationDto(applicationId: $applicationId, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+    return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
   }
 
   /// Create a copy of DeployApplicationDto
@@ -286,6 +303,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
 abstract class _DeployApplicationDto implements DeployApplicationDto {
   factory _DeployApplicationDto(
       {required String applicationId,
+      required String token,
       required String platforms,
       required String type,
       required String phoneSourceBranch,
@@ -301,6 +319,9 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
   @override
   String get applicationId;
   set applicationId(String value);
+  @override
+  String get token;
+  set token(String value);
   @override
   String get platforms;
   set platforms(String value);

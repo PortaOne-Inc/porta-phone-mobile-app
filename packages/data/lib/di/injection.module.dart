@@ -104,6 +104,15 @@ class DataPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
             gh<_i822.ConfiguratorBackandDatasource>()));
+    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          phoneBranchMapper: gh<
+              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+          appVersionMapper: gh<
+              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
+          authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
+        ));
     gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
           configuratorBackandDatasource:
               gh<_i822.ConfiguratorBackandDatasource>(),
@@ -124,14 +133,6 @@ class DataPackageModule extends _i526.MicroPackageModule {
               gh<_i822.ConfiguratorBackandDatasource>(),
           authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
           userPrefDataSource: gh<_i822.UserPrefDatasource>(),
-        ));
-    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          phoneBranchMapper: gh<
-              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
-          appVersionMapper: gh<
-              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
         ));
     gh.factory<_i494.ApplicationRepository>(() =>
         _i747.ApplicationRepositoryImpl(
