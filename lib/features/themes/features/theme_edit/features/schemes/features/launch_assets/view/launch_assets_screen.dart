@@ -31,38 +31,30 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
   final TextEditingController _androidIOSPaddingController = TextEditingController();
   final TextEditingController _androidWEBPaddingController = TextEditingController();
 
-  BoxFit _boxFitAndroidLaunch = BoxFit.scaleDown;
-  BoxFit _boxFitAndroidAdaptive = BoxFit.scaleDown;
-  BoxFit _boxFitAndroidIOS = BoxFit.scaleDown;
-  BoxFit _boxFitAndroidWEB = BoxFit.scaleDown;
-
-  double _paddingAndroidLaunch = 0;
-  double _paddingAndroidAdaptive = 0;
-  double _paddingAndroidIOS = 0;
-  double _paddingAndroidWEB = 0;
+  LaunchAssetsCubit get _launchAssetsCubit => context.read<LaunchAssetsCubit>();
 
   @override
   void initState() {
     super.initState();
     _androidAdaptivePaddingController.addListener(() {
-      setState(() {
-        _paddingAndroidAdaptive = double.tryParse(_androidAdaptivePaddingController.text) ?? 0;
-      });
+      _launchAssetsCubit.setPadding(
+        paddingAndroidAdaptive: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+      );
     });
     _androidLaunchPaddingController.addListener(() {
-      setState(() {
-        _paddingAndroidLaunch = double.tryParse(_androidLaunchPaddingController.text) ?? 0;
-      });
+      _launchAssetsCubit.setPadding(
+        paddingAndroidLaunch: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+      );
     });
     _androidIOSPaddingController.addListener(() {
-      setState(() {
-        _paddingAndroidIOS = double.tryParse(_androidIOSPaddingController.text) ?? 0;
-      });
+      _launchAssetsCubit.setPadding(
+        paddingIOS: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+      );
     });
     _androidWEBPaddingController.addListener(() {
-      setState(() {
-        _paddingAndroidWEB = double.tryParse(_androidWEBPaddingController.text) ?? 0;
-      });
+      _launchAssetsCubit.setPadding(
+        paddingWEB: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+      );
     });
   }
 
@@ -151,9 +143,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                                 size: const Size.square(108),
                                 safeZone: const Size.square(81),
                                 leading: SplashIconConfigCard(
-                                  value: _boxFitAndroidLaunch,
-                                  onChanged: (fit) =>
-                                      setState(() => _boxFitAndroidLaunch = fit ?? _boxFitAndroidLaunch),
+                                  value: state.boxFitAndroidLaunch,
+                                  onChanged: (fit) => _launchAssetsCubit.setBoxFit(
+                                    boxFitAndroidLaunch: fit ?? state.boxFitAndroidLaunch,
+                                  ),
                                   controller: _androidLaunchPaddingController,
                                 ),
                               ),
@@ -168,9 +161,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                             size: const Size.square(108),
                             safeZone: const Size.square(72),
                             leading: SplashIconConfigCard(
-                              value: _boxFitAndroidAdaptive,
-                              onChanged: (fit) =>
-                                  setState(() => _boxFitAndroidAdaptive = fit ?? _boxFitAndroidAdaptive),
+                              value: state.boxFitAndroidAdaptive,
+                              onChanged: (fit) => _launchAssetsCubit.setBoxFit(
+                                boxFitAndroidAdaptive: fit ?? state.boxFitAndroidAdaptive,
+                              ),
                               controller: _androidAdaptivePaddingController,
                             ),
                           ),
@@ -182,8 +176,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                             safeZone: const Size.square(108 * 0.90),
                             title: 'Web',
                             leading: SplashIconConfigCard(
-                              value: _boxFitAndroidWEB,
-                              onChanged: (fit) => setState(() => _boxFitAndroidWEB = fit ?? _boxFitAndroidWEB),
+                              value: state.boxFitWeb,
+                              onChanged: (fit) => _launchAssetsCubit.setBoxFit(
+                                boxFitWeb: fit ?? state.boxFitWeb,
+                              ),
                               controller: _androidWEBPaddingController,
                             ),
                           ),
@@ -195,8 +191,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                             safeZone: const Size.square(108 * 0.90),
                             title: 'IOS',
                             leading: SplashIconConfigCard(
-                              value: _boxFitAndroidIOS,
-                              onChanged: (fit) => setState(() => _boxFitAndroidIOS = fit ?? _boxFitAndroidIOS),
+                              value: state.boxFitIOS,
+                              onChanged: (fit) => _launchAssetsCubit.setBoxFit(
+                                boxFitIOS: fit ?? state.boxFitIOS,
+                              ),
                               controller: _androidIOSPaddingController,
                             ),
                           )
@@ -212,14 +210,14 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
               screenshotForegroundIconController: _screenshotAdaptiveAndroidIconController,
               screenshotIosLaunchIconController: _screenshotIOSLaunchIconController,
               screenshotWebLaunchIconController: _screenshotWebLaunchIconController,
-              paddingAndroidLaunch: _paddingAndroidLaunch,
-              paddingAndroidAdaptive: _paddingAndroidAdaptive,
-              paddingAndroidIOS: _paddingAndroidIOS,
-              paddingAndroidWEB: _paddingAndroidWEB,
-              boxFitAndroidLaunch: _boxFitAndroidLaunch,
-              boxFitAndroidAdaptive: _boxFitAndroidAdaptive,
-              boxFitAndroidIOS: _boxFitAndroidIOS,
-              boxFitAndroidWEB: _boxFitAndroidWEB,
+              paddingAndroidLaunch: state.paddingAndroidLaunch,
+              paddingAndroidAdaptive: state.paddingAndroidAdaptive,
+              paddingAndroidIOS: state.paddingIOS,
+              paddingAndroidWEB: state.paddingWEB,
+              boxFitAndroidLaunch: state.boxFitAndroidLaunch,
+              boxFitAndroidAdaptive: state.boxFitAndroidAdaptive,
+              boxFitAndroidIOS: state.boxFitIOS,
+              boxFitAndroidWEB: state.boxFitWeb,
               image: state.selectedForegroundAssetResource,
             )
           ],

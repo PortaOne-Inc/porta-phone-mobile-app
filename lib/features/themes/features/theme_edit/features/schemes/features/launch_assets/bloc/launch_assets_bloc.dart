@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
 import 'package:webtrit_configurator/core/core.dart';
@@ -30,6 +31,46 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
 
   Future<void> selectBackgroundAsset(ThemeAssetModel selectedAsset) async {
     emit(state.copyWith(selectedBackgroundAsset: selectedAsset));
+  }
+
+  Future<void> setBoxFit({
+    BoxFit? boxFitAndroidLaunch,
+    BoxFit? boxFitAndroidAdaptive,
+    BoxFit? boxFitIOS,
+    BoxFit? boxFitWeb,
+  }) async {
+    if (boxFitAndroidLaunch != null) {
+      emit(state.copyWith(boxFitAndroidLaunch: boxFitAndroidLaunch));
+    }
+    if (boxFitAndroidAdaptive != null) {
+      emit(state.copyWith(boxFitAndroidAdaptive: boxFitAndroidAdaptive));
+    }
+    if (boxFitIOS != null) {
+      emit(state.copyWith(boxFitIOS: boxFitIOS));
+    }
+    if (boxFitWeb != null) {
+      emit(state.copyWith(boxFitWeb: boxFitWeb));
+    }
+  }
+
+  Future<void> setPadding({
+    double? paddingAndroidLaunch,
+    double? paddingAndroidAdaptive,
+    double? paddingIOS,
+    double? paddingWEB,
+  }) async {
+    if (paddingAndroidLaunch != null) {
+      emit(state.copyWith(paddingAndroidLaunch: paddingAndroidLaunch));
+    }
+    if (paddingAndroidAdaptive != null) {
+      emit(state.copyWith(paddingAndroidAdaptive: paddingAndroidAdaptive));
+    }
+    if (paddingIOS != null) {
+      emit(state.copyWith(paddingIOS: paddingIOS));
+    }
+    if (paddingWEB != null) {
+      emit(state.copyWith(paddingWEB: paddingWEB));
+    }
   }
 
   Future<void> selectBackgroundColor(Color color) async {

@@ -24,6 +24,14 @@ mixin _$LaunchAssetsState {
   ThemeAssetModel? get selectedBackgroundAsset =>
       throw _privateConstructorUsedError;
   Color? get selectedBackgroundColor => throw _privateConstructorUsedError;
+  BoxFit get boxFitAndroidLaunch => throw _privateConstructorUsedError;
+  BoxFit get boxFitAndroidAdaptive => throw _privateConstructorUsedError;
+  BoxFit get boxFitIOS => throw _privateConstructorUsedError;
+  BoxFit get boxFitWeb => throw _privateConstructorUsedError;
+  double get paddingAndroidLaunch => throw _privateConstructorUsedError;
+  double get paddingAndroidAdaptive => throw _privateConstructorUsedError;
+  double get paddingIOS => throw _privateConstructorUsedError;
+  double get paddingWEB => throw _privateConstructorUsedError;
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +52,15 @@ abstract class $LaunchAssetsStateCopyWith<$Res> {
       LaunchAssetsStateEnum status,
       ThemeAssetModel? selectedForegroundAsset,
       ThemeAssetModel? selectedBackgroundAsset,
-      Color? selectedBackgroundColor});
+      Color? selectedBackgroundColor,
+      BoxFit boxFitAndroidLaunch,
+      BoxFit boxFitAndroidAdaptive,
+      BoxFit boxFitIOS,
+      BoxFit boxFitWeb,
+      double paddingAndroidLaunch,
+      double paddingAndroidAdaptive,
+      double paddingIOS,
+      double paddingWEB});
 
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
   $ThemeAssetModelCopyWith<$Res>? get selectedBackgroundAsset;
@@ -71,6 +87,14 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
     Object? selectedForegroundAsset = freezed,
     Object? selectedBackgroundAsset = freezed,
     Object? selectedBackgroundColor = freezed,
+    Object? boxFitAndroidLaunch = null,
+    Object? boxFitAndroidAdaptive = null,
+    Object? boxFitIOS = null,
+    Object? boxFitWeb = null,
+    Object? paddingAndroidLaunch = null,
+    Object? paddingAndroidAdaptive = null,
+    Object? paddingIOS = null,
+    Object? paddingWEB = null,
   }) {
     return _then(_value.copyWith(
       applicationId: null == applicationId
@@ -97,6 +121,38 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
           ? _value.selectedBackgroundColor
           : selectedBackgroundColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      boxFitAndroidLaunch: null == boxFitAndroidLaunch
+          ? _value.boxFitAndroidLaunch
+          : boxFitAndroidLaunch // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitAndroidAdaptive: null == boxFitAndroidAdaptive
+          ? _value.boxFitAndroidAdaptive
+          : boxFitAndroidAdaptive // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitIOS: null == boxFitIOS
+          ? _value.boxFitIOS
+          : boxFitIOS // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitWeb: null == boxFitWeb
+          ? _value.boxFitWeb
+          : boxFitWeb // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      paddingAndroidLaunch: null == paddingAndroidLaunch
+          ? _value.paddingAndroidLaunch
+          : paddingAndroidLaunch // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingAndroidAdaptive: null == paddingAndroidAdaptive
+          ? _value.paddingAndroidAdaptive
+          : paddingAndroidAdaptive // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingIOS: null == paddingIOS
+          ? _value.paddingIOS
+          : paddingIOS // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingWEB: null == paddingWEB
+          ? _value.paddingWEB
+          : paddingWEB // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -145,7 +201,15 @@ abstract class _$$InitialImplCopyWith<$Res>
       LaunchAssetsStateEnum status,
       ThemeAssetModel? selectedForegroundAsset,
       ThemeAssetModel? selectedBackgroundAsset,
-      Color? selectedBackgroundColor});
+      Color? selectedBackgroundColor,
+      BoxFit boxFitAndroidLaunch,
+      BoxFit boxFitAndroidAdaptive,
+      BoxFit boxFitIOS,
+      BoxFit boxFitWeb,
+      double paddingAndroidLaunch,
+      double paddingAndroidAdaptive,
+      double paddingIOS,
+      double paddingWEB});
 
   @override
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
@@ -172,6 +236,14 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? selectedForegroundAsset = freezed,
     Object? selectedBackgroundAsset = freezed,
     Object? selectedBackgroundColor = freezed,
+    Object? boxFitAndroidLaunch = null,
+    Object? boxFitAndroidAdaptive = null,
+    Object? boxFitIOS = null,
+    Object? boxFitWeb = null,
+    Object? paddingAndroidLaunch = null,
+    Object? paddingAndroidAdaptive = null,
+    Object? paddingIOS = null,
+    Object? paddingWEB = null,
   }) {
     return _then(_$InitialImpl(
       applicationId: null == applicationId
@@ -198,6 +270,38 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.selectedBackgroundColor
           : selectedBackgroundColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      boxFitAndroidLaunch: null == boxFitAndroidLaunch
+          ? _value.boxFitAndroidLaunch
+          : boxFitAndroidLaunch // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitAndroidAdaptive: null == boxFitAndroidAdaptive
+          ? _value.boxFitAndroidAdaptive
+          : boxFitAndroidAdaptive // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitIOS: null == boxFitIOS
+          ? _value.boxFitIOS
+          : boxFitIOS // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      boxFitWeb: null == boxFitWeb
+          ? _value.boxFitWeb
+          : boxFitWeb // ignore: cast_nullable_to_non_nullable
+              as BoxFit,
+      paddingAndroidLaunch: null == paddingAndroidLaunch
+          ? _value.paddingAndroidLaunch
+          : paddingAndroidLaunch // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingAndroidAdaptive: null == paddingAndroidAdaptive
+          ? _value.paddingAndroidAdaptive
+          : paddingAndroidAdaptive // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingIOS: null == paddingIOS
+          ? _value.paddingIOS
+          : paddingIOS // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingWEB: null == paddingWEB
+          ? _value.paddingWEB
+          : paddingWEB // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -211,7 +315,15 @@ class _$InitialImpl extends _Initial {
       this.status = LaunchAssetsStateEnum.initial,
       this.selectedForegroundAsset,
       this.selectedBackgroundAsset,
-      this.selectedBackgroundColor})
+      this.selectedBackgroundColor,
+      this.boxFitAndroidLaunch = BoxFit.scaleDown,
+      this.boxFitAndroidAdaptive = BoxFit.scaleDown,
+      this.boxFitIOS = BoxFit.scaleDown,
+      this.boxFitWeb = BoxFit.scaleDown,
+      this.paddingAndroidLaunch = 0,
+      this.paddingAndroidAdaptive = 0,
+      this.paddingIOS = 0,
+      this.paddingWEB = 0})
       : super._();
 
   @override
@@ -227,10 +339,34 @@ class _$InitialImpl extends _Initial {
   final ThemeAssetModel? selectedBackgroundAsset;
   @override
   final Color? selectedBackgroundColor;
+  @override
+  @JsonKey()
+  final BoxFit boxFitAndroidLaunch;
+  @override
+  @JsonKey()
+  final BoxFit boxFitAndroidAdaptive;
+  @override
+  @JsonKey()
+  final BoxFit boxFitIOS;
+  @override
+  @JsonKey()
+  final BoxFit boxFitWeb;
+  @override
+  @JsonKey()
+  final double paddingAndroidLaunch;
+  @override
+  @JsonKey()
+  final double paddingAndroidAdaptive;
+  @override
+  @JsonKey()
+  final double paddingIOS;
+  @override
+  @JsonKey()
+  final double paddingWEB;
 
   @override
   String toString() {
-    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, status: $status, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, selectedBackgroundColor: $selectedBackgroundColor)';
+    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, status: $status, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, selectedBackgroundColor: $selectedBackgroundColor, boxFitAndroidLaunch: $boxFitAndroidLaunch, boxFitAndroidAdaptive: $boxFitAndroidAdaptive, boxFitIOS: $boxFitIOS, boxFitWeb: $boxFitWeb, paddingAndroidLaunch: $paddingAndroidLaunch, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB)';
   }
 
   @override
@@ -250,7 +386,23 @@ class _$InitialImpl extends _Initial {
                 other.selectedBackgroundAsset == selectedBackgroundAsset) &&
             (identical(
                     other.selectedBackgroundColor, selectedBackgroundColor) ||
-                other.selectedBackgroundColor == selectedBackgroundColor));
+                other.selectedBackgroundColor == selectedBackgroundColor) &&
+            (identical(other.boxFitAndroidLaunch, boxFitAndroidLaunch) ||
+                other.boxFitAndroidLaunch == boxFitAndroidLaunch) &&
+            (identical(other.boxFitAndroidAdaptive, boxFitAndroidAdaptive) ||
+                other.boxFitAndroidAdaptive == boxFitAndroidAdaptive) &&
+            (identical(other.boxFitIOS, boxFitIOS) ||
+                other.boxFitIOS == boxFitIOS) &&
+            (identical(other.boxFitWeb, boxFitWeb) ||
+                other.boxFitWeb == boxFitWeb) &&
+            (identical(other.paddingAndroidLaunch, paddingAndroidLaunch) ||
+                other.paddingAndroidLaunch == paddingAndroidLaunch) &&
+            (identical(other.paddingAndroidAdaptive, paddingAndroidAdaptive) ||
+                other.paddingAndroidAdaptive == paddingAndroidAdaptive) &&
+            (identical(other.paddingIOS, paddingIOS) ||
+                other.paddingIOS == paddingIOS) &&
+            (identical(other.paddingWEB, paddingWEB) ||
+                other.paddingWEB == paddingWEB));
   }
 
   @override
@@ -261,7 +413,15 @@ class _$InitialImpl extends _Initial {
       status,
       selectedForegroundAsset,
       selectedBackgroundAsset,
-      selectedBackgroundColor);
+      selectedBackgroundColor,
+      boxFitAndroidLaunch,
+      boxFitAndroidAdaptive,
+      boxFitIOS,
+      boxFitWeb,
+      paddingAndroidLaunch,
+      paddingAndroidAdaptive,
+      paddingIOS,
+      paddingWEB);
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -279,7 +439,15 @@ abstract class _Initial extends LaunchAssetsState {
       final LaunchAssetsStateEnum status,
       final ThemeAssetModel? selectedForegroundAsset,
       final ThemeAssetModel? selectedBackgroundAsset,
-      final Color? selectedBackgroundColor}) = _$InitialImpl;
+      final Color? selectedBackgroundColor,
+      final BoxFit boxFitAndroidLaunch,
+      final BoxFit boxFitAndroidAdaptive,
+      final BoxFit boxFitIOS,
+      final BoxFit boxFitWeb,
+      final double paddingAndroidLaunch,
+      final double paddingAndroidAdaptive,
+      final double paddingIOS,
+      final double paddingWEB}) = _$InitialImpl;
   _Initial._() : super._();
 
   @override
@@ -294,6 +462,22 @@ abstract class _Initial extends LaunchAssetsState {
   ThemeAssetModel? get selectedBackgroundAsset;
   @override
   Color? get selectedBackgroundColor;
+  @override
+  BoxFit get boxFitAndroidLaunch;
+  @override
+  BoxFit get boxFitAndroidAdaptive;
+  @override
+  BoxFit get boxFitIOS;
+  @override
+  BoxFit get boxFitWeb;
+  @override
+  double get paddingAndroidLaunch;
+  @override
+  double get paddingAndroidAdaptive;
+  @override
+  double get paddingIOS;
+  @override
+  double get paddingWEB;
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.

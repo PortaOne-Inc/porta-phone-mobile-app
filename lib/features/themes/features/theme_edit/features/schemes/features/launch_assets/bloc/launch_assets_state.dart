@@ -18,6 +18,14 @@ class LaunchAssetsState with _$LaunchAssetsState {
     ThemeAssetModel? selectedForegroundAsset,
     ThemeAssetModel? selectedBackgroundAsset,
     Color? selectedBackgroundColor,
+      @Default(BoxFit.scaleDown) BoxFit boxFitAndroidLaunch,
+      @Default(BoxFit.scaleDown) BoxFit boxFitAndroidAdaptive,
+      @Default(BoxFit.scaleDown) BoxFit boxFitIOS,
+      @Default(BoxFit.scaleDown) BoxFit boxFitWeb,
+      @Default(0) double paddingAndroidLaunch,
+      @Default(0) double paddingAndroidAdaptive,
+      @Default(0) double paddingIOS,
+      @Default(0) double paddingWEB,
   }) = _Initial;
 
   LaunchAssetsState._();
