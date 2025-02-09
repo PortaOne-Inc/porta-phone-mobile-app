@@ -73,7 +73,7 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
     }
   }
 
-  Future<void> selectBackgroundColor(Color color) async {
+  Future<void> selectBackgroundColor(Color? color) async {
     emit(state.copyWith(selectedBackgroundColor: color));
   }
 
