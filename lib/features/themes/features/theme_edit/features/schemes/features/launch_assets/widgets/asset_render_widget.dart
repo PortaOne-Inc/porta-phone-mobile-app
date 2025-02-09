@@ -14,12 +14,12 @@ class RenderWidget extends StatelessWidget {
     required this.screenshotWebLaunchIconController,
     required this.paddingAndroidLaunch,
     required this.paddingAndroidAdaptive,
-    required this.paddingAndroidIOS,
-    required this.paddingAndroidWEB,
+    required this.paddingIOS,
+    required this.paddingWEB,
     required this.boxFitAndroidLaunch,
     required this.boxFitAndroidAdaptive,
-    required this.boxFitAndroidIOS,
-    required this.boxFitAndroidWEB,
+    required this.boxFitIOS,
+    required this.boxFitWEB,
     super.key,
     this.image,
   });
@@ -31,13 +31,13 @@ class RenderWidget extends StatelessWidget {
 
   final double paddingAndroidLaunch;
   final double paddingAndroidAdaptive;
-  final double paddingAndroidIOS;
-  final double paddingAndroidWEB;
+  final double paddingIOS;
+  final double paddingWEB;
 
   final BoxFit boxFitAndroidLaunch;
   final BoxFit boxFitAndroidAdaptive;
-  final BoxFit boxFitAndroidIOS;
-  final BoxFit boxFitAndroidWEB;
+  final BoxFit boxFitIOS;
+  final BoxFit boxFitWEB;
 
   final Resource? image;
 
@@ -77,20 +77,20 @@ class RenderWidget extends StatelessWidget {
                 screenshotStreamController: screenshotIosLaunchIconController,
                 size: const Size(1024, 1024),
                 resource: image,
-                padding: EdgeInsets.all(48 + paddingAndroidIOS),
+                padding: EdgeInsets.all(48 + paddingIOS),
                 // color: widget.themeModel.colorScheme?.launch?.adaptiveIconBackground?.toColor(),
                 title: 'iOS 1024px:1024px',
-                fit: boxFitAndroidIOS,
+                fit: boxFitIOS,
               ),
               const SizedBox(height: 56),
               GenerateLaunchIcon(
                 screenshotStreamController: screenshotWebLaunchIconController,
                 size: const Size(1024, 1024),
-                padding: EdgeInsets.all(48 + paddingAndroidWEB),
+                padding: EdgeInsets.all(48 + paddingWEB),
                 // color: widget.themeModel.colorScheme?.launch?.adaptiveIconBackground?.toColor(),
                 resource: image,
                 title: 'Web 1024px:1024px',
-                fit: boxFitAndroidWEB,
+                fit: boxFitWEB,
               ),
               const SizedBox(height: 56),
             ],
