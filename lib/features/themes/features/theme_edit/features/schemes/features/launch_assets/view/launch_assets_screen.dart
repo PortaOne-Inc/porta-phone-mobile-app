@@ -10,8 +10,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/launch_assets_bloc.dart';
-import '../widgets/assets_platform_preview.dart';
-import '../widgets/icon_config_card.dart';
+import '../widgets/widgets.dart';
 
 class LaunchAssetsScreen extends StatefulWidget {
   const LaunchAssetsScreen({super.key});
