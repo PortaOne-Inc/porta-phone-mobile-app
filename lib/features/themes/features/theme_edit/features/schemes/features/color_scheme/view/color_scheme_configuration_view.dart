@@ -58,15 +58,16 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
 
   Future<void> _selectColor(BuildContext context, Color color, void Function(Color) callback) async {
     final result = await showDialog<Color?>(
-        context: context,
-        builder: (context) => Center(
-              child: ColorPicker(
-                onDeclineColor: () => Navigator.of(context).pop(),
-                onAcceptColor: (color) => Navigator.of(context).pop(color),
-                initialColor: color,
-              ),
-            ),
-        useRootNavigator: false);
+      context: context,
+      builder: (context) => Center(
+        child: ColorPicker(
+          onDeclineColor: () => Navigator.of(context).pop(),
+          onAcceptColor: (color) => Navigator.of(context).pop(color),
+          initialColor: color,
+        ),
+      ),
+      useRootNavigator: false,
+    );
     if (result is Color) callback(result);
   }
 }

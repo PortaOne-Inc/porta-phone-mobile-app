@@ -8,6 +8,6 @@ extension ExtensionHexColor on Color {
   String toHex({bool leadingHashSign = true, bool includeAlpha = false}) {
     final hexColor = [if (includeAlpha) alpha, red, green, blue].map((c) => c.toRadixString(16).padLeft(2, '0')).join();
 
-    return leadingHashSign ? '#$hexColor' : hexColor;
+    return (leadingHashSign ? '#$hexColor' : hexColor).toUpperCase();
   }
 }
