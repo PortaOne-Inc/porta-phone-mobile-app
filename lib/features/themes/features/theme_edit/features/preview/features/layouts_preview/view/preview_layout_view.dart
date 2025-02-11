@@ -70,17 +70,50 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final isrResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
     final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
 
+    final loginKey = ValueKey(loginFeature);
+    final bottomMenuKey = ValueKey(bottomMenuFeature);
+
     return [
-      LoginModeSelectScreenScreenshot(appGreeting: loginLabel),
-      const LoginCoreUrlAssignScreenScreenshot(),
-      const LoginOtpSignInScreenshot(),
-      const LoginOtpVerifyInScreenshot(),
-      const LoginPasswordSignInScreenshot(),
-      if (isCustomSignupPreview) const LoginSignUpScreenshot(),
-      const LoginSignUpVerifyScreenshot(),
-      if (isFavoritePreview) MainScreenScreenshot(MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
-      if (isrResentsPreview) MainScreenScreenshot(MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
-      if (isKeypadPreview) MainScreenScreenshot(MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
+      LoginModeSelectScreenScreenshot(
+        key: loginKey,
+      ),
+      LoginCoreUrlAssignScreenScreenshot(
+        key: loginKey,
+      ),
+      LoginOtpSignInScreenshot(
+        key: loginKey,
+      ),
+      LoginOtpVerifyInScreenshot(
+        key: loginKey,
+      ),
+      LoginPasswordSignInScreenshot(
+        key: loginKey,
+      ),
+      if (isCustomSignupPreview)
+        LoginSignUpScreenshot(
+          key: loginKey,
+        ),
+      LoginSignUpVerifyScreenshot(
+        key: loginKey,
+      ),
+      if (isFavoritePreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.favorites,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
+      if (isrResentsPreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.recents,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
+      if (isKeypadPreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.keypad,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
       const SettingScreenScreenshot(),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(

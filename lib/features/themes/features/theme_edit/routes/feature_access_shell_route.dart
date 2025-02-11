@@ -27,13 +27,13 @@ class FeatureAccessShellRoute extends StatelessWidget {
       selector: (state) => state.appConfig,
       builder: (context, appConfig) {
         final featureAccess = FeatureAccess.init(appConfig, mockAppPreferences);
-
         return MultiProvider(
           providers: [
             Provider<MockAppPreferences>.value(value: mockAppPreferences),
             Provider<DeviceInfo>.value(value: deviceInfo),
             Provider<PackageInfo>.value(value: packageInfoMock),
             FutureProvider<FeatureAccess>.value(
+              key: ValueKey(featureAccess),
               value: Future.value(featureAccess),
               initialData: featureAccess,
             ),

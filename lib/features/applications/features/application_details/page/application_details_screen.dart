@@ -54,33 +54,6 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('Application core: '),
-                subtitle: SelectableText(application?.coreUrl ?? 'Not defined'),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withValues(alpha: 0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Contact email: '),
-                subtitle: SelectableText(application?.contactEmail ?? 'Not defined'),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withValues(alpha: 0.2),
-                ),
-              ),
-              ListTile(
-                title: const Text('Terms and conditions: '),
-                subtitle: SelectableText(application?.termsConditionsUrl ?? 'Not defined'),
-                minLeadingWidth: 4,
-                leading: Container(
-                  width: 8,
-                  color: colorScheme.primary.withValues(alpha: 0.2),
-                ),
-              ),
-              ListTile(
                 title: const Text('Default theme:'),
                 trailing: InkWell(
                   child: Visibility(
@@ -110,6 +83,15 @@ class ApplicationDetailsScreen extends StatelessWidget {
                   color: colorScheme.primary.withValues(alpha: 0.2),
                 ),
               ),
+              ListTile(
+                title: const Text('Application core: '),
+                subtitle: SelectableText(application?.coreUrl ?? 'Not defined'),
+                minLeadingWidth: 4,
+                leading: Container(
+                  width: 8,
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
               Divider(
                 thickness: 4,
                 color: colorScheme.surfaceContainerLow,
@@ -125,6 +107,18 @@ class ApplicationDetailsScreen extends StatelessWidget {
                 ),
                 trailing: const Icon(Icons.keyboard_arrow_right),
                 onTap: onEnvironment,
+              ),
+              ListTile(
+                leading: Icon(Icons.new_releases, color: colorScheme.primary),
+                title: const Text(
+                  'Publication resources',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text(
+                  'Resources for help release builds',
+                ),
+                trailing: const Icon(Icons.keyboard_arrow_right),
+                onTap: onDeploy,
               ),
               ListTile(
                 leading: Icon(Icons.publish, color: colorScheme.primary),

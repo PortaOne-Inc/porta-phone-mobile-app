@@ -158,8 +158,9 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
     print('SplashScreen: _handleThemeUpdate');
   }
 
+  /// Use pixelRatio 1 to avoid scaling the image and get the original size
   void _save() {
-    _splashAssetsBloc.uploadAsset(_screenshotController.capture());
+    _splashAssetsBloc.uploadAsset(_screenshotController.capture(pixelRatio: 1));
   }
 
   Future<void> _selectImage() async {

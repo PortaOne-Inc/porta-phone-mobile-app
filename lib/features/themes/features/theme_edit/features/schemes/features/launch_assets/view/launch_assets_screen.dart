@@ -20,15 +20,15 @@ class LaunchAssetsScreen extends StatefulWidget {
 }
 
 class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessages {
-  final ScreenshotController _screenshotAndroidLaunchIconController = ScreenshotController();
-  final ScreenshotController _screenshotAdaptiveAndroidIconController = ScreenshotController();
-  final ScreenshotController _screenshotIOSLaunchIconController = ScreenshotController();
-  final ScreenshotController _screenshotWebLaunchIconController = ScreenshotController();
+  final ScreenshotController _androidLaunchScreenshotStreamController = ScreenshotController();
+  final ScreenshotController _androidForegroundScreenshotStreamController = ScreenshotController();
+  final ScreenshotController _iosScreenshotStreamController = ScreenshotController();
+  final ScreenshotController _webScreenshotStreamController = ScreenshotController();
 
   final TextEditingController _androidLaunchPaddingController = TextEditingController();
   final TextEditingController _androidAdaptivePaddingController = TextEditingController();
-  final TextEditingController _androidIOSPaddingController = TextEditingController();
-  final TextEditingController _androidWEBPaddingController = TextEditingController();
+  final TextEditingController _iosPaddingController = TextEditingController();
+  final TextEditingController _webPaddingController = TextEditingController();
 
   LaunchAssetsCubit get _launchAssetsCubit => context.read<LaunchAssetsCubit>();
 
@@ -48,17 +48,17 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
     });
     _androidLaunchPaddingController.addListener(() {
       _launchAssetsCubit.setPadding(
-        paddingAndroidLaunch: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+        paddingAndroidLaunch: double.tryParse(_androidLaunchPaddingController.text) ?? 0,
       );
     });
-    _androidIOSPaddingController.addListener(() {
+    _iosPaddingController.addListener(() {
       _launchAssetsCubit.setPadding(
-        paddingIOS: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+        paddingIOS: double.tryParse(_iosPaddingController.text) ?? 0,
       );
     });
-    _androidWEBPaddingController.addListener(() {
+    _webPaddingController.addListener(() {
       _launchAssetsCubit.setPadding(
-        paddingWEB: double.tryParse(_androidAdaptivePaddingController.text) ?? 0,
+        paddingWEB: double.tryParse(_webPaddingController.text) ?? 0,
       );
     });
   }
@@ -145,7 +145,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                                 AssetsPlatformPreview(
                                   title: 'Android launch icons (<= Android 12)',
                                   foregroundResource:
-                                      Resource.futureByte(_screenshotAndroidLaunchIconController.capture()),
+                                      Resource.futureByte(_androidLaunchScreenshotStreamController.capture()),
                                   backgroundColor: state.selectedBackgroundColor,
                                   size: const Size.square(108),
                                   safeZone: const Size.square(81),
@@ -163,7 +163,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                             AssetsPlatformPreview(
                               title: 'Android launch icons (>= Android 13)',
                               foregroundResource:
-                                  Resource.futureByte(_screenshotAdaptiveAndroidIconController.capture()),
+                                  Resource.futureByte(_androidForegroundScreenshotStreamController.capture()),
                               backgroundResource: state.selectedBackgroundAssetResource,
                               backgroundColor: state.selectedBackgroundColor,
                               size: const Size.square(108),
@@ -178,7 +178,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                             ),
                             const SizedBox(height: 16),
                             AssetsPlatformPreview(
-                              foregroundResource: Resource.futureByte(_screenshotWebLaunchIconController.capture()),
+                              foregroundResource: Resource.futureByte(_webScreenshotStreamController.capture()),
                               backgroundColor: state.selectedBackgroundColor,
                               size: const Size.square(108),
                               safeZone: const Size.square(108 * 0.90),
@@ -188,12 +188,12 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                                 onChanged: (fit) => _launchAssetsCubit.setBoxFit(
                                   boxFitWeb: fit ?? state.boxFitWeb,
                                 ),
-                                controller: _androidWEBPaddingController,
+                                controller: _webPaddingController,
                               ),
                             ),
                             const SizedBox(height: 16),
                             AssetsPlatformPreview(
-                              foregroundResource: Resource.futureByte(_screenshotIOSLaunchIconController.capture()),
+                              foregroundResource: Resource.futureByte(_iosScreenshotStreamController.capture()),
                               backgroundColor: state.selectedBackgroundColor,
                               size: const Size.square(108),
                               safeZone: const Size.square(108 * 0.90),
@@ -203,7 +203,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                                 onChanged: (fit) => _launchAssetsCubit.setBoxFit(
                                   boxFitIOS: fit ?? state.boxFitIOS,
                                 ),
-                                controller: _androidIOSPaddingController,
+                                controller: _iosPaddingController,
                               ),
                             )
                           ],
@@ -214,10 +214,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                 ),
               ),
               RenderWidget(
-                screenshotAndroidLaunchIconController: _screenshotAndroidLaunchIconController,
-                screenshotForegroundIconController: _screenshotAdaptiveAndroidIconController,
-                screenshotIosLaunchIconController: _screenshotIOSLaunchIconController,
-                screenshotWebLaunchIconController: _screenshotWebLaunchIconController,
+                androidLaunchScreenshotStreamController: _androidLaunchScreenshotStreamController,
+                androidForegroundScreenshotStreamController: _androidForegroundScreenshotStreamController,
+                iosScreenshotStreamController: _iosScreenshotStreamController,
+                webScreenshotStreamController: _webScreenshotStreamController,
                 paddingAndroidLaunch: state.paddingAndroidLaunch,
                 paddingAndroidAdaptive: state.paddingAndroidAdaptive,
                 paddingIOS: state.paddingIOS,
@@ -279,12 +279,13 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
       ..selectForegroundAsset(asset);
   }
 
+  /// Use pixelRatio 1 to avoid scaling the image and get the original size
   void _save() {
     context.read<LaunchAssetsCubit>().uploadAssets(
-          _screenshotAndroidLaunchIconController.capture(),
-          _screenshotAdaptiveAndroidIconController.capture(),
-          _screenshotIOSLaunchIconController.capture(),
-          _screenshotWebLaunchIconController.capture(),
+          _androidLaunchScreenshotStreamController.capture(pixelRatio: 1),
+          _androidForegroundScreenshotStreamController.capture(pixelRatio: 1),
+          _iosScreenshotStreamController.capture(pixelRatio: 1),
+          _webScreenshotStreamController.capture(pixelRatio: 1),
         );
   }
 
@@ -292,8 +293,8 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
   void dispose() {
     _androidLaunchPaddingController.dispose();
     _androidAdaptivePaddingController.dispose();
-    _androidIOSPaddingController.dispose();
-    _androidWEBPaddingController.dispose();
+    _iosPaddingController.dispose();
+    _webPaddingController.dispose();
     super.dispose();
   }
 }

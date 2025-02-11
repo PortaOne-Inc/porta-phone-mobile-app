@@ -18,12 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LaunchAssetsState {
   String get applicationId => throw _privateConstructorUsedError;
   String get themeId => throw _privateConstructorUsedError;
-  LaunchAssetsStateEnum get status => throw _privateConstructorUsedError;
   ThemeAssetModel? get selectedForegroundAsset =>
       throw _privateConstructorUsedError;
   ThemeAssetModel? get selectedBackgroundAsset =>
       throw _privateConstructorUsedError;
   Color? get selectedBackgroundColor => throw _privateConstructorUsedError;
+  LaunchAssetsStateEnum get status => throw _privateConstructorUsedError;
   BoxFit get boxFitAndroidLaunch => throw _privateConstructorUsedError;
   BoxFit get boxFitAndroidAdaptive => throw _privateConstructorUsedError;
   BoxFit get boxFitIOS => throw _privateConstructorUsedError;
@@ -49,10 +49,10 @@ abstract class $LaunchAssetsStateCopyWith<$Res> {
   $Res call(
       {String applicationId,
       String themeId,
-      LaunchAssetsStateEnum status,
       ThemeAssetModel? selectedForegroundAsset,
       ThemeAssetModel? selectedBackgroundAsset,
       Color? selectedBackgroundColor,
+      LaunchAssetsStateEnum status,
       BoxFit boxFitAndroidLaunch,
       BoxFit boxFitAndroidAdaptive,
       BoxFit boxFitIOS,
@@ -83,10 +83,10 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
   $Res call({
     Object? applicationId = null,
     Object? themeId = null,
-    Object? status = null,
     Object? selectedForegroundAsset = freezed,
     Object? selectedBackgroundAsset = freezed,
     Object? selectedBackgroundColor = freezed,
+    Object? status = null,
     Object? boxFitAndroidLaunch = null,
     Object? boxFitAndroidAdaptive = null,
     Object? boxFitIOS = null,
@@ -105,10 +105,6 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
           ? _value.themeId
           : themeId // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsStateEnum,
       selectedForegroundAsset: freezed == selectedForegroundAsset
           ? _value.selectedForegroundAsset
           : selectedForegroundAsset // ignore: cast_nullable_to_non_nullable
@@ -121,6 +117,10 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
           ? _value.selectedBackgroundColor
           : selectedBackgroundColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsStateEnum,
       boxFitAndroidLaunch: null == boxFitAndroidLaunch
           ? _value.boxFitAndroidLaunch
           : boxFitAndroidLaunch // ignore: cast_nullable_to_non_nullable
@@ -198,10 +198,10 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {String applicationId,
       String themeId,
-      LaunchAssetsStateEnum status,
       ThemeAssetModel? selectedForegroundAsset,
       ThemeAssetModel? selectedBackgroundAsset,
       Color? selectedBackgroundColor,
+      LaunchAssetsStateEnum status,
       BoxFit boxFitAndroidLaunch,
       BoxFit boxFitAndroidAdaptive,
       BoxFit boxFitIOS,
@@ -232,10 +232,10 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? applicationId = null,
     Object? themeId = null,
-    Object? status = null,
     Object? selectedForegroundAsset = freezed,
     Object? selectedBackgroundAsset = freezed,
     Object? selectedBackgroundColor = freezed,
+    Object? status = null,
     Object? boxFitAndroidLaunch = null,
     Object? boxFitAndroidAdaptive = null,
     Object? boxFitIOS = null,
@@ -254,10 +254,6 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.themeId
           : themeId // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsStateEnum,
       selectedForegroundAsset: freezed == selectedForegroundAsset
           ? _value.selectedForegroundAsset
           : selectedForegroundAsset // ignore: cast_nullable_to_non_nullable
@@ -270,6 +266,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.selectedBackgroundColor
           : selectedBackgroundColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsStateEnum,
       boxFitAndroidLaunch: null == boxFitAndroidLaunch
           ? _value.boxFitAndroidLaunch
           : boxFitAndroidLaunch // ignore: cast_nullable_to_non_nullable
@@ -312,10 +312,10 @@ class _$InitialImpl extends _Initial {
   _$InitialImpl(
       {required this.applicationId,
       required this.themeId,
-      this.status = LaunchAssetsStateEnum.initial,
       this.selectedForegroundAsset,
       this.selectedBackgroundAsset,
       this.selectedBackgroundColor,
+      this.status = LaunchAssetsStateEnum.initial,
       this.boxFitAndroidLaunch = BoxFit.scaleDown,
       this.boxFitAndroidAdaptive = BoxFit.scaleDown,
       this.boxFitIOS = BoxFit.scaleDown,
@@ -331,14 +331,14 @@ class _$InitialImpl extends _Initial {
   @override
   final String themeId;
   @override
-  @JsonKey()
-  final LaunchAssetsStateEnum status;
-  @override
   final ThemeAssetModel? selectedForegroundAsset;
   @override
   final ThemeAssetModel? selectedBackgroundAsset;
   @override
   final Color? selectedBackgroundColor;
+  @override
+  @JsonKey()
+  final LaunchAssetsStateEnum status;
   @override
   @JsonKey()
   final BoxFit boxFitAndroidLaunch;
@@ -366,7 +366,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, status: $status, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, selectedBackgroundColor: $selectedBackgroundColor, boxFitAndroidLaunch: $boxFitAndroidLaunch, boxFitAndroidAdaptive: $boxFitAndroidAdaptive, boxFitIOS: $boxFitIOS, boxFitWeb: $boxFitWeb, paddingAndroidLaunch: $paddingAndroidLaunch, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB)';
+    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, selectedBackgroundColor: $selectedBackgroundColor, status: $status, boxFitAndroidLaunch: $boxFitAndroidLaunch, boxFitAndroidAdaptive: $boxFitAndroidAdaptive, boxFitIOS: $boxFitIOS, boxFitWeb: $boxFitWeb, paddingAndroidLaunch: $paddingAndroidLaunch, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB)';
   }
 
   @override
@@ -377,7 +377,6 @@ class _$InitialImpl extends _Initial {
             (identical(other.applicationId, applicationId) ||
                 other.applicationId == applicationId) &&
             (identical(other.themeId, themeId) || other.themeId == themeId) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(
                     other.selectedForegroundAsset, selectedForegroundAsset) ||
                 other.selectedForegroundAsset == selectedForegroundAsset) &&
@@ -387,6 +386,7 @@ class _$InitialImpl extends _Initial {
             (identical(
                     other.selectedBackgroundColor, selectedBackgroundColor) ||
                 other.selectedBackgroundColor == selectedBackgroundColor) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.boxFitAndroidLaunch, boxFitAndroidLaunch) ||
                 other.boxFitAndroidLaunch == boxFitAndroidLaunch) &&
             (identical(other.boxFitAndroidAdaptive, boxFitAndroidAdaptive) ||
@@ -410,10 +410,10 @@ class _$InitialImpl extends _Initial {
       runtimeType,
       applicationId,
       themeId,
-      status,
       selectedForegroundAsset,
       selectedBackgroundAsset,
       selectedBackgroundColor,
+      status,
       boxFitAndroidLaunch,
       boxFitAndroidAdaptive,
       boxFitIOS,
@@ -436,10 +436,10 @@ abstract class _Initial extends LaunchAssetsState {
   factory _Initial(
       {required final String applicationId,
       required final String themeId,
-      final LaunchAssetsStateEnum status,
       final ThemeAssetModel? selectedForegroundAsset,
       final ThemeAssetModel? selectedBackgroundAsset,
       final Color? selectedBackgroundColor,
+      final LaunchAssetsStateEnum status,
       final BoxFit boxFitAndroidLaunch,
       final BoxFit boxFitAndroidAdaptive,
       final BoxFit boxFitIOS,
@@ -455,13 +455,13 @@ abstract class _Initial extends LaunchAssetsState {
   @override
   String get themeId;
   @override
-  LaunchAssetsStateEnum get status;
-  @override
   ThemeAssetModel? get selectedForegroundAsset;
   @override
   ThemeAssetModel? get selectedBackgroundAsset;
   @override
   Color? get selectedBackgroundColor;
+  @override
+  LaunchAssetsStateEnum get status;
   @override
   BoxFit get boxFitAndroidLaunch;
   @override

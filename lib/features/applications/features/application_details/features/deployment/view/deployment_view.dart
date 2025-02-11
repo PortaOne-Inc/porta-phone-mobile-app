@@ -303,24 +303,6 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
                         thickness: 4,
                         color: colorScheme.surfaceContainerLow,
                       ),
-                      CheckboxListTile(
-                        value: state.applicationDeploy.demo,
-                        onChanged: (demo) {
-                          deploymentCubit.updateApplicationDeploy(state.applicationDeploy.copyWith(demo: demo!));
-                        },
-                        title: Text(
-                          context.l10n.feature_application_details_ApplicationDetailsScreen_demo_flow_title,
-                          style: textTheme.titleMedium,
-                        ),
-                        subtitle: Text(
-                          context.l10n.feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle,
-                        ),
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
-                      Divider(
-                        thickness: 4,
-                        color: colorScheme.surfaceContainerLow,
-                      ),
                       BranchSelector(
                         title:
                             context.l10n.feature_application_details_ApplicationDetailsScreen_select_branch_for_phone,

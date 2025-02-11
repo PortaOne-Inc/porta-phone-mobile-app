@@ -37,8 +37,8 @@ class GenerateLaunchIcon extends StatelessWidget {
             controller: screenshotStreamController,
             child: Container(
               padding: padding,
-              width: size.width,
               color: color,
+              width: size.width,
               height: size.height,
               child: ImageRenderer(
                 resource: resource ?? Resource.empty(),
