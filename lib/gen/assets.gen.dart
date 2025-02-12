@@ -76,11 +76,7 @@ class $AssetsThemesGen {
 class Assets {
   Assets._();
 
-  static const String emptySvg = 'assets/empty_svg.svg';
   static const $AssetsEnvironmentGen environment = $AssetsEnvironmentGen();
   static const $AssetsSchemeGen scheme = $AssetsSchemeGen();
   static const $AssetsThemesGen themes = $AssetsThemesGen();
-
-  /// List of all assets
-  static List<String> get values => [emptySvg];
 }
