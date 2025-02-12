@@ -42,8 +42,7 @@ class _AttributesWidgetState extends State<AttributesWidget> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.attributes != widget.attributes) {
-      // Оновлення контролерів без втрати фокусу
-      for (int i = 0; i < widget.attributes.length; i++) {
+      for (var i = 0; i < widget.attributes.length; i++) {
         if (i < _keyControllers.length) {
           final keyText = _keyControllers[i].text;
           final valueText = _valueControllers[i].text;
@@ -55,13 +54,11 @@ class _AttributesWidgetState extends State<AttributesWidget> {
             _valueControllers[i].text = widget.attributes[i].value;
           }
         } else {
-          // Додаємо нові контролери, якщо з’явились нові елементи
           _keyControllers.add(TextEditingController(text: widget.attributes[i].key));
           _valueControllers.add(TextEditingController(text: widget.attributes[i].value));
         }
       }
 
-      // Видаляємо зайві контролери, якщо елементи були видалені
       if (_keyControllers.length > widget.attributes.length) {
         _keyControllers.sublist(widget.attributes.length).forEach((c) => c.dispose());
         _keyControllers = _keyControllers.sublist(0, widget.attributes.length);
@@ -76,10 +73,10 @@ class _AttributesWidgetState extends State<AttributesWidget> {
 
   @override
   void dispose() {
-    for (var controller in _keyControllers) {
+    for (final controller in _keyControllers) {
       controller.dispose();
     }
-    for (var controller in _valueControllers) {
+    for (final controller in _valueControllers) {
       controller.dispose();
     }
     super.dispose();

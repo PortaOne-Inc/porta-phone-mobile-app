@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:data/mappers/mappers.dart';
-import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
 import 'package:data/datasource/datasource.dart';
 
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dto/dto.dart';
 

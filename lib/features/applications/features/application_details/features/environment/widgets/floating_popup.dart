@@ -15,20 +15,20 @@ class FloatingPopupController {
 }
 
 class FloatingPopup extends StatefulWidget {
+  const FloatingPopup({
+    required this.trigger,
+    required this.floatingContent,
+    super.key,
+    this.constraints,
+    this.padding,
+    this.controller,
+  });
+
   final Widget trigger;
   final Widget floatingContent;
   final BoxConstraints? constraints;
   final EdgeInsetsGeometry? padding;
   final FloatingPopupController? controller;
-
-  const FloatingPopup({
-    Key? key,
-    required this.trigger,
-    required this.floatingContent,
-    this.constraints,
-    this.padding,
-    this.controller,
-  }) : super(key: key);
 
   @override
   _FloatingPopupState createState() => _FloatingPopupState();
@@ -38,7 +38,7 @@ class _FloatingPopupState extends State<FloatingPopup> {
   final GlobalKey _targetKey = GlobalKey();
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
-  static const double screenPadding = 16.0;
+  static const double screenPadding = 16;
 
   @override
   void initState() {
@@ -55,13 +55,13 @@ class _FloatingPopupState extends State<FloatingPopup> {
   void _showOverlay() {
     _hideOverlay();
 
-    final RenderBox renderBox = _targetKey.currentContext!.findRenderObject() as RenderBox;
-    final Offset offset = renderBox.localToGlobal(Offset.zero);
-    final Size size = renderBox.size;
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final renderBox = _targetKey.currentContext!.findRenderObject()! as RenderBox;
+    final offset = renderBox.localToGlobal(Offset.zero);
+    final size = renderBox.size;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    double popupWidth = widget.constraints?.maxWidth ?? 300;
-    double leftPosition = offset.dx;
+    final popupWidth = widget.constraints?.maxWidth ?? 300;
+    var leftPosition = offset.dx;
 
     if (leftPosition + popupWidth > screenWidth - screenPadding) {
       leftPosition = screenWidth - popupWidth - screenPadding;
@@ -89,7 +89,7 @@ class _FloatingPopupState extends State<FloatingPopup> {
                 showWhenUnlinked: false,
                 offset: Offset(0, size.height + 8),
                 child: Material(
-                  elevation: 4.0,
+                  elevation: 4,
                   borderRadius: BorderRadius.circular(8),
                   child: ConstrainedBox(
                     constraints: widget.constraints ??
@@ -100,11 +100,11 @@ class _FloatingPopupState extends State<FloatingPopup> {
                           maxHeight: 200,
                         ),
                     child: Container(
-                      padding: widget.padding ?? EdgeInsets.all(12),
+                      padding: widget.padding ?? const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(8),
-                        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 4)],
+                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
                       ),
                       child: widget.floatingContent,
                     ),

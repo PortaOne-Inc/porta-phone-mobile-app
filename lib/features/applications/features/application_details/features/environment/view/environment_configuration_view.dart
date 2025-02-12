@@ -59,7 +59,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                   children: [
                     AppBar(
                       automaticallyImplyLeading: false,
-                      actions: [],
+                      actions: const [],
                     ),
                     Expanded(
                       child: SingleChildScrollView(
@@ -281,7 +281,7 @@ class _AdditionalKeysSectionState extends State<AdditionalKeysSection> {
 
   @override
   void dispose() {
-    for (var controller in _valueControllers) {
+    for (final controller in _valueControllers) {
       controller.dispose();
     }
     super.dispose();

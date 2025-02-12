@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
 
 class SplashIconConfigCard extends StatelessWidget {
-  final BoxFit value;
-  final ValueChanged<BoxFit?> onChanged;
-  final TextEditingController controller;
-
   const SplashIconConfigCard({
-    super.key,
     required this.value,
     required this.onChanged,
     required this.controller,
+    super.key,
   });
+
+  final BoxFit value;
+  final ValueChanged<BoxFit?> onChanged;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {

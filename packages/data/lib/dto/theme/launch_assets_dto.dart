@@ -6,6 +6,7 @@ part 'launch_assets_dto.g.dart';
 
 @freezed
 class LaunchAssetsDto with _$LaunchAssetsDto {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory LaunchAssetsDto({
     // Linking to the original asset

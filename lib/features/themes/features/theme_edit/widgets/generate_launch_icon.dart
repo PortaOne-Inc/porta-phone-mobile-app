@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
 
 import 'package:screenshot/screenshot.dart';
 

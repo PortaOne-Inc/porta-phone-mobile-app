@@ -5,7 +5,11 @@ import 'package:webtrit_configurator/core/core.dart';
 enum BackgroundType { color, resource, none }
 
 class Background {
-  const Background._({this.color, this.resource, required this.type});
+  const Background._({
+    required this.type,
+    this.color,
+    this.resource,
+  });
 
   factory Background.color(Color color) => Background._(color: color, type: BackgroundType.color);
 

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
@@ -98,7 +97,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
     try {
       return await configuratorBackandDatasource.getApplicationEnvironment(applicationId);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data.toString() ?? "Failed to fetch environment");
+      throw BaseException(message: e.response?.data.toString() ?? 'Failed to fetch environment');
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -110,7 +109,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
     try {
       return await configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data.toString() ?? "Failed to update environment");
+      throw BaseException(message: e.response?.data.toString() ?? 'Failed to update environment');
     } catch (e) {
       throw BaseException(message: e.toString());
     }

@@ -6,6 +6,7 @@ part 'splash_assets_dto.g.dart';
 
 @freezed
 class SplashAssetsDto with _$SplashAssetsDto {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory SplashAssetsDto({
     int? originalAssetId,

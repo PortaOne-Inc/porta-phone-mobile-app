@@ -37,7 +37,6 @@ class AssetCard extends StatelessWidget {
               if (asset.url != null)
                 ImageRenderer(
                   resource: UrlResource(asset.url!),
-                  fit: BoxFit.scaleDown,
                 ),
               Positioned.fill(
                 child: Container(

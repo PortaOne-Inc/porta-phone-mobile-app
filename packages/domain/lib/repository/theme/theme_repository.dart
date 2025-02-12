@@ -1,7 +1,5 @@
 import 'package:domain/domain.dart';
 
-import '../../entity/models/theme/splash_asset_model.dart';
-
 abstract class ThemeRepository {
   Future<ThemeModel> createTheme(
     String applicationId,

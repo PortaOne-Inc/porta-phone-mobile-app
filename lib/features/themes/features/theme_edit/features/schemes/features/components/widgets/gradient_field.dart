@@ -20,8 +20,8 @@ class GradientField extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final textTheme = Theme.of(context).textTheme;
-        final double gradientWidth = MediaQuery.of(context).size.width / 10;
-        final bool hasGradient = colors.length >= 2;
+        final gradientWidth = MediaQuery.of(context).size.width / 10;
+        final hasGradient = colors.length >= 2;
 
         return Column(
           mainAxisSize: MainAxisSize.min,

@@ -155,7 +155,6 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
       ..selectBackgroundColor(splashColor)
       ..selectFit(iconFit)
       ..selectPadding(padding);
-    print('SplashScreen: _handleThemeUpdate');
   }
 
   /// Use pixelRatio 1 to avoid scaling the image and get the original size

@@ -32,7 +32,7 @@ class OutlineInput extends StatelessWidget {
       padding: padding,
       margin: margin,
       child: ConstrainedBox(
-        constraints: constraints ?? const BoxConstraints(minWidth: 0),
+        constraints: constraints ?? const BoxConstraints(),
         child: TextField(
           enabled: enabled,
           controller: controller,
@@ -46,7 +46,7 @@ class OutlineInput extends StatelessWidget {
               borderSide: BorderSide(color: effectiveBorderColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: effectiveBorderColor, width: 2.0),
+              borderSide: BorderSide(color: effectiveBorderColor, width: 2),
             ),
             prefixIcon: icon != null ? Icon(icon) : null,
           ),

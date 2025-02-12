@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:dio/dio.dart';
 
 import 'package:domain/repository/repository.dart';
 import 'package:domain/entity/entities/translation.dart';
