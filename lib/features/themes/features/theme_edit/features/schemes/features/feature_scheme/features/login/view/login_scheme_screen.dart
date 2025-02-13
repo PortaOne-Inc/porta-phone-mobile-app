@@ -92,15 +92,7 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
                         mainAxisSize: MainAxisSize.min, // To align the trailing row correctly
                         children: [
                           PopupMenuButton<String>(
-                            onSelected: (value) {
-                              if (value == 'enable_disable') {
-                                _manageModeSelectAvailability(action: action);
-                              } else if (value == 'delete') {
-                                setState(() {
-                                  widget.sourceAppConfigLogin.modeSelectActions.remove(action);
-                                });
-                              }
-                            },
+                            onSelected: (value) => _modeSelectActionsMenuHandler(value, action),
                             itemBuilder: (context) => [
                               PopupMenuItem(
                                 value: 'enable_disable',
@@ -165,6 +157,18 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
         ],
       ),
     );
+  }
+
+  void _modeSelectActionsMenuHandler(String value, AppConfigModeSelectAction action) {
+    if (value == 'enable_disable') {
+      _manageModeSelectAvailability(action: action);
+    } else if (value == 'delete') {
+      final updatedActions = List<AppConfigModeSelectAction>.from(widget.sourceAppConfigLogin.modeSelectActions)
+        ..remove(action);
+      widget.callback(widget.sourceAppConfigLogin.copyWith(
+        modeSelectActions: updatedActions,
+      ));
+    }
   }
 
   Future<void> _addEmbeddedPage() async {
