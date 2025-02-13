@@ -7,8 +7,8 @@ class ConfigField extends StatefulWidget {
     required this.label,
     required this.keyName,
     required this.config,
-    required this.onConfigUpdate,
     required this.onEnabledChanged,
+    this.onConfigUpdate,
     super.key,
     this.defaultValue,
   });
@@ -16,7 +16,7 @@ class ConfigField extends StatefulWidget {
   final String label;
   final String keyName;
   final Map<String, dynamic> config;
-  final void Function<T>(String key, T value) onConfigUpdate;
+  final void Function<T>(String key, T value)? onConfigUpdate;
   final void Function(bool isEnabled, String key, String value) onEnabledChanged;
   final String? defaultValue;
 
@@ -70,7 +70,9 @@ class _ConfigFieldState extends State<ConfigField> {
             icon: Icons.text_fields,
             margin: const EdgeInsets.symmetric(vertical: 8),
             enabled: _isEnabled,
-            onChanged: (value) => widget.onConfigUpdate<String>(widget.keyName.trim(), value.trim()),
+            onChanged: widget.onConfigUpdate != null
+                ? (value) => widget.onConfigUpdate!<String>(widget.keyName.trim(), value.trim())
+                : null,
           ),
         ),
         Checkbox(

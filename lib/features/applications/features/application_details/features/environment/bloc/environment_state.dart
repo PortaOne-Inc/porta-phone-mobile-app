@@ -36,6 +36,7 @@ class EnvironmentState with _$EnvironmentState {
       appHelpUrlKeyName,
       appAboutUrlKeyName,
       appCredentialsRequestUrlKeyName,
+      customCoreFeatureKeyName,
     };
 
     return Map<String, dynamic>.from(environment)..removeWhere((key, _) => excludedKeys.contains(key));
@@ -46,6 +47,8 @@ class EnvironmentState with _$EnvironmentState {
   String get appDescriptionKeyName => 'WEBTRIT_APP_DESCRIPTION';
 
   String get coreUrlKeyName => 'WEBTRIT_APP_CORE_URL';
+
+  String get customCoreFeatureKeyName => 'WEBTRIT_CUSTOM_CORE_FEATURE';
 
   String get demoCoreUrlKeyName => 'WEBTRIT_APP_DEMO_CORE_URL';
 
