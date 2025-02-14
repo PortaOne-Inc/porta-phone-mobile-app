@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
-
-import '../models/models.dart';
 import '../bloc/application_collection_cubit.dart';
 import '../widgets/widgets.dart';
 
@@ -27,23 +22,42 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<ApplicationCollectionCubit>(context);
+    final textTheme = Theme.of(context).textTheme;
 
     return BlocConsumer<ApplicationCollectionCubit, ApplicationCollectionState>(
       listener: (BuildContext context, ApplicationCollectionState state) {},
       builder: (ctx, state) {
         return Scaffold(
-          appBar: AppToolbar(
-            isVisibleProgress: state.isProgress,
-            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            name: context.l10n.feature_applications_title,
-            right: [
-              Menu<ApplicationDetailProfile>(
-                iconData: Icons.account_circle,
-                items: ApplicationDetailProfile.values,
-                callback: _onProfile,
-              ),
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              context.l10n.feature_applications_title,
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              ThemeModeSwitcher(
+                themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+              )
             ],
+          ),
+          drawer: Drawer(
+            child: Column(
+              children: [
+                DrawerHeaderWidget(
+                  user: state.user,
+                ),
+                const Spacer(),
+                ListTile(
+                  leading: const Icon(Icons.exit_to_app),
+                  title: const Text('Logout'),
+                  onTap: () {
+                    BlocProvider.of<CommonBloc>(context).logout();
+                    Navigator.pop(context); // Close the drawer
+                  },
+                ),
+              ],
+            ),
           ),
           body: Stack(
             children: [
@@ -128,12 +142,5 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
-  }
-
-  void _onProfile(BuildContext context, ApplicationDetailProfile profile) {
-    switch (profile) {
-      case ApplicationDetailProfile.logOut:
-        BlocProvider.of<CommonBloc>(context).logout();
-    }
   }
 }

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ApplicationCollectionState {
   ApplicationsStateStatus get status => throw _privateConstructorUsedError;
+  UserMetadata? get user => throw _privateConstructorUsedError;
   List<(ApplicationModel, Iterable<ApplicationValidateError>)>
       get applications => throw _privateConstructorUsedError;
   ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
@@ -38,10 +39,12 @@ abstract class $ApplicationCollectionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ApplicationsStateStatus status,
+      UserMetadata? user,
       List<(ApplicationModel, Iterable<ApplicationValidateError>)> applications,
       ApplicationModel? deleteApplication,
       Exception? error});
 
+  $UserMetadataCopyWith<$Res>? get user;
   $ApplicationModelCopyWith<$Res>? get deleteApplication;
 }
 
@@ -62,6 +65,7 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
+    Object? user = freezed,
     Object? applications = null,
     Object? deleteApplication = freezed,
     Object? error = freezed,
@@ -71,6 +75,10 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationsStateStatus,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserMetadata?,
       applications: null == applications
           ? _value.applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -84,6 +92,20 @@ class _$ApplicationCollectionStateCopyWithImpl<$Res,
           : error // ignore: cast_nullable_to_non_nullable
               as Exception?,
     ) as $Val);
+  }
+
+  /// Create a copy of ApplicationCollectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserMetadataCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserMetadataCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 
   /// Create a copy of ApplicationCollectionState
@@ -112,10 +134,13 @@ abstract class _$$ApplicationCollectionStateInitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {ApplicationsStateStatus status,
+      UserMetadata? user,
       List<(ApplicationModel, Iterable<ApplicationValidateError>)> applications,
       ApplicationModel? deleteApplication,
       Exception? error});
 
+  @override
+  $UserMetadataCopyWith<$Res>? get user;
   @override
   $ApplicationModelCopyWith<$Res>? get deleteApplication;
 }
@@ -136,6 +161,7 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? user = freezed,
     Object? applications = null,
     Object? deleteApplication = freezed,
     Object? error = freezed,
@@ -145,6 +171,10 @@ class __$$ApplicationCollectionStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ApplicationsStateStatus,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserMetadata?,
       applications: null == applications
           ? _value._applications
           : applications // ignore: cast_nullable_to_non_nullable
@@ -167,6 +197,7 @@ class _$ApplicationCollectionStateInitialImpl
     extends ApplicationCollectionStateInitial {
   const _$ApplicationCollectionStateInitialImpl(
       {required this.status,
+      this.user,
       final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
           applications = const [],
       this.deleteApplication,
@@ -176,6 +207,8 @@ class _$ApplicationCollectionStateInitialImpl
 
   @override
   final ApplicationsStateStatus status;
+  @override
+  final UserMetadata? user;
   final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
       _applications;
   @override
@@ -194,7 +227,7 @@ class _$ApplicationCollectionStateInitialImpl
 
   @override
   String toString() {
-    return 'ApplicationCollectionState(status: $status, applications: $applications, deleteApplication: $deleteApplication, error: $error)';
+    return 'ApplicationCollectionState(status: $status, user: $user, applications: $applications, deleteApplication: $deleteApplication, error: $error)';
   }
 
   @override
@@ -203,6 +236,7 @@ class _$ApplicationCollectionStateInitialImpl
         (other.runtimeType == runtimeType &&
             other is _$ApplicationCollectionStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality()
                 .equals(other._applications, _applications) &&
             (identical(other.deleteApplication, deleteApplication) ||
@@ -214,6 +248,7 @@ class _$ApplicationCollectionStateInitialImpl
   int get hashCode => Object.hash(
       runtimeType,
       status,
+      user,
       const DeepCollectionEquality().hash(_applications),
       deleteApplication,
       error);
@@ -233,6 +268,7 @@ abstract class ApplicationCollectionStateInitial
     extends ApplicationCollectionState {
   const factory ApplicationCollectionStateInitial(
       {required final ApplicationsStateStatus status,
+      final UserMetadata? user,
       final List<(ApplicationModel, Iterable<ApplicationValidateError>)>
           applications,
       final ApplicationModel? deleteApplication,
@@ -241,6 +277,8 @@ abstract class ApplicationCollectionStateInitial
 
   @override
   ApplicationsStateStatus get status;
+  @override
+  UserMetadata? get user;
   @override
   List<(ApplicationModel, Iterable<ApplicationValidateError>)> get applications;
   @override

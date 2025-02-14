@@ -56,6 +56,7 @@ class AppRoute {
                   applicationCollectionUsecase: getIt.get(),
                   applicationDeleteUsecase: getIt.get(),
                   applicationIncVersion: getIt.get(),
+                  getUserUsecase: getIt.get(),
                 ),
                 child: const ApplicationCollectionPage(),
               ),

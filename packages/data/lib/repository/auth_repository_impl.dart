@@ -45,9 +45,20 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<String?> getUserUID() async {
-    // TODO(Serdun): remove this method
-    return userPrefDataSource.getUserId();
+  Future<UserMetadata?> getUser() async {
+    try {
+      final userId = userPrefDataSource.getUserId();
+      final email = userPrefDataSource.getEmail();
+      final jwtToken = authPrefDataSource.getAuthToken();
+
+      if (userId != null && email != null && jwtToken != null) {
+        return UserMetadata(id: userId, email: email, jwtToken: jwtToken);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw BaseException(message: 'Failed to retrieve user: $e');
+    }
   }
 
   @override

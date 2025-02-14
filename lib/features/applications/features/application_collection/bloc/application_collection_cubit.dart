@@ -18,13 +18,21 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
     required this.applicationCollectionUsecase,
     required this.applicationDeleteUsecase,
     required this.applicationIncVersion,
+    required this.getUserUsecase,
   }) : super(const ApplicationCollectionState(status: ApplicationsStateStatus.initial)) {
     tryGetApplications();
+    tryGetUser();
   }
 
   final UsecaseApplicationGetAll applicationCollectionUsecase;
   final UsecaseApplicationDeleteTemplate applicationDeleteUsecase;
   final UsecaseApplicationIncVersion applicationIncVersion;
+  final GetUserUsecase getUserUsecase;
+
+  Future<void> tryGetUser() async {
+    final user = await getUserUsecase.execute();
+    emit(state.copyWith(user: user));
+  }
 
   Future<void> tryGetApplications() async {
     try {

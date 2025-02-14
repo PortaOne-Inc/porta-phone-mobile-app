@@ -22,6 +22,7 @@ import 'package:domain/usecase/applications/usecase_application_get_all.dart'
     as _i210;
 import 'package:domain/usecase/applications/usecase_application_inc_version.dart'
     as _i43;
+import 'package:domain/usecase/auth/get_user_usecase.dart' as _i459;
 import 'package:domain/usecase/auth/usecase_auth_is_logged_in.dart' as _i538;
 import 'package:domain/usecase/auth/usecase_auth_is_logged_in_impl.dart'
     as _i987;
@@ -160,10 +161,12 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i431.UpdateApplicationEnvironmentUsecase>(() =>
         _i431.UpdateApplicationEnvironmentUsecaseImpl(
             gh<_i494.ApplicationRepository>()));
+    gh.factory<_i459.GetUserUsecase>(() =>
+        _i459.GetUserUsecaseImpl(authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i43.GetApplicationEnvironmentUsecase>(() =>
         _i43.GetApplicationEnvironmentUsecaseImpl(
             gh<_i494.ApplicationRepository>()));
-    gh.factory<_i494.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
+    gh.factory<_i606.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
           deploymentRepository: gh<_i494.DeploymentRepository>(),
           applicationRepository: gh<_i494.ApplicationRepository>(),
         ));

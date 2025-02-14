@@ -17,6 +17,7 @@ enum ApplicationsStateStatus {
 class ApplicationCollectionState with _$ApplicationCollectionState {
   const factory ApplicationCollectionState({
     required ApplicationsStateStatus status,
+    UserMetadata? user,
     @Default([]) List<Application> applications,
     ApplicationModel? deleteApplication,
     Exception? error,
