@@ -23,7 +23,25 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   late final _titleL10nController = TextEditingController(text: widget.bottomMenuTabScheme?.titleL10n ?? '');
 
   EmbeddedResource? _selectedEmbedded;
-  bool _enable = false;
+
+  // Common configuration
+  final bool _enableTab = true;
+
+  // Contacts configuration
+  bool _contactsSubTabLocale = true;
+  bool _contactsSubTabPBX = true;
+
+  @override
+  void initState() {
+    if (_bottomMenuTabScheme is ContactsTabScheme) {
+      _contactsSubTabLocale = _bottomMenuTabScheme.contactSourceTypes.contains('local');
+      _contactsSubTabPBX = _bottomMenuTabScheme.contactSourceTypes.contains('external');
+    } else {
+      _contactsSubTabLocale = true;
+      _contactsSubTabPBX = true;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +84,40 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              SwitchListTile(
-                title: const Text('Enable'),
-                value: _enable,
-                onChanged: (value) => setState(() {
-                  _enable = value;
-                }),
-              ),
-              ListTile(
-                title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
-                trailing: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
-                onTap: _addEmbeddedPage,
-              ),
+              if (_bottomMenuTabScheme?.type == BottomMenuTabType.contacts)
+                BorderContainer(
+                  title: 'Available sub-tabs',
+                  trailing: TextButton(
+                    onPressed: () {},
+                    child: const Text('Add embedded tab'),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SwitchListTile(
+                        title: const Text('Enable local contacts'),
+                        value: _contactsSubTabLocale,
+                        onChanged: (value) => setState(() {
+                          _contactsSubTabLocale = value;
+                        }),
+                      ),
+                      SwitchListTile(
+                        title: const Text('Enable pbx contacts'),
+                        value: _contactsSubTabPBX,
+                        onChanged: (value) => setState(() {
+                          _contactsSubTabPBX = value;
+                        }),
+                      ),
+                    ],
+                  ),
+                ),
+              if (_bottomMenuTabScheme?.type.isEmbedded ?? false)
+                ListTile(
+                  title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
+                  trailing: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
+                  onTap: _addEmbeddedPage,
+                ),
             ],
           ),
         ),
@@ -91,9 +131,44 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   }
 
   void _saveData() {
-    GoRouter.of(context).pop(_bottomMenuTabScheme?.copyWith(
+    if (_bottomMenuTabScheme?.type == BottomMenuTabType.contacts) {
+      final updatedTab = ContactsTabScheme(
+        enabled: _enableTab,
+        initial: _bottomMenuTabScheme?.initial ?? false,
+        type: BottomMenuTabType.contacts,
+        titleL10n: _titleL10nController.text,
+        icon: _bottomMenuTabScheme?.icon ?? '',
+        contactSourceTypes: [
+          if (_contactsSubTabLocale) 'local',
+          if (_contactsSubTabPBX) 'external',
+        ],
+      );
+
+      GoRouter.of(context).pop(updatedTab);
+      return;
+    }
+
+    if (_bottomMenuTabScheme?.type.isEmbedded ?? false) {
+      final updatedTab = EmbededTabScheme(
+          enabled: _enableTab,
+          initial: _bottomMenuTabScheme?.initial ?? false,
+          type: _bottomMenuTabScheme!.type!,
+          titleL10n: _titleL10nController.text,
+          icon: _bottomMenuTabScheme?.icon ?? '',
+          embeddedResourceId: _selectedEmbedded!.id);
+
+      GoRouter.of(context).pop(updatedTab);
+      return;
+    }
+
+    final updatedTab = BaseTabScheme(
+      enabled: _enableTab,
+      initial: _bottomMenuTabScheme?.initial ?? false,
+      type: _bottomMenuTabScheme!.type!!,
       titleL10n: _titleL10nController.text,
-      enabled: _enable,
-    ));
+      icon: _bottomMenuTabScheme?.icon ?? '',
+    );
+
+    GoRouter.of(context).pop(updatedTab);
   }
 }
