@@ -42,7 +42,6 @@ class ThemeAssetDto with _$ThemeAssetDto {
     required int id,
     required String name,
     @Default('') String description,
-    @Uint8ListConverter() Uint8List? file,
     String? url,
     String? type,
   }) = _ThemeAssetDto;

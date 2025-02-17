@@ -6,17 +6,24 @@ import 'package:webtrit_phone/extensions/extensions.dart';
 class SettingSectionItem extends StatelessWidget {
   const SettingSectionItem({
     required this.section,
+    required this.onEditItem,
     required this.onToggleItemEnabled,
     required this.onReorderItems,
+    required this.onDeleteItem,
     super.key,
   });
 
   final AppConfigSettingsSection section;
   final void Function(AppConfigSettingsItem) onToggleItemEnabled;
+  final void Function(AppConfigSettingsItem) onEditItem;
+  final void Function(AppConfigSettingsItem) onDeleteItem;
   final void Function(int, int) onReorderItems;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return ReorderableListView.builder(
       shrinkWrap: true,
       buildDefaultDragHandles: false,
@@ -46,11 +53,34 @@ class SettingSectionItem extends StatelessWidget {
                     if (value == 'enable_disable') {
                       onToggleItemEnabled(item);
                     }
+                    if (value == 'edit') {
+                      onEditItem(item);
+                    }
+                    if (value == 'delete') {
+                      onDeleteItem(item);
+                    }
                   },
                   itemBuilder: (context) => [
                     PopupMenuItem(
+                      value: 'edit',
+                      child: Text(
+                        'Edit',
+                        style: textTheme.labelMedium,
+                      ),
+                    ),
+                    PopupMenuItem(
                       value: 'enable_disable',
-                      child: Text(item.enabled ? 'Disable' : 'Enable'),
+                      child: Text(
+                        item.enabled ? 'Disable' : 'Enable',
+                        style: textTheme.labelMedium,
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: Text(
+                        'Delete',
+                        style: textTheme.labelMedium?.copyWith(color: colorScheme.error),
+                      ),
                     ),
                   ],
                 ),

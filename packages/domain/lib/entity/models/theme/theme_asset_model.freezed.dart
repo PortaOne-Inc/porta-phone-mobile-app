@@ -19,7 +19,6 @@ mixin _$ThemeAssetModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  Uint8List? get file => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
   /// Create a copy of ThemeAssetModel
@@ -35,8 +34,7 @@ abstract class $ThemeAssetModelCopyWith<$Res> {
           ThemeAssetModel value, $Res Function(ThemeAssetModel) then) =
       _$ThemeAssetModelCopyWithImpl<$Res, ThemeAssetModel>;
   @useResult
-  $Res call(
-      {int id, String name, String description, Uint8List? file, String? url});
+  $Res call({int id, String name, String description, String? url});
 }
 
 /// @nodoc
@@ -57,7 +55,6 @@ class _$ThemeAssetModelCopyWithImpl<$Res, $Val extends ThemeAssetModel>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? file = freezed,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +70,6 @@ class _$ThemeAssetModelCopyWithImpl<$Res, $Val extends ThemeAssetModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -93,8 +86,7 @@ abstract class _$$ThemeAssetModelImplCopyWith<$Res>
       __$$ThemeAssetModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id, String name, String description, Uint8List? file, String? url});
+  $Res call({int id, String name, String description, String? url});
 }
 
 /// @nodoc
@@ -113,7 +105,6 @@ class __$$ThemeAssetModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? file = freezed,
     Object? url = freezed,
   }) {
     return _then(_$ThemeAssetModelImpl(
@@ -129,10 +120,6 @@ class __$$ThemeAssetModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -145,11 +132,7 @@ class __$$ThemeAssetModelImplCopyWithImpl<$Res>
 
 class _$ThemeAssetModelImpl extends _ThemeAssetModel {
   const _$ThemeAssetModelImpl(
-      {required this.id,
-      required this.name,
-      this.description = '',
-      this.file,
-      this.url})
+      {required this.id, required this.name, this.description = '', this.url})
       : super._();
 
   @override
@@ -160,13 +143,11 @@ class _$ThemeAssetModelImpl extends _ThemeAssetModel {
   @JsonKey()
   final String description;
   @override
-  final Uint8List? file;
-  @override
   final String? url;
 
   @override
   String toString() {
-    return 'ThemeAssetModel(id: $id, name: $name, description: $description, file: $file, url: $url)';
+    return 'ThemeAssetModel(id: $id, name: $name, description: $description, url: $url)';
   }
 
   @override
@@ -178,13 +159,11 @@ class _$ThemeAssetModelImpl extends _ThemeAssetModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.file, file) &&
             (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description,
-      const DeepCollectionEquality().hash(file), url);
+  int get hashCode => Object.hash(runtimeType, id, name, description, url);
 
   /// Create a copy of ThemeAssetModel
   /// with the given fields replaced by the non-null parameter values.
@@ -201,7 +180,6 @@ abstract class _ThemeAssetModel extends ThemeAssetModel {
       {required final int id,
       required final String name,
       final String description,
-      final Uint8List? file,
       final String? url}) = _$ThemeAssetModelImpl;
   const _ThemeAssetModel._() : super._();
 
@@ -211,8 +189,6 @@ abstract class _ThemeAssetModel extends ThemeAssetModel {
   String get name;
   @override
   String get description;
-  @override
-  Uint8List? get file;
   @override
   String? get url;
 

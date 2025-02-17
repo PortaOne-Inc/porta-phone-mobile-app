@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'theme_asset_model.freezed.dart';
@@ -17,14 +15,12 @@ class ThemeAssetModel with _$ThemeAssetModel {
     required int id,
     required String name,
     @Default('') String description,
-    Uint8List? file,
     String? url,
   }) = _ThemeAssetModel;
 
   factory ThemeAssetModel.create({
     required String name,
     String description = '',
-    Uint8List? file,
     String? url,
   }) {
     final uniqueId = DateTime.now().millisecondsSinceEpoch;
@@ -32,7 +28,6 @@ class ThemeAssetModel with _$ThemeAssetModel {
       id: uniqueId,
       name: name,
       description: description,
-      file: file,
       url: url,
     );
   }

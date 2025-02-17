@@ -115,6 +115,8 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
                   section: section,
                   onReorderItems: (previous, now) => _reorderItemsInSection(section, previous, now),
                   onToggleItemEnabled: _toggleItemEnabled,
+                  onEditItem: _onEditItem,
+                  onDeleteItem: _onDeleteItem,
                 ),
                 const Divider(),
               ],
@@ -197,6 +199,31 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
         items: section.items.map((item) {
           if (item.titleL10n == action.titleL10n) {
             return item.copyWith(enabled: !item.enabled);
+          }
+          return item;
+        }).toList(),
+      );
+    }).toList());
+  }
+
+  Future<void> _onDeleteItem(AppConfigSettingsItem action) async {
+    final updatedSections = widget.config.sections.map((section) {
+      return section.copyWith(
+        items: section.items.where((item) => item.titleL10n != action.titleL10n).toList(),
+      );
+    }).toList();
+
+    _updateSections(updatedSections);
+  }
+
+  Future<void> _onEditItem(AppConfigSettingsItem action) async {
+    final updatedItem = await GoRouter.of(context)
+        .pushNamed<AppConfigSettingsItem>(SchemeRoute.appFeatureSchemeAddSettingSectionItem.name, extra: action);
+    _updateSections(widget.config.sections.map((section) {
+      return section.copyWith(
+        items: section.items.map((item) {
+          if (item.titleL10n == action.titleL10n) {
+            return updatedItem ?? item;
           }
           return item;
         }).toList(),

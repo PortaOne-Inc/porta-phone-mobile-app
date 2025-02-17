@@ -25,6 +25,7 @@ class DropdownButtonExt<T> extends StatelessWidget {
       child: ConstrainedBox(
         constraints: constraints ?? const BoxConstraints(),
         child: DropdownButtonFormField<T>(
+          isExpanded: true,
           decoration: InputDecoration(
             labelText: label,
             border: const OutlineInputBorder(),

@@ -33,9 +33,7 @@ import 'package:data/repository/deployment_repository_impl.dart' as _i123;
 import 'package:data/repository/resources_repository_impl.dart' as _i136;
 import 'package:data/repository/theme_repository_impl.dart' as _i165;
 import 'package:data/repository/translations_repository_impl.dart' as _i591;
-import 'package:dio/dio.dart' as _i361;
 import 'package:domain/domain.dart' as _i494;
-import 'package:domain/entity/models/theme/splash_asset_model.dart' as _i1065;
 import 'package:domain/repository/repository.dart' as _i174;
 import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:injectable/injectable.dart' as _i526;
@@ -83,7 +81,7 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()));
     gh.lazySingleton<_i808.AuthPrefDatasource>(
         () => _i808.AuthPrefDatasource(gh<_i99.LocalStorage>()));
-    gh.lazySingleton<_i361.Dio>(() => registerModule.serverApiClient(
+    gh.lazySingleton<_i822.Dio>(() => registerModule.serverApiClient(
           gh<String>(instanceName: 'baseUrl'),
           gh<_i822.AuthPrefDatasource>(),
         ));
@@ -125,8 +123,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
               _i1058.CommonMapper<_i494.LaunchAssetsModel?,
                   _i862.LaunchAssetsDto?>>(),
           splashAssetsMapper: gh<
-              _i1058.CommonMapper<_i1065.SplashAssetModel?,
-                  _i862.SplashAssetsDto?>>(),
+              _i1058
+              .CommonMapper<_i494.SplashAssetModel?, _i862.SplashAssetsDto?>>(),
         ));
     gh.factory<_i494.AuthRepository>(() => _i442.AuthRepositoryImpl(
           configuratorBackandDatasource:

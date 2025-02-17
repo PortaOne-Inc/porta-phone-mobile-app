@@ -40,7 +40,6 @@ class UpdateThemeState with _$UpdateThemeState {
       themeWidgetLightConfig: themeWidgetConfig.copyWIthUrlResources(),
       lightColorSchemeConfig: colorSchemeConfig,
       themePageLightConfig: themePageConfig.copyWIthUrlResources(),
-      appConfig: appConfig,
     );
   }
 

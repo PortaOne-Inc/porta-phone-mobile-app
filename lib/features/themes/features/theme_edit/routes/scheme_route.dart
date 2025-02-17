@@ -8,6 +8,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/bloc.dart';
 
 import '../features/schemes/features/splash_screen/bloc/splash_assets_bloc.dart';
 import '../features/schemes/schemes.dart';
@@ -77,6 +78,16 @@ class SchemeRoute {
     path: '/app/feature/scheme/embedded/data',
   );
 
+  static const appFeatureSchemeAddLoginModeAction = DestinationInfo(
+    name: 'app_feature_scheme_add_login_mode_action',
+    path: '/app/feature/scheme/login/mode-action',
+  );
+
+  static const appFeatureSchemeCollectionEmbedded = DestinationInfo(
+    name: 'appFeatureSchemeCollectionEmbedded',
+    path: '/app/feature/scheme/embedded/collection',
+  );
+
   static const appFeatureSchemeMainManageTab = DestinationInfo(
     name: 'app_feature_scheme_main_manage_tab',
     path: '/app/feature/scheme/main/manage/tab',
@@ -135,10 +146,34 @@ class SchemeRoute {
                     },
                     routes: [
                       GoRoute(
+                          path: appFeatureSchemeCollectionEmbedded.path,
+                          name: appFeatureSchemeCollectionEmbedded.name,
+                          builder: (BuildContext context, GoRouterState state) {
+                            final appConfig = context.read<UpdateThemCubit>().state.appConfig;
+                            return CollectionEmbedded(
+                              isPicker: true,
+                              embeddedResources: appConfig.embeddedResources,
+                              callback: (config) => context.read<UpdateThemCubit>().add(
+                                    UpdateSchemeEvent.featureAccess(appConfig.copyWith(embeddedResources: config)),
+                                  ),
+                            );
+                          }),
+                      GoRoute(
+                          path: appFeatureSchemeAddLoginModeAction.path,
+                          name: appFeatureSchemeAddLoginModeAction.name,
+                          builder: (BuildContext context, GoRouterState state) {
+                            return AddModeActionPage(
+                              embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
+                            );
+                          }),
+                      GoRoute(
                           path: appFeatureSchemeAddEmbeddedData.path,
                           name: appFeatureSchemeAddEmbeddedData.name,
                           builder: (BuildContext context, GoRouterState state) {
-                            return const AddEmbeddedDataScreen();
+                            return BlocProvider(
+                              create: (BuildContext context) => AddEmbeddedCubit(),
+                              child: const AddEmbeddedDataScreen(),
+                            );
                           }),
                       GoRoute(
                         path: appFeatureSchemeAddSettingSection.path,
@@ -154,7 +189,8 @@ class SchemeRoute {
                           path: appFeatureSchemeAddSettingSectionItem.path,
                           name: appFeatureSchemeAddSettingSectionItem.name,
                           builder: (BuildContext context, GoRouterState state) {
-                            return const AddSettingItemScreen(
+                            return AddSettingItemScreen(
+                              item: state.extra as AppConfigSettingsItem?,
                               assets: [],
                               embedded: [],
                             );

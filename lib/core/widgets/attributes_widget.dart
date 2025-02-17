@@ -12,9 +12,9 @@ class AttributesWidget extends StatefulWidget {
     super.key,
   });
 
-  final List<MapEntry<String, String>> attributes;
-  final void Function(int index, String key, String value) onUpdateAttribute;
-  final void Function(int index) onRemoveAttribute;
+  final Map<String, String> attributes;
+  final void Function(String key, String value) onUpdateAttribute;
+  final void Function(String key) onRemoveAttribute;
   final VoidCallback onAddAttribute;
   final EdgeInsets contentPadding;
 
@@ -25,6 +25,7 @@ class AttributesWidget extends StatefulWidget {
 class _AttributesWidgetState extends State<AttributesWidget> {
   late List<TextEditingController> _keyControllers;
   late List<TextEditingController> _valueControllers;
+  late List<String> _keys;
 
   @override
   void initState() {
@@ -33,8 +34,9 @@ class _AttributesWidgetState extends State<AttributesWidget> {
   }
 
   void _initializeControllers() {
-    _keyControllers = widget.attributes.map((e) => TextEditingController(text: e.key)).toList();
-    _valueControllers = widget.attributes.map((e) => TextEditingController(text: e.value)).toList();
+    _keys = widget.attributes.keys.toList();
+    _keyControllers = _keys.map((key) => TextEditingController(text: key)).toList();
+    _valueControllers = _keys.map((key) => TextEditingController(text: widget.attributes[key])).toList();
   }
 
   @override
@@ -42,31 +44,33 @@ class _AttributesWidgetState extends State<AttributesWidget> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.attributes != widget.attributes) {
-      for (var i = 0; i < widget.attributes.length; i++) {
+      _keys = widget.attributes.keys.toList();
+
+      for (var i = 0; i < _keys.length; i++) {
         if (i < _keyControllers.length) {
           final keyText = _keyControllers[i].text;
           final valueText = _valueControllers[i].text;
 
-          if (keyText != widget.attributes[i].key) {
-            _keyControllers[i].text = widget.attributes[i].key;
+          if (keyText != _keys[i]) {
+            _keyControllers[i].text = _keys[i];
           }
-          if (valueText != widget.attributes[i].value) {
-            _valueControllers[i].text = widget.attributes[i].value;
+          if (valueText != widget.attributes[_keys[i]]) {
+            _valueControllers[i].text = widget.attributes[_keys[i]]!;
           }
         } else {
-          _keyControllers.add(TextEditingController(text: widget.attributes[i].key));
-          _valueControllers.add(TextEditingController(text: widget.attributes[i].value));
+          _keyControllers.add(TextEditingController(text: _keys[i]));
+          _valueControllers.add(TextEditingController(text: widget.attributes[_keys[i]]));
         }
       }
 
-      if (_keyControllers.length > widget.attributes.length) {
-        _keyControllers.sublist(widget.attributes.length).forEach((c) => c.dispose());
-        _keyControllers = _keyControllers.sublist(0, widget.attributes.length);
+      if (_keyControllers.length > _keys.length) {
+        _keyControllers.sublist(_keys.length).forEach((c) => c.dispose());
+        _keyControllers = _keyControllers.sublist(0, _keys.length);
       }
 
-      if (_valueControllers.length > widget.attributes.length) {
-        _valueControllers.sublist(widget.attributes.length).forEach((c) => c.dispose());
-        _valueControllers = _valueControllers.sublist(0, widget.attributes.length);
+      if (_valueControllers.length > _keys.length) {
+        _valueControllers.sublist(_keys.length).forEach((c) => c.dispose());
+        _valueControllers = _valueControllers.sublist(0, _keys.length);
       }
     }
   }
@@ -105,7 +109,7 @@ class _AttributesWidgetState extends State<AttributesWidget> {
           padding: widget.contentPadding,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: widget.attributes.length,
+          itemCount: _keys.length,
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemBuilder: (context, index) {
             return Row(
@@ -115,7 +119,7 @@ class _AttributesWidgetState extends State<AttributesWidget> {
                     key: ValueKey(index.toString()),
                     decoration: const InputDecoration(labelText: 'Key', border: OutlineInputBorder()),
                     controller: _keyControllers[index],
-                    onChanged: (value) => widget.onUpdateAttribute(index, value, _valueControllers[index].text),
+                    onChanged: (value) => widget.onUpdateAttribute(value, _valueControllers[index].text),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -124,12 +128,12 @@ class _AttributesWidgetState extends State<AttributesWidget> {
                     key: ValueKey(index.toString()),
                     decoration: const InputDecoration(labelText: 'Value', border: OutlineInputBorder()),
                     controller: _valueControllers[index],
-                    onChanged: (value) => widget.onUpdateAttribute(index, _keyControllers[index].text, value),
+                    onChanged: (value) => widget.onUpdateAttribute(_keyControllers[index].text, value),
                   ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () => widget.onRemoveAttribute(index),
+                  onPressed: () => widget.onRemoveAttribute(_keys[index]),
                 ),
               ],
             );

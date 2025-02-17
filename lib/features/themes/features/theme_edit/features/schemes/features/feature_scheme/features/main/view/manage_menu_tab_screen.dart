@@ -22,7 +22,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   late final _bottomMenuTabScheme = widget.bottomMenuTabScheme;
   late final _titleL10nController = TextEditingController(text: widget.bottomMenuTabScheme?.titleL10n ?? '');
 
-  EmbeddedData? _selectedEmbedded;
+  EmbeddedResource? _selectedEmbedded;
   bool _enable = false;
 
   @override
@@ -87,7 +87,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
 
   Future<void> _addEmbeddedPage() async {
     _selectedEmbedded =
-        await GoRouter.of(context).pushNamed<EmbeddedData>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
+        await GoRouter.of(context).pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
   }
 
   void _saveData() {

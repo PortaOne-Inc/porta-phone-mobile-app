@@ -8,7 +8,7 @@ class AddModeActionPage extends StatefulWidget {
     super.key,
   });
 
-  final List<EmbeddedData> embedded;
+  final List<EmbeddedResource> embedded;
 
   @override
   _AddModeActionPageState createState() => _AddModeActionPageState();
@@ -16,7 +16,7 @@ class AddModeActionPage extends StatefulWidget {
 
 class _AddModeActionPageState extends State<AddModeActionPage> {
   final _titleL10nController = TextEditingController();
-  EmbeddedData? _selectedEmbedded;
+  EmbeddedResource? _selectedEmbedded;
   bool _enable = false;
   String _selectedType = 'login';
 
@@ -24,10 +24,11 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Embedded Data'),
+        title: Text('Add Mode Action Details', style: textTheme.titleMedium),
         centerTitle: true,
         actions: [
           IconButton(
@@ -41,7 +42,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildSectionTitle('Add Mode Action Details', theme.textTheme.titleLarge),
             _buildTextField('Title Localization (titleL10n)', Icons.title, _titleL10nController),
             _buildDropdown(
               'Select Type',
@@ -49,7 +49,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
               ['login', 'embedded'],
               (value) => setState(() => _selectedType = value!),
             ),
-            DropdownButtonFormField<EmbeddedData>(
+            DropdownButtonFormField<EmbeddedResource>(
               hint: const Text('Select embedded'),
               padding: EdgeInsets.zero,
               decoration: const InputDecoration(
@@ -58,7 +58,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
               ),
               // Removes the underline
               items: widget.embedded.map((embedded) {
-                return DropdownMenuItem<EmbeddedData>(
+                return DropdownMenuItem<EmbeddedResource>(
                   value: embedded,
                   child: Text(embedded.toolbar.titleL10n.toString()),
                 );
@@ -68,8 +68,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                   setState(() {
                     _selectedEmbedded = selectedEmbedded;
                   });
-                  // Logic when an embedded item is selected
-                  // _onEmbeddedItemSelected(action, selectedEmbedded);
                 }
               },
             ),
@@ -82,13 +80,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildSectionTitle(String title, TextStyle? style) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Text(title, style: style),
     );
   }
 

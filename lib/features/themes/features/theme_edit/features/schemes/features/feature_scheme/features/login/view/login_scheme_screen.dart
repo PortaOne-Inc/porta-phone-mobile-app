@@ -7,8 +7,6 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import 'add_mode_action_view.dart';
-
 class LoginSchemeScreen extends StatefulWidget {
   const LoginSchemeScreen({
     required this.callback,
@@ -113,47 +111,6 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          BorderContainer(
-            title: 'Embedded data',
-            trailing: InkWell(
-              onTap: _addEmbeddedPage,
-              child: const Icon(Icons.add),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...widget.sourceAppConfigLogin.embedded.map((action) {
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    child: ListTile(
-                      leading: const Icon(Icons.data_array),
-                      title: Text(action.toolbar.titleL10n.toString()),
-                      subtitle: Text('Type: ${action.toolbar.titleL10n}'),
-                      trailing: PopupMenuButton<String>(
-                        onSelected: (value) {
-                          if (value == 'enable_disable') {
-                            setState(() {
-                              // action.enabled = !action.enabled;
-                            });
-                          } else if (value == 'delete') {
-                            setState(() {
-                              widget.sourceAppConfigLogin.modeSelectActions.remove(action);
-                            });
-                          }
-                        },
-                        itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: 'delete',
-                            child: Text('Delete'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ],
-            ),
-          ),
         ],
       ),
     );
@@ -171,29 +128,14 @@ class _LoginSchemeScreenState extends State<LoginSchemeScreen> {
     }
   }
 
-  Future<void> _addEmbeddedPage() async {
-    final res = await GoRouter.of(context).pushNamed<EmbeddedData>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
-    if (res != null) {
-      widget.callback(widget.sourceAppConfigLogin.copyWith(
-        embedded: [...widget.sourceAppConfigLogin.embedded, res],
-      ));
-    }
-  }
-
   Future<void> _addActionPage() async {
-    final res = await Navigator.of(context).push(
-      MaterialPageRoute<AppConfigModeSelectAction>(
-        builder: (BuildContext context) => AddModeActionPage(
-          embedded: widget.sourceAppConfigLogin.embedded,
-        ),
-      ),
-    );
+    final action =
+        await context.pushNamed<AppConfigModeSelectAction>(SchemeRoute.appFeatureSchemeAddLoginModeAction.name);
 
-    if (res != null) {
+    if (action != null) {
       widget.callback(widget.sourceAppConfigLogin.copyWith(
-        modeSelectActions: [...widget.sourceAppConfigLogin.modeSelectActions, res],
+        modeSelectActions: [...widget.sourceAppConfigLogin.modeSelectActions, action],
       ));
-      // Logic when embedded data is added
     }
   }
 

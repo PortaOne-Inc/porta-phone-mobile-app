@@ -96,7 +96,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         ),
       if (isCustomSignupPreview)
         LoginSignUpScreenshot(
-          supportedLoginTypes: [],
+          supportedLoginTypes: const [],
           key: loginKey,
         ),
       if (!isCustomSignupPreview)

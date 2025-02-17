@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
+import '../features/embedded/features/collection_embedded/view/collection_embedded.dart';
 import '../features/features.dart';
 
 enum LoginType { defaultLogin, customLogin }
@@ -26,6 +27,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
     Tab(text: 'Main'),
     Tab(text: 'Settings'),
     Tab(text: 'Call'),
+    Tab(text: 'Embedded resources'),
   ];
 
   @override
@@ -105,7 +107,13 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                               transfer: appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: value)))),
                     ),
               ),
-            ].map((widget) => SingleChildScrollView(child: widget)).toList(),
+              CollectionEmbedded(
+                embeddedResources: appConfig.embeddedResources,
+                callback: (config) => context.read<UpdateThemCubit>().add(
+                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(embeddedResources: config)),
+                    ),
+              ),
+            ].map((widget) => widget).toList(),
           );
         },
       ),

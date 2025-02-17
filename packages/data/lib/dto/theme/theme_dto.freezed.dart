@@ -440,8 +440,6 @@ mixin _$ThemeAssetDto {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  @Uint8ListConverter()
-  Uint8List? get file => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
 
@@ -462,12 +460,7 @@ abstract class $ThemeAssetDtoCopyWith<$Res> {
       _$ThemeAssetDtoCopyWithImpl<$Res, ThemeAssetDto>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String description,
-      @Uint8ListConverter() Uint8List? file,
-      String? url,
-      String? type});
+      {int id, String name, String description, String? url, String? type});
 }
 
 /// @nodoc
@@ -488,7 +481,6 @@ class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? file = freezed,
     Object? url = freezed,
     Object? type = freezed,
   }) {
@@ -505,10 +497,6 @@ class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -530,12 +518,7 @@ abstract class _$$ThemeAssetDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String description,
-      @Uint8ListConverter() Uint8List? file,
-      String? url,
-      String? type});
+      {int id, String name, String description, String? url, String? type});
 }
 
 /// @nodoc
@@ -554,7 +537,6 @@ class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? file = freezed,
     Object? url = freezed,
     Object? type = freezed,
   }) {
@@ -571,10 +553,6 @@ class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -594,7 +572,6 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
       {required this.id,
       required this.name,
       this.description = '',
-      @Uint8ListConverter() this.file,
       this.url,
       this.type});
 
@@ -609,16 +586,13 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
   @JsonKey()
   final String description;
   @override
-  @Uint8ListConverter()
-  final Uint8List? file;
-  @override
   final String? url;
   @override
   final String? type;
 
   @override
   String toString() {
-    return 'ThemeAssetDto(id: $id, name: $name, description: $description, file: $file, url: $url, type: $type)';
+    return 'ThemeAssetDto(id: $id, name: $name, description: $description, url: $url, type: $type)';
   }
 
   @override
@@ -630,15 +604,14 @@ class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.file, file) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description,
-      const DeepCollectionEquality().hash(file), url, type);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, description, url, type);
 
   /// Create a copy of ThemeAssetDto
   /// with the given fields replaced by the non-null parameter values.
@@ -661,7 +634,6 @@ abstract class _ThemeAssetDto implements ThemeAssetDto {
       {required final int id,
       required final String name,
       final String description,
-      @Uint8ListConverter() final Uint8List? file,
       final String? url,
       final String? type}) = _$ThemeAssetDtoImpl;
 
@@ -674,9 +646,6 @@ abstract class _ThemeAssetDto implements ThemeAssetDto {
   String get name;
   @override
   String get description;
-  @override
-  @Uint8ListConverter()
-  Uint8List? get file;
   @override
   String? get url;
   @override

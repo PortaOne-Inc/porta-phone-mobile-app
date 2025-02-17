@@ -15,7 +15,6 @@ class ThemeAssetMapper extends CommonMapper<ThemeAssetModel, ThemeAssetDto> {
       id: it.id,
       name: it.name,
       description: it.description,
-      file: it.file,
       url: it.url,
     );
   }
@@ -26,7 +25,6 @@ class ThemeAssetMapper extends CommonMapper<ThemeAssetModel, ThemeAssetDto> {
       id: it.id,
       name: it.name,
       description: it.description,
-      file: it.file,
       url: it.url,
     );
   }
