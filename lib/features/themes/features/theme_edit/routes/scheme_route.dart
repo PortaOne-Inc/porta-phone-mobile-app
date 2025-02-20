@@ -189,10 +189,12 @@ class SchemeRoute {
                           path: appFeatureSchemeAddSettingSectionItem.path,
                           name: appFeatureSchemeAddSettingSectionItem.name,
                           builder: (BuildContext context, GoRouterState state) {
-                            return AddSettingItemScreen(
-                              item: state.extra as AppConfigSettingsItem?,
-                              assets: context.read<AssetsProvider>().assets,
-                              embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
+                            return BlocProvider(
+                              create: (BuildContext context) => ManageSettingItemCubit(
+                                embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
+                                item: state.extra as AppConfigSettingsItem?,
+                              ),
+                              child: const AddSettingItemScreen(),
                             );
                           }),
                       GoRoute(
