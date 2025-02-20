@@ -49,7 +49,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
         (e) => e.id == widget.item?.embeddedResourceId,
       );
     }
-
+    _selectedEmbedded = widget.embedded.firstWhereOrNull((e) => e.id == widget.item?.embeddedResourceId);
     _settingItemIconController.addListener(() {
       setState(() {});
     });

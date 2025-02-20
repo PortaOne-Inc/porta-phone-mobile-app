@@ -191,8 +191,8 @@ class SchemeRoute {
                           builder: (BuildContext context, GoRouterState state) {
                             return AddSettingItemScreen(
                               item: state.extra as AppConfigSettingsItem?,
-                              assets: [],
-                              embedded: [],
+                              assets: context.read<AssetsProvider>().assets,
+                              embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
                             );
                           }),
                       GoRoute(
