@@ -98,3 +98,4 @@ class FeatureAccessShellRoute extends StatelessWidget {
     return appConfig.copyWith(embeddedResources: updatedResources);
   }
 }
+ 

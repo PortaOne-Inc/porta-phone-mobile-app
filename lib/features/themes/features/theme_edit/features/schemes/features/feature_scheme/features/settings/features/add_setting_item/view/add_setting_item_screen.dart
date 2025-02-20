@@ -1,17 +1,20 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
 import 'package:go_router/go_router.dart';
+import 'package:collection/collection.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/exports/exports.dart';
 import 'package:webtrit_configurator/features/features.dart';
+import 'package:webtrit_phone/extensions/string.dart';
 
 class AddSettingItemScreen extends StatefulWidget {
   const AddSettingItemScreen({
-    this.item,
     required this.assets,
     required this.embedded,
+    this.item,
     super.key,
   });
 
@@ -26,23 +29,30 @@ class AddSettingItemScreen extends StatefulWidget {
 class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleL10nController = TextEditingController();
-  EmbeddedResource? _selectedEmbedded;
+  final _settingItemIconController = TextEditingController();
+
   late final String _selectedType = widget.item?.type ?? 'embedded';
-  late final String _selectedIcon = widget.item?.icon ?? '0xe424';
+
+  EmbeddedResource? _selectedEmbedded;
   bool _enable = false;
 
   @override
   void initState() {
     super.initState();
 
-    // Initialize fields if the item is not null
     if (widget.item != null) {
       _titleL10nController.text = widget.item?.titleL10n ?? '';
+      _settingItemIconController.text = widget.item?.icon ?? '';
+
       _enable = widget.item?.enabled ?? false;
       _selectedEmbedded = widget.embedded.firstWhereOrNull(
         (e) => e.id == widget.item?.embeddedResourceId,
       );
     }
+
+    _settingItemIconController.addListener(() {
+      setState(() {});
+    });
   }
 
   void _saveData() {
@@ -51,7 +61,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
         enabled: _enable,
         type: _selectedType,
         titleL10n: _titleL10nController.text.trim(),
-        icon: _selectedIcon,
+        icon: _settingItemIconController.text.trim(),
         embeddedResourceId: _selectedEmbedded?.id,
       );
 
@@ -61,6 +71,14 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var icon = Icons.image;
+
+    try {
+      icon = _settingItemIconController.text.toIconData();
+    } catch (e) {
+      // ignore
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Embedded Section'),
@@ -96,6 +114,24 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                   labelText: 'Title Localization',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.title),
+                ),
+                validator: (value) => (value?.trim().isEmpty ?? true) ? 'Title is required' : null,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _settingItemIconController,
+                decoration: InputDecoration(
+                  labelText: 'Setting Item icon',
+                  border: const OutlineInputBorder(),
+                  prefixIcon: Icon(icon),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.search),
+                    // TODO(Serdun): Refactor hardcoded URL
+                    onPressed: () async {
+                      const url = 'https://fonts.google.com/icons';
+                      await launch(url);
+                    },
+                  ),
                 ),
                 validator: (value) => (value?.trim().isEmpty ?? true) ? 'Title is required' : null,
               ),
