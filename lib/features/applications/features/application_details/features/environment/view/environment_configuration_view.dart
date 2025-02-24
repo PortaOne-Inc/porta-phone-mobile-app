@@ -177,25 +177,11 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ConfigSection(
-                              title: 'Links & URLs',
+                              title: 'Deeplink',
                               fields: [
                                 ConfigField(
-                                  label: 'App Help URL',
-                                  keyName: state.appHelpUrlKeyName,
-                                  config: state.environment,
-                                  onConfigUpdate: _updateConfig,
-                                  onEnabledChanged: _manageKey,
-                                ),
-                                ConfigField(
-                                  label: 'App About URL',
-                                  keyName: state.appAboutUrlKeyName,
-                                  config: state.environment,
-                                  onConfigUpdate: _updateConfig,
-                                  onEnabledChanged: _manageKey,
-                                ),
-                                ConfigField(
-                                  label: 'App Credentials Request URL',
-                                  keyName: state.appCredentialsRequestUrlKeyName,
+                                  label: 'Domain',
+                                  keyName: state.deeplinkDomain,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
                                   onEnabledChanged: _manageKey,

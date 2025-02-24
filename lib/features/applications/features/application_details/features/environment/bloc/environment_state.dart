@@ -33,10 +33,8 @@ class EnvironmentState with _$EnvironmentState {
       remoteLogzioLoggingUrlKeyName,
       remoteLogzioLoggingTokenKeyName,
       remoteLogzioLoggingBufferSizeKeyName,
-      appHelpUrlKeyName,
-      appAboutUrlKeyName,
-      appCredentialsRequestUrlKeyName,
       customCoreFeatureKeyName,
+      deeplinkDomain
     };
 
     return Map<String, dynamic>.from(environment)..removeWhere((key, _) => excludedKeys.contains(key));
@@ -60,9 +58,5 @@ class EnvironmentState with _$EnvironmentState {
 
   String get remoteLogzioLoggingBufferSizeKeyName => 'WEBTRIT_APP_REMOTE_LOGZIO_LOGGING_BUFFER_SIZE';
 
-  String get appHelpUrlKeyName => 'WEBTRIT_APP_HELP_URL';
-
-  String get appAboutUrlKeyName => 'WEBTRIT_APP_ABOUT_URL';
-
-  String get appCredentialsRequestUrlKeyName => 'WEBTRIT_APP_CREDENTIALS_REQUEST_URL';
+  String get deeplinkDomain => 'WEBTRIT_APP_LINK_DOMAIN';
 }
