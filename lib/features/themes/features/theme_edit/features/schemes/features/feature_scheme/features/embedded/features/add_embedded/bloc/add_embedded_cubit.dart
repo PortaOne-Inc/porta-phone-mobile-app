@@ -80,8 +80,8 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
   Metadata _buildMetadata() {
     return Metadata(attributes: {
       ...state.attributes,
-      'asset': '${state.asset?.id}',
-      'source': state.resourceSource.name,
+      EmbeddedResource.metadataAssetId: '${state.asset?.id}',
+      EmbeddedResource.metadataAssetSource: state.resourceSource.name,
     });
   }
 
