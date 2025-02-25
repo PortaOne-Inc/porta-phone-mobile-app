@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AddEmbeddedState {
   int get id => throw _privateConstructorUsedError;
   ToolbarConfig get toolbarConfig => throw _privateConstructorUsedError;
-  Map<String, String> get attributes => throw _privateConstructorUsedError;
+  Map<String, dynamic> get attributes => throw _privateConstructorUsedError;
   EmbeddedResourceType get resourceType => throw _privateConstructorUsedError;
   EmbeddedResourceSource get resourceSource =>
       throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $AddEmbeddedStateCopyWith<$Res> {
   $Res call(
       {int id,
       ToolbarConfig toolbarConfig,
-      Map<String, String> attributes,
+      Map<String, dynamic> attributes,
       EmbeddedResourceType resourceType,
       EmbeddedResourceSource resourceSource,
       ThemeAssetModel? asset,
@@ -90,7 +90,7 @@ class _$AddEmbeddedStateCopyWithImpl<$Res, $Val extends AddEmbeddedState>
       attributes: null == attributes
           ? _value.attributes
           : attributes // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, dynamic>,
       resourceType: null == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {int id,
       ToolbarConfig toolbarConfig,
-      Map<String, String> attributes,
+      Map<String, dynamic> attributes,
       EmbeddedResourceType resourceType,
       EmbeddedResourceSource resourceSource,
       ThemeAssetModel? asset,
@@ -213,7 +213,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       attributes: null == attributes
           ? _value._attributes
           : attributes // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, dynamic>,
       resourceType: null == resourceType
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
@@ -244,7 +244,7 @@ class _$InitialImpl extends _Initial {
   _$InitialImpl(
       {required this.id,
       this.toolbarConfig = const ToolbarConfig(),
-      final Map<String, String> attributes = const {},
+      final Map<String, dynamic> attributes = const {},
       this.resourceType = EmbeddedResourceType.unknown,
       this.resourceSource = EmbeddedResourceSource.html,
       this.asset,
@@ -258,10 +258,10 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final ToolbarConfig toolbarConfig;
-  final Map<String, String> _attributes;
+  final Map<String, dynamic> _attributes;
   @override
   @JsonKey()
-  Map<String, String> get attributes {
+  Map<String, dynamic> get attributes {
     if (_attributes is EqualUnmodifiableMapView) return _attributes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_attributes);
@@ -331,7 +331,7 @@ abstract class _Initial extends AddEmbeddedState {
   factory _Initial(
       {required final int id,
       final ToolbarConfig toolbarConfig,
-      final Map<String, String> attributes,
+      final Map<String, dynamic> attributes,
       final EmbeddedResourceType resourceType,
       final EmbeddedResourceSource resourceSource,
       final ThemeAssetModel? asset,
@@ -344,7 +344,7 @@ abstract class _Initial extends AddEmbeddedState {
   @override
   ToolbarConfig get toolbarConfig;
   @override
-  Map<String, String> get attributes;
+  Map<String, dynamic> get attributes;
   @override
   EmbeddedResourceType get resourceType;
   @override

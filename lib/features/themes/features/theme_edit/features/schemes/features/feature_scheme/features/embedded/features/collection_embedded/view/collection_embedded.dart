@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -43,7 +45,9 @@ class CollectionEmbedded extends StatelessWidget {
                 return Card(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: ListTile(
-                    onTap: isPicker ? () => Navigator.of(context).pop(action) : null,
+                    onTap: isPicker
+                        ? () => Navigator.of(context).pop(action)
+                        : () => _previewEmbeddedPage(context, action),
                     leading: const Icon(Icons.data_array),
                     title: Text(action.toolbar.titleL10n.toString()),
                     subtitle: Text('Type: ${action.toolbar.titleL10n}'),
@@ -53,11 +57,18 @@ class CollectionEmbedded extends StatelessWidget {
                           final updatedEmbedded = List<EmbeddedResource>.from(embeddedResources)..remove(action);
                           callback(updatedEmbedded);
                         }
+                        if (value == 'edit') {
+                          _editEmbeddedPage(context, action);
+                        }
                       },
                       itemBuilder: (context) => [
                         const PopupMenuItem(
                           value: 'delete',
                           child: Text('Delete'),
+                        ),
+                        const PopupMenuItem(
+                          value: 'edit',
+                          child: Text('Edit'),
                         ),
                       ],
                     ),
@@ -72,10 +83,31 @@ class CollectionEmbedded extends StatelessWidget {
   }
 
   Future<void> _addEmbeddedPage(BuildContext context) async {
-    final res =
-        await GoRouter.of(context).pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
+    final res = await GoRouter.of(context).pushNamed<EmbeddedResource>(
+      SchemeRoute.appFeatureSchemeAddEmbeddedData.name,
+    );
     if (res != null) {
       callback([...embeddedResources, res]);
     }
+  }
+
+  Future<void> _editEmbeddedPage(BuildContext context, EmbeddedResource embedded) async {
+    final res = await GoRouter.of(context).pushNamed<EmbeddedResource>(
+      SchemeRoute.appFeatureSchemeAddEmbeddedData.name,
+      extra: embedded,
+    );
+    if (res != null) {
+      final updatedEmbedded = List<EmbeddedResource>.from(embeddedResources)
+        ..remove(embedded)
+        ..add(res);
+      callback(updatedEmbedded);
+    }
+  }
+
+  Future<void> _previewEmbeddedPage(BuildContext context, EmbeddedResource embedded) async {
+    unawaited(GoRouter.of(context).pushNamed<EmbeddedResource>(
+      SchemeRoute.appFeatureSchemePreviewEmbeddedData.name,
+      extra: embedded,
+    ));
   }
 }

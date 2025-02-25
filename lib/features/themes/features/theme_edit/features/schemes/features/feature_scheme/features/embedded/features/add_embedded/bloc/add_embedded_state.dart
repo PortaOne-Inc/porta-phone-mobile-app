@@ -5,7 +5,7 @@ class AddEmbeddedState with _$AddEmbeddedState {
   factory AddEmbeddedState({
     required int id,
     @Default(ToolbarConfig()) ToolbarConfig toolbarConfig,
-    @Default({}) Map<String, String> attributes,
+    @Default({}) Map<String, dynamic> attributes,
     @Default(EmbeddedResourceType.unknown) EmbeddedResourceType resourceType,
     @Default(EmbeddedResourceSource.html) EmbeddedResourceSource resourceSource,
     ThemeAssetModel? asset,

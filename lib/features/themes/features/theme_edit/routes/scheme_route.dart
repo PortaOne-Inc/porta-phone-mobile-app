@@ -78,6 +78,11 @@ class SchemeRoute {
     path: '/app/feature/scheme/embedded/data',
   );
 
+  static const appFeatureSchemePreviewEmbeddedData = DestinationInfo(
+    name: 'app_feature_scheme_preview_embedded_data',
+    path: '/app/feature/scheme/embedded/data/preview',
+  );
+
   static const appFeatureSchemeAddLoginModeAction = DestinationInfo(
     name: 'app_feature_scheme_add_login_mode_action',
     path: '/app/feature/scheme/login/mode-action',
@@ -171,8 +176,21 @@ class SchemeRoute {
                           name: appFeatureSchemeAddEmbeddedData.name,
                           builder: (BuildContext context, GoRouterState state) {
                             return BlocProvider(
-                              create: (BuildContext context) => AddEmbeddedCubit(),
+                              create: (BuildContext context) => AddEmbeddedCubit(
+                                embedded: state.extra as EmbeddedResource?,
+                              ),
                               child: const AddEmbeddedDataScreen(),
+                            );
+                          }),
+                      GoRoute(
+                          path: appFeatureSchemePreviewEmbeddedData.path,
+                          name: appFeatureSchemePreviewEmbeddedData.name,
+                          builder: (BuildContext context, GoRouterState state) {
+                            return BlocProvider(
+                              create: (BuildContext context) => PreviewEmbeddedCubit(
+                                embedded: state.extra! as EmbeddedResource,
+                              ),
+                              child: const PreviewEmbeddedDataScreen(),
                             );
                           }),
                       GoRoute(

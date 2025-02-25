@@ -12,9 +12,13 @@ part 'add_embedded_state.dart';
 part 'add_embedded_cubit.freezed.dart';
 
 class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
-  AddEmbeddedCubit()
+  AddEmbeddedCubit({EmbeddedResource? embedded})
       : super(AddEmbeddedState(
-          id: DateTime.now().millisecondsSinceEpoch,
+          id: embedded?.id ?? DateTime.now().millisecondsSinceEpoch,
+          toolbarConfig: embedded?.toolbar ?? const ToolbarConfig(),
+          attributes: embedded?.attributes != null ? Map<String, String>.from(embedded!.attributes) : {},
+          resourceType: embedded?.type ?? EmbeddedResourceType.unknown,
+          url: embedded?.uri ?? '',
         ));
 
   void setToolbarVisibility(bool value) {

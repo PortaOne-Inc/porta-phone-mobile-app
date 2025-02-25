@@ -140,7 +140,7 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                   ),
                 ),
                 AttributesWidget(
-                  attributes: state.attributes,
+                  attributes: Map.from(state.attributes),
                   onAddAttribute: () {},
                   onUpdateAttribute: (String key, String value) {},
                   onRemoveAttribute: (String key) {},
