@@ -37,15 +37,15 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
     emit(state.copyWith(url: url));
   }
 
-  void setConfigurationResourceType(EmbeddedResourceType? type) {
-    emit(state.copyWith(resourceType: type ?? state.resourceType));
+  void setConfigurationResourceType(EmbeddedResourceSource? type) {
+    emit(state.copyWith(resourceSource: type ?? state.resourceSource));
   }
 
   Future<void> saveEmbeddedData() async {
-    if (state.resourceType.isUrl) {
+    if (state.resourceSource.isUrl) {
       emit(state.copyWith(embeddedResource: _getEmbeddedFromUrl(state.url, 'render')));
     }
-    if (state.resourceType.isHtml) {
+    if (state.resourceSource.isHtml) {
       emit(state.copyWith(embeddedResource: _getEmbeddedFromUrl(state.asset!.url!, 'download')));
     }
   }
@@ -53,7 +53,7 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
   EmbeddedResource _getEmbeddedFromUrl(String url, String urlType) {
     final metadata = _buildMetadata();
     final updatedUri = _updateUriWithParams(url, {'type': urlType});
-    print('original:${url.toString()} result: ${updatedUri.toString()}');
+
     return EmbeddedResource(
       id: state.id,
       toolbar: state.toolbarConfig,

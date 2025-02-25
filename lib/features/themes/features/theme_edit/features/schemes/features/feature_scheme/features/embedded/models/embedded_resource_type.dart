@@ -1,1 +1,4 @@
-enum EmbeddedResourceType { url, html }
+enum EmbeddedResourceSource {
+  url,
+  html,
+}

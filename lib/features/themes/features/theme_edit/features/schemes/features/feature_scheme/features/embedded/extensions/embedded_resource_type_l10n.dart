@@ -1,16 +1,16 @@
 import '../models/models.dart';
 
-extension EmbeddedResourceTypeExt on EmbeddedResourceType {
+extension EmbeddedResourceTypeExt on EmbeddedResourceSource {
   String l10n() {
     switch (this) {
-      case EmbeddedResourceType.url:
+      case EmbeddedResourceSource.url:
         return 'Provide a URL for the embedded page (It will be loaded in an iframe)';
-      case EmbeddedResourceType.html:
+      case EmbeddedResourceSource.html:
         return 'Provide a static HTML file for the embedded page (It will be stored in assets)';
     }
   }
 
-  bool get isUrl => this == EmbeddedResourceType.url;
+  bool get isUrl => this == EmbeddedResourceSource.url;
 
-  bool get isHtml => this == EmbeddedResourceType.html;
+  bool get isHtml => this == EmbeddedResourceSource.html;
 }

@@ -84,15 +84,15 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                         controller: _toolbarTitleL10nTextEditingController,
                         margin: const EdgeInsets.only(bottom: 16),
                       ),
-                      DropdownButtonExt<EmbeddedResourceType>(
+                      DropdownButtonExt<EmbeddedResourceSource>(
                         label: 'HTML Source',
-                        value: state.resourceType,
-                        options: EmbeddedResourceType.values,
+                        value: state.resourceSource,
+                        options: EmbeddedResourceSource.values,
                         onChanged: (value) => context.read<AddEmbeddedCubit>().setConfigurationResourceType(value),
                         optionBuilder: (value) => value.l10n(),
                       ),
                       Visibility(
-                        visible: state.resourceType.isUrl,
+                        visible: state.resourceSource.isUrl,
                         child: OutlineInput(
                           label: 'URL',
                           icon: Icons.link,
@@ -101,7 +101,7 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                         ),
                       ),
                       Visibility(
-                        visible: state.resourceType.isHtml,
+                        visible: state.resourceSource.isHtml,
                         child: ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(state.asset == null ? 'Select HTML file' : 'Change HTML file'),
