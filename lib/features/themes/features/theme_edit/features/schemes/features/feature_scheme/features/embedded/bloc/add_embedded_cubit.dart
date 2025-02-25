@@ -37,8 +37,12 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
     emit(state.copyWith(url: url));
   }
 
-  void setConfigurationResourceType(EmbeddedResourceSource? type) {
+  void setConfigurationResourceSource(EmbeddedResourceSource? type) {
     emit(state.copyWith(resourceSource: type ?? state.resourceSource));
+  }
+
+  void setConfigurationResourceType(EmbeddedResourceType? type) {
+    emit(state.copyWith(resourceType: type ?? state.resourceType));
   }
 
   Future<void> saveEmbeddedData() async {
@@ -57,6 +61,7 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
     return EmbeddedResource(
       id: state.id,
       toolbar: state.toolbarConfig,
+      type: state.resourceType,
       uri: updatedUri.toString(),
       metadata: metadata,
     );

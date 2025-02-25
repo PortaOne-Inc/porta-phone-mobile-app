@@ -84,11 +84,18 @@ class _AddEmbeddedDataScreenState extends State<AddEmbeddedDataScreen> {
                         controller: _toolbarTitleL10nTextEditingController,
                         margin: const EdgeInsets.only(bottom: 16),
                       ),
+                      DropdownButtonExt<EmbeddedResourceType>(
+                        label: 'Embedded Resource Type',
+                        value: state.resourceType,
+                        options: EmbeddedResourceType.values,
+                        onChanged: (value) => context.read<AddEmbeddedCubit>().setConfigurationResourceType(value),
+                        optionBuilder: (value) => value.name,
+                      ),
                       DropdownButtonExt<EmbeddedResourceSource>(
                         label: 'HTML Source',
                         value: state.resourceSource,
                         options: EmbeddedResourceSource.values,
-                        onChanged: (value) => context.read<AddEmbeddedCubit>().setConfigurationResourceType(value),
+                        onChanged: (value) => context.read<AddEmbeddedCubit>().setConfigurationResourceSource(value),
                         optionBuilder: (value) => value.l10n(),
                       ),
                       Visibility(

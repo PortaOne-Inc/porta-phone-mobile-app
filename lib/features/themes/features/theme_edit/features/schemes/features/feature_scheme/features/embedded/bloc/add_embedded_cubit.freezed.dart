@@ -19,6 +19,7 @@ mixin _$AddEmbeddedState {
   int get id => throw _privateConstructorUsedError;
   ToolbarConfig get toolbarConfig => throw _privateConstructorUsedError;
   Map<String, String> get attributes => throw _privateConstructorUsedError;
+  EmbeddedResourceType get resourceType => throw _privateConstructorUsedError;
   EmbeddedResourceSource get resourceSource =>
       throw _privateConstructorUsedError;
   ThemeAssetModel? get asset => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $AddEmbeddedStateCopyWith<$Res> {
       {int id,
       ToolbarConfig toolbarConfig,
       Map<String, String> attributes,
+      EmbeddedResourceType resourceType,
       EmbeddedResourceSource resourceSource,
       ThemeAssetModel? asset,
       String url,
@@ -70,6 +72,7 @@ class _$AddEmbeddedStateCopyWithImpl<$Res, $Val extends AddEmbeddedState>
     Object? id = null,
     Object? toolbarConfig = null,
     Object? attributes = null,
+    Object? resourceType = null,
     Object? resourceSource = null,
     Object? asset = freezed,
     Object? url = null,
@@ -88,6 +91,10 @@ class _$AddEmbeddedStateCopyWithImpl<$Res, $Val extends AddEmbeddedState>
           ? _value.attributes
           : attributes // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      resourceType: null == resourceType
+          ? _value.resourceType
+          : resourceType // ignore: cast_nullable_to_non_nullable
+              as EmbeddedResourceType,
       resourceSource: null == resourceSource
           ? _value.resourceSource
           : resourceSource // ignore: cast_nullable_to_non_nullable
@@ -158,6 +165,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       {int id,
       ToolbarConfig toolbarConfig,
       Map<String, String> attributes,
+      EmbeddedResourceType resourceType,
       EmbeddedResourceSource resourceSource,
       ThemeAssetModel? asset,
       String url,
@@ -187,6 +195,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? id = null,
     Object? toolbarConfig = null,
     Object? attributes = null,
+    Object? resourceType = null,
     Object? resourceSource = null,
     Object? asset = freezed,
     Object? url = null,
@@ -205,6 +214,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._attributes
           : attributes // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      resourceType: null == resourceType
+          ? _value.resourceType
+          : resourceType // ignore: cast_nullable_to_non_nullable
+              as EmbeddedResourceType,
       resourceSource: null == resourceSource
           ? _value.resourceSource
           : resourceSource // ignore: cast_nullable_to_non_nullable
@@ -232,6 +245,7 @@ class _$InitialImpl extends _Initial {
       {required this.id,
       this.toolbarConfig = const ToolbarConfig(),
       final Map<String, String> attributes = const {},
+      this.resourceType = EmbeddedResourceType.unknown,
       this.resourceSource = EmbeddedResourceSource.html,
       this.asset,
       this.url = '',
@@ -255,6 +269,9 @@ class _$InitialImpl extends _Initial {
 
   @override
   @JsonKey()
+  final EmbeddedResourceType resourceType;
+  @override
+  @JsonKey()
   final EmbeddedResourceSource resourceSource;
   @override
   final ThemeAssetModel? asset;
@@ -266,7 +283,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'AddEmbeddedState(id: $id, toolbarConfig: $toolbarConfig, attributes: $attributes, resourceSource: $resourceSource, asset: $asset, url: $url, embeddedResource: $embeddedResource)';
+    return 'AddEmbeddedState(id: $id, toolbarConfig: $toolbarConfig, attributes: $attributes, resourceType: $resourceType, resourceSource: $resourceSource, asset: $asset, url: $url, embeddedResource: $embeddedResource)';
   }
 
   @override
@@ -279,6 +296,8 @@ class _$InitialImpl extends _Initial {
                 other.toolbarConfig == toolbarConfig) &&
             const DeepCollectionEquality()
                 .equals(other._attributes, _attributes) &&
+            (identical(other.resourceType, resourceType) ||
+                other.resourceType == resourceType) &&
             (identical(other.resourceSource, resourceSource) ||
                 other.resourceSource == resourceSource) &&
             (identical(other.asset, asset) || other.asset == asset) &&
@@ -293,6 +312,7 @@ class _$InitialImpl extends _Initial {
       id,
       toolbarConfig,
       const DeepCollectionEquality().hash(_attributes),
+      resourceType,
       resourceSource,
       asset,
       url,
@@ -312,6 +332,7 @@ abstract class _Initial extends AddEmbeddedState {
       {required final int id,
       final ToolbarConfig toolbarConfig,
       final Map<String, String> attributes,
+      final EmbeddedResourceType resourceType,
       final EmbeddedResourceSource resourceSource,
       final ThemeAssetModel? asset,
       final String url,
@@ -324,6 +345,8 @@ abstract class _Initial extends AddEmbeddedState {
   ToolbarConfig get toolbarConfig;
   @override
   Map<String, String> get attributes;
+  @override
+  EmbeddedResourceType get resourceType;
   @override
   EmbeddedResourceSource get resourceSource;
   @override
