@@ -5,6 +5,5 @@ class PreviewThemeState with _$PreviewThemeState {
   const factory PreviewThemeState({
     required bool frameVisible,
     required PreviewType previewType,
-    ThemeSettings? theme,
   }) = _PreviewThemeState;
 }

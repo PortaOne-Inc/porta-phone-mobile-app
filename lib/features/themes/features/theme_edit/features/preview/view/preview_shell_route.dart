@@ -18,32 +18,19 @@ class PreviewShellRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final previewCubit = context.read<PreviewThemeCubit>();
+    final previewCubit = context.watch<PreviewThemeCubit>();
 
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<UpdateThemCubit, UpdateThemeState>(
-          listener: (BuildContext context, UpdateThemeState state) => previewCubit.setTheme(state.toThemeSettings()),
+    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (BuildContext context, PreviewThemeState state) {
+      return Scaffold(
+        appBar: MenuPreviewToolbar(
+          onScaleTab: previewCubit.setScale,
+          onFrameTab: previewCubit.setFrame,
+          onTypeOfPreview: (type) => _onThemePreviewScreen(type, context),
+          isEnableFrame: state.frameVisible,
         ),
-      ],
-      child:
-          BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (BuildContext context, PreviewThemeState state) {
-        if (state.theme == null) {
-          // Show loading indicator when the theme is not yet available
-          return const Center(child: CircularProgressIndicator());
-        }
-        // Provide current configured theme for all phone widgets and layouts
-        return Scaffold(
-          appBar: MenuPreviewToolbar(
-            onScaleTab: previewCubit.setScale,
-            onFrameTab: previewCubit.setFrame,
-            onTypeOfPreview: (type) => _onThemePreviewScreen(type, context),
-            isEnableFrame: state.frameVisible,
-          ),
-          body: child,
-        );
-      }),
-    );
+        body: child,
+      );
+    });
   }
 
   void _onThemePreviewScreen(ThemePreviewScreen themePreviewScreen, BuildContext context) {

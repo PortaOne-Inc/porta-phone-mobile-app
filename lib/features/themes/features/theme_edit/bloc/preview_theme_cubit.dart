@@ -15,10 +15,6 @@ class PreviewThemeCubit extends Cubit<PreviewThemeState> {
           previewType: PreviewType.single,
         ));
 
-  void setTheme(ThemeSettings? theme) {
-    emit(state.copyWith(theme: theme));
-  }
-
   void setScale(PreviewType scale) {
     emit(state.copyWith(previewType: scale));
   }

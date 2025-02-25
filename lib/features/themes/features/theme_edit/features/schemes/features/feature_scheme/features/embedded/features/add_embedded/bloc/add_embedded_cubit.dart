@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:data/dto/theme/theme.dart';
@@ -12,12 +13,17 @@ part 'add_embedded_state.dart';
 part 'add_embedded_cubit.freezed.dart';
 
 class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
-  AddEmbeddedCubit({EmbeddedResource? embedded})
-      : super(AddEmbeddedState(
+  AddEmbeddedCubit({
+    List<ThemeAssetModel>? assets,
+    EmbeddedResource? embedded,
+  }) : super(AddEmbeddedState(
           id: embedded?.id ?? DateTime.now().millisecondsSinceEpoch,
           toolbarConfig: embedded?.toolbar ?? const ToolbarConfig(),
           attributes: embedded?.attributes != null ? Map<String, String>.from(embedded!.attributes) : {},
           resourceType: embedded?.type ?? EmbeddedResourceType.unknown,
+          asset: assets?.firstWhereOrNull((asset) =>
+              asset.id ==
+              int.tryParse(embedded?.metadata.attributes[EmbeddedResource.metadataAssetId]?.toString() ?? '')),
           url: embedded?.uri ?? '',
         ));
 

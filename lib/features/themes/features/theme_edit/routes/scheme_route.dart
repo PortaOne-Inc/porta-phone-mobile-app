@@ -178,6 +178,7 @@ class SchemeRoute {
                             return BlocProvider(
                               create: (BuildContext context) => AddEmbeddedCubit(
                                 embedded: state.extra as EmbeddedResource?,
+                                assets: context.read<UpdateThemCubit>().state.assets,
                               ),
                               child: const AddEmbeddedDataScreen(),
                             );

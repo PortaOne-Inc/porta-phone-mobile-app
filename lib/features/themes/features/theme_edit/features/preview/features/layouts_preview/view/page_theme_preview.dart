@@ -14,30 +14,14 @@ class PageThemePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final previewCubit = context.read<PreviewThemeCubit>();
-
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<UpdateThemCubit, UpdateThemeState>(
-          listener: (BuildContext context, UpdateThemeState state) => previewCubit.setTheme(
-            state.toThemeSettings(),
-          ),
-        ),
-      ],
-      child: BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (
-        BuildContext context,
-        PreviewThemeState state,
-      ) {
-        if (state.theme == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        return PreviewLayoutView(
-          previewType: state.previewType,
-          frameVisibility: state.frameVisible,
-        );
-      }),
-    );
+    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (
+      BuildContext context,
+      PreviewThemeState state,
+    ) {
+      return PreviewLayoutView(
+        previewType: state.previewType,
+        frameVisibility: state.frameVisible,
+      );
+    });
   }
 }
