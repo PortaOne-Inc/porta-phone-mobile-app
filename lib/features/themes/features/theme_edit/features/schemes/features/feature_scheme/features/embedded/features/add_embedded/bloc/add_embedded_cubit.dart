@@ -49,6 +49,9 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
     emit(state.copyWith(resourceType: type ?? state.resourceType));
   }
 
+  /// Saves the embedded data based on the resource source type.
+  /// If the resource source is a URL, it sets the embedded resource to be rendered in a webview.
+  /// If the resource source is HTML, it sets the embedded resource to be downloaded and used from local storage.
   Future<void> saveEmbeddedData() async {
     if (state.resourceSource.isUrl) {
       emit(state.copyWith(embeddedResource: _getEmbeddedFromUrl(state.url, 'render')));
@@ -58,6 +61,9 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
     }
   }
 
+  // TODO(Serdun): Replace type to source
+  /// Generates an EmbeddedResource object from a URL and a URL type.
+  /// The URL type parameter helps determine the action to be taken with the URL (e.g., render or download).
   EmbeddedResource _getEmbeddedFromUrl(String url, String urlType) {
     final metadata = _buildMetadata();
     final updatedUri = _updateUriWithParams(url, {'type': urlType});
@@ -72,7 +78,11 @@ class AddEmbeddedCubit extends Cubit<AddEmbeddedState> {
   }
 
   Metadata _buildMetadata() {
-    return Metadata(attributes: state.attributes);
+    return Metadata(attributes: {
+      ...state.attributes,
+      'asset': '${state.asset?.id}',
+      'source': state.resourceSource.name,
+    });
   }
 
   Uri _updateUriWithParams(String? url, Map<String, String> params) {
