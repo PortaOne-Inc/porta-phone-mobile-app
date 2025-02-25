@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:data/dto/theme/theme.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:data/dto/theme/theme.dart';
 import 'package:domain/domain.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/features/feature_scheme/features/embedded/extensions/extensions.dart';
 
-import '../models/models.dart';
+import '../../../extensions/extensions.dart';
+import '../../../models/models.dart';
 
 part 'add_embedded_state.dart';
 

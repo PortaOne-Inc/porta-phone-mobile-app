@@ -6,11 +6,11 @@ import 'package:go_router/go_router.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/routes/scheme_route.dart';
 
+import '../../../models/models.dart';
+import '../../../extensions/extensions.dart';
 import '../bloc/add_embedded_cubit.dart';
-import '../models/models.dart';
-import '../extensions/extensions.dart';
 
 class AddEmbeddedDataScreen extends StatefulWidget {
   const AddEmbeddedDataScreen({
