@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,14 +42,9 @@ class _PreviewEmbeddedDataScreenState extends State<PreviewEmbeddedDataScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16),
-                        child: TextField(
-                          controller: TextEditingController(text: 'ID'),
-                          enabled: false,
-                          decoration: const InputDecoration(
-                            labelText: 'Name of resource',
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.title),
-                          ),
+                        child: Text(
+                          const JsonEncoder.withIndent('  ').convert(state.embeddedResource.toJson()),
+                          style: textTheme.titleMedium,
                         ),
                       ),
                     ],
