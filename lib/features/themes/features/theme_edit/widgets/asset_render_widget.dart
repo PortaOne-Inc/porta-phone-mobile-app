@@ -5,7 +5,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/full_size_render.dart';
 
-import '../../../../../widgets/generate_launch_icon.dart';
+import 'generate_launch_icon.dart';
 
 class RenderWidget extends StatelessWidget {
   const RenderWidget({

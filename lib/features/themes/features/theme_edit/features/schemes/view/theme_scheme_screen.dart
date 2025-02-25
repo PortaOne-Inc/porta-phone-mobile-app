@@ -7,9 +7,6 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
-// TODO(Serdun): Resolve
-import '../../../widgets/group_title_list_tile.dart' as widgets;
-
 class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
   const ThemeSchemeScreen({
     super.key,
@@ -25,7 +22,7 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const widgets.GroupTitleListTile(
+            const ConfiguratorGroupTitleTile(
               titleData: 'Application Runtime configuration',
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               decoration: BoxDecoration(border: Border(bottom: borderSide)),
@@ -75,7 +72,7 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 SchemeRoute.appFeatureConfiguration.name,
               ),
             ),
-            const widgets.GroupTitleListTile(
+            const ConfiguratorGroupTitleTile(
               titleData: 'Static Data',
             ),
             ListTile(

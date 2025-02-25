@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GroupTitleListTile extends StatelessWidget {
-  const GroupTitleListTile({
+class ConfiguratorGroupTitleTile extends StatelessWidget {
+  const ConfiguratorGroupTitleTile({
     required this.titleData,
     this.padding,
     super.key,
