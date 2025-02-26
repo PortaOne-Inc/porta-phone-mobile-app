@@ -62,7 +62,7 @@ class BottomNavigationBarConfig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BorderContainer(
-      title: 'BottomNavigationBarWidgetConfig',
+      title: 'Bottom navigation bar',
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -134,7 +134,7 @@ class AppBarConfig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BorderContainer(
-      title: 'ExtTabBarWidgetConfig',
+      title: 'Tab bar',
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 8,

@@ -129,12 +129,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
       const PrivacyScreenScreenshot(),
-    ]
-        .map((it) => ScreenshotApp(
-              appBloc: appBloc,
-              child: Theme(data: ThemeProvider.of(context).light(), child: it),
-            ))
-        .toList();
+    ].map((it) => ScreenshotApp(appBloc: appBloc, child: it)).toList();
   }
 
   void _setFocusedScreen(int position) {
