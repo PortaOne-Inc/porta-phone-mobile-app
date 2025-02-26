@@ -53,6 +53,8 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return BlocConsumer<AddAssetCubit, AddAssetState>(
       listener: (context, state) {
         if (state.asset != null) {
@@ -62,7 +64,10 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Add New Asset'),
+            title: Text(
+              'Add new asset',
+              style: textTheme.titleMedium,
+            ),
             centerTitle: true,
             actions: [
               IconButton(
