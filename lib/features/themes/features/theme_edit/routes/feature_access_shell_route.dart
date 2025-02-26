@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'dart:collection';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -73,13 +76,33 @@ class FeatureAccessShellRoute extends StatelessWidget {
     }
 
     try {
-      final response = await http.get(uri);
+      final response = await http.get(uri).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
+
       if (response.statusCode == 200) {
         final dataUri = Uri.dataFromBytes(response.bodyBytes, mimeType: 'text/html').toString();
         _htmlDataUriCache[uri.toString()] = dataUri;
         return resource.copyWith(uri: dataUri);
       }
-    } catch (_) {}
+    } catch (e) {
+      // TODO(Serdun): Work with design to determine fallback HTML content
+      const fallbackHtml = '''
+      <!DOCTYPE html>
+      <html>
+      <head><title>Failed to Load</title></head>
+      <body>
+        <h1>Failed to Display Content</h1>
+        <p>Sorry, we were unable to load the requested content.</p>
+      </body>
+      </html>
+    ''';
+      final fallbackDataUri = Uri.dataFromString(fallbackHtml, mimeType: 'text/html').toString();
+      return resource.copyWith(uri: fallbackDataUri);
+    }
 
     return resource;
   }
