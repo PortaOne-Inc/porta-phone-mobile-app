@@ -43,7 +43,7 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
   }
 
   void _updatePrimaryWidthFactor(String value) {
-    final widthFactor = double.tryParse(value) ?? 1.0;
+    final widthFactor = double.tryParse(value) ?? .45;
     setState(() {
       widget.onChanged(
         widget.imageAssetsConfig.copyWith(
@@ -54,7 +54,7 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
   }
 
   void _updateSecondaryWidthFactor(String value) {
-    final widthFactor = double.tryParse(value) ?? 1.0;
+    final widthFactor = double.tryParse(value) ?? .25;
     setState(() {
       widget.onChanged(
         widget.imageAssetsConfig.copyWith(
