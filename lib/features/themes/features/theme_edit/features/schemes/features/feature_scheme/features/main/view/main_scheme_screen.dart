@@ -69,7 +69,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
           BorderContainer(
             title: 'Manage  tabs',
             trailing: TextButton(
-              onPressed: () {},
+              onPressed: _addTab,
               child: const Text('Add embedded tab'),
             ),
             child: Column(
@@ -179,6 +179,18 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
         ],
       ),
     );
+  }
+
+  Future<void> _addTab() async {
+    final result =
+        await GoRouter.of(context).pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name);
+    if (result != null) {
+      widget.onChange(widget.mainConfig.copyWith(
+        bottomMenu: widget.mainConfig.bottomMenu.copyWith(
+          tabs: [..._activeTabs, result],
+        ),
+      ));
+    }
   }
 
   Future<void> _manageBottomMenuTab(BottomMenuTabScheme tab) async {

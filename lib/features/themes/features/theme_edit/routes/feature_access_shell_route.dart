@@ -90,13 +90,13 @@ class FeatureAccessShellRoute extends StatelessWidget {
       }
     } catch (e) {
       // TODO(Serdun): Work with design to determine fallback HTML content
-      const fallbackHtml = '''
+      final fallbackHtml = '''
       <!DOCTYPE html>
       <html>
       <head><title>Failed to Load</title></head>
       <body>
         <h1>Failed to Display Content</h1>
-        <p>Sorry, we were unable to load the requested content.</p>
+        <p>$e</p>
       </body>
       </html>
     ''';

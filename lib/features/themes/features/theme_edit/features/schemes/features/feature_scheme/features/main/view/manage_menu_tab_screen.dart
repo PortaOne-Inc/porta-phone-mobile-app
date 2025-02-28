@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
+// TODO(Serdun): Do correct, add bloc
 class ManageMenuTabScreen extends StatefulWidget {
   const ManageMenuTabScreen({
     super.key,
@@ -20,6 +21,7 @@ class ManageMenuTabScreen extends StatefulWidget {
 class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   final _formKey = GlobalKey<FormState>();
   late final _bottomMenuTabScheme = widget.bottomMenuTabScheme;
+  late var _bottomMenuType = widget.bottomMenuTabScheme?.type;
   late final _titleL10nController = TextEditingController(text: widget.bottomMenuTabScheme?.titleL10n ?? '');
 
   EmbeddedResource? _selectedEmbedded;
@@ -73,17 +75,27 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                 validator: (value) => (value == null || value.isEmpty) ? 'Title is required' : null,
               ),
               const SizedBox(height: 16),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: TextEditingController(text: _bottomMenuTabScheme?.type.name ?? ''),
-                decoration: const InputDecoration(
-                  labelText: 'Select Type',
-                  border: OutlineInputBorder(),
-                  enabled: false,
-                  prefixIcon: Icon(Icons.title),
-                ),
+              DropdownButtonExt<BottomMenuTabType>(
+                label: 'Bottom menu tab type',
+                value: _bottomMenuType,
+                options: BottomMenuTabType.values,
+                onChanged: (value) => setState(() {
+                  _bottomMenuType = value;
+                }),
+                optionBuilder: (value) => value.name,
               ),
               const SizedBox(height: 16),
+              Visibility(
+                visible: _bottomMenuType?.isEmbedded ?? false,
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
+                  subtitle: Text('To display in embedded pages.'),
+                  leading: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
+                  trailing: const Icon(Icons.navigate_next),
+                  onTap: _addEmbeddedPage,
+                ),
+              ),
               if (_bottomMenuTabScheme?.type == BottomMenuTabType.contacts)
                 BorderContainer(
                   title: 'Available sub-tabs',
@@ -112,12 +124,6 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                     ],
                   ),
                 ),
-              if (_bottomMenuTabScheme?.type.isEmbedded ?? false)
-                ListTile(
-                  title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
-                  trailing: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
-                  onTap: _addEmbeddedPage,
-                ),
             ],
           ),
         ),
@@ -126,8 +132,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   }
 
   Future<void> _addEmbeddedPage() async {
-    _selectedEmbedded =
-        await GoRouter.of(context).pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeAddEmbeddedData.name);
+    _selectedEmbedded = await context.pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeCollectionEmbedded.name);
   }
 
   void _saveData() {
@@ -148,14 +153,15 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
       return;
     }
 
-    if (_bottomMenuTabScheme?.type.isEmbedded ?? false) {
+    if (_bottomMenuType?.isEmbedded ?? false) {
       final updatedTab = EmbededTabScheme(
-          enabled: _enableTab,
-          initial: _bottomMenuTabScheme?.initial ?? false,
-          type: _bottomMenuTabScheme!.type!,
-          titleL10n: _titleL10nController.text,
-          icon: _bottomMenuTabScheme?.icon ?? '',
-          embeddedResourceId: _selectedEmbedded!.id);
+        enabled: _enableTab,
+        initial: _bottomMenuTabScheme?.initial ?? false,
+        type: _bottomMenuType!,
+        titleL10n: _titleL10nController.text,
+        icon: _bottomMenuTabScheme?.icon ?? '0xe556',
+        embeddedResourceId: _selectedEmbedded!.id,
+      );
 
       GoRouter.of(context).pop(updatedTab);
       return;
@@ -164,9 +170,9 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
     final updatedTab = BaseTabScheme(
       enabled: _enableTab,
       initial: _bottomMenuTabScheme?.initial ?? false,
-      type: _bottomMenuTabScheme!.type!!,
+      type: _bottomMenuType!,
       titleL10n: _titleL10nController.text,
-      icon: _bottomMenuTabScheme?.icon ?? '',
+      icon: _bottomMenuTabScheme?.icon ?? '0xe5fd',
     );
 
     GoRouter.of(context).pop(updatedTab);
