@@ -45,7 +45,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
             try {
               final featureAccess = FeatureAccess.init(
                 snapshot.data!,
-                MockAppPreferences(),
+                MockAppPreferencesService(),
               );
 
               return ProvidersWrapper(
@@ -155,7 +155,7 @@ class ProvidersWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<MockAppPreferences>.value(value: MockAppPreferences()),
+        Provider<AppPreferences>.value(value: MockAppPreferencesService()),
         Provider<DeviceInfo>.value(value: DeviceInfoMock()),
         Provider<PackageInfo>.value(value: PackageInfoMock()),
         FutureProvider<FeatureAccess>.value(

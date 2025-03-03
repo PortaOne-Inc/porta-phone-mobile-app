@@ -67,6 +67,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
     final isFavoritePreview = bottomMenuFeature?.isTabEnabled(MainFlavor.favorites) ?? false;
+    final isContactPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.contacts) ?? false;
     final isrResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
     final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
     const isCustomCoreEnable = false; // TODO(Serdun): Implement this
@@ -113,6 +114,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         MainScreenScreenshot(
           key: bottomMenuKey,
           MainFlavor.recents,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
+      if (isContactPreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.contacts,
           loginLabel != null ? Text(loginLabel) : null,
         ),
       if (isKeypadPreview)
