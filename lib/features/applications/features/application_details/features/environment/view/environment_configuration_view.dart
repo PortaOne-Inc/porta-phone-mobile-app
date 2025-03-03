@@ -31,7 +31,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
     context.read<EnvironmentCubit>().updateKeyValue(key, value);
   }
 
-  void _manageKey(bool isEnabled, String key, String value) {
+  void _manageKey(bool isEnabled, String key, dynamic value) {
     if (isEnabled) {
       context.read<EnvironmentCubit>().updateKeyValue(key, value);
     } else {
@@ -71,6 +71,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                               title: 'App Details',
                               fields: [
                                 ConfigField(
+                                  key: ValueKey(state.appNameKeyName + state.status.name),
                                   label: 'App Name',
                                   keyName: state.appNameKeyName,
                                   config: state.environment,
@@ -78,6 +79,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.appDescriptionKeyName + state.status.name),
                                   label: 'App Description',
                                   keyName: state.appDescriptionKeyName,
                                   config: state.environment,
@@ -91,6 +93,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                               title: 'Core Settings',
                               fields: [
                                 ConfigField(
+                                  key: ValueKey(state.coreUrlKeyName + state.status.name),
                                   label: 'Core URL',
                                   keyName: state.coreUrlKeyName,
                                   config: state.environment,
@@ -98,6 +101,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.demoCoreUrlKeyName + state.status.name),
                                   label: 'Demo Core URL',
                                   keyName: state.demoCoreUrlKeyName,
                                   config: state.environment,
@@ -106,6 +110,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.coreVersionConstraintKeyName + state.status.name),
                                   label: 'Core Version Constraint',
                                   keyName: state.coreVersionConstraintKeyName,
                                   config: state.environment,
@@ -114,20 +119,45 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.customCoreFeatureKeyName + state.status.name),
                                   label: 'Enable custom core feature',
                                   keyName: state.customCoreFeatureKeyName,
                                   config: state.environment,
                                   onConfigUpdate: _updateConfig,
-                                  defaultValue: 'false',
+                                  defaultValue: false,
                                   onEnabledChanged: _manageKey,
                                 ),
                               ],
                             ),
                             Divider(thickness: 4, color: colorScheme.surfaceContainerLow),
                             ConfigSection(
-                              title: 'Logging Services',
+                              title: 'Logging Settings',
                               fields: [
+                                const ConfiguratorGroupTitleTile(
+                                  titleData: 'Phone Logging',
+                                ),
                                 ConfigField(
+                                  key: ValueKey(state.logDebugLevel + state.status.name),
+                                  label: 'Log level',
+                                  keyName: state.logDebugLevel,
+                                  config: state.environment,
+                                  onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
+                                ),
+                                ConfigField(
+                                  key: ValueKey(state.logDatabaseLogStatements + state.status.name),
+                                  label: 'Database log statements',
+                                  keyName: state.logDatabaseLogStatements,
+                                  config: state.environment,
+                                  defaultValue: false,
+                                  onConfigUpdate: _updateConfig,
+                                  onEnabledChanged: _manageKey,
+                                ),
+                                const ConfiguratorGroupTitleTile(
+                                  titleData: 'Logging Services',
+                                ),
+                                ConfigField(
+                                  key: ValueKey(state.remoteLogzioLoggingUrlKeyName + state.status.name),
                                   label: 'Logzio Logging URL',
                                   keyName: state.remoteLogzioLoggingUrlKeyName,
                                   config: state.environment,
@@ -135,6 +165,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.remoteLogzioLoggingTokenKeyName + state.status.name),
                                   label: 'Logzio Logging Token',
                                   keyName: state.remoteLogzioLoggingTokenKeyName,
                                   config: state.environment,
@@ -142,6 +173,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   onEnabledChanged: _manageKey,
                                 ),
                                 ConfigField(
+                                  key: ValueKey(state.remoteLogzioLoggingBufferSizeKeyName + state.status.name),
                                   label: 'Logzio Buffer Size',
                                   keyName: state.remoteLogzioLoggingBufferSizeKeyName,
                                   config: state.environment,
@@ -180,6 +212,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                               title: 'Deeplink',
                               fields: [
                                 ConfigField(
+                                  key: ValueKey(state.deeplinkDomain + state.status.name),
                                   label: 'Domain',
                                   keyName: state.deeplinkDomain,
                                   config: state.environment,

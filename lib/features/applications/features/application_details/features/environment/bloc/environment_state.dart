@@ -3,6 +3,7 @@ part of 'environment_cubit.dart';
 enum EnvironmentStatus {
   initial,
   loading,
+  loaded,
   error;
 
   bool get isInitial => this == initial;
@@ -34,7 +35,9 @@ class EnvironmentState with _$EnvironmentState {
       remoteLogzioLoggingTokenKeyName,
       remoteLogzioLoggingBufferSizeKeyName,
       customCoreFeatureKeyName,
-      deeplinkDomain
+      deeplinkDomain,
+      logDebugLevel,
+      logDatabaseLogStatements
     };
 
     return Map<String, dynamic>.from(environment)..removeWhere((key, _) => excludedKeys.contains(key));
@@ -59,4 +62,8 @@ class EnvironmentState with _$EnvironmentState {
   String get remoteLogzioLoggingBufferSizeKeyName => 'WEBTRIT_APP_REMOTE_LOGZIO_LOGGING_BUFFER_SIZE';
 
   String get deeplinkDomain => 'WEBTRIT_APP_LINK_DOMAIN';
+
+  String get logDebugLevel => 'WEBTRIT_APP_DEBUG_LEVEL';
+
+  String get logDatabaseLogStatements => 'WEBTRIT_APP_DATABASE_LOG_STATEMENTS';
 }

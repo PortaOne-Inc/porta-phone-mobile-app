@@ -27,7 +27,7 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
         applicationId: state.applicationId,
       );
       emit(state.copyWith(
-        status: EnvironmentStatus.initial,
+        status: EnvironmentStatus.loaded,
         environment: environment,
       ));
     } catch (error) {
@@ -61,5 +61,4 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
     final updatedEnvironment = Map<String, dynamic>.from(state.environment)..remove(key);
     emit(state.copyWith(environment: updatedEnvironment));
   }
-
 }

@@ -20,25 +20,22 @@ class DropdownButtonExt<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: ConstrainedBox(
-        constraints: constraints ?? const BoxConstraints(),
-        child: DropdownButtonFormField<T>(
-          isExpanded: true,
-          decoration: InputDecoration(
-            labelText: label,
-            border: const OutlineInputBorder(),
-          ),
-          value: value,
-          items: options.map((option) {
-            return DropdownMenuItem(
-              value: option,
-              child: Text(optionBuilder(option)),
-            );
-          }).toList(),
-          onChanged: onChanged,
+    return ConstrainedBox(
+      constraints: constraints ?? const BoxConstraints(),
+      child: DropdownButtonFormField<T>(
+        isExpanded: true,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
         ),
+        value: value,
+        items: options.map((option) {
+          return DropdownMenuItem(
+            value: option,
+            child: Text(optionBuilder(option)),
+          );
+        }).toList(),
+        onChanged: onChanged,
       ),
     );
   }
