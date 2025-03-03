@@ -37,22 +37,22 @@ class AssetsPlatformPreview extends StatelessWidget {
         children: [
           if (leading != null) leading!,
           AssetsLaunchIcon(
-            size: const Size.square(108),
-            safeZone: const Size.square(81),
+            size: size,
+            safeZone: safeZone,
             radius: const BorderRadius.all(Radius.circular(1)),
             foreground: foregroundResource,
             background: _background,
           ),
           AssetsLaunchIcon(
-            size: const Size.square(108),
-            safeZone: const Size.square(81),
+            size: size,
+            safeZone: safeZone,
             radius: const BorderRadius.all(Radius.circular(180)),
             foreground: foregroundResource,
             background: _background,
           ),
           AssetsLaunchIcon(
-            size: const Size.square(108),
-            safeZone: const Size.square(81),
+            size: size,
+            safeZone: safeZone,
             radius: const BorderRadius.only(
               topLeft: Radius.circular(40),
               topRight: Radius.circular(16),
@@ -63,15 +63,15 @@ class AssetsPlatformPreview extends StatelessWidget {
             background: _background,
           ),
           AssetsLaunchIcon(
-            size: const Size.square(108),
-            safeZone: const Size.square(81),
+            size: size,
+            safeZone: safeZone,
             radius: const BorderRadius.all(Radius.circular(4)),
             foreground: foregroundResource,
             background: _background,
           ),
           AssetsLaunchIcon(
-            size: const Size.square(108),
-            safeZone: const Size.square(81),
+            size: size,
+            safeZone: safeZone,
             radius: const BorderRadius.all(Radius.circular(16)),
             foreground: foregroundResource,
             background: _background,

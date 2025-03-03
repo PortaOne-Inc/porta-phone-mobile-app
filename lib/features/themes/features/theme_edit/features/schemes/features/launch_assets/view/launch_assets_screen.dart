@@ -160,6 +160,8 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> with MixinMessa
                               ],
                             ),
                             const SizedBox(height: 16),
+
+                            /// https://developer.android.com/develop/ui/views/launch/icon_design_adaptive
                             AssetsPlatformPreview(
                               title: 'Android launch icons (>= Android 13)',
                               foregroundResource:
