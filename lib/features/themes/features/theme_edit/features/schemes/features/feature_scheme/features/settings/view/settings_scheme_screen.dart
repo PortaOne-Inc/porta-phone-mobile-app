@@ -95,7 +95,7 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
                                 const PopupMenuItem(
                                   value: 'add',
                                   child: ListTile(
-                                    title: Text('Add embedded item'),
+                                    title: Text('Add section item'),
                                     leading: Icon(Icons.add),
                                   ),
                                 ),

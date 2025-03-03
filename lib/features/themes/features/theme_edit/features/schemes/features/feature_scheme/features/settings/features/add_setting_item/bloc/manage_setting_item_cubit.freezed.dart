@@ -21,7 +21,8 @@ mixin _$ManageSettingItemState {
   String? get settingItemIcon => throw _privateConstructorUsedError;
   EmbeddedResource? get selectedEmbeddedResource =>
       throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError; // Set final values
+  SettingsFlavor? get type =>
+      throw _privateConstructorUsedError; // Set final values
   AppConfigSettingsItem? get resultSettingItem =>
       throw _privateConstructorUsedError;
 
@@ -43,7 +44,7 @@ abstract class $ManageSettingItemStateCopyWith<$Res> {
       String? titleL10n,
       String? settingItemIcon,
       EmbeddedResource? selectedEmbeddedResource,
-      String? type,
+      SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
 
   $EmbeddedResourceCopyWith<$Res>? get selectedEmbeddedResource;
@@ -93,7 +94,7 @@ class _$ManageSettingItemStateCopyWithImpl<$Res,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SettingsFlavor?,
       resultSettingItem: freezed == resultSettingItem
           ? _value.resultSettingItem
           : resultSettingItem // ignore: cast_nullable_to_non_nullable
@@ -145,7 +146,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       String? titleL10n,
       String? settingItemIcon,
       EmbeddedResource? selectedEmbeddedResource,
-      String? type,
+      SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
 
   @override
@@ -194,7 +195,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SettingsFlavor?,
       resultSettingItem: freezed == resultSettingItem
           ? _value.resultSettingItem
           : resultSettingItem // ignore: cast_nullable_to_non_nullable
@@ -225,7 +226,7 @@ class _$InitialImpl extends _Initial {
   @override
   final EmbeddedResource? selectedEmbeddedResource;
   @override
-  final String? type;
+  final SettingsFlavor? type;
 // Set final values
   @override
   final AppConfigSettingsItem? resultSettingItem;
@@ -272,7 +273,7 @@ abstract class _Initial extends ManageSettingItemState {
       final String? titleL10n,
       final String? settingItemIcon,
       final EmbeddedResource? selectedEmbeddedResource,
-      final String? type,
+      final SettingsFlavor? type,
       final AppConfigSettingsItem? resultSettingItem}) = _$InitialImpl;
   _Initial._() : super._();
 
@@ -285,7 +286,7 @@ abstract class _Initial extends ManageSettingItemState {
   @override
   EmbeddedResource? get selectedEmbeddedResource;
   @override
-  String? get type; // Set final values
+  SettingsFlavor? get type; // Set final values
   @override
   AppConfigSettingsItem? get resultSettingItem;
 

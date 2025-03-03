@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:webtrit_configurator/core/exports/exports.dart';
+import 'package:webtrit_configurator/core/widgets/dropdown_button.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_phone/extensions/string.dart';
+import 'package:webtrit_phone/models/models.dart';
 
 import '../bloc/manage_setting_item_cubit.dart';
 
@@ -64,7 +66,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              'Add Embedded Section',
+              'Add section item',
               style: textTheme.titleMedium,
             ),
             centerTitle: true,
@@ -83,16 +85,15 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 16),
-                  TextFormField(
-                    controller: TextEditingController(text: state.type),
-                    decoration: const InputDecoration(
-                      labelText: 'Select Type',
-                      border: OutlineInputBorder(),
-                      enabled: false,
-                      prefixIcon: Icon(Icons.title),
-                    ),
+                  DropdownButtonExt<SettingsFlavor>(
+                    label: 'Settings Flavor',
+                    value: state.type,
+                    options: SettingsFlavor.values,
+                    onChanged: (value) => context
+                        .read<ManageSettingItemCubit>()
+                        .changeType(SettingsFlavor.values.firstWhereOrNull((it) => it == value)),
+                    optionBuilder: (value) => value.name,
                   ),
-                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _titleL10nController,
                     decoration: const InputDecoration(
@@ -122,18 +123,21 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                     value: state.enable,
                     onChanged: (value) => cubit.changeEnable(value),
                   ),
-                  ListTile(
-                    title: state.selectedEmbeddedResource == null
-                        ? const Text('Add Embedded Data')
-                        : Card(
-                            margin: EdgeInsets.zero,
-                            child: ListTile(
-                              title: Text(state.selectedEmbeddedResource!.uri),
-                              subtitle: Text(state.selectedEmbeddedResource!.id.toString()),
+                  Visibility(
+                    visible: state.type == SettingsFlavor.embedded,
+                    child: ListTile(
+                      title: state.selectedEmbeddedResource == null
+                          ? const Text('Add Embedded Data')
+                          : Card(
+                              margin: EdgeInsets.zero,
+                              child: ListTile(
+                                title: Text(state.selectedEmbeddedResource!.uri),
+                                subtitle: Text(state.selectedEmbeddedResource!.id.toString()),
+                              ),
                             ),
-                          ),
-                    trailing: state.selectedEmbeddedResource == null ? const Icon(Icons.add) : const Icon(Icons.edit),
-                    onTap: _addEmbeddedResource,
+                      trailing: state.selectedEmbeddedResource == null ? const Icon(Icons.add) : const Icon(Icons.edit),
+                      onTap: _addEmbeddedResource,
+                    ),
                   )
                 ],
               ),

@@ -7,7 +7,7 @@ class ManageSettingItemState with _$ManageSettingItemState {
     String? titleL10n,
     String? settingItemIcon,
     EmbeddedResource? selectedEmbeddedResource,
-    String? type,
+    SettingsFlavor? type,
 
     // Set final values
     AppConfigSettingsItem? resultSettingItem,

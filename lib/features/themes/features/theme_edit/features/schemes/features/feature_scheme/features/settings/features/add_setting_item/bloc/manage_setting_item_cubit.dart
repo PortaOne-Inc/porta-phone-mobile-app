@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:data/dto/dto.dart';
 
 import 'package:webtrit_phone/extensions/iterable.dart';
+import 'package:webtrit_phone/models/models.dart';
 
 part 'manage_setting_item_state.dart';
 
@@ -17,8 +18,8 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
     assignEmbeddedPage(embedded.firstWhereOrNull((it) => it.id == item?.embeddedResourceId));
     changeTitleL10n(item?.titleL10n);
     chaneSettingItemIcon(item?.icon);
-    changeType(item?.type ?? 'embedded');
     changeEnable(item?.enabled ?? false);
+    changeType(SettingsFlavor.values.firstWhereOrNull((it) => it.name == item?.type));
   }
 
   final AppConfigSettingsItem? item;
@@ -36,7 +37,7 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
     emit(state.copyWith(settingItemIcon: value));
   }
 
-  void changeType(String value) {
+  void changeType(SettingsFlavor? value) {
     emit(state.copyWith(type: value));
   }
 
@@ -47,7 +48,7 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
   void apply() {
     final embedded = AppConfigSettingsItem(
       enabled: state.enable,
-      type: state.type!,
+      type: state.type!.name,
       titleL10n: state.titleL10n!,
       icon: state.settingItemIcon!,
       embeddedResourceId: state.selectedEmbeddedResource?.id,
