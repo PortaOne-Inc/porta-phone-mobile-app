@@ -4,8 +4,8 @@ class DropdownButtonExt<T> extends StatelessWidget {
   const DropdownButtonExt({
     required this.label,
     required this.options,
-    required this.onChanged,
     required this.optionBuilder,
+    this.onChanged,
     this.value,
     this.constraints,
     super.key,
@@ -14,7 +14,7 @@ class DropdownButtonExt<T> extends StatelessWidget {
   final String label;
   final T? value;
   final List<T> options;
-  final ValueChanged<T?> onChanged;
+  final ValueChanged<T?>? onChanged;
   final String Function(T) optionBuilder;
   final BoxConstraints? constraints;
 

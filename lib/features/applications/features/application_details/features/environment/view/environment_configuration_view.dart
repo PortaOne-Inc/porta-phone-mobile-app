@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
@@ -141,6 +142,7 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                   label: 'Log level',
                                   keyName: state.logDebugLevel,
                                   config: state.environment,
+                                  options: Level.LEVELS.map((level) => level.name).toList(),
                                   onConfigUpdate: _updateConfig,
                                   onEnabledChanged: _manageKey,
                                 ),
