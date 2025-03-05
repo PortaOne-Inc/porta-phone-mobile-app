@@ -14,7 +14,6 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/features/auth/bloc/auth_cubit.dart' as auth1;
 
 import 'app_route_consts.dart';
 import 'go_route_redirects.dart';
@@ -231,7 +230,7 @@ class AppRoute {
           ],
         )
       ],
-      redirect: handleMain,
+      redirect: (context, state) => context.read<AuthCubit>().redirectGuard(state),
       errorBuilder: (context, state) => const NotFoundPage(),
       initialLocation: AppRoutInfo.applicationCollection.path,
     );
@@ -248,28 +247,5 @@ class AppRoute {
     }
 
     return '/applications/$applicationId';
-  }
-
-  FutureOr<String?> handleMain(
-    BuildContext context,
-    GoRouterState state,
-  ) async {
-    final status = await context.read<auth1.AuthCubit>().status;
-    final currentLocation = state.fullPath;
-
-    if (status == AuthenticationStatus.authenticated) {
-      return currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null;
-    }
-    if (status == AuthenticationStatus.expired) {
-      return null;
-    } else {
-      return currentLocation == AppRoutInfo.reset.path
-          ? null
-          : currentLocation == AppRoutInfo.themesPreview.path
-              ? null
-              : currentLocation == AppRoutInfo.translations.path
-                  ? null
-                  : AppRoutInfo.login.path;
-    }
   }
 }

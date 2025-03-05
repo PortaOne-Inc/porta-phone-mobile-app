@@ -26,8 +26,12 @@ class AuthRepositoryImpl extends AuthRepository {
   final UserPrefDatasource userPrefDataSource;
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
-  final StreamController<AuthenticationStatus> _tokenExpirationController =
-      StreamController<AuthenticationStatus>.broadcast();
+  late final StreamController<AuthenticationStatus> _tokenExpirationController =
+      StreamController<AuthenticationStatus>.broadcast(onListen: _emitInitialStatus);
+
+  Future<void> _emitInitialStatus() async {
+    _tokenExpirationController.add(await isUserAuthorized());
+  }
 
   /// Logs in a user with the given [email] and [password].
   ///

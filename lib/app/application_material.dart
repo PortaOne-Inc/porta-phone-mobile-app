@@ -70,7 +70,6 @@ class _MaterialApplicationState extends State<MaterialApplication> {
             BlocProvider<AuthCubit>(
               create: (BuildContext context) => AuthCubit(
                 widget.getIt.get(),
-                widget.getIt.get(),
               ),
             )
           ],

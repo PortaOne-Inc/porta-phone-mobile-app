@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:domain/domain.dart';
+
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
+
 import '../../../app/route/app_route_consts.dart';
-import '../bloc/auth_cubit.dart';
+import '../bloc/bloc.dart';
 
 class AuthReLoginShell extends StatefulWidget {
   const AuthReLoginShell({
@@ -20,30 +25,41 @@ class AuthReLoginShell extends StatefulWidget {
   State<AuthReLoginShell> createState() => _AuthReLoginShellState();
 }
 
-class _AuthReLoginShellState extends State<AuthReLoginShell> {
+class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {
-        final currentPath = GoRouter.of(context).state?.fullPath;
-        final welcomePath = AppRoutInfo.login.path  ;
-        print('currentPath: $currentPath welcomePath: $welcomePath');
-        if (state.status == AuthStatus.expired && currentPath != welcomePath) {
-          // GoRouter.of(context).goNamed(AppRoutInfo.login.name);
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return Dialog(
-                child: widget.relogin,
-              );
-            },
-          );
-        }
-      },
-      builder: (context, state) {
-        return widget.child;
-      },
+    return BlocListener<AuthCubit, AuthState>(
+      listener: _handleAuthState,
+      child: widget.child,
     );
+  }
+
+  void _handleAuthState(BuildContext context, AuthState state) {
+    final router = GoRouter.of(context);
+    final currentPath = router.state?.fullPath;
+    final loginPath = AppRoutInfo.login.path;
+
+    switch (state.status) {
+      case AuthenticationStatus.unauthenticated:
+        router.goNamed(AppRoutInfo.login.name);
+      case AuthenticationStatus.expired:
+        if (currentPath != loginPath) _showReLoginDialog(context);
+      case AuthenticationStatus.authenticated:
+        showTopSnakeMessageSuccess(
+          context,
+          context.l10n.feature_auth_SnakeBar_success_auth,
+        );
+      default:
+    }
+  }
+
+  void _showReLoginDialog(BuildContext context) {
+    if (mounted) {
+      showDialog<void>(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Dialog(child: widget.relogin),
+      );
+    }
   }
 }

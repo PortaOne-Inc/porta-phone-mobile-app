@@ -1,62 +1,68 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
+import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 part 'auth_state.dart';
 
 part 'auth_cubit.freezed.dart';
 
+/// Logger for the AuthCubit class
 final _logger = Logger('AuthCubit');
 
+/// A Cubit that manages authentication state and handles token expiration.
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(
-    this._monitorTokenExpirationUsecase,
-    this._usecaseAuthIsLoggedIn,
-  ) : super(const AuthState()) {
-    init();
+  /// Creates an instance of AuthCubit.
+  ///
+  /// Takes a [MonitorTokenExpirationUsecase] to monitor token expiration.
+  AuthCubit(this._monitorTokenExpirationUsecase) : super(const AuthState()) {
+    _init();
   }
 
   final MonitorTokenExpirationUsecase _monitorTokenExpirationUsecase;
-  final GetAuthStatusUsecase _usecaseAuthIsLoggedIn;
   StreamSubscription<AuthenticationStatus>? _tokenExpirationSubscription;
 
-  void init() {
+  /// Initializes the AuthCubit by setting up a listener for token expiration.
+  void _init() {
     _logger.info('Initializing AuthCubit');
     _tokenExpirationSubscription = _monitorTokenExpirationUsecase.execute().listen(
-      onDone: () {
-        _logger.info('Token expiration monitoring done');
-      },
       (status) {
-        switch (status) {
-          case AuthenticationStatus.expired:
-            emit(state.copyWith(status: AuthStatus.expired));
-            _logger.info('Token expired');
-            //   emit(const AuthState.unauthenticated());
-            break;
-
-          case AuthenticationStatus.authenticated:
-            _logger.info('Token authenticated');
-            emit(state.copyWith(status: AuthStatus.authenticated));
-
-            break;
-          case AuthenticationStatus.unauthenticated:
-            _logger.info('Token not authenticated');
-            emit(state.copyWith(status: AuthStatus.notAuthenticated));
-        }
+        _logger.info('Token status: $status');
+        emit(state.copyWith(status: status));
       },
       onError: (error) {
-        emit(state.copyWith(status: AuthStatus.init));
+        emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
         _logger.severe('Error monitoring token expiration: $error');
-        //  emit(AuthState.error(error.toString()));
       },
+      onDone: () => _logger.info('Token expiration monitoring done'),
     );
   }
 
-  FutureOr<AuthenticationStatus> get status => _usecaseAuthIsLoggedIn.execute();
+  /// Redirects based on the authentication status.
+  ///
+  /// If the user is authenticated and currently on the login page, redirects to the application collection page.
+  /// If the user is not authenticated, redirects to the login page.
+  /// If the token is expired, no redirection occurs.
+  ///
+  /// Returns a [Future] that completes with the redirection path or null.
+  Future<String?> redirectGuard(GoRouterState goRouterState) async {
+    final currentLocation = goRouterState.fullPath;
 
+    if (state.status == null) {
+      await stream.firstWhere((updatedState) => updatedState.status != null);
+    }
+
+    return state.status == AuthenticationStatus.authenticated
+        ? (currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null)
+        : (state.status == AuthenticationStatus.expired ? null : AppRoutInfo.login.path);
+  }
+
+  /// Closes the AuthCubit and cancels the token expiration subscription.
+  ///
+  /// Returns a [Future] that completes when the cubit is closed.
   @override
   Future<void> close() async {
     _logger.info('Closing AuthCubit');

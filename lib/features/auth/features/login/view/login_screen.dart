@@ -126,10 +126,6 @@ class _LoginScreenState extends State<LoginScreen> with MixinMessages {
 
     if (state is AuthStateSuccess) {
       widget.onLogin();
-      showTopSnakeMessageSuccess(
-        context,
-        context.l10n.feature_auth_SnakeBar_success_auth,
-      );
     }
   }
 }

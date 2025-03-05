@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  AuthStatus get status => throw _privateConstructorUsedError;
+  AuthenticationStatus? get status => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -30,7 +30,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({AuthStatus status});
+  $Res call({AuthenticationStatus? status});
 }
 
 /// @nodoc
@@ -48,13 +48,13 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AuthStatus,
+              as AuthenticationStatus?,
     ) as $Val);
   }
 }
@@ -67,7 +67,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthStatus status});
+  $Res call({AuthenticationStatus? status});
 }
 
 /// @nodoc
@@ -83,13 +83,13 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$InitialImpl(
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as AuthStatus,
+              as AuthenticationStatus?,
     ));
   }
 }
@@ -97,11 +97,10 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.status = AuthStatus.init});
+  const _$InitialImpl({this.status});
 
   @override
-  @JsonKey()
-  final AuthStatus status;
+  final AuthenticationStatus? status;
 
   @override
   String toString() {
@@ -129,10 +128,10 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial({final AuthStatus status}) = _$InitialImpl;
+  const factory _Initial({final AuthenticationStatus? status}) = _$InitialImpl;
 
   @override
-  AuthStatus get status;
+  AuthenticationStatus? get status;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
