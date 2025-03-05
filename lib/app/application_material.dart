@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/features/common/common.dart';
 
@@ -50,48 +52,55 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       Locale('en', ''),
     ];
 
-    return Builder(
-      builder: (context) => MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            lazy: false,
-            create: (BuildContext context) => CommonBloc(
-              usecaseAuthLogOut: widget.getIt.get(),
-            ),
-          ),
-          BlocProvider<AuthCubit>(
-            create: (BuildContext context) => AuthCubit(
-              widget.getIt.get(),
-              widget.getIt.get(),
-            ),
-          )
-        ],
-        child: BlocConsumer<CommonBloc, CommonState>(
-          listener: (BuildContext context, CommonState state) {
-            if (state is CommonStateLogout) {
-              route.go(AppRoutInfo.login.name);
-            }
-          },
-          builder: (BuildContext context, CommonState state) {
-            return MaterialApp.router(
-              title: ApplicationEnvironment.APP_NAME,
-              theme: themeSettings.light(),
-              darkTheme: themeSettings.dark(),
-              themeMode: state.themeMode,
-              localizationsDelegates: localizationsDelegates,
-              supportedLocales: supportedLocales,
-              debugShowCheckedModeBanner: false,
-              restorationScopeId: 'App',
-              routeInformationProvider: route.routeInformationProvider,
-              routeInformationParser: route.routeInformationParser,
-              routerDelegate: route.routerDelegate,
-              backButtonDispatcher: route.backButtonDispatcher,
-              builder: (context, widget) => ResponsiveBreakpoints.builder(
-                child: BouncingScrollWrapper.builder(context, widget!),
-                breakpoints: responsiveBreakpoints,
+    return MultiProvider(
+      providers: [
+        Provider<PackageInfo>(
+          create: (context) => widget.getIt.get<PackageInfo>(),
+        ),
+      ],
+      child: Builder(
+        builder: (context) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              lazy: false,
+              create: (BuildContext context) => CommonBloc(
+                usecaseAuthLogOut: widget.getIt.get(),
               ),
-            );
-          },
+            ),
+            BlocProvider<AuthCubit>(
+              create: (BuildContext context) => AuthCubit(
+                widget.getIt.get(),
+                widget.getIt.get(),
+              ),
+            )
+          ],
+          child: BlocConsumer<CommonBloc, CommonState>(
+            listener: (BuildContext context, CommonState state) {
+              if (state is CommonStateLogout) {
+                route.go(AppRoutInfo.login.name);
+              }
+            },
+            builder: (BuildContext context, CommonState state) {
+              return MaterialApp.router(
+                title: ApplicationEnvironment.APP_NAME,
+                theme: themeSettings.light(),
+                darkTheme: themeSettings.dark(),
+                themeMode: state.themeMode,
+                localizationsDelegates: localizationsDelegates,
+                supportedLocales: supportedLocales,
+                debugShowCheckedModeBanner: false,
+                restorationScopeId: 'App',
+                routeInformationProvider: route.routeInformationProvider,
+                routeInformationParser: route.routeInformationParser,
+                routerDelegate: route.routerDelegate,
+                backButtonDispatcher: route.backButtonDispatcher,
+                builder: (context, widget) => ResponsiveBreakpoints.builder(
+                  child: BouncingScrollWrapper.builder(context, widget!),
+                  breakpoints: responsiveBreakpoints,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

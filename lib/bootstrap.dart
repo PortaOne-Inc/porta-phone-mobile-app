@@ -12,9 +12,9 @@ import 'package:logging/logging.dart';
 import 'package:logging_appenders/logging_appenders.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/core/data/package_info.dart';
 import 'package:webtrit_configurator/di/di.dart';
 import 'package:webtrit_phone/data/app_themes.dart';
-import 'package:webtrit_phone/data/data.dart';
 
 import '../gen/assets.gen.dart';
 
@@ -46,10 +46,14 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       final themeSettings = await _initializeAppThemes();
       diContainer.registerSingleton(themeSettings);
 
+      // Init data
+      final packageInfo = await PackageInfo.init();
+
       final phoneDefaultTheme = await AppThemes.init();
       diContainer
         ..registerSingleton(phoneDefaultTheme.values.first.settings)
-        ..registerSingleton(phoneDefaultTheme.appConfig);
+        ..registerSingleton(phoneDefaultTheme.appConfig)
+        ..registerSingleton(packageInfo);
 
       return runApp(await builder(diContainer));
     },

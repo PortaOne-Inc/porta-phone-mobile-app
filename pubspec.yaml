@@ -57,6 +57,7 @@ dependencies:
   logging_appenders: ^1.2.0
   provider: ^6.1.2
   shared_preferences: ^2.4.0
+  package_info_plus: ^8.3.0
 
 dependency_overrides:
   material_color_utilities: 0.12.0
