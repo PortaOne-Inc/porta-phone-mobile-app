@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/exports/exports.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 class AddSettingSectionScreen extends StatefulWidget {
   const AddSettingSectionScreen({

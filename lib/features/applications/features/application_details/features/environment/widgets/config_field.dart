@@ -225,6 +225,7 @@ class OptionsConfigField extends StatelessWidget {
         children: [
           Expanded(
             child: DropdownButtonExt<String>(
+              padding: EdgeInsets.zero,
               label: label,
               value: value,
               options: options,

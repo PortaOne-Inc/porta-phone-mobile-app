@@ -5,8 +5,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-  import 'package:webtrit_configurator/features/common/common.dart';
+import 'package:webtrit_configurator/features/common/common.dart';
 
+import '../features/auth/bloc/auth_cubit.dart';
 import '../localization/localization.dart';
 
 import 'application.dart';
@@ -50,11 +51,21 @@ class _MaterialApplicationState extends State<MaterialApplication> {
     ];
 
     return Builder(
-      builder: (context) => BlocProvider(
-        lazy: false,
-        create: (BuildContext context) => CommonBloc(
-          usecaseAuthLogOut: widget.getIt.get(),
-        ),
+      builder: (context) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            lazy: false,
+            create: (BuildContext context) => CommonBloc(
+              usecaseAuthLogOut: widget.getIt.get(),
+            ),
+          ),
+          BlocProvider<AuthCubit>(
+            create: (BuildContext context) => AuthCubit(
+              widget.getIt.get(),
+              widget.getIt.get(),
+            ),
+          )
+        ],
         child: BlocConsumer<CommonBloc, CommonState>(
           listener: (BuildContext context, CommonState state) {
             if (state is CommonStateLogout) {

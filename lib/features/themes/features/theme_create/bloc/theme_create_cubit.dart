@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/models/models.dart';
 
 part 'theme_create_state.dart';

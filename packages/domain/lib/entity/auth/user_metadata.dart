@@ -8,5 +8,6 @@ class UserMetadata with _$UserMetadata {
     required String id,
     required String email,
     required String jwtToken,
+    DateTime? expiredTime,
   }) = _UserMetadata;
 }

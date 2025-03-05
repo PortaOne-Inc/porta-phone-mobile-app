@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/bloc.dart';
 
 import '../features/schemes/features/splash_screen/bloc/splash_assets_bloc.dart';

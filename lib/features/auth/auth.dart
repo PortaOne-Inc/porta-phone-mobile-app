@@ -1,2 +1,2 @@
-export 'login/login.dart';
-export 'reset/reset.dart';
+export 'view/view.dart';
+export 'features/features.dart';

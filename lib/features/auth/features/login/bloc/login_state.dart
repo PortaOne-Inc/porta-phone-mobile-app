@@ -1,71 +1,71 @@
-part of 'auth_cubit.dart';
+part of 'login_cubit.dart';
 
 @freezed
-class AuthState with _$AuthState {
-  factory AuthState({
+class LoginState with _$LoginState {
+  factory LoginState({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) = _AuthState;
 
-  factory AuthState.progress({
+  factory LoginState.progress({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) = AuthStateProgress;
 
-  factory AuthState.success({
+  factory LoginState.success({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) = AuthStateSuccess;
 
-  factory AuthState.validation({
+  factory LoginState.validation({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) = AuthStateValidation;
 
-  factory AuthState.error({
+  factory LoginState.error({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
     AuthException? error,
   }) = AuthStateError;
 }
 
-extension _StateCopyWith on AuthState {
-  AuthState copyWithValidate({
+extension _StateCopyWith on LoginState {
+  LoginState copyWithValidate({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) {
-    return AuthState.validation(
+    return LoginState.validation(
       emailInput: emailInput ?? this.emailInput,
       passwordInput: passwordInput ?? this.passwordInput,
     );
   }
 
-  AuthState copyWithProgress({
+  LoginState copyWithProgress({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) {
-    return AuthState.progress(
+    return LoginState.progress(
       emailInput: emailInput ?? this.emailInput,
       passwordInput: passwordInput ?? this.passwordInput,
     );
   }
 
-  AuthState copyWithSuccess({
+  LoginState copyWithSuccess({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) {
-    return AuthState.success(
+    return LoginState.success(
       emailInput: emailInput ?? this.emailInput,
       passwordInput: passwordInput ?? this.passwordInput,
     );
   }
 
-  AuthState copyWithError({
+  LoginState copyWithError({
     required AuthException failure,
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,
   }) {
-    return AuthState.error(
+    return LoginState.error(
       emailInput: emailInput ?? this.emailInput,
       passwordInput: passwordInput ?? this.passwordInput,
       error: failure,

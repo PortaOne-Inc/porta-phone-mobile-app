@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/preview_required/view/preview_required.dart';
 import 'package:webtrit_phone/data/data.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 import '../bloc/update_theme_cubit.dart';
 import '../mocks/mocks.dart';

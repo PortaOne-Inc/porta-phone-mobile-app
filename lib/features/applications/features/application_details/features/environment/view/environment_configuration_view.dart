@@ -252,9 +252,10 @@ class _EnvironmentConfigurationViewState extends State<EnvironmentConfigurationV
                                 ),
                                 fields: [
                                   AdditionalKeysSection(
-                                      additionalKeys: state.filteredEnvironment,
-                                      onRemoveKey: context.read<EnvironmentCubit>().removeAttribute,
-                                      onUpdateKey: context.read<EnvironmentCubit>().updateKeyValue)
+                                    additionalKeys: state.filteredEnvironment,
+                                    onRemoveKey: context.read<EnvironmentCubit>().removeAttribute,
+                                    onUpdateKey: context.read<EnvironmentCubit>().updateKeyValue,
+                                  )
                                 ]),
                           ],
                         ),

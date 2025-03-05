@@ -9,6 +9,9 @@ import 'dart:async' as _i687;
 import 'package:data/datasource/configurator_backend/configurator_backand_datasource.dart'
     as _i342;
 import 'package:data/datasource/datasource.dart' as _i822;
+import 'package:data/datasource/interceptors/interceptors.dart' as _i898;
+import 'package:data/datasource/interceptors/unauthorized_interceptor.dart'
+    as _i244;
 import 'package:data/datasource/preferences/auth_pref_datasource.dart' as _i808;
 import 'package:data/datasource/preferences/user_pref_datasource.dart' as _i759;
 import 'package:data/datasource/storage/file_storage.dart' as _i99;
@@ -53,6 +56,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
       () => storageModule.provideLocalStorage(),
       preResolve: true,
     );
+    gh.factory<_i244.UnauthorizedInterceptor>(
+        () => _i244.UnauthorizedInterceptor());
     gh.lazySingleton<_i457.FirebaseStorage>(() => registerModule.storage());
     gh.factory<
             _i602.CommonMapper<_i494.ApplicationModel, _i499.ApplicationDTO>>(
@@ -98,7 +103,18 @@ class DataPackageModule extends _i526.MicroPackageModule {
               .CommonMapper<_i494.SplashAssetModel?, _i862.SplashAssetsDto?>>(),
         ));
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
-        () => _i342.ConfiguratorBackandDatasource(gh<_i342.Dio>()));
+        () => _i342.ConfiguratorBackandDatasource(
+              gh<_i342.Dio>(),
+              gh<_i898.UnauthorizedInterceptor>(),
+            ));
+    gh.factory<_i494.ApplicationRepository>(() =>
+        _i747.ApplicationRepositoryImpl(
+          configuratorBackandDatasource:
+              gh<_i822.ConfiguratorBackandDatasource>(),
+          applicationMapper: gh<
+              _i1058
+              .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
+        ));
     gh.factory<_i174.TranslationsRepository>(() =>
         _i591.TranslationsRepositoryImpl(
             gh<_i822.ConfiguratorBackandDatasource>()));
@@ -126,20 +142,15 @@ class DataPackageModule extends _i526.MicroPackageModule {
               _i1058
               .CommonMapper<_i494.SplashAssetModel?, _i862.SplashAssetsDto?>>(),
         ));
-    gh.factory<_i494.AuthRepository>(() => _i442.AuthRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
-          userPrefDataSource: gh<_i822.UserPrefDatasource>(),
-        ));
-    gh.factory<_i494.ApplicationRepository>(() =>
-        _i747.ApplicationRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          applicationMapper: gh<
-              _i1058
-              .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
-        ));
+    gh.singleton<_i494.AuthRepository>(
+      () => _i442.AuthRepositoryImpl(
+        configuratorBackandDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
+        userPrefDataSource: gh<_i822.UserPrefDatasource>(),
+      ),
+      dispose: (i) => i.dispose(),
+    );
   }
 }
 

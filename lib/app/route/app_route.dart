@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,6 +14,7 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/auth/bloc/auth_cubit.dart' as auth1;
 
 import 'app_route_consts.dart';
 import 'go_route_redirects.dart';
@@ -25,16 +27,33 @@ class AppRoute {
     return GoRouter(
       routes: [
         ShellRoute(
-          builder: (BuildContext context, GoRouterState state, Widget child) => child,
+          builder: (BuildContext context, GoRouterState state, Widget child) => AuthReLoginShell(
+            relogin: BlocProvider<LoginCubit>(
+              child: LoginScreen(
+                title: 'Your session has expired, please log in again',
+                onLogin: () => context.pop(),
+              ),
+              create: (BuildContext context) => LoginCubit(
+                signInUsecase: getIt.get(),
+                getAuthStatusUsecase: getIt.get(),
+              ),
+            ),
+            child: child,
+          ),
           routes: [
             GoRoute(
               path: AppRoutInfo.login.path,
               name: AppRoutInfo.login.name,
-              builder: (BuildContext context, GoRouterState state) => BlocProvider<AuthCubit>(
-                child: const AuthPage(),
-                create: (BuildContext context) => AuthCubit(
-                  usecaseAuthSignIn: getIt.get(),
-                  isUserAuthorized: getIt.get(),
+              builder: (BuildContext context, GoRouterState state) => WelcomeScreen(
+                child: BlocProvider<LoginCubit>(
+                  child: LoginScreen(
+                    title: context.l10n.authorization_title,
+                    onLogin: () => GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name),
+                  ),
+                  create: (BuildContext context) => LoginCubit(
+                    signInUsecase: getIt.get(),
+                    getAuthStatusUsecase: getIt.get(),
+                  ),
                 ),
               ),
             ),
@@ -44,7 +63,7 @@ class AppRoute {
               builder: (BuildContext context, GoRouterState state) => BlocProvider<ResetPasswordCubit>(
                 child: const ResetPage(),
                 create: (BuildContext context) => ResetPasswordCubit(
-                  usecaseAuthResetPassword: getIt.get(),
+                  resetAuthPassword: getIt.get(),
                 ),
               ),
             ),
@@ -212,7 +231,7 @@ class AppRoute {
           ],
         )
       ],
-      redirect: (context, state) => handleMain(context, state, getIt.get<UsecaseAuthIsLoggedIn>()),
+      redirect: handleMain,
       errorBuilder: (context, state) => const NotFoundPage(),
       initialLocation: AppRoutInfo.applicationCollection.path,
     );
@@ -234,13 +253,15 @@ class AppRoute {
   FutureOr<String?> handleMain(
     BuildContext context,
     GoRouterState state,
-    UsecaseAuthIsLoggedIn isLoggedIn,
   ) async {
-    final isAuth = await isLoggedIn.execute();
+    final status = await context.read<auth1.AuthCubit>().status;
     final currentLocation = state.fullPath;
 
-    if (isAuth) {
+    if (status == AuthenticationStatus.authenticated) {
       return currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null;
+    }
+    if (status == AuthenticationStatus.expired) {
+      return null;
     } else {
       return currentLocation == AppRoutInfo.reset.path
           ? null

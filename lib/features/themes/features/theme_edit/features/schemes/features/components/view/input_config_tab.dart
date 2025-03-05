@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 // TODO(Serdun): add correct handling as dot it in ButtonConfigTab
 class InputConfigTab extends StatelessWidget {

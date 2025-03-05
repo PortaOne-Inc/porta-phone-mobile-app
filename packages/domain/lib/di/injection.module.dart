@@ -7,7 +7,6 @@
 import 'dart:async' as _i687;
 
 import 'package:domain/domain.dart' as _i494;
-import 'package:domain/repository/auth/auth_repository.dart' as _i2;
 import 'package:domain/repository/repository.dart' as _i174;
 import 'package:domain/usecase/applications/application_create.dart' as _i53;
 import 'package:domain/usecase/applications/update_application_useecase.dart'
@@ -22,16 +21,13 @@ import 'package:domain/usecase/applications/usecase_application_get_all.dart'
     as _i210;
 import 'package:domain/usecase/applications/usecase_application_inc_version.dart'
     as _i43;
+import 'package:domain/usecase/auth/get_auth_status_usecase.dart' as _i683;
 import 'package:domain/usecase/auth/get_user_usecase.dart' as _i459;
-import 'package:domain/usecase/auth/usecase_auth_is_logged_in.dart' as _i538;
-import 'package:domain/usecase/auth/usecase_auth_is_logged_in_impl.dart'
-    as _i987;
-import 'package:domain/usecase/auth/usecase_auth_log_out.dart' as _i0;
-import 'package:domain/usecase/auth/usecase_auth_log_out_impl.dart' as _i874;
-import 'package:domain/usecase/auth/usecase_auth_reset_password.dart' as _i745;
-import 'package:domain/usecase/auth/usecase_auth_resrt_password_impl.dart'
-    as _i1038;
-import 'package:domain/usecase/auth/usecase_auth_sign_in.dart' as _i246;
+import 'package:domain/usecase/auth/log_out_auth_usecase.dart' as _i73;
+import 'package:domain/usecase/auth/monitor_token_expiration_usecase.dart'
+    as _i490;
+import 'package:domain/usecase/auth/reset_auth_password_usecase.dart' as _i1021;
+import 'package:domain/usecase/auth/sign_in_auth_usecase.dart' as _i337;
 import 'package:domain/usecase/deployment/get_phone_branches_usecase.dart'
     as _i902;
 import 'package:domain/usecase/deployment/usecase_deploy_builds.dart' as _i606;
@@ -123,8 +119,6 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.lazySingleton<_i902.GetPhoneBranchesUsecase>(() =>
         _i902.GetPhoneBranchesUsecaseImpl(
             deploymentRepository: gh<_i174.DeploymentRepository>()));
-    gh.factory<_i246.UsecaseAuthSignIn>(() => _i246.UsecaseAuthSignInImpl(
-        authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i189.UpdateApplicationUsecase>(
         () => _i189.UpdateApplicationUsecaseImpl(
               applicationRepository: gh<_i174.ApplicationRepository>(),
@@ -135,13 +129,21 @@ class DomainPackageModule extends _i526.MicroPackageModule {
         () => _i151.UploadFileUsecaseImpl(gh<_i494.ResourcesRepository>()));
     gh.factory<_i939.AddLaunchAssetsThemeUsecase>(() =>
         _i939.AddLaunchAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
+    gh.factory<_i490.MonitorTokenExpirationUsecase>(() =>
+        _i490.MonitorTokenExpirationUsecaseImpl(
+            authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i298.UsecaseTranslationsDeleteOverride>(() =>
         _i298.UsecaseTranslationsDeleteOverrideImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
+    gh.factory<_i683.GetAuthStatusUsecase>(() =>
+        _i683.GetAuthStatusUsecaseHandler(
+            authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i651.UpdateBuildNameUseCase>(() =>
         _i638.IncrementBuildNameUseCase(gh<_i651.UpdateApplicationUsecase>()));
     gh.factory<_i343.UsecaseThemeCreate>(
         () => _i343.UsecaseThemeCreateImpl(gh<_i494.ThemeRepository>()));
+    gh.factory<_i337.SignInAuthUsecase>(() => _i337.SignInAuthUsecaseHandler(
+        authRepository: gh<_i174.AuthRepository>()));
     gh.factoryParam<_i320.UsecaseThemeGet, String, String>((
       applicationId,
       themeId,
@@ -170,28 +172,25 @@ class DomainPackageModule extends _i526.MicroPackageModule {
           deploymentRepository: gh<_i494.DeploymentRepository>(),
           applicationRepository: gh<_i494.ApplicationRepository>(),
         ));
+    gh.factory<_i1021.ResetAuthPasswordUsecase>(() =>
+        _i1021.ResetAuthPasswordUsecaseHandler(
+            authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i314.UsecaseThemeDeleteCreate>(
         () => _i314.UsecaseThemeDeleteCreateImpl(
               gh<_i174.ThemeRepository>(),
               gh<_i174.AuthRepository>(),
             ));
-    gh.factory<_i538.UsecaseAuthIsLoggedIn>(() =>
-        _i987.UsecaseAuthIsLoggedInImpl(
-            authRepository: gh<_i2.AuthRepository>()));
     gh.factory<_i1010.UpdateSplashAssetsThemeUsecase>(() =>
         _i1010.UpdateSplashAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
-    gh.factory<_i745.UsecaseAuthResetPassword>(() =>
-        _i1038.UsecaseAuthResetPasswordImpl(
-            authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i609.UsecaseTranslationsGetOverridesByAppId>(() =>
         _i609.UsecaseTranslationsGetOverridesByAppIdImpl(
             translationsRepository: gh<_i174.TranslationsRepository>()));
     gh.factory<_i651.UpdateBuildNumberUseCase>(() =>
         _i95.UpdateBuildNumberUseCaseImpl(
             gh<_i651.UpdateApplicationUsecase>()));
-    gh.factory<_i0.UsecaseAuthLogOut>(() => _i874.UsecaseAuthLogOutImpl(
-        authRepository: gh<_i174.AuthRepository>()));
     gh.factory<_i911.AddAssetsThemeUsecase>(
         () => _i911.AddAssetsThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
+    gh.factory<_i73.UsecaseAuthLogOut>(() =>
+        _i73.UsecaseAuthLogOutImpl(authRepository: gh<_i174.AuthRepository>()));
   }
 }

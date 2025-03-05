@@ -4,16 +4,16 @@ import 'package:injectable/injectable.dart';
 
 import '../../repository/repository.dart';
 
-abstract class UsecaseAuthSignIn {
+abstract class SignInAuthUsecase {
   Future<void> execute({
     required String email,
     required String password,
   });
 }
 
-@Injectable(as: UsecaseAuthSignIn)
-class UsecaseAuthSignInImpl extends UsecaseAuthSignIn {
-  UsecaseAuthSignInImpl({
+@Injectable(as: SignInAuthUsecase)
+class SignInAuthUsecaseHandler extends SignInAuthUsecase {
+  SignInAuthUsecaseHandler({
     required this.authRepository,
   });
 

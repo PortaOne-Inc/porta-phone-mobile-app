@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import '../widgets/widgets.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 class ContainerConfigTab extends StatelessWidget {
   const ContainerConfigTab({

@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 /// Extension that updates image asset URIs based on metadata.
 ///

@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 /// Extension for `LoginPageConfig` to update asset URIs dynamically.
 ///

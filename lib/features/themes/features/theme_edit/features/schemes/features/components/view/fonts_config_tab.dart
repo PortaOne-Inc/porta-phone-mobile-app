@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 class FontsConfigTab extends StatelessWidget {
   const FontsConfigTab({

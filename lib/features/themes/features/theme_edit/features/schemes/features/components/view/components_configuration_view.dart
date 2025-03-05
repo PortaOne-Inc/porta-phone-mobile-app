@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
+
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
-
-import 'package:webtrit_configurator/core/core.dart';
 
 import 'action_pad_config_tab.dart';
 import 'bars_config_tab.dart';

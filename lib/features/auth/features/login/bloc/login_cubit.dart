@@ -6,18 +6,18 @@ import 'package:domain/domain.dart';
 
 import '../models/model.dart';
 
-part 'auth_state.dart';
+part 'login_state.dart';
 
-part 'auth_cubit.freezed.dart';
+part 'login_cubit.freezed.dart';
 
-class AuthCubit extends Cubit<AuthState> {
-  AuthCubit({
-    required this.usecaseAuthSignIn,
-    required this.isUserAuthorized,
-  }) : super(AuthState());
+class LoginCubit extends Cubit<LoginState> {
+  LoginCubit({
+    required this.signInUsecase,
+    required this.getAuthStatusUsecase,
+  }) : super(LoginState());
 
-  final UsecaseAuthSignIn usecaseAuthSignIn;
-  final UsecaseAuthIsLoggedIn isUserAuthorized;
+  final SignInAuthUsecase signInUsecase;
+  final GetAuthStatusUsecase getAuthStatusUsecase;
 
   void authPasswordChanged(String password) {
     emit(state.copyWithValidate(
@@ -56,7 +56,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> _loginInServerSuccess(String email, String password) async {
     emit(state.copyWithProgress());
-    await usecaseAuthSignIn.execute(email: email, password: password);
+    await signInUsecase.execute(email: email, password: password);
     emit(state.copyWithSuccess());
   }
 

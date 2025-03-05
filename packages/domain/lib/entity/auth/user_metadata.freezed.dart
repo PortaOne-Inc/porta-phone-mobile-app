@@ -22,6 +22,8 @@ mixin _$UserMetadata {
   set email(String value) => throw _privateConstructorUsedError;
   String get jwtToken => throw _privateConstructorUsedError;
   set jwtToken(String value) => throw _privateConstructorUsedError;
+  DateTime? get expiredTime => throw _privateConstructorUsedError;
+  set expiredTime(DateTime? value) => throw _privateConstructorUsedError;
 
   /// Create a copy of UserMetadata
   /// with the given fields replaced by the non-null parameter values.
@@ -36,7 +38,7 @@ abstract class $UserMetadataCopyWith<$Res> {
           UserMetadata value, $Res Function(UserMetadata) then) =
       _$UserMetadataCopyWithImpl<$Res, UserMetadata>;
   @useResult
-  $Res call({String id, String email, String jwtToken});
+  $Res call({String id, String email, String jwtToken, DateTime? expiredTime});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$UserMetadataCopyWithImpl<$Res, $Val extends UserMetadata>
     Object? id = null,
     Object? email = null,
     Object? jwtToken = null,
+    Object? expiredTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,6 +74,10 @@ class _$UserMetadataCopyWithImpl<$Res, $Val extends UserMetadata>
           ? _value.jwtToken
           : jwtToken // ignore: cast_nullable_to_non_nullable
               as String,
+      expiredTime: freezed == expiredTime
+          ? _value.expiredTime
+          : expiredTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -83,7 +90,7 @@ abstract class _$$UserMetadataImplCopyWith<$Res>
       __$$UserMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String jwtToken});
+  $Res call({String id, String email, String jwtToken, DateTime? expiredTime});
 }
 
 /// @nodoc
@@ -102,6 +109,7 @@ class __$$UserMetadataImplCopyWithImpl<$Res>
     Object? id = null,
     Object? email = null,
     Object? jwtToken = null,
+    Object? expiredTime = freezed,
   }) {
     return _then(_$UserMetadataImpl(
       id: null == id
@@ -116,6 +124,10 @@ class __$$UserMetadataImplCopyWithImpl<$Res>
           ? _value.jwtToken
           : jwtToken // ignore: cast_nullable_to_non_nullable
               as String,
+      expiredTime: freezed == expiredTime
+          ? _value.expiredTime
+          : expiredTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -124,7 +136,10 @@ class __$$UserMetadataImplCopyWithImpl<$Res>
 
 class _$UserMetadataImpl implements _UserMetadata {
   _$UserMetadataImpl(
-      {required this.id, required this.email, required this.jwtToken});
+      {required this.id,
+      required this.email,
+      required this.jwtToken,
+      this.expiredTime});
 
   @override
   String id;
@@ -132,10 +147,12 @@ class _$UserMetadataImpl implements _UserMetadata {
   String email;
   @override
   String jwtToken;
+  @override
+  DateTime? expiredTime;
 
   @override
   String toString() {
-    return 'UserMetadata(id: $id, email: $email, jwtToken: $jwtToken)';
+    return 'UserMetadata(id: $id, email: $email, jwtToken: $jwtToken, expiredTime: $expiredTime)';
   }
 
   /// Create a copy of UserMetadata
@@ -151,7 +168,8 @@ abstract class _UserMetadata implements UserMetadata {
   factory _UserMetadata(
       {required String id,
       required String email,
-      required String jwtToken}) = _$UserMetadataImpl;
+      required String jwtToken,
+      DateTime? expiredTime}) = _$UserMetadataImpl;
 
   @override
   String get id;
@@ -162,6 +180,9 @@ abstract class _UserMetadata implements UserMetadata {
   @override
   String get jwtToken;
   set jwtToken(String value);
+  @override
+  DateTime? get expiredTime;
+  set expiredTime(DateTime? value);
 
   /// Create a copy of UserMetadata
   /// with the given fields replaced by the non-null parameter values.

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
 class TextConfigTab extends StatelessWidget {
   const TextConfigTab({

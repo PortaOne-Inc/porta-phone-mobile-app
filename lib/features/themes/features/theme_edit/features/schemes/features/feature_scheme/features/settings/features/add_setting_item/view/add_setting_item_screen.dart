@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:webtrit_configurator/core/exports/exports.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/core/widgets/dropdown_button.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_phone/extensions/string.dart';

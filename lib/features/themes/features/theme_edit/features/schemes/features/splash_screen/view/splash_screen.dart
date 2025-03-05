@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:domain/domain.dart';
 
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/core/core.dart';
 

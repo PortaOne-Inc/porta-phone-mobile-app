@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_cubit.dart';
+part of 'login_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$LoginState {
   AuthEmailInput? get emailInput => throw _privateConstructorUsedError;
   AuthPasswordInput? get passwordInput => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,32 +105,33 @@ mixin _$AuthState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AuthStateCopyWith<AuthState> get copyWith =>
+  $LoginStateCopyWith<LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
+    implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -153,7 +154,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 
 /// @nodoc
 abstract class _$$AuthStateImplCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
+    implements $LoginStateCopyWith<$Res> {
   factory _$$AuthStateImplCopyWith(
           _$AuthStateImpl value, $Res Function(_$AuthStateImpl) then) =
       __$$AuthStateImplCopyWithImpl<$Res>;
@@ -164,13 +165,13 @@ abstract class _$$AuthStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AuthStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateImpl>
     implements _$$AuthStateImplCopyWith<$Res> {
   __$$AuthStateImplCopyWithImpl(
       _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -203,7 +204,7 @@ class _$AuthStateImpl implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(emailInput: $emailInput, passwordInput: $passwordInput)';
+    return 'LoginState(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
 
   @override
@@ -220,7 +221,7 @@ class _$AuthStateImpl implements _AuthState {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -339,7 +340,7 @@ class _$AuthStateImpl implements _AuthState {
   }
 }
 
-abstract class _AuthState implements AuthState {
+abstract class _AuthState implements LoginState {
   factory _AuthState(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput}) = _$AuthStateImpl;
@@ -349,7 +350,7 @@ abstract class _AuthState implements AuthState {
   @override
   AuthPasswordInput? get passwordInput;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -359,7 +360,7 @@ abstract class _AuthState implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthStateProgressImplCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
+    implements $LoginStateCopyWith<$Res> {
   factory _$$AuthStateProgressImplCopyWith(_$AuthStateProgressImpl value,
           $Res Function(_$AuthStateProgressImpl) then) =
       __$$AuthStateProgressImplCopyWithImpl<$Res>;
@@ -370,13 +371,13 @@ abstract class _$$AuthStateProgressImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AuthStateProgressImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateProgressImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateProgressImpl>
     implements _$$AuthStateProgressImplCopyWith<$Res> {
   __$$AuthStateProgressImplCopyWithImpl(_$AuthStateProgressImpl _value,
       $Res Function(_$AuthStateProgressImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -409,7 +410,7 @@ class _$AuthStateProgressImpl implements AuthStateProgress {
 
   @override
   String toString() {
-    return 'AuthState.progress(emailInput: $emailInput, passwordInput: $passwordInput)';
+    return 'LoginState.progress(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
 
   @override
@@ -426,7 +427,7 @@ class _$AuthStateProgressImpl implements AuthStateProgress {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -546,7 +547,7 @@ class _$AuthStateProgressImpl implements AuthStateProgress {
   }
 }
 
-abstract class AuthStateProgress implements AuthState {
+abstract class AuthStateProgress implements LoginState {
   factory AuthStateProgress(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput}) = _$AuthStateProgressImpl;
@@ -556,7 +557,7 @@ abstract class AuthStateProgress implements AuthState {
   @override
   AuthPasswordInput? get passwordInput;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -566,7 +567,7 @@ abstract class AuthStateProgress implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthStateSuccessImplCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
+    implements $LoginStateCopyWith<$Res> {
   factory _$$AuthStateSuccessImplCopyWith(_$AuthStateSuccessImpl value,
           $Res Function(_$AuthStateSuccessImpl) then) =
       __$$AuthStateSuccessImplCopyWithImpl<$Res>;
@@ -577,13 +578,13 @@ abstract class _$$AuthStateSuccessImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AuthStateSuccessImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateSuccessImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateSuccessImpl>
     implements _$$AuthStateSuccessImplCopyWith<$Res> {
   __$$AuthStateSuccessImplCopyWithImpl(_$AuthStateSuccessImpl _value,
       $Res Function(_$AuthStateSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -616,7 +617,7 @@ class _$AuthStateSuccessImpl implements AuthStateSuccess {
 
   @override
   String toString() {
-    return 'AuthState.success(emailInput: $emailInput, passwordInput: $passwordInput)';
+    return 'LoginState.success(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
 
   @override
@@ -633,7 +634,7 @@ class _$AuthStateSuccessImpl implements AuthStateSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -753,7 +754,7 @@ class _$AuthStateSuccessImpl implements AuthStateSuccess {
   }
 }
 
-abstract class AuthStateSuccess implements AuthState {
+abstract class AuthStateSuccess implements LoginState {
   factory AuthStateSuccess(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput}) = _$AuthStateSuccessImpl;
@@ -763,7 +764,7 @@ abstract class AuthStateSuccess implements AuthState {
   @override
   AuthPasswordInput? get passwordInput;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -773,7 +774,7 @@ abstract class AuthStateSuccess implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthStateValidationImplCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
+    implements $LoginStateCopyWith<$Res> {
   factory _$$AuthStateValidationImplCopyWith(_$AuthStateValidationImpl value,
           $Res Function(_$AuthStateValidationImpl) then) =
       __$$AuthStateValidationImplCopyWithImpl<$Res>;
@@ -784,13 +785,13 @@ abstract class _$$AuthStateValidationImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AuthStateValidationImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateValidationImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateValidationImpl>
     implements _$$AuthStateValidationImplCopyWith<$Res> {
   __$$AuthStateValidationImplCopyWithImpl(_$AuthStateValidationImpl _value,
       $Res Function(_$AuthStateValidationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -823,7 +824,7 @@ class _$AuthStateValidationImpl implements AuthStateValidation {
 
   @override
   String toString() {
-    return 'AuthState.validation(emailInput: $emailInput, passwordInput: $passwordInput)';
+    return 'LoginState.validation(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
 
   @override
@@ -840,7 +841,7 @@ class _$AuthStateValidationImpl implements AuthStateValidation {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -960,7 +961,7 @@ class _$AuthStateValidationImpl implements AuthStateValidation {
   }
 }
 
-abstract class AuthStateValidation implements AuthState {
+abstract class AuthStateValidation implements LoginState {
   factory AuthStateValidation(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput}) = _$AuthStateValidationImpl;
@@ -970,7 +971,7 @@ abstract class AuthStateValidation implements AuthState {
   @override
   AuthPasswordInput? get passwordInput;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -980,7 +981,7 @@ abstract class AuthStateValidation implements AuthState {
 
 /// @nodoc
 abstract class _$$AuthStateErrorImplCopyWith<$Res>
-    implements $AuthStateCopyWith<$Res> {
+    implements $LoginStateCopyWith<$Res> {
   factory _$$AuthStateErrorImplCopyWith(_$AuthStateErrorImpl value,
           $Res Function(_$AuthStateErrorImpl) then) =
       __$$AuthStateErrorImplCopyWithImpl<$Res>;
@@ -994,13 +995,13 @@ abstract class _$$AuthStateErrorImplCopyWith<$Res>
 
 /// @nodoc
 class __$$AuthStateErrorImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateErrorImpl>
+    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateErrorImpl>
     implements _$$AuthStateErrorImplCopyWith<$Res> {
   __$$AuthStateErrorImplCopyWithImpl(
       _$AuthStateErrorImpl _value, $Res Function(_$AuthStateErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1040,7 +1041,7 @@ class _$AuthStateErrorImpl implements AuthStateError {
 
   @override
   String toString() {
-    return 'AuthState.error(emailInput: $emailInput, passwordInput: $passwordInput, error: $error)';
+    return 'LoginState.error(emailInput: $emailInput, passwordInput: $passwordInput, error: $error)';
   }
 
   @override
@@ -1059,7 +1060,7 @@ class _$AuthStateErrorImpl implements AuthStateError {
   int get hashCode =>
       Object.hash(runtimeType, emailInput, passwordInput, error);
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1179,7 +1180,7 @@ class _$AuthStateErrorImpl implements AuthStateError {
   }
 }
 
-abstract class AuthStateError implements AuthState {
+abstract class AuthStateError implements LoginState {
   factory AuthStateError(
       {final AuthEmailInput? emailInput,
       final AuthPasswordInput? passwordInput,
@@ -1191,7 +1192,7 @@ abstract class AuthStateError implements AuthState {
   AuthPasswordInput? get passwordInput;
   AuthException? get error;
 
-  /// Create a copy of AuthState
+  /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

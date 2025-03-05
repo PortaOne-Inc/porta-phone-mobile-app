@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
 
 typedef StatusesWidgetConfigConfigCallback = void Function(StatusesWidgetConfig);

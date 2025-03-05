@@ -12,10 +12,10 @@ part 'reset_password_cubit.freezed.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit({
-    required this.usecaseAuthResetPassword,
+    required this.resetAuthPassword,
   }) : super(ResetPasswordState());
 
-  final UsecaseAuthResetPassword usecaseAuthResetPassword;
+  final ResetAuthPasswordUsecase resetAuthPassword;
 
   void authEmailChanged(String email) {
     emit(
@@ -61,7 +61,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   Future<void> _resetPassword(String email) async {
     emit(state.copyWithProgress());
-    await usecaseAuthResetPassword.execute(email: email);
+    await resetAuthPassword.execute(email: email);
     emit(state.copyWithSuccess());
   }
 }

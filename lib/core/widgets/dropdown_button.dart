@@ -8,6 +8,7 @@ class DropdownButtonExt<T> extends StatelessWidget {
     this.onChanged,
     this.value,
     this.constraints,
+    this.padding = const EdgeInsets.only(bottom: 16),
     super.key,
   });
 
@@ -17,25 +18,29 @@ class DropdownButtonExt<T> extends StatelessWidget {
   final ValueChanged<T?>? onChanged;
   final String Function(T) optionBuilder;
   final BoxConstraints? constraints;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: constraints ?? const BoxConstraints(),
-      child: DropdownButtonFormField<T>(
-        isExpanded: true,
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
+    return Padding(
+      padding: padding,
+      child: ConstrainedBox(
+        constraints: constraints ?? const BoxConstraints(),
+        child: DropdownButtonFormField<T>(
+          isExpanded: true,
+          decoration: InputDecoration(
+            labelText: label,
+            border: const OutlineInputBorder(),
+          ),
+          value: value,
+          items: options.map((option) {
+            return DropdownMenuItem(
+              value: option,
+              child: Text(optionBuilder(option)),
+            );
+          }).toList(),
+          onChanged: onChanged,
         ),
-        value: value,
-        items: options.map((option) {
-          return DropdownMenuItem(
-            value: option,
-            child: Text(optionBuilder(option)),
-          );
-        }).toList(),
-        onChanged: onChanged,
       ),
     );
   }

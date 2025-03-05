@@ -1,4 +1,4 @@
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/features.dart';
 
 extension ThemePageConfigExt on ThemePageConfig {
