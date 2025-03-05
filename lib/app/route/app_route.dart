@@ -29,7 +29,7 @@ class AppRoute {
           builder: (BuildContext context, GoRouterState state, Widget child) => AuthReLoginShell(
             relogin: BlocProvider<LoginCubit>(
               child: LoginScreen(
-                title: 'Your session has expired, please log in again',
+                title: 'Your session has expired.\nPlease log in again',
                 onLogin: () => context.pop(),
               ),
               create: (BuildContext context) => LoginCubit(

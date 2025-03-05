@@ -32,7 +32,9 @@ class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages 
   @override
   void initState() {
     super.initState();
-    _handleAuthState(context, context.read<AuthCubit>().state);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleAuthState(context, context.read<AuthCubit>().state);
+    });
   }
 
   @override

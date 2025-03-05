@@ -46,71 +46,61 @@ class _LoginScreenState extends State<LoginScreen> with MixinMessages {
             minHeight: 200,
           ),
           child: SingleChildScrollView(
-            child: Card(
-              margin: const EdgeInsets.all(16),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Opacity(
-                      opacity: state is AuthStateProgress ? 1.0 : 0.0,
-                      child: const LinearProgressIndicator(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Opacity(
+                    opacity: state is AuthStateProgress ? 1.0 : 0.0,
+                    child: const LinearProgressIndicator(),
+                  ),
+                  const SizedBox(height: 16),
+                  ThemeModeSwitcher(
+                    themeMode: commonBloc.state.themeMode,
+                    onThemeChange: commonBloc.setThemeMode,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    widget.title,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 32),
+                  TextFormField(
+                    initialValue: state.emailInput?.value,
+                    onChanged: authCubit.authEmailChanged,
+                    decoration: InputDecoration(
+                      hintText: context.l10n.authorization_enter_email_hint,
+                      errorText: state.emailInput?.errorL10n(context),
                     ),
-                    const SizedBox(height: 16),
-                    ThemeModeSwitcher(
-                      themeMode: commonBloc.state.themeMode,
-                      onThemeChange: commonBloc.setThemeMode,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      widget.title,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    const SizedBox(height: 32),
-                    TextFormField(
-                      initialValue: state.emailInput?.value,
-                      onChanged: authCubit.authEmailChanged,
-                      decoration: InputDecoration(
-                        hintText: context.l10n.authorization_enter_email_hint,
-                        errorText: state.emailInput?.errorL10n(context),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      obscureText: _isPasswordVisible,
-                      initialValue: state.passwordInput?.value,
-                      onChanged: authCubit.authPasswordChanged,
-                      decoration: InputDecoration(
-                        hintText: context.l10n.authorization_enter_password_hint,
-                        errorText: state.passwordInput?.errorL10n(context),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                          ),
-                          onPressed: () => setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          }),
+                  ),
+                  const SizedBox(height: 8),
+                  TextFormField(
+                    obscureText: _isPasswordVisible,
+                    initialValue: state.passwordInput?.value,
+                    onChanged: authCubit.authPasswordChanged,
+                    decoration: InputDecoration(
+                      hintText: context.l10n.authorization_enter_password_hint,
+                      errorText: state.passwordInput?.errorL10n(context),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                         ),
+                        onPressed: () => setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        }),
                       ),
                     ),
-                    // const SizedBox(height: 4),
-                    // Align(
-                    //   alignment: Alignment.centerRight,
-                    //   child: TextButton(
-                    //     style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.titleSmall),
-                    //     onPressed: () => GoRouter.of(context).goNamed(AppRoutInfo.reset.name),
-                    //     child: Text(context.l10n.feature_authorization_reset_password),
-                    //   ),
-                    // ),
-                    const SizedBox(height: 16),
-                    Button(
-                      title: context.l10n.authorization_sign_in,
-                      onPressed: authCubit.validateAndTryLogin,
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 24),
+                  TextButton(
+                    onPressed: authCubit.validateAndTryLogin,
+                    child: Text(context.l10n.authorization_sign_in),
+                  ),
+                  const SizedBox(height: 8),
+                ],
               ),
             ),
           ),
