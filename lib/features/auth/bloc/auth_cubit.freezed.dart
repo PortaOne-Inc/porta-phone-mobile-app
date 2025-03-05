@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthState {
   AuthenticationStatus? get status => throw _privateConstructorUsedError;
+  bool? get isSubmitting => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -30,7 +31,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({AuthenticationStatus? status});
+  $Res call({AuthenticationStatus? status, bool? isSubmitting});
 }
 
 /// @nodoc
@@ -49,12 +50,17 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? isSubmitting = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus?,
+      isSubmitting: freezed == isSubmitting
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -67,7 +73,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthenticationStatus? status});
+  $Res call({AuthenticationStatus? status, bool? isSubmitting});
 }
 
 /// @nodoc
@@ -84,12 +90,17 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? isSubmitting = freezed,
   }) {
     return _then(_$InitialImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus?,
+      isSubmitting: freezed == isSubmitting
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -97,14 +108,16 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.status});
+  const _$InitialImpl({this.status, this.isSubmitting});
 
   @override
   final AuthenticationStatus? status;
+  @override
+  final bool? isSubmitting;
 
   @override
   String toString() {
-    return 'AuthState(status: $status)';
+    return 'AuthState(status: $status, isSubmitting: $isSubmitting)';
   }
 
   @override
@@ -112,11 +125,13 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                other.isSubmitting == isSubmitting));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, isSubmitting);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -128,10 +143,14 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial({final AuthenticationStatus? status}) = _$InitialImpl;
+  const factory _Initial(
+      {final AuthenticationStatus? status,
+      final bool? isSubmitting}) = _$InitialImpl;
 
   @override
   AuthenticationStatus? get status;
+  @override
+  bool? get isSubmitting;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
