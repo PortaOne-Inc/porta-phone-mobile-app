@@ -34,14 +34,8 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
 
   @override
   Future<List<ApplicationModel>> getUserApplications() async {
-    try {
-      final dto = await configuratorBackandDatasource.getApplications();
-      return applicationMapper.convertListFrom(dto);
-    } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
+    final dto = await configuratorBackandDatasource.getApplications();
+    return applicationMapper.convertListFrom(dto);
   }
 
   @override
