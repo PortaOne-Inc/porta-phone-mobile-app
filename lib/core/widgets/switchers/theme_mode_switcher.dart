@@ -26,7 +26,6 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
           _getIconForThemeMode(_currentTheme()),
-          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );

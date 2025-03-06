@@ -26,6 +26,8 @@ class PageThemeEdit extends StatefulWidget with MixinMessages {
 }
 
 class _PageThemeEditState extends State<PageThemeEdit> {
+  UpdateThemCubit get _cubit => BlocProvider.of<UpdateThemCubit>(context);
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -42,6 +44,20 @@ class _PageThemeEditState extends State<PageThemeEdit> {
               style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             actions: [
+              Tooltip(
+                message: 'Save all changes which you have made',
+                child: TextButton.icon(
+                  icon: state.isProgress
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 1),
+                        )
+                      : const Icon(Icons.save),
+                  label: const Text('Save'),
+                  onPressed: state.isProgress ? null : () => _cubit.add(UpdateThemeEvent(_cubit.state.theme)),
+                ),
+              ),
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
                 onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
