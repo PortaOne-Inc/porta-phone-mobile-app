@@ -25,22 +25,10 @@ class PreviewShellRoute extends StatelessWidget {
         appBar: MenuPreviewToolbar(
           onScaleTab: previewCubit.setScale,
           onFrameTab: previewCubit.setFrame,
-          onTypeOfPreview: (type) => _onThemePreviewScreen(type, context),
           isEnableFrame: state.frameVisible,
         ),
         body: child,
       );
     });
-  }
-
-  void _onThemePreviewScreen(ThemePreviewScreen themePreviewScreen, BuildContext context) {
-    switch (themePreviewScreen) {
-      case ThemePreviewScreen.layouts:
-        GoRouter.of(context).pushNamed('theme_scheme_review');
-        return;
-      case ThemePreviewScreen.assets:
-        GoRouter.of(context).pushNamed('theme_scheme_review_preview');
-        return;
-    }
   }
 }

@@ -23,7 +23,6 @@ class UpdateThemeState with _$UpdateThemeState {
     @Default(AppConfig()) AppConfig appConfig,
     @Default([]) List<ThemeAssetModel> assets,
     //
-    @Default(ThemePreviewScreen.layouts) ThemePreviewScreen themePreviewScreen,
     @Default(ThemePropertyScreens.property) ThemePropertyScreens themePropertyScreens,
     ThemeNameInput? nameField,
     Exception? error,

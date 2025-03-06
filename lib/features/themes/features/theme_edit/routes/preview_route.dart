@@ -46,13 +46,6 @@ class PreviewRoute {
                   return const PageThemePreview();
                 },
               ),
-              GoRoute(
-                path: preview(applicationId, themeId).path,
-                name: preview(applicationId, themeId).name,
-                builder: (BuildContext context, GoRouterState state) {
-                  return const AssetsPreview();
-                },
-              )
             ])
       ],
     );

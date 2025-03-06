@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import '../models/theme_preview_screen.dart';
-
 import 'menu_space.dart';
 import 'type_preview.dart';
 
@@ -13,13 +11,11 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
     required this.onScaleTab,
     required this.onFrameTab,
     required this.isEnableFrame,
-    required this.onTypeOfPreview,
     super.key,
   });
 
   final void Function(PreviewType type) onScaleTab;
   final void Function(bool isEnableFrame) onFrameTab;
-  final void Function(ThemePreviewScreen type) onTypeOfPreview;
 
   final bool isEnableFrame;
 
@@ -33,15 +29,6 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
         isTopPosition: true,
         background: colorScheme.surfaceDim.withValues(alpha: 0.2),
         children: [
-          Dropdown(
-            constraints: const BoxConstraints(maxWidth: 224),
-            items: const [
-              'Layouts',
-              'Launch assets',
-            ],
-            onSelect: (int position) => onTypeOfPreview(ThemePreviewScreen.values[position]),
-            icon: const Icon(Icons.menu_open),
-          ),
           const Spacer(),
           Align(
             alignment: Alignment.topRight,

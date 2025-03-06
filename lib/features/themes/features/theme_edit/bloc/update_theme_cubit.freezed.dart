@@ -28,8 +28,6 @@ mixin _$UpdateThemeState {
   ThemePageConfig get themePageConfig => throw _privateConstructorUsedError;
   AppConfig get appConfig => throw _privateConstructorUsedError;
   List<ThemeAssetModel> get assets => throw _privateConstructorUsedError; //
-  ThemePreviewScreen get themePreviewScreen =>
-      throw _privateConstructorUsedError;
   ThemePropertyScreens get themePropertyScreens =>
       throw _privateConstructorUsedError;
   ThemeNameInput? get nameField => throw _privateConstructorUsedError;
@@ -60,7 +58,6 @@ abstract class $UpdateThemeStateCopyWith<$Res> {
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
       List<ThemeAssetModel> assets,
-      ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       ThemeNameInput? nameField,
       Exception? error});
@@ -100,7 +97,6 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
     Object? themePageConfig = null,
     Object? appConfig = null,
     Object? assets = null,
-    Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? nameField = freezed,
     Object? error = freezed,
@@ -150,10 +146,6 @@ class _$UpdateThemeStateCopyWithImpl<$Res, $Val extends UpdateThemeState>
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<ThemeAssetModel>,
-      themePreviewScreen: null == themePreviewScreen
-          ? _value.themePreviewScreen
-          : themePreviewScreen // ignore: cast_nullable_to_non_nullable
-              as ThemePreviewScreen,
       themePropertyScreens: null == themePropertyScreens
           ? _value.themePropertyScreens
           : themePropertyScreens // ignore: cast_nullable_to_non_nullable
@@ -272,7 +264,6 @@ abstract class _$$UpdateThemeStateImplCopyWith<$Res>
       ThemePageConfig themePageConfig,
       AppConfig appConfig,
       List<ThemeAssetModel> assets,
-      ThemePreviewScreen themePreviewScreen,
       ThemePropertyScreens themePropertyScreens,
       ThemeNameInput? nameField,
       Exception? error});
@@ -317,7 +308,6 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
     Object? themePageConfig = null,
     Object? appConfig = null,
     Object? assets = null,
-    Object? themePreviewScreen = null,
     Object? themePropertyScreens = null,
     Object? nameField = freezed,
     Object? error = freezed,
@@ -367,10 +357,6 @@ class __$$UpdateThemeStateImplCopyWithImpl<$Res>
           ? _value._assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<ThemeAssetModel>,
-      themePreviewScreen: null == themePreviewScreen
-          ? _value.themePreviewScreen
-          : themePreviewScreen // ignore: cast_nullable_to_non_nullable
-              as ThemePreviewScreen,
       themePropertyScreens: null == themePropertyScreens
           ? _value.themePropertyScreens
           : themePropertyScreens // ignore: cast_nullable_to_non_nullable
@@ -402,7 +388,6 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
       this.themePageConfig = const ThemePageConfig(),
       this.appConfig = const AppConfig(),
       final List<ThemeAssetModel> assets = const [],
-      this.themePreviewScreen = ThemePreviewScreen.layouts,
       this.themePropertyScreens = ThemePropertyScreens.property,
       this.nameField,
       this.error})
@@ -449,9 +434,6 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
 //
   @override
   @JsonKey()
-  final ThemePreviewScreen themePreviewScreen;
-  @override
-  @JsonKey()
   final ThemePropertyScreens themePropertyScreens;
   @override
   final ThemeNameInput? nameField;
@@ -460,7 +442,7 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
 
   @override
   String toString() {
-    return 'UpdateThemeState(applicationId: $applicationId, themeId: $themeId, launchImage: $launchImage, status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, themePreviewScreen: $themePreviewScreen, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
+    return 'UpdateThemeState(applicationId: $applicationId, themeId: $themeId, launchImage: $launchImage, status: $status, applicationModel: $applicationModel, theme: $theme, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, themePropertyScreens: $themePropertyScreens, nameField: $nameField, error: $error)';
   }
 
   @override
@@ -486,8 +468,6 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
             (identical(other.appConfig, appConfig) ||
                 other.appConfig == appConfig) &&
             const DeepCollectionEquality().equals(other._assets, _assets) &&
-            (identical(other.themePreviewScreen, themePreviewScreen) ||
-                other.themePreviewScreen == themePreviewScreen) &&
             (identical(other.themePropertyScreens, themePropertyScreens) ||
                 other.themePropertyScreens == themePropertyScreens) &&
             (identical(other.nameField, nameField) ||
@@ -509,7 +489,6 @@ class _$UpdateThemeStateImpl extends _UpdateThemeState {
       themePageConfig,
       appConfig,
       const DeepCollectionEquality().hash(_assets),
-      themePreviewScreen,
       themePropertyScreens,
       nameField,
       error);
@@ -537,7 +516,6 @@ abstract class _UpdateThemeState extends UpdateThemeState {
       final ThemePageConfig themePageConfig,
       final AppConfig appConfig,
       final List<ThemeAssetModel> assets,
-      final ThemePreviewScreen themePreviewScreen,
       final ThemePropertyScreens themePropertyScreens,
       final ThemeNameInput? nameField,
       final Exception? error}) = _$UpdateThemeStateImpl;
@@ -566,8 +544,6 @@ abstract class _UpdateThemeState extends UpdateThemeState {
   AppConfig get appConfig;
   @override
   List<ThemeAssetModel> get assets; //
-  @override
-  ThemePreviewScreen get themePreviewScreen;
   @override
   ThemePropertyScreens get themePropertyScreens;
   @override
