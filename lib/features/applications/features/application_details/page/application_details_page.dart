@@ -12,7 +12,6 @@ import 'package:webtrit_configurator/features/common/common.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 import '../bloc/application_details_cubit.dart';
-import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 import 'application_details_screen.dart';
@@ -32,33 +31,67 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return BlocConsumer<ApplicationDetailsCubit, ApplicationDetailsState>(
       listener: _listenThemesState,
       builder: (ctx, state) {
         return Scaffold(
-          appBar: AppToolbar(
-            themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-            onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            name: context.l10n.feature_application_details_Toolbar_title,
-            left: [
-              Menu<ApplicationDetailFile>(
-                name: 'File',
-                items: ApplicationDetailFile.values,
-                callback: _onFileListener,
-              ),
-              Menu<ApplicationDetailNavigate>(
-                name: 'Navigate',
-                items: ApplicationDetailNavigate.values,
-                callback: _onNavigateListener,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              context.l10n.feature_applications_title,
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              ThemeModeSwitcher(
+                themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                onThemeChange: (mode) => _onThemeModeChanged(context, mode),
               )
             ],
-            right: [
-              Menu<ApplicationDetailProfile>(
-                iconData: Icons.account_circle,
-                items: ApplicationDetailProfile.values,
-                callback: _onProfile,
-              ),
-            ],
+          ),
+          drawer: Drawer(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    state.application?.name ?? '...',
+                    style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.translate),
+                  title: const Text('Translations'),
+                  onTap: () => _openApplicationTranslations(context, bloc.applicationId),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.edit),
+                  title: const Text('Edit'),
+                  onTap: () => _openEditApplication(context, bloc.applicationId),
+                ),
+                ListTile(
+                  iconColor: colorScheme.error,
+                  textColor: colorScheme.error,
+                  leading: const Icon(Icons.delete),
+                  title: const Text('Delete'),
+                  onTap: () => bloc.tryDeleteApplication(),
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.list),
+                  title: const Text('Applications'),
+                  onTap: () => _openApplicationCollection(context),
+                ),
+                const Divider(),
+                const Spacer(),
+                ListTile(
+                  leading: const Icon(Icons.exit_to_app),
+                  title: const Text('Logout'),
+                  onTap: () => _logout(context),
+                ),
+              ],
+            ),
           ),
           body: ResizableColumns(
             orientation: ResizableOrientation.horizontal,
@@ -149,37 +182,6 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     }
   }
 
-  void _onFileListener(BuildContext context, ApplicationDetailFile applicationDetailFile) {
-    switch (applicationDetailFile) {
-      case ApplicationDetailFile.newApplication:
-        GoRouter.of(context).goNamed(AppRoutInfo.applicationCreate.name);
-      case ApplicationDetailFile.editApplication:
-        GoRouter.of(context).goNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
-          AppRoutInfo.keyApplicationId: bloc.applicationId,
-        });
-      case ApplicationDetailFile.deleteApplication:
-        bloc.tryDeleteApplication();
-    }
-  }
-
-  void _onNavigateListener(BuildContext context, ApplicationDetailNavigate navigate) {
-    switch (navigate) {
-      case ApplicationDetailNavigate.application:
-        GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
-      case ApplicationDetailNavigate.translations:
-        GoRouter.of(context).goNamed(AppRoutInfo.translations.name, pathParameters: <String, String>{
-          AppRoutInfo.keyApplicationId: bloc.applicationId,
-        });
-    }
-  }
-
-  void _onProfile(BuildContext context, ApplicationDetailProfile profile) {
-    switch (profile) {
-      case ApplicationDetailProfile.logOut:
-        BlocProvider.of<CommonBloc>(context).logout();
-    }
-  }
-
   void _onNewTheme(BuildContext context, String applicationId) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.themesCreate.name,
@@ -206,7 +208,32 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
+  void _openApplicationTranslations(BuildContext context, String applicationId) {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.translations.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
 
+  void _openEditApplication(BuildContext context, String applicationId) {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationEdit.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  void _logout(BuildContext context) {
+    BlocProvider.of<CommonBloc>(context).logout();
+    Navigator.pop(context);
+  }
+
+  void _openApplicationCollection(BuildContext context) {
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+  }
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
