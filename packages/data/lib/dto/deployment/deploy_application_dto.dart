@@ -10,7 +10,6 @@ class DeployApplicationDto with _$DeployApplicationDto {
     required String applicationId,
     required String token,
     required String platforms,
-    required String type,
     required String phoneSourceBranch,
     required String phoneConfiguratorToolSourceBranch,
     required String callkeepSourceBranch,

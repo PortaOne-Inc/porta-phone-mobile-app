@@ -30,9 +30,6 @@ class $AssetsSchemeGen {
 class $AssetsThemesGen {
   const $AssetsThemesGen();
 
-  /// File path: assets/themes/1739747420573.html
-  String get a1739747420573 => 'assets/themes/1739747420573.html';
-
   /// File path: assets/themes/app.config.json
   String get appConfig => 'assets/themes/app.config.json';
 
@@ -65,7 +62,6 @@ class $AssetsThemesGen {
 
   /// List of all assets
   List<String> get values => [
-        a1739747420573,
         appConfig,
         customSignup,
         originalColorSchemeDarkConfig,

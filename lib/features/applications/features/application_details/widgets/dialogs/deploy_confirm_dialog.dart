@@ -37,11 +37,6 @@ class DeployConfirmDialog extends StatelessWidget {
               IOSDeploymentDetails(deployInfo: deployInfo),
             ],
             const Divider(),
-            ConfigInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_flow,
-              value: deployInfo.demo.toString(),
-            ),
-            const Divider(),
             const SizedBox(height: 8),
             BranchInfoRow(
               title: context.l10n.feature_application_details_DeployConfirmDialog_phone_source_branch,

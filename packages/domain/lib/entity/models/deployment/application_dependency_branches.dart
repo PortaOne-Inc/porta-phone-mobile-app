@@ -7,7 +7,7 @@ part 'application_dependency_branches.freezed.dart';
 const String _kDefaultPhoneMainSourceBranch = 'main';
 const String _kDefaultCallkeepSourceBranch = 'main';
 const String _kConfiguratorSourceBranch = 'develop';
-const String _kDefaultPhoneConfiguratorToolSourceBranch = 'develop';
+const String _kDefaultPhoneConfiguratorToolSourceBranch = 'main';
 const String _kDefaultKeystoreSourceBranch = 'main';
 
 @freezed

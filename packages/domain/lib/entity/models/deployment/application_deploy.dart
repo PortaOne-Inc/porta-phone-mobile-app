@@ -11,7 +11,6 @@ class ApplicationDeploy with _$ApplicationDeploy {
     @Default(AndroidBuildPlatform()) AndroidBuildPlatform android,
     @Default(IOSBuildPlatform()) IOSBuildPlatform ios,
     @Default(ApplicationDependencyBranches()) ApplicationDependencyBranches applicationDependencyBranches,
-    @Default(false) bool demo,
   }) = _ApplicationDeploy;
 
   const ApplicationDeploy._();

@@ -26,8 +26,6 @@ mixin _$DeployApplicationDto {
   set token(String value) => throw _privateConstructorUsedError;
   String get platforms => throw _privateConstructorUsedError;
   set platforms(String value) => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  set type(String value) => throw _privateConstructorUsedError;
   String get phoneSourceBranch => throw _privateConstructorUsedError;
   set phoneSourceBranch(String value) => throw _privateConstructorUsedError;
   String get phoneConfiguratorToolSourceBranch =>
@@ -65,7 +63,6 @@ abstract class $DeployApplicationDtoCopyWith<$Res> {
       {String applicationId,
       String token,
       String platforms,
-      String type,
       String phoneSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
@@ -93,7 +90,6 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
     Object? applicationId = null,
     Object? token = null,
     Object? platforms = null,
-    Object? type = null,
     Object? phoneSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
@@ -113,10 +109,6 @@ class _$DeployApplicationDtoCopyWithImpl<$Res,
       platforms: null == platforms
           ? _value.platforms
           : platforms // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
               as String,
       phoneSourceBranch: null == phoneSourceBranch
           ? _value.phoneSourceBranch
@@ -159,7 +151,6 @@ abstract class _$$DeployApplicationDtoImplCopyWith<$Res>
       {String applicationId,
       String token,
       String platforms,
-      String type,
       String phoneSourceBranch,
       String phoneConfiguratorToolSourceBranch,
       String callkeepSourceBranch,
@@ -184,7 +175,6 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
     Object? applicationId = null,
     Object? token = null,
     Object? platforms = null,
-    Object? type = null,
     Object? phoneSourceBranch = null,
     Object? phoneConfiguratorToolSourceBranch = null,
     Object? callkeepSourceBranch = null,
@@ -204,10 +194,6 @@ class __$$DeployApplicationDtoImplCopyWithImpl<$Res>
       platforms: null == platforms
           ? _value.platforms
           : platforms // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
               as String,
       phoneSourceBranch: null == phoneSourceBranch
           ? _value.phoneSourceBranch
@@ -245,7 +231,6 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
       {required this.applicationId,
       required this.token,
       required this.platforms,
-      required this.type,
       required this.phoneSourceBranch,
       required this.phoneConfiguratorToolSourceBranch,
       required this.callkeepSourceBranch,
@@ -263,8 +248,6 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
   @override
   String platforms;
   @override
-  String type;
-  @override
   String phoneSourceBranch;
   @override
   String phoneConfiguratorToolSourceBranch;
@@ -279,7 +262,7 @@ class _$DeployApplicationDtoImpl implements _DeployApplicationDto {
 
   @override
   String toString() {
-    return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, type: $type, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+    return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
   }
 
   /// Create a copy of DeployApplicationDto
@@ -305,7 +288,6 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
       {required String applicationId,
       required String token,
       required String platforms,
-      required String type,
       required String phoneSourceBranch,
       required String phoneConfiguratorToolSourceBranch,
       required String callkeepSourceBranch,
@@ -325,9 +307,6 @@ abstract class _DeployApplicationDto implements DeployApplicationDto {
   @override
   String get platforms;
   set platforms(String value);
-  @override
-  String get type;
-  set type(String value);
   @override
   String get phoneSourceBranch;
   set phoneSourceBranch(String value);

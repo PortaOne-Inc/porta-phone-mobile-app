@@ -5,7 +5,6 @@ abstract class DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    bool demo = false,
     ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
   });
 

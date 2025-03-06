@@ -43,9 +43,7 @@ class DeploymentCubit extends Cubit<DeploymentState> {
 
         emit(state.copyWith(
           application: application,
-          applicationDeploy: state.applicationDeploy.copyWith(
-            demo: application.demo,
-          ),
+          applicationDeploy: state.applicationDeploy,
           status: DeploymentDetailsStatus.success,
         ));
       } on BaseException catch (e) {
@@ -54,7 +52,7 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     } else {
       emit(state.copyWith(
         application: state.application,
-        applicationDeploy: state.applicationDeploy.copyWith(demo: state.application!.demo),
+        applicationDeploy: state.applicationDeploy,
         status: DeploymentDetailsStatus.success,
       ));
     }
@@ -130,7 +128,7 @@ class DeploymentCubit extends Cubit<DeploymentState> {
   }
 
   Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
-    updateApplicationUsecase.execute(state.application!.copyWith(demo: model.demo));
+    updateApplicationUsecase.execute(state.application!);
     emit(state.copyWith(applicationDeploy: model));
   }
 

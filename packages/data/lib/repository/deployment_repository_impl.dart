@@ -28,11 +28,9 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    bool demo = false,
     ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
   }) {
     final deployPlatform = _getDeployPlatform(android, ios);
-    final deployFlow = demo ? 'classic' : 'demo';
 
     final androidPlayStoreConfig = jsonEncode(_mapAndroidPlayStoreConfigToJson(android?.playStoreConfig));
 
@@ -40,7 +38,6 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       applicationId: applicationId,
       token: authPrefDataSource.getAuthToken()!,
       platforms: deployPlatform,
-      type: deployFlow,
       phoneSourceBranch: branches.phoneSourceBranch,
       phoneConfiguratorToolSourceBranch: branches.phoneConfiguratorToolSourceBranch,
       androidPlayStoreConfig: androidPlayStoreConfig,

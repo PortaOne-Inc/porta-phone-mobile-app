@@ -31,7 +31,6 @@ class UsecaseDeployBuildsImpl extends UsecaseDeployBuilds {
       android: applicationDeploy.android.normalize(),
       ios: applicationDeploy.ios,
       branches: applicationDeploy.applicationDependencyBranches,
-      demo: applicationDeploy.demo,
     );
 
     // TODO(Serdun): Fix update app version after deployment, now if i call it version stay null
