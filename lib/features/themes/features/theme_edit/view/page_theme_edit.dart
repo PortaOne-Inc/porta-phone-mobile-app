@@ -75,7 +75,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 ),
                 const Divider(),
                 ListTile(
-                  leading: const Icon(Icons.list),
+                  leading: const Icon(Icons.arrow_back_ios),
                   title: const Text('Application details'),
                   subtitle: Text(state.applicationModel?.name ?? '...'),
                   onTap: () => _openApplicationDetailsCollection(context, state.applicationModel?.id ?? ''),
