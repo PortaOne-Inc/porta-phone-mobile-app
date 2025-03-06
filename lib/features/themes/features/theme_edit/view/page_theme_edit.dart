@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
+import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/localization/localization.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
   const PageThemeEdit({
@@ -26,30 +29,55 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return BlocConsumer<UpdateThemCubit, UpdateThemeState>(
       listener: _handleStateChanges,
       builder: (context, state) {
-        final themeMode = context.watch<CommonBloc>().state.themeMode;
-
         return Scaffold(
-          appBar: AppToolbar(
-            isVisibleProgress: state.isProgress,
-            themeMode: themeMode,
-            onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
-            name: 'Applications',
-            left: [
-              Menu<ApplicationEditFile>(
-                name: 'File',
-                items: ApplicationEditFile.values,
-                callback: _handleFileMenuSelection,
-              ),
-              Menu<ApplicationEditTheme>(
-                name: 'Theme',
-                items: ApplicationEditTheme.values,
-                callback: _handleThemeMenuSelection,
-              ),
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Theme configuration',
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              ThemeModeSwitcher(
+                themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
+              )
             ],
+          ),
+          drawer: Drawer(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    state.theme?.name ?? '...',
+                    style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.list),
+                  title: const Text('Application details'),
+                  subtitle: Text(state.applicationModel?.name ?? '...'),
+                  onTap: () => _openApplicationDetailsCollection(context, state.applicationModel?.id ?? ''),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.list),
+                  title: const Text('Applications'),
+                  onTap: () => _openApplicationCollection(context),
+                ),
+                const Divider(),
+                const Spacer(),
+                ListTile(
+                  leading: const Icon(Icons.exit_to_app),
+                  title: const Text('Logout'),
+                  onTap: () => _logout(context),
+                ),
+              ],
+            ),
           ),
           body: ThemeShellRoute(
             child: ResizableColumns(
@@ -82,13 +110,21 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _handleFileMenuSelection(BuildContext context, ApplicationEditFile action) {
-    final cubit = context.read<UpdateThemCubit>();
-
-    if (action == ApplicationEditFile.save) {
-      cubit.add(UpdateThemeEvent(cubit.state.theme));
-    }
+  void _openApplicationDetailsCollection(BuildContext context, String applicationId) {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationDetails.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
   }
 
-  void _handleThemeMenuSelection(BuildContext context, ApplicationEditTheme action) {}
+  void _openApplicationCollection(BuildContext context) {
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+  }
+
+  void _logout(BuildContext context) {
+    BlocProvider.of<CommonBloc>(context).logout();
+    Navigator.pop(context);
+  }
 }
