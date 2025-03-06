@@ -26,13 +26,23 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return BlocConsumer<ApplicationCreateCubit, ApplicationCreateState>(
       listener: (BuildContext context, ApplicationCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
-        appBar: AppToolbar(
-          name: context.l10n.feature_application_Toolbar_title,
-          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-          onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            context.l10n.feature_application_Toolbar_title,
+            style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          actions: [
+            ThemeModeSwitcher(
+              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+            )
+          ],
         ),
         body: Center(
           child: ApplicationManage(
@@ -43,8 +53,6 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             updateAndroidBuildNumber: _bloc.updateAndroidBuildNumber,
             updateIosBuildName: _bloc.updateIosBuildName,
             updateIosBuildNumber: _bloc.updateIosBuildNumber,
-            onChangedCoreInput: _bloc.updateCore,
-            onChangedTermsConditionsInput: _bloc.updateTermsConditions,
             nameInput: state.nameInput,
             androidPlatformIdInput: state.androidPlatformIdInput,
             iosPlatformIdInput: state.iosPlatformIdInput,
@@ -52,12 +60,8 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             androidBuildNumberInput: state.androidBuildNumberInput,
             iosBuildNameInput: state.iosBuildNameInput,
             iosBuildNumberInput: state.iosBuildNumberInput,
-            applicationCoreInput: state.applicationCoreInput,
-            applicationTermsConditionsInput: state.applicationTermsConditionsInput,
             actionManage: _bloc.validateAndTryCreateApplication,
             action: context.l10n.common_feature_create,
-            onUpdateContactEmail: _bloc.updateContactEmailChange,
-            applicationEmailInput: state.contactEmailInput,
           ),
         ),
       ),

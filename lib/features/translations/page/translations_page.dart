@@ -19,6 +19,7 @@ class _TranslationsPageState extends State<TranslationsPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     final commonBloc = context.read<CommonBloc>();
     final bloc = context.read<TranslationsCubit>();
 
@@ -31,11 +32,18 @@ class _TranslationsPageState extends State<TranslationsPage> {
     return BlocBuilder<TranslationsCubit, TranslationsState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppToolbar(
-            isVisibleProgress: state.isPending,
-            themeMode: commonBloc.state.themeMode,
-            onThemeChange: commonBloc.setThemeMode,
-            name: 'Translations',
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Translations',
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              ThemeModeSwitcher(
+                themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                onThemeChange: commonBloc.setThemeMode,
+              )
+            ],
           ),
           body: SizedBox.expand(
             child: Padding(

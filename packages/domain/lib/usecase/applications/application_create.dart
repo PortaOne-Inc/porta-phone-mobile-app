@@ -9,17 +9,17 @@ import '../../repository/repository.dart';
 abstract class ApplicationCreate {
   FutureOr<ApplicationModel> execute({
     required String name,
-    String? contactEmail,
+    // String? contactEmail,
     String? platformIdentifier,
     String? androidPlatformId,
     String? iosPlatformId,
     BuildVersionModel? androidVersion,
     BuildVersionModel? iosVersion,
-    String? coreUrl,
-    String? termConditionsUrl,
+    // String? coreUrl,
+    // String? termConditionsUrl,
     String? theme,
-    Uint8List? androidGoogleServices,
-    Uint8List? iosGoogleServices,
+    // Uint8List? androidGoogleServices,
+    // Uint8List? iosGoogleServices,
     int version = 0,
   });
 }

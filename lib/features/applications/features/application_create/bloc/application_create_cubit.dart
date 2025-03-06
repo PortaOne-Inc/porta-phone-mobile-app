@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:bloc/bloc.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -22,10 +19,6 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
 
   void updateNameChange(String name) {
     emit(state.copyWith(nameInput: ApplicationNameInput.dirty(name)));
-  }
-
-  void updateContactEmailChange(String email) {
-    emit(state.copyWith(contactEmailInput: ApplicationEmailInput.dirty(email)));
   }
 
   void updateAndroidPlatformId(String platformId) {
@@ -52,14 +45,6 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
   }
 
-  void updateCore(String core) {
-    emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
-  }
-
-  void updateTermsConditions(String core) {
-    emit(state.copyWith(applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(core)));
-  }
-
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryCreateApplication();
@@ -74,7 +59,6 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
     try {
       await _createApplication(
         projectName: state.nameInput!.value,
-        contactEmail: state.contactEmailInput?.value,
         androidPlatformId: state.androidPlatformIdInput?.value,
         iosPlatformId: state.iosPlatformIdInput?.value,
         androidVersion: BuildVersionModel(
@@ -85,59 +69,27 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
           buildName: state.iosBuildNameInput?.value,
           buildNumber: int.tryParse(state.iosBuildNumberInput?.value ?? ''),
         ),
-        coreUrl: state.applicationCoreInput?.value,
-        termConditionsUrl: state.applicationTermsConditionsInput?.value,
-        iosGoogleServices: state.iosGoogleServices,
-        androidGoogleServices: state.androidGoogleServices,
       );
     } on BaseException catch (e) {
       emit(state.copyWith(exception: e, status: ApplicationCreateStatus.error));
     }
   }
 
-  Future<void> chooseIosGoogleServices() async {
-    if (state.iosGoogleServices == null) {
-      final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['plist']);
-      emit(state.copyWith(iosGoogleServices: result?.files.first.bytes));
-    } else {
-      emit(state.copyWith(iosGoogleServices: null));
-    }
-  }
-
-  Future<void> chooseAndroidServices() async {
-    if (state.androidGoogleServices == null) {
-      final result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['json']);
-      emit(state.copyWith(androidGoogleServices: result?.files.first.bytes));
-    } else {
-      emit(state.copyWith(androidGoogleServices: null));
-    }
-  }
-
   Future<void> _createApplication({
     required String projectName,
-    String? contactEmail,
     String? androidPlatformId,
     String? iosPlatformId,
     BuildVersionModel? androidVersion,
     BuildVersionModel? iosVersion,
-    String? coreUrl,
-    String? termConditionsUrl,
-    Uint8List? iosGoogleServices,
-    Uint8List? androidGoogleServices,
   }) async {
     emit(state.copyWith(status: ApplicationCreateStatus.loading));
 
     await applicationCreateUsecase.execute(
       name: projectName,
-      contactEmail: contactEmail,
       androidPlatformId: androidPlatformId,
       iosPlatformId: iosPlatformId,
       androidVersion: androidVersion,
       iosVersion: iosVersion,
-      coreUrl: coreUrl,
-      termConditionsUrl: termConditionsUrl,
-      iosGoogleServices: iosGoogleServices,
-      androidGoogleServices: androidGoogleServices,
     );
 
     emit(state.copyWith(status: ApplicationCreateStatus.success));

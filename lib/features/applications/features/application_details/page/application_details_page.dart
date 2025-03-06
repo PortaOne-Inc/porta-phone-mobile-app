@@ -41,7 +41,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              context.l10n.feature_applications_title,
+              context.l10n.feature_application_details_Toolbar_title,
               style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             actions: [
@@ -209,7 +209,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   }
 
   void _openApplicationTranslations(BuildContext context, String applicationId) {
-    GoRouter.of(context).goNamed(
+    Navigator.pop(context);
+    GoRouter.of(context).pushNamed(
       AppRoutInfo.translations.name,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationId,
@@ -218,7 +219,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   }
 
   void _openEditApplication(BuildContext context, String applicationId) {
-    GoRouter.of(context).goNamed(
+    Navigator.pop(context);
+    GoRouter.of(context).pushNamed(
       AppRoutInfo.applicationEdit.name,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationId,

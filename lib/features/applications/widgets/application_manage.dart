@@ -9,54 +9,42 @@ import '../model/models.dart';
 class ApplicationManage extends StatelessWidget {
   const ApplicationManage({
     required this.updateName,
-    required this.onUpdateContactEmail,
     required this.updateAndroidPlatformId,
     required this.updateIosPlatformId,
     required this.updateAndroidBuildName,
     required this.updateAndroidBuildNumber,
     required this.updateIosBuildName,
     required this.updateIosBuildNumber,
-    required this.onChangedTermsConditionsInput,
-    required this.onChangedCoreInput,
     required this.nameInput,
-    required this.applicationEmailInput,
     required this.androidPlatformIdInput,
     required this.iosPlatformIdInput,
     required this.androidBuildNameInput,
     required this.androidBuildNumberInput,
     required this.iosBuildNameInput,
     required this.iosBuildNumberInput,
-    required this.applicationCoreInput,
-    required this.applicationTermsConditionsInput,
     required this.actionManage,
     required this.action,
     super.key,
   });
 
   final void Function(String value) updateName;
-  final void Function(String value) onUpdateContactEmail;
   final void Function(String value) updateAndroidPlatformId;
   final void Function(String value) updateIosPlatformId;
   final void Function(String value) updateAndroidBuildName;
   final void Function(String value) updateAndroidBuildNumber;
   final void Function(String value) updateIosBuildName;
   final void Function(String value) updateIosBuildNumber;
-  final void Function(String value) onChangedCoreInput;
-  final void Function(String value) onChangedTermsConditionsInput;
 
   final void Function() actionManage;
   final String action;
 
   final ApplicationNameInput? nameInput;
   final ApplicationIdentifierInput? androidPlatformIdInput;
-  final ApplicationEmailInput? applicationEmailInput;
   final ApplicationIdentifierInput? iosPlatformIdInput;
   final ApplicationBuildNameInput? androidBuildNameInput;
   final ApplicationBuildNumberInput? androidBuildNumberInput;
   final ApplicationBuildNameInput? iosBuildNameInput;
   final ApplicationBuildNumberInput? iosBuildNumberInput;
-  final ApplicationCoreInput? applicationCoreInput;
-  final ApplicationTermsConditionsInput? applicationTermsConditionsInput;
 
   @override
   Widget build(BuildContext context) {
@@ -130,67 +118,6 @@ class ApplicationManage extends StatelessWidget {
                     hintText: "Bundle ID is an app's unique identifier.",
                     suffixIcon: Tooltip(
                       message: context.l10n.feature_application_create_Tooltip_identifier_info,
-                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
-                    ),
-                  ),
-                ),
-                Text(
-                  'Application core',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                TextFormField(
-                  initialValue: applicationCoreInput?.value,
-                  onChanged: onChangedCoreInput,
-                  maxLength: ApplicationConsts.maxCoreLimit,
-                  decoration: InputDecoration(
-                    hintText: 'Url for resource',
-                    errorText: applicationCoreInput?.errorL10n(context),
-                    suffixIcon: Tooltip(
-                      message: 'Link to the backend',
-                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
-                    ),
-                  ),
-                ),
-                Text(
-                  'Terms and conditions',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                TextFormField(
-                  initialValue: applicationTermsConditionsInput?.value,
-                  onChanged: onChangedTermsConditionsInput,
-                  maxLength: ApplicationConsts.maxCoreLimit,
-                  decoration: InputDecoration(
-                    hintText: 'Url for resource',
-                    errorText: applicationTermsConditionsInput?.errorL10n(context),
-                    suffixIcon: Tooltip(
-                      message:
-                          'Provide a direct web link to the page that contains the legal terms and conditions for using a product or service.',
-                      child: Icon(Icons.info_outlined, color: colorScheme.secondary),
-                    ),
-                  ),
-                ),
-                Text(
-                  'Contact email',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                TextFormField(
-                  initialValue: applicationEmailInput?.value,
-                  onChanged: onUpdateContactEmail,
-                  maxLength: ApplicationConsts.maxCoreLimit,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    errorText: applicationEmailInput?.errorL10n(context),
-                    suffixIcon: Tooltip(
-                      message: 'Provide contact email.',
                       child: Icon(Icons.info_outlined, color: colorScheme.secondary),
                     ),
                   ),

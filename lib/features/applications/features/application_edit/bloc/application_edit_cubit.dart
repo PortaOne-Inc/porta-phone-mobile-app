@@ -27,10 +27,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(nameInput: ApplicationNameInput.dirty(name)));
   }
 
-  void updateContactEmailChange(String email) {
-    emit(state.copyWith(contactEmailInput: ApplicationEmailInput.dirty(email)));
-  }
-
   void updateAndroidPlatformId(String platformId) {
     emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
   }
@@ -55,14 +51,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
   }
 
-  void updateCore(String core) {
-    emit(state.copyWith(applicationCoreInput: ApplicationCoreInput.dirty(core)));
-  }
-
-  void updateTermsConditions(String core) {
-    emit(state.copyWith(applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(core)));
-  }
-
   void validateAndTryCreateApplication() {
     if (_isValidFields()) {
       tryEditApplication();
@@ -81,7 +69,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
       updateApplicationUsecase.execute(ApplicationModel(
         id: applicationId,
         name: state.nameInput!.value,
-        contactEmail: state.contactEmailInput?.value,
         androidPlatformId: state.androidPlatformIdInput!.value,
         iosPlatformId: state.iosPlatformIdInput!.value,
         androidVersion: BuildVersionModel(
@@ -92,8 +79,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           buildName: state.iosBuildNameInput!.value,
           buildNumber: int.tryParse(state.iosBuildNumberInput!.value),
         ),
-        coreUrl: state.applicationCoreInput!.value,
-        termsConditionsUrl: state.applicationTermsConditionsInput!.value,
       ));
 
       emit(state.copyWith(status: ApplicationEditStatus.finish));
@@ -116,8 +101,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           iosBuildNameInput: ApplicationBuildNameInput.dirty(app.iosVersion?.buildName ?? ''),
           iosBuildNumberInput: ApplicationBuildNumberInput.dirty(app.iosVersion?.buildNumber?.toString() ?? ''),
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
-          applicationCoreInput: ApplicationCoreInput.dirty(app.coreUrl ?? ''),
-          applicationTermsConditionsInput: ApplicationTermsConditionsInput.dirty(app.termsConditionsUrl ?? ''),
         ),
       );
     } on BaseException catch (e) {

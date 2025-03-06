@@ -46,6 +46,9 @@ abstract class $ManageSettingItemStateCopyWith<$Res> {
       EmbeddedResource? selectedEmbeddedResource,
       SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
+
+  $EmbeddedResourceCopyWith<$Res>? get selectedEmbeddedResource;
+  $AppConfigSettingsItemCopyWith<$Res>? get resultSettingItem;
 }
 
 /// @nodoc
@@ -98,6 +101,36 @@ class _$ManageSettingItemStateCopyWithImpl<$Res,
               as AppConfigSettingsItem?,
     ) as $Val);
   }
+
+  /// Create a copy of ManageSettingItemState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EmbeddedResourceCopyWith<$Res>? get selectedEmbeddedResource {
+    if (_value.selectedEmbeddedResource == null) {
+      return null;
+    }
+
+    return $EmbeddedResourceCopyWith<$Res>(_value.selectedEmbeddedResource!,
+        (value) {
+      return _then(_value.copyWith(selectedEmbeddedResource: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ManageSettingItemState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AppConfigSettingsItemCopyWith<$Res>? get resultSettingItem {
+    if (_value.resultSettingItem == null) {
+      return null;
+    }
+
+    return $AppConfigSettingsItemCopyWith<$Res>(_value.resultSettingItem!,
+        (value) {
+      return _then(_value.copyWith(resultSettingItem: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -115,6 +148,11 @@ abstract class _$$InitialImplCopyWith<$Res>
       EmbeddedResource? selectedEmbeddedResource,
       SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
+
+  @override
+  $EmbeddedResourceCopyWith<$Res>? get selectedEmbeddedResource;
+  @override
+  $AppConfigSettingsItemCopyWith<$Res>? get resultSettingItem;
 }
 
 /// @nodoc
@@ -208,22 +246,17 @@ class _$InitialImpl extends _Initial {
                 other.titleL10n == titleL10n) &&
             (identical(other.settingItemIcon, settingItemIcon) ||
                 other.settingItemIcon == settingItemIcon) &&
-            const DeepCollectionEquality().equals(
-                other.selectedEmbeddedResource, selectedEmbeddedResource) &&
+            (identical(
+                    other.selectedEmbeddedResource, selectedEmbeddedResource) ||
+                other.selectedEmbeddedResource == selectedEmbeddedResource) &&
             (identical(other.type, type) || other.type == type) &&
-            const DeepCollectionEquality()
-                .equals(other.resultSettingItem, resultSettingItem));
+            (identical(other.resultSettingItem, resultSettingItem) ||
+                other.resultSettingItem == resultSettingItem));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      enable,
-      titleL10n,
-      settingItemIcon,
-      const DeepCollectionEquality().hash(selectedEmbeddedResource),
-      type,
-      const DeepCollectionEquality().hash(resultSettingItem));
+  int get hashCode => Object.hash(runtimeType, enable, titleL10n,
+      settingItemIcon, selectedEmbeddedResource, type, resultSettingItem);
 
   /// Create a copy of ManageSettingItemState
   /// with the given fields replaced by the non-null parameter values.

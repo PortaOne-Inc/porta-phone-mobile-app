@@ -7,17 +7,12 @@ class ApplicationCreateState with _$ApplicationCreateState {
   const factory ApplicationCreateState({
     @Default(ApplicationCreateStatus.initial) ApplicationCreateStatus status,
     ApplicationNameInput? nameInput,
-    ApplicationEmailInput? contactEmailInput,
     ApplicationIdentifierInput? androidPlatformIdInput,
     ApplicationIdentifierInput? iosPlatformIdInput,
-    ApplicationTermsConditionsInput? applicationTermsConditionsInput,
-    ApplicationCoreInput? applicationCoreInput,
     ApplicationBuildNameInput? androidBuildNameInput,
     ApplicationBuildNumberInput? androidBuildNumberInput,
     ApplicationBuildNameInput? iosBuildNameInput,
     ApplicationBuildNumberInput? iosBuildNumberInput,
-    Uint8List? androidGoogleServices,
-    Uint8List? iosGoogleServices,
     Exception? exception,
   }) = Initial;
 }

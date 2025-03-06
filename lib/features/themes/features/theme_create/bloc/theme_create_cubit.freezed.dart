@@ -44,6 +44,8 @@ abstract class $ThemeCreateStateCopyWith<$Res> {
       ThemeNameInput? nameInput,
       Object? error});
 
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess;
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig;
   $ThemeModelCopyWith<$Res>? get themeModel;
 }
 
@@ -63,8 +65,8 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
   @override
   $Res call({
     Object? status = null,
-    Object? defaultFeatureAccess = freezed,
-    Object? defaultThemeConfig = freezed,
+    Object? defaultFeatureAccess = null,
+    Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
     Object? error = freezed,
@@ -74,11 +76,11 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemeCreateStateStatus,
-      defaultFeatureAccess: freezed == defaultFeatureAccess
+      defaultFeatureAccess: null == defaultFeatureAccess
           ? _value.defaultFeatureAccess
           : defaultFeatureAccess // ignore: cast_nullable_to_non_nullable
               as AppConfig,
-      defaultThemeConfig: freezed == defaultThemeConfig
+      defaultThemeConfig: null == defaultThemeConfig
           ? _value.defaultThemeConfig
           : defaultThemeConfig // ignore: cast_nullable_to_non_nullable
               as ThemeSettings,
@@ -92,6 +94,26 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
               as ThemeNameInput?,
       error: freezed == error ? _value.error : error,
     ) as $Val);
+  }
+
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess {
+    return $AppConfigCopyWith<$Res>(_value.defaultFeatureAccess, (value) {
+      return _then(_value.copyWith(defaultFeatureAccess: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ThemeCreateState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig {
+    return $ThemeSettingsCopyWith<$Res>(_value.defaultThemeConfig, (value) {
+      return _then(_value.copyWith(defaultThemeConfig: value) as $Val);
+    });
   }
 
   /// Create a copy of ThemeCreateState
@@ -127,6 +149,10 @@ abstract class _$$ThemeCreateStateInitialImplCopyWith<$Res>
       Object? error});
 
   @override
+  $AppConfigCopyWith<$Res> get defaultFeatureAccess;
+  @override
+  $ThemeSettingsCopyWith<$Res> get defaultThemeConfig;
+  @override
   $ThemeModelCopyWith<$Res>? get themeModel;
 }
 
@@ -145,8 +171,8 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? defaultFeatureAccess = freezed,
-    Object? defaultThemeConfig = freezed,
+    Object? defaultFeatureAccess = null,
+    Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
     Object? error = freezed,
@@ -156,11 +182,11 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemeCreateStateStatus,
-      defaultFeatureAccess: freezed == defaultFeatureAccess
+      defaultFeatureAccess: null == defaultFeatureAccess
           ? _value.defaultFeatureAccess
           : defaultFeatureAccess // ignore: cast_nullable_to_non_nullable
               as AppConfig,
-      defaultThemeConfig: freezed == defaultThemeConfig
+      defaultThemeConfig: null == defaultThemeConfig
           ? _value.defaultThemeConfig
           : defaultThemeConfig // ignore: cast_nullable_to_non_nullable
               as ThemeSettings,
@@ -212,10 +238,10 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
         (other.runtimeType == runtimeType &&
             other is _$ThemeCreateStateInitialImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality()
-                .equals(other.defaultFeatureAccess, defaultFeatureAccess) &&
-            const DeepCollectionEquality()
-                .equals(other.defaultThemeConfig, defaultThemeConfig) &&
+            (identical(other.defaultFeatureAccess, defaultFeatureAccess) ||
+                other.defaultFeatureAccess == defaultFeatureAccess) &&
+            (identical(other.defaultThemeConfig, defaultThemeConfig) ||
+                other.defaultThemeConfig == defaultThemeConfig) &&
             (identical(other.themeModel, themeModel) ||
                 other.themeModel == themeModel) &&
             (identical(other.nameInput, nameInput) ||
@@ -227,8 +253,8 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      const DeepCollectionEquality().hash(defaultFeatureAccess),
-      const DeepCollectionEquality().hash(defaultThemeConfig),
+      defaultFeatureAccess,
+      defaultThemeConfig,
       themeModel,
       nameInput,
       const DeepCollectionEquality().hash(error));
