@@ -114,52 +114,28 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                           )
                         ],
                       ),
-                      FadeBackground(
-                        visibility: state.deleteApplication != null,
-                      ),
-                      ConfirmationDialog(
-                        visibility: state.deleteApplication != null,
-                        title: 'Please Confirm',
-                        description: 'Are you sure to delete the application?',
-                        onConfirm: bloc.confirmDeleteApplication,
-                        onDecline: bloc.declineDeleteApplication,
-                      ),
                     ],
                   ),
-              (context) => Stack(
+              (context) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ConditionalProgressBar(
-                              condition: !state.isProgress,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 16, left: 16),
-                                child: ApplicationThemesScreen(
-                                  themes: state.themes,
-                                  crossAxisCount: MediaQuery.of(context).size.width < 500 ? 1 : 2,
-                                  onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                                  onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
-                                  onMakeDefault: bloc.tryMakeThemeAsDefault,
-                                  onDelete: bloc.tryDeleteTheme,
-                                  onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
-                                ),
-                              ),
+                      Expanded(
+                        child: ConditionalProgressBar(
+                          condition: !state.isProgress,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16, left: 16),
+                            child: ApplicationThemesScreen(
+                              themes: state.themes,
+                              crossAxisCount: MediaQuery.of(context).size.width < 500 ? 1 : 2,
+                              onNewBranding: () => _onNewTheme(context, state.application!.id!),
+                              onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
+                              onMakeDefault: bloc.tryMakeThemeAsDefault,
+                              onDelete: bloc.tryDeleteTheme,
+                              onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
                             ),
-                          )
-                        ],
-                      ),
-                      FadeBackground(
-                        visibility: state.deleteTheme != null,
-                      ),
-                      ConfirmationDialog(
-                        visibility: state.deleteTheme != null,
-                        title: 'Please Confirm',
-                        description: 'Are you sure to delete the theme?',
-                        onConfirm: bloc.confirmDeleteTheme,
-                        onDecline: bloc.declineDeleteTheme,
-                      ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
             ],
@@ -179,6 +155,24 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
 
     if (state.status == ApplicationDetailsStateStatus.deleted) {
       GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+    }
+
+    if (state.deleteTheme != null) {
+      showDialog<void>(
+        context: context,
+        builder: (context) => ConfirmationDialog(
+          title: 'Remove application',
+          description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
+          onConfirm: () {
+            Navigator.pop(context);
+            bloc.confirmDeleteTheme();
+          },
+          onDecline: () {
+            Navigator.pop(context);
+            bloc.declineDeleteTheme();
+          },
+        ),
+      );
     }
   }
 

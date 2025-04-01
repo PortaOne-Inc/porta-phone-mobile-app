@@ -1,51 +1,56 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   const ConfirmationDialog({
     required this.title,
     required this.description,
-    required this.visibility,
     required this.onConfirm,
     required this.onDecline,
+    this.confirmText = 'Yes',
+    this.declineText = 'No',
     super.key,
   });
 
-  final void Function() onConfirm;
-  final void Function() onDecline;
+  final VoidCallback onConfirm;
+  final VoidCallback onDecline;
 
   final String title;
   final String description;
-
-  final bool visibility;
+  final String confirmText;
+  final String declineText;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 200),
-      transitionBuilder: (Widget child, Animation<double> animation) {
-        return ScaleTransition(scale: animation, child: child);
-      },
-      child: visibility
-          ? CupertinoAlertDialog(
-              key: const ValueKey('ConfirmationDialogVisible'),
-              title: Text(title),
-              content: Text(description),
-              actions: [
-                CupertinoDialogAction(
-                  onPressed: onConfirm,
-                  isDefaultAction: true,
-                  isDestructiveAction: true,
-                  child: const Text('Yes'),
-                ),
-                CupertinoDialogAction(
-                  onPressed: onDecline,
-                  child: const Text('No'),
-                )
-              ],
-            )
-          : const SizedBox(
-              key: ValueKey('ConfirmationDialogInVisible'),
-            ),
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
+    return AlertDialog(
+      title: Text(
+        title,
+        style: textTheme.titleLarge,
+      ),
+      content: Text(
+        description,
+        style: textTheme.bodyMedium,
+        textAlign: TextAlign.start,
+      ),
+      actions: [
+        TextButton(
+          onPressed: onDecline,
+          child: Text(
+            declineText,
+            style: textTheme.labelLarge?.copyWith(color: colorScheme.primary),
+          ),
+        ),
+        TextButton(
+          onPressed: onConfirm,
+          child: Text(
+            confirmText,
+            style: textTheme.labelLarge?.copyWith(color: colorScheme.error),
+          ),
+        ),
+      ],
     );
   }
 }

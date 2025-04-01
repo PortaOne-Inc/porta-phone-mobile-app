@@ -24,6 +24,8 @@ class ApplicationCollectionPage extends StatefulWidget {
 }
 
 class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> with MixinMessages {
+  late final _bloc = BlocProvider.of<ApplicationCollectionCubit>(context);
+
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<ApplicationCollectionCubit>(context);
@@ -32,7 +34,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
     return AuthReloginTrigger(
       onRelogin: bloc.load,
       child: BlocConsumer<ApplicationCollectionCubit, ApplicationCollectionState>(
-        listener: (BuildContext context, ApplicationCollectionState state) {},
+        listener: _listenState,
         builder: (ctx, state) {
           return Scaffold(
             appBar: AppBar(
@@ -116,16 +118,6 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                       child: CircularProgressIndicator(),
                     ),
                   ),
-                  FadeBackground(
-                    visibility: state.deleteApplication != null,
-                  ),
-                  ConfirmationDialog(
-                    visibility: state.deleteApplication != null,
-                    title: 'Please Confirm',
-                    description: 'Are you sure to delete the application?',
-                    onConfirm: bloc.confirmDeleteApplication,
-                    onDecline: bloc.declineDeleteApplication,
-                  ),
                 ],
               ],
             ),
@@ -133,6 +125,25 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
         },
       ),
     );
+  }
+
+  void _listenState(BuildContext context, ApplicationCollectionState state) {
+    if (state.deleteApplication != null) {
+      showDialog<void>(
+          context: context,
+          builder: (BuildContext context) => ConfirmationDialog(
+                title: 'Remove application',
+                description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
+                onConfirm: () {
+                  Navigator.maybePop(context);
+                  _bloc.confirmDeleteApplication();
+                },
+                onDecline: () {
+                  Navigator.maybePop(context);
+                  _bloc.declineDeleteApplication();
+                },
+              ));
+    }
   }
 
   void _onEditApplication(ApplicationModel applicationModel) {

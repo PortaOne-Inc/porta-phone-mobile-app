@@ -50,9 +50,11 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   Future<void> confirmDeleteTheme() async {
-    if (state.deleteTheme != null) await _deleteTheme(state.deleteTheme!);
-
-    emit(state.copyWith(deleteTheme: null));
+    final deleteTheme = state.deleteTheme;
+    if (deleteTheme != null) {
+      emit(state.copyWith(deleteTheme: null, status: ApplicationDetailsStateStatus.progress));
+      await _deleteTheme(deleteTheme);
+    }
   }
 
   Future<void> declineDeleteTheme() async {

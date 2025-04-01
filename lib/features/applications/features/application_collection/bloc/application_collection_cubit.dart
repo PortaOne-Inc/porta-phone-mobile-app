@@ -74,8 +74,11 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   }
 
   Future<void> confirmDeleteApplication() async {
-    if (state.deleteApplication != null) await _tryDeleteApplication(state.deleteApplication!);
-    emit(state.copyWith(deleteApplication: null));
+    final deleteApplication = state.deleteApplication;
+    if (deleteApplication != null) {
+      emit(state.copyWith(deleteApplication: null, status: ApplicationsStateStatus.progress));
+      await _tryDeleteApplication(deleteApplication);
+    }
   }
 
   Future<void> _tryDeleteApplication(ApplicationModel applicationModel) async {
