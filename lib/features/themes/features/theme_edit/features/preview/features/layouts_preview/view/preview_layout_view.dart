@@ -72,38 +72,16 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
     const isCustomCoreEnable = false; // TODO(Serdun): Implement this
 
-    final loginKey = ValueKey(loginFeature);
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
     return [
-      LoginModeSelectScreenScreenshot(
-        key: loginKey,
-      ),
-      if (isCustomCoreEnable)
-        LoginCoreUrlAssignScreenScreenshot(
-          key: loginKey,
-        ),
-      if (!isCustomSignupPreview)
-        LoginOtpSignInScreenshot(
-          key: loginKey,
-        ),
-      if (!isCustomSignupPreview)
-        LoginOtpVerifyInScreenshot(
-          key: loginKey,
-        ),
-      if (!isCustomSignupPreview)
-        LoginPasswordSignInScreenshot(
-          key: loginKey,
-        ),
-      if (isCustomSignupPreview)
-        LoginSignUpScreenshot(
-          supportedLoginTypes: const [],
-          key: loginKey,
-        ),
-      if (!isCustomSignupPreview)
-        LoginSignUpVerifyScreenshot(
-          key: loginKey,
-        ),
+      const LoginModeSelectScreenScreenshot(),
+      if (isCustomCoreEnable) const LoginCoreUrlAssignScreenScreenshot(),
+      if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
+      if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
+      if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
+      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: []),
+      if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
       if (isFavoritePreview)
         MainScreenScreenshot(
           key: bottomMenuKey,
