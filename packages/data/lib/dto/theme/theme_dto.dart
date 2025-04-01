@@ -18,6 +18,7 @@ part 'theme_dto.g.dart';
 class ThemeDTO with _$ThemeDTO {
   const factory ThemeDTO({
     String? id,
+    String? applicationId,
     String? name,
     @Default(ColorSchemeConfig()) ColorSchemeConfig colorSchemeConfig,
     @Default(ThemeWidgetConfig()) ThemeWidgetConfig themeWidgetConfig,
@@ -28,12 +29,39 @@ class ThemeDTO with _$ThemeDTO {
     @Default([]) List<ThemeAssetDto> assets,
   }) = _ThemeDTO;
 
-  const ThemeDTO._();
-
-  factory ThemeDTO.fromJson(Map<String, Object?> json) => _$ThemeDTOFromJson(json);
+  factory ThemeDTO.fromJson(Map<String, Object?> json) {
+    return ThemeDTO(
+      id: json['id'] as String?,
+      applicationId: json['applicationId'] as String?,
+      name: json['name'] as String?,
+      colorSchemeConfig: _safeParse(json['colorSchemeConfig'], ColorSchemeConfig.fromJson, const ColorSchemeConfig()),
+      themeWidgetConfig: _safeParse(json['themeWidgetConfig'], ThemeWidgetConfig.fromJson, const ThemeWidgetConfig()),
+      themePageConfig: _safeParse(json['themePageConfig'], ThemePageConfig.fromJson, const ThemePageConfig()),
+      appConfig: _safeParse(json['appConfig'], AppConfig.fromJson, const AppConfig()),
+      launchAssets: _safeParse(json['launchAssets'], LaunchAssetsDto.fromJson, const LaunchAssetsDto()),
+      splashAssets: _safeParse(json['splashAssets'], SplashAssetsDto.fromJson, const SplashAssetsDto()),
+      assets: (json['assets'] as List<dynamic>? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .map(ThemeAssetDto.fromJson)
+          .toList(),
+    );
+  }
 
   factory ThemeDTO.fromJsonString(String stringJson) =>
       _$ThemeDTOFromJson(jsonDecode(stringJson) as Map<String, dynamic>);
+
+  const ThemeDTO._();
+
+  // factory ThemeDTO.fromJson(Map<String, Object?> json) => _$ThemeDTOFromJson(json);
+
+  static T _safeParse<T>(dynamic json, T Function(Map<String, dynamic>) fromJson, T defaultValue) {
+    try {
+      if (json is Map<String, dynamic>) {
+        return fromJson(json);
+      }
+    } catch (_) {}
+    return defaultValue;
+  }
 }
 
 @Freezed(makeCollectionsUnmodifiable: false)

@@ -16,9 +16,11 @@ abstract class ThemeRepository {
     String themeId,
   );
 
-  Future<List<ThemeModel>> getThemes(
+  Future<List<ThemeModel>> getApplicationThemes(
     String applicationId,
   );
+
+  Future<List<ThemeModel>> getAllThemes();
 
   Future<ThemeModel> getTheme(
     String applicationId,

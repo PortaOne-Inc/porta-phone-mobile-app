@@ -32,6 +32,7 @@ class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
   ThemeModel convertFrom(ThemeDTO it) {
     return ThemeModel(
       id: it.id,
+      applicationId: it.applicationId,
       name: it.name,
       colorSchemeConfig: it.colorSchemeConfig.toJson(),
       themeWidgetConfig: it.themeWidgetConfig.toJson(),

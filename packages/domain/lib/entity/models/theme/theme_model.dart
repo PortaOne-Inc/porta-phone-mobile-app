@@ -12,6 +12,7 @@ part 'theme_model.freezed.dart';
 class ThemeModel with _$ThemeModel {
   const factory ThemeModel({
     String? id,
+    String? applicationId,
     String? name,
     String? fontFamily,
     @Default({}) Map<String, dynamic> colorSchemeConfig,

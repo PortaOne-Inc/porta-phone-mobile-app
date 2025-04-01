@@ -39,6 +39,7 @@ import 'package:domain/usecase/resources/upload_file_use_case.dart' as _i151;
 import 'package:domain/usecase/theme/add_assets_theme_usecase.dart' as _i911;
 import 'package:domain/usecase/theme/add_launch_assets_theme_usecase.dart'
     as _i939;
+import 'package:domain/usecase/theme/get_all_themes_usecase.dart' as _i767;
 import 'package:domain/usecase/theme/get_application_environment_usecase.dart'
     as _i43;
 import 'package:domain/usecase/theme/update_application_environment_usecase.dart'
@@ -72,6 +73,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i174.ApplicationRepository>(),
               gh<_i174.AuthRepository>(),
             ));
+    gh.factory<_i767.GetAllThemesUsecase>(() => _i767.GetAllThemesUsecaseImpl(
+        themeRepository: gh<_i174.ThemeRepository>()));
     gh.factory<_i140.UsecaseThemeGetAll>(() => _i140.UsecaseThemeGetAllImpl(
           themeRepository: gh<_i174.ThemeRepository>(),
           authRepository: gh<_i174.AuthRepository>(),

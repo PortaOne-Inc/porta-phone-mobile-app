@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ThemeModel {
   String? get id => throw _privateConstructorUsedError;
+  String? get applicationId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get fontFamily => throw _privateConstructorUsedError;
   Map<String, dynamic> get colorSchemeConfig =>
@@ -46,6 +47,7 @@ abstract class $ThemeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String? applicationId,
       String? name,
       String? fontFamily,
       Map<String, dynamic> colorSchemeConfig,
@@ -78,6 +80,7 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? applicationId = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
     Object? colorSchemeConfig = null,
@@ -93,6 +96,10 @@ class _$ThemeModelCopyWithImpl<$Res, $Val extends ThemeModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -182,6 +189,7 @@ abstract class _$$ThemeModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
+      String? applicationId,
       String? name,
       String? fontFamily,
       Map<String, dynamic> colorSchemeConfig,
@@ -215,6 +223,7 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? applicationId = freezed,
     Object? name = freezed,
     Object? fontFamily = freezed,
     Object? colorSchemeConfig = null,
@@ -230,6 +239,10 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -280,6 +293,7 @@ class __$$ThemeModelImplCopyWithImpl<$Res>
 class _$ThemeModelImpl extends _ThemeModel {
   const _$ThemeModelImpl(
       {this.id,
+      this.applicationId,
       this.name,
       this.fontFamily,
       final Map<String, dynamic> colorSchemeConfig = const {},
@@ -299,6 +313,8 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   final String? id;
+  @override
+  final String? applicationId;
   @override
   final String? name;
   @override
@@ -361,7 +377,7 @@ class _$ThemeModelImpl extends _ThemeModel {
 
   @override
   String toString() {
-    return 'ThemeModel(id: $id, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, launchAssets: $launchAssets, splashAsset: $splashAsset, texts: $texts)';
+    return 'ThemeModel(id: $id, applicationId: $applicationId, name: $name, fontFamily: $fontFamily, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, assets: $assets, launchAssets: $launchAssets, splashAsset: $splashAsset, texts: $texts)';
   }
 
   @override
@@ -370,6 +386,8 @@ class _$ThemeModelImpl extends _ThemeModel {
         (other.runtimeType == runtimeType &&
             other is _$ThemeModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.applicationId, applicationId) ||
+                other.applicationId == applicationId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fontFamily, fontFamily) ||
                 other.fontFamily == fontFamily) &&
@@ -393,6 +411,7 @@ class _$ThemeModelImpl extends _ThemeModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      applicationId,
       name,
       fontFamily,
       const DeepCollectionEquality().hash(_colorSchemeConfig),
@@ -416,6 +435,7 @@ class _$ThemeModelImpl extends _ThemeModel {
 abstract class _ThemeModel extends ThemeModel {
   const factory _ThemeModel(
       {final String? id,
+      final String? applicationId,
       final String? name,
       final String? fontFamily,
       final Map<String, dynamic> colorSchemeConfig,
@@ -430,6 +450,8 @@ abstract class _ThemeModel extends ThemeModel {
 
   @override
   String? get id;
+  @override
+  String? get applicationId;
   @override
   String? get name;
   @override

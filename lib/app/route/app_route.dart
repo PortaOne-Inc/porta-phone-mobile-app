@@ -163,6 +163,20 @@ class AppRoute {
                   ),
                 ]),
             GoRoute(
+              path: AppRoutInfo.themesCollection.path,
+              name: AppRoutInfo.themesCollection.name,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider<ThemeCollectionCubit>(
+                child: const ThemeCollectionDetailsPage(),
+                create: (BuildContext context) => ThemeCollectionCubit(
+                  applicationModel: state.extra as ApplicationModel?,
+                  getAllThemesUseCase: getIt.get(),
+                  makeThemeAsDefaultUseCase: getIt.get(),
+                  deleteThemeUseCase: getIt.get(),
+                  applicationDeleteUsecase: getIt.get(),
+                  ),
+              ),
+            ),
+            GoRoute(
               path: AppRoutInfo.translations.path,
               name: AppRoutInfo.translations.name,
               builder: (BuildContext context, GoRouterState state) => BlocProvider<TranslationsCubit>(

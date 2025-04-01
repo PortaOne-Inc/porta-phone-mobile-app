@@ -15,7 +15,9 @@ class ApplicationConfiguratorBackandAPI {
 }
 
 class ThemeConfiguratorBackandAPI {
-  static String themes(String applicationId) => '/applications/$applicationId/themes';
+  static String allThemes() => '/applications/themes';
+
+  static String applicationThemes(String applicationId) => '/applications/$applicationId/themes';
 
   static String theme(String applicationId, String themeId) => '/applications/$applicationId/themes/$themeId';
 

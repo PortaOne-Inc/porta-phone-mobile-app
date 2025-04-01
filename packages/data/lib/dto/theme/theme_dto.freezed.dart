@@ -21,6 +21,7 @@ ThemeDTO _$ThemeDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ThemeDTO {
   String? get id => throw _privateConstructorUsedError;
+  String? get applicationId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   ColorSchemeConfig get colorSchemeConfig => throw _privateConstructorUsedError;
   ThemeWidgetConfig get themeWidgetConfig => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $ThemeDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String? applicationId,
       String? name,
       ColorSchemeConfig colorSchemeConfig,
       ThemeWidgetConfig themeWidgetConfig,
@@ -80,6 +82,7 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
   @override
   $Res call({
     Object? id = freezed,
+    Object? applicationId = freezed,
     Object? name = freezed,
     Object? colorSchemeConfig = null,
     Object? themeWidgetConfig = null,
@@ -93,6 +96,10 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -200,6 +207,7 @@ abstract class _$$ThemeDTOImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
+      String? applicationId,
       String? name,
       ColorSchemeConfig colorSchemeConfig,
       ThemeWidgetConfig themeWidgetConfig,
@@ -237,6 +245,7 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? applicationId = freezed,
     Object? name = freezed,
     Object? colorSchemeConfig = null,
     Object? themeWidgetConfig = null,
@@ -250,6 +259,10 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      applicationId: freezed == applicationId
+          ? _value.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -292,6 +305,7 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
 class _$ThemeDTOImpl extends _ThemeDTO {
   const _$ThemeDTOImpl(
       {this.id,
+      this.applicationId,
       this.name,
       this.colorSchemeConfig = const ColorSchemeConfig(),
       this.themeWidgetConfig = const ThemeWidgetConfig(),
@@ -307,6 +321,8 @@ class _$ThemeDTOImpl extends _ThemeDTO {
 
   @override
   final String? id;
+  @override
+  final String? applicationId;
   @override
   final String? name;
   @override
@@ -333,7 +349,7 @@ class _$ThemeDTOImpl extends _ThemeDTO {
 
   @override
   String toString() {
-    return 'ThemeDTO(id: $id, name: $name, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, launchAssets: $launchAssets, splashAssets: $splashAssets, assets: $assets)';
+    return 'ThemeDTO(id: $id, applicationId: $applicationId, name: $name, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, launchAssets: $launchAssets, splashAssets: $splashAssets, assets: $assets)';
   }
 
   @override
@@ -342,6 +358,8 @@ class _$ThemeDTOImpl extends _ThemeDTO {
         (other.runtimeType == runtimeType &&
             other is _$ThemeDTOImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.applicationId, applicationId) ||
+                other.applicationId == applicationId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.colorSchemeConfig, colorSchemeConfig) ||
                 other.colorSchemeConfig == colorSchemeConfig) &&
@@ -363,6 +381,7 @@ class _$ThemeDTOImpl extends _ThemeDTO {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      applicationId,
       name,
       colorSchemeConfig,
       themeWidgetConfig,
@@ -391,6 +410,7 @@ class _$ThemeDTOImpl extends _ThemeDTO {
 abstract class _ThemeDTO extends ThemeDTO {
   const factory _ThemeDTO(
       {final String? id,
+      final String? applicationId,
       final String? name,
       final ColorSchemeConfig colorSchemeConfig,
       final ThemeWidgetConfig themeWidgetConfig,
@@ -406,6 +426,8 @@ abstract class _ThemeDTO extends ThemeDTO {
 
   @override
   String? get id;
+  @override
+  String? get applicationId;
   @override
   String? get name;
   @override

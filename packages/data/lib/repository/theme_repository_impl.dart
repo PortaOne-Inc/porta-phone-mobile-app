@@ -47,8 +47,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<List<ThemeModel>> getThemes(String applicationId) async {
-    final dtos = await configuratorBackandDatasource.getThemes(applicationId);
+  Future<List<ThemeModel>> getApplicationThemes(String applicationId) async {
+    final dtos = await configuratorBackandDatasource.getApplicationThemes(applicationId);
     return dtos.map(themeMapper.convertFrom).toList();
   }
 
@@ -107,5 +107,11 @@ class ThemeRepositoryImpl extends ThemeRepository {
     final dto = await configuratorBackandDatasource.updateSplashAsset(
         applicationId, themeId, splashAssetsMapper.convertTo(splashAsset)!);
     return themeMapper.convertFrom(dto);
+  }
+
+  @override
+  Future<List<ThemeModel>> getAllThemes() async {
+    final dtos = await configuratorBackandDatasource.getAllThemes();
+    return dtos.map(themeMapper.convertFrom).toList();
   }
 }

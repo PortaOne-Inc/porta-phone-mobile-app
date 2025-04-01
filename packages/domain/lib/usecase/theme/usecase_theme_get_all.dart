@@ -24,6 +24,6 @@ class UsecaseThemeGetAllImpl extends UsecaseThemeGetAll {
 
   @override
   FutureOr<List<ThemeModel>> execute({required String applicationId, int? countThemes}) async {
-    return themeRepository.getThemes(applicationId);
+    return themeRepository.getApplicationThemes(applicationId);
   }
 }

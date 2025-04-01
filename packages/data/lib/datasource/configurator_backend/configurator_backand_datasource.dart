@@ -155,11 +155,24 @@ class ConfiguratorBackandDatasource {
   /// Retrieves a list of themes for the given [applicationId].
   ///
   /// Returns a list of [ThemeDTO] objects.
-  Future<List<ThemeDTO>> getThemes(String applicationId) async {
+  Future<List<ThemeDTO>> getApplicationThemes(String applicationId) async {
     final response = await _client.get<List<dynamic>>(
-      ThemeConfiguratorBackandAPI.themes(applicationId),
+      ThemeConfiguratorBackandAPI.applicationThemes(applicationId),
     );
     return (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
+  }
+
+  /// Returns a list of [ThemeDTO] objects.
+  Future<List<ThemeDTO>> getAllThemes() async {
+    try {
+      final response = await _client.get<List<dynamic>>(
+        ThemeConfiguratorBackandAPI.allThemes(),
+      );
+      final re = (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
+      return re;
+    } catch (e, st) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   /// Creates a new theme for the given [applicationId] with the given [themeDTO] data.
@@ -167,7 +180,7 @@ class ConfiguratorBackandDatasource {
   /// Returns the created [ThemeDTO].
   Future<ThemeDTO> createTheme(String applicationId, ThemeDTO themeDTO) async {
     final response = await _client.post<Map<String, dynamic>>(
-      ThemeConfiguratorBackandAPI.themes(applicationId),
+      ThemeConfiguratorBackandAPI.applicationThemes(applicationId),
       data: themeDTO.toJson(),
     );
     return ThemeDTO.fromJson(response.data!);

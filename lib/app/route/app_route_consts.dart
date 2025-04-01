@@ -49,6 +49,10 @@ abstract class AppRoutInfo {
     name: 'applications/translations',
     path: '/applications/:$keyApplicationId/translations',
   );
+  static const themesCollection = DestinationInfo(
+    name: 'themes/collection',
+    path: '/themes',
+  );
   static const themesCreate = DestinationInfo(
     name: 'themes/create',
     path: '/applications/:$keyApplicationId/create',

@@ -56,6 +56,15 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                   DrawerHeaderWidget(
                     user: state.user,
                   ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.align_horizontal_left_rounded),
+                    title: const Text('All themes (Admin)'),
+                    onTap: () {
+                      GoRouter.of(context).goNamed(AppRoutInfo.themesCollection.name);
+                      Navigator.pop(context);
+                    },
+                  ),
                   const Spacer(),
                   ListTile(
                     leading: const Icon(Icons.exit_to_app),

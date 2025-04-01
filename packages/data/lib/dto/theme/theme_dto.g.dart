@@ -9,6 +9,7 @@ part of 'theme_dto.dart';
 _$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
     _$ThemeDTOImpl(
       id: json['id'] as String?,
+      applicationId: json['applicationId'] as String?,
       name: json['name'] as String?,
       colorSchemeConfig: json['colorSchemeConfig'] == null
           ? const ColorSchemeConfig()
@@ -42,6 +43,7 @@ _$ThemeDTOImpl _$$ThemeDTOImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ThemeDTOImplToJson(_$ThemeDTOImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'applicationId': instance.applicationId,
       'name': instance.name,
       'colorSchemeConfig': instance.colorSchemeConfig,
       'themeWidgetConfig': instance.themeWidgetConfig,
