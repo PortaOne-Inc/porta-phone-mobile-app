@@ -28,7 +28,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   EmbeddedResource? _selectedEmbedded;
 
   // Common configuration
-  final bool _enableTab = true;
+  bool _enableTab = true;
 
   // Contacts configuration
   bool _contactsSubTabLocale = true;
@@ -91,13 +91,24 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
-                  subtitle: Text('To display in embedded pages.'),
+                  subtitle: const Text('To display in embedded pages.'),
                   leading: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
                   trailing: const Icon(Icons.navigate_next),
                   onTap: _addEmbeddedPage,
                 ),
               ),
-              if (_bottomMenuTabScheme?.type == BottomMenuTabType.contacts)
+              BorderContainer(
+                margin: EdgeInsets.zero,
+                title: 'Tab availability',
+                child: SwitchListTile(
+                    title: const Text('Enable'),
+                    value: _enableTab,
+                    onChanged: (value) => setState(() {
+                          _enableTab = !_enableTab;
+                        })),
+              ),
+              const SizedBox(height: 16),
+              if (_bottomMenuType == BottomMenuTabType.contacts)
                 BorderContainer(
                   title: 'Available sub-tabs',
                   trailing: TextButton(

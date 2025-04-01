@@ -28,11 +28,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
   @override
   void initState() {
     for (final tab in widget.mainConfig.bottomMenu.tabs) {
-      if (tab.enabled) {
-        _activeTabs.add(tab);
-      } else {
-        _removedTabs.add(tab);
-      }
+      addTabToLocalState(tab);
     }
     super.initState();
   }
@@ -71,7 +67,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
             title: 'Manage  tabs',
             trailing: TextButton(
               onPressed: _addTab,
-              child: const Text('Add embedded tab'),
+              child: const Text('Add  tab'),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -186,11 +182,24 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
     final result =
         await GoRouter.of(context).pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name);
     if (result != null) {
-      widget.onChange(widget.mainConfig.copyWith(
-        bottomMenu: widget.mainConfig.bottomMenu.copyWith(
-          tabs: [..._activeTabs, result],
-        ),
-      ));
+      addTabToLocalState(result);
+      _sync();
+    }
+  }
+
+  void _sync() {
+    widget.onChange(widget.mainConfig.copyWith(
+      bottomMenu: widget.mainConfig.bottomMenu.copyWith(
+        tabs: _activeTabs,
+      ),
+    ));
+  }
+
+  void addTabToLocalState(BottomMenuTabScheme tab) {
+    if (tab.enabled) {
+      _activeTabs.add(tab);
+    } else {
+      _removedTabs.add(tab);
     }
   }
 
@@ -199,12 +208,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
         .pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name, extra: tab);
     if (result != null) {
       _activeTabs[_activeTabs.indexWhere((it) => it.type == tab.type)] = result;
-
-      widget.onChange(widget.mainConfig.copyWith(
-        bottomMenu: widget.mainConfig.bottomMenu.copyWith(
-          tabs: _activeTabs,
-        ),
-      ));
+      _sync();
     }
   }
 
