@@ -62,19 +62,19 @@ class $AssetsThemesGen {
 
   /// List of all assets
   List<String> get values => [
-        appConfig,
-        customSignup,
-        originalColorSchemeDarkConfig,
-        originalColorSchemeLightConfig,
-        originalPageDarkConfig,
-        originalPageLightConfig,
-        originalWidgetDarkConfig,
-        originalWidgetLightConfig
-      ];
+    appConfig,
+    customSignup,
+    originalColorSchemeDarkConfig,
+    originalColorSchemeLightConfig,
+    originalPageDarkConfig,
+    originalPageLightConfig,
+    originalWidgetDarkConfig,
+    originalWidgetLightConfig,
+  ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsEnvironmentGen environment = $AssetsEnvironmentGen();
   static const $AssetsSchemeGen scheme = $AssetsSchemeGen();

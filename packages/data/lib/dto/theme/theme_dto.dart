@@ -14,7 +14,7 @@ part 'theme_dto.freezed.dart';
 
 part 'theme_dto.g.dart';
 
-@Freezed(makeCollectionsUnmodifiable: false)
+@Freezed(makeCollectionsUnmodifiable: false, toJson: true)
 class ThemeDTO with _$ThemeDTO {
   const factory ThemeDTO({
     String? id,
@@ -47,8 +47,8 @@ class ThemeDTO with _$ThemeDTO {
     );
   }
 
-  factory ThemeDTO.fromJsonString(String stringJson) =>
-      _$ThemeDTOFromJson(jsonDecode(stringJson) as Map<String, dynamic>);
+  // factory ThemeDTO.fromJsonString(String stringJson) =>
+  //     _$ThemeDTOFromJson(jsonDecode(stringJson) as Map<String, dynamic>);
 
   const ThemeDTO._();
 

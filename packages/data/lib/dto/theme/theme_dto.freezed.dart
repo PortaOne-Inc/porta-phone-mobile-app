@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ThemeDTO _$ThemeDTOFromJson(Map<String, dynamic> json) {
-  return _ThemeDTO.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ThemeDTO {
   String? get id => throw _privateConstructorUsedError;
@@ -301,7 +297,7 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class _$ThemeDTOImpl extends _ThemeDTO {
   const _$ThemeDTOImpl(
       {this.id,
@@ -315,9 +311,6 @@ class _$ThemeDTOImpl extends _ThemeDTO {
       this.splashAssets = const SplashAssetsDto(),
       this.assets = const []})
       : super._();
-
-  factory _$ThemeDTOImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ThemeDTOImplFromJson(json);
 
   @override
   final String? id;
@@ -420,9 +413,6 @@ abstract class _ThemeDTO extends ThemeDTO {
       final SplashAssetsDto splashAssets,
       final List<ThemeAssetDto> assets}) = _$ThemeDTOImpl;
   const _ThemeDTO._() : super._();
-
-  factory _ThemeDTO.fromJson(Map<String, dynamic> json) =
-      _$ThemeDTOImpl.fromJson;
 
   @override
   String? get id;
