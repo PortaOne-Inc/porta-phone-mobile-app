@@ -54,6 +54,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
           drawer: Drawer(
             child: Column(
               children: [
+                const VersionInfo(),
                 ListTile(
                   title: Text(
                     state.application?.name ?? '...',

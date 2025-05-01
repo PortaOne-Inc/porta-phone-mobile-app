@@ -3,9 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:provider/provider.dart';
-
-import 'package:webtrit_configurator/core/data/package_info.dart';
+import 'package:webtrit_configurator/core/widgets/widgets.dart';
 
 class DrawerHeaderWidget extends StatelessWidget {
   const DrawerHeaderWidget({required this.user, super.key});
@@ -19,38 +17,13 @@ class DrawerHeaderWidget extends StatelessWidget {
 
     return Column(
       children: [
-        _VersionInfo(colorScheme: colorScheme, textTheme: textTheme),
+        const VersionInfo(),
         _ListTileWidget(title: 'ID', subtitle: user?.id),
         _ListTileWidget(title: 'Email', subtitle: user?.email),
         if (user?.jwtToken != null) _JwtTileWidget(user: user!, textTheme: textTheme),
         if (user?.expiredTime != null)
           _ListTileWidget(title: 'Expired At', subtitle: user?.expiredTime?.toIso8601String()),
       ],
-    );
-  }
-}
-
-class _VersionInfo extends StatelessWidget {
-  const _VersionInfo({
-    required this.colorScheme,
-    required this.textTheme,
-  });
-
-  final ColorScheme colorScheme;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: colorScheme.primaryFixedDim,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        child: Text(
-          'Version: ${context.read<PackageInfo>().version}',
-          style: textTheme.labelSmall?.copyWith(color: colorScheme.onPrimary),
-        ),
-      ),
     );
   }
 }

@@ -48,6 +48,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) async {
     final registerModule = _$RegisterModule();
     final storageModule = _$StorageModule();
+    gh.factory<_i244.UnauthorizedInterceptor>(
+        () => _i244.UnauthorizedInterceptor());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs(),
       preResolve: true,
@@ -56,8 +58,6 @@ class DataPackageModule extends _i526.MicroPackageModule {
       () => storageModule.provideLocalStorage(),
       preResolve: true,
     );
-    gh.factory<_i244.UnauthorizedInterceptor>(
-        () => _i244.UnauthorizedInterceptor());
     gh.lazySingleton<_i457.FirebaseStorage>(() => registerModule.storage());
     gh.factory<
             _i602.CommonMapper<_i494.ApplicationModel, _i499.ApplicationDTO>>(

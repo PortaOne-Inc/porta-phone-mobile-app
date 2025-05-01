@@ -29,11 +29,37 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
     return BlocConsumer<ThemeCreateCubit, ThemeCreateState>(
       listener: (BuildContext context, ThemeCreateState state) => _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
-        appBar: AppToolbar(
-          isVisibleProgress: state.status == ThemeCreateStateStatus.progress,
-          name: context.l10n.feature_theme_create_title,
-          themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-          onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            context.l10n.feature_theme_create_title,
+            style: textScheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          actions: [
+            ThemeModeSwitcher(
+              themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+              onThemeChange: (mode) => _onThemeModeChanged(context, mode),
+            )
+          ],
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              const VersionInfo(),
+              ListTile(
+                leading: const Icon(Icons.list),
+                title: const Text('Applications'),
+                onTap: () => _openApplicationCollection(context),
+              ),
+              const Divider(),
+              const Spacer(),
+              ListTile(
+                leading: const Icon(Icons.exit_to_app),
+                title: const Text('Logout'),
+                onTap: () => _logout(context),
+              ),
+            ],
+          ),
         ),
         body: Center(
           child: ConstrainedBox(
@@ -128,5 +154,14 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages, M
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
+  }
+
+  void _logout(BuildContext context) {
+    BlocProvider.of<CommonBloc>(context).logout();
+    Navigator.pop(context);
+  }
+
+  void _openApplicationCollection(BuildContext context) {
+    GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
   }
 }

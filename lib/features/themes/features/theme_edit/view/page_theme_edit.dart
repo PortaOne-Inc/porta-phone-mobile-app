@@ -67,6 +67,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           drawer: Drawer(
             child: Column(
               children: [
+                const VersionInfo(),
                 ListTile(
                   title: Text(
                     state.theme?.name ?? '...',
