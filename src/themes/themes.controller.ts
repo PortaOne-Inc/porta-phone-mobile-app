@@ -13,7 +13,7 @@ import {
 import { ThemesService } from './themes.service';
 import {
   LaunchAssets,
-  SplashAsset,
+  SplashAssets,
   Theme,
 } from '../common/entities/theme/theme';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -181,24 +181,11 @@ export class ThemesController {
     return this.themesService.deleteLaunchAssets(applicationId, themeId);
   }
 
-  @Patch(':themeId/splash-asset')
-  async setSplashAsset(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Body() splashAsset: SplashAsset,
-  ) {
-    return this.themesService.setSplashAsset(
-      applicationId,
-      themeId,
-      splashAsset,
-    );
-  }
-
   @Patch(':themeId/splash-asset/update')
   async updateSplashAsset(
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
-    @Body() splashAssetUpdate: Partial<SplashAsset>,
+    @Body() splashAssetUpdate: Partial<SplashAssets>,
   ) {
     return this.themesService.updateSplashAsset(
       applicationId,

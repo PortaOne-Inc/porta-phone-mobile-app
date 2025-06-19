@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Put, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
@@ -11,8 +20,7 @@ import { UserDto } from './dto/user.dto';
 @UseGuards(FirebaseAuthGuard)
 @Roles('admin')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   @Get()
   async getUsers(): Promise<UserDto[]> {
@@ -25,12 +33,21 @@ export class UsersController {
   }
 
   @Put(':id')
-  async updateUser(@Param('id') id: string, @Body() updateUserDto: Partial<UserDto>): Promise<UserDto> {
+  async updateUser(
+    @Param('id') id: string,
+    @Body() updateUserDto: Partial<UserDto>,
+  ): Promise<UserDto> {
     return this.usersService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
   async deleteUser(@Param('id') id: string): Promise<void> {
     return this.usersService.deleteUser(id);
+  }
+
+  @Get('profile/id')
+  async getUserIdFromToken(@Req() request): Promise<{ userId: string }> {
+    const userId = request.user.uid;
+    return { userId };
   }
 }

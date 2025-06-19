@@ -12,7 +12,7 @@ export class Theme {
 
   assets?: Asset[];
   launchAssets?: LaunchAssets;
-  splashAsset?: SplashAsset;
+  splashAssets?: SplashAssets;
 }
 
 export class Asset {
@@ -34,8 +34,10 @@ export class LaunchAssets {
   backgroundColor?: string;
 }
 
-export class SplashAsset {
+export class SplashAssets {
   originalAssetId?: number;
   icon?: string;
   color?: string;
+  padding?: number;
+  fit?: string;
 }

@@ -8,13 +8,16 @@ import {
   Param,
   Post,
   Put,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApplicationsService } from './applications.service';
 import { Application } from '../common/entities/application/application';
 import { Roles } from '../auth/guard/roles.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard'; // Adjust path as needed
+import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
+import { ThemesService } from '../themes/themes.service';
+import { Theme } from '../common/entities/theme/theme'; // Adjust path as needed
 
 @ApiTags('applications')
 @Controller('applications')
@@ -22,14 +25,21 @@ import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard'; // Adjust
 @UseGuards(FirebaseAuthGuard)
 @Roles('admin', 'user')
 export class ApplicationsController {
-  constructor(private readonly applicationsService: ApplicationsService) {}
+  constructor(
+    private readonly applicationsService: ApplicationsService,
+    private readonly themesService: ThemesService,
+  ) {}
 
   @Post()
   async createApplication(
+    @Req() request,
     @Body() applicationDto: Application,
   ): Promise<Application | null> {
-    const newApplication =
-      await this.applicationsService.createApplication(applicationDto);
+    const userId = request.user.uid;
+    const newApplication = await this.applicationsService.createApplication(
+      userId,
+      applicationDto,
+    );
     if (!newApplication) {
       throw new HttpException(
         'Failed to create application',
@@ -37,6 +47,12 @@ export class ApplicationsController {
       );
     }
     return newApplication;
+  }
+
+  @Get('/themes')
+  @Roles('admin')
+  async getAllThemes(): Promise<Theme[]> {
+    return this.themesService.getAllThemes();
   }
 
   @Get(':id')
@@ -75,8 +91,11 @@ export class ApplicationsController {
   }
 
   @Get()
-  async listApplications(): Promise<Application[] | null> {
-    const applications = await this.applicationsService.listApplications();
+  @Roles('admin', 'user')
+  async listApplications(@Req() request): Promise<Application[] | null> {
+    const userId = request.user.uid;
+    const applications =
+      await this.applicationsService.listApplications(userId);
     if (!applications) {
       throw new HttpException(
         'Failed to list applications',

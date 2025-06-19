@@ -3,7 +3,7 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './src/app.module';
-import { CONFIG } from './config';
+import { Cors } from './src/config/cors';
 import { Express } from 'express-serve-static-core';
 import * as admin from 'firebase-admin';
 import serviceAccount from './service_account.json';
@@ -28,9 +28,9 @@ const createFunction = async (expressInstance: Express): Promise<void> => {
 
   app.setGlobalPrefix('v1');
   app.enableCors({
-    origin: CONFIG.origin,
-    methods: CONFIG.corsMethods,
-    allowedHeaders: CONFIG.corsAllowedHeaders,
+    origin: Cors.origin,
+    methods: Cors.corsMethods,
+    allowedHeaders: Cors.corsAllowedHeaders,
   });
   const config = new DocumentBuilder()
     .setTitle('WebTrit App Configurator')

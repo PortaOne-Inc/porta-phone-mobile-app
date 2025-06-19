@@ -1,7 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
-import { LaunchAssets, SplashAsset, Theme } from '../common/entities/theme/theme';
+import {
+  LaunchAssets,
+  SplashAssets,
+  Theme,
+} from '../common/entities/theme/theme';
 
 @Injectable()
 export class ThemesService {
@@ -14,6 +18,10 @@ export class ThemesService {
     return this.themeRepository
       .whereEqualTo('applicationId', applicationId)
       .find();
+  }
+
+  async getAllThemes(): Promise<Theme[]> {
+    return this.themeRepository.find();
   }
 
   async getThemeById(
@@ -32,9 +40,12 @@ export class ThemesService {
     createThemeDto: Theme,
   ): Promise<Theme | null> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { applicationId: _removed, ...rest } = createThemeDto;
+
       return this.themeRepository.create({
+        ...rest,
         applicationId,
-        ...createThemeDto,
       });
     } catch (error) {
       // Handle error (e.g., logging)
@@ -171,24 +182,13 @@ export class ThemesService {
     return theme;
   }
 
-  async setSplashAsset(
-    applicationId: string,
-    themeId: string,
-    splashAsset: SplashAsset,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.splashAsset = splashAsset;
-    await this.themeRepository.update(theme);
-    return theme;
-  }
-
   async updateSplashAsset(
     applicationId: string,
     themeId: string,
-    splashAssetUpdate: Partial<SplashAsset>,
+    splashAssetUpdate: Partial<SplashAssets>,
   ): Promise<Theme> {
     const theme = await this.getThemeById(applicationId, themeId);
-    theme.splashAsset = { ...theme.splashAsset, ...splashAssetUpdate };
+    theme.splashAssets = { ...theme.splashAssets, ...splashAssetUpdate };
     await this.themeRepository.update(theme);
     return theme;
   }
@@ -198,7 +198,7 @@ export class ThemesService {
     themeId: string,
   ): Promise<Theme> {
     const theme = await this.getThemeById(applicationId, themeId);
-    theme.splashAsset = undefined;
+    theme.splashAssets = undefined;
     await this.themeRepository.update(theme);
     return theme;
   }

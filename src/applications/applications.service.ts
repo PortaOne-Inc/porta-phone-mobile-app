@@ -13,11 +13,14 @@ export class ApplicationsService {
   ) {}
 
   async createApplication(
+    userId: string,
     applicationDto: Application,
   ): Promise<Application | null> {
     try {
-      const newApplication = this.applicationRepository.create(applicationDto);
-      return newApplication;
+      return this.applicationRepository.create({
+        ...applicationDto,
+        user: userId,
+      });
     } catch (error) {
       // Handle error (e.g., logging)
       return null;
@@ -26,8 +29,7 @@ export class ApplicationsService {
 
   async findApplicationById(id: string): Promise<Application | null> {
     try {
-      const application = await this.applicationRepository.findById(id);
-      return application;
+      return await this.applicationRepository.findById(id);
     } catch (error) {
       // Handle error (e.g., logging)
       return null;
@@ -61,10 +63,11 @@ export class ApplicationsService {
     }
   }
 
-  async listApplications(): Promise<Application[] | null> {
+  async listApplications(userId: string): Promise<Application[] | null> {
     try {
-      const applications = await this.applicationRepository.find();
-      return applications;
+      return await this.applicationRepository
+        .whereEqualTo('user', userId)
+        .find();
     } catch (error) {
       // Handle error (e.g., logging)
       return null;
@@ -102,5 +105,4 @@ export class ApplicationsService {
       return null;
     }
   }
-
 }

@@ -10,7 +10,12 @@ import {
   Query,
 } from '@nestjs/common';
 import { GithubProxyService } from './github-proxy.service';
-import { ApiBearerAuth, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';
 
@@ -20,7 +25,7 @@ import { Roles } from '../auth/guard/roles.decorator';
 @UseGuards(FirebaseAuthGuard)
 @Roles('admin', 'user')
 export class GithubProxyController {
-  constructor(private readonly githubProxyService: GithubProxyService) { }
+  constructor(private readonly githubProxyService: GithubProxyService) {}
 
   @Post('dispatch-workflow')
   async dispatchWorkflow(@Body() inputs: any): Promise<any> {

@@ -5,7 +5,7 @@ import { Readable } from 'stream';
 import axios from 'axios';
 import * as unzipper from 'unzipper';
 import archiver from 'archiver';
-import { localizely_api_key, localizely_download_url } from '../../localizely';
+import { localizely_api_key, localizely_download_url } from '../../config/localizely';
 import { Translation } from '../../common/entities/translations/translation';
 
 @Injectable()
