@@ -37,7 +37,7 @@ extension ThemeSettingsExtensions on ConfiguratorThemeSettings {
       unselectedWidgetColor: scheme.onSurface,
       indicatorColor: scheme.tertiary,
       scaffoldBackgroundColor: scheme.surfaceContainer,
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: scheme.surface,
         elevation: 2,
       ),

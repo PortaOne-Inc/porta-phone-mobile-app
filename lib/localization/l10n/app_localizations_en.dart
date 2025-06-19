@@ -39,13 +39,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_not_fount_title => 'Not Found';
 
   @override
-  String get common_not_fount_description => 'Sorry, we couldn\'t find the page you\'re looking for. It\'s possible that the page has been removed, renamed, or is temporarily unavailable. Please check the URL and try again, or contact us if you think this is a mistake.';
+  String get common_not_fount_description =>
+      'Sorry, we couldn\'t find the page you\'re looking for. It\'s possible that the page has been removed, renamed, or is temporarily unavailable. Please check the URL and try again, or contact us if you think this is a mistake.';
 
   @override
-  String get feature_authorization_exception_user_not_fount => 'There is no such user.';
+  String get feature_authorization_exception_user_not_fount =>
+      'There is no such user.';
 
   @override
-  String get feature_authorization_exception_wrong_password => 'Invalid password.';
+  String get feature_authorization_exception_wrong_password =>
+      'Invalid password.';
 
   @override
   String get feature_authorization_reset_password => 'Reset password.';
@@ -117,7 +120,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configurator_color_secondary_container => 'Secondary Container';
 
   @override
-  String get configurator_color_on_secondary_container => 'On Secondary Container';
+  String get configurator_color_on_secondary_container =>
+      'On Secondary Container';
 
   @override
   String get configurator_color_tertiary => 'Tertiary';
@@ -141,7 +145,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configurator_color_gradient_tab => 'Gradient Tab';
 
   @override
-  String get configurator_color_gradient_control_panel => 'Control panel gradient';
+  String get configurator_color_gradient_control_panel =>
+      'Control panel gradient';
 
   @override
   String get configurator_color_primary_container => 'Primary Container';
@@ -159,7 +164,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configurator_color_tertiary_container => 'Tertiary Container';
 
   @override
-  String get configurator_color_on_tertiary_container => 'On Tertiary Container';
+  String get configurator_color_on_tertiary_container =>
+      'On Tertiary Container';
 
   @override
   String get configurator_color_on_error => 'On Error';
@@ -183,19 +189,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configurator_color_surface_bright => 'Surface Bright';
 
   @override
-  String get configurator_color_surface_container_lowest => 'Surface Container Lowest';
+  String get configurator_color_surface_container_lowest =>
+      'Surface Container Lowest';
 
   @override
-  String get configurator_color_surface_container_low => 'Surface Container Low';
+  String get configurator_color_surface_container_low =>
+      'Surface Container Low';
 
   @override
   String get configurator_color_surface_container => 'Surface Container';
 
   @override
-  String get configurator_color_surface_container_high => 'Surface Container High';
+  String get configurator_color_surface_container_high =>
+      'Surface Container High';
 
   @override
-  String get configurator_color_surface_container_highest => 'Surface Container Highest';
+  String get configurator_color_surface_container_highest =>
+      'Surface Container Highest';
 
   @override
   String get configurator_color_on_surface_variant => 'On Surface Variant';
@@ -216,10 +226,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configurator_color_surface_tint => 'Surface Tint';
 
   @override
-  String get configurator_color_launcher_scheme_title => 'Launcher color scheme';
+  String get configurator_color_launcher_scheme_title =>
+      'Launcher color scheme';
 
   @override
-  String get configurator_color_adaptive_icon_background => 'Adaptive icon background';
+  String get configurator_color_adaptive_icon_background =>
+      'Adaptive icon background';
 
   @override
   String get configurator_color_splash_background => 'Native splash background';
@@ -243,10 +255,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_admin_title => 'Static theme dashboard';
 
   @override
-  String get feature_theme_Tooltip_description_title => 'Definition of \"Theme\"';
+  String get feature_theme_Tooltip_description_title =>
+      'Definition of \"Theme\"';
 
   @override
-  String get feature_theme_Tooltip_description_message => 'Theme - is a set of colors and elements that reflects your brand or style. You can have a main theme and several alternate or additional themes for a particular event. So you can create, for example, a Christmas theme for your application and apply it for a certain period of time';
+  String get feature_theme_Tooltip_description_message =>
+      'Theme - is a set of colors and elements that reflects your brand or style. You can have a main theme and several alternate or additional themes for a particular event. So you can create, for example, a Christmas theme for your application and apply it for a certain period of time';
 
   @override
   String get feature_theme_InputHint_note => 'Note';
@@ -282,7 +296,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_theme_create_title => 'Create theme';
 
   @override
-  String get feature_theme_create_Text_create_or_select_theme => 'Create or select your theme';
+  String get feature_theme_create_Text_create_or_select_theme =>
+      'Create or select your theme';
 
   @override
   String feature_theme_edit_Validation_image_format(Object format) {
@@ -290,13 +305,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get feature_theme_edit_open_screen => 'Open screen where using this text';
+  String get feature_theme_edit_open_screen =>
+      'Open screen where using this text';
 
   @override
-  String get feature_theme_edit_greeting_info => 'It is displayed on the authorization page in large font';
+  String get feature_theme_edit_greeting_info =>
+      'It is displayed on the authorization page in large font';
 
   @override
-  String get feature_theme_edit_contact_us_info => 'An email for contacting support that will be displayed on the page in the phone application';
+  String get feature_theme_edit_contact_us_info =>
+      'An email for contacting support that will be displayed on the page in the phone application';
 
   @override
   String feature_theme_edit_Validation_image_size(Object size) {
@@ -307,7 +325,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_theme_edit_Text_no_themes_yet_title => 'No themes yet';
 
   @override
-  String get feature_theme_edit_Text_no_themes_yet_description => 'You have not created any themes yet.';
+  String get feature_theme_edit_Text_no_themes_yet_description =>
+      'You have not created any themes yet.';
 
   @override
   String get feature_theme_edit_Validation_to_short => 'Theme name to short';
@@ -316,7 +335,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_theme_edit_Validation_to_long => 'Theme name to long';
 
   @override
-  String get feature_theme_edit_ExpansionTile_common_property => 'Text resources';
+  String get feature_theme_edit_ExpansionTile_common_property =>
+      'Text resources';
 
   @override
   String get feature_theme_edit_add_font => 'Choose one of the google fonts';
@@ -334,10 +354,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_theme_edit_LogEvent_title => 'Events';
 
   @override
-  String get feature_theme_edit_Image_primary_onboarding_logo => 'Primary onboarding Logo';
+  String get feature_theme_edit_Image_primary_onboarding_logo =>
+      'Primary onboarding Logo';
 
   @override
-  String get feature_theme_edit_Image_secondary_onboarding_logo => 'Secondary onboarding Logo';
+  String get feature_theme_edit_Image_secondary_onboarding_logo =>
+      'Secondary onboarding Logo';
 
   @override
   String get feature_theme_edit_TextStyle_title => 'Text style';
@@ -397,7 +419,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_theme_edit_Template_dot => 'Template: ';
 
   @override
-  String get feature_theme_edit_Template_description => 'Use one of the color schemes';
+  String get feature_theme_edit_Template_description =>
+      'Use one of the color schemes';
 
   @override
   String get feature_theme_info => 'Info';
@@ -448,10 +471,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_application_Toolbar_edit_file_new => 'New';
 
   @override
-  String get feature_application_Toolbar_edit_navigate_new => 'Go to applications';
+  String get feature_application_Toolbar_edit_navigate_new =>
+      'Go to applications';
 
   @override
-  String get feature_application_Toolbar_edit_navigate_translations => 'Edit translations';
+  String get feature_application_Toolbar_edit_navigate_translations =>
+      'Edit translations';
 
   @override
   String get feature_application_Input_title => 'Application name';
@@ -466,10 +491,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_application_project_description => 'Project description';
 
   @override
-  String get feature_application_android_package_name => 'Android package name: ';
+  String get feature_application_android_package_name =>
+      'Android package name: ';
 
   @override
-  String get feature_application_android_package_name_error => 'Android package name not correct';
+  String get feature_application_android_package_name_error =>
+      'Android package name not correct';
 
   @override
   String get feature_application_identifier => 'Application identifier: ';
@@ -484,7 +511,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_application_identifier_error => 'Identifier not correct';
 
   @override
-  String get feature_application_terms_and_conditions_error => 'Terms and Conditions URL not correct';
+  String get feature_application_terms_and_conditions_error =>
+      'Terms and Conditions URL not correct';
 
   @override
   String get feature_auth_logout => 'Logout';
@@ -493,13 +521,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_auth_SnakeBar_success_auth => 'You success authorized';
 
   @override
-  String get feature_auth_Input_invalid_email_address => 'Invalid email address';
+  String get feature_auth_Input_invalid_email_address =>
+      'Invalid email address';
 
   @override
-  String get feature_auth_Input_invalid_password_not_meet_requirements => 'The password does not meet the requirements';
+  String get feature_auth_Input_invalid_password_not_meet_requirements =>
+      'The password does not meet the requirements';
 
   @override
-  String get feature_auth_Toolbar_title_phone_configurator => 'Your visual phone configurator';
+  String get feature_auth_Toolbar_title_phone_configurator =>
+      'Your visual phone configurator';
 
   @override
   String get feature_auth_reset_toolbar_title => 'Reset password';
@@ -514,234 +545,353 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_application_title => 'Application';
 
   @override
-  String get feature_application_use_current_theme => 'Use as current for application';
+  String get feature_application_use_current_theme =>
+      'Use as current for application';
 
   @override
-  String get feature_application_create_Validation_description_to_short => 'Description to short';
+  String get feature_application_create_Validation_description_to_short =>
+      'Description to short';
 
   @override
-  String get feature_application_create_Validation_description_to_long => 'Description to long';
+  String get feature_application_create_Validation_description_to_long =>
+      'Description to long';
 
   @override
   String get feature_application_create => 'Create application';
 
   @override
-  String get feature_application_create_Tooltip_name_info => 'The name of the project that will represent the application instance.';
+  String get feature_application_create_Tooltip_name_info =>
+      'The name of the project that will represent the application instance.';
 
   @override
-  String get feature_application_create_Tooltip_identifier_info => 'ID of the application for publication in the market.\nThe ID is unique to the app and can be seen in the app store url.';
+  String get feature_application_create_Tooltip_identifier_info =>
+      'ID of the application for publication in the market.\nThe ID is unique to the app and can be seen in the app store url.';
 
   @override
-  String get feature_application_create_Text_no_applications_yet_title => 'No applications yet';
+  String get feature_application_create_Text_no_applications_yet_title =>
+      'No applications yet';
 
   @override
-  String get feature_application_create_Text_no_applications_yet_description => 'You have not created any apps yet.';
+  String get feature_application_create_Text_no_applications_yet_description =>
+      'You have not created any apps yet.';
 
   @override
-  String get feature_application_create_Text_new_application_theme => 'New application theme';
+  String get feature_application_create_Text_new_application_theme =>
+      'New application theme';
 
   @override
-  String get feature_application_collection_ApplicationPreviewItem_delete => 'Delete';
+  String get feature_application_collection_ApplicationPreviewItem_delete =>
+      'Delete';
 
   @override
-  String get feature_application_collection_ApplicationPreviewItem_edit => 'Edit';
+  String get feature_application_collection_ApplicationPreviewItem_edit =>
+      'Edit';
 
   @override
-  String get feature_application_collection_ApplicationStatus_ready_to_deploy => 'Application ready to deploy';
+  String get feature_application_collection_ApplicationStatus_ready_to_deploy =>
+      'Application ready to deploy';
 
   @override
-  String feature_application_collection_ApplicationStatus_not_resolved_issues(Object count) {
+  String feature_application_collection_ApplicationStatus_not_resolved_issues(
+      Object count) {
     return 'Not resolved $count issues';
   }
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_track_label => 'Track';
+  String get feature_application_details_PlayStoreConfigForm_track_label =>
+      'Track';
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_status_label => 'Status';
+  String get feature_application_details_PlayStoreConfigForm_status_label =>
+      'Status';
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_update_priority_label => 'Update Priority';
+  String
+      get feature_application_details_PlayStoreConfigForm_update_priority_label =>
+          'Update Priority';
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_update_priority_validator => 'Please enter a valid priority (0-5)';
+  String
+      get feature_application_details_PlayStoreConfigForm_update_priority_validator =>
+          'Please enter a valid priority (0-5)';
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_user_fraction_label => 'User Fraction';
+  String
+      get feature_application_details_PlayStoreConfigForm_user_fraction_label =>
+          'User Fraction';
 
   @override
-  String get feature_application_details_PlayStoreConfigForm_user_fraction_validator => 'Please enter a valid fraction (0.0-1.0)';
+  String
+      get feature_application_details_PlayStoreConfigForm_user_fraction_validator =>
+          'Please enter a valid fraction (0.0-1.0)';
 
   @override
-  String get feature_application_details_BranchSelector_input_custom_branch => 'Input custom branch';
+  String get feature_application_details_BranchSelector_input_custom_branch =>
+      'Input custom branch';
 
   @override
-  String get feature_application_details_BranchSelector_choose_branch => 'Choose branch';
+  String get feature_application_details_BranchSelector_choose_branch =>
+      'Choose branch';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_demo_flow_title => 'Demo flow:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_demo_flow_title =>
+          'Demo flow:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle => 'Enable this option to use the demo authentication flow.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle =>
+          'Enable this option to use the demo authentication flow.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_configuration => 'Configuration';
+  String
+      get feature_application_details_ApplicationDetailsScreen_configuration =>
+          'Configuration';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_project_name => 'Project name:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_project_name =>
+          'Project name:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_project_id => 'Project id:';
+  String get feature_application_details_ApplicationDetailsScreen_project_id =>
+      'Project id:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_platform_identifier => 'Platform identifier:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_platform_identifier =>
+          'Platform identifier:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_android_platform_id => 'Android platform ID:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_platform_id =>
+          'Android platform ID:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_ios_platform_id => 'iOS platform ID:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_platform_id =>
+          'iOS platform ID:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_android_build_name => 'Android build name:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_build_name =>
+          'Android build name:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_android_build_number => 'Android build number:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_build_number =>
+          'Android build number:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_ios_build_name => 'iOS build name:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_build_name =>
+          'iOS build name:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_ios_build_number => 'iOS build number:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_build_number =>
+          'iOS build number:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_application_core => 'Application core:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_application_core =>
+          'Application core:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_terms_and_conditions => 'Terms and conditions:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_terms_and_conditions =>
+          'Terms and conditions:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_version => 'Version:';
+  String get feature_application_details_ApplicationDetailsScreen_version =>
+      'Version:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_default_theme => 'Default theme:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_default_theme =>
+          'Default theme:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_open => 'Open';
+  String get feature_application_details_ApplicationDetailsScreen_open =>
+      'Open';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet => 'Not selected default theme yet';
+  String
+      get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet =>
+          'Not selected default theme yet';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_google_services => 'Google services:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_google_services =>
+          'Google services:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded => 'Google services have not been uploaded';
+  String
+      get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded =>
+          'Google services have not been uploaded';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_deployment => 'Deployment';
+  String get feature_application_details_ApplicationDetailsScreen_deployment =>
+      'Deployment';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_platforms => 'Platforms:';
+  String get feature_application_details_ApplicationDetailsScreen_platforms =>
+      'Platforms:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_android_configuration => 'Android configuration';
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_configuration =>
+          'Android configuration';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone => 'Select branch for Phone:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone =>
+          'Select branch for Phone:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_additional_configuration => 'Additional configuration';
+  String
+      get feature_application_details_ApplicationDetailsScreen_additional_configuration =>
+          'Additional configuration';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_branches => 'Branches';
+  String get feature_application_details_ApplicationDetailsScreen_branches =>
+      'Branches';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep => 'Enter branch for Callkeep:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep =>
+          'Enter branch for Callkeep:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency => 'Enter branch for Common Dependency:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency =>
+          'Enter branch for Common Dependency:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool => 'Enter branch for Phone Configurator Tool:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool =>
+          'Enter branch for Phone Configurator Tool:';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore => 'Enter branch for Keystore';
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore =>
+          'Enter branch for Keystore';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_deploy => 'Deploy';
+  String get feature_application_details_ApplicationDetailsScreen_deploy =>
+      'Deploy';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_deploy_success_message => 'Deploy process successfully started';
+  String
+      get feature_application_details_ApplicationDetailsScreen_deploy_success_message =>
+          'Deploy process successfully started';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_builds_configuration => 'Builds configuration';
+  String
+      get feature_application_details_ApplicationDetailsScreen_builds_configuration =>
+          'Builds configuration';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl => 'The core URL provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl =>
+          'The core URL provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl => 'The terms and conditions URL provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl =>
+          'The terms and conditions URL provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName => 'The Android version name provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName =>
+          'The Android version name provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber => 'The Android version number provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber =>
+          'The Android version number provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName => 'The iOS version name provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName =>
+          'The iOS version name provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber => 'The iOS version number provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber =>
+          'The iOS version number provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId => 'The iOS platform ID provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId =>
+          'The iOS platform ID provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId => 'The Android platform ID provided is invalid.';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId =>
+          'The Android platform ID provided is invalid.';
 
   @override
-  String get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error => 'The application can’t be deployed due to existing errors:';
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error =>
+          'The application can’t be deployed due to existing errors:';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_confirm_deployment => 'Confirm Deployment';
+  String
+      get feature_application_details_DeployConfirmDialog_confirm_deployment =>
+          'Confirm Deployment';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_android_deployment => 'Android Deployment';
+  String
+      get feature_application_details_DeployConfirmDialog_android_deployment =>
+          'Android Deployment';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_ios_deployment => 'iOS Deployment';
+  String get feature_application_details_DeployConfirmDialog_ios_deployment =>
+      'iOS Deployment';
 
   @override
   String get feature_application_details_DeployConfirmDialog_track => '- Track';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_status => '- Status';
+  String get feature_application_details_DeployConfirmDialog_status =>
+      '- Status';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_update_priority => '- Update Priority';
+  String get feature_application_details_DeployConfirmDialog_update_priority =>
+      '- Update Priority';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_user_fraction => '- User Fraction';
+  String get feature_application_details_DeployConfirmDialog_user_fraction =>
+      '- User Fraction';
 
   @override
   String get feature_application_details_DeployConfirmDialog_flow => 'Flow';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_phone_source_branch => 'Phone Source Branch';
+  String
+      get feature_application_details_DeployConfirmDialog_phone_source_branch =>
+          'Phone Source Branch';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_callkeep_source_branch => 'Callkeep Source Branch';
+  String
+      get feature_application_details_DeployConfirmDialog_callkeep_source_branch =>
+          'Callkeep Source Branch';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_common_dependency_source_branch => 'Common Dependency Source Branch';
+  String
+      get feature_application_details_DeployConfirmDialog_common_dependency_source_branch =>
+          'Common Dependency Source Branch';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch => 'Phone Configurator Tool Source Branch';
+  String
+      get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch =>
+          'Phone Configurator Tool Source Branch';
 
   @override
-  String get feature_application_details_DeployConfirmDialog_keystore_source_branch => 'Keystore Source Branch';
+  String
+      get feature_application_details_DeployConfirmDialog_keystore_source_branch =>
+          'Keystore Source Branch';
 
   @override
   String get feature_application_details_DeployConfirmDialog_cancel => 'Cancel';
@@ -750,10 +900,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_application_details_DeployConfirmDialog_accept => 'Accept';
 
   @override
-  String get feature_translation_TranslationItem_hint_text => 'Enter translation';
+  String get feature_translation_TranslationItem_hint_text =>
+      'Enter translation';
 
   @override
-  String get feature_translation_TranslationItem_tooltip_clear_override => 'Clear override';
+  String get feature_translation_TranslationItem_tooltip_clear_override =>
+      'Clear override';
 
   @override
   String get feature_translation_TranslationsPage_name => 'Translations';
@@ -765,13 +917,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_translation_ControlBar_search_hint => 'Search';
 
   @override
-  String get feature_translation_OverrideEditDialog_edit_translation => 'Edit translation';
+  String get feature_translation_OverrideEditDialog_edit_translation =>
+      'Edit translation';
 
   @override
   String get feature_translation_OverrideEditDialog_value_label => 'Value';
 
   @override
-  String get feature_translation_OverrideEditDialog_value_required => 'Value is required';
+  String get feature_translation_OverrideEditDialog_value_required =>
+      'Value is required';
 
   @override
   String get feature_translation_OverrideEditDialog_cancel => 'Cancel';
@@ -851,13 +1005,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get callStatus_ready => 'Connection established';
 
   @override
-  String get notifications_errorSnackBar_callSignalingClientNotConnect => 'Cannot initiate the call, please check the connection status';
+  String get notifications_errorSnackBar_callSignalingClientNotConnect =>
+      'Cannot initiate the call, please check the connection status';
 
   @override
-  String get notifications_errorSnackBar_callConnect => 'Connecting to the core failed, trying to reconnect';
+  String get notifications_errorSnackBar_callConnect =>
+      'Connecting to the core failed, trying to reconnect';
 
   @override
-  String get notifications_errorSnackBar_callUserMedia => 'No access to media input, please check app permissions';
+  String get notifications_errorSnackBar_callUserMedia =>
+      'No access to media input, please check app permissions';
 
   @override
   String get notifications_errorSnackBarAction_callUserMedia => 'Check';
@@ -937,7 +1094,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get favorites_DeleteConfirmDialog_title => 'Confirm deleting';
 
   @override
-  String get favorites_DeleteConfirmDialog_content => 'Are you sure you want to delete the current favorite?';
+  String get favorites_DeleteConfirmDialog_content =>
+      'Are you sure you want to delete the current favorite?';
 
   @override
   String get login_Button_back => 'Back';
@@ -955,7 +1113,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginOtpRequestTabProceedButtonLabel => 'Proceed';
 
   @override
-  String get loginOtpRequestTabCodeTextFieldLabel => 'Enter the verification code';
+  String get loginOtpRequestTabCodeTextFieldLabel =>
+      'Enter the verification code';
 
   @override
   String get loginOtpRequestTabVerifyButtonLabel => 'Verify';
@@ -964,7 +1123,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_validationCoreUrlError => 'Please enter a correct URL';
 
   @override
-  String get login_LoginIncompatibleCoreVersionExceptionError => 'Incompatible Core version provided';
+  String get login_LoginIncompatibleCoreVersionExceptionError =>
+      'Incompatible Core version provided';
 
   @override
   String get login_FormatExceptionError => 'A response issue occurred';
@@ -979,16 +1139,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_RequestFailureError => 'A server failure occurred';
 
   @override
-  String get login_RequestFailureEmptyEmailError => 'Cannot send the verification code';
+  String get login_RequestFailureEmptyEmailError =>
+      'Cannot send the verification code';
 
   @override
   String get login_RequestFailurePhoneNotFoundError => 'Phone number not found';
 
   @override
-  String get login_RequestFailureCodeIncorrectError => 'Incorrect verification code';
+  String get login_RequestFailureCodeIncorrectError =>
+      'Incorrect verification code';
 
   @override
-  String get login_RequestFailureOtpIdVerifyAttemptsExceededError => 'Verification attempts exceeded';
+  String get login_RequestFailureOtpIdVerifyAttemptsExceededError =>
+      'Verification attempts exceeded';
 
   @override
   String get validationBlankError => 'Please enter a value';
@@ -1022,7 +1185,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recentsVisibilityFilter_outgoing => 'Outgoing';
 
   @override
-  String get recents_errorSnackBar_loadFailure => 'Oops... an error happened ☹️';
+  String get recents_errorSnackBar_loadFailure =>
+      'Oops... an error happened ☹️';
 
   @override
   String recents_snackBar_deleted(String name) {
@@ -1033,7 +1197,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recents_DeleteConfirmDialog_title => 'Confirm deleting';
 
   @override
-  String get recents_DeleteConfirmDialog_content => 'Are you sure you want to delete the current call log?';
+  String get recents_DeleteConfirmDialog_content =>
+      'Are you sure you want to delete the current call log?';
 
   @override
   String get contactsSourceLocal => 'Local';
@@ -1042,16 +1207,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactsSourceExternal => 'Internal';
 
   @override
-  String get contacts_LocalTabText_permissionFailure => 'There are no permissions to get local contacts';
+  String get contacts_LocalTabText_permissionFailure =>
+      'There are no permissions to get local contacts';
 
   @override
-  String get contacts_LocalTabButton_openAppSettings => 'Grant access to your contacts';
+  String get contacts_LocalTabButton_openAppSettings =>
+      'Grant access to your contacts';
 
   @override
   String get contacts_LocalTabText_failure => 'Failed to get local contacts';
 
   @override
-  String get contacts_LocalTabText_emptyOnSearching => 'No local contacts found';
+  String get contacts_LocalTabText_emptyOnSearching =>
+      'No local contacts found';
 
   @override
   String get contacts_LocalTabText_empty => 'No local contacts';
@@ -1060,10 +1228,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contacts_LocalTabButton_refresh => 'Refresh';
 
   @override
-  String get contacts_ExternalTabText_failure => 'Failed to get external contacts';
+  String get contacts_ExternalTabText_failure =>
+      'Failed to get external contacts';
 
   @override
-  String get contacts_ExternalTabText_emptyOnSearching => 'No external contacts found';
+  String get contacts_ExternalTabText_emptyOnSearching =>
+      'No external contacts found';
 
   @override
   String get contacts_ExternalTabText_empty => 'No local contacts';
@@ -1093,7 +1263,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_ListViewTileTitle_language => 'Language';
 
   @override
-  String get settings_ListViewTileTitle_termsConditions => 'Terms and conditions';
+  String get settings_ListViewTileTitle_termsConditions =>
+      'Terms and conditions';
 
   @override
   String get settings_ListViewTileTitle_about => 'About';
@@ -1105,13 +1276,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_ListViewTileTitle_toolbox => 'TOOLBOX';
 
   @override
-  String get settings_ListViewTileTitle_logRecordsConsole => 'Log records console';
+  String get settings_ListViewTileTitle_logRecordsConsole =>
+      'Log records console';
 
   @override
   String get settings_LogoutConfirmDialog_title => 'Confirm logout';
 
   @override
-  String get settings_LogoutConfirmDialog_content => 'Are you sure you want to logout?';
+  String get settings_LogoutConfirmDialog_content =>
+      'Are you sure you want to logout?';
 
   @override
   String get settings_FormatExceptionError => 'A response issue occurred';
@@ -1126,7 +1299,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_RequestFailureError => 'A server failure occurred';
 
   @override
-  String get webRegistration_ErrorAcknowledgeDialog_title => 'Web resource error';
+  String get webRegistration_ErrorAcknowledgeDialog_title =>
+      'Web resource error';
 
   @override
   String get webRegistration_ErrorAcknowledgeDialogActions_demo => 'Demo';

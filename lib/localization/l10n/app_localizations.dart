@@ -61,7 +61,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -69,7 +70,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,7 +83,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -89,9 +92,7 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('en')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
 
   /// No description provided for @app_name.
   ///
@@ -1171,7 +1172,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Not resolved {count} issues'**
-  String feature_application_collection_ApplicationStatus_not_resolved_issues(Object count);
+  String feature_application_collection_ApplicationStatus_not_resolved_issues(
+      Object count);
 
   /// No description provided for @feature_application_details_PlayStoreConfigForm_track_label.
   ///
@@ -1189,25 +1191,29 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Update Priority'**
-  String get feature_application_details_PlayStoreConfigForm_update_priority_label;
+  String
+      get feature_application_details_PlayStoreConfigForm_update_priority_label;
 
   /// No description provided for @feature_application_details_PlayStoreConfigForm_update_priority_validator.
   ///
   /// In en, this message translates to:
   /// **'Please enter a valid priority (0-5)'**
-  String get feature_application_details_PlayStoreConfigForm_update_priority_validator;
+  String
+      get feature_application_details_PlayStoreConfigForm_update_priority_validator;
 
   /// No description provided for @feature_application_details_PlayStoreConfigForm_user_fraction_label.
   ///
   /// In en, this message translates to:
   /// **'User Fraction'**
-  String get feature_application_details_PlayStoreConfigForm_user_fraction_label;
+  String
+      get feature_application_details_PlayStoreConfigForm_user_fraction_label;
 
   /// No description provided for @feature_application_details_PlayStoreConfigForm_user_fraction_validator.
   ///
   /// In en, this message translates to:
   /// **'Please enter a valid fraction (0.0-1.0)'**
-  String get feature_application_details_PlayStoreConfigForm_user_fraction_validator;
+  String
+      get feature_application_details_PlayStoreConfigForm_user_fraction_validator;
 
   /// No description provided for @feature_application_details_BranchSelector_input_custom_branch.
   ///
@@ -1225,13 +1231,15 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Demo flow:'**
-  String get feature_application_details_ApplicationDetailsScreen_demo_flow_title;
+  String
+      get feature_application_details_ApplicationDetailsScreen_demo_flow_title;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle.
   ///
   /// In en, this message translates to:
   /// **'Enable this option to use the demo authentication flow.'**
-  String get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle;
+  String
+      get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_configuration.
   ///
@@ -1255,55 +1263,64 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Platform identifier:'**
-  String get feature_application_details_ApplicationDetailsScreen_platform_identifier;
+  String
+      get feature_application_details_ApplicationDetailsScreen_platform_identifier;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_android_platform_id.
   ///
   /// In en, this message translates to:
   /// **'Android platform ID:'**
-  String get feature_application_details_ApplicationDetailsScreen_android_platform_id;
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_platform_id;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_ios_platform_id.
   ///
   /// In en, this message translates to:
   /// **'iOS platform ID:'**
-  String get feature_application_details_ApplicationDetailsScreen_ios_platform_id;
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_platform_id;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_android_build_name.
   ///
   /// In en, this message translates to:
   /// **'Android build name:'**
-  String get feature_application_details_ApplicationDetailsScreen_android_build_name;
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_build_name;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_android_build_number.
   ///
   /// In en, this message translates to:
   /// **'Android build number:'**
-  String get feature_application_details_ApplicationDetailsScreen_android_build_number;
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_build_number;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_ios_build_name.
   ///
   /// In en, this message translates to:
   /// **'iOS build name:'**
-  String get feature_application_details_ApplicationDetailsScreen_ios_build_name;
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_build_name;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_ios_build_number.
   ///
   /// In en, this message translates to:
   /// **'iOS build number:'**
-  String get feature_application_details_ApplicationDetailsScreen_ios_build_number;
+  String
+      get feature_application_details_ApplicationDetailsScreen_ios_build_number;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_application_core.
   ///
   /// In en, this message translates to:
   /// **'Application core:'**
-  String get feature_application_details_ApplicationDetailsScreen_application_core;
+  String
+      get feature_application_details_ApplicationDetailsScreen_application_core;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_terms_and_conditions.
   ///
   /// In en, this message translates to:
   /// **'Terms and conditions:'**
-  String get feature_application_details_ApplicationDetailsScreen_terms_and_conditions;
+  String
+      get feature_application_details_ApplicationDetailsScreen_terms_and_conditions;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_version.
   ///
@@ -1327,19 +1344,22 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Not selected default theme yet'**
-  String get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet;
+  String
+      get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_google_services.
   ///
   /// In en, this message translates to:
   /// **'Google services:'**
-  String get feature_application_details_ApplicationDetailsScreen_google_services;
+  String
+      get feature_application_details_ApplicationDetailsScreen_google_services;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded.
   ///
   /// In en, this message translates to:
   /// **'Google services have not been uploaded'**
-  String get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded;
+  String
+      get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_deployment.
   ///
@@ -1357,19 +1377,22 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Android configuration'**
-  String get feature_application_details_ApplicationDetailsScreen_android_configuration;
+  String
+      get feature_application_details_ApplicationDetailsScreen_android_configuration;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_select_branch_for_phone.
   ///
   /// In en, this message translates to:
   /// **'Select branch for Phone:'**
-  String get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone;
+  String
+      get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_additional_configuration.
   ///
   /// In en, this message translates to:
   /// **'Additional configuration'**
-  String get feature_application_details_ApplicationDetailsScreen_additional_configuration;
+  String
+      get feature_application_details_ApplicationDetailsScreen_additional_configuration;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_branches.
   ///
@@ -1381,25 +1404,29 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Enter branch for Callkeep:'**
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep;
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency.
   ///
   /// In en, this message translates to:
   /// **'Enter branch for Common Dependency:'**
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency;
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool.
   ///
   /// In en, this message translates to:
   /// **'Enter branch for Phone Configurator Tool:'**
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool;
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore.
   ///
   /// In en, this message translates to:
   /// **'Enter branch for Keystore'**
-  String get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore;
+  String
+      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_deploy.
   ///
@@ -1411,67 +1438,78 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Deploy process successfully started'**
-  String get feature_application_details_ApplicationDetailsScreen_deploy_success_message;
+  String
+      get feature_application_details_ApplicationDetailsScreen_deploy_success_message;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_builds_configuration.
   ///
   /// In en, this message translates to:
   /// **'Builds configuration'**
-  String get feature_application_details_ApplicationDetailsScreen_builds_configuration;
+  String
+      get feature_application_details_ApplicationDetailsScreen_builds_configuration;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidCoreUrl.
   ///
   /// In en, this message translates to:
   /// **'The core URL provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl.
   ///
   /// In en, this message translates to:
   /// **'The terms and conditions URL provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName.
   ///
   /// In en, this message translates to:
   /// **'The Android version name provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber.
   ///
   /// In en, this message translates to:
   /// **'The Android version number provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidIosVersionName.
   ///
   /// In en, this message translates to:
   /// **'The iOS version name provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber.
   ///
   /// In en, this message translates to:
   /// **'The iOS version number provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId.
   ///
   /// In en, this message translates to:
   /// **'The iOS platform ID provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId.
   ///
   /// In en, this message translates to:
   /// **'The Android platform ID provided is invalid.'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId;
 
   /// No description provided for @feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error.
   ///
   /// In en, this message translates to:
   /// **'The application can’t be deployed due to existing errors:'**
-  String get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error;
+  String
+      get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_confirm_deployment.
   ///
@@ -1525,31 +1563,36 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Phone Source Branch'**
-  String get feature_application_details_DeployConfirmDialog_phone_source_branch;
+  String
+      get feature_application_details_DeployConfirmDialog_phone_source_branch;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_callkeep_source_branch.
   ///
   /// In en, this message translates to:
   /// **'Callkeep Source Branch'**
-  String get feature_application_details_DeployConfirmDialog_callkeep_source_branch;
+  String
+      get feature_application_details_DeployConfirmDialog_callkeep_source_branch;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_common_dependency_source_branch.
   ///
   /// In en, this message translates to:
   /// **'Common Dependency Source Branch'**
-  String get feature_application_details_DeployConfirmDialog_common_dependency_source_branch;
+  String
+      get feature_application_details_DeployConfirmDialog_common_dependency_source_branch;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch.
   ///
   /// In en, this message translates to:
   /// **'Phone Configurator Tool Source Branch'**
-  String get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch;
+  String
+      get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_keystore_source_branch.
   ///
   /// In en, this message translates to:
   /// **'Keystore Source Branch'**
-  String get feature_application_details_DeployConfirmDialog_keystore_source_branch;
+  String
+      get feature_application_details_DeployConfirmDialog_keystore_source_branch;
 
   /// No description provided for @feature_application_details_DeployConfirmDialog_cancel.
   ///
@@ -2332,7 +2375,8 @@ abstract class AppLocalizations {
   String get loginModeSelectionTabSignInButtonLabel;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -2341,24 +2385,23 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
