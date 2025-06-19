@@ -5,7 +5,7 @@ import {
   LaunchAssets,
   SplashAssets,
   Theme,
-} from '../common/entities/theme/theme';
+} from '../../common/entities/theme/theme';
 
 @Injectable()
 export class ThemesService {

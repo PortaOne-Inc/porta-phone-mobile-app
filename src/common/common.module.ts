@@ -6,7 +6,7 @@ import { Colors } from './entities/colors/colors';
 import { Images } from './entities/images/images';
 import { Launch } from './entities/launch/launch';
 import { Theme } from './entities/theme/theme';
-import { ApplicationsService } from '../applications/applications.service';
+import { ApplicationsService } from '../features/applications/applications.service';
 import { UserRole } from './entities/userRoles/userRole';
 
 @Module({

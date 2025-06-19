@@ -12,12 +12,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApplicationsService } from './applications.service';
-import { Application } from '../common/entities/application/application';
+import { Application } from '../../common/entities/application/application';
 import { Roles } from '../auth/guard/roles.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { ThemesService } from '../themes/themes.service';
-import { Theme } from '../common/entities/theme/theme'; // Adjust path as needed
+import { Theme } from '../../common/entities/theme/theme'; // Adjust path as needed
 
 @ApiTags('applications')
 @Controller('applications')

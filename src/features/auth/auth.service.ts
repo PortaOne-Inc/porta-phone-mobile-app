@@ -12,7 +12,7 @@ import {
 } from 'firebase/auth';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
-import { UserRole } from '../common/entities/userRoles/userRole';
+import { UserRole } from '../../common/entities/userRoles/userRole';
 import { UsersService } from '../users/users.service';
 
 @Injectable()

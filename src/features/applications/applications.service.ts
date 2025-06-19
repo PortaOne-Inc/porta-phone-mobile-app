@@ -3,7 +3,7 @@ import { InjectRepository } from 'nestjs-fireorm';
 
 import { BaseFirestoreRepository } from 'fireorm';
 
-import { Application } from '../common/entities/application/application';
+import { Application } from '../../common/entities/application/application';
 
 @Injectable()
 export class ApplicationsService {

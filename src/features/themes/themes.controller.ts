@@ -15,7 +15,7 @@ import {
   LaunchAssets,
   SplashAssets,
   Theme,
-} from '../common/entities/theme/theme';
+} from '../../common/entities/theme/theme';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';

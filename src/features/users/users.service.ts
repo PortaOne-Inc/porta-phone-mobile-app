@@ -4,7 +4,7 @@ import { BaseFirestoreRepository } from 'fireorm';
 import * as admin from 'firebase-admin';
 import { UserDto } from './dto/user.dto';
 import { UserRecord } from 'firebase-admin/auth';
-import { UserRole } from '../common/entities/userRoles/userRole';
+import { UserRole } from '../../common/entities/userRoles/userRole';
 
 @Injectable()
 export class UsersService {
