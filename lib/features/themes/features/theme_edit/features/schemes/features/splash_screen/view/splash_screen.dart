@@ -9,6 +9,7 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_phone/extensions/build_context.dart';
 
 import '../bloc/splash_assets_bloc.dart';
 import '../widgets/widgets.dart';
@@ -43,7 +44,8 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
 
     return BlocListener<UpdateThemCubit, UpdateThemeState>(
       listener: _handleThemeUpdate,
-      child: BlocBuilder<SplashAssetsBloc, SplashAssetsState>(
+      child: BlocConsumer<SplashAssetsBloc, SplashAssetsState>(
+        listener: _handleSplashState,
         builder: (context, state) => Scaffold(
           appBar: AppBar(
             title: Text('Splash Screen', style: textTheme.titleMedium),
@@ -139,6 +141,12 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
   void _updatePadding() {
     final value = double.tryParse(_paddingController.text) ?? 0;
     _splashAssetsBloc.selectPadding(value);
+  }
+
+  void _handleSplashState(BuildContext context, SplashAssetsState state) {
+    if (state.status.isError && mounted) {
+      context.showErrorSnackBar(state.error?.toString() ?? 'Unknown error occurred');
+    }
   }
 
   void _handleThemeUpdate(BuildContext context, UpdateThemeState state) {

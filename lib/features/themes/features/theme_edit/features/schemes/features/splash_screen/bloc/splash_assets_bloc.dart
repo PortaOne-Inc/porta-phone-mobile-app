@@ -44,23 +44,30 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
   Future<void> uploadAsset(
     Future<Uint8List?> asset,
   ) async {
-    emit(state.copyWith(status: SplashAssetsStateEnum.loading));
+    try {
+      emit(state.copyWith(status: SplashAssetsStateEnum.loading));
 
-    final assetUint8List = await asset;
+      final assetUint8List = await asset;
 
-    final launchUrl = await uploadFileUsecase.execute(fileName: '${DateTime.now()}.png', data: assetUint8List!);
+      final launchUrl = await uploadFileUsecase.execute(fileName: '${DateTime.now()}.png', data: assetUint8List!);
 
-    await updateSplashAssetsThemeUsecase.execute(
+      final splashAsset = SplashAssetModel(
+        originalAssetId: state.selectedForegroundAsset!.id,
+        pictureUrl: launchUrl,
+        color: state.backgroundColor?.toHex(),
+        padding: state.padding,
+        fit: state.fit.name,
+      );
+
+      await updateSplashAssetsThemeUsecase.execute(
         applicationId: state.applicationId,
         themeId: state.themeId,
-        splashAsset: SplashAssetModel(
-          originalAssetId: state.selectedForegroundAsset!.id,
-          pictureUrl: launchUrl,
-          color: state.backgroundColor!.toHex(),
-          padding: state.padding,
-          fit: state.fit.name,
-        ));
+        splashAsset: splashAsset,
+      );
 
-    emit(state.copyWith(status: SplashAssetsStateEnum.initial));
+      emit(state.copyWith(status: SplashAssetsStateEnum.success));
+    } catch (e) {
+      emit(state.copyWith(status: SplashAssetsStateEnum.error, error: e));
+    }
   }
 }

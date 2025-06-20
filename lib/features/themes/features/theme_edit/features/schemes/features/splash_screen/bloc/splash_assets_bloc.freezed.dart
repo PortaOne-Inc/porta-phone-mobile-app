@@ -24,6 +24,7 @@ mixin _$SplashAssetsState {
   SplashAssetsStateEnum get status => throw _privateConstructorUsedError;
   BoxFit get fit => throw _privateConstructorUsedError;
   double get padding => throw _privateConstructorUsedError;
+  Object? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,7 +46,8 @@ abstract class $SplashAssetsStateCopyWith<$Res> {
       Color? backgroundColor,
       SplashAssetsStateEnum status,
       BoxFit fit,
-      double padding});
+      double padding,
+      Object? error});
 
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
 }
@@ -72,6 +74,7 @@ class _$SplashAssetsStateCopyWithImpl<$Res, $Val extends SplashAssetsState>
     Object? status = null,
     Object? fit = null,
     Object? padding = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       applicationId: null == applicationId
@@ -102,6 +105,7 @@ class _$SplashAssetsStateCopyWithImpl<$Res, $Val extends SplashAssetsState>
           ? _value.padding
           : padding // ignore: cast_nullable_to_non_nullable
               as double,
+      error: freezed == error ? _value.error : error,
     ) as $Val);
   }
 
@@ -136,7 +140,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       Color? backgroundColor,
       SplashAssetsStateEnum status,
       BoxFit fit,
-      double padding});
+      double padding,
+      Object? error});
 
   @override
   $ThemeAssetModelCopyWith<$Res>? get selectedForegroundAsset;
@@ -162,6 +167,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? status = null,
     Object? fit = null,
     Object? padding = null,
+    Object? error = freezed,
   }) {
     return _then(_$InitialImpl(
       applicationId: null == applicationId
@@ -192,6 +198,7 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.padding
           : padding // ignore: cast_nullable_to_non_nullable
               as double,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
@@ -206,7 +213,8 @@ class _$InitialImpl extends _Initial {
       this.backgroundColor,
       this.status = SplashAssetsStateEnum.initial,
       this.fit = BoxFit.scaleDown,
-      this.padding = 0})
+      this.padding = 0,
+      this.error})
       : super._();
 
   @override
@@ -226,10 +234,12 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final double padding;
+  @override
+  final Object? error;
 
   @override
   String toString() {
-    return 'SplashAssetsState(applicationId: $applicationId, themeId: $themeId, selectedForegroundAsset: $selectedForegroundAsset, backgroundColor: $backgroundColor, status: $status, fit: $fit, padding: $padding)';
+    return 'SplashAssetsState(applicationId: $applicationId, themeId: $themeId, selectedForegroundAsset: $selectedForegroundAsset, backgroundColor: $backgroundColor, status: $status, fit: $fit, padding: $padding, error: $error)';
   }
 
   @override
@@ -247,12 +257,21 @@ class _$InitialImpl extends _Initial {
                 other.backgroundColor == backgroundColor) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.fit, fit) || other.fit == fit) &&
-            (identical(other.padding, padding) || other.padding == padding));
+            (identical(other.padding, padding) || other.padding == padding) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, applicationId, themeId,
-      selectedForegroundAsset, backgroundColor, status, fit, padding);
+  int get hashCode => Object.hash(
+      runtimeType,
+      applicationId,
+      themeId,
+      selectedForegroundAsset,
+      backgroundColor,
+      status,
+      fit,
+      padding,
+      const DeepCollectionEquality().hash(error));
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -271,7 +290,8 @@ abstract class _Initial extends SplashAssetsState {
       final Color? backgroundColor,
       final SplashAssetsStateEnum status,
       final BoxFit fit,
-      final double padding}) = _$InitialImpl;
+      final double padding,
+      final Object? error}) = _$InitialImpl;
   _Initial._() : super._();
 
   @override
@@ -288,6 +308,8 @@ abstract class _Initial extends SplashAssetsState {
   BoxFit get fit;
   @override
   double get padding;
+  @override
+  Object? get error;
 
   /// Create a copy of SplashAssetsState
   /// with the given fields replaced by the non-null parameter values.
