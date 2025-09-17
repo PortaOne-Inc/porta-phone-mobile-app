@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/features/auth/auth.dart';
-import 'package:webtrit_configurator/core/core.dart';
-
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key, required this.child});
+  const WelcomeScreen({required this.child, super.key});
 
   final Widget child;
 

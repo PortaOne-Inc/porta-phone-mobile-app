@@ -88,7 +88,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   Future<void> tryGetApplication(String id) async {
-    try {
       emit(state.copyWith(status: ApplicationEditStatus.loading));
       final app = await applicationGetUsecase.execute(id: id);
       emit(
@@ -103,9 +102,6 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
           nameInput: ApplicationNameInput.dirty(app.name ?? ''),
         ),
       );
-    } on BaseException catch (e) {
-      emit(state.copyWith(exception: e, status: ApplicationEditStatus.error));
-    }
   }
 
   bool _isValidFields() {

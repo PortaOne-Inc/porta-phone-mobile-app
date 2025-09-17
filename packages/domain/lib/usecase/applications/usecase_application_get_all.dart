@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import '../../entity/entity.dart';
-import '../../repository/repository.dart';
+import 'package:domain/models/models.dart';
+import 'package:domain/repository/repository.dart';
 
 abstract class UsecaseApplicationGetAll {
-  FutureOr<List<ApplicationModel>> execute();
+  Future<List<ApplicationModel>> execute();
 }
 
 @Injectable(as: UsecaseApplicationGetAll)
@@ -20,7 +20,7 @@ class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
   final AuthRepository authRepository;
 
   @override
-  FutureOr<List<ApplicationModel>> execute({void argument}) async {
+  Future<List<ApplicationModel>> execute() async {
     return applicationRepository.getUserApplications();
   }
 }

@@ -20,6 +20,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.updateBuildNameUseCase,
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
+    required this.copyThemeUsecase,
     ApplicationModel? applicationModel,
   }) : super(ApplicationDetailsState(
           status: ApplicationDetailsStateStatus.progress,
@@ -39,6 +40,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UpdateBuildNameUseCase updateBuildNameUseCase;
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
+  final CopyThemeUsecase copyThemeUsecase;
 
   Future<void> _init() async {
     await _getThemes();
@@ -104,16 +106,6 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     }
   }
 
-  Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
-    try {
-      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-      await operation();
-      emit(state.copyWith(status: ApplicationDetailsStateStatus.success));
-    } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
-    }
-  }
-
   // TODO(Serdun): Clean up code
   Future<void> _getApplication({bool force = false}) async {
     if (state.application == null || force) {
@@ -139,6 +131,12 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   Future<void> _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
     await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
+    await _getThemes();
+  }
+
+  Future<void> copyTheme(ThemeModel themeModel) async {
+    emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+    await copyThemeUsecase.execute(applicationId: applicationId, themeId: themeModel.id!);
     await _getThemes();
   }
 }

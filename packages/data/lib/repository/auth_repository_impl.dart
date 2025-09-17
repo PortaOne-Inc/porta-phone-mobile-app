@@ -90,7 +90,7 @@ class AuthRepositoryImpl extends AuthRepository {
         expiredTime: expiredTime,
       );
     } on Exception catch (e) {
-      throw BaseException(message: 'Failed to retrieve user: ${e}');
+      throw BaseException(message: 'Failed to retrieve user: $e');
     }
   }
 

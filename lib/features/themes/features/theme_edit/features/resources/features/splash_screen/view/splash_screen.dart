@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:domain/domain.dart';
+
+import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_phone/extensions/extensions.dart';
+
+import '../../../widgets/universal_asset_designer.dart';
+import '../bloc/splash_assets_bloc.dart';
+import '../constants/consts.dart';
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> with MixinMessages {
+  SplashAssetsBloc get _bloc => context.read<SplashAssetsBloc>();
+  final controller = ConfigurableAssetDesignerController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller.onPickColor = (req) async {
+      final initial = req.currentHex?.toColor() ?? Colors.transparent;
+      final picked = await context.pickColor(initial: initial);
+      return picked?.toHex();
+    };
+
+    _bloc.load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SplashAssetsBloc, SplashAssetsState>(
+      listener: (context, state) {
+        if (state.status == SplashAssetsStatus.failure) {
+          context.showErrorSnackBar(state.error?.toString() ?? 'Failed');
+        }
+        if (state.status == SplashAssetsStatus.success) {
+          context.showSnackBar('Saved');
+        }
+      },
+      builder: (context, state) {
+        final defaults = state.constraintsDefaults;
+        final slice = (defaults != null) ? defaults.withBackground : defaultConstraintsModel;
+        final pages = <DesignerPageConfig>[
+          DesignerPageConfig(
+            id: DesignerPageIds.splash,
+            label: 'Splash',
+            isCommon: true,
+            previewOnlyColor: true,
+            sizeDp: slice.fullSizeDp,
+            safeZoneDp: slice.maskDiameterDp,
+            maskDp: slice.toleranceDp,
+            exportSizePx: (slice.fullSizeDp * 2).round(),
+            paddingDp: state.padding,
+            initialBackgroundHex: state.backgroundColorHex,
+            inheritsFromCommon: false,
+            bgInheritsFromCommon: false,
+          ),
+        ];
+
+        final designerKey = ValueKey(state.updatedAt ?? 'init');
+
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Splash Screen'),
+            actions: [
+              IconButton(
+                tooltip: 'Clean splash screen (no image).',
+                onPressed: () => _bloc.delete(),
+                icon: const Icon(Icons.delete_outlined),
+              ),
+              IconButton(
+                tooltip: 'Choose an image (SVG/PNG).',
+                onPressed: () => _pickAsset(state.assets),
+                icon: const Icon(Icons.file_open),
+              ),
+              IconButton(
+                tooltip: 'Save',
+                onPressed: state.isLoading ? null : _save,
+                icon: state.isLoading
+                    ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 1))
+                    : const Icon(Icons.save),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: ConfigurableAssetDesigner(
+                  pages: pages,
+                  key: designerKey,
+                  controller: controller,
+                  foregroundAsset: state.selectedAsset,
+                  onSnapshotChanged: (snap) {
+                    final eff = snap.pages.firstWhere(
+                      (e) => e.pageId == DesignerPageIds.splash,
+                      orElse: () => snap.pages.first,
+                    );
+                    if (eff.paddingDp != state.padding) _bloc.selectPadding(eff.paddingDp);
+                    final hex = eff.backgroundHex;
+                    if (hex != state.backgroundColorHex) {
+                      _bloc.selectBackgroundColor(hex?.toColor());
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _save() async {
+    await _bloc.startRender();
+    final files = await controller.exportAll();
+    await _bloc.saveWithExports(files[DesignerPageIds.splash]!);
+  }
+
+  Future<void> _pickAsset(List<AssetModel> assets) async {
+    final picked = await context.pickAsset(assets);
+    if (picked != null) _bloc.selectAsset(picked);
+  }
+}

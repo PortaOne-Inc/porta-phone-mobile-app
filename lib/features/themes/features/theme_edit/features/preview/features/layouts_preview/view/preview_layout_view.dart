@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
@@ -28,6 +29,8 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
   @override
   Widget build(BuildContext context) {
+    final featureAccess = context.watch<FeatureAccess?>();
+
     return ResizableColumns(
       initialProportions: const [0.75, 0.25],
       dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -36,7 +39,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         (_) => Align(
               child: TypePreview(
                 type: widget.previewType,
-                screens: _phoneScreenshots(),
+                screens: _phoneScreenshots(featureAccess),
                 screenFocus: _focusScreenPosition,
                 isFrameVisible: widget.frameVisibility,
                 onFocusPosition: _setFocusedScreen,
@@ -44,7 +47,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
             ),
         if (widget.previewType == PreviewType.single)
           (_) => DrawerPreview(
-                screenshots: _phoneScreenshots(),
+                screenshots: _phoneScreenshots(featureAccess),
                 focusScreenPosition: _focusScreenPosition,
                 onTapScreen: _setFocusedScreen,
               ),
@@ -53,34 +56,32 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     );
   }
 
-  List<Widget> _phoneScreenshots() {
+  List<Widget> _phoneScreenshots(FeatureAccess? featureAccess) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeProvider.of(context).settings,
       themeMode: ThemeMode.light,
       locale: const Locale('en'),
     );
 
-    final loginFeature = context.read<FeatureAccess?>()?.loginFeature;
-    final bottomMenuFeature = context.read<FeatureAccess?>()?.bottomMenuFeature;
+    final loginFeature = featureAccess?.loginFeature;
+    final bottomMenuFeature = featureAccess?.bottomMenuFeature;
 
     final loginLabel = loginFeature?.titleL10n;
 
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
     final isFavoritePreview = bottomMenuFeature?.isTabEnabled(MainFlavor.favorites) ?? false;
     final isContactPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.contacts) ?? false;
-    final isrResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
+    final isResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
     final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
-    const isCustomCoreEnable = false; // TODO(Serdun): Implement this
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
     return [
       const LoginModeSelectScreenScreenshot(),
-      if (isCustomCoreEnable) const LoginCoreUrlAssignScreenScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
-      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: []),
+      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
       if (isFavoritePreview)
         MainScreenScreenshot(
@@ -88,7 +89,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
           MainFlavor.favorites,
           loginLabel != null ? Text(loginLabel) : null,
         ),
-      if (isrResentsPreview)
+      if (isResentsPreview)
         MainScreenScreenshot(
           key: bottomMenuKey,
           MainFlavor.recents,
@@ -114,6 +115,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
       const PrivacyScreenScreenshot(),
+      const AboutScreenshot(),
     ].map((it) => ScreenshotApp(appBloc: appBloc, child: it)).toList();
   }
 

@@ -35,12 +35,11 @@ extension ThemeSettingsExtensions on ConfiguratorThemeSettings {
       primaryColorLight: scheme.primary,
       primaryColorDark: scheme.primary,
       unselectedWidgetColor: scheme.onSurface,
-      indicatorColor: scheme.tertiary,
       scaffoldBackgroundColor: scheme.surfaceContainer,
       cardTheme: CardThemeData(
         color: scheme.surface,
         elevation: 2,
-      ),
+      ), tabBarTheme: TabBarThemeData(indicatorColor: scheme.tertiary),
     );
   }
 

@@ -1,33 +1,29 @@
-// input_config_tab.dart
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 
-// TODO(Serdun): add correct handling as dot it in ButtonConfigTab
+import '../../../../../bloc/update_theme_cubit.dart';
+
 class InputConfigTab extends StatelessWidget {
   const InputConfigTab({
     required this.sourceInputWidgetConfig,
     required this.inputDecorationTheme,
-    required this.callback,
     super.key,
   });
 
   final InputWidgetConfig sourceInputWidgetConfig;
-  final InputDecorationTheme inputDecorationTheme;
-  final ObjectCallback<InputWidgetConfig> callback;
+  final InputDecorationThemeData inputDecorationTheme;
 
   @override
   Widget build(BuildContext context) {
-    // Extract colors from inputDecorationTheme
     final labelColor = inputDecorationTheme.labelStyle?.color ?? Colors.black;
     final disabledColor = inputDecorationTheme.disabledBorder?.borderSide.color ?? Colors.grey;
     final focusedColor = inputDecorationTheme.focusedBorder?.borderSide.color ?? Colors.blue;
     final errorColor = inputDecorationTheme.errorStyle?.color ?? Colors.red;
-    final fillColor = inputDecorationTheme.filled
-        ? (inputDecorationTheme.fillColor ?? Colors.transparent)
-        : Colors.transparent;
+    final fillColor =
+        inputDecorationTheme.filled ? (inputDecorationTheme.fillColor ?? Colors.transparent) : Colors.transparent;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -35,92 +31,84 @@ class InputConfigTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BorderContainer(
-            title: 'InputDecorationTheme Configuration',
+            title: 'InputDecorationTheme',
+            descriptionWidget: DescriptionRow.info(
+              'Configure label and border colors used by text inputs.',
+            ),
             padding: const EdgeInsets.all(16),
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
-                // Label Color Configuration
                 ColorField(
-                  title: 'Label Color',
+                  title: 'Label color',
                   constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
                   color: labelColor,
-                  onTap: (color) => context.selectColor(
+                  onTap: (_) => context.selectColor(
                     initialColor: labelColor,
-                    onColorSelected: (color) => callback(
-                      sourceInputWidgetConfig.copyWith(
-                        primary: sourceInputWidgetConfig.primary.copyWith(labelColor: color.toHex()),
-                      ),
-                    ),
+                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setInputLabelColor(c.toHex()),
+                        ),
                   ),
                 ),
-                // Disabled Border Color Configuration
                 ColorField(
-                  title: 'Disabled Border Color',
+                  title: 'Disabled border color',
                   constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
                   color: disabledColor,
-                  onTap: (color) => context.selectColor(
+                  onTap: (_) => context.selectColor(
                     initialColor: disabledColor,
-                    onColorSelected: (color) => callback(
-                      sourceInputWidgetConfig.copyWith(
-                        primary: sourceInputWidgetConfig.primary.copyWith(
-                            border: sourceInputWidgetConfig.primary.border.copyWith(
-                                disabled: sourceInputWidgetConfig.primary.border.disabled
-                                    .copyWith(typicalColor: disabledColor.toHex()))),
-                      ),
-                    ),
+                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setInputBorderDisabled(
+                            sourceInputWidgetConfig.primary.border.disabled.copyWith(
+                              typicalColor: c.toHex(),
+                            ),
+                          ),
+                        ),
                   ),
                 ),
-                // Focused Border Color Configuration
                 ColorField(
-                  title: 'Focused Border Color',
+                  title: 'Focused border color',
                   constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
                   color: focusedColor,
-                  onTap: (color) => context.selectColor(
-                    initialColor: disabledColor,
-                    onColorSelected: (color) => callback(
-                      sourceInputWidgetConfig.copyWith(
-                        primary: sourceInputWidgetConfig.primary.copyWith(
-                            border: sourceInputWidgetConfig.primary.border.copyWith(
-                                focused: sourceInputWidgetConfig.primary.border.focused
-                                    .copyWith(typicalColor: disabledColor.toHex()))),
-                      ),
-                    ),
+                  onTap: (_) => context.selectColor(
+                    initialColor: focusedColor,
+                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setInputBorderFocused(
+                            sourceInputWidgetConfig.primary.border.focused.copyWith(
+                              typicalColor: c.toHex(),
+                            ),
+                          ),
+                        ),
                   ),
                 ),
-                // Error Style Color Configuration
                 ColorField(
-                  title: 'Error Text Color',
+                  title: 'Error border color',
                   constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
                   color: errorColor,
-                  onTap: (color) => context.selectColor(
-                    initialColor: disabledColor,
-                    onColorSelected: (color) => callback(
-                      sourceInputWidgetConfig.copyWith(
-                        primary: sourceInputWidgetConfig.primary.copyWith(
-                            border: sourceInputWidgetConfig.primary.border.copyWith(
-                                focused: sourceInputWidgetConfig.primary.border.focused
-                                    .copyWith(errorColor: errorColor.toHex()))),
-                      ),
-                    ),
+                  onTap: (_) => context.selectColor(
+                    initialColor: errorColor,
+                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setInputBorderFocused(
+                            sourceInputWidgetConfig.primary.border.focused.copyWith(
+                              errorColor: c.toHex(),
+                            ),
+                          ),
+                        ),
                   ),
                 ),
-                // Fill Color Configuration
                 ColorField(
-                  title: 'Fill Color',
+                  title: 'Fill color',
                   constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
                   color: fillColor,
-                  onTap: (color) => context.selectColor(
-                    initialColor: disabledColor,
-                    onColorSelected: (color) => callback(
-                      sourceInputWidgetConfig.copyWith(
-                        primary: sourceInputWidgetConfig.primary.copyWith(
-                            border: sourceInputWidgetConfig.primary.border.copyWith(
-                                any: sourceInputWidgetConfig.primary.border.any
-                                    .copyWith(typicalColor: disabledColor.toHex()))),
-                      ),
-                    ),
+                  onTap: (_) => context.selectColor(
+                    initialColor: fillColor,
+                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setInputBorderAny(
+                            sourceInputWidgetConfig.primary.border.any.copyWith(
+                              typicalColor: c.toHex(),
+                            ),
+                          ),
+                        ),
                   ),
                 ),
               ],

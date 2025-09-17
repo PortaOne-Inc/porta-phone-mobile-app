@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/preview_required/view/preview_required.dart';
@@ -31,10 +33,6 @@ class FeatureAccessShellRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
-        if (state.theme == null) {
-          return const LoadingScreen(status: LoadingStatus.loadingTheme);
-        }
-
         return FutureBuilder<AppConfig>(
           future: _replaceLocalAssetsWithDataUri(state.appConfig),
           builder: (context, snapshot) {
@@ -158,11 +156,7 @@ class ProvidersWrapper extends StatelessWidget {
         Provider<AppPreferences>.value(value: MockAppPreferencesService()),
         Provider<DeviceInfo>.value(value: DeviceInfoMock()),
         Provider<PackageInfo>.value(value: PackageInfoMock()),
-        FutureProvider<FeatureAccess>.value(
-          key: ValueKey(featureAccess),
-          value: Future.value(featureAccess),
-          initialData: featureAccess,
-        ),
+        Provider<FeatureAccess>.value(value: featureAccess),
       ],
       child: child,
     );

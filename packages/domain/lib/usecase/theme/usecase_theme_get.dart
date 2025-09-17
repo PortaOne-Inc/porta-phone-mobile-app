@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../entity/entity.dart';
+import '../../models/themes/theme_model.dart';
 import '../../repository/repository.dart';
 
 abstract class UsecaseThemeGet {

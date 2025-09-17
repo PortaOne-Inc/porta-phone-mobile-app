@@ -1,60 +1,66 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/features/components/widgets/snack_bar_editor_minimal.dart';
+import 'package:webtrit_phone/theme/styles/snack_bar_styles.dart';
+import 'package:webtrit_phone/widgets/confirm_dialog_styles.dart';
 
-class ConfigWidgetsActionBar extends StatelessWidget {
-  const ConfigWidgetsActionBar({
-    required this.onBack,
+import '../../../../../bloc/update_theme_cubit.dart';
+
+import 'confirm_dialog_editor_minimal.dart';
+
+class DialogConfig extends StatelessWidget {
+  const DialogConfig({
+    required this.sourceDialogWidgetConfig,
+    required this.confirmDialogStyles,
+    required this.snackBarStyles,
     super.key,
   });
 
-  final void Function() onBack;
+  final DialogWidgetConfig sourceDialogWidgetConfig;
+  final ConfirmDialogStyles? confirmDialogStyles;
+  final SnackBarStyles? snackBarStyles;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final dialogCfg = sourceDialogWidgetConfig;
 
-    return MenuSpace(
-      isTopPosition: true,
-      background: colorScheme.surfaceDim.withValues(alpha: 0.2),
-      children: [
-        Expanded(
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16, top: 8),
-                child: IconButton(
-                  onPressed: onBack,
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              )
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BorderContainer(
+            title: 'Confirm Dialog',
+            descriptionWidget:  DescriptionRow.info(
+              'Configure the confirm dialog active/default button colors.',
+            ),
+            padding: const EdgeInsets.all(16),
+            child: ConfirmDialogEditorMinimal(
+              value: dialogCfg.confirmDialog,
+              onChanged: (v) => context.read<UpdateThemCubit>().add(
+                ThemeWidgetEvent.setConfirmDialog(v),
+              ),
+            ),
           ),
-        ),
-        Text(
-          'Config widgets',
-          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        Expanded(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Dropdown(
-                icon: const Icon(Icons.light_mode_outlined),
-                constraints: const BoxConstraints(maxWidth: 124),
-                items: const [
-                  'Light mode',
-                  'Dark mode',
-                ],
-                onSelect: (int position) {},
-              )
-            ],
+          const SizedBox(height: 16),
+          BorderContainer(
+            title: 'SnackBar',
+            descriptionWidget:  DescriptionRow.info(
+              'Configure background colors for success, error, info and warning snackbars.',
+            ),
+            padding: const EdgeInsets.all(16),
+            child: SnackBarEditorMinimal(
+              value: dialogCfg.snackBar,
+              onChanged: (v) => context.read<UpdateThemCubit>().add(
+                ThemeWidgetEvent.setSnackBar(v),
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

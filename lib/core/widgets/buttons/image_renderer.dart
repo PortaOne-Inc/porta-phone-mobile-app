@@ -135,7 +135,10 @@ abstract class Resource {
     return EmptyResource();
   }
 
-  factory Resource.url(String url) {
+  factory Resource.url(String? url) {
+    if (url == null || url.isEmpty) {
+      return EmptyResource();
+    }
     return UrlResource(url);
   }
 

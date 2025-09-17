@@ -103,8 +103,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         } else {
                           final application = state.applications[index - 1];
                           return ApplicationPreviewItem(
-                            application: application.$1,
-                            applicationValidateErrors: application.$2,
+                            application: application,
                             onDelete: bloc.tryDeleteApplication,
                             onEdit: _onEditApplication,
                             onOpen: _onOpenApplication,

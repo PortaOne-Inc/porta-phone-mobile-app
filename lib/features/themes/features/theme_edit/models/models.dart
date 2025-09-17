@@ -1,4 +1,5 @@
 export 'asset_item.dart';
+export 'colors/scheme_color.dart';
 export 'event_log_model.dart';
 export 'exception/exception.dart';
 export 'focus_model.dart';

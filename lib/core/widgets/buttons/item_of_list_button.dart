@@ -26,6 +26,7 @@ class ItemOfListButton extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 name,
@@ -39,17 +40,13 @@ class ItemOfListButton extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              Expanded(
-                child: SizedBox(
-                  child: Text(
-                    description,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.fade,
-                    style: textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: colorScheme.surface.withValues(alpha: 0.75),
-                    ),
-                  ),
+              Text(
+                description,
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.fade,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: colorScheme.surface.withValues(alpha: 0.75),
                 ),
               ),
               Divider(

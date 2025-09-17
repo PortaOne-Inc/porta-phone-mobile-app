@@ -12,8 +12,6 @@ import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_phone/extensions/string.dart';
 import 'package:webtrit_phone/models/models.dart';
 
-import '../bloc/manage_setting_item_cubit.dart';
-
 final _logger = Logger('AddSettingItemScreen');
 
 class AddSettingItemScreen extends StatefulWidget {
@@ -132,7 +130,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                               margin: EdgeInsets.zero,
                               child: ListTile(
                                 title: Text(state.selectedEmbeddedResource!.uri),
-                                subtitle: Text(state.selectedEmbeddedResource!.id.toString()),
+                                subtitle: Text(state.selectedEmbeddedResource!.id),
                               ),
                             ),
                       trailing: state.selectedEmbeddedResource == null ? const Icon(Icons.add) : const Icon(Icons.edit),
@@ -178,11 +176,11 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
   }
 
   Future<void> _launchUrl() async {
-    const url = 'https://fonts.google.com/icons';
-    if (await canLaunch(url)) {
-      await launch(url);
+    final uri = Uri.parse('https://fonts.google.com/icons');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
-      _logger.warning('Could not launch URL: $url');
+      _logger.warning('Could not launch URL: $uri');
     }
   }
 }

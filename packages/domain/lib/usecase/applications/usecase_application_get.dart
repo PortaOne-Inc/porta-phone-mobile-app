@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import '../../entity/entity.dart';
-import '../../repository/repository.dart';
+import 'package:domain/models/models.dart';
+import 'package:domain/repository/repository.dart';
 
 abstract class UsecaseApplicationGet {
-  FutureOr<ApplicationModel> execute({
+  Future<ApplicationModel> execute({
     required String id,
   });
 }
@@ -22,11 +22,9 @@ class UsecaseApplicationGetImpl extends UsecaseApplicationGet {
   final AuthRepository authRepository;
 
   @override
-  FutureOr<ApplicationModel> execute({
+  Future<ApplicationModel> execute({
     required String id,
   }) async {
-    return applicationRepository.getApplication(
-      id,
-    );
+    return applicationRepository.getApplication(id);
   }
 }

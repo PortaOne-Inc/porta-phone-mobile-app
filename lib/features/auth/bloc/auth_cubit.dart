@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
         _logger.info('Token status: $status');
         emit(state.copyWith(status: status));
       },
-      onError: (error) {
+      onError: (Object error) {
         emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
         _logger.severe('Error monitoring token expiration: $error');
       },

@@ -38,11 +38,11 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       // Initialize Firebase
       await Firebase.initializeApp(options: ApplicationEnvironment.firebaseOptions);
 
-      // Load phone environment
-      final phoneEnvironment = await _getJson(Assets.environment.dartDefine) as Map<String, dynamic>;
-      diContainer.registerSingleton(phoneEnvironment, instanceName: 'phoneEnvironment');
+      // // Load phone environment
+      // final phoneEnvironment = await _getJson(Assets.environment.dartDefine) as Map<String, dynamic>;
+      // diContainer.registerSingleton(phoneEnvironment, instanceName: 'phoneEnvironment');
 
-      // Load and configure themes
+      // // Load and configure themes
       final themeSettings = await _initializeAppThemes();
       diContainer.registerSingleton(themeSettings);
 
@@ -58,11 +58,16 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       return runApp(await builder(diContainer));
     },
     (error, stackTrace) {
-      if (kDebugMode) {
-        print(error);
-      }
+      debugPrint('🔴 Uncaught: $error');
+      debugPrint('$stackTrace');
     },
   );
+
+  PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+    debugPrint('🟠 PlatformDispatcher.onError: $error');
+    debugPrint('$stack');
+    return true;
+  };
 }
 
 Future<ConfiguratorThemeSettings> _initializeAppThemes() async {

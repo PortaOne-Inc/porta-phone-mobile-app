@@ -47,7 +47,7 @@ class ItemTheme extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        themeMode.name ?? '',
+                        themeMode.title ?? themeMode.displayTitle,
                         textAlign: TextAlign.start,
                         style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
@@ -58,14 +58,8 @@ class ItemTheme extends StatelessWidget {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         title: const Text('Application id:'),
-                        subtitle: Text(themeMode.applicationId ?? 'Not assigned'),
+                        subtitle: Text(themeMode.displayTitle),
                       ),
-                      // Text(
-                      //   'Seed: ${themeMode.colors?.seed}',
-                      //   textAlign: TextAlign.start,
-                      //   style: Theme.of(context).textTheme.titleSmall,
-                      //   overflow: TextOverflow.ellipsis,
-                      // ),
                     ],
                   ),
                 ),

@@ -5,7 +5,8 @@ import 'package:domain/domain.dart';
 abstract class UsecaseThemeCreate {
   Future<ThemeModel> execute({
     required String applicationId,
-    required ThemeModel themeModel,
+    required String title,
+    required String description,
   });
 }
 
@@ -20,8 +21,9 @@ class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
   @override
   Future<ThemeModel> execute({
     required String applicationId,
-    required ThemeModel themeModel,
+    required String title,
+    required String description,
   }) async {
-    return _themeRepository.createTheme(applicationId, themeModel);
+    return _themeRepository.createTheme(applicationId, title, description);
   }
 }

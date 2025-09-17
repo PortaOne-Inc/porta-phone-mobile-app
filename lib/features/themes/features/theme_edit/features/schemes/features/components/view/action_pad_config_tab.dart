@@ -1,125 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 
-import '../models/models.dart';
-
-typedef ActionPadWidgetConfigCallback = void Function(ActionPadWidgetConfig);
+import '../../../../../bloc/update_theme_cubit.dart';
+import '../../../widgets/widgets.dart';
 
 class ActionPadConfig extends StatelessWidget {
   const ActionPadConfig({
     required this.source,
-    required this.callback,
-    this.actionpadStyles,
+    this.actionpadStyles, // kept only for signature compatibility
     super.key,
   });
 
   final ActionPadWidgetConfig source;
   final ActionpadStyles? actionpadStyles;
-  final ActionPadWidgetConfigCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    final themeLight = ThemeProvider.of(context).light();
-    final actionPadStyles = themeLight.extension<ActionpadStyles>()?.primary;
-
-    final actionPadList = <ObjectDescriptor<ButtonStyle, ElevatedButtonWidgetConfig?>>[
-      ObjectDescriptor(
-        style: actionPadStyles?.callStart,
-        data: source.callStart,
-        callback: (data) => callback(source.copyWith(callStart: data!)),
-        title: 'Call Start',
-      ),
-      ObjectDescriptor(
-        style: actionPadStyles?.backspacePressed,
-        data: source.backspacePressed,
-        callback: (data) => callback(source.copyWith(backspacePressed: data!)),
-        title: 'Backspace Pressed',
-      ),
-      ObjectDescriptor(
-        style: actionPadStyles?.callTransfer,
-        data: source.callTransfer,
-        callback: (data) => callback(source.copyWith(callTransfer: data!)),
-        title: 'Call Transfer',
-      ),
-    ].nonNulls;
-
-    const boxConstraints = BoxConstraints(minWidth: 160, minHeight: 80);
+    final cubit = context.read<UpdateThemCubit>();
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: BorderContainer(
         title: 'Action Pad Buttons',
+        descriptionWidget: DescriptionRow.info(
+          'Configure colors for call start, transfer, and backspace actions.',
+        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: actionPadList.map((descriptor) {
-            return BorderContainer(
-              title: descriptor.title,
+          children: [
+            BorderContainer(
+              title: 'Call Start',
               padding: const EdgeInsets.all(16),
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ColorField(
-                    title: 'Background Color',
-                    constraints: boxConstraints,
-                    color: descriptor.style?.backgroundColor?.resolve({}),
-                    onTap: (color) => context.selectColor(
-                      initialColor: descriptor.style?.backgroundColor?.resolve({}),
-                      onColorSelected: (color) => descriptor.callback!(
-                        descriptor.data?.copyWith(backgroundColor: color.toHex()),
-                      ),
-                    ),
-                  ),
-                  ColorField(
-                    title: 'Foreground Color',
-                    constraints: boxConstraints,
-                    color: descriptor.style?.foregroundColor?.resolve({}),
-                    onTap: (color) => context.selectColor(
-                      initialColor: descriptor.style?.foregroundColor?.resolve({}),
-                      onColorSelected: (color) => descriptor.callback!(
-                        descriptor.data?.copyWith(foregroundColor: color.toHex()),
-                      ),
-                    ),
-                  ),
-                  ColorField(
-                    title: 'Disabled Color',
-                    constraints: boxConstraints,
-                    color: descriptor.style?.backgroundColor?.resolve({WidgetState.disabled}),
-                    onTap: (color) => context.selectColor(
-                      initialColor: descriptor.style?.backgroundColor?.resolve({WidgetState.disabled}),
-                      onColorSelected: (color) => descriptor.callback!(
-                        descriptor.data?.copyWith(disabledIconColor: color.toHex()),
-                      ),
-                    ),
-                  ),
-                  ColorField(
-                    title: 'Text Color',
-                    constraints: boxConstraints,
-                    color: descriptor.style?.textStyle?.resolve({})?.color,
-                    onTap: (color) => context.selectColor(
-                      initialColor: descriptor.style?.textStyle?.resolve({})?.color,
-                      onColorSelected: (color) => descriptor.callback!(
-                        descriptor.data?.copyWith(textColor: color.toHex()),
-                      ),
-                    ),
-                  ),
-                  ColorField(
-                    title: 'Icon Color',
-                    constraints: boxConstraints,
-                    color: descriptor.style?.iconColor?.resolve({}),
-                    onTap: (color) => context.selectColor(
-                      initialColor: descriptor.style?.iconColor?.resolve({}),
-                      onColorSelected: (color) => descriptor.callback!(
-                        descriptor.data?.copyWith(iconColor: color.toHex()),
-                      ),
-                    ),
-                  ),
-                ],
+              child: ElevatedButtonConfigEditorMinimal(
+                value: source.callStart,
+                onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadCallStart(v)),
               ),
-            );
-          }).toList(),
+            ),
+            const SizedBox(height: 12),
+            BorderContainer(
+              title: 'Backspace Pressed',
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButtonConfigEditorMinimal(
+                value: source.backspacePressed,
+                onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadBackspacePressed(v)),
+              ),
+            ),
+            const SizedBox(height: 12),
+            BorderContainer(
+              title: 'Call Transfer',
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButtonConfigEditorMinimal(
+                value: source.callTransfer,
+                onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadTransfer(v)),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,4 +1,0 @@
-enum EmbeddedResourceSource {
-  url,
-  html,
-}

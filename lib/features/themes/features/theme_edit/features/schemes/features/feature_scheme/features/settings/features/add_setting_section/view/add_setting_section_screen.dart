@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
 
 class AddSettingSectionScreen extends StatefulWidget {
   const AddSettingSectionScreen({
-    required this.assets,
-    required this.embedded,
     super.key,
   });
-
-  final List<ThemeAssetModel> assets;
-  final List<EmbeddedResource> embedded;
 
   @override
   _AddSettingSectionScreenState createState() => _AddSettingSectionScreenState();
@@ -37,7 +30,6 @@ class _AddSettingSectionScreenState extends State<AddSettingSectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Embedded Section'),

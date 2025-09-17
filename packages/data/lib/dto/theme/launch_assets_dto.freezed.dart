@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-LaunchAssetsDto _$LaunchAssetsDtoFromJson(Map<String, dynamic> json) {
-  return _LaunchAssetsDto.fromJson(json);
+LaunchAssetsDtoDep _$LaunchAssetsDtoDepFromJson(Map<String, dynamic> json) {
+  return _LaunchAssetsDtoDep.fromJson(json);
 }
 
 /// @nodoc
-mixin _$LaunchAssetsDto {
+mixin _$LaunchAssetsDtoDep {
 // Linking to the original asset
   int? get originalAssetId =>
       throw _privateConstructorUsedError; // System generated assets
@@ -34,21 +34,21 @@ mixin _$LaunchAssetsDto {
       throw _privateConstructorUsedError; // Background color
   String? get backgroundColor => throw _privateConstructorUsedError;
 
-  /// Serializes this LaunchAssetsDto to a JSON map.
+  /// Serializes this LaunchAssetsDtoDep to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of LaunchAssetsDto
+  /// Create a copy of LaunchAssetsDtoDep
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $LaunchAssetsDtoCopyWith<LaunchAssetsDto> get copyWith =>
+  $LaunchAssetsDtoDepCopyWith<LaunchAssetsDtoDep> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LaunchAssetsDtoCopyWith<$Res> {
-  factory $LaunchAssetsDtoCopyWith(
-          LaunchAssetsDto value, $Res Function(LaunchAssetsDto) then) =
-      _$LaunchAssetsDtoCopyWithImpl<$Res, LaunchAssetsDto>;
+abstract class $LaunchAssetsDtoDepCopyWith<$Res> {
+  factory $LaunchAssetsDtoDepCopyWith(
+          LaunchAssetsDtoDep value, $Res Function(LaunchAssetsDtoDep) then) =
+      _$LaunchAssetsDtoDepCopyWithImpl<$Res, LaunchAssetsDtoDep>;
   @useResult
   $Res call(
       {int? originalAssetId,
@@ -62,16 +62,16 @@ abstract class $LaunchAssetsDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LaunchAssetsDtoCopyWithImpl<$Res, $Val extends LaunchAssetsDto>
-    implements $LaunchAssetsDtoCopyWith<$Res> {
-  _$LaunchAssetsDtoCopyWithImpl(this._value, this._then);
+class _$LaunchAssetsDtoDepCopyWithImpl<$Res, $Val extends LaunchAssetsDtoDep>
+    implements $LaunchAssetsDtoDepCopyWith<$Res> {
+  _$LaunchAssetsDtoDepCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LaunchAssetsDto
+  /// Create a copy of LaunchAssetsDtoDep
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -123,11 +123,11 @@ class _$LaunchAssetsDtoCopyWithImpl<$Res, $Val extends LaunchAssetsDto>
 }
 
 /// @nodoc
-abstract class _$$LaunchAssetsDtoImplCopyWith<$Res>
-    implements $LaunchAssetsDtoCopyWith<$Res> {
-  factory _$$LaunchAssetsDtoImplCopyWith(_$LaunchAssetsDtoImpl value,
-          $Res Function(_$LaunchAssetsDtoImpl) then) =
-      __$$LaunchAssetsDtoImplCopyWithImpl<$Res>;
+abstract class _$$LaunchAssetsDtoDepImplCopyWith<$Res>
+    implements $LaunchAssetsDtoDepCopyWith<$Res> {
+  factory _$$LaunchAssetsDtoDepImplCopyWith(_$LaunchAssetsDtoDepImpl value,
+          $Res Function(_$LaunchAssetsDtoDepImpl) then) =
+      __$$LaunchAssetsDtoDepImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -142,14 +142,14 @@ abstract class _$$LaunchAssetsDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LaunchAssetsDtoImplCopyWithImpl<$Res>
-    extends _$LaunchAssetsDtoCopyWithImpl<$Res, _$LaunchAssetsDtoImpl>
-    implements _$$LaunchAssetsDtoImplCopyWith<$Res> {
-  __$$LaunchAssetsDtoImplCopyWithImpl(
-      _$LaunchAssetsDtoImpl _value, $Res Function(_$LaunchAssetsDtoImpl) _then)
+class __$$LaunchAssetsDtoDepImplCopyWithImpl<$Res>
+    extends _$LaunchAssetsDtoDepCopyWithImpl<$Res, _$LaunchAssetsDtoDepImpl>
+    implements _$$LaunchAssetsDtoDepImplCopyWith<$Res> {
+  __$$LaunchAssetsDtoDepImplCopyWithImpl(_$LaunchAssetsDtoDepImpl _value,
+      $Res Function(_$LaunchAssetsDtoDepImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LaunchAssetsDto
+  /// Create a copy of LaunchAssetsDtoDep
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -163,7 +163,7 @@ class __$$LaunchAssetsDtoImplCopyWithImpl<$Res>
     Object? adaptiveIconBackgroundUrl = freezed,
     Object? backgroundColor = freezed,
   }) {
-    return _then(_$LaunchAssetsDtoImpl(
+    return _then(_$LaunchAssetsDtoDepImpl(
       originalAssetId: freezed == originalAssetId
           ? _value.originalAssetId
           : originalAssetId // ignore: cast_nullable_to_non_nullable
@@ -203,8 +203,8 @@ class __$$LaunchAssetsDtoImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$LaunchAssetsDtoImpl implements _LaunchAssetsDto {
-  const _$LaunchAssetsDtoImpl(
+class _$LaunchAssetsDtoDepImpl implements _LaunchAssetsDtoDep {
+  const _$LaunchAssetsDtoDepImpl(
       {this.originalAssetId,
       this.notificationLogoUrl,
       this.adaptiveIconForegroundUrl,
@@ -214,8 +214,8 @@ class _$LaunchAssetsDtoImpl implements _LaunchAssetsDto {
       this.adaptiveIconBackgroundUrl,
       this.backgroundColor});
 
-  factory _$LaunchAssetsDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LaunchAssetsDtoImplFromJson(json);
+  factory _$LaunchAssetsDtoDepImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LaunchAssetsDtoDepImplFromJson(json);
 
 // Linking to the original asset
   @override
@@ -241,14 +241,14 @@ class _$LaunchAssetsDtoImpl implements _LaunchAssetsDto {
 
   @override
   String toString() {
-    return 'LaunchAssetsDto(originalAssetId: $originalAssetId, notificationLogoUrl: $notificationLogoUrl, adaptiveIconForegroundUrl: $adaptiveIconForegroundUrl, androidLauncherIconUrl: $androidLauncherIconUrl, iosLauncherIconUrl: $iosLauncherIconUrl, webLauncherIconUrl: $webLauncherIconUrl, adaptiveIconBackgroundUrl: $adaptiveIconBackgroundUrl, backgroundColor: $backgroundColor)';
+    return 'LaunchAssetsDtoDep(originalAssetId: $originalAssetId, notificationLogoUrl: $notificationLogoUrl, adaptiveIconForegroundUrl: $adaptiveIconForegroundUrl, androidLauncherIconUrl: $androidLauncherIconUrl, iosLauncherIconUrl: $iosLauncherIconUrl, webLauncherIconUrl: $webLauncherIconUrl, adaptiveIconBackgroundUrl: $adaptiveIconBackgroundUrl, backgroundColor: $backgroundColor)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LaunchAssetsDtoImpl &&
+            other is _$LaunchAssetsDtoDepImpl &&
             (identical(other.originalAssetId, originalAssetId) ||
                 other.originalAssetId == originalAssetId) &&
             (identical(other.notificationLogoUrl, notificationLogoUrl) ||
@@ -282,25 +282,25 @@ class _$LaunchAssetsDtoImpl implements _LaunchAssetsDto {
       adaptiveIconBackgroundUrl,
       backgroundColor);
 
-  /// Create a copy of LaunchAssetsDto
+  /// Create a copy of LaunchAssetsDtoDep
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LaunchAssetsDtoImplCopyWith<_$LaunchAssetsDtoImpl> get copyWith =>
-      __$$LaunchAssetsDtoImplCopyWithImpl<_$LaunchAssetsDtoImpl>(
+  _$$LaunchAssetsDtoDepImplCopyWith<_$LaunchAssetsDtoDepImpl> get copyWith =>
+      __$$LaunchAssetsDtoDepImplCopyWithImpl<_$LaunchAssetsDtoDepImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LaunchAssetsDtoImplToJson(
+    return _$$LaunchAssetsDtoDepImplToJson(
       this,
     );
   }
 }
 
-abstract class _LaunchAssetsDto implements LaunchAssetsDto {
-  const factory _LaunchAssetsDto(
+abstract class _LaunchAssetsDtoDep implements LaunchAssetsDtoDep {
+  const factory _LaunchAssetsDtoDep(
       {final int? originalAssetId,
       final String? notificationLogoUrl,
       final String? adaptiveIconForegroundUrl,
@@ -308,10 +308,10 @@ abstract class _LaunchAssetsDto implements LaunchAssetsDto {
       final String? iosLauncherIconUrl,
       final String? webLauncherIconUrl,
       final String? adaptiveIconBackgroundUrl,
-      final String? backgroundColor}) = _$LaunchAssetsDtoImpl;
+      final String? backgroundColor}) = _$LaunchAssetsDtoDepImpl;
 
-  factory _LaunchAssetsDto.fromJson(Map<String, dynamic> json) =
-      _$LaunchAssetsDtoImpl.fromJson;
+  factory _LaunchAssetsDtoDep.fromJson(Map<String, dynamic> json) =
+      _$LaunchAssetsDtoDepImpl.fromJson;
 
 // Linking to the original asset
   @override
@@ -331,10 +331,10 @@ abstract class _LaunchAssetsDto implements LaunchAssetsDto {
   @override
   String? get backgroundColor;
 
-  /// Create a copy of LaunchAssetsDto
+  /// Create a copy of LaunchAssetsDtoDep
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LaunchAssetsDtoImplCopyWith<_$LaunchAssetsDtoImpl> get copyWith =>
+  _$$LaunchAssetsDtoDepImplCopyWith<_$LaunchAssetsDtoDepImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

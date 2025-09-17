@@ -6,9 +6,9 @@ part of 'launch_assets_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LaunchAssetsDtoImpl _$$LaunchAssetsDtoImplFromJson(
+_$LaunchAssetsDtoDepImpl _$$LaunchAssetsDtoDepImplFromJson(
         Map<String, dynamic> json) =>
-    _$LaunchAssetsDtoImpl(
+    _$LaunchAssetsDtoDepImpl(
       originalAssetId: (json['originalAssetId'] as num?)?.toInt(),
       notificationLogoUrl: json['notificationLogoUrl'] as String?,
       adaptiveIconForegroundUrl: json['adaptiveIconForegroundUrl'] as String?,
@@ -19,8 +19,8 @@ _$LaunchAssetsDtoImpl _$$LaunchAssetsDtoImplFromJson(
       backgroundColor: json['backgroundColor'] as String?,
     );
 
-Map<String, dynamic> _$$LaunchAssetsDtoImplToJson(
-        _$LaunchAssetsDtoImpl instance) =>
+Map<String, dynamic> _$$LaunchAssetsDtoDepImplToJson(
+        _$LaunchAssetsDtoDepImpl instance) =>
     <String, dynamic>{
       'originalAssetId': instance.originalAssetId,
       'notificationLogoUrl': instance.notificationLogoUrl,

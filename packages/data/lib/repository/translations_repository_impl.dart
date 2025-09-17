@@ -1,25 +1,26 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:domain/repository/repository.dart';
-import 'package:domain/entity/entities/translation.dart';
-import 'package:domain/exception/exception.dart';
+import 'package:domain/domain.dart';
 
+import 'package:data/dto/dto.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
 
 @Injectable(as: TranslationsRepository)
 class TranslationsRepositoryImpl extends TranslationsRepository {
   TranslationsRepositoryImpl(
-    this.configuratorBackandDatasource,
+    this._datasource,
+    this._mapper,
   );
 
-  final ConfiguratorBackandDatasource configuratorBackandDatasource;
+  final ConfiguratorBackandDatasource _datasource;
+  final CommonMapper<Translation, TranslationHttpModel> _mapper;
 
   @override
   Future<List<Translation>> getTranslations() async {
     try {
-      final models = await configuratorBackandDatasource.getTranslations();
-      return models.map(TranslationHttpMapper.fromHttpModel).toList();
+      final models = await _datasource.getTranslations();
+      return models.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -30,8 +31,8 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
   @override
   Future<List<Translation>> getOverridesByAppId(String appId) async {
     try {
-      final models = await configuratorBackandDatasource.getTranslationOverrides(appId);
-      return models.map(TranslationHttpMapper.fromHttpModel).toList();
+      final models = await _datasource.getTranslationOverrides(appId);
+      return models.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -42,7 +43,8 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
   @override
   Future<void> setOverrideByAppId(String appId, Translation translation) async {
     try {
-      await configuratorBackandDatasource.setTranslationOverride(appId, TranslationHttpMapper.toHttpModel(translation));
+      final model = _mapper.convertTo(translation);
+      await _datasource.setTranslationOverride(appId, model);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -53,10 +55,8 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
   @override
   Future<void> deleteOverrideByAppId(String appId, Translation translation) async {
     try {
-      await configuratorBackandDatasource.deleteTranslationOverride(
-        appId,
-        TranslationHttpMapper.toHttpModel(translation),
-      );
+      final model = _mapper.convertTo(translation);
+      await _datasource.deleteTranslationOverride(appId, model);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {

@@ -7,29 +7,50 @@ class LoggingInterceptor extends Interceptor {
       methodCount: 0,
       errorMethodCount: 5,
       lineLength: 80,
-      printTime: true,
     ),
   );
 
+  String _formatFormData(FormData formData) {
+    final buffer = StringBuffer();
+
+    if (formData.fields.isNotEmpty) {
+      buffer.writeln('Fields:');
+      for (final field in formData.fields) {
+        buffer.writeln('  ${field.key}: ${field.value}');
+      }
+    }
+
+    if (formData.files.isNotEmpty) {
+      buffer.writeln('Files:');
+      for (final file in formData.files) {
+        final filename = file.value.filename ?? 'Unnamed';
+        buffer.writeln('  ${file.key}: $filename');
+      }
+    }
+
+    return buffer.isEmpty ? 'Empty FormData' : buffer.toString();
+  }
+
+  dynamic _formatBody(dynamic data) {
+    if (data is FormData) {
+      return _formatFormData(data);
+    }
+    return data ?? 'No body';
+  }
+
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     _logger.i(
       '🚀 REQUEST → [${options.method}] ${options.uri}\n'
       '📝 HEADERS: ${options.headers}\n'
-      '📄 BODY: ${options.data ?? "No body"}\n'
+      '📄 BODY:\n${_formatBody(options.data)}\n'
       '🔍 PARAMS: ${options.queryParameters.isNotEmpty ? options.queryParameters : "No params"}',
     );
     super.onRequest(options, handler);
   }
 
   @override
-  void onResponse(
-    Response<dynamic> response,
-    ResponseInterceptorHandler handler,
-  ) {
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     _logger.i(
       '✅ RESPONSE ← [${response.statusCode}] ${response.requestOptions.uri}\n'
       '📝 HEADERS: ${response.headers.map}\n'
@@ -39,10 +60,7 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     _logger.e(
       '❌ ERROR ← [${err.response?.statusCode ?? "Unknown"}] ${err.requestOptions.uri}\n'
       '📝 HEADERS: ${err.response?.headers.map ?? "No headers"}\n'

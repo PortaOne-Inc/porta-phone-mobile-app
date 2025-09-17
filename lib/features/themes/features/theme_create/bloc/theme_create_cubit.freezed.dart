@@ -21,6 +21,9 @@ mixin _$ThemeCreateState {
   ThemeSettings get defaultThemeConfig => throw _privateConstructorUsedError;
   ThemeModel? get themeModel => throw _privateConstructorUsedError;
   ThemeNameInput? get nameInput => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  bool? get useAi => throw _privateConstructorUsedError;
+  String? get prompt => throw _privateConstructorUsedError;
   Object? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of ThemeCreateState
@@ -42,6 +45,9 @@ abstract class $ThemeCreateStateCopyWith<$Res> {
       ThemeSettings defaultThemeConfig,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
+      String? description,
+      bool? useAi,
+      String? prompt,
       Object? error});
 
   $AppConfigCopyWith<$Res> get defaultFeatureAccess;
@@ -69,6 +75,9 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
     Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
+    Object? description = freezed,
+    Object? useAi = freezed,
+    Object? prompt = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,6 +101,18 @@ class _$ThemeCreateStateCopyWithImpl<$Res, $Val extends ThemeCreateState>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      useAi: freezed == useAi
+          ? _value.useAi
+          : useAi // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      prompt: freezed == prompt
+          ? _value.prompt
+          : prompt // ignore: cast_nullable_to_non_nullable
+              as String?,
       error: freezed == error ? _value.error : error,
     ) as $Val);
   }
@@ -146,6 +167,9 @@ abstract class _$$ThemeCreateStateInitialImplCopyWith<$Res>
       ThemeSettings defaultThemeConfig,
       ThemeModel? themeModel,
       ThemeNameInput? nameInput,
+      String? description,
+      bool? useAi,
+      String? prompt,
       Object? error});
 
   @override
@@ -175,6 +199,9 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
     Object? defaultThemeConfig = null,
     Object? themeModel = freezed,
     Object? nameInput = freezed,
+    Object? description = freezed,
+    Object? useAi = freezed,
+    Object? prompt = freezed,
     Object? error = freezed,
   }) {
     return _then(_$ThemeCreateStateInitialImpl(
@@ -198,6 +225,18 @@ class __$$ThemeCreateStateInitialImplCopyWithImpl<$Res>
           ? _value.nameInput
           : nameInput // ignore: cast_nullable_to_non_nullable
               as ThemeNameInput?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      useAi: freezed == useAi
+          ? _value.useAi
+          : useAi // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      prompt: freezed == prompt
+          ? _value.prompt
+          : prompt // ignore: cast_nullable_to_non_nullable
+              as String?,
       error: freezed == error ? _value.error : error,
     ));
   }
@@ -212,6 +251,9 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
       required this.defaultThemeConfig,
       this.themeModel,
       this.nameInput,
+      this.description,
+      this.useAi,
+      this.prompt,
       this.error});
 
   @override
@@ -225,11 +267,17 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
   @override
   final ThemeNameInput? nameInput;
   @override
+  final String? description;
+  @override
+  final bool? useAi;
+  @override
+  final String? prompt;
+  @override
   final Object? error;
 
   @override
   String toString() {
-    return 'ThemeCreateState(status: $status, defaultFeatureAccess: $defaultFeatureAccess, defaultThemeConfig: $defaultThemeConfig, themeModel: $themeModel, nameInput: $nameInput, error: $error)';
+    return 'ThemeCreateState(status: $status, defaultFeatureAccess: $defaultFeatureAccess, defaultThemeConfig: $defaultThemeConfig, themeModel: $themeModel, nameInput: $nameInput, description: $description, useAi: $useAi, prompt: $prompt, error: $error)';
   }
 
   @override
@@ -246,6 +294,10 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
                 other.themeModel == themeModel) &&
             (identical(other.nameInput, nameInput) ||
                 other.nameInput == nameInput) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.useAi, useAi) || other.useAi == useAi) &&
+            (identical(other.prompt, prompt) || other.prompt == prompt) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -257,6 +309,9 @@ class _$ThemeCreateStateInitialImpl implements _ThemeCreateStateInitial {
       defaultThemeConfig,
       themeModel,
       nameInput,
+      description,
+      useAi,
+      prompt,
       const DeepCollectionEquality().hash(error));
 
   /// Create a copy of ThemeCreateState
@@ -276,6 +331,9 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
       required final ThemeSettings defaultThemeConfig,
       final ThemeModel? themeModel,
       final ThemeNameInput? nameInput,
+      final String? description,
+      final bool? useAi,
+      final String? prompt,
       final Object? error}) = _$ThemeCreateStateInitialImpl;
 
   @override
@@ -288,6 +346,12 @@ abstract class _ThemeCreateStateInitial implements ThemeCreateState {
   ThemeModel? get themeModel;
   @override
   ThemeNameInput? get nameInput;
+  @override
+  String? get description;
+  @override
+  bool? get useAi;
+  @override
+  String? get prompt;
   @override
   Object? get error;
 

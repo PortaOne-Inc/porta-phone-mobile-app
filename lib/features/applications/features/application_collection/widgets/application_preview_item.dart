@@ -4,10 +4,6 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
-import '../../../model/models.dart';
-
-import 'application_status.dart';
-
 class ApplicationPreviewItem extends StatelessWidget {
   const ApplicationPreviewItem({
     required this.application,
@@ -15,12 +11,10 @@ class ApplicationPreviewItem extends StatelessWidget {
     required this.onEdit,
     required this.onOpen,
     required this.incrementVersion,
-    required this.applicationValidateErrors,
     super.key,
   });
 
   final ApplicationModel application;
-  final Iterable<ApplicationValidateError> applicationValidateErrors;
 
   final void Function(ApplicationModel model) onOpen;
   final void Function(ApplicationModel model) onDelete;
@@ -88,10 +82,6 @@ class ApplicationPreviewItem extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
-              const Divider(),
-              ApplicationStatus(
-                countValidationErrors: applicationValidateErrors.length,
               ),
             ],
           ),

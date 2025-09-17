@@ -1,0 +1,31 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'widgets_config_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WidgetsConfigDtoImpl _$$WidgetsConfigDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WidgetsConfigDtoImpl(
+      id: json['id'] as String,
+      applicationId: json['applicationId'] as String,
+      themeId: json['themeId'] as String,
+      variant: json['variant'] as String,
+      config: json['config'] as Map<String, dynamic>,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$$WidgetsConfigDtoImplToJson(
+        _$WidgetsConfigDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'applicationId': instance.applicationId,
+      'themeId': instance.themeId,
+      'variant': instance.variant,
+      'config': instance.config,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+    };

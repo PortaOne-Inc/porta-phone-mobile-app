@@ -4,13 +4,15 @@ class ConfiguratorGroupTitleTile extends StatelessWidget {
   const ConfiguratorGroupTitleTile({
     required this.titleData,
     this.padding,
-    super.key,
     this.decoration,
+    this.trailing,
+    super.key,
   });
 
   final String titleData;
   final EdgeInsets? padding;
   final BoxDecoration? decoration;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,13 @@ class ConfiguratorGroupTitleTile extends StatelessWidget {
       color: decoration == null ? color : null,
       decoration: decoration?.copyWith(color: color),
       child: ListTile(
+        dense: false,
         contentPadding: padding,
         title: Text(
           titleData,
           style: themeData.textTheme.bodyMedium,
         ),
-        tileColor: themeData.colorScheme.surface,
+        trailing: trailing,
       ),
     );
   }

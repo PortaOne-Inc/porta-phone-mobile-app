@@ -1,4 +1,4 @@
-import 'package:domain/entity/entity.dart';
+import 'package:domain/models/models.dart';
 
 /// An abstract class that defines the contract for authentication-related operations.
 abstract class AuthRepository {
@@ -29,6 +29,6 @@ abstract class AuthRepository {
   /// Returns a [Stream] that emits [AuthenticationStatus] updates.
   Stream<AuthenticationStatus> monitorTokenExpiration();
 
-  /// Disposes the resources used by this repository.
+  /// Disposes the resources.dart used by this repository.
   void dispose();
 }

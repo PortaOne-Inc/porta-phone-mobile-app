@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import '../../entity/entity.dart';
-import '../../repository/repository.dart';
+import 'package:domain/repository/repository.dart';
+import 'package:domain/models/models.dart';
 
 abstract class UsecaseApplicationAddTheme {
-  FutureOr<void> execute({
+  Future<void> execute({
     required String applicationID,
     required ThemeModel themeModel,
   });
@@ -23,7 +23,10 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
   final AuthRepository authRepository;
 
   @override
-  FutureOr<void> execute({required String applicationID, required ThemeModel themeModel}) async {
+  Future<void> execute({
+    required String applicationID,
+    required ThemeModel themeModel,
+  }) async {
     final applications = await applicationRepository.getUserApplications();
     final fountApplication = applications.firstWhere((element) => element.id == applicationID);
     final applicationDTO = fountApplication.copyWith(theme: themeModel.id);

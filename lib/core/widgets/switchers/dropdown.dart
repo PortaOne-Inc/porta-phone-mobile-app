@@ -1,13 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../toolbars/toolbars.dart';
-
 class Dropdown extends StatefulWidget {
   const Dropdown({
     required this.items,
     required this.onSelect,
-    this.constraints,
+    this.constraints, // застосовується до меню, не до кнопки
     this.icon,
     this.position = 0,
     super.key,
@@ -16,7 +14,7 @@ class Dropdown extends StatefulWidget {
   final List<String> items;
   final int position;
   final Icon? icon;
-  final BoxConstraints? constraints;
+  final BoxConstraints? constraints; // for menu popup
   final void Function(int position) onSelect;
 
   @override
@@ -24,64 +22,74 @@ class Dropdown extends StatefulWidget {
 }
 
 class _DropDownState extends State<Dropdown> {
-  int _selectedPosition = 0;
+  late int _selectedPosition;
 
   @override
   void initState() {
-    _selectedPosition = widget.position;
     super.initState();
+    _selectedPosition = widget.position;
   }
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      padding: EdgeInsets.zero,
-      constraints: widget.constraints,
-      elevation: 1,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(8),
-          bottomRight: Radius.circular(8),
+    final label =
+        (widget.items.isNotEmpty && _selectedPosition < widget.items.length) ? widget.items[_selectedPosition] : '';
+
+    return ConstrainedBox(
+      // захист від "нульової" ширини в хитрих контейнерах (ListTile.trailing, scroll, тощо)
+      constraints: const BoxConstraints(minWidth: 96),
+      child: PopupMenuButton<int>(
+        padding: EdgeInsets.zero,
+        elevation: 1,
+        constraints: widget.constraints ?? const BoxConstraints(minWidth: 160),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(8),
+            bottomRight: Radius.circular(8),
+          ),
         ),
-      ),
-      onSelected: (value) {
-        widget.onSelect(value);
-        _selectedPosition = value;
-      },
-      itemBuilder: (context) => widget.items
-          .mapIndexed(
-            (index, value) => PopupMenuItem(
-              height: menuItemHeight,
-              value: index,
-              child: Text(
-                value,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.labelLarge,
-                overflow: TextOverflow.ellipsis,
+        onSelected: (value) {
+          setState(() => _selectedPosition = value);
+          widget.onSelect(value);
+        },
+        itemBuilder: (context) => widget.items
+            .mapIndexed(
+              (index, value) => PopupMenuItem<int>(
+                // не роби тут занадто малу висоту — лиши дефолт або свій сталий розмір
+                value: index,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelLarge,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-          )
-          .toList(),
-      child: SizedBox(
-        height: kToolbarHeight - 8,
-        child: TextButton(
-            onPressed: null,
-            style: TextButton.styleFrom(
-                backgroundColor: Colors.transparent, textStyle: Theme.of(context).textTheme.labelSmall),
+            )
+            .toList(),
+        child: IntrinsicWidth(
+          // під контент, але з minWidth зверху
+          child: SizedBox(
+            height: kToolbarHeight - 8,
             child: Row(
+              mainAxisSize: MainAxisSize.min, // ключ до "мінімум за контентом"
               children: [
-                widget.icon ?? const SizedBox(),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                if (widget.icon != null) ...[
+                  widget.icon!,
+                  const SizedBox(width: 4),
+                ],
+                Flexible(
                   child: Text(
-                    widget.items[_selectedPosition],
+                    label,
                     style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }

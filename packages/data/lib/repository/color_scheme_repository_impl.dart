@@ -1,0 +1,107 @@
+import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
+
+import '../datasource/configurator_backend/configurator_backand_datasource.dart';
+import '../dto/theme/color_scheme_dto.dart';
+import '../mappers/mapper.dart';
+
+@Injectable(as: ColorSchemeRepository)
+class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
+  ColorSchemeRepositoryImpl(
+    this._api,
+    this._mapper,
+  );
+
+  final ConfiguratorBackandDatasource _api;
+  final CommonMapper<ColorSchemeModel, ColorSchemeDto> _mapper;
+
+  @override
+  Future<ColorSchemeModel> getByThemeVariant({
+    required String applicationId,
+    required String themeId,
+    required BrightnessVariant variant,
+  }) async {
+    try {
+      final dto = await _api.getColorSchemeByVariant(
+        applicationId: applicationId,
+        themeId: themeId,
+        variant: variant.name,
+      );
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<List<ColorSchemeModel>> listForTheme({
+    required String applicationId,
+    required String themeId,
+  }) async {
+    try {
+      final list = await _api.listColorSchemes(
+        applicationId: applicationId,
+        themeId: themeId,
+      );
+      return list.nonNulls.map(_mapper.convertFrom).toList().nonNulls.toList();
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<(ColorSchemeModel light, ColorSchemeModel dark)> ensurePair({
+    required String applicationId,
+    required String themeId,
+  }) async {
+    try {
+      final list = await _api.ensurePair(
+        applicationId: applicationId,
+        themeId: themeId,
+      );
+      final models = list.map(_mapper.convertFrom).toList();
+
+      ColorSchemeModel? light;
+      ColorSchemeModel? dark;
+
+      for (final m in models) {
+        if (m.variant == BrightnessVariant.light) light = m;
+        if (m.variant == BrightnessVariant.dark) dark = m;
+      }
+      if (light == null || dark == null) {
+        throw BaseException(message: 'ensurePair: server did not return both variants');
+      }
+      return (light, dark);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<ColorSchemeModel> upsertByThemeVariant({
+    required String applicationId,
+    required String themeId,
+    required BrightnessVariant variant,
+    Map<String, dynamic>? config,
+  }) async {
+    try {
+      final dto = await _api.upsertVariant(
+        applicationId: applicationId,
+        themeId: themeId,
+        variant: variant.name,
+        config: config,
+      );
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+}

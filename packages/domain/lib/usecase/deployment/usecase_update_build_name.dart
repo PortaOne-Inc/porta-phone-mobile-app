@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:domain/entity/models/models.dart';
 import 'package:domain/usecase/usecase.dart';
 
 @Injectable(as: UpdateBuildNameUseCase)

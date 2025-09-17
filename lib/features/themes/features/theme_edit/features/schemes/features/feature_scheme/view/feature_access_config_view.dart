@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
-
-import '../features/features.dart';
 
 enum LoginType { defaultLogin, customLogin }
 
@@ -26,7 +23,6 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
     Tab(text: 'Main'),
     Tab(text: 'Settings'),
     Tab(text: 'Call'),
-    Tab(text: 'Embedded resources'),
   ];
 
   @override
@@ -47,10 +43,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Configure App Config',
-          style: textTheme.titleMedium,
-        ),
+        title: Text('Configure App Config', style: textTheme.titleMedium),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -60,59 +53,45 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
       body: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
         builder: (context, state) {
           final appConfig = state.appConfig;
-
           return TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
               LoginSchemeScreen(
                 sourceAppConfigLogin: appConfig.loginConfig,
-                callback: (config) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(loginConfig: config)),
-                    ),
-                assets: state.assets,
+                callback: (AppConfigLogin loginCfg) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setLoginConfig(loginCfg));
+                },
               ),
               MainConfigWidget(
                 mainConfig: appConfig.mainConfig,
-                onChange: (AppConfigMain value) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(mainConfig: value)),
-                    ),
+                onChange: (AppConfigMain value) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setMainConfig(value));
+                },
               ),
               SettingSchemeScreen(
                 config: appConfig.settingsConfig,
                 callback: (AppConfigSettings value) {
-                  context.read<UpdateThemCubit>().add(
-                        UpdateSchemeEvent.featureAccess(appConfig.copyWith(settingsConfig: value)),
-                      );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSettingsConfig(value));
                 },
-                assets: state.assets,
               ),
               AppConfigCallWidget(
-                initialVideoEnabled: true,
-                initialBlindTransferEnabled: true,
-                initialAttendedTransferEnabled: true,
-                onVideoEnabledChanged: (value) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(
-                          appConfig.copyWith(callConfig: appConfig.callConfig.copyWith(videoEnabled: value))),
-                    ),
-                onBlindTransferChanged: (value) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(
-                          callConfig: appConfig.callConfig
-                              .copyWith(transfer: appConfig.callConfig.transfer.copyWith(enableBlindTransfer: value)))),
-                    ),
-                onAttendedTransferChanged: (value) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(
-                          callConfig: appConfig.callConfig.copyWith(
-                              transfer: appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: value)))),
-                    ),
+                initialVideoEnabled: appConfig.callConfig.videoEnabled,
+                initialBlindTransferEnabled: appConfig.callConfig.transfer.enableBlindTransfer,
+                initialAttendedTransferEnabled: appConfig.callConfig.transfer.enableAttendedTransfer,
+                onVideoEnabledChanged: (bool enabled) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallVideoEnabled(enabled));
+                },
+                onBlindTransferChanged: (bool enabled) {
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableBlindTransfer: enabled);
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
+                },
+                onAttendedTransferChanged: (bool enabled) {
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: enabled);
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
+                },
               ),
-              CollectionEmbedded(
-                embeddedResources: appConfig.embeddedResources,
-                callback: (config) => context.read<UpdateThemCubit>().add(
-                      UpdateSchemeEvent.featureAccess(appConfig.copyWith(embeddedResources: config)),
-                    ),
-              ),
-            ].map((widget) => widget).toList(),
+            ],
           );
         },
       ),

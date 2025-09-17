@@ -17,6 +17,9 @@ class ThemeCreateState with _$ThemeCreateState {
     required ThemeSettings defaultThemeConfig,
     ThemeModel? themeModel,
     ThemeNameInput? nameInput,
+    String? description,
+    bool? useAi,
+    String? prompt,
     Object? error,
   }) = _ThemeCreateStateInitial;
 }

@@ -11,16 +11,10 @@ class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({
     required this.configuratorBackandDatasource,
     required this.themeMapper,
-    required this.themeAssetMapper,
-    required this.launchAssetsMapper,
-    required this.splashAssetsMapper,
   });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
-  final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
-  final CommonMapper<LaunchAssetsModel?, LaunchAssetsDto?> launchAssetsMapper;
-  final CommonMapper<SplashAssetModel?, SplashAssetsDto?> splashAssetsMapper;
 
   @override
   Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
@@ -36,14 +30,16 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeModel> createTheme(String applicationId, ThemeModel theme) async {
-    try {
-      final param = themeMapper.convertTo(theme);
-      final dto = await configuratorBackandDatasource.createTheme(applicationId, param);
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
-    }
+  Future<ThemeModel> createTheme(
+    String applicationId,
+    String title,
+    String description,
+  ) async {
+    final dto = await configuratorBackandDatasource.createTheme(
+      applicationId,
+      CreateThemeDTO(title: title, description: description),
+    );
+    return themeMapper.convertFrom(dto);
   }
 
   @override
@@ -54,7 +50,10 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
+    final dto = await configuratorBackandDatasource.getTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+    );
     return themeMapper.convertFrom(dto);
   }
 
@@ -76,42 +75,84 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<List<ThemeAssetModel>> addThemeAssets(
-    String applicationId,
-    String themeId,
-    List<ThemeAssetModel> assets,
-  ) async {
-    final assetDtos = themeAssetMapper.convertListTo(assets);
-    final response = await configuratorBackandDatasource.addAssets(applicationId, themeId, assetDtos);
-
-    return themeAssetMapper.convertListFrom(response);
-  }
-
-  @override
-  Future<ThemeModel> updateLaunchAssets(String applicationId, String themeId, LaunchAssetsModel launchAssets) async {
-    final dto = await configuratorBackandDatasource.updateLaunchAssets(
-      applicationId,
-      themeId,
-      launchAssetsMapper.convertTo(launchAssets)!,
-    );
-    return themeMapper.convertFrom(dto);
-  }
-
-  @override
-  Future<void> deleteLaunchAssets(String applicationId, String themeId) async {
-    await configuratorBackandDatasource.deleteLaunchAssets(applicationId, themeId);
-  }
-
-  @override
-  Future<ThemeModel> updateSplashAsset(String applicationId, String themeId, SplashAssetModel splashAsset) async {
-    final dto = await configuratorBackandDatasource.updateSplashAsset(
-        applicationId, themeId, splashAssetsMapper.convertTo(splashAsset)!);
-    return themeMapper.convertFrom(dto);
-  }
-
-  @override
   Future<List<ThemeModel>> getAllThemes() async {
     final dtos = await configuratorBackandDatasource.getAllThemes();
     return dtos.map(themeMapper.convertFrom).toList();
+  }
+
+  @override
+  Future<void> generateTheme({
+    required String applicationId,
+    required String title,
+    required String description,
+    required String prompt,
+    String? seedColor,
+    String variant = 'light',
+  }) async {
+    try {
+      await configuratorBackandDatasource.generateTheme(
+        applicationId: applicationId,
+        title: title,
+        description: description,
+        prompt: prompt,
+        seedColor: seedColor,
+        variant: variant,
+      );
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> nudgeTheme(
+    String applicationId,
+    String themeId,
+    String prompt, {
+    List<String> targets = const ['colorScheme', 'widgetConfig', 'pageConfig'],
+    String variant = 'light',
+    String mode = 'patch',
+    String? seedColorHint,
+  }) async {
+    try {
+      await configuratorBackandDatasource.nudgeTheme(
+        applicationId: applicationId,
+        themeId: themeId,
+        prompt: prompt,
+        targets: targets,
+        variant: variant,
+        mode: mode,
+        seedColorHint: seedColorHint,
+      );
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<ThemeModel> copyTheme(
+    String applicationId,
+    String themeId, {
+    String? title,
+    String? description,
+    String? label, // 'dev' | 'stage' | 'prod'
+  }) async {
+    try {
+      final dto = await configuratorBackandDatasource.copyTheme(
+        applicationId,
+        themeId,
+        title: title,
+        description: description,
+        label: label,
+      );
+      return themeMapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 }

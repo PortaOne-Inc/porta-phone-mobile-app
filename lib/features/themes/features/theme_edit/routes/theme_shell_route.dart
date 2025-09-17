@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class ThemeShellRoute extends StatelessWidget {
@@ -18,9 +17,8 @@ class ThemeShellRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
-        final theme = state.toThemeSettings();
         return ThemeProvider(
-          settings: theme,
+          settings: state.themeSettings,
           lightDynamic: null,
           darkDynamic: null,
           child: child,

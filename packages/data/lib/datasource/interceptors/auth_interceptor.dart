@@ -15,3 +15,15 @@ class AuthInterceptor extends Interceptor {
     handler.next(options);
   }
 }
+
+class HeadersInterceptor extends Interceptor {
+  HeadersInterceptor(this.headers);
+
+  final Map<String, String> headers;
+
+  @override
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    options.headers.addAll(headers);
+    handler.next(options);
+  }
+}

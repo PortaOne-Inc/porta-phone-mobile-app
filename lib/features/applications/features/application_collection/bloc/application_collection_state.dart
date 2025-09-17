@@ -1,10 +1,5 @@
 part of 'application_collection_cubit.dart';
 
-typedef Application = (
-  ApplicationModel applicationModel,
-  Iterable<ApplicationValidateError> errors,
-);
-
 enum ApplicationsStateStatus {
   initial,
   progress,
@@ -18,7 +13,7 @@ class ApplicationCollectionState with _$ApplicationCollectionState {
   const factory ApplicationCollectionState({
     required ApplicationsStateStatus status,
     UserMetadata? user,
-    @Default([]) List<Application> applications,
+    @Default([]) List<ApplicationModel> applications,
     ApplicationModel? deleteApplication,
     Exception? error,
   }) = ApplicationCollectionStateInitial;

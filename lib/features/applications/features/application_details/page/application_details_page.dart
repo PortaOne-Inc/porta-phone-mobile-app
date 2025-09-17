@@ -62,6 +62,11 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                   ),
                 ),
                 ListTile(
+                  leading: const Icon(Icons.gif_box),
+                  title: Text('Add theme', style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+                  onTap: () => _onNewTheme(context, state.application!.id!),
+                ),
+                ListTile(
                   leading: const Icon(Icons.translate),
                   title: const Text('Translations'),
                   onTap: () => _openApplicationTranslations(context, bloc.applicationId),
@@ -99,6 +104,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
             dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
             dividerThickness: 4,
             minChildSize: 100,
+            initialProportions: const [0.7, 0.3],
             children: [
               (context) => Stack(
                     children: [
@@ -106,12 +112,16 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                         children: [
                           Expanded(
                             child: ApplicationDetailsScreen(
-                              application: state.application,
-                              onOpenDefaultTheme: (String applicationId, String themeId) =>
-                                  _openTheme(context, applicationId, themeId),
-                              onDeploy: () => _navigateToDeployment(context, state.application!.id!),
-                              onEnvironment: () => _navigateToChangeEnvConfiguration(context, state.application!.id!),
-                            ),
+                                application: state.application,
+                                onOpenDefaultTheme: (String applicationId, String themeId) =>
+                                    _openTheme(context, applicationId, themeId),
+                                onDeploy: () => _navigateToDeployment(context, state.application!.id!),
+                                onEnvironment: () => _navigateToChangeEnvConfiguration(context, state.application!.id!),
+                                onAssets: () => _navigateToAssets(context, state.application!.id!),
+                                onEmbeds: () => _navigateToEmbeds(context, state.application!.id!),
+                                onCapabilities: () => _navigateToCapabilities(context, state.application!.id!),
+                                onPublicationResources: () =>
+                                    _navigateToPublicationResources(context, state.application!.id!)),
                           )
                         ],
                       ),
@@ -127,12 +137,12 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                             padding: const EdgeInsets.only(right: 16, left: 16),
                             child: ApplicationThemesScreen(
                               themes: state.themes,
-                              crossAxisCount: MediaQuery.of(context).size.width < 500 ? 1 : 2,
                               onNewBranding: () => _onNewTheme(context, state.application!.id!),
                               onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
                               onMakeDefault: bloc.tryMakeThemeAsDefault,
                               onDelete: bloc.tryDeleteTheme,
                               onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+                              onCopy: bloc.copyTheme,
                             ),
                           ),
                         ),
@@ -248,6 +258,42 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   Future<void> _navigateToDeployment(BuildContext context, String applicationId) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDeployment.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  Future<void> _navigateToAssets(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationAssets.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  Future<void> _navigateToEmbeds(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationEmbeds.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  Future<void> _navigateToPublicationResources(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationPublicationResources.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+      },
+    );
+  }
+
+  Future<void> _navigateToCapabilities(BuildContext context, String applicationId) async {
+    GoRouter.of(context).goNamed(
+      AppRoutInfo.applicationCapabilities.name,
       pathParameters: <String, String>{
         AppRoutInfo.keyApplicationId: applicationId,
       },

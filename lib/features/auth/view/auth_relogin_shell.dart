@@ -59,14 +59,14 @@ class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages 
           context,
           context.l10n.feature_auth_SnakeBar_success_auth,
         );
-      default:
+      case null:
     }
   }
 
   void _showReLoginDialog(BuildContext context, GoRouter router) {
     _logger.info('Showing re-login dialog');
 
-    final currentPath = router.state?.fullPath;
+    final currentPath = router.state.fullPath;
     final loginPath = AppRoutInfo.login.path;
 
     if (currentPath != loginPath && mounted) {

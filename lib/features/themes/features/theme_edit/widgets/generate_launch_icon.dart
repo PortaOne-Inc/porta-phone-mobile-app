@@ -5,8 +5,8 @@ import 'package:screenshot/screenshot.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
-class GenerateLaunchIcon extends StatelessWidget {
-  const GenerateLaunchIcon({
+class GenerateLaunchIcon1 extends StatelessWidget {
+  const GenerateLaunchIcon1({
     required this.screenshotStreamController,
     required this.size,
     required this.padding,

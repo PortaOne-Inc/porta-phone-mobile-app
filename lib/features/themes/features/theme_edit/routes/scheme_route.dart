@@ -4,17 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/bloc.dart';
 
-import '../features/schemes/features/splash_screen/bloc/splash_assets_bloc.dart';
-import '../features/schemes/schemes.dart';
 import '../features/features.dart';
-
-import 'assets_shell_route.dart';
 
 class SchemeRoute {
   SchemeRoute(this.getIt);
@@ -37,11 +31,6 @@ class SchemeRoute {
   static const pagesConfiguration = DestinationInfo(
     name: 'pages-configuration',
     path: '/pages',
-  );
-
-  static const assetsScheme = DestinationInfo(
-    name: 'asset-scheme',
-    path: '/assets',
   );
 
   static const assetsSchemeAddAsset = DestinationInfo(
@@ -110,187 +99,114 @@ class SchemeRoute {
         return const ThemeSchemeScreen();
       },
       routes: [
-        ShellRoute(
-            builder: (BuildContext context, GoRouterState state, Widget child) {
-              return AssetsShellRoute(child: child);
+        GoRoute(
+            path: menu(applicationId, themeId).path,
+            name: menu(applicationId, themeId).name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const ThemeSchemeScreen();
             },
             routes: [
               GoRoute(
-                path: menu(applicationId, themeId).path,
-                name: menu(applicationId, themeId).name,
+                name: colorScheme.name,
+                path: colorScheme.path,
                 builder: (BuildContext context, GoRouterState state) {
-                  return const ThemeSchemeScreen();
+                  return const ColorSchemeConfigurationView();
+                },
+              ),
+              GoRoute(
+                name: widgetConfiguration.name,
+                path: widgetConfiguration.path,
+                builder: (BuildContext context, GoRouterState state) {
+                  return const ConfigureWidgetsView();
+                },
+              ),
+              GoRoute(
+                name: pagesConfiguration.name,
+                path: pagesConfiguration.path,
+                builder: (BuildContext context, GoRouterState state) {
+                  return const ConfigureThemePageView();
+                },
+              ),
+              GoRoute(
+                name: appFeatureConfiguration.name,
+                path: appFeatureConfiguration.path,
+                builder: (BuildContext context, GoRouterState state) {
+                  return const ConfigureAppConfigView();
                 },
                 routes: [
                   GoRoute(
-                    name: colorScheme.name,
-                    path: colorScheme.path,
+                      path: appFeatureSchemeAddLoginModeAction.path,
+                      name: appFeatureSchemeAddLoginModeAction.name,
+                      builder: (BuildContext context, GoRouterState state) {
+                        return AddModeActionPage(
+                          embedded: context.read<UpdateThemCubit>().state.embeds,
+                        );
+                      }),
+                  GoRoute(
+                    path: appFeatureSchemeAddSettingSection.path,
+                    name: appFeatureSchemeAddSettingSection.name,
                     builder: (BuildContext context, GoRouterState state) {
-                      return const ColorSchemeConfigurationView();
+                      return const AddSettingSectionScreen();
                     },
                   ),
                   GoRoute(
-                    name: widgetConfiguration.name,
-                    path: widgetConfiguration.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return const ConfigureWidgetsView();
-                    },
-                  ),
+                      path: appFeatureSchemeAddSettingSectionItem.path,
+                      name: appFeatureSchemeAddSettingSectionItem.name,
+                      builder: (BuildContext context, GoRouterState state) {
+                        return BlocProvider(
+                          create: (BuildContext context) => ManageSettingItemCubit(
+                            embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
+                            item: state.extra as AppConfigSettingsItem?,
+                          ),
+                          child: const AddSettingItemScreen(),
+                        );
+                      }),
                   GoRoute(
-                    name: pagesConfiguration.name,
-                    path: pagesConfiguration.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return const ConfigureThemePageView();
-                    },
-                  ),
-                  GoRoute(
-                    name: appFeatureConfiguration.name,
-                    path: appFeatureConfiguration.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return const ConfigureAppConfigView();
-                    },
-                    routes: [
-                      GoRoute(
-                          path: appFeatureSchemeCollectionEmbedded.path,
-                          name: appFeatureSchemeCollectionEmbedded.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            final appConfig = context.read<UpdateThemCubit>().state.appConfig;
-                            return CollectionEmbedded(
-                              isPicker: true,
-                              embeddedResources: appConfig.embeddedResources,
-                              callback: (config) => context.read<UpdateThemCubit>().add(
-                                    UpdateSchemeEvent.featureAccess(appConfig.copyWith(embeddedResources: config)),
-                                  ),
-                            );
-                          }),
-                      GoRoute(
-                          path: appFeatureSchemeAddLoginModeAction.path,
-                          name: appFeatureSchemeAddLoginModeAction.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return AddModeActionPage(
-                              embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
-                            );
-                          }),
-                      GoRoute(
-                          path: appFeatureSchemeAddEmbeddedData.path,
-                          name: appFeatureSchemeAddEmbeddedData.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return BlocProvider(
-                              create: (BuildContext context) => AddEmbeddedCubit(
-                                embedded: state.extra as EmbeddedResource?,
-                                assets: context.read<UpdateThemCubit>().state.assets,
-                              ),
-                              child: const AddEmbeddedDataScreen(),
-                            );
-                          }),
-                      GoRoute(
-                          path: appFeatureSchemePreviewEmbeddedData.path,
-                          name: appFeatureSchemePreviewEmbeddedData.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return BlocProvider(
-                              create: (BuildContext context) => PreviewEmbeddedCubit(
-                                embedded: state.extra! as EmbeddedResource,
-                              ),
-                              child: const PreviewEmbeddedDataScreen(),
-                            );
-                          }),
-                      GoRoute(
-                        path: appFeatureSchemeAddSettingSection.path,
-                        name: appFeatureSchemeAddSettingSection.name,
-                        builder: (BuildContext context, GoRouterState state) {
-                          return const AddSettingSectionScreen(
-                            assets: [],
-                            embedded: [],
-                          );
-                        },
-                      ),
-                      GoRoute(
-                          path: appFeatureSchemeAddSettingSectionItem.path,
-                          name: appFeatureSchemeAddSettingSectionItem.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return BlocProvider(
-                              create: (BuildContext context) => ManageSettingItemCubit(
-                                embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
-                                item: state.extra as AppConfigSettingsItem?,
-                              ),
-                              child: const AddSettingItemScreen(),
-                            );
-                          }),
-                      GoRoute(
-                          path: appFeatureSchemeMainManageTab.path,
-                          name: appFeatureSchemeMainManageTab.name,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return ManageMenuTabScreen(
-                              bottomMenuTabScheme: state.extra as BottomMenuTabScheme?,
-                            );
-                          })
-                    ],
-                  ),
-                  GoRoute(
-                    name: assetsScheme.name,
-                    path: assetsScheme.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      final filters = state.extra is List<ThemeAssetType>
-                          ? state.extra as List<ThemeAssetType>?
-                          : ThemeAssetType.values;
-                      final lockFilters = state.extra is List<ThemeAssetType>;
-                      return BlocProvider(
-                        create: (BuildContext context) => AssetsCubit(
-                          filters: filters ?? ThemeAssetType.values,
-                          lockFilters: lockFilters,
-                        ),
-                        child: const AssetsScreen(),
-                      );
-                    },
-                    routes: [
-                      GoRoute(
-                          name: assetsSchemeAddAsset.name,
-                          path: assetsSchemeAddAsset.path,
-                          builder: (BuildContext context, GoRouterState state) {
-                            return BlocProvider(
-                              create: (BuildContext context) => AddAssetCubit(
-                                applicationId,
-                                themeId,
-                                getIt.get(),
-                                getIt.get(),
-                              ),
-                              child: const AddAssetScreen(),
-                            );
-                          })
-                    ],
-                  ),
-                  GoRoute(
-                    name: launchScheme.name,
-                    path: launchScheme.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return BlocProvider(
-                        create: (context) => LaunchAssetsCubit(
-                          applicationId,
-                          themeId,
-                          getIt.get(),
-                          getIt.get(),
-                        ),
-                        child: const LaunchAssetsScreen(),
-                      );
-                    },
-                  ),
-                  GoRoute(
-                    name: splashScreenScheme.name,
-                    path: splashScreenScheme.path,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return BlocProvider(
-                        create: (context) => SplashAssetsBloc(
-                          applicationId: applicationId,
-                          themeId: themeId,
-                          uploadFileUsecase: getIt.get(),
-                          updateSplashAssetsThemeUsecase: getIt.get(),
-                        ),
-                        child: const SplashScreen(),
-                      );
-                    },
-                  ),
+                      path: appFeatureSchemeMainManageTab.path,
+                      name: appFeatureSchemeMainManageTab.name,
+                      builder: (BuildContext context, GoRouterState state) {
+                        return ManageMenuTabScreen(
+                          bottomMenuTabScheme: state.extra as BottomMenuTabScheme?,
+                        );
+                      })
                 ],
-              )
+              ),
+              GoRoute(
+                name: launchScheme.name,
+                path: launchScheme.path,
+                builder: (BuildContext context, GoRouterState state) {
+                  return BlocProvider(
+                    create: (context) => LaunchAssetsCubit(
+                      applicationId: applicationId,
+                      themeId: themeId,
+                      getConstraintsDefaultsUsecase: getIt.get(),
+                      getUsecase: getIt.get(),
+                      upsertWithFilesUsecase: getIt.get(),
+                      watchApplicationAssetsUsecase: getIt.get(),
+                      deleteLaunchAssetsUsecase: getIt.get(),
+                    ),
+                    child: const LaunchAssetsScreen(),
+                  );
+                },
+              ),
+              GoRoute(
+                name: splashScreenScheme.name,
+                path: splashScreenScheme.path,
+                builder: (BuildContext context, GoRouterState state) {
+                  return BlocProvider(
+                    create: (context) => SplashAssetsBloc(
+                      applicationId: applicationId,
+                      themeId: themeId,
+                      getSplashAssetUsecase: getIt.get(),
+                      upsertWithFilesUsecase: getIt.get(),
+                      getConstraintsDefaultsUsecase: getIt.get(),
+                      watchApplicationAssetsUsecase: getIt.get(),
+                      deleteSplashAssetUsecase: getIt.get(),
+                    ),
+                    child: const SplashScreen(),
+                  );
+                },
+              ),
             ]),
       ],
     );

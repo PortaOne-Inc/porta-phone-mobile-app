@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:domain/entity/entity.dart';
+import 'package:domain/models/models.dart';
 import 'package:domain/repository/repository.dart';
 
 abstract class GetAuthStatusUsecase {

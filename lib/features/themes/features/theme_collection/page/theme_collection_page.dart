@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
-import 'package:webtrit_configurator/localization/localization.dart';
 
 import '../bloc/theme_collection_cubit.dart';
 import '../widgets/widgets.dart';
@@ -30,7 +28,6 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
     return BlocConsumer<ThemeCollectionCubit, ThemeCollectionState>(
@@ -77,7 +74,7 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
                 crossAxisCount: 6,
                 onNewBranding: () => _onNewTheme(context, state.application!.id!),
                 onOpenBranding: (String themeId) => {},
-                onMakeDefault: (it){},
+                onMakeDefault: (it) {},
                 onDelete: bloc.tryDeleteTheme,
                 onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
               ),
@@ -128,13 +125,6 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
     );
   }
 
-  void _openTheme(BuildContext context, String applicationId, String themeId) {
-    GoRouter.of(context).goNamed(
-      AppRoutInfo.themesEdit.name,
-      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationId, AppRoutInfo.keyThemeId: themeId},
-    );
-  }
-
   Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
     await showDialog<void>(
       context: context,
@@ -142,26 +132,6 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
         themeId: model.id!,
         applicationId: applicationId,
       ),
-    );
-  }
-
-  void _openApplicationTranslations(BuildContext context, String applicationId) {
-    Navigator.pop(context);
-    GoRouter.of(context).pushNamed(
-      AppRoutInfo.translations.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
-    );
-  }
-
-  void _openEditApplication(BuildContext context, String applicationId) {
-    Navigator.pop(context);
-    GoRouter.of(context).pushNamed(
-      AppRoutInfo.applicationEdit.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
     );
   }
 
@@ -176,23 +146,5 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
 
   void _onThemeModeChanged(BuildContext context, ThemeMode themeMode) {
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
-  }
-
-  Future<void> _navigateToChangeEnvConfiguration(BuildContext context, String applicationId) async {
-    GoRouter.of(context).goNamed(
-      AppRoutInfo.applicationDetailsEnv.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
-    );
-  }
-
-  Future<void> _navigateToDeployment(BuildContext context, String applicationId) async {
-    GoRouter.of(context).goNamed(
-      AppRoutInfo.applicationDeployment.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
-    );
   }
 }

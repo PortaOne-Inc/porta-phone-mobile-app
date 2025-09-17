@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
@@ -16,13 +14,11 @@ class SettingSchemeScreen extends StatefulWidget {
   const SettingSchemeScreen({
     required this.config,
     required this.callback,
-    required this.assets,
     super.key,
   });
 
   final AppConfigSettings config;
   final ValueChanged<AppConfigSettings> callback;
-  final List<ThemeAssetModel> assets;
 
   @override
   _SettingSchemeScreenState createState() => _SettingSchemeScreenState();

@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:data/dto/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,6 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 
 import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/features/applications/features/application_details/features/embeds/bloc/embeds_cubit.dart';
+import 'package:webtrit_configurator/features/applications/features/application_details/features/embeds/view/embeds_screen.dart';
+import 'package:webtrit_configurator/features/applications/features/application_details/features/publication_resources/bloc/bloc.dart';
+import 'package:webtrit_configurator/features/applications/features/application_details/features/publication_resources/view/publication_screen.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 import 'package:webtrit_configurator/features/features.dart';
@@ -89,6 +90,7 @@ class AppRoute {
                 child: const ApplicationCreatePage(),
               ),
             ),
+
             GoRoute(
               path: AppRoutInfo.applicationEdit.path,
               name: AppRoutInfo.applicationEdit.name,
@@ -110,8 +112,18 @@ class AppRoute {
                   createThemeUseCase: getIt.get(),
                   defaultFeatureAccess: getIt.get(),
                   defaultThemeConfig: getIt.get(),
+                  generateThemeUsecase: getIt.get(),
                 ),
                 child: const ThemeCreatePage(),
+              ),
+            ),
+
+            GoRoute(
+              name: AppRoutInfo.applicationCapabilities.name,
+              path: AppRoutInfo.applicationCapabilities.path,
+              builder: (BuildContext context, GoRouterState state) => BlocProvider(
+                create: (context) => CapabilitiesCubit(),
+                child: const CapabilitiesScreen(),
               ),
             ),
             GoRoute(
@@ -130,6 +142,7 @@ class AppRoute {
                         updateBuildNameUseCase: getIt.get(),
                         updateBuildNumberUseCase: getIt.get(),
                         updateApplicationUsecase: getIt.get(),
+                        copyThemeUsecase: getIt.get(),
                       ),
                     ),
                 routes: [
@@ -143,6 +156,35 @@ class AppRoute {
                         getApplicationEnvironmentUsecase: getIt.get(),
                       ),
                       child: const EnvironmentConfigurationView(),
+                    ),
+                  ),
+                  GoRoute(
+                    name: AppRoutInfo.applicationEmbeds.name,
+                    path: AppRoutInfo.applicationEmbeds.path,
+                    builder: (BuildContext context, GoRouterState state) => BlocProvider(
+                      lazy: false,
+                      create: (context) => EmbedsCubit(
+                        applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                        getApplicationEmbedsUsecase: getIt.get(),
+                        deleteApplicationEmbedUsecase: getIt.get(),
+                        createApplicationEmbedUsecase: getIt.get(),
+                        updateApplicationEmbedUsecase: getIt.get(),
+                      ),
+                      child: const EmbedsScreen(),
+                    ),
+                  ),
+                  GoRoute(
+                    name: AppRoutInfo.applicationPublicationResources.name,
+                    path: AppRoutInfo.applicationPublicationResources.path,
+                    builder: (BuildContext context, GoRouterState state) => BlocProvider<PublicationResourcesCubit>(
+                      create: (context) => PublicationResourcesCubit(
+                        applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                        getUsecase: getIt.get(),
+                        createUsecase: getIt.get(),
+                        updateUsecase: getIt.get(),
+                        deleteUsecase: getIt.get(),
+                      ),
+                      child: const PublicationScreen(),
                     ),
                   ),
                   GoRoute(
@@ -161,6 +203,19 @@ class AppRoute {
                       child: const DeploymentView(),
                     ),
                   ),
+                  GoRoute(
+                    name: AppRoutInfo.applicationAssets.name,
+                    path: AppRoutInfo.applicationAssets.path,
+                    builder: (BuildContext context, GoRouterState state) => BlocProvider(
+                      create: (context) => AssetsCubit(
+                        applicationId: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                        getApplicationAssetsUsecase: getIt<GetApplicationAssetsUsecase>(param1: true, param2: 3600),
+                        createApplicationAssetUsecase: getIt.get(),
+                        deleteApplicationAssetUsecase: getIt.get(),
+                      ),
+                      child: const AssetsScreen(),
+                    ),
+                  ),
                 ]),
             GoRoute(
               path: AppRoutInfo.themesCollection.path,
@@ -173,7 +228,7 @@ class AppRoute {
                   makeThemeAsDefaultUseCase: getIt.get(),
                   deleteThemeUseCase: getIt.get(),
                   applicationDeleteUsecase: getIt.get(),
-                  ),
+                ),
               ),
             ),
             GoRoute(
@@ -205,40 +260,47 @@ class AppRoute {
                 final themeId = state.pathParameters[AppRoutInfo.keyThemeId]!;
 
                 return MultiBlocProvider(
-                  providers: [
-                    BlocProvider<UpdateThemCubit>(
-                      create: (BuildContext context) => UpdateThemCubit(
-                        defaultThemeSettings: getIt.get<ThemeSettings>(),
-                        appConfig: getIt.get<AppConfig>(),
-                        updateThemeUseCase: getIt<UsecaseThemeUpdate>(param1: applicationId),
-                        getApplicationUseCase: getIt<UsecaseApplicationGet>(param1: applicationId),
-                        getThemeUseCase: getIt<UsecaseThemeGet>(param1: applicationId, param2: themeId),
-                        applicationId: applicationId,
-                        themeId: themeId,
-                      ),
-                    ),
-                    BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
-                  ],
-                  child: PageThemeEdit(
-                    title: context.l10n.feature_theme_edit_Toolbar_dashboard,
-                    children: [
-                      GoRouterWrapper(
-                        router: SchemeRoute(getIt).build(
-                          context,
-                          state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                          state.pathParameters[AppRoutInfo.keyThemeId]!,
+                    providers: [
+                      BlocProvider<UpdateThemCubit>(
+                        create: (BuildContext context) => UpdateThemCubit(
+                          updateThemeUseCase: getIt<UsecaseThemeUpdate>(param1: applicationId),
+                          getApplicationUseCase: getIt<UsecaseApplicationGet>(param1: applicationId),
+                          getThemeUseCase: getIt<UsecaseThemeGet>(param1: applicationId, param2: themeId),
+                          getFeatureAccessUsecase: getIt.get(),
+                          updateFeatureAccessUsecase: getIt.get(),
+                          getColorSchemeByThemeVariantUsecase: getIt.get(),
+                          upsertColorSchemeByThemeVariantUsecase: getIt.get(),
+                          getWidgetConfigUsecase: getIt.get(),
+                          upsertWidgetConfig: getIt.get(),
+                          upsertPageConfigByVariantUsecase: getIt.get(),
+                          getPageConfigByVariantUsecase: getIt.get(),
+                          applicationId: applicationId,
+                          themeId: themeId,
+                          watchApplicationAssetsUsecase: getIt.get(),
+                          watchEmbedsUsecase: getIt.get(),
                         ),
                       ),
-                      GoRouterWrapper(
-                        router: PreviewRoute(getIt).build(
-                          context,
-                          state.pathParameters[AppRoutInfo.keyApplicationId]!,
-                          state.pathParameters[AppRoutInfo.keyThemeId]!,
-                        ),
-                      ),
+                      BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())
                     ],
-                  ),
-                );
+                    child: PageThemeEdit(
+                      title: context.l10n.feature_theme_edit_Toolbar_dashboard,
+                      children: [
+                        GoRouterWrapper(
+                          router: SchemeRoute(getIt).build(
+                            context,
+                            state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                            state.pathParameters[AppRoutInfo.keyThemeId]!,
+                          ),
+                        ),
+                        GoRouterWrapper(
+                          router: PreviewRoute(getIt).build(
+                            context,
+                            state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                            state.pathParameters[AppRoutInfo.keyThemeId]!,
+                          ),
+                        ),
+                      ],
+                    ));
               },
             ),
           ],

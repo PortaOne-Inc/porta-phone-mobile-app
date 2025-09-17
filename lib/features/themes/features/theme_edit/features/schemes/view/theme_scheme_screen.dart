@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,10 +23,26 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const ConfiguratorGroupTitleTile(
+            ConfiguratorGroupTitleTile(
               titleData: 'Application Runtime configuration',
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: BoxDecoration(border: Border(bottom: borderSide)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              decoration: const BoxDecoration(border: Border(bottom: borderSide)),
+              trailing: Dropdown(
+                icon: Icon(
+                  state.selectedVariant == BrightnessVariant.light
+                      ? Icons.light_mode_outlined
+                      : Icons.dark_mode_outlined,
+                ),
+                constraints: const BoxConstraints(maxWidth: 124, minHeight: 80),
+                items: const [
+                  'Light mode',
+                  'Dark mode',
+                ],
+                onSelect: (int position) {
+                  final v = position == 0 ? BrightnessVariant.light : BrightnessVariant.dark;
+                  context.read<UpdateThemCubit>().add(UpdateVariantEvent(v));
+                },
+              ),
             ),
             ListTile(
               leading: Icon(Icons.palette, color: colorScheme.primary),
@@ -75,20 +92,20 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             const ConfiguratorGroupTitleTile(
               titleData: 'Static Data',
             ),
-            ListTile(
-              leading: Icon(Icons.file_present_rounded, color: colorScheme.primary),
-              title: const Text(
-                'Assets',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              subtitle: const Text(
-                'Add assets for app configuration.',
-              ),
-              trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(
-                SchemeRoute.assetsScheme.name,
-              ),
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.file_present_rounded, color: colorScheme.primary),
+            //   title: const Text(
+            //     'Assets',
+            //     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            //   ),
+            //   subtitle: const Text(
+            //     'Add assets for app configuration.',
+            //   ),
+            //   trailing: const Icon(Icons.keyboard_arrow_right),
+            //   onTap: () => GoRouter.of(context).goNamed(
+            //     SchemeRoute.assetsScheme.name,
+            //   ),
+            // ),
             ListTile(
               leading: Icon(Icons.image_outlined, color: colorScheme.primary),
               title: const Text(

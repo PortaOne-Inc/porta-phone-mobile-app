@@ -35,7 +35,7 @@ class UnauthorizedInterceptor extends Interceptor {
   /// \param response The HTTP response.
   /// \param handler The response interceptor handler.
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     if (response.statusCode == _unauthorizedStatusCode) _notifyTokenExpired();
     super.onResponse(response, handler);
   }

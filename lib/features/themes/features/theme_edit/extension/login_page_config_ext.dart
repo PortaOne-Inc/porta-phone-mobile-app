@@ -13,7 +13,7 @@ extension LoginPageConfigExt on LoginPageConfig {
   /// Otherwise, the existing value is retained.
   LoginPageConfig copyWithUrlResources() {
     return copyWith(
-      picture: pictureUrl ?? picture,
+      picture: pictureUrl ?? imageSource?.uri,
     );
   }
 

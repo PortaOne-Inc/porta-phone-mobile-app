@@ -108,4 +108,38 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<ApplicationModel> updateThemeBindings(
+    String applicationId, {
+    String? defaultThemeId,
+    Map<String, String>? themeByEnv,
+  }) async {
+    try {
+      final dto = await configuratorBackandDatasource.updateThemeBindings(
+        applicationId,
+        defaultThemeId: defaultThemeId,
+        themeByEnv: themeByEnv,
+      );
+      return applicationMapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<String> resolveThemeIdForBuild(
+    String applicationId, {
+    String env = 'prod',
+  }) async {
+    try {
+      return await configuratorBackandDatasource.resolveThemeIdForBuild(applicationId, env: env);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

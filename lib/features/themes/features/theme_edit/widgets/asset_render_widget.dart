@@ -51,7 +51,7 @@ class RenderWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                GenerateLaunchIcon(
+                GenerateLaunchIcon1(
                   screenshotStreamController: androidLaunchScreenshotStreamController,
                   size: const Size(192, 192),
                   resource: image,
@@ -60,7 +60,7 @@ class RenderWidget extends StatelessWidget {
                   fit: boxFitAndroidLaunch,
                 ),
                 const SizedBox(width: 56),
-                GenerateLaunchIcon(
+                GenerateLaunchIcon1(
                   screenshotStreamController: androidForegroundScreenshotStreamController,
                   size: const Size(432, 432),
                   padding: EdgeInsets.all(paddingAndroidAdaptive),
@@ -71,7 +71,7 @@ class RenderWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 56),
-            GenerateLaunchIcon(
+            GenerateLaunchIcon1(
               screenshotStreamController: iosScreenshotStreamController,
               size: const Size(1024, 1024),
               resource: image,
@@ -80,7 +80,7 @@ class RenderWidget extends StatelessWidget {
               fit: boxFitIOS,
             ),
             const SizedBox(height: 56),
-            GenerateLaunchIcon(
+            GenerateLaunchIcon1(
               screenshotStreamController: webScreenshotStreamController,
               size: const Size(1024, 1024),
               padding: EdgeInsets.all(paddingWEB),

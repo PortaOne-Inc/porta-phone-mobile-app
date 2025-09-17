@@ -1,47 +1,85 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
+import 'package:data/mappers/mapper.dart';
 
-import 'package:data/dto/dto.dart';
-import 'package:data/mappers/mappers.dart';
+import '../../dto/theme/theme_dto.dart';
 
 @Injectable(as: CommonMapper<ThemeModel, ThemeDTO>)
-class ThemeMapper extends CommonMapper<ThemeModel, ThemeDTO> {
-  ThemeMapper(this.themeAssetMapper, this.launchAssetsMapper, this.splashAssetsMapper);
-
-  final CommonMapper<ThemeAssetModel, ThemeAssetDto> themeAssetMapper;
-  final CommonMapper<LaunchAssetsModel?, LaunchAssetsDto?> launchAssetsMapper;
-  final CommonMapper<SplashAssetModel?, SplashAssetsDto?> splashAssetsMapper;
-
-  @override
-  ThemeDTO convertTo(ThemeModel it) {
-    return ThemeDTO(
-      id: it.id,
-      name: it.name,
-      applicationId: it.applicationId,
-      colorSchemeConfig: ColorSchemeConfig.fromJson(it.colorSchemeConfig),
-      themeWidgetConfig: ThemeWidgetConfig.fromJson(it.themeWidgetConfig),
-      themePageConfig: ThemePageConfig.fromJson(it.themePageConfig),
-      appConfig: AppConfig.fromJson(it.appConfig),
-      assets: themeAssetMapper.convertListTo(it.assets),
-      splashAssets: splashAssetsMapper.convertTo(it.splashAsset) ?? const SplashAssetsDto(),
-      launchAssets: launchAssetsMapper.convertTo(it.launchAssets) ?? const LaunchAssetsDto(),
-    );
-  }
-
+class ThemeDtoMapper extends CommonMapper<ThemeModel, ThemeDTO> {
   @override
   ThemeModel convertFrom(ThemeDTO it) {
     return ThemeModel(
       id: it.id,
       applicationId: it.applicationId,
-      name: it.name,
-      colorSchemeConfig: it.colorSchemeConfig.toJson(),
-      themeWidgetConfig: it.themeWidgetConfig.toJson(),
-      themePageConfig: it.themePageConfig.toJson(),
-      appConfig: it.appConfig.toJson(),
-      assets: themeAssetMapper.convertListFrom(it.assets),
-      splashAsset: splashAssetsMapper.convertFrom(it.splashAssets) ?? const SplashAssetModel(),
-      launchAssets: launchAssetsMapper.convertFrom(it.launchAssets) ?? const LaunchAssetsModel(),
+      title: it.title,
+      previewAssetId: it.previewAssetId,
+      status: _mapStatus(it.status),
+      isDefault: it.isDefault ?? false,
+      version: it.version ?? 0,
+      sortIndex: it.sortIndex,
+      assetsCount: it.assetsCount,
+      embedsCount: it.embedsCount,
+      featureAccessExists: it.featureAccessExists,
+      slug: it.slug,
+      description: it.description,
+      parentThemeId: it.parentThemeId,
+      tags: it.tags,
+      createdBy: it.createdBy,
+      updatedBy: it.updatedBy,
+      createdAt: it.createdAt,
+      updatedAt: it.updatedAt,
+      deletedAt: it.deletedAt,
     );
+  }
+
+  @override
+  ThemeDTO convertTo(ThemeModel it) {
+    return ThemeDTO(
+      id: it.id,
+      applicationId: it.applicationId,
+      title: it.title,
+      previewAssetId: it.previewAssetId,
+      status: _mapStatusBack(it.status),
+      isDefault: it.isDefault,
+      version: it.version,
+      sortIndex: it.sortIndex,
+      assetsCount: it.assetsCount,
+      embedsCount: it.embedsCount,
+      featureAccessExists: it.featureAccessExists,
+      slug: it.slug,
+      description: it.description,
+      parentThemeId: it.parentThemeId,
+      tags: it.tags,
+      createdBy: it.createdBy,
+      updatedBy: it.updatedBy,
+      createdAt: it.createdAt,
+      updatedAt: it.updatedAt,
+      deletedAt: it.deletedAt,
+    );
+  }
+
+  // —— helpers ——
+  ThemeStatus _mapStatus(String? raw) {
+    switch (raw) {
+      case 'published':
+        return ThemeStatus.published;
+      case 'archived':
+        return ThemeStatus.archived;
+      case 'draft':
+      default:
+        return ThemeStatus.draft;
+    }
+  }
+
+  String? _mapStatusBack(ThemeStatus status) {
+    switch (status) {
+      case ThemeStatus.published:
+        return 'published';
+      case ThemeStatus.archived:
+        return 'archived';
+      case ThemeStatus.draft:
+        return 'draft';
+    }
   }
 }

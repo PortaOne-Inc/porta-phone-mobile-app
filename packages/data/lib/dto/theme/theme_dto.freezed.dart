@@ -14,18 +14,32 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+ThemeDTO _$ThemeDTOFromJson(Map<String, dynamic> json) {
+  return _ThemeDTO.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ThemeDTO {
   String? get id => throw _privateConstructorUsedError;
   String? get applicationId => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  ColorSchemeConfig get colorSchemeConfig => throw _privateConstructorUsedError;
-  ThemeWidgetConfig get themeWidgetConfig => throw _privateConstructorUsedError;
-  ThemePageConfig get themePageConfig => throw _privateConstructorUsedError;
-  AppConfig get appConfig => throw _privateConstructorUsedError;
-  LaunchAssetsDto get launchAssets => throw _privateConstructorUsedError;
-  SplashAssetsDto get splashAssets => throw _privateConstructorUsedError;
-  List<ThemeAssetDto> get assets => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get previewAssetId => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  bool? get isDefault => throw _privateConstructorUsedError;
+  int? get version => throw _privateConstructorUsedError;
+  int? get sortIndex => throw _privateConstructorUsedError;
+  int? get assetsCount => throw _privateConstructorUsedError;
+  int? get embedsCount => throw _privateConstructorUsedError;
+  bool? get featureAccessExists => throw _privateConstructorUsedError;
+  String? get createdBy => throw _privateConstructorUsedError;
+  String? get updatedBy => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get deletedAt => throw _privateConstructorUsedError;
+  String? get slug => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get parentThemeId => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
 
   /// Serializes this ThemeDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,21 +59,24 @@ abstract class $ThemeDTOCopyWith<$Res> {
   $Res call(
       {String? id,
       String? applicationId,
-      String? name,
-      ColorSchemeConfig colorSchemeConfig,
-      ThemeWidgetConfig themeWidgetConfig,
-      ThemePageConfig themePageConfig,
-      AppConfig appConfig,
-      LaunchAssetsDto launchAssets,
-      SplashAssetsDto splashAssets,
-      List<ThemeAssetDto> assets});
-
-  $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;
-  $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;
-  $ThemePageConfigCopyWith<$Res> get themePageConfig;
-  $AppConfigCopyWith<$Res> get appConfig;
-  $LaunchAssetsDtoCopyWith<$Res> get launchAssets;
-  $SplashAssetsDtoCopyWith<$Res> get splashAssets;
+      String? title,
+      String? previewAssetId,
+      String? status,
+      bool? isDefault,
+      int? version,
+      int? sortIndex,
+      int? assetsCount,
+      int? embedsCount,
+      bool? featureAccessExists,
+      String? createdBy,
+      String? updatedBy,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? slug,
+      String? description,
+      String? parentThemeId,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -79,14 +96,24 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
   $Res call({
     Object? id = freezed,
     Object? applicationId = freezed,
-    Object? name = freezed,
-    Object? colorSchemeConfig = null,
-    Object? themeWidgetConfig = null,
-    Object? themePageConfig = null,
-    Object? appConfig = null,
-    Object? launchAssets = null,
-    Object? splashAssets = null,
-    Object? assets = null,
+    Object? title = freezed,
+    Object? previewAssetId = freezed,
+    Object? status = freezed,
+    Object? isDefault = freezed,
+    Object? version = freezed,
+    Object? sortIndex = freezed,
+    Object? assetsCount = freezed,
+    Object? embedsCount = freezed,
+    Object? featureAccessExists = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? deletedAt = freezed,
+    Object? slug = freezed,
+    Object? description = freezed,
+    Object? parentThemeId = freezed,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -97,99 +124,79 @@ class _$ThemeDTOCopyWithImpl<$Res, $Val extends ThemeDTO>
           ? _value.applicationId
           : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      colorSchemeConfig: null == colorSchemeConfig
-          ? _value.colorSchemeConfig
-          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeConfig,
-      themeWidgetConfig: null == themeWidgetConfig
-          ? _value.themeWidgetConfig
-          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
-              as ThemeWidgetConfig,
-      themePageConfig: null == themePageConfig
-          ? _value.themePageConfig
-          : themePageConfig // ignore: cast_nullable_to_non_nullable
-              as ThemePageConfig,
-      appConfig: null == appConfig
-          ? _value.appConfig
-          : appConfig // ignore: cast_nullable_to_non_nullable
-              as AppConfig,
-      launchAssets: null == launchAssets
-          ? _value.launchAssets
-          : launchAssets // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsDto,
-      splashAssets: null == splashAssets
-          ? _value.splashAssets
-          : splashAssets // ignore: cast_nullable_to_non_nullable
-              as SplashAssetsDto,
-      assets: null == assets
-          ? _value.assets
-          : assets // ignore: cast_nullable_to_non_nullable
-              as List<ThemeAssetDto>,
+      previewAssetId: freezed == previewAssetId
+          ? _value.previewAssetId
+          : previewAssetId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: freezed == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sortIndex: freezed == sortIndex
+          ? _value.sortIndex
+          : sortIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assetsCount: freezed == assetsCount
+          ? _value.assetsCount
+          : assetsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      embedsCount: freezed == embedsCount
+          ? _value.embedsCount
+          : embedsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      featureAccessExists: freezed == featureAccessExists
+          ? _value.featureAccessExists
+          : featureAccessExists // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deletedAt: freezed == deletedAt
+          ? _value.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentThemeId: freezed == parentThemeId
+          ? _value.parentThemeId
+          : parentThemeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig {
-    return $ColorSchemeConfigCopyWith<$Res>(_value.colorSchemeConfig, (value) {
-      return _then(_value.copyWith(colorSchemeConfig: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig {
-    return $ThemeWidgetConfigCopyWith<$Res>(_value.themeWidgetConfig, (value) {
-      return _then(_value.copyWith(themeWidgetConfig: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ThemePageConfigCopyWith<$Res> get themePageConfig {
-    return $ThemePageConfigCopyWith<$Res>(_value.themePageConfig, (value) {
-      return _then(_value.copyWith(themePageConfig: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppConfigCopyWith<$Res> get appConfig {
-    return $AppConfigCopyWith<$Res>(_value.appConfig, (value) {
-      return _then(_value.copyWith(appConfig: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LaunchAssetsDtoCopyWith<$Res> get launchAssets {
-    return $LaunchAssetsDtoCopyWith<$Res>(_value.launchAssets, (value) {
-      return _then(_value.copyWith(launchAssets: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ThemeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SplashAssetsDtoCopyWith<$Res> get splashAssets {
-    return $SplashAssetsDtoCopyWith<$Res>(_value.splashAssets, (value) {
-      return _then(_value.copyWith(splashAssets: value) as $Val);
-    });
   }
 }
 
@@ -204,27 +211,24 @@ abstract class _$$ThemeDTOImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? applicationId,
-      String? name,
-      ColorSchemeConfig colorSchemeConfig,
-      ThemeWidgetConfig themeWidgetConfig,
-      ThemePageConfig themePageConfig,
-      AppConfig appConfig,
-      LaunchAssetsDto launchAssets,
-      SplashAssetsDto splashAssets,
-      List<ThemeAssetDto> assets});
-
-  @override
-  $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;
-  @override
-  $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;
-  @override
-  $ThemePageConfigCopyWith<$Res> get themePageConfig;
-  @override
-  $AppConfigCopyWith<$Res> get appConfig;
-  @override
-  $LaunchAssetsDtoCopyWith<$Res> get launchAssets;
-  @override
-  $SplashAssetsDtoCopyWith<$Res> get splashAssets;
+      String? title,
+      String? previewAssetId,
+      String? status,
+      bool? isDefault,
+      int? version,
+      int? sortIndex,
+      int? assetsCount,
+      int? embedsCount,
+      bool? featureAccessExists,
+      String? createdBy,
+      String? updatedBy,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? slug,
+      String? description,
+      String? parentThemeId,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -242,14 +246,24 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? applicationId = freezed,
-    Object? name = freezed,
-    Object? colorSchemeConfig = null,
-    Object? themeWidgetConfig = null,
-    Object? themePageConfig = null,
-    Object? appConfig = null,
-    Object? launchAssets = null,
-    Object? splashAssets = null,
-    Object? assets = null,
+    Object? title = freezed,
+    Object? previewAssetId = freezed,
+    Object? status = freezed,
+    Object? isDefault = freezed,
+    Object? version = freezed,
+    Object? sortIndex = freezed,
+    Object? assetsCount = freezed,
+    Object? embedsCount = freezed,
+    Object? featureAccessExists = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? deletedAt = freezed,
+    Object? slug = freezed,
+    Object? description = freezed,
+    Object? parentThemeId = freezed,
+    Object? tags = null,
   }) {
     return _then(_$ThemeDTOImpl(
       id: freezed == id
@@ -260,89 +274,157 @@ class __$$ThemeDTOImplCopyWithImpl<$Res>
           ? _value.applicationId
           : applicationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      colorSchemeConfig: null == colorSchemeConfig
-          ? _value.colorSchemeConfig
-          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeConfig,
-      themeWidgetConfig: null == themeWidgetConfig
-          ? _value.themeWidgetConfig
-          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
-              as ThemeWidgetConfig,
-      themePageConfig: null == themePageConfig
-          ? _value.themePageConfig
-          : themePageConfig // ignore: cast_nullable_to_non_nullable
-              as ThemePageConfig,
-      appConfig: null == appConfig
-          ? _value.appConfig
-          : appConfig // ignore: cast_nullable_to_non_nullable
-              as AppConfig,
-      launchAssets: null == launchAssets
-          ? _value.launchAssets
-          : launchAssets // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsDto,
-      splashAssets: null == splashAssets
-          ? _value.splashAssets
-          : splashAssets // ignore: cast_nullable_to_non_nullable
-              as SplashAssetsDto,
-      assets: null == assets
-          ? _value.assets
-          : assets // ignore: cast_nullable_to_non_nullable
-              as List<ThemeAssetDto>,
+      previewAssetId: freezed == previewAssetId
+          ? _value.previewAssetId
+          : previewAssetId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: freezed == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sortIndex: freezed == sortIndex
+          ? _value.sortIndex
+          : sortIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assetsCount: freezed == assetsCount
+          ? _value.assetsCount
+          : assetsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      embedsCount: freezed == embedsCount
+          ? _value.embedsCount
+          : embedsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      featureAccessExists: freezed == featureAccessExists
+          ? _value.featureAccessExists
+          : featureAccessExists // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deletedAt: freezed == deletedAt
+          ? _value.deletedAt
+          : deletedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      slug: freezed == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentThemeId: freezed == parentThemeId
+          ? _value.parentThemeId
+          : parentThemeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable(createFactory: false)
+
+@JsonSerializable(includeIfNull: false)
 class _$ThemeDTOImpl extends _ThemeDTO {
   const _$ThemeDTOImpl(
       {this.id,
       this.applicationId,
-      this.name,
-      this.colorSchemeConfig = const ColorSchemeConfig(),
-      this.themeWidgetConfig = const ThemeWidgetConfig(),
-      this.themePageConfig = const ThemePageConfig(),
-      this.appConfig = const AppConfig(),
-      this.launchAssets = const LaunchAssetsDto(),
-      this.splashAssets = const SplashAssetsDto(),
-      this.assets = const []})
+      this.title,
+      this.previewAssetId,
+      this.status,
+      this.isDefault,
+      this.version,
+      this.sortIndex,
+      this.assetsCount,
+      this.embedsCount,
+      this.featureAccessExists,
+      this.createdBy,
+      this.updatedBy,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.slug,
+      this.description,
+      this.parentThemeId,
+      this.tags = const <String>[]})
       : super._();
+
+  factory _$ThemeDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThemeDTOImplFromJson(json);
 
   @override
   final String? id;
   @override
   final String? applicationId;
   @override
-  final String? name;
+  final String? title;
+  @override
+  final String? previewAssetId;
+  @override
+  final String? status;
+  @override
+  final bool? isDefault;
+  @override
+  final int? version;
+  @override
+  final int? sortIndex;
+  @override
+  final int? assetsCount;
+  @override
+  final int? embedsCount;
+  @override
+  final bool? featureAccessExists;
+  @override
+  final String? createdBy;
+  @override
+  final String? updatedBy;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
+  @override
+  final String? deletedAt;
+  @override
+  final String? slug;
+  @override
+  final String? description;
+  @override
+  final String? parentThemeId;
   @override
   @JsonKey()
-  final ColorSchemeConfig colorSchemeConfig;
-  @override
-  @JsonKey()
-  final ThemeWidgetConfig themeWidgetConfig;
-  @override
-  @JsonKey()
-  final ThemePageConfig themePageConfig;
-  @override
-  @JsonKey()
-  final AppConfig appConfig;
-  @override
-  @JsonKey()
-  final LaunchAssetsDto launchAssets;
-  @override
-  @JsonKey()
-  final SplashAssetsDto splashAssets;
-  @override
-  @JsonKey()
-  final List<ThemeAssetDto> assets;
+  final List<String> tags;
 
   @override
   String toString() {
-    return 'ThemeDTO(id: $id, applicationId: $applicationId, name: $name, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, appConfig: $appConfig, launchAssets: $launchAssets, splashAssets: $splashAssets, assets: $assets)';
+    return 'ThemeDTO(id: $id, applicationId: $applicationId, title: $title, previewAssetId: $previewAssetId, status: $status, isDefault: $isDefault, version: $version, sortIndex: $sortIndex, assetsCount: $assetsCount, embedsCount: $embedsCount, featureAccessExists: $featureAccessExists, createdBy: $createdBy, updatedBy: $updatedBy, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, slug: $slug, description: $description, parentThemeId: $parentThemeId, tags: $tags)';
   }
 
   @override
@@ -353,36 +435,64 @@ class _$ThemeDTOImpl extends _ThemeDTO {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.applicationId, applicationId) ||
                 other.applicationId == applicationId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.colorSchemeConfig, colorSchemeConfig) ||
-                other.colorSchemeConfig == colorSchemeConfig) &&
-            (identical(other.themeWidgetConfig, themeWidgetConfig) ||
-                other.themeWidgetConfig == themeWidgetConfig) &&
-            (identical(other.themePageConfig, themePageConfig) ||
-                other.themePageConfig == themePageConfig) &&
-            (identical(other.appConfig, appConfig) ||
-                other.appConfig == appConfig) &&
-            (identical(other.launchAssets, launchAssets) ||
-                other.launchAssets == launchAssets) &&
-            (identical(other.splashAssets, splashAssets) ||
-                other.splashAssets == splashAssets) &&
-            const DeepCollectionEquality().equals(other.assets, assets));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.previewAssetId, previewAssetId) ||
+                other.previewAssetId == previewAssetId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isDefault, isDefault) ||
+                other.isDefault == isDefault) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.sortIndex, sortIndex) ||
+                other.sortIndex == sortIndex) &&
+            (identical(other.assetsCount, assetsCount) ||
+                other.assetsCount == assetsCount) &&
+            (identical(other.embedsCount, embedsCount) ||
+                other.embedsCount == embedsCount) &&
+            (identical(other.featureAccessExists, featureAccessExists) ||
+                other.featureAccessExists == featureAccessExists) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.deletedAt, deletedAt) ||
+                other.deletedAt == deletedAt) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.parentThemeId, parentThemeId) ||
+                other.parentThemeId == parentThemeId) &&
+            const DeepCollectionEquality().equals(other.tags, tags));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      applicationId,
-      name,
-      colorSchemeConfig,
-      themeWidgetConfig,
-      themePageConfig,
-      appConfig,
-      launchAssets,
-      splashAssets,
-      const DeepCollectionEquality().hash(assets));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        applicationId,
+        title,
+        previewAssetId,
+        status,
+        isDefault,
+        version,
+        sortIndex,
+        assetsCount,
+        embedsCount,
+        featureAccessExists,
+        createdBy,
+        updatedBy,
+        createdAt,
+        updatedAt,
+        deletedAt,
+        slug,
+        description,
+        parentThemeId,
+        const DeepCollectionEquality().hash(tags)
+      ]);
 
   /// Create a copy of ThemeDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -404,36 +514,69 @@ abstract class _ThemeDTO extends ThemeDTO {
   const factory _ThemeDTO(
       {final String? id,
       final String? applicationId,
-      final String? name,
-      final ColorSchemeConfig colorSchemeConfig,
-      final ThemeWidgetConfig themeWidgetConfig,
-      final ThemePageConfig themePageConfig,
-      final AppConfig appConfig,
-      final LaunchAssetsDto launchAssets,
-      final SplashAssetsDto splashAssets,
-      final List<ThemeAssetDto> assets}) = _$ThemeDTOImpl;
+      final String? title,
+      final String? previewAssetId,
+      final String? status,
+      final bool? isDefault,
+      final int? version,
+      final int? sortIndex,
+      final int? assetsCount,
+      final int? embedsCount,
+      final bool? featureAccessExists,
+      final String? createdBy,
+      final String? updatedBy,
+      final String? createdAt,
+      final String? updatedAt,
+      final String? deletedAt,
+      final String? slug,
+      final String? description,
+      final String? parentThemeId,
+      final List<String> tags}) = _$ThemeDTOImpl;
   const _ThemeDTO._() : super._();
+
+  factory _ThemeDTO.fromJson(Map<String, dynamic> json) =
+      _$ThemeDTOImpl.fromJson;
 
   @override
   String? get id;
   @override
   String? get applicationId;
   @override
-  String? get name;
+  String? get title;
   @override
-  ColorSchemeConfig get colorSchemeConfig;
+  String? get previewAssetId;
   @override
-  ThemeWidgetConfig get themeWidgetConfig;
+  String? get status;
   @override
-  ThemePageConfig get themePageConfig;
+  bool? get isDefault;
   @override
-  AppConfig get appConfig;
+  int? get version;
   @override
-  LaunchAssetsDto get launchAssets;
+  int? get sortIndex;
   @override
-  SplashAssetsDto get splashAssets;
+  int? get assetsCount;
   @override
-  List<ThemeAssetDto> get assets;
+  int? get embedsCount;
+  @override
+  bool? get featureAccessExists;
+  @override
+  String? get createdBy;
+  @override
+  String? get updatedBy;
+  @override
+  String? get createdAt;
+  @override
+  String? get updatedAt;
+  @override
+  String? get deletedAt;
+  @override
+  String? get slug;
+  @override
+  String? get description;
+  @override
+  String? get parentThemeId;
+  @override
+  List<String> get tags;
 
   /// Create a copy of ThemeDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -443,230 +586,209 @@ abstract class _ThemeDTO extends ThemeDTO {
       throw _privateConstructorUsedError;
 }
 
-ThemeAssetDto _$ThemeAssetDtoFromJson(Map<String, dynamic> json) {
-  return _ThemeAssetDto.fromJson(json);
+CreateThemeDTO _$CreateThemeDTOFromJson(Map<String, dynamic> json) {
+  return _CreateThemeDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ThemeAssetDto {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
+mixin _$CreateThemeDTO {
+  /// Title of the theme (required, max 120 chars).
+  String get title => throw _privateConstructorUsedError;
 
-  /// Serializes this ThemeAssetDto to a JSON map.
+  /// Optional description (max 2000 chars).
+  String? get description => throw _privateConstructorUsedError;
+
+  /// Label for environment separation.
+  /// Defaults to "dev" if not provided.
+  String get label => throw _privateConstructorUsedError;
+
+  /// Serializes this CreateThemeDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ThemeAssetDto
+  /// Create a copy of CreateThemeDTO
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ThemeAssetDtoCopyWith<ThemeAssetDto> get copyWith =>
+  $CreateThemeDTOCopyWith<CreateThemeDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThemeAssetDtoCopyWith<$Res> {
-  factory $ThemeAssetDtoCopyWith(
-          ThemeAssetDto value, $Res Function(ThemeAssetDto) then) =
-      _$ThemeAssetDtoCopyWithImpl<$Res, ThemeAssetDto>;
+abstract class $CreateThemeDTOCopyWith<$Res> {
+  factory $CreateThemeDTOCopyWith(
+          CreateThemeDTO value, $Res Function(CreateThemeDTO) then) =
+      _$CreateThemeDTOCopyWithImpl<$Res, CreateThemeDTO>;
   @useResult
-  $Res call(
-      {int id, String name, String description, String? url, String? type});
+  $Res call({String title, String? description, String label});
 }
 
 /// @nodoc
-class _$ThemeAssetDtoCopyWithImpl<$Res, $Val extends ThemeAssetDto>
-    implements $ThemeAssetDtoCopyWith<$Res> {
-  _$ThemeAssetDtoCopyWithImpl(this._value, this._then);
+class _$CreateThemeDTOCopyWithImpl<$Res, $Val extends CreateThemeDTO>
+    implements $CreateThemeDTOCopyWith<$Res> {
+  _$CreateThemeDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ThemeAssetDto
+  /// Create a copy of CreateThemeDTO
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? description = null,
-    Object? url = freezed,
-    Object? type = freezed,
+    Object? title = null,
+    Object? description = freezed,
+    Object? label = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
               as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ThemeAssetDtoImplCopyWith<$Res>
-    implements $ThemeAssetDtoCopyWith<$Res> {
-  factory _$$ThemeAssetDtoImplCopyWith(
-          _$ThemeAssetDtoImpl value, $Res Function(_$ThemeAssetDtoImpl) then) =
-      __$$ThemeAssetDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateThemeDTOImplCopyWith<$Res>
+    implements $CreateThemeDTOCopyWith<$Res> {
+  factory _$$CreateThemeDTOImplCopyWith(_$CreateThemeDTOImpl value,
+          $Res Function(_$CreateThemeDTOImpl) then) =
+      __$$CreateThemeDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id, String name, String description, String? url, String? type});
+  $Res call({String title, String? description, String label});
 }
 
 /// @nodoc
-class __$$ThemeAssetDtoImplCopyWithImpl<$Res>
-    extends _$ThemeAssetDtoCopyWithImpl<$Res, _$ThemeAssetDtoImpl>
-    implements _$$ThemeAssetDtoImplCopyWith<$Res> {
-  __$$ThemeAssetDtoImplCopyWithImpl(
-      _$ThemeAssetDtoImpl _value, $Res Function(_$ThemeAssetDtoImpl) _then)
+class __$$CreateThemeDTOImplCopyWithImpl<$Res>
+    extends _$CreateThemeDTOCopyWithImpl<$Res, _$CreateThemeDTOImpl>
+    implements _$$CreateThemeDTOImplCopyWith<$Res> {
+  __$$CreateThemeDTOImplCopyWithImpl(
+      _$CreateThemeDTOImpl _value, $Res Function(_$CreateThemeDTOImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ThemeAssetDto
+  /// Create a copy of CreateThemeDTO
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? description = null,
-    Object? url = freezed,
-    Object? type = freezed,
+    Object? title = null,
+    Object? description = freezed,
+    Object? label = null,
   }) {
-    return _then(_$ThemeAssetDtoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+    return _then(_$CreateThemeDTOImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
               as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$ThemeAssetDtoImpl implements _ThemeAssetDto {
-  const _$ThemeAssetDtoImpl(
-      {required this.id,
-      required this.name,
-      this.description = '',
-      this.url,
-      this.type});
 
-  factory _$ThemeAssetDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ThemeAssetDtoImplFromJson(json);
+@JsonSerializable(includeIfNull: false)
+class _$CreateThemeDTOImpl implements _CreateThemeDTO {
+  const _$CreateThemeDTOImpl(
+      {required this.title, this.description, this.label = 'dev'});
 
+  factory _$CreateThemeDTOImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateThemeDTOImplFromJson(json);
+
+  /// Title of the theme (required, max 120 chars).
   @override
-  final int id;
+  final String title;
+
+  /// Optional description (max 2000 chars).
   @override
-  final String name;
+  final String? description;
+
+  /// Label for environment separation.
+  /// Defaults to "dev" if not provided.
   @override
   @JsonKey()
-  final String description;
-  @override
-  final String? url;
-  @override
-  final String? type;
+  final String label;
 
   @override
   String toString() {
-    return 'ThemeAssetDto(id: $id, name: $name, description: $description, url: $url, type: $type)';
+    return 'CreateThemeDTO(title: $title, description: $description, label: $label)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemeAssetDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            other is _$CreateThemeDTOImpl &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.label, label) || other.label == label));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, url, type);
+  int get hashCode => Object.hash(runtimeType, title, description, label);
 
-  /// Create a copy of ThemeAssetDto
+  /// Create a copy of CreateThemeDTO
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemeAssetDtoImplCopyWith<_$ThemeAssetDtoImpl> get copyWith =>
-      __$$ThemeAssetDtoImplCopyWithImpl<_$ThemeAssetDtoImpl>(this, _$identity);
+  _$$CreateThemeDTOImplCopyWith<_$CreateThemeDTOImpl> get copyWith =>
+      __$$CreateThemeDTOImplCopyWithImpl<_$CreateThemeDTOImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ThemeAssetDtoImplToJson(
+    return _$$CreateThemeDTOImplToJson(
       this,
     );
   }
 }
 
-abstract class _ThemeAssetDto implements ThemeAssetDto {
-  const factory _ThemeAssetDto(
-      {required final int id,
-      required final String name,
-      final String description,
-      final String? url,
-      final String? type}) = _$ThemeAssetDtoImpl;
+abstract class _CreateThemeDTO implements CreateThemeDTO {
+  const factory _CreateThemeDTO(
+      {required final String title,
+      final String? description,
+      final String label}) = _$CreateThemeDTOImpl;
 
-  factory _ThemeAssetDto.fromJson(Map<String, dynamic> json) =
-      _$ThemeAssetDtoImpl.fromJson;
+  factory _CreateThemeDTO.fromJson(Map<String, dynamic> json) =
+      _$CreateThemeDTOImpl.fromJson;
 
+  /// Title of the theme (required, max 120 chars).
   @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String get description;
-  @override
-  String? get url;
-  @override
-  String? get type;
+  String get title;
 
-  /// Create a copy of ThemeAssetDto
+  /// Optional description (max 2000 chars).
+  @override
+  String? get description;
+
+  /// Label for environment separation.
+  /// Defaults to "dev" if not provided.
+  @override
+  String get label;
+
+  /// Create a copy of CreateThemeDTO
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ThemeAssetDtoImplCopyWith<_$ThemeAssetDtoImpl> get copyWith =>
+  _$$CreateThemeDTOImplCopyWith<_$CreateThemeDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

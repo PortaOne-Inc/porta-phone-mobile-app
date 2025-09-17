@@ -63,7 +63,7 @@ class ErrorHolder extends StatelessWidget {
                             child: Text(
                               error.toString(),
                               style: textTheme.bodyMedium?.copyWith(
-                                color: textTheme.bodyMedium?.color?.withOpacity(0.8),
+                                color: textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
                               ),
                               textAlign: TextAlign.center,
                             ),

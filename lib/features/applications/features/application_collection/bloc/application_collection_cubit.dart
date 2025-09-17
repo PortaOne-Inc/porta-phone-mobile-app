@@ -5,13 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-
-import '../../../model/models.dart';
-
 part 'application_collection_state.dart';
-
-part 'application_collection_cubit_utility.dart';
 
 part 'application_collection_cubit.freezed.dart';
 
@@ -60,13 +54,9 @@ class ApplicationCollectionCubit extends Cubit<ApplicationCollectionState> {
   }
 
   Future<void> _getApplications() async {
-    final result = await applicationCollectionUsecase.execute();
-    final applications = result.map((it) => (it, _validateApplication(it)));
+    final applications = await applicationCollectionUsecase.execute();
 
-    emit(state.copyWith(
-      status: ApplicationsStateStatus.success,
-      applications: applications.toList(),
-    ));
+    emit(state.copyWith(status: ApplicationsStateStatus.success, applications: applications));
   }
 
   Future<void> tryDeleteApplication(ApplicationModel application) async {

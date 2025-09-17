@@ -79,23 +79,21 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
         emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
         final themes = await getAllThemesUseCase.execute();
         emit(state.copyWith(themes: themes, status: ThemeCollectionStateStatus.success));
-      } on BaseException catch (e,st) {
-        print(st);
-
+      } on BaseException catch (e) {
         emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
       }
     }
   }
 
-  Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
-    try {
-      emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
-      await operation();
-      emit(state.copyWith(status: ThemeCollectionStateStatus.success));
-    } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
-    }
-  }
+  // Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
+  //   try {
+  //     emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
+  //     await operation();
+  //     emit(state.copyWith(status: ThemeCollectionStateStatus.success));
+  //   } on BaseException catch (e) {
+  //     emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
+  //   }
+  // }
   Future<void> _deleteTheme(ThemeModel themeModel) async {
     // emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
     // await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);

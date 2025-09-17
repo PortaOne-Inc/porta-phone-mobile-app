@@ -41,6 +41,26 @@ abstract class AppRoutInfo {
     name: 'applications/environments',
     path: 'environments',
   );
+  static const applicationCapabilities = DestinationInfo(
+    name: 'features',
+    path: '/applications/:$keyApplicationId/capabilities',
+  );
+  static const applicationEmbeds = DestinationInfo(
+    name: 'applications/embeds',
+    path: 'embeds',
+  );
+  static const applicationPublicationResources = DestinationInfo(
+    name: 'applications/publication-resources',
+    path: 'publication-resources',
+  );
+  static const applicationEmbedsManage = DestinationInfo(
+    name: 'applications/embeds/:$keyEmbedsId',
+    path: 'manage-embeds',
+  );
+  static const applicationAssets = DestinationInfo(
+    name: 'applications/assets/:$keyEmbedsId',
+    path: 'assets',
+  );
   static const applicationDeployment = DestinationInfo(
     name: 'applications/deployment',
     path: 'deployment',
@@ -66,21 +86,9 @@ abstract class AppRoutInfo {
     path: '/applications/:$keyApplicationId/:$keyThemeId/preview',
   );
 
+  static const String keyEmbedsId = 'id';
   static const String keyApplicationId = 'applicationId';
   static const String keyThemeId = 'themeId';
-  static const values = [
-    login,
-    reset,
-    applicationCollection,
-    admin,
-    applicationCreate,
-    applicationEdit,
-    applicationDetails,
-    translations,
-    themesCreate,
-    themesEdit,
-    themesPreview,
-  ];
 }
 
 // TODO(vlad): Add theme segment key to theme paths to avoid interfering with new features

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 
-typedef StatusesWidgetConfigConfigCallback = void Function(StatusesWidgetConfig);
+import '../../../../../../../../features.dart';
 
 class StatusesConfigTab extends StatelessWidget {
   const StatusesConfigTab({
     required this.sourceStatusesWidgetConfig,
-    required this.callback,
     this.callStatusStyles,
     this.registeredStatusStyles,
     super.key,
@@ -18,13 +18,12 @@ class StatusesConfigTab extends StatelessWidget {
   final StatusesWidgetConfig sourceStatusesWidgetConfig;
   final CallStatusStyles? callStatusStyles;
   final RegisteredStatusStyles? registeredStatusStyles;
-  final StatusesWidgetConfigConfigCallback callback;
 
   @override
   Widget build(BuildContext context) {
     final light = ThemeProvider.of(context).light();
-    final callStatusStyles = light.extension<CallStatusStyles>()?.primary;
-    final registeredStatusStyles = light.extension<RegisteredStatusStyles>()?.primary;
+    final callStyles = (callStatusStyles ?? light.extension<CallStatusStyles>())?.primary;
+    final regStyles = (registeredStatusStyles ?? light.extension<RegisteredStatusStyles>())?.primary;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -32,53 +31,75 @@ class StatusesConfigTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StatusSection(
-            title: 'Registration Statuses',
+            title: 'Registration statuses',
+            descriptionWidget: DescriptionRow.info(
+              'Colors for registered/unregistered account states.',
+            ),
             statuses: [
               StatusDescriptor(
                 title: 'Registered',
-                color: registeredStatusStyles?.registered,
-                onColorSelected: (color) => _updateRegisteredStyles(registeredColor: color.toHex()),
+                color: regStyles?.registered,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
                 title: 'Unregistered',
-                color: registeredStatusStyles?.unregistered,
-                onColorSelected: (color) => _updateRegisteredStyles(unregisteredColor: color.toHex()),
+                color: regStyles?.unregistered,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
+                    ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           StatusSection(
-            title: 'Call Statuses',
+            title: 'Call statuses',
+            descriptionWidget: DescriptionRow.info(
+              'Connection and call lifecycle indicators.',
+            ),
             statuses: [
               StatusDescriptor(
-                title: 'Connectivity None',
-                color: callStatusStyles?.connectivityNone,
-                onColorSelected: (color) => _updateCallStyles(connectivityNoneColor: color.toHex()),
+                title: 'Connectivity none',
+                color: callStyles?.connectivityNone,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesConnectivityNone(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
-                title: 'Connect Error',
-                color: callStatusStyles?.connectError,
-                onColorSelected: (color) => _updateCallStyles(connectErrorColor: color.toHex()),
+                title: 'Connect error',
+                color: callStyles?.connectError,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
-                title: 'App Unregistered',
-                color: callStatusStyles?.appUnregistered,
-                onColorSelected: (color) => _updateCallStyles(appUnregisteredColor: color.toHex()),
+                title: 'App unregistered',
+                color: callStyles?.appUnregistered,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesAppUnregistered(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
-                title: 'Connect Issue',
-                color: callStatusStyles?.connectIssue,
-                onColorSelected: (color) => _updateCallStyles(connectIssueColor: color.toHex()),
+                title: 'Connect issue',
+                color: callStyles?.connectIssue,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
-                title: 'In Progress',
-                color: callStatusStyles?.inProgress,
-                onColorSelected: (color) => _updateCallStyles(inProgressColor: color.toHex()),
+                title: 'In progress',
+                color: callStyles?.inProgress,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
+                    ),
               ),
               StatusDescriptor(
                 title: 'Ready',
-                color: callStatusStyles?.ready,
-                onColorSelected: (color) => _updateCallStyles(readyColor: color.toHex()),
+                color: callStyles?.ready,
+                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
+                      ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
+                    ),
               ),
             ],
           ),
@@ -86,49 +107,25 @@ class StatusesConfigTab extends StatelessWidget {
       ),
     );
   }
-
-  void _updateRegisteredStyles({String? registeredColor, String? unregisteredColor}) {
-    final updatedStyles = sourceStatusesWidgetConfig.registrationStatuses.copyWith(
-      online: registeredColor ?? sourceStatusesWidgetConfig.registrationStatuses.online,
-      offline: unregisteredColor ?? sourceStatusesWidgetConfig.registrationStatuses.offline,
-    );
-    callback.call(sourceStatusesWidgetConfig.copyWith(registrationStatuses: updatedStyles));
-  }
-
-  void _updateCallStyles({
-    String? connectivityNoneColor,
-    String? connectErrorColor,
-    String? appUnregisteredColor,
-    String? connectIssueColor,
-    String? inProgressColor,
-    String? readyColor,
-  }) {
-    final updatedStyles = sourceStatusesWidgetConfig.callStatuses.copyWith(
-      connectivityNone: connectivityNoneColor ?? sourceStatusesWidgetConfig.callStatuses.connectivityNone,
-      connectError: connectErrorColor ?? sourceStatusesWidgetConfig.callStatuses.connectError,
-      appUnregistered: appUnregisteredColor ?? sourceStatusesWidgetConfig.callStatuses.appUnregistered,
-      connectIssue: connectIssueColor ?? sourceStatusesWidgetConfig.callStatuses.connectIssue,
-      inProgress: inProgressColor ?? sourceStatusesWidgetConfig.callStatuses.inProgress,
-      ready: readyColor ?? sourceStatusesWidgetConfig.callStatuses.ready,
-    );
-    callback.call(sourceStatusesWidgetConfig.copyWith(callStatuses: updatedStyles));
-  }
 }
 
 class StatusSection extends StatelessWidget {
   const StatusSection({
     required this.title,
     required this.statuses,
+    this.descriptionWidget,
     super.key,
   });
 
   final String title;
   final List<StatusDescriptor> statuses;
+  final Widget? descriptionWidget;
 
   @override
   Widget build(BuildContext context) {
     return BorderContainer(
       title: title,
+      descriptionWidget: descriptionWidget,
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -137,7 +134,7 @@ class StatusSection extends StatelessWidget {
             constraints: const BoxConstraints(minWidth: 160, minHeight: 80),
             title: status.title,
             color: status.color,
-            onTap: (color) => context.selectColor(
+            onTap: (_) => context.selectColor(
               initialColor: status.color,
               onColorSelected: status.onColorSelected,
             ),

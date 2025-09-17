@@ -1,4 +1,4 @@
-import 'package:domain/entity/entity.dart';
+import 'package:domain/models/models.dart';
 
 abstract class TranslationsRepository {
   Future<List<Translation>> getTranslations();

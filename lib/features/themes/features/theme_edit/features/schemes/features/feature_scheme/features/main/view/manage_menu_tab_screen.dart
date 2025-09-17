@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/core/core.dart';
@@ -25,7 +28,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   late var _bottomMenuType = widget.bottomMenuTabScheme?.type;
   late final _titleL10nController = TextEditingController(text: widget.bottomMenuTabScheme?.titleL10n ?? '');
 
-  EmbeddedResource? _selectedEmbedded;
+  EmbeddedResourceModel? _selectedEmbedded;
 
   // Common configuration
   bool _enableTab = true;
@@ -90,7 +93,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                 visible: _bottomMenuType?.isEmbedded ?? false,
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(_selectedEmbedded?.toString() ?? 'Add Embedded Data'),
+                  title: Text(_selectedEmbedded?.displayLabel() ?? 'Add Embedded Data'),
                   subtitle: const Text('To display in embedded pages.'),
                   leading: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
                   trailing: const Icon(Icons.navigate_next),
@@ -98,7 +101,6 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
                 ),
               ),
               BorderContainer(
-                margin: EdgeInsets.zero,
                 title: 'Tab availability',
                 child: SwitchListTile(
                     title: const Text('Enable'),
@@ -144,7 +146,16 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   }
 
   Future<void> _addEmbeddedPage() async {
-    _selectedEmbedded = await context.pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeCollectionEmbedded.name);
+    final embeds = context.read<UpdateThemCubit>().state.embeds;
+
+    final picked = await EmbedPickerDialog.show(
+      context,
+      title: 'Select embeds',
+      items: embeds,
+    );
+
+    _selectedEmbedded = picked!.first;
+    setState(() {});
   }
 
   void _saveData() {
@@ -172,7 +183,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
         type: _bottomMenuType!,
         titleL10n: _titleL10nController.text,
         icon: _bottomMenuTabScheme?.icon ?? '0xe556',
-        embeddedResourceId: _selectedEmbedded!.id,
+        embeddedResourceId: _selectedEmbedded!.id!,
       );
 
       GoRouter.of(context).pop(updatedTab);

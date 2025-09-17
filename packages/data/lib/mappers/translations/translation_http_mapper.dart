@@ -1,21 +1,27 @@
-import 'package:data/models/models.dart';
-import 'package:domain/entity/entity.dart';
+import 'package:injectable/injectable.dart';
 
-// TODO(SERDUN): Use common interface instead of static
-class TranslationHttpMapper {
-  static Translation fromHttpModel(TranslationHttpModel model) {
+import 'package:domain/domain.dart';
+
+import 'package:data/mappers/mapper.dart';
+import 'package:data/dto/dto.dart';
+
+@Injectable(as: CommonMapper<Translation, TranslationHttpModel>)
+class TranslationHttpMapper extends CommonMapper<Translation, TranslationHttpModel> {
+  @override
+  Translation convertFrom(TranslationHttpModel it) {
     return Translation(
-      locale: model.locale,
-      key: model.key,
-      value: model.value,
+      locale: it.locale,
+      key: it.key,
+      value: it.value,
     );
   }
 
-  static TranslationHttpModel toHttpModel(Translation entity) {
+  @override
+  TranslationHttpModel convertTo(Translation it) {
     return TranslationHttpModel(
-      locale: entity.locale,
-      key: entity.key,
-      value: entity.value,
+      locale: it.locale,
+      key: it.key,
+      value: it.value,
     );
   }
 }

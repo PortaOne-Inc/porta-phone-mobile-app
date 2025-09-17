@@ -1,4 +1,4 @@
-import 'package:domain/entity/models/models.dart';
+import 'package:domain/models/models.dart';
 
 abstract class DeploymentRepository {
   Future<void> deploy({

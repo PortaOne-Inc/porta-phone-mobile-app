@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:domain/entity/models/models.dart';
+import 'package:domain/models/models.dart';
 import 'package:domain/repository/repository.dart';
 
 import 'package:injectable/injectable.dart';
