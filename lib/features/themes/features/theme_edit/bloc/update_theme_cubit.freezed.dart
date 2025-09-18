@@ -6741,6 +6741,8 @@ mixin _$ThemePageEvent {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -6767,6 +6769,8 @@ mixin _$ThemePageEvent {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -6793,6 +6797,8 @@ mixin _$ThemePageEvent {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -6825,6 +6831,10 @@ mixin _$ThemePageEvent {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -6855,6 +6865,10 @@ mixin _$ThemePageEvent {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -6885,6 +6899,10 @@ mixin _$ThemePageEvent {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -7018,6 +7036,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginPage(login);
   }
@@ -7047,6 +7067,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginPage?.call(login);
   }
@@ -7076,6 +7098,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginPage != null) {
@@ -7114,6 +7138,10 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginPage(this);
   }
@@ -7147,6 +7175,10 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginPage?.call(this);
   }
@@ -7180,6 +7212,10 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginPage != null) {
@@ -7309,6 +7345,8 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginPicture(asset);
   }
@@ -7338,6 +7376,8 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginPicture?.call(asset);
   }
@@ -7367,6 +7407,8 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginPicture != null) {
@@ -7405,6 +7447,10 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginPicture(this);
   }
@@ -7438,6 +7484,10 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginPicture?.call(this);
   }
@@ -7471,6 +7521,10 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginPicture != null) {
@@ -7588,6 +7642,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginScale(scale);
   }
@@ -7617,6 +7673,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginScale?.call(scale);
   }
@@ -7646,6 +7704,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginScale != null) {
@@ -7684,6 +7744,10 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginScale(this);
   }
@@ -7717,6 +7781,10 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginScale?.call(this);
   }
@@ -7750,6 +7818,10 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginScale != null) {
@@ -7867,6 +7939,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginLabelColor(color);
   }
@@ -7896,6 +7970,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginLabelColor?.call(color);
   }
@@ -7925,6 +8001,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginLabelColor != null) {
@@ -7963,6 +8041,10 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginLabelColor(this);
   }
@@ -7996,6 +8078,10 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginLabelColor?.call(this);
   }
@@ -8029,6 +8115,10 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginLabelColor != null) {
@@ -8160,6 +8250,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelect(modeSelect);
   }
@@ -8189,6 +8281,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelect?.call(modeSelect);
   }
@@ -8218,6 +8312,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelect != null) {
@@ -8256,6 +8352,10 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelect(this);
   }
@@ -8289,6 +8389,10 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelect?.call(this);
   }
@@ -8322,6 +8426,10 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelect != null) {
@@ -8445,6 +8553,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonLoginStyle(type);
   }
@@ -8474,6 +8584,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonLoginStyle?.call(type);
   }
@@ -8503,6 +8615,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelectButtonLoginStyle != null) {
@@ -8541,6 +8655,10 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonLoginStyle(this);
   }
@@ -8574,6 +8692,10 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonLoginStyle?.call(this);
   }
@@ -8607,6 +8729,10 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelectButtonLoginStyle != null) {
@@ -8732,6 +8858,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonSignupStyle(type);
   }
@@ -8761,6 +8889,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonSignupStyle?.call(type);
   }
@@ -8790,6 +8920,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelectButtonSignupStyle != null) {
@@ -8828,6 +8960,10 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonSignupStyle(this);
   }
@@ -8861,6 +8997,10 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setLoginModeSelectButtonSignupStyle?.call(this);
   }
@@ -8894,6 +9034,10 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setLoginModeSelectButtonSignupStyle != null) {
@@ -9025,6 +9169,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setAboutPage(about);
   }
@@ -9054,6 +9200,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setAboutPage?.call(about);
   }
@@ -9083,6 +9231,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutPage != null) {
@@ -9121,6 +9271,10 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutPage(this);
   }
@@ -9154,6 +9308,10 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutPage?.call(this);
   }
@@ -9187,6 +9345,10 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutPage != null) {
@@ -9316,6 +9478,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setAboutPicture(asset);
   }
@@ -9345,6 +9509,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setAboutPicture?.call(asset);
   }
@@ -9374,6 +9540,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutPicture != null) {
@@ -9412,6 +9580,10 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutPicture(this);
   }
@@ -9445,6 +9617,10 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutPicture?.call(this);
   }
@@ -9478,6 +9654,10 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutPicture != null) {
@@ -9609,6 +9789,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setAboutMetadata(metadata);
   }
@@ -9638,6 +9820,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setAboutMetadata?.call(metadata);
   }
@@ -9667,6 +9851,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutMetadata != null) {
@@ -9705,6 +9891,10 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutMetadata(this);
   }
@@ -9738,6 +9928,10 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setAboutMetadata?.call(this);
   }
@@ -9771,6 +9965,10 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setAboutMetadata != null) {
@@ -9902,6 +10100,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingPage(dialingPage);
   }
@@ -9931,6 +10131,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingPage?.call(dialingPage);
   }
@@ -9960,6 +10162,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingPage != null) {
@@ -9998,6 +10202,10 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingPage(this);
   }
@@ -10031,6 +10239,10 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingPage?.call(this);
   }
@@ -10064,6 +10276,10 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingPage != null) {
@@ -10200,6 +10416,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingSystemUiOverlay(style);
   }
@@ -10229,6 +10447,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingSystemUiOverlay?.call(style);
   }
@@ -10258,6 +10478,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingSystemUiOverlay != null) {
@@ -10296,6 +10518,10 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingSystemUiOverlay(this);
   }
@@ -10329,6 +10555,10 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingSystemUiOverlay?.call(this);
   }
@@ -10362,6 +10592,10 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingSystemUiOverlay != null) {
@@ -10498,6 +10732,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingAppBarStyle(appBarStyle);
   }
@@ -10527,6 +10763,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingAppBarStyle?.call(appBarStyle);
   }
@@ -10556,6 +10794,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingAppBarStyle != null) {
@@ -10594,6 +10834,10 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingAppBarStyle(this);
   }
@@ -10627,6 +10871,10 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingAppBarStyle?.call(this);
   }
@@ -10660,6 +10908,10 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingAppBarStyle != null) {
@@ -10794,6 +11046,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfo(info);
   }
@@ -10823,6 +11077,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfo?.call(info);
   }
@@ -10852,6 +11108,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfo != null) {
@@ -10890,6 +11148,10 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfo(this);
   }
@@ -10923,6 +11185,10 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfo?.call(this);
   }
@@ -10956,6 +11222,10 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfo != null) {
@@ -11094,6 +11364,8 @@ class _$SetDialingInfoUsernameStyleImpl
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoUsernameStyle(style);
   }
@@ -11123,6 +11395,8 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoUsernameStyle?.call(style);
   }
@@ -11152,6 +11426,8 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoUsernameStyle != null) {
@@ -11190,6 +11466,10 @@ class _$SetDialingInfoUsernameStyleImpl
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoUsernameStyle(this);
   }
@@ -11223,6 +11503,10 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoUsernameStyle?.call(this);
   }
@@ -11256,6 +11540,10 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoUsernameStyle != null) {
@@ -11392,6 +11680,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoNumberStyle(style);
   }
@@ -11421,6 +11711,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoNumberStyle?.call(style);
   }
@@ -11450,6 +11742,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoNumberStyle != null) {
@@ -11488,6 +11782,10 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoNumberStyle(this);
   }
@@ -11521,6 +11819,10 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoNumberStyle?.call(this);
   }
@@ -11554,6 +11856,10 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoNumberStyle != null) {
@@ -11693,6 +11999,8 @@ class _$SetDialingInfoCallStatusStyleImpl
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoCallStatusStyle(style);
   }
@@ -11722,6 +12030,8 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoCallStatusStyle?.call(style);
   }
@@ -11751,6 +12061,8 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoCallStatusStyle != null) {
@@ -11789,6 +12101,10 @@ class _$SetDialingInfoCallStatusStyleImpl
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoCallStatusStyle(this);
   }
@@ -11822,6 +12138,10 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoCallStatusStyle?.call(this);
   }
@@ -11855,6 +12175,10 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoCallStatusStyle != null) {
@@ -11995,6 +12319,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoProcessingStatusStyle(style);
   }
@@ -12024,6 +12350,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoProcessingStatusStyle?.call(style);
   }
@@ -12053,6 +12381,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoProcessingStatusStyle != null) {
@@ -12091,6 +12421,10 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoProcessingStatusStyle(this);
   }
@@ -12124,6 +12458,10 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setDialingInfoProcessingStatusStyle?.call(this);
   }
@@ -12157,6 +12495,10 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setDialingInfoProcessingStatusStyle != null) {
@@ -12287,6 +12629,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     required TResult Function(TextStyleConfig? style)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
     return setKeypadPage(keypad);
   }
@@ -12316,6 +12660,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult? Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
     return setKeypadPage?.call(keypad);
   }
@@ -12345,6 +12691,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult Function(TextStyleConfig? style)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setKeypadPage != null) {
@@ -12383,6 +12731,10 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     required TResult Function(_SetDialingInfoProcessingStatusStyle value)
         setDialingInfoProcessingStatusStyle,
     required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
   }) {
     return setKeypadPage(this);
   }
@@ -12416,6 +12768,10 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
   }) {
     return setKeypadPage?.call(this);
   }
@@ -12449,6 +12805,10 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult Function(_SetDialingInfoProcessingStatusStyle value)?
         setDialingInfoProcessingStatusStyle,
     TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
     required TResult orElse(),
   }) {
     if (setKeypadPage != null) {
@@ -12469,6 +12829,614 @@ abstract class _SetKeypadPage implements ThemePageEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetKeypadPageImplCopyWith<_$SetKeypadPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetLoginOtpSigninVerifyCountdownImplCopyWith<$Res> {
+  factory _$$SetLoginOtpSigninVerifyCountdownImplCopyWith(
+          _$SetLoginOtpSigninVerifyCountdownImpl value,
+          $Res Function(_$SetLoginOtpSigninVerifyCountdownImpl) then) =
+      __$$SetLoginOtpSigninVerifyCountdownImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int seconds});
+}
+
+/// @nodoc
+class __$$SetLoginOtpSigninVerifyCountdownImplCopyWithImpl<$Res>
+    extends _$ThemePageEventCopyWithImpl<$Res,
+        _$SetLoginOtpSigninVerifyCountdownImpl>
+    implements _$$SetLoginOtpSigninVerifyCountdownImplCopyWith<$Res> {
+  __$$SetLoginOtpSigninVerifyCountdownImplCopyWithImpl(
+      _$SetLoginOtpSigninVerifyCountdownImpl _value,
+      $Res Function(_$SetLoginOtpSigninVerifyCountdownImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? seconds = null,
+  }) {
+    return _then(_$SetLoginOtpSigninVerifyCountdownImpl(
+      null == seconds
+          ? _value.seconds
+          : seconds // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetLoginOtpSigninVerifyCountdownImpl
+    implements _SetLoginOtpSigninVerifyCountdown {
+  const _$SetLoginOtpSigninVerifyCountdownImpl(this.seconds);
+
+  @override
+  final int seconds;
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setLoginOtpSigninVerifyCountdown(seconds: $seconds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetLoginOtpSigninVerifyCountdownImpl &&
+            (identical(other.seconds, seconds) || other.seconds == seconds));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, seconds);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetLoginOtpSigninVerifyCountdownImplCopyWith<
+          _$SetLoginOtpSigninVerifyCountdownImpl>
+      get copyWith => __$$SetLoginOtpSigninVerifyCountdownImplCopyWithImpl<
+          _$SetLoginOtpSigninVerifyCountdownImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LoginPageConfig login) setLoginPage,
+    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(double? scale) setLoginScale,
+    required TResult Function(String? color) setLoginLabelColor,
+    required TResult Function(LoginModeSelectPageConfig modeSelect)
+        setLoginModeSelect,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(AboutPageConfig about) setAboutPage,
+    required TResult Function(AssetModel asset) setAboutPicture,
+    required TResult Function(Metadata metadata) setAboutMetadata,
+    required TResult Function(CallPageConfig dialingPage) setDialingPage,
+    required TResult Function(OverlayStyleModel? style)
+        setDialingSystemUiOverlay,
+    required TResult Function(AppBarStyleConfig? appBarStyle)
+        setDialingAppBarStyle,
+    required TResult Function(CallPageInfoConfig? info) setDialingInfo,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoUsernameStyle,
+    required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginOtpSigninVerifyCountdown(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LoginPageConfig login)? setLoginPage,
+    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(double? scale)? setLoginScale,
+    TResult? Function(String? color)? setLoginLabelColor,
+    TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(AboutPageConfig about)? setAboutPage,
+    TResult? Function(AssetModel asset)? setAboutPicture,
+    TResult? Function(Metadata metadata)? setAboutMetadata,
+    TResult? Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult? Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginOtpSigninVerifyCountdown?.call(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LoginPageConfig login)? setLoginPage,
+    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(double? scale)? setLoginScale,
+    TResult Function(String? color)? setLoginLabelColor,
+    TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(AboutPageConfig about)? setAboutPage,
+    TResult Function(AssetModel asset)? setAboutPicture,
+    TResult Function(Metadata metadata)? setAboutMetadata,
+    TResult Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (setLoginOtpSigninVerifyCountdown != null) {
+      return setLoginOtpSigninVerifyCountdown(seconds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_SetLoginPicture value) setLoginPicture,
+    required TResult Function(_SetLoginScale value) setLoginScale,
+    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
+    required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
+    required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(_SetLoginModeSelectButtonSignupStyle value)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(_SetAboutPage value) setAboutPage,
+    required TResult Function(_SetAboutPicture value) setAboutPicture,
+    required TResult Function(_SetAboutMetadata value) setAboutMetadata,
+    required TResult Function(_SetDialingPage value) setDialingPage,
+    required TResult Function(_SetDialingSystemUiOverlay value)
+        setDialingSystemUiOverlay,
+    required TResult Function(_SetDialingAppBarStyle value)
+        setDialingAppBarStyle,
+    required TResult Function(_SetDialingInfo value) setDialingInfo,
+    required TResult Function(_SetDialingInfoUsernameStyle value)
+        setDialingInfoUsernameStyle,
+    required TResult Function(_SetDialingInfoNumberStyle value)
+        setDialingInfoNumberStyle,
+    required TResult Function(_SetDialingInfoCallStatusStyle value)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(_SetDialingInfoProcessingStatusStyle value)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginOtpSigninVerifyCountdown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_SetLoginPicture value)? setLoginPicture,
+    TResult? Function(_SetLoginScale value)? setLoginScale,
+    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(_SetAboutPage value)? setAboutPage,
+    TResult? Function(_SetAboutPicture value)? setAboutPicture,
+    TResult? Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult? Function(_SetDialingPage value)? setDialingPage,
+    TResult? Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult? Function(_SetDialingInfo value)? setDialingInfo,
+    TResult? Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult? Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult? Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginOtpSigninVerifyCountdown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_SetLoginPicture value)? setLoginPicture,
+    TResult Function(_SetLoginScale value)? setLoginScale,
+    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(_SetAboutPage value)? setAboutPage,
+    TResult Function(_SetAboutPicture value)? setAboutPicture,
+    TResult Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult Function(_SetDialingPage value)? setDialingPage,
+    TResult Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult Function(_SetDialingInfo value)? setDialingInfo,
+    TResult Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (setLoginOtpSigninVerifyCountdown != null) {
+      return setLoginOtpSigninVerifyCountdown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetLoginOtpSigninVerifyCountdown implements ThemePageEvent {
+  const factory _SetLoginOtpSigninVerifyCountdown(final int seconds) =
+      _$SetLoginOtpSigninVerifyCountdownImpl;
+
+  int get seconds;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetLoginOtpSigninVerifyCountdownImplCopyWith<
+          _$SetLoginOtpSigninVerifyCountdownImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetLoginSignupVerifyCountdownImplCopyWith<$Res> {
+  factory _$$SetLoginSignupVerifyCountdownImplCopyWith(
+          _$SetLoginSignupVerifyCountdownImpl value,
+          $Res Function(_$SetLoginSignupVerifyCountdownImpl) then) =
+      __$$SetLoginSignupVerifyCountdownImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int seconds});
+}
+
+/// @nodoc
+class __$$SetLoginSignupVerifyCountdownImplCopyWithImpl<$Res>
+    extends _$ThemePageEventCopyWithImpl<$Res,
+        _$SetLoginSignupVerifyCountdownImpl>
+    implements _$$SetLoginSignupVerifyCountdownImplCopyWith<$Res> {
+  __$$SetLoginSignupVerifyCountdownImplCopyWithImpl(
+      _$SetLoginSignupVerifyCountdownImpl _value,
+      $Res Function(_$SetLoginSignupVerifyCountdownImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? seconds = null,
+  }) {
+    return _then(_$SetLoginSignupVerifyCountdownImpl(
+      null == seconds
+          ? _value.seconds
+          : seconds // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetLoginSignupVerifyCountdownImpl
+    implements _SetLoginSignupVerifyCountdown {
+  const _$SetLoginSignupVerifyCountdownImpl(this.seconds);
+
+  @override
+  final int seconds;
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setLoginSignupVerifyCountdown(seconds: $seconds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetLoginSignupVerifyCountdownImpl &&
+            (identical(other.seconds, seconds) || other.seconds == seconds));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, seconds);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetLoginSignupVerifyCountdownImplCopyWith<
+          _$SetLoginSignupVerifyCountdownImpl>
+      get copyWith => __$$SetLoginSignupVerifyCountdownImplCopyWithImpl<
+          _$SetLoginSignupVerifyCountdownImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LoginPageConfig login) setLoginPage,
+    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(double? scale) setLoginScale,
+    required TResult Function(String? color) setLoginLabelColor,
+    required TResult Function(LoginModeSelectPageConfig modeSelect)
+        setLoginModeSelect,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(AboutPageConfig about) setAboutPage,
+    required TResult Function(AssetModel asset) setAboutPicture,
+    required TResult Function(Metadata metadata) setAboutMetadata,
+    required TResult Function(CallPageConfig dialingPage) setDialingPage,
+    required TResult Function(OverlayStyleModel? style)
+        setDialingSystemUiOverlay,
+    required TResult Function(AppBarStyleConfig? appBarStyle)
+        setDialingAppBarStyle,
+    required TResult Function(CallPageInfoConfig? info) setDialingInfo,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoUsernameStyle,
+    required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginSignupVerifyCountdown(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LoginPageConfig login)? setLoginPage,
+    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(double? scale)? setLoginScale,
+    TResult? Function(String? color)? setLoginLabelColor,
+    TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(AboutPageConfig about)? setAboutPage,
+    TResult? Function(AssetModel asset)? setAboutPicture,
+    TResult? Function(Metadata metadata)? setAboutMetadata,
+    TResult? Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult? Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginSignupVerifyCountdown?.call(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LoginPageConfig login)? setLoginPage,
+    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(double? scale)? setLoginScale,
+    TResult Function(String? color)? setLoginLabelColor,
+    TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(AboutPageConfig about)? setAboutPage,
+    TResult Function(AssetModel asset)? setAboutPicture,
+    TResult Function(Metadata metadata)? setAboutMetadata,
+    TResult Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (setLoginSignupVerifyCountdown != null) {
+      return setLoginSignupVerifyCountdown(seconds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_SetLoginPicture value) setLoginPicture,
+    required TResult Function(_SetLoginScale value) setLoginScale,
+    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
+    required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
+    required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(_SetLoginModeSelectButtonSignupStyle value)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(_SetAboutPage value) setAboutPage,
+    required TResult Function(_SetAboutPicture value) setAboutPicture,
+    required TResult Function(_SetAboutMetadata value) setAboutMetadata,
+    required TResult Function(_SetDialingPage value) setDialingPage,
+    required TResult Function(_SetDialingSystemUiOverlay value)
+        setDialingSystemUiOverlay,
+    required TResult Function(_SetDialingAppBarStyle value)
+        setDialingAppBarStyle,
+    required TResult Function(_SetDialingInfo value) setDialingInfo,
+    required TResult Function(_SetDialingInfoUsernameStyle value)
+        setDialingInfoUsernameStyle,
+    required TResult Function(_SetDialingInfoNumberStyle value)
+        setDialingInfoNumberStyle,
+    required TResult Function(_SetDialingInfoCallStatusStyle value)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(_SetDialingInfoProcessingStatusStyle value)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginSignupVerifyCountdown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_SetLoginPicture value)? setLoginPicture,
+    TResult? Function(_SetLoginScale value)? setLoginScale,
+    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(_SetAboutPage value)? setAboutPage,
+    TResult? Function(_SetAboutPicture value)? setAboutPicture,
+    TResult? Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult? Function(_SetDialingPage value)? setDialingPage,
+    TResult? Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult? Function(_SetDialingInfo value)? setDialingInfo,
+    TResult? Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult? Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult? Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginSignupVerifyCountdown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_SetLoginPicture value)? setLoginPicture,
+    TResult Function(_SetLoginScale value)? setLoginScale,
+    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(_SetAboutPage value)? setAboutPage,
+    TResult Function(_SetAboutPicture value)? setAboutPicture,
+    TResult Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult Function(_SetDialingPage value)? setDialingPage,
+    TResult Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult Function(_SetDialingInfo value)? setDialingInfo,
+    TResult Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (setLoginSignupVerifyCountdown != null) {
+      return setLoginSignupVerifyCountdown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetLoginSignupVerifyCountdown implements ThemePageEvent {
+  const factory _SetLoginSignupVerifyCountdown(final int seconds) =
+      _$SetLoginSignupVerifyCountdownImpl;
+
+  int get seconds;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetLoginSignupVerifyCountdownImplCopyWith<
+          _$SetLoginSignupVerifyCountdownImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

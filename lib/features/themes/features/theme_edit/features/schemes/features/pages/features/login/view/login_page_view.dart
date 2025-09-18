@@ -5,9 +5,11 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/features/pages/features/login/view/signup_verify_config_section.dart';
 
 // Reusable widgets barrel (BorderContainer, DescriptionRow, SystemUiOverlayQuickToggles, ColorField, etc.)
 import '../../../../../widgets/widgets.dart';
+import 'otp_signin_verify_config_section.dart';
 
 class LoginPageView extends StatelessWidget {
   const LoginPageView({
@@ -134,6 +136,20 @@ class LoginPageView extends StatelessWidget {
                       );
                     }
                   },
+                ),
+                const SizedBox(height: 16),
+                OtpSigninVerifyConfigSection(
+                  config: loginPageConfig.otpSigninVerify,
+                  onCountdownChanged: (sec) => context.read<UpdateThemCubit>().add(
+                        ThemePageEvent.setLoginOtpSigninVerifyCountdown(sec),
+                      ),
+                ),
+                const SizedBox(height: 16),
+                SignupVerifyConfigSection(
+                  config: loginPageConfig.signupVerify,
+                  onCountdownChanged: (sec) => context.read<UpdateThemCubit>().add(
+                        ThemePageEvent.setLoginSignupVerifyCountdown(sec),
+                      ),
                 ),
               ],
             ),

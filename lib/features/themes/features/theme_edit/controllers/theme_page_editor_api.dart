@@ -58,6 +58,14 @@ abstract class ThemePageEditorApi {
   void setDialingInfoProcessingStatusStyle(TextStyleConfig? style);
 
   void setKeypadStyle(KeypadPageConfig style);
+
+  void setLoginOtpSigninVerify(LoginOtpSigninVerifyScreenPageConfig cfg);
+
+  void setLoginSignupVerify(LoginSignupVerifyScreenPageConfig cfg);
+
+  void setLoginOtpSigninVerifyCountdown(int seconds);
+
+  void setLoginSignupVerifyCountdown(int seconds);
 }
 
 class ThemePageEditor implements ThemePageEditorApi {
@@ -271,6 +279,46 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   void setKeypadStyle(KeypadPageConfig style) {
     _current = current.copyWith(keypad: style);
+    _emit();
+  }
+
+  @override
+  void setLoginOtpSigninVerify(LoginOtpSigninVerifyScreenPageConfig cfg) {
+    _current = current.copyWith(login: current.login.copyWith(otpSigninVerify: cfg));
+    _emit();
+  }
+
+  @override
+  void setLoginOtpSigninVerifyCountdown(int seconds) {
+    final safe = seconds.clamp(0, 600);
+    final cur = current.login;
+    _current = current.copyWith(
+      login: cur.copyWith(
+        otpSigninVerify: cur.otpSigninVerify.copyWith(
+          countdownRepeatIntervalSeconds: safe,
+        ),
+      ),
+    );
+    _emit();
+  }
+
+  @override
+  void setLoginSignupVerify(LoginSignupVerifyScreenPageConfig cfg) {
+    _current = current.copyWith(login: current.login.copyWith(signupVerify: cfg));
+    _emit();
+  }
+
+  @override
+  void setLoginSignupVerifyCountdown(int seconds) {
+    final safe = seconds.clamp(0, 600);
+    final cur = current.login;
+    _current = current.copyWith(
+      login: cur.copyWith(
+        signupVerify: cur.signupVerify.copyWith(
+          countdownRepeatIntervalSeconds: safe,
+        ),
+      ),
+    );
     _emit();
   }
 }

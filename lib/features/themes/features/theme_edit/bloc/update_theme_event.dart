@@ -126,6 +126,12 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
       _SetDialingInfoProcessingStatusStyle;
 
   const factory ThemePageEvent.setKeypadPage(KeypadPageConfig keypad) = _SetKeypadPage;
+
+  /// OTP Sign-in verify countdown (seconds, 0 disables)
+  const factory ThemePageEvent.setLoginOtpSigninVerifyCountdown(int seconds) = _SetLoginOtpSigninVerifyCountdown;
+
+  /// Sign-up verify countdown (seconds, 0 disables)
+  const factory ThemePageEvent.setLoginSignupVerifyCountdown(int seconds) = _SetLoginSignupVerifyCountdown;
 }
 
 @freezed
