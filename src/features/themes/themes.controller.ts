@@ -9,16 +9,17 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
+  Req,
+  Query,
+  Logger,
 } from '@nestjs/common';
 import { ThemesService } from './themes.service';
-import {
-  LaunchAssets,
-  SplashAssets,
-  Theme,
-} from '../../common/entities/theme/theme';
+import { Theme } from './entities/theme';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';
+import { CreateThemeDto } from './dto/themes.dto';
+import { CopyThemeDto } from './dto/themes.dto';
 
 @ApiTags('themes')
 @Controller('applications/:applicationId/themes')
@@ -26,21 +27,65 @@ import { Roles } from '../auth/guard/roles.decorator';
 @UseGuards(FirebaseAuthGuard)
 @Roles('admin', 'user')
 export class ThemesController {
+  private readonly logger = new Logger(ThemesController.name);
+
   constructor(private readonly themesService: ThemesService) {}
 
   @Get()
   async getThemesByApplicationId(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
-  ): Promise<Theme[]> {
-    return this.themesService.getThemesByApplicationId(applicationId);
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    this.logger.debug({
+      msg: 'getThemesByApplicationId: incoming',
+      uid,
+      applicationId,
+      headersAuth: req.headers['authorization'] ? 'present' : 'missing',
+    });
+
+    return this.themesService.getThemesByApplicationId(applicationId, uid);
+  }
+
+  @Get('all')
+  async getAllThemes(@Req() req: any) {
+    const uid: string = req.user?.uid ?? '';
+    return this.themesService.getAllThemes(uid);
+  }
+
+  @Get(':themeId/legacy')
+  async getAggregatedLegacyThemeById(
+    @Req() req: any,
+    @Param('applicationId') applicationId: string,
+    @Param('themeId') themeId: string,
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    const theme = await this.themesService.getAggregatedLegacyThemeById(
+      applicationId,
+      themeId,
+      uid,
+    );
+    if (!theme) {
+      throw new HttpException(
+        `Theme with ID ${themeId} not found`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return theme;
   }
 
   @Get(':themeId')
   async getThemeById(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
-  ): Promise<Theme | null> {
-    const theme = await this.themesService.getThemeById(applicationId, themeId);
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    const theme = await this.themesService.getThemeById(
+      applicationId,
+      themeId,
+      uid,
+    );
     if (!theme) {
       throw new HttpException(
         `Theme with ID ${themeId} not found`,
@@ -53,12 +98,9 @@ export class ThemesController {
   @Post()
   async createTheme(
     @Param('applicationId') applicationId: string,
-    @Body() createThemeDto: Theme,
-  ): Promise<Theme | null> {
-    const newTheme = await this.themesService.createTheme(
-      applicationId,
-      createThemeDto,
-    );
+    @Body() dto: CreateThemeDto,
+  ) {
+    const newTheme = await this.themesService.createTheme(applicationId, dto);
     if (!newTheme) {
       throw new HttpException('Failed to create theme', HttpStatus.BAD_REQUEST);
     }
@@ -70,135 +112,41 @@ export class ThemesController {
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() updateThemeDto: Theme,
-  ): Promise<Theme | null> {
-    const updatedTheme = await this.themesService.patchTheme(
+  ) {
+    return this.themesService.patchTheme(
       applicationId,
       themeId,
       updateThemeDto,
     );
-    if (!updatedTheme) {
-      throw new HttpException(
-        `Theme with ID ${themeId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
-    }
-    return updatedTheme;
   }
 
   @Delete(':themeId')
   async deleteTheme(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
-  ): Promise<void | null> {
-    await this.themesService.deleteTheme(applicationId, themeId);
+    @Query('purgeOrphanAssets') purgeOrphanAssets?: string,
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    await this.themesService.deleteTheme(uid, applicationId, themeId, {
+      purgeOrphanAssets: purgeOrphanAssets === 'true',
+    });
   }
 
-  @Patch(':themeId/assets/add')
-  async addAssets(
+  @Post(':themeId/copy')
+  async copyTheme(
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
-    @Body()
-    assets: Array<{
-      id: number;
-      name: string;
-      description?: string;
-      url?: string;
-      type?: string;
-    }>,
+    @Body() overrides: CopyThemeDto,
   ) {
-    return this.themesService.addAssets(applicationId, themeId, assets);
-  }
-
-  @Patch(':themeId/assets/update/:assetId')
-  async updateAssetById(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Param('assetId') assetId: number,
-    @Body()
-    assetUpdateData: Partial<{
-      name: string;
-      description: string;
-      url: string;
-      type: string;
-    }>,
-  ) {
-    return this.themesService.updateAssetById(
+    const cloned = await this.themesService.copyTheme(
       applicationId,
       themeId,
-      assetId,
-      assetUpdateData,
+      overrides,
     );
-  }
-
-  @Patch(':themeId/assets/remove/:assetId')
-  async removeAssetById(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Param('assetId') assetId: number,
-  ) {
-    return this.themesService.removeAssetById(applicationId, themeId, assetId);
-  }
-
-  @Delete(':themeId/assets')
-  async deleteAllAssets(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-  ) {
-    return this.themesService.deleteAllAssets(applicationId, themeId);
-  }
-
-  @Patch(':themeId/launch-assets')
-  async setLaunchAssets(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Body() launchAssets: LaunchAssets,
-  ) {
-    return this.themesService.setLaunchAssets(
-      applicationId,
-      themeId,
-      launchAssets,
-    );
-  }
-
-  @Patch(':themeId/launch-assets/update')
-  async updateLaunchAssets(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Body() launchAssetsUpdate: Partial<LaunchAssets>,
-  ) {
-    return this.themesService.updateLaunchAssets(
-      applicationId,
-      themeId,
-      launchAssetsUpdate,
-    );
-  }
-
-  @Delete(':themeId/launch-assets')
-  async deleteLaunchAssets(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-  ) {
-    return this.themesService.deleteLaunchAssets(applicationId, themeId);
-  }
-
-  @Patch(':themeId/splash-asset/update')
-  async updateSplashAsset(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-    @Body() splashAssetUpdate: Partial<SplashAssets>,
-  ) {
-    return this.themesService.updateSplashAsset(
-      applicationId,
-      themeId,
-      splashAssetUpdate,
-    );
-  }
-
-  @Delete(':themeId/splash-asset')
-  async deleteSplashAsset(
-    @Param('applicationId') applicationId: string,
-    @Param('themeId') themeId: string,
-  ) {
-    return this.themesService.deleteSplashAsset(applicationId, themeId);
+    if (!cloned) {
+      throw new HttpException('Failed to copy theme', HttpStatus.BAD_REQUEST);
+    }
+    return cloned;
   }
 }

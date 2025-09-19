@@ -4,29 +4,32 @@ import { BaseFirestoreRepository } from 'fireorm';
 import * as admin from 'firebase-admin';
 import { UserDto } from './dto/user.dto';
 import { UserRecord } from 'firebase-admin/auth';
-import { UserRole } from '../../common/entities/userRoles/userRole';
+import { UserRole } from './entities/userRole';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserRole)
     private readonly userRoleRepository: BaseFirestoreRepository<UserRole>,
-  ) {
-  }
+  ) {}
 
-  async createUser(email: string, role: string, displayName?: string): Promise<UserDto> {
+  async createUser(
+    email: string,
+    role: string,
+    displayName?: string,
+  ): Promise<UserDto> {
     // TODO: Move here user creation logic from auth service
     return null;
   }
 
   async getAllUsers(): Promise<UserDto[]> {
-    let users = await admin.auth().listUsers();
+    const users = await admin.auth().listUsers();
 
-    return users.users.map(userEntity => this.mapEntityToDto(userEntity));
+    return users.users.map((userEntity) => this.mapEntityToDto(userEntity));
   }
 
   async getUserById(uid: string): Promise<UserDto> {
-    let userEntity = await admin.auth().getUser(uid);
+    const userEntity = await admin.auth().getUser(uid);
 
     return this.mapEntityToDto(userEntity);
   }
@@ -38,13 +41,13 @@ export class UsersService {
     if (email !== undefined) updateData.email = email;
     if (displayName !== undefined) updateData.displayName = displayName;
     if (role !== undefined) {
-      let userRole = await this.userRoleRepository.findById(id);
+      const userRole = await this.userRoleRepository.findById(id);
       userRole.role = role;
       await this.userRoleRepository.update(userRole);
       await admin.auth().setCustomUserClaims(id, { role });
     }
 
-    let updatedUserEntity = await admin.auth().updateUser(uid, updateData);
+    const updatedUserEntity = await admin.auth().updateUser(uid, updateData);
 
     return this.mapEntityToDto(updatedUserEntity);
   }
@@ -53,8 +56,11 @@ export class UsersService {
     admin.auth().deleteUser(uid);
   }
 
-  mapEntityToDto(userEntity: UserRecord, defaultUserRole: string = 'user'): UserDto {
-    let userDto = new UserDto();
+  mapEntityToDto(
+    userEntity: UserRecord,
+    defaultUserRole: string = 'user',
+  ): UserDto {
+    const userDto = new UserDto();
     userDto.uid = userEntity.uid;
     userDto.email = userEntity.email;
     userDto.displayName = userEntity.displayName;

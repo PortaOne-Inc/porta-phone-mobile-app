@@ -3,7 +3,7 @@ import { TranslationsService } from './translations.service';
 import { TranslationsRepository } from './translations.repository';
 import { TranslationsController } from './translations.controller';
 import { FireormModule } from 'nestjs-fireorm';
-import { Translation } from '../../common/entities/translations/translation';
+import { Translation } from './entities/translation';
 
 @Module({
   imports: [FireormModule.forFeature([Translation])],

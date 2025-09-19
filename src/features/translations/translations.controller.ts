@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { TranslationsService } from './translations.service';
 import { Response } from 'express';
-import { Translation } from '../../common/entities/translations/translation';
+import { Translation } from './entities/translation';
 import {
   ApiTags,
   ApiOperation,

@@ -1,205 +1,1016 @@
+import * as admin from 'firebase-admin';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
-import {
-  LaunchAssets,
-  SplashAssets,
-  Theme,
-} from '../../common/entities/theme/theme';
+import { v4 as uuidv4 } from 'uuid';
+
+import { Theme } from './entities/theme';
+import { ArtifactsService } from '../artifacts';
+import { AssetsService } from '../assets/assets.service';
+import { resolveImageSourceUrlsDeep } from '../../common';
+import { CloudStorageService } from '../common';
+import { Collections, nowIso } from '../../common';
+import { CreateThemeDto } from './dto/themes.dto';
+
+const ASSET_URL_TTL_SEC = 3600;
+
+/** Options for cascading theme deletion */
+type DeleteOpts = {
+  /** Also delete orphaned assets with refCount == 0 */
+  purgeOrphanAssets?: boolean;
+};
+
+// ---------- Legacy DTOs for response shape compatibility ----------
+type LegacyAssetItem = {
+  id: number | string;
+  name: string;
+  description: string | null;
+  url: string;
+  type: string | null;
+};
+
+type LegacySplash = {
+  originalAssetId: number | string | null;
+  pictureUrl: string | null;
+  color: string | null;
+  padding: number;
+  fit:
+    | 'fill'
+    | 'contain'
+    | 'cover'
+    | 'fitWidth'
+    | 'fitHeight'
+    | 'none'
+    | 'scaleDown';
+};
+
+type LegacyLaunch = {
+  originalAssetId: number | string | null;
+  notificationLogoUrl: string | null;
+  adaptiveIconForegroundUrl: string | null;
+  androidLauncherIconUrl: string | null;
+  iosLauncherIconUrl: string | null;
+  webLauncherIconUrl: string | null;
+  adaptiveIconBackgroundUrl: string | null;
+  backgroundColor: string | null;
+};
+
+type AggregatedTheme = Theme & {
+  assets: LegacyAssetItem[];
+  splashAssets: LegacySplash;
+  launchAssets: LegacyLaunch;
+  colorSchemeConfig?: any;
+  themeWidgetConfig?: any;
+  appConfig?: any;
+  themePageConfig?: any;
+};
 
 @Injectable()
 export class ThemesService {
   constructor(
     @InjectRepository(Theme)
     private readonly themeRepository: BaseFirestoreRepository<Theme>,
+    private readonly artifacts: ArtifactsService,
+    private readonly assetsService: AssetsService,
+    private readonly cloud: CloudStorageService,
   ) {}
 
-  async getThemesByApplicationId(applicationId: string): Promise<Theme[]> {
-    return this.themeRepository
+  // -------------------- Public API --------------------
+
+  async getThemesByApplicationId(
+    applicationId: string,
+    uid: string,
+  ): Promise<AggregatedTheme[]> {
+    const themes = await this.themeRepository
       .whereEqualTo('applicationId', applicationId)
       .find();
+    return Promise.all(themes.map((t) => this.aggregateTheme(t, uid)));
   }
 
-  async getAllThemes(): Promise<Theme[]> {
-    return this.themeRepository.find();
+  async getAllThemes(uid: string): Promise<AggregatedTheme[]> {
+    const themes = await this.themeRepository.find();
+    return Promise.all(themes.map((t) => this.aggregateTheme(t, uid)));
   }
 
-  async getThemeById(
+  async getAggregatedLegacyThemeById(
     applicationId: string,
     themeId: string,
-  ): Promise<Theme | null> {
+    uid: string,
+  ) {
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${themeId} not found`);
     }
-    return theme;
+
+    const [
+      assetsLegacy,
+      splashLegacy,
+      launchLegacy,
+      widgetCfgRaw,
+      colorSchemeRaw,
+      pageCfgRaw,
+    ] = await Promise.all([
+      this.loadAssetsLegacy(uid, theme.applicationId),
+      this.loadSplash(theme.applicationId, theme.id, uid),
+      this.loadLaunch(theme.applicationId, theme.id, uid),
+      this.loadThemeWidgetConfig(theme.applicationId, theme.id),
+      this.loadColorSchemeConfig(theme.applicationId, theme.id),
+      this.loadThemePageConfig(theme.applicationId, theme.id),
+    ]);
+
+    const colors = buildLegacyColors(colorSchemeRaw);
+    const images = buildLegacyImages(widgetCfgRaw, launchLegacy);
+    const themePageConfig = buildLegacyPageConfig(pageCfgRaw);
+    const themeWidgetConfig = buildLegacyWidgetConfig(widgetCfgRaw);
+
+    const legacy = {
+      id: theme.id,
+      fontFamily: null,
+      name: theme.title ?? (theme as any).name ?? 'Original',
+      style: null,
+      applicationId: theme.applicationId,
+
+      texts: {
+        contactEmail: null,
+        greeting: 'Webtrit',
+      },
+
+      images,
+      colors,
+
+      splashAsset: {
+        originalAssetId: splashLegacy.originalAssetId,
+        pictureUrl: splashLegacy.pictureUrl,
+        color: splashLegacy.color,
+      },
+      launchAssets: launchLegacy,
+      splashAssets: splashLegacy,
+
+      themePageConfig,
+      themeWidgetConfig,
+
+      assets: assetsLegacy,
+
+      ...((theme as any).appConfig
+        ? { appConfig: (theme as any).appConfig }
+        : {}),
+    };
+
+    return legacy;
   }
 
   async createTheme(
     applicationId: string,
-    createThemeDto: Theme,
-  ): Promise<Theme | null> {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { applicationId: _removed, ...rest } = createThemeDto;
-
-      return this.themeRepository.create({
-        ...rest,
-        applicationId,
-      });
-    } catch (error) {
-      // Handle error (e.g., logging)
-      return null;
-    }
+    dto: CreateThemeDto,
+  ): Promise<Theme> {
+    return await this.themeRepository.create({
+      applicationId,
+      title: dto.title,
+      description: dto.description,
+      label: dto.label,
+    } as Theme);
   }
 
   async patchTheme(
     applicationId: string,
     themeId: string,
     updateThemeDto: Theme,
-  ): Promise<Theme | null> {
-    try {
-      const theme = await this.getThemeById(applicationId, themeId);
-      if (!theme) {
-        throw new NotFoundException(`Theme with ID ${themeId} not found`);
-      }
-      Object.assign(theme, updateThemeDto);
-      await this.themeRepository.update(theme);
-      return theme;
-    } catch (error) {
-      // Handle error (e.g., logging)
-      return null;
+  ): Promise<Theme> {
+    const theme = await this.themeRepository.findById(themeId);
+    if (!theme || theme.applicationId !== applicationId) {
+      throw new NotFoundException(`Theme with  ID ${themeId} not found`);
     }
+    Object.assign(theme, updateThemeDto, { updatedAt: nowIso() });
+    await this.themeRepository.update(theme);
+    return theme;
   }
 
   async deleteTheme(
+    uid: string,
     applicationId: string,
     themeId: string,
+    opts: DeleteOpts = {},
   ): Promise<void | null> {
     try {
-      const theme = await this.getThemeById(applicationId, themeId);
-      if (!theme) {
+      const theme = await this.themeRepository.findById(themeId);
+      if (!theme || theme.applicationId !== applicationId) {
         throw new NotFoundException(`Theme with ID ${themeId} not found`);
       }
+
+      await this.deleteFeatureEntitlements(themeId);
+
+      // 1) launcher
+      await this.deleteLaunchAssetsCascade(uid, applicationId, themeId);
+
+      // 2) splash
+      await this.deleteSplashAssetsCascade(uid, themeId);
+
+      // 3) widgets
+      await this.deleteWidgetConfigs(themeId);
+
+      // 4) color-schemes
+      await this.deleteColorSchemeConfig(themeId);
+
+      // 5) page-configs
+      await this.deletePageConfigs(themeId);
+
+      // 6) artefacts
+      await this.deleteThemeArtifacts(uid, applicationId, themeId);
+
+      // 7) purge orphans
+      if (opts.purgeOrphanAssets) {
+        await this.purgeOrphanAssets(uid, applicationId);
+      }
+
+      // 8) delete theme doc
       await this.themeRepository.delete(theme.id);
-    } catch (error) {
-      // Handle error (e.g., logging)
+    } catch {
       return null;
     }
   }
 
-  async addAssets(
+  async copyTheme(
     applicationId: string,
-    themeId: string,
-    assets: Array<{
-      id: number;
-      name: string;
-      description?: string;
-      url?: string;
-      type?: string;
-    }>,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.assets = [...(theme.assets || []), ...assets];
-    await this.themeRepository.update(theme);
-    return theme;
-  }
-
-  async updateAssetById(
-    applicationId: string,
-    themeId: string,
-    assetId: number,
-    assetUpdateData: Partial<{
-      name: string;
-      description: string;
-      url: string;
-      type: string;
-    }>,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    const assetIndex = theme.assets.findIndex((asset) => asset.id === assetId);
-    if (assetIndex === -1) {
-      throw new NotFoundException(`Asset with ID ${assetId} not found`);
+    sourceThemeId: string,
+    overrides?: Partial<Pick<Theme, 'title' | 'description' | 'label'>>,
+  ): Promise<Theme | null> {
+    const source = await this.themeRepository.findById(sourceThemeId);
+    if (!source || source.applicationId !== applicationId) {
+      throw new NotFoundException(`Theme with ID ${sourceThemeId} not found`);
     }
-    theme.assets[assetIndex] = {
-      ...theme.assets[assetIndex],
-      ...assetUpdateData,
+
+    const newThemeId = uuidv4();
+    const target: Theme = {
+      id: newThemeId,
+      applicationId,
+      title: overrides?.title ?? `${source.title ?? 'Theme'} (Copy)`,
+      description: overrides?.description ?? source.description,
+      label: overrides?.label ?? source.label,
+
+      ...((source as any).appConfig
+        ? { appConfig: (source as any).appConfig }
+        : {}),
+      ...((source as any).colorSchemeConfig
+        ? { colorSchemeConfig: (source as any).colorSchemeConfig }
+        : {}),
+      ...((source as any).themeWidgetConfig
+        ? { themeWidgetConfig: (source as any).themeWidgetConfig }
+        : {}),
+      ...((source as any).themePageConfig
+        ? { themePageConfig: (source as any).themePageConfig }
+        : {}),
+      ...((source as any).createdAt ? { createdAt: nowIso() } : {}),
+      ...((source as any).updatedAt ? { updatedAt: nowIso() } : {}),
+    } as any;
+
+    await this.themeRepository.create(target);
+
+    await Promise.all([
+      this.cloneWidgetConfigs(sourceThemeId, newThemeId),
+      this.cloneColorSchemeConfigs(sourceThemeId, newThemeId),
+      this.clonePageConfigs(sourceThemeId, newThemeId),
+      this.cloneSplash(sourceThemeId, newThemeId),
+      this.cloneLaunch(sourceThemeId, newThemeId),
+    ]);
+
+    return this.aggregateTheme(target, 'system');
+  }
+
+  // -------------------- Cleanup helpers --------------------
+
+  private async deleteFeatureEntitlements(themeId: string) {
+    const col = admin
+      .firestore()
+      .collection(Collections.themeFeatureEntitlements);
+
+    // legacy: doc id === themeId
+    const legacyRef = col.doc(themeId);
+    const legacySnap = await legacyRef.get();
+    if (legacySnap.exists) {
+      await legacyRef.delete();
+    }
+
+    const q = await col.where('themeId', '==', themeId).get();
+    if (!q.empty) {
+      const batch = admin.firestore().batch();
+      q.docs.forEach((d) => batch.delete(d.ref));
+      await batch.commit();
+    }
+  }
+
+  private async deleteLaunchAssetsCascade(
+    uid: string,
+    applicationId: string,
+    themeId: string,
+  ) {
+    const ref = admin
+      .firestore()
+      .collection(Collections.themeAssetsLauncher)
+      .doc(themeId);
+    const snap = await ref.get();
+    if (!snap.exists) return;
+
+    const data = snap.data() as any;
+    const outs = data?.outputsArtifacts ?? {};
+    const ids: string[] = [
+      outs.androidLegacyArtifactId,
+      outs.androidAdaptiveForegroundArtifactId,
+      outs.androidAdaptiveBackgroundArtifactId,
+      outs.iosArtifactId,
+      outs.webArtifactId,
+    ].filter(Boolean);
+
+    await Promise.all(
+      ids.map((id) => this.artifacts.remove(uid, id).catch(() => undefined)),
+    );
+    await ref.delete();
+  }
+
+  private async deleteSplashAssetsCascade(uid: string, themeId: string) {
+    const ref = admin
+      .firestore()
+      .collection(Collections.themeAssetsSplash)
+      .doc(themeId);
+    const snap = await ref.get();
+    if (!snap.exists) return;
+
+    const data = snap.data() as any;
+    const outs = data?.outputsArtifacts ?? {};
+    const splashId: string | undefined = outs?.splashArtifactId;
+
+    if (splashId) {
+      await this.artifacts.remove(uid, splashId).catch(() => undefined);
+    }
+
+    await ref.delete();
+  }
+
+  private async deleteWidgetConfigs(themeId: string) {
+    const q = await admin
+      .firestore()
+      .collection(Collections.themeConfigWidgets)
+      .where('themeId', '==', themeId)
+      .get();
+    const batch = admin.firestore().batch();
+    q.docs.forEach((d) => batch.delete(d.ref));
+    if (!q.empty) await batch.commit();
+  }
+
+  private async deleteColorSchemeConfig(themeId: string) {
+    const col = admin
+      .firestore()
+      .collection(Collections.themeConfigColorSchemes);
+
+    // legacy: id === themeId
+    const legacyRef = col.doc(themeId);
+    const legacySnap = await legacyRef.get();
+    if (legacySnap.exists) {
+      await legacyRef.delete();
+    }
+
+    const q = await col.where('themeId', '==', themeId).get();
+    if (!q.empty) {
+      const batch = admin.firestore().batch();
+      q.docs.forEach((d) => batch.delete(d.ref));
+      await batch.commit();
+    }
+  }
+
+  private async deletePageConfigs(themeId: string) {
+    const q = await admin
+      .firestore()
+      .collection(Collections.themeConfigPages)
+      .where('themeId', '==', themeId)
+      .get();
+    const batch = admin.firestore().batch();
+    q.docs.forEach((d) => batch.delete(d.ref));
+    if (!q.empty) await batch.commit();
+  }
+
+  private async deleteThemeArtifacts(
+    uid: string,
+    applicationId: string,
+    themeId: string,
+  ) {
+    const list = await this.artifacts.findAll(uid, applicationId, themeId, {});
+    await Promise.all(
+      list.map((a) => this.artifacts.remove(uid, a.id).catch(() => undefined)),
+    );
+  }
+
+  private async purgeOrphanAssets(uid: string, applicationId: string) {
+    const assets = await this.assetsService.findAll(uid, applicationId, {
+      includeUrl: false,
+    });
+    const orphans = assets.filter((a: any) => (a.refCount ?? 0) === 0);
+    await Promise.all(
+      orphans.map((a) =>
+        this.assetsService.remove(uid, a.id).catch(() => undefined),
+      ),
+    );
+  }
+
+  // -------------------- Clone helpers --------------------
+
+  private async cloneWidgetConfigs(srcThemeId: string, dstThemeId: string) {
+    const col = admin.firestore().collection(Collections.themeConfigWidgets);
+
+    const qByField = await col.where('themeId', '==', srcThemeId).get();
+    if (!qByField.empty) {
+      const batch = admin.firestore().batch();
+      qByField.docs.forEach((doc) => {
+        const data = doc.data();
+        const variant = (data as any)?.variant ?? 'light';
+        const newId = `${dstThemeId}_${variant}`;
+        const newRef = col.doc(newId);
+        batch.set(newRef, {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          updatedAt: nowIso(),
+        });
+      });
+      await batch.commit();
+      return;
+    }
+
+    const legacyId = `${srcThemeId}_light`;
+    const legacySnap = await col.doc(legacyId).get();
+    if (legacySnap.exists) {
+      const data = legacySnap.data() as any;
+      const newId = `${dstThemeId}_light`;
+      await col.doc(newId).set({
+        ...data,
+        themeId: dstThemeId,
+        id: newId,
+        updatedAt: nowIso(),
+      });
+    }
+  }
+
+  private async cloneColorSchemeConfigs(
+    srcThemeId: string,
+    dstThemeId: string,
+  ) {
+    const col = admin
+      .firestore()
+      .collection(Collections.themeConfigColorSchemes);
+
+    const legacyRef = col.doc(srcThemeId);
+    const legacySnap = await legacyRef.get();
+    if (legacySnap.exists) {
+      const data = legacySnap.data();
+      await col.doc(dstThemeId).set({
+        ...data,
+        themeId: dstThemeId,
+        id: dstThemeId,
+        updatedAt: nowIso(),
+      });
+    }
+
+    const q = await col.where('themeId', '==', srcThemeId).get();
+    if (!q.empty) {
+      const batch = admin.firestore().batch();
+      q.docs.forEach((d) => {
+        const data = d.data() as any;
+        const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
+        const newId = `${dstThemeId}_${variant}`;
+        const newRef = col.doc(newId);
+        batch.set(newRef, {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          updatedAt: nowIso(),
+        });
+      });
+      await batch.commit();
+    }
+  }
+
+  private async clonePageConfigs(srcThemeId: string, dstThemeId: string) {
+    const col = admin.firestore().collection(Collections.themeConfigPages);
+    const q = await col.where('themeId', '==', srcThemeId).get();
+    if (q.empty) return;
+
+    const batch = admin.firestore().batch();
+    q.docs.forEach((d) => {
+      const data = d.data() as any;
+      const newRef = col.doc();
+      batch.set(newRef, {
+        ...data,
+        themeId: dstThemeId,
+        id: newRef.id,
+        updatedAt: nowIso(),
+      });
+    });
+    await batch.commit();
+  }
+
+  private async cloneSplash(srcThemeId: string, dstThemeId: string) {
+    const col = admin.firestore().collection(Collections.themeAssetsSplash);
+    const srcRef = col.doc(srcThemeId);
+    const snap = await srcRef.get();
+    if (!snap.exists) return;
+
+    const data = snap.data() as any;
+    const dstRef = col.doc(dstThemeId);
+    const cloned = {
+      ...data,
+      id: dstThemeId,
+      themeId: dstThemeId,
+      outputsArtifacts: {},
+      updatedAt: nowIso(),
+      createdAt: nowIso(),
     };
-    await this.themeRepository.update(theme);
-    return theme;
+    await dstRef.set(cloned);
   }
 
-  async removeAssetById(
-    applicationId: string,
-    themeId: string,
-    assetId: number,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.assets = theme.assets.filter((asset) => asset.id !== assetId);
-    await this.themeRepository.update(theme);
-    return theme;
+  private async cloneLaunch(srcThemeId: string, dstThemeId: string) {
+    const col = admin.firestore().collection(Collections.themeAssetsLauncher);
+    const srcRef = col.doc(srcThemeId);
+    const snap = await srcRef.get();
+    if (!snap.exists) return;
+
+    const data = snap.data() as any;
+    const dstRef = col.doc(dstThemeId);
+    const cloned = {
+      ...data,
+      id: dstThemeId,
+      themeId: dstThemeId,
+      outputsArtifacts: {},
+      updatedAt: nowIso(),
+      createdAt: nowIso(),
+    };
+    await dstRef.set(cloned);
   }
 
-  async deleteAllAssets(
-    applicationId: string,
-    themeId: string,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.assets = [];
-    await this.themeRepository.update(theme);
-    return theme;
+  // -------------------- Modern aggregate (existing) --------------------
+
+  private async aggregateTheme(
+    theme: Theme,
+    uid: string,
+  ): Promise<AggregatedTheme> {
+    const [
+      assetsLegacy,
+      splash,
+      launch,
+      widgetCfgRaw,
+      colorScheme,
+      pageCfgRaw,
+    ] = await Promise.all([
+      this.loadAssetsLegacy(uid, theme.applicationId),
+      this.loadSplash(theme.applicationId, theme.id, uid),
+      this.loadLaunch(theme.applicationId, theme.id, uid),
+      this.loadThemeWidgetConfig(theme.applicationId, theme.id),
+      this.loadColorSchemeConfig(theme.applicationId, theme.id),
+      this.loadThemePageConfig(theme.applicationId, theme.id),
+    ]);
+
+    const resolveUrl = (id: string) =>
+      this.assetsService.getSignedUrlById(uid, id, ASSET_URL_TTL_SEC);
+
+    const themeWidgetConfig = widgetCfgRaw
+      ? await resolveImageSourceUrlsDeep(widgetCfgRaw, resolveUrl)
+      : (theme as any).themeWidgetConfig ?? undefined;
+
+    const themePageConfig = pageCfgRaw
+      ? await resolveImageSourceUrlsDeep(pageCfgRaw, resolveUrl)
+      : (theme as any).themePageConfig ?? undefined;
+
+    return {
+      ...theme,
+      assets: assetsLegacy,
+      splashAssets: splash,
+      launchAssets: launch,
+      themeWidgetConfig,
+      colorSchemeConfig:
+        colorScheme ?? (theme as any).colorSchemeConfig ?? undefined,
+      appConfig: (theme as any).appConfig ?? undefined,
+      themePageConfig,
+    } as AggregatedTheme;
   }
 
-  async setLaunchAssets(
+  // -------------------- Loaders --------------------
+
+  /**
+   * Returns assets in legacy format (with direct URL),
+   * using AssetsService with short-lived URLs.
+   */
+  private async loadAssetsLegacy(
+    uid: string,
     applicationId: string,
-    themeId: string,
-    launchAssets: LaunchAssets,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.launchAssets = launchAssets;
-    await this.themeRepository.update(theme);
-    return theme;
+  ): Promise<LegacyAssetItem[]> {
+    const list = await this.assetsService.findAll(uid, applicationId, {
+      includeUrl: true,
+      urlTtlSec: ASSET_URL_TTL_SEC,
+    });
+
+    return list.map((a) => ({
+      id: a.id,
+      name: (a as any).name ?? a.id,
+      description: (a as any).description ?? '-',
+      url: a.downloadUrl ?? '',
+      type: (a as any).type ?? null,
+    }));
   }
 
-  async updateLaunchAssets(
-    applicationId: string,
+  private async loadSplash(
+    _applicationId: string,
     themeId: string,
-    launchAssetsUpdate: Partial<LaunchAssets>,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.launchAssets = { ...theme.launchAssets, ...launchAssetsUpdate };
-    await this.themeRepository.update(theme);
-    return theme;
+    uid: string,
+  ): Promise<LegacySplash> {
+    const ref = admin
+      .firestore()
+      .collection(Collections.themeAssetsSplash)
+      .doc(themeId);
+    const snap = await ref.get();
+
+    const fallback: LegacySplash = {
+      originalAssetId: null,
+      pictureUrl: null,
+      color: null,
+      padding: 0,
+      fit: 'scaleDown',
+    };
+    if (!snap.exists) return fallback;
+
+    const e = snap.data() as any;
+    const src = e?.source ?? {};
+    const params = e?.params ?? {};
+    const outs = e?.outputsArtifacts ?? {};
+
+    let pictureUrl: string | null = null;
+    if (outs?.splashArtifactId) {
+      try {
+        const a = await this.artifacts.findOne(uid, outs.splashArtifactId, {});
+        pictureUrl = await this.cloud.getSignedUrl(a.storagePath!, {
+          ttlSec: ASSET_URL_TTL_SEC,
+        });
+      } catch {
+        pictureUrl = null;
+      }
+    }
+
+    return {
+      originalAssetId: src?.foregroundAssetId ?? null,
+      pictureUrl,
+      color: src?.backgroundColorHex ?? null,
+      padding: Number(params?.paddingDp ?? params?.padding ?? 0) || 0,
+      fit: (params?.fit as LegacySplash['fit']) ?? 'scaleDown',
+    };
   }
 
-  async deleteLaunchAssets(
-    applicationId: string,
+  private async loadLaunch(
+    _applicationId: string,
     themeId: string,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.launchAssets = undefined;
-    await this.themeRepository.update(theme);
-    return theme;
+    uid: string,
+  ): Promise<LegacyLaunch> {
+    const ref = admin
+      .firestore()
+      .collection(Collections.themeAssetsLauncher)
+      .doc(themeId);
+    const snap = await ref.get();
+
+    const fallback: LegacyLaunch = {
+      originalAssetId: null,
+      notificationLogoUrl: null,
+      adaptiveIconForegroundUrl: null,
+      androidLauncherIconUrl: null,
+      iosLauncherIconUrl: null,
+      webLauncherIconUrl: null,
+      adaptiveIconBackgroundUrl: null,
+      backgroundColor: null,
+    };
+    if (!snap.exists) return fallback;
+
+    const e = snap.data() as any;
+    const src = e?.source ?? {};
+    const outs = e?.outputsArtifacts ?? {};
+
+    const sign = async (id?: string | null) => {
+      if (!id) return null;
+      try {
+        const a = await this.artifacts.findOne(uid, id, {});
+        return await this.cloud.getSignedUrl(a.storagePath!, {
+          ttlSec: ASSET_URL_TTL_SEC,
+        });
+      } catch {
+        return null;
+      }
+    };
+
+    const [
+      androidLegacyUrl,
+      adaptiveForegroundUrl,
+      adaptiveBackgroundUrl,
+      iosUrl,
+      webUrl,
+    ] = await Promise.all([
+      sign(outs?.androidLegacyArtifactId),
+      sign(outs?.androidAdaptiveForegroundArtifactId),
+      sign(outs?.androidAdaptiveBackgroundArtifactId),
+      sign(outs?.iosArtifactId),
+      sign(outs?.webArtifactId),
+    ]);
+
+    return {
+      originalAssetId: src?.foregroundAssetId ?? null,
+      notificationLogoUrl: null,
+      adaptiveIconForegroundUrl: adaptiveForegroundUrl,
+      androidLauncherIconUrl: androidLegacyUrl,
+      iosLauncherIconUrl: iosUrl,
+      webLauncherIconUrl: webUrl,
+      adaptiveIconBackgroundUrl: adaptiveBackgroundUrl,
+      backgroundColor: src?.backgroundColorHex ?? null,
+    };
   }
 
-  async updateSplashAsset(
-    applicationId: string,
+  private async loadThemeWidgetConfig(
+    _applicationId: string,
     themeId: string,
-    splashAssetUpdate: Partial<SplashAssets>,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.splashAssets = { ...theme.splashAssets, ...splashAssetUpdate };
-    await this.themeRepository.update(theme);
-    return theme;
+  ): Promise<any | null> {
+    const id = `${themeId}_light`;
+    const snap = await admin
+      .firestore()
+      .collection(Collections.themeConfigWidgets)
+      .doc(id)
+      .get();
+    if (!snap.exists) return null;
+    const data = snap.data() as any;
+    return data?.config ?? null;
   }
 
-  async deleteSplashAsset(
-    applicationId: string,
+  private async loadColorSchemeConfig(
+    _applicationId: string,
     themeId: string,
-  ): Promise<Theme> {
-    const theme = await this.getThemeById(applicationId, themeId);
-    theme.splashAssets = undefined;
-    await this.themeRepository.update(theme);
+  ): Promise<any | null> {
+    const snap = await admin
+      .firestore()
+      .collection(Collections.themeConfigColorSchemes)
+      .doc(themeId)
+      .get();
+    if (!snap.exists) return null;
+    return snap.data();
+  }
+
+  private async loadThemePageConfig(
+    _applicationId: string,
+    themeId: string,
+  ): Promise<Record<string, any> | null> {
+    const q = await admin
+      .firestore()
+      .collection(Collections.themeConfigPages)
+      .where('themeId', '==', themeId)
+      .get();
+    if (q.empty) return null;
+
+    const result: Record<string, any> = {};
+    q.docs.forEach((doc) => {
+      const data = doc.data() as any;
+      const variant = (data?.variant ?? 'light') as 'light' | 'dark';
+      result[variant] = data?.config ?? {};
+    });
+    return result;
+  }
+
+  async getThemeById(applicationId: string, themeId: string, uid: string) {
+    const theme = await this.themeRepository.findById(themeId);
+    if (!theme || theme.applicationId !== applicationId) {
+      throw new NotFoundException(`Theme with ID ${themeId} not found`);
+    }
     return theme;
   }
+}
+
+type ColorSchemeRaw = {
+  seedColor?: string;
+  colorSchemeOverride?: Record<string, string>;
+} | null;
+
+function toArgb(hex?: string | null): string | null {
+  if (!hex || typeof hex !== 'string') return null;
+  const h = hex.trim().toLowerCase();
+  if (!h.startsWith('#')) return null;
+  const body = h.slice(1);
+  if (body.length === 6) return `#ff${body}`;
+  if (body.length === 8) return `#${body}`;
+  return null;
+}
+
+function buildLegacyColors(colorScheme: ColorSchemeRaw) {
+  const c = colorScheme?.colorSchemeOverride ?? {};
+
+  const primary = toArgb(c.primary) ?? '#ff5cace3';
+  const secondary = toArgb(c.secondary) ?? '#ff123752';
+
+  const colors: any = {
+    primary,
+    onPrimary: toArgb(c.onPrimary) ?? '#ffffffff',
+    primaryContainer: toArgb(c.primaryContainer) ?? '#ffb9e3f9',
+    onPrimaryContainer: toArgb(c.onPrimaryContainer) ?? '#ff123752',
+    primaryFixed: toArgb(c.primaryFixed),
+    primaryFixedDim: toArgb(c.primaryFixedDim),
+    onPrimaryFixed: toArgb(c.onPrimaryFixed),
+    onPrimaryFixedVariant: toArgb(c.onPrimaryFixedVariant),
+
+    secondary,
+    onSecondary: toArgb(c.onSecondary) ?? '#ffffffff',
+    secondaryContainer: toArgb(c.secondaryContainer) ?? '#ffeef3f6',
+    onSecondaryContainer: toArgb(c.onSecondaryContainer) ?? '#ff1f618f',
+    secondaryFixed: toArgb(c.secondaryFixed),
+    secondaryFixedDim: toArgb(c.secondaryFixedDim),
+    onSecondaryFixed: toArgb(c.onSecondaryFixed),
+    onSecondaryFixedVariant: toArgb(c.onSecondaryFixedVariant),
+
+    tertiary: toArgb(c.tertiary) ?? '#ff75b943',
+    onTertiary: toArgb(c.onTertiary) ?? '#ffffffff',
+    tertiaryContainer: toArgb(c.tertiaryContainer) ?? '#ffe1f7c1',
+    onTertiaryContainer: toArgb(c.onTertiaryContainer) ?? '#ff2e5200',
+    tertiaryFixed: toArgb(c.tertiaryFixed),
+    tertiaryFixedDim: toArgb(c.tertiaryFixedDim),
+    onTertiaryFixed: toArgb(c.onTertiaryFixed),
+    onTertiaryFixedVariant: toArgb(c.onTertiaryFixedVariant),
+
+    error: toArgb(c.error) ?? '#ffe74c3c',
+    onError: toArgb(c.onError) ?? '#ffffffff',
+    errorContainer: toArgb(c.errorContainer) ?? '#fff5b7b1',
+    onErrorContainer: toArgb(c.onErrorContainer) ?? '#ff8b1e13',
+
+    outline: toArgb(c.outline) ?? '#ff4c4d4a',
+    outlineVariant: toArgb(c.outlineVariant) ?? '#ffcdcfc9',
+    surface: toArgb(c.surface) ?? '#ffeef3f6',
+    onSurface: toArgb(c.onSurface) ?? '#ff30302f',
+    surfaceDim: toArgb(c.surfaceDim) ?? '#ffdde0e3',
+    surfaceBright: toArgb(c.surfaceBright) ?? '#ffffffff',
+    surfaceContainerLowest: toArgb(c.surfaceContainerLowest) ?? '#fff8fbfd',
+    surfaceContainerLow: toArgb(c.surfaceContainerLow) ?? '#fff0f3f5',
+    surfaceContainer: toArgb(c.surfaceContainer) ?? '#ffeef3f6',
+    surfaceContainerHigh: toArgb(c.surfaceContainerHigh) ?? '#ffe2e6e9',
+    surfaceContainerHighest: toArgb(c.surfaceContainerHighest) ?? '#ffdde0e3',
+    onSurfaceVariant: toArgb(c.onSurfaceVariant) ?? '#ff848581',
+    inverseSurface: toArgb(c.inverseSurface) ?? '#ff30302f',
+    onInverseSurface: toArgb(c.onInverseSurface) ?? null,
+    inversePrimary: toArgb(c.inversePrimary) ?? '#ff1f618f',
+    shadow: toArgb(c.shadow) ?? '#ff000000',
+    scrim: toArgb(c.scrim) ?? '#ff000000',
+    surfaceTint: toArgb(c.surfaceTint) ?? '#fff95a14',
+
+    gradientTabColor: [primary, secondary],
+    launch: {
+      adaptiveIconBackground: '#ffffffff',
+      splashBackground: '#ffffffff',
+    },
+  };
+
+  return colors;
+}
+
+function pickImageUrlFromImageAssetConfig(node?: any): string | null {
+  if (!node) return null;
+
+  const metaAttrs = node?.metadata?.attributes ?? {};
+  const metaUrl: string | null =
+    metaAttrs.primaryOnboardingLogoUrl ??
+    metaAttrs.secondaryOnboardingLogoUrl ??
+    null;
+
+  if (typeof metaUrl === 'string' && metaUrl.length) return metaUrl;
+
+  const src = node?.imageSource ?? {};
+  const uri: string | null = typeof src.uri === 'string' ? src.uri : null;
+  const url: string | null = typeof src.url === 'string' ? src.url : null;
+
+  if (uri?.startsWith('http')) return uri;
+  if (url?.startsWith('http')) return url;
+  return null;
+}
+
+function buildLegacyImages(widgetCfgRaw: any, launchLegacy: any) {
+  const imageAssets = widgetCfgRaw?.imageAssets ?? {};
+
+  const primaryLogoUrl = pickImageUrlFromImageAssetConfig(
+    imageAssets.primaryOnboardingLogo,
+  );
+  const secondaryLogoUrl = pickImageUrlFromImageAssetConfig(
+    imageAssets.secondaryOnboardingLogo,
+  );
+
+  return {
+    adaptiveIconBackground: launchLegacy.adaptiveIconBackgroundUrl ?? null,
+    iosLauncherIcon: launchLegacy.iosLauncherIconUrl ?? null,
+    primaryOnboardingLogo: primaryLogoUrl,
+    androidLauncherIcon: launchLegacy.androidLauncherIconUrl ?? null,
+    notificationLogo: launchLegacy.notificationLogoUrl ?? null,
+    adaptiveIconForeground: launchLegacy.adaptiveIconForegroundUrl ?? null,
+    webLauncherIcon: launchLegacy.webLauncherIconUrl ?? null,
+    secondaryOnboardingLogo: secondaryLogoUrl,
+  };
+}
+
+function buildLegacyPageConfig(pageCfgRaw: any) {
+  const light = pageCfgRaw?.light ?? pageCfgRaw ?? {};
+  const login = light.login ?? {};
+  const about = light.about ?? {};
+
+  return {
+    login: {
+      picture: login.picture ?? null,
+      scale: login.scale ?? null,
+      labelColor: login.labelColor ?? null,
+      modeSelect: {
+        buttonLoginStyleType:
+          login.modeSelect?.buttonLoginStyleType ?? 'primary',
+        buttonSignupStyleType:
+          login.modeSelect?.buttonSignupStyleType ?? 'primary',
+      },
+      metadata: {
+        attributes: login.metadata?.attributes ?? {},
+      },
+    },
+    about: {
+      picture: about.picture ?? null,
+      metadata: {
+        attributes: about.metadata?.attributes ?? {},
+      },
+    },
+  };
+}
+
+function buildLegacyWidgetConfig(widgetCfgRaw: any) {
+  if (!widgetCfgRaw) {
+    return {
+      fonts: { fontFamily: 'Montserrat' },
+      dialog: {
+        confirmDialog: {
+          activeButtonColor1: null,
+          activeButtonColor2: null,
+          defaultButtonColor: null,
+        },
+        snackBar: {
+          successBackgroundColor: '#75B943',
+          errorBackgroundColor: '#E74C3C',
+          infoBackgroundColor: '#494949',
+          warningBackgroundColor: '#F95A14',
+        },
+      },
+      imageAssets: {
+        primaryOnboardingLogo: {
+          uri: 'asset://assets/primary_onboardin_logo.svg',
+          widthFactor: 0.42,
+          labelColor: '#FFFFFF',
+          metadata: { attributes: {} },
+        },
+        secondaryOnboardingLogo: {
+          uri: 'asset://assets/secondary_onboardin_logo.svg',
+          widthFactor: 0.25,
+          labelColor: '#FFFFFF',
+          metadata: { attributes: {} },
+        },
+        appIcon: { color: null },
+      },
+    };
+  }
+
+  const imgAssets = widgetCfgRaw.imageAssets ?? {};
+  const primaryUrl = pickImageUrlFromImageAssetConfig(
+    imgAssets.primaryOnboardingLogo,
+  );
+  const secondaryUrl = pickImageUrlFromImageAssetConfig(
+    imgAssets.secondaryOnboardingLogo,
+  );
+
+  const out = {
+    ...widgetCfgRaw,
+    imageAssets: {
+      ...imgAssets,
+      primaryOnboardingLogo: {
+        uri: 'asset://assets/primary_onboardin_logo.svg',
+        widthFactor: imgAssets.primaryOnboardingLogo?.widthFactor ?? 0.42,
+        labelColor: imgAssets.primaryOnboardingLogo?.labelColor ?? '#FFFFFF',
+        metadata: {
+          attributes: {
+            ...(imgAssets.primaryOnboardingLogo?.metadata?.attributes ?? {}),
+            ...(primaryUrl ? { primaryOnboardingLogoUrl: primaryUrl } : {}),
+          },
+        },
+      },
+      secondaryOnboardingLogo: {
+        uri: 'asset://assets/secondary_onboardin_logo.svg',
+        widthFactor: imgAssets.secondaryOnboardingLogo?.widthFactor ?? 0.25,
+        labelColor: imgAssets.secondaryOnboardingLogo?.labelColor ?? '#FFFFFF',
+        metadata: {
+          attributes: {
+            ...(imgAssets.secondaryOnboardingLogo?.metadata?.attributes ?? {}),
+            ...(secondaryUrl
+              ? { secondaryOnboardingLogoUrl: secondaryUrl }
+              : {}),
+          },
+        },
+      },
+      appIcon: imgAssets.appIcon ?? { color: null },
+    },
+  };
+
+  if (!out.fonts) out.fonts = { fontFamily: 'Montserrat' };
+  return out;
 }

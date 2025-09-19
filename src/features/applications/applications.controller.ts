@@ -6,18 +6,23 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApplicationsService } from './applications.service';
-import { Application } from '../../common/entities/application/application';
+import { Application } from './entities/application';
 import { Roles } from '../auth/guard/roles.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { ThemesService } from '../themes/themes.service';
-import { Theme } from '../../common/entities/theme/theme'; // Adjust path as needed
+import {
+  ResolveThemeQueryDto,
+  UpdateThemeBindingsDto,
+} from './dto/applications.dto';
 
 @ApiTags('applications')
 @Controller('applications')
@@ -49,10 +54,19 @@ export class ApplicationsController {
     return newApplication;
   }
 
-  @Get('/themes')
-  @Roles('admin')
-  async getAllThemes(): Promise<Theme[]> {
-    return this.themesService.getAllThemes();
+  @Get()
+  @Roles('admin', 'user')
+  async listApplications(@Req() request): Promise<Application[] | null> {
+    const userId = request.user.uid;
+    const applications =
+      await this.applicationsService.listApplications(userId);
+    if (!applications) {
+      throw new HttpException(
+        'Failed to list applications',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return applications;
   }
 
   @Get(':id')
@@ -86,23 +100,21 @@ export class ApplicationsController {
 
   @Delete(':id')
   @Roles('admin', 'user')
-  async removeApplication(@Param('id') id: string): Promise<void | null> {
-    await this.applicationsService.removeApplication(id);
-  }
-
-  @Get()
-  @Roles('admin', 'user')
-  async listApplications(@Req() request): Promise<Application[] | null> {
-    const userId = request.user.uid;
-    const applications =
-      await this.applicationsService.listApplications(userId);
-    if (!applications) {
-      throw new HttpException(
-        'Failed to list applications',
-        HttpStatus.BAD_REQUEST,
-      );
+  async removeApplication(
+    @Req() req,
+    @Param('id') id: string,
+  ): Promise<void | null> {
+    const uid: string = req.user?.uid ?? '';
+    const themes = await this.themesService
+      .getThemesByApplicationId(id, uid)
+      .catch(() => []);
+    for (const t of themes ?? []) {
+      await this.themesService
+        .deleteTheme(uid, id, (t as any).id, { purgeOrphanAssets: true })
+        .catch(() => undefined);
     }
-    return applications;
+
+    await this.applicationsService.removeApplication(id);
   }
 
   @Get(':id/environment')
@@ -137,5 +149,21 @@ export class ApplicationsController {
       );
     }
     return updatedApplication;
+  }
+
+  @Patch(':id/theme-bindings')
+  async updateThemeBindings(
+    @Param('id') appId: string,
+    @Body() dto: UpdateThemeBindingsDto,
+  ) {
+    return this.applicationsService.updateThemeBindings(appId, dto);
+  }
+
+  @Get(':id/resolve-theme')
+  async resolveTheme(
+    @Param('id') appId: string,
+    @Query() query: ResolveThemeQueryDto,
+  ) {
+    return this.applicationsService.resolveThemeIdForBuild(appId, query.env);
   }
 }

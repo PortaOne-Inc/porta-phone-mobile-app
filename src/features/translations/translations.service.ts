@@ -1,39 +1,65 @@
 import { Injectable } from '@nestjs/common';
-import { TranslationsRepository } from './translations.repository';
 import { Readable } from 'stream';
-import { Translation } from '../../common/entities/translations/translation';
 
+import { TranslationsRepository } from './translations.repository';
+import { Translation } from './entities/translation';
+
+/**
+ * TranslationsService
+ *
+ * Responsibilities:
+ * - High-level API for managing translations and overrides per application.
+ * - Delegates persistence and query logic to TranslationsRepository.
+ */
 @Injectable()
 export class TranslationsService {
   constructor(
     private readonly translationsRepository: TranslationsRepository,
   ) {}
 
-  async composeArb(appId: string): Promise<Readable> {
-    return this.translationsRepository.composeArb(appId);
+  /**
+   * Compose a Flutter ARB file stream for a given application.
+   */
+  async composeArb(applicationId: string): Promise<Readable> {
+    return this.translationsRepository.composeArb(applicationId);
   }
 
+  /**
+   * Get all translations (base + overrides).
+   */
   async getTranslations(): Promise<Translation[]> {
     return this.translationsRepository.getTranslations();
   }
 
-  async getOverridesByAppId(appId: string): Promise<Translation[]> {
-    return this.translationsRepository.getOverridesByAppId(appId);
+  /**
+   * Get override translations for a specific application.
+   */
+  async getOverridesByAppId(applicationId: string): Promise<Translation[]> {
+    return this.translationsRepository.getOverridesByAppId(applicationId);
   }
 
+  /**
+   * Set (upsert) a single override translation for an application.
+   */
   async setOverrideByAppId(
-    appId: string,
+    applicationId: string,
     translation: Translation,
   ): Promise<void> {
-    return this.translationsRepository.setOverrideByAppId(appId, translation);
+    return this.translationsRepository.setOverrideByAppId(
+      applicationId,
+      translation,
+    );
   }
 
+  /**
+   * Delete a single override translation for an application.
+   */
   async deleteOverrideByAppId(
-    appId: string,
+    applicationId: string,
     translation: Translation,
   ): Promise<void> {
     return this.translationsRepository.deleteOverrideByAppId(
-      appId,
+      applicationId,
       translation,
     );
   }

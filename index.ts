@@ -6,83 +6,128 @@ import { AppModule } from './src/app.module';
 import { Cors } from './src/config/cors';
 import { Express } from 'express-serve-static-core';
 import * as admin from 'firebase-admin';
-import serviceAccount from './service_account.json';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AllExceptionsFilter } from './src/common/filters';
+import { ZodValidationPipe } from 'nestjs-zod';
+
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import * as fs from 'fs';
+
+// Load env files (.env.<NODE_ENV> then .env)
+dotenv.config({path: `.env.${process.env.NODE_ENV ?? 'dev'}`});
+dotenv.config();
+
+// Normalize GOOGLE_APPLICATION_CREDENTIALS to absolute path (if provided)
+if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+    const p = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    if (!path.isAbsolute(p)) {
+        process.env.GOOGLE_APPLICATION_CREDENTIALS = path.resolve(process.cwd(), p);
+    }
+    if (!fs.existsSync(process.env.GOOGLE_APPLICATION_CREDENTIALS)) {
+        console.error(
+            '[BOOT] GOOGLE_APPLICATION_CREDENTIALS does not exist:',
+            process.env.GOOGLE_APPLICATION_CREDENTIALS
+        );
+    } else {
+        console.log('[BOOT] Using GOOGLE_APPLICATION_CREDENTIALS:', process.env.GOOGLE_APPLICATION_CREDENTIALS);
+    }
+}
 
 const expressServer = express();
 
+/**
+ * Initialize Firebase Admin using:
+ * - applicationDefault() when GOOGLE_APPLICATION_CREDENTIALS is set (local/CI),
+ * - default initializeApp() in Cloud Functions (uses project ADC).
+ */
 function maybeInitializeFirebaseAdmin() {
-  if (!admin.apps.length) {
+    if (admin.apps.length) return;
+
+    const hasLocalCredentials = !!process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
     admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+        credential: hasLocalCredentials ? admin.credential.applicationDefault() : undefined,
+        storageBucket: process.env.FB_STORAGE_BUCKET, // optional
     });
-    console.log('Firebase initialized');
-  }
+
+    console.log(
+        hasLocalCredentials
+            ? `Firebase initialized with ADC (${process.env.NODE_ENV ?? 'dev'})`
+            : 'Firebase initialized with default credentials (Cloud Functions)'
+    );
 }
 
 const createFunction = async (expressInstance: Express): Promise<void> => {
-  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(expressInstance),
-  );
+    // Ensure Admin initialized before Nest starts using it anywhere
+    maybeInitializeFirebaseAdmin();
 
-  app.setGlobalPrefix('v1');
-  app.enableCors({
-    origin: Cors.origin,
-    methods: Cors.corsMethods,
-    allowedHeaders: Cors.corsAllowedHeaders,
-  });
-  const config = new DocumentBuilder()
-    .setTitle('WebTrit App Configurator')
-    .setVersion('0.1')
-    .addBearerAuth()
-    .build();
+    const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger-ui', app, document);
+    app.useGlobalFilters(new AllExceptionsFilter());
+    app.useGlobalPipes(new ZodValidationPipe());
+    app.setGlobalPrefix('v1');
 
-  maybeInitializeFirebaseAdmin();
+    app.enableCors({
+        origin: Cors.origin,
+        methods: Cors.corsMethods,
+        allowedHeaders: Cors.corsAllowedHeaders,
+    });
 
-  await app.init();
+    const config = new DocumentBuilder()
+        .setTitle('WebTrit App Configurator')
+        .setVersion('0.1')
+        .addBearerAuth()
+        .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('swagger-ui', app, document);
+
+    await app.init();
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// HTTPS API
 export const api = functions.https.onRequest(async (request, response) => {
-  await createFunction(expressServer);
-  expressServer(request, response);
+    await createFunction(expressServer);
+    expressServer(request, response);
 });
 
 interface UserRolesDocumentData extends admin.firestore.DocumentData {
-  updatedAt?: admin.firestore.Timestamp;
+    updatedAt?: admin.firestore.Timestamp;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used by Firebase runtime (trigger), not by imports
+// noinspection JSUnusedGlobalSymbols
 export const mirrorUserRoles = functions.firestore
-  .document('userRoles/{uid}')
-  .onWrite(async (change, context) => {
-    const beforeData: UserRolesDocumentData = change.before.data() || {};
-    const afterData: UserRolesDocumentData = change.after.data() || {};
-    // to avoid infinite loops
-    const skipUpdate =
-      beforeData.updatedAt &&
-      afterData.updatedAt &&
-      !beforeData.updatedAt.isEqual(afterData.updatedAt);
-    if (skipUpdate) {
-      console.log('No changes');
-      return;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { updatedAt, ...newClaims } = afterData;
-    const uid = context.params.uid;
-    console.log(`Setting role to custom claims for ${uid} user`, newClaims);
+    .document('userRoles/{uid}')
+    .onWrite(async (change, context) => {
+        const beforeData: UserRolesDocumentData = change.before.data() || {};
+        const afterData: UserRolesDocumentData = change.after.data() || {};
 
-    maybeInitializeFirebaseAdmin();
+        // Avoid infinite loops based on timestamp
+        const skipUpdate =
+            beforeData.updatedAt &&
+            afterData.updatedAt &&
+            !beforeData.updatedAt.isEqual(afterData.updatedAt);
 
-    await admin.auth().setCustomUserClaims(uid, newClaims);
-    console.log('Updating document timestamp');
+        if (skipUpdate) {
+            console.log('No changes');
+            return;
+        }
 
-    await change.after.ref.update({
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      ...newClaims,
+        const {updatedAt, ...newClaims} = afterData;
+        const uid = context.params.uid;
+
+        console.log(`Setting role to custom claims for ${uid}`, newClaims);
+
+        maybeInitializeFirebaseAdmin();
+
+        await admin.auth().setCustomUserClaims(uid, newClaims);
+        console.log('Updating document timestamp');
+
+        await change.after.ref.update({
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            ...newClaims,
+        });
     });
-  });
+

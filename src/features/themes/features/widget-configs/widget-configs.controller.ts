@@ -1,0 +1,67 @@
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Put,
+  UseGuards,
+  ParseEnumPipe,
+  Req,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
+import { WidgetConfigsService } from './widget-configs.service';
+import { UpsertWidgetConfigDto } from './dto/upsert-widget-config.dto';
+import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
+
+type Variant = 'light' | 'dark';
+const VariantEnum = { light: 'light', dark: 'dark' } as const;
+
+@Controller('applications/:applicationId/themes/:themeId/widget-configs')
+@ApiBearerAuth()
+@UseGuards(FirebaseAuthGuard)
+export class WidgetConfigsController {
+  constructor(private readonly service: WidgetConfigsService) {}
+
+  // GET /applications/:appId/themes/:themeId/widget-configs
+  @Get()
+  listForTheme(
+    @Param('applicationId') appId: string,
+    @Param('themeId') themeId: string,
+  ) {
+    return this.service.listForTheme(appId, themeId);
+  }
+
+  // PUT /applications/:appId/themes/:themeId/widget-configs/ensure-pair
+  @Put('ensure-pair')
+  ensurePair(
+    @Param('applicationId') appId: string,
+    @Param('themeId') themeId: string,
+  ) {
+    return this.service.ensurePair(appId, themeId);
+  }
+
+  @Get(':variant')
+  @ApiParam({ name: 'variant', enum: ['light', 'dark'] })
+  getByThemeVariant(
+    @Req() req: any,
+    @Param('applicationId') appId: string,
+    @Param('themeId') themeId: string,
+    @Param('variant', new ParseEnumPipe(VariantEnum)) variant: Variant,
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    return this.service.getByThemeVariantResolved(appId, themeId, variant, uid);
+  }
+
+  @Put(':variant')
+  @ApiParam({ name: 'variant', enum: ['light', 'dark'] })
+  upsertByThemeVariant(
+    @Param('applicationId') appId: string,
+    @Param('themeId') themeId: string,
+    @Param('variant', new ParseEnumPipe(VariantEnum)) variant: Variant,
+    @Body() dto: UpsertWidgetConfigDto,
+  ) {
+    return this.service.upsertByThemeVariant(appId, themeId, variant, {
+      config: dto.config,
+    });
+  }
+}
