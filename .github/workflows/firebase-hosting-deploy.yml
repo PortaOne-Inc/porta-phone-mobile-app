@@ -118,7 +118,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}/${{ env.REPOSITORY_CONFIGURATOR_OUT_DIR }}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: web-build
           path: ${{ env.WORKING_DIRECTORY }}/${{ env.REPOSITORY_CONFIGURATOR_OUT_DIR }}/build/web
