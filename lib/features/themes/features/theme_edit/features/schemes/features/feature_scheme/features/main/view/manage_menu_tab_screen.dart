@@ -3,141 +3,77 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-// TODO(Serdun): Do correct, add bloc
+import '../utils/utils.dart';
+import '../models/models.dart';
+import '../widgets/widgets.dart';
+
 class ManageMenuTabScreen extends StatefulWidget {
-  const ManageMenuTabScreen({
-    super.key,
-    this.bottomMenuTabScheme,
-  });
+  const ManageMenuTabScreen({super.key, this.bottomMenuTabScheme});
 
   final BottomMenuTabScheme? bottomMenuTabScheme;
 
   @override
-  _ManageMenuTabScreenState createState() => _ManageMenuTabScreenState();
+  State<ManageMenuTabScreen> createState() => _ManageMenuTabScreenState();
 }
 
 class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final _bottomMenuTabScheme = widget.bottomMenuTabScheme;
-  late var _bottomMenuType = widget.bottomMenuTabScheme?.type;
-  late final _titleL10nController = TextEditingController(text: widget.bottomMenuTabScheme?.titleL10n ?? '');
+  late final TabFormModel _form = TabFormModel.fromScheme(widget.bottomMenuTabScheme);
 
-  EmbeddedResourceModel? _selectedEmbedded;
-
-  // Common configuration
-  bool _enableTab = true;
-
-  // Contacts configuration
-  bool _contactsSubTabLocale = true;
-  bool _contactsSubTabPBX = true;
+  // UI controllers are local to the screen
+  late final _titleL10nController = TextEditingController(text: _form.title);
+  late final _iconController = TextEditingController(text: _form.icon);
 
   @override
-  void initState() {
-    if (_bottomMenuTabScheme is ContactsTabScheme) {
-      _contactsSubTabLocale = _bottomMenuTabScheme.contactSourceTypes.contains('local');
-      _contactsSubTabPBX = _bottomMenuTabScheme.contactSourceTypes.contains('external');
-    } else {
-      _contactsSubTabLocale = true;
-      _contactsSubTabPBX = true;
-    }
-    super.initState();
+  void dispose() {
+    _titleL10nController.dispose();
+    _iconController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isEmbedded = _form.kind == BottomMenuTabKind.embedded;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Embedded Section'),
+        title: const Text('Edit Bottom Menu Tab'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: _saveData,
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.save), onPressed: _save)],
       ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                controller: _titleL10nController,
-                decoration: const InputDecoration(
-                  labelText: 'Title Localization',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.title),
-                ),
-                validator: (value) => (value == null || value.isEmpty) ? 'Title is required' : null,
+              TabTypeDropdown(
+                value: _form.kind,
+                onChanged: (k) => setState(() => _form.kind = k),
+              ),
+              const SizedBox(height: 12),
+              CommonFields(
+                titleController: _titleL10nController,
+                iconController: _iconController,
+                enabled: _form.enabled,
+                initial: _form.initial,
+                onEnabledChanged: (v) => setState(() => _form.enabled = v),
+                onInitialChanged: (v) => setState(() => _form.initial = v),
               ),
               const SizedBox(height: 16),
-              DropdownButtonExt<BottomMenuTabType>(
-                label: 'Bottom menu tab type',
-                value: _bottomMenuType,
-                options: BottomMenuTabType.values,
-                onChanged: (value) => setState(() {
-                  _bottomMenuType = value;
-                }),
-                optionBuilder: (value) => value.name,
-              ),
-              const SizedBox(height: 16),
-              Visibility(
-                visible: _bottomMenuType?.isEmbedded ?? false,
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(_selectedEmbedded?.displayLabel() ?? 'Add Embedded Data'),
-                  subtitle: const Text('To display in embedded pages.'),
-                  leading: Icon(_selectedEmbedded == null ? Icons.add : Icons.edit),
-                  trailing: const Icon(Icons.navigate_next),
-                  onTap: _addEmbeddedPage,
+              _buildTypeSpecific(),
+              if (isEmbedded) ...[
+                const SizedBox(height: 16),
+                EmbeddedPickerTile(
+                  selectedTitle: _form.embeddedResourceId ?? 'Select embedded resource',
+                  onTap: _pickEmbedded,
                 ),
-              ),
-              BorderContainer(
-                title: 'Tab availability',
-                child: SwitchListTile(
-                    title: const Text('Enable'),
-                    value: _enableTab,
-                    onChanged: (value) => setState(() {
-                          _enableTab = !_enableTab;
-                        })),
-              ),
-              const SizedBox(height: 16),
-              if (_bottomMenuType == BottomMenuTabType.contacts)
-                BorderContainer(
-                  title: 'Available sub-tabs',
-                  trailing: TextButton(
-                    onPressed: () {},
-                    child: const Text('Add embedded tab'),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SwitchListTile(
-                        title: const Text('Enable local contacts'),
-                        value: _contactsSubTabLocale,
-                        onChanged: (value) => setState(() {
-                          _contactsSubTabLocale = value;
-                        }),
-                      ),
-                      SwitchListTile(
-                        title: const Text('Enable pbx contacts'),
-                        value: _contactsSubTabPBX,
-                        onChanged: (value) => setState(() {
-                          _contactsSubTabPBX = value;
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
+              ],
             ],
           ),
         ),
@@ -145,59 +81,50 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
     );
   }
 
-  Future<void> _addEmbeddedPage() async {
-    final embeds = context.read<UpdateThemCubit>().state.embeds;
-
-    final picked = await EmbedPickerDialog.show(
-      context,
-      title: 'Select embeds',
-      items: embeds,
-    );
-
-    _selectedEmbedded = picked!.first;
-    setState(() {});
+  Widget _buildTypeSpecific() {
+    switch (_form.kind) {
+      case BottomMenuTabKind.favorites:
+      case BottomMenuTabKind.keypad:
+      case BottomMenuTabKind.messaging:
+        return const SizedBox.shrink();
+      case BottomMenuTabKind.recents:
+        return RecentsFields(
+          useCdrs: _form.useCdrs,
+          onUseCdrsChanged: (v) => setState(() => _form.useCdrs = v),
+        );
+      case BottomMenuTabKind.contacts:
+        return ContactsFields(
+          local: _form.contactsLocal,
+          external: _form.contactsExternal,
+          onLocalChanged: (v) => setState(() => _form.contactsLocal = v),
+          onExternalChanged: (v) => setState(() => _form.contactsExternal = v),
+        );
+      case BottomMenuTabKind.embedded:
+        return const SizedBox.shrink();
+    }
   }
 
-  void _saveData() {
-    if (_bottomMenuTabScheme?.type == BottomMenuTabType.contacts) {
-      final updatedTab = ContactsTabScheme(
-        enabled: _enableTab,
-        initial: _bottomMenuTabScheme?.initial ?? false,
-        type: BottomMenuTabType.contacts,
-        titleL10n: _titleL10nController.text,
-        icon: _bottomMenuTabScheme?.icon ?? '',
-        contactSourceTypes: [
-          if (_contactsSubTabLocale) 'local',
-          if (_contactsSubTabPBX) 'external',
-        ],
-      );
-
-      GoRouter.of(context).pop(updatedTab);
-      return;
-    }
-
-    if (_bottomMenuType?.isEmbedded ?? false) {
-      final updatedTab = EmbededTabScheme(
-        enabled: _enableTab,
-        initial: _bottomMenuTabScheme?.initial ?? false,
-        type: _bottomMenuType!,
-        titleL10n: _titleL10nController.text,
-        icon: _bottomMenuTabScheme?.icon ?? '0xe556',
-        embeddedResourceId: _selectedEmbedded!.id!,
-      );
-
-      GoRouter.of(context).pop(updatedTab);
-      return;
-    }
-
-    final updatedTab = BaseTabScheme(
-      enabled: _enableTab,
-      initial: _bottomMenuTabScheme?.initial ?? false,
-      type: _bottomMenuType!,
-      titleL10n: _titleL10nController.text,
-      icon: _bottomMenuTabScheme?.icon ?? '0xe5fd',
+  Future<void> _pickEmbedded() async {
+    final embeds = context.read<UpdateThemCubit>().state.embeds;
+    final picked = await EmbedPickerDialog.show(
+      context,
+      title: 'Select embedded resource',
+      items: embeds,
     );
+    setState(() => _form.embeddedResourceId = picked?.first.id);
+  }
 
-    GoRouter.of(context).pop(updatedTab);
+  void _save() {
+    if (!_formKey.currentState!.validate()) return;
+
+    _form.title = _titleL10nController.text;
+    _form.icon = _iconController.text;
+
+    try {
+      final updated = buildSchemeFromForm(_form);
+      GoRouter.of(context).pop(updated);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
   }
 }

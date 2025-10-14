@@ -69,10 +69,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final loginLabel = loginFeature?.titleL10n;
 
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
-    final isFavoritePreview = bottomMenuFeature?.isTabEnabled(MainFlavor.favorites) ?? false;
-    final isContactPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.contacts) ?? false;
-    final isResentsPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.recents) ?? false;
-    final isKeypadPreview = bottomMenuFeature?.isTabEnabled(MainFlavor.keypad) ?? false;
+    final isFavoritePreview = bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
+    final isContactPreview = bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
+    final isResentsPreview = bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
+    final isKeypadPreview = bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 

@@ -22,7 +22,7 @@ class MainConfigWidget extends StatefulWidget {
 }
 
 class _MainConfigWidgetState extends State<MainConfigWidget> {
-  final List<BottomMenuTabScheme> _activeTabs = List.from([]);
+  final List<BottomMenuTabScheme> _activeTabs = [];
   final List<BottomMenuTabScheme> _removedTabs = [];
 
   @override
@@ -50,19 +50,14 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
               children: [
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    'Cache Selected Tab',
-                    style: textTheme.titleMedium,
-                  ),
+                  title: Text('Cache Selected Tab', style: textTheme.titleMedium),
                   value: widget.mainConfig.bottomMenu.cacheSelectedTab,
-                  onChanged: (it) {},
+                  onChanged: (it) {}, // TODO: wire up when needed
                 ),
               ],
             ),
           ),
-          Divider(
-            color: colorScheme.primary.withValues(alpha: .25),
-          ),
+          Divider(color: colorScheme.primary.withValues(alpha: .25)),
           BorderContainer(
             title: 'Manage  tabs',
             trailing: TextButton(
@@ -70,7 +65,6 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
               child: const Text('Add  tab'),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
@@ -80,9 +74,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                     scrollDirection: Axis.horizontal,
                     onReorder: (oldIndex, newIndex) {
                       setState(() {
-                        if (newIndex > oldIndex) {
-                          newIndex -= 1;
-                        }
+                        if (newIndex > oldIndex) newIndex -= 1;
                         final item = _activeTabs.removeAt(oldIndex);
                         _activeTabs.insert(newIndex, item);
                         _updateAppConfig();
@@ -92,7 +84,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                       final index = entry.key;
                       final tab = entry.value;
                       return Padding(
-                        key: ValueKey(tab.type),
+                        key: ValueKey('tab_${index}_${_tabLabel(tab)}'),
                         padding: EdgeInsets.zero,
                         child: SizedBox(
                           child: Stack(
@@ -106,7 +98,7 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                       children: [
                                         IconButton(
                                           icon: Icon(Icons.edit, size: 16, color: colorScheme.onSurface),
-                                          onPressed: () => _manageBottomMenuTab(tab),
+                                          onPressed: () => _manageBottomMenuTab(index, tab),
                                         ),
                                         IconButton(
                                           icon: Icon(Icons.close, size: 16, color: colorScheme.error),
@@ -119,23 +111,18 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                         width: 96,
                                         height: 96,
                                         padding: const EdgeInsets.all(8),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8),
-                                          child: Center(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Icon(
-                                                  tab.icon.toIconData(),
-                                                ),
-                                                Text(
-                                                  tab.type.name,
-                                                  maxLines: 1,
-                                                  style: textTheme.labelMedium,
-                                                  overflow: TextOverflow.fade,
-                                                ),
-                                              ],
-                                            ),
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(_tabIcon(tab)),
+                                              Text(
+                                                _tabLabel(tab),
+                                                maxLines: 1,
+                                                style: textTheme.labelMedium,
+                                                overflow: TextOverflow.fade,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
@@ -143,7 +130,6 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                   ],
                                 ),
                               ),
-                              // Edit icon
                             ],
                           ),
                         ),
@@ -153,19 +139,14 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                 ),
                 const SizedBox(height: 16),
                 if (_removedTabs.isNotEmpty) ...[
-                  Text(
-                    'Disabled Tabs',
-                    style: textTheme.titleMedium,
-                  ),
+                  Text('Disabled Tabs', style: textTheme.titleMedium),
                   const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
                     children: _removedTabs.map((tab) {
                       return GestureDetector(
                         onTap: () => _restoreTab(tab),
-                        child: Chip(
-                          label: Text(tab.type.name),
-                        ),
+                        child: Chip(label: Text(_tabLabel(tab))),
                       );
                     }).toList(),
                   ),
@@ -189,25 +170,23 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
 
   void _sync() {
     widget.onChange(widget.mainConfig.copyWith(
-      bottomMenu: widget.mainConfig.bottomMenu.copyWith(
-        tabs: _activeTabs,
-      ),
+      bottomMenu: widget.mainConfig.bottomMenu.copyWith(tabs: _activeTabs),
     ));
   }
 
   void addTabToLocalState(BottomMenuTabScheme tab) {
-    if (tab.enabled) {
+    if (_isEnabled(tab)) {
       _activeTabs.add(tab);
     } else {
       _removedTabs.add(tab);
     }
   }
 
-  Future<void> _manageBottomMenuTab(BottomMenuTabScheme tab) async {
+  Future<void> _manageBottomMenuTab(int index, BottomMenuTabScheme tab) async {
     final result = await GoRouter.of(context)
         .pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name, extra: tab);
     if (result != null) {
-      _activeTabs[_activeTabs.indexWhere((it) => it.type == tab.type)] = result;
+      _activeTabs[index] = result;
       _sync();
     }
   }
@@ -230,10 +209,36 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
 
   void _updateAppConfig() {
     final newMainConfig = widget.mainConfig.copyWith(
-      bottomMenu: widget.mainConfig.bottomMenu.copyWith(
-        tabs: _activeTabs,
-      ),
+      bottomMenu: widget.mainConfig.bottomMenu.copyWith(tabs: _activeTabs),
     );
     widget.onChange(newMainConfig);
   }
+
+  // ---------- helpers ----------
+  bool _isEnabled(BottomMenuTabScheme tab) => tab.map(
+        favorites: (t) => t.enabled,
+        recents: (t) => t.enabled,
+        contacts: (t) => t.enabled,
+        keypad: (t) => t.enabled,
+        messaging: (t) => t.enabled,
+        embedded: (t) => t.enabled,
+      );
+
+  String _tabLabel(BottomMenuTabScheme tab) => tab.map(
+        favorites: (_) => 'favorites',
+        recents: (_) => 'recents',
+        contacts: (_) => 'contacts',
+        keypad: (_) => 'keypad',
+        messaging: (_) => 'messaging',
+        embedded: (_) => 'embedded',
+      );
+
+  IconData _tabIcon(BottomMenuTabScheme tab) => tab.map(
+        favorites: (t) => t.icon.toIconData(),
+        recents: (t) => t.icon.toIconData(),
+        contacts: (t) => t.icon.toIconData(),
+        keypad: (t) => t.icon.toIconData(),
+        messaging: (t) => t.icon.toIconData(),
+        embedded: (t) => t.icon.toIconData(),
+      );
 }
