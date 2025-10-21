@@ -280,6 +280,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setDecoration: (e) => _widgetEditor.setDecoration(e.cfg),
       setPrimaryGradient: (e) => _widgetEditor.setPrimaryGradient(e.cfg),
       setPrimaryGradientColors: (e) => _widgetEditor.setPrimaryGradientColors(e.colors),
+      setDefaultPlaceholderImage: (e) => _widgetEditor.setDefaultPlaceholderImage(e.imageSource),
     );
   }
 
@@ -287,7 +288,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     event.map(
       // login
       setLoginPage: (e) => _pageEditor.setLoginPage(e.login),
-      setLoginPicture: (e) => _pageEditor.setLoginPicture(ImageSource(id: e.asset.id, uri: e.asset.downloadUrl)),
+      setLoginPicture: (e) => _pageEditor.setLoginPicture(e.imageSource),
       setLoginScale: (e) => _pageEditor.setLoginScale(e.scale),
       setLoginLabelColor: (e) => _pageEditor.setLoginLabelColor(e.color),
       setLoginModeSelect: (e) => _pageEditor.setLoginModeSelect(e.modeSelect),
@@ -316,6 +317,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setLoginSignupVerifyCountdown: (e) => _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
 
       setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
+      updateSwitchPage: (it) => _pageEditor.updateSwitchScreenConfig(it.login),
     );
   }
 

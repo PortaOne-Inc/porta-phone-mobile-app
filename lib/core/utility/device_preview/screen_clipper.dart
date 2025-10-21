@@ -1,5 +1,7 @@
 import 'package:flutter/rendering.dart';
 
+import 'package:vector_math/vector_math_64.dart';
+
 class ScreenClipper extends CustomClipper<Path> {
   const ScreenClipper();
 
@@ -7,8 +9,12 @@ class ScreenClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final bounds = screenPath.getBounds();
     final matrix = Matrix4.identity()
-      ..translate(-bounds.left / 2, -bounds.top / 2)
-      ..scale(size.width / bounds.width, size.height / bounds.height);
+      ..translateByVector3(Vector3(-bounds.left / 2, -bounds.top / 2, 0))
+      ..scaleByVector3(Vector3(
+        size.width / bounds.width,
+        size.height / bounds.height,
+        1,
+      ));
     return screenPath.transform(matrix.storage);
   }
 

@@ -86,7 +86,9 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
   // Login page
   const factory ThemePageEvent.setLoginPage(LoginPageConfig login) = _SetLoginPage;
 
-  const factory ThemePageEvent.setLoginPicture(AssetModel asset) = _SetLoginPicture;
+  const factory ThemePageEvent.updateSwitchPage(LoginSwitchPageConfig login) = _UpdateSwitchPage;
+
+  const factory ThemePageEvent.setLoginPicture(ImageSource imageSource) = _SetLoginPicture;
 
   const factory ThemePageEvent.setLoginScale(double? scale) = _SetLoginScale;
 
@@ -189,6 +191,8 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
   const factory ThemeWidgetEvent.setExtTabBarUnselected(String? color) = _SetExtTabBarUnselected;
 
   // Image assets
+  const factory ThemeWidgetEvent.setDefaultPlaceholderImage(ImageSource imageSource) = _SetDefaultPlaceholderImage;
+
   const factory ThemeWidgetEvent.setImageAssets(ImageAssetsConfig cfg) = _SetImageAssets;
 
   const factory ThemeWidgetEvent.setPrimaryOnboardingLogo(ImageAssetConfig cfg) = _SetPrimaryOnboardingLogo;

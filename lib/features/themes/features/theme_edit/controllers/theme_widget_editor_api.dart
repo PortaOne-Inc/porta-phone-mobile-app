@@ -73,6 +73,8 @@ abstract class ThemeWidgetEditorApi {
 
   void setPrimaryOnboardingLogo(ImageAssetConfig cfg);
 
+  void setDefaultPlaceholderImage(ImageSource imageSource);
+
   void setSecondaryOnboardingLogo(ImageAssetConfig cfg);
 
   void setAppIcon(AppIconWidgetConfig cfg);
@@ -434,13 +436,19 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setPrimaryOnboardingLogo(ImageAssetConfig cfg) {
-    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(primaryOnboardingLogo: cfg));
+    //_current = current.copyWith(imageAssets: current.imageAssets.copyWith(primaryOnboardingLogo: cfg));
     _emit();
   }
 
   @override
   void setSecondaryOnboardingLogo(ImageAssetConfig cfg) {
-    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(secondaryOnboardingLogo: cfg));
+    //  _current = current.copyWith(imageAssets: current.imageAssets.copyWith(secondaryOnboardingLogo: cfg));
+    _emit();
+  }
+
+  @override
+  void setDefaultPlaceholderImage(ImageSource imageSource) {
+    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(defaultPlaceholderImage: imageSource));
     _emit();
   }
 

@@ -4,6 +4,18 @@ import '../utils/utils.dart';
 import 'tab_kind.dart';
 
 class TabFormModel {
+  TabFormModel({
+    required this.kind,
+    required this.title,
+    required this.icon,
+    required this.enabled,
+    required this.initial,
+    this.useCdrs = false,
+    this.contactsLocal = true,
+    this.contactsExternal = true,
+    this.embeddedResourceId,
+  });
+
   factory TabFormModel.fromScheme(BottomMenuTabScheme? s) {
     if (s == null) {
       return TabFormModel(
@@ -26,26 +38,15 @@ class TabFormModel {
     s.maybeWhen(
       recents: (_, __, ___, ____, useCdrs) => model.useCdrs = useCdrs,
       contacts: (_, __, ___, ____, types) {
-        model..contactsLocal = types.contains('local')
-        ..contactsExternal = types.contains('external');
+        model
+          ..contactsLocal = types.contains('local')
+          ..contactsExternal = types.contains('external');
       },
       embedded: (_, __, ___, ____, id) => model.embeddedResourceId = id,
       orElse: () {},
     );
     return model;
   }
-
-  TabFormModel({
-    required this.kind,
-    required this.title,
-    required this.icon,
-    required this.enabled,
-    required this.initial,
-    this.useCdrs = false,
-    this.contactsLocal = true,
-    this.contactsExternal = true,
-    this.embeddedResourceId,
-  });
 
   BottomMenuTabKind kind;
   String title;

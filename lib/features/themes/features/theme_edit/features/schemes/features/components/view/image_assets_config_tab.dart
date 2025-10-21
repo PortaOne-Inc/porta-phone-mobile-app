@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,10 +22,6 @@ class ImageAssetsConfigTab extends StatefulWidget {
 }
 
 class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
-  // onboarding
-  late final TextEditingController _primaryWidthCtrl;
-  late final TextEditingController _secondaryWidthCtrl;
-
   // leading avatar base
   late final TextEditingController _radiusCtrl;
 
@@ -65,12 +62,6 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
   @override
   void initState() {
     super.initState();
-
-    _primaryWidthCtrl =
-        TextEditingController(text: widget.imageAssetsConfig.primaryOnboardingLogo.widthFactor.toString());
-    _secondaryWidthCtrl =
-        TextEditingController(text: widget.imageAssetsConfig.secondaryOnboardingLogo.widthFactor.toString());
-
     final s = widget.imageAssetsConfig.leadingAvatarStyle;
 
     _radiusCtrl = TextEditingController(text: (s.radius ?? 20.0).toString());
@@ -99,8 +90,6 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
 
   @override
   void dispose() {
-    _primaryWidthCtrl.dispose();
-    _secondaryWidthCtrl.dispose();
     _radiusCtrl.dispose();
     _placeholderCodePointCtrl.dispose();
     _placeholderFontFamilyCtrl.dispose();
@@ -131,24 +120,8 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
   RegisteredBadgeStyleConfig _badge(LeadingAvatarStyleConfig s) =>
       s.registeredBadge ?? const RegisteredBadgeStyleConfig();
 
-  void _dispatchSetPrimaryLogo(ImageAssetConfig cfg) =>
-      context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setPrimaryOnboardingLogo(cfg));
-
-  void _dispatchSetSecondaryLogo(ImageAssetConfig cfg) =>
-      context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setSecondaryOnboardingLogo(cfg));
-
   void _dispatchSetLeadingAvatar(LeadingAvatarStyleConfig cfg) =>
       context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setLeadingAvatarStyle(cfg));
-
-  void _updatePrimaryWidthFactor(String v) {
-    final widthFactor = double.tryParse(v) ?? .45;
-    _dispatchSetPrimaryLogo(widget.imageAssetsConfig.primaryOnboardingLogo.copyWith(widthFactor: widthFactor));
-  }
-
-  void _updateSecondaryWidthFactor(String v) {
-    final widthFactor = double.tryParse(v) ?? .25;
-    _dispatchSetSecondaryLogo(widget.imageAssetsConfig.secondaryOnboardingLogo.copyWith(widthFactor: widthFactor));
-  }
 
   // base
   void _setLeadingBackground(Color? c) =>
@@ -272,84 +245,22 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
     final state = context.watch<UpdateThemCubit>().state;
     final imageAssets = state.themeSettings.themeWidgetLightConfig.imageAssets;
 
-    final itemConstraints = BoxConstraints.loose(const Size(200, 200));
-    final groupConstraints = BoxConstraints.loose(const Size(220, 320));
-
-    final primaryResource = Resource.url(imageAssets.primaryOnboardingLogo.imageSource?.uri);
-    final secondaryResource = Resource.url(imageAssets.secondaryOnboardingLogo.imageSource?.uri);
-
     final s = imageAssets.leadingAvatarStyle;
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // ─────────────────────────── Images
-          BorderContainer(
-            title: 'Image assets',
-            descriptionWidget: DescriptionRow.info('Select and scale onboarding images used in the app.'),
-            padding: const EdgeInsets.all(16),
-            child: Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children: [
-                ConstrainedBox(
-                  constraints: groupConstraints,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      UrlImageField(
-                        title: 'Primary image',
-                        resource: primaryResource,
-                        constraints: itemConstraints,
-                        onTap: () async {
-                          final assets = context.read<UpdateThemCubit>().state.assets;
-                          final select = await context.pickAsset(assets);
-                          if (!context.mounted || select == null) return;
-                          _dispatchSetPrimaryLogo(ImageAssetConfig(imageSource: select.toImageSource()));
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      OutlineInput.number(
-                        label: 'Width factor',
-                        controller: _primaryWidthCtrl,
-                        onChanged: _updatePrimaryWidthFactor,
-                      ),
-                    ],
-                  ),
-                ),
-                ConstrainedBox(
-                  constraints: groupConstraints,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      UrlImageField(
-                        title: 'Secondary image',
-                        resource: secondaryResource,
-                        constraints: itemConstraints,
-                        onTap: () async {
-                          final assets = context.read<UpdateThemCubit>().state.assets;
-                          final select = await context.pickAsset(assets);
-                          if (!context.mounted || select == null) return;
-                          _dispatchSetSecondaryLogo(ImageAssetConfig(imageSource: select.toImageSource()));
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      OutlineInput.number(
-                        label: 'Width factor',
-                        controller: _secondaryWidthCtrl,
-                        onChanged: _updateSecondaryWidthFactor,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          ImageRenderEditor(
+            description:
+                'Default image displayed for placeholders, error states, and other image assets throughout the app',
+            source: state.themeSettings.themeWidgetLightConfig.imageAssets.defaultPlaceholderImage,
+            onPick: () => _pickAsset(context, state.assets),
+            onChanged: (updated) {
+              if (updated == null) return;
+              context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setDefaultPlaceholderImage(updated));
+            },
           ),
-
-          const SizedBox(height: 16),
-
-          // ─────────────────────────── Leading Avatar Style
           BorderContainer(
             title: 'Leading Avatar Style',
             descriptionWidget: DescriptionRow.info('Customize contact avatar, placeholders and indicators.'),
@@ -436,8 +347,6 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
                   ),
                 ),
                 const SizedBox(height: 12),
-
-                // smart indicator — фон + спільний редактор іконданих (без matchDirection)
                 BorderContainer(
                   title: 'Smart Indicator',
                   child: Wrap(
@@ -507,5 +416,13 @@ class _ImageAssetsConfigTabState extends State<ImageAssetsConfigTab> {
         ],
       ),
     );
+  }
+
+  Future<void> _pickAsset(BuildContext context, List<AssetModel> assets) async {
+    final picked = await context.pickAsset(assets);
+    if (context.mounted && picked != null) {
+      final imageSource = ImageSource(id: picked.id, uri: picked.downloadUrl);
+      context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setDefaultPlaceholderImage(imageSource));
+    }
   }
 }

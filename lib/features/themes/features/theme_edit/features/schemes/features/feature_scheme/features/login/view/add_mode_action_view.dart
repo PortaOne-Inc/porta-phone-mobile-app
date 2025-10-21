@@ -70,10 +70,8 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                 validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
               ),
               const SizedBox(height: 16),
-
-              // Type selector
               DropdownButtonFormField<String>(
-                value: _selectedType,
+                initialValue: _selectedType,
                 decoration: const InputDecoration(
                   labelText: 'Select Type',
                   border: OutlineInputBorder(),
@@ -96,7 +94,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                 },
               ),
               const SizedBox(height: 16),
-
               if (_selectedType == 'embedded') ...[
                 _EmbeddedPickerTile(
                   selected: _selectedEmbedded,
@@ -108,16 +105,13 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                 ),
                 const SizedBox(height: 16),
               ],
-
               Divider(height: 16, thickness: 4, color: colorScheme.surfaceContainerLow),
-
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable'),
                 value: _enabled,
                 onChanged: (v) => setState(() => _enabled = v),
               ),
-
               if (_selectedType == 'login')
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
@@ -125,7 +119,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                   value: _isLaunchButtonVisible,
                   onChanged: (v) => setState(() => _isLaunchButtonVisible = v),
                 ),
-
               if (_selectedType == 'embedded' && _selectedEmbedded != null)
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,

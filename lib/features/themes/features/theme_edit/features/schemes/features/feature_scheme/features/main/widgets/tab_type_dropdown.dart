@@ -15,7 +15,7 @@ class TabTypeDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<BottomMenuTabKind>(
-      value: value,
+      initialValue: value,
       onChanged: (v) => v != null ? onChanged(v) : null,
       decoration: const InputDecoration(
         labelText: 'Bottom menu tab type',

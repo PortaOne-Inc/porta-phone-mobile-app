@@ -21,6 +21,8 @@ abstract class ThemePageEditorApi {
 
   void setThemePageConfig(ThemePageConfig config);
 
+  void updateSwitchScreenConfig(LoginSwitchPageConfig config);
+
   void setLoginPage(LoginPageConfig login);
 
   void setLoginPicture(ImageSource? imageSource);
@@ -148,19 +150,20 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setLoginPicture(ImageSource? imageSource) {
-    _current = current.copyWith(login: current.login.copyWith(imageSource: imageSource));
+    _current = current.copyWith(
+        login: current.login.copyWith(modeSelect: current.login.modeSelect.copyWith(mainLogo: imageSource)));
     _emit();
   }
 
   @override
   void setLoginScale(double? scale) {
-    _current = current.copyWith(login: current.login.copyWith(scale: scale));
+    //_current = current.copyWith(login: current.login.copyWith(scale: scale));
     _emit();
   }
 
   @override
   void setLoginLabelColor(String? color) {
-    _current = current.copyWith(login: current.login.copyWith(labelColor: color));
+    // _current = current.copyWith(login: current.login.copyWith(labelColor: color));
     _emit();
   }
 
@@ -198,7 +201,7 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setAboutPicture(ImageSource? imageSource) {
-    _current = current.copyWith(about: current.about.copyWith(imageSource: imageSource));
+    _current = current.copyWith(about: current.about.copyWith(mainLogo: imageSource));
     _emit();
   }
 
@@ -319,6 +322,12 @@ class ThemePageEditor implements ThemePageEditorApi {
         ),
       ),
     );
+    _emit();
+  }
+
+  @override
+  void updateSwitchScreenConfig(LoginSwitchPageConfig config) {
+    _current = current.copyWith(login: current.login.copyWith(switchPage: config));
     _emit();
   }
 }

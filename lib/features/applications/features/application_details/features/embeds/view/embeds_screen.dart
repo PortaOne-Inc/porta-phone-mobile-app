@@ -666,7 +666,7 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<EmbeddedResourceModelType>(
-                  value: _type,
+                  initialValue: _type,
                   decoration: const InputDecoration(labelText: 'Type'),
                   items: EmbeddedResourceModelType.values
                       .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))

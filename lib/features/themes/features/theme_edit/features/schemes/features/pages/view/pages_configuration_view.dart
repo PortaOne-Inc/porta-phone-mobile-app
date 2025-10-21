@@ -57,7 +57,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
             controller: _tabController,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              LoginPageView(
+              LoginPageTabbedView(
                 loginModeSelectScreenStyles: loginModeSelectScreenStyles,
                 loginPageConfig: themePageConfig.login,
               ),

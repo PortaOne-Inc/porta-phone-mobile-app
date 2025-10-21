@@ -116,6 +116,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       ),
       const PrivacyScreenScreenshot(),
       const AboutScreenshot(),
+      const EmbeddedErrorDialogScreenshot(),
     ].map((it) => ScreenshotApp(appBloc: appBloc, child: it)).toList();
   }
 

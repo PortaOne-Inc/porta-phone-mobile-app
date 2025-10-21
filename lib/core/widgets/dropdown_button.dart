@@ -32,7 +32,7 @@ class DropdownButtonExt<T> extends StatelessWidget {
             labelText: label,
             border: const OutlineInputBorder(),
           ),
-          value: value,
+          initialValue: value,
           items: options.map((option) {
             return DropdownMenuItem(
               value: option,

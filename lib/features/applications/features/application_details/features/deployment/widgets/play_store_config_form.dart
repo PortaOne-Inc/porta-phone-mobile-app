@@ -84,7 +84,7 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                   context.l10n.feature_application_details_PlayStoreConfigForm_track_label,
                 ),
               ),
-              value: widget.availableTrack.contains(_track) ? _track : null,
+              initialValue: widget.availableTrack.contains(_track) ? _track : null,
               onChanged: (newValue) {
                 if (_formKey!.currentState!.validate()) {
                   _track = newValue!;
@@ -108,7 +108,7 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                   context.l10n.feature_application_details_PlayStoreConfigForm_status_label,
                 ),
               ),
-              value: widget.availableStatuses.contains(_status) ? _status : null,
+              initialValue: widget.availableStatuses.contains(_status) ? _status : null,
               onChanged: (newValue) {
                 if (_formKey!.currentState!.validate()) {
                   _status = newValue!;

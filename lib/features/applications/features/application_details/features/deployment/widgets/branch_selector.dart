@@ -72,7 +72,7 @@ class _BranchSelectorState extends State<BranchSelector> {
       ),
       subtitle: _isDropdown
           ? DropdownButtonFormField<String>(
-              value: _selectedBranch,
+        initialValue: _selectedBranch,
               decoration: decoration,
               items: widget.branches.map((branch) {
                 return DropdownMenuItem(value: branch, child: Text(branch));

@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/core/widgets/pattern_painter.dart';
 
 import 'universal_asset_preview_painter.dart';
 import 'universal_asset_render_painter.dart';

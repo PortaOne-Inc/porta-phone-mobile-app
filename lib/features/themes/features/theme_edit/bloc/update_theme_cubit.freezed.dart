@@ -6715,7 +6715,8 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -6748,7 +6749,8 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -6776,7 +6778,8 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -6805,6 +6808,7 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -6840,6 +6844,7 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -6874,6 +6879,7 @@ mixin _$ThemePageEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7010,7 +7016,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -7046,7 +7053,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7077,7 +7085,8 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7112,6 +7121,7 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -7150,6 +7160,7 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7187,6 +7198,7 @@ class _$SetLoginPageImpl implements _SetLoginPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7238,22 +7250,22 @@ abstract class _SetLoginPage implements ThemePageEvent {
 }
 
 /// @nodoc
-abstract class _$$SetLoginPictureImplCopyWith<$Res> {
-  factory _$$SetLoginPictureImplCopyWith(_$SetLoginPictureImpl value,
-          $Res Function(_$SetLoginPictureImpl) then) =
-      __$$SetLoginPictureImplCopyWithImpl<$Res>;
+abstract class _$$UpdateSwitchPageImplCopyWith<$Res> {
+  factory _$$UpdateSwitchPageImplCopyWith(_$UpdateSwitchPageImpl value,
+          $Res Function(_$UpdateSwitchPageImpl) then) =
+      __$$UpdateSwitchPageImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AssetModel asset});
+  $Res call({LoginSwitchPageConfig login});
 
-  $AssetModelCopyWith<$Res> get asset;
+  $LoginSwitchPageConfigCopyWith<$Res> get login;
 }
 
 /// @nodoc
-class __$$SetLoginPictureImplCopyWithImpl<$Res>
-    extends _$ThemePageEventCopyWithImpl<$Res, _$SetLoginPictureImpl>
-    implements _$$SetLoginPictureImplCopyWith<$Res> {
-  __$$SetLoginPictureImplCopyWithImpl(
-      _$SetLoginPictureImpl _value, $Res Function(_$SetLoginPictureImpl) _then)
+class __$$UpdateSwitchPageImplCopyWithImpl<$Res>
+    extends _$ThemePageEventCopyWithImpl<$Res, _$UpdateSwitchPageImpl>
+    implements _$$UpdateSwitchPageImplCopyWith<$Res> {
+  __$$UpdateSwitchPageImplCopyWithImpl(_$UpdateSwitchPageImpl _value,
+      $Res Function(_$UpdateSwitchPageImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ThemePageEvent
@@ -7261,13 +7273,13 @@ class __$$SetLoginPictureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? asset = null,
+    Object? login = null,
   }) {
-    return _then(_$SetLoginPictureImpl(
-      null == asset
-          ? _value.asset
-          : asset // ignore: cast_nullable_to_non_nullable
-              as AssetModel,
+    return _then(_$UpdateSwitchPageImpl(
+      null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as LoginSwitchPageConfig,
     ));
   }
 
@@ -7275,51 +7287,52 @@ class __$$SetLoginPictureImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AssetModelCopyWith<$Res> get asset {
-    return $AssetModelCopyWith<$Res>(_value.asset, (value) {
-      return _then(_value.copyWith(asset: value));
+  $LoginSwitchPageConfigCopyWith<$Res> get login {
+    return $LoginSwitchPageConfigCopyWith<$Res>(_value.login, (value) {
+      return _then(_value.copyWith(login: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$SetLoginPictureImpl implements _SetLoginPicture {
-  const _$SetLoginPictureImpl(this.asset);
+class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
+  const _$UpdateSwitchPageImpl(this.login);
 
   @override
-  final AssetModel asset;
+  final LoginSwitchPageConfig login;
 
   @override
   String toString() {
-    return 'ThemePageEvent.setLoginPicture(asset: $asset)';
+    return 'ThemePageEvent.updateSwitchPage(login: $login)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetLoginPictureImpl &&
-            (identical(other.asset, asset) || other.asset == asset));
+            other is _$UpdateSwitchPageImpl &&
+            (identical(other.login, login) || other.login == login));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, asset);
+  int get hashCode => Object.hash(runtimeType, login);
 
   /// Create a copy of ThemePageEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SetLoginPictureImplCopyWith<_$SetLoginPictureImpl> get copyWith =>
-      __$$SetLoginPictureImplCopyWithImpl<_$SetLoginPictureImpl>(
+  _$$UpdateSwitchPageImplCopyWith<_$UpdateSwitchPageImpl> get copyWith =>
+      __$$UpdateSwitchPageImplCopyWithImpl<_$UpdateSwitchPageImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -7348,14 +7361,15 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
     required TResult Function(int seconds) setLoginSignupVerifyCountdown,
   }) {
-    return setLoginPicture(asset);
+    return updateSwitchPage(login);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7379,14 +7393,332 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
     TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
   }) {
-    return setLoginPicture?.call(asset);
+    return updateSwitchPage?.call(login);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
+    TResult Function(double? scale)? setLoginScale,
+    TResult Function(String? color)? setLoginLabelColor,
+    TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(AboutPageConfig about)? setAboutPage,
+    TResult Function(AssetModel asset)? setAboutPicture,
+    TResult Function(Metadata metadata)? setAboutMetadata,
+    TResult Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (updateSwitchPage != null) {
+      return updateSwitchPage(login);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
+    required TResult Function(_SetLoginPicture value) setLoginPicture,
+    required TResult Function(_SetLoginScale value) setLoginScale,
+    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
+    required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
+    required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(_SetLoginModeSelectButtonSignupStyle value)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(_SetAboutPage value) setAboutPage,
+    required TResult Function(_SetAboutPicture value) setAboutPicture,
+    required TResult Function(_SetAboutMetadata value) setAboutMetadata,
+    required TResult Function(_SetDialingPage value) setDialingPage,
+    required TResult Function(_SetDialingSystemUiOverlay value)
+        setDialingSystemUiOverlay,
+    required TResult Function(_SetDialingAppBarStyle value)
+        setDialingAppBarStyle,
+    required TResult Function(_SetDialingInfo value) setDialingInfo,
+    required TResult Function(_SetDialingInfoUsernameStyle value)
+        setDialingInfoUsernameStyle,
+    required TResult Function(_SetDialingInfoNumberStyle value)
+        setDialingInfoNumberStyle,
+    required TResult Function(_SetDialingInfoCallStatusStyle value)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(_SetDialingInfoProcessingStatusStyle value)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(_SetKeypadPage value) setKeypadPage,
+    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
+        setLoginOtpSigninVerifyCountdown,
+    required TResult Function(_SetLoginSignupVerifyCountdown value)
+        setLoginSignupVerifyCountdown,
+  }) {
+    return updateSwitchPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
+    TResult? Function(_SetLoginPicture value)? setLoginPicture,
+    TResult? Function(_SetLoginScale value)? setLoginScale,
+    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(_SetAboutPage value)? setAboutPage,
+    TResult? Function(_SetAboutPicture value)? setAboutPicture,
+    TResult? Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult? Function(_SetDialingPage value)? setDialingPage,
+    TResult? Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult? Function(_SetDialingInfo value)? setDialingInfo,
+    TResult? Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult? Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult? Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(_SetKeypadPage value)? setKeypadPage,
+    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult? Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+  }) {
+    return updateSwitchPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
+    TResult Function(_SetLoginPicture value)? setLoginPicture,
+    TResult Function(_SetLoginScale value)? setLoginScale,
+    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
+    TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
+    TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult Function(_SetLoginModeSelectButtonSignupStyle value)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult Function(_SetAboutPage value)? setAboutPage,
+    TResult Function(_SetAboutPicture value)? setAboutPicture,
+    TResult Function(_SetAboutMetadata value)? setAboutMetadata,
+    TResult Function(_SetDialingPage value)? setDialingPage,
+    TResult Function(_SetDialingSystemUiOverlay value)?
+        setDialingSystemUiOverlay,
+    TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
+    TResult Function(_SetDialingInfo value)? setDialingInfo,
+    TResult Function(_SetDialingInfoUsernameStyle value)?
+        setDialingInfoUsernameStyle,
+    TResult Function(_SetDialingInfoNumberStyle value)?
+        setDialingInfoNumberStyle,
+    TResult Function(_SetDialingInfoCallStatusStyle value)?
+        setDialingInfoCallStatusStyle,
+    TResult Function(_SetDialingInfoProcessingStatusStyle value)?
+        setDialingInfoProcessingStatusStyle,
+    TResult Function(_SetKeypadPage value)? setKeypadPage,
+    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
+        setLoginOtpSigninVerifyCountdown,
+    TResult Function(_SetLoginSignupVerifyCountdown value)?
+        setLoginSignupVerifyCountdown,
+    required TResult orElse(),
+  }) {
+    if (updateSwitchPage != null) {
+      return updateSwitchPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSwitchPage implements ThemePageEvent {
+  const factory _UpdateSwitchPage(final LoginSwitchPageConfig login) =
+      _$UpdateSwitchPageImpl;
+
+  LoginSwitchPageConfig get login;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateSwitchPageImplCopyWith<_$UpdateSwitchPageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetLoginPictureImplCopyWith<$Res> {
+  factory _$$SetLoginPictureImplCopyWith(_$SetLoginPictureImpl value,
+          $Res Function(_$SetLoginPictureImpl) then) =
+      __$$SetLoginPictureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ImageSource imageSource});
+
+  $ImageSourceCopyWith<$Res> get imageSource;
+}
+
+/// @nodoc
+class __$$SetLoginPictureImplCopyWithImpl<$Res>
+    extends _$ThemePageEventCopyWithImpl<$Res, _$SetLoginPictureImpl>
+    implements _$$SetLoginPictureImplCopyWith<$Res> {
+  __$$SetLoginPictureImplCopyWithImpl(
+      _$SetLoginPictureImpl _value, $Res Function(_$SetLoginPictureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageSource = null,
+  }) {
+    return _then(_$SetLoginPictureImpl(
+      null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSourceCopyWith<$Res> get imageSource {
+    return $ImageSourceCopyWith<$Res>(_value.imageSource, (value) {
+      return _then(_value.copyWith(imageSource: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SetLoginPictureImpl implements _SetLoginPicture {
+  const _$SetLoginPictureImpl(this.imageSource);
+
+  @override
+  final ImageSource imageSource;
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setLoginPicture(imageSource: $imageSource)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetLoginPictureImpl &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageSource);
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetLoginPictureImplCopyWith<_$SetLoginPictureImpl> get copyWith =>
+      __$$SetLoginPictureImplCopyWithImpl<_$SetLoginPictureImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LoginPageConfig login) setLoginPage,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
+    required TResult Function(double? scale) setLoginScale,
+    required TResult Function(String? color) setLoginLabelColor,
+    required TResult Function(LoginModeSelectPageConfig modeSelect)
+        setLoginModeSelect,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonLoginStyle,
+    required TResult Function(ElevatedButtonStyleType type)
+        setLoginModeSelectButtonSignupStyle,
+    required TResult Function(AboutPageConfig about) setAboutPage,
+    required TResult Function(AssetModel asset) setAboutPicture,
+    required TResult Function(Metadata metadata) setAboutMetadata,
+    required TResult Function(CallPageConfig dialingPage) setDialingPage,
+    required TResult Function(OverlayStyleModel? style)
+        setDialingSystemUiOverlay,
+    required TResult Function(AppBarStyleConfig? appBarStyle)
+        setDialingAppBarStyle,
+    required TResult Function(CallPageInfoConfig? info) setDialingInfo,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoUsernameStyle,
+    required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoCallStatusStyle,
+    required TResult Function(TextStyleConfig? style)
+        setDialingInfoProcessingStatusStyle,
+    required TResult Function(KeypadPageConfig keypad) setKeypadPage,
+    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
+    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginPicture(imageSource);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LoginPageConfig login)? setLoginPage,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
+    TResult? Function(double? scale)? setLoginScale,
+    TResult? Function(String? color)? setLoginLabelColor,
+    TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonLoginStyle,
+    TResult? Function(ElevatedButtonStyleType type)?
+        setLoginModeSelectButtonSignupStyle,
+    TResult? Function(AboutPageConfig about)? setAboutPage,
+    TResult? Function(AssetModel asset)? setAboutPicture,
+    TResult? Function(Metadata metadata)? setAboutMetadata,
+    TResult? Function(CallPageConfig dialingPage)? setDialingPage,
+    TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
+    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
+    TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
+    TResult? Function(TextStyleConfig? style)?
+        setDialingInfoProcessingStatusStyle,
+    TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
+    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
+    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
+  }) {
+    return setLoginPicture?.call(imageSource);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LoginPageConfig login)? setLoginPage,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7412,7 +7744,7 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult orElse(),
   }) {
     if (setLoginPicture != null) {
-      return setLoginPicture(asset);
+      return setLoginPicture(imageSource);
     }
     return orElse();
   }
@@ -7421,6 +7753,7 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -7459,6 +7792,7 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7496,6 +7830,7 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7535,10 +7870,10 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
 }
 
 abstract class _SetLoginPicture implements ThemePageEvent {
-  const factory _SetLoginPicture(final AssetModel asset) =
+  const factory _SetLoginPicture(final ImageSource imageSource) =
       _$SetLoginPictureImpl;
 
-  AssetModel get asset;
+  ImageSource get imageSource;
 
   /// Create a copy of ThemePageEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -7616,7 +7951,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -7652,7 +7988,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7683,7 +8020,8 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7718,6 +8056,7 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -7756,6 +8095,7 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7793,6 +8133,7 @@ class _$SetLoginScaleImpl implements _SetLoginScale {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -7913,7 +8254,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -7949,7 +8291,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -7980,7 +8323,8 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8015,6 +8359,7 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -8053,6 +8398,7 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8090,6 +8436,7 @@ class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8224,7 +8571,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -8260,7 +8608,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8291,7 +8640,8 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8326,6 +8676,7 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -8364,6 +8715,7 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8401,6 +8753,7 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8527,7 +8880,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -8563,7 +8917,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8594,7 +8949,8 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8629,6 +8985,7 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -8667,6 +9024,7 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8704,6 +9062,7 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -8832,7 +9191,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -8868,7 +9228,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8899,7 +9260,8 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -8934,6 +9296,7 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -8972,6 +9335,7 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9009,6 +9373,7 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9143,7 +9508,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -9179,7 +9545,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9210,7 +9577,8 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9245,6 +9613,7 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -9283,6 +9652,7 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9320,6 +9690,7 @@ class _$SetAboutPageImpl implements _SetAboutPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9452,7 +9823,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -9488,7 +9860,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9519,7 +9892,8 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9554,6 +9928,7 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -9592,6 +9967,7 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9629,6 +10005,7 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9763,7 +10140,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -9799,7 +10177,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9830,7 +10209,8 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -9865,6 +10245,7 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -9903,6 +10284,7 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -9940,6 +10322,7 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10074,7 +10457,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -10110,7 +10494,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10141,7 +10526,8 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10176,6 +10562,7 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -10214,6 +10601,7 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10251,6 +10639,7 @@ class _$SetDialingPageImpl implements _SetDialingPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10390,7 +10779,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -10426,7 +10816,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10457,7 +10848,8 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10492,6 +10884,7 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -10530,6 +10923,7 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10567,6 +10961,7 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10706,7 +11101,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -10742,7 +11138,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10773,7 +11170,8 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -10808,6 +11206,7 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -10846,6 +11245,7 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -10883,6 +11283,7 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11020,7 +11421,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -11056,7 +11458,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11087,7 +11490,8 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11122,6 +11526,7 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -11160,6 +11565,7 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11197,6 +11603,7 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11338,7 +11745,8 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -11374,7 +11782,8 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11405,7 +11814,8 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11440,6 +11850,7 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -11478,6 +11889,7 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11515,6 +11927,7 @@ class _$SetDialingInfoUsernameStyleImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11654,7 +12067,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -11690,7 +12104,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11721,7 +12136,8 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -11756,6 +12172,7 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -11794,6 +12211,7 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11831,6 +12249,7 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -11973,7 +12392,8 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -12009,7 +12429,8 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12040,7 +12461,8 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12075,6 +12497,7 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -12113,6 +12536,7 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12150,6 +12574,7 @@ class _$SetDialingInfoCallStatusStyleImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12293,7 +12718,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -12329,7 +12755,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12360,7 +12787,8 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12395,6 +12823,7 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -12433,6 +12862,7 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12470,6 +12900,7 @@ class _$SetDialingInfoProcessingStatusStyleImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12603,7 +13034,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -12639,7 +13071,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12670,7 +13103,8 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12705,6 +13139,7 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -12743,6 +13178,7 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12780,6 +13216,7 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -12906,7 +13343,8 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -12942,7 +13380,8 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -12973,7 +13412,8 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -13008,6 +13448,7 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -13046,6 +13487,7 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -13083,6 +13525,7 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -13210,7 +13653,8 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(AssetModel asset) setLoginPicture,
+    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
+    required TResult Function(ImageSource imageSource) setLoginPicture,
     required TResult Function(double? scale) setLoginScale,
     required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
@@ -13246,7 +13690,8 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(AssetModel asset)? setLoginPicture,
+    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult? Function(ImageSource imageSource)? setLoginPicture,
     TResult? Function(double? scale)? setLoginScale,
     TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -13277,7 +13722,8 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(AssetModel asset)? setLoginPicture,
+    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
+    TResult Function(ImageSource imageSource)? setLoginPicture,
     TResult Function(double? scale)? setLoginScale,
     TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
@@ -13312,6 +13758,7 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginPage value) setLoginPage,
+    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
     required TResult Function(_SetLoginScale value) setLoginScale,
     required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
@@ -13350,6 +13797,7 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginPage value)? setLoginPage,
+    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
     TResult? Function(_SetLoginScale value)? setLoginScale,
     TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -13387,6 +13835,7 @@ class _$SetLoginSignupVerifyCountdownImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginPage value)? setLoginPage,
+    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
     TResult Function(_SetLoginScale value)? setLoginScale,
     TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
@@ -13469,6 +13918,8 @@ mixin _$ThemeWidgetEvent {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -13549,6 +14000,7 @@ mixin _$ThemeWidgetEvent {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -13624,6 +14076,7 @@ mixin _$ThemeWidgetEvent {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -13709,6 +14162,8 @@ mixin _$ThemeWidgetEvent {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -13807,6 +14262,8 @@ mixin _$ThemeWidgetEvent {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -13894,6 +14351,8 @@ mixin _$ThemeWidgetEvent {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -14078,6 +14537,8 @@ class _$SetFontsImpl implements _SetFonts {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -14161,6 +14622,7 @@ class _$SetFontsImpl implements _SetFonts {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -14239,6 +14701,7 @@ class _$SetFontsImpl implements _SetFonts {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -14330,6 +14793,8 @@ class _$SetFontsImpl implements _SetFonts {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -14431,6 +14896,8 @@ class _$SetFontsImpl implements _SetFonts {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -14521,6 +14988,8 @@ class _$SetFontsImpl implements _SetFonts {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -14690,6 +15159,8 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -14773,6 +15244,7 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -14851,6 +15323,7 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -14942,6 +15415,8 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -15043,6 +15518,8 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -15133,6 +15610,8 @@ class _$SetGlobalFontFamilyImpl implements _SetGlobalFontFamily {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -15313,6 +15792,8 @@ class _$SetButtonImpl implements _SetButton {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -15396,6 +15877,7 @@ class _$SetButtonImpl implements _SetButton {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -15474,6 +15956,7 @@ class _$SetButtonImpl implements _SetButton {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -15565,6 +16048,8 @@ class _$SetButtonImpl implements _SetButton {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -15666,6 +16151,8 @@ class _$SetButtonImpl implements _SetButton {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -15756,6 +16243,8 @@ class _$SetButtonImpl implements _SetButton {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -15938,6 +16427,8 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -16021,6 +16512,7 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -16099,6 +16591,7 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -16190,6 +16683,8 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -16291,6 +16786,8 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -16381,6 +16878,8 @@ class _$SetPrimaryElevatedButtonImpl implements _SetPrimaryElevatedButton {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -16550,6 +17049,8 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -16633,6 +17134,7 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -16711,6 +17213,7 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -16802,6 +17305,8 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -16903,6 +17408,8 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -16993,6 +17500,8 @@ class _$SetPEBBackgroundImpl implements _SetPEBBackground {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -17161,6 +17670,8 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -17244,6 +17755,7 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -17322,6 +17834,7 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -17413,6 +17926,8 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -17514,6 +18029,8 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -17604,6 +18121,8 @@ class _$SetPEBForegroundImpl implements _SetPEBForeground {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -17772,6 +18291,8 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -17855,6 +18376,7 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -17933,6 +18455,7 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -18024,6 +18547,8 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -18125,6 +18650,8 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -18215,6 +18742,8 @@ class _$SetPEBTextColorImpl implements _SetPEBTextColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -18383,6 +18912,8 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -18466,6 +18997,7 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -18544,6 +19076,7 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -18635,6 +19168,8 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -18736,6 +19271,8 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -18826,6 +19363,8 @@ class _$SetPEBIconColorImpl implements _SetPEBIconColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -18996,6 +19535,8 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -19079,6 +19620,7 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -19157,6 +19699,7 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -19248,6 +19791,8 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -19349,6 +19894,8 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -19439,6 +19986,8 @@ class _$SetPEBDisabledIconColorImpl implements _SetPEBDisabledIconColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -19619,6 +20168,8 @@ class _$SetGroupImpl implements _SetGroup {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -19702,6 +20253,7 @@ class _$SetGroupImpl implements _SetGroup {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -19780,6 +20332,7 @@ class _$SetGroupImpl implements _SetGroup {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -19871,6 +20424,8 @@ class _$SetGroupImpl implements _SetGroup {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -19972,6 +20527,8 @@ class _$SetGroupImpl implements _SetGroup {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -20062,6 +20619,8 @@ class _$SetGroupImpl implements _SetGroup {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -20243,6 +20802,8 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -20326,6 +20887,7 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -20404,6 +20966,7 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -20495,6 +21058,8 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -20596,6 +21161,8 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -20686,6 +21253,8 @@ class _$SetGroupTitleListTileImpl implements _SetGroupTitleListTile {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -20860,6 +21429,8 @@ class _$SetGroupTitleListTileBackgroundImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -20943,6 +21514,7 @@ class _$SetGroupTitleListTileBackgroundImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -21021,6 +21593,7 @@ class _$SetGroupTitleListTileBackgroundImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -21112,6 +21685,8 @@ class _$SetGroupTitleListTileBackgroundImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -21213,6 +21788,8 @@ class _$SetGroupTitleListTileBackgroundImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -21303,6 +21880,8 @@ class _$SetGroupTitleListTileBackgroundImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -21478,6 +22057,8 @@ class _$SetGroupTitleListTileTextColorImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -21561,6 +22142,7 @@ class _$SetGroupTitleListTileTextColorImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -21639,6 +22221,7 @@ class _$SetGroupTitleListTileTextColorImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -21730,6 +22313,8 @@ class _$SetGroupTitleListTileTextColorImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -21831,6 +22416,8 @@ class _$SetGroupTitleListTileTextColorImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -21921,6 +22508,8 @@ class _$SetGroupTitleListTileTextColorImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -22103,6 +22692,8 @@ class _$SetCallActionsImpl implements _SetCallActions {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -22186,6 +22777,7 @@ class _$SetCallActionsImpl implements _SetCallActions {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -22264,6 +22856,7 @@ class _$SetCallActionsImpl implements _SetCallActions {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -22355,6 +22948,8 @@ class _$SetCallActionsImpl implements _SetCallActions {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -22456,6 +23051,8 @@ class _$SetCallActionsImpl implements _SetCallActions {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -22546,6 +23143,8 @@ class _$SetCallActionsImpl implements _SetCallActions {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -22726,6 +23325,8 @@ class _$SetBarImpl implements _SetBar {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -22809,6 +23410,7 @@ class _$SetBarImpl implements _SetBar {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -22887,6 +23489,7 @@ class _$SetBarImpl implements _SetBar {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -22978,6 +23581,8 @@ class _$SetBarImpl implements _SetBar {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -23079,6 +23684,8 @@ class _$SetBarImpl implements _SetBar {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -23169,6 +23776,8 @@ class _$SetBarImpl implements _SetBar {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -23349,6 +23958,8 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -23432,6 +24043,7 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -23510,6 +24122,7 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -23601,6 +24214,8 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -23702,6 +24317,8 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -23792,6 +24409,8 @@ class _$SetBottomNavBarImpl implements _SetBottomNavBar {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -23964,6 +24583,8 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -24047,6 +24668,7 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -24125,6 +24747,7 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -24216,6 +24839,8 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -24317,6 +24942,8 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -24407,6 +25034,8 @@ class _$SetBottomNavBarBackgroundImpl implements _SetBottomNavBarBackground {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -24578,6 +25207,8 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -24661,6 +25292,7 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -24739,6 +25371,7 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -24830,6 +25463,8 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -24931,6 +25566,8 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -25021,6 +25658,8 @@ class _$SetBottomNavBarSelectedImpl implements _SetBottomNavBarSelected {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -25193,6 +25832,8 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -25276,6 +25917,7 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -25354,6 +25996,7 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -25445,6 +26088,8 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -25546,6 +26191,8 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -25636,6 +26283,8 @@ class _$SetBottomNavBarUnselectedImpl implements _SetBottomNavBarUnselected {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -25816,6 +26465,8 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -25899,6 +26550,7 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -25977,6 +26629,7 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -26068,6 +26721,8 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -26169,6 +26824,8 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -26259,6 +26916,8 @@ class _$SetExtTabBarImpl implements _SetExtTabBar {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -26430,6 +27089,8 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -26513,6 +27174,7 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -26591,6 +27253,7 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -26682,6 +27345,8 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -26783,6 +27448,8 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -26873,6 +27540,8 @@ class _$SetExtTabBarForegroundImpl implements _SetExtTabBarForeground {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -27044,6 +27713,8 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -27127,6 +27798,7 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -27205,6 +27877,7 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -27296,6 +27969,8 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -27397,6 +28072,8 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -27487,6 +28164,8 @@ class _$SetExtTabBarBackgroundImpl implements _SetExtTabBarBackground {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -27657,6 +28336,8 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -27740,6 +28421,7 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -27818,6 +28500,7 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -27909,6 +28592,8 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -28010,6 +28695,8 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -28100,6 +28787,8 @@ class _$SetExtTabBarSelectedImpl implements _SetExtTabBarSelected {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -28271,6 +28960,8 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -28354,6 +29045,7 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -28432,6 +29124,7 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -28523,6 +29216,8 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -28624,6 +29319,8 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -28714,6 +29411,8 @@ class _$SetExtTabBarUnselectedImpl implements _SetExtTabBarUnselected {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -28785,6 +29484,644 @@ abstract class _SetExtTabBarUnselected implements ThemeWidgetEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetExtTabBarUnselectedImplCopyWith<_$SetExtTabBarUnselectedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetDefaultPlaceholderImageImplCopyWith<$Res> {
+  factory _$$SetDefaultPlaceholderImageImplCopyWith(
+          _$SetDefaultPlaceholderImageImpl value,
+          $Res Function(_$SetDefaultPlaceholderImageImpl) then) =
+      __$$SetDefaultPlaceholderImageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ImageSource imageSource});
+
+  $ImageSourceCopyWith<$Res> get imageSource;
+}
+
+/// @nodoc
+class __$$SetDefaultPlaceholderImageImplCopyWithImpl<$Res>
+    extends _$ThemeWidgetEventCopyWithImpl<$Res,
+        _$SetDefaultPlaceholderImageImpl>
+    implements _$$SetDefaultPlaceholderImageImplCopyWith<$Res> {
+  __$$SetDefaultPlaceholderImageImplCopyWithImpl(
+      _$SetDefaultPlaceholderImageImpl _value,
+      $Res Function(_$SetDefaultPlaceholderImageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageSource = null,
+  }) {
+    return _then(_$SetDefaultPlaceholderImageImpl(
+      null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+    ));
+  }
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSourceCopyWith<$Res> get imageSource {
+    return $ImageSourceCopyWith<$Res>(_value.imageSource, (value) {
+      return _then(_value.copyWith(imageSource: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SetDefaultPlaceholderImageImpl implements _SetDefaultPlaceholderImage {
+  const _$SetDefaultPlaceholderImageImpl(this.imageSource);
+
+  @override
+  final ImageSource imageSource;
+
+  @override
+  String toString() {
+    return 'ThemeWidgetEvent.setDefaultPlaceholderImage(imageSource: $imageSource)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetDefaultPlaceholderImageImpl &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageSource);
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetDefaultPlaceholderImageImplCopyWith<_$SetDefaultPlaceholderImageImpl>
+      get copyWith => __$$SetDefaultPlaceholderImageImplCopyWithImpl<
+          _$SetDefaultPlaceholderImageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(FontsConfig fonts) setFonts,
+    required TResult Function(String? fontFamily) setGlobalFontFamily,
+    required TResult Function(ButtonWidgetConfig button) setButton,
+    required TResult Function(ElevatedButtonWidgetConfig cfg) setPEButton,
+    required TResult Function(String? color) setPEButtonBackground,
+    required TResult Function(String? color) setPEButtonForeground,
+    required TResult Function(String? color) setPEButtonTextColor,
+    required TResult Function(String? color) setPEButtonIconColor,
+    required TResult Function(String? color) setPEButtonDisabledIconColor,
+    required TResult Function(GroupWidgetConfig group) setGroup,
+    required TResult Function(GroupTitleListTileWidgetConfig cfg)
+        setGroupTitleListTile,
+    required TResult Function(String? color) setGroupTitleListTileBackground,
+    required TResult Function(String? color) setGroupTitleListTileTextColor,
+    required TResult Function(CallActionsWidgetConfig cfg) setCallActions,
+    required TResult Function(BarWidgetConfig bar) setBar,
+    required TResult Function(BottomNavigationBarWidgetConfig cfg)
+        setBottomNavigationBar,
+    required TResult Function(String? color) setBottomNavBarBackground,
+    required TResult Function(String? color) setBottomNavBarSelected,
+    required TResult Function(String? color) setBottomNavBarUnselected,
+    required TResult Function(ExtTabBarWidgetConfig cfg) setExtTabBar,
+    required TResult Function(String? color) setExtTabBarForeground,
+    required TResult Function(String? color) setExtTabBarBackground,
+    required TResult Function(String? color) setExtTabBarSelected,
+    required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
+    required TResult Function(ImageAssetsConfig cfg) setImageAssets,
+    required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
+    required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
+    required TResult Function(AppIconWidgetConfig cfg) setAppIcon,
+    required TResult Function(LeadingAvatarStyleConfig cfg)
+        setLeadingAvatarStyle,
+    required TResult Function(InputWidgetConfig cfg) setInput,
+    required TResult Function(TextFormFieldWidgetConfig cfg) setTextFormField,
+    required TResult Function(String? color) setInputLabelColor,
+    required TResult Function(InputBorderWidgetConfig cfg) setInputBorder,
+    required TResult Function(BorderWidgetConfig cfg) setInputBorderDisabled,
+    required TResult Function(BorderWidgetConfig cfg) setInputBorderFocused,
+    required TResult Function(BorderWidgetConfig cfg) setInputBorderAny,
+    required TResult Function(TextWidgetConfig cfg) setText,
+    required TResult Function(TextSelectionWidgetConfig cfg) setTextSelection,
+    required TResult Function(String? color) setTextCursorColor,
+    required TResult Function(String? color) setTextSelectionColor,
+    required TResult Function(String? color) setTextSelectionHandleColor,
+    required TResult Function(LinkifyWidgetConfig cfg) setLinkify,
+    required TResult Function(String? color) setLinkifyStyleColor,
+    required TResult Function(String? color) setLinkifyLinkColor,
+    required TResult Function(DialogWidgetConfig cfg) setDialog,
+    required TResult Function(ConfirmDialogWidgetConfig cfg) setConfirmDialog,
+    required TResult Function(String? color) setConfirmDialogActive1,
+    required TResult Function(String? color) setConfirmDialogActive2,
+    required TResult Function(String? color) setConfirmDialogDefault,
+    required TResult Function(SnackBarWidgetConfig cfg) setSnackBar,
+    required TResult Function(ActionPadWidgetConfig cfg) setActionPad,
+    required TResult Function(ElevatedButtonWidgetConfig cfg)
+        setActionPadCallStart,
+    required TResult Function(ElevatedButtonWidgetConfig cfg)
+        setActionPadTransfer,
+    required TResult Function(ElevatedButtonWidgetConfig cfg)
+        setActionPadBackspacePressed,
+    required TResult Function(StatusesWidgetConfig cfg) setStatuses,
+    required TResult Function(RegistrationStatusesWidgetConfig cfg)
+        setRegistrationStatuses,
+    required TResult Function(String color) setRegistrationOnline,
+    required TResult Function(String color) setRegistrationOffline,
+    required TResult Function(CallStatusesWidgetConfig cfg) setCallStatuses,
+    required TResult Function(String color) setCallStatusesConnectivityNone,
+    required TResult Function(String color) setCallStatusesConnectError,
+    required TResult Function(String color) setCallStatusesAppUnregistered,
+    required TResult Function(String color) setCallStatusesConnectIssue,
+    required TResult Function(String color) setCallStatusesInProgress,
+    required TResult Function(String color) setCallStatusesReady,
+    required TResult Function(DecorationConfig cfg) setDecoration,
+    required TResult Function(GradientColorsConfig cfg) setPrimaryGradient,
+    required TResult Function(List<CustomColor> colors)
+        setPrimaryGradientColors,
+  }) {
+    return setDefaultPlaceholderImage(imageSource);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(FontsConfig fonts)? setFonts,
+    TResult? Function(String? fontFamily)? setGlobalFontFamily,
+    TResult? Function(ButtonWidgetConfig button)? setButton,
+    TResult? Function(ElevatedButtonWidgetConfig cfg)? setPEButton,
+    TResult? Function(String? color)? setPEButtonBackground,
+    TResult? Function(String? color)? setPEButtonForeground,
+    TResult? Function(String? color)? setPEButtonTextColor,
+    TResult? Function(String? color)? setPEButtonIconColor,
+    TResult? Function(String? color)? setPEButtonDisabledIconColor,
+    TResult? Function(GroupWidgetConfig group)? setGroup,
+    TResult? Function(GroupTitleListTileWidgetConfig cfg)?
+        setGroupTitleListTile,
+    TResult? Function(String? color)? setGroupTitleListTileBackground,
+    TResult? Function(String? color)? setGroupTitleListTileTextColor,
+    TResult? Function(CallActionsWidgetConfig cfg)? setCallActions,
+    TResult? Function(BarWidgetConfig bar)? setBar,
+    TResult? Function(BottomNavigationBarWidgetConfig cfg)?
+        setBottomNavigationBar,
+    TResult? Function(String? color)? setBottomNavBarBackground,
+    TResult? Function(String? color)? setBottomNavBarSelected,
+    TResult? Function(String? color)? setBottomNavBarUnselected,
+    TResult? Function(ExtTabBarWidgetConfig cfg)? setExtTabBar,
+    TResult? Function(String? color)? setExtTabBarForeground,
+    TResult? Function(String? color)? setExtTabBarBackground,
+    TResult? Function(String? color)? setExtTabBarSelected,
+    TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
+    TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
+    TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
+    TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
+    TResult? Function(AppIconWidgetConfig cfg)? setAppIcon,
+    TResult? Function(LeadingAvatarStyleConfig cfg)? setLeadingAvatarStyle,
+    TResult? Function(InputWidgetConfig cfg)? setInput,
+    TResult? Function(TextFormFieldWidgetConfig cfg)? setTextFormField,
+    TResult? Function(String? color)? setInputLabelColor,
+    TResult? Function(InputBorderWidgetConfig cfg)? setInputBorder,
+    TResult? Function(BorderWidgetConfig cfg)? setInputBorderDisabled,
+    TResult? Function(BorderWidgetConfig cfg)? setInputBorderFocused,
+    TResult? Function(BorderWidgetConfig cfg)? setInputBorderAny,
+    TResult? Function(TextWidgetConfig cfg)? setText,
+    TResult? Function(TextSelectionWidgetConfig cfg)? setTextSelection,
+    TResult? Function(String? color)? setTextCursorColor,
+    TResult? Function(String? color)? setTextSelectionColor,
+    TResult? Function(String? color)? setTextSelectionHandleColor,
+    TResult? Function(LinkifyWidgetConfig cfg)? setLinkify,
+    TResult? Function(String? color)? setLinkifyStyleColor,
+    TResult? Function(String? color)? setLinkifyLinkColor,
+    TResult? Function(DialogWidgetConfig cfg)? setDialog,
+    TResult? Function(ConfirmDialogWidgetConfig cfg)? setConfirmDialog,
+    TResult? Function(String? color)? setConfirmDialogActive1,
+    TResult? Function(String? color)? setConfirmDialogActive2,
+    TResult? Function(String? color)? setConfirmDialogDefault,
+    TResult? Function(SnackBarWidgetConfig cfg)? setSnackBar,
+    TResult? Function(ActionPadWidgetConfig cfg)? setActionPad,
+    TResult? Function(ElevatedButtonWidgetConfig cfg)? setActionPadCallStart,
+    TResult? Function(ElevatedButtonWidgetConfig cfg)? setActionPadTransfer,
+    TResult? Function(ElevatedButtonWidgetConfig cfg)?
+        setActionPadBackspacePressed,
+    TResult? Function(StatusesWidgetConfig cfg)? setStatuses,
+    TResult? Function(RegistrationStatusesWidgetConfig cfg)?
+        setRegistrationStatuses,
+    TResult? Function(String color)? setRegistrationOnline,
+    TResult? Function(String color)? setRegistrationOffline,
+    TResult? Function(CallStatusesWidgetConfig cfg)? setCallStatuses,
+    TResult? Function(String color)? setCallStatusesConnectivityNone,
+    TResult? Function(String color)? setCallStatusesConnectError,
+    TResult? Function(String color)? setCallStatusesAppUnregistered,
+    TResult? Function(String color)? setCallStatusesConnectIssue,
+    TResult? Function(String color)? setCallStatusesInProgress,
+    TResult? Function(String color)? setCallStatusesReady,
+    TResult? Function(DecorationConfig cfg)? setDecoration,
+    TResult? Function(GradientColorsConfig cfg)? setPrimaryGradient,
+    TResult? Function(List<CustomColor> colors)? setPrimaryGradientColors,
+  }) {
+    return setDefaultPlaceholderImage?.call(imageSource);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(FontsConfig fonts)? setFonts,
+    TResult Function(String? fontFamily)? setGlobalFontFamily,
+    TResult Function(ButtonWidgetConfig button)? setButton,
+    TResult Function(ElevatedButtonWidgetConfig cfg)? setPEButton,
+    TResult Function(String? color)? setPEButtonBackground,
+    TResult Function(String? color)? setPEButtonForeground,
+    TResult Function(String? color)? setPEButtonTextColor,
+    TResult Function(String? color)? setPEButtonIconColor,
+    TResult Function(String? color)? setPEButtonDisabledIconColor,
+    TResult Function(GroupWidgetConfig group)? setGroup,
+    TResult Function(GroupTitleListTileWidgetConfig cfg)? setGroupTitleListTile,
+    TResult Function(String? color)? setGroupTitleListTileBackground,
+    TResult Function(String? color)? setGroupTitleListTileTextColor,
+    TResult Function(CallActionsWidgetConfig cfg)? setCallActions,
+    TResult Function(BarWidgetConfig bar)? setBar,
+    TResult Function(BottomNavigationBarWidgetConfig cfg)?
+        setBottomNavigationBar,
+    TResult Function(String? color)? setBottomNavBarBackground,
+    TResult Function(String? color)? setBottomNavBarSelected,
+    TResult Function(String? color)? setBottomNavBarUnselected,
+    TResult Function(ExtTabBarWidgetConfig cfg)? setExtTabBar,
+    TResult Function(String? color)? setExtTabBarForeground,
+    TResult Function(String? color)? setExtTabBarBackground,
+    TResult Function(String? color)? setExtTabBarSelected,
+    TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
+    TResult Function(ImageAssetsConfig cfg)? setImageAssets,
+    TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
+    TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
+    TResult Function(AppIconWidgetConfig cfg)? setAppIcon,
+    TResult Function(LeadingAvatarStyleConfig cfg)? setLeadingAvatarStyle,
+    TResult Function(InputWidgetConfig cfg)? setInput,
+    TResult Function(TextFormFieldWidgetConfig cfg)? setTextFormField,
+    TResult Function(String? color)? setInputLabelColor,
+    TResult Function(InputBorderWidgetConfig cfg)? setInputBorder,
+    TResult Function(BorderWidgetConfig cfg)? setInputBorderDisabled,
+    TResult Function(BorderWidgetConfig cfg)? setInputBorderFocused,
+    TResult Function(BorderWidgetConfig cfg)? setInputBorderAny,
+    TResult Function(TextWidgetConfig cfg)? setText,
+    TResult Function(TextSelectionWidgetConfig cfg)? setTextSelection,
+    TResult Function(String? color)? setTextCursorColor,
+    TResult Function(String? color)? setTextSelectionColor,
+    TResult Function(String? color)? setTextSelectionHandleColor,
+    TResult Function(LinkifyWidgetConfig cfg)? setLinkify,
+    TResult Function(String? color)? setLinkifyStyleColor,
+    TResult Function(String? color)? setLinkifyLinkColor,
+    TResult Function(DialogWidgetConfig cfg)? setDialog,
+    TResult Function(ConfirmDialogWidgetConfig cfg)? setConfirmDialog,
+    TResult Function(String? color)? setConfirmDialogActive1,
+    TResult Function(String? color)? setConfirmDialogActive2,
+    TResult Function(String? color)? setConfirmDialogDefault,
+    TResult Function(SnackBarWidgetConfig cfg)? setSnackBar,
+    TResult Function(ActionPadWidgetConfig cfg)? setActionPad,
+    TResult Function(ElevatedButtonWidgetConfig cfg)? setActionPadCallStart,
+    TResult Function(ElevatedButtonWidgetConfig cfg)? setActionPadTransfer,
+    TResult Function(ElevatedButtonWidgetConfig cfg)?
+        setActionPadBackspacePressed,
+    TResult Function(StatusesWidgetConfig cfg)? setStatuses,
+    TResult Function(RegistrationStatusesWidgetConfig cfg)?
+        setRegistrationStatuses,
+    TResult Function(String color)? setRegistrationOnline,
+    TResult Function(String color)? setRegistrationOffline,
+    TResult Function(CallStatusesWidgetConfig cfg)? setCallStatuses,
+    TResult Function(String color)? setCallStatusesConnectivityNone,
+    TResult Function(String color)? setCallStatusesConnectError,
+    TResult Function(String color)? setCallStatusesAppUnregistered,
+    TResult Function(String color)? setCallStatusesConnectIssue,
+    TResult Function(String color)? setCallStatusesInProgress,
+    TResult Function(String color)? setCallStatusesReady,
+    TResult Function(DecorationConfig cfg)? setDecoration,
+    TResult Function(GradientColorsConfig cfg)? setPrimaryGradient,
+    TResult Function(List<CustomColor> colors)? setPrimaryGradientColors,
+    required TResult orElse(),
+  }) {
+    if (setDefaultPlaceholderImage != null) {
+      return setDefaultPlaceholderImage(imageSource);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetFonts value) setFonts,
+    required TResult Function(_SetGlobalFontFamily value) setGlobalFontFamily,
+    required TResult Function(_SetButton value) setButton,
+    required TResult Function(_SetPrimaryElevatedButton value) setPEButton,
+    required TResult Function(_SetPEBBackground value) setPEButtonBackground,
+    required TResult Function(_SetPEBForeground value) setPEButtonForeground,
+    required TResult Function(_SetPEBTextColor value) setPEButtonTextColor,
+    required TResult Function(_SetPEBIconColor value) setPEButtonIconColor,
+    required TResult Function(_SetPEBDisabledIconColor value)
+        setPEButtonDisabledIconColor,
+    required TResult Function(_SetGroup value) setGroup,
+    required TResult Function(_SetGroupTitleListTile value)
+        setGroupTitleListTile,
+    required TResult Function(_SetGroupTitleListTileBackground value)
+        setGroupTitleListTileBackground,
+    required TResult Function(_SetGroupTitleListTileTextColor value)
+        setGroupTitleListTileTextColor,
+    required TResult Function(_SetCallActions value) setCallActions,
+    required TResult Function(_SetBar value) setBar,
+    required TResult Function(_SetBottomNavBar value) setBottomNavigationBar,
+    required TResult Function(_SetBottomNavBarBackground value)
+        setBottomNavBarBackground,
+    required TResult Function(_SetBottomNavBarSelected value)
+        setBottomNavBarSelected,
+    required TResult Function(_SetBottomNavBarUnselected value)
+        setBottomNavBarUnselected,
+    required TResult Function(_SetExtTabBar value) setExtTabBar,
+    required TResult Function(_SetExtTabBarForeground value)
+        setExtTabBarForeground,
+    required TResult Function(_SetExtTabBarBackground value)
+        setExtTabBarBackground,
+    required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
+    required TResult Function(_SetExtTabBarUnselected value)
+        setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
+    required TResult Function(_SetImageAssets value) setImageAssets,
+    required TResult Function(_SetPrimaryOnboardingLogo value)
+        setPrimaryOnboardingLogo,
+    required TResult Function(_SetSecondaryOnboardingLogo value)
+        setSecondaryOnboardingLogo,
+    required TResult Function(_SetAppIcon value) setAppIcon,
+    required TResult Function(_SetLeadingAvatarStyle value)
+        setLeadingAvatarStyle,
+    required TResult Function(_SetInput value) setInput,
+    required TResult Function(_SetTextFormField value) setTextFormField,
+    required TResult Function(_SetInputLabelColor value) setInputLabelColor,
+    required TResult Function(_SetInputBorder value) setInputBorder,
+    required TResult Function(_SetInputBorderDisabled value)
+        setInputBorderDisabled,
+    required TResult Function(_SetInputBorderFocused value)
+        setInputBorderFocused,
+    required TResult Function(_SetInputBorderAny value) setInputBorderAny,
+    required TResult Function(_SetText value) setText,
+    required TResult Function(_SetTextSelection value) setTextSelection,
+    required TResult Function(_SetTextCursorColor value) setTextCursorColor,
+    required TResult Function(_SetTextSelectionColor value)
+        setTextSelectionColor,
+    required TResult Function(_SetTextSelectionHandleColor value)
+        setTextSelectionHandleColor,
+    required TResult Function(_SetLinkify value) setLinkify,
+    required TResult Function(_SetLinkifyStyleColor value) setLinkifyStyleColor,
+    required TResult Function(_SetLinkifyLinkColor value) setLinkifyLinkColor,
+    required TResult Function(_SetDialog value) setDialog,
+    required TResult Function(_SetConfirmDialog value) setConfirmDialog,
+    required TResult Function(_SetConfirmDialogActive1 value)
+        setConfirmDialogActive1,
+    required TResult Function(_SetConfirmDialogActive2 value)
+        setConfirmDialogActive2,
+    required TResult Function(_SetConfirmDialogDefault value)
+        setConfirmDialogDefault,
+    required TResult Function(_SetSnackBar value) setSnackBar,
+    required TResult Function(_SetActionPad value) setActionPad,
+    required TResult Function(_SetActionPadCallStart value)
+        setActionPadCallStart,
+    required TResult Function(_SetActionPadTransfer value) setActionPadTransfer,
+    required TResult Function(_SetActionPadBackspace value)
+        setActionPadBackspacePressed,
+    required TResult Function(_SetStatuses value) setStatuses,
+    required TResult Function(_SetRegistrationStatuses value)
+        setRegistrationStatuses,
+    required TResult Function(_SetRegistrationOnline value)
+        setRegistrationOnline,
+    required TResult Function(_SetRegistrationOffline value)
+        setRegistrationOffline,
+    required TResult Function(_SetCallStatuses value) setCallStatuses,
+    required TResult Function(_SetCallStatusesConnectivityNone value)
+        setCallStatusesConnectivityNone,
+    required TResult Function(_SetCallStatusesConnectError value)
+        setCallStatusesConnectError,
+    required TResult Function(_SetCallStatusesAppUnregistered value)
+        setCallStatusesAppUnregistered,
+    required TResult Function(_SetCallStatusesConnectIssue value)
+        setCallStatusesConnectIssue,
+    required TResult Function(_SetCallStatusesInProgress value)
+        setCallStatusesInProgress,
+    required TResult Function(_SetCallStatusesReady value) setCallStatusesReady,
+    required TResult Function(_SetDecoration value) setDecoration,
+    required TResult Function(_SetPrimaryGradient value) setPrimaryGradient,
+    required TResult Function(_SetPrimaryGradientColors value)
+        setPrimaryGradientColors,
+  }) {
+    return setDefaultPlaceholderImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetFonts value)? setFonts,
+    TResult? Function(_SetGlobalFontFamily value)? setGlobalFontFamily,
+    TResult? Function(_SetButton value)? setButton,
+    TResult? Function(_SetPrimaryElevatedButton value)? setPEButton,
+    TResult? Function(_SetPEBBackground value)? setPEButtonBackground,
+    TResult? Function(_SetPEBForeground value)? setPEButtonForeground,
+    TResult? Function(_SetPEBTextColor value)? setPEButtonTextColor,
+    TResult? Function(_SetPEBIconColor value)? setPEButtonIconColor,
+    TResult? Function(_SetPEBDisabledIconColor value)?
+        setPEButtonDisabledIconColor,
+    TResult? Function(_SetGroup value)? setGroup,
+    TResult? Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
+    TResult? Function(_SetGroupTitleListTileBackground value)?
+        setGroupTitleListTileBackground,
+    TResult? Function(_SetGroupTitleListTileTextColor value)?
+        setGroupTitleListTileTextColor,
+    TResult? Function(_SetCallActions value)? setCallActions,
+    TResult? Function(_SetBar value)? setBar,
+    TResult? Function(_SetBottomNavBar value)? setBottomNavigationBar,
+    TResult? Function(_SetBottomNavBarBackground value)?
+        setBottomNavBarBackground,
+    TResult? Function(_SetBottomNavBarSelected value)? setBottomNavBarSelected,
+    TResult? Function(_SetBottomNavBarUnselected value)?
+        setBottomNavBarUnselected,
+    TResult? Function(_SetExtTabBar value)? setExtTabBar,
+    TResult? Function(_SetExtTabBarForeground value)? setExtTabBarForeground,
+    TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
+    TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
+    TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
+    TResult? Function(_SetImageAssets value)? setImageAssets,
+    TResult? Function(_SetPrimaryOnboardingLogo value)?
+        setPrimaryOnboardingLogo,
+    TResult? Function(_SetSecondaryOnboardingLogo value)?
+        setSecondaryOnboardingLogo,
+    TResult? Function(_SetAppIcon value)? setAppIcon,
+    TResult? Function(_SetLeadingAvatarStyle value)? setLeadingAvatarStyle,
+    TResult? Function(_SetInput value)? setInput,
+    TResult? Function(_SetTextFormField value)? setTextFormField,
+    TResult? Function(_SetInputLabelColor value)? setInputLabelColor,
+    TResult? Function(_SetInputBorder value)? setInputBorder,
+    TResult? Function(_SetInputBorderDisabled value)? setInputBorderDisabled,
+    TResult? Function(_SetInputBorderFocused value)? setInputBorderFocused,
+    TResult? Function(_SetInputBorderAny value)? setInputBorderAny,
+    TResult? Function(_SetText value)? setText,
+    TResult? Function(_SetTextSelection value)? setTextSelection,
+    TResult? Function(_SetTextCursorColor value)? setTextCursorColor,
+    TResult? Function(_SetTextSelectionColor value)? setTextSelectionColor,
+    TResult? Function(_SetTextSelectionHandleColor value)?
+        setTextSelectionHandleColor,
+    TResult? Function(_SetLinkify value)? setLinkify,
+    TResult? Function(_SetLinkifyStyleColor value)? setLinkifyStyleColor,
+    TResult? Function(_SetLinkifyLinkColor value)? setLinkifyLinkColor,
+    TResult? Function(_SetDialog value)? setDialog,
+    TResult? Function(_SetConfirmDialog value)? setConfirmDialog,
+    TResult? Function(_SetConfirmDialogActive1 value)? setConfirmDialogActive1,
+    TResult? Function(_SetConfirmDialogActive2 value)? setConfirmDialogActive2,
+    TResult? Function(_SetConfirmDialogDefault value)? setConfirmDialogDefault,
+    TResult? Function(_SetSnackBar value)? setSnackBar,
+    TResult? Function(_SetActionPad value)? setActionPad,
+    TResult? Function(_SetActionPadCallStart value)? setActionPadCallStart,
+    TResult? Function(_SetActionPadTransfer value)? setActionPadTransfer,
+    TResult? Function(_SetActionPadBackspace value)?
+        setActionPadBackspacePressed,
+    TResult? Function(_SetStatuses value)? setStatuses,
+    TResult? Function(_SetRegistrationStatuses value)? setRegistrationStatuses,
+    TResult? Function(_SetRegistrationOnline value)? setRegistrationOnline,
+    TResult? Function(_SetRegistrationOffline value)? setRegistrationOffline,
+    TResult? Function(_SetCallStatuses value)? setCallStatuses,
+    TResult? Function(_SetCallStatusesConnectivityNone value)?
+        setCallStatusesConnectivityNone,
+    TResult? Function(_SetCallStatusesConnectError value)?
+        setCallStatusesConnectError,
+    TResult? Function(_SetCallStatusesAppUnregistered value)?
+        setCallStatusesAppUnregistered,
+    TResult? Function(_SetCallStatusesConnectIssue value)?
+        setCallStatusesConnectIssue,
+    TResult? Function(_SetCallStatusesInProgress value)?
+        setCallStatusesInProgress,
+    TResult? Function(_SetCallStatusesReady value)? setCallStatusesReady,
+    TResult? Function(_SetDecoration value)? setDecoration,
+    TResult? Function(_SetPrimaryGradient value)? setPrimaryGradient,
+    TResult? Function(_SetPrimaryGradientColors value)?
+        setPrimaryGradientColors,
+  }) {
+    return setDefaultPlaceholderImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetFonts value)? setFonts,
+    TResult Function(_SetGlobalFontFamily value)? setGlobalFontFamily,
+    TResult Function(_SetButton value)? setButton,
+    TResult Function(_SetPrimaryElevatedButton value)? setPEButton,
+    TResult Function(_SetPEBBackground value)? setPEButtonBackground,
+    TResult Function(_SetPEBForeground value)? setPEButtonForeground,
+    TResult Function(_SetPEBTextColor value)? setPEButtonTextColor,
+    TResult Function(_SetPEBIconColor value)? setPEButtonIconColor,
+    TResult Function(_SetPEBDisabledIconColor value)?
+        setPEButtonDisabledIconColor,
+    TResult Function(_SetGroup value)? setGroup,
+    TResult Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
+    TResult Function(_SetGroupTitleListTileBackground value)?
+        setGroupTitleListTileBackground,
+    TResult Function(_SetGroupTitleListTileTextColor value)?
+        setGroupTitleListTileTextColor,
+    TResult Function(_SetCallActions value)? setCallActions,
+    TResult Function(_SetBar value)? setBar,
+    TResult Function(_SetBottomNavBar value)? setBottomNavigationBar,
+    TResult Function(_SetBottomNavBarBackground value)?
+        setBottomNavBarBackground,
+    TResult Function(_SetBottomNavBarSelected value)? setBottomNavBarSelected,
+    TResult Function(_SetBottomNavBarUnselected value)?
+        setBottomNavBarUnselected,
+    TResult Function(_SetExtTabBar value)? setExtTabBar,
+    TResult Function(_SetExtTabBarForeground value)? setExtTabBarForeground,
+    TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
+    TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
+    TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
+    TResult Function(_SetImageAssets value)? setImageAssets,
+    TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
+    TResult Function(_SetSecondaryOnboardingLogo value)?
+        setSecondaryOnboardingLogo,
+    TResult Function(_SetAppIcon value)? setAppIcon,
+    TResult Function(_SetLeadingAvatarStyle value)? setLeadingAvatarStyle,
+    TResult Function(_SetInput value)? setInput,
+    TResult Function(_SetTextFormField value)? setTextFormField,
+    TResult Function(_SetInputLabelColor value)? setInputLabelColor,
+    TResult Function(_SetInputBorder value)? setInputBorder,
+    TResult Function(_SetInputBorderDisabled value)? setInputBorderDisabled,
+    TResult Function(_SetInputBorderFocused value)? setInputBorderFocused,
+    TResult Function(_SetInputBorderAny value)? setInputBorderAny,
+    TResult Function(_SetText value)? setText,
+    TResult Function(_SetTextSelection value)? setTextSelection,
+    TResult Function(_SetTextCursorColor value)? setTextCursorColor,
+    TResult Function(_SetTextSelectionColor value)? setTextSelectionColor,
+    TResult Function(_SetTextSelectionHandleColor value)?
+        setTextSelectionHandleColor,
+    TResult Function(_SetLinkify value)? setLinkify,
+    TResult Function(_SetLinkifyStyleColor value)? setLinkifyStyleColor,
+    TResult Function(_SetLinkifyLinkColor value)? setLinkifyLinkColor,
+    TResult Function(_SetDialog value)? setDialog,
+    TResult Function(_SetConfirmDialog value)? setConfirmDialog,
+    TResult Function(_SetConfirmDialogActive1 value)? setConfirmDialogActive1,
+    TResult Function(_SetConfirmDialogActive2 value)? setConfirmDialogActive2,
+    TResult Function(_SetConfirmDialogDefault value)? setConfirmDialogDefault,
+    TResult Function(_SetSnackBar value)? setSnackBar,
+    TResult Function(_SetActionPad value)? setActionPad,
+    TResult Function(_SetActionPadCallStart value)? setActionPadCallStart,
+    TResult Function(_SetActionPadTransfer value)? setActionPadTransfer,
+    TResult Function(_SetActionPadBackspace value)?
+        setActionPadBackspacePressed,
+    TResult Function(_SetStatuses value)? setStatuses,
+    TResult Function(_SetRegistrationStatuses value)? setRegistrationStatuses,
+    TResult Function(_SetRegistrationOnline value)? setRegistrationOnline,
+    TResult Function(_SetRegistrationOffline value)? setRegistrationOffline,
+    TResult Function(_SetCallStatuses value)? setCallStatuses,
+    TResult Function(_SetCallStatusesConnectivityNone value)?
+        setCallStatusesConnectivityNone,
+    TResult Function(_SetCallStatusesConnectError value)?
+        setCallStatusesConnectError,
+    TResult Function(_SetCallStatusesAppUnregistered value)?
+        setCallStatusesAppUnregistered,
+    TResult Function(_SetCallStatusesConnectIssue value)?
+        setCallStatusesConnectIssue,
+    TResult Function(_SetCallStatusesInProgress value)?
+        setCallStatusesInProgress,
+    TResult Function(_SetCallStatusesReady value)? setCallStatusesReady,
+    TResult Function(_SetDecoration value)? setDecoration,
+    TResult Function(_SetPrimaryGradient value)? setPrimaryGradient,
+    TResult Function(_SetPrimaryGradientColors value)? setPrimaryGradientColors,
+    required TResult orElse(),
+  }) {
+    if (setDefaultPlaceholderImage != null) {
+      return setDefaultPlaceholderImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetDefaultPlaceholderImage implements ThemeWidgetEvent {
+  const factory _SetDefaultPlaceholderImage(final ImageSource imageSource) =
+      _$SetDefaultPlaceholderImageImpl;
+
+  ImageSource get imageSource;
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetDefaultPlaceholderImageImplCopyWith<_$SetDefaultPlaceholderImageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -28895,6 +30232,8 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -28978,6 +30317,7 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -29056,6 +30396,7 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -29147,6 +30488,8 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -29248,6 +30591,8 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -29338,6 +30683,8 @@ class _$SetImageAssetsImpl implements _SetImageAssets {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -29521,6 +30868,8 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -29604,6 +30953,7 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -29682,6 +31032,7 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -29773,6 +31124,8 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -29874,6 +31227,8 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -29964,6 +31319,8 @@ class _$SetPrimaryOnboardingLogoImpl implements _SetPrimaryOnboardingLogo {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -30148,6 +31505,8 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -30231,6 +31590,7 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -30309,6 +31669,7 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -30400,6 +31761,8 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -30501,6 +31864,8 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -30591,6 +31956,8 @@ class _$SetSecondaryOnboardingLogoImpl implements _SetSecondaryOnboardingLogo {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -30771,6 +32138,8 @@ class _$SetAppIconImpl implements _SetAppIcon {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -30854,6 +32223,7 @@ class _$SetAppIconImpl implements _SetAppIcon {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -30932,6 +32302,7 @@ class _$SetAppIconImpl implements _SetAppIcon {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -31023,6 +32394,8 @@ class _$SetAppIconImpl implements _SetAppIcon {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -31124,6 +32497,8 @@ class _$SetAppIconImpl implements _SetAppIcon {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -31214,6 +32589,8 @@ class _$SetAppIconImpl implements _SetAppIcon {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -31395,6 +32772,8 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -31478,6 +32857,7 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -31556,6 +32936,7 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -31647,6 +33028,8 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -31748,6 +33131,8 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -31838,6 +33223,8 @@ class _$SetLeadingAvatarStyleImpl implements _SetLeadingAvatarStyle {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -32018,6 +33405,8 @@ class _$SetInputImpl implements _SetInput {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -32101,6 +33490,7 @@ class _$SetInputImpl implements _SetInput {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -32179,6 +33569,7 @@ class _$SetInputImpl implements _SetInput {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -32270,6 +33661,8 @@ class _$SetInputImpl implements _SetInput {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -32371,6 +33764,8 @@ class _$SetInputImpl implements _SetInput {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -32461,6 +33856,8 @@ class _$SetInputImpl implements _SetInput {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -32641,6 +34038,8 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -32724,6 +34123,7 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -32802,6 +34202,7 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -32893,6 +34294,8 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -32994,6 +34397,8 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -33084,6 +34489,8 @@ class _$SetTextFormFieldImpl implements _SetTextFormField {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -33253,6 +34660,8 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -33336,6 +34745,7 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -33414,6 +34824,7 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -33505,6 +34916,8 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -33606,6 +35019,8 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -33696,6 +35111,8 @@ class _$SetInputLabelColorImpl implements _SetInputLabelColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -33877,6 +35294,8 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -33960,6 +35379,7 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -34038,6 +35458,7 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -34129,6 +35550,8 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -34230,6 +35653,8 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -34320,6 +35745,8 @@ class _$SetInputBorderImpl implements _SetInputBorder {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -34503,6 +35930,8 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -34586,6 +36015,7 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -34664,6 +36094,7 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -34755,6 +36186,8 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -34856,6 +36289,8 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -34946,6 +36381,8 @@ class _$SetInputBorderDisabledImpl implements _SetInputBorderDisabled {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -35128,6 +36565,8 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -35211,6 +36650,7 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -35289,6 +36729,7 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -35380,6 +36821,8 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -35481,6 +36924,8 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -35571,6 +37016,8 @@ class _$SetInputBorderFocusedImpl implements _SetInputBorderFocused {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -35752,6 +37199,8 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -35835,6 +37284,7 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -35913,6 +37363,7 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -36004,6 +37455,8 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -36105,6 +37558,8 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -36195,6 +37650,8 @@ class _$SetInputBorderAnyImpl implements _SetInputBorderAny {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -36375,6 +37832,8 @@ class _$SetTextImpl implements _SetText {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -36458,6 +37917,7 @@ class _$SetTextImpl implements _SetText {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -36536,6 +37996,7 @@ class _$SetTextImpl implements _SetText {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -36627,6 +38088,8 @@ class _$SetTextImpl implements _SetText {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -36728,6 +38191,8 @@ class _$SetTextImpl implements _SetText {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -36818,6 +38283,8 @@ class _$SetTextImpl implements _SetText {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -36998,6 +38465,8 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -37081,6 +38550,7 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -37159,6 +38629,7 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -37250,6 +38721,8 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -37351,6 +38824,8 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -37441,6 +38916,8 @@ class _$SetTextSelectionImpl implements _SetTextSelection {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -37610,6 +39087,8 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -37693,6 +39172,7 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -37771,6 +39251,7 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -37862,6 +39343,8 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -37963,6 +39446,8 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -38053,6 +39538,8 @@ class _$SetTextCursorColorImpl implements _SetTextCursorColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -38223,6 +39710,8 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -38306,6 +39795,7 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -38384,6 +39874,7 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -38475,6 +39966,8 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -38576,6 +40069,8 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -38666,6 +40161,8 @@ class _$SetTextSelectionColorImpl implements _SetTextSelectionColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -38839,6 +40336,8 @@ class _$SetTextSelectionHandleColorImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -38922,6 +40421,7 @@ class _$SetTextSelectionHandleColorImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -39000,6 +40500,7 @@ class _$SetTextSelectionHandleColorImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -39091,6 +40592,8 @@ class _$SetTextSelectionHandleColorImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -39192,6 +40695,8 @@ class _$SetTextSelectionHandleColorImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -39282,6 +40787,8 @@ class _$SetTextSelectionHandleColorImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -39462,6 +40969,8 @@ class _$SetLinkifyImpl implements _SetLinkify {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -39545,6 +41054,7 @@ class _$SetLinkifyImpl implements _SetLinkify {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -39623,6 +41133,7 @@ class _$SetLinkifyImpl implements _SetLinkify {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -39714,6 +41225,8 @@ class _$SetLinkifyImpl implements _SetLinkify {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -39815,6 +41328,8 @@ class _$SetLinkifyImpl implements _SetLinkify {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -39905,6 +41420,8 @@ class _$SetLinkifyImpl implements _SetLinkify {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -40074,6 +41591,8 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -40157,6 +41676,7 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -40235,6 +41755,7 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -40326,6 +41847,8 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -40427,6 +41950,8 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -40517,6 +42042,8 @@ class _$SetLinkifyStyleColorImpl implements _SetLinkifyStyleColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -40686,6 +42213,8 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -40769,6 +42298,7 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -40847,6 +42377,7 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -40938,6 +42469,8 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -41039,6 +42572,8 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -41129,6 +42664,8 @@ class _$SetLinkifyLinkColorImpl implements _SetLinkifyLinkColor {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -41309,6 +42846,8 @@ class _$SetDialogImpl implements _SetDialog {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -41392,6 +42931,7 @@ class _$SetDialogImpl implements _SetDialog {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -41470,6 +43010,7 @@ class _$SetDialogImpl implements _SetDialog {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -41561,6 +43102,8 @@ class _$SetDialogImpl implements _SetDialog {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -41662,6 +43205,8 @@ class _$SetDialogImpl implements _SetDialog {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -41752,6 +43297,8 @@ class _$SetDialogImpl implements _SetDialog {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -41932,6 +43479,8 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -42015,6 +43564,7 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -42093,6 +43643,7 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -42184,6 +43735,8 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -42285,6 +43838,8 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -42375,6 +43930,8 @@ class _$SetConfirmDialogImpl implements _SetConfirmDialog {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -42546,6 +44103,8 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -42629,6 +44188,7 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -42707,6 +44267,7 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -42798,6 +44359,8 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -42899,6 +44462,8 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -42989,6 +44554,8 @@ class _$SetConfirmDialogActive1Impl implements _SetConfirmDialogActive1 {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -43160,6 +44727,8 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -43243,6 +44812,7 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -43321,6 +44891,7 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -43412,6 +44983,8 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -43513,6 +45086,8 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -43603,6 +45178,8 @@ class _$SetConfirmDialogActive2Impl implements _SetConfirmDialogActive2 {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -43774,6 +45351,8 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -43857,6 +45436,7 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -43935,6 +45515,7 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -44026,6 +45607,8 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -44127,6 +45710,8 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -44217,6 +45802,8 @@ class _$SetConfirmDialogDefaultImpl implements _SetConfirmDialogDefault {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -44397,6 +45984,8 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -44480,6 +46069,7 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -44558,6 +46148,7 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -44649,6 +46240,8 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -44750,6 +46343,8 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -44840,6 +46435,8 @@ class _$SetSnackBarImpl implements _SetSnackBar {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -45020,6 +46617,8 @@ class _$SetActionPadImpl implements _SetActionPad {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -45103,6 +46702,7 @@ class _$SetActionPadImpl implements _SetActionPad {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -45181,6 +46781,7 @@ class _$SetActionPadImpl implements _SetActionPad {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -45272,6 +46873,8 @@ class _$SetActionPadImpl implements _SetActionPad {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -45373,6 +46976,8 @@ class _$SetActionPadImpl implements _SetActionPad {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -45463,6 +47068,8 @@ class _$SetActionPadImpl implements _SetActionPad {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -45645,6 +47252,8 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -45728,6 +47337,7 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -45806,6 +47416,7 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -45897,6 +47508,8 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -45998,6 +47611,8 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -46088,6 +47703,8 @@ class _$SetActionPadCallStartImpl implements _SetActionPadCallStart {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -46270,6 +47887,8 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -46353,6 +47972,7 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -46431,6 +48051,7 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -46522,6 +48143,8 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -46623,6 +48246,8 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -46713,6 +48338,8 @@ class _$SetActionPadTransferImpl implements _SetActionPadTransfer {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -46895,6 +48522,8 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -46978,6 +48607,7 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -47056,6 +48686,7 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -47147,6 +48778,8 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -47248,6 +48881,8 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -47338,6 +48973,8 @@ class _$SetActionPadBackspaceImpl implements _SetActionPadBackspace {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -47518,6 +49155,8 @@ class _$SetStatusesImpl implements _SetStatuses {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -47601,6 +49240,7 @@ class _$SetStatusesImpl implements _SetStatuses {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -47679,6 +49319,7 @@ class _$SetStatusesImpl implements _SetStatuses {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -47770,6 +49411,8 @@ class _$SetStatusesImpl implements _SetStatuses {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -47871,6 +49514,8 @@ class _$SetStatusesImpl implements _SetStatuses {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -47961,6 +49606,8 @@ class _$SetStatusesImpl implements _SetStatuses {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -48144,6 +49791,8 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -48227,6 +49876,7 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -48305,6 +49955,7 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -48396,6 +50047,8 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -48497,6 +50150,8 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -48587,6 +50242,8 @@ class _$SetRegistrationStatusesImpl implements _SetRegistrationStatuses {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -48758,6 +50415,8 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -48841,6 +50500,7 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -48919,6 +50579,7 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -49010,6 +50671,8 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -49111,6 +50774,8 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -49201,6 +50866,8 @@ class _$SetRegistrationOnlineImpl implements _SetRegistrationOnline {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -49372,6 +51039,8 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -49455,6 +51124,7 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -49533,6 +51203,7 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -49624,6 +51295,8 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -49725,6 +51398,8 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -49815,6 +51490,8 @@ class _$SetRegistrationOfflineImpl implements _SetRegistrationOffline {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -49996,6 +51673,8 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -50079,6 +51758,7 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -50157,6 +51837,7 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -50248,6 +51929,8 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -50349,6 +52032,8 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -50439,6 +52124,8 @@ class _$SetCallStatusesImpl implements _SetCallStatuses {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -50613,6 +52300,8 @@ class _$SetCallStatusesConnectivityNoneImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -50696,6 +52385,7 @@ class _$SetCallStatusesConnectivityNoneImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -50774,6 +52464,7 @@ class _$SetCallStatusesConnectivityNoneImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -50865,6 +52556,8 @@ class _$SetCallStatusesConnectivityNoneImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -50966,6 +52659,8 @@ class _$SetCallStatusesConnectivityNoneImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -51056,6 +52751,8 @@ class _$SetCallStatusesConnectivityNoneImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -51230,6 +52927,8 @@ class _$SetCallStatusesConnectErrorImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -51313,6 +53012,7 @@ class _$SetCallStatusesConnectErrorImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -51391,6 +53091,7 @@ class _$SetCallStatusesConnectErrorImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -51482,6 +53183,8 @@ class _$SetCallStatusesConnectErrorImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -51583,6 +53286,8 @@ class _$SetCallStatusesConnectErrorImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -51673,6 +53378,8 @@ class _$SetCallStatusesConnectErrorImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -51847,6 +53554,8 @@ class _$SetCallStatusesAppUnregisteredImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -51930,6 +53639,7 @@ class _$SetCallStatusesAppUnregisteredImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -52008,6 +53718,7 @@ class _$SetCallStatusesAppUnregisteredImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -52099,6 +53810,8 @@ class _$SetCallStatusesAppUnregisteredImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -52200,6 +53913,8 @@ class _$SetCallStatusesAppUnregisteredImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -52290,6 +54005,8 @@ class _$SetCallStatusesAppUnregisteredImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -52464,6 +54181,8 @@ class _$SetCallStatusesConnectIssueImpl
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -52547,6 +54266,7 @@ class _$SetCallStatusesConnectIssueImpl
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -52625,6 +54345,7 @@ class _$SetCallStatusesConnectIssueImpl
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -52716,6 +54437,8 @@ class _$SetCallStatusesConnectIssueImpl
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -52817,6 +54540,8 @@ class _$SetCallStatusesConnectIssueImpl
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -52907,6 +54632,8 @@ class _$SetCallStatusesConnectIssueImpl
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -53079,6 +54806,8 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -53162,6 +54891,7 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -53240,6 +54970,7 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -53331,6 +55062,8 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -53432,6 +55165,8 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -53522,6 +55257,8 @@ class _$SetCallStatusesInProgressImpl implements _SetCallStatusesInProgress {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -53692,6 +55429,8 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -53775,6 +55514,7 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -53853,6 +55593,7 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -53944,6 +55685,8 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -54045,6 +55788,8 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -54135,6 +55880,8 @@ class _$SetCallStatusesReadyImpl implements _SetCallStatusesReady {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -54315,6 +56062,8 @@ class _$SetDecorationImpl implements _SetDecoration {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -54398,6 +56147,7 @@ class _$SetDecorationImpl implements _SetDecoration {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -54476,6 +56226,7 @@ class _$SetDecorationImpl implements _SetDecoration {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -54567,6 +56318,8 @@ class _$SetDecorationImpl implements _SetDecoration {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -54668,6 +56421,8 @@ class _$SetDecorationImpl implements _SetDecoration {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -54758,6 +56513,8 @@ class _$SetDecorationImpl implements _SetDecoration {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -54939,6 +56696,8 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -55022,6 +56781,7 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -55100,6 +56860,7 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -55191,6 +56952,8 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -55292,6 +57055,8 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -55382,6 +57147,8 @@ class _$SetPrimaryGradientImpl implements _SetPrimaryGradient {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?
@@ -55560,6 +57327,8 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     required TResult Function(String? color) setExtTabBarBackground,
     required TResult Function(String? color) setExtTabBarSelected,
     required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(ImageSource imageSource)
+        setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
     required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
     required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
@@ -55643,6 +57412,7 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     TResult? Function(String? color)? setExtTabBarBackground,
     TResult? Function(String? color)? setExtTabBarSelected,
     TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -55721,6 +57491,7 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     TResult Function(String? color)? setExtTabBarBackground,
     TResult Function(String? color)? setExtTabBarSelected,
     TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
     TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
     TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
@@ -55812,6 +57583,8 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
     required TResult Function(_SetExtTabBarUnselected value)
         setExtTabBarUnselected,
+    required TResult Function(_SetDefaultPlaceholderImage value)
+        setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
     required TResult Function(_SetPrimaryOnboardingLogo value)
         setPrimaryOnboardingLogo,
@@ -55913,6 +57686,8 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
     TResult? Function(_SetPrimaryOnboardingLogo value)?
         setPrimaryOnboardingLogo,
@@ -56003,6 +57778,8 @@ class _$SetPrimaryGradientColorsImpl implements _SetPrimaryGradientColors {
     TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
     TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
     TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetDefaultPlaceholderImage value)?
+        setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
     TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
     TResult Function(_SetSecondaryOnboardingLogo value)?

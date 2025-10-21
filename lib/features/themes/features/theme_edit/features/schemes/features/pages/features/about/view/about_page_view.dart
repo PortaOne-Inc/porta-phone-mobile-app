@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
 
+import '../../../../../widgets/image_render_editor.dart';
+
 class AboutPageView extends StatefulWidget {
   const AboutPageView({super.key});
 
@@ -25,23 +27,15 @@ class _AboutPageViewState extends State<AboutPageView> {
           padding: const EdgeInsets.all(16),
           child: ListView(
             children: [
-              BorderContainer(
-                title: 'About Page',
-                descriptionWidget: DescriptionRow.info(
-                  'Pick a logo or illustration for the About screen.',
-                ),
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    UrlImageField(
-                      title: 'About image',
-                      resource: Resource.url(about.imageSource?.uri),
-                      constraints: BoxConstraints.loose(const Size(200, 200)),
-                      onTap: () => _pickAsset(context, state.assets),
-                    ),
-                  ],
-                ),
+              ImageRenderEditor(
+                description: 'Pick a logo or illustration for the About screen.',
+                source: about.mainLogo,
+                onPick: () => _pickAsset(context, state.assets),
+                onChanged: (updated) {
+                  context
+                      .read<UpdateThemCubit>()
+                      .add(ThemePageEvent.setAboutPage(state.themePageConfig.about.copyWith(mainLogo: updated)));
+                },
               ),
             ],
           ),

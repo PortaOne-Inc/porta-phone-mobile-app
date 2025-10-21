@@ -5,8 +5,8 @@ import 'image_renderer.dart';
 
 class UrlImageField extends StatelessWidget {
   const UrlImageField({
-    required this.title,
     required this.constraints,
+    this.title,
     this.resource,
     this.margin = EdgeInsets.zero,
     this.padding = const EdgeInsets.all(16),
@@ -14,7 +14,7 @@ class UrlImageField extends StatelessWidget {
     super.key,
   });
 
-  final String title;
+  final String? title;
   final Resource? resource;
   final EdgeInsets margin;
   final EdgeInsets padding;
@@ -36,7 +36,7 @@ class UrlImageField extends StatelessWidget {
           elevation: 1,
           child: Stack(
             children: [
-              if (resource == null)
+              if (resource == null || resource is EmptyResource)
                 Positioned.fill(
                   child: CustomPaint(
                     painter: PatternPainter(primaryColor: theme.colorScheme.primary),
@@ -48,26 +48,27 @@ class UrlImageField extends StatelessWidget {
                     resource: resource!,
                   ),
                 ),
-              Padding(
-                padding: padding,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    title,
-                    style: textTheme.labelLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        const Shadow(
-                          offset: Offset(0, 1),
-                          blurRadius: 3,
-                          color: Colors.black54,
-                        ),
-                      ],
+              if (title != null)
+                Padding(
+                  padding: padding,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      title ?? '',
+                      style: textTheme.labelLarge?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          const Shadow(
+                            offset: Offset(0, 1),
+                            blurRadius: 3,
+                            color: Colors.black54,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
             ],
           ),
         ),
