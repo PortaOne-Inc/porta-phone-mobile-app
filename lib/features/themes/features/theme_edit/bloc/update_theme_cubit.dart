@@ -189,8 +189,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   Future<void> _onAppConfigEvent(AppConfigEvent event, Emitter<UpdateThemeState> emit) async {
     event.map(
       setLoginConfig: (e) => _featureAccessEditor.setLoginConfig(e.login),
-      setLoginGreeting: (e) => _featureAccessEditor.setLoginGreeting(e.greetingL10n),
-      setLoginModeSelectActions: (e) => _featureAccessEditor.setLoginModeSelectActions(e.actions),
       setMainConfig: (e) => _featureAccessEditor.setMainConfig(e.main),
       setMainSystemNotificationsEnabled: (e) => _featureAccessEditor.setMainSystemNotificationsEnabled(e.enabled),
       setBottomMenu: (e) => _featureAccessEditor.setBottomMenu(e.bottomMenu),
@@ -289,8 +287,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       // login
       setLoginPage: (e) => _pageEditor.setLoginPage(e.login),
       setLoginPicture: (e) => _pageEditor.setLoginPicture(e.imageSource),
-      setLoginScale: (e) => _pageEditor.setLoginScale(e.scale),
-      setLoginLabelColor: (e) => _pageEditor.setLoginLabelColor(e.color),
       setLoginModeSelect: (e) => _pageEditor.setLoginModeSelect(e.modeSelect),
       setLoginModeSelectButtonLoginStyle: (e) => _pageEditor.setLoginModeSelectButtonLoginStyle(e.type),
       setLoginModeSelectButtonSignupStyle: (e) => _pageEditor.setLoginModeSelectButtonSignupStyle(e.type),

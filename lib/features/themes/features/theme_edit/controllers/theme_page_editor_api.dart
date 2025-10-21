@@ -27,10 +27,6 @@ abstract class ThemePageEditorApi {
 
   void setLoginPicture(ImageSource? imageSource);
 
-  void setLoginScale(double? scale);
-
-  void setLoginLabelColor(String? color);
-
   void setLoginModeSelect(LoginModeSelectPageConfig modeSelect);
 
   void setLoginModeSelectButtonLoginStyle(ElevatedButtonStyleType type);
@@ -152,18 +148,6 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setLoginPicture(ImageSource? imageSource) {
     _current = current.copyWith(
         login: current.login.copyWith(modeSelect: current.login.modeSelect.copyWith(mainLogo: imageSource)));
-    _emit();
-  }
-
-  @override
-  void setLoginScale(double? scale) {
-    //_current = current.copyWith(login: current.login.copyWith(scale: scale));
-    _emit();
-  }
-
-  @override
-  void setLoginLabelColor(String? color) {
-    // _current = current.copyWith(login: current.login.copyWith(labelColor: color));
     _emit();
   }
 

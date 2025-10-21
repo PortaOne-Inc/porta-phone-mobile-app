@@ -1255,9 +1255,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -1283,9 +1280,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -1309,9 +1303,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -1336,9 +1327,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -1365,9 +1353,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -1391,9 +1376,6 @@ mixin _$AppConfigEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -1520,9 +1502,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -1551,9 +1530,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -1580,9 +1556,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -1613,9 +1586,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -1645,9 +1615,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -1674,9 +1641,6 @@ class _$SetLoginConfigImpl implements _SetLoginConfig {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -1715,552 +1679,6 @@ abstract class _SetLoginConfig implements AppConfigEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetLoginConfigImplCopyWith<_$SetLoginConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SetLoginGreetingImplCopyWith<$Res> {
-  factory _$$SetLoginGreetingImplCopyWith(_$SetLoginGreetingImpl value,
-          $Res Function(_$SetLoginGreetingImpl) then) =
-      __$$SetLoginGreetingImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? greetingL10n});
-}
-
-/// @nodoc
-class __$$SetLoginGreetingImplCopyWithImpl<$Res>
-    extends _$AppConfigEventCopyWithImpl<$Res, _$SetLoginGreetingImpl>
-    implements _$$SetLoginGreetingImplCopyWith<$Res> {
-  __$$SetLoginGreetingImplCopyWithImpl(_$SetLoginGreetingImpl _value,
-      $Res Function(_$SetLoginGreetingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? greetingL10n = freezed,
-  }) {
-    return _then(_$SetLoginGreetingImpl(
-      freezed == greetingL10n
-          ? _value.greetingL10n
-          : greetingL10n // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SetLoginGreetingImpl implements _SetLoginGreeting {
-  const _$SetLoginGreetingImpl(this.greetingL10n);
-
-  @override
-  final String? greetingL10n;
-
-  @override
-  String toString() {
-    return 'AppConfigEvent.setLoginGreeting(greetingL10n: $greetingL10n)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetLoginGreetingImpl &&
-            (identical(other.greetingL10n, greetingL10n) ||
-                other.greetingL10n == greetingL10n));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, greetingL10n);
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetLoginGreetingImplCopyWith<_$SetLoginGreetingImpl> get copyWith =>
-      __$$SetLoginGreetingImplCopyWithImpl<_$SetLoginGreetingImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
-    required TResult Function(AppConfigMain main) setMainConfig,
-    required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
-    required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
-    required TResult Function(bool cache) setBottomMenuCacheSelectedTab,
-    required TResult Function(List<BottomMenuTabScheme> tabs) setBottomMenuTabs,
-    required TResult Function(int index, BottomMenuTabScheme tab)
-        updateBottomMenuTab,
-    required TResult Function(int index, BottomMenuTabScheme tab)
-        insertBottomMenuTab,
-    required TResult Function(int index) removeBottomMenuTabAt,
-    required TResult Function(AppConfigSettings settings) setSettingsConfig,
-    required TResult Function(List<AppConfigSettingsSection> sections)
-        setSettingsSections,
-    required TResult Function(AppConfigCall callConfig) setCallConfig,
-    required TResult Function(bool enabled) setCallVideoEnabled,
-    required TResult Function(AppConfigTransfer transfer) setCallTransfer,
-    required TResult Function(AppConfigEncoding encoding) setCallEncoding,
-    required TResult Function(AppConfigPeerConnection pc) setCallPeerConnection,
-    required TResult Function(AppConfigNegotiationSettingsOverride negotiation)
-        setNegotiationOverride,
-  }) {
-    return setLoginGreeting(greetingL10n);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
-    TResult? Function(AppConfigMain main)? setMainConfig,
-    TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
-    TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
-    TResult? Function(bool cache)? setBottomMenuCacheSelectedTab,
-    TResult? Function(List<BottomMenuTabScheme> tabs)? setBottomMenuTabs,
-    TResult? Function(int index, BottomMenuTabScheme tab)? updateBottomMenuTab,
-    TResult? Function(int index, BottomMenuTabScheme tab)? insertBottomMenuTab,
-    TResult? Function(int index)? removeBottomMenuTabAt,
-    TResult? Function(AppConfigSettings settings)? setSettingsConfig,
-    TResult? Function(List<AppConfigSettingsSection> sections)?
-        setSettingsSections,
-    TResult? Function(AppConfigCall callConfig)? setCallConfig,
-    TResult? Function(bool enabled)? setCallVideoEnabled,
-    TResult? Function(AppConfigTransfer transfer)? setCallTransfer,
-    TResult? Function(AppConfigEncoding encoding)? setCallEncoding,
-    TResult? Function(AppConfigPeerConnection pc)? setCallPeerConnection,
-    TResult? Function(AppConfigNegotiationSettingsOverride negotiation)?
-        setNegotiationOverride,
-  }) {
-    return setLoginGreeting?.call(greetingL10n);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
-    TResult Function(AppConfigMain main)? setMainConfig,
-    TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
-    TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
-    TResult Function(bool cache)? setBottomMenuCacheSelectedTab,
-    TResult Function(List<BottomMenuTabScheme> tabs)? setBottomMenuTabs,
-    TResult Function(int index, BottomMenuTabScheme tab)? updateBottomMenuTab,
-    TResult Function(int index, BottomMenuTabScheme tab)? insertBottomMenuTab,
-    TResult Function(int index)? removeBottomMenuTabAt,
-    TResult Function(AppConfigSettings settings)? setSettingsConfig,
-    TResult Function(List<AppConfigSettingsSection> sections)?
-        setSettingsSections,
-    TResult Function(AppConfigCall callConfig)? setCallConfig,
-    TResult Function(bool enabled)? setCallVideoEnabled,
-    TResult Function(AppConfigTransfer transfer)? setCallTransfer,
-    TResult Function(AppConfigEncoding encoding)? setCallEncoding,
-    TResult Function(AppConfigPeerConnection pc)? setCallPeerConnection,
-    TResult Function(AppConfigNegotiationSettingsOverride negotiation)?
-        setNegotiationOverride,
-    required TResult orElse(),
-  }) {
-    if (setLoginGreeting != null) {
-      return setLoginGreeting(greetingL10n);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
-    required TResult Function(_SetMainConfig value) setMainConfig,
-    required TResult Function(_SetMainSystemNotificationsEnabled value)
-        setMainSystemNotificationsEnabled,
-    required TResult Function(_SetBottomMenu value) setBottomMenu,
-    required TResult Function(_SetBottomMenuCacheSelectedTab value)
-        setBottomMenuCacheSelectedTab,
-    required TResult Function(_SetBottomMenuTabs value) setBottomMenuTabs,
-    required TResult Function(_UpdateBottomMenuTab value) updateBottomMenuTab,
-    required TResult Function(_InsertBottomMenuTab value) insertBottomMenuTab,
-    required TResult Function(_RemoveBottomMenuTabAt value)
-        removeBottomMenuTabAt,
-    required TResult Function(_SetSettingsConfig value) setSettingsConfig,
-    required TResult Function(_SetSettingsSections value) setSettingsSections,
-    required TResult Function(_SetCallConfig value) setCallConfig,
-    required TResult Function(_SetCallVideoEnabled value) setCallVideoEnabled,
-    required TResult Function(_SetCallTransfer value) setCallTransfer,
-    required TResult Function(_SetCallEncoding value) setCallEncoding,
-    required TResult Function(_SetCallPeerConnection value)
-        setCallPeerConnection,
-    required TResult Function(_SetNegotiationOverride value)
-        setNegotiationOverride,
-  }) {
-    return setLoginGreeting(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
-    TResult? Function(_SetMainConfig value)? setMainConfig,
-    TResult? Function(_SetMainSystemNotificationsEnabled value)?
-        setMainSystemNotificationsEnabled,
-    TResult? Function(_SetBottomMenu value)? setBottomMenu,
-    TResult? Function(_SetBottomMenuCacheSelectedTab value)?
-        setBottomMenuCacheSelectedTab,
-    TResult? Function(_SetBottomMenuTabs value)? setBottomMenuTabs,
-    TResult? Function(_UpdateBottomMenuTab value)? updateBottomMenuTab,
-    TResult? Function(_InsertBottomMenuTab value)? insertBottomMenuTab,
-    TResult? Function(_RemoveBottomMenuTabAt value)? removeBottomMenuTabAt,
-    TResult? Function(_SetSettingsConfig value)? setSettingsConfig,
-    TResult? Function(_SetSettingsSections value)? setSettingsSections,
-    TResult? Function(_SetCallConfig value)? setCallConfig,
-    TResult? Function(_SetCallVideoEnabled value)? setCallVideoEnabled,
-    TResult? Function(_SetCallTransfer value)? setCallTransfer,
-    TResult? Function(_SetCallEncoding value)? setCallEncoding,
-    TResult? Function(_SetCallPeerConnection value)? setCallPeerConnection,
-    TResult? Function(_SetNegotiationOverride value)? setNegotiationOverride,
-  }) {
-    return setLoginGreeting?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
-    TResult Function(_SetMainConfig value)? setMainConfig,
-    TResult Function(_SetMainSystemNotificationsEnabled value)?
-        setMainSystemNotificationsEnabled,
-    TResult Function(_SetBottomMenu value)? setBottomMenu,
-    TResult Function(_SetBottomMenuCacheSelectedTab value)?
-        setBottomMenuCacheSelectedTab,
-    TResult Function(_SetBottomMenuTabs value)? setBottomMenuTabs,
-    TResult Function(_UpdateBottomMenuTab value)? updateBottomMenuTab,
-    TResult Function(_InsertBottomMenuTab value)? insertBottomMenuTab,
-    TResult Function(_RemoveBottomMenuTabAt value)? removeBottomMenuTabAt,
-    TResult Function(_SetSettingsConfig value)? setSettingsConfig,
-    TResult Function(_SetSettingsSections value)? setSettingsSections,
-    TResult Function(_SetCallConfig value)? setCallConfig,
-    TResult Function(_SetCallVideoEnabled value)? setCallVideoEnabled,
-    TResult Function(_SetCallTransfer value)? setCallTransfer,
-    TResult Function(_SetCallEncoding value)? setCallEncoding,
-    TResult Function(_SetCallPeerConnection value)? setCallPeerConnection,
-    TResult Function(_SetNegotiationOverride value)? setNegotiationOverride,
-    required TResult orElse(),
-  }) {
-    if (setLoginGreeting != null) {
-      return setLoginGreeting(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetLoginGreeting implements AppConfigEvent {
-  const factory _SetLoginGreeting(final String? greetingL10n) =
-      _$SetLoginGreetingImpl;
-
-  String? get greetingL10n;
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetLoginGreetingImplCopyWith<_$SetLoginGreetingImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SetLoginModeSelectActionsImplCopyWith<$Res> {
-  factory _$$SetLoginModeSelectActionsImplCopyWith(
-          _$SetLoginModeSelectActionsImpl value,
-          $Res Function(_$SetLoginModeSelectActionsImpl) then) =
-      __$$SetLoginModeSelectActionsImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<AppConfigModeSelectAction> actions});
-}
-
-/// @nodoc
-class __$$SetLoginModeSelectActionsImplCopyWithImpl<$Res>
-    extends _$AppConfigEventCopyWithImpl<$Res, _$SetLoginModeSelectActionsImpl>
-    implements _$$SetLoginModeSelectActionsImplCopyWith<$Res> {
-  __$$SetLoginModeSelectActionsImplCopyWithImpl(
-      _$SetLoginModeSelectActionsImpl _value,
-      $Res Function(_$SetLoginModeSelectActionsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? actions = null,
-  }) {
-    return _then(_$SetLoginModeSelectActionsImpl(
-      null == actions
-          ? _value._actions
-          : actions // ignore: cast_nullable_to_non_nullable
-              as List<AppConfigModeSelectAction>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SetLoginModeSelectActionsImpl implements _SetLoginModeSelectActions {
-  const _$SetLoginModeSelectActionsImpl(
-      final List<AppConfigModeSelectAction> actions)
-      : _actions = actions;
-
-  final List<AppConfigModeSelectAction> _actions;
-  @override
-  List<AppConfigModeSelectAction> get actions {
-    if (_actions is EqualUnmodifiableListView) return _actions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_actions);
-  }
-
-  @override
-  String toString() {
-    return 'AppConfigEvent.setLoginModeSelectActions(actions: $actions)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetLoginModeSelectActionsImpl &&
-            const DeepCollectionEquality().equals(other._actions, _actions));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_actions));
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetLoginModeSelectActionsImplCopyWith<_$SetLoginModeSelectActionsImpl>
-      get copyWith => __$$SetLoginModeSelectActionsImplCopyWithImpl<
-          _$SetLoginModeSelectActionsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
-    required TResult Function(AppConfigMain main) setMainConfig,
-    required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
-    required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
-    required TResult Function(bool cache) setBottomMenuCacheSelectedTab,
-    required TResult Function(List<BottomMenuTabScheme> tabs) setBottomMenuTabs,
-    required TResult Function(int index, BottomMenuTabScheme tab)
-        updateBottomMenuTab,
-    required TResult Function(int index, BottomMenuTabScheme tab)
-        insertBottomMenuTab,
-    required TResult Function(int index) removeBottomMenuTabAt,
-    required TResult Function(AppConfigSettings settings) setSettingsConfig,
-    required TResult Function(List<AppConfigSettingsSection> sections)
-        setSettingsSections,
-    required TResult Function(AppConfigCall callConfig) setCallConfig,
-    required TResult Function(bool enabled) setCallVideoEnabled,
-    required TResult Function(AppConfigTransfer transfer) setCallTransfer,
-    required TResult Function(AppConfigEncoding encoding) setCallEncoding,
-    required TResult Function(AppConfigPeerConnection pc) setCallPeerConnection,
-    required TResult Function(AppConfigNegotiationSettingsOverride negotiation)
-        setNegotiationOverride,
-  }) {
-    return setLoginModeSelectActions(actions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
-    TResult? Function(AppConfigMain main)? setMainConfig,
-    TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
-    TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
-    TResult? Function(bool cache)? setBottomMenuCacheSelectedTab,
-    TResult? Function(List<BottomMenuTabScheme> tabs)? setBottomMenuTabs,
-    TResult? Function(int index, BottomMenuTabScheme tab)? updateBottomMenuTab,
-    TResult? Function(int index, BottomMenuTabScheme tab)? insertBottomMenuTab,
-    TResult? Function(int index)? removeBottomMenuTabAt,
-    TResult? Function(AppConfigSettings settings)? setSettingsConfig,
-    TResult? Function(List<AppConfigSettingsSection> sections)?
-        setSettingsSections,
-    TResult? Function(AppConfigCall callConfig)? setCallConfig,
-    TResult? Function(bool enabled)? setCallVideoEnabled,
-    TResult? Function(AppConfigTransfer transfer)? setCallTransfer,
-    TResult? Function(AppConfigEncoding encoding)? setCallEncoding,
-    TResult? Function(AppConfigPeerConnection pc)? setCallPeerConnection,
-    TResult? Function(AppConfigNegotiationSettingsOverride negotiation)?
-        setNegotiationOverride,
-  }) {
-    return setLoginModeSelectActions?.call(actions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
-    TResult Function(AppConfigMain main)? setMainConfig,
-    TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
-    TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
-    TResult Function(bool cache)? setBottomMenuCacheSelectedTab,
-    TResult Function(List<BottomMenuTabScheme> tabs)? setBottomMenuTabs,
-    TResult Function(int index, BottomMenuTabScheme tab)? updateBottomMenuTab,
-    TResult Function(int index, BottomMenuTabScheme tab)? insertBottomMenuTab,
-    TResult Function(int index)? removeBottomMenuTabAt,
-    TResult Function(AppConfigSettings settings)? setSettingsConfig,
-    TResult Function(List<AppConfigSettingsSection> sections)?
-        setSettingsSections,
-    TResult Function(AppConfigCall callConfig)? setCallConfig,
-    TResult Function(bool enabled)? setCallVideoEnabled,
-    TResult Function(AppConfigTransfer transfer)? setCallTransfer,
-    TResult Function(AppConfigEncoding encoding)? setCallEncoding,
-    TResult Function(AppConfigPeerConnection pc)? setCallPeerConnection,
-    TResult Function(AppConfigNegotiationSettingsOverride negotiation)?
-        setNegotiationOverride,
-    required TResult orElse(),
-  }) {
-    if (setLoginModeSelectActions != null) {
-      return setLoginModeSelectActions(actions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
-    required TResult Function(_SetMainConfig value) setMainConfig,
-    required TResult Function(_SetMainSystemNotificationsEnabled value)
-        setMainSystemNotificationsEnabled,
-    required TResult Function(_SetBottomMenu value) setBottomMenu,
-    required TResult Function(_SetBottomMenuCacheSelectedTab value)
-        setBottomMenuCacheSelectedTab,
-    required TResult Function(_SetBottomMenuTabs value) setBottomMenuTabs,
-    required TResult Function(_UpdateBottomMenuTab value) updateBottomMenuTab,
-    required TResult Function(_InsertBottomMenuTab value) insertBottomMenuTab,
-    required TResult Function(_RemoveBottomMenuTabAt value)
-        removeBottomMenuTabAt,
-    required TResult Function(_SetSettingsConfig value) setSettingsConfig,
-    required TResult Function(_SetSettingsSections value) setSettingsSections,
-    required TResult Function(_SetCallConfig value) setCallConfig,
-    required TResult Function(_SetCallVideoEnabled value) setCallVideoEnabled,
-    required TResult Function(_SetCallTransfer value) setCallTransfer,
-    required TResult Function(_SetCallEncoding value) setCallEncoding,
-    required TResult Function(_SetCallPeerConnection value)
-        setCallPeerConnection,
-    required TResult Function(_SetNegotiationOverride value)
-        setNegotiationOverride,
-  }) {
-    return setLoginModeSelectActions(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
-    TResult? Function(_SetMainConfig value)? setMainConfig,
-    TResult? Function(_SetMainSystemNotificationsEnabled value)?
-        setMainSystemNotificationsEnabled,
-    TResult? Function(_SetBottomMenu value)? setBottomMenu,
-    TResult? Function(_SetBottomMenuCacheSelectedTab value)?
-        setBottomMenuCacheSelectedTab,
-    TResult? Function(_SetBottomMenuTabs value)? setBottomMenuTabs,
-    TResult? Function(_UpdateBottomMenuTab value)? updateBottomMenuTab,
-    TResult? Function(_InsertBottomMenuTab value)? insertBottomMenuTab,
-    TResult? Function(_RemoveBottomMenuTabAt value)? removeBottomMenuTabAt,
-    TResult? Function(_SetSettingsConfig value)? setSettingsConfig,
-    TResult? Function(_SetSettingsSections value)? setSettingsSections,
-    TResult? Function(_SetCallConfig value)? setCallConfig,
-    TResult? Function(_SetCallVideoEnabled value)? setCallVideoEnabled,
-    TResult? Function(_SetCallTransfer value)? setCallTransfer,
-    TResult? Function(_SetCallEncoding value)? setCallEncoding,
-    TResult? Function(_SetCallPeerConnection value)? setCallPeerConnection,
-    TResult? Function(_SetNegotiationOverride value)? setNegotiationOverride,
-  }) {
-    return setLoginModeSelectActions?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
-    TResult Function(_SetMainConfig value)? setMainConfig,
-    TResult Function(_SetMainSystemNotificationsEnabled value)?
-        setMainSystemNotificationsEnabled,
-    TResult Function(_SetBottomMenu value)? setBottomMenu,
-    TResult Function(_SetBottomMenuCacheSelectedTab value)?
-        setBottomMenuCacheSelectedTab,
-    TResult Function(_SetBottomMenuTabs value)? setBottomMenuTabs,
-    TResult Function(_UpdateBottomMenuTab value)? updateBottomMenuTab,
-    TResult Function(_InsertBottomMenuTab value)? insertBottomMenuTab,
-    TResult Function(_RemoveBottomMenuTabAt value)? removeBottomMenuTabAt,
-    TResult Function(_SetSettingsConfig value)? setSettingsConfig,
-    TResult Function(_SetSettingsSections value)? setSettingsSections,
-    TResult Function(_SetCallConfig value)? setCallConfig,
-    TResult Function(_SetCallVideoEnabled value)? setCallVideoEnabled,
-    TResult Function(_SetCallTransfer value)? setCallTransfer,
-    TResult Function(_SetCallEncoding value)? setCallEncoding,
-    TResult Function(_SetCallPeerConnection value)? setCallPeerConnection,
-    TResult Function(_SetNegotiationOverride value)? setNegotiationOverride,
-    required TResult orElse(),
-  }) {
-    if (setLoginModeSelectActions != null) {
-      return setLoginModeSelectActions(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetLoginModeSelectActions implements AppConfigEvent {
-  const factory _SetLoginModeSelectActions(
-          final List<AppConfigModeSelectAction> actions) =
-      _$SetLoginModeSelectActionsImpl;
-
-  List<AppConfigModeSelectAction> get actions;
-
-  /// Create a copy of AppConfigEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetLoginModeSelectActionsImplCopyWith<_$SetLoginModeSelectActionsImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2344,9 +1762,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -2375,9 +1790,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2404,9 +1816,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2437,9 +1846,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -2469,9 +1875,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -2498,9 +1901,6 @@ class _$SetMainConfigImpl implements _SetMainConfig {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -2615,9 +2015,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -2646,9 +2043,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2675,9 +2069,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2708,9 +2099,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -2740,9 +2128,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -2769,9 +2154,6 @@ class _$SetMainSystemNotificationsEnabledImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -2895,9 +2277,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -2926,9 +2305,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2955,9 +2331,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -2988,9 +2361,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -3020,9 +2390,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3049,9 +2416,6 @@ class _$SetBottomMenuImpl implements _SetBottomMenu {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3167,9 +2531,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -3198,9 +2559,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3227,9 +2585,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3260,9 +2615,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -3292,9 +2644,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3321,9 +2670,6 @@ class _$SetBottomMenuCacheSelectedTabImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3442,9 +2788,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -3473,9 +2816,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3502,9 +2842,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3535,9 +2872,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -3567,9 +2901,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3596,9 +2927,6 @@ class _$SetBottomMenuTabsImpl implements _SetBottomMenuTabs {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3729,9 +3057,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -3760,9 +3085,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3789,9 +3111,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -3822,9 +3141,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -3854,9 +3170,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -3883,9 +3196,6 @@ class _$UpdateBottomMenuTabImpl implements _UpdateBottomMenuTab {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4018,9 +3328,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -4049,9 +3356,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4078,9 +3382,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4111,9 +3412,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -4143,9 +3441,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4172,9 +3467,6 @@ class _$InsertBottomMenuTabImpl implements _InsertBottomMenuTab {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4288,9 +3580,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -4319,9 +3608,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4348,9 +3634,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4381,9 +3664,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -4413,9 +3693,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4442,9 +3719,6 @@ class _$RemoveBottomMenuTabAtImpl implements _RemoveBottomMenuTabAt {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4568,9 +3842,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -4599,9 +3870,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4628,9 +3896,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4661,9 +3926,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -4693,9 +3955,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4722,9 +3981,6 @@ class _$SetSettingsConfigImpl implements _SetSettingsConfig {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4842,9 +4098,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -4873,9 +4126,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4902,9 +4152,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -4935,9 +4182,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -4967,9 +4211,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -4996,9 +4237,6 @@ class _$SetSettingsSectionsImpl implements _SetSettingsSections {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5122,9 +4360,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -5153,9 +4388,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5182,9 +4414,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5215,9 +4444,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -5247,9 +4473,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5276,9 +4499,6 @@ class _$SetCallConfigImpl implements _SetCallConfig {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5389,9 +4609,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -5420,9 +4637,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5449,9 +4663,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5482,9 +4693,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -5514,9 +4722,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5543,9 +4748,6 @@ class _$SetCallVideoEnabledImpl implements _SetCallVideoEnabled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5669,9 +4871,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -5700,9 +4899,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5729,9 +4925,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -5762,9 +4955,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -5794,9 +4984,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5823,9 +5010,6 @@ class _$SetCallTransferImpl implements _SetCallTransfer {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -5949,9 +5133,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -5980,9 +5161,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6009,9 +5187,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6042,9 +5217,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -6074,9 +5246,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6103,9 +5272,6 @@ class _$SetCallEncodingImpl implements _SetCallEncoding {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6229,9 +5395,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -6260,9 +5423,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6289,9 +5449,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6322,9 +5479,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -6354,9 +5508,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6383,9 +5534,6 @@ class _$SetCallPeerConnectionImpl implements _SetCallPeerConnection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6512,9 +5660,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppConfigLogin login) setLoginConfig,
-    required TResult Function(String? greetingL10n) setLoginGreeting,
-    required TResult Function(List<AppConfigModeSelectAction> actions)
-        setLoginModeSelectActions,
     required TResult Function(AppConfigMain main) setMainConfig,
     required TResult Function(bool enabled) setMainSystemNotificationsEnabled,
     required TResult Function(AppConfigBottomMenu bottomMenu) setBottomMenu,
@@ -6543,9 +5688,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(AppConfigLogin login)? setLoginConfig,
-    TResult? Function(String? greetingL10n)? setLoginGreeting,
-    TResult? Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult? Function(AppConfigMain main)? setMainConfig,
     TResult? Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult? Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6572,9 +5714,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AppConfigLogin login)? setLoginConfig,
-    TResult Function(String? greetingL10n)? setLoginGreeting,
-    TResult Function(List<AppConfigModeSelectAction> actions)?
-        setLoginModeSelectActions,
     TResult Function(AppConfigMain main)? setMainConfig,
     TResult Function(bool enabled)? setMainSystemNotificationsEnabled,
     TResult Function(AppConfigBottomMenu bottomMenu)? setBottomMenu,
@@ -6605,9 +5744,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetLoginConfig value) setLoginConfig,
-    required TResult Function(_SetLoginGreeting value) setLoginGreeting,
-    required TResult Function(_SetLoginModeSelectActions value)
-        setLoginModeSelectActions,
     required TResult Function(_SetMainConfig value) setMainConfig,
     required TResult Function(_SetMainSystemNotificationsEnabled value)
         setMainSystemNotificationsEnabled,
@@ -6637,9 +5773,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetLoginConfig value)? setLoginConfig,
-    TResult? Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult? Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult? Function(_SetMainConfig value)? setMainConfig,
     TResult? Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6666,9 +5799,6 @@ class _$SetNegotiationOverrideImpl implements _SetNegotiationOverride {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetLoginConfig value)? setLoginConfig,
-    TResult Function(_SetLoginGreeting value)? setLoginGreeting,
-    TResult Function(_SetLoginModeSelectActions value)?
-        setLoginModeSelectActions,
     TResult Function(_SetMainConfig value)? setMainConfig,
     TResult Function(_SetMainSystemNotificationsEnabled value)?
         setMainSystemNotificationsEnabled,
@@ -6717,8 +5847,6 @@ mixin _$ThemePageEvent {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -6751,8 +5879,6 @@ mixin _$ThemePageEvent {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -6780,8 +5906,6 @@ mixin _$ThemePageEvent {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -6810,8 +5934,6 @@ mixin _$ThemePageEvent {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -6846,8 +5968,6 @@ mixin _$ThemePageEvent {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -6881,8 +6001,6 @@ mixin _$ThemePageEvent {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7018,8 +6136,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -7055,8 +6171,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7087,8 +6201,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7123,8 +6235,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -7162,8 +6272,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7200,8 +6308,6 @@ class _$SetLoginPageImpl implements _SetLoginPage {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7333,8 +6439,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -7370,8 +6474,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7402,8 +6504,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7438,8 +6538,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -7477,8 +6575,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7515,8 +6611,6 @@ class _$UpdateSwitchPageImpl implements _UpdateSwitchPage {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7650,8 +6744,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -7687,8 +6779,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7719,8 +6809,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -7755,8 +6843,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -7794,8 +6880,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7832,8 +6916,6 @@ class _$SetLoginPictureImpl implements _SetLoginPicture {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -7879,612 +6961,6 @@ abstract class _SetLoginPicture implements ThemePageEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetLoginPictureImplCopyWith<_$SetLoginPictureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SetLoginScaleImplCopyWith<$Res> {
-  factory _$$SetLoginScaleImplCopyWith(
-          _$SetLoginScaleImpl value, $Res Function(_$SetLoginScaleImpl) then) =
-      __$$SetLoginScaleImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({double? scale});
-}
-
-/// @nodoc
-class __$$SetLoginScaleImplCopyWithImpl<$Res>
-    extends _$ThemePageEventCopyWithImpl<$Res, _$SetLoginScaleImpl>
-    implements _$$SetLoginScaleImplCopyWith<$Res> {
-  __$$SetLoginScaleImplCopyWithImpl(
-      _$SetLoginScaleImpl _value, $Res Function(_$SetLoginScaleImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? scale = freezed,
-  }) {
-    return _then(_$SetLoginScaleImpl(
-      freezed == scale
-          ? _value.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SetLoginScaleImpl implements _SetLoginScale {
-  const _$SetLoginScaleImpl(this.scale);
-
-  @override
-  final double? scale;
-
-  @override
-  String toString() {
-    return 'ThemePageEvent.setLoginScale(scale: $scale)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetLoginScaleImpl &&
-            (identical(other.scale, scale) || other.scale == scale));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, scale);
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetLoginScaleImplCopyWith<_$SetLoginScaleImpl> get copyWith =>
-      __$$SetLoginScaleImplCopyWithImpl<_$SetLoginScaleImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
-    required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
-    required TResult Function(LoginModeSelectPageConfig modeSelect)
-        setLoginModeSelect,
-    required TResult Function(ElevatedButtonStyleType type)
-        setLoginModeSelectButtonLoginStyle,
-    required TResult Function(ElevatedButtonStyleType type)
-        setLoginModeSelectButtonSignupStyle,
-    required TResult Function(AboutPageConfig about) setAboutPage,
-    required TResult Function(AssetModel asset) setAboutPicture,
-    required TResult Function(Metadata metadata) setAboutMetadata,
-    required TResult Function(CallPageConfig dialingPage) setDialingPage,
-    required TResult Function(OverlayStyleModel? style)
-        setDialingSystemUiOverlay,
-    required TResult Function(AppBarStyleConfig? appBarStyle)
-        setDialingAppBarStyle,
-    required TResult Function(CallPageInfoConfig? info) setDialingInfo,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoUsernameStyle,
-    required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoCallStatusStyle,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoProcessingStatusStyle,
-    required TResult Function(KeypadPageConfig keypad) setKeypadPage,
-    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
-    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginScale(scale);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
-    TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
-    TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
-    TResult? Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult? Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult? Function(AboutPageConfig about)? setAboutPage,
-    TResult? Function(AssetModel asset)? setAboutPicture,
-    TResult? Function(Metadata metadata)? setAboutMetadata,
-    TResult? Function(CallPageConfig dialingPage)? setDialingPage,
-    TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
-    TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
-    TResult? Function(TextStyleConfig? style)?
-        setDialingInfoProcessingStatusStyle,
-    TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
-    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
-    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginScale?.call(scale);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
-    TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
-    TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
-    TResult Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult Function(AboutPageConfig about)? setAboutPage,
-    TResult Function(AssetModel asset)? setAboutPicture,
-    TResult Function(Metadata metadata)? setAboutMetadata,
-    TResult Function(CallPageConfig dialingPage)? setDialingPage,
-    TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
-    TResult Function(CallPageInfoConfig? info)? setDialingInfo,
-    TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
-    TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
-    TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
-    TResult Function(TextStyleConfig? style)?
-        setDialingInfoProcessingStatusStyle,
-    TResult Function(KeypadPageConfig keypad)? setKeypadPage,
-    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
-    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
-    required TResult orElse(),
-  }) {
-    if (setLoginScale != null) {
-      return setLoginScale(scale);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SetLoginPage value) setLoginPage,
-    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
-    required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
-    required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
-    required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
-        setLoginModeSelectButtonLoginStyle,
-    required TResult Function(_SetLoginModeSelectButtonSignupStyle value)
-        setLoginModeSelectButtonSignupStyle,
-    required TResult Function(_SetAboutPage value) setAboutPage,
-    required TResult Function(_SetAboutPicture value) setAboutPicture,
-    required TResult Function(_SetAboutMetadata value) setAboutMetadata,
-    required TResult Function(_SetDialingPage value) setDialingPage,
-    required TResult Function(_SetDialingSystemUiOverlay value)
-        setDialingSystemUiOverlay,
-    required TResult Function(_SetDialingAppBarStyle value)
-        setDialingAppBarStyle,
-    required TResult Function(_SetDialingInfo value) setDialingInfo,
-    required TResult Function(_SetDialingInfoUsernameStyle value)
-        setDialingInfoUsernameStyle,
-    required TResult Function(_SetDialingInfoNumberStyle value)
-        setDialingInfoNumberStyle,
-    required TResult Function(_SetDialingInfoCallStatusStyle value)
-        setDialingInfoCallStatusStyle,
-    required TResult Function(_SetDialingInfoProcessingStatusStyle value)
-        setDialingInfoProcessingStatusStyle,
-    required TResult Function(_SetKeypadPage value) setKeypadPage,
-    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
-        setLoginOtpSigninVerifyCountdown,
-    required TResult Function(_SetLoginSignupVerifyCountdown value)
-        setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginScale(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetLoginPage value)? setLoginPage,
-    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
-    TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
-    TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
-    TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult? Function(_SetLoginModeSelectButtonSignupStyle value)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult? Function(_SetAboutPage value)? setAboutPage,
-    TResult? Function(_SetAboutPicture value)? setAboutPicture,
-    TResult? Function(_SetAboutMetadata value)? setAboutMetadata,
-    TResult? Function(_SetDialingPage value)? setDialingPage,
-    TResult? Function(_SetDialingSystemUiOverlay value)?
-        setDialingSystemUiOverlay,
-    TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
-    TResult? Function(_SetDialingInfo value)? setDialingInfo,
-    TResult? Function(_SetDialingInfoUsernameStyle value)?
-        setDialingInfoUsernameStyle,
-    TResult? Function(_SetDialingInfoNumberStyle value)?
-        setDialingInfoNumberStyle,
-    TResult? Function(_SetDialingInfoCallStatusStyle value)?
-        setDialingInfoCallStatusStyle,
-    TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
-        setDialingInfoProcessingStatusStyle,
-    TResult? Function(_SetKeypadPage value)? setKeypadPage,
-    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
-        setLoginOtpSigninVerifyCountdown,
-    TResult? Function(_SetLoginSignupVerifyCountdown value)?
-        setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginScale?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SetLoginPage value)? setLoginPage,
-    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
-    TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
-    TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
-    TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult Function(_SetLoginModeSelectButtonSignupStyle value)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult Function(_SetAboutPage value)? setAboutPage,
-    TResult Function(_SetAboutPicture value)? setAboutPicture,
-    TResult Function(_SetAboutMetadata value)? setAboutMetadata,
-    TResult Function(_SetDialingPage value)? setDialingPage,
-    TResult Function(_SetDialingSystemUiOverlay value)?
-        setDialingSystemUiOverlay,
-    TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
-    TResult Function(_SetDialingInfo value)? setDialingInfo,
-    TResult Function(_SetDialingInfoUsernameStyle value)?
-        setDialingInfoUsernameStyle,
-    TResult Function(_SetDialingInfoNumberStyle value)?
-        setDialingInfoNumberStyle,
-    TResult Function(_SetDialingInfoCallStatusStyle value)?
-        setDialingInfoCallStatusStyle,
-    TResult Function(_SetDialingInfoProcessingStatusStyle value)?
-        setDialingInfoProcessingStatusStyle,
-    TResult Function(_SetKeypadPage value)? setKeypadPage,
-    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
-        setLoginOtpSigninVerifyCountdown,
-    TResult Function(_SetLoginSignupVerifyCountdown value)?
-        setLoginSignupVerifyCountdown,
-    required TResult orElse(),
-  }) {
-    if (setLoginScale != null) {
-      return setLoginScale(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetLoginScale implements ThemePageEvent {
-  const factory _SetLoginScale(final double? scale) = _$SetLoginScaleImpl;
-
-  double? get scale;
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetLoginScaleImplCopyWith<_$SetLoginScaleImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SetLoginLabelColorImplCopyWith<$Res> {
-  factory _$$SetLoginLabelColorImplCopyWith(_$SetLoginLabelColorImpl value,
-          $Res Function(_$SetLoginLabelColorImpl) then) =
-      __$$SetLoginLabelColorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$$SetLoginLabelColorImplCopyWithImpl<$Res>
-    extends _$ThemePageEventCopyWithImpl<$Res, _$SetLoginLabelColorImpl>
-    implements _$$SetLoginLabelColorImplCopyWith<$Res> {
-  __$$SetLoginLabelColorImplCopyWithImpl(_$SetLoginLabelColorImpl _value,
-      $Res Function(_$SetLoginLabelColorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_$SetLoginLabelColorImpl(
-      freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SetLoginLabelColorImpl implements _SetLoginLabelColor {
-  const _$SetLoginLabelColorImpl(this.color);
-
-  @override
-  final String? color;
-
-  @override
-  String toString() {
-    return 'ThemePageEvent.setLoginLabelColor(color: $color)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetLoginLabelColorImpl &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetLoginLabelColorImplCopyWith<_$SetLoginLabelColorImpl> get copyWith =>
-      __$$SetLoginLabelColorImplCopyWithImpl<_$SetLoginLabelColorImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LoginPageConfig login) setLoginPage,
-    required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
-    required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
-    required TResult Function(LoginModeSelectPageConfig modeSelect)
-        setLoginModeSelect,
-    required TResult Function(ElevatedButtonStyleType type)
-        setLoginModeSelectButtonLoginStyle,
-    required TResult Function(ElevatedButtonStyleType type)
-        setLoginModeSelectButtonSignupStyle,
-    required TResult Function(AboutPageConfig about) setAboutPage,
-    required TResult Function(AssetModel asset) setAboutPicture,
-    required TResult Function(Metadata metadata) setAboutMetadata,
-    required TResult Function(CallPageConfig dialingPage) setDialingPage,
-    required TResult Function(OverlayStyleModel? style)
-        setDialingSystemUiOverlay,
-    required TResult Function(AppBarStyleConfig? appBarStyle)
-        setDialingAppBarStyle,
-    required TResult Function(CallPageInfoConfig? info) setDialingInfo,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoUsernameStyle,
-    required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoCallStatusStyle,
-    required TResult Function(TextStyleConfig? style)
-        setDialingInfoProcessingStatusStyle,
-    required TResult Function(KeypadPageConfig keypad) setKeypadPage,
-    required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
-    required TResult Function(int seconds) setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginLabelColor(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoginPageConfig login)? setLoginPage,
-    TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
-    TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
-    TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
-    TResult? Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult? Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult? Function(AboutPageConfig about)? setAboutPage,
-    TResult? Function(AssetModel asset)? setAboutPicture,
-    TResult? Function(Metadata metadata)? setAboutMetadata,
-    TResult? Function(CallPageConfig dialingPage)? setDialingPage,
-    TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
-    TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
-    TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
-    TResult? Function(TextStyleConfig? style)?
-        setDialingInfoProcessingStatusStyle,
-    TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
-    TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
-    TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginLabelColor?.call(color);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoginPageConfig login)? setLoginPage,
-    TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
-    TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
-    TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
-    TResult Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult Function(ElevatedButtonStyleType type)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult Function(AboutPageConfig about)? setAboutPage,
-    TResult Function(AssetModel asset)? setAboutPicture,
-    TResult Function(Metadata metadata)? setAboutMetadata,
-    TResult Function(CallPageConfig dialingPage)? setDialingPage,
-    TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
-    TResult Function(CallPageInfoConfig? info)? setDialingInfo,
-    TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
-    TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
-    TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
-    TResult Function(TextStyleConfig? style)?
-        setDialingInfoProcessingStatusStyle,
-    TResult Function(KeypadPageConfig keypad)? setKeypadPage,
-    TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
-    TResult Function(int seconds)? setLoginSignupVerifyCountdown,
-    required TResult orElse(),
-  }) {
-    if (setLoginLabelColor != null) {
-      return setLoginLabelColor(color);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SetLoginPage value) setLoginPage,
-    required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
-    required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
-    required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
-    required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
-        setLoginModeSelectButtonLoginStyle,
-    required TResult Function(_SetLoginModeSelectButtonSignupStyle value)
-        setLoginModeSelectButtonSignupStyle,
-    required TResult Function(_SetAboutPage value) setAboutPage,
-    required TResult Function(_SetAboutPicture value) setAboutPicture,
-    required TResult Function(_SetAboutMetadata value) setAboutMetadata,
-    required TResult Function(_SetDialingPage value) setDialingPage,
-    required TResult Function(_SetDialingSystemUiOverlay value)
-        setDialingSystemUiOverlay,
-    required TResult Function(_SetDialingAppBarStyle value)
-        setDialingAppBarStyle,
-    required TResult Function(_SetDialingInfo value) setDialingInfo,
-    required TResult Function(_SetDialingInfoUsernameStyle value)
-        setDialingInfoUsernameStyle,
-    required TResult Function(_SetDialingInfoNumberStyle value)
-        setDialingInfoNumberStyle,
-    required TResult Function(_SetDialingInfoCallStatusStyle value)
-        setDialingInfoCallStatusStyle,
-    required TResult Function(_SetDialingInfoProcessingStatusStyle value)
-        setDialingInfoProcessingStatusStyle,
-    required TResult Function(_SetKeypadPage value) setKeypadPage,
-    required TResult Function(_SetLoginOtpSigninVerifyCountdown value)
-        setLoginOtpSigninVerifyCountdown,
-    required TResult Function(_SetLoginSignupVerifyCountdown value)
-        setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginLabelColor(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetLoginPage value)? setLoginPage,
-    TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
-    TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
-    TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
-    TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult? Function(_SetLoginModeSelectButtonSignupStyle value)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult? Function(_SetAboutPage value)? setAboutPage,
-    TResult? Function(_SetAboutPicture value)? setAboutPicture,
-    TResult? Function(_SetAboutMetadata value)? setAboutMetadata,
-    TResult? Function(_SetDialingPage value)? setDialingPage,
-    TResult? Function(_SetDialingSystemUiOverlay value)?
-        setDialingSystemUiOverlay,
-    TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
-    TResult? Function(_SetDialingInfo value)? setDialingInfo,
-    TResult? Function(_SetDialingInfoUsernameStyle value)?
-        setDialingInfoUsernameStyle,
-    TResult? Function(_SetDialingInfoNumberStyle value)?
-        setDialingInfoNumberStyle,
-    TResult? Function(_SetDialingInfoCallStatusStyle value)?
-        setDialingInfoCallStatusStyle,
-    TResult? Function(_SetDialingInfoProcessingStatusStyle value)?
-        setDialingInfoProcessingStatusStyle,
-    TResult? Function(_SetKeypadPage value)? setKeypadPage,
-    TResult? Function(_SetLoginOtpSigninVerifyCountdown value)?
-        setLoginOtpSigninVerifyCountdown,
-    TResult? Function(_SetLoginSignupVerifyCountdown value)?
-        setLoginSignupVerifyCountdown,
-  }) {
-    return setLoginLabelColor?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SetLoginPage value)? setLoginPage,
-    TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
-    TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
-    TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
-    TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
-        setLoginModeSelectButtonLoginStyle,
-    TResult Function(_SetLoginModeSelectButtonSignupStyle value)?
-        setLoginModeSelectButtonSignupStyle,
-    TResult Function(_SetAboutPage value)? setAboutPage,
-    TResult Function(_SetAboutPicture value)? setAboutPicture,
-    TResult Function(_SetAboutMetadata value)? setAboutMetadata,
-    TResult Function(_SetDialingPage value)? setDialingPage,
-    TResult Function(_SetDialingSystemUiOverlay value)?
-        setDialingSystemUiOverlay,
-    TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
-    TResult Function(_SetDialingInfo value)? setDialingInfo,
-    TResult Function(_SetDialingInfoUsernameStyle value)?
-        setDialingInfoUsernameStyle,
-    TResult Function(_SetDialingInfoNumberStyle value)?
-        setDialingInfoNumberStyle,
-    TResult Function(_SetDialingInfoCallStatusStyle value)?
-        setDialingInfoCallStatusStyle,
-    TResult Function(_SetDialingInfoProcessingStatusStyle value)?
-        setDialingInfoProcessingStatusStyle,
-    TResult Function(_SetKeypadPage value)? setKeypadPage,
-    TResult Function(_SetLoginOtpSigninVerifyCountdown value)?
-        setLoginOtpSigninVerifyCountdown,
-    TResult Function(_SetLoginSignupVerifyCountdown value)?
-        setLoginSignupVerifyCountdown,
-    required TResult orElse(),
-  }) {
-    if (setLoginLabelColor != null) {
-      return setLoginLabelColor(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetLoginLabelColor implements ThemePageEvent {
-  const factory _SetLoginLabelColor(final String? color) =
-      _$SetLoginLabelColorImpl;
-
-  String? get color;
-
-  /// Create a copy of ThemePageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetLoginLabelColorImplCopyWith<_$SetLoginLabelColorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -8573,8 +7049,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -8610,8 +7084,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -8642,8 +7114,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -8678,8 +7148,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -8717,8 +7185,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -8755,8 +7221,6 @@ class _$SetLoginModeSelectImpl implements _SetLoginModeSelect {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -8882,8 +7346,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -8919,8 +7381,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -8951,8 +7411,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -8987,8 +7445,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -9026,8 +7482,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9064,8 +7518,6 @@ class _$SetLoginModeSelectButtonLoginStyleImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9193,8 +7645,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -9230,8 +7680,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9262,8 +7710,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9298,8 +7744,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -9337,8 +7781,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9375,8 +7817,6 @@ class _$SetLoginModeSelectButtonSignupStyleImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9510,8 +7950,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -9547,8 +7985,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9579,8 +8015,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9615,8 +8049,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -9654,8 +8086,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9692,8 +8122,6 @@ class _$SetAboutPageImpl implements _SetAboutPage {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -9825,8 +8253,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -9862,8 +8288,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9894,8 +8318,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -9930,8 +8352,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -9969,8 +8389,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10007,8 +8425,6 @@ class _$SetAboutPictureImpl implements _SetAboutPicture {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10142,8 +8558,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -10179,8 +8593,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10211,8 +8623,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10247,8 +8657,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -10286,8 +8694,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10324,8 +8730,6 @@ class _$SetAboutMetadataImpl implements _SetAboutMetadata {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10459,8 +8863,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -10496,8 +8898,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10528,8 +8928,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10564,8 +8962,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -10603,8 +8999,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10641,8 +9035,6 @@ class _$SetDialingPageImpl implements _SetDialingPage {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10781,8 +9173,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -10818,8 +9208,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10850,8 +9238,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -10886,8 +9272,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -10925,8 +9309,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -10963,8 +9345,6 @@ class _$SetDialingSystemUiOverlayImpl implements _SetDialingSystemUiOverlay {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11103,8 +9483,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -11140,8 +9518,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11172,8 +9548,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11208,8 +9582,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -11247,8 +9619,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11285,8 +9655,6 @@ class _$SetDialingAppBarStyleImpl implements _SetDialingAppBarStyle {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11423,8 +9791,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -11460,8 +9826,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11492,8 +9856,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11528,8 +9890,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -11567,8 +9927,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11605,8 +9963,6 @@ class _$SetDialingInfoImpl implements _SetDialingInfo {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11747,8 +10103,6 @@ class _$SetDialingInfoUsernameStyleImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -11784,8 +10138,6 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11816,8 +10168,6 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -11852,8 +10202,6 @@ class _$SetDialingInfoUsernameStyleImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -11891,8 +10239,6 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -11929,8 +10275,6 @@ class _$SetDialingInfoUsernameStyleImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12069,8 +10413,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -12106,8 +10448,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12138,8 +10478,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12174,8 +10512,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -12213,8 +10549,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12251,8 +10585,6 @@ class _$SetDialingInfoNumberStyleImpl implements _SetDialingInfoNumberStyle {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12394,8 +10726,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -12431,8 +10761,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12463,8 +10791,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12499,8 +10825,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -12538,8 +10862,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12576,8 +10898,6 @@ class _$SetDialingInfoCallStatusStyleImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12720,8 +11040,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -12757,8 +11075,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12789,8 +11105,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -12825,8 +11139,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -12864,8 +11176,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -12902,8 +11212,6 @@ class _$SetDialingInfoProcessingStatusStyleImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13036,8 +11344,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -13073,8 +11379,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13105,8 +11409,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13141,8 +11443,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -13180,8 +11480,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13218,8 +11516,6 @@ class _$SetKeypadPageImpl implements _SetKeypadPage {
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13345,8 +11641,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -13382,8 +11676,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13414,8 +11706,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13450,8 +11740,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -13489,8 +11777,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13527,8 +11813,6 @@ class _$SetLoginOtpSigninVerifyCountdownImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13655,8 +11939,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     required TResult Function(LoginPageConfig login) setLoginPage,
     required TResult Function(LoginSwitchPageConfig login) updateSwitchPage,
     required TResult Function(ImageSource imageSource) setLoginPicture,
-    required TResult Function(double? scale) setLoginScale,
-    required TResult Function(String? color) setLoginLabelColor,
     required TResult Function(LoginModeSelectPageConfig modeSelect)
         setLoginModeSelect,
     required TResult Function(ElevatedButtonStyleType type)
@@ -13692,8 +11974,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     TResult? Function(LoginPageConfig login)? setLoginPage,
     TResult? Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult? Function(ImageSource imageSource)? setLoginPicture,
-    TResult? Function(double? scale)? setLoginScale,
-    TResult? Function(String? color)? setLoginLabelColor,
     TResult? Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult? Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13724,8 +12004,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     TResult Function(LoginPageConfig login)? setLoginPage,
     TResult Function(LoginSwitchPageConfig login)? updateSwitchPage,
     TResult Function(ImageSource imageSource)? setLoginPicture,
-    TResult Function(double? scale)? setLoginScale,
-    TResult Function(String? color)? setLoginLabelColor,
     TResult Function(LoginModeSelectPageConfig modeSelect)? setLoginModeSelect,
     TResult Function(ElevatedButtonStyleType type)?
         setLoginModeSelectButtonLoginStyle,
@@ -13760,8 +12038,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     required TResult Function(_SetLoginPage value) setLoginPage,
     required TResult Function(_UpdateSwitchPage value) updateSwitchPage,
     required TResult Function(_SetLoginPicture value) setLoginPicture,
-    required TResult Function(_SetLoginScale value) setLoginScale,
-    required TResult Function(_SetLoginLabelColor value) setLoginLabelColor,
     required TResult Function(_SetLoginModeSelect value) setLoginModeSelect,
     required TResult Function(_SetLoginModeSelectButtonLoginStyle value)
         setLoginModeSelectButtonLoginStyle,
@@ -13799,8 +12075,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     TResult? Function(_SetLoginPage value)? setLoginPage,
     TResult? Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult? Function(_SetLoginPicture value)? setLoginPicture,
-    TResult? Function(_SetLoginScale value)? setLoginScale,
-    TResult? Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult? Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult? Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,
@@ -13837,8 +12111,6 @@ class _$SetLoginSignupVerifyCountdownImpl
     TResult Function(_SetLoginPage value)? setLoginPage,
     TResult Function(_UpdateSwitchPage value)? updateSwitchPage,
     TResult Function(_SetLoginPicture value)? setLoginPicture,
-    TResult Function(_SetLoginScale value)? setLoginScale,
-    TResult Function(_SetLoginLabelColor value)? setLoginLabelColor,
     TResult Function(_SetLoginModeSelect value)? setLoginModeSelect,
     TResult Function(_SetLoginModeSelectButtonLoginStyle value)?
         setLoginModeSelectButtonLoginStyle,

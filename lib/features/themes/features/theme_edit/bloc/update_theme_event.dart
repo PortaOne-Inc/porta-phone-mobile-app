@@ -35,11 +35,6 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
   // loginConfig
   const factory AppConfigEvent.setLoginConfig(AppConfigLogin login) = _SetLoginConfig;
 
-  const factory AppConfigEvent.setLoginGreeting(String? greetingL10n) = _SetLoginGreeting;
-
-  const factory AppConfigEvent.setLoginModeSelectActions(List<AppConfigModeSelectAction> actions) =
-      _SetLoginModeSelectActions;
-
   const factory AppConfigEvent.setMainConfig(AppConfigMain main) = _SetMainConfig;
 
   const factory AppConfigEvent.setMainSystemNotificationsEnabled(bool enabled) = _SetMainSystemNotificationsEnabled;
@@ -89,10 +84,6 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
   const factory ThemePageEvent.updateSwitchPage(LoginSwitchPageConfig login) = _UpdateSwitchPage;
 
   const factory ThemePageEvent.setLoginPicture(ImageSource imageSource) = _SetLoginPicture;
-
-  const factory ThemePageEvent.setLoginScale(double? scale) = _SetLoginScale;
-
-  const factory ThemePageEvent.setLoginLabelColor(String? color) = _SetLoginLabelColor;
 
   const factory ThemePageEvent.setLoginModeSelect(LoginModeSelectPageConfig modeSelect) = _SetLoginModeSelect;
 

@@ -19,7 +19,6 @@ abstract class FeatureAccessEditorApi {
   AppConfig buildFull();
 }
 
-/// Базова імплементація редактора для AppConfig
 class FeatureAccessEditor implements FeatureAccessEditorApi {
   FeatureAccessEditor({AppConfig? initial}) {
     if (initial != null) {
@@ -93,34 +92,16 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
-  // ===== ГРАНУЛЯРНІ ОПЕРАЦІЇ ЗРУЧНО МАТИ (чисто AppConfig) =====
-
   void setAppConfig(AppConfig app) {
     _current = app;
     _emit();
   }
 
-  // login
   void setLoginConfig(AppConfigLogin login) {
     _current = current.copyWith(loginConfig: login);
     _emit();
   }
 
-  void setLoginGreeting(String? l10n) {
-    _current = current.copyWith(
-      loginConfig: current.loginConfig.copyWith(greetingL10n: l10n),
-    );
-    _emit();
-  }
-
-  void setLoginModeSelectActions(List<AppConfigModeSelectAction> actions) {
-    _current = current.copyWith(
-      loginConfig: current.loginConfig.copyWith(modeSelectActions: actions),
-    );
-    _emit();
-  }
-
-  // main
   void setMainConfig(AppConfigMain main) {
     _current = current.copyWith(mainConfig: main);
     _emit();
@@ -179,7 +160,6 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     setBottomMenuTabs(list);
   }
 
-  // settings
   void setSettingsConfig(AppConfigSettings settings) {
     _current = current.copyWith(settingsConfig: settings);
     _emit();
@@ -192,7 +172,6 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
-  // call
   void setCallConfig(AppConfigCall call) {
     _current = current.copyWith(callConfig: call);
     _emit();

@@ -23,9 +23,7 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
 
   String _selectedType = 'login';
 
-  bool _enabled = false;
-  bool _isLaunchButtonVisible = false;
-  bool _isLaunchScreen = false;
+  bool _enabled = true;
 
   EmbeddedResourceModel? _selectedEmbedded;
 
@@ -86,9 +84,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                     _selectedType = value;
                     if (_selectedType == 'login') {
                       _selectedEmbedded = null;
-                      _isLaunchScreen = false;
-                    } else {
-                      _isLaunchButtonVisible = false;
                     }
                   });
                 },
@@ -100,7 +95,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                   onPick: _addEmbeddedPage,
                   onClear: () => setState(() {
                     _selectedEmbedded = null;
-                    _isLaunchScreen = false;
                   }),
                 ),
                 const SizedBox(height: 16),
@@ -112,20 +106,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                 value: _enabled,
                 onChanged: (v) => setState(() => _enabled = v),
               ),
-              if (_selectedType == 'login')
-                SwitchListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Show launch button (isLaunchButtonVisible)'),
-                  value: _isLaunchButtonVisible,
-                  onChanged: (v) => setState(() => _isLaunchButtonVisible = v),
-                ),
-              if (_selectedType == 'embedded' && _selectedEmbedded != null)
-                SwitchListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Open as launch screen (isLaunchScreen)'),
-                  value: _isLaunchScreen,
-                  onChanged: (v) => setState(() => _isLaunchScreen = v),
-                ),
             ],
           ),
         ),
@@ -164,8 +144,6 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
       type: _selectedType,
       titleL10n: titleL10n,
       embeddedId: _selectedType == 'embedded' ? _selectedEmbedded?.id : null,
-      isLaunchButtonVisible: _isLaunchButtonVisible,
-      isLaunchScreen: _isLaunchScreen,
     );
 
     Navigator.pop(context, action);
