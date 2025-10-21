@@ -3,7 +3,6 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './src/app.module';
-import { Cors } from './src/config/cors';
 import { Express } from 'express-serve-static-core';
 import * as admin from 'firebase-admin';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -64,15 +63,36 @@ const createFunction = async (expressInstance: Express): Promise<void> => {
 
     const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
 
+    const trustedOrigins = readCorsOriginsFromEnv();
+    console.log('[BOOT] CORS trusted origins:', trustedOrigins);
+
+    const allowlist: (string | RegExp)[] = [
+        ...trustedOrigins,
+        /^https?:\/\/localhost(?::\d+)?$/,
+        /^https?:\/\/127\.0\.0\.1(?::\d+)?$/,
+    ];
+    app.enableCors({
+        origin: (origin, cb) => {
+            if (!origin) return cb(null, true); // Postman/healthchecks
+            const ok = allowlist.some(o =>
+                o instanceof RegExp ? o.test(origin) : o === origin,
+            );
+            if (ok) return cb(null, true);
+            console.warn('[CORS] Blocked origin:', origin);
+            return cb(new Error(`CORS blocked: ${origin}`));
+        },
+        credentials: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+    });
+
+    expressInstance.use((req, res, next) => {
+        if (req.method === 'OPTIONS') return res.sendStatus(204);
+        next();
+    });
     app.useGlobalFilters(new AllExceptionsFilter());
     app.useGlobalPipes(new ZodValidationPipe());
     app.setGlobalPrefix('v1');
-
-    app.enableCors({
-        origin: Cors.origin,
-        methods: Cors.corsMethods,
-        allowedHeaders: Cors.corsAllowedHeaders,
-    });
 
     const config = new DocumentBuilder()
         .setTitle('WebTrit App Configurator')
@@ -131,3 +151,12 @@ export const mirrorUserRoles = functions.firestore
         });
     });
 
+
+function readCorsOriginsFromEnv(): string[] {
+    const raw = process.env.CORS_ORIGINS ?? '';
+    const list = raw
+        .split(/[, \n\r\t]+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+    return list;
+}

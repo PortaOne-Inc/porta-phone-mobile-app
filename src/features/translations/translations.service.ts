@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Readable } from 'stream';
-
 import { TranslationsRepository } from './translations.repository';
 import { Translation } from './entities/translation';
 
@@ -20,7 +18,7 @@ export class TranslationsService {
   /**
    * Compose a Flutter ARB file stream for a given application.
    */
-  async composeArb(applicationId: string): Promise<Readable> {
+  async composeArb(applicationId: string): Promise<NodeJS.ReadableStream> {
     return this.translationsRepository.composeArb(applicationId);
   }
 

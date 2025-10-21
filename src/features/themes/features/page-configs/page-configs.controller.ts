@@ -40,11 +40,11 @@ export class PageConfigsController {
   @Get(':variant')
   @ApiParam({ name: 'variant', enum: ['light', 'dark'] })
   getByThemeVariant(
-    @Param('applicationId') appId: string,
+    @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Param('variant', new ParseEnumPipe(VariantEnum)) variant: Variant,
   ) {
-    return this.service.getByThemeVariant(appId, themeId, variant);
+    return this.service.getByThemeVariant(applicationId, themeId, variant);
   }
 
   @Put(':variant')

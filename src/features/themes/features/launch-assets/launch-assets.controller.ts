@@ -1,24 +1,28 @@
 import {
+    BadRequestException,
     Controller,
     Delete,
     Get,
     Param,
     Put,
     Query,
-    UseGuards,
     Req,
+    UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { z } from 'zod';
+
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
 import { LaunchAssetsService, OutputTarget } from './launch-assets.service';
-import { UpsertLaunchAssetsDto } from './dto/upsert-launch-assets.dto';
+
+
 import {
     CloudAnyUpload,
     CloudFormFields,
     UploadedAnyFiles,
 } from '../../../../common/interceptors/deco';
 import { CloudFile } from '../../../../common/interceptors/cloud-functions-multipart.interceptor';
-import { ConstraintsDefaultsDto } from './dto/defaults.dto';
+import { ConstraintsDefaults, UpsertLaunchAssets, UpsertLaunchAssetsSchema } from "./dto/defaults.dto";
 
 @Controller('applications/:applicationId/themes/:themeId/launch-assets')
 @ApiBearerAuth()
@@ -48,34 +52,25 @@ export class LaunchAssetsController {
         });
     }
 
-    /** PUT (multipart): upsert + batch upload artifacts */
     @Put('upload-batch')
     @CloudAnyUpload()
     async upsertWithUploadBatch(
         @Req() req: any,
         @Param('applicationId') appId: string,
         @Param('themeId') themeId: string,
-        @UploadedAnyFiles()
-        files: Record<string, CloudFile[] | CloudFile | undefined>,
+        @UploadedAnyFiles() files: Record<string, CloudFile[] | CloudFile | undefined>,
         @CloudFormFields() fields: Record<string, string>,
     ) {
-        console.log('targets:', fields['targets']);
-        console.log('files keys:', Object.keys(files ?? {}));
-
         const uid: string = req.user.uid;
+
         const targetsMap = fields['targets']
             ? (JSON.parse(fields['targets']) as Record<string, OutputTarget>)
             : {};
-        const dtoRaw = fields['dto'];
-        const dto: UpsertLaunchAssetsDto = dtoRaw ? JSON.parse(dtoRaw) : {};
-        return this.service.upsertWithFiles(
-            uid,
-            appId,
-            themeId,
-            dto,
-            files,
-            targetsMap,
-        );
+
+        const dtoRaw = fields['dto'] ? JSON.parse(fields['dto']) : {};
+        const dto: UpsertLaunchAssets = UpsertLaunchAssetsSchema.parse(dtoRaw);
+
+        return this.service.upsertWithFiles(uid, appId, themeId, dto, files, targetsMap);
     }
 
     /** Delete config (optionally cleaning up artifacts in service) */
@@ -91,7 +86,7 @@ export class LaunchAssetsController {
 
     /** Public endpoint: shared platform constraints defaults */
     @Get('constraints-defaults')
-    async getConstraintsDefaults(): Promise<ConstraintsDefaultsDto> {
+    async getConstraintsDefaults(): Promise<ConstraintsDefaults> {
         return this.service.getConstraintsDefaults();
     }
 }

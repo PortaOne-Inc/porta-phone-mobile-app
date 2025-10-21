@@ -2,24 +2,43 @@ import * as admin from 'firebase-admin';
 import {
     BadRequestException,
     Injectable,
+    Logger,
     NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 
-import {
-    UpsertLaunchAssetsDto,
-    ValidationReportDto,
-} from './dto/upsert-launch-assets.dto';
-import {
-    ConstraintsDefaultsDto,
-    PlatformConstraintsDto,
-} from './dto/defaults.dto';
 import { LaunchAssetsEntity } from './entities/launch-asset.entity';
 import { ArtifactsService } from '../../../artifacts';
 import { CloudStorageService } from '../../../common';
 import { Collections, deepMerge, nowIso } from '../../../../common';
 import { CloudFile } from '../../../../common/interceptors/cloud-functions-multipart.interceptor';
+
+import {
+    ConstraintsDefaultsSchema,
+    type ConstraintsDefaults,
+    type UpsertLaunchAssets,
+    type ValidationReport,
+} from './dto/defaults.dto';
+
+const trimVal = (v: any): any => {
+    if (v == null) return v; // null/undefined
+    if (typeof v === 'string') return v.length > 200 ? v.slice(0, 200) + '...' : v;
+    if (Array.isArray(v)) {
+        const arr = v.slice(0, 20).map(trimVal);
+        return v.length > 20 ? [...arr, `+${v.length - 20} more`] : arr;
+    }
+    if (typeof v === 'object') {
+        const out: any = {};
+        const entries = Object.entries(v);
+        for (const [k, val] of entries.slice(0, 50)) out[k] = trimVal(val);
+        if (entries.length > 50) out.__more__ = `+${entries.length - 50} keys`;
+        return out;
+    }
+    return v;
+};
+
+const safeJ = (x: any) => JSON.stringify(trimVal(x));
 
 export type OutputTarget =
     | 'androidLegacy'
@@ -36,8 +55,16 @@ type GetOptions = {
 
 const ASSET_URL_TTL_SEC = 3600; // 1h
 
+// ---- helpers ----
+const stripNulls = <T>(obj: T): T =>
+    JSON.parse(
+        JSON.stringify(obj, (_k, v) => (v === null ? undefined : v)),
+    );
+
 @Injectable()
 export class LaunchAssetsService {
+    private readonly logger = new Logger(LaunchAssetsService.name);
+
     constructor(
         @InjectRepository(LaunchAssetsEntity)
         private readonly repo: BaseFirestoreRepository<LaunchAssetsEntity>,
@@ -46,14 +73,14 @@ export class LaunchAssetsService {
     ) {
     }
 
-    async getConstraintsDefaults(): Promise<ConstraintsDefaultsDto> {
+    async getConstraintsDefaults(): Promise<ConstraintsDefaults> {
         const ref = admin
             .firestore()
             .collection(Collections.themeConfigsDefaults)
             .doc('launchAssetsDefaults');
         const snap = await ref.get();
 
-        const fallback: ConstraintsDefaultsDto = {
+        const fallback: ConstraintsDefaults = {
             androidAdaptive: {sizeDp: 432, safeZoneDp: 324, toleranceDp: 432},
             androidLegacy: {sizeDp: 512, safeZoneDp: 384, toleranceDp: 512},
             ios: {sizeDp: 1024, safeZoneDp: 832, toleranceDp: 1024},
@@ -62,30 +89,26 @@ export class LaunchAssetsService {
 
         if (!snap.exists) return fallback;
 
-        const data = snap.data() as any;
-        const c = (data?.constraints ?? {}) as ConstraintsDefaultsDto;
-
-        const norm = (
-            x?: PlatformConstraintsDto,
-        ): PlatformConstraintsDto | undefined =>
-            x
-                ? {
-                    sizeDp: typeof x.sizeDp === 'number' ? x.sizeDp : undefined,
-                    safeZoneDp:
-                        typeof x.safeZoneDp === 'number' ? x.safeZoneDp : undefined,
-                    toleranceDp:
-                        typeof x.toleranceDp === 'number' ? x.toleranceDp : undefined,
-                }
-                : undefined;
+        const raw = (snap.data()?.constraints ?? {}) as unknown;
+        const parsed = ConstraintsDefaultsSchema.safeParse(raw);
+        if (!parsed.success) {
+            this.logger.warn(
+                `getConstraintsDefaults: zod_parse_failed: ${parsed.error.message}`,
+            );
+            return fallback;
+        }
 
         return {
             androidAdaptive: {
-                ...fallback.androidAdaptive!,
-                ...norm(c.androidAdaptive),
+                ...fallback.androidAdaptive,
+                ...parsed.data.androidAdaptive,
             },
-            androidLegacy: {...fallback.androidLegacy!, ...norm(c.androidLegacy)},
-            ios: {...fallback.ios!, ...norm(c.ios)},
-            web: {...fallback.web!, ...norm(c.web)},
+            androidLegacy: {
+                ...fallback.androidLegacy,
+                ...parsed.data.androidLegacy,
+            },
+            ios: {...fallback.ios, ...parsed.data.ios},
+            web: {...fallback.web, ...parsed.data.web},
         };
     }
 
@@ -116,7 +139,7 @@ export class LaunchAssetsService {
             ? await this.expandUrls(uid, entity, opt?.urlTtlSec)
             : undefined;
 
-        let validation: ValidationReportDto | undefined;
+        let validation: ValidationReport | undefined;
         if (opt?.withValidation) {
             const defs = await this.getConstraintsDefaults();
             validation = await this.computeValidation(entity, defs);
@@ -125,134 +148,51 @@ export class LaunchAssetsService {
         return {entity, urls, validation};
     }
 
-    /**
-     * JSON-only upsert with partial deep-merge of `source` and `params`.
-     */
-    async upsert(
-        applicationId: string,
-        themeId: string,
-        dto: UpsertLaunchAssetsDto,
-    ) {
-        const id = this.idFor(themeId);
-        const now = nowIso();
-
-        const existing = await this.repo.findById(id).catch(() => null);
-        if (existing) {
-            if (existing.applicationId !== applicationId)
-                throw new NotFoundException('Launch assets not found');
-
-            const merged: LaunchAssetsEntity = {
-                ...existing,
-                source: deepMerge(existing.source ?? {}, dto.source ?? {}),
-                params: deepMerge(existing.params ?? {}, dto.params ?? {}),
-                updatedAt: now,
-            };
-            await this.repo.update(merged);
-            return merged;
-        }
-
-        const created: LaunchAssetsEntity = {
-            id,
-            applicationId,
-            themeId,
-            source: dto.source ?? {},
-            params: dto.params ?? {},
-            outputsArtifacts: {},
-            createdAt: now,
-            updatedAt: now,
-        };
-        await this.repo.create(created);
-        return created;
-    }
-
-    /**
-     * Upsert JSON + optional replace of a single output by target.
-     */
-    async upsertWithOptionalFile(
-        uid: string,
-        applicationId: string,
-        themeId: string,
-        dto: UpsertLaunchAssetsDto,
-        file?: CloudFile,
-        target?: OutputTarget,
-    ) {
-        const id = this.idFor(themeId);
-        const now = nowIso();
-
-        let entity = await this.repo.findById(id).catch(() => null);
-        if (entity && entity.applicationId !== applicationId)
-            throw new NotFoundException('Launch assets not found');
-
-        if (!entity) {
-            entity = {
-                id,
-                applicationId,
-                themeId,
-                source: {},
-                params: {},
-                outputsArtifacts: {},
-                createdAt: now,
-                updatedAt: now,
-            };
-        }
-
-        // JSON merge
-        entity.source = deepMerge(entity.source ?? {}, dto.source ?? {});
-        entity.params = deepMerge(entity.params ?? {}, dto.params ?? {});
-        entity.updatedAt = now;
-
-        if (!file) {
-            await this.persist(entity);
-            return entity;
-        }
-        if (!target)
-            throw new BadRequestException(
-                '`target` is required when uploading a file',
-            );
-
-        // Replace previous artifact for this target (if any)
-        const prevId = this.pickArtifactIdByTarget(entity.outputsArtifacts, target);
-        if (prevId) {
-            await this.artifacts.remove(uid, prevId).catch(() => undefined);
-        }
-
-        // Upload a new artifact linked to this theme
-        const art = await this.artifacts.uploadAndCreate(
-            uid,
-            applicationId,
-            themeId,
-            'launch-assets-output',
-            file as any,
-            [{type: 'launch-assets', id: themeId}],
-        );
-
-        const outsA = entity.outputsArtifacts ?? {};
-        this.assignArtifactIdByTarget(outsA, target, art.id);
-        entity.outputsArtifacts = outsA;
-
-        entity.updatedAt = now;
-        await this.persist(entity);
-        return entity;
-    }
-
-    /**
-     * Upsert JSON + batch replace of files for multiple targets.
-     * If any files present: delete ALL previous artifacts and rebuild from current batch.
-     */
     async upsertWithFiles(
         uid: string,
         applicationId: string,
         themeId: string,
-        dto: UpsertLaunchAssetsDto,
+        dto: UpsertLaunchAssets,
         filesMap: Record<string, CloudFile[] | CloudFile | undefined>,
         targetsMap: Record<string, OutputTarget>,
     ) {
+        const started = Date.now();
+        const opId = `${Date.now().toString(36)}-${Math.random()
+            .toString(36)
+            .slice(2, 8)}`;
+        const ctx = (extra: Record<string, unknown> = {}) =>
+            JSON.stringify({opId, uid, applicationId, themeId, ...extra});
+
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:start ${ctx({
+                dtoKeys: Object.keys(dto ?? {}),
+                fileFields: Object.keys(filesMap ?? {}),
+                targetFields: Object.keys(targetsMap ?? {}),
+            })}`,
+        );
+
         const id = this.idFor(themeId);
         const now = nowIso();
 
         let entity = await this.repo.findById(id).catch(() => null);
-        if (entity && entity.applicationId !== applicationId)
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:entity:${
+                entity ? 'exists' : 'new'
+            } ${ctx({
+                entityId: id,
+                hasOutputs: !!entity?.outputsArtifacts,
+            })}`,
+        );
+
+        if (entity && entity.applicationId !== applicationId) {
+            this.logger.warn(
+                `LaunchAssetsService.upsertWithFiles:app_mismatch ${ctx({
+                    entityAppId: entity.applicationId,
+                    reqAppId: applicationId,
+                })}`,
+            );
             throw new NotFoundException('Launch assets not found');
+        }
 
         if (!entity) {
             entity = {
@@ -264,68 +204,256 @@ export class LaunchAssetsService {
                 outputsArtifacts: {},
                 createdAt: now,
                 updatedAt: now,
-            };
+            } as LaunchAssetsEntity;
         }
 
-        // Merge JSON
-        entity.source = deepMerge(entity.source ?? {}, dto.source ?? {});
-        entity.params = deepMerge(entity.params ?? {}, dto.params ?? {});
+        const before = {
+            sourceKeys: Object.keys(entity.source ?? {}),
+            paramsKeys: Object.keys(entity.params ?? {}),
+        };
+
+        entity.source = stripNulls(
+            deepMerge(stripNulls(entity.source ?? {}), dto.source ?? {}),
+        );
+        entity.params = stripNulls(
+            deepMerge(stripNulls(entity.params ?? {}), dto.params ?? {}),
+        );
         entity.updatedAt = now;
 
-        // any file in the batch?
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:state_after_merge ${ctx({
+                source: JSON.parse(safeJ(entity.source)),
+                params: JSON.parse(safeJ(entity.params)),
+            })}`,
+        );
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:merged ${ctx({
+                before,
+                after: {
+                    sourceKeys: Object.keys(entity.source ?? {}),
+                    paramsKeys: Object.keys(entity.params ?? {}),
+                },
+                sample: {
+                    sourceBackgroundHex: (entity.source as any)?.backgroundColorHex ?? null,
+                    androidLegacyPadding: (entity.params as any)?.androidLegacy?.paddingDp ?? null,
+                },
+            })}`,
+        );
+
         const hasAnyFile = Object.values(filesMap ?? {}).some((v) =>
             Array.isArray(v) ? v.length > 0 : !!v,
         );
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:files_presence ${ctx({hasAnyFile})}`,
+        );
+
         if (!hasAnyFile) {
-            await this.persist(entity);
+            this.logger.log(
+                `LaunchAssetsService.upsertWithFiles:persist_only ${ctx({entityId: id})}`,
+            );
+            try {
+                this.logger.log(
+                    `LaunchAssetsService.upsertWithFiles:persist:start ${JSON.stringify({
+                        opId,
+                        entityId: id,
+                        outputsArtifacts: entity.outputsArtifacts,
+                    })}`,
+                );
+                await this.persist(entity);
+                this.logger.log(
+                    `LaunchAssetsService.upsertWithFiles:persist:ok ${JSON.stringify({
+                        opId,
+                        entityId: id,
+                    })}`,
+                );
+            } catch (e: any) {
+                this.logger.error(
+                    `LaunchAssetsService.upsertWithFiles:persist:error ${JSON.stringify({
+                        opId,
+                        entityId: id,
+                        message: e?.message,
+                        name: e?.name,
+                        code: e?.code,
+                        status: e?.status || e?.response?.status,
+                        responseData: e?.response?.data,
+                        details: e?.details,
+                        errors: e?.errors,
+                        snapshot: {
+                            id: entity.id,
+                            applicationId: entity.applicationId,
+                            themeId: entity.themeId,
+                            sourceKeys: Object.keys(entity.source ?? {}),
+                            paramsKeys: Object.keys(entity.params ?? {}),
+                            outputsKeys: Object.keys(entity.outputsArtifacts ?? {}),
+                        },
+                    })}`,
+                    e?.stack,
+                );
+                throw e;
+            }
             return entity;
         }
 
-        // Hard REPLACE: delete all previous artifacts
         const oldIds = this.collectOutputArtifactIds(entity.outputsArtifacts);
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:remove_old:start ${ctx({
+                count: oldIds.length,
+                oldIds,
+            })}`,
+        );
         await Promise.all(
-            oldIds.map((fid) =>
-                this.artifacts.remove(uid, fid).catch(() => undefined),
-            ),
+            oldIds.map(async (fid) => {
+                try {
+                    await this.artifacts.remove(uid, fid);
+                    this.logger.log(
+                        `LaunchAssetsService.upsertWithFiles:remove_old:ok ${ctx({fid})}`,
+                    );
+                } catch (e: any) {
+                    this.logger.warn(
+                        `LaunchAssetsService.upsertWithFiles:remove_old:failed ${ctx({
+                            fid,
+                            message: e?.message,
+                        })}`,
+                    );
+                }
+            }),
         );
 
-        // Rebuild outputs from the current batch
         const outsA: NonNullable<LaunchAssetsEntity['outputsArtifacts']> = {};
         const jobs: Array<Promise<void>> = [];
 
         for (const fieldName of Object.keys(filesMap ?? {})) {
             const target = targetsMap[fieldName];
-            if (!target)
+            if (!target) {
+                this.logger.error(
+                    `LaunchAssetsService.upsertWithFiles:missing_target ${ctx({fieldName})}`,
+                );
                 throw new BadRequestException(
                     `Missing target mapping for field "${fieldName}"`,
                 );
+            }
 
             const v = filesMap[fieldName];
             const files = Array.isArray(v) ? v : v ? [v] : [];
-            if (!files.length) continue;
+            if (!files.length) {
+                this.logger.log(
+                    `LaunchAssetsService.upsertWithFiles:field_no_files ${ctx({fieldName})}`,
+                );
+                continue;
+            }
 
             const file = files[0];
+            const fsize =
+                (file as any)?.buffer?.length ?? (file as any)?.size ?? undefined;
+
+            this.logger.log(
+                `LaunchAssetsService.upsertWithFiles:upload:start ${ctx({
+                    fieldName,
+                    target,
+                    fsize,
+                })}`,
+            );
+
             jobs.push(
                 (async () => {
-                    const art = await this.artifacts.uploadAndCreate(
-                        uid,
-                        applicationId,
-                        themeId,
-                        'launch-assets-output',
-                        file as any,
-                        [{type: 'launch-assets', id: themeId}],
-                    );
-                    this.assignArtifactIdByTarget(outsA, target, art.id);
+                    try {
+                        const art = await this.artifacts.uploadAndCreate(
+                            uid,
+                            applicationId,
+                            themeId,
+                            'launch-assets-output',
+                            file as any,
+                            [{type: 'launch-assets', id: themeId}],
+                        );
+                        this.assignArtifactIdByTarget(outsA, target, art.id);
+
+                        this.logger.log(
+                            `LaunchAssetsService.upsertWithFiles:upload:ok ${ctx({
+                                fieldName,
+                                target,
+                                artifactId: art.id,
+                            })}`,
+                        );
+                    } catch (e: any) {
+                        this.logger.error(
+                            `LaunchAssetsService.upsertWithFiles:upload:error ${ctx({
+                                fieldName,
+                                target,
+                                message: e?.message,
+                                code: e?.code,
+                                status: e?.status || e?.response?.status,
+                            })}`,
+                            e?.stack,
+                        );
+                    }
                 })(),
             );
         }
 
         await Promise.all(jobs);
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:uploads_done ${ctx({
+                mappedTargets: outsA,
+            })}`,
+        );
 
         entity.outputsArtifacts = outsA;
         entity.updatedAt = now;
 
-        await this.persist(entity);
+        try {
+            this.logger.log(
+                `LaunchAssetsService.upsertWithFiles:persist:start ${ctx({
+                    entityId: id,
+                    source: entity.source,
+                    params: entity.params,
+                    outputsArtifacts: entity.outputsArtifacts,
+                })}`,
+            );
+            await this.persist(entity);
+            this.logger.log(
+                `LaunchAssetsService.upsertWithFiles:persist:ok ${ctx({entityId: id})}`,
+            );
+        } catch (e: any) {
+            const errDump = {
+                name: e?.name,
+                message: e?.message,
+                code: e?.code,
+                status: e?.status || e?.response?.status,
+                responseData: e?.response?.data,
+                details: e?.details,
+                errors: e?.errors,
+                toString: String(e),
+                keys: Object.getOwnPropertyNames(e ?? {}).reduce((acc, k) => {
+                    (acc as any)[k] = (e as any)[k];
+                    return acc;
+                }, {} as Record<string, unknown>),
+            };
+
+            const bad = this.findFirstUnsupportedValue(entity);
+            this.logger.error(
+                `LaunchAssetsService.upsertWithFiles:persist:error ${ctx({
+                    entityId: id,
+                    error: errDump,
+                    snapshot: {
+                        source: entity.source,
+                        params: entity.params,
+                        outputsArtifacts: entity.outputsArtifacts,
+                    },
+                    firstUnsupportedValue: bad,
+                })}`,
+                e?.stack,
+            );
+            throw e;
+        }
+
+        this.logger.log(
+            `LaunchAssetsService.upsertWithFiles:done ${ctx({
+                entityId: id,
+                totalMs: Date.now() - started,
+                outputsArtifacts: entity.outputsArtifacts,
+            })}`,
+        );
+
         return entity;
     }
 
@@ -353,6 +481,10 @@ export class LaunchAssetsService {
     // ---------- helpers ----------
 
     private async persist(e: LaunchAssetsEntity) {
+        e.source = stripNulls(e.source ?? {});
+        e.params = stripNulls(e.params ?? {});
+        e.outputsArtifacts = stripNulls(e.outputsArtifacts ?? {});
+
         const exists = await this.repo.findById(e.id).catch(() => null);
         if (exists) return this.repo.update(e);
         return this.repo.create(e);
@@ -379,25 +511,6 @@ export class LaunchAssetsService {
             case 'web':
                 outs.webArtifactId = artifactId;
                 break;
-        }
-    }
-
-    private pickArtifactIdByTarget(
-        outs: LaunchAssetsEntity['outputsArtifacts'] | undefined,
-        target: OutputTarget,
-    ): string | undefined {
-        if (!outs) return undefined;
-        switch (target) {
-            case 'androidLegacy':
-                return outs.androidLegacyArtifactId;
-            case 'androidAdaptiveForeground':
-                return outs.androidAdaptiveForegroundArtifactId;
-            case 'androidAdaptiveBackground':
-                return outs.androidAdaptiveBackgroundArtifactId;
-            case 'ios':
-                return outs.iosArtifactId;
-            case 'web':
-                return outs.webArtifactId;
         }
     }
 
@@ -462,9 +575,36 @@ export class LaunchAssetsService {
      */
     private async computeValidation(
         _entity: LaunchAssetsEntity,
-        _defaults: ConstraintsDefaultsDto,
-    ): Promise<ValidationReportDto> {
+        _defaults: ConstraintsDefaults,
+    ): Promise<ValidationReport> {
         const ok = {compliant: true, deltaDp: 0};
         return {androidLegacy: ok, androidAdaptive: ok, ios: ok, web: ok};
     }
+
+    private findFirstUnsupportedValue(obj: unknown, path: string = ''): any {
+        const isBadNum = (n: number) => Number.isNaN(n) || !Number.isFinite(n);
+        const bad = (v: any) =>
+            v === undefined ||
+            typeof v === 'function' ||
+            typeof v === 'bigint' ||
+            (typeof v === 'number' && isBadNum(v));
+
+        if (bad(obj)) return {path, value: obj};
+
+        if (obj && typeof obj === 'object') {
+            if (Array.isArray(obj)) {
+                for (let i = 0; i < obj.length; i++) {
+                    const r = this.findFirstUnsupportedValue(obj[i], `${path}[${i}]`);
+                    if (r) return r;
+                }
+            } else {
+                for (const [k, v] of Object.entries(obj as Record<string, unknown>)) {
+                    const r = this.findFirstUnsupportedValue(v, path ? `${path}.${k}` : k);
+                    if (r) return r;
+                }
+            }
+        }
+        return null;
+    }
 }
+

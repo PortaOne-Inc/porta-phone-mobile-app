@@ -7,7 +7,7 @@ import { FirebaseModule } from 'src/firebase.module';
 import { CommonModule } from '../../common/common.module';
 import { UsersModule } from '../users/users.module';
 import { RefsModule } from '../common/refs/refs.module';
-import { FileArtifactFactory } from '../../common/files/file-artifact.factory';
+import { FileArtifactFactory } from '../../common';
 
 @Module({
   imports: [

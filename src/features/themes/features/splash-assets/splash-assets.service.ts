@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import {
     Injectable,
     NotFoundException,
-    BadRequestException,
+    BadRequestException, Logger,
 } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
@@ -81,6 +81,8 @@ function normalizeSlice(
 
 @Injectable()
 export class SplashAssetsService {
+    private readonly logger = new Logger(SplashAssetsService.name);
+
     constructor(
         @InjectRepository(SplashAssetEntity)
         private readonly repo: BaseFirestoreRepository<SplashAssetEntity>,
@@ -257,13 +259,37 @@ export class SplashAssetsService {
         filesMap: Record<string, CloudFile[] | CloudFile | undefined>,
         targetsMap: Record<string, SplashOutputTarget>,
     ): Promise<SplashAssetEntity> {
+        const started = Date.now();
+        const logCtx = (extra: Record<string, unknown> = {}) =>
+            JSON.stringify({ uid, applicationId, themeId, ...extra });
+
+        this.logger.log(`upsertWithFiles:start ${logCtx({
+            dtoKeys: Object.keys(dto ?? {}),
+            targetFields: Object.keys(targetsMap ?? {}),
+            fileFields: Object.keys(filesMap ?? {}),
+        })}`);
+
         const id = this.idFor(themeId);
         const now = nowIso();
 
         let entity = await this.repo.findById(id).catch(() => null);
+        this.logger.log(
+            `entity:${entity ? 'exists' : 'not_found'} ${logCtx({
+                entityId: id,
+                hasOutputs: !!entity?.outputsArtifacts,
+            })}`,
+        );
+
         if (entity && entity.applicationId !== applicationId) {
+            this.logger.warn(
+                `entity:app_mismatch ${logCtx({
+                    entityApp: entity.applicationId,
+                    reqApp: applicationId,
+                })}`,
+            );
             throw new NotFoundException('Splash asset config not found');
         }
+
         if (!entity) {
             entity = {
                 id,
@@ -276,13 +302,30 @@ export class SplashAssetsService {
                 createdAt: now,
                 updatedAt: now,
             };
+            this.logger.log(`entity:created_in_memory ${logCtx({ entityId: id, mode: entity.mode })}`);
         }
 
         // merge JSON
+        const before = {
+            sourceKeys: Object.keys(entity.source ?? {}),
+            paramsKeys: Object.keys(entity.params ?? {}),
+            mode: entity.mode,
+        };
         if (dto.source) entity.source = deepMerge(entity.source ?? {}, dto.source);
         if (dto.params) entity.params = deepMerge(entity.params ?? {}, dto.params);
         if (dto.mode) entity.mode = dto.mode;
         entity.updatedAt = now;
+
+        this.logger.log(
+            `entity:merged ${logCtx({
+                before,
+                after: {
+                    sourceKeys: Object.keys(entity.source ?? {}),
+                    paramsKeys: Object.keys(entity.params ?? {}),
+                    mode: entity.mode,
+                },
+            })}`,
+        );
 
         // collect files
         const allFiles: CloudFile[] = [];
@@ -291,18 +334,41 @@ export class SplashAssetsService {
             if (Array.isArray(v)) allFiles.push(...v);
             else allFiles.push(v);
         }
+        this.logger.log(
+            `files:collected ${logCtx({
+                totalFiles: allFiles.length,
+                targetMap: targetsMap,
+            })}`,
+        );
 
         if (allFiles.length === 0) {
+            this.logger.log(`files:none -> persist_only ${logCtx({ entityId: id })}`);
             await this.persist(entity);
-            return await this.repo.findById(id);
+            const fresh = await this.repo.findById(id);
+            this.logger.log(
+                `upsertWithFiles:done:no_files ${logCtx({ entityId: id, ms: Date.now() - started })}`,
+            );
+            return fresh;
         }
 
         // replace previous artifact
         const outs = entity.outputsArtifacts ?? {};
         if (outs.splashArtifactId) {
-            await this.artifacts
-                .remove(uid, outs.splashArtifactId)
-                .catch(() => undefined);
+            this.logger.log(
+                `artifact:remove:attempt ${logCtx({ oldArtifactId: outs.splashArtifactId })}`,
+            );
+            await this.artifacts.remove(uid, outs.splashArtifactId).then(
+                () => this.logger.log(
+                    `artifact:remove:ok ${logCtx({ oldArtifactId: outs.splashArtifactId })}`,
+                ),
+            ).catch((e) => {
+                this.logger.warn(
+                    `artifact:remove:failed ${logCtx({ oldArtifactId: outs.splashArtifactId, error: e?.message })}`,
+                );
+                return undefined;
+            });
+        } else {
+            this.logger.log(`artifact:remove:skip ${logCtx({ reason: 'no_previous_artifact' })}`);
         }
 
         // upload first file mapped to target="splash"
@@ -311,17 +377,39 @@ export class SplashAssetsService {
             if (target !== 'splash') continue;
             const v = filesMap[fieldName];
             const file = Array.isArray(v) ? v?.[0] : v;
-            if (!file && allFiles.length !== 1) continue;
+            if (!file && allFiles.length !== 1) {
+                this.logger.log(
+                    `target:splash:skip_field ${logCtx({ fieldName, reason: 'no_file_for_field' })}`,
+                );
+                continue;
+            }
 
             const chosen = (file ?? allFiles[0]) as CloudFile;
+            const size = (chosen as any)?.buffer?.length ?? (chosen as any)?.size ?? undefined;
+            this.logger.log(
+                `artifact:upload:start ${logCtx({
+                    fieldName,
+                    picked: !!file ? 'fieldFile' : 'fallbackFirst',
+                    size,
+                })}`,
+            );
 
             const art = await this.artifacts.uploadAndCreate(
                 uid,
                 applicationId,
                 themeId,
-                ARTIFACT_KIND, // storage namespace/kind
+                ARTIFACT_KIND,
                 chosen as any,
-                [{type: ARTIFACT_TAG, id: themeId}],
+                [{ type: ARTIFACT_TAG, id: themeId }],
+            );
+
+            this.logger.log(
+                `artifact:upload:ok ${logCtx({
+                    artifactId: art.id,
+                    storagePath: art.storagePath,
+                    mimeType: art.mimeType,
+                    bytes: art.size,
+                })}`,
             );
             newOuts.splashArtifactId = art.id;
             break; // only one splash output
@@ -329,22 +417,65 @@ export class SplashAssetsService {
 
         // fallback: no mapping but exactly one file
         if (!newOuts.splashArtifactId && allFiles.length === 1) {
+            const chosen = allFiles[0];
+            const size = (chosen as any)?.buffer?.length ?? (chosen as any)?.size ?? undefined;
+            this.logger.log(
+                `artifact:fallback_upload:start ${logCtx({ reason: 'single_file', size })}`,
+            );
+
             const art = await this.artifacts.uploadAndCreate(
                 uid,
                 applicationId,
                 themeId,
                 ARTIFACT_KIND,
-                allFiles[0] as any,
-                [{type: ARTIFACT_TAG, id: themeId}],
+                chosen as any,
+                [{ type: ARTIFACT_TAG, id: themeId }],
             );
+
+            this.logger.log(
+                `artifact:fallback_upload:ok ${logCtx({
+                    artifactId: art.id,
+                    storagePath: art.storagePath,
+                    mimeType: art.mimeType,
+                    bytes: art.size,
+                })}`,
+            );
+
             newOuts.splashArtifactId = art.id;
+        }
+
+        if (!newOuts.splashArtifactId) {
+            this.logger.warn(
+                `artifact:missing_after_uploads ${logCtx({
+                    totalFiles: allFiles.length,
+                    targets: targetsMap,
+                })}`,
+            );
         }
 
         entity.outputsArtifacts = newOuts;
         entity.updatedAt = now;
-        await this.persist(entity);
 
-        return await this.repo.findById(id);
+        this.logger.log(
+            `entity:persist:start ${logCtx({
+                entityId: id,
+                splashArtifactId: newOuts.splashArtifactId ?? null,
+            })}`,
+        );
+        await this.persist(entity);
+        this.logger.log(
+            `entity:persist:ok ${logCtx({ entityId: id })}`,
+        );
+
+        const result = await this.repo.findById(id);
+        this.logger.log(
+            `upsertWithFiles:done ${logCtx({
+                entityId: id,
+                splashArtifactId: result.outputsArtifacts?.splashArtifactId ?? null,
+                ms: Date.now() - started,
+            })}`,
+        );
+        return result;
     }
 
     /** Remove splash config + its generated artifact (best-effort). */

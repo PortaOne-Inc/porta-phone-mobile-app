@@ -32,7 +32,7 @@ import { GenerateThemesModule } from './features/themes/features/generate/genera
     ConfigModule.forRoot({ isGlobal: true }),
     FireormModule.forRoot({
       firestoreSettings: {},
-      fireormSettings: { validateModels: true },
+      fireormSettings: { validateModels: false },
     }),
     FireormModule.forFeature([UserRole]),
     ApplicationsModule,

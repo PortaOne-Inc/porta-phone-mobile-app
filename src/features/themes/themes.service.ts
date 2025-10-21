@@ -567,7 +567,7 @@ export class ThemesService {
     ]);
 
     const resolveUrl = (id: string) =>
-      this.assetsService.getSignedUrlById(uid, id, ASSET_URL_TTL_SEC);
+      this.assetsService.getSignedUrlByIdForApp(theme.applicationId, id, ASSET_URL_TTL_SEC);
 
     const themeWidgetConfig = widgetCfgRaw
       ? await resolveImageSourceUrlsDeep(widgetCfgRaw, resolveUrl)
