@@ -6,16 +6,11 @@ part of 'auth_response_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthResponseDTOImpl _$$AuthResponseDTOImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AuthResponseDTOImpl(
+_AuthResponseDTO _$AuthResponseDTOFromJson(Map<String, dynamic> json) =>
+    _AuthResponseDTO(
       status: json['status'] as String,
       token: json['token'] as String,
     );
 
-Map<String, dynamic> _$$AuthResponseDTOImplToJson(
-        _$AuthResponseDTOImpl instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'token': instance.token,
-    };
+Map<String, dynamic> _$AuthResponseDTOToJson(_AuthResponseDTO instance) =>
+    <String, dynamic>{'status': instance.status, 'token': instance.token};

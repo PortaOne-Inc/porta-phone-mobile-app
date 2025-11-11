@@ -12,7 +12,8 @@ PhoneBranchDto _$PhoneBranchDtoFromJson(Map<String, dynamic> json) =>
       json['commit'] == null
           ? null
           : PhoneBranchDtoCommit.fromJson(
-              json['commit'] as Map<String, dynamic>),
+              json['commit'] as Map<String, dynamic>,
+            ),
       json['protected'] as bool?,
     );
 
@@ -24,15 +25,9 @@ Map<String, dynamic> _$PhoneBranchDtoToJson(PhoneBranchDto instance) =>
     };
 
 PhoneBranchDtoCommit _$PhoneBranchDtoCommitFromJson(
-        Map<String, dynamic> json) =>
-    PhoneBranchDtoCommit(
-      json['sha'] as String?,
-      json['url'] as String?,
-    );
+  Map<String, dynamic> json,
+) => PhoneBranchDtoCommit(json['sha'] as String?, json['url'] as String?);
 
 Map<String, dynamic> _$PhoneBranchDtoCommitToJson(
-        PhoneBranchDtoCommit instance) =>
-    <String, dynamic>{
-      'sha': instance.sha,
-      'url': instance.url,
-    };
+  PhoneBranchDtoCommit instance,
+) => <String, dynamic>{'sha': instance.sha, 'url': instance.url};

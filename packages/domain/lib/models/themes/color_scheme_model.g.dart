@@ -6,9 +6,8 @@ part of 'color_scheme_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ColorSchemeModelImpl _$$ColorSchemeModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ColorSchemeModelImpl(
+_ColorSchemeModel _$ColorSchemeModelFromJson(Map<String, dynamic> json) =>
+    _ColorSchemeModel(
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
       variant: $enumDecode(_$BrightnessVariantEnumMap, json['variant']),
@@ -18,8 +17,7 @@ _$ColorSchemeModelImpl _$$ColorSchemeModelImplFromJson(
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$ColorSchemeModelImplToJson(
-        _$ColorSchemeModelImpl instance) =>
+Map<String, dynamic> _$ColorSchemeModelToJson(_ColorSchemeModel instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'themeId': instance.themeId,

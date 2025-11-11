@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,159 +9,263 @@ part of 'update_asset_dto_req.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UpdateAssetDtoReq _$UpdateAssetDtoReqFromJson(Map<String, dynamic> json) {
-  return _UpdateAssetDtoReq.fromJson(json);
-}
 
 /// @nodoc
 mixin _$UpdateAssetDtoReq {
-  String? get checksum => throw _privateConstructorUsedError;
+
+ String? get checksum;
+/// Create a copy of UpdateAssetDtoReq
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UpdateAssetDtoReqCopyWith<UpdateAssetDtoReq> get copyWith => _$UpdateAssetDtoReqCopyWithImpl<UpdateAssetDtoReq>(this as UpdateAssetDtoReq, _$identity);
 
   /// Serializes this UpdateAssetDtoReq to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of UpdateAssetDtoReq
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UpdateAssetDtoReqCopyWith<UpdateAssetDtoReq> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateAssetDtoReq&&(identical(other.checksum, checksum) || other.checksum == checksum));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,checksum);
+
+@override
+String toString() {
+  return 'UpdateAssetDtoReq(checksum: $checksum)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UpdateAssetDtoReqCopyWith<$Res> {
-  factory $UpdateAssetDtoReqCopyWith(
-          UpdateAssetDtoReq value, $Res Function(UpdateAssetDtoReq) then) =
-      _$UpdateAssetDtoReqCopyWithImpl<$Res, UpdateAssetDtoReq>;
-  @useResult
-  $Res call({String? checksum});
-}
+abstract mixin class $UpdateAssetDtoReqCopyWith<$Res>  {
+  factory $UpdateAssetDtoReqCopyWith(UpdateAssetDtoReq value, $Res Function(UpdateAssetDtoReq) _then) = _$UpdateAssetDtoReqCopyWithImpl;
+@useResult
+$Res call({
+ String? checksum
+});
 
+
+
+
+}
 /// @nodoc
-class _$UpdateAssetDtoReqCopyWithImpl<$Res, $Val extends UpdateAssetDtoReq>
+class _$UpdateAssetDtoReqCopyWithImpl<$Res>
     implements $UpdateAssetDtoReqCopyWith<$Res> {
-  _$UpdateAssetDtoReqCopyWithImpl(this._value, this._then);
+  _$UpdateAssetDtoReqCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UpdateAssetDtoReq _self;
+  final $Res Function(UpdateAssetDtoReq) _then;
 
-  /// Create a copy of UpdateAssetDtoReq
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? checksum = freezed,
-  }) {
-    return _then(_value.copyWith(
-      checksum: freezed == checksum
-          ? _value.checksum
-          : checksum // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of UpdateAssetDtoReq
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? checksum = freezed,}) {
+  return _then(_self.copyWith(
+checksum: freezed == checksum ? _self.checksum : checksum // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$UpdateAssetDtoReqImplCopyWith<$Res>
-    implements $UpdateAssetDtoReqCopyWith<$Res> {
-  factory _$$UpdateAssetDtoReqImplCopyWith(_$UpdateAssetDtoReqImpl value,
-          $Res Function(_$UpdateAssetDtoReqImpl) then) =
-      __$$UpdateAssetDtoReqImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? checksum});
 }
 
-/// @nodoc
-class __$$UpdateAssetDtoReqImplCopyWithImpl<$Res>
-    extends _$UpdateAssetDtoReqCopyWithImpl<$Res, _$UpdateAssetDtoReqImpl>
-    implements _$$UpdateAssetDtoReqImplCopyWith<$Res> {
-  __$$UpdateAssetDtoReqImplCopyWithImpl(_$UpdateAssetDtoReqImpl _value,
-      $Res Function(_$UpdateAssetDtoReqImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of UpdateAssetDtoReq
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? checksum = freezed,
-  }) {
-    return _then(_$UpdateAssetDtoReqImpl(
-      checksum: freezed == checksum
-          ? _value.checksum
-          : checksum // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [UpdateAssetDtoReq].
+extension UpdateAssetDtoReqPatterns on UpdateAssetDtoReq {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UpdateAssetDtoReq value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UpdateAssetDtoReq value)  $default,){
+final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UpdateAssetDtoReq value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? checksum)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq() when $default != null:
+return $default(_that.checksum);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? checksum)  $default,) {final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq():
+return $default(_that.checksum);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? checksum)?  $default,) {final _that = this;
+switch (_that) {
+case _UpdateAssetDtoReq() when $default != null:
+return $default(_that.checksum);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateAssetDtoReqImpl implements _UpdateAssetDtoReq {
-  const _$UpdateAssetDtoReqImpl({this.checksum});
 
-  factory _$UpdateAssetDtoReqImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateAssetDtoReqImplFromJson(json);
+class _UpdateAssetDtoReq implements UpdateAssetDtoReq {
+  const _UpdateAssetDtoReq({this.checksum});
+  factory _UpdateAssetDtoReq.fromJson(Map<String, dynamic> json) => _$UpdateAssetDtoReqFromJson(json);
 
-  @override
-  final String? checksum;
+@override final  String? checksum;
 
-  @override
-  String toString() {
-    return 'UpdateAssetDtoReq(checksum: $checksum)';
-  }
+/// Create a copy of UpdateAssetDtoReq
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateAssetDtoReqCopyWith<_UpdateAssetDtoReq> get copyWith => __$UpdateAssetDtoReqCopyWithImpl<_UpdateAssetDtoReq>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateAssetDtoReqImpl &&
-            (identical(other.checksum, checksum) ||
-                other.checksum == checksum));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, checksum);
-
-  /// Create a copy of UpdateAssetDtoReq
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdateAssetDtoReqImplCopyWith<_$UpdateAssetDtoReqImpl> get copyWith =>
-      __$$UpdateAssetDtoReqImplCopyWithImpl<_$UpdateAssetDtoReqImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UpdateAssetDtoReqImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$UpdateAssetDtoReqToJson(this, );
 }
 
-abstract class _UpdateAssetDtoReq implements UpdateAssetDtoReq {
-  const factory _UpdateAssetDtoReq({final String? checksum}) =
-      _$UpdateAssetDtoReqImpl;
-
-  factory _UpdateAssetDtoReq.fromJson(Map<String, dynamic> json) =
-      _$UpdateAssetDtoReqImpl.fromJson;
-
-  @override
-  String? get checksum;
-
-  /// Create a copy of UpdateAssetDtoReq
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateAssetDtoReqImplCopyWith<_$UpdateAssetDtoReqImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateAssetDtoReq&&(identical(other.checksum, checksum) || other.checksum == checksum));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,checksum);
+
+@override
+String toString() {
+  return 'UpdateAssetDtoReq(checksum: $checksum)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateAssetDtoReqCopyWith<$Res> implements $UpdateAssetDtoReqCopyWith<$Res> {
+  factory _$UpdateAssetDtoReqCopyWith(_UpdateAssetDtoReq value, $Res Function(_UpdateAssetDtoReq) _then) = __$UpdateAssetDtoReqCopyWithImpl;
+@override @useResult
+$Res call({
+ String? checksum
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateAssetDtoReqCopyWithImpl<$Res>
+    implements _$UpdateAssetDtoReqCopyWith<$Res> {
+  __$UpdateAssetDtoReqCopyWithImpl(this._self, this._then);
+
+  final _UpdateAssetDtoReq _self;
+  final $Res Function(_UpdateAssetDtoReq) _then;
+
+/// Create a copy of UpdateAssetDtoReq
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? checksum = freezed,}) {
+  return _then(_UpdateAssetDtoReq(
+checksum: freezed == checksum ? _self.checksum : checksum // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

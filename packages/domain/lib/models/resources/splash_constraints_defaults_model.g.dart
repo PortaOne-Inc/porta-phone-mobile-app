@@ -6,35 +6,36 @@ part of 'splash_constraints_defaults_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SplashConstraintsDefaultsSliceModelImpl
-    _$$SplashConstraintsDefaultsSliceModelImplFromJson(
-            Map<String, dynamic> json) =>
-        _$SplashConstraintsDefaultsSliceModelImpl(
-          fullSizeDp: (json['fullSizeDp'] as num).toDouble(),
-          maskDiameterDp: (json['maskDiameterDp'] as num).toDouble(),
-          toleranceDp: (json['toleranceDp'] as num).toDouble(),
-        );
+_SplashConstraintsDefaultsSliceModel
+_$SplashConstraintsDefaultsSliceModelFromJson(Map<String, dynamic> json) =>
+    _SplashConstraintsDefaultsSliceModel(
+      fullSizeDp: (json['fullSizeDp'] as num).toDouble(),
+      maskDiameterDp: (json['maskDiameterDp'] as num).toDouble(),
+      toleranceDp: (json['toleranceDp'] as num).toDouble(),
+    );
 
-Map<String, dynamic> _$$SplashConstraintsDefaultsSliceModelImplToJson(
-        _$SplashConstraintsDefaultsSliceModelImpl instance) =>
-    <String, dynamic>{
-      'fullSizeDp': instance.fullSizeDp,
-      'maskDiameterDp': instance.maskDiameterDp,
-      'toleranceDp': instance.toleranceDp,
-    };
+Map<String, dynamic> _$SplashConstraintsDefaultsSliceModelToJson(
+  _SplashConstraintsDefaultsSliceModel instance,
+) => <String, dynamic>{
+  'fullSizeDp': instance.fullSizeDp,
+  'maskDiameterDp': instance.maskDiameterDp,
+  'toleranceDp': instance.toleranceDp,
+};
 
-_$SplashConstraintsDefaultsModelImpl
-    _$$SplashConstraintsDefaultsModelImplFromJson(Map<String, dynamic> json) =>
-        _$SplashConstraintsDefaultsModelImpl(
-          withBackground: SplashConstraintsDefaultsSliceModel.fromJson(
-              json['withBackground'] as Map<String, dynamic>),
-          withoutBackground: SplashConstraintsDefaultsSliceModel.fromJson(
-              json['withoutBackground'] as Map<String, dynamic>),
-        );
+_SplashConstraintsDefaultsModel _$SplashConstraintsDefaultsModelFromJson(
+  Map<String, dynamic> json,
+) => _SplashConstraintsDefaultsModel(
+  withBackground: SplashConstraintsDefaultsSliceModel.fromJson(
+    json['withBackground'] as Map<String, dynamic>,
+  ),
+  withoutBackground: SplashConstraintsDefaultsSliceModel.fromJson(
+    json['withoutBackground'] as Map<String, dynamic>,
+  ),
+);
 
-Map<String, dynamic> _$$SplashConstraintsDefaultsModelImplToJson(
-        _$SplashConstraintsDefaultsModelImpl instance) =>
-    <String, dynamic>{
-      'withBackground': instance.withBackground,
-      'withoutBackground': instance.withoutBackground,
-    };
+Map<String, dynamic> _$SplashConstraintsDefaultsModelToJson(
+  _SplashConstraintsDefaultsModel instance,
+) => <String, dynamic>{
+  'withBackground': instance.withBackground,
+  'withoutBackground': instance.withoutBackground,
+};

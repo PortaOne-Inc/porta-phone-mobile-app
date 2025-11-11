@@ -5,17 +5,14 @@ part 'asset_dto.freezed.dart';
 part 'asset_dto.g.dart';
 
 @freezed
-class AssetLinkDto with _$AssetLinkDto {
-  const factory AssetLinkDto({
-    required String type,
-    required String id,
-  }) = _AssetLinkDto;
+sealed class AssetLinkDto with _$AssetLinkDto {
+  const factory AssetLinkDto({required String type, required String id}) = _AssetLinkDto;
 
   factory AssetLinkDto.fromJson(Map<String, dynamic> json) => _$AssetLinkDtoFromJson(json);
 }
 
 @Freezed(makeCollectionsUnmodifiable: false, toJson: true)
-class AssetDTO with _$AssetDTO {
+sealed class AssetDTO with _$AssetDTO {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
   const factory AssetDTO({

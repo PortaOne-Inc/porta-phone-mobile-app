@@ -7,7 +7,7 @@ part 'color_scheme_model.freezed.dart';
 part 'color_scheme_model.g.dart';
 
 @freezed
-class ColorSchemeModel with _$ColorSchemeModel {
+sealed class ColorSchemeModel with _$ColorSchemeModel {
   const factory ColorSchemeModel({
     required String applicationId,
     required String themeId,

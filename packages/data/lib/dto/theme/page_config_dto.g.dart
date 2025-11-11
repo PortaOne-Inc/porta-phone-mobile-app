@@ -6,8 +6,8 @@ part of 'page_config_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PageConfigDtoImpl _$$PageConfigDtoImplFromJson(Map<String, dynamic> json) =>
-    _$PageConfigDtoImpl(
+_PageConfigDto _$PageConfigDtoFromJson(Map<String, dynamic> json) =>
+    _PageConfigDto(
       id: json['id'] as String,
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
@@ -17,7 +17,7 @@ _$PageConfigDtoImpl _$$PageConfigDtoImplFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$PageConfigDtoImplToJson(_$PageConfigDtoImpl instance) =>
+Map<String, dynamic> _$PageConfigDtoToJson(_PageConfigDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'applicationId': instance.applicationId,

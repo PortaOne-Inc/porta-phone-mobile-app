@@ -5,7 +5,7 @@ part 'splash_constraints_defaults_model.freezed.dart';
 part 'splash_constraints_defaults_model.g.dart';
 
 @freezed
-class SplashConstraintsDefaultsSliceModel with _$SplashConstraintsDefaultsSliceModel {
+sealed class SplashConstraintsDefaultsSliceModel with _$SplashConstraintsDefaultsSliceModel {
   const factory SplashConstraintsDefaultsSliceModel({
     required double fullSizeDp,
     required double maskDiameterDp,
@@ -17,7 +17,7 @@ class SplashConstraintsDefaultsSliceModel with _$SplashConstraintsDefaultsSliceM
 }
 
 @freezed
-class SplashConstraintsDefaultsModel with _$SplashConstraintsDefaultsModel {
+sealed class SplashConstraintsDefaultsModel with _$SplashConstraintsDefaultsModel {
   const factory SplashConstraintsDefaultsModel({
     required SplashConstraintsDefaultsSliceModel withBackground,
     required SplashConstraintsDefaultsSliceModel withoutBackground,

@@ -6,8 +6,8 @@ part of 'color_scheme_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ColorSchemeDtoImpl _$$ColorSchemeDtoImplFromJson(Map<String, dynamic> json) =>
-    _$ColorSchemeDtoImpl(
+_ColorSchemeDto _$ColorSchemeDtoFromJson(Map<String, dynamic> json) =>
+    _ColorSchemeDto(
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
       variant: json['variant'] as String,
@@ -17,8 +17,7 @@ _$ColorSchemeDtoImpl _$$ColorSchemeDtoImplFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$ColorSchemeDtoImplToJson(
-        _$ColorSchemeDtoImpl instance) =>
+Map<String, dynamic> _$ColorSchemeDtoToJson(_ColorSchemeDto instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'themeId': instance.themeId,

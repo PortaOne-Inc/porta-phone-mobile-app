@@ -5,7 +5,7 @@ part 'create_asset_dto_req.freezed.dart';
 part 'create_asset_dto_req.g.dart';
 
 @freezed
-class CreateAssetDtoReq with _$CreateAssetDtoReq {
+sealed class CreateAssetDtoReq with _$CreateAssetDtoReq {
   const factory CreateAssetDtoReq({
     required String applicationId,
     required String storagePath,

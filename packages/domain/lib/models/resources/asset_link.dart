@@ -5,7 +5,7 @@ part 'asset_link.freezed.dart';
 part 'asset_link.g.dart';
 
 @freezed
-class AssetLink with _$AssetLink {
+sealed class AssetLink with _$AssetLink {
   const factory AssetLink({
     required String type, // e.g. "embed" | "post" | "user" | "asset"
     required String id,

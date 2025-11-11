@@ -7,7 +7,7 @@ part 'embedded_resource_model.freezed.dart';
 part 'embedded_resource_model.g.dart';
 
 @freezed
-class EmbeddedResourceModel with _$EmbeddedResourceModel {
+sealed class EmbeddedResourceModel with _$EmbeddedResourceModel {
   // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   const factory EmbeddedResourceModel({

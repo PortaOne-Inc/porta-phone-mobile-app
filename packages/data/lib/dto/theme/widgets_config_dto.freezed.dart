@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,299 +9,287 @@ part of 'widgets_config_dto.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WidgetsConfigDto _$WidgetsConfigDtoFromJson(Map<String, dynamic> json) {
-  return _WidgetsConfigDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$WidgetsConfigDto {
-  String get id => throw _privateConstructorUsedError;
-  String get applicationId => throw _privateConstructorUsedError;
-  String get themeId => throw _privateConstructorUsedError;
-  String get variant => throw _privateConstructorUsedError;
-  Map<String, dynamic> get config => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+
+ String get id; String get applicationId; String get themeId; String get variant; Map<String, dynamic> get config; DateTime get createdAt; DateTime get updatedAt;
+/// Create a copy of WidgetsConfigDto
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetsConfigDtoCopyWith<WidgetsConfigDto> get copyWith => _$WidgetsConfigDtoCopyWithImpl<WidgetsConfigDto>(this as WidgetsConfigDto, _$identity);
 
   /// Serializes this WidgetsConfigDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of WidgetsConfigDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WidgetsConfigDtoCopyWith<WidgetsConfigDto> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetsConfigDto&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(config),createdAt,updatedAt);
+
+@override
+String toString() {
+  return 'WidgetsConfigDto(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $WidgetsConfigDtoCopyWith<$Res> {
-  factory $WidgetsConfigDtoCopyWith(
-          WidgetsConfigDto value, $Res Function(WidgetsConfigDto) then) =
-      _$WidgetsConfigDtoCopyWithImpl<$Res, WidgetsConfigDto>;
-  @useResult
-  $Res call(
-      {String id,
-      String applicationId,
-      String themeId,
-      String variant,
-      Map<String, dynamic> config,
-      DateTime createdAt,
-      DateTime updatedAt});
-}
+abstract mixin class $WidgetsConfigDtoCopyWith<$Res>  {
+  factory $WidgetsConfigDtoCopyWith(WidgetsConfigDto value, $Res Function(WidgetsConfigDto) _then) = _$WidgetsConfigDtoCopyWithImpl;
+@useResult
+$Res call({
+ String id, String applicationId, String themeId, String variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt
+});
 
+
+
+
+}
 /// @nodoc
-class _$WidgetsConfigDtoCopyWithImpl<$Res, $Val extends WidgetsConfigDto>
+class _$WidgetsConfigDtoCopyWithImpl<$Res>
     implements $WidgetsConfigDtoCopyWith<$Res> {
-  _$WidgetsConfigDtoCopyWithImpl(this._value, this._then);
+  _$WidgetsConfigDtoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final WidgetsConfigDto _self;
+  final $Res Function(WidgetsConfigDto) _then;
 
-  /// Create a copy of WidgetsConfigDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? applicationId = null,
-    Object? themeId = null,
-    Object? variant = null,
-    Object? config = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationId: null == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      themeId: null == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      variant: null == variant
-          ? _value.variant
-          : variant // ignore: cast_nullable_to_non_nullable
-              as String,
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
-  }
+/// Create a copy of WidgetsConfigDto
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
+as String,variant: null == variant ? _self.variant : variant // ignore: cast_nullable_to_non_nullable
+as String,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
 }
 
-/// @nodoc
-abstract class _$$WidgetsConfigDtoImplCopyWith<$Res>
-    implements $WidgetsConfigDtoCopyWith<$Res> {
-  factory _$$WidgetsConfigDtoImplCopyWith(_$WidgetsConfigDtoImpl value,
-          $Res Function(_$WidgetsConfigDtoImpl) then) =
-      __$$WidgetsConfigDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String applicationId,
-      String themeId,
-      String variant,
-      Map<String, dynamic> config,
-      DateTime createdAt,
-      DateTime updatedAt});
 }
 
-/// @nodoc
-class __$$WidgetsConfigDtoImplCopyWithImpl<$Res>
-    extends _$WidgetsConfigDtoCopyWithImpl<$Res, _$WidgetsConfigDtoImpl>
-    implements _$$WidgetsConfigDtoImplCopyWith<$Res> {
-  __$$WidgetsConfigDtoImplCopyWithImpl(_$WidgetsConfigDtoImpl _value,
-      $Res Function(_$WidgetsConfigDtoImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of WidgetsConfigDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? applicationId = null,
-    Object? themeId = null,
-    Object? variant = null,
-    Object? config = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-  }) {
-    return _then(_$WidgetsConfigDtoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationId: null == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      themeId: null == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      variant: null == variant
-          ? _value.variant
-          : variant // ignore: cast_nullable_to_non_nullable
-              as String,
-      config: null == config
-          ? _value._config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
+/// Adds pattern-matching-related methods to [WidgetsConfigDto].
+extension WidgetsConfigDtoPatterns on WidgetsConfigDto {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WidgetsConfigDto value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _WidgetsConfigDto() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WidgetsConfigDto value)  $default,){
+final _that = this;
+switch (_that) {
+case _WidgetsConfigDto():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WidgetsConfigDto value)?  $default,){
+final _that = this;
+switch (_that) {
+case _WidgetsConfigDto() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _WidgetsConfigDto() when $default != null:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
+switch (_that) {
+case _WidgetsConfigDto():
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  String variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
+switch (_that) {
+case _WidgetsConfigDto() when $default != null:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$WidgetsConfigDtoImpl implements _WidgetsConfigDto {
-  const _$WidgetsConfigDtoImpl(
-      {required this.id,
-      required this.applicationId,
-      required this.themeId,
-      required this.variant,
-      required final Map<String, dynamic> config,
-      required this.createdAt,
-      required this.updatedAt})
-      : _config = config;
 
-  factory _$WidgetsConfigDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WidgetsConfigDtoImplFromJson(json);
+class _WidgetsConfigDto implements WidgetsConfigDto {
+  const _WidgetsConfigDto({required this.id, required this.applicationId, required this.themeId, required this.variant, required final  Map<String, dynamic> config, required this.createdAt, required this.updatedAt}): _config = config;
+  factory _WidgetsConfigDto.fromJson(Map<String, dynamic> json) => _$WidgetsConfigDtoFromJson(json);
 
-  @override
-  final String id;
-  @override
-  final String applicationId;
-  @override
-  final String themeId;
-  @override
-  final String variant;
-  final Map<String, dynamic> _config;
-  @override
-  Map<String, dynamic> get config {
-    if (_config is EqualUnmodifiableMapView) return _config;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_config);
-  }
-
-  @override
-  final DateTime createdAt;
-  @override
-  final DateTime updatedAt;
-
-  @override
-  String toString() {
-    return 'WidgetsConfigDto(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WidgetsConfigDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.applicationId, applicationId) ||
-                other.applicationId == applicationId) &&
-            (identical(other.themeId, themeId) || other.themeId == themeId) &&
-            (identical(other.variant, variant) || other.variant == variant) &&
-            const DeepCollectionEquality().equals(other._config, _config) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      applicationId,
-      themeId,
-      variant,
-      const DeepCollectionEquality().hash(_config),
-      createdAt,
-      updatedAt);
-
-  /// Create a copy of WidgetsConfigDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WidgetsConfigDtoImplCopyWith<_$WidgetsConfigDtoImpl> get copyWith =>
-      __$$WidgetsConfigDtoImplCopyWithImpl<_$WidgetsConfigDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WidgetsConfigDtoImplToJson(
-      this,
-    );
-  }
+@override final  String id;
+@override final  String applicationId;
+@override final  String themeId;
+@override final  String variant;
+ final  Map<String, dynamic> _config;
+@override Map<String, dynamic> get config {
+  if (_config is EqualUnmodifiableMapView) return _config;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_config);
 }
 
-abstract class _WidgetsConfigDto implements WidgetsConfigDto {
-  const factory _WidgetsConfigDto(
-      {required final String id,
-      required final String applicationId,
-      required final String themeId,
-      required final String variant,
-      required final Map<String, dynamic> config,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$WidgetsConfigDtoImpl;
+@override final  DateTime createdAt;
+@override final  DateTime updatedAt;
 
-  factory _WidgetsConfigDto.fromJson(Map<String, dynamic> json) =
-      _$WidgetsConfigDtoImpl.fromJson;
+/// Create a copy of WidgetsConfigDto
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WidgetsConfigDtoCopyWith<_WidgetsConfigDto> get copyWith => __$WidgetsConfigDtoCopyWithImpl<_WidgetsConfigDto>(this, _$identity);
 
-  @override
-  String get id;
-  @override
-  String get applicationId;
-  @override
-  String get themeId;
-  @override
-  String get variant;
-  @override
-  Map<String, dynamic> get config;
-  @override
-  DateTime get createdAt;
-  @override
-  DateTime get updatedAt;
-
-  /// Create a copy of WidgetsConfigDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WidgetsConfigDtoImplCopyWith<_$WidgetsConfigDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetsConfigDtoToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WidgetsConfigDto&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(_config),createdAt,updatedAt);
+
+@override
+String toString() {
+  return 'WidgetsConfigDto(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WidgetsConfigDtoCopyWith<$Res> implements $WidgetsConfigDtoCopyWith<$Res> {
+  factory _$WidgetsConfigDtoCopyWith(_WidgetsConfigDto value, $Res Function(_WidgetsConfigDto) _then) = __$WidgetsConfigDtoCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String applicationId, String themeId, String variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt
+});
+
+
+
+
+}
+/// @nodoc
+class __$WidgetsConfigDtoCopyWithImpl<$Res>
+    implements _$WidgetsConfigDtoCopyWith<$Res> {
+  __$WidgetsConfigDtoCopyWithImpl(this._self, this._then);
+
+  final _WidgetsConfigDto _self;
+  final $Res Function(_WidgetsConfigDto) _then;
+
+/// Create a copy of WidgetsConfigDto
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,}) {
+  return _then(_WidgetsConfigDto(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
+as String,variant: null == variant ? _self.variant : variant // ignore: cast_nullable_to_non_nullable
+as String,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
+}
+
+// dart format on

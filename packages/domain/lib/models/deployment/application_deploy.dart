@@ -6,7 +6,7 @@ import 'application_dependency_branches.dart';
 part 'application_deploy.freezed.dart';
 
 @freezed
-class ApplicationDeploy with _$ApplicationDeploy {
+sealed class ApplicationDeploy with _$ApplicationDeploy {
   const factory ApplicationDeploy({
     @Default(AndroidBuildPlatform()) AndroidBuildPlatform android,
     @Default(IOSBuildPlatform()) IOSBuildPlatform ios,

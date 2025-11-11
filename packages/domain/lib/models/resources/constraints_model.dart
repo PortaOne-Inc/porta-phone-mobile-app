@@ -5,7 +5,7 @@ part 'constraints_model.freezed.dart';
 part 'constraints_model.g.dart';
 
 @freezed
-class ConstraintsModel with _$ConstraintsModel {
+sealed class ConstraintsModel with _$ConstraintsModel {
   const factory ConstraintsModel({
     PlatformConstraintsModel? androidLegacy,
     PlatformConstraintsModel? androidAdaptive,
@@ -17,12 +17,9 @@ class ConstraintsModel with _$ConstraintsModel {
 }
 
 @freezed
-class PlatformConstraintsModel with _$PlatformConstraintsModel {
-  const factory PlatformConstraintsModel({
-    double? sizeDp,
-    double? safeZoneDp,
-    double? toleranceDp,
-  }) = _PlatformConstraintsModel;
+sealed class PlatformConstraintsModel with _$PlatformConstraintsModel {
+  const factory PlatformConstraintsModel({double? sizeDp, double? safeZoneDp, double? toleranceDp}) =
+      _PlatformConstraintsModel;
 
   factory PlatformConstraintsModel.fromJson(Map<String, dynamic> json) => _$PlatformConstraintsModelFromJson(json);
 }

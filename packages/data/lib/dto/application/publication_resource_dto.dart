@@ -5,7 +5,7 @@ part 'publication_resource_dto.freezed.dart';
 part 'publication_resource_dto.g.dart';
 
 @freezed
-class PublicationResourceDto with _$PublicationResourceDto {
+sealed class PublicationResourceDto with _$PublicationResourceDto {
   const factory PublicationResourceDto({
     required String id,
     required String applicationId,

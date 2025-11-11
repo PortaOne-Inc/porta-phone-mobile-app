@@ -6,15 +6,13 @@ part of 'build_version_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BuildVersionModelImpl _$$BuildVersionModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BuildVersionModelImpl(
+_BuildVersionModel _$BuildVersionModelFromJson(Map<String, dynamic> json) =>
+    _BuildVersionModel(
       buildName: json['buildName'] as String?,
       buildNumber: (json['buildNumber'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$BuildVersionModelImplToJson(
-        _$BuildVersionModelImpl instance) =>
+Map<String, dynamic> _$BuildVersionModelToJson(_BuildVersionModel instance) =>
     <String, dynamic>{
       'buildName': instance.buildName,
       'buildNumber': instance.buildNumber,

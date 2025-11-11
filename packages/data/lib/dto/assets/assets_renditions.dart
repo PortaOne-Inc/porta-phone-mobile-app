@@ -5,7 +5,7 @@ part 'assets_renditions.freezed.dart';
 part 'assets_renditions.g.dart';
 
 @freezed
-class AssetsRendition with _$AssetsRendition {
+sealed class AssetsRendition with _$AssetsRendition {
   const factory AssetsRendition({
     required String id,
     required String ownerId,
@@ -28,11 +28,8 @@ class AssetsRendition with _$AssetsRendition {
 }
 
 @freezed
-class AssetsRenditionSource with _$AssetsRenditionSource {
-  const factory AssetsRenditionSource({
-    required String type,
-    required String id,
-  }) = _AssetsRenditionSource;
+sealed class AssetsRenditionSource with _$AssetsRenditionSource {
+  const factory AssetsRenditionSource({required String type, required String id}) = _AssetsRenditionSource;
 
   factory AssetsRenditionSource.fromJson(Map<String, dynamic> json) => _$AssetsRenditionSourceFromJson(json);
 }

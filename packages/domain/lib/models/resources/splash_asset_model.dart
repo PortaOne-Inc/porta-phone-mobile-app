@@ -9,28 +9,22 @@ part 'splash_asset_model.g.dart';
 enum SplashMode { withBackground, withoutBackground }
 
 @freezed
-class SplashSource with _$SplashSource {
-  const factory SplashSource({
-    String? foregroundAssetId,
-    String? backgroundAssetId,
-    String? backgroundColorHex,
-  }) = _SplashSource;
+sealed class SplashSource with _$SplashSource {
+  const factory SplashSource({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
+      _SplashSource;
 
   factory SplashSource.fromJson(Map<String, dynamic> json) => _$SplashSourceFromJson(json);
 }
 
 @freezed
-class SplashAssetParams with _$SplashAssetParams {
-  const factory SplashAssetParams({
-    FitModel? fit,
-    double? padding,
-  }) = _SplashAssetParams;
+sealed class SplashAssetParams with _$SplashAssetParams {
+  const factory SplashAssetParams({FitModel? fit, double? padding}) = _SplashAssetParams;
 
   factory SplashAssetParams.fromJson(Map<String, dynamic> json) => _$SplashAssetParamsFromJson(json);
 }
 
 @freezed
-class SplashConstraintsValidation with _$SplashConstraintsValidation {
+sealed class SplashConstraintsValidation with _$SplashConstraintsValidation {
   const factory SplashConstraintsValidation({
     required bool compliant,
     required double delta,
@@ -43,7 +37,7 @@ class SplashConstraintsValidation with _$SplashConstraintsValidation {
 }
 
 @freezed
-class SplashIconConstraints with _$SplashIconConstraints {
+sealed class SplashIconConstraints with _$SplashIconConstraints {
   const factory SplashIconConstraints({
     required double fullSize,
     required double maskDiameter,
@@ -57,7 +51,7 @@ class SplashIconConstraints with _$SplashIconConstraints {
 }
 
 @freezed
-class SplashAssetModel with _$SplashAssetModel {
+sealed class SplashAssetModel with _$SplashAssetModel {
   const factory SplashAssetModel({
     required String id,
     required String applicationId,

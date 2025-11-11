@@ -9,7 +9,7 @@ part 'application_dto.freezed.dart';
 part 'application_dto.g.dart';
 
 @freezed
-class ApplicationDTO with _$ApplicationDTO {
+sealed class ApplicationDTO with _$ApplicationDTO {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
   const factory ApplicationDTO({
@@ -36,12 +36,10 @@ class ApplicationDTO with _$ApplicationDTO {
 }
 
 @freezed
-class ContactInfo with _$ContactInfo {
+sealed class ContactInfo with _$ContactInfo {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
-  const factory ContactInfo({
-    String? appSalesEmail,
-  }) = _ContactInfo;
+  const factory ContactInfo({String? appSalesEmail}) = _ContactInfo;
 
   factory ContactInfo.fromJson(Map<String, dynamic> json) => _$ContactInfoFromJson(json);
 }

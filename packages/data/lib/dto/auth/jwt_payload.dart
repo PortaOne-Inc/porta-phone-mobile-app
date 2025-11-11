@@ -7,7 +7,7 @@ part 'jwt_payload.freezed.dart';
 part 'jwt_payload.g.dart';
 
 @unfreezed
-class JwtPayload with _$JwtPayload {
+sealed class JwtPayload with _$JwtPayload {
   factory JwtPayload({
     required String iss,
     required String aud,
@@ -28,7 +28,7 @@ class JwtPayload with _$JwtPayload {
 }
 
 @unfreezed
-class JwtPayloadFirebase with _$JwtPayloadFirebase {
+sealed class JwtPayloadFirebase with _$JwtPayloadFirebase {
   factory JwtPayloadFirebase({
     required JwtPayloadFirebaseIdentities identities,
     // ignore: invalid_annotation_target
@@ -39,10 +39,8 @@ class JwtPayloadFirebase with _$JwtPayloadFirebase {
 }
 
 @unfreezed
-class JwtPayloadFirebaseIdentities with _$JwtPayloadFirebaseIdentities {
-  factory JwtPayloadFirebaseIdentities({
-    required List<String> email,
-  }) = _JwtPayloadFirebaseIdentities;
+sealed class JwtPayloadFirebaseIdentities with _$JwtPayloadFirebaseIdentities {
+  factory JwtPayloadFirebaseIdentities({required List<String> email}) = _JwtPayloadFirebaseIdentities;
 
   factory JwtPayloadFirebaseIdentities.fromJson(Map<String, dynamic> json) =>
       _$JwtPayloadFirebaseIdentitiesFromJson(json);

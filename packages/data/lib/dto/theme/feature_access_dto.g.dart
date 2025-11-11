@@ -6,9 +6,8 @@ part of 'feature_access_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FeatureAccessDtoImpl _$$FeatureAccessDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FeatureAccessDtoImpl(
+_FeatureAccessDto _$FeatureAccessDtoFromJson(Map<String, dynamic> json) =>
+    _FeatureAccessDto(
       applicationId: json['applicationId'] as String,
       status: json['status'] as String,
       config: json['config'] as Map<String, dynamic>,
@@ -17,8 +16,7 @@ _$FeatureAccessDtoImpl _$$FeatureAccessDtoImplFromJson(
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$FeatureAccessDtoImplToJson(
-        _$FeatureAccessDtoImpl instance) =>
+Map<String, dynamic> _$FeatureAccessDtoToJson(_FeatureAccessDto instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'status': instance.status,

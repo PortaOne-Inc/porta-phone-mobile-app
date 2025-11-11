@@ -9,28 +9,22 @@ part 'splash_asset_dto.g.dart';
 enum SplashModeDto { withBackground, withoutBackground }
 
 @freezed
-class SplashSourceDto with _$SplashSourceDto {
-  const factory SplashSourceDto({
-    String? foregroundAssetId,
-    String? backgroundAssetId,
-    String? backgroundColorHex,
-  }) = _SplashSourceDto;
+sealed class SplashSourceDto with _$SplashSourceDto {
+  const factory SplashSourceDto({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
+      _SplashSourceDto;
 
   factory SplashSourceDto.fromJson(Map<String, dynamic> json) => _$SplashSourceDtoFromJson(json);
 }
 
 @freezed
-class SplashAssetParamsDto with _$SplashAssetParamsDto {
-  const factory SplashAssetParamsDto({
-    FitDto? fit,
-    double? padding,
-  }) = _SplashAssetParamsDto;
+sealed class SplashAssetParamsDto with _$SplashAssetParamsDto {
+  const factory SplashAssetParamsDto({FitDto? fit, double? padding}) = _SplashAssetParamsDto;
 
   factory SplashAssetParamsDto.fromJson(Map<String, dynamic> json) => _$SplashAssetParamsDtoFromJson(json);
 }
 
 @freezed
-class SplashConstraintsValidationDto with _$SplashConstraintsValidationDto {
+sealed class SplashConstraintsValidationDto with _$SplashConstraintsValidationDto {
   const factory SplashConstraintsValidationDto({
     required bool compliant,
     required double deltaDp,
@@ -43,7 +37,7 @@ class SplashConstraintsValidationDto with _$SplashConstraintsValidationDto {
 }
 
 @freezed
-class SplashIconConstraintsDto with _$SplashIconConstraintsDto {
+sealed class SplashIconConstraintsDto with _$SplashIconConstraintsDto {
   const factory SplashIconConstraintsDto({
     required double fullSizeDp,
     required double maskDiameterDp,
@@ -57,7 +51,7 @@ class SplashIconConstraintsDto with _$SplashIconConstraintsDto {
 }
 
 @Freezed(makeCollectionsUnmodifiable: false, toJson: true)
-class SplashAssetDto with _$SplashAssetDto {
+sealed class SplashAssetDto with _$SplashAssetDto {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
   const factory SplashAssetDto({
@@ -87,7 +81,7 @@ extension SplashAssetDtoExtension on SplashAssetDto {
 }
 
 @freezed
-class SplashConstraintsDefaultsSliceDto with _$SplashConstraintsDefaultsSliceDto {
+sealed class SplashConstraintsDefaultsSliceDto with _$SplashConstraintsDefaultsSliceDto {
   const factory SplashConstraintsDefaultsSliceDto({
     required double fullSizeDp,
     required double maskDiameterDp,
@@ -99,7 +93,7 @@ class SplashConstraintsDefaultsSliceDto with _$SplashConstraintsDefaultsSliceDto
 }
 
 @freezed
-class SplashConstraintsDefaultsDto with _$SplashConstraintsDefaultsDto {
+sealed class SplashConstraintsDefaultsDto with _$SplashConstraintsDefaultsDto {
   const factory SplashConstraintsDefaultsDto({
     required SplashConstraintsDefaultsSliceDto withBackground,
     required SplashConstraintsDefaultsSliceDto withoutBackground,
@@ -110,10 +104,8 @@ class SplashConstraintsDefaultsDto with _$SplashConstraintsDefaultsDto {
 }
 
 @freezed
-class SplashOutputsArtifactsDto with _$SplashOutputsArtifactsDto {
-  const factory SplashOutputsArtifactsDto({
-    String? splashArtifactId,
-  }) = _SplashOutputsArtifactsDto;
+sealed class SplashOutputsArtifactsDto with _$SplashOutputsArtifactsDto {
+  const factory SplashOutputsArtifactsDto({String? splashArtifactId}) = _SplashOutputsArtifactsDto;
 
   factory SplashOutputsArtifactsDto.fromJson(Map<String, dynamic> json) => _$SplashOutputsArtifactsDtoFromJson(json);
 }

@@ -11,7 +11,7 @@ const String _kDefaultPhoneConfiguratorToolSourceBranch = 'main';
 const String _kDefaultKeystoreSourceBranch = 'main';
 
 @freezed
-class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
+sealed class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
   const factory ApplicationDependencyBranches({
     @Default([]) List<PhoneBranch> phoneBranches,
     @Default(_kDefaultPhoneMainSourceBranch) String phoneSourceBranch,
@@ -23,19 +23,11 @@ class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
 
   const ApplicationDependencyBranches._();
 
-  List<String> get defaultCallkeepBranches => [
-        _kDefaultCallkeepSourceBranch,
-      ];
+  List<String> get defaultCallkeepBranches => [_kDefaultCallkeepSourceBranch];
 
-  List<String> get defaultConfiguratorBranches => [
-        _kConfiguratorSourceBranch,
-      ];
+  List<String> get defaultConfiguratorBranches => [_kConfiguratorSourceBranch];
 
-  List<String> get defaultPhoneConfiguratorToolBranches => [
-        _kDefaultPhoneConfiguratorToolSourceBranch,
-      ];
+  List<String> get defaultPhoneConfiguratorToolBranches => [_kDefaultPhoneConfiguratorToolSourceBranch];
 
-  List<String> get defaultKeystoreBranches => [
-        _kDefaultKeystoreSourceBranch,
-      ];
+  List<String> get defaultKeystoreBranches => [_kDefaultKeystoreSourceBranch];
 }

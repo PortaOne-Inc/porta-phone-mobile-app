@@ -7,17 +7,14 @@ part 'launch_assets_dto.freezed.dart';
 part 'launch_assets_dto.g.dart';
 
 @freezed
-class FitPaddingDto with _$FitPaddingDto {
-  const factory FitPaddingDto({
-    FitDto? fit,
-    double? paddingDp,
-  }) = _FitPaddingDto;
+sealed class FitPaddingDto with _$FitPaddingDto {
+  const factory FitPaddingDto({FitDto? fit, double? paddingDp}) = _FitPaddingDto;
 
   factory FitPaddingDto.fromJson(Map<String, dynamic> json) => _$FitPaddingDtoFromJson(json);
 }
 
 @freezed
-class PlatformParamsDto with _$PlatformParamsDto {
+sealed class PlatformParamsDto with _$PlatformParamsDto {
   const factory PlatformParamsDto({
     FitPaddingDto? androidLegacy,
     FitPaddingDto? androidAdaptive,
@@ -29,18 +26,15 @@ class PlatformParamsDto with _$PlatformParamsDto {
 }
 
 @freezed
-class SourceConfigDto with _$SourceConfigDto {
-  const factory SourceConfigDto({
-    String? foregroundAssetId,
-    String? backgroundAssetId,
-    String? backgroundColorHex,
-  }) = _SourceConfigDto;
+sealed class SourceConfigDto with _$SourceConfigDto {
+  const factory SourceConfigDto({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
+      _SourceConfigDto;
 
   factory SourceConfigDto.fromJson(Map<String, dynamic> json) => _$SourceConfigDtoFromJson(json);
 }
 
 @freezed
-class OutputArtifactsDto with _$OutputArtifactsDto {
+sealed class OutputArtifactsDto with _$OutputArtifactsDto {
   const factory OutputArtifactsDto({
     String? androidLegacyArtifactId,
     String? androidAdaptiveForegroundArtifactId,
@@ -54,7 +48,7 @@ class OutputArtifactsDto with _$OutputArtifactsDto {
 
 /// Головна сутність (1:1 з темою; id == themeId)
 @freezed
-class LaunchAssetsDto with _$LaunchAssetsDto {
+sealed class LaunchAssetsDto with _$LaunchAssetsDto {
   const factory LaunchAssetsDto({
     required String id,
     required String applicationId,
@@ -70,18 +64,15 @@ class LaunchAssetsDto with _$LaunchAssetsDto {
 }
 
 @freezed
-class ValidationSliceDto with _$ValidationSliceDto {
-  const factory ValidationSliceDto({
-    required bool compliant,
-    required double deltaDp,
-    String? message,
-  }) = _ValidationSliceDto;
+sealed class ValidationSliceDto with _$ValidationSliceDto {
+  const factory ValidationSliceDto({required bool compliant, required double deltaDp, String? message}) =
+      _ValidationSliceDto;
 
   factory ValidationSliceDto.fromJson(Map<String, dynamic> json) => _$ValidationSliceDtoFromJson(json);
 }
 
 @freezed
-class ValidationReportDto with _$ValidationReportDto {
+sealed class ValidationReportDto with _$ValidationReportDto {
   const factory ValidationReportDto({
     ValidationSliceDto? androidLegacy,
     ValidationSliceDto? androidAdaptive,
@@ -93,7 +84,7 @@ class ValidationReportDto with _$ValidationReportDto {
 }
 
 @freezed
-class LaunchAssetsEnvelopeDto with _$LaunchAssetsEnvelopeDto {
+sealed class LaunchAssetsEnvelopeDto with _$LaunchAssetsEnvelopeDto {
   const factory LaunchAssetsEnvelopeDto({
     required LaunchAssetsDto entity,
     Map<String, String>? urls,

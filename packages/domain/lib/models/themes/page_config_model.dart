@@ -7,7 +7,7 @@ part 'page_config_model.freezed.dart';
 part 'page_config_model.g.dart';
 
 @freezed
-class PageConfigModel with _$PageConfigModel {
+sealed class PageConfigModel with _$PageConfigModel {
   const factory PageConfigModel({
     required String applicationId,
     required String themeId,

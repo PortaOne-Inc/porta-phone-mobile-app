@@ -5,19 +5,15 @@ part 'constraints_dto.freezed.dart';
 part 'constraints_dto.g.dart';
 
 @freezed
-class PlatformConstraintsDto with _$PlatformConstraintsDto {
-  const factory PlatformConstraintsDto({
-    double? sizeDp,
-    double? safeZoneDp,
-    double? toleranceDp,
-  }) = _PlatformConstraintsDto;
+sealed class PlatformConstraintsDto with _$PlatformConstraintsDto {
+  const factory PlatformConstraintsDto({double? sizeDp, double? safeZoneDp, double? toleranceDp}) =
+      _PlatformConstraintsDto;
 
   factory PlatformConstraintsDto.fromJson(Map<String, dynamic> json) => _$PlatformConstraintsDtoFromJson(json);
 }
 
-/// Використовується лише для ендпойнту `constraints-defaults`
 @freezed
-class ConstraintsDto with _$ConstraintsDto {
+sealed class ConstraintsDto with _$ConstraintsDto {
   const factory ConstraintsDto({
     PlatformConstraintsDto? androidLegacy,
     PlatformConstraintsDto? androidAdaptive,

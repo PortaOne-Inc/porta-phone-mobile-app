@@ -7,7 +7,7 @@ part 'asset_model.freezed.dart';
 part 'asset_model.g.dart';
 
 @freezed
-class AssetModel with _$AssetModel {
+sealed class AssetModel with _$AssetModel {
   const factory AssetModel({
     required String id,
     required String ownerId,

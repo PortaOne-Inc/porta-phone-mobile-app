@@ -6,15 +6,13 @@ part of 'launch_assets_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FitPaddingModelImpl _$$FitPaddingModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FitPaddingModelImpl(
+_FitPaddingModel _$FitPaddingModelFromJson(Map<String, dynamic> json) =>
+    _FitPaddingModel(
       fit: $enumDecodeNullable(_$FitModelEnumMap, json['fit']),
       paddingDp: (json['paddingDp'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$FitPaddingModelImplToJson(
-        _$FitPaddingModelImpl instance) =>
+Map<String, dynamic> _$FitPaddingModelToJson(_FitPaddingModel instance) =>
     <String, dynamic>{
       'fit': _$FitModelEnumMap[instance.fit],
       'paddingDp': instance.paddingDp,
@@ -30,17 +28,18 @@ const _$FitModelEnumMap = {
   FitModel.fitHeight: 'fitHeight',
 };
 
-_$PlatformParamsModelImpl _$$PlatformParamsModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PlatformParamsModelImpl(
+_PlatformParamsModel _$PlatformParamsModelFromJson(Map<String, dynamic> json) =>
+    _PlatformParamsModel(
       androidLegacy: json['androidLegacy'] == null
           ? null
           : FitPaddingModel.fromJson(
-              json['androidLegacy'] as Map<String, dynamic>),
+              json['androidLegacy'] as Map<String, dynamic>,
+            ),
       androidAdaptive: json['androidAdaptive'] == null
           ? null
           : FitPaddingModel.fromJson(
-              json['androidAdaptive'] as Map<String, dynamic>),
+              json['androidAdaptive'] as Map<String, dynamic>,
+            ),
       ios: json['ios'] == null
           ? null
           : FitPaddingModel.fromJson(json['ios'] as Map<String, dynamic>),
@@ -49,58 +48,55 @@ _$PlatformParamsModelImpl _$$PlatformParamsModelImplFromJson(
           : FitPaddingModel.fromJson(json['web'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PlatformParamsModelImplToJson(
-        _$PlatformParamsModelImpl instance) =>
-    <String, dynamic>{
-      'androidLegacy': instance.androidLegacy,
-      'androidAdaptive': instance.androidAdaptive,
-      'ios': instance.ios,
-      'web': instance.web,
-    };
+Map<String, dynamic> _$PlatformParamsModelToJson(
+  _PlatformParamsModel instance,
+) => <String, dynamic>{
+  'androidLegacy': instance.androidLegacy,
+  'androidAdaptive': instance.androidAdaptive,
+  'ios': instance.ios,
+  'web': instance.web,
+};
 
-_$SourceConfigModelImpl _$$SourceConfigModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SourceConfigModelImpl(
+_SourceConfigModel _$SourceConfigModelFromJson(Map<String, dynamic> json) =>
+    _SourceConfigModel(
       foregroundAssetId: json['foregroundAssetId'] as String?,
       backgroundAssetId: json['backgroundAssetId'] as String?,
       backgroundColorHex: json['backgroundColorHex'] as String?,
     );
 
-Map<String, dynamic> _$$SourceConfigModelImplToJson(
-        _$SourceConfigModelImpl instance) =>
+Map<String, dynamic> _$SourceConfigModelToJson(_SourceConfigModel instance) =>
     <String, dynamic>{
       'foregroundAssetId': instance.foregroundAssetId,
       'backgroundAssetId': instance.backgroundAssetId,
       'backgroundColorHex': instance.backgroundColorHex,
     };
 
-_$OutputArtifactsModelImpl _$$OutputArtifactsModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$OutputArtifactsModelImpl(
-      androidLegacyArtifactId: json['androidLegacyArtifactId'] as String?,
-      androidAdaptiveForegroundArtifactId:
-          json['androidAdaptiveForegroundArtifactId'] as String?,
-      androidAdaptiveBackgroundArtifactId:
-          json['androidAdaptiveBackgroundArtifactId'] as String?,
-      iosArtifactId: json['iosArtifactId'] as String?,
-      webArtifactId: json['webArtifactId'] as String?,
-    );
+_OutputArtifactsModel _$OutputArtifactsModelFromJson(
+  Map<String, dynamic> json,
+) => _OutputArtifactsModel(
+  androidLegacyArtifactId: json['androidLegacyArtifactId'] as String?,
+  androidAdaptiveForegroundArtifactId:
+      json['androidAdaptiveForegroundArtifactId'] as String?,
+  androidAdaptiveBackgroundArtifactId:
+      json['androidAdaptiveBackgroundArtifactId'] as String?,
+  iosArtifactId: json['iosArtifactId'] as String?,
+  webArtifactId: json['webArtifactId'] as String?,
+);
 
-Map<String, dynamic> _$$OutputArtifactsModelImplToJson(
-        _$OutputArtifactsModelImpl instance) =>
-    <String, dynamic>{
-      'androidLegacyArtifactId': instance.androidLegacyArtifactId,
-      'androidAdaptiveForegroundArtifactId':
-          instance.androidAdaptiveForegroundArtifactId,
-      'androidAdaptiveBackgroundArtifactId':
-          instance.androidAdaptiveBackgroundArtifactId,
-      'iosArtifactId': instance.iosArtifactId,
-      'webArtifactId': instance.webArtifactId,
-    };
+Map<String, dynamic> _$OutputArtifactsModelToJson(
+  _OutputArtifactsModel instance,
+) => <String, dynamic>{
+  'androidLegacyArtifactId': instance.androidLegacyArtifactId,
+  'androidAdaptiveForegroundArtifactId':
+      instance.androidAdaptiveForegroundArtifactId,
+  'androidAdaptiveBackgroundArtifactId':
+      instance.androidAdaptiveBackgroundArtifactId,
+  'iosArtifactId': instance.iosArtifactId,
+  'webArtifactId': instance.webArtifactId,
+};
 
-_$LaunchAssetsModelImpl _$$LaunchAssetsModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LaunchAssetsModelImpl(
+_LaunchAssetsModel _$LaunchAssetsModelFromJson(Map<String, dynamic> json) =>
+    _LaunchAssetsModel(
       id: json['id'] as String,
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
@@ -112,15 +108,16 @@ _$LaunchAssetsModelImpl _$$LaunchAssetsModelImplFromJson(
       params: json['params'] == null
           ? null
           : PlatformParamsModel.fromJson(
-              json['params'] as Map<String, dynamic>),
+              json['params'] as Map<String, dynamic>,
+            ),
       outputsArtifacts: json['outputsArtifacts'] == null
           ? null
           : OutputArtifactsModel.fromJson(
-              json['outputsArtifacts'] as Map<String, dynamic>),
+              json['outputsArtifacts'] as Map<String, dynamic>,
+            ),
     );
 
-Map<String, dynamic> _$$LaunchAssetsModelImplToJson(
-        _$LaunchAssetsModelImpl instance) =>
+Map<String, dynamic> _$LaunchAssetsModelToJson(_LaunchAssetsModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'applicationId': instance.applicationId,
@@ -132,33 +129,32 @@ Map<String, dynamic> _$$LaunchAssetsModelImplToJson(
       'outputsArtifacts': instance.outputsArtifacts,
     };
 
-_$ValidationSliceImpl _$$ValidationSliceImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ValidationSliceImpl(
+_ValidationSlice _$ValidationSliceFromJson(Map<String, dynamic> json) =>
+    _ValidationSlice(
       compliant: json['compliant'] as bool,
       deltaDp: (json['deltaDp'] as num).toDouble(),
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$ValidationSliceImplToJson(
-        _$ValidationSliceImpl instance) =>
+Map<String, dynamic> _$ValidationSliceToJson(_ValidationSlice instance) =>
     <String, dynamic>{
       'compliant': instance.compliant,
       'deltaDp': instance.deltaDp,
       'message': instance.message,
     };
 
-_$ValidationReportImpl _$$ValidationReportImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ValidationReportImpl(
+_ValidationReport _$ValidationReportFromJson(Map<String, dynamic> json) =>
+    _ValidationReport(
       androidLegacy: json['androidLegacy'] == null
           ? null
           : ValidationSlice.fromJson(
-              json['androidLegacy'] as Map<String, dynamic>),
+              json['androidLegacy'] as Map<String, dynamic>,
+            ),
       androidAdaptive: json['androidAdaptive'] == null
           ? null
           : ValidationSlice.fromJson(
-              json['androidAdaptive'] as Map<String, dynamic>),
+              json['androidAdaptive'] as Map<String, dynamic>,
+            ),
       ios: json['ios'] == null
           ? null
           : ValidationSlice.fromJson(json['ios'] as Map<String, dynamic>),
@@ -167,8 +163,7 @@ _$ValidationReportImpl _$$ValidationReportImplFromJson(
           : ValidationSlice.fromJson(json['web'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ValidationReportImplToJson(
-        _$ValidationReportImpl instance) =>
+Map<String, dynamic> _$ValidationReportToJson(_ValidationReport instance) =>
     <String, dynamic>{
       'androidLegacy': instance.androidLegacy,
       'androidAdaptive': instance.androidAdaptive,
@@ -176,24 +171,22 @@ Map<String, dynamic> _$$ValidationReportImplToJson(
       'web': instance.web,
     };
 
-_$LaunchAssetsEnvelopeImpl _$$LaunchAssetsEnvelopeImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LaunchAssetsEnvelopeImpl(
-      entity:
-          LaunchAssetsModel.fromJson(json['entity'] as Map<String, dynamic>),
-      urls: (json['urls'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
-      validation: json['validation'] == null
-          ? null
-          : ValidationReport.fromJson(
-              json['validation'] as Map<String, dynamic>),
-    );
+_LaunchAssetsEnvelope _$LaunchAssetsEnvelopeFromJson(
+  Map<String, dynamic> json,
+) => _LaunchAssetsEnvelope(
+  entity: LaunchAssetsModel.fromJson(json['entity'] as Map<String, dynamic>),
+  urls: (json['urls'] as Map<String, dynamic>?)?.map(
+    (k, e) => MapEntry(k, e as String),
+  ),
+  validation: json['validation'] == null
+      ? null
+      : ValidationReport.fromJson(json['validation'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$LaunchAssetsEnvelopeImplToJson(
-        _$LaunchAssetsEnvelopeImpl instance) =>
-    <String, dynamic>{
-      'entity': instance.entity,
-      'urls': instance.urls,
-      'validation': instance.validation,
-    };
+Map<String, dynamic> _$LaunchAssetsEnvelopeToJson(
+  _LaunchAssetsEnvelope instance,
+) => <String, dynamic>{
+  'entity': instance.entity,
+  'urls': instance.urls,
+  'validation': instance.validation,
+};

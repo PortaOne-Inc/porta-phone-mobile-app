@@ -6,21 +6,19 @@ part of 'feature_access_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FeatureAccessModelImpl _$$FeatureAccessModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FeatureAccessModelImpl(
+_FeatureAccessModel _$FeatureAccessModelFromJson(Map<String, dynamic> json) =>
+    _FeatureAccessModel(
       applicationId: json['applicationId'] as String,
       config: json['config'] as Map<String, dynamic>,
       themeId: json['themeId'] as String?,
       status:
           $enumDecodeNullable(_$FeatureAccessStatusEnumMap, json['status']) ??
-              FeatureAccessStatus.draft,
+          FeatureAccessStatus.draft,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$FeatureAccessModelImplToJson(
-        _$FeatureAccessModelImpl instance) =>
+Map<String, dynamic> _$FeatureAccessModelToJson(_FeatureAccessModel instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'config': instance.config,

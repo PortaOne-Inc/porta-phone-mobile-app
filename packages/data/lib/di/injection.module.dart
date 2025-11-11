@@ -168,10 +168,10 @@ class DataPackageModule extends _i526.MicroPackageModule {
         _i192.SplashConstraintsDefaultsMapper(gh<
             _i1058.CommonMapper<_i494.SplashConstraintsDefaultsSliceModel,
                 _i862.SplashConstraintsDefaultsSliceDto>>()));
-    gh.lazySingleton<_i759.UserPrefDatasource>(
-        () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()));
     gh.lazySingleton<_i808.AuthPrefDatasource>(
         () => _i808.AuthPrefDatasource(gh<_i99.LocalStorage>()));
+    gh.lazySingleton<_i759.UserPrefDatasource>(
+        () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()));
     gh.lazySingleton<_i822.Dio>(() => registerModule.serverApiClient(
           gh<String>(instanceName: 'baseUrl'),
           gh<_i822.AuthPrefDatasource>(),

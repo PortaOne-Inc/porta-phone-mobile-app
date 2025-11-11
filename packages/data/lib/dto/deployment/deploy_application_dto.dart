@@ -5,7 +5,7 @@ part 'deploy_application_dto.freezed.dart';
 part 'deploy_application_dto.g.dart';
 
 @unfreezed
-class DeployApplicationDto with _$DeployApplicationDto {
+sealed class DeployApplicationDto with _$DeployApplicationDto {
   factory DeployApplicationDto({
     required String applicationId,
     required String token,

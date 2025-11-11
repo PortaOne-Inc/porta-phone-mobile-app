@@ -6,9 +6,8 @@ part of 'page_config_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PageConfigModelImpl _$$PageConfigModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PageConfigModelImpl(
+_PageConfigModel _$PageConfigModelFromJson(Map<String, dynamic> json) =>
+    _PageConfigModel(
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
       variant: $enumDecode(_$BrightnessVariantEnumMap, json['variant']),
@@ -18,8 +17,7 @@ _$PageConfigModelImpl _$$PageConfigModelImplFromJson(
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$PageConfigModelImplToJson(
-        _$PageConfigModelImpl instance) =>
+Map<String, dynamic> _$PageConfigModelToJson(_PageConfigModel instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'themeId': instance.themeId,

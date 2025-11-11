@@ -5,7 +5,7 @@ part 'phone_branch.freezed.dart';
 enum PhoneBranchType { main, release, develop, regular }
 
 @freezed
-class PhoneBranch with _$PhoneBranch {
+sealed class PhoneBranch with _$PhoneBranch {
   const factory PhoneBranch({
     required String name,
     @Default(PhoneBranchType.regular) PhoneBranchType type,

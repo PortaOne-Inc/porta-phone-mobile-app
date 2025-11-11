@@ -5,7 +5,7 @@ part 'widgets_config_dto.freezed.dart';
 part 'widgets_config_dto.g.dart';
 
 @freezed
-class WidgetsConfigDto with _$WidgetsConfigDto {
+sealed class WidgetsConfigDto with _$WidgetsConfigDto {
   const factory WidgetsConfigDto({
     required String id,
     required String applicationId,

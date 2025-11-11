@@ -6,14 +6,8 @@ part of 'asset_link.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AssetLinkImpl _$$AssetLinkImplFromJson(Map<String, dynamic> json) =>
-    _$AssetLinkImpl(
-      type: json['type'] as String,
-      id: json['id'] as String,
-    );
+_AssetLink _$AssetLinkFromJson(Map<String, dynamic> json) =>
+    _AssetLink(type: json['type'] as String, id: json['id'] as String);
 
-Map<String, dynamic> _$$AssetLinkImplToJson(_$AssetLinkImpl instance) =>
-    <String, dynamic>{
-      'type': instance.type,
-      'id': instance.id,
-    };
+Map<String, dynamic> _$AssetLinkToJson(_AssetLink instance) =>
+    <String, dynamic>{'type': instance.type, 'id': instance.id};

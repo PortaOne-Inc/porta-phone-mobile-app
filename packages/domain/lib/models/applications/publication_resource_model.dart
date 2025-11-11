@@ -5,7 +5,7 @@ part 'publication_resource_model.freezed.dart';
 part 'publication_resource_model.g.dart';
 
 @freezed
-class PublicationResourceModel with _$PublicationResourceModel {
+sealed class PublicationResourceModel with _$PublicationResourceModel {
   const factory PublicationResourceModel({
     required String id,
     required String applicationId,

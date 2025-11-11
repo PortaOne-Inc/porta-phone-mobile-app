@@ -6,9 +6,8 @@ part of 'create_asset_dto_req.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreateAssetDtoReqImpl _$$CreateAssetDtoReqImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CreateAssetDtoReqImpl(
+_CreateAssetDtoReq _$CreateAssetDtoReqFromJson(Map<String, dynamic> json) =>
+    _CreateAssetDtoReq(
       applicationId: json['applicationId'] as String,
       storagePath: json['storagePath'] as String,
       mimeType: json['mimeType'] as String,
@@ -16,8 +15,7 @@ _$CreateAssetDtoReqImpl _$$CreateAssetDtoReqImplFromJson(
       checksum: json['checksum'] as String?,
     );
 
-Map<String, dynamic> _$$CreateAssetDtoReqImplToJson(
-        _$CreateAssetDtoReqImpl instance) =>
+Map<String, dynamic> _$CreateAssetDtoReqToJson(_CreateAssetDtoReq instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
       'storagePath': instance.storagePath,

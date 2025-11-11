@@ -5,7 +5,7 @@ part 'theme_dto.freezed.dart';
 part 'theme_dto.g.dart';
 
 @Freezed(makeCollectionsUnmodifiable: false, toJson: true)
-class ThemeDTO with _$ThemeDTO {
+sealed class ThemeDTO with _$ThemeDTO {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
   const factory ThemeDTO({
@@ -37,7 +37,7 @@ class ThemeDTO with _$ThemeDTO {
 }
 
 @freezed
-class CreateThemeDTO with _$CreateThemeDTO {
+sealed class CreateThemeDTO with _$CreateThemeDTO {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
   const factory CreateThemeDTO({

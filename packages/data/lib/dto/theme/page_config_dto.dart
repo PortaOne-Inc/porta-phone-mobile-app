@@ -5,7 +5,7 @@ part 'page_config_dto.freezed.dart';
 part 'page_config_dto.g.dart';
 
 @freezed
-class PageConfigDto with _$PageConfigDto {
+sealed class PageConfigDto with _$PageConfigDto {
   const factory PageConfigDto({
     required String id, // themeId_variant
     required String applicationId,

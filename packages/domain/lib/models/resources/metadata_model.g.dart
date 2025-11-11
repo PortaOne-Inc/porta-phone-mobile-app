@@ -6,12 +6,10 @@ part of 'metadata_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MetadataModelImpl _$$MetadataModelImplFromJson(Map<String, dynamic> json) =>
-    _$MetadataModelImpl(
+_MetadataModel _$MetadataModelFromJson(Map<String, dynamic> json) =>
+    _MetadataModel(
       attributes: json['attributes'] as Map<String, dynamic>? ?? const {},
     );
 
-Map<String, dynamic> _$$MetadataModelImplToJson(_$MetadataModelImpl instance) =>
-    <String, dynamic>{
-      'attributes': instance.attributes,
-    };
+Map<String, dynamic> _$MetadataModelToJson(_MetadataModel instance) =>
+    <String, dynamic>{'attributes': instance.attributes};

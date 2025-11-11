@@ -5,11 +5,8 @@ part 'build_version_model.freezed.dart';
 part 'build_version_model.g.dart';
 
 @freezed
-class BuildVersionModel with _$BuildVersionModel {
-  const factory BuildVersionModel({
-    String? buildName,
-    int? buildNumber,
-  }) = _BuildVersionModel;
+sealed class BuildVersionModel with _$BuildVersionModel {
+  const factory BuildVersionModel({String? buildName, int? buildNumber}) = _BuildVersionModel;
 
   factory BuildVersionModel.fromJson(Map<String, Object?> json) => _$BuildVersionModelFromJson(json);
 }

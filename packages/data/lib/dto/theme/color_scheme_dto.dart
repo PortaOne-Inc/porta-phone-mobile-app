@@ -5,7 +5,7 @@ part 'color_scheme_dto.freezed.dart';
 part 'color_scheme_dto.g.dart';
 
 @freezed
-class ColorSchemeDto with _$ColorSchemeDto {
+sealed class ColorSchemeDto with _$ColorSchemeDto {
   const factory ColorSchemeDto({
     required String applicationId,
     required String themeId,

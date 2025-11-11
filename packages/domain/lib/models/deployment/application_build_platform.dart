@@ -18,16 +18,18 @@ const _kPlayStoreStatusDraft = 'draft';
 const _kPlayStoreUserFractionMax = 0.99;
 
 @freezed
-class AndroidBuildPlatform with _$AndroidBuildPlatform {
+sealed class AndroidBuildPlatform with _$AndroidBuildPlatform {
   const factory AndroidBuildPlatform({
     @Default(_kPlatformAndroidKey) String key,
     @Default(false) bool deploy,
-    @Default(AndroidPlayStoreConfig(
-      track: _kPlayStoreTrackBeta,
-      status: _kPlayStoreStatusDraft,
-      updatePriority: 0,
-      userFraction: _kPlayStoreUserFractionMax,
-    ))
+    @Default(
+      AndroidPlayStoreConfig(
+        track: _kPlayStoreTrackBeta,
+        status: _kPlayStoreStatusDraft,
+        updatePriority: 0,
+        userFraction: _kPlayStoreUserFractionMax,
+      ),
+    )
     AndroidPlayStoreConfig playStoreConfig,
   }) = _AndroidBuildPlatform;
 
@@ -52,17 +54,15 @@ class AndroidBuildPlatform with _$AndroidBuildPlatform {
 }
 
 @freezed
-class IOSBuildPlatform with _$IOSBuildPlatform {
-  const factory IOSBuildPlatform({
-    @Default(_kPlatformIOSKey) String key,
-    @Default(false) bool deploy,
-  }) = _IOSBuildPlatform;
+sealed class IOSBuildPlatform with _$IOSBuildPlatform {
+  const factory IOSBuildPlatform({@Default(_kPlatformIOSKey) String key, @Default(false) bool deploy}) =
+      _IOSBuildPlatform;
 
   const IOSBuildPlatform._();
 }
 
 @freezed
-class AndroidPlayStoreConfig with _$AndroidPlayStoreConfig {
+sealed class AndroidPlayStoreConfig with _$AndroidPlayStoreConfig {
   const factory AndroidPlayStoreConfig({
     required String track,
     required String status,
@@ -73,23 +73,20 @@ class AndroidPlayStoreConfig with _$AndroidPlayStoreConfig {
   const AndroidPlayStoreConfig._();
 
   List<String> get availableTracks => [
-        _kPlayStoreTrackProduction,
-        _kPlayStoreTrackBeta,
-        _kPlayStoreTrackAlpha,
-        _kPlayStoreTrackInternal,
-      ];
+    _kPlayStoreTrackProduction,
+    _kPlayStoreTrackBeta,
+    _kPlayStoreTrackAlpha,
+    _kPlayStoreTrackInternal,
+  ];
 
   List<String> get availableStatuses => [
-        _kPlayStoreStatusCompleted,
-        _kPlayStoreStatusInProgress,
-        _kPlayStoreStatusHalted,
-        _kPlayStoreStatusDraft,
-      ];
+    _kPlayStoreStatusCompleted,
+    _kPlayStoreStatusInProgress,
+    _kPlayStoreStatusHalted,
+    _kPlayStoreStatusDraft,
+  ];
 
-  List<String> get unavailableUserFractionStatuses => [
-        _kPlayStoreStatusCompleted,
-        _kPlayStoreStatusDraft,
-      ];
+  List<String> get unavailableUserFractionStatuses => [_kPlayStoreStatusCompleted, _kPlayStoreStatusDraft];
 
   bool get isUserFractionAvailable => !unavailableUserFractionStatuses.contains(status);
 }

@@ -6,9 +6,8 @@ part of 'widgets_config_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WidgetsConfigDtoImpl _$$WidgetsConfigDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$WidgetsConfigDtoImpl(
+_WidgetsConfigDto _$WidgetsConfigDtoFromJson(Map<String, dynamic> json) =>
+    _WidgetsConfigDto(
       id: json['id'] as String,
       applicationId: json['applicationId'] as String,
       themeId: json['themeId'] as String,
@@ -18,8 +17,7 @@ _$WidgetsConfigDtoImpl _$$WidgetsConfigDtoImplFromJson(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$WidgetsConfigDtoImplToJson(
-        _$WidgetsConfigDtoImpl instance) =>
+Map<String, dynamic> _$WidgetsConfigDtoToJson(_WidgetsConfigDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'applicationId': instance.applicationId,

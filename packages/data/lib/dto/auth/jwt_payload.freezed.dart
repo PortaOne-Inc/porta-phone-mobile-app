@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,740 +9,813 @@ part of 'jwt_payload.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-JwtPayload _$JwtPayloadFromJson(Map<String, dynamic> json) {
-  return _JwtPayload.fromJson(json);
-}
 
 /// @nodoc
 mixin _$JwtPayload {
-  String get iss => throw _privateConstructorUsedError;
-  set iss(String value) => throw _privateConstructorUsedError;
-  String get aud => throw _privateConstructorUsedError;
-  set aud(String value) =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'auth_time')
-  @TimestampConverter()
-  DateTime get authTime =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'auth_time')
-  @TimestampConverter()
-  set authTime(DateTime value) =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'user_id')
-  String get userId =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'user_id')
-  set userId(String value) => throw _privateConstructorUsedError;
-  String get sub => throw _privateConstructorUsedError;
-  set sub(String value) => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  DateTime get iat => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  set iat(DateTime value) => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  DateTime get exp => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  set exp(DateTime value) => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  set email(String value) =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'email_verified')
-  bool get emailVerified =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'email_verified')
-  set emailVerified(bool value) => throw _privateConstructorUsedError;
-  JwtPayloadFirebase get firebase => throw _privateConstructorUsedError;
-  set firebase(JwtPayloadFirebase value) => throw _privateConstructorUsedError;
+
+ String get iss; set iss(String value); String get aud; set aud(String value);// ignore: invalid_annotation_target
+@JsonKey(name: 'auth_time')@TimestampConverter() DateTime get authTime;// ignore: invalid_annotation_target
+@JsonKey(name: 'auth_time')@TimestampConverter() set authTime(DateTime value);// ignore: invalid_annotation_target
+@JsonKey(name: 'user_id') String get userId;// ignore: invalid_annotation_target
+@JsonKey(name: 'user_id') set userId(String value); String get sub; set sub(String value);@TimestampConverter() DateTime get iat;@TimestampConverter() set iat(DateTime value);@TimestampConverter() DateTime get exp;@TimestampConverter() set exp(DateTime value); String get email; set email(String value);// ignore: invalid_annotation_target
+@JsonKey(name: 'email_verified') bool get emailVerified;// ignore: invalid_annotation_target
+@JsonKey(name: 'email_verified') set emailVerified(bool value); JwtPayloadFirebase get firebase; set firebase(JwtPayloadFirebase value);
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$JwtPayloadCopyWith<JwtPayload> get copyWith => _$JwtPayloadCopyWithImpl<JwtPayload>(this as JwtPayload, _$identity);
 
   /// Serializes this JwtPayload to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $JwtPayloadCopyWith<JwtPayload> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+
+@override
+String toString() {
+  return 'JwtPayload(iss: $iss, aud: $aud, authTime: $authTime, userId: $userId, sub: $sub, iat: $iat, exp: $exp, email: $email, emailVerified: $emailVerified, firebase: $firebase)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $JwtPayloadCopyWith<$Res> {
-  factory $JwtPayloadCopyWith(
-          JwtPayload value, $Res Function(JwtPayload) then) =
-      _$JwtPayloadCopyWithImpl<$Res, JwtPayload>;
-  @useResult
-  $Res call(
-      {String iss,
-      String aud,
-      @JsonKey(name: 'auth_time') @TimestampConverter() DateTime authTime,
-      @JsonKey(name: 'user_id') String userId,
-      String sub,
-      @TimestampConverter() DateTime iat,
-      @TimestampConverter() DateTime exp,
-      String email,
-      @JsonKey(name: 'email_verified') bool emailVerified,
-      JwtPayloadFirebase firebase});
+abstract mixin class $JwtPayloadCopyWith<$Res>  {
+  factory $JwtPayloadCopyWith(JwtPayload value, $Res Function(JwtPayload) _then) = _$JwtPayloadCopyWithImpl;
+@useResult
+$Res call({
+ String iss, String aud,@JsonKey(name: 'auth_time')@TimestampConverter() DateTime authTime,@JsonKey(name: 'user_id') String userId, String sub,@TimestampConverter() DateTime iat,@TimestampConverter() DateTime exp, String email,@JsonKey(name: 'email_verified') bool emailVerified, JwtPayloadFirebase firebase
+});
 
-  $JwtPayloadFirebaseCopyWith<$Res> get firebase;
+
+$JwtPayloadFirebaseCopyWith<$Res> get firebase;
+
 }
-
 /// @nodoc
-class _$JwtPayloadCopyWithImpl<$Res, $Val extends JwtPayload>
+class _$JwtPayloadCopyWithImpl<$Res>
     implements $JwtPayloadCopyWith<$Res> {
-  _$JwtPayloadCopyWithImpl(this._value, this._then);
+  _$JwtPayloadCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final JwtPayload _self;
+  final $Res Function(JwtPayload) _then;
 
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? iss = null,
-    Object? aud = null,
-    Object? authTime = null,
-    Object? userId = null,
-    Object? sub = null,
-    Object? iat = null,
-    Object? exp = null,
-    Object? email = null,
-    Object? emailVerified = null,
-    Object? firebase = null,
-  }) {
-    return _then(_value.copyWith(
-      iss: null == iss
-          ? _value.iss
-          : iss // ignore: cast_nullable_to_non_nullable
-              as String,
-      aud: null == aud
-          ? _value.aud
-          : aud // ignore: cast_nullable_to_non_nullable
-              as String,
-      authTime: null == authTime
-          ? _value.authTime
-          : authTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sub: null == sub
-          ? _value.sub
-          : sub // ignore: cast_nullable_to_non_nullable
-              as String,
-      iat: null == iat
-          ? _value.iat
-          : iat // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      exp: null == exp
-          ? _value.exp
-          : exp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      emailVerified: null == emailVerified
-          ? _value.emailVerified
-          : emailVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      firebase: null == firebase
-          ? _value.firebase
-          : firebase // ignore: cast_nullable_to_non_nullable
-              as JwtPayloadFirebase,
-    ) as $Val);
-  }
-
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $JwtPayloadFirebaseCopyWith<$Res> get firebase {
-    return $JwtPayloadFirebaseCopyWith<$Res>(_value.firebase, (value) {
-      return _then(_value.copyWith(firebase: value) as $Val);
-    });
-  }
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? iss = null,Object? aud = null,Object? authTime = null,Object? userId = null,Object? sub = null,Object? iat = null,Object? exp = null,Object? email = null,Object? emailVerified = null,Object? firebase = null,}) {
+  return _then(_self.copyWith(
+iss: null == iss ? _self.iss : iss // ignore: cast_nullable_to_non_nullable
+as String,aud: null == aud ? _self.aud : aud // ignore: cast_nullable_to_non_nullable
+as String,authTime: null == authTime ? _self.authTime : authTime // ignore: cast_nullable_to_non_nullable
+as DateTime,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,sub: null == sub ? _self.sub : sub // ignore: cast_nullable_to_non_nullable
+as String,iat: null == iat ? _self.iat : iat // ignore: cast_nullable_to_non_nullable
+as DateTime,exp: null == exp ? _self.exp : exp // ignore: cast_nullable_to_non_nullable
+as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,emailVerified: null == emailVerified ? _self.emailVerified : emailVerified // ignore: cast_nullable_to_non_nullable
+as bool,firebase: null == firebase ? _self.firebase : firebase // ignore: cast_nullable_to_non_nullable
+as JwtPayloadFirebase,
+  ));
+}
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseCopyWith<$Res> get firebase {
+  
+  return $JwtPayloadFirebaseCopyWith<$Res>(_self.firebase, (value) {
+    return _then(_self.copyWith(firebase: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$JwtPayloadImplCopyWith<$Res>
-    implements $JwtPayloadCopyWith<$Res> {
-  factory _$$JwtPayloadImplCopyWith(
-          _$JwtPayloadImpl value, $Res Function(_$JwtPayloadImpl) then) =
-      __$$JwtPayloadImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String iss,
-      String aud,
-      @JsonKey(name: 'auth_time') @TimestampConverter() DateTime authTime,
-      @JsonKey(name: 'user_id') String userId,
-      String sub,
-      @TimestampConverter() DateTime iat,
-      @TimestampConverter() DateTime exp,
-      String email,
-      @JsonKey(name: 'email_verified') bool emailVerified,
-      JwtPayloadFirebase firebase});
 
-  @override
-  $JwtPayloadFirebaseCopyWith<$Res> get firebase;
+/// Adds pattern-matching-related methods to [JwtPayload].
+extension JwtPayloadPatterns on JwtPayload {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _JwtPayload value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _JwtPayload() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _JwtPayload value)  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayload():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _JwtPayload value)?  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayload() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String iss,  String aud, @JsonKey(name: 'auth_time')@TimestampConverter()  DateTime authTime, @JsonKey(name: 'user_id')  String userId,  String sub, @TimestampConverter()  DateTime iat, @TimestampConverter()  DateTime exp,  String email, @JsonKey(name: 'email_verified')  bool emailVerified,  JwtPayloadFirebase firebase)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _JwtPayload() when $default != null:
+return $default(_that.iss,_that.aud,_that.authTime,_that.userId,_that.sub,_that.iat,_that.exp,_that.email,_that.emailVerified,_that.firebase);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String iss,  String aud, @JsonKey(name: 'auth_time')@TimestampConverter()  DateTime authTime, @JsonKey(name: 'user_id')  String userId,  String sub, @TimestampConverter()  DateTime iat, @TimestampConverter()  DateTime exp,  String email, @JsonKey(name: 'email_verified')  bool emailVerified,  JwtPayloadFirebase firebase)  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayload():
+return $default(_that.iss,_that.aud,_that.authTime,_that.userId,_that.sub,_that.iat,_that.exp,_that.email,_that.emailVerified,_that.firebase);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String iss,  String aud, @JsonKey(name: 'auth_time')@TimestampConverter()  DateTime authTime, @JsonKey(name: 'user_id')  String userId,  String sub, @TimestampConverter()  DateTime iat, @TimestampConverter()  DateTime exp,  String email, @JsonKey(name: 'email_verified')  bool emailVerified,  JwtPayloadFirebase firebase)?  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayload() when $default != null:
+return $default(_that.iss,_that.aud,_that.authTime,_that.userId,_that.sub,_that.iat,_that.exp,_that.email,_that.emailVerified,_that.firebase);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$JwtPayloadImplCopyWithImpl<$Res>
-    extends _$JwtPayloadCopyWithImpl<$Res, _$JwtPayloadImpl>
-    implements _$$JwtPayloadImplCopyWith<$Res> {
-  __$$JwtPayloadImplCopyWithImpl(
-      _$JwtPayloadImpl _value, $Res Function(_$JwtPayloadImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? iss = null,
-    Object? aud = null,
-    Object? authTime = null,
-    Object? userId = null,
-    Object? sub = null,
-    Object? iat = null,
-    Object? exp = null,
-    Object? email = null,
-    Object? emailVerified = null,
-    Object? firebase = null,
-  }) {
-    return _then(_$JwtPayloadImpl(
-      iss: null == iss
-          ? _value.iss
-          : iss // ignore: cast_nullable_to_non_nullable
-              as String,
-      aud: null == aud
-          ? _value.aud
-          : aud // ignore: cast_nullable_to_non_nullable
-              as String,
-      authTime: null == authTime
-          ? _value.authTime
-          : authTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sub: null == sub
-          ? _value.sub
-          : sub // ignore: cast_nullable_to_non_nullable
-              as String,
-      iat: null == iat
-          ? _value.iat
-          : iat // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      exp: null == exp
-          ? _value.exp
-          : exp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      emailVerified: null == emailVerified
-          ? _value.emailVerified
-          : emailVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      firebase: null == firebase
-          ? _value.firebase
-          : firebase // ignore: cast_nullable_to_non_nullable
-              as JwtPayloadFirebase,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$JwtPayloadImpl implements _JwtPayload {
-  _$JwtPayloadImpl(
-      {required this.iss,
-      required this.aud,
-      @JsonKey(name: 'auth_time') @TimestampConverter() required this.authTime,
-      @JsonKey(name: 'user_id') required this.userId,
-      required this.sub,
-      @TimestampConverter() required this.iat,
-      @TimestampConverter() required this.exp,
-      required this.email,
-      @JsonKey(name: 'email_verified') required this.emailVerified,
-      required this.firebase});
 
-  factory _$JwtPayloadImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JwtPayloadImplFromJson(json);
+class _JwtPayload implements JwtPayload {
+   _JwtPayload({required this.iss, required this.aud, @JsonKey(name: 'auth_time')@TimestampConverter() required this.authTime, @JsonKey(name: 'user_id') required this.userId, required this.sub, @TimestampConverter() required this.iat, @TimestampConverter() required this.exp, required this.email, @JsonKey(name: 'email_verified') required this.emailVerified, required this.firebase});
+  factory _JwtPayload.fromJson(Map<String, dynamic> json) => _$JwtPayloadFromJson(json);
 
-  @override
-  String iss;
-  @override
-  String aud;
+@override  String iss;
+@override  String aud;
 // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'auth_time')
-  @TimestampConverter()
-  DateTime authTime;
+@override@JsonKey(name: 'auth_time')@TimestampConverter()  DateTime authTime;
 // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'user_id')
-  String userId;
-  @override
-  String sub;
-  @override
-  @TimestampConverter()
-  DateTime iat;
-  @override
-  @TimestampConverter()
-  DateTime exp;
-  @override
-  String email;
+@override@JsonKey(name: 'user_id')  String userId;
+@override  String sub;
+@override@TimestampConverter()  DateTime iat;
+@override@TimestampConverter()  DateTime exp;
+@override  String email;
 // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'email_verified')
-  bool emailVerified;
-  @override
-  JwtPayloadFirebase firebase;
+@override@JsonKey(name: 'email_verified')  bool emailVerified;
+@override  JwtPayloadFirebase firebase;
 
-  @override
-  String toString() {
-    return 'JwtPayload(iss: $iss, aud: $aud, authTime: $authTime, userId: $userId, sub: $sub, iat: $iat, exp: $exp, email: $email, emailVerified: $emailVerified, firebase: $firebase)';
-  }
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$JwtPayloadCopyWith<_JwtPayload> get copyWith => __$JwtPayloadCopyWithImpl<_JwtPayload>(this, _$identity);
 
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JwtPayloadImplCopyWith<_$JwtPayloadImpl> get copyWith =>
-      __$$JwtPayloadImplCopyWithImpl<_$JwtPayloadImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$JwtPayloadImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$JwtPayloadToJson(this, );
 }
 
-abstract class _JwtPayload implements JwtPayload {
-  factory _JwtPayload(
-      {required String iss,
-      required String aud,
-      @JsonKey(name: 'auth_time')
-      @TimestampConverter()
-      required DateTime authTime,
-      @JsonKey(name: 'user_id') required String userId,
-      required String sub,
-      @TimestampConverter() required DateTime iat,
-      @TimestampConverter() required DateTime exp,
-      required String email,
-      @JsonKey(name: 'email_verified') required bool emailVerified,
-      required JwtPayloadFirebase firebase}) = _$JwtPayloadImpl;
 
-  factory _JwtPayload.fromJson(Map<String, dynamic> json) =
-      _$JwtPayloadImpl.fromJson;
 
-  @override
-  String get iss;
-  set iss(String value);
-  @override
-  String get aud;
-  set aud(String value); // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'auth_time')
-  @TimestampConverter()
-  DateTime get authTime; // ignore: invalid_annotation_target
-  @JsonKey(name: 'auth_time')
-  @TimestampConverter()
-  set authTime(DateTime value); // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'user_id')
-  String get userId; // ignore: invalid_annotation_target
-  @JsonKey(name: 'user_id')
-  set userId(String value);
-  @override
-  String get sub;
-  set sub(String value);
-  @override
-  @TimestampConverter()
-  DateTime get iat;
-  @TimestampConverter()
-  set iat(DateTime value);
-  @override
-  @TimestampConverter()
-  DateTime get exp;
-  @TimestampConverter()
-  set exp(DateTime value);
-  @override
-  String get email;
-  set email(String value); // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'email_verified')
-  bool get emailVerified; // ignore: invalid_annotation_target
-  @JsonKey(name: 'email_verified')
-  set emailVerified(bool value);
-  @override
-  JwtPayloadFirebase get firebase;
-  set firebase(JwtPayloadFirebase value);
-
-  /// Create a copy of JwtPayload
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JwtPayloadImplCopyWith<_$JwtPayloadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'JwtPayload(iss: $iss, aud: $aud, authTime: $authTime, userId: $userId, sub: $sub, iat: $iat, exp: $exp, email: $email, emailVerified: $emailVerified, firebase: $firebase)';
 }
 
-JwtPayloadFirebase _$JwtPayloadFirebaseFromJson(Map<String, dynamic> json) {
-  return _JwtPayloadFirebase.fromJson(json);
+
 }
+
+/// @nodoc
+abstract mixin class _$JwtPayloadCopyWith<$Res> implements $JwtPayloadCopyWith<$Res> {
+  factory _$JwtPayloadCopyWith(_JwtPayload value, $Res Function(_JwtPayload) _then) = __$JwtPayloadCopyWithImpl;
+@override @useResult
+$Res call({
+ String iss, String aud,@JsonKey(name: 'auth_time')@TimestampConverter() DateTime authTime,@JsonKey(name: 'user_id') String userId, String sub,@TimestampConverter() DateTime iat,@TimestampConverter() DateTime exp, String email,@JsonKey(name: 'email_verified') bool emailVerified, JwtPayloadFirebase firebase
+});
+
+
+@override $JwtPayloadFirebaseCopyWith<$Res> get firebase;
+
+}
+/// @nodoc
+class __$JwtPayloadCopyWithImpl<$Res>
+    implements _$JwtPayloadCopyWith<$Res> {
+  __$JwtPayloadCopyWithImpl(this._self, this._then);
+
+  final _JwtPayload _self;
+  final $Res Function(_JwtPayload) _then;
+
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? iss = null,Object? aud = null,Object? authTime = null,Object? userId = null,Object? sub = null,Object? iat = null,Object? exp = null,Object? email = null,Object? emailVerified = null,Object? firebase = null,}) {
+  return _then(_JwtPayload(
+iss: null == iss ? _self.iss : iss // ignore: cast_nullable_to_non_nullable
+as String,aud: null == aud ? _self.aud : aud // ignore: cast_nullable_to_non_nullable
+as String,authTime: null == authTime ? _self.authTime : authTime // ignore: cast_nullable_to_non_nullable
+as DateTime,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,sub: null == sub ? _self.sub : sub // ignore: cast_nullable_to_non_nullable
+as String,iat: null == iat ? _self.iat : iat // ignore: cast_nullable_to_non_nullable
+as DateTime,exp: null == exp ? _self.exp : exp // ignore: cast_nullable_to_non_nullable
+as DateTime,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,emailVerified: null == emailVerified ? _self.emailVerified : emailVerified // ignore: cast_nullable_to_non_nullable
+as bool,firebase: null == firebase ? _self.firebase : firebase // ignore: cast_nullable_to_non_nullable
+as JwtPayloadFirebase,
+  ));
+}
+
+/// Create a copy of JwtPayload
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseCopyWith<$Res> get firebase {
+  
+  return $JwtPayloadFirebaseCopyWith<$Res>(_self.firebase, (value) {
+    return _then(_self.copyWith(firebase: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$JwtPayloadFirebase {
-  JwtPayloadFirebaseIdentities get identities =>
-      throw _privateConstructorUsedError;
-  set identities(JwtPayloadFirebaseIdentities value) =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'sign_in_provider')
-  String get signInProvider =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'sign_in_provider')
-  set signInProvider(String value) => throw _privateConstructorUsedError;
+
+ JwtPayloadFirebaseIdentities get identities; set identities(JwtPayloadFirebaseIdentities value);// ignore: invalid_annotation_target
+@JsonKey(name: 'sign_in_provider') String get signInProvider;// ignore: invalid_annotation_target
+@JsonKey(name: 'sign_in_provider') set signInProvider(String value);
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseCopyWith<JwtPayloadFirebase> get copyWith => _$JwtPayloadFirebaseCopyWithImpl<JwtPayloadFirebase>(this as JwtPayloadFirebase, _$identity);
 
   /// Serializes this JwtPayloadFirebase to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $JwtPayloadFirebaseCopyWith<JwtPayloadFirebase> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+
+@override
+String toString() {
+  return 'JwtPayloadFirebase(identities: $identities, signInProvider: $signInProvider)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $JwtPayloadFirebaseCopyWith<$Res> {
-  factory $JwtPayloadFirebaseCopyWith(
-          JwtPayloadFirebase value, $Res Function(JwtPayloadFirebase) then) =
-      _$JwtPayloadFirebaseCopyWithImpl<$Res, JwtPayloadFirebase>;
-  @useResult
-  $Res call(
-      {JwtPayloadFirebaseIdentities identities,
-      @JsonKey(name: 'sign_in_provider') String signInProvider});
+abstract mixin class $JwtPayloadFirebaseCopyWith<$Res>  {
+  factory $JwtPayloadFirebaseCopyWith(JwtPayloadFirebase value, $Res Function(JwtPayloadFirebase) _then) = _$JwtPayloadFirebaseCopyWithImpl;
+@useResult
+$Res call({
+ JwtPayloadFirebaseIdentities identities,@JsonKey(name: 'sign_in_provider') String signInProvider
+});
 
-  $JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities;
+
+$JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities;
+
 }
-
 /// @nodoc
-class _$JwtPayloadFirebaseCopyWithImpl<$Res, $Val extends JwtPayloadFirebase>
+class _$JwtPayloadFirebaseCopyWithImpl<$Res>
     implements $JwtPayloadFirebaseCopyWith<$Res> {
-  _$JwtPayloadFirebaseCopyWithImpl(this._value, this._then);
+  _$JwtPayloadFirebaseCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final JwtPayloadFirebase _self;
+  final $Res Function(JwtPayloadFirebase) _then;
 
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? identities = null,
-    Object? signInProvider = null,
-  }) {
-    return _then(_value.copyWith(
-      identities: null == identities
-          ? _value.identities
-          : identities // ignore: cast_nullable_to_non_nullable
-              as JwtPayloadFirebaseIdentities,
-      signInProvider: null == signInProvider
-          ? _value.signInProvider
-          : signInProvider // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities {
-    return $JwtPayloadFirebaseIdentitiesCopyWith<$Res>(_value.identities,
-        (value) {
-      return _then(_value.copyWith(identities: value) as $Val);
-    });
-  }
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? identities = null,Object? signInProvider = null,}) {
+  return _then(_self.copyWith(
+identities: null == identities ? _self.identities : identities // ignore: cast_nullable_to_non_nullable
+as JwtPayloadFirebaseIdentities,signInProvider: null == signInProvider ? _self.signInProvider : signInProvider // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities {
+  
+  return $JwtPayloadFirebaseIdentitiesCopyWith<$Res>(_self.identities, (value) {
+    return _then(_self.copyWith(identities: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$JwtPayloadFirebaseImplCopyWith<$Res>
-    implements $JwtPayloadFirebaseCopyWith<$Res> {
-  factory _$$JwtPayloadFirebaseImplCopyWith(_$JwtPayloadFirebaseImpl value,
-          $Res Function(_$JwtPayloadFirebaseImpl) then) =
-      __$$JwtPayloadFirebaseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {JwtPayloadFirebaseIdentities identities,
-      @JsonKey(name: 'sign_in_provider') String signInProvider});
 
-  @override
-  $JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities;
+/// Adds pattern-matching-related methods to [JwtPayloadFirebase].
+extension JwtPayloadFirebasePatterns on JwtPayloadFirebase {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _JwtPayloadFirebase value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _JwtPayloadFirebase value)  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _JwtPayloadFirebase value)?  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( JwtPayloadFirebaseIdentities identities, @JsonKey(name: 'sign_in_provider')  String signInProvider)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase() when $default != null:
+return $default(_that.identities,_that.signInProvider);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( JwtPayloadFirebaseIdentities identities, @JsonKey(name: 'sign_in_provider')  String signInProvider)  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase():
+return $default(_that.identities,_that.signInProvider);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( JwtPayloadFirebaseIdentities identities, @JsonKey(name: 'sign_in_provider')  String signInProvider)?  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebase() when $default != null:
+return $default(_that.identities,_that.signInProvider);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$JwtPayloadFirebaseImplCopyWithImpl<$Res>
-    extends _$JwtPayloadFirebaseCopyWithImpl<$Res, _$JwtPayloadFirebaseImpl>
-    implements _$$JwtPayloadFirebaseImplCopyWith<$Res> {
-  __$$JwtPayloadFirebaseImplCopyWithImpl(_$JwtPayloadFirebaseImpl _value,
-      $Res Function(_$JwtPayloadFirebaseImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? identities = null,
-    Object? signInProvider = null,
-  }) {
-    return _then(_$JwtPayloadFirebaseImpl(
-      identities: null == identities
-          ? _value.identities
-          : identities // ignore: cast_nullable_to_non_nullable
-              as JwtPayloadFirebaseIdentities,
-      signInProvider: null == signInProvider
-          ? _value.signInProvider
-          : signInProvider // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$JwtPayloadFirebaseImpl implements _JwtPayloadFirebase {
-  _$JwtPayloadFirebaseImpl(
-      {required this.identities,
-      @JsonKey(name: 'sign_in_provider') required this.signInProvider});
 
-  factory _$JwtPayloadFirebaseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JwtPayloadFirebaseImplFromJson(json);
+class _JwtPayloadFirebase implements JwtPayloadFirebase {
+   _JwtPayloadFirebase({required this.identities, @JsonKey(name: 'sign_in_provider') required this.signInProvider});
+  factory _JwtPayloadFirebase.fromJson(Map<String, dynamic> json) => _$JwtPayloadFirebaseFromJson(json);
 
-  @override
-  JwtPayloadFirebaseIdentities identities;
+@override  JwtPayloadFirebaseIdentities identities;
 // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'sign_in_provider')
-  String signInProvider;
+@override@JsonKey(name: 'sign_in_provider')  String signInProvider;
 
-  @override
-  String toString() {
-    return 'JwtPayloadFirebase(identities: $identities, signInProvider: $signInProvider)';
-  }
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$JwtPayloadFirebaseCopyWith<_JwtPayloadFirebase> get copyWith => __$JwtPayloadFirebaseCopyWithImpl<_JwtPayloadFirebase>(this, _$identity);
 
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JwtPayloadFirebaseImplCopyWith<_$JwtPayloadFirebaseImpl> get copyWith =>
-      __$$JwtPayloadFirebaseImplCopyWithImpl<_$JwtPayloadFirebaseImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$JwtPayloadFirebaseImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$JwtPayloadFirebaseToJson(this, );
 }
 
-abstract class _JwtPayloadFirebase implements JwtPayloadFirebase {
-  factory _JwtPayloadFirebase(
-          {required JwtPayloadFirebaseIdentities identities,
-          @JsonKey(name: 'sign_in_provider') required String signInProvider}) =
-      _$JwtPayloadFirebaseImpl;
 
-  factory _JwtPayloadFirebase.fromJson(Map<String, dynamic> json) =
-      _$JwtPayloadFirebaseImpl.fromJson;
 
-  @override
-  JwtPayloadFirebaseIdentities get identities;
-  set identities(
-      JwtPayloadFirebaseIdentities value); // ignore: invalid_annotation_target
-  @override
-  @JsonKey(name: 'sign_in_provider')
-  String get signInProvider; // ignore: invalid_annotation_target
-  @JsonKey(name: 'sign_in_provider')
-  set signInProvider(String value);
-
-  /// Create a copy of JwtPayloadFirebase
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JwtPayloadFirebaseImplCopyWith<_$JwtPayloadFirebaseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'JwtPayloadFirebase(identities: $identities, signInProvider: $signInProvider)';
 }
 
-JwtPayloadFirebaseIdentities _$JwtPayloadFirebaseIdentitiesFromJson(
-    Map<String, dynamic> json) {
-  return _JwtPayloadFirebaseIdentities.fromJson(json);
+
 }
+
+/// @nodoc
+abstract mixin class _$JwtPayloadFirebaseCopyWith<$Res> implements $JwtPayloadFirebaseCopyWith<$Res> {
+  factory _$JwtPayloadFirebaseCopyWith(_JwtPayloadFirebase value, $Res Function(_JwtPayloadFirebase) _then) = __$JwtPayloadFirebaseCopyWithImpl;
+@override @useResult
+$Res call({
+ JwtPayloadFirebaseIdentities identities,@JsonKey(name: 'sign_in_provider') String signInProvider
+});
+
+
+@override $JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities;
+
+}
+/// @nodoc
+class __$JwtPayloadFirebaseCopyWithImpl<$Res>
+    implements _$JwtPayloadFirebaseCopyWith<$Res> {
+  __$JwtPayloadFirebaseCopyWithImpl(this._self, this._then);
+
+  final _JwtPayloadFirebase _self;
+  final $Res Function(_JwtPayloadFirebase) _then;
+
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? identities = null,Object? signInProvider = null,}) {
+  return _then(_JwtPayloadFirebase(
+identities: null == identities ? _self.identities : identities // ignore: cast_nullable_to_non_nullable
+as JwtPayloadFirebaseIdentities,signInProvider: null == signInProvider ? _self.signInProvider : signInProvider // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+/// Create a copy of JwtPayloadFirebase
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseIdentitiesCopyWith<$Res> get identities {
+  
+  return $JwtPayloadFirebaseIdentitiesCopyWith<$Res>(_self.identities, (value) {
+    return _then(_self.copyWith(identities: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$JwtPayloadFirebaseIdentities {
-  List<String> get email => throw _privateConstructorUsedError;
-  set email(List<String> value) => throw _privateConstructorUsedError;
+
+ List<String> get email; set email(List<String> value);
+/// Create a copy of JwtPayloadFirebaseIdentities
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$JwtPayloadFirebaseIdentitiesCopyWith<JwtPayloadFirebaseIdentities> get copyWith => _$JwtPayloadFirebaseIdentitiesCopyWithImpl<JwtPayloadFirebaseIdentities>(this as JwtPayloadFirebaseIdentities, _$identity);
 
   /// Serializes this JwtPayloadFirebaseIdentities to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of JwtPayloadFirebaseIdentities
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $JwtPayloadFirebaseIdentitiesCopyWith<JwtPayloadFirebaseIdentities>
-      get copyWith => throw _privateConstructorUsedError;
+
+
+
+@override
+String toString() {
+  return 'JwtPayloadFirebaseIdentities(email: $email)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $JwtPayloadFirebaseIdentitiesCopyWith<$Res> {
-  factory $JwtPayloadFirebaseIdentitiesCopyWith(
-          JwtPayloadFirebaseIdentities value,
-          $Res Function(JwtPayloadFirebaseIdentities) then) =
-      _$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res,
-          JwtPayloadFirebaseIdentities>;
-  @useResult
-  $Res call({List<String> email});
-}
+abstract mixin class $JwtPayloadFirebaseIdentitiesCopyWith<$Res>  {
+  factory $JwtPayloadFirebaseIdentitiesCopyWith(JwtPayloadFirebaseIdentities value, $Res Function(JwtPayloadFirebaseIdentities) _then) = _$JwtPayloadFirebaseIdentitiesCopyWithImpl;
+@useResult
+$Res call({
+ List<String> email
+});
 
+
+
+
+}
 /// @nodoc
-class _$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res,
-        $Val extends JwtPayloadFirebaseIdentities>
+class _$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res>
     implements $JwtPayloadFirebaseIdentitiesCopyWith<$Res> {
-  _$JwtPayloadFirebaseIdentitiesCopyWithImpl(this._value, this._then);
+  _$JwtPayloadFirebaseIdentitiesCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final JwtPayloadFirebaseIdentities _self;
+  final $Res Function(JwtPayloadFirebaseIdentities) _then;
 
-  /// Create a copy of JwtPayloadFirebaseIdentities
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
-  }
+/// Create a copy of JwtPayloadFirebaseIdentities
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,}) {
+  return _then(_self.copyWith(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$JwtPayloadFirebaseIdentitiesImplCopyWith<$Res>
-    implements $JwtPayloadFirebaseIdentitiesCopyWith<$Res> {
-  factory _$$JwtPayloadFirebaseIdentitiesImplCopyWith(
-          _$JwtPayloadFirebaseIdentitiesImpl value,
-          $Res Function(_$JwtPayloadFirebaseIdentitiesImpl) then) =
-      __$$JwtPayloadFirebaseIdentitiesImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<String> email});
 }
 
-/// @nodoc
-class __$$JwtPayloadFirebaseIdentitiesImplCopyWithImpl<$Res>
-    extends _$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res,
-        _$JwtPayloadFirebaseIdentitiesImpl>
-    implements _$$JwtPayloadFirebaseIdentitiesImplCopyWith<$Res> {
-  __$$JwtPayloadFirebaseIdentitiesImplCopyWithImpl(
-      _$JwtPayloadFirebaseIdentitiesImpl _value,
-      $Res Function(_$JwtPayloadFirebaseIdentitiesImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of JwtPayloadFirebaseIdentities
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-  }) {
-    return _then(_$JwtPayloadFirebaseIdentitiesImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
-  }
+/// Adds pattern-matching-related methods to [JwtPayloadFirebaseIdentities].
+extension JwtPayloadFirebaseIdentitiesPatterns on JwtPayloadFirebaseIdentities {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _JwtPayloadFirebaseIdentities value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _JwtPayloadFirebaseIdentities value)  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _JwtPayloadFirebaseIdentities value)?  $default,){
+final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> email)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities() when $default != null:
+return $default(_that.email);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> email)  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities():
+return $default(_that.email);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> email)?  $default,) {final _that = this;
+switch (_that) {
+case _JwtPayloadFirebaseIdentities() when $default != null:
+return $default(_that.email);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$JwtPayloadFirebaseIdentitiesImpl
-    implements _JwtPayloadFirebaseIdentities {
-  _$JwtPayloadFirebaseIdentitiesImpl({required this.email});
 
-  factory _$JwtPayloadFirebaseIdentitiesImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$JwtPayloadFirebaseIdentitiesImplFromJson(json);
+class _JwtPayloadFirebaseIdentities implements JwtPayloadFirebaseIdentities {
+   _JwtPayloadFirebaseIdentities({required this.email});
+  factory _JwtPayloadFirebaseIdentities.fromJson(Map<String, dynamic> json) => _$JwtPayloadFirebaseIdentitiesFromJson(json);
 
-  @override
-  List<String> email;
+@override  List<String> email;
 
-  @override
-  String toString() {
-    return 'JwtPayloadFirebaseIdentities(email: $email)';
-  }
+/// Create a copy of JwtPayloadFirebaseIdentities
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$JwtPayloadFirebaseIdentitiesCopyWith<_JwtPayloadFirebaseIdentities> get copyWith => __$JwtPayloadFirebaseIdentitiesCopyWithImpl<_JwtPayloadFirebaseIdentities>(this, _$identity);
 
-  /// Create a copy of JwtPayloadFirebaseIdentities
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$JwtPayloadFirebaseIdentitiesImplCopyWith<
-          _$JwtPayloadFirebaseIdentitiesImpl>
-      get copyWith => __$$JwtPayloadFirebaseIdentitiesImplCopyWithImpl<
-          _$JwtPayloadFirebaseIdentitiesImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$JwtPayloadFirebaseIdentitiesImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$JwtPayloadFirebaseIdentitiesToJson(this, );
 }
 
-abstract class _JwtPayloadFirebaseIdentities
-    implements JwtPayloadFirebaseIdentities {
-  factory _JwtPayloadFirebaseIdentities({required List<String> email}) =
-      _$JwtPayloadFirebaseIdentitiesImpl;
 
-  factory _JwtPayloadFirebaseIdentities.fromJson(Map<String, dynamic> json) =
-      _$JwtPayloadFirebaseIdentitiesImpl.fromJson;
 
-  @override
-  List<String> get email;
-  set email(List<String> value);
-
-  /// Create a copy of JwtPayloadFirebaseIdentities
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JwtPayloadFirebaseIdentitiesImplCopyWith<
-          _$JwtPayloadFirebaseIdentitiesImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'JwtPayloadFirebaseIdentities(email: $email)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$JwtPayloadFirebaseIdentitiesCopyWith<$Res> implements $JwtPayloadFirebaseIdentitiesCopyWith<$Res> {
+  factory _$JwtPayloadFirebaseIdentitiesCopyWith(_JwtPayloadFirebaseIdentities value, $Res Function(_JwtPayloadFirebaseIdentities) _then) = __$JwtPayloadFirebaseIdentitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> email
+});
+
+
+
+
+}
+/// @nodoc
+class __$JwtPayloadFirebaseIdentitiesCopyWithImpl<$Res>
+    implements _$JwtPayloadFirebaseIdentitiesCopyWith<$Res> {
+  __$JwtPayloadFirebaseIdentitiesCopyWithImpl(this._self, this._then);
+
+  final _JwtPayloadFirebaseIdentities _self;
+  final $Res Function(_JwtPayloadFirebaseIdentities) _then;
+
+/// Create a copy of JwtPayloadFirebaseIdentities
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,}) {
+  return _then(_JwtPayloadFirebaseIdentities(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+// dart format on

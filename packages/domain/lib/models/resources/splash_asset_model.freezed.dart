@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1312 +9,1453 @@ part of 'splash_asset_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SplashSource _$SplashSourceFromJson(Map<String, dynamic> json) {
-  return _SplashSource.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SplashSource {
-  String? get foregroundAssetId => throw _privateConstructorUsedError;
-  String? get backgroundAssetId => throw _privateConstructorUsedError;
-  String? get backgroundColorHex => throw _privateConstructorUsedError;
+
+ String? get foregroundAssetId; String? get backgroundAssetId; String? get backgroundColorHex;
+/// Create a copy of SplashSource
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SplashSourceCopyWith<SplashSource> get copyWith => _$SplashSourceCopyWithImpl<SplashSource>(this as SplashSource, _$identity);
 
   /// Serializes this SplashSource to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SplashSource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashSourceCopyWith<SplashSource> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashSource&&(identical(other.foregroundAssetId, foregroundAssetId) || other.foregroundAssetId == foregroundAssetId)&&(identical(other.backgroundAssetId, backgroundAssetId) || other.backgroundAssetId == backgroundAssetId)&&(identical(other.backgroundColorHex, backgroundColorHex) || other.backgroundColorHex == backgroundColorHex));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,foregroundAssetId,backgroundAssetId,backgroundColorHex);
+
+@override
+String toString() {
+  return 'SplashSource(foregroundAssetId: $foregroundAssetId, backgroundAssetId: $backgroundAssetId, backgroundColorHex: $backgroundColorHex)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SplashSourceCopyWith<$Res> {
-  factory $SplashSourceCopyWith(
-          SplashSource value, $Res Function(SplashSource) then) =
-      _$SplashSourceCopyWithImpl<$Res, SplashSource>;
-  @useResult
-  $Res call(
-      {String? foregroundAssetId,
-      String? backgroundAssetId,
-      String? backgroundColorHex});
-}
+abstract mixin class $SplashSourceCopyWith<$Res>  {
+  factory $SplashSourceCopyWith(SplashSource value, $Res Function(SplashSource) _then) = _$SplashSourceCopyWithImpl;
+@useResult
+$Res call({
+ String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex
+});
 
+
+
+
+}
 /// @nodoc
-class _$SplashSourceCopyWithImpl<$Res, $Val extends SplashSource>
+class _$SplashSourceCopyWithImpl<$Res>
     implements $SplashSourceCopyWith<$Res> {
-  _$SplashSourceCopyWithImpl(this._value, this._then);
+  _$SplashSourceCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SplashSource _self;
+  final $Res Function(SplashSource) _then;
 
-  /// Create a copy of SplashSource
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? foregroundAssetId = freezed,
-    Object? backgroundAssetId = freezed,
-    Object? backgroundColorHex = freezed,
-  }) {
-    return _then(_value.copyWith(
-      foregroundAssetId: freezed == foregroundAssetId
-          ? _value.foregroundAssetId
-          : foregroundAssetId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundAssetId: freezed == backgroundAssetId
-          ? _value.backgroundAssetId
-          : backgroundAssetId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundColorHex: freezed == backgroundColorHex
-          ? _value.backgroundColorHex
-          : backgroundColorHex // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of SplashSource
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? foregroundAssetId = freezed,Object? backgroundAssetId = freezed,Object? backgroundColorHex = freezed,}) {
+  return _then(_self.copyWith(
+foregroundAssetId: freezed == foregroundAssetId ? _self.foregroundAssetId : foregroundAssetId // ignore: cast_nullable_to_non_nullable
+as String?,backgroundAssetId: freezed == backgroundAssetId ? _self.backgroundAssetId : backgroundAssetId // ignore: cast_nullable_to_non_nullable
+as String?,backgroundColorHex: freezed == backgroundColorHex ? _self.backgroundColorHex : backgroundColorHex // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SplashSourceImplCopyWith<$Res>
-    implements $SplashSourceCopyWith<$Res> {
-  factory _$$SplashSourceImplCopyWith(
-          _$SplashSourceImpl value, $Res Function(_$SplashSourceImpl) then) =
-      __$$SplashSourceImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? foregroundAssetId,
-      String? backgroundAssetId,
-      String? backgroundColorHex});
 }
 
-/// @nodoc
-class __$$SplashSourceImplCopyWithImpl<$Res>
-    extends _$SplashSourceCopyWithImpl<$Res, _$SplashSourceImpl>
-    implements _$$SplashSourceImplCopyWith<$Res> {
-  __$$SplashSourceImplCopyWithImpl(
-      _$SplashSourceImpl _value, $Res Function(_$SplashSourceImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SplashSource
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? foregroundAssetId = freezed,
-    Object? backgroundAssetId = freezed,
-    Object? backgroundColorHex = freezed,
-  }) {
-    return _then(_$SplashSourceImpl(
-      foregroundAssetId: freezed == foregroundAssetId
-          ? _value.foregroundAssetId
-          : foregroundAssetId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundAssetId: freezed == backgroundAssetId
-          ? _value.backgroundAssetId
-          : backgroundAssetId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundColorHex: freezed == backgroundColorHex
-          ? _value.backgroundColorHex
-          : backgroundColorHex // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SplashSource].
+extension SplashSourcePatterns on SplashSource {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SplashSource value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SplashSource() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SplashSource value)  $default,){
+final _that = this;
+switch (_that) {
+case _SplashSource():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SplashSource value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SplashSource() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? foregroundAssetId,  String? backgroundAssetId,  String? backgroundColorHex)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SplashSource() when $default != null:
+return $default(_that.foregroundAssetId,_that.backgroundAssetId,_that.backgroundColorHex);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? foregroundAssetId,  String? backgroundAssetId,  String? backgroundColorHex)  $default,) {final _that = this;
+switch (_that) {
+case _SplashSource():
+return $default(_that.foregroundAssetId,_that.backgroundAssetId,_that.backgroundColorHex);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? foregroundAssetId,  String? backgroundAssetId,  String? backgroundColorHex)?  $default,) {final _that = this;
+switch (_that) {
+case _SplashSource() when $default != null:
+return $default(_that.foregroundAssetId,_that.backgroundAssetId,_that.backgroundColorHex);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SplashSourceImpl implements _SplashSource {
-  const _$SplashSourceImpl(
-      {this.foregroundAssetId,
-      this.backgroundAssetId,
-      this.backgroundColorHex});
 
-  factory _$SplashSourceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SplashSourceImplFromJson(json);
+class _SplashSource implements SplashSource {
+  const _SplashSource({this.foregroundAssetId, this.backgroundAssetId, this.backgroundColorHex});
+  factory _SplashSource.fromJson(Map<String, dynamic> json) => _$SplashSourceFromJson(json);
 
-  @override
-  final String? foregroundAssetId;
-  @override
-  final String? backgroundAssetId;
-  @override
-  final String? backgroundColorHex;
+@override final  String? foregroundAssetId;
+@override final  String? backgroundAssetId;
+@override final  String? backgroundColorHex;
 
-  @override
-  String toString() {
-    return 'SplashSource(foregroundAssetId: $foregroundAssetId, backgroundAssetId: $backgroundAssetId, backgroundColorHex: $backgroundColorHex)';
-  }
+/// Create a copy of SplashSource
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SplashSourceCopyWith<_SplashSource> get copyWith => __$SplashSourceCopyWithImpl<_SplashSource>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashSourceImpl &&
-            (identical(other.foregroundAssetId, foregroundAssetId) ||
-                other.foregroundAssetId == foregroundAssetId) &&
-            (identical(other.backgroundAssetId, backgroundAssetId) ||
-                other.backgroundAssetId == backgroundAssetId) &&
-            (identical(other.backgroundColorHex, backgroundColorHex) ||
-                other.backgroundColorHex == backgroundColorHex));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, foregroundAssetId, backgroundAssetId, backgroundColorHex);
-
-  /// Create a copy of SplashSource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SplashSourceImplCopyWith<_$SplashSourceImpl> get copyWith =>
-      __$$SplashSourceImplCopyWithImpl<_$SplashSourceImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SplashSourceImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SplashSourceToJson(this, );
 }
 
-abstract class _SplashSource implements SplashSource {
-  const factory _SplashSource(
-      {final String? foregroundAssetId,
-      final String? backgroundAssetId,
-      final String? backgroundColorHex}) = _$SplashSourceImpl;
-
-  factory _SplashSource.fromJson(Map<String, dynamic> json) =
-      _$SplashSourceImpl.fromJson;
-
-  @override
-  String? get foregroundAssetId;
-  @override
-  String? get backgroundAssetId;
-  @override
-  String? get backgroundColorHex;
-
-  /// Create a copy of SplashSource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SplashSourceImplCopyWith<_$SplashSourceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashSource&&(identical(other.foregroundAssetId, foregroundAssetId) || other.foregroundAssetId == foregroundAssetId)&&(identical(other.backgroundAssetId, backgroundAssetId) || other.backgroundAssetId == backgroundAssetId)&&(identical(other.backgroundColorHex, backgroundColorHex) || other.backgroundColorHex == backgroundColorHex));
 }
 
-SplashAssetParams _$SplashAssetParamsFromJson(Map<String, dynamic> json) {
-  return _SplashAssetParams.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,foregroundAssetId,backgroundAssetId,backgroundColorHex);
+
+@override
+String toString() {
+  return 'SplashSource(foregroundAssetId: $foregroundAssetId, backgroundAssetId: $backgroundAssetId, backgroundColorHex: $backgroundColorHex)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SplashSourceCopyWith<$Res> implements $SplashSourceCopyWith<$Res> {
+  factory _$SplashSourceCopyWith(_SplashSource value, $Res Function(_SplashSource) _then) = __$SplashSourceCopyWithImpl;
+@override @useResult
+$Res call({
+ String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex
+});
+
+
+
+
+}
+/// @nodoc
+class __$SplashSourceCopyWithImpl<$Res>
+    implements _$SplashSourceCopyWith<$Res> {
+  __$SplashSourceCopyWithImpl(this._self, this._then);
+
+  final _SplashSource _self;
+  final $Res Function(_SplashSource) _then;
+
+/// Create a copy of SplashSource
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? foregroundAssetId = freezed,Object? backgroundAssetId = freezed,Object? backgroundColorHex = freezed,}) {
+  return _then(_SplashSource(
+foregroundAssetId: freezed == foregroundAssetId ? _self.foregroundAssetId : foregroundAssetId // ignore: cast_nullable_to_non_nullable
+as String?,backgroundAssetId: freezed == backgroundAssetId ? _self.backgroundAssetId : backgroundAssetId // ignore: cast_nullable_to_non_nullable
+as String?,backgroundColorHex: freezed == backgroundColorHex ? _self.backgroundColorHex : backgroundColorHex // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$SplashAssetParams {
-  FitModel? get fit => throw _privateConstructorUsedError;
-  double? get padding => throw _privateConstructorUsedError;
+
+ FitModel? get fit; double? get padding;
+/// Create a copy of SplashAssetParams
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SplashAssetParamsCopyWith<SplashAssetParams> get copyWith => _$SplashAssetParamsCopyWithImpl<SplashAssetParams>(this as SplashAssetParams, _$identity);
 
   /// Serializes this SplashAssetParams to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SplashAssetParams
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashAssetParamsCopyWith<SplashAssetParams> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashAssetParams&&(identical(other.fit, fit) || other.fit == fit)&&(identical(other.padding, padding) || other.padding == padding));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,fit,padding);
+
+@override
+String toString() {
+  return 'SplashAssetParams(fit: $fit, padding: $padding)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SplashAssetParamsCopyWith<$Res> {
-  factory $SplashAssetParamsCopyWith(
-          SplashAssetParams value, $Res Function(SplashAssetParams) then) =
-      _$SplashAssetParamsCopyWithImpl<$Res, SplashAssetParams>;
-  @useResult
-  $Res call({FitModel? fit, double? padding});
-}
+abstract mixin class $SplashAssetParamsCopyWith<$Res>  {
+  factory $SplashAssetParamsCopyWith(SplashAssetParams value, $Res Function(SplashAssetParams) _then) = _$SplashAssetParamsCopyWithImpl;
+@useResult
+$Res call({
+ FitModel? fit, double? padding
+});
 
+
+
+
+}
 /// @nodoc
-class _$SplashAssetParamsCopyWithImpl<$Res, $Val extends SplashAssetParams>
+class _$SplashAssetParamsCopyWithImpl<$Res>
     implements $SplashAssetParamsCopyWith<$Res> {
-  _$SplashAssetParamsCopyWithImpl(this._value, this._then);
+  _$SplashAssetParamsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SplashAssetParams _self;
+  final $Res Function(SplashAssetParams) _then;
 
-  /// Create a copy of SplashAssetParams
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fit = freezed,
-    Object? padding = freezed,
-  }) {
-    return _then(_value.copyWith(
-      fit: freezed == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as FitModel?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
-  }
+/// Create a copy of SplashAssetParams
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? fit = freezed,Object? padding = freezed,}) {
+  return _then(_self.copyWith(
+fit: freezed == fit ? _self.fit : fit // ignore: cast_nullable_to_non_nullable
+as FitModel?,padding: freezed == padding ? _self.padding : padding // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SplashAssetParamsImplCopyWith<$Res>
-    implements $SplashAssetParamsCopyWith<$Res> {
-  factory _$$SplashAssetParamsImplCopyWith(_$SplashAssetParamsImpl value,
-          $Res Function(_$SplashAssetParamsImpl) then) =
-      __$$SplashAssetParamsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({FitModel? fit, double? padding});
 }
 
-/// @nodoc
-class __$$SplashAssetParamsImplCopyWithImpl<$Res>
-    extends _$SplashAssetParamsCopyWithImpl<$Res, _$SplashAssetParamsImpl>
-    implements _$$SplashAssetParamsImplCopyWith<$Res> {
-  __$$SplashAssetParamsImplCopyWithImpl(_$SplashAssetParamsImpl _value,
-      $Res Function(_$SplashAssetParamsImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SplashAssetParams
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fit = freezed,
-    Object? padding = freezed,
-  }) {
-    return _then(_$SplashAssetParamsImpl(
-      fit: freezed == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as FitModel?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SplashAssetParams].
+extension SplashAssetParamsPatterns on SplashAssetParams {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SplashAssetParams value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SplashAssetParams() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SplashAssetParams value)  $default,){
+final _that = this;
+switch (_that) {
+case _SplashAssetParams():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SplashAssetParams value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SplashAssetParams() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FitModel? fit,  double? padding)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SplashAssetParams() when $default != null:
+return $default(_that.fit,_that.padding);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FitModel? fit,  double? padding)  $default,) {final _that = this;
+switch (_that) {
+case _SplashAssetParams():
+return $default(_that.fit,_that.padding);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FitModel? fit,  double? padding)?  $default,) {final _that = this;
+switch (_that) {
+case _SplashAssetParams() when $default != null:
+return $default(_that.fit,_that.padding);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SplashAssetParamsImpl implements _SplashAssetParams {
-  const _$SplashAssetParamsImpl({this.fit, this.padding});
 
-  factory _$SplashAssetParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SplashAssetParamsImplFromJson(json);
+class _SplashAssetParams implements SplashAssetParams {
+  const _SplashAssetParams({this.fit, this.padding});
+  factory _SplashAssetParams.fromJson(Map<String, dynamic> json) => _$SplashAssetParamsFromJson(json);
 
-  @override
-  final FitModel? fit;
-  @override
-  final double? padding;
+@override final  FitModel? fit;
+@override final  double? padding;
 
-  @override
-  String toString() {
-    return 'SplashAssetParams(fit: $fit, padding: $padding)';
-  }
+/// Create a copy of SplashAssetParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SplashAssetParamsCopyWith<_SplashAssetParams> get copyWith => __$SplashAssetParamsCopyWithImpl<_SplashAssetParams>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashAssetParamsImpl &&
-            (identical(other.fit, fit) || other.fit == fit) &&
-            (identical(other.padding, padding) || other.padding == padding));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, fit, padding);
-
-  /// Create a copy of SplashAssetParams
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SplashAssetParamsImplCopyWith<_$SplashAssetParamsImpl> get copyWith =>
-      __$$SplashAssetParamsImplCopyWithImpl<_$SplashAssetParamsImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SplashAssetParamsImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SplashAssetParamsToJson(this, );
 }
 
-abstract class _SplashAssetParams implements SplashAssetParams {
-  const factory _SplashAssetParams(
-      {final FitModel? fit, final double? padding}) = _$SplashAssetParamsImpl;
-
-  factory _SplashAssetParams.fromJson(Map<String, dynamic> json) =
-      _$SplashAssetParamsImpl.fromJson;
-
-  @override
-  FitModel? get fit;
-  @override
-  double? get padding;
-
-  /// Create a copy of SplashAssetParams
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SplashAssetParamsImplCopyWith<_$SplashAssetParamsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashAssetParams&&(identical(other.fit, fit) || other.fit == fit)&&(identical(other.padding, padding) || other.padding == padding));
 }
 
-SplashConstraintsValidation _$SplashConstraintsValidationFromJson(
-    Map<String, dynamic> json) {
-  return _SplashConstraintsValidation.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,fit,padding);
+
+@override
+String toString() {
+  return 'SplashAssetParams(fit: $fit, padding: $padding)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SplashAssetParamsCopyWith<$Res> implements $SplashAssetParamsCopyWith<$Res> {
+  factory _$SplashAssetParamsCopyWith(_SplashAssetParams value, $Res Function(_SplashAssetParams) _then) = __$SplashAssetParamsCopyWithImpl;
+@override @useResult
+$Res call({
+ FitModel? fit, double? padding
+});
+
+
+
+
+}
+/// @nodoc
+class __$SplashAssetParamsCopyWithImpl<$Res>
+    implements _$SplashAssetParamsCopyWith<$Res> {
+  __$SplashAssetParamsCopyWithImpl(this._self, this._then);
+
+  final _SplashAssetParams _self;
+  final $Res Function(_SplashAssetParams) _then;
+
+/// Create a copy of SplashAssetParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fit = freezed,Object? padding = freezed,}) {
+  return _then(_SplashAssetParams(
+fit: freezed == fit ? _self.fit : fit // ignore: cast_nullable_to_non_nullable
+as FitModel?,padding: freezed == padding ? _self.padding : padding // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$SplashConstraintsValidation {
-  bool get compliant => throw _privateConstructorUsedError;
-  double get delta => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-  double? get tolerance => throw _privateConstructorUsedError;
+
+ bool get compliant; double get delta; String get message; double? get tolerance;
+/// Create a copy of SplashConstraintsValidation
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SplashConstraintsValidationCopyWith<SplashConstraintsValidation> get copyWith => _$SplashConstraintsValidationCopyWithImpl<SplashConstraintsValidation>(this as SplashConstraintsValidation, _$identity);
 
   /// Serializes this SplashConstraintsValidation to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SplashConstraintsValidation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashConstraintsValidationCopyWith<SplashConstraintsValidation>
-      get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashConstraintsValidation&&(identical(other.compliant, compliant) || other.compliant == compliant)&&(identical(other.delta, delta) || other.delta == delta)&&(identical(other.message, message) || other.message == message)&&(identical(other.tolerance, tolerance) || other.tolerance == tolerance));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,compliant,delta,message,tolerance);
+
+@override
+String toString() {
+  return 'SplashConstraintsValidation(compliant: $compliant, delta: $delta, message: $message, tolerance: $tolerance)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SplashConstraintsValidationCopyWith<$Res> {
-  factory $SplashConstraintsValidationCopyWith(
-          SplashConstraintsValidation value,
-          $Res Function(SplashConstraintsValidation) then) =
-      _$SplashConstraintsValidationCopyWithImpl<$Res,
-          SplashConstraintsValidation>;
-  @useResult
-  $Res call({bool compliant, double delta, String message, double? tolerance});
-}
+abstract mixin class $SplashConstraintsValidationCopyWith<$Res>  {
+  factory $SplashConstraintsValidationCopyWith(SplashConstraintsValidation value, $Res Function(SplashConstraintsValidation) _then) = _$SplashConstraintsValidationCopyWithImpl;
+@useResult
+$Res call({
+ bool compliant, double delta, String message, double? tolerance
+});
 
+
+
+
+}
 /// @nodoc
-class _$SplashConstraintsValidationCopyWithImpl<$Res,
-        $Val extends SplashConstraintsValidation>
+class _$SplashConstraintsValidationCopyWithImpl<$Res>
     implements $SplashConstraintsValidationCopyWith<$Res> {
-  _$SplashConstraintsValidationCopyWithImpl(this._value, this._then);
+  _$SplashConstraintsValidationCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SplashConstraintsValidation _self;
+  final $Res Function(SplashConstraintsValidation) _then;
 
-  /// Create a copy of SplashConstraintsValidation
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? compliant = null,
-    Object? delta = null,
-    Object? message = null,
-    Object? tolerance = freezed,
-  }) {
-    return _then(_value.copyWith(
-      compliant: null == compliant
-          ? _value.compliant
-          : compliant // ignore: cast_nullable_to_non_nullable
-              as bool,
-      delta: null == delta
-          ? _value.delta
-          : delta // ignore: cast_nullable_to_non_nullable
-              as double,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      tolerance: freezed == tolerance
-          ? _value.tolerance
-          : tolerance // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
-  }
+/// Create a copy of SplashConstraintsValidation
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? compliant = null,Object? delta = null,Object? message = null,Object? tolerance = freezed,}) {
+  return _then(_self.copyWith(
+compliant: null == compliant ? _self.compliant : compliant // ignore: cast_nullable_to_non_nullable
+as bool,delta: null == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as double,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,tolerance: freezed == tolerance ? _self.tolerance : tolerance // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SplashConstraintsValidationImplCopyWith<$Res>
-    implements $SplashConstraintsValidationCopyWith<$Res> {
-  factory _$$SplashConstraintsValidationImplCopyWith(
-          _$SplashConstraintsValidationImpl value,
-          $Res Function(_$SplashConstraintsValidationImpl) then) =
-      __$$SplashConstraintsValidationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool compliant, double delta, String message, double? tolerance});
 }
 
-/// @nodoc
-class __$$SplashConstraintsValidationImplCopyWithImpl<$Res>
-    extends _$SplashConstraintsValidationCopyWithImpl<$Res,
-        _$SplashConstraintsValidationImpl>
-    implements _$$SplashConstraintsValidationImplCopyWith<$Res> {
-  __$$SplashConstraintsValidationImplCopyWithImpl(
-      _$SplashConstraintsValidationImpl _value,
-      $Res Function(_$SplashConstraintsValidationImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SplashConstraintsValidation
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? compliant = null,
-    Object? delta = null,
-    Object? message = null,
-    Object? tolerance = freezed,
-  }) {
-    return _then(_$SplashConstraintsValidationImpl(
-      compliant: null == compliant
-          ? _value.compliant
-          : compliant // ignore: cast_nullable_to_non_nullable
-              as bool,
-      delta: null == delta
-          ? _value.delta
-          : delta // ignore: cast_nullable_to_non_nullable
-              as double,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      tolerance: freezed == tolerance
-          ? _value.tolerance
-          : tolerance // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SplashConstraintsValidation].
+extension SplashConstraintsValidationPatterns on SplashConstraintsValidation {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SplashConstraintsValidation value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SplashConstraintsValidation value)  $default,){
+final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SplashConstraintsValidation value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool compliant,  double delta,  String message,  double? tolerance)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation() when $default != null:
+return $default(_that.compliant,_that.delta,_that.message,_that.tolerance);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool compliant,  double delta,  String message,  double? tolerance)  $default,) {final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation():
+return $default(_that.compliant,_that.delta,_that.message,_that.tolerance);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool compliant,  double delta,  String message,  double? tolerance)?  $default,) {final _that = this;
+switch (_that) {
+case _SplashConstraintsValidation() when $default != null:
+return $default(_that.compliant,_that.delta,_that.message,_that.tolerance);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SplashConstraintsValidationImpl
-    implements _SplashConstraintsValidation {
-  const _$SplashConstraintsValidationImpl(
-      {required this.compliant,
-      required this.delta,
-      required this.message,
-      this.tolerance});
 
-  factory _$SplashConstraintsValidationImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$SplashConstraintsValidationImplFromJson(json);
+class _SplashConstraintsValidation implements SplashConstraintsValidation {
+  const _SplashConstraintsValidation({required this.compliant, required this.delta, required this.message, this.tolerance});
+  factory _SplashConstraintsValidation.fromJson(Map<String, dynamic> json) => _$SplashConstraintsValidationFromJson(json);
 
-  @override
-  final bool compliant;
-  @override
-  final double delta;
-  @override
-  final String message;
-  @override
-  final double? tolerance;
+@override final  bool compliant;
+@override final  double delta;
+@override final  String message;
+@override final  double? tolerance;
 
-  @override
-  String toString() {
-    return 'SplashConstraintsValidation(compliant: $compliant, delta: $delta, message: $message, tolerance: $tolerance)';
-  }
+/// Create a copy of SplashConstraintsValidation
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SplashConstraintsValidationCopyWith<_SplashConstraintsValidation> get copyWith => __$SplashConstraintsValidationCopyWithImpl<_SplashConstraintsValidation>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashConstraintsValidationImpl &&
-            (identical(other.compliant, compliant) ||
-                other.compliant == compliant) &&
-            (identical(other.delta, delta) || other.delta == delta) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.tolerance, tolerance) ||
-                other.tolerance == tolerance));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, compliant, delta, message, tolerance);
-
-  /// Create a copy of SplashConstraintsValidation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SplashConstraintsValidationImplCopyWith<_$SplashConstraintsValidationImpl>
-      get copyWith => __$$SplashConstraintsValidationImplCopyWithImpl<
-          _$SplashConstraintsValidationImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SplashConstraintsValidationImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SplashConstraintsValidationToJson(this, );
 }
 
-abstract class _SplashConstraintsValidation
-    implements SplashConstraintsValidation {
-  const factory _SplashConstraintsValidation(
-      {required final bool compliant,
-      required final double delta,
-      required final String message,
-      final double? tolerance}) = _$SplashConstraintsValidationImpl;
-
-  factory _SplashConstraintsValidation.fromJson(Map<String, dynamic> json) =
-      _$SplashConstraintsValidationImpl.fromJson;
-
-  @override
-  bool get compliant;
-  @override
-  double get delta;
-  @override
-  String get message;
-  @override
-  double? get tolerance;
-
-  /// Create a copy of SplashConstraintsValidation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SplashConstraintsValidationImplCopyWith<_$SplashConstraintsValidationImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashConstraintsValidation&&(identical(other.compliant, compliant) || other.compliant == compliant)&&(identical(other.delta, delta) || other.delta == delta)&&(identical(other.message, message) || other.message == message)&&(identical(other.tolerance, tolerance) || other.tolerance == tolerance));
 }
 
-SplashIconConstraints _$SplashIconConstraintsFromJson(
-    Map<String, dynamic> json) {
-  return _SplashIconConstraints.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,compliant,delta,message,tolerance);
+
+@override
+String toString() {
+  return 'SplashConstraintsValidation(compliant: $compliant, delta: $delta, message: $message, tolerance: $tolerance)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SplashConstraintsValidationCopyWith<$Res> implements $SplashConstraintsValidationCopyWith<$Res> {
+  factory _$SplashConstraintsValidationCopyWith(_SplashConstraintsValidation value, $Res Function(_SplashConstraintsValidation) _then) = __$SplashConstraintsValidationCopyWithImpl;
+@override @useResult
+$Res call({
+ bool compliant, double delta, String message, double? tolerance
+});
+
+
+
+
+}
+/// @nodoc
+class __$SplashConstraintsValidationCopyWithImpl<$Res>
+    implements _$SplashConstraintsValidationCopyWith<$Res> {
+  __$SplashConstraintsValidationCopyWithImpl(this._self, this._then);
+
+  final _SplashConstraintsValidation _self;
+  final $Res Function(_SplashConstraintsValidation) _then;
+
+/// Create a copy of SplashConstraintsValidation
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? compliant = null,Object? delta = null,Object? message = null,Object? tolerance = freezed,}) {
+  return _then(_SplashConstraintsValidation(
+compliant: null == compliant ? _self.compliant : compliant // ignore: cast_nullable_to_non_nullable
+as bool,delta: null == delta ? _self.delta : delta // ignore: cast_nullable_to_non_nullable
+as double,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,tolerance: freezed == tolerance ? _self.tolerance : tolerance // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$SplashIconConstraints {
-  double get fullSize => throw _privateConstructorUsedError;
-  double get maskDiameter => throw _privateConstructorUsedError;
-  double get recommendedPadding => throw _privateConstructorUsedError;
-  SplashConstraintsValidation get validation =>
-      throw _privateConstructorUsedError;
-  SplashMode? get mode => throw _privateConstructorUsedError;
-  String? get recommendationBasis => throw _privateConstructorUsedError;
+
+ double get fullSize; double get maskDiameter; double get recommendedPadding; SplashConstraintsValidation get validation; SplashMode? get mode; String? get recommendationBasis;
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SplashIconConstraintsCopyWith<SplashIconConstraints> get copyWith => _$SplashIconConstraintsCopyWithImpl<SplashIconConstraints>(this as SplashIconConstraints, _$identity);
 
   /// Serializes this SplashIconConstraints to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashIconConstraintsCopyWith<SplashIconConstraints> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashIconConstraints&&(identical(other.fullSize, fullSize) || other.fullSize == fullSize)&&(identical(other.maskDiameter, maskDiameter) || other.maskDiameter == maskDiameter)&&(identical(other.recommendedPadding, recommendedPadding) || other.recommendedPadding == recommendedPadding)&&(identical(other.validation, validation) || other.validation == validation)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.recommendationBasis, recommendationBasis) || other.recommendationBasis == recommendationBasis));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,fullSize,maskDiameter,recommendedPadding,validation,mode,recommendationBasis);
+
+@override
+String toString() {
+  return 'SplashIconConstraints(fullSize: $fullSize, maskDiameter: $maskDiameter, recommendedPadding: $recommendedPadding, validation: $validation, mode: $mode, recommendationBasis: $recommendationBasis)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SplashIconConstraintsCopyWith<$Res> {
-  factory $SplashIconConstraintsCopyWith(SplashIconConstraints value,
-          $Res Function(SplashIconConstraints) then) =
-      _$SplashIconConstraintsCopyWithImpl<$Res, SplashIconConstraints>;
-  @useResult
-  $Res call(
-      {double fullSize,
-      double maskDiameter,
-      double recommendedPadding,
-      SplashConstraintsValidation validation,
-      SplashMode? mode,
-      String? recommendationBasis});
+abstract mixin class $SplashIconConstraintsCopyWith<$Res>  {
+  factory $SplashIconConstraintsCopyWith(SplashIconConstraints value, $Res Function(SplashIconConstraints) _then) = _$SplashIconConstraintsCopyWithImpl;
+@useResult
+$Res call({
+ double fullSize, double maskDiameter, double recommendedPadding, SplashConstraintsValidation validation, SplashMode? mode, String? recommendationBasis
+});
 
-  $SplashConstraintsValidationCopyWith<$Res> get validation;
+
+$SplashConstraintsValidationCopyWith<$Res> get validation;
+
 }
-
 /// @nodoc
-class _$SplashIconConstraintsCopyWithImpl<$Res,
-        $Val extends SplashIconConstraints>
+class _$SplashIconConstraintsCopyWithImpl<$Res>
     implements $SplashIconConstraintsCopyWith<$Res> {
-  _$SplashIconConstraintsCopyWithImpl(this._value, this._then);
+  _$SplashIconConstraintsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SplashIconConstraints _self;
+  final $Res Function(SplashIconConstraints) _then;
 
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fullSize = null,
-    Object? maskDiameter = null,
-    Object? recommendedPadding = null,
-    Object? validation = null,
-    Object? mode = freezed,
-    Object? recommendationBasis = freezed,
-  }) {
-    return _then(_value.copyWith(
-      fullSize: null == fullSize
-          ? _value.fullSize
-          : fullSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      maskDiameter: null == maskDiameter
-          ? _value.maskDiameter
-          : maskDiameter // ignore: cast_nullable_to_non_nullable
-              as double,
-      recommendedPadding: null == recommendedPadding
-          ? _value.recommendedPadding
-          : recommendedPadding // ignore: cast_nullable_to_non_nullable
-              as double,
-      validation: null == validation
-          ? _value.validation
-          : validation // ignore: cast_nullable_to_non_nullable
-              as SplashConstraintsValidation,
-      mode: freezed == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as SplashMode?,
-      recommendationBasis: freezed == recommendationBasis
-          ? _value.recommendationBasis
-          : recommendationBasis // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SplashConstraintsValidationCopyWith<$Res> get validation {
-    return $SplashConstraintsValidationCopyWith<$Res>(_value.validation,
-        (value) {
-      return _then(_value.copyWith(validation: value) as $Val);
-    });
-  }
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? fullSize = null,Object? maskDiameter = null,Object? recommendedPadding = null,Object? validation = null,Object? mode = freezed,Object? recommendationBasis = freezed,}) {
+  return _then(_self.copyWith(
+fullSize: null == fullSize ? _self.fullSize : fullSize // ignore: cast_nullable_to_non_nullable
+as double,maskDiameter: null == maskDiameter ? _self.maskDiameter : maskDiameter // ignore: cast_nullable_to_non_nullable
+as double,recommendedPadding: null == recommendedPadding ? _self.recommendedPadding : recommendedPadding // ignore: cast_nullable_to_non_nullable
+as double,validation: null == validation ? _self.validation : validation // ignore: cast_nullable_to_non_nullable
+as SplashConstraintsValidation,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as SplashMode?,recommendationBasis: freezed == recommendationBasis ? _self.recommendationBasis : recommendationBasis // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashConstraintsValidationCopyWith<$Res> get validation {
+  
+  return $SplashConstraintsValidationCopyWith<$Res>(_self.validation, (value) {
+    return _then(_self.copyWith(validation: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$SplashIconConstraintsImplCopyWith<$Res>
-    implements $SplashIconConstraintsCopyWith<$Res> {
-  factory _$$SplashIconConstraintsImplCopyWith(
-          _$SplashIconConstraintsImpl value,
-          $Res Function(_$SplashIconConstraintsImpl) then) =
-      __$$SplashIconConstraintsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {double fullSize,
-      double maskDiameter,
-      double recommendedPadding,
-      SplashConstraintsValidation validation,
-      SplashMode? mode,
-      String? recommendationBasis});
 
-  @override
-  $SplashConstraintsValidationCopyWith<$Res> get validation;
+/// Adds pattern-matching-related methods to [SplashIconConstraints].
+extension SplashIconConstraintsPatterns on SplashIconConstraints {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SplashIconConstraints value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SplashIconConstraints() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SplashIconConstraints value)  $default,){
+final _that = this;
+switch (_that) {
+case _SplashIconConstraints():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SplashIconConstraints value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SplashIconConstraints() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double fullSize,  double maskDiameter,  double recommendedPadding,  SplashConstraintsValidation validation,  SplashMode? mode,  String? recommendationBasis)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SplashIconConstraints() when $default != null:
+return $default(_that.fullSize,_that.maskDiameter,_that.recommendedPadding,_that.validation,_that.mode,_that.recommendationBasis);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double fullSize,  double maskDiameter,  double recommendedPadding,  SplashConstraintsValidation validation,  SplashMode? mode,  String? recommendationBasis)  $default,) {final _that = this;
+switch (_that) {
+case _SplashIconConstraints():
+return $default(_that.fullSize,_that.maskDiameter,_that.recommendedPadding,_that.validation,_that.mode,_that.recommendationBasis);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double fullSize,  double maskDiameter,  double recommendedPadding,  SplashConstraintsValidation validation,  SplashMode? mode,  String? recommendationBasis)?  $default,) {final _that = this;
+switch (_that) {
+case _SplashIconConstraints() when $default != null:
+return $default(_that.fullSize,_that.maskDiameter,_that.recommendedPadding,_that.validation,_that.mode,_that.recommendationBasis);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$SplashIconConstraintsImplCopyWithImpl<$Res>
-    extends _$SplashIconConstraintsCopyWithImpl<$Res,
-        _$SplashIconConstraintsImpl>
-    implements _$$SplashIconConstraintsImplCopyWith<$Res> {
-  __$$SplashIconConstraintsImplCopyWithImpl(_$SplashIconConstraintsImpl _value,
-      $Res Function(_$SplashIconConstraintsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fullSize = null,
-    Object? maskDiameter = null,
-    Object? recommendedPadding = null,
-    Object? validation = null,
-    Object? mode = freezed,
-    Object? recommendationBasis = freezed,
-  }) {
-    return _then(_$SplashIconConstraintsImpl(
-      fullSize: null == fullSize
-          ? _value.fullSize
-          : fullSize // ignore: cast_nullable_to_non_nullable
-              as double,
-      maskDiameter: null == maskDiameter
-          ? _value.maskDiameter
-          : maskDiameter // ignore: cast_nullable_to_non_nullable
-              as double,
-      recommendedPadding: null == recommendedPadding
-          ? _value.recommendedPadding
-          : recommendedPadding // ignore: cast_nullable_to_non_nullable
-              as double,
-      validation: null == validation
-          ? _value.validation
-          : validation // ignore: cast_nullable_to_non_nullable
-              as SplashConstraintsValidation,
-      mode: freezed == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as SplashMode?,
-      recommendationBasis: freezed == recommendationBasis
-          ? _value.recommendationBasis
-          : recommendationBasis // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SplashIconConstraintsImpl implements _SplashIconConstraints {
-  const _$SplashIconConstraintsImpl(
-      {required this.fullSize,
-      required this.maskDiameter,
-      required this.recommendedPadding,
-      required this.validation,
-      this.mode,
-      this.recommendationBasis});
 
-  factory _$SplashIconConstraintsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SplashIconConstraintsImplFromJson(json);
+class _SplashIconConstraints implements SplashIconConstraints {
+  const _SplashIconConstraints({required this.fullSize, required this.maskDiameter, required this.recommendedPadding, required this.validation, this.mode, this.recommendationBasis});
+  factory _SplashIconConstraints.fromJson(Map<String, dynamic> json) => _$SplashIconConstraintsFromJson(json);
 
-  @override
-  final double fullSize;
-  @override
-  final double maskDiameter;
-  @override
-  final double recommendedPadding;
-  @override
-  final SplashConstraintsValidation validation;
-  @override
-  final SplashMode? mode;
-  @override
-  final String? recommendationBasis;
+@override final  double fullSize;
+@override final  double maskDiameter;
+@override final  double recommendedPadding;
+@override final  SplashConstraintsValidation validation;
+@override final  SplashMode? mode;
+@override final  String? recommendationBasis;
 
-  @override
-  String toString() {
-    return 'SplashIconConstraints(fullSize: $fullSize, maskDiameter: $maskDiameter, recommendedPadding: $recommendedPadding, validation: $validation, mode: $mode, recommendationBasis: $recommendationBasis)';
-  }
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SplashIconConstraintsCopyWith<_SplashIconConstraints> get copyWith => __$SplashIconConstraintsCopyWithImpl<_SplashIconConstraints>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashIconConstraintsImpl &&
-            (identical(other.fullSize, fullSize) ||
-                other.fullSize == fullSize) &&
-            (identical(other.maskDiameter, maskDiameter) ||
-                other.maskDiameter == maskDiameter) &&
-            (identical(other.recommendedPadding, recommendedPadding) ||
-                other.recommendedPadding == recommendedPadding) &&
-            (identical(other.validation, validation) ||
-                other.validation == validation) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.recommendationBasis, recommendationBasis) ||
-                other.recommendationBasis == recommendationBasis));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, fullSize, maskDiameter,
-      recommendedPadding, validation, mode, recommendationBasis);
-
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SplashIconConstraintsImplCopyWith<_$SplashIconConstraintsImpl>
-      get copyWith => __$$SplashIconConstraintsImplCopyWithImpl<
-          _$SplashIconConstraintsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SplashIconConstraintsImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SplashIconConstraintsToJson(this, );
 }
 
-abstract class _SplashIconConstraints implements SplashIconConstraints {
-  const factory _SplashIconConstraints(
-      {required final double fullSize,
-      required final double maskDiameter,
-      required final double recommendedPadding,
-      required final SplashConstraintsValidation validation,
-      final SplashMode? mode,
-      final String? recommendationBasis}) = _$SplashIconConstraintsImpl;
-
-  factory _SplashIconConstraints.fromJson(Map<String, dynamic> json) =
-      _$SplashIconConstraintsImpl.fromJson;
-
-  @override
-  double get fullSize;
-  @override
-  double get maskDiameter;
-  @override
-  double get recommendedPadding;
-  @override
-  SplashConstraintsValidation get validation;
-  @override
-  SplashMode? get mode;
-  @override
-  String? get recommendationBasis;
-
-  /// Create a copy of SplashIconConstraints
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SplashIconConstraintsImplCopyWith<_$SplashIconConstraintsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashIconConstraints&&(identical(other.fullSize, fullSize) || other.fullSize == fullSize)&&(identical(other.maskDiameter, maskDiameter) || other.maskDiameter == maskDiameter)&&(identical(other.recommendedPadding, recommendedPadding) || other.recommendedPadding == recommendedPadding)&&(identical(other.validation, validation) || other.validation == validation)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.recommendationBasis, recommendationBasis) || other.recommendationBasis == recommendationBasis));
 }
 
-SplashAssetModel _$SplashAssetModelFromJson(Map<String, dynamic> json) {
-  return _SplashAssetModel.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,fullSize,maskDiameter,recommendedPadding,validation,mode,recommendationBasis);
+
+@override
+String toString() {
+  return 'SplashIconConstraints(fullSize: $fullSize, maskDiameter: $maskDiameter, recommendedPadding: $recommendedPadding, validation: $validation, mode: $mode, recommendationBasis: $recommendationBasis)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SplashIconConstraintsCopyWith<$Res> implements $SplashIconConstraintsCopyWith<$Res> {
+  factory _$SplashIconConstraintsCopyWith(_SplashIconConstraints value, $Res Function(_SplashIconConstraints) _then) = __$SplashIconConstraintsCopyWithImpl;
+@override @useResult
+$Res call({
+ double fullSize, double maskDiameter, double recommendedPadding, SplashConstraintsValidation validation, SplashMode? mode, String? recommendationBasis
+});
+
+
+@override $SplashConstraintsValidationCopyWith<$Res> get validation;
+
+}
+/// @nodoc
+class __$SplashIconConstraintsCopyWithImpl<$Res>
+    implements _$SplashIconConstraintsCopyWith<$Res> {
+  __$SplashIconConstraintsCopyWithImpl(this._self, this._then);
+
+  final _SplashIconConstraints _self;
+  final $Res Function(_SplashIconConstraints) _then;
+
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fullSize = null,Object? maskDiameter = null,Object? recommendedPadding = null,Object? validation = null,Object? mode = freezed,Object? recommendationBasis = freezed,}) {
+  return _then(_SplashIconConstraints(
+fullSize: null == fullSize ? _self.fullSize : fullSize // ignore: cast_nullable_to_non_nullable
+as double,maskDiameter: null == maskDiameter ? _self.maskDiameter : maskDiameter // ignore: cast_nullable_to_non_nullable
+as double,recommendedPadding: null == recommendedPadding ? _self.recommendedPadding : recommendedPadding // ignore: cast_nullable_to_non_nullable
+as double,validation: null == validation ? _self.validation : validation // ignore: cast_nullable_to_non_nullable
+as SplashConstraintsValidation,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as SplashMode?,recommendationBasis: freezed == recommendationBasis ? _self.recommendationBasis : recommendationBasis // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of SplashIconConstraints
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashConstraintsValidationCopyWith<$Res> get validation {
+  
+  return $SplashConstraintsValidationCopyWith<$Res>(_self.validation, (value) {
+    return _then(_self.copyWith(validation: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$SplashAssetModel {
-  String get id => throw _privateConstructorUsedError;
-  String get applicationId => throw _privateConstructorUsedError;
-  String get themeId => throw _privateConstructorUsedError;
 
-  /// ISO 8601 timestamps
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-
-  /// Source config (optional foreground/background/color)
-  SplashSource? get source => throw _privateConstructorUsedError;
-
-  /// Render parameters
-  SplashAssetParams? get params => throw _privateConstructorUsedError;
-
-  /// Mode (withBackground / withoutBackground)
-  SplashMode? get mode => throw _privateConstructorUsedError;
-
-  /// outputsArtifacts.splashArtifactId
-  String? get splashArtifactId => throw _privateConstructorUsedError;
-
-  /// Computed constraints & validation
-  SplashIconConstraints? get iconConstraints =>
-      throw _privateConstructorUsedError;
+ String get id; String get applicationId; String get themeId;/// ISO 8601 timestamps
+ String get createdAt; String get updatedAt;/// Source config (optional foreground/background/color)
+ SplashSource? get source;/// Render parameters
+ SplashAssetParams? get params;/// Mode (withBackground / withoutBackground)
+ SplashMode? get mode;/// outputsArtifacts.splashArtifactId
+ String? get splashArtifactId;/// Computed constraints & validation
+ SplashIconConstraints? get iconConstraints;
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SplashAssetModelCopyWith<SplashAssetModel> get copyWith => _$SplashAssetModelCopyWithImpl<SplashAssetModel>(this as SplashAssetModel, _$identity);
 
   /// Serializes this SplashAssetModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashAssetModelCopyWith<SplashAssetModel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,iconConstraints);
+
+@override
+String toString() {
+  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, iconConstraints: $iconConstraints)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SplashAssetModelCopyWith<$Res> {
-  factory $SplashAssetModelCopyWith(
-          SplashAssetModel value, $Res Function(SplashAssetModel) then) =
-      _$SplashAssetModelCopyWithImpl<$Res, SplashAssetModel>;
-  @useResult
-  $Res call(
-      {String id,
-      String applicationId,
-      String themeId,
-      String createdAt,
-      String updatedAt,
-      SplashSource? source,
-      SplashAssetParams? params,
-      SplashMode? mode,
-      String? splashArtifactId,
-      SplashIconConstraints? iconConstraints});
+abstract mixin class $SplashAssetModelCopyWith<$Res>  {
+  factory $SplashAssetModelCopyWith(SplashAssetModel value, $Res Function(SplashAssetModel) _then) = _$SplashAssetModelCopyWithImpl;
+@useResult
+$Res call({
+ String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, SplashIconConstraints? iconConstraints
+});
 
-  $SplashSourceCopyWith<$Res>? get source;
-  $SplashAssetParamsCopyWith<$Res>? get params;
-  $SplashIconConstraintsCopyWith<$Res>? get iconConstraints;
+
+$SplashSourceCopyWith<$Res>? get source;$SplashAssetParamsCopyWith<$Res>? get params;$SplashIconConstraintsCopyWith<$Res>? get iconConstraints;
+
 }
-
 /// @nodoc
-class _$SplashAssetModelCopyWithImpl<$Res, $Val extends SplashAssetModel>
+class _$SplashAssetModelCopyWithImpl<$Res>
     implements $SplashAssetModelCopyWith<$Res> {
-  _$SplashAssetModelCopyWithImpl(this._value, this._then);
+  _$SplashAssetModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SplashAssetModel _self;
+  final $Res Function(SplashAssetModel) _then;
 
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? applicationId = null,
-    Object? themeId = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? source = freezed,
-    Object? params = freezed,
-    Object? mode = freezed,
-    Object? splashArtifactId = freezed,
-    Object? iconConstraints = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationId: null == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      themeId: null == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as SplashSource?,
-      params: freezed == params
-          ? _value.params
-          : params // ignore: cast_nullable_to_non_nullable
-              as SplashAssetParams?,
-      mode: freezed == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as SplashMode?,
-      splashArtifactId: freezed == splashArtifactId
-          ? _value.splashArtifactId
-          : splashArtifactId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iconConstraints: freezed == iconConstraints
-          ? _value.iconConstraints
-          : iconConstraints // ignore: cast_nullable_to_non_nullable
-              as SplashIconConstraints?,
-    ) as $Val);
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? iconConstraints = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as SplashSource?,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as SplashAssetParams?,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as SplashMode?,splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,iconConstraints: freezed == iconConstraints ? _self.iconConstraints : iconConstraints // ignore: cast_nullable_to_non_nullable
+as SplashIconConstraints?,
+  ));
+}
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashSourceCopyWith<$Res>? get source {
+    if (_self.source == null) {
+    return null;
   }
 
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SplashSourceCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $SplashSourceCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value) as $Val);
-    });
+  return $SplashSourceCopyWith<$Res>(_self.source!, (value) {
+    return _then(_self.copyWith(source: value));
+  });
+}/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashAssetParamsCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
   }
 
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SplashAssetParamsCopyWith<$Res>? get params {
-    if (_value.params == null) {
-      return null;
-    }
-
-    return $SplashAssetParamsCopyWith<$Res>(_value.params!, (value) {
-      return _then(_value.copyWith(params: value) as $Val);
-    });
+  return $SplashAssetParamsCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashIconConstraintsCopyWith<$Res>? get iconConstraints {
+    if (_self.iconConstraints == null) {
+    return null;
   }
 
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SplashIconConstraintsCopyWith<$Res>? get iconConstraints {
-    if (_value.iconConstraints == null) {
-      return null;
-    }
-
-    return $SplashIconConstraintsCopyWith<$Res>(_value.iconConstraints!,
-        (value) {
-      return _then(_value.copyWith(iconConstraints: value) as $Val);
-    });
-  }
+  return $SplashIconConstraintsCopyWith<$Res>(_self.iconConstraints!, (value) {
+    return _then(_self.copyWith(iconConstraints: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$SplashAssetModelImplCopyWith<$Res>
-    implements $SplashAssetModelCopyWith<$Res> {
-  factory _$$SplashAssetModelImplCopyWith(_$SplashAssetModelImpl value,
-          $Res Function(_$SplashAssetModelImpl) then) =
-      __$$SplashAssetModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String applicationId,
-      String themeId,
-      String createdAt,
-      String updatedAt,
-      SplashSource? source,
-      SplashAssetParams? params,
-      SplashMode? mode,
-      String? splashArtifactId,
-      SplashIconConstraints? iconConstraints});
 
-  @override
-  $SplashSourceCopyWith<$Res>? get source;
-  @override
-  $SplashAssetParamsCopyWith<$Res>? get params;
-  @override
-  $SplashIconConstraintsCopyWith<$Res>? get iconConstraints;
+/// Adds pattern-matching-related methods to [SplashAssetModel].
+extension SplashAssetModelPatterns on SplashAssetModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SplashAssetModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SplashAssetModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SplashAssetModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SplashAssetModel():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SplashAssetModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SplashAssetModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SplashAssetModel() when $default != null:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)  $default,) {final _that = this;
+switch (_that) {
+case _SplashAssetModel():
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,) {final _that = this;
+switch (_that) {
+case _SplashAssetModel() when $default != null:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$SplashAssetModelImplCopyWithImpl<$Res>
-    extends _$SplashAssetModelCopyWithImpl<$Res, _$SplashAssetModelImpl>
-    implements _$$SplashAssetModelImplCopyWith<$Res> {
-  __$$SplashAssetModelImplCopyWithImpl(_$SplashAssetModelImpl _value,
-      $Res Function(_$SplashAssetModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? applicationId = null,
-    Object? themeId = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? source = freezed,
-    Object? params = freezed,
-    Object? mode = freezed,
-    Object? splashArtifactId = freezed,
-    Object? iconConstraints = freezed,
-  }) {
-    return _then(_$SplashAssetModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationId: null == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      themeId: null == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as SplashSource?,
-      params: freezed == params
-          ? _value.params
-          : params // ignore: cast_nullable_to_non_nullable
-              as SplashAssetParams?,
-      mode: freezed == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as SplashMode?,
-      splashArtifactId: freezed == splashArtifactId
-          ? _value.splashArtifactId
-          : splashArtifactId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iconConstraints: freezed == iconConstraints
-          ? _value.iconConstraints
-          : iconConstraints // ignore: cast_nullable_to_non_nullable
-              as SplashIconConstraints?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SplashAssetModelImpl implements _SplashAssetModel {
-  const _$SplashAssetModelImpl(
-      {required this.id,
-      required this.applicationId,
-      required this.themeId,
-      required this.createdAt,
-      required this.updatedAt,
-      this.source,
-      this.params,
-      this.mode,
-      this.splashArtifactId,
-      this.iconConstraints});
 
-  factory _$SplashAssetModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SplashAssetModelImplFromJson(json);
+class _SplashAssetModel implements SplashAssetModel {
+  const _SplashAssetModel({required this.id, required this.applicationId, required this.themeId, required this.createdAt, required this.updatedAt, this.source, this.params, this.mode, this.splashArtifactId, this.iconConstraints});
+  factory _SplashAssetModel.fromJson(Map<String, dynamic> json) => _$SplashAssetModelFromJson(json);
 
-  @override
-  final String id;
-  @override
-  final String applicationId;
-  @override
-  final String themeId;
+@override final  String id;
+@override final  String applicationId;
+@override final  String themeId;
+/// ISO 8601 timestamps
+@override final  String createdAt;
+@override final  String updatedAt;
+/// Source config (optional foreground/background/color)
+@override final  SplashSource? source;
+/// Render parameters
+@override final  SplashAssetParams? params;
+/// Mode (withBackground / withoutBackground)
+@override final  SplashMode? mode;
+/// outputsArtifacts.splashArtifactId
+@override final  String? splashArtifactId;
+/// Computed constraints & validation
+@override final  SplashIconConstraints? iconConstraints;
 
-  /// ISO 8601 timestamps
-  @override
-  final String createdAt;
-  @override
-  final String updatedAt;
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SplashAssetModelCopyWith<_SplashAssetModel> get copyWith => __$SplashAssetModelCopyWithImpl<_SplashAssetModel>(this, _$identity);
 
-  /// Source config (optional foreground/background/color)
-  @override
-  final SplashSource? source;
-
-  /// Render parameters
-  @override
-  final SplashAssetParams? params;
-
-  /// Mode (withBackground / withoutBackground)
-  @override
-  final SplashMode? mode;
-
-  /// outputsArtifacts.splashArtifactId
-  @override
-  final String? splashArtifactId;
-
-  /// Computed constraints & validation
-  @override
-  final SplashIconConstraints? iconConstraints;
-
-  @override
-  String toString() {
-    return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, iconConstraints: $iconConstraints)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashAssetModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.applicationId, applicationId) ||
-                other.applicationId == applicationId) &&
-            (identical(other.themeId, themeId) || other.themeId == themeId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.source, source) || other.source == source) &&
-            (identical(other.params, params) || other.params == params) &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.splashArtifactId, splashArtifactId) ||
-                other.splashArtifactId == splashArtifactId) &&
-            (identical(other.iconConstraints, iconConstraints) ||
-                other.iconConstraints == iconConstraints));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      applicationId,
-      themeId,
-      createdAt,
-      updatedAt,
-      source,
-      params,
-      mode,
-      splashArtifactId,
-      iconConstraints);
-
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SplashAssetModelImplCopyWith<_$SplashAssetModelImpl> get copyWith =>
-      __$$SplashAssetModelImplCopyWithImpl<_$SplashAssetModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SplashAssetModelImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SplashAssetModelToJson(this, );
 }
 
-abstract class _SplashAssetModel implements SplashAssetModel {
-  const factory _SplashAssetModel(
-      {required final String id,
-      required final String applicationId,
-      required final String themeId,
-      required final String createdAt,
-      required final String updatedAt,
-      final SplashSource? source,
-      final SplashAssetParams? params,
-      final SplashMode? mode,
-      final String? splashArtifactId,
-      final SplashIconConstraints? iconConstraints}) = _$SplashAssetModelImpl;
-
-  factory _SplashAssetModel.fromJson(Map<String, dynamic> json) =
-      _$SplashAssetModelImpl.fromJson;
-
-  @override
-  String get id;
-  @override
-  String get applicationId;
-  @override
-  String get themeId;
-
-  /// ISO 8601 timestamps
-  @override
-  String get createdAt;
-  @override
-  String get updatedAt;
-
-  /// Source config (optional foreground/background/color)
-  @override
-  SplashSource? get source;
-
-  /// Render parameters
-  @override
-  SplashAssetParams? get params;
-
-  /// Mode (withBackground / withoutBackground)
-  @override
-  SplashMode? get mode;
-
-  /// outputsArtifacts.splashArtifactId
-  @override
-  String? get splashArtifactId;
-
-  /// Computed constraints & validation
-  @override
-  SplashIconConstraints? get iconConstraints;
-
-  /// Create a copy of SplashAssetModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SplashAssetModelImplCopyWith<_$SplashAssetModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,iconConstraints);
+
+@override
+String toString() {
+  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, iconConstraints: $iconConstraints)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SplashAssetModelCopyWith<$Res> implements $SplashAssetModelCopyWith<$Res> {
+  factory _$SplashAssetModelCopyWith(_SplashAssetModel value, $Res Function(_SplashAssetModel) _then) = __$SplashAssetModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, SplashIconConstraints? iconConstraints
+});
+
+
+@override $SplashSourceCopyWith<$Res>? get source;@override $SplashAssetParamsCopyWith<$Res>? get params;@override $SplashIconConstraintsCopyWith<$Res>? get iconConstraints;
+
+}
+/// @nodoc
+class __$SplashAssetModelCopyWithImpl<$Res>
+    implements _$SplashAssetModelCopyWith<$Res> {
+  __$SplashAssetModelCopyWithImpl(this._self, this._then);
+
+  final _SplashAssetModel _self;
+  final $Res Function(_SplashAssetModel) _then;
+
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? iconConstraints = freezed,}) {
+  return _then(_SplashAssetModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
+as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as SplashSource?,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as SplashAssetParams?,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as SplashMode?,splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,iconConstraints: freezed == iconConstraints ? _self.iconConstraints : iconConstraints // ignore: cast_nullable_to_non_nullable
+as SplashIconConstraints?,
+  ));
+}
+
+/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashSourceCopyWith<$Res>? get source {
+    if (_self.source == null) {
+    return null;
+  }
+
+  return $SplashSourceCopyWith<$Res>(_self.source!, (value) {
+    return _then(_self.copyWith(source: value));
+  });
+}/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashAssetParamsCopyWith<$Res>? get params {
+    if (_self.params == null) {
+    return null;
+  }
+
+  return $SplashAssetParamsCopyWith<$Res>(_self.params!, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}/// Create a copy of SplashAssetModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashIconConstraintsCopyWith<$Res>? get iconConstraints {
+    if (_self.iconConstraints == null) {
+    return null;
+  }
+
+  return $SplashIconConstraintsCopyWith<$Res>(_self.iconConstraints!, (value) {
+    return _then(_self.copyWith(iconConstraints: value));
+  });
+}
+}
+
+// dart format on

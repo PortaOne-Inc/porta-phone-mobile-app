@@ -7,17 +7,14 @@ part 'launch_assets_model.freezed.dart';
 part 'launch_assets_model.g.dart';
 
 @freezed
-class FitPaddingModel with _$FitPaddingModel {
-  const factory FitPaddingModel({
-    FitModel? fit,
-    double? paddingDp,
-  }) = _FitPaddingModel;
+sealed class FitPaddingModel with _$FitPaddingModel {
+  const factory FitPaddingModel({FitModel? fit, double? paddingDp}) = _FitPaddingModel;
 
   factory FitPaddingModel.fromJson(Map<String, dynamic> json) => _$FitPaddingModelFromJson(json);
 }
 
 @freezed
-class PlatformParamsModel with _$PlatformParamsModel {
+sealed class PlatformParamsModel with _$PlatformParamsModel {
   const factory PlatformParamsModel({
     FitPaddingModel? androidLegacy,
     FitPaddingModel? androidAdaptive,
@@ -29,18 +26,15 @@ class PlatformParamsModel with _$PlatformParamsModel {
 }
 
 @freezed
-class SourceConfigModel with _$SourceConfigModel {
-  const factory SourceConfigModel({
-    String? foregroundAssetId,
-    String? backgroundAssetId,
-    String? backgroundColorHex,
-  }) = _SourceConfigModel;
+sealed class SourceConfigModel with _$SourceConfigModel {
+  const factory SourceConfigModel({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
+      _SourceConfigModel;
 
   factory SourceConfigModel.fromJson(Map<String, dynamic> json) => _$SourceConfigModelFromJson(json);
 }
 
 @freezed
-class OutputArtifactsModel with _$OutputArtifactsModel {
+sealed class OutputArtifactsModel with _$OutputArtifactsModel {
   const factory OutputArtifactsModel({
     String? androidLegacyArtifactId,
     String? androidAdaptiveForegroundArtifactId,
@@ -53,7 +47,7 @@ class OutputArtifactsModel with _$OutputArtifactsModel {
 }
 
 @freezed
-class LaunchAssetsModel with _$LaunchAssetsModel {
+sealed class LaunchAssetsModel with _$LaunchAssetsModel {
   const factory LaunchAssetsModel({
     required String id,
     required String applicationId,
@@ -69,18 +63,14 @@ class LaunchAssetsModel with _$LaunchAssetsModel {
 }
 
 @freezed
-class ValidationSlice with _$ValidationSlice {
-  const factory ValidationSlice({
-    required bool compliant,
-    required double deltaDp,
-    String? message,
-  }) = _ValidationSlice;
+sealed class ValidationSlice with _$ValidationSlice {
+  const factory ValidationSlice({required bool compliant, required double deltaDp, String? message}) = _ValidationSlice;
 
   factory ValidationSlice.fromJson(Map<String, dynamic> json) => _$ValidationSliceFromJson(json);
 }
 
 @freezed
-class ValidationReport with _$ValidationReport {
+sealed class ValidationReport with _$ValidationReport {
   const factory ValidationReport({
     ValidationSlice? androidLegacy,
     ValidationSlice? androidAdaptive,
@@ -92,7 +82,7 @@ class ValidationReport with _$ValidationReport {
 }
 
 @freezed
-class LaunchAssetsEnvelope with _$LaunchAssetsEnvelope {
+sealed class LaunchAssetsEnvelope with _$LaunchAssetsEnvelope {
   const factory LaunchAssetsEnvelope({
     required LaunchAssetsModel entity,
     Map<String, String>? urls,

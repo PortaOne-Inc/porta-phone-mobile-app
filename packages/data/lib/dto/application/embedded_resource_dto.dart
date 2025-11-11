@@ -5,7 +5,7 @@ part 'embedded_resource_dto.freezed.dart';
 part 'embedded_resource_dto.g.dart';
 
 @freezed
-class EmbeddedResourceDto with _$EmbeddedResourceDto {
+sealed class EmbeddedResourceDto with _$EmbeddedResourceDto {
   // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true, includeIfNull: false)
   const factory EmbeddedResourceDto({
@@ -28,12 +28,10 @@ class EmbeddedResourceDto with _$EmbeddedResourceDto {
 }
 
 @freezed
-class MetadataDto with _$MetadataDto {
+sealed class MetadataDto with _$MetadataDto {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
-  const factory MetadataDto({
-    @Default({}) Map<String, dynamic> attributes,
-  }) = _MetadataDto;
+  const factory MetadataDto({@Default({}) Map<String, dynamic> attributes}) = _MetadataDto;
 
   const MetadataDto._();
 

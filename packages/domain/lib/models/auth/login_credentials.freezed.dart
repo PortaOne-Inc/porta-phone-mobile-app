@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,165 +9,252 @@ part of 'login_credentials.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-LoginCredentials _$LoginCredentialsFromJson(Map<String, dynamic> json) {
-  return _LoginCredentials.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LoginCredentials {
-  String get email => throw _privateConstructorUsedError;
-  set email(String value) => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  set password(String value) => throw _privateConstructorUsedError;
+
+ String get email; set email(String value); String get password; set password(String value);
+/// Create a copy of LoginCredentials
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginCredentialsCopyWith<LoginCredentials> get copyWith => _$LoginCredentialsCopyWithImpl<LoginCredentials>(this as LoginCredentials, _$identity);
 
   /// Serializes this LoginCredentials to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of LoginCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LoginCredentialsCopyWith<LoginCredentials> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+
+@override
+String toString() {
+  return 'LoginCredentials(email: $email, password: $password)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LoginCredentialsCopyWith<$Res> {
-  factory $LoginCredentialsCopyWith(
-          LoginCredentials value, $Res Function(LoginCredentials) then) =
-      _$LoginCredentialsCopyWithImpl<$Res, LoginCredentials>;
-  @useResult
-  $Res call({String email, String password});
-}
+abstract mixin class $LoginCredentialsCopyWith<$Res>  {
+  factory $LoginCredentialsCopyWith(LoginCredentials value, $Res Function(LoginCredentials) _then) = _$LoginCredentialsCopyWithImpl;
+@useResult
+$Res call({
+ String email, String password
+});
 
+
+
+
+}
 /// @nodoc
-class _$LoginCredentialsCopyWithImpl<$Res, $Val extends LoginCredentials>
+class _$LoginCredentialsCopyWithImpl<$Res>
     implements $LoginCredentialsCopyWith<$Res> {
-  _$LoginCredentialsCopyWithImpl(this._value, this._then);
+  _$LoginCredentialsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LoginCredentials _self;
+  final $Res Function(LoginCredentials) _then;
 
-  /// Create a copy of LoginCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of LoginCredentials
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? password = null,}) {
+  return _then(_self.copyWith(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$LoginCredentialsImplCopyWith<$Res>
-    implements $LoginCredentialsCopyWith<$Res> {
-  factory _$$LoginCredentialsImplCopyWith(_$LoginCredentialsImpl value,
-          $Res Function(_$LoginCredentialsImpl) then) =
-      __$$LoginCredentialsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String email, String password});
 }
 
-/// @nodoc
-class __$$LoginCredentialsImplCopyWithImpl<$Res>
-    extends _$LoginCredentialsCopyWithImpl<$Res, _$LoginCredentialsImpl>
-    implements _$$LoginCredentialsImplCopyWith<$Res> {
-  __$$LoginCredentialsImplCopyWithImpl(_$LoginCredentialsImpl _value,
-      $Res Function(_$LoginCredentialsImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of LoginCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_$LoginCredentialsImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [LoginCredentials].
+extension LoginCredentialsPatterns on LoginCredentials {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginCredentials value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LoginCredentials() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginCredentials value)  $default,){
+final _that = this;
+switch (_that) {
+case _LoginCredentials():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginCredentials value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LoginCredentials() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String password)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LoginCredentials() when $default != null:
+return $default(_that.email,_that.password);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String password)  $default,) {final _that = this;
+switch (_that) {
+case _LoginCredentials():
+return $default(_that.email,_that.password);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String password)?  $default,) {final _that = this;
+switch (_that) {
+case _LoginCredentials() when $default != null:
+return $default(_that.email,_that.password);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoginCredentialsImpl implements _LoginCredentials {
-  _$LoginCredentialsImpl({required this.email, required this.password});
 
-  factory _$LoginCredentialsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginCredentialsImplFromJson(json);
+class _LoginCredentials implements LoginCredentials {
+   _LoginCredentials({required this.email, required this.password});
+  factory _LoginCredentials.fromJson(Map<String, dynamic> json) => _$LoginCredentialsFromJson(json);
 
-  @override
-  String email;
-  @override
-  String password;
+@override  String email;
+@override  String password;
 
-  @override
-  String toString() {
-    return 'LoginCredentials(email: $email, password: $password)';
-  }
+/// Create a copy of LoginCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoginCredentialsCopyWith<_LoginCredentials> get copyWith => __$LoginCredentialsCopyWithImpl<_LoginCredentials>(this, _$identity);
 
-  /// Create a copy of LoginCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoginCredentialsImplCopyWith<_$LoginCredentialsImpl> get copyWith =>
-      __$$LoginCredentialsImplCopyWithImpl<_$LoginCredentialsImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoginCredentialsImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$LoginCredentialsToJson(this, );
 }
 
-abstract class _LoginCredentials implements LoginCredentials {
-  factory _LoginCredentials({required String email, required String password}) =
-      _$LoginCredentialsImpl;
 
-  factory _LoginCredentials.fromJson(Map<String, dynamic> json) =
-      _$LoginCredentialsImpl.fromJson;
 
-  @override
-  String get email;
-  set email(String value);
-  @override
-  String get password;
-  set password(String value);
-
-  /// Create a copy of LoginCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoginCredentialsImplCopyWith<_$LoginCredentialsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'LoginCredentials(email: $email, password: $password)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoginCredentialsCopyWith<$Res> implements $LoginCredentialsCopyWith<$Res> {
+  factory _$LoginCredentialsCopyWith(_LoginCredentials value, $Res Function(_LoginCredentials) _then) = __$LoginCredentialsCopyWithImpl;
+@override @useResult
+$Res call({
+ String email, String password
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoginCredentialsCopyWithImpl<$Res>
+    implements _$LoginCredentialsCopyWith<$Res> {
+  __$LoginCredentialsCopyWithImpl(this._self, this._then);
+
+  final _LoginCredentials _self;
+  final $Res Function(_LoginCredentials) _then;
+
+/// Create a copy of LoginCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,}) {
+  return _then(_LoginCredentials(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

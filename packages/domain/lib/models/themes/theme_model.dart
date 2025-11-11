@@ -9,7 +9,7 @@ part 'theme_model.g.dart';
 enum ThemeStatus { draft, published, archived }
 
 @freezed
-class ThemeModel with _$ThemeModel {
+sealed class ThemeModel with _$ThemeModel {
   const factory ThemeModel({
     String? id,
     String? applicationId,

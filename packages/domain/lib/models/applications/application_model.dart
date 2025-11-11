@@ -5,7 +5,7 @@ import 'build_version_model.dart';
 part 'application_model.freezed.dart';
 
 @freezed
-class ApplicationModel with _$ApplicationModel {
+sealed class ApplicationModel with _$ApplicationModel {
   const factory ApplicationModel({
     String? id,
     String? name,

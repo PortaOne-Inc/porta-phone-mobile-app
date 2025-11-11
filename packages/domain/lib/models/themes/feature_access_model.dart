@@ -7,7 +7,7 @@ part 'feature_access_model.g.dart';
 enum FeatureAccessStatus { draft, published }
 
 @freezed
-class FeatureAccessModel with _$FeatureAccessModel {
+sealed class FeatureAccessModel with _$FeatureAccessModel {
   const factory FeatureAccessModel({
     required String applicationId,
     required Map<String, dynamic> config,

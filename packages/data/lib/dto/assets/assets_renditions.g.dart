@@ -6,9 +6,8 @@ part of 'assets_renditions.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AssetsRenditionImpl _$$AssetsRenditionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AssetsRenditionImpl(
+_AssetsRendition _$AssetsRenditionFromJson(Map<String, dynamic> json) =>
+    _AssetsRendition(
       id: json['id'] as String,
       ownerId: json['ownerId'] as String,
       applicationId: json['applicationId'] as String,
@@ -28,8 +27,7 @@ _$AssetsRenditionImpl _$$AssetsRenditionImplFromJson(
       downloadUrl: json['downloadUrl'] as String,
     );
 
-Map<String, dynamic> _$$AssetsRenditionImplToJson(
-        _$AssetsRenditionImpl instance) =>
+Map<String, dynamic> _$AssetsRenditionToJson(_AssetsRendition instance) =>
     <String, dynamic>{
       'id': instance.id,
       'ownerId': instance.ownerId,
@@ -48,16 +46,13 @@ Map<String, dynamic> _$$AssetsRenditionImplToJson(
       'downloadUrl': instance.downloadUrl,
     };
 
-_$AssetsRenditionSourceImpl _$$AssetsRenditionSourceImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AssetsRenditionSourceImpl(
-      type: json['type'] as String,
-      id: json['id'] as String,
-    );
+_AssetsRenditionSource _$AssetsRenditionSourceFromJson(
+  Map<String, dynamic> json,
+) => _AssetsRenditionSource(
+  type: json['type'] as String,
+  id: json['id'] as String,
+);
 
-Map<String, dynamic> _$$AssetsRenditionSourceImplToJson(
-        _$AssetsRenditionSourceImpl instance) =>
-    <String, dynamic>{
-      'type': instance.type,
-      'id': instance.id,
-    };
+Map<String, dynamic> _$AssetsRenditionSourceToJson(
+  _AssetsRenditionSource instance,
+) => <String, dynamic>{'type': instance.type, 'id': instance.id};

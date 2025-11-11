@@ -5,7 +5,7 @@ import 'brightness_variant.dart';
 part 'widgets_config.freezed.dart';
 
 @freezed
-class WidgetsConfig with _$WidgetsConfig {
+sealed class WidgetsConfig with _$WidgetsConfig {
   const factory WidgetsConfig({
     required String id,
     required String applicationId,
