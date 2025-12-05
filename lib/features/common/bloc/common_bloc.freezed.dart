@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,119 +9,53 @@ part of 'common_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CommonState {
-  ThemeMode get themeMode => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ThemeMode themeMode) initial,
-    required TResult Function(ThemeMode themeMode) logout,
-    required TResult Function(ThemeMode themeMode) themeMode,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ThemeMode themeMode)? initial,
-    TResult? Function(ThemeMode themeMode)? logout,
-    TResult? Function(ThemeMode themeMode)? themeMode,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ThemeMode themeMode)? initial,
-    TResult Function(ThemeMode themeMode)? logout,
-    TResult Function(ThemeMode themeMode)? themeMode,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(CommonStateLogout value) logout,
-    required TResult Function(CommonStateThemeMode value) themeMode,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(CommonStateLogout value)? logout,
-    TResult? Function(CommonStateThemeMode value)? themeMode,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(CommonStateLogout value)? logout,
-    TResult Function(CommonStateThemeMode value)? themeMode,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  ThemeMode get themeMode;
 
   /// Create a copy of CommonState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CommonStateCopyWith<CommonState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CommonStateCopyWith<$Res> {
-  factory $CommonStateCopyWith(
-          CommonState value, $Res Function(CommonState) then) =
-      _$CommonStateCopyWithImpl<$Res, CommonState>;
-  @useResult
-  $Res call({ThemeMode themeMode});
-}
-
-/// @nodoc
-class _$CommonStateCopyWithImpl<$Res, $Val extends CommonState>
-    implements $CommonStateCopyWith<$Res> {
-  _$CommonStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $CommonStateCopyWith<CommonState> get copyWith =>
+      _$CommonStateCopyWithImpl<CommonState>(this as CommonState, _$identity);
+
   @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_value.copyWith(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CommonState &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
+
+  @override
+  String toString() {
+    return 'CommonState(themeMode: $themeMode)';
   }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res>
-    implements $CommonStateCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $CommonStateCopyWith<$Res> {
+  factory $CommonStateCopyWith(
+          CommonState value, $Res Function(CommonState) _then) =
+      _$CommonStateCopyWithImpl;
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
+class _$CommonStateCopyWithImpl<$Res> implements $CommonStateCopyWith<$Res> {
+  _$CommonStateCopyWithImpl(this._self, this._then);
+
+  final CommonState _self;
+  final $Res Function(CommonState) _then;
 
   /// Create a copy of CommonState
   /// with the given fields replaced by the non-null parameter values.
@@ -130,161 +64,266 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$InitialImpl(
+    return _then(_self.copyWith(
       themeMode: null == themeMode
-          ? _value.themeMode
+          ? _self.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [CommonState].
+extension CommonStatePatterns on CommonState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(CommonStateLogout value)? logout,
+    TResult Function(CommonStateThemeMode value)? themeMode,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case CommonStateLogout() when logout != null:
+        return logout(_that);
+      case CommonStateThemeMode() when themeMode != null:
+        return themeMode(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(CommonStateLogout value) logout,
+    required TResult Function(CommonStateThemeMode value) themeMode,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return initial(_that);
+      case CommonStateLogout():
+        return logout(_that);
+      case CommonStateThemeMode():
+        return themeMode(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(CommonStateLogout value)? logout,
+    TResult? Function(CommonStateThemeMode value)? themeMode,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that);
+      case CommonStateLogout() when logout != null:
+        return logout(_that);
+      case CommonStateThemeMode() when themeMode != null:
+        return themeMode(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeMode themeMode)? initial,
+    TResult Function(ThemeMode themeMode)? logout,
+    TResult Function(ThemeMode themeMode)? themeMode,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that.themeMode);
+      case CommonStateLogout() when logout != null:
+        return logout(_that.themeMode);
+      case CommonStateThemeMode() when themeMode != null:
+        return themeMode(_that.themeMode);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeMode themeMode) initial,
+    required TResult Function(ThemeMode themeMode) logout,
+    required TResult Function(ThemeMode themeMode) themeMode,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial():
+        return initial(_that.themeMode);
+      case CommonStateLogout():
+        return logout(_that.themeMode);
+      case CommonStateThemeMode():
+        return themeMode(_that.themeMode);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ThemeMode themeMode)? initial,
+    TResult? Function(ThemeMode themeMode)? logout,
+    TResult? Function(ThemeMode themeMode)? themeMode,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Initial() when initial != null:
+        return initial(_that.themeMode);
+      case CommonStateLogout() when logout != null:
+        return logout(_that.themeMode);
+      case CommonStateThemeMode() when themeMode != null:
+        return themeMode(_that.themeMode);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.themeMode = ThemeMode.system});
+class _Initial implements CommonState {
+  const _Initial({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
   final ThemeMode themeMode;
+
+  /// Create a copy of CommonState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Initial &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
 
   @override
   String toString() {
     return 'CommonState.initial(themeMode: $themeMode)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitialImpl &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ThemeMode themeMode) initial,
-    required TResult Function(ThemeMode themeMode) logout,
-    required TResult Function(ThemeMode themeMode) themeMode,
-  }) {
-    return initial(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ThemeMode themeMode)? initial,
-    TResult? Function(ThemeMode themeMode)? logout,
-    TResult? Function(ThemeMode themeMode)? themeMode,
-  }) {
-    return initial?.call(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ThemeMode themeMode)? initial,
-    TResult Function(ThemeMode themeMode)? logout,
-    TResult Function(ThemeMode themeMode)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this.themeMode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(CommonStateLogout value) logout,
-    required TResult Function(CommonStateThemeMode value) themeMode,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(CommonStateLogout value)? logout,
-    TResult? Function(CommonStateThemeMode value)? themeMode,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(CommonStateLogout value)? logout,
-    TResult Function(CommonStateThemeMode value)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements CommonState {
-  const factory _Initial({final ThemeMode themeMode}) = _$InitialImpl;
-
-  @override
-  ThemeMode get themeMode;
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CommonStateLogoutImplCopyWith<$Res>
+abstract mixin class _$InitialCopyWith<$Res>
     implements $CommonStateCopyWith<$Res> {
-  factory _$$CommonStateLogoutImplCopyWith(_$CommonStateLogoutImpl value,
-          $Res Function(_$CommonStateLogoutImpl) then) =
-      __$$CommonStateLogoutImplCopyWithImpl<$Res>;
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) _then) =
+      __$InitialCopyWithImpl;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$CommonStateLogoutImplCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateLogoutImpl>
-    implements _$$CommonStateLogoutImplCopyWith<$Res> {
-  __$$CommonStateLogoutImplCopyWithImpl(_$CommonStateLogoutImpl _value,
-      $Res Function(_$CommonStateLogoutImpl) _then)
-      : super(_value, _then);
+class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(this._self, this._then);
+
+  final _Initial _self;
+  final $Res Function(_Initial) _then;
 
   /// Create a copy of CommonState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$CommonStateLogoutImpl(
+    return _then(_Initial(
       themeMode: null == themeMode
-          ? _value.themeMode
+          ? _self.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
     ));
@@ -293,152 +332,68 @@ class __$$CommonStateLogoutImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommonStateLogoutImpl implements CommonStateLogout {
-  const _$CommonStateLogoutImpl({this.themeMode = ThemeMode.system});
+class CommonStateLogout implements CommonState {
+  const CommonStateLogout({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
   final ThemeMode themeMode;
+
+  /// Create a copy of CommonState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CommonStateLogoutCopyWith<CommonStateLogout> get copyWith =>
+      _$CommonStateLogoutCopyWithImpl<CommonStateLogout>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CommonStateLogout &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeMode);
 
   @override
   String toString() {
     return 'CommonState.logout(themeMode: $themeMode)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CommonStateLogoutImpl &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CommonStateLogoutImplCopyWith<_$CommonStateLogoutImpl> get copyWith =>
-      __$$CommonStateLogoutImplCopyWithImpl<_$CommonStateLogoutImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ThemeMode themeMode) initial,
-    required TResult Function(ThemeMode themeMode) logout,
-    required TResult Function(ThemeMode themeMode) themeMode,
-  }) {
-    return logout(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ThemeMode themeMode)? initial,
-    TResult? Function(ThemeMode themeMode)? logout,
-    TResult? Function(ThemeMode themeMode)? themeMode,
-  }) {
-    return logout?.call(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ThemeMode themeMode)? initial,
-    TResult Function(ThemeMode themeMode)? logout,
-    TResult Function(ThemeMode themeMode)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (logout != null) {
-      return logout(this.themeMode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(CommonStateLogout value) logout,
-    required TResult Function(CommonStateThemeMode value) themeMode,
-  }) {
-    return logout(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(CommonStateLogout value)? logout,
-    TResult? Function(CommonStateThemeMode value)? themeMode,
-  }) {
-    return logout?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(CommonStateLogout value)? logout,
-    TResult Function(CommonStateThemeMode value)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (logout != null) {
-      return logout(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CommonStateLogout implements CommonState {
-  const factory CommonStateLogout({final ThemeMode themeMode}) =
-      _$CommonStateLogoutImpl;
-
-  @override
-  ThemeMode get themeMode;
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommonStateLogoutImplCopyWith<_$CommonStateLogoutImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CommonStateThemeModeImplCopyWith<$Res>
+abstract mixin class $CommonStateLogoutCopyWith<$Res>
     implements $CommonStateCopyWith<$Res> {
-  factory _$$CommonStateThemeModeImplCopyWith(_$CommonStateThemeModeImpl value,
-          $Res Function(_$CommonStateThemeModeImpl) then) =
-      __$$CommonStateThemeModeImplCopyWithImpl<$Res>;
+  factory $CommonStateLogoutCopyWith(
+          CommonStateLogout value, $Res Function(CommonStateLogout) _then) =
+      _$CommonStateLogoutCopyWithImpl;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$CommonStateThemeModeImplCopyWithImpl<$Res>
-    extends _$CommonStateCopyWithImpl<$Res, _$CommonStateThemeModeImpl>
-    implements _$$CommonStateThemeModeImplCopyWith<$Res> {
-  __$$CommonStateThemeModeImplCopyWithImpl(_$CommonStateThemeModeImpl _value,
-      $Res Function(_$CommonStateThemeModeImpl) _then)
-      : super(_value, _then);
+class _$CommonStateLogoutCopyWithImpl<$Res>
+    implements $CommonStateLogoutCopyWith<$Res> {
+  _$CommonStateLogoutCopyWithImpl(this._self, this._then);
+
+  final CommonStateLogout _self;
+  final $Res Function(CommonStateLogout) _then;
 
   /// Create a copy of CommonState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$CommonStateThemeModeImpl(
+    return _then(CommonStateLogout(
       themeMode: null == themeMode
-          ? _value.themeMode
+          ? _self.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
     ));
@@ -447,23 +402,27 @@ class __$$CommonStateThemeModeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommonStateThemeModeImpl implements CommonStateThemeMode {
-  const _$CommonStateThemeModeImpl({this.themeMode = ThemeMode.system});
+class CommonStateThemeMode implements CommonState {
+  const CommonStateThemeMode({this.themeMode = ThemeMode.system});
 
   @override
   @JsonKey()
   final ThemeMode themeMode;
 
+  /// Create a copy of CommonState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'CommonState.themeMode(themeMode: $themeMode)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CommonStateThemeModeCopyWith<CommonStateThemeMode> get copyWith =>
+      _$CommonStateThemeModeCopyWithImpl<CommonStateThemeMode>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommonStateThemeModeImpl &&
+            other is CommonStateThemeMode &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode));
   }
@@ -471,96 +430,45 @@ class _$CommonStateThemeModeImpl implements CommonStateThemeMode {
   @override
   int get hashCode => Object.hash(runtimeType, themeMode);
 
+  @override
+  String toString() {
+    return 'CommonState.themeMode(themeMode: $themeMode)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CommonStateThemeModeCopyWith<$Res>
+    implements $CommonStateCopyWith<$Res> {
+  factory $CommonStateThemeModeCopyWith(CommonStateThemeMode value,
+          $Res Function(CommonStateThemeMode) _then) =
+      _$CommonStateThemeModeCopyWithImpl;
+  @override
+  @useResult
+  $Res call({ThemeMode themeMode});
+}
+
+/// @nodoc
+class _$CommonStateThemeModeCopyWithImpl<$Res>
+    implements $CommonStateThemeModeCopyWith<$Res> {
+  _$CommonStateThemeModeCopyWithImpl(this._self, this._then);
+
+  final CommonStateThemeMode _self;
+  final $Res Function(CommonStateThemeMode) _then;
+
   /// Create a copy of CommonState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommonStateThemeModeImplCopyWith<_$CommonStateThemeModeImpl>
-      get copyWith =>
-          __$$CommonStateThemeModeImplCopyWithImpl<_$CommonStateThemeModeImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ThemeMode themeMode) initial,
-    required TResult Function(ThemeMode themeMode) logout,
-    required TResult Function(ThemeMode themeMode) themeMode,
+  $Res call({
+    Object? themeMode = null,
   }) {
-    return themeMode(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ThemeMode themeMode)? initial,
-    TResult? Function(ThemeMode themeMode)? logout,
-    TResult? Function(ThemeMode themeMode)? themeMode,
-  }) {
-    return themeMode?.call(this.themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ThemeMode themeMode)? initial,
-    TResult Function(ThemeMode themeMode)? logout,
-    TResult Function(ThemeMode themeMode)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (themeMode != null) {
-      return themeMode(this.themeMode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(CommonStateLogout value) logout,
-    required TResult Function(CommonStateThemeMode value) themeMode,
-  }) {
-    return themeMode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(CommonStateLogout value)? logout,
-    TResult? Function(CommonStateThemeMode value)? themeMode,
-  }) {
-    return themeMode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(CommonStateLogout value)? logout,
-    TResult Function(CommonStateThemeMode value)? themeMode,
-    required TResult orElse(),
-  }) {
-    if (themeMode != null) {
-      return themeMode(this);
-    }
-    return orElse();
+    return _then(CommonStateThemeMode(
+      themeMode: null == themeMode
+          ? _self.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
+    ));
   }
 }
 
-abstract class CommonStateThemeMode implements CommonState {
-  const factory CommonStateThemeMode({final ThemeMode themeMode}) =
-      _$CommonStateThemeModeImpl;
-
-  @override
-  ThemeMode get themeMode;
-
-  /// Create a copy of CommonState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommonStateThemeModeImplCopyWith<_$CommonStateThemeModeImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

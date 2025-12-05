@@ -1,10 +1,9 @@
-// publication_resources_state.dart
 part of 'publication_resources_cubit.dart';
 
 enum PubResStatus { initial, loading, loaded, failure }
 
 @freezed
-class PublicationResourcesState with _$PublicationResourcesState {
+sealed class PublicationResourcesState with _$PublicationResourcesState {
   const factory PublicationResourcesState({
     @Default(PubResStatus.initial) PubResStatus status,
     @Default(<PublicationResourceModel>[]) List<PublicationResourceModel> items,

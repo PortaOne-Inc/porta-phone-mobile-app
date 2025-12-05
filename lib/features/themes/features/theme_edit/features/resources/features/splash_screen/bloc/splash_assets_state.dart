@@ -1,7 +1,7 @@
 part of 'splash_assets_bloc.dart';
 
 @freezed
-class SplashAssetsState with _$SplashAssetsState {
+sealed class SplashAssetsState with _$SplashAssetsState {
   factory SplashAssetsState({
     required String applicationId,
     required String themeId,

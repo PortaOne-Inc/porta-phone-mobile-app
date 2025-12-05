@@ -11,11 +11,13 @@ class MainConfigWidget extends StatefulWidget {
   const MainConfigWidget({
     required this.mainConfig,
     required this.onChange,
+    required this.onCacheSelectedTabChange,
     super.key,
   });
 
   final AppConfigMain mainConfig;
   final ObjectCallback<AppConfigMain> onChange;
+  final ObjectCallback<bool> onCacheSelectedTabChange;
 
   @override
   State<MainConfigWidget> createState() => _MainConfigWidgetState();
@@ -52,17 +54,17 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                   contentPadding: EdgeInsets.zero,
                   title: Text('Cache Selected Tab', style: textTheme.titleMedium),
                   value: widget.mainConfig.bottomMenu.cacheSelectedTab,
-                  onChanged: (it) {}, // TODO: wire up when needed
+                  onChanged: (it) => widget.onCacheSelectedTabChange(it),
                 ),
               ],
             ),
           ),
           Divider(color: colorScheme.primary.withValues(alpha: .25)),
           BorderContainer(
-            title: 'Manage  tabs',
+            title: 'Manage tabs',
             trailing: TextButton(
               onPressed: _addTab,
-              child: const Text('Add  tab'),
+              child: const Text('Add tab'),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 class $AssetsEnvironmentGen {
   const $AssetsEnvironmentGen();
@@ -32,6 +34,9 @@ class $AssetsThemesGen {
 
   /// File path: assets/themes/app.config.json
   String get appConfig => 'assets/themes/app.config.json';
+
+  /// File path: assets/themes/app.embedded.config.json
+  String get appEmbeddedConfig => 'assets/themes/app.embedded.config.json';
 
   /// File path: assets/themes/custom_signup.html
   String get customSignup => 'assets/themes/custom_signup.html';
@@ -62,15 +67,16 @@ class $AssetsThemesGen {
 
   /// List of all assets
   List<String> get values => [
-    appConfig,
-    customSignup,
-    originalColorSchemeDarkConfig,
-    originalColorSchemeLightConfig,
-    originalPageDarkConfig,
-    originalPageLightConfig,
-    originalWidgetDarkConfig,
-    originalWidgetLightConfig,
-  ];
+        appConfig,
+        appEmbeddedConfig,
+        customSignup,
+        originalColorSchemeDarkConfig,
+        originalColorSchemeLightConfig,
+        originalPageDarkConfig,
+        originalPageLightConfig,
+        originalWidgetDarkConfig,
+        originalWidgetLightConfig
+      ];
 }
 
 class Assets {

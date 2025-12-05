@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,41 +9,101 @@ part of 'launch_assets_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LaunchAssetsState {
-  String get applicationId => throw _privateConstructorUsedError;
-  String get themeId => throw _privateConstructorUsedError;
-  LaunchAssetsEnvelope? get envelope => throw _privateConstructorUsedError;
-  List<AssetModel> get assets => throw _privateConstructorUsedError;
-  ConstraintsModel? get constraints => throw _privateConstructorUsedError;
-  String? get selectedBackgroundColorHex => throw _privateConstructorUsedError;
-  AssetModel? get selectedForegroundAsset => throw _privateConstructorUsedError;
-  AssetModel? get selectedBackgroundAsset => throw _privateConstructorUsedError;
-  double get paddingAndroidLegacy => throw _privateConstructorUsedError;
-  double get paddingAndroidAdaptive => throw _privateConstructorUsedError;
-  double get paddingIOS => throw _privateConstructorUsedError;
-  double get paddingWEB => throw _privateConstructorUsedError;
-  LaunchAssetsStatus get status => throw _privateConstructorUsedError;
-  bool get saving => throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError;
+  String get applicationId;
+  String get themeId;
+  LaunchAssetsEnvelope? get envelope;
+  List<AssetModel> get assets;
+  ConstraintsModel? get constraints;
+  String? get selectedBackgroundColorHex;
+  AssetModel? get selectedForegroundAsset;
+  AssetModel? get selectedBackgroundAsset;
+  double get paddingAndroidLegacy;
+  double get paddingAndroidAdaptive;
+  double get paddingIOS;
+  double get paddingWEB;
+  LaunchAssetsStatus get status;
+  bool get saving;
+  String? get error;
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $LaunchAssetsStateCopyWith<LaunchAssetsState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$LaunchAssetsStateCopyWithImpl<LaunchAssetsState>(
+          this as LaunchAssetsState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LaunchAssetsState &&
+            (identical(other.applicationId, applicationId) ||
+                other.applicationId == applicationId) &&
+            (identical(other.themeId, themeId) || other.themeId == themeId) &&
+            (identical(other.envelope, envelope) ||
+                other.envelope == envelope) &&
+            const DeepCollectionEquality().equals(other.assets, assets) &&
+            (identical(other.constraints, constraints) ||
+                other.constraints == constraints) &&
+            (identical(other.selectedBackgroundColorHex,
+                    selectedBackgroundColorHex) ||
+                other.selectedBackgroundColorHex ==
+                    selectedBackgroundColorHex) &&
+            (identical(
+                    other.selectedForegroundAsset, selectedForegroundAsset) ||
+                other.selectedForegroundAsset == selectedForegroundAsset) &&
+            (identical(
+                    other.selectedBackgroundAsset, selectedBackgroundAsset) ||
+                other.selectedBackgroundAsset == selectedBackgroundAsset) &&
+            (identical(other.paddingAndroidLegacy, paddingAndroidLegacy) ||
+                other.paddingAndroidLegacy == paddingAndroidLegacy) &&
+            (identical(other.paddingAndroidAdaptive, paddingAndroidAdaptive) ||
+                other.paddingAndroidAdaptive == paddingAndroidAdaptive) &&
+            (identical(other.paddingIOS, paddingIOS) ||
+                other.paddingIOS == paddingIOS) &&
+            (identical(other.paddingWEB, paddingWEB) ||
+                other.paddingWEB == paddingWEB) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.saving, saving) || other.saving == saving) &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      applicationId,
+      themeId,
+      envelope,
+      const DeepCollectionEquality().hash(assets),
+      constraints,
+      selectedBackgroundColorHex,
+      selectedForegroundAsset,
+      selectedBackgroundAsset,
+      paddingAndroidLegacy,
+      paddingAndroidAdaptive,
+      paddingIOS,
+      paddingWEB,
+      status,
+      saving,
+      error);
+
+  @override
+  String toString() {
+    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, envelope: $envelope, assets: $assets, constraints: $constraints, selectedBackgroundColorHex: $selectedBackgroundColorHex, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, paddingAndroidLegacy: $paddingAndroidLegacy, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB, status: $status, saving: $saving, error: $error)';
+  }
 }
 
 /// @nodoc
-abstract class $LaunchAssetsStateCopyWith<$Res> {
+abstract mixin class $LaunchAssetsStateCopyWith<$Res> {
   factory $LaunchAssetsStateCopyWith(
-          LaunchAssetsState value, $Res Function(LaunchAssetsState) then) =
-      _$LaunchAssetsStateCopyWithImpl<$Res, LaunchAssetsState>;
+          LaunchAssetsState value, $Res Function(LaunchAssetsState) _then) =
+      _$LaunchAssetsStateCopyWithImpl;
   @useResult
   $Res call(
       {String applicationId,
@@ -69,14 +129,12 @@ abstract class $LaunchAssetsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
+class _$LaunchAssetsStateCopyWithImpl<$Res>
     implements $LaunchAssetsStateCopyWith<$Res> {
-  _$LaunchAssetsStateCopyWithImpl(this._value, this._then);
+  _$LaunchAssetsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LaunchAssetsState _self;
+  final $Res Function(LaunchAssetsState) _then;
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
@@ -99,68 +157,68 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
     Object? saving = null,
     Object? error = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       applicationId: null == applicationId
-          ? _value.applicationId
+          ? _self.applicationId
           : applicationId // ignore: cast_nullable_to_non_nullable
               as String,
       themeId: null == themeId
-          ? _value.themeId
+          ? _self.themeId
           : themeId // ignore: cast_nullable_to_non_nullable
               as String,
       envelope: freezed == envelope
-          ? _value.envelope
+          ? _self.envelope
           : envelope // ignore: cast_nullable_to_non_nullable
               as LaunchAssetsEnvelope?,
       assets: null == assets
-          ? _value.assets
+          ? _self.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<AssetModel>,
       constraints: freezed == constraints
-          ? _value.constraints
+          ? _self.constraints
           : constraints // ignore: cast_nullable_to_non_nullable
               as ConstraintsModel?,
       selectedBackgroundColorHex: freezed == selectedBackgroundColorHex
-          ? _value.selectedBackgroundColorHex
+          ? _self.selectedBackgroundColorHex
           : selectedBackgroundColorHex // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedForegroundAsset: freezed == selectedForegroundAsset
-          ? _value.selectedForegroundAsset
+          ? _self.selectedForegroundAsset
           : selectedForegroundAsset // ignore: cast_nullable_to_non_nullable
               as AssetModel?,
       selectedBackgroundAsset: freezed == selectedBackgroundAsset
-          ? _value.selectedBackgroundAsset
+          ? _self.selectedBackgroundAsset
           : selectedBackgroundAsset // ignore: cast_nullable_to_non_nullable
               as AssetModel?,
       paddingAndroidLegacy: null == paddingAndroidLegacy
-          ? _value.paddingAndroidLegacy
+          ? _self.paddingAndroidLegacy
           : paddingAndroidLegacy // ignore: cast_nullable_to_non_nullable
               as double,
       paddingAndroidAdaptive: null == paddingAndroidAdaptive
-          ? _value.paddingAndroidAdaptive
+          ? _self.paddingAndroidAdaptive
           : paddingAndroidAdaptive // ignore: cast_nullable_to_non_nullable
               as double,
       paddingIOS: null == paddingIOS
-          ? _value.paddingIOS
+          ? _self.paddingIOS
           : paddingIOS // ignore: cast_nullable_to_non_nullable
               as double,
       paddingWEB: null == paddingWEB
-          ? _value.paddingWEB
+          ? _self.paddingWEB
           : paddingWEB // ignore: cast_nullable_to_non_nullable
               as double,
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as LaunchAssetsStatus,
       saving: null == saving
-          ? _value.saving
+          ? _self.saving
           : saving // ignore: cast_nullable_to_non_nullable
               as bool,
       error: freezed == error
-          ? _value.error
+          ? _self.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of LaunchAssetsState
@@ -168,12 +226,12 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
   @override
   @pragma('vm:prefer-inline')
   $LaunchAssetsEnvelopeCopyWith<$Res>? get envelope {
-    if (_value.envelope == null) {
+    if (_self.envelope == null) {
       return null;
     }
 
-    return $LaunchAssetsEnvelopeCopyWith<$Res>(_value.envelope!, (value) {
-      return _then(_value.copyWith(envelope: value) as $Val);
+    return $LaunchAssetsEnvelopeCopyWith<$Res>(_self.envelope!, (value) {
+      return _then(_self.copyWith(envelope: value));
     });
   }
 
@@ -182,12 +240,12 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
   @override
   @pragma('vm:prefer-inline')
   $ConstraintsModelCopyWith<$Res>? get constraints {
-    if (_value.constraints == null) {
+    if (_self.constraints == null) {
       return null;
     }
 
-    return $ConstraintsModelCopyWith<$Res>(_value.constraints!, (value) {
-      return _then(_value.copyWith(constraints: value) as $Val);
+    return $ConstraintsModelCopyWith<$Res>(_self.constraints!, (value) {
+      return _then(_self.copyWith(constraints: value));
     });
   }
 
@@ -196,12 +254,12 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
   @override
   @pragma('vm:prefer-inline')
   $AssetModelCopyWith<$Res>? get selectedForegroundAsset {
-    if (_value.selectedForegroundAsset == null) {
+    if (_self.selectedForegroundAsset == null) {
       return null;
     }
 
-    return $AssetModelCopyWith<$Res>(_value.selectedForegroundAsset!, (value) {
-      return _then(_value.copyWith(selectedForegroundAsset: value) as $Val);
+    return $AssetModelCopyWith<$Res>(_self.selectedForegroundAsset!, (value) {
+      return _then(_self.copyWith(selectedForegroundAsset: value));
     });
   }
 
@@ -210,149 +268,266 @@ class _$LaunchAssetsStateCopyWithImpl<$Res, $Val extends LaunchAssetsState>
   @override
   @pragma('vm:prefer-inline')
   $AssetModelCopyWith<$Res>? get selectedBackgroundAsset {
-    if (_value.selectedBackgroundAsset == null) {
+    if (_self.selectedBackgroundAsset == null) {
       return null;
     }
 
-    return $AssetModelCopyWith<$Res>(_value.selectedBackgroundAsset!, (value) {
-      return _then(_value.copyWith(selectedBackgroundAsset: value) as $Val);
+    return $AssetModelCopyWith<$Res>(_self.selectedBackgroundAsset!, (value) {
+      return _then(_self.copyWith(selectedBackgroundAsset: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$LaunchAssetsStateImplCopyWith<$Res>
-    implements $LaunchAssetsStateCopyWith<$Res> {
-  factory _$$LaunchAssetsStateImplCopyWith(_$LaunchAssetsStateImpl value,
-          $Res Function(_$LaunchAssetsStateImpl) then) =
-      __$$LaunchAssetsStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String applicationId,
-      String themeId,
-      LaunchAssetsEnvelope? envelope,
-      List<AssetModel> assets,
-      ConstraintsModel? constraints,
-      String? selectedBackgroundColorHex,
-      AssetModel? selectedForegroundAsset,
-      AssetModel? selectedBackgroundAsset,
-      double paddingAndroidLegacy,
-      double paddingAndroidAdaptive,
-      double paddingIOS,
-      double paddingWEB,
-      LaunchAssetsStatus status,
-      bool saving,
-      String? error});
+/// Adds pattern-matching-related methods to [LaunchAssetsState].
+extension LaunchAssetsStatePatterns on LaunchAssetsState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $LaunchAssetsEnvelopeCopyWith<$Res>? get envelope;
-  @override
-  $ConstraintsModelCopyWith<$Res>? get constraints;
-  @override
-  $AssetModelCopyWith<$Res>? get selectedForegroundAsset;
-  @override
-  $AssetModelCopyWith<$Res>? get selectedBackgroundAsset;
-}
-
-/// @nodoc
-class __$$LaunchAssetsStateImplCopyWithImpl<$Res>
-    extends _$LaunchAssetsStateCopyWithImpl<$Res, _$LaunchAssetsStateImpl>
-    implements _$$LaunchAssetsStateImplCopyWith<$Res> {
-  __$$LaunchAssetsStateImplCopyWithImpl(_$LaunchAssetsStateImpl _value,
-      $Res Function(_$LaunchAssetsStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of LaunchAssetsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? applicationId = null,
-    Object? themeId = null,
-    Object? envelope = freezed,
-    Object? assets = null,
-    Object? constraints = freezed,
-    Object? selectedBackgroundColorHex = freezed,
-    Object? selectedForegroundAsset = freezed,
-    Object? selectedBackgroundAsset = freezed,
-    Object? paddingAndroidLegacy = null,
-    Object? paddingAndroidAdaptive = null,
-    Object? paddingIOS = null,
-    Object? paddingWEB = null,
-    Object? status = null,
-    Object? saving = null,
-    Object? error = freezed,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LaunchAssetsState value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$LaunchAssetsStateImpl(
-      applicationId: null == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      themeId: null == themeId
-          ? _value.themeId
-          : themeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      envelope: freezed == envelope
-          ? _value.envelope
-          : envelope // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsEnvelope?,
-      assets: null == assets
-          ? _value._assets
-          : assets // ignore: cast_nullable_to_non_nullable
-              as List<AssetModel>,
-      constraints: freezed == constraints
-          ? _value.constraints
-          : constraints // ignore: cast_nullable_to_non_nullable
-              as ConstraintsModel?,
-      selectedBackgroundColorHex: freezed == selectedBackgroundColorHex
-          ? _value.selectedBackgroundColorHex
-          : selectedBackgroundColorHex // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selectedForegroundAsset: freezed == selectedForegroundAsset
-          ? _value.selectedForegroundAsset
-          : selectedForegroundAsset // ignore: cast_nullable_to_non_nullable
-              as AssetModel?,
-      selectedBackgroundAsset: freezed == selectedBackgroundAsset
-          ? _value.selectedBackgroundAsset
-          : selectedBackgroundAsset // ignore: cast_nullable_to_non_nullable
-              as AssetModel?,
-      paddingAndroidLegacy: null == paddingAndroidLegacy
-          ? _value.paddingAndroidLegacy
-          : paddingAndroidLegacy // ignore: cast_nullable_to_non_nullable
-              as double,
-      paddingAndroidAdaptive: null == paddingAndroidAdaptive
-          ? _value.paddingAndroidAdaptive
-          : paddingAndroidAdaptive // ignore: cast_nullable_to_non_nullable
-              as double,
-      paddingIOS: null == paddingIOS
-          ? _value.paddingIOS
-          : paddingIOS // ignore: cast_nullable_to_non_nullable
-              as double,
-      paddingWEB: null == paddingWEB
-          ? _value.paddingWEB
-          : paddingWEB // ignore: cast_nullable_to_non_nullable
-              as double,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as LaunchAssetsStatus,
-      saving: null == saving
-          ? _value.saving
-          : saving // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LaunchAssetsState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LaunchAssetsState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String applicationId,
+            String themeId,
+            LaunchAssetsEnvelope? envelope,
+            List<AssetModel> assets,
+            ConstraintsModel? constraints,
+            String? selectedBackgroundColorHex,
+            AssetModel? selectedForegroundAsset,
+            AssetModel? selectedBackgroundAsset,
+            double paddingAndroidLegacy,
+            double paddingAndroidAdaptive,
+            double paddingIOS,
+            double paddingWEB,
+            LaunchAssetsStatus status,
+            bool saving,
+            String? error)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState() when $default != null:
+        return $default(
+            _that.applicationId,
+            _that.themeId,
+            _that.envelope,
+            _that.assets,
+            _that.constraints,
+            _that.selectedBackgroundColorHex,
+            _that.selectedForegroundAsset,
+            _that.selectedBackgroundAsset,
+            _that.paddingAndroidLegacy,
+            _that.paddingAndroidAdaptive,
+            _that.paddingIOS,
+            _that.paddingWEB,
+            _that.status,
+            _that.saving,
+            _that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String applicationId,
+            String themeId,
+            LaunchAssetsEnvelope? envelope,
+            List<AssetModel> assets,
+            ConstraintsModel? constraints,
+            String? selectedBackgroundColorHex,
+            AssetModel? selectedForegroundAsset,
+            AssetModel? selectedBackgroundAsset,
+            double paddingAndroidLegacy,
+            double paddingAndroidAdaptive,
+            double paddingIOS,
+            double paddingWEB,
+            LaunchAssetsStatus status,
+            bool saving,
+            String? error)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState():
+        return $default(
+            _that.applicationId,
+            _that.themeId,
+            _that.envelope,
+            _that.assets,
+            _that.constraints,
+            _that.selectedBackgroundColorHex,
+            _that.selectedForegroundAsset,
+            _that.selectedBackgroundAsset,
+            _that.paddingAndroidLegacy,
+            _that.paddingAndroidAdaptive,
+            _that.paddingIOS,
+            _that.paddingWEB,
+            _that.status,
+            _that.saving,
+            _that.error);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String applicationId,
+            String themeId,
+            LaunchAssetsEnvelope? envelope,
+            List<AssetModel> assets,
+            ConstraintsModel? constraints,
+            String? selectedBackgroundColorHex,
+            AssetModel? selectedForegroundAsset,
+            AssetModel? selectedBackgroundAsset,
+            double paddingAndroidLegacy,
+            double paddingAndroidAdaptive,
+            double paddingIOS,
+            double paddingWEB,
+            LaunchAssetsStatus status,
+            bool saving,
+            String? error)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LaunchAssetsState() when $default != null:
+        return $default(
+            _that.applicationId,
+            _that.themeId,
+            _that.envelope,
+            _that.assets,
+            _that.constraints,
+            _that.selectedBackgroundColorHex,
+            _that.selectedForegroundAsset,
+            _that.selectedBackgroundAsset,
+            _that.paddingAndroidLegacy,
+            _that.paddingAndroidAdaptive,
+            _that.paddingIOS,
+            _that.paddingWEB,
+            _that.status,
+            _that.saving,
+            _that.error);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$LaunchAssetsStateImpl extends _LaunchAssetsState {
-  _$LaunchAssetsStateImpl(
+class _LaunchAssetsState extends LaunchAssetsState {
+  _LaunchAssetsState(
       {required this.applicationId,
       required this.themeId,
       this.envelope,
@@ -415,16 +590,19 @@ class _$LaunchAssetsStateImpl extends _LaunchAssetsState {
   @override
   final String? error;
 
+  /// Create a copy of LaunchAssetsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, envelope: $envelope, assets: $assets, constraints: $constraints, selectedBackgroundColorHex: $selectedBackgroundColorHex, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, paddingAndroidLegacy: $paddingAndroidLegacy, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB, status: $status, saving: $saving, error: $error)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LaunchAssetsStateCopyWith<_LaunchAssetsState> get copyWith =>
+      __$LaunchAssetsStateCopyWithImpl<_LaunchAssetsState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LaunchAssetsStateImpl &&
+            other is _LaunchAssetsState &&
             (identical(other.applicationId, applicationId) ||
                 other.applicationId == applicationId) &&
             (identical(other.themeId, themeId) || other.themeId == themeId) &&
@@ -475,70 +653,195 @@ class _$LaunchAssetsStateImpl extends _LaunchAssetsState {
       saving,
       error);
 
+  @override
+  String toString() {
+    return 'LaunchAssetsState(applicationId: $applicationId, themeId: $themeId, envelope: $envelope, assets: $assets, constraints: $constraints, selectedBackgroundColorHex: $selectedBackgroundColorHex, selectedForegroundAsset: $selectedForegroundAsset, selectedBackgroundAsset: $selectedBackgroundAsset, paddingAndroidLegacy: $paddingAndroidLegacy, paddingAndroidAdaptive: $paddingAndroidAdaptive, paddingIOS: $paddingIOS, paddingWEB: $paddingWEB, status: $status, saving: $saving, error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$LaunchAssetsStateCopyWith<$Res>
+    implements $LaunchAssetsStateCopyWith<$Res> {
+  factory _$LaunchAssetsStateCopyWith(
+          _LaunchAssetsState value, $Res Function(_LaunchAssetsState) _then) =
+      __$LaunchAssetsStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String applicationId,
+      String themeId,
+      LaunchAssetsEnvelope? envelope,
+      List<AssetModel> assets,
+      ConstraintsModel? constraints,
+      String? selectedBackgroundColorHex,
+      AssetModel? selectedForegroundAsset,
+      AssetModel? selectedBackgroundAsset,
+      double paddingAndroidLegacy,
+      double paddingAndroidAdaptive,
+      double paddingIOS,
+      double paddingWEB,
+      LaunchAssetsStatus status,
+      bool saving,
+      String? error});
+
+  @override
+  $LaunchAssetsEnvelopeCopyWith<$Res>? get envelope;
+  @override
+  $ConstraintsModelCopyWith<$Res>? get constraints;
+  @override
+  $AssetModelCopyWith<$Res>? get selectedForegroundAsset;
+  @override
+  $AssetModelCopyWith<$Res>? get selectedBackgroundAsset;
+}
+
+/// @nodoc
+class __$LaunchAssetsStateCopyWithImpl<$Res>
+    implements _$LaunchAssetsStateCopyWith<$Res> {
+  __$LaunchAssetsStateCopyWithImpl(this._self, this._then);
+
+  final _LaunchAssetsState _self;
+  final $Res Function(_LaunchAssetsState) _then;
+
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LaunchAssetsStateImplCopyWith<_$LaunchAssetsStateImpl> get copyWith =>
-      __$$LaunchAssetsStateImplCopyWithImpl<_$LaunchAssetsStateImpl>(
-          this, _$identity);
-}
-
-abstract class _LaunchAssetsState extends LaunchAssetsState {
-  factory _LaunchAssetsState(
-      {required final String applicationId,
-      required final String themeId,
-      final LaunchAssetsEnvelope? envelope,
-      final List<AssetModel> assets,
-      final ConstraintsModel? constraints,
-      final String? selectedBackgroundColorHex,
-      final AssetModel? selectedForegroundAsset,
-      final AssetModel? selectedBackgroundAsset,
-      final double paddingAndroidLegacy,
-      final double paddingAndroidAdaptive,
-      final double paddingIOS,
-      final double paddingWEB,
-      final LaunchAssetsStatus status,
-      final bool saving,
-      final String? error}) = _$LaunchAssetsStateImpl;
-  _LaunchAssetsState._() : super._();
-
-  @override
-  String get applicationId;
-  @override
-  String get themeId;
-  @override
-  LaunchAssetsEnvelope? get envelope;
-  @override
-  List<AssetModel> get assets;
-  @override
-  ConstraintsModel? get constraints;
-  @override
-  String? get selectedBackgroundColorHex;
-  @override
-  AssetModel? get selectedForegroundAsset;
-  @override
-  AssetModel? get selectedBackgroundAsset;
-  @override
-  double get paddingAndroidLegacy;
-  @override
-  double get paddingAndroidAdaptive;
-  @override
-  double get paddingIOS;
-  @override
-  double get paddingWEB;
-  @override
-  LaunchAssetsStatus get status;
-  @override
-  bool get saving;
-  @override
-  String? get error;
+  $Res call({
+    Object? applicationId = null,
+    Object? themeId = null,
+    Object? envelope = freezed,
+    Object? assets = null,
+    Object? constraints = freezed,
+    Object? selectedBackgroundColorHex = freezed,
+    Object? selectedForegroundAsset = freezed,
+    Object? selectedBackgroundAsset = freezed,
+    Object? paddingAndroidLegacy = null,
+    Object? paddingAndroidAdaptive = null,
+    Object? paddingIOS = null,
+    Object? paddingWEB = null,
+    Object? status = null,
+    Object? saving = null,
+    Object? error = freezed,
+  }) {
+    return _then(_LaunchAssetsState(
+      applicationId: null == applicationId
+          ? _self.applicationId
+          : applicationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      themeId: null == themeId
+          ? _self.themeId
+          : themeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      envelope: freezed == envelope
+          ? _self.envelope
+          : envelope // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsEnvelope?,
+      assets: null == assets
+          ? _self._assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<AssetModel>,
+      constraints: freezed == constraints
+          ? _self.constraints
+          : constraints // ignore: cast_nullable_to_non_nullable
+              as ConstraintsModel?,
+      selectedBackgroundColorHex: freezed == selectedBackgroundColorHex
+          ? _self.selectedBackgroundColorHex
+          : selectedBackgroundColorHex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedForegroundAsset: freezed == selectedForegroundAsset
+          ? _self.selectedForegroundAsset
+          : selectedForegroundAsset // ignore: cast_nullable_to_non_nullable
+              as AssetModel?,
+      selectedBackgroundAsset: freezed == selectedBackgroundAsset
+          ? _self.selectedBackgroundAsset
+          : selectedBackgroundAsset // ignore: cast_nullable_to_non_nullable
+              as AssetModel?,
+      paddingAndroidLegacy: null == paddingAndroidLegacy
+          ? _self.paddingAndroidLegacy
+          : paddingAndroidLegacy // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingAndroidAdaptive: null == paddingAndroidAdaptive
+          ? _self.paddingAndroidAdaptive
+          : paddingAndroidAdaptive // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingIOS: null == paddingIOS
+          ? _self.paddingIOS
+          : paddingIOS // ignore: cast_nullable_to_non_nullable
+              as double,
+      paddingWEB: null == paddingWEB
+          ? _self.paddingWEB
+          : paddingWEB // ignore: cast_nullable_to_non_nullable
+              as double,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as LaunchAssetsStatus,
+      saving: null == saving
+          ? _self.saving
+          : saving // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 
   /// Create a copy of LaunchAssetsState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LaunchAssetsStateImplCopyWith<_$LaunchAssetsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $LaunchAssetsEnvelopeCopyWith<$Res>? get envelope {
+    if (_self.envelope == null) {
+      return null;
+    }
+
+    return $LaunchAssetsEnvelopeCopyWith<$Res>(_self.envelope!, (value) {
+      return _then(_self.copyWith(envelope: value));
+    });
+  }
+
+  /// Create a copy of LaunchAssetsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ConstraintsModelCopyWith<$Res>? get constraints {
+    if (_self.constraints == null) {
+      return null;
+    }
+
+    return $ConstraintsModelCopyWith<$Res>(_self.constraints!, (value) {
+      return _then(_self.copyWith(constraints: value));
+    });
+  }
+
+  /// Create a copy of LaunchAssetsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AssetModelCopyWith<$Res>? get selectedForegroundAsset {
+    if (_self.selectedForegroundAsset == null) {
+      return null;
+    }
+
+    return $AssetModelCopyWith<$Res>(_self.selectedForegroundAsset!, (value) {
+      return _then(_self.copyWith(selectedForegroundAsset: value));
+    });
+  }
+
+  /// Create a copy of LaunchAssetsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AssetModelCopyWith<$Res>? get selectedBackgroundAsset {
+    if (_self.selectedBackgroundAsset == null) {
+      return null;
+    }
+
+    return $AssetModelCopyWith<$Res>(_self.selectedBackgroundAsset!, (value) {
+      return _then(_self.copyWith(selectedBackgroundAsset: value));
+    });
+  }
 }
+
+// dart format on

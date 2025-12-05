@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
@@ -105,7 +105,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   }
 
   Future<void> _pickEmbedded() async {
-    final embeds = context.read<UpdateThemCubit>().state.embeds;
+    final embeds = context.read<UpdateThemCubit>().state.embeddedResources;
     final picked = await EmbedPickerDialog.show(
       context,
       title: 'Select embedded resource',

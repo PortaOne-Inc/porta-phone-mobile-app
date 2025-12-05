@@ -9,7 +9,7 @@ enum ApplicationDetailsStateStatus {
 }
 
 @freezed
-class ApplicationDetailsState with _$ApplicationDetailsState {
+sealed class ApplicationDetailsState with _$ApplicationDetailsState {
   const factory ApplicationDetailsState({
     required ApplicationDetailsStateStatus status,
     @Default([]) List<ThemeModel> themes,

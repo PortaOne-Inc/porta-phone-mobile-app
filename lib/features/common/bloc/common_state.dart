@@ -1,7 +1,7 @@
 part of 'common_bloc.dart';
 
 @freezed
-class CommonState with _$CommonState {
+sealed class CommonState with _$CommonState {
   const factory CommonState.initial({
     @Default(ThemeMode.system) ThemeMode themeMode,
   }) = _Initial;

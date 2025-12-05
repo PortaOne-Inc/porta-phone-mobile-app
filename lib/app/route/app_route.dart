@@ -277,7 +277,8 @@ class AppRoute {
                           applicationId: applicationId,
                           themeId: themeId,
                           watchApplicationAssetsUsecase: getIt.get(),
-                          watchEmbedsUsecase: getIt.get(),
+                          // watchEmbedsUsecase: getIt.get(),
+                          getApplicationEmbedsUsecase: getIt.get(),
                         ),
                       ),
                       BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit())

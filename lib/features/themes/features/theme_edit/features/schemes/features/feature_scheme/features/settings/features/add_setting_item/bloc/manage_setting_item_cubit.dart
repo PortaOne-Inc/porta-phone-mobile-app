@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
@@ -23,9 +24,9 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
   }
 
   final AppConfigSettingsItem? item;
-  final List<EmbeddedResource> embedded;
+  final List<EmbeddedResourceModel> embedded;
 
-  void assignEmbeddedPage(EmbeddedResource? embeddedResource) {
+  void assignEmbeddedPage(EmbeddedResourceModel? embeddedResource) {
     emit(state.copyWith(selectedEmbeddedResource: embeddedResource));
   }
 

@@ -6,9 +6,9 @@ part of 'configurator_theme_settings.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ConfiguratorThemeSettingsImpl _$$ConfiguratorThemeSettingsImplFromJson(
+_ConfiguratorThemeSettings _$ConfiguratorThemeSettingsFromJson(
         Map<String, dynamic> json) =>
-    _$ConfiguratorThemeSettingsImpl(
+    _ConfiguratorThemeSettings(
       seedColor:
           const CSSColorConverter().fromJson(json['seedColor'] as String),
       lightColorSchemeOverride: json['lightColorSchemeOverride'] == null
@@ -22,8 +22,8 @@ _$ConfiguratorThemeSettingsImpl _$$ConfiguratorThemeSettingsImplFromJson(
       fontFamily: json['fontFamily'] as String?,
     );
 
-Map<String, dynamic> _$$ConfiguratorThemeSettingsImplToJson(
-        _$ConfiguratorThemeSettingsImpl instance) =>
+Map<String, dynamic> _$ConfiguratorThemeSettingsToJson(
+        _ConfiguratorThemeSettings instance) =>
     <String, dynamic>{
       'seedColor': const CSSColorConverter().toJson(instance.seedColor),
       'lightColorSchemeOverride': instance.lightColorSchemeOverride,
@@ -31,110 +31,105 @@ Map<String, dynamic> _$$ConfiguratorThemeSettingsImplToJson(
       'fontFamily': instance.fontFamily,
     };
 
-_$ConfiguratorColorSchemeOverrideImpl
-    _$$ConfiguratorColorSchemeOverrideImplFromJson(Map<String, dynamic> json) =>
-        _$ConfiguratorColorSchemeOverrideImpl(
-          primary: _$JsonConverterFromJson<String, Color>(
-              json['primary'], const CSSColorConverter().fromJson),
-          onPrimary: _$JsonConverterFromJson<String, Color>(
-              json['onPrimary'], const CSSColorConverter().fromJson),
-          primaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['primaryContainer'], const CSSColorConverter().fromJson),
-          onPrimaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['onPrimaryContainer'], const CSSColorConverter().fromJson),
-          primaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['primaryFixed'], const CSSColorConverter().fromJson),
-          primaryFixedDim: _$JsonConverterFromJson<String, Color>(
-              json['primaryFixedDim'], const CSSColorConverter().fromJson),
-          onPrimaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['onPrimaryFixed'], const CSSColorConverter().fromJson),
-          onPrimaryFixedVariant: _$JsonConverterFromJson<String, Color>(
-              json['onPrimaryFixedVariant'],
-              const CSSColorConverter().fromJson),
-          secondary: _$JsonConverterFromJson<String, Color>(
-              json['secondary'], const CSSColorConverter().fromJson),
-          onSecondary: _$JsonConverterFromJson<String, Color>(
-              json['onSecondary'], const CSSColorConverter().fromJson),
-          secondaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['secondaryContainer'], const CSSColorConverter().fromJson),
-          onSecondaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['onSecondaryContainer'], const CSSColorConverter().fromJson),
-          secondaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['secondaryFixed'], const CSSColorConverter().fromJson),
-          secondaryFixedDim: _$JsonConverterFromJson<String, Color>(
-              json['secondaryFixedDim'], const CSSColorConverter().fromJson),
-          onSecondaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['onSecondaryFixed'], const CSSColorConverter().fromJson),
-          onSecondaryFixedVariant: _$JsonConverterFromJson<String, Color>(
-              json['onSecondaryFixedVariant'],
-              const CSSColorConverter().fromJson),
-          tertiary: _$JsonConverterFromJson<String, Color>(
-              json['tertiary'], const CSSColorConverter().fromJson),
-          onTertiary: _$JsonConverterFromJson<String, Color>(
-              json['onTertiary'], const CSSColorConverter().fromJson),
-          tertiaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['tertiaryContainer'], const CSSColorConverter().fromJson),
-          onTertiaryContainer: _$JsonConverterFromJson<String, Color>(
-              json['onTertiaryContainer'], const CSSColorConverter().fromJson),
-          tertiaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['tertiaryFixed'], const CSSColorConverter().fromJson),
-          tertiaryFixedDim: _$JsonConverterFromJson<String, Color>(
-              json['tertiaryFixedDim'], const CSSColorConverter().fromJson),
-          onTertiaryFixed: _$JsonConverterFromJson<String, Color>(
-              json['onTertiaryFixed'], const CSSColorConverter().fromJson),
-          onTertiaryFixedVariant: _$JsonConverterFromJson<String, Color>(
-              json['onTertiaryFixedVariant'],
-              const CSSColorConverter().fromJson),
-          error: _$JsonConverterFromJson<String, Color>(
-              json['error'], const CSSColorConverter().fromJson),
-          onError: _$JsonConverterFromJson<String, Color>(
-              json['onError'], const CSSColorConverter().fromJson),
-          errorContainer: _$JsonConverterFromJson<String, Color>(
-              json['errorContainer'], const CSSColorConverter().fromJson),
-          onErrorContainer: _$JsonConverterFromJson<String, Color>(
-              json['onErrorContainer'], const CSSColorConverter().fromJson),
-          outline: _$JsonConverterFromJson<String, Color>(
-              json['outline'], const CSSColorConverter().fromJson),
-          outlineVariant: _$JsonConverterFromJson<String, Color>(
-              json['outlineVariant'], const CSSColorConverter().fromJson),
-          surface: _$JsonConverterFromJson<String, Color>(
-              json['surface'], const CSSColorConverter().fromJson),
-          onSurface: _$JsonConverterFromJson<String, Color>(
-              json['onSurface'], const CSSColorConverter().fromJson),
-          surfaceDim: _$JsonConverterFromJson<String, Color>(
-              json['surfaceDim'], const CSSColorConverter().fromJson),
-          surfaceBright: _$JsonConverterFromJson<String, Color>(
-              json['surfaceBright'], const CSSColorConverter().fromJson),
-          surfaceContainerLowest: _$JsonConverterFromJson<String, Color>(
-              json['surfaceContainerLowest'],
-              const CSSColorConverter().fromJson),
-          surfaceContainerLow: _$JsonConverterFromJson<String, Color>(
-              json['surfaceContainerLow'], const CSSColorConverter().fromJson),
-          surfaceContainer: _$JsonConverterFromJson<String, Color>(
-              json['surfaceContainer'], const CSSColorConverter().fromJson),
-          surfaceContainerHigh: _$JsonConverterFromJson<String, Color>(
-              json['surfaceContainerHigh'], const CSSColorConverter().fromJson),
-          surfaceContainerHighest: _$JsonConverterFromJson<String, Color>(
-              json['surfaceContainerHighest'],
-              const CSSColorConverter().fromJson),
-          onSurfaceVariant: _$JsonConverterFromJson<String, Color>(
-              json['onSurfaceVariant'], const CSSColorConverter().fromJson),
-          inverseSurface: _$JsonConverterFromJson<String, Color>(
-              json['inverseSurface'], const CSSColorConverter().fromJson),
-          onInverseSurface: _$JsonConverterFromJson<String, Color>(
-              json['onInverseSurface'], const CSSColorConverter().fromJson),
-          inversePrimary: _$JsonConverterFromJson<String, Color>(
-              json['inversePrimary'], const CSSColorConverter().fromJson),
-          shadow: _$JsonConverterFromJson<String, Color>(
-              json['shadow'], const CSSColorConverter().fromJson),
-          scrim: _$JsonConverterFromJson<String, Color>(
-              json['scrim'], const CSSColorConverter().fromJson),
-          surfaceTint: _$JsonConverterFromJson<String, Color>(
-              json['surfaceTint'], const CSSColorConverter().fromJson),
-        );
+_ConfiguratorColorSchemeOverride _$ConfiguratorColorSchemeOverrideFromJson(
+        Map<String, dynamic> json) =>
+    _ConfiguratorColorSchemeOverride(
+      primary: _$JsonConverterFromJson<String, Color>(
+          json['primary'], const CSSColorConverter().fromJson),
+      onPrimary: _$JsonConverterFromJson<String, Color>(
+          json['onPrimary'], const CSSColorConverter().fromJson),
+      primaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['primaryContainer'], const CSSColorConverter().fromJson),
+      onPrimaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['onPrimaryContainer'], const CSSColorConverter().fromJson),
+      primaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['primaryFixed'], const CSSColorConverter().fromJson),
+      primaryFixedDim: _$JsonConverterFromJson<String, Color>(
+          json['primaryFixedDim'], const CSSColorConverter().fromJson),
+      onPrimaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['onPrimaryFixed'], const CSSColorConverter().fromJson),
+      onPrimaryFixedVariant: _$JsonConverterFromJson<String, Color>(
+          json['onPrimaryFixedVariant'], const CSSColorConverter().fromJson),
+      secondary: _$JsonConverterFromJson<String, Color>(
+          json['secondary'], const CSSColorConverter().fromJson),
+      onSecondary: _$JsonConverterFromJson<String, Color>(
+          json['onSecondary'], const CSSColorConverter().fromJson),
+      secondaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['secondaryContainer'], const CSSColorConverter().fromJson),
+      onSecondaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['onSecondaryContainer'], const CSSColorConverter().fromJson),
+      secondaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['secondaryFixed'], const CSSColorConverter().fromJson),
+      secondaryFixedDim: _$JsonConverterFromJson<String, Color>(
+          json['secondaryFixedDim'], const CSSColorConverter().fromJson),
+      onSecondaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['onSecondaryFixed'], const CSSColorConverter().fromJson),
+      onSecondaryFixedVariant: _$JsonConverterFromJson<String, Color>(
+          json['onSecondaryFixedVariant'], const CSSColorConverter().fromJson),
+      tertiary: _$JsonConverterFromJson<String, Color>(
+          json['tertiary'], const CSSColorConverter().fromJson),
+      onTertiary: _$JsonConverterFromJson<String, Color>(
+          json['onTertiary'], const CSSColorConverter().fromJson),
+      tertiaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['tertiaryContainer'], const CSSColorConverter().fromJson),
+      onTertiaryContainer: _$JsonConverterFromJson<String, Color>(
+          json['onTertiaryContainer'], const CSSColorConverter().fromJson),
+      tertiaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['tertiaryFixed'], const CSSColorConverter().fromJson),
+      tertiaryFixedDim: _$JsonConverterFromJson<String, Color>(
+          json['tertiaryFixedDim'], const CSSColorConverter().fromJson),
+      onTertiaryFixed: _$JsonConverterFromJson<String, Color>(
+          json['onTertiaryFixed'], const CSSColorConverter().fromJson),
+      onTertiaryFixedVariant: _$JsonConverterFromJson<String, Color>(
+          json['onTertiaryFixedVariant'], const CSSColorConverter().fromJson),
+      error: _$JsonConverterFromJson<String, Color>(
+          json['error'], const CSSColorConverter().fromJson),
+      onError: _$JsonConverterFromJson<String, Color>(
+          json['onError'], const CSSColorConverter().fromJson),
+      errorContainer: _$JsonConverterFromJson<String, Color>(
+          json['errorContainer'], const CSSColorConverter().fromJson),
+      onErrorContainer: _$JsonConverterFromJson<String, Color>(
+          json['onErrorContainer'], const CSSColorConverter().fromJson),
+      outline: _$JsonConverterFromJson<String, Color>(
+          json['outline'], const CSSColorConverter().fromJson),
+      outlineVariant: _$JsonConverterFromJson<String, Color>(
+          json['outlineVariant'], const CSSColorConverter().fromJson),
+      surface: _$JsonConverterFromJson<String, Color>(
+          json['surface'], const CSSColorConverter().fromJson),
+      onSurface: _$JsonConverterFromJson<String, Color>(
+          json['onSurface'], const CSSColorConverter().fromJson),
+      surfaceDim: _$JsonConverterFromJson<String, Color>(
+          json['surfaceDim'], const CSSColorConverter().fromJson),
+      surfaceBright: _$JsonConverterFromJson<String, Color>(
+          json['surfaceBright'], const CSSColorConverter().fromJson),
+      surfaceContainerLowest: _$JsonConverterFromJson<String, Color>(
+          json['surfaceContainerLowest'], const CSSColorConverter().fromJson),
+      surfaceContainerLow: _$JsonConverterFromJson<String, Color>(
+          json['surfaceContainerLow'], const CSSColorConverter().fromJson),
+      surfaceContainer: _$JsonConverterFromJson<String, Color>(
+          json['surfaceContainer'], const CSSColorConverter().fromJson),
+      surfaceContainerHigh: _$JsonConverterFromJson<String, Color>(
+          json['surfaceContainerHigh'], const CSSColorConverter().fromJson),
+      surfaceContainerHighest: _$JsonConverterFromJson<String, Color>(
+          json['surfaceContainerHighest'], const CSSColorConverter().fromJson),
+      onSurfaceVariant: _$JsonConverterFromJson<String, Color>(
+          json['onSurfaceVariant'], const CSSColorConverter().fromJson),
+      inverseSurface: _$JsonConverterFromJson<String, Color>(
+          json['inverseSurface'], const CSSColorConverter().fromJson),
+      onInverseSurface: _$JsonConverterFromJson<String, Color>(
+          json['onInverseSurface'], const CSSColorConverter().fromJson),
+      inversePrimary: _$JsonConverterFromJson<String, Color>(
+          json['inversePrimary'], const CSSColorConverter().fromJson),
+      shadow: _$JsonConverterFromJson<String, Color>(
+          json['shadow'], const CSSColorConverter().fromJson),
+      scrim: _$JsonConverterFromJson<String, Color>(
+          json['scrim'], const CSSColorConverter().fromJson),
+      surfaceTint: _$JsonConverterFromJson<String, Color>(
+          json['surfaceTint'], const CSSColorConverter().fromJson),
+    );
 
-Map<String, dynamic> _$$ConfiguratorColorSchemeOverrideImplToJson(
-        _$ConfiguratorColorSchemeOverrideImpl instance) =>
+Map<String, dynamic> _$ConfiguratorColorSchemeOverrideToJson(
+        _ConfiguratorColorSchemeOverride instance) =>
     <String, dynamic>{
       'primary': _$JsonConverterToJson<String, Color>(
           instance.primary, const CSSColorConverter().toJson),

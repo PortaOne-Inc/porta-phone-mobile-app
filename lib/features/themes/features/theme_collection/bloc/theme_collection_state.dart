@@ -9,7 +9,7 @@ enum ThemeCollectionStateStatus {
 }
 
 @freezed
-class ThemeCollectionState with _$ThemeCollectionState {
+sealed class ThemeCollectionState with _$ThemeCollectionState {
   const factory ThemeCollectionState({
     required ThemeCollectionStateStatus status,
     @Default([]) List<ThemeModel> themes,

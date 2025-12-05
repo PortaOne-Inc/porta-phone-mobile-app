@@ -26,7 +26,7 @@ class UpdateLocalConfigEvent with _$UpdateLocalConfigEvent implements Configurat
 }
 
 @Freezed(copyWith: false)
-class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements ConfiguratorEvent {
+sealed class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements ConfiguratorEvent {
   const factory UpdateColorSchemeEvent.chane(String key, Color? color) = _UpdateColorSchemeEvent;
 }
 
@@ -158,8 +158,6 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
 
   const factory ThemeWidgetEvent.setGroupTitleListTileTextColor(String? color) = _SetGroupTitleListTileTextColor;
 
-  const factory ThemeWidgetEvent.setCallActions(CallActionsWidgetConfig cfg) = _SetCallActions;
-
   // Bar
   const factory ThemeWidgetEvent.setBar(BarWidgetConfig bar) = _SetBar;
 
@@ -281,7 +279,7 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
 }
 
 @Freezed(copyWith: false)
-class UpdateVariantEvent with _$UpdateVariantEvent implements ConfiguratorEvent {
+sealed class UpdateVariantEvent with _$UpdateVariantEvent implements ConfiguratorEvent {
   const factory UpdateVariantEvent(BrightnessVariant variant) = _UpdateVariantEvent;
 }
 

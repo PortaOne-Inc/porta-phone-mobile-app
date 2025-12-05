@@ -68,6 +68,9 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                 onChange: (AppConfigMain value) {
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setMainConfig(value));
                 },
+                onCacheSelectedTabChange: (bool value) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setBottomMenuCacheSelectedTab(value));
+                },
               ),
               SettingSchemeScreen(
                 config: appConfig.settingsConfig,

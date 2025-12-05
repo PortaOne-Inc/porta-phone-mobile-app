@@ -3,7 +3,7 @@ part of 'launch_assets_bloc.dart';
 enum LaunchAssetsStatus { initial, loading, loaded, failure }
 
 @freezed
-class LaunchAssetsState with _$LaunchAssetsState {
+sealed class LaunchAssetsState with _$LaunchAssetsState {
   factory LaunchAssetsState({
     required String applicationId,
     required String themeId,

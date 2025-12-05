@@ -10,7 +10,7 @@ enum DeploymentDetailsStatus {
 }
 
 @freezed
-class DeploymentState with _$DeploymentState {
+sealed class DeploymentState with _$DeploymentState {
   const factory DeploymentState({
     @Default(DeploymentDetailsStatus.initial) DeploymentDetailsStatus status,
     @Default(ApplicationDeploy()) ApplicationDeploy applicationDeploy,

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,124 +9,75 @@ part of 'publication_resources_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PublicationResourcesState {
-  PubResStatus get status => throw _privateConstructorUsedError;
-  List<PublicationResourceModel> get items =>
-      throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError; // create
-  bool get creating => throw _privateConstructorUsedError;
-  String? get createError => throw _privateConstructorUsedError; // update
-  Set<String> get updatingIds => throw _privateConstructorUsedError;
-  String? get updateError => throw _privateConstructorUsedError; // delete
-  Set<String> get deletingIds => throw _privateConstructorUsedError;
-  String? get deleteError => throw _privateConstructorUsedError;
+  PubResStatus get status;
+  List<PublicationResourceModel> get items;
+  String? get error; // create
+  bool get creating;
+  String? get createError; // update
+  Set<String> get updatingIds;
+  String? get updateError; // delete
+  Set<String> get deletingIds;
+  String? get deleteError;
 
   /// Create a copy of PublicationResourcesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PublicationResourcesStateCopyWith<PublicationResourcesState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PublicationResourcesStateCopyWith<$Res> {
-  factory $PublicationResourcesStateCopyWith(PublicationResourcesState value,
-          $Res Function(PublicationResourcesState) then) =
-      _$PublicationResourcesStateCopyWithImpl<$Res, PublicationResourcesState>;
-  @useResult
-  $Res call(
-      {PubResStatus status,
-      List<PublicationResourceModel> items,
-      String? error,
-      bool creating,
-      String? createError,
-      Set<String> updatingIds,
-      String? updateError,
-      Set<String> deletingIds,
-      String? deleteError});
-}
-
-/// @nodoc
-class _$PublicationResourcesStateCopyWithImpl<$Res,
-        $Val extends PublicationResourcesState>
-    implements $PublicationResourcesStateCopyWith<$Res> {
-  _$PublicationResourcesStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PublicationResourcesState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PublicationResourcesStateCopyWith<PublicationResourcesState> get copyWith =>
+      _$PublicationResourcesStateCopyWithImpl<PublicationResourcesState>(
+          this as PublicationResourcesState, _$identity);
+
   @override
-  $Res call({
-    Object? status = null,
-    Object? items = null,
-    Object? error = freezed,
-    Object? creating = null,
-    Object? createError = freezed,
-    Object? updatingIds = null,
-    Object? updateError = freezed,
-    Object? deletingIds = null,
-    Object? deleteError = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as PubResStatus,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<PublicationResourceModel>,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String?,
-      creating: null == creating
-          ? _value.creating
-          : creating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createError: freezed == createError
-          ? _value.createError
-          : createError // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatingIds: null == updatingIds
-          ? _value.updatingIds
-          : updatingIds // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      updateError: freezed == updateError
-          ? _value.updateError
-          : updateError // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deletingIds: null == deletingIds
-          ? _value.deletingIds
-          : deletingIds // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      deleteError: freezed == deleteError
-          ? _value.deleteError
-          : deleteError // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PublicationResourcesState &&
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.creating, creating) ||
+                other.creating == creating) &&
+            (identical(other.createError, createError) ||
+                other.createError == createError) &&
+            const DeepCollectionEquality()
+                .equals(other.updatingIds, updatingIds) &&
+            (identical(other.updateError, updateError) ||
+                other.updateError == updateError) &&
+            const DeepCollectionEquality()
+                .equals(other.deletingIds, deletingIds) &&
+            (identical(other.deleteError, deleteError) ||
+                other.deleteError == deleteError));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(items),
+      error,
+      creating,
+      createError,
+      const DeepCollectionEquality().hash(updatingIds),
+      updateError,
+      const DeepCollectionEquality().hash(deletingIds),
+      deleteError);
+
+  @override
+  String toString() {
+    return 'PublicationResourcesState(status: $status, items: $items, error: $error, creating: $creating, createError: $createError, updatingIds: $updatingIds, updateError: $updateError, deletingIds: $deletingIds, deleteError: $deleteError)';
   }
 }
 
 /// @nodoc
-abstract class _$$PublicationResourcesStateImplCopyWith<$Res>
-    implements $PublicationResourcesStateCopyWith<$Res> {
-  factory _$$PublicationResourcesStateImplCopyWith(
-          _$PublicationResourcesStateImpl value,
-          $Res Function(_$PublicationResourcesStateImpl) then) =
-      __$$PublicationResourcesStateImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PublicationResourcesStateCopyWith<$Res> {
+  factory $PublicationResourcesStateCopyWith(PublicationResourcesState value,
+          $Res Function(PublicationResourcesState) _then) =
+      _$PublicationResourcesStateCopyWithImpl;
   @useResult
   $Res call(
       {PubResStatus status,
@@ -141,14 +92,12 @@ abstract class _$$PublicationResourcesStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PublicationResourcesStateImplCopyWithImpl<$Res>
-    extends _$PublicationResourcesStateCopyWithImpl<$Res,
-        _$PublicationResourcesStateImpl>
-    implements _$$PublicationResourcesStateImplCopyWith<$Res> {
-  __$$PublicationResourcesStateImplCopyWithImpl(
-      _$PublicationResourcesStateImpl _value,
-      $Res Function(_$PublicationResourcesStateImpl) _then)
-      : super(_value, _then);
+class _$PublicationResourcesStateCopyWithImpl<$Res>
+    implements $PublicationResourcesStateCopyWith<$Res> {
+  _$PublicationResourcesStateCopyWithImpl(this._self, this._then);
+
+  final PublicationResourcesState _self;
+  final $Res Function(PublicationResourcesState) _then;
 
   /// Create a copy of PublicationResourcesState
   /// with the given fields replaced by the non-null parameter values.
@@ -165,51 +114,261 @@ class __$$PublicationResourcesStateImplCopyWithImpl<$Res>
     Object? deletingIds = null,
     Object? deleteError = freezed,
   }) {
-    return _then(_$PublicationResourcesStateImpl(
+    return _then(_self.copyWith(
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as PubResStatus,
       items: null == items
-          ? _value._items
+          ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<PublicationResourceModel>,
       error: freezed == error
-          ? _value.error
+          ? _self.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
       creating: null == creating
-          ? _value.creating
+          ? _self.creating
           : creating // ignore: cast_nullable_to_non_nullable
               as bool,
       createError: freezed == createError
-          ? _value.createError
+          ? _self.createError
           : createError // ignore: cast_nullable_to_non_nullable
               as String?,
       updatingIds: null == updatingIds
-          ? _value._updatingIds
+          ? _self.updatingIds
           : updatingIds // ignore: cast_nullable_to_non_nullable
               as Set<String>,
       updateError: freezed == updateError
-          ? _value.updateError
+          ? _self.updateError
           : updateError // ignore: cast_nullable_to_non_nullable
               as String?,
       deletingIds: null == deletingIds
-          ? _value._deletingIds
+          ? _self.deletingIds
           : deletingIds // ignore: cast_nullable_to_non_nullable
               as Set<String>,
       deleteError: freezed == deleteError
-          ? _value.deleteError
+          ? _self.deleteError
           : deleteError // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [PublicationResourcesState].
+extension PublicationResourcesStatePatterns on PublicationResourcesState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PublicationResourcesState value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PublicationResourcesState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PublicationResourcesState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            PubResStatus status,
+            List<PublicationResourceModel> items,
+            String? error,
+            bool creating,
+            String? createError,
+            Set<String> updatingIds,
+            String? updateError,
+            Set<String> deletingIds,
+            String? deleteError)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState() when $default != null:
+        return $default(
+            _that.status,
+            _that.items,
+            _that.error,
+            _that.creating,
+            _that.createError,
+            _that.updatingIds,
+            _that.updateError,
+            _that.deletingIds,
+            _that.deleteError);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            PubResStatus status,
+            List<PublicationResourceModel> items,
+            String? error,
+            bool creating,
+            String? createError,
+            Set<String> updatingIds,
+            String? updateError,
+            Set<String> deletingIds,
+            String? deleteError)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState():
+        return $default(
+            _that.status,
+            _that.items,
+            _that.error,
+            _that.creating,
+            _that.createError,
+            _that.updatingIds,
+            _that.updateError,
+            _that.deletingIds,
+            _that.deleteError);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            PubResStatus status,
+            List<PublicationResourceModel> items,
+            String? error,
+            bool creating,
+            String? createError,
+            Set<String> updatingIds,
+            String? updateError,
+            Set<String> deletingIds,
+            String? deleteError)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PublicationResourcesState() when $default != null:
+        return $default(
+            _that.status,
+            _that.items,
+            _that.error,
+            _that.creating,
+            _that.createError,
+            _that.updatingIds,
+            _that.updateError,
+            _that.deletingIds,
+            _that.deleteError);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$PublicationResourcesStateImpl implements _PublicationResourcesState {
-  const _$PublicationResourcesStateImpl(
+class _PublicationResourcesState implements PublicationResourcesState {
+  const _PublicationResourcesState(
       {this.status = PubResStatus.initial,
       final List<PublicationResourceModel> items =
           const <PublicationResourceModel>[],
@@ -271,16 +430,21 @@ class _$PublicationResourcesStateImpl implements _PublicationResourcesState {
   @override
   final String? deleteError;
 
+  /// Create a copy of PublicationResourcesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'PublicationResourcesState(status: $status, items: $items, error: $error, creating: $creating, createError: $createError, updatingIds: $updatingIds, updateError: $updateError, deletingIds: $deletingIds, deleteError: $deleteError)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PublicationResourcesStateCopyWith<_PublicationResourcesState>
+      get copyWith =>
+          __$PublicationResourcesStateCopyWithImpl<_PublicationResourcesState>(
+              this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PublicationResourcesStateImpl &&
+            other is _PublicationResourcesState &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.error, error) || other.error == error) &&
@@ -311,51 +475,94 @@ class _$PublicationResourcesStateImpl implements _PublicationResourcesState {
       const DeepCollectionEquality().hash(_deletingIds),
       deleteError);
 
+  @override
+  String toString() {
+    return 'PublicationResourcesState(status: $status, items: $items, error: $error, creating: $creating, createError: $createError, updatingIds: $updatingIds, updateError: $updateError, deletingIds: $deletingIds, deleteError: $deleteError)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PublicationResourcesStateCopyWith<$Res>
+    implements $PublicationResourcesStateCopyWith<$Res> {
+  factory _$PublicationResourcesStateCopyWith(_PublicationResourcesState value,
+          $Res Function(_PublicationResourcesState) _then) =
+      __$PublicationResourcesStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {PubResStatus status,
+      List<PublicationResourceModel> items,
+      String? error,
+      bool creating,
+      String? createError,
+      Set<String> updatingIds,
+      String? updateError,
+      Set<String> deletingIds,
+      String? deleteError});
+}
+
+/// @nodoc
+class __$PublicationResourcesStateCopyWithImpl<$Res>
+    implements _$PublicationResourcesStateCopyWith<$Res> {
+  __$PublicationResourcesStateCopyWithImpl(this._self, this._then);
+
+  final _PublicationResourcesState _self;
+  final $Res Function(_PublicationResourcesState) _then;
+
   /// Create a copy of PublicationResourcesState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PublicationResourcesStateImplCopyWith<_$PublicationResourcesStateImpl>
-      get copyWith => __$$PublicationResourcesStateImplCopyWithImpl<
-          _$PublicationResourcesStateImpl>(this, _$identity);
+  $Res call({
+    Object? status = null,
+    Object? items = null,
+    Object? error = freezed,
+    Object? creating = null,
+    Object? createError = freezed,
+    Object? updatingIds = null,
+    Object? updateError = freezed,
+    Object? deletingIds = null,
+    Object? deleteError = freezed,
+  }) {
+    return _then(_PublicationResourcesState(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PubResStatus,
+      items: null == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<PublicationResourceModel>,
+      error: freezed == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+      creating: null == creating
+          ? _self.creating
+          : creating // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createError: freezed == createError
+          ? _self.createError
+          : createError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatingIds: null == updatingIds
+          ? _self._updatingIds
+          : updatingIds // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      updateError: freezed == updateError
+          ? _self.updateError
+          : updateError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deletingIds: null == deletingIds
+          ? _self._deletingIds
+          : deletingIds // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      deleteError: freezed == deleteError
+          ? _self.deleteError
+          : deleteError // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
-abstract class _PublicationResourcesState implements PublicationResourcesState {
-  const factory _PublicationResourcesState(
-      {final PubResStatus status,
-      final List<PublicationResourceModel> items,
-      final String? error,
-      final bool creating,
-      final String? createError,
-      final Set<String> updatingIds,
-      final String? updateError,
-      final Set<String> deletingIds,
-      final String? deleteError}) = _$PublicationResourcesStateImpl;
-
-  @override
-  PubResStatus get status;
-  @override
-  List<PublicationResourceModel> get items;
-  @override
-  String? get error; // create
-  @override
-  bool get creating;
-  @override
-  String? get createError; // update
-  @override
-  Set<String> get updatingIds;
-  @override
-  String? get updateError; // delete
-  @override
-  Set<String> get deletingIds;
-  @override
-  String? get deleteError;
-
-  /// Create a copy of PublicationResourcesState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PublicationResourcesStateImplCopyWith<_$PublicationResourcesStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

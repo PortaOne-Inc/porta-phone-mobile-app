@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:domain/domain.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/core/widgets/dropdown_button.dart';
 import 'package:webtrit_configurator/features/features.dart';
 import 'package:webtrit_phone/extensions/string.dart';
@@ -130,7 +131,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                               margin: EdgeInsets.zero,
                               child: ListTile(
                                 title: Text(state.selectedEmbeddedResource!.uri),
-                                subtitle: Text(state.selectedEmbeddedResource!.id),
+                                subtitle: Text(state.selectedEmbeddedResource!.id!),
                               ),
                             ),
                       trailing: state.selectedEmbeddedResource == null ? const Icon(Icons.add) : const Icon(Icons.edit),
@@ -148,7 +149,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
 
   Future<void> _addEmbeddedResource() async {
     final selectedEmbedded =
-        await context.pushNamed<EmbeddedResource>(SchemeRoute.appFeatureSchemeCollectionEmbedded.name);
+        await context.pushNamed<EmbeddedResourceModel>(SchemeRoute.appFeatureSchemeCollectionEmbedded.name);
     if (selectedEmbedded != null) {
       cubit.assignEmbeddedPage(selectedEmbedded);
     }

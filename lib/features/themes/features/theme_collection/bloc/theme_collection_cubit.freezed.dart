@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,32 +9,63 @@ part of 'theme_collection_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ThemeCollectionState {
-  ThemeCollectionStateStatus get status => throw _privateConstructorUsedError;
-  List<ThemeModel> get themes => throw _privateConstructorUsedError;
-  ThemeModel? get deleteTheme => throw _privateConstructorUsedError;
-  ApplicationModel? get application => throw _privateConstructorUsedError;
-  ApplicationModel? get deleteApplication => throw _privateConstructorUsedError;
-  Object? get error => throw _privateConstructorUsedError;
+  ThemeCollectionStateStatus get status;
+  List<ThemeModel> get themes;
+  ThemeModel? get deleteTheme;
+  ApplicationModel? get application;
+  ApplicationModel? get deleteApplication;
+  Object? get error;
 
   /// Create a copy of ThemeCollectionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ThemeCollectionStateCopyWith<ThemeCollectionState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ThemeCollectionStateCopyWithImpl<ThemeCollectionState>(
+          this as ThemeCollectionState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ThemeCollectionState &&
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other.themes, themes) &&
+            (identical(other.deleteTheme, deleteTheme) ||
+                other.deleteTheme == deleteTheme) &&
+            (identical(other.application, application) ||
+                other.application == application) &&
+            (identical(other.deleteApplication, deleteApplication) ||
+                other.deleteApplication == deleteApplication) &&
+            const DeepCollectionEquality().equals(other.error, error));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(themes),
+      deleteTheme,
+      application,
+      deleteApplication,
+      const DeepCollectionEquality().hash(error));
+
+  @override
+  String toString() {
+    return 'ThemeCollectionState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
+  }
 }
 
 /// @nodoc
-abstract class $ThemeCollectionStateCopyWith<$Res> {
+abstract mixin class $ThemeCollectionStateCopyWith<$Res> {
   factory $ThemeCollectionStateCopyWith(ThemeCollectionState value,
-          $Res Function(ThemeCollectionState) then) =
-      _$ThemeCollectionStateCopyWithImpl<$Res, ThemeCollectionState>;
+          $Res Function(ThemeCollectionState) _then) =
+      _$ThemeCollectionStateCopyWithImpl;
   @useResult
   $Res call(
       {ThemeCollectionStateStatus status,
@@ -50,15 +81,12 @@ abstract class $ThemeCollectionStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ThemeCollectionStateCopyWithImpl<$Res,
-        $Val extends ThemeCollectionState>
+class _$ThemeCollectionStateCopyWithImpl<$Res>
     implements $ThemeCollectionStateCopyWith<$Res> {
-  _$ThemeCollectionStateCopyWithImpl(this._value, this._then);
+  _$ThemeCollectionStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ThemeCollectionState _self;
+  final $Res Function(ThemeCollectionState) _then;
 
   /// Create a copy of ThemeCollectionState
   /// with the given fields replaced by the non-null parameter values.
@@ -72,29 +100,29 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
     Object? deleteApplication = freezed,
     Object? error = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as ThemeCollectionStateStatus,
       themes: null == themes
-          ? _value.themes
+          ? _self.themes
           : themes // ignore: cast_nullable_to_non_nullable
               as List<ThemeModel>,
       deleteTheme: freezed == deleteTheme
-          ? _value.deleteTheme
+          ? _self.deleteTheme
           : deleteTheme // ignore: cast_nullable_to_non_nullable
               as ThemeModel?,
       application: freezed == application
-          ? _value.application
+          ? _self.application
           : application // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
       deleteApplication: freezed == deleteApplication
-          ? _value.deleteApplication
+          ? _self.deleteApplication
           : deleteApplication // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      error: freezed == error ? _value.error : error,
-    ) as $Val);
+      error: freezed == error ? _self.error : error,
+    ));
   }
 
   /// Create a copy of ThemeCollectionState
@@ -102,12 +130,12 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ThemeModelCopyWith<$Res>? get deleteTheme {
-    if (_value.deleteTheme == null) {
+    if (_self.deleteTheme == null) {
       return null;
     }
 
-    return $ThemeModelCopyWith<$Res>(_value.deleteTheme!, (value) {
-      return _then(_value.copyWith(deleteTheme: value) as $Val);
+    return $ThemeModelCopyWith<$Res>(_self.deleteTheme!, (value) {
+      return _then(_self.copyWith(deleteTheme: value));
     });
   }
 
@@ -116,12 +144,12 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get application {
-    if (_value.application == null) {
+    if (_self.application == null) {
       return null;
     }
 
-    return $ApplicationModelCopyWith<$Res>(_value.application!, (value) {
-      return _then(_value.copyWith(application: value) as $Val);
+    return $ApplicationModelCopyWith<$Res>(_self.application!, (value) {
+      return _then(_self.copyWith(application: value));
     });
   }
 
@@ -130,93 +158,197 @@ class _$ThemeCollectionStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get deleteApplication {
-    if (_value.deleteApplication == null) {
+    if (_self.deleteApplication == null) {
       return null;
     }
 
-    return $ApplicationModelCopyWith<$Res>(_value.deleteApplication!, (value) {
-      return _then(_value.copyWith(deleteApplication: value) as $Val);
+    return $ApplicationModelCopyWith<$Res>(_self.deleteApplication!, (value) {
+      return _then(_self.copyWith(deleteApplication: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$ThemeCollectionInitialImplCopyWith<$Res>
-    implements $ThemeCollectionStateCopyWith<$Res> {
-  factory _$$ThemeCollectionInitialImplCopyWith(
-          _$ThemeCollectionInitialImpl value,
-          $Res Function(_$ThemeCollectionInitialImpl) then) =
-      __$$ThemeCollectionInitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ThemeCollectionStateStatus status,
-      List<ThemeModel> themes,
-      ThemeModel? deleteTheme,
-      ApplicationModel? application,
-      ApplicationModel? deleteApplication,
-      Object? error});
+/// Adds pattern-matching-related methods to [ThemeCollectionState].
+extension ThemeCollectionStatePatterns on ThemeCollectionState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ThemeModelCopyWith<$Res>? get deleteTheme;
-  @override
-  $ApplicationModelCopyWith<$Res>? get application;
-  @override
-  $ApplicationModelCopyWith<$Res>? get deleteApplication;
-}
-
-/// @nodoc
-class __$$ThemeCollectionInitialImplCopyWithImpl<$Res>
-    extends _$ThemeCollectionStateCopyWithImpl<$Res,
-        _$ThemeCollectionInitialImpl>
-    implements _$$ThemeCollectionInitialImplCopyWith<$Res> {
-  __$$ThemeCollectionInitialImplCopyWithImpl(
-      _$ThemeCollectionInitialImpl _value,
-      $Res Function(_$ThemeCollectionInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeCollectionState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? themes = null,
-    Object? deleteTheme = freezed,
-    Object? application = freezed,
-    Object? deleteApplication = freezed,
-    Object? error = freezed,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ThemeCollectionInitial value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$ThemeCollectionInitialImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ThemeCollectionStateStatus,
-      themes: null == themes
-          ? _value._themes
-          : themes // ignore: cast_nullable_to_non_nullable
-              as List<ThemeModel>,
-      deleteTheme: freezed == deleteTheme
-          ? _value.deleteTheme
-          : deleteTheme // ignore: cast_nullable_to_non_nullable
-              as ThemeModel?,
-      application: freezed == application
-          ? _value.application
-          : application // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
-      deleteApplication: freezed == deleteApplication
-          ? _value.deleteApplication
-          : deleteApplication // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
-      error: freezed == error ? _value.error : error,
-    ));
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ThemeCollectionInitial value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ThemeCollectionInitial value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            ThemeCollectionStateStatus status,
+            List<ThemeModel> themes,
+            ThemeModel? deleteTheme,
+            ApplicationModel? application,
+            ApplicationModel? deleteApplication,
+            Object? error)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial() when $default != null:
+        return $default(_that.status, _that.themes, _that.deleteTheme,
+            _that.application, _that.deleteApplication, _that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            ThemeCollectionStateStatus status,
+            List<ThemeModel> themes,
+            ThemeModel? deleteTheme,
+            ApplicationModel? application,
+            ApplicationModel? deleteApplication,
+            Object? error)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial():
+        return $default(_that.status, _that.themes, _that.deleteTheme,
+            _that.application, _that.deleteApplication, _that.error);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            ThemeCollectionStateStatus status,
+            List<ThemeModel> themes,
+            ThemeModel? deleteTheme,
+            ApplicationModel? application,
+            ApplicationModel? deleteApplication,
+            Object? error)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case ThemeCollectionInitial() when $default != null:
+        return $default(_that.status, _that.themes, _that.deleteTheme,
+            _that.application, _that.deleteApplication, _that.error);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$ThemeCollectionInitialImpl extends ThemeCollectionInitial {
-  const _$ThemeCollectionInitialImpl(
+class ThemeCollectionInitial extends ThemeCollectionState {
+  const ThemeCollectionInitial(
       {required this.status,
       final List<ThemeModel> themes = const [],
       this.deleteTheme,
@@ -246,16 +378,20 @@ class _$ThemeCollectionInitialImpl extends ThemeCollectionInitial {
   @override
   final Object? error;
 
+  /// Create a copy of ThemeCollectionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ThemeCollectionState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ThemeCollectionInitialCopyWith<ThemeCollectionInitial> get copyWith =>
+      _$ThemeCollectionInitialCopyWithImpl<ThemeCollectionInitial>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ThemeCollectionInitialImpl &&
+            other is ThemeCollectionInitial &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._themes, _themes) &&
             (identical(other.deleteTheme, deleteTheme) ||
@@ -277,43 +413,122 @@ class _$ThemeCollectionInitialImpl extends ThemeCollectionInitial {
       deleteApplication,
       const DeepCollectionEquality().hash(error));
 
+  @override
+  String toString() {
+    return 'ThemeCollectionState(status: $status, themes: $themes, deleteTheme: $deleteTheme, application: $application, deleteApplication: $deleteApplication, error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ThemeCollectionInitialCopyWith<$Res>
+    implements $ThemeCollectionStateCopyWith<$Res> {
+  factory $ThemeCollectionInitialCopyWith(ThemeCollectionInitial value,
+          $Res Function(ThemeCollectionInitial) _then) =
+      _$ThemeCollectionInitialCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {ThemeCollectionStateStatus status,
+      List<ThemeModel> themes,
+      ThemeModel? deleteTheme,
+      ApplicationModel? application,
+      ApplicationModel? deleteApplication,
+      Object? error});
+
+  @override
+  $ThemeModelCopyWith<$Res>? get deleteTheme;
+  @override
+  $ApplicationModelCopyWith<$Res>? get application;
+  @override
+  $ApplicationModelCopyWith<$Res>? get deleteApplication;
+}
+
+/// @nodoc
+class _$ThemeCollectionInitialCopyWithImpl<$Res>
+    implements $ThemeCollectionInitialCopyWith<$Res> {
+  _$ThemeCollectionInitialCopyWithImpl(this._self, this._then);
+
+  final ThemeCollectionInitial _self;
+  final $Res Function(ThemeCollectionInitial) _then;
+
   /// Create a copy of ThemeCollectionState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ThemeCollectionInitialImplCopyWith<_$ThemeCollectionInitialImpl>
-      get copyWith => __$$ThemeCollectionInitialImplCopyWithImpl<
-          _$ThemeCollectionInitialImpl>(this, _$identity);
-}
-
-abstract class ThemeCollectionInitial extends ThemeCollectionState {
-  const factory ThemeCollectionInitial(
-      {required final ThemeCollectionStateStatus status,
-      final List<ThemeModel> themes,
-      final ThemeModel? deleteTheme,
-      final ApplicationModel? application,
-      final ApplicationModel? deleteApplication,
-      final Object? error}) = _$ThemeCollectionInitialImpl;
-  const ThemeCollectionInitial._() : super._();
-
-  @override
-  ThemeCollectionStateStatus get status;
-  @override
-  List<ThemeModel> get themes;
-  @override
-  ThemeModel? get deleteTheme;
-  @override
-  ApplicationModel? get application;
-  @override
-  ApplicationModel? get deleteApplication;
-  @override
-  Object? get error;
+  $Res call({
+    Object? status = null,
+    Object? themes = null,
+    Object? deleteTheme = freezed,
+    Object? application = freezed,
+    Object? deleteApplication = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(ThemeCollectionInitial(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ThemeCollectionStateStatus,
+      themes: null == themes
+          ? _self._themes
+          : themes // ignore: cast_nullable_to_non_nullable
+              as List<ThemeModel>,
+      deleteTheme: freezed == deleteTheme
+          ? _self.deleteTheme
+          : deleteTheme // ignore: cast_nullable_to_non_nullable
+              as ThemeModel?,
+      application: freezed == application
+          ? _self.application
+          : application // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
+      deleteApplication: freezed == deleteApplication
+          ? _self.deleteApplication
+          : deleteApplication // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
+      error: freezed == error ? _self.error : error,
+    ));
+  }
 
   /// Create a copy of ThemeCollectionState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ThemeCollectionInitialImplCopyWith<_$ThemeCollectionInitialImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ThemeModelCopyWith<$Res>? get deleteTheme {
+    if (_self.deleteTheme == null) {
+      return null;
+    }
+
+    return $ThemeModelCopyWith<$Res>(_self.deleteTheme!, (value) {
+      return _then(_self.copyWith(deleteTheme: value));
+    });
+  }
+
+  /// Create a copy of ThemeCollectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get application {
+    if (_self.application == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_self.application!, (value) {
+      return _then(_self.copyWith(application: value));
+    });
+  }
+
+  /// Create a copy of ThemeCollectionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get deleteApplication {
+    if (_self.deleteApplication == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_self.deleteApplication!, (value) {
+      return _then(_self.copyWith(deleteApplication: value));
+    });
+  }
 }
+
+// dart format on

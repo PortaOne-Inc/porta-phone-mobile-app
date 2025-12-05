@@ -6,8 +6,8 @@ import 'package:get_it/get_it.dart';
 
 import 'package:webtrit_configurator/app/application.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/bloc.dart';
 
+import '../bloc/update_theme_cubit.dart';
 import '../features/features.dart';
 
 class SchemeRoute {
@@ -86,7 +86,6 @@ class SchemeRoute {
     name: 'app_feature_scheme_main_manage_tab',
     path: '/app/feature/scheme/main/manage/tab',
   );
-
   final GetIt getIt;
 
   GoRouter build(BuildContext context, String applicationId, String themeId) {
@@ -139,7 +138,7 @@ class SchemeRoute {
                       name: appFeatureSchemeAddLoginModeAction.name,
                       builder: (BuildContext context, GoRouterState state) {
                         return AddModeActionPage(
-                          embedded: context.read<UpdateThemCubit>().state.embeds,
+                          embedded: context.read<UpdateThemCubit>().state.embeddedResources,
                         );
                       }),
                   GoRoute(
@@ -155,7 +154,7 @@ class SchemeRoute {
                       builder: (BuildContext context, GoRouterState state) {
                         return BlocProvider(
                           create: (BuildContext context) => ManageSettingItemCubit(
-                            embedded: context.read<UpdateThemCubit>().state.appConfig.embeddedResources,
+                            embedded: context.read<UpdateThemCubit>().state.embeddedResources,
                             item: state.extra as AppConfigSettingsItem?,
                           ),
                           child: const AddSettingItemScreen(),

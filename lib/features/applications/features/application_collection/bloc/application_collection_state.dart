@@ -9,7 +9,7 @@ enum ApplicationsStateStatus {
 }
 
 @freezed
-class ApplicationCollectionState with _$ApplicationCollectionState {
+sealed class ApplicationCollectionState with _$ApplicationCollectionState {
   const factory ApplicationCollectionState({
     required ApplicationsStateStatus status,
     UserMetadata? user,

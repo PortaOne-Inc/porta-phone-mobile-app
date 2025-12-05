@@ -47,8 +47,6 @@ abstract class ThemeWidgetEditorApi {
 
   void setGroupTitleListTileTextColor(String? color);
 
-  void setCallActions(CallActionsWidgetConfig cfg);
-
   void setBar(BarWidgetConfig bar);
 
   void setBottomNavigationBar(BottomNavigationBarWidgetConfig cfg);
@@ -339,12 +337,6 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
             (current.group?.groupTitleListTile ?? const GroupTitleListTileWidgetConfig()).copyWith(textColor: color),
       ),
     );
-    _emit();
-  }
-
-  @override
-  void setCallActions(CallActionsWidgetConfig cfg) {
-    _current = current.copyWith(group: (current.group ?? const GroupWidgetConfig()).copyWith(callActions: cfg));
     _emit();
   }
 

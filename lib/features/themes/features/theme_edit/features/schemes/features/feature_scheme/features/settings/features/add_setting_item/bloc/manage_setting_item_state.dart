@@ -1,12 +1,12 @@
 part of 'manage_setting_item_cubit.dart';
 
 @freezed
-class ManageSettingItemState with _$ManageSettingItemState {
+sealed class ManageSettingItemState with _$ManageSettingItemState {
   factory ManageSettingItemState({
     @Default(true) bool enable,
     String? titleL10n,
     String? settingItemIcon,
-    EmbeddedResource? selectedEmbeddedResource,
+    EmbeddedResourceModel? selectedEmbeddedResource,
     SettingsFlavor? type,
 
     // Set final values

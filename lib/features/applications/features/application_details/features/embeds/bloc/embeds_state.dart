@@ -3,7 +3,7 @@ part of 'embeds_cubit.dart';
 enum EmbedsStatus { initial, loading, loaded, failure }
 
 @freezed
-class EmbedsState with _$EmbedsState {
+sealed class EmbedsState with _$EmbedsState {
   const factory EmbedsState({
     @Default(EmbedsStatus.initial) EmbedsStatus status,
     @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> items,

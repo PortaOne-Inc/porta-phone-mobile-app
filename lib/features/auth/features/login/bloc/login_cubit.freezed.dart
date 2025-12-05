@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,271 +9,203 @@ part of 'login_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LoginState {
-  AuthEmailInput? get emailInput => throw _privateConstructorUsedError;
-  AuthPasswordInput? get passwordInput => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  AuthEmailInput? get emailInput;
+  AuthPasswordInput? get passwordInput;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $LoginStateCopyWith<LoginState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$LoginStateCopyWithImpl<LoginState>(this as LoginState, _$identity);
 
-/// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
-  @useResult
-  $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
-}
-
-/// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? emailInput = freezed,
-    Object? passwordInput = freezed,
-  }) {
-    return _then(_value.copyWith(
-      emailInput: freezed == emailInput
-          ? _value.emailInput
-          : emailInput // ignore: cast_nullable_to_non_nullable
-              as AuthEmailInput?,
-      passwordInput: freezed == passwordInput
-          ? _value.passwordInput
-          : passwordInput // ignore: cast_nullable_to_non_nullable
-              as AuthPasswordInput?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LoginState &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.passwordInput, passwordInput) ||
+                other.passwordInput == passwordInput));
   }
-}
-
-/// @nodoc
-abstract class _$$AuthStateImplCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
-  factory _$$AuthStateImplCopyWith(
-          _$AuthStateImpl value, $Res Function(_$AuthStateImpl) then) =
-      __$$AuthStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
-}
-
-/// @nodoc
-class __$$AuthStateImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateImpl>
-    implements _$$AuthStateImplCopyWith<$Res> {
-  __$$AuthStateImplCopyWithImpl(
-      _$AuthStateImpl _value, $Res Function(_$AuthStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? emailInput = freezed,
-    Object? passwordInput = freezed,
-  }) {
-    return _then(_$AuthStateImpl(
-      emailInput: freezed == emailInput
-          ? _value.emailInput
-          : emailInput // ignore: cast_nullable_to_non_nullable
-              as AuthEmailInput?,
-      passwordInput: freezed == passwordInput
-          ? _value.passwordInput
-          : passwordInput // ignore: cast_nullable_to_non_nullable
-              as AuthPasswordInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AuthStateImpl implements _AuthState {
-  _$AuthStateImpl({this.emailInput, this.passwordInput});
 
   @override
-  final AuthEmailInput? emailInput;
-  @override
-  final AuthPasswordInput? passwordInput;
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
   @override
   String toString() {
     return 'LoginState(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
+}
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthStateImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput) &&
-            (identical(other.passwordInput, passwordInput) ||
-                other.passwordInput == passwordInput));
-  }
+/// @nodoc
+abstract mixin class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) _then) =
+      _$LoginStateCopyWithImpl;
+  @useResult
+  $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
+}
 
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
+/// @nodoc
+class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._self, this._then);
+
+  final LoginState _self;
+  final $Res Function(LoginState) _then;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
-      __$$AuthStateImplCopyWithImpl<_$AuthStateImpl>(this, _$identity);
-
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
+  $Res call({
+    Object? emailInput = freezed,
+    Object? passwordInput = freezed,
   }) {
-    return $default(emailInput, passwordInput);
+    return _then(_self.copyWith(
+      emailInput: freezed == emailInput
+          ? _self.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as AuthEmailInput?,
+      passwordInput: freezed == passwordInput
+          ? _self.passwordInput
+          : passwordInput // ignore: cast_nullable_to_non_nullable
+              as AuthPasswordInput?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [LoginState].
+extension LoginStatePatterns on LoginState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AuthState value)? $default, {
+    TResult Function(AuthStateProgress value)? progress,
+    TResult Function(AuthStateSuccess value)? success,
+    TResult Function(AuthStateValidation value)? validation,
+    TResult Function(AuthStateError value)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AuthState() when $default != null:
+        return $default(_that);
+      case AuthStateProgress() when progress != null:
+        return progress(_that);
+      case AuthStateSuccess() when success != null:
+        return success(_that);
+      case AuthStateValidation() when validation != null:
+        return validation(_that);
+      case AuthStateError() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
+    }
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
+  TResult map<TResult extends Object?>(
+    TResult Function(_AuthState value) $default, {
+    required TResult Function(AuthStateProgress value) progress,
+    required TResult Function(AuthStateSuccess value) success,
+    required TResult Function(AuthStateValidation value) validation,
+    required TResult Function(AuthStateError value) error,
   }) {
-    return $default?.call(emailInput, passwordInput);
+    final _that = this;
+    switch (_that) {
+      case _AuthState():
+        return $default(_that);
+      case AuthStateProgress():
+        return progress(_that);
+      case AuthStateSuccess():
+        return success(_that);
+      case AuthStateValidation():
+        return validation(_that);
+      case AuthStateError():
+        return error(_that);
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AuthState value)? $default, {
+    TResult? Function(AuthStateProgress value)? progress,
+    TResult? Function(AuthStateSuccess value)? success,
+    TResult? Function(AuthStateValidation value)? validation,
+    TResult? Function(AuthStateError value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AuthState() when $default != null:
+        return $default(_that);
+      case AuthStateProgress() when progress != null:
+        return progress(_that);
+      case AuthStateSuccess() when success != null:
+        return success(_that);
+      case AuthStateValidation() when validation != null:
+        return validation(_that);
+      case AuthStateError() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
@@ -293,105 +225,188 @@ class _$AuthStateImpl implements _AuthState {
         error,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(emailInput, passwordInput);
+    final _that = this;
+    switch (_that) {
+      case _AuthState() when $default != null:
+        return $default(_that.emailInput, _that.passwordInput);
+      case AuthStateProgress() when progress != null:
+        return progress(_that.emailInput, _that.passwordInput);
+      case AuthStateSuccess() when success != null:
+        return success(_that.emailInput, _that.passwordInput);
+      case AuthStateValidation() when validation != null:
+        return validation(_that.emailInput, _that.passwordInput);
+      case AuthStateError() when error != null:
+        return error(_that.emailInput, _that.passwordInput, _that.error);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return $default(this);
-  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-  @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
+        $default, {
+    required TResult Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
+        progress,
+    required TResult Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
+        success,
+    required TResult Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
+        validation,
+    required TResult Function(AuthEmailInput? emailInput,
+            AuthPasswordInput? passwordInput, AuthException? error)
+        error,
   }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
+    final _that = this;
+    switch (_that) {
+      case _AuthState():
+        return $default(_that.emailInput, _that.passwordInput);
+      case AuthStateProgress():
+        return progress(_that.emailInput, _that.passwordInput);
+      case AuthStateSuccess():
+        return success(_that.emailInput, _that.passwordInput);
+      case AuthStateValidation():
+        return validation(_that.emailInput, _that.passwordInput);
+      case AuthStateError():
+        return error(_that.emailInput, _that.passwordInput, _that.error);
     }
-    return orElse();
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
+        $default, {
+    TResult? Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
+        progress,
+    TResult? Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
+        success,
+    TResult? Function(
+            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
+        validation,
+    TResult? Function(AuthEmailInput? emailInput,
+            AuthPasswordInput? passwordInput, AuthException? error)?
+        error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AuthState() when $default != null:
+        return $default(_that.emailInput, _that.passwordInput);
+      case AuthStateProgress() when progress != null:
+        return progress(_that.emailInput, _that.passwordInput);
+      case AuthStateSuccess() when success != null:
+        return success(_that.emailInput, _that.passwordInput);
+      case AuthStateValidation() when validation != null:
+        return validation(_that.emailInput, _that.passwordInput);
+      case AuthStateError() when error != null:
+        return error(_that.emailInput, _that.passwordInput, _that.error);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class _AuthState implements LoginState {
-  factory _AuthState(
-      {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateImpl;
+/// @nodoc
+
+class _AuthState implements LoginState {
+  _AuthState({this.emailInput, this.passwordInput});
 
   @override
-  AuthEmailInput? get emailInput;
+  final AuthEmailInput? emailInput;
   @override
-  AuthPasswordInput? get passwordInput;
+  final AuthPasswordInput? passwordInput;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$AuthStateCopyWith<_AuthState> get copyWith =>
+      __$AuthStateCopyWithImpl<_AuthState>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AuthState &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.passwordInput, passwordInput) ||
+                other.passwordInput == passwordInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
+
+  @override
+  String toString() {
+    return 'LoginState(emailInput: $emailInput, passwordInput: $passwordInput)';
+  }
 }
 
 /// @nodoc
-abstract class _$$AuthStateProgressImplCopyWith<$Res>
+abstract mixin class _$AuthStateCopyWith<$Res>
     implements $LoginStateCopyWith<$Res> {
-  factory _$$AuthStateProgressImplCopyWith(_$AuthStateProgressImpl value,
-          $Res Function(_$AuthStateProgressImpl) then) =
-      __$$AuthStateProgressImplCopyWithImpl<$Res>;
+  factory _$AuthStateCopyWith(
+          _AuthState value, $Res Function(_AuthState) _then) =
+      __$AuthStateCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateProgressImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateProgressImpl>
-    implements _$$AuthStateProgressImplCopyWith<$Res> {
-  __$$AuthStateProgressImplCopyWithImpl(_$AuthStateProgressImpl _value,
-      $Res Function(_$AuthStateProgressImpl) _then)
-      : super(_value, _then);
+class __$AuthStateCopyWithImpl<$Res> implements _$AuthStateCopyWith<$Res> {
+  __$AuthStateCopyWithImpl(this._self, this._then);
+
+  final _AuthState _self;
+  final $Res Function(_AuthState) _then;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateProgressImpl(
+    return _then(_AuthState(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
       passwordInput: freezed == passwordInput
-          ? _value.passwordInput
+          ? _self.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
               as AuthPasswordInput?,
     ));
@@ -400,205 +415,76 @@ class __$$AuthStateProgressImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateProgressImpl implements AuthStateProgress {
-  _$AuthStateProgressImpl({this.emailInput, this.passwordInput});
+class AuthStateProgress implements LoginState {
+  AuthStateProgress({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
   @override
   final AuthPasswordInput? passwordInput;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AuthStateProgressCopyWith<AuthStateProgress> get copyWith =>
+      _$AuthStateProgressCopyWithImpl<AuthStateProgress>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AuthStateProgress &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.passwordInput, passwordInput) ||
+                other.passwordInput == passwordInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
   @override
   String toString() {
     return 'LoginState.progress(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthStateProgressImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput) &&
-            (identical(other.passwordInput, passwordInput) ||
-                other.passwordInput == passwordInput));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
-      __$$AuthStateProgressImplCopyWithImpl<_$AuthStateProgressImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
-  }) {
-    return progress(emailInput, passwordInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-  }) {
-    return progress?.call(emailInput, passwordInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(emailInput, passwordInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthStateProgress implements LoginState {
-  factory AuthStateProgress(
-      {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateProgressImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-  @override
-  AuthPasswordInput? get passwordInput;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthStateProgressImplCopyWith<_$AuthStateProgressImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateSuccessImplCopyWith<$Res>
+abstract mixin class $AuthStateProgressCopyWith<$Res>
     implements $LoginStateCopyWith<$Res> {
-  factory _$$AuthStateSuccessImplCopyWith(_$AuthStateSuccessImpl value,
-          $Res Function(_$AuthStateSuccessImpl) then) =
-      __$$AuthStateSuccessImplCopyWithImpl<$Res>;
+  factory $AuthStateProgressCopyWith(
+          AuthStateProgress value, $Res Function(AuthStateProgress) _then) =
+      _$AuthStateProgressCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateSuccessImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateSuccessImpl>
-    implements _$$AuthStateSuccessImplCopyWith<$Res> {
-  __$$AuthStateSuccessImplCopyWithImpl(_$AuthStateSuccessImpl _value,
-      $Res Function(_$AuthStateSuccessImpl) _then)
-      : super(_value, _then);
+class _$AuthStateProgressCopyWithImpl<$Res>
+    implements $AuthStateProgressCopyWith<$Res> {
+  _$AuthStateProgressCopyWithImpl(this._self, this._then);
+
+  final AuthStateProgress _self;
+  final $Res Function(AuthStateProgress) _then;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateSuccessImpl(
+    return _then(AuthStateProgress(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
       passwordInput: freezed == passwordInput
-          ? _value.passwordInput
+          ? _self.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
               as AuthPasswordInput?,
     ));
@@ -607,205 +493,76 @@ class __$$AuthStateSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateSuccessImpl implements AuthStateSuccess {
-  _$AuthStateSuccessImpl({this.emailInput, this.passwordInput});
+class AuthStateSuccess implements LoginState {
+  AuthStateSuccess({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
   @override
   final AuthPasswordInput? passwordInput;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AuthStateSuccessCopyWith<AuthStateSuccess> get copyWith =>
+      _$AuthStateSuccessCopyWithImpl<AuthStateSuccess>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AuthStateSuccess &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.passwordInput, passwordInput) ||
+                other.passwordInput == passwordInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
   @override
   String toString() {
     return 'LoginState.success(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthStateSuccessImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput) &&
-            (identical(other.passwordInput, passwordInput) ||
-                other.passwordInput == passwordInput));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
-      __$$AuthStateSuccessImplCopyWithImpl<_$AuthStateSuccessImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
-  }) {
-    return success(emailInput, passwordInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-  }) {
-    return success?.call(emailInput, passwordInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(emailInput, passwordInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthStateSuccess implements LoginState {
-  factory AuthStateSuccess(
-      {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateSuccessImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-  @override
-  AuthPasswordInput? get passwordInput;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthStateSuccessImplCopyWith<_$AuthStateSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateValidationImplCopyWith<$Res>
+abstract mixin class $AuthStateSuccessCopyWith<$Res>
     implements $LoginStateCopyWith<$Res> {
-  factory _$$AuthStateValidationImplCopyWith(_$AuthStateValidationImpl value,
-          $Res Function(_$AuthStateValidationImpl) then) =
-      __$$AuthStateValidationImplCopyWithImpl<$Res>;
+  factory $AuthStateSuccessCopyWith(
+          AuthStateSuccess value, $Res Function(AuthStateSuccess) _then) =
+      _$AuthStateSuccessCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateValidationImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateValidationImpl>
-    implements _$$AuthStateValidationImplCopyWith<$Res> {
-  __$$AuthStateValidationImplCopyWithImpl(_$AuthStateValidationImpl _value,
-      $Res Function(_$AuthStateValidationImpl) _then)
-      : super(_value, _then);
+class _$AuthStateSuccessCopyWithImpl<$Res>
+    implements $AuthStateSuccessCopyWith<$Res> {
+  _$AuthStateSuccessCopyWithImpl(this._self, this._then);
+
+  final AuthStateSuccess _self;
+  final $Res Function(AuthStateSuccess) _then;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
   }) {
-    return _then(_$AuthStateValidationImpl(
+    return _then(AuthStateSuccess(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
       passwordInput: freezed == passwordInput
-          ? _value.passwordInput
+          ? _self.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
               as AuthPasswordInput?,
     ));
@@ -814,24 +571,27 @@ class __$$AuthStateValidationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateValidationImpl implements AuthStateValidation {
-  _$AuthStateValidationImpl({this.emailInput, this.passwordInput});
+class AuthStateValidation implements LoginState {
+  AuthStateValidation({this.emailInput, this.passwordInput});
 
   @override
   final AuthEmailInput? emailInput;
   @override
   final AuthPasswordInput? passwordInput;
 
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LoginState.validation(emailInput: $emailInput, passwordInput: $passwordInput)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AuthStateValidationCopyWith<AuthStateValidation> get copyWith =>
+      _$AuthStateValidationCopyWithImpl<AuthStateValidation>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateValidationImpl &&
+            other is AuthStateValidation &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -841,214 +601,76 @@ class _$AuthStateValidationImpl implements AuthStateValidation {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, passwordInput);
 
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
-      __$$AuthStateValidationImplCopyWithImpl<_$AuthStateValidationImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
-  }) {
-    return validation(emailInput, passwordInput);
+  String toString() {
+    return 'LoginState.validation(emailInput: $emailInput, passwordInput: $passwordInput)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-  }) {
-    return validation?.call(emailInput, passwordInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(emailInput, passwordInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return validation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return validation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthStateValidation implements LoginState {
-  factory AuthStateValidation(
-      {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput}) = _$AuthStateValidationImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-  @override
-  AuthPasswordInput? get passwordInput;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthStateValidationImplCopyWith<_$AuthStateValidationImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthStateErrorImplCopyWith<$Res>
+abstract mixin class $AuthStateValidationCopyWith<$Res>
     implements $LoginStateCopyWith<$Res> {
-  factory _$$AuthStateErrorImplCopyWith(_$AuthStateErrorImpl value,
-          $Res Function(_$AuthStateErrorImpl) then) =
-      __$$AuthStateErrorImplCopyWithImpl<$Res>;
+  factory $AuthStateValidationCopyWith(
+          AuthStateValidation value, $Res Function(AuthStateValidation) _then) =
+      _$AuthStateValidationCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {AuthEmailInput? emailInput,
-      AuthPasswordInput? passwordInput,
-      AuthException? error});
+  $Res call({AuthEmailInput? emailInput, AuthPasswordInput? passwordInput});
 }
 
 /// @nodoc
-class __$$AuthStateErrorImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AuthStateErrorImpl>
-    implements _$$AuthStateErrorImplCopyWith<$Res> {
-  __$$AuthStateErrorImplCopyWithImpl(
-      _$AuthStateErrorImpl _value, $Res Function(_$AuthStateErrorImpl) _then)
-      : super(_value, _then);
+class _$AuthStateValidationCopyWithImpl<$Res>
+    implements $AuthStateValidationCopyWith<$Res> {
+  _$AuthStateValidationCopyWithImpl(this._self, this._then);
+
+  final AuthStateValidation _self;
+  final $Res Function(AuthStateValidation) _then;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
     Object? passwordInput = freezed,
-    Object? error = freezed,
   }) {
-    return _then(_$AuthStateErrorImpl(
+    return _then(AuthStateValidation(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
       passwordInput: freezed == passwordInput
-          ? _value.passwordInput
+          ? _self.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
               as AuthPasswordInput?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as AuthException?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AuthStateErrorImpl implements AuthStateError {
-  _$AuthStateErrorImpl({this.emailInput, this.passwordInput, this.error});
+class AuthStateError implements LoginState {
+  AuthStateError({this.emailInput, this.passwordInput, this.error});
 
   @override
   final AuthEmailInput? emailInput;
   @override
   final AuthPasswordInput? passwordInput;
-  @override
   final AuthException? error;
 
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LoginState.error(emailInput: $emailInput, passwordInput: $passwordInput, error: $error)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AuthStateErrorCopyWith<AuthStateError> get copyWith =>
+      _$AuthStateErrorCopyWithImpl<AuthStateError>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateErrorImpl &&
+            other is AuthStateError &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
@@ -1060,142 +682,58 @@ class _$AuthStateErrorImpl implements AuthStateError {
   int get hashCode =>
       Object.hash(runtimeType, emailInput, passwordInput, error);
 
+  @override
+  String toString() {
+    return 'LoginState.error(emailInput: $emailInput, passwordInput: $passwordInput, error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AuthStateErrorCopyWith<$Res>
+    implements $LoginStateCopyWith<$Res> {
+  factory $AuthStateErrorCopyWith(
+          AuthStateError value, $Res Function(AuthStateError) _then) =
+      _$AuthStateErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {AuthEmailInput? emailInput,
+      AuthPasswordInput? passwordInput,
+      AuthException? error});
+}
+
+/// @nodoc
+class _$AuthStateErrorCopyWithImpl<$Res>
+    implements $AuthStateErrorCopyWith<$Res> {
+  _$AuthStateErrorCopyWithImpl(this._self, this._then);
+
+  final AuthStateError _self;
+  final $Res Function(AuthStateError) _then;
+
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
-      __$$AuthStateErrorImplCopyWithImpl<_$AuthStateErrorImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        $default, {
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        progress,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        success,
-    required TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)
-        validation,
-    required TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)
-        error,
+  $Res call({
+    Object? emailInput = freezed,
+    Object? passwordInput = freezed,
+    Object? error = freezed,
   }) {
-    return error(emailInput, passwordInput, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult? Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult? Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-  }) {
-    return error?.call(emailInput, passwordInput, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        $default, {
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        progress,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        success,
-    TResult Function(
-            AuthEmailInput? emailInput, AuthPasswordInput? passwordInput)?
-        validation,
-    TResult Function(AuthEmailInput? emailInput,
-            AuthPasswordInput? passwordInput, AuthException? error)?
-        error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(emailInput, passwordInput, this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AuthState value) $default, {
-    required TResult Function(AuthStateProgress value) progress,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateValidation value) validation,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AuthState value)? $default, {
-    TResult? Function(AuthStateProgress value)? progress,
-    TResult? Function(AuthStateSuccess value)? success,
-    TResult? Function(AuthStateValidation value)? validation,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AuthState value)? $default, {
-    TResult Function(AuthStateProgress value)? progress,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateValidation value)? validation,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
+    return _then(AuthStateError(
+      emailInput: freezed == emailInput
+          ? _self.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as AuthEmailInput?,
+      passwordInput: freezed == passwordInput
+          ? _self.passwordInput
+          : passwordInput // ignore: cast_nullable_to_non_nullable
+              as AuthPasswordInput?,
+      error: freezed == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AuthException?,
+    ));
   }
 }
 
-abstract class AuthStateError implements LoginState {
-  factory AuthStateError(
-      {final AuthEmailInput? emailInput,
-      final AuthPasswordInput? passwordInput,
-      final AuthException? error}) = _$AuthStateErrorImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-  @override
-  AuthPasswordInput? get passwordInput;
-  AuthException? get error;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthStateErrorImplCopyWith<_$AuthStateErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

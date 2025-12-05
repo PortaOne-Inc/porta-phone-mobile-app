@@ -42,7 +42,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     required this.upsertPageConfigByVariantUsecase,
     required this.getPageConfigByVariantUsecase,
     required this.watchApplicationAssetsUsecase,
-    required this.watchEmbedsUsecase,
+    // required this.watchEmbedsUsecase,
+    required this.getApplicationEmbedsUsecase,
   }) : super(
           UpdateThemeState(
               status: ThemePropertyStatus.progress,
@@ -81,7 +82,9 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   final UpsertPageConfigByVariantUsecase upsertPageConfigByVariantUsecase;
   final GetPageConfigByVariantUsecase getPageConfigByVariantUsecase;
   final WatchApplicationAssetsUsecase watchApplicationAssetsUsecase;
-  final WatchEmbedsUsecase watchEmbedsUsecase;
+
+  // final WatchEmbedsUsecase watchEmbedsUsecase;
+  final GetApplicationEmbedsUsecase getApplicationEmbedsUsecase;
 
   final ThemePageEditor _pageEditor = ThemePageEditor();
   final FeatureAccessEditor _featureAccessEditor = FeatureAccessEditor();
@@ -101,10 +104,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
           onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
         );
 
-    _embedssSub = watchEmbedsUsecase.execute(applicationId).listen(
-          (embeds) => add(ResourcesEvent.embedsUpdated(embeds)),
-          onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'embeds', error: error)),
-        );
+    // _embedssSub = watchEmbedsUsecase.execute(applicationId).listen(
+    //       (embeds) => add(ResourcesEvent.embedsUpdated(embeds)),
+    //       onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'embeds', error: error)),
+    //     );
 
     add(const InitializeEvent());
   }
@@ -154,9 +157,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     _EmbedsUpdated e,
     Emitter<UpdateThemeState> emit,
   ) async {
-    final embeddedResources = e.embeds.map((it) => it.toEmbeddedResource()).toList();
-    final appConfig = state.appConfig.copyWith(embeddedResources: embeddedResources);
-    emit(state.copyWith(embeds: e.embeds, appConfig: appConfig));
+    final appConfig = state.appConfig.copyWith();
+    emit(state.copyWith(embeddedResources: e.embeds, appConfig: appConfig));
   }
 
   void _bindEditors() {
@@ -223,7 +225,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setGroupTitleListTile: (e) => _widgetEditor.setGroupTitleListTile(e.cfg),
       setGroupTitleListTileBackground: (e) => _widgetEditor.setGroupTitleListTileBackground(e.color),
       setGroupTitleListTileTextColor: (e) => _widgetEditor.setGroupTitleListTileTextColor(e.color),
-      setCallActions: (e) => _widgetEditor.setCallActions(e.cfg),
       setBar: (e) => _widgetEditor.setBar(e.bar),
       setBottomNavigationBar: (e) => _widgetEditor.setBottomNavigationBar(e.cfg),
       setBottomNavBarBackground: (e) => _widgetEditor.setBottomNavBarBackground(e.color),
@@ -370,6 +371,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   Future<void> _initializeEditing(InitializeEvent event, Emitter<UpdateThemeState> emit) async {
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
+    await _initializeEmbeddedResourceModel(applicationId);
     await _initializeColorScheme(applicationId, themeId, state.selectedVariant);
     await _initializeFeatureAccess(applicationId, themeId);
     await _initializePageConfig(applicationId, themeId, state.selectedVariant);
@@ -411,16 +413,15 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   }
 
   Future<void> _initializeFeatureAccess(String applicationId, String themeId) async {
-    final embeddedResources = state.embeds.map((it) => it.toEmbeddedResource()).toList();
-
     try {
       final featureAccess = await getFeatureAccessUsecase.execute(applicationId, themeId);
-      final navigation = AppConfig.fromJson(featureAccess.config).copyWith(embeddedResources: embeddedResources);
+
+      final navigation = AppConfig.fromJson(featureAccess.config).copyWith();
 
       _featureAccessEditor.setInitial(navigation);
     } catch (e) {
       _logger.warning('Failed to load feature access: $e');
-      _featureAccessEditor.setInitial(AppConfig(embeddedResources: embeddedResources));
+      _featureAccessEditor.setInitial(const AppConfig());
     } finally {
       add(const LoadingEvent.markLoaded(ThemeComponents.navigation));
     }
@@ -439,6 +440,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       _colorSchemeEditor.setInitial(const ColorSchemeConfig());
     } finally {
       add(const LoadingEvent.markLoaded(ThemeComponents.colors));
+    }
+  }
+
+  Future<void> _initializeEmbeddedResourceModel(String applicationId) async {
+    try {
+      final embeds = await getApplicationEmbedsUsecase.execute(applicationId);
+      add(ResourcesEvent.embedsUpdated(embeds));
+    } catch (e) {
+      _logger.warning('Failed to load color scheme: $e');
+      _colorSchemeEditor.setInitial(const ColorSchemeConfig());
+    } finally {
+      add(const LoadingEvent.markLoaded(ThemeComponents.embeds));
     }
   }
 

@@ -64,6 +64,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
               const AboutPageView(),
               DialingPageView(
                 dialingPageConfig: themePageConfig.dialing,
+                // ignore: deprecated_member_use
                 callActions: themeWidgetLightConfig.group?.callActions,
               ),
               const KeypadConfigView(),

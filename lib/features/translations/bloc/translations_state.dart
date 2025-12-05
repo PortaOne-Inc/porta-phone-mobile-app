@@ -7,7 +7,7 @@ enum TranslationsStateType {
 }
 
 @freezed
-class TranslationsState with _$TranslationsState {
+sealed class TranslationsState with _$TranslationsState {
   const factory TranslationsState({
     @Default(TranslationsStateType.initializing) TranslationsStateType state,
     @Default(Filter()) Filter filter,
@@ -46,7 +46,7 @@ class TranslationsState with _$TranslationsState {
 }
 
 @freezed
-class Translations with _$Translations {
+sealed class Translations with _$Translations {
   const factory Translations({
     @Default([]) List<Translation> original,
     @Default([]) List<Translation> overrided,
@@ -54,7 +54,7 @@ class Translations with _$Translations {
 }
 
 @freezed
-class Filter with _$Filter {
+sealed class Filter with _$Filter {
   const factory Filter({
     @Default('') String localeFilter,
     @Default('') String searchFilter,

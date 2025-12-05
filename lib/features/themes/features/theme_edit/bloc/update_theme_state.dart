@@ -2,10 +2,10 @@ part of 'update_theme_cubit.dart';
 
 enum ThemePropertyStatus { progress, validation, success, error }
 
-enum ThemeComponents { widgets, pages, colors, navigation }
+enum ThemeComponents { widgets, pages, colors, navigation, embeds }
 
 @freezed
-class UpdateThemeState with _$UpdateThemeState {
+abstract class UpdateThemeState with _$UpdateThemeState {
   factory UpdateThemeState({
     required AppConfig appConfig,
     required ColorSchemeConfig colorSchemeConfig,
@@ -13,7 +13,7 @@ class UpdateThemeState with _$UpdateThemeState {
     required ThemePageConfig themePageConfig,
     @Default(BrightnessVariant.light) BrightnessVariant selectedVariant,
     @Default(<AssetModel>[]) List<AssetModel> assets,
-    @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeds,
+    @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeddedResources,
     @Default(<ThemeComponents>[]) List<ThemeComponents> loadedComponents,
     ApplicationModel? applicationModel,
     ThemeModel? theme,
@@ -34,8 +34,6 @@ class UpdateThemeState with _$UpdateThemeState {
   bool get isHasError => status == ThemePropertyStatus.error;
 
   List<SchemeColor> get colorsScheme => themeSettings.lightSchemeColors;
-
-
 
   ThemeSettings get themeSettings {
     return ThemeSettings(
@@ -75,6 +73,8 @@ class UpdateThemeState with _$UpdateThemeState {
         return 'Widgets';
       case ThemeComponents.navigation:
         return 'Navigation';
+      case ThemeComponents.embeds:
+        return 'Embedded pages';
     }
   }
 }

@@ -1,7 +1,7 @@
 part of 'login_cubit.dart';
 
 @freezed
-class LoginState with _$LoginState {
+sealed class LoginState with _$LoginState {
   factory LoginState({
     AuthEmailInput? emailInput,
     AuthPasswordInput? passwordInput,

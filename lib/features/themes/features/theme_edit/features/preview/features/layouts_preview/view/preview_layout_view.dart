@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
+// Ваші існуючі імпорти (переконайтеся, що вони доступні у проекті)
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
+import 'package:webtrit_configurator/mocks/mocks.dart';
+import 'package:webtrit_configurator/widgets/screen_error_boundary.dart';
+
+// import 'package:webtrit_configurator/widgets/screen_error_boundary.dart'; // Можна закоментувати, бо ми визначимо клас тут
+import 'package:webtrit_phone/data/app_metadata_provider.dart';
 import 'package:webtrit_phone/data/feature_access.dart';
 import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/utils/utils.dart';
 
 class PreviewLayoutView extends StatefulWidget {
   const PreviewLayoutView({
@@ -26,6 +31,25 @@ class PreviewLayoutView extends StatefulWidget {
 
 class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   var _focusScreenPosition = 0;
+  ErrorWidgetBuilder? _defaultErrorBuilder;
+
+  @override
+  void initState() {
+    super.initState();
+    _defaultErrorBuilder = ErrorWidget.builder;
+
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      return ErrorScreenPlaceholder(details: details);
+    };
+  }
+
+  @override
+  void dispose() {
+    if (_defaultErrorBuilder != null) {
+      ErrorWidget.builder = _defaultErrorBuilder!;
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +141,17 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const PrivacyScreenScreenshot(),
       const AboutScreenshot(),
       const EmbeddedErrorDialogScreenshot(),
-    ].map((it) => ScreenshotApp(appBloc: appBloc, child: it)).toList();
+    ]
+        .map(
+          (it) => Provider<AppMetadataProvider>(
+            create: (context) => const MockAppMetadataProvider(),
+            child: PresenceViewParams(
+              viewSource: PresenceViewSource.contactInfo,
+              child: ScreenshotApp(appBloc: appBloc, child: it),
+            ),
+          ),
+        )
+        .toList();
   }
 
   void _setFocusedScreen(int position) {

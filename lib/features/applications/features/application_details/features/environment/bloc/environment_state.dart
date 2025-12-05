@@ -14,7 +14,7 @@ enum EnvironmentStatus {
 }
 
 @freezed
-class EnvironmentState with _$EnvironmentState {
+sealed class EnvironmentState with _$EnvironmentState {
   factory EnvironmentState({
     required String applicationId,
     @Default(EnvironmentStatus.initial) EnvironmentStatus status,

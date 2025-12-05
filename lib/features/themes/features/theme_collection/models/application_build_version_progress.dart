@@ -5,7 +5,7 @@ import 'package:domain/domain.dart';
 part 'application_build_version_progress.freezed.dart';
 
 @freezed
-class ApplicationBuildVersionProgress with _$ApplicationBuildVersionProgress {
+sealed class ApplicationBuildVersionProgress with _$ApplicationBuildVersionProgress {
   const factory ApplicationBuildVersionProgress({
     required List<BuildPlatform> progressNameUpdating,
     required List<BuildPlatform> progressNumberUpdating,

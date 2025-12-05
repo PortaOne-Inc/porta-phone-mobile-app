@@ -10,7 +10,7 @@ enum ThemeCreateStateStatus {
 }
 
 @freezed
-class ThemeCreateState with _$ThemeCreateState {
+sealed class ThemeCreateState with _$ThemeCreateState {
   const factory ThemeCreateState({
     required ThemeCreateStateStatus status,
     required AppConfig defaultFeatureAccess,

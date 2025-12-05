@@ -4,7 +4,7 @@ part of 'assets_cubit.dart';
 enum AssetsStatus { initial, loading, loaded, failure }
 
 @freezed
-class AssetsState with _$AssetsState {
+sealed class AssetsState with _$AssetsState {
   const factory AssetsState({
     required String applicationId,
     @Default(AssetsStatus.initial) AssetsStatus status,

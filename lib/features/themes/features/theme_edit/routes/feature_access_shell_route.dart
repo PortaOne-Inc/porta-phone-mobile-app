@@ -1,17 +1,17 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
-// ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
+import 'package:webtrit_configurator/core/core.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/preview_required/view/preview_required.dart';
+import 'package:webtrit_configurator/mocks/mocks.dart';
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_phone/repositories/active_main_flavor/active_main_flavor_repository.dart';
+import 'package:webtrit_phone/utils/core_support.dart';
 
 import '../bloc/update_theme_cubit.dart';
 import '../mocks/mocks.dart';
@@ -25,9 +25,6 @@ class FeatureAccessShellRoute extends StatelessWidget {
   });
 
   final Widget child;
-
-  /// Cache to store converted data URIs for HTML assets, avoiding redundant network requests.
-  static final _htmlDataUriCache = HashMap<String, String>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +40,10 @@ class FeatureAccessShellRoute extends StatelessWidget {
             try {
               final featureAccess = FeatureAccess.init(
                 snapshot.data!,
-                MockAppPreferencesService(),
+                state.embeddedResources.where((it) => it.id != null).map((it) => it.toEmbeddedResource()).toList(),
+                ActiveMainFlavorRepositoryPrefsImpl(MockAppPreferences()),
+                CoreSupportImpl(() => const SystemInfoBuilder().buildInfo()),
               );
-
               return ProvidersWrapper(
                 featureAccess: featureAccess,
                 child: child,
@@ -60,49 +58,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
   }
 
   Future<AppConfig> _replaceLocalAssetsWithDataUri(AppConfig appConfig) async {
-    final updatedResources = await Future.wait(
-      appConfig.embeddedResources.map(_convertResourceToDataUri),
-    );
-
-    return appConfig.copyWith(embeddedResources: updatedResources);
-  }
-
-  Future<EmbeddedResource> _convertResourceToDataUri(EmbeddedResource resource) async {
-    final uri = resource.uriOrNull;
-    if (uri == null || _htmlDataUriCache.containsKey(uri.toString())) {
-      return resource.copyWith(uri: _htmlDataUriCache[uri.toString()] ?? resource.uri);
-    }
-
-    try {
-      final response = await http.get(uri).timeout(
-        const Duration(seconds: 10),
-        onTimeout: () {
-          throw TimeoutException('Request timed out');
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final dataUri = Uri.dataFromBytes(response.bodyBytes, mimeType: 'text/html').toString();
-        _htmlDataUriCache[uri.toString()] = dataUri;
-        return resource.copyWith(uri: dataUri);
-      }
-    } catch (e) {
-      // TODO(Serdun): Work with design to determine fallback HTML content
-      final fallbackHtml = '''
-      <!DOCTYPE html>
-      <html>
-      <head><title>Failed to Load</title></head>
-      <body>
-        <h1>Failed to Display Content</h1>
-        <p>$e</p>
-      </body>
-      </html>
-    ''';
-      final fallbackDataUri = Uri.dataFromString(fallbackHtml, mimeType: 'text/html').toString();
-      return resource.copyWith(uri: fallbackDataUri);
-    }
-
-    return resource;
+    return appConfig.copyWith();
   }
 }
 
@@ -153,9 +109,9 @@ class ProvidersWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AppPreferences>.value(value: MockAppPreferencesService()),
+        Provider<AppPreferences>.value(value: MockAppPreferences()),
         Provider<DeviceInfo>.value(value: DeviceInfoMock()),
-        Provider<PackageInfo>.value(value: PackageInfoMock()),
+        Provider<MockAppMetadataProvider>.value(value: const MockAppMetadataProvider()),
         Provider<FeatureAccess>.value(value: featureAccess),
       ],
       child: child,

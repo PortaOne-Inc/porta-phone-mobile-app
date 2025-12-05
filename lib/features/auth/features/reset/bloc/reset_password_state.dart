@@ -1,7 +1,7 @@
 part of 'reset_password_cubit.dart';
 
 @freezed
-class ResetPasswordState with _$ResetPasswordState {
+sealed class ResetPasswordState with _$ResetPasswordState {
   factory ResetPasswordState({
     AuthEmailInput? emailInput,
   }) = _ResetPasswordState;

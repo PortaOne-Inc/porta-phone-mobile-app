@@ -1,9 +1,11 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:webtrit_configurator/core/core.dart';
-import '../../../../../../../../../../../exports/exports.dart';
-import '../../../../../../../bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class LoginSchemeCommon extends StatefulWidget {
   const LoginSchemeCommon({
@@ -29,7 +31,7 @@ class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
     final selectedEmbed = context
         .read<UpdateThemCubit>()
         .state
-        .embeds
+        .embeddedResources
         .firstWhereOrNull((it) => it.id == widget.config?.fullScreenLaunchEmbeddedResourceId);
 
     return ListView(
@@ -83,11 +85,11 @@ class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
   }
 
   Future<void> _pickEmbedded() async {
-    final embeds = context.read<UpdateThemCubit>().state.embeds;
+    final selectedEmbed = context.read<UpdateThemCubit>().state.embeddedResources;
     final picked = await EmbedPickerDialog.show(
       context,
       title: 'Select embedded resource',
-      items: embeds,
+      items: selectedEmbed,
     );
     if (picked != null && picked.isNotEmpty) {
       final current = widget.config;

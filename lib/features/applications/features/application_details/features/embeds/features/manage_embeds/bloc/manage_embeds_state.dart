@@ -3,7 +3,7 @@ part of 'manage_embeds_cubit.dart';
 enum ManageEmbedsStatus { initial, loading, loaded, failure }
 
 @freezed
-class ManageEmbedsState with _$ManageEmbedsState {
+sealed class ManageEmbedsState with _$ManageEmbedsState {
   const factory ManageEmbedsState({
     @Default(ManageEmbedsStatus.initial) ManageEmbedsStatus status,
     @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> items,

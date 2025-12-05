@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,34 +9,64 @@ part of 'deployment_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DeploymentState {
-  DeploymentDetailsStatus get status => throw _privateConstructorUsedError;
-  ApplicationDeploy get applicationDeploy => throw _privateConstructorUsedError;
-  List<ApplicationValidateError> get applicationValidateErrors =>
-      throw _privateConstructorUsedError;
-  ApplicationBuildVersionProgress get buildVersionProgress =>
-      throw _privateConstructorUsedError;
-  ApplicationModel? get application => throw _privateConstructorUsedError;
-  Object? get error => throw _privateConstructorUsedError;
+  DeploymentDetailsStatus get status;
+  ApplicationDeploy get applicationDeploy;
+  List<ApplicationValidateError> get applicationValidateErrors;
+  ApplicationBuildVersionProgress get buildVersionProgress;
+  ApplicationModel? get application;
+  Object? get error;
 
   /// Create a copy of DeploymentState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $DeploymentStateCopyWith<DeploymentState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$DeploymentStateCopyWithImpl<DeploymentState>(
+          this as DeploymentState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DeploymentState &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.applicationDeploy, applicationDeploy) ||
+                other.applicationDeploy == applicationDeploy) &&
+            const DeepCollectionEquality().equals(
+                other.applicationValidateErrors, applicationValidateErrors) &&
+            (identical(other.buildVersionProgress, buildVersionProgress) ||
+                other.buildVersionProgress == buildVersionProgress) &&
+            (identical(other.application, application) ||
+                other.application == application) &&
+            const DeepCollectionEquality().equals(other.error, error));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      applicationDeploy,
+      const DeepCollectionEquality().hash(applicationValidateErrors),
+      buildVersionProgress,
+      application,
+      const DeepCollectionEquality().hash(error));
+
+  @override
+  String toString() {
+    return 'DeploymentState(status: $status, applicationDeploy: $applicationDeploy, applicationValidateErrors: $applicationValidateErrors, buildVersionProgress: $buildVersionProgress, application: $application, error: $error)';
+  }
 }
 
 /// @nodoc
-abstract class $DeploymentStateCopyWith<$Res> {
+abstract mixin class $DeploymentStateCopyWith<$Res> {
   factory $DeploymentStateCopyWith(
-          DeploymentState value, $Res Function(DeploymentState) then) =
-      _$DeploymentStateCopyWithImpl<$Res, DeploymentState>;
+          DeploymentState value, $Res Function(DeploymentState) _then) =
+      _$DeploymentStateCopyWithImpl;
   @useResult
   $Res call(
       {DeploymentDetailsStatus status,
@@ -52,14 +82,12 @@ abstract class $DeploymentStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DeploymentStateCopyWithImpl<$Res, $Val extends DeploymentState>
+class _$DeploymentStateCopyWithImpl<$Res>
     implements $DeploymentStateCopyWith<$Res> {
-  _$DeploymentStateCopyWithImpl(this._value, this._then);
+  _$DeploymentStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DeploymentState _self;
+  final $Res Function(DeploymentState) _then;
 
   /// Create a copy of DeploymentState
   /// with the given fields replaced by the non-null parameter values.
@@ -73,29 +101,29 @@ class _$DeploymentStateCopyWithImpl<$Res, $Val extends DeploymentState>
     Object? application = freezed,
     Object? error = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as DeploymentDetailsStatus,
       applicationDeploy: null == applicationDeploy
-          ? _value.applicationDeploy
+          ? _self.applicationDeploy
           : applicationDeploy // ignore: cast_nullable_to_non_nullable
               as ApplicationDeploy,
       applicationValidateErrors: null == applicationValidateErrors
-          ? _value.applicationValidateErrors
+          ? _self.applicationValidateErrors
           : applicationValidateErrors // ignore: cast_nullable_to_non_nullable
               as List<ApplicationValidateError>,
       buildVersionProgress: null == buildVersionProgress
-          ? _value.buildVersionProgress
+          ? _self.buildVersionProgress
           : buildVersionProgress // ignore: cast_nullable_to_non_nullable
               as ApplicationBuildVersionProgress,
       application: freezed == application
-          ? _value.application
+          ? _self.application
           : application // ignore: cast_nullable_to_non_nullable
               as ApplicationModel?,
-      error: freezed == error ? _value.error : error,
-    ) as $Val);
+      error: freezed == error ? _self.error : error,
+    ));
   }
 
   /// Create a copy of DeploymentState
@@ -103,8 +131,8 @@ class _$DeploymentStateCopyWithImpl<$Res, $Val extends DeploymentState>
   @override
   @pragma('vm:prefer-inline')
   $ApplicationDeployCopyWith<$Res> get applicationDeploy {
-    return $ApplicationDeployCopyWith<$Res>(_value.applicationDeploy, (value) {
-      return _then(_value.copyWith(applicationDeploy: value) as $Val);
+    return $ApplicationDeployCopyWith<$Res>(_self.applicationDeploy, (value) {
+      return _then(_self.copyWith(applicationDeploy: value));
     });
   }
 
@@ -114,8 +142,8 @@ class _$DeploymentStateCopyWithImpl<$Res, $Val extends DeploymentState>
   @pragma('vm:prefer-inline')
   $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress {
     return $ApplicationBuildVersionProgressCopyWith<$Res>(
-        _value.buildVersionProgress, (value) {
-      return _then(_value.copyWith(buildVersionProgress: value) as $Val);
+        _self.buildVersionProgress, (value) {
+      return _then(_self.copyWith(buildVersionProgress: value));
     });
   }
 
@@ -124,92 +152,212 @@ class _$DeploymentStateCopyWithImpl<$Res, $Val extends DeploymentState>
   @override
   @pragma('vm:prefer-inline')
   $ApplicationModelCopyWith<$Res>? get application {
-    if (_value.application == null) {
+    if (_self.application == null) {
       return null;
     }
 
-    return $ApplicationModelCopyWith<$Res>(_value.application!, (value) {
-      return _then(_value.copyWith(application: value) as $Val);
+    return $ApplicationModelCopyWith<$Res>(_self.application!, (value) {
+      return _then(_self.copyWith(application: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$DeploymentStateInitialImplCopyWith<$Res>
-    implements $DeploymentStateCopyWith<$Res> {
-  factory _$$DeploymentStateInitialImplCopyWith(
-          _$DeploymentStateInitialImpl value,
-          $Res Function(_$DeploymentStateInitialImpl) then) =
-      __$$DeploymentStateInitialImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {DeploymentDetailsStatus status,
-      ApplicationDeploy applicationDeploy,
-      List<ApplicationValidateError> applicationValidateErrors,
-      ApplicationBuildVersionProgress buildVersionProgress,
-      ApplicationModel? application,
-      Object? error});
+/// Adds pattern-matching-related methods to [DeploymentState].
+extension DeploymentStatePatterns on DeploymentState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
-  @override
-  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
-  @override
-  $ApplicationModelCopyWith<$Res>? get application;
-}
-
-/// @nodoc
-class __$$DeploymentStateInitialImplCopyWithImpl<$Res>
-    extends _$DeploymentStateCopyWithImpl<$Res, _$DeploymentStateInitialImpl>
-    implements _$$DeploymentStateInitialImplCopyWith<$Res> {
-  __$$DeploymentStateInitialImplCopyWithImpl(
-      _$DeploymentStateInitialImpl _value,
-      $Res Function(_$DeploymentStateInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DeploymentState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? applicationDeploy = null,
-    Object? applicationValidateErrors = null,
-    Object? buildVersionProgress = null,
-    Object? application = freezed,
-    Object? error = freezed,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeploymentStateInitial value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$DeploymentStateInitialImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as DeploymentDetailsStatus,
-      applicationDeploy: null == applicationDeploy
-          ? _value.applicationDeploy
-          : applicationDeploy // ignore: cast_nullable_to_non_nullable
-              as ApplicationDeploy,
-      applicationValidateErrors: null == applicationValidateErrors
-          ? _value._applicationValidateErrors
-          : applicationValidateErrors // ignore: cast_nullable_to_non_nullable
-              as List<ApplicationValidateError>,
-      buildVersionProgress: null == buildVersionProgress
-          ? _value.buildVersionProgress
-          : buildVersionProgress // ignore: cast_nullable_to_non_nullable
-              as ApplicationBuildVersionProgress,
-      application: freezed == application
-          ? _value.application
-          : application // ignore: cast_nullable_to_non_nullable
-              as ApplicationModel?,
-      error: freezed == error ? _value.error : error,
-    ));
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeploymentStateInitial value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(DeploymentStateInitial value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            DeploymentDetailsStatus status,
+            ApplicationDeploy applicationDeploy,
+            List<ApplicationValidateError> applicationValidateErrors,
+            ApplicationBuildVersionProgress buildVersionProgress,
+            ApplicationModel? application,
+            Object? error)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial() when $default != null:
+        return $default(
+            _that.status,
+            _that.applicationDeploy,
+            _that.applicationValidateErrors,
+            _that.buildVersionProgress,
+            _that.application,
+            _that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            DeploymentDetailsStatus status,
+            ApplicationDeploy applicationDeploy,
+            List<ApplicationValidateError> applicationValidateErrors,
+            ApplicationBuildVersionProgress buildVersionProgress,
+            ApplicationModel? application,
+            Object? error)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial():
+        return $default(
+            _that.status,
+            _that.applicationDeploy,
+            _that.applicationValidateErrors,
+            _that.buildVersionProgress,
+            _that.application,
+            _that.error);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            DeploymentDetailsStatus status,
+            ApplicationDeploy applicationDeploy,
+            List<ApplicationValidateError> applicationValidateErrors,
+            ApplicationBuildVersionProgress buildVersionProgress,
+            ApplicationModel? application,
+            Object? error)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case DeploymentStateInitial() when $default != null:
+        return $default(
+            _that.status,
+            _that.applicationDeploy,
+            _that.applicationValidateErrors,
+            _that.buildVersionProgress,
+            _that.application,
+            _that.error);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$DeploymentStateInitialImpl extends DeploymentStateInitial {
-  const _$DeploymentStateInitialImpl(
+class DeploymentStateInitial extends DeploymentState {
+  const DeploymentStateInitial(
       {this.status = DeploymentDetailsStatus.initial,
       this.applicationDeploy = const ApplicationDeploy(),
       final List<ApplicationValidateError> applicationValidateErrors = const [],
@@ -244,16 +392,20 @@ class _$DeploymentStateInitialImpl extends DeploymentStateInitial {
   @override
   final Object? error;
 
+  /// Create a copy of DeploymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'DeploymentState(status: $status, applicationDeploy: $applicationDeploy, applicationValidateErrors: $applicationValidateErrors, buildVersionProgress: $buildVersionProgress, application: $application, error: $error)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DeploymentStateInitialCopyWith<DeploymentStateInitial> get copyWith =>
+      _$DeploymentStateInitialCopyWithImpl<DeploymentStateInitial>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeploymentStateInitialImpl &&
+            other is DeploymentStateInitial &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.applicationDeploy, applicationDeploy) ||
                 other.applicationDeploy == applicationDeploy) &&
@@ -276,43 +428,115 @@ class _$DeploymentStateInitialImpl extends DeploymentStateInitial {
       application,
       const DeepCollectionEquality().hash(error));
 
+  @override
+  String toString() {
+    return 'DeploymentState(status: $status, applicationDeploy: $applicationDeploy, applicationValidateErrors: $applicationValidateErrors, buildVersionProgress: $buildVersionProgress, application: $application, error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DeploymentStateInitialCopyWith<$Res>
+    implements $DeploymentStateCopyWith<$Res> {
+  factory $DeploymentStateInitialCopyWith(DeploymentStateInitial value,
+          $Res Function(DeploymentStateInitial) _then) =
+      _$DeploymentStateInitialCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {DeploymentDetailsStatus status,
+      ApplicationDeploy applicationDeploy,
+      List<ApplicationValidateError> applicationValidateErrors,
+      ApplicationBuildVersionProgress buildVersionProgress,
+      ApplicationModel? application,
+      Object? error});
+
+  @override
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy;
+  @override
+  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress;
+  @override
+  $ApplicationModelCopyWith<$Res>? get application;
+}
+
+/// @nodoc
+class _$DeploymentStateInitialCopyWithImpl<$Res>
+    implements $DeploymentStateInitialCopyWith<$Res> {
+  _$DeploymentStateInitialCopyWithImpl(this._self, this._then);
+
+  final DeploymentStateInitial _self;
+  final $Res Function(DeploymentStateInitial) _then;
+
   /// Create a copy of DeploymentState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeploymentStateInitialImplCopyWith<_$DeploymentStateInitialImpl>
-      get copyWith => __$$DeploymentStateInitialImplCopyWithImpl<
-          _$DeploymentStateInitialImpl>(this, _$identity);
-}
-
-abstract class DeploymentStateInitial extends DeploymentState {
-  const factory DeploymentStateInitial(
-      {final DeploymentDetailsStatus status,
-      final ApplicationDeploy applicationDeploy,
-      final List<ApplicationValidateError> applicationValidateErrors,
-      final ApplicationBuildVersionProgress buildVersionProgress,
-      final ApplicationModel? application,
-      final Object? error}) = _$DeploymentStateInitialImpl;
-  const DeploymentStateInitial._() : super._();
-
-  @override
-  DeploymentDetailsStatus get status;
-  @override
-  ApplicationDeploy get applicationDeploy;
-  @override
-  List<ApplicationValidateError> get applicationValidateErrors;
-  @override
-  ApplicationBuildVersionProgress get buildVersionProgress;
-  @override
-  ApplicationModel? get application;
-  @override
-  Object? get error;
+  $Res call({
+    Object? status = null,
+    Object? applicationDeploy = null,
+    Object? applicationValidateErrors = null,
+    Object? buildVersionProgress = null,
+    Object? application = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(DeploymentStateInitial(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DeploymentDetailsStatus,
+      applicationDeploy: null == applicationDeploy
+          ? _self.applicationDeploy
+          : applicationDeploy // ignore: cast_nullable_to_non_nullable
+              as ApplicationDeploy,
+      applicationValidateErrors: null == applicationValidateErrors
+          ? _self._applicationValidateErrors
+          : applicationValidateErrors // ignore: cast_nullable_to_non_nullable
+              as List<ApplicationValidateError>,
+      buildVersionProgress: null == buildVersionProgress
+          ? _self.buildVersionProgress
+          : buildVersionProgress // ignore: cast_nullable_to_non_nullable
+              as ApplicationBuildVersionProgress,
+      application: freezed == application
+          ? _self.application
+          : application // ignore: cast_nullable_to_non_nullable
+              as ApplicationModel?,
+      error: freezed == error ? _self.error : error,
+    ));
+  }
 
   /// Create a copy of DeploymentState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeploymentStateInitialImplCopyWith<_$DeploymentStateInitialImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ApplicationDeployCopyWith<$Res> get applicationDeploy {
+    return $ApplicationDeployCopyWith<$Res>(_self.applicationDeploy, (value) {
+      return _then(_self.copyWith(applicationDeploy: value));
+    });
+  }
+
+  /// Create a copy of DeploymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationBuildVersionProgressCopyWith<$Res> get buildVersionProgress {
+    return $ApplicationBuildVersionProgressCopyWith<$Res>(
+        _self.buildVersionProgress, (value) {
+      return _then(_self.copyWith(buildVersionProgress: value));
+    });
+  }
+
+  /// Create a copy of DeploymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ApplicationModelCopyWith<$Res>? get application {
+    if (_self.application == null) {
+      return null;
+    }
+
+    return $ApplicationModelCopyWith<$Res>(_self.application!, (value) {
+      return _then(_self.copyWith(application: value));
+    });
+  }
 }
+
+// dart format on

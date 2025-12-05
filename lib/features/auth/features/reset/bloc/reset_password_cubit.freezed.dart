@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,249 +9,86 @@ part of 'reset_password_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ResetPasswordState {
-  AuthEmailInput? get emailInput => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value)? $default, {
-    TResult Function(ResetPasswordStateProgress value)? progress,
-    TResult Function(ResetPasswordStateSuccess value)? success,
-    TResult Function(ResetPasswordStateValidation value)? validation,
-    TResult Function(ResetPasswordStateError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  AuthEmailInput? get emailInput;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ResetPasswordStateCopyWith<ResetPasswordState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$ResetPasswordStateCopyWithImpl<ResetPasswordState>(
+          this as ResetPasswordState, _$identity);
 
-/// @nodoc
-abstract class $ResetPasswordStateCopyWith<$Res> {
-  factory $ResetPasswordStateCopyWith(
-          ResetPasswordState value, $Res Function(ResetPasswordState) then) =
-      _$ResetPasswordStateCopyWithImpl<$Res, ResetPasswordState>;
-  @useResult
-  $Res call({AuthEmailInput? emailInput});
-}
-
-/// @nodoc
-class _$ResetPasswordStateCopyWithImpl<$Res, $Val extends ResetPasswordState>
-    implements $ResetPasswordStateCopyWith<$Res> {
-  _$ResetPasswordStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? emailInput = freezed,
-  }) {
-    return _then(_value.copyWith(
-      emailInput: freezed == emailInput
-          ? _value.emailInput
-          : emailInput // ignore: cast_nullable_to_non_nullable
-              as AuthEmailInput?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ResetPasswordState &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput));
   }
-}
-
-/// @nodoc
-abstract class _$$ResetPasswordStateImplCopyWith<$Res>
-    implements $ResetPasswordStateCopyWith<$Res> {
-  factory _$$ResetPasswordStateImplCopyWith(_$ResetPasswordStateImpl value,
-          $Res Function(_$ResetPasswordStateImpl) then) =
-      __$$ResetPasswordStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({AuthEmailInput? emailInput});
-}
-
-/// @nodoc
-class __$$ResetPasswordStateImplCopyWithImpl<$Res>
-    extends _$ResetPasswordStateCopyWithImpl<$Res, _$ResetPasswordStateImpl>
-    implements _$$ResetPasswordStateImplCopyWith<$Res> {
-  __$$ResetPasswordStateImplCopyWithImpl(_$ResetPasswordStateImpl _value,
-      $Res Function(_$ResetPasswordStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? emailInput = freezed,
-  }) {
-    return _then(_$ResetPasswordStateImpl(
-      emailInput: freezed == emailInput
-          ? _value.emailInput
-          : emailInput // ignore: cast_nullable_to_non_nullable
-              as AuthEmailInput?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ResetPasswordStateImpl implements _ResetPasswordState {
-  _$ResetPasswordStateImpl({this.emailInput});
 
   @override
-  final AuthEmailInput? emailInput;
+  int get hashCode => Object.hash(runtimeType, emailInput);
 
   @override
   String toString() {
     return 'ResetPasswordState(emailInput: $emailInput)';
   }
+}
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResetPasswordStateImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput));
-  }
+/// @nodoc
+abstract mixin class $ResetPasswordStateCopyWith<$Res> {
+  factory $ResetPasswordStateCopyWith(
+          ResetPasswordState value, $Res Function(ResetPasswordState) _then) =
+      _$ResetPasswordStateCopyWithImpl;
+  @useResult
+  $Res call({AuthEmailInput? emailInput});
+}
 
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput);
+/// @nodoc
+class _$ResetPasswordStateCopyWithImpl<$Res>
+    implements $ResetPasswordStateCopyWith<$Res> {
+  _$ResetPasswordStateCopyWithImpl(this._self, this._then);
+
+  final ResetPasswordState _self;
+  final $Res Function(ResetPasswordState) _then;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$ResetPasswordStateImplCopyWith<_$ResetPasswordStateImpl> get copyWith =>
-      __$$ResetPasswordStateImplCopyWithImpl<_$ResetPasswordStateImpl>(
-          this, _$identity);
-
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
+  $Res call({
+    Object? emailInput = freezed,
   }) {
-    return $default(emailInput);
+    return _then(_self.copyWith(
+      emailInput: freezed == emailInput
+          ? _self.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as AuthEmailInput?,
+    ));
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) {
-    return $default?.call(emailInput);
-  }
+/// Adds pattern-matching-related methods to [ResetPasswordState].
+extension ResetPasswordStatePatterns on ResetPasswordState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(emailInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_ResetPasswordState value)? $default, {
@@ -261,60 +98,272 @@ class _$ResetPasswordStateImpl implements _ResetPasswordState {
     TResult Function(ResetPasswordStateError value)? error,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this);
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState() when $default != null:
+        return $default(_that);
+      case ResetPasswordStateProgress() when progress != null:
+        return progress(_that);
+      case ResetPasswordStateSuccess() when success != null:
+        return success(_that);
+      case ResetPasswordStateValidation() when validation != null:
+        return validation(_that);
+      case ResetPasswordStateError() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ResetPasswordState value) $default, {
+    required TResult Function(ResetPasswordStateProgress value) progress,
+    required TResult Function(ResetPasswordStateSuccess value) success,
+    required TResult Function(ResetPasswordStateValidation value) validation,
+    required TResult Function(ResetPasswordStateError value) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState():
+        return $default(_that);
+      case ResetPasswordStateProgress():
+        return progress(_that);
+      case ResetPasswordStateSuccess():
+        return success(_that);
+      case ResetPasswordStateValidation():
+        return validation(_that);
+      case ResetPasswordStateError():
+        return error(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ResetPasswordState value)? $default, {
+    TResult? Function(ResetPasswordStateProgress value)? progress,
+    TResult? Function(ResetPasswordStateSuccess value)? success,
+    TResult? Function(ResetPasswordStateValidation value)? validation,
+    TResult? Function(ResetPasswordStateError value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState() when $default != null:
+        return $default(_that);
+      case ResetPasswordStateProgress() when progress != null:
+        return progress(_that);
+      case ResetPasswordStateSuccess() when success != null:
+        return success(_that);
+      case ResetPasswordStateValidation() when validation != null:
+        return validation(_that);
+      case ResetPasswordStateError() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(AuthEmailInput? emailInput)? $default, {
+    TResult Function(AuthEmailInput? emailInput)? progress,
+    TResult Function(AuthEmailInput? emailInput)? success,
+    TResult Function(AuthEmailInput? emailInput)? validation,
+    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState() when $default != null:
+        return $default(_that.emailInput);
+      case ResetPasswordStateProgress() when progress != null:
+        return progress(_that.emailInput);
+      case ResetPasswordStateSuccess() when success != null:
+        return success(_that.emailInput);
+      case ResetPasswordStateValidation() when validation != null:
+        return validation(_that.emailInput);
+      case ResetPasswordStateError() when error != null:
+        return error(_that.emailInput, _that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(AuthEmailInput? emailInput) $default, {
+    required TResult Function(AuthEmailInput? emailInput) progress,
+    required TResult Function(AuthEmailInput? emailInput) success,
+    required TResult Function(AuthEmailInput? emailInput) validation,
+    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
+        error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState():
+        return $default(_that.emailInput);
+      case ResetPasswordStateProgress():
+        return progress(_that.emailInput);
+      case ResetPasswordStateSuccess():
+        return success(_that.emailInput);
+      case ResetPasswordStateValidation():
+        return validation(_that.emailInput);
+      case ResetPasswordStateError():
+        return error(_that.emailInput, _that.error);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(AuthEmailInput? emailInput)? $default, {
+    TResult? Function(AuthEmailInput? emailInput)? progress,
+    TResult? Function(AuthEmailInput? emailInput)? success,
+    TResult? Function(AuthEmailInput? emailInput)? validation,
+    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ResetPasswordState() when $default != null:
+        return $default(_that.emailInput);
+      case ResetPasswordStateProgress() when progress != null:
+        return progress(_that.emailInput);
+      case ResetPasswordStateSuccess() when success != null:
+        return success(_that.emailInput);
+      case ResetPasswordStateValidation() when validation != null:
+        return validation(_that.emailInput);
+      case ResetPasswordStateError() when error != null:
+        return error(_that.emailInput, _that.error);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class _ResetPasswordState implements ResetPasswordState {
-  factory _ResetPasswordState({final AuthEmailInput? emailInput}) =
-      _$ResetPasswordStateImpl;
+/// @nodoc
+
+class _ResetPasswordState implements ResetPasswordState {
+  _ResetPasswordState({this.emailInput});
 
   @override
-  AuthEmailInput? get emailInput;
+  final AuthEmailInput? emailInput;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetPasswordStateImplCopyWith<_$ResetPasswordStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ResetPasswordStateCopyWith<_ResetPasswordState> get copyWith =>
+      __$ResetPasswordStateCopyWithImpl<_ResetPasswordState>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ResetPasswordState &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput);
+
+  @override
+  String toString() {
+    return 'ResetPasswordState(emailInput: $emailInput)';
+  }
 }
 
 /// @nodoc
-abstract class _$$ResetPasswordStateProgressImplCopyWith<$Res>
+abstract mixin class _$ResetPasswordStateCopyWith<$Res>
     implements $ResetPasswordStateCopyWith<$Res> {
-  factory _$$ResetPasswordStateProgressImplCopyWith(
-          _$ResetPasswordStateProgressImpl value,
-          $Res Function(_$ResetPasswordStateProgressImpl) then) =
-      __$$ResetPasswordStateProgressImplCopyWithImpl<$Res>;
+  factory _$ResetPasswordStateCopyWith(
+          _ResetPasswordState value, $Res Function(_ResetPasswordState) _then) =
+      __$ResetPasswordStateCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput});
 }
 
 /// @nodoc
-class __$$ResetPasswordStateProgressImplCopyWithImpl<$Res>
-    extends _$ResetPasswordStateCopyWithImpl<$Res,
-        _$ResetPasswordStateProgressImpl>
-    implements _$$ResetPasswordStateProgressImplCopyWith<$Res> {
-  __$$ResetPasswordStateProgressImplCopyWithImpl(
-      _$ResetPasswordStateProgressImpl _value,
-      $Res Function(_$ResetPasswordStateProgressImpl) _then)
-      : super(_value, _then);
+class __$ResetPasswordStateCopyWithImpl<$Res>
+    implements _$ResetPasswordStateCopyWith<$Res> {
+  __$ResetPasswordStateCopyWithImpl(this._self, this._then);
+
+  final _ResetPasswordState _self;
+  final $Res Function(_ResetPasswordState) _then;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
   }) {
-    return _then(_$ResetPasswordStateProgressImpl(
+    return _then(_ResetPasswordState(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
     ));
@@ -323,167 +372,69 @@ class __$$ResetPasswordStateProgressImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResetPasswordStateProgressImpl implements ResetPasswordStateProgress {
-  _$ResetPasswordStateProgressImpl({this.emailInput});
+class ResetPasswordStateProgress implements ResetPasswordState {
+  ResetPasswordStateProgress({this.emailInput});
 
   @override
   final AuthEmailInput? emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ResetPasswordStateProgressCopyWith<ResetPasswordStateProgress>
+      get copyWith =>
+          _$ResetPasswordStateProgressCopyWithImpl<ResetPasswordStateProgress>(
+              this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ResetPasswordStateProgress &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput);
 
   @override
   String toString() {
     return 'ResetPasswordState.progress(emailInput: $emailInput)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResetPasswordStateProgressImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput);
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResetPasswordStateProgressImplCopyWith<_$ResetPasswordStateProgressImpl>
-      get copyWith => __$$ResetPasswordStateProgressImplCopyWithImpl<
-          _$ResetPasswordStateProgressImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
-  }) {
-    return progress(emailInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) {
-    return progress?.call(emailInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(emailInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) {
-    return progress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) {
-    return progress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value)? $default, {
-    TResult Function(ResetPasswordStateProgress value)? progress,
-    TResult Function(ResetPasswordStateSuccess value)? success,
-    TResult Function(ResetPasswordStateValidation value)? validation,
-    TResult Function(ResetPasswordStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (progress != null) {
-      return progress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResetPasswordStateProgress implements ResetPasswordState {
-  factory ResetPasswordStateProgress({final AuthEmailInput? emailInput}) =
-      _$ResetPasswordStateProgressImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetPasswordStateProgressImplCopyWith<_$ResetPasswordStateProgressImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ResetPasswordStateSuccessImplCopyWith<$Res>
+abstract mixin class $ResetPasswordStateProgressCopyWith<$Res>
     implements $ResetPasswordStateCopyWith<$Res> {
-  factory _$$ResetPasswordStateSuccessImplCopyWith(
-          _$ResetPasswordStateSuccessImpl value,
-          $Res Function(_$ResetPasswordStateSuccessImpl) then) =
-      __$$ResetPasswordStateSuccessImplCopyWithImpl<$Res>;
+  factory $ResetPasswordStateProgressCopyWith(ResetPasswordStateProgress value,
+          $Res Function(ResetPasswordStateProgress) _then) =
+      _$ResetPasswordStateProgressCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput});
 }
 
 /// @nodoc
-class __$$ResetPasswordStateSuccessImplCopyWithImpl<$Res>
-    extends _$ResetPasswordStateCopyWithImpl<$Res,
-        _$ResetPasswordStateSuccessImpl>
-    implements _$$ResetPasswordStateSuccessImplCopyWith<$Res> {
-  __$$ResetPasswordStateSuccessImplCopyWithImpl(
-      _$ResetPasswordStateSuccessImpl _value,
-      $Res Function(_$ResetPasswordStateSuccessImpl) _then)
-      : super(_value, _then);
+class _$ResetPasswordStateProgressCopyWithImpl<$Res>
+    implements $ResetPasswordStateProgressCopyWith<$Res> {
+  _$ResetPasswordStateProgressCopyWithImpl(this._self, this._then);
+
+  final ResetPasswordStateProgress _self;
+  final $Res Function(ResetPasswordStateProgress) _then;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
   }) {
-    return _then(_$ResetPasswordStateSuccessImpl(
+    return _then(ResetPasswordStateProgress(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
     ));
@@ -492,167 +443,68 @@ class __$$ResetPasswordStateSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResetPasswordStateSuccessImpl implements ResetPasswordStateSuccess {
-  _$ResetPasswordStateSuccessImpl({this.emailInput});
+class ResetPasswordStateSuccess implements ResetPasswordState {
+  ResetPasswordStateSuccess({this.emailInput});
 
   @override
   final AuthEmailInput? emailInput;
+
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ResetPasswordStateSuccessCopyWith<ResetPasswordStateSuccess> get copyWith =>
+      _$ResetPasswordStateSuccessCopyWithImpl<ResetPasswordStateSuccess>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ResetPasswordStateSuccess &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailInput);
 
   @override
   String toString() {
     return 'ResetPasswordState.success(emailInput: $emailInput)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResetPasswordStateSuccessImpl &&
-            (identical(other.emailInput, emailInput) ||
-                other.emailInput == emailInput));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, emailInput);
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResetPasswordStateSuccessImplCopyWith<_$ResetPasswordStateSuccessImpl>
-      get copyWith => __$$ResetPasswordStateSuccessImplCopyWithImpl<
-          _$ResetPasswordStateSuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
-  }) {
-    return success(emailInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) {
-    return success?.call(emailInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(emailInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value)? $default, {
-    TResult Function(ResetPasswordStateProgress value)? progress,
-    TResult Function(ResetPasswordStateSuccess value)? success,
-    TResult Function(ResetPasswordStateValidation value)? validation,
-    TResult Function(ResetPasswordStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResetPasswordStateSuccess implements ResetPasswordState {
-  factory ResetPasswordStateSuccess({final AuthEmailInput? emailInput}) =
-      _$ResetPasswordStateSuccessImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetPasswordStateSuccessImplCopyWith<_$ResetPasswordStateSuccessImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ResetPasswordStateValidationImplCopyWith<$Res>
+abstract mixin class $ResetPasswordStateSuccessCopyWith<$Res>
     implements $ResetPasswordStateCopyWith<$Res> {
-  factory _$$ResetPasswordStateValidationImplCopyWith(
-          _$ResetPasswordStateValidationImpl value,
-          $Res Function(_$ResetPasswordStateValidationImpl) then) =
-      __$$ResetPasswordStateValidationImplCopyWithImpl<$Res>;
+  factory $ResetPasswordStateSuccessCopyWith(ResetPasswordStateSuccess value,
+          $Res Function(ResetPasswordStateSuccess) _then) =
+      _$ResetPasswordStateSuccessCopyWithImpl;
   @override
   @useResult
   $Res call({AuthEmailInput? emailInput});
 }
 
 /// @nodoc
-class __$$ResetPasswordStateValidationImplCopyWithImpl<$Res>
-    extends _$ResetPasswordStateCopyWithImpl<$Res,
-        _$ResetPasswordStateValidationImpl>
-    implements _$$ResetPasswordStateValidationImplCopyWith<$Res> {
-  __$$ResetPasswordStateValidationImplCopyWithImpl(
-      _$ResetPasswordStateValidationImpl _value,
-      $Res Function(_$ResetPasswordStateValidationImpl) _then)
-      : super(_value, _then);
+class _$ResetPasswordStateSuccessCopyWithImpl<$Res>
+    implements $ResetPasswordStateSuccessCopyWith<$Res> {
+  _$ResetPasswordStateSuccessCopyWithImpl(this._self, this._then);
+
+  final ResetPasswordStateSuccess _self;
+  final $Res Function(ResetPasswordStateSuccess) _then;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
   }) {
-    return _then(_$ResetPasswordStateValidationImpl(
+    return _then(ResetPasswordStateSuccess(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
     ));
@@ -661,23 +513,26 @@ class __$$ResetPasswordStateValidationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResetPasswordStateValidationImpl
-    implements ResetPasswordStateValidation {
-  _$ResetPasswordStateValidationImpl({this.emailInput});
+class ResetPasswordStateValidation implements ResetPasswordState {
+  ResetPasswordStateValidation({this.emailInput});
 
   @override
   final AuthEmailInput? emailInput;
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ResetPasswordState.validation(emailInput: $emailInput)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ResetPasswordStateValidationCopyWith<ResetPasswordStateValidation>
+      get copyWith => _$ResetPasswordStateValidationCopyWithImpl<
+          ResetPasswordStateValidation>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResetPasswordStateValidationImpl &&
+            other is ResetPasswordStateValidation &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput));
   }
@@ -685,177 +540,71 @@ class _$ResetPasswordStateValidationImpl
   @override
   int get hashCode => Object.hash(runtimeType, emailInput);
 
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ResetPasswordStateValidationImplCopyWith<
-          _$ResetPasswordStateValidationImpl>
-      get copyWith => __$$ResetPasswordStateValidationImplCopyWithImpl<
-          _$ResetPasswordStateValidationImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
-  }) {
-    return validation(emailInput);
+  String toString() {
+    return 'ResetPasswordState.validation(emailInput: $emailInput)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) {
-    return validation?.call(emailInput);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(emailInput);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) {
-    return validation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) {
-    return validation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value)? $default, {
-    TResult Function(ResetPasswordStateProgress value)? progress,
-    TResult Function(ResetPasswordStateSuccess value)? success,
-    TResult Function(ResetPasswordStateValidation value)? validation,
-    TResult Function(ResetPasswordStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (validation != null) {
-      return validation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResetPasswordStateValidation implements ResetPasswordState {
-  factory ResetPasswordStateValidation({final AuthEmailInput? emailInput}) =
-      _$ResetPasswordStateValidationImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetPasswordStateValidationImplCopyWith<
-          _$ResetPasswordStateValidationImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ResetPasswordStateErrorImplCopyWith<$Res>
+abstract mixin class $ResetPasswordStateValidationCopyWith<$Res>
     implements $ResetPasswordStateCopyWith<$Res> {
-  factory _$$ResetPasswordStateErrorImplCopyWith(
-          _$ResetPasswordStateErrorImpl value,
-          $Res Function(_$ResetPasswordStateErrorImpl) then) =
-      __$$ResetPasswordStateErrorImplCopyWithImpl<$Res>;
+  factory $ResetPasswordStateValidationCopyWith(
+          ResetPasswordStateValidation value,
+          $Res Function(ResetPasswordStateValidation) _then) =
+      _$ResetPasswordStateValidationCopyWithImpl;
   @override
   @useResult
-  $Res call({AuthEmailInput? emailInput, AuthException? error});
+  $Res call({AuthEmailInput? emailInput});
 }
 
 /// @nodoc
-class __$$ResetPasswordStateErrorImplCopyWithImpl<$Res>
-    extends _$ResetPasswordStateCopyWithImpl<$Res,
-        _$ResetPasswordStateErrorImpl>
-    implements _$$ResetPasswordStateErrorImplCopyWith<$Res> {
-  __$$ResetPasswordStateErrorImplCopyWithImpl(
-      _$ResetPasswordStateErrorImpl _value,
-      $Res Function(_$ResetPasswordStateErrorImpl) _then)
-      : super(_value, _then);
+class _$ResetPasswordStateValidationCopyWithImpl<$Res>
+    implements $ResetPasswordStateValidationCopyWith<$Res> {
+  _$ResetPasswordStateValidationCopyWithImpl(this._self, this._then);
+
+  final ResetPasswordStateValidation _self;
+  final $Res Function(ResetPasswordStateValidation) _then;
 
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? emailInput = freezed,
-    Object? error = freezed,
   }) {
-    return _then(_$ResetPasswordStateErrorImpl(
+    return _then(ResetPasswordStateValidation(
       emailInput: freezed == emailInput
-          ? _value.emailInput
+          ? _self.emailInput
           : emailInput // ignore: cast_nullable_to_non_nullable
               as AuthEmailInput?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as AuthException?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ResetPasswordStateErrorImpl implements ResetPasswordStateError {
-  _$ResetPasswordStateErrorImpl({this.emailInput, this.error});
+class ResetPasswordStateError implements ResetPasswordState {
+  ResetPasswordStateError({this.emailInput, this.error});
 
   @override
   final AuthEmailInput? emailInput;
-  @override
   final AuthException? error;
 
+  /// Create a copy of ResetPasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ResetPasswordState.error(emailInput: $emailInput, error: $error)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ResetPasswordStateErrorCopyWith<ResetPasswordStateError> get copyWith =>
+      _$ResetPasswordStateErrorCopyWithImpl<ResetPasswordStateError>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResetPasswordStateErrorImpl &&
+            other is ResetPasswordStateError &&
             (identical(other.emailInput, emailInput) ||
                 other.emailInput == emailInput) &&
             (identical(other.error, error) || other.error == error));
@@ -864,110 +613,50 @@ class _$ResetPasswordStateErrorImpl implements ResetPasswordStateError {
   @override
   int get hashCode => Object.hash(runtimeType, emailInput, error);
 
+  @override
+  String toString() {
+    return 'ResetPasswordState.error(emailInput: $emailInput, error: $error)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ResetPasswordStateErrorCopyWith<$Res>
+    implements $ResetPasswordStateCopyWith<$Res> {
+  factory $ResetPasswordStateErrorCopyWith(ResetPasswordStateError value,
+          $Res Function(ResetPasswordStateError) _then) =
+      _$ResetPasswordStateErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({AuthEmailInput? emailInput, AuthException? error});
+}
+
+/// @nodoc
+class _$ResetPasswordStateErrorCopyWithImpl<$Res>
+    implements $ResetPasswordStateErrorCopyWith<$Res> {
+  _$ResetPasswordStateErrorCopyWithImpl(this._self, this._then);
+
+  final ResetPasswordStateError _self;
+  final $Res Function(ResetPasswordStateError) _then;
+
   /// Create a copy of ResetPasswordState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ResetPasswordStateErrorImplCopyWith<_$ResetPasswordStateErrorImpl>
-      get copyWith => __$$ResetPasswordStateErrorImplCopyWithImpl<
-          _$ResetPasswordStateErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput) $default, {
-    required TResult Function(AuthEmailInput? emailInput) progress,
-    required TResult Function(AuthEmailInput? emailInput) success,
-    required TResult Function(AuthEmailInput? emailInput) validation,
-    required TResult Function(AuthEmailInput? emailInput, AuthException? error)
-        error,
+  $Res call({
+    Object? emailInput = freezed,
+    Object? error = freezed,
   }) {
-    return error(emailInput, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(AuthEmailInput? emailInput)? $default, {
-    TResult? Function(AuthEmailInput? emailInput)? progress,
-    TResult? Function(AuthEmailInput? emailInput)? success,
-    TResult? Function(AuthEmailInput? emailInput)? validation,
-    TResult? Function(AuthEmailInput? emailInput, AuthException? error)? error,
-  }) {
-    return error?.call(emailInput, this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(AuthEmailInput? emailInput)? $default, {
-    TResult Function(AuthEmailInput? emailInput)? progress,
-    TResult Function(AuthEmailInput? emailInput)? success,
-    TResult Function(AuthEmailInput? emailInput)? validation,
-    TResult Function(AuthEmailInput? emailInput, AuthException? error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(emailInput, this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value) $default, {
-    required TResult Function(ResetPasswordStateProgress value) progress,
-    required TResult Function(ResetPasswordStateSuccess value) success,
-    required TResult Function(ResetPasswordStateValidation value) validation,
-    required TResult Function(ResetPasswordStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ResetPasswordState value)? $default, {
-    TResult? Function(ResetPasswordStateProgress value)? progress,
-    TResult? Function(ResetPasswordStateSuccess value)? success,
-    TResult? Function(ResetPasswordStateValidation value)? validation,
-    TResult? Function(ResetPasswordStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ResetPasswordState value)? $default, {
-    TResult Function(ResetPasswordStateProgress value)? progress,
-    TResult Function(ResetPasswordStateSuccess value)? success,
-    TResult Function(ResetPasswordStateValidation value)? validation,
-    TResult Function(ResetPasswordStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
+    return _then(ResetPasswordStateError(
+      emailInput: freezed == emailInput
+          ? _self.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as AuthEmailInput?,
+      error: freezed == error
+          ? _self.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AuthException?,
+    ));
   }
 }
 
-abstract class ResetPasswordStateError implements ResetPasswordState {
-  factory ResetPasswordStateError(
-      {final AuthEmailInput? emailInput,
-      final AuthException? error}) = _$ResetPasswordStateErrorImpl;
-
-  @override
-  AuthEmailInput? get emailInput;
-  AuthException? get error;
-
-  /// Create a copy of ResetPasswordState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResetPasswordStateErrorImplCopyWith<_$ResetPasswordStateErrorImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

@@ -357,8 +357,10 @@ class _DialingPageViewState extends State<DialingPageView> {
 
     // nested under group
     final group = widgets.group;
+    // ignore: deprecated_member_use
     if (group?.callActions != null) {
       _lastLegacySource = 'widgets.group.callActions';
+      // ignore: deprecated_member_use
       return group!.callActions;
     }
 

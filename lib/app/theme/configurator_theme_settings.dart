@@ -9,7 +9,7 @@ part 'configurator_theme_settings.freezed.dart';
 part 'configurator_theme_settings.g.dart';
 
 @freezed
-class ConfiguratorThemeSettings with _$ConfiguratorThemeSettings {
+sealed class ConfiguratorThemeSettings with _$ConfiguratorThemeSettings {
   // ignore: invalid_annotation_target
   @themeJsonSerializable
   const factory ConfiguratorThemeSettings({
@@ -23,7 +23,7 @@ class ConfiguratorThemeSettings with _$ConfiguratorThemeSettings {
 }
 
 @freezed
-class ConfiguratorColorSchemeOverride with _$ConfiguratorColorSchemeOverride {
+sealed class ConfiguratorColorSchemeOverride with _$ConfiguratorColorSchemeOverride {
   // ignore: invalid_annotation_target
   @themeJsonSerializable
   const factory ConfiguratorColorSchemeOverride({
