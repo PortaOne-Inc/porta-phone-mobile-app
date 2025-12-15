@@ -15,7 +15,6 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PreviewThemeState {
   bool get frameVisible;
-  PreviewType get previewType;
 
   /// Create a copy of PreviewThemeState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,17 +30,15 @@ mixin _$PreviewThemeState {
         (other.runtimeType == runtimeType &&
             other is PreviewThemeState &&
             (identical(other.frameVisible, frameVisible) ||
-                other.frameVisible == frameVisible) &&
-            (identical(other.previewType, previewType) ||
-                other.previewType == previewType));
+                other.frameVisible == frameVisible));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, frameVisible, previewType);
+  int get hashCode => Object.hash(runtimeType, frameVisible);
 
   @override
   String toString() {
-    return 'PreviewThemeState(frameVisible: $frameVisible, previewType: $previewType)';
+    return 'PreviewThemeState(frameVisible: $frameVisible)';
   }
 }
 
@@ -51,7 +48,7 @@ abstract mixin class $PreviewThemeStateCopyWith<$Res> {
           PreviewThemeState value, $Res Function(PreviewThemeState) _then) =
       _$PreviewThemeStateCopyWithImpl;
   @useResult
-  $Res call({bool frameVisible, PreviewType previewType});
+  $Res call({bool frameVisible});
 }
 
 /// @nodoc
@@ -68,17 +65,12 @@ class _$PreviewThemeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? frameVisible = null,
-    Object? previewType = null,
   }) {
     return _then(_self.copyWith(
       frameVisible: null == frameVisible
           ? _self.frameVisible
           : frameVisible // ignore: cast_nullable_to_non_nullable
               as bool,
-      previewType: null == previewType
-          ? _self.previewType
-          : previewType // ignore: cast_nullable_to_non_nullable
-              as PreviewType,
     ));
   }
 }
@@ -174,13 +166,13 @@ extension PreviewThemeStatePatterns on PreviewThemeState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool frameVisible, PreviewType previewType)? $default, {
+    TResult Function(bool frameVisible)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _PreviewThemeState() when $default != null:
-        return $default(_that.frameVisible, _that.previewType);
+        return $default(_that.frameVisible);
       case _:
         return orElse();
     }
@@ -201,12 +193,12 @@ extension PreviewThemeStatePatterns on PreviewThemeState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool frameVisible, PreviewType previewType) $default,
+    TResult Function(bool frameVisible) $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PreviewThemeState():
-        return $default(_that.frameVisible, _that.previewType);
+        return $default(_that.frameVisible);
     }
   }
 
@@ -224,12 +216,12 @@ extension PreviewThemeStatePatterns on PreviewThemeState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool frameVisible, PreviewType previewType)? $default,
+    TResult? Function(bool frameVisible)? $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PreviewThemeState() when $default != null:
-        return $default(_that.frameVisible, _that.previewType);
+        return $default(_that.frameVisible);
       case _:
         return null;
     }
@@ -239,13 +231,10 @@ extension PreviewThemeStatePatterns on PreviewThemeState {
 /// @nodoc
 
 class _PreviewThemeState implements PreviewThemeState {
-  const _PreviewThemeState(
-      {required this.frameVisible, required this.previewType});
+  const _PreviewThemeState({required this.frameVisible});
 
   @override
   final bool frameVisible;
-  @override
-  final PreviewType previewType;
 
   /// Create a copy of PreviewThemeState
   /// with the given fields replaced by the non-null parameter values.
@@ -261,17 +250,15 @@ class _PreviewThemeState implements PreviewThemeState {
         (other.runtimeType == runtimeType &&
             other is _PreviewThemeState &&
             (identical(other.frameVisible, frameVisible) ||
-                other.frameVisible == frameVisible) &&
-            (identical(other.previewType, previewType) ||
-                other.previewType == previewType));
+                other.frameVisible == frameVisible));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, frameVisible, previewType);
+  int get hashCode => Object.hash(runtimeType, frameVisible);
 
   @override
   String toString() {
-    return 'PreviewThemeState(frameVisible: $frameVisible, previewType: $previewType)';
+    return 'PreviewThemeState(frameVisible: $frameVisible)';
   }
 }
 
@@ -283,7 +270,7 @@ abstract mixin class _$PreviewThemeStateCopyWith<$Res>
       __$PreviewThemeStateCopyWithImpl;
   @override
   @useResult
-  $Res call({bool frameVisible, PreviewType previewType});
+  $Res call({bool frameVisible});
 }
 
 /// @nodoc
@@ -300,17 +287,12 @@ class __$PreviewThemeStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? frameVisible = null,
-    Object? previewType = null,
   }) {
     return _then(_PreviewThemeState(
       frameVisible: null == frameVisible
           ? _self.frameVisible
           : frameVisible // ignore: cast_nullable_to_non_nullable
               as bool,
-      previewType: null == previewType
-          ? _self.previewType
-          : previewType // ignore: cast_nullable_to_non_nullable
-              as PreviewType,
     ));
   }
 }

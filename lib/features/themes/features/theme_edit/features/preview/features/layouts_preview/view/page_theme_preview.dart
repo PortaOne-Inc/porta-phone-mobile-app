@@ -19,7 +19,6 @@ class PageThemePreview extends StatelessWidget {
       PreviewThemeState state,
     ) {
       return PreviewLayoutView(
-        previewType: state.previewType,
         frameVisibility: state.frameVisible,
       );
     });
