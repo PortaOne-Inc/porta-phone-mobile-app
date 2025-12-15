@@ -15,6 +15,7 @@ class SystemInfoBuilder {
       'userEvents',
       'internalMessaging',
       'signup',
+      'voicemail',
       'autoProvision',
       'customMethods',
     ],

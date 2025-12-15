@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 
+/// The main screen widget that displays the list of configurable sections.
 class SettingSchemeScreen extends StatefulWidget {
   const SettingSchemeScreen({
     required this.config,
@@ -21,16 +21,35 @@ class SettingSchemeScreen extends StatefulWidget {
   final ValueChanged<AppConfigSettings> callback;
 
   @override
-  _SettingSchemeScreenState createState() => _SettingSchemeScreenState();
+  State<SettingSchemeScreen> createState() => _SettingSchemeScreenState();
 }
 
 class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
+  late SchemeEditorController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _initController();
+  }
+
+  @override
+  void didUpdateWidget(covariant SettingSchemeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.config != widget.config) {
+      _initController();
+    }
+  }
+
+  void _initController() {
+    _controller = SchemeEditorController(
+      config: widget.config,
+      onUpdate: widget.callback,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
-    final textTheme = themeData.textTheme;
-    final colorScheme = themeData.colorScheme;
-
     return SimpleScaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -38,14 +57,12 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: IconButton(
-              onPressed: _manageSection,
+              onPressed: _onAddSection,
               icon: const Wrap(
                 alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Text(
-                    'Add section',
-                    textAlign: TextAlign.center,
-                  ),
+                  Text('Add section', textAlign: TextAlign.center),
                   SizedBox(width: 4),
                   Icon(Icons.add),
                 ],
@@ -54,177 +71,59 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
           ),
         ],
       ),
-      body: ReorderableListView(
-        shrinkWrap: true,
+      body: ReorderableListView.builder(
         buildDefaultDragHandles: false,
-        physics: const NeverScrollableScrollPhysics(),
-        onReorder: _reorderSections,
-        children: List.generate(widget.config.sections.length, (sectionIndex) {
-          final section = widget.config.sections[sectionIndex];
+        padding: const EdgeInsets.only(bottom: 100),
+        itemCount: widget.config.sections.length,
+        onReorder: _controller.reorderSections,
+        itemBuilder: (context, index) {
+          final section = widget.config.sections[index];
 
-          return Visibility(
+          return SectionTile(
+            // Key must be unique for each item to ensure correct reordering state
             key: ValueKey(section.titleL10n),
-            visible: section.enabled,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: GroupTitleTile(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                        titleData: section.titleL10n,
-                        style: textTheme.titleMedium,
-                        backgroundColor: colorScheme.primaryFixed.withAlpha(12),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            PopupMenuButton<String>(
-                              onSelected: (value) async => _manageSectionItemMenu(value, section),
-                              itemBuilder: (context) => [
-                                const PopupMenuItem(
-                                  value: 'remove',
-                                  child: ListTile(
-                                    title: Text('Remove section'),
-                                    leading: Icon(Icons.delete),
-                                  ),
-                                ),
-                                const PopupMenuItem(
-                                  value: 'add',
-                                  child: ListTile(
-                                    title: Text('Add section item'),
-                                    leading: Icon(Icons.add),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            ReorderableDragStartListener(
-                              index: sectionIndex,
-                              child: const Icon(Icons.drag_handle),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SettingSectionItem(
-                  section: section,
-                  onReorderItems: (previous, now) => _reorderItemsInSection(section, previous, now),
-                  onToggleItemEnabled: _toggleItemEnabled,
-                  onEditItem: _onEditItem,
-                  onDeleteItem: _onDeleteItem,
-                ),
-                const Divider(),
-              ],
-            ),
+            index: index,
+            section: section,
+            controller: _controller,
+            onAddSectionItem: () => _onAddItem(section),
+            onEditItem: (item) => _onEditItem(section, item),
           );
-        }),
+        },
       ),
     );
   }
 
-  void _manageSectionItemMenu(String value, AppConfigSettingsSection section) {
-    if (value == 'remove') {
-      _removeSection(section);
-    } else if (value == 'add') {
-      unawaited(_manageSectionItem());
+  Future<void> _onAddSection() async {
+    final result = await GoRouter.of(context).pushNamed<AppConfigSettingsSection>(
+      SchemeRoute.appFeatureSchemeAddSettingSection.name,
+    );
+
+    if (result != null && mounted) {
+      _controller.addSection(result);
     }
   }
 
-  Future<void> _manageSection() async {
-    final result = await GoRouter.of(context)
-        .pushNamed<AppConfigSettingsSection>(SchemeRoute.appFeatureSchemeAddSettingSection.name);
+  Future<void> _onAddItem(AppConfigSettingsSection section) async {
+    final result = await GoRouter.of(context).pushNamed<AppConfigSettingsItem>(
+      SchemeRoute.appFeatureSchemeAddSettingSectionItem.name,
+    );
 
-    if (result != null) _addSection(result);
+    if (result != null && mounted) {
+      _controller.addItemToSection(section, result);
+    }
   }
 
-  Future<void> _manageSectionItem() async {
-    final result = await GoRouter.of(context)
-        .pushNamed<AppConfigSettingsItem>(SchemeRoute.appFeatureSchemeAddSettingSectionItem.name);
+  Future<void> _onEditItem(
+    AppConfigSettingsSection section,
+    AppConfigSettingsItem item,
+  ) async {
+    final result = await GoRouter.of(context).pushNamed<AppConfigSettingsItem>(
+      SchemeRoute.appFeatureSchemeAddSettingSectionItem.name,
+      extra: item,
+    );
 
-    if (result != null) _addItemToSection(widget.config.sections.first, result);
-  }
-
-  void _updateSections(List<AppConfigSettingsSection> updatedSections) {
-    widget.callback(widget.config.copyWith(sections: updatedSections));
-  }
-
-  void _addSection(AppConfigSettingsSection section) {
-    _updateSections([...widget.config.sections, section]);
-  }
-
-  void _removeSection(AppConfigSettingsSection section) {
-    _updateSections(
-        widget.config.sections.where((existingSection) => existingSection.titleL10n != section.titleL10n).toList());
-  }
-
-  void _addItemToSection(AppConfigSettingsSection section, AppConfigSettingsItem item) {
-    _updateSections(widget.config.sections.map((s) {
-      if (s.titleL10n == section.titleL10n) {
-        return s.copyWith(items: [...s.items, item]);
-      }
-      return s;
-    }).toList());
-  }
-
-  void _reorderSections(int oldIndex, int newIndex) {
-    final adjustedIndex = newIndex > oldIndex ? newIndex - 1 : newIndex;
-    final updatedSections = [...widget.config.sections];
-    final movedSection = updatedSections.removeAt(oldIndex);
-    updatedSections.insert(adjustedIndex, movedSection);
-    _updateSections(updatedSections);
-  }
-
-  void _reorderItemsInSection(AppConfigSettingsSection section, int oldIndex, int newIndex) {
-    final adjustedIndex = newIndex > oldIndex ? newIndex - 1 : newIndex;
-    final updatedItems = [...section.items];
-    final movedItem = updatedItems.removeAt(oldIndex);
-    updatedItems.insert(adjustedIndex, movedItem);
-
-    _updateSections(widget.config.sections.map((s) {
-      if (s.titleL10n == section.titleL10n) {
-        return s.copyWith(items: updatedItems);
-      }
-      return s;
-    }).toList());
-  }
-
-  void _toggleItemEnabled(AppConfigSettingsItem action) {
-    _updateSections(widget.config.sections.map((section) {
-      return section.copyWith(
-        items: section.items.map((item) {
-          if (item.titleL10n == action.titleL10n) {
-            return item.copyWith(enabled: !item.enabled);
-          }
-          return item;
-        }).toList(),
-      );
-    }).toList());
-  }
-
-  Future<void> _onDeleteItem(AppConfigSettingsItem action) async {
-    final updatedSections = widget.config.sections.map((section) {
-      return section.copyWith(
-        items: section.items.where((item) => item.titleL10n != action.titleL10n).toList(),
-      );
-    }).toList();
-
-    _updateSections(updatedSections);
-  }
-
-  Future<void> _onEditItem(AppConfigSettingsItem action) async {
-    final updatedItem = await GoRouter.of(context)
-        .pushNamed<AppConfigSettingsItem>(SchemeRoute.appFeatureSchemeAddSettingSectionItem.name, extra: action);
-    _updateSections(widget.config.sections.map((section) {
-      return section.copyWith(
-        items: section.items.map((item) {
-          if (item.titleL10n == action.titleL10n) {
-            return updatedItem ?? item;
-          }
-          return item;
-        }).toList(),
-      );
-    }).toList());
+    if (result != null && mounted) {
+      _controller.updateItem(section, item, result);
+    }
   }
 }
