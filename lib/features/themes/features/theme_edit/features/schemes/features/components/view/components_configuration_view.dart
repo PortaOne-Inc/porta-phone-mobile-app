@@ -5,7 +5,6 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_configurator/exports/exports.dart';
 
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
-import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_phone/widgets/confirm_dialog_styles.dart';
 import 'package:webtrit_phone/widgets/linkify_styles.dart';
 
@@ -114,7 +113,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
 
           // ---- BARS
           BarsConfigTab(
-            sourceBarWidgetConfig: themeWidgetConfig.bar,
+            config: themeWidgetConfig.bar,
           ),
 
           // ---- IMAGES

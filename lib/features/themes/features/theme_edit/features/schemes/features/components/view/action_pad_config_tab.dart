@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
-import '../../../widgets/widgets.dart';
 
 class ActionPadConfig extends StatelessWidget {
   const ActionPadConfig({
@@ -34,7 +33,7 @@ class ActionPadConfig extends StatelessWidget {
             BorderContainer(
               title: 'Call Start',
               padding: const EdgeInsets.all(16),
-              child: ElevatedButtonConfigEditorMinimal(
+              child: ElevatedButtonConfigEditor(
                 value: source.callStart,
                 onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadCallStart(v)),
               ),
@@ -43,7 +42,7 @@ class ActionPadConfig extends StatelessWidget {
             BorderContainer(
               title: 'Backspace Pressed',
               padding: const EdgeInsets.all(16),
-              child: ElevatedButtonConfigEditorMinimal(
+              child: ElevatedButtonConfigEditor(
                 value: source.backspacePressed,
                 onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadBackspacePressed(v)),
               ),
@@ -52,7 +51,7 @@ class ActionPadConfig extends StatelessWidget {
             BorderContainer(
               title: 'Call Transfer',
               padding: const EdgeInsets.all(16),
-              child: ElevatedButtonConfigEditorMinimal(
+              child: ElevatedButtonConfigEditor(
                 value: source.callTransfer,
                 onChanged: (v) => cubit.add(ThemeWidgetEvent.setActionPadTransfer(v)),
               ),

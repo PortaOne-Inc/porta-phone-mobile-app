@@ -3,7 +3,7 @@ description: A project that allows you to customize the style of the mobile appl
 
 publish_to: 'none'
 
-version: 0.0.5
+version: 0.0.8
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

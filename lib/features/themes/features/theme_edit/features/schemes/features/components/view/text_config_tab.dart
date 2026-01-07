@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+
+import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class TextConfigTab extends StatelessWidget {
   const TextConfigTab({
@@ -17,6 +20,17 @@ class TextConfigTab extends StatelessWidget {
   final TextWidgetConfig sourceTextWidgetConfig;
   final TextSelectionThemeData? textSelectionThemeData;
   final LinkifyStyles? linkifyStyles;
+
+  Future<void> _pickColor(
+    BuildContext context,
+    Color? current,
+    ValueChanged<String> onApply,
+  ) async {
+    final newColor = await context.showColorPicker(currentColor: current);
+    if (newColor != null) {
+      onApply(newColor.toHex());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,41 +49,53 @@ class TextConfigTab extends StatelessWidget {
               'Cursor and selection colors for editable text.',
             ),
             child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
+              spacing: 12,
+              runSpacing: 12,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                ColorField(
-                  title: 'Cursor color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  color: sel.cursorColor,
-                  onTap: (_) => context.selectColor(
-                    initialColor: sel.cursorColor,
-                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setTextCursorColor(c.toHex()),
-                        ),
+                SizedBox(
+                  width: 200,
+                  child: ColorInput(
+                    label: 'Cursor color',
+                    color: sel.cursorColor,
+                    onTap: () => _pickColor(
+                      context,
+                      sel.cursorColor,
+                      (hex) => context.read<UpdateThemCubit>().add(
+                            ThemeWidgetEvent.setTextCursorColor(hex),
+                          ),
+                    ),
+                    onClear: () {},
                   ),
                 ),
-                ColorField(
-                  title: 'Selection color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  color: sel.selectionColor,
-                  onTap: (_) => context.selectColor(
-                    initialColor: sel.selectionColor,
-                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setTextSelectionColor(c.toHex()),
-                        ),
+                SizedBox(
+                  width: 200,
+                  child: ColorInput(
+                    label: 'Selection color',
+                    color: sel.selectionColor,
+                    onTap: () => _pickColor(
+                      context,
+                      sel.selectionColor,
+                      (hex) => context.read<UpdateThemCubit>().add(
+                            ThemeWidgetEvent.setTextSelectionColor(hex),
+                          ),
+                    ),
+                    onClear: () {},
                   ),
                 ),
-                ColorField(
-                  title: 'Handle color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  color: sel.selectionHandleColor,
-                  onTap: (_) => context.selectColor(
-                    initialColor: sel.selectionHandleColor,
-                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setTextSelectionHandleColor(c.toHex()),
-                        ),
+                SizedBox(
+                  width: 200,
+                  child: ColorInput(
+                    label: 'Handle color',
+                    color: sel.selectionHandleColor,
+                    onTap: () => _pickColor(
+                      context,
+                      sel.selectionHandleColor,
+                      (hex) => context.read<UpdateThemCubit>().add(
+                            ThemeWidgetEvent.setTextSelectionHandleColor(hex),
+                          ),
+                    ),
+                    onClear: () {},
                   ),
                 ),
               ],
@@ -83,29 +109,37 @@ class TextConfigTab extends StatelessWidget {
             ),
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 8,
-              runSpacing: 8,
+              spacing: 12,
+              runSpacing: 12,
               children: [
-                ColorField(
-                  title: 'Style color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  color: link?.style?.color,
-                  onTap: (_) => context.selectColor(
-                    initialColor: link?.style?.color,
-                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setLinkifyStyleColor(c.toHex()),
-                        ),
+                SizedBox(
+                  width: 200,
+                  child: ColorInput(
+                    label: 'Style color',
+                    color: link?.style?.color,
+                    onTap: () => _pickColor(
+                      context,
+                      link?.style?.color,
+                      (hex) => context.read<UpdateThemCubit>().add(
+                            ThemeWidgetEvent.setLinkifyStyleColor(hex),
+                          ),
+                    ),
+                    onClear: () {},
                   ),
                 ),
-                ColorField(
-                  title: 'Link color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
-                  color: link?.linkStyle?.color,
-                  onTap: (_) => context.selectColor(
-                    initialColor: link?.linkStyle?.color,
-                    onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setLinkifyLinkColor(c.toHex()),
-                        ),
+                SizedBox(
+                  width: 200,
+                  child: ColorInput(
+                    label: 'Link color',
+                    color: link?.linkStyle?.color,
+                    onTap: () => _pickColor(
+                      context,
+                      link?.linkStyle?.color,
+                      (hex) => context.read<UpdateThemCubit>().add(
+                            ThemeWidgetEvent.setLinkifyLinkColor(hex),
+                          ),
+                    ),
+                    onClear: () {},
                   ),
                 ),
               ],

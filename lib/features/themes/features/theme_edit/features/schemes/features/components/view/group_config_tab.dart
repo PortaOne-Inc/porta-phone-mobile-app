@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
-import '../../../widgets/widgets.dart';
 
 class GroupConfigTab extends StatelessWidget {
   const GroupConfigTab({

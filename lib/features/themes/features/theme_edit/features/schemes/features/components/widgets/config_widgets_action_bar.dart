@@ -1,15 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/features/schemes/features/components/widgets/snack_bar_editor_minimal.dart';
-import 'package:webtrit_phone/theme/styles/snack_bar_styles.dart';
 import 'package:webtrit_phone/widgets/confirm_dialog_styles.dart';
+
+import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
 
-import 'confirm_dialog_editor_minimal.dart';
 
 class DialogConfig extends StatelessWidget {
   const DialogConfig({
@@ -34,29 +32,29 @@ class DialogConfig extends StatelessWidget {
         children: [
           BorderContainer(
             title: 'Confirm Dialog',
-            descriptionWidget:  DescriptionRow.info(
+            descriptionWidget: DescriptionRow.info(
               'Configure the confirm dialog active/default button colors.',
             ),
             padding: const EdgeInsets.all(16),
             child: ConfirmDialogEditorMinimal(
               value: dialogCfg.confirmDialog,
               onChanged: (v) => context.read<UpdateThemCubit>().add(
-                ThemeWidgetEvent.setConfirmDialog(v),
-              ),
+                    ThemeWidgetEvent.setConfirmDialog(v),
+                  ),
             ),
           ),
           const SizedBox(height: 16),
           BorderContainer(
             title: 'SnackBar',
-            descriptionWidget:  DescriptionRow.info(
+            descriptionWidget: DescriptionRow.info(
               'Configure background colors for success, error, info and warning snackbars.',
             ),
             padding: const EdgeInsets.all(16),
             child: SnackBarEditorMinimal(
               value: dialogCfg.snackBar,
               onChanged: (v) => context.read<UpdateThemCubit>().add(
-                ThemeWidgetEvent.setSnackBar(v),
-              ),
+                    ThemeWidgetEvent.setSnackBar(v),
+                  ),
             ),
           ),
         ],

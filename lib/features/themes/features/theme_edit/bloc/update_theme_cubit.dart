@@ -10,9 +10,10 @@ import 'package:logging/logging.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_configurator/features/themes/themes.dart';
 
+import '../../../../../extensions/color_extension.dart';
 import '../controllers/feature_access_editor_api.dart';
 import '../controllers/theme_page_editor_api.dart';
 import '../controllers/theme_widget_editor_api.dart';
@@ -224,20 +225,15 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setGroup: (e) => _widgetEditor.setGroup(e.group),
       setGroupTitleListTile: (e) => _widgetEditor.setGroupTitleListTile(e.cfg),
       setGroupTitleListTileBackground: (e) => _widgetEditor.setGroupTitleListTileBackground(e.color),
-      setGroupTitleListTileTextColor: (e) => _widgetEditor.setGroupTitleListTileTextColor(e.color),
+      // setGroupTitleListTileTextColor: (e) => _widgetEditor.setGroupTitleListTileTextColor(e.color),
       setBar: (e) => _widgetEditor.setBar(e.bar),
       setBottomNavigationBar: (e) => _widgetEditor.setBottomNavigationBar(e.cfg),
       setBottomNavBarBackground: (e) => _widgetEditor.setBottomNavBarBackground(e.color),
       setBottomNavBarSelected: (e) => _widgetEditor.setBottomNavBarSelected(e.color),
       setBottomNavBarUnselected: (e) => _widgetEditor.setBottomNavBarUnselected(e.color),
       setExtTabBar: (e) => _widgetEditor.setExtTabBar(e.cfg),
-      setExtTabBarForeground: (e) => _widgetEditor.setExtTabBarForeground(e.color),
-      setExtTabBarBackground: (e) => _widgetEditor.setExtTabBarBackground(e.color),
-      setExtTabBarSelected: (e) => _widgetEditor.setExtTabBarSelected(e.color),
-      setExtTabBarUnselected: (e) => _widgetEditor.setExtTabBarUnselected(e.color),
+      setTabBarConfig: (_SetTabBarConfig value) => _widgetEditor.setTabBar(value.cfg),
       setImageAssets: (e) => _widgetEditor.setImageAssets(e.cfg),
-      setPrimaryOnboardingLogo: (e) => _widgetEditor.setPrimaryOnboardingLogo(e.cfg),
-      setSecondaryOnboardingLogo: (e) => _widgetEditor.setSecondaryOnboardingLogo(e.cfg),
       setAppIcon: (e) => _widgetEditor.setAppIcon(e.cfg),
       setLeadingAvatarStyle: (e) => _widgetEditor.setLeadingAvatarStyle(e.cfg),
       setInput: (e) => _widgetEditor.setInput(e.cfg),
@@ -313,6 +309,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setLoginOtpSigninVerifyCountdown: (e) => _pageEditor.setLoginOtpSigninVerifyCountdown(e.seconds),
       setLoginSignupVerifyCountdown: (e) => _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
 
+      setSettingsPage: (_SetSettingsPage value) => _pageEditor.setSettingsPage(value.info),
       setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
       updateSwitchPage: (it) => _pageEditor.updateSwitchScreenConfig(it.login),
     );

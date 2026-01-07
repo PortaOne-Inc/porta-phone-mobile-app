@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
-import '../../../../../widgets/widgets.dart';
+import 'action_pad_editor_minimal.dart';
+
 
 class KeypadConfigView extends StatefulWidget {
   const KeypadConfigView({super.key});
@@ -43,6 +44,11 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
               value: cfg.systemUiOverlayStyle,
               onChanged: (v) => _set(cfg.copyWith(systemUiOverlayStyle: v)),
             ),
+          ),
+          const SizedBox(height: 16),
+          PageBackgroundEditor(
+            value: cfg.background,
+            onChanged: (PageBackground? value) => _set(cfg.copyWith(background: value)),
           ),
           const SizedBox(height: 16),
           BorderContainer(

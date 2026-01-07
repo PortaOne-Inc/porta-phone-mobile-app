@@ -3650,6 +3650,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
         setDialingSystemUiOverlay,
     TResult Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
     TResult Function(_SetDialingInfo value)? setDialingInfo,
+    TResult Function(_SetSettingsPage value)? setSettingsPage,
     TResult Function(_SetDialingInfoUsernameStyle value)?
         setDialingInfoUsernameStyle,
     TResult Function(_SetDialingInfoNumberStyle value)?
@@ -3695,6 +3696,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that);
       case _SetDialingInfo() when setDialingInfo != null:
         return setDialingInfo(_that);
+      case _SetSettingsPage() when setSettingsPage != null:
+        return setSettingsPage(_that);
       case _SetDialingInfoUsernameStyle()
           when setDialingInfoUsernameStyle != null:
         return setDialingInfoUsernameStyle(_that);
@@ -3751,6 +3754,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     required TResult Function(_SetDialingAppBarStyle value)
         setDialingAppBarStyle,
     required TResult Function(_SetDialingInfo value) setDialingInfo,
+    required TResult Function(_SetSettingsPage value) setSettingsPage,
     required TResult Function(_SetDialingInfoUsernameStyle value)
         setDialingInfoUsernameStyle,
     required TResult Function(_SetDialingInfoNumberStyle value)
@@ -3793,6 +3797,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that);
       case _SetDialingInfo():
         return setDialingInfo(_that);
+      case _SetSettingsPage():
+        return setSettingsPage(_that);
       case _SetDialingInfoUsernameStyle():
         return setDialingInfoUsernameStyle(_that);
       case _SetDialingInfoNumberStyle():
@@ -3840,6 +3846,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
         setDialingSystemUiOverlay,
     TResult? Function(_SetDialingAppBarStyle value)? setDialingAppBarStyle,
     TResult? Function(_SetDialingInfo value)? setDialingInfo,
+    TResult? Function(_SetSettingsPage value)? setSettingsPage,
     TResult? Function(_SetDialingInfoUsernameStyle value)?
         setDialingInfoUsernameStyle,
     TResult? Function(_SetDialingInfoNumberStyle value)?
@@ -3884,6 +3891,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that);
       case _SetDialingInfo() when setDialingInfo != null:
         return setDialingInfo(_that);
+      case _SetSettingsPage() when setSettingsPage != null:
+        return setSettingsPage(_that);
       case _SetDialingInfoUsernameStyle()
           when setDialingInfoUsernameStyle != null:
         return setDialingInfoUsernameStyle(_that);
@@ -3935,8 +3944,9 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult Function(Metadata metadata)? setAboutMetadata,
     TResult Function(CallPageConfig dialingPage)? setDialingPage,
     TResult Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult Function(AppBarConfig? appBarStyle)? setDialingAppBarStyle,
     TResult Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult Function(SettingsPageConfig info)? setSettingsPage,
     TResult Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
     TResult Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
     TResult Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
@@ -3977,6 +3987,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that.appBarStyle);
       case _SetDialingInfo() when setDialingInfo != null:
         return setDialingInfo(_that.info);
+      case _SetSettingsPage() when setSettingsPage != null:
+        return setSettingsPage(_that.info);
       case _SetDialingInfoUsernameStyle()
           when setDialingInfoUsernameStyle != null:
         return setDialingInfoUsernameStyle(_that.style);
@@ -4031,9 +4043,9 @@ extension ThemePageEventPatterns on ThemePageEvent {
     required TResult Function(CallPageConfig dialingPage) setDialingPage,
     required TResult Function(OverlayStyleModel? style)
         setDialingSystemUiOverlay,
-    required TResult Function(AppBarStyleConfig? appBarStyle)
-        setDialingAppBarStyle,
+    required TResult Function(AppBarConfig? appBarStyle) setDialingAppBarStyle,
     required TResult Function(CallPageInfoConfig? info) setDialingInfo,
+    required TResult Function(SettingsPageConfig info) setSettingsPage,
     required TResult Function(TextStyleConfig? style)
         setDialingInfoUsernameStyle,
     required TResult Function(TextStyleConfig? style) setDialingInfoNumberStyle,
@@ -4073,6 +4085,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that.appBarStyle);
       case _SetDialingInfo():
         return setDialingInfo(_that.info);
+      case _SetSettingsPage():
+        return setSettingsPage(_that.info);
       case _SetDialingInfoUsernameStyle():
         return setDialingInfoUsernameStyle(_that.style);
       case _SetDialingInfoNumberStyle():
@@ -4117,8 +4131,9 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult? Function(Metadata metadata)? setAboutMetadata,
     TResult? Function(CallPageConfig dialingPage)? setDialingPage,
     TResult? Function(OverlayStyleModel? style)? setDialingSystemUiOverlay,
-    TResult? Function(AppBarStyleConfig? appBarStyle)? setDialingAppBarStyle,
+    TResult? Function(AppBarConfig? appBarStyle)? setDialingAppBarStyle,
     TResult? Function(CallPageInfoConfig? info)? setDialingInfo,
+    TResult? Function(SettingsPageConfig info)? setSettingsPage,
     TResult? Function(TextStyleConfig? style)? setDialingInfoUsernameStyle,
     TResult? Function(TextStyleConfig? style)? setDialingInfoNumberStyle,
     TResult? Function(TextStyleConfig? style)? setDialingInfoCallStatusStyle,
@@ -4158,6 +4173,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setDialingAppBarStyle(_that.appBarStyle);
       case _SetDialingInfo() when setDialingInfo != null:
         return setDialingInfo(_that.info);
+      case _SetSettingsPage() when setSettingsPage != null:
+        return setSettingsPage(_that.info);
       case _SetDialingInfoUsernameStyle()
           when setDialingInfoUsernameStyle != null:
         return setDialingInfoUsernameStyle(_that.style);
@@ -5016,7 +5033,7 @@ class __$SetDialingSystemUiOverlayCopyWithImpl<$Res>
 class _SetDialingAppBarStyle implements ThemePageEvent {
   const _SetDialingAppBarStyle(this.appBarStyle);
 
-  final AppBarStyleConfig? appBarStyle;
+  final AppBarConfig? appBarStyle;
 
   /// Create a copy of ThemePageEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -5051,9 +5068,9 @@ abstract mixin class _$SetDialingAppBarStyleCopyWith<$Res>
           $Res Function(_SetDialingAppBarStyle) _then) =
       __$SetDialingAppBarStyleCopyWithImpl;
   @useResult
-  $Res call({AppBarStyleConfig? appBarStyle});
+  $Res call({AppBarConfig? appBarStyle});
 
-  $AppBarStyleConfigCopyWith<$Res>? get appBarStyle;
+  $AppBarConfigCopyWith<$Res>? get appBarStyle;
 }
 
 /// @nodoc
@@ -5074,7 +5091,7 @@ class __$SetDialingAppBarStyleCopyWithImpl<$Res>
       freezed == appBarStyle
           ? _self.appBarStyle
           : appBarStyle // ignore: cast_nullable_to_non_nullable
-              as AppBarStyleConfig?,
+              as AppBarConfig?,
     ));
   }
 
@@ -5082,12 +5099,12 @@ class __$SetDialingAppBarStyleCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AppBarStyleConfigCopyWith<$Res>? get appBarStyle {
+  $AppBarConfigCopyWith<$Res>? get appBarStyle {
     if (_self.appBarStyle == null) {
       return null;
     }
 
-    return $AppBarStyleConfigCopyWith<$Res>(_self.appBarStyle!, (value) {
+    return $AppBarConfigCopyWith<$Res>(_self.appBarStyle!, (value) {
       return _then(_self.copyWith(appBarStyle: value));
     });
   }
@@ -5168,6 +5185,82 @@ class __$SetDialingInfoCopyWithImpl<$Res>
     }
 
     return $CallPageInfoConfigCopyWith<$Res>(_self.info!, (value) {
+      return _then(_self.copyWith(info: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _SetSettingsPage implements ThemePageEvent {
+  const _SetSettingsPage(this.info);
+
+  final SettingsPageConfig info;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetSettingsPageCopyWith<_SetSettingsPage> get copyWith =>
+      __$SetSettingsPageCopyWithImpl<_SetSettingsPage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetSettingsPage &&
+            (identical(other.info, info) || other.info == info));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, info);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setSettingsPage(info: $info)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetSettingsPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetSettingsPageCopyWith(
+          _SetSettingsPage value, $Res Function(_SetSettingsPage) _then) =
+      __$SetSettingsPageCopyWithImpl;
+  @useResult
+  $Res call({SettingsPageConfig info});
+
+  $SettingsPageConfigCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class __$SetSettingsPageCopyWithImpl<$Res>
+    implements _$SetSettingsPageCopyWith<$Res> {
+  __$SetSettingsPageCopyWithImpl(this._self, this._then);
+
+  final _SetSettingsPage _self;
+  final $Res Function(_SetSettingsPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? info = null,
+  }) {
+    return _then(_SetSettingsPage(
+      null == info
+          ? _self.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as SettingsPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SettingsPageConfigCopyWith<$Res> get info {
+    return $SettingsPageConfigCopyWith<$Res>(_self.info, (value) {
       return _then(_self.copyWith(info: value));
     });
   }
@@ -5763,8 +5856,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
     TResult Function(_SetGroupTitleListTileBackground value)?
         setGroupTitleListTileBackground,
-    TResult Function(_SetGroupTitleListTileTextColor value)?
-        setGroupTitleListTileTextColor,
     TResult Function(_SetBar value)? setBar,
     TResult Function(_SetBottomNavBar value)? setBottomNavigationBar,
     TResult Function(_SetBottomNavBarBackground value)?
@@ -5773,16 +5864,10 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(_SetBottomNavBarUnselected value)?
         setBottomNavBarUnselected,
     TResult Function(_SetExtTabBar value)? setExtTabBar,
-    TResult Function(_SetExtTabBarForeground value)? setExtTabBarForeground,
-    TResult Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
-    TResult Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
-    TResult Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult Function(_SetTabBarConfig value)? setTabBarConfig,
     TResult Function(_SetDefaultPlaceholderImage value)?
         setDefaultPlaceholderImage,
     TResult Function(_SetImageAssets value)? setImageAssets,
-    TResult Function(_SetPrimaryOnboardingLogo value)? setPrimaryOnboardingLogo,
-    TResult Function(_SetSecondaryOnboardingLogo value)?
-        setSecondaryOnboardingLogo,
     TResult Function(_SetAppIcon value)? setAppIcon,
     TResult Function(_SetLeadingAvatarStyle value)? setLeadingAvatarStyle,
     TResult Function(_SetInput value)? setInput,
@@ -5860,9 +5945,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
       case _SetGroupTitleListTileBackground()
           when setGroupTitleListTileBackground != null:
         return setGroupTitleListTileBackground(_that);
-      case _SetGroupTitleListTileTextColor()
-          when setGroupTitleListTileTextColor != null:
-        return setGroupTitleListTileTextColor(_that);
       case _SetBar() when setBar != null:
         return setBar(_that);
       case _SetBottomNavBar() when setBottomNavigationBar != null:
@@ -5875,24 +5957,13 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that);
       case _SetExtTabBar() when setExtTabBar != null:
         return setExtTabBar(_that);
-      case _SetExtTabBarForeground() when setExtTabBarForeground != null:
-        return setExtTabBarForeground(_that);
-      case _SetExtTabBarBackground() when setExtTabBarBackground != null:
-        return setExtTabBarBackground(_that);
-      case _SetExtTabBarSelected() when setExtTabBarSelected != null:
-        return setExtTabBarSelected(_that);
-      case _SetExtTabBarUnselected() when setExtTabBarUnselected != null:
-        return setExtTabBarUnselected(_that);
+      case _SetTabBarConfig() when setTabBarConfig != null:
+        return setTabBarConfig(_that);
       case _SetDefaultPlaceholderImage()
           when setDefaultPlaceholderImage != null:
         return setDefaultPlaceholderImage(_that);
       case _SetImageAssets() when setImageAssets != null:
         return setImageAssets(_that);
-      case _SetPrimaryOnboardingLogo() when setPrimaryOnboardingLogo != null:
-        return setPrimaryOnboardingLogo(_that);
-      case _SetSecondaryOnboardingLogo()
-          when setSecondaryOnboardingLogo != null:
-        return setSecondaryOnboardingLogo(_that);
       case _SetAppIcon() when setAppIcon != null:
         return setAppIcon(_that);
       case _SetLeadingAvatarStyle() when setLeadingAvatarStyle != null:
@@ -6015,8 +6086,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         setGroupTitleListTile,
     required TResult Function(_SetGroupTitleListTileBackground value)
         setGroupTitleListTileBackground,
-    required TResult Function(_SetGroupTitleListTileTextColor value)
-        setGroupTitleListTileTextColor,
     required TResult Function(_SetBar value) setBar,
     required TResult Function(_SetBottomNavBar value) setBottomNavigationBar,
     required TResult Function(_SetBottomNavBarBackground value)
@@ -6026,20 +6095,10 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(_SetBottomNavBarUnselected value)
         setBottomNavBarUnselected,
     required TResult Function(_SetExtTabBar value) setExtTabBar,
-    required TResult Function(_SetExtTabBarForeground value)
-        setExtTabBarForeground,
-    required TResult Function(_SetExtTabBarBackground value)
-        setExtTabBarBackground,
-    required TResult Function(_SetExtTabBarSelected value) setExtTabBarSelected,
-    required TResult Function(_SetExtTabBarUnselected value)
-        setExtTabBarUnselected,
+    required TResult Function(_SetTabBarConfig value) setTabBarConfig,
     required TResult Function(_SetDefaultPlaceholderImage value)
         setDefaultPlaceholderImage,
     required TResult Function(_SetImageAssets value) setImageAssets,
-    required TResult Function(_SetPrimaryOnboardingLogo value)
-        setPrimaryOnboardingLogo,
-    required TResult Function(_SetSecondaryOnboardingLogo value)
-        setSecondaryOnboardingLogo,
     required TResult Function(_SetAppIcon value) setAppIcon,
     required TResult Function(_SetLeadingAvatarStyle value)
         setLeadingAvatarStyle,
@@ -6127,8 +6186,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setGroupTitleListTile(_that);
       case _SetGroupTitleListTileBackground():
         return setGroupTitleListTileBackground(_that);
-      case _SetGroupTitleListTileTextColor():
-        return setGroupTitleListTileTextColor(_that);
       case _SetBar():
         return setBar(_that);
       case _SetBottomNavBar():
@@ -6141,22 +6198,12 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that);
       case _SetExtTabBar():
         return setExtTabBar(_that);
-      case _SetExtTabBarForeground():
-        return setExtTabBarForeground(_that);
-      case _SetExtTabBarBackground():
-        return setExtTabBarBackground(_that);
-      case _SetExtTabBarSelected():
-        return setExtTabBarSelected(_that);
-      case _SetExtTabBarUnselected():
-        return setExtTabBarUnselected(_that);
+      case _SetTabBarConfig():
+        return setTabBarConfig(_that);
       case _SetDefaultPlaceholderImage():
         return setDefaultPlaceholderImage(_that);
       case _SetImageAssets():
         return setImageAssets(_that);
-      case _SetPrimaryOnboardingLogo():
-        return setPrimaryOnboardingLogo(_that);
-      case _SetSecondaryOnboardingLogo():
-        return setSecondaryOnboardingLogo(_that);
       case _SetAppIcon():
         return setAppIcon(_that);
       case _SetLeadingAvatarStyle():
@@ -6270,8 +6317,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
     TResult? Function(_SetGroupTitleListTileBackground value)?
         setGroupTitleListTileBackground,
-    TResult? Function(_SetGroupTitleListTileTextColor value)?
-        setGroupTitleListTileTextColor,
     TResult? Function(_SetBar value)? setBar,
     TResult? Function(_SetBottomNavBar value)? setBottomNavigationBar,
     TResult? Function(_SetBottomNavBarBackground value)?
@@ -6280,17 +6325,10 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(_SetBottomNavBarUnselected value)?
         setBottomNavBarUnselected,
     TResult? Function(_SetExtTabBar value)? setExtTabBar,
-    TResult? Function(_SetExtTabBarForeground value)? setExtTabBarForeground,
-    TResult? Function(_SetExtTabBarBackground value)? setExtTabBarBackground,
-    TResult? Function(_SetExtTabBarSelected value)? setExtTabBarSelected,
-    TResult? Function(_SetExtTabBarUnselected value)? setExtTabBarUnselected,
+    TResult? Function(_SetTabBarConfig value)? setTabBarConfig,
     TResult? Function(_SetDefaultPlaceholderImage value)?
         setDefaultPlaceholderImage,
     TResult? Function(_SetImageAssets value)? setImageAssets,
-    TResult? Function(_SetPrimaryOnboardingLogo value)?
-        setPrimaryOnboardingLogo,
-    TResult? Function(_SetSecondaryOnboardingLogo value)?
-        setSecondaryOnboardingLogo,
     TResult? Function(_SetAppIcon value)? setAppIcon,
     TResult? Function(_SetLeadingAvatarStyle value)? setLeadingAvatarStyle,
     TResult? Function(_SetInput value)? setInput,
@@ -6368,9 +6406,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
       case _SetGroupTitleListTileBackground()
           when setGroupTitleListTileBackground != null:
         return setGroupTitleListTileBackground(_that);
-      case _SetGroupTitleListTileTextColor()
-          when setGroupTitleListTileTextColor != null:
-        return setGroupTitleListTileTextColor(_that);
       case _SetBar() when setBar != null:
         return setBar(_that);
       case _SetBottomNavBar() when setBottomNavigationBar != null:
@@ -6383,24 +6418,13 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that);
       case _SetExtTabBar() when setExtTabBar != null:
         return setExtTabBar(_that);
-      case _SetExtTabBarForeground() when setExtTabBarForeground != null:
-        return setExtTabBarForeground(_that);
-      case _SetExtTabBarBackground() when setExtTabBarBackground != null:
-        return setExtTabBarBackground(_that);
-      case _SetExtTabBarSelected() when setExtTabBarSelected != null:
-        return setExtTabBarSelected(_that);
-      case _SetExtTabBarUnselected() when setExtTabBarUnselected != null:
-        return setExtTabBarUnselected(_that);
+      case _SetTabBarConfig() when setTabBarConfig != null:
+        return setTabBarConfig(_that);
       case _SetDefaultPlaceholderImage()
           when setDefaultPlaceholderImage != null:
         return setDefaultPlaceholderImage(_that);
       case _SetImageAssets() when setImageAssets != null:
         return setImageAssets(_that);
-      case _SetPrimaryOnboardingLogo() when setPrimaryOnboardingLogo != null:
-        return setPrimaryOnboardingLogo(_that);
-      case _SetSecondaryOnboardingLogo()
-          when setSecondaryOnboardingLogo != null:
-        return setSecondaryOnboardingLogo(_that);
       case _SetAppIcon() when setAppIcon != null:
         return setAppIcon(_that);
       case _SetLeadingAvatarStyle() when setLeadingAvatarStyle != null:
@@ -6519,22 +6543,16 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(GroupWidgetConfig group)? setGroup,
     TResult Function(GroupTitleListTileWidgetConfig cfg)? setGroupTitleListTile,
     TResult Function(String? color)? setGroupTitleListTileBackground,
-    TResult Function(String? color)? setGroupTitleListTileTextColor,
     TResult Function(BarWidgetConfig bar)? setBar,
     TResult Function(BottomNavigationBarWidgetConfig cfg)?
         setBottomNavigationBar,
     TResult Function(String? color)? setBottomNavBarBackground,
     TResult Function(String? color)? setBottomNavBarSelected,
     TResult Function(String? color)? setBottomNavBarUnselected,
-    TResult Function(ExtTabBarWidgetConfig cfg)? setExtTabBar,
-    TResult Function(String? color)? setExtTabBarForeground,
-    TResult Function(String? color)? setExtTabBarBackground,
-    TResult Function(String? color)? setExtTabBarSelected,
-    TResult Function(String? color)? setExtTabBarUnselected,
+    TResult Function(AppBarConfig cfg)? setExtTabBar,
+    TResult Function(TabBarConfig cfg)? setTabBarConfig,
     TResult Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult Function(ImageAssetsConfig cfg)? setImageAssets,
-    TResult Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
-    TResult Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
     TResult Function(AppIconWidgetConfig cfg)? setAppIcon,
     TResult Function(LeadingAvatarStyleConfig cfg)? setLeadingAvatarStyle,
     TResult Function(InputWidgetConfig cfg)? setInput,
@@ -6607,9 +6625,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
       case _SetGroupTitleListTileBackground()
           when setGroupTitleListTileBackground != null:
         return setGroupTitleListTileBackground(_that.color);
-      case _SetGroupTitleListTileTextColor()
-          when setGroupTitleListTileTextColor != null:
-        return setGroupTitleListTileTextColor(_that.color);
       case _SetBar() when setBar != null:
         return setBar(_that.bar);
       case _SetBottomNavBar() when setBottomNavigationBar != null:
@@ -6622,24 +6637,13 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that.color);
       case _SetExtTabBar() when setExtTabBar != null:
         return setExtTabBar(_that.cfg);
-      case _SetExtTabBarForeground() when setExtTabBarForeground != null:
-        return setExtTabBarForeground(_that.color);
-      case _SetExtTabBarBackground() when setExtTabBarBackground != null:
-        return setExtTabBarBackground(_that.color);
-      case _SetExtTabBarSelected() when setExtTabBarSelected != null:
-        return setExtTabBarSelected(_that.color);
-      case _SetExtTabBarUnselected() when setExtTabBarUnselected != null:
-        return setExtTabBarUnselected(_that.color);
+      case _SetTabBarConfig() when setTabBarConfig != null:
+        return setTabBarConfig(_that.cfg);
       case _SetDefaultPlaceholderImage()
           when setDefaultPlaceholderImage != null:
         return setDefaultPlaceholderImage(_that.imageSource);
       case _SetImageAssets() when setImageAssets != null:
         return setImageAssets(_that.cfg);
-      case _SetPrimaryOnboardingLogo() when setPrimaryOnboardingLogo != null:
-        return setPrimaryOnboardingLogo(_that.cfg);
-      case _SetSecondaryOnboardingLogo()
-          when setSecondaryOnboardingLogo != null:
-        return setSecondaryOnboardingLogo(_that.cfg);
       case _SetAppIcon() when setAppIcon != null:
         return setAppIcon(_that.cfg);
       case _SetLeadingAvatarStyle() when setLeadingAvatarStyle != null:
@@ -6760,23 +6764,17 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(GroupTitleListTileWidgetConfig cfg)
         setGroupTitleListTile,
     required TResult Function(String? color) setGroupTitleListTileBackground,
-    required TResult Function(String? color) setGroupTitleListTileTextColor,
     required TResult Function(BarWidgetConfig bar) setBar,
     required TResult Function(BottomNavigationBarWidgetConfig cfg)
         setBottomNavigationBar,
     required TResult Function(String? color) setBottomNavBarBackground,
     required TResult Function(String? color) setBottomNavBarSelected,
     required TResult Function(String? color) setBottomNavBarUnselected,
-    required TResult Function(ExtTabBarWidgetConfig cfg) setExtTabBar,
-    required TResult Function(String? color) setExtTabBarForeground,
-    required TResult Function(String? color) setExtTabBarBackground,
-    required TResult Function(String? color) setExtTabBarSelected,
-    required TResult Function(String? color) setExtTabBarUnselected,
+    required TResult Function(AppBarConfig cfg) setExtTabBar,
+    required TResult Function(TabBarConfig cfg) setTabBarConfig,
     required TResult Function(ImageSource imageSource)
         setDefaultPlaceholderImage,
     required TResult Function(ImageAssetsConfig cfg) setImageAssets,
-    required TResult Function(ImageAssetConfig cfg) setPrimaryOnboardingLogo,
-    required TResult Function(ImageAssetConfig cfg) setSecondaryOnboardingLogo,
     required TResult Function(AppIconWidgetConfig cfg) setAppIcon,
     required TResult Function(LeadingAvatarStyleConfig cfg)
         setLeadingAvatarStyle,
@@ -6851,8 +6849,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setGroupTitleListTile(_that.cfg);
       case _SetGroupTitleListTileBackground():
         return setGroupTitleListTileBackground(_that.color);
-      case _SetGroupTitleListTileTextColor():
-        return setGroupTitleListTileTextColor(_that.color);
       case _SetBar():
         return setBar(_that.bar);
       case _SetBottomNavBar():
@@ -6865,22 +6861,12 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that.color);
       case _SetExtTabBar():
         return setExtTabBar(_that.cfg);
-      case _SetExtTabBarForeground():
-        return setExtTabBarForeground(_that.color);
-      case _SetExtTabBarBackground():
-        return setExtTabBarBackground(_that.color);
-      case _SetExtTabBarSelected():
-        return setExtTabBarSelected(_that.color);
-      case _SetExtTabBarUnselected():
-        return setExtTabBarUnselected(_that.color);
+      case _SetTabBarConfig():
+        return setTabBarConfig(_that.cfg);
       case _SetDefaultPlaceholderImage():
         return setDefaultPlaceholderImage(_that.imageSource);
       case _SetImageAssets():
         return setImageAssets(_that.cfg);
-      case _SetPrimaryOnboardingLogo():
-        return setPrimaryOnboardingLogo(_that.cfg);
-      case _SetSecondaryOnboardingLogo():
-        return setSecondaryOnboardingLogo(_that.cfg);
       case _SetAppIcon():
         return setAppIcon(_that.cfg);
       case _SetLeadingAvatarStyle():
@@ -6993,22 +6979,16 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(GroupTitleListTileWidgetConfig cfg)?
         setGroupTitleListTile,
     TResult? Function(String? color)? setGroupTitleListTileBackground,
-    TResult? Function(String? color)? setGroupTitleListTileTextColor,
     TResult? Function(BarWidgetConfig bar)? setBar,
     TResult? Function(BottomNavigationBarWidgetConfig cfg)?
         setBottomNavigationBar,
     TResult? Function(String? color)? setBottomNavBarBackground,
     TResult? Function(String? color)? setBottomNavBarSelected,
     TResult? Function(String? color)? setBottomNavBarUnselected,
-    TResult? Function(ExtTabBarWidgetConfig cfg)? setExtTabBar,
-    TResult? Function(String? color)? setExtTabBarForeground,
-    TResult? Function(String? color)? setExtTabBarBackground,
-    TResult? Function(String? color)? setExtTabBarSelected,
-    TResult? Function(String? color)? setExtTabBarUnselected,
+    TResult? Function(AppBarConfig cfg)? setExtTabBar,
+    TResult? Function(TabBarConfig cfg)? setTabBarConfig,
     TResult? Function(ImageSource imageSource)? setDefaultPlaceholderImage,
     TResult? Function(ImageAssetsConfig cfg)? setImageAssets,
-    TResult? Function(ImageAssetConfig cfg)? setPrimaryOnboardingLogo,
-    TResult? Function(ImageAssetConfig cfg)? setSecondaryOnboardingLogo,
     TResult? Function(AppIconWidgetConfig cfg)? setAppIcon,
     TResult? Function(LeadingAvatarStyleConfig cfg)? setLeadingAvatarStyle,
     TResult? Function(InputWidgetConfig cfg)? setInput,
@@ -7080,9 +7060,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
       case _SetGroupTitleListTileBackground()
           when setGroupTitleListTileBackground != null:
         return setGroupTitleListTileBackground(_that.color);
-      case _SetGroupTitleListTileTextColor()
-          when setGroupTitleListTileTextColor != null:
-        return setGroupTitleListTileTextColor(_that.color);
       case _SetBar() when setBar != null:
         return setBar(_that.bar);
       case _SetBottomNavBar() when setBottomNavigationBar != null:
@@ -7095,24 +7072,13 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setBottomNavBarUnselected(_that.color);
       case _SetExtTabBar() when setExtTabBar != null:
         return setExtTabBar(_that.cfg);
-      case _SetExtTabBarForeground() when setExtTabBarForeground != null:
-        return setExtTabBarForeground(_that.color);
-      case _SetExtTabBarBackground() when setExtTabBarBackground != null:
-        return setExtTabBarBackground(_that.color);
-      case _SetExtTabBarSelected() when setExtTabBarSelected != null:
-        return setExtTabBarSelected(_that.color);
-      case _SetExtTabBarUnselected() when setExtTabBarUnselected != null:
-        return setExtTabBarUnselected(_that.color);
+      case _SetTabBarConfig() when setTabBarConfig != null:
+        return setTabBarConfig(_that.cfg);
       case _SetDefaultPlaceholderImage()
           when setDefaultPlaceholderImage != null:
         return setDefaultPlaceholderImage(_that.imageSource);
       case _SetImageAssets() when setImageAssets != null:
         return setImageAssets(_that.cfg);
-      case _SetPrimaryOnboardingLogo() when setPrimaryOnboardingLogo != null:
-        return setPrimaryOnboardingLogo(_that.cfg);
-      case _SetSecondaryOnboardingLogo()
-          when setSecondaryOnboardingLogo != null:
-        return setSecondaryOnboardingLogo(_that.cfg);
       case _SetAppIcon() when setAppIcon != null:
         return setAppIcon(_that.cfg);
       case _SetLeadingAvatarStyle() when setLeadingAvatarStyle != null:
@@ -8038,72 +8004,6 @@ class __$SetGroupTitleListTileBackgroundCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _SetGroupTitleListTileTextColor implements ThemeWidgetEvent {
-  const _SetGroupTitleListTileTextColor(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetGroupTitleListTileTextColorCopyWith<_SetGroupTitleListTileTextColor>
-      get copyWith => __$SetGroupTitleListTileTextColorCopyWithImpl<
-          _SetGroupTitleListTileTextColor>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetGroupTitleListTileTextColor &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setGroupTitleListTileTextColor(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetGroupTitleListTileTextColorCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetGroupTitleListTileTextColorCopyWith(
-          _SetGroupTitleListTileTextColor value,
-          $Res Function(_SetGroupTitleListTileTextColor) _then) =
-      __$SetGroupTitleListTileTextColorCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetGroupTitleListTileTextColorCopyWithImpl<$Res>
-    implements _$SetGroupTitleListTileTextColorCopyWith<$Res> {
-  __$SetGroupTitleListTileTextColorCopyWithImpl(this._self, this._then);
-
-  final _SetGroupTitleListTileTextColor _self;
-  final $Res Function(_SetGroupTitleListTileTextColor) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetGroupTitleListTileTextColor(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
 class _SetBar implements ThemeWidgetEvent {
   const _SetBar(this.bar);
 
@@ -8454,7 +8354,7 @@ class __$SetBottomNavBarUnselectedCopyWithImpl<$Res>
 class _SetExtTabBar implements ThemeWidgetEvent {
   const _SetExtTabBar(this.cfg);
 
-  final ExtTabBarWidgetConfig cfg;
+  final AppBarConfig cfg;
 
   /// Create a copy of ThemeWidgetEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -8487,9 +8387,9 @@ abstract mixin class _$SetExtTabBarCopyWith<$Res>
           _SetExtTabBar value, $Res Function(_SetExtTabBar) _then) =
       __$SetExtTabBarCopyWithImpl;
   @useResult
-  $Res call({ExtTabBarWidgetConfig cfg});
+  $Res call({AppBarConfig cfg});
 
-  $ExtTabBarWidgetConfigCopyWith<$Res> get cfg;
+  $AppBarConfigCopyWith<$Res> get cfg;
 }
 
 /// @nodoc
@@ -8510,7 +8410,7 @@ class __$SetExtTabBarCopyWithImpl<$Res>
       null == cfg
           ? _self.cfg
           : cfg // ignore: cast_nullable_to_non_nullable
-              as ExtTabBarWidgetConfig,
+              as AppBarConfig,
     ));
   }
 
@@ -8518,8 +8418,8 @@ class __$SetExtTabBarCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ExtTabBarWidgetConfigCopyWith<$Res> get cfg {
-    return $ExtTabBarWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
+  $AppBarConfigCopyWith<$Res> get cfg {
+    return $AppBarConfigCopyWith<$Res>(_self.cfg, (value) {
       return _then(_self.copyWith(cfg: value));
     });
   }
@@ -8527,261 +8427,77 @@ class __$SetExtTabBarCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _SetExtTabBarForeground implements ThemeWidgetEvent {
-  const _SetExtTabBarForeground(this.color);
+class _SetTabBarConfig implements ThemeWidgetEvent {
+  const _SetTabBarConfig(this.cfg);
 
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetExtTabBarForegroundCopyWith<_SetExtTabBarForeground> get copyWith =>
-      __$SetExtTabBarForegroundCopyWithImpl<_SetExtTabBarForeground>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetExtTabBarForeground &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setExtTabBarForeground(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetExtTabBarForegroundCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetExtTabBarForegroundCopyWith(_SetExtTabBarForeground value,
-          $Res Function(_SetExtTabBarForeground) _then) =
-      __$SetExtTabBarForegroundCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetExtTabBarForegroundCopyWithImpl<$Res>
-    implements _$SetExtTabBarForegroundCopyWith<$Res> {
-  __$SetExtTabBarForegroundCopyWithImpl(this._self, this._then);
-
-  final _SetExtTabBarForeground _self;
-  final $Res Function(_SetExtTabBarForeground) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetExtTabBarForeground(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetExtTabBarBackground implements ThemeWidgetEvent {
-  const _SetExtTabBarBackground(this.color);
-
-  final String? color;
+  final TabBarConfig cfg;
 
   /// Create a copy of ThemeWidgetEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$SetExtTabBarBackgroundCopyWith<_SetExtTabBarBackground> get copyWith =>
-      __$SetExtTabBarBackgroundCopyWithImpl<_SetExtTabBarBackground>(
-          this, _$identity);
+  _$SetTabBarConfigCopyWith<_SetTabBarConfig> get copyWith =>
+      __$SetTabBarConfigCopyWithImpl<_SetTabBarConfig>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SetExtTabBarBackground &&
-            (identical(other.color, color) || other.color == color));
+            other is _SetTabBarConfig &&
+            (identical(other.cfg, cfg) || other.cfg == cfg));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode => Object.hash(runtimeType, cfg);
 
   @override
   String toString() {
-    return 'ThemeWidgetEvent.setExtTabBarBackground(color: $color)';
+    return 'ThemeWidgetEvent.setTabBarConfig(cfg: $cfg)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$SetExtTabBarBackgroundCopyWith<$Res>
+abstract mixin class _$SetTabBarConfigCopyWith<$Res>
     implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetExtTabBarBackgroundCopyWith(_SetExtTabBarBackground value,
-          $Res Function(_SetExtTabBarBackground) _then) =
-      __$SetExtTabBarBackgroundCopyWithImpl;
+  factory _$SetTabBarConfigCopyWith(
+          _SetTabBarConfig value, $Res Function(_SetTabBarConfig) _then) =
+      __$SetTabBarConfigCopyWithImpl;
   @useResult
-  $Res call({String? color});
+  $Res call({TabBarConfig cfg});
+
+  $TabBarConfigCopyWith<$Res> get cfg;
 }
 
 /// @nodoc
-class __$SetExtTabBarBackgroundCopyWithImpl<$Res>
-    implements _$SetExtTabBarBackgroundCopyWith<$Res> {
-  __$SetExtTabBarBackgroundCopyWithImpl(this._self, this._then);
+class __$SetTabBarConfigCopyWithImpl<$Res>
+    implements _$SetTabBarConfigCopyWith<$Res> {
+  __$SetTabBarConfigCopyWithImpl(this._self, this._then);
 
-  final _SetExtTabBarBackground _self;
-  final $Res Function(_SetExtTabBarBackground) _then;
+  final _SetTabBarConfig _self;
+  final $Res Function(_SetTabBarConfig) _then;
 
   /// Create a copy of ThemeWidgetEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? color = freezed,
+    Object? cfg = null,
   }) {
-    return _then(_SetExtTabBarBackground(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_SetTabBarConfig(
+      null == cfg
+          ? _self.cfg
+          : cfg // ignore: cast_nullable_to_non_nullable
+              as TabBarConfig,
     ));
   }
-}
-
-/// @nodoc
-
-class _SetExtTabBarSelected implements ThemeWidgetEvent {
-  const _SetExtTabBarSelected(this.color);
-
-  final String? color;
 
   /// Create a copy of ThemeWidgetEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
   @pragma('vm:prefer-inline')
-  _$SetExtTabBarSelectedCopyWith<_SetExtTabBarSelected> get copyWith =>
-      __$SetExtTabBarSelectedCopyWithImpl<_SetExtTabBarSelected>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetExtTabBarSelected &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setExtTabBarSelected(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetExtTabBarSelectedCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetExtTabBarSelectedCopyWith(_SetExtTabBarSelected value,
-          $Res Function(_SetExtTabBarSelected) _then) =
-      __$SetExtTabBarSelectedCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetExtTabBarSelectedCopyWithImpl<$Res>
-    implements _$SetExtTabBarSelectedCopyWith<$Res> {
-  __$SetExtTabBarSelectedCopyWithImpl(this._self, this._then);
-
-  final _SetExtTabBarSelected _self;
-  final $Res Function(_SetExtTabBarSelected) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetExtTabBarSelected(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetExtTabBarUnselected implements ThemeWidgetEvent {
-  const _SetExtTabBarUnselected(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetExtTabBarUnselectedCopyWith<_SetExtTabBarUnselected> get copyWith =>
-      __$SetExtTabBarUnselectedCopyWithImpl<_SetExtTabBarUnselected>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetExtTabBarUnselected &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setExtTabBarUnselected(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetExtTabBarUnselectedCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetExtTabBarUnselectedCopyWith(_SetExtTabBarUnselected value,
-          $Res Function(_SetExtTabBarUnselected) _then) =
-      __$SetExtTabBarUnselectedCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetExtTabBarUnselectedCopyWithImpl<$Res>
-    implements _$SetExtTabBarUnselectedCopyWith<$Res> {
-  __$SetExtTabBarUnselectedCopyWithImpl(this._self, this._then);
-
-  final _SetExtTabBarUnselected _self;
-  final $Res Function(_SetExtTabBarUnselected) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetExtTabBarUnselected(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $TabBarConfigCopyWith<$Res> get cfg {
+    return $TabBarConfigCopyWith<$Res>(_self.cfg, (value) {
+      return _then(_self.copyWith(cfg: value));
+    });
   }
 }
 
@@ -8935,161 +8651,6 @@ class __$SetImageAssetsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $ImageAssetsConfigCopyWith<$Res> get cfg {
     return $ImageAssetsConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetPrimaryOnboardingLogo implements ThemeWidgetEvent {
-  const _SetPrimaryOnboardingLogo(this.cfg);
-
-  final ImageAssetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPrimaryOnboardingLogoCopyWith<_SetPrimaryOnboardingLogo> get copyWith =>
-      __$SetPrimaryOnboardingLogoCopyWithImpl<_SetPrimaryOnboardingLogo>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPrimaryOnboardingLogo &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPrimaryOnboardingLogo(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPrimaryOnboardingLogoCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPrimaryOnboardingLogoCopyWith(_SetPrimaryOnboardingLogo value,
-          $Res Function(_SetPrimaryOnboardingLogo) _then) =
-      __$SetPrimaryOnboardingLogoCopyWithImpl;
-  @useResult
-  $Res call({ImageAssetConfig cfg});
-
-  $ImageAssetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetPrimaryOnboardingLogoCopyWithImpl<$Res>
-    implements _$SetPrimaryOnboardingLogoCopyWith<$Res> {
-  __$SetPrimaryOnboardingLogoCopyWithImpl(this._self, this._then);
-
-  final _SetPrimaryOnboardingLogo _self;
-  final $Res Function(_SetPrimaryOnboardingLogo) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetPrimaryOnboardingLogo(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ImageAssetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageAssetConfigCopyWith<$Res> get cfg {
-    return $ImageAssetConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetSecondaryOnboardingLogo implements ThemeWidgetEvent {
-  const _SetSecondaryOnboardingLogo(this.cfg);
-
-  final ImageAssetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetSecondaryOnboardingLogoCopyWith<_SetSecondaryOnboardingLogo>
-      get copyWith => __$SetSecondaryOnboardingLogoCopyWithImpl<
-          _SetSecondaryOnboardingLogo>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetSecondaryOnboardingLogo &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setSecondaryOnboardingLogo(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetSecondaryOnboardingLogoCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetSecondaryOnboardingLogoCopyWith(
-          _SetSecondaryOnboardingLogo value,
-          $Res Function(_SetSecondaryOnboardingLogo) _then) =
-      __$SetSecondaryOnboardingLogoCopyWithImpl;
-  @useResult
-  $Res call({ImageAssetConfig cfg});
-
-  $ImageAssetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetSecondaryOnboardingLogoCopyWithImpl<$Res>
-    implements _$SetSecondaryOnboardingLogoCopyWith<$Res> {
-  __$SetSecondaryOnboardingLogoCopyWithImpl(this._self, this._then);
-
-  final _SetSecondaryOnboardingLogo _self;
-  final $Res Function(_SetSecondaryOnboardingLogo) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetSecondaryOnboardingLogo(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ImageAssetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ImageAssetConfigCopyWith<$Res> get cfg {
-    return $ImageAssetConfigCopyWith<$Res>(_self.cfg, (value) {
       return _then(_self.copyWith(cfg: value));
     });
   }

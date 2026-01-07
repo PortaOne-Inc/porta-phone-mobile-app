@@ -1,79 +1,101 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
-import '../widgets/bottom_nav_bar_editor_minimal.dart';
-import '../widgets/ext_tab_bar_editor_minimal.dart';
 
 class BarsConfigTab extends StatelessWidget {
   const BarsConfigTab({
-    required this.sourceBarWidgetConfig,
+    required this.config,
     super.key,
   });
 
-  final BarWidgetConfig sourceBarWidgetConfig;
+  final BarWidgetConfig config;
+
+  void _onBottomNavChanged(BuildContext context, BottomNavigationBarWidgetConfig newValue) {
+    final cubit = context.read<UpdateThemCubit>();
+    final current = config.bottomNavigationBar;
+
+    if (newValue.backgroundColor != current.backgroundColor) {
+      cubit.add(ThemeWidgetEvent.setBottomNavBarBackground(newValue.backgroundColor));
+    }
+    if (newValue.selectedItemColor != current.selectedItemColor) {
+      cubit.add(ThemeWidgetEvent.setBottomNavBarSelected(newValue.selectedItemColor));
+    }
+    if (newValue.unSelectedItemColor != current.unSelectedItemColor) {
+      cubit.add(ThemeWidgetEvent.setBottomNavBarUnselected(newValue.unSelectedItemColor));
+    }
+  }
+
+  void _onAppBarChanged(BuildContext context, AppBarConfig newValue) {
+    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setExtTabBar(newValue));
+  }
+
+  void _onTabBarChanged(BuildContext context, TabBarConfig newValue) {
+    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setTabBarConfig(newValue));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final cfg = sourceBarWidgetConfig;
+    final theme = Theme.of(context);
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          BorderContainer(
-            title: 'Bottom navigation bar',
-            descriptionWidget: DescriptionRow.info(
-              'Configure background and item colors for the bottom navigation bar.',
-            ),
-            padding: const EdgeInsets.all(16),
-            child: BottomNavBarEditorMinimal(
-              value: cfg.bottomNavigationBar,
-              onChanged: (v) {
-                // dispatch granular events so state stays consistent
-                final c = context.read<UpdateThemCubit>();
-                if (v.backgroundColor != cfg.bottomNavigationBar.backgroundColor) {
-                  c.add(ThemeWidgetEvent.setBottomNavBarBackground(v.backgroundColor));
-                }
-                if (v.selectedItemColor != cfg.bottomNavigationBar.selectedItemColor) {
-                  c.add(ThemeWidgetEvent.setBottomNavBarSelected(v.selectedItemColor));
-                }
-                if (v.unSelectedItemColor != cfg.bottomNavigationBar.unSelectedItemColor) {
-                  c.add(ThemeWidgetEvent.setBottomNavBarUnselected(v.unSelectedItemColor));
-                }
-              },
+          Text('Bottom Navigation Bar', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Card(
+            margin: EdgeInsets.zero,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: BottomNavBarEditorMinimal(
+                value: config.bottomNavigationBar,
+                onChanged: (v) => _onBottomNavChanged(context, v),
+              ),
             ),
           ),
-          const SizedBox(height: 16),
-          BorderContainer(
-            title: 'Tab bar',
-            descriptionWidget: DescriptionRow.info(
-              'Configure foreground/background and selected/unselected colors for the tab bar.',
-            ),
-            padding: const EdgeInsets.all(16),
-            child: ExtTabBarEditorMinimal(
-              value: cfg.extTabBar,
-              onChanged: (v) {
-                final c = context.read<UpdateThemCubit>();
-                if (v.backgroundColor != cfg.extTabBar.backgroundColor) {
-                  c.add(ThemeWidgetEvent.setExtTabBarBackground(v.backgroundColor));
-                }
-                if (v.foregroundColor != cfg.extTabBar.foregroundColor) {
-                  c.add(ThemeWidgetEvent.setExtTabBarForeground(v.foregroundColor));
-                }
-                if (v.selectedItemColor != cfg.extTabBar.selectedItemColor) {
-                  c.add(ThemeWidgetEvent.setExtTabBarSelected(v.selectedItemColor));
-                }
-                if (v.unSelectedItemColor != cfg.extTabBar.unSelectedItemColor) {
-                  c.add(ThemeWidgetEvent.setExtTabBarUnselected(v.unSelectedItemColor));
-                }
-              },
+          const SizedBox(height: 24),
+          Text('App Bar (Header)', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Card(
+            margin: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: AppBarConfigEditor(
+                value: config.appBarConfig,
+                onChanged: (v) => _onAppBarChanged(context, v),
+                description: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text('Configure colors, geometry, typography and icons for the top bar.'),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: 24),
+          Text('Tab Bar', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Card(
+            margin: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: TabBarConfigEditor(
+                value: config.tabBarConfig,
+                onChanged: (v) => _onTabBarChanged(context, v),
+                description: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text('Configure indicators, dividers, and label styles for tabbed views.'),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 32),
         ],
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class ColorSchemeConfigurationView extends StatefulWidget {

@@ -45,7 +45,7 @@ abstract class ThemeWidgetEditorApi {
 
   void setGroupTitleListTileBackground(String? color);
 
-  void setGroupTitleListTileTextColor(String? color);
+  // void setGroupTitleListTileTextColor(String? color);
 
   void setBar(BarWidgetConfig bar);
 
@@ -57,23 +57,13 @@ abstract class ThemeWidgetEditorApi {
 
   void setBottomNavBarUnselected(String? color);
 
-  void setExtTabBar(ExtTabBarWidgetConfig cfg);
+  void setExtTabBar(AppBarConfig cfg);
 
-  void setExtTabBarForeground(String? color);
-
-  void setExtTabBarBackground(String? color);
-
-  void setExtTabBarSelected(String? color);
-
-  void setExtTabBarUnselected(String? color);
+  void setTabBar(TabBarConfig cfg);
 
   void setImageAssets(ImageAssetsConfig cfg);
 
-  void setPrimaryOnboardingLogo(ImageAssetConfig cfg);
-
   void setDefaultPlaceholderImage(ImageSource imageSource);
-
-  void setSecondaryOnboardingLogo(ImageAssetConfig cfg);
 
   void setAppIcon(AppIconWidgetConfig cfg);
 
@@ -329,16 +319,16 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     _emit();
   }
 
-  @override
-  void setGroupTitleListTileTextColor(String? color) {
-    _current = current.copyWith(
-      group: (current.group ?? const GroupWidgetConfig()).copyWith(
-        groupTitleListTile:
-            (current.group?.groupTitleListTile ?? const GroupTitleListTileWidgetConfig()).copyWith(textColor: color),
-      ),
-    );
-    _emit();
-  }
+  // @override
+  // void setGroupTitleListTileTextColor(String? color) {
+  //   _current = current.copyWith(
+  //     group: (current.group ?? const GroupWidgetConfig()).copyWith(
+  //       groupTitleListTile:
+  //           (current.group?.groupTitleListTile ?? const GroupTitleListTileWidgetConfig()).copyWith(textColor: color),
+  //     ),
+  //   );
+  //   _emit();
+  // }
 
   @override
   void setBar(BarWidgetConfig bar) {
@@ -383,58 +373,14 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   }
 
   @override
-  void setExtTabBar(ExtTabBarWidgetConfig cfg) {
-    _current = current.copyWith(bar: current.bar.copyWith(extTabBar: cfg));
-    _emit();
-  }
-
-  @override
-  void setExtTabBarForeground(String? color) {
-    _current = current.copyWith(
-      bar: current.bar.copyWith(extTabBar: current.bar.extTabBar.copyWith(foregroundColor: color)),
-    );
-    _emit();
-  }
-
-  @override
-  void setExtTabBarBackground(String? color) {
-    _current = current.copyWith(
-      bar: current.bar.copyWith(extTabBar: current.bar.extTabBar.copyWith(backgroundColor: color)),
-    );
-    _emit();
-  }
-
-  @override
-  void setExtTabBarSelected(String? color) {
-    _current = current.copyWith(
-      bar: current.bar.copyWith(extTabBar: current.bar.extTabBar.copyWith(selectedItemColor: color)),
-    );
-    _emit();
-  }
-
-  @override
-  void setExtTabBarUnselected(String? color) {
-    _current = current.copyWith(
-      bar: current.bar.copyWith(extTabBar: current.bar.extTabBar.copyWith(unSelectedItemColor: color)),
-    );
+  void setExtTabBar(AppBarConfig cfg) {
+    _current = current.copyWith(bar: current.bar.copyWith(appBarConfig: cfg));
     _emit();
   }
 
   @override
   void setImageAssets(ImageAssetsConfig cfg) {
     _current = current.copyWith(imageAssets: cfg);
-    _emit();
-  }
-
-  @override
-  void setPrimaryOnboardingLogo(ImageAssetConfig cfg) {
-    //_current = current.copyWith(imageAssets: current.imageAssets.copyWith(primaryOnboardingLogo: cfg));
-    _emit();
-  }
-
-  @override
-  void setSecondaryOnboardingLogo(ImageAssetConfig cfg) {
-    //  _current = current.copyWith(imageAssets: current.imageAssets.copyWith(secondaryOnboardingLogo: cfg));
     _emit();
   }
 
@@ -770,5 +716,11 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   Future<void> dispose() async {
     await _controller.close();
+  }
+
+  @override
+  void setTabBar(TabBarConfig cfg) {
+    _current = current.copyWith(bar: current.bar.copyWith(tabBarConfig: cfg));
+    _emit();
   }
 }

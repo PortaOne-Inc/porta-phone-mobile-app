@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:webtrit_configurator/widgets/widgets.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import '../../../../../../../../../../../exports/exports.dart';
+import '../../../../../../../routes/scheme_route.dart' show SchemeRoute;
 
 class LoginSchemeWelcome extends StatefulWidget {
   const LoginSchemeWelcome({

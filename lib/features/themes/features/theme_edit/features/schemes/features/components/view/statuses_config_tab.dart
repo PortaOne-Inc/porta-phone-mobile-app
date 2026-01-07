@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_phone/theme/styles/styles.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
-
-import '../../../../../../../../features.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class StatusesConfigTab extends StatelessWidget {
   const StatusesConfigTab({
@@ -39,16 +39,24 @@ class StatusesConfigTab extends StatelessWidget {
               StatusDescriptor(
                 title: 'Registered',
                 color: regStyles?.registered,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'Unregistered',
                 color: regStyles?.unregistered,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
+                        );
+                  }
+                },
               ),
             ],
           ),
@@ -62,44 +70,68 @@ class StatusesConfigTab extends StatelessWidget {
               StatusDescriptor(
                 title: 'Connectivity none',
                 color: callStyles?.connectivityNone,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectivityNone(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesConnectivityNone(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'Connect error',
                 color: callStyles?.connectError,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'App unregistered',
                 color: callStyles?.appUnregistered,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesAppUnregistered(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesAppUnregistered(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'Connect issue',
                 color: callStyles?.connectIssue,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'In progress',
                 color: callStyles?.inProgress,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
+                        );
+                  }
+                },
               ),
               StatusDescriptor(
                 title: 'Ready',
                 color: callStyles?.ready,
-                onColorSelected: (c) => context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
-                    ),
+                onColorSelected: (c) {
+                  if (c != null) {
+                    context.read<UpdateThemCubit>().add(
+                          ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
+                        );
+                  }
+                },
               ),
             ],
           ),
@@ -121,22 +153,29 @@ class StatusSection extends StatelessWidget {
   final List<StatusDescriptor> statuses;
   final Widget? descriptionWidget;
 
+  Future<void> _pickColor(BuildContext context, StatusDescriptor status) async {
+    final newColor = await context.showColorPicker(currentColor: status.color);
+    if (newColor != null) {
+      status.onColorSelected(newColor);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BorderContainer(
       title: title,
       descriptionWidget: descriptionWidget,
       child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
+        spacing: 12,
+        runSpacing: 12,
         children: statuses.map((status) {
-          return ColorField(
-            constraints: const BoxConstraints(minWidth: 160, minHeight: 80),
-            title: status.title,
-            color: status.color,
-            onTap: (_) => context.selectColor(
-              initialColor: status.color,
-              onColorSelected: status.onColorSelected,
+          return SizedBox(
+            width: 200,
+            child: ColorInput(
+              label: status.title,
+              color: status.color,
+              onTap: () => _pickColor(context, status),
+              onClear: () => status.onColorSelected(null),
             ),
           );
         }).toList(),
@@ -154,5 +193,5 @@ class StatusDescriptor {
 
   final String title;
   final Color? color;
-  final ValueChanged<Color> onColorSelected;
+  final ValueChanged<Color?> onColorSelected;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webtrit_configurator/core/core.dart';
+
+import 'package:webtrit_configurator/extensions/extensions.dart';
 
 class GradientField extends StatelessWidget {
   const GradientField({

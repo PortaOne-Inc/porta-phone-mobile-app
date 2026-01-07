@@ -104,9 +104,11 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
 
   const factory ThemePageEvent.setDialingSystemUiOverlay(OverlayStyleModel? style) = _SetDialingSystemUiOverlay;
 
-  const factory ThemePageEvent.setDialingAppBarStyle(AppBarStyleConfig? appBarStyle) = _SetDialingAppBarStyle;
+  const factory ThemePageEvent.setDialingAppBarStyle(AppBarConfig? appBarStyle) = _SetDialingAppBarStyle;
 
   const factory ThemePageEvent.setDialingInfo(CallPageInfoConfig? info) = _SetDialingInfo;
+
+  const factory ThemePageEvent.setSettingsPage(SettingsPageConfig info) = _SetSettingsPage;
 
   // Dialing info fields
   const factory ThemePageEvent.setDialingInfoUsernameStyle(TextStyleConfig? style) = _SetDialingInfoUsernameStyle;
@@ -156,7 +158,7 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
 
   const factory ThemeWidgetEvent.setGroupTitleListTileBackground(String? color) = _SetGroupTitleListTileBackground;
 
-  const factory ThemeWidgetEvent.setGroupTitleListTileTextColor(String? color) = _SetGroupTitleListTileTextColor;
+  // const factory ThemeWidgetEvent.setGroupTitleListTileTextColor(String? color) = _SetGroupTitleListTileTextColor;
 
   // Bar
   const factory ThemeWidgetEvent.setBar(BarWidgetConfig bar) = _SetBar;
@@ -169,24 +171,14 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
 
   const factory ThemeWidgetEvent.setBottomNavBarUnselected(String? color) = _SetBottomNavBarUnselected;
 
-  const factory ThemeWidgetEvent.setExtTabBar(ExtTabBarWidgetConfig cfg) = _SetExtTabBar;
+  const factory ThemeWidgetEvent.setExtTabBar(AppBarConfig cfg) = _SetExtTabBar;
 
-  const factory ThemeWidgetEvent.setExtTabBarForeground(String? color) = _SetExtTabBarForeground;
-
-  const factory ThemeWidgetEvent.setExtTabBarBackground(String? color) = _SetExtTabBarBackground;
-
-  const factory ThemeWidgetEvent.setExtTabBarSelected(String? color) = _SetExtTabBarSelected;
-
-  const factory ThemeWidgetEvent.setExtTabBarUnselected(String? color) = _SetExtTabBarUnselected;
+  const factory ThemeWidgetEvent.setTabBarConfig(TabBarConfig cfg) = _SetTabBarConfig;
 
   // Image assets
   const factory ThemeWidgetEvent.setDefaultPlaceholderImage(ImageSource imageSource) = _SetDefaultPlaceholderImage;
 
   const factory ThemeWidgetEvent.setImageAssets(ImageAssetsConfig cfg) = _SetImageAssets;
-
-  const factory ThemeWidgetEvent.setPrimaryOnboardingLogo(ImageAssetConfig cfg) = _SetPrimaryOnboardingLogo;
-
-  const factory ThemeWidgetEvent.setSecondaryOnboardingLogo(ImageAssetConfig cfg) = _SetSecondaryOnboardingLogo;
 
   const factory ThemeWidgetEvent.setAppIcon(AppIconWidgetConfig cfg) = _SetAppIcon;
 

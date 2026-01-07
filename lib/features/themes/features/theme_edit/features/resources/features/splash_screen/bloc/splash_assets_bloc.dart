@@ -9,7 +9,7 @@ import 'package:logging/logging.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 
 part 'splash_assets_state.dart';
 

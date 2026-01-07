@@ -17,6 +17,7 @@ mixin _$ManageSettingItemState {
   bool get enable;
   String? get titleL10n;
   String? get settingItemIcon;
+  String? get settingItemColor;
   EmbeddedResourceModel? get selectedEmbeddedResource;
   SettingsFlavor? get type; // Set final values
   AppConfigSettingsItem? get resultSettingItem;
@@ -39,6 +40,8 @@ mixin _$ManageSettingItemState {
                 other.titleL10n == titleL10n) &&
             (identical(other.settingItemIcon, settingItemIcon) ||
                 other.settingItemIcon == settingItemIcon) &&
+            (identical(other.settingItemColor, settingItemColor) ||
+                other.settingItemColor == settingItemColor) &&
             (identical(
                     other.selectedEmbeddedResource, selectedEmbeddedResource) ||
                 other.selectedEmbeddedResource == selectedEmbeddedResource) &&
@@ -48,12 +51,19 @@ mixin _$ManageSettingItemState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, enable, titleL10n,
-      settingItemIcon, selectedEmbeddedResource, type, resultSettingItem);
+  int get hashCode => Object.hash(
+      runtimeType,
+      enable,
+      titleL10n,
+      settingItemIcon,
+      settingItemColor,
+      selectedEmbeddedResource,
+      type,
+      resultSettingItem);
 
   @override
   String toString() {
-    return 'ManageSettingItemState(enable: $enable, titleL10n: $titleL10n, settingItemIcon: $settingItemIcon, selectedEmbeddedResource: $selectedEmbeddedResource, type: $type, resultSettingItem: $resultSettingItem)';
+    return 'ManageSettingItemState(enable: $enable, titleL10n: $titleL10n, settingItemIcon: $settingItemIcon, settingItemColor: $settingItemColor, selectedEmbeddedResource: $selectedEmbeddedResource, type: $type, resultSettingItem: $resultSettingItem)';
   }
 }
 
@@ -67,6 +77,7 @@ abstract mixin class $ManageSettingItemStateCopyWith<$Res> {
       {bool enable,
       String? titleL10n,
       String? settingItemIcon,
+      String? settingItemColor,
       EmbeddedResourceModel? selectedEmbeddedResource,
       SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
@@ -91,6 +102,7 @@ class _$ManageSettingItemStateCopyWithImpl<$Res>
     Object? enable = null,
     Object? titleL10n = freezed,
     Object? settingItemIcon = freezed,
+    Object? settingItemColor = freezed,
     Object? selectedEmbeddedResource = freezed,
     Object? type = freezed,
     Object? resultSettingItem = freezed,
@@ -107,6 +119,10 @@ class _$ManageSettingItemStateCopyWithImpl<$Res>
       settingItemIcon: freezed == settingItemIcon
           ? _self.settingItemIcon
           : settingItemIcon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      settingItemColor: freezed == settingItemColor
+          ? _self.settingItemColor
+          : settingItemColor // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedEmbeddedResource: freezed == selectedEmbeddedResource
           ? _self.selectedEmbeddedResource
@@ -249,6 +265,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             bool enable,
             String? titleL10n,
             String? settingItemIcon,
+            String? settingItemColor,
             EmbeddedResourceModel? selectedEmbeddedResource,
             SettingsFlavor? type,
             AppConfigSettingsItem? resultSettingItem)?
@@ -262,6 +279,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             _that.enable,
             _that.titleL10n,
             _that.settingItemIcon,
+            _that.settingItemColor,
             _that.selectedEmbeddedResource,
             _that.type,
             _that.resultSettingItem);
@@ -289,6 +307,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             bool enable,
             String? titleL10n,
             String? settingItemIcon,
+            String? settingItemColor,
             EmbeddedResourceModel? selectedEmbeddedResource,
             SettingsFlavor? type,
             AppConfigSettingsItem? resultSettingItem)
@@ -301,6 +320,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             _that.enable,
             _that.titleL10n,
             _that.settingItemIcon,
+            _that.settingItemColor,
             _that.selectedEmbeddedResource,
             _that.type,
             _that.resultSettingItem);
@@ -325,6 +345,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             bool enable,
             String? titleL10n,
             String? settingItemIcon,
+            String? settingItemColor,
             EmbeddedResourceModel? selectedEmbeddedResource,
             SettingsFlavor? type,
             AppConfigSettingsItem? resultSettingItem)?
@@ -337,6 +358,7 @@ extension ManageSettingItemStatePatterns on ManageSettingItemState {
             _that.enable,
             _that.titleL10n,
             _that.settingItemIcon,
+            _that.settingItemColor,
             _that.selectedEmbeddedResource,
             _that.type,
             _that.resultSettingItem);
@@ -353,6 +375,7 @@ class _Initial extends ManageSettingItemState {
       {this.enable = true,
       this.titleL10n,
       this.settingItemIcon,
+      this.settingItemColor,
       this.selectedEmbeddedResource,
       this.type,
       this.resultSettingItem})
@@ -365,6 +388,8 @@ class _Initial extends ManageSettingItemState {
   final String? titleL10n;
   @override
   final String? settingItemIcon;
+  @override
+  final String? settingItemColor;
   @override
   final EmbeddedResourceModel? selectedEmbeddedResource;
   @override
@@ -391,6 +416,8 @@ class _Initial extends ManageSettingItemState {
                 other.titleL10n == titleL10n) &&
             (identical(other.settingItemIcon, settingItemIcon) ||
                 other.settingItemIcon == settingItemIcon) &&
+            (identical(other.settingItemColor, settingItemColor) ||
+                other.settingItemColor == settingItemColor) &&
             (identical(
                     other.selectedEmbeddedResource, selectedEmbeddedResource) ||
                 other.selectedEmbeddedResource == selectedEmbeddedResource) &&
@@ -400,12 +427,19 @@ class _Initial extends ManageSettingItemState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, enable, titleL10n,
-      settingItemIcon, selectedEmbeddedResource, type, resultSettingItem);
+  int get hashCode => Object.hash(
+      runtimeType,
+      enable,
+      titleL10n,
+      settingItemIcon,
+      settingItemColor,
+      selectedEmbeddedResource,
+      type,
+      resultSettingItem);
 
   @override
   String toString() {
-    return 'ManageSettingItemState(enable: $enable, titleL10n: $titleL10n, settingItemIcon: $settingItemIcon, selectedEmbeddedResource: $selectedEmbeddedResource, type: $type, resultSettingItem: $resultSettingItem)';
+    return 'ManageSettingItemState(enable: $enable, titleL10n: $titleL10n, settingItemIcon: $settingItemIcon, settingItemColor: $settingItemColor, selectedEmbeddedResource: $selectedEmbeddedResource, type: $type, resultSettingItem: $resultSettingItem)';
   }
 }
 
@@ -420,6 +454,7 @@ abstract mixin class _$InitialCopyWith<$Res>
       {bool enable,
       String? titleL10n,
       String? settingItemIcon,
+      String? settingItemColor,
       EmbeddedResourceModel? selectedEmbeddedResource,
       SettingsFlavor? type,
       AppConfigSettingsItem? resultSettingItem});
@@ -445,6 +480,7 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
     Object? enable = null,
     Object? titleL10n = freezed,
     Object? settingItemIcon = freezed,
+    Object? settingItemColor = freezed,
     Object? selectedEmbeddedResource = freezed,
     Object? type = freezed,
     Object? resultSettingItem = freezed,
@@ -461,6 +497,10 @@ class __$InitialCopyWithImpl<$Res> implements _$InitialCopyWith<$Res> {
       settingItemIcon: freezed == settingItemIcon
           ? _self.settingItemIcon
           : settingItemIcon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      settingItemColor: freezed == settingItemColor
+          ? _self.settingItemColor
+          : settingItemColor // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedEmbeddedResource: freezed == selectedEmbeddedResource
           ? _self.selectedEmbeddedResource

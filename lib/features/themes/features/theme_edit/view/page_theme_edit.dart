@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
+
 import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
@@ -31,8 +32,6 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-
-
 
     return BlocConsumer<UpdateThemCubit, UpdateThemeState>(
       listener: _handleStateChanges,

@@ -7,7 +7,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logging/logging.dart';
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 
 part 'launch_assets_state.dart';
 

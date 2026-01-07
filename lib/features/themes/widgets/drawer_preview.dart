@@ -29,17 +29,17 @@ class DrawerPreview extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           // Symmetric padding for centering
           itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              child: TypeOfPreview(
-                focusIndicator: Icon(
-                  index == focusScreenPosition ? Icons.center_focus_strong_rounded : Icons.center_focus_strong_outlined,
+            return TypeOfPreview(
+              focusIndicator: IconButton(
+                onPressed: () => onTapScreen.call(index),
+                icon: Icon(
+                  index == focusScreenPosition ? Icons.radio_button_checked : Icons.radio_button_off_outlined,
                   color: index == focusScreenPosition ? Colors.green : Colors.black45,
                   size: 16,
                 ),
-                constraints: const BoxConstraints(maxHeight: 124),
-                child: screenshots[index],
               ),
-              onTap: () => onTapScreen.call(index),
+              constraints: const BoxConstraints(maxHeight: 124),
+              child: screenshots[index],
             );
           },
         ),

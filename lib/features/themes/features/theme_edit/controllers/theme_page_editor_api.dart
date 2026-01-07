@@ -41,9 +41,11 @@ abstract class ThemePageEditorApi {
 
   void setDialingPage(CallPageConfig dialingPage);
 
+  void setSettingsPage(SettingsPageConfig settingsPage);
+
   void setDialingSystemUiOverlay(OverlayStyleModel? style);
 
-  void setDialingAppBarStyle(AppBarStyleConfig? appBarStyle);
+  void setDialingAppBarStyle(AppBarConfig? appBarStyle);
 
   void setDialingInfo(CallPageInfoConfig? info);
 
@@ -208,7 +210,7 @@ class ThemePageEditor implements ThemePageEditorApi {
   }
 
   @override
-  void setDialingAppBarStyle(AppBarStyleConfig? appBarStyle) {
+  void setDialingAppBarStyle(AppBarConfig? appBarStyle) {
     _current = current.copyWith(dialing: current.dialing.copyWith(appBarStyle: appBarStyle));
     _emit();
   }
@@ -312,6 +314,12 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   void updateSwitchScreenConfig(LoginSwitchPageConfig config) {
     _current = current.copyWith(login: current.login.copyWith(switchPage: config));
+    _emit();
+  }
+
+  @override
+  void setSettingsPage(SettingsPageConfig settingsPage) {
+    _current = current.copyWith(settings: settingsPage);
     _emit();
   }
 }

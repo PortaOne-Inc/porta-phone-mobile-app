@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/core.dart';
-import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 
 import '../../../widgets/widgets.dart';
 import '../bloc/launch_assets_bloc.dart';
@@ -28,8 +27,8 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
     super.initState();
 
     controller.onPickColor = (req) async {
-      final initial = req.currentHex?.toColor() ?? Colors.transparent;
-      final picked = await context.pickColor(initial: initial);
+      final initial = req.currentHex?.tryParseColor();
+      final picked = await context.showColorPicker(currentColor: initial);
       return picked?.toHex();
     };
 
@@ -83,7 +82,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
   }
 
   Future<void> _onDesignerSnapshot(DesignerSnapshot snapshot) async {
-    _cubit.selectBackgroundColor(snapshot.commonBackgroundHex?.toColor());
+    _cubit.selectBackgroundColor(snapshot.commonBackgroundHex?.tryParseColor());
 
     double? padAndroidAdaptive;
     double? padAndroidLegacy;

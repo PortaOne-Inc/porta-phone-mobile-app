@@ -3,9 +3,10 @@ import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
 
-import '../../../../../widgets/image_render_editor.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class AboutPageView extends StatefulWidget {
   const AboutPageView({super.key});
@@ -36,7 +37,17 @@ class _AboutPageViewState extends State<AboutPageView> {
                       .read<UpdateThemCubit>()
                       .add(ThemePageEvent.setAboutPage(state.themePageConfig.about.copyWith(mainLogo: updated)));
                 },
+                title: 'About screen',
               ),
+              const SizedBox(height: 16),
+              PageBackgroundEditor(
+                value: state.themePageConfig.about.background,
+                onChanged: (PageBackground? value) {
+                  context
+                      .read<UpdateThemCubit>()
+                      .add(ThemePageEvent.setAboutPage(state.themePageConfig.about.copyWith(background: value)));
+                },
+              )
             ],
           ),
         );

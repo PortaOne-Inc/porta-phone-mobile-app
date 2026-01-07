@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import '../features/features.dart';
+import '../features/about/about.dart';
+import '../features/dialing/dialing.dart';
+import '../features/keypad/keypad.dart';
+import '../features/login/login.dart';
+import '../features/settings/settings.dart';
 
 class ConfigureThemePageView extends StatefulWidget {
   const ConfigureThemePageView({super.key});
@@ -19,7 +24,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -45,6 +50,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
             Tab(text: 'About Page'),
             Tab(text: 'Dialing Page'),
             Tab(text: 'Keypad Page'),
+            Tab(text: 'Settings Page'),
           ],
         ),
       ),
@@ -68,6 +74,9 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
                 callActions: themeWidgetLightConfig.group?.callActions,
               ),
               const KeypadConfigView(),
+              SettingsPageTabbedView(
+                config: themePageConfig.settings,
+              ),
             ],
           );
         },

@@ -38,6 +38,11 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
     emit(state.copyWith(settingItemIcon: value));
   }
 
+  void changeIconColor(String? value) {
+    emit(state.copyWith(settingItemColor: value));
+  }
+
+
   void changeType(SettingsFlavor? value) {
     emit(state.copyWith(type: value));
   }
@@ -52,6 +57,7 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
       type: state.type!.name,
       titleL10n: state.titleL10n!,
       icon: state.settingItemIcon!,
+      iconColor: state.settingItemColor,
       embeddedResourceId: state.selectedEmbeddedResource?.id,
     );
 

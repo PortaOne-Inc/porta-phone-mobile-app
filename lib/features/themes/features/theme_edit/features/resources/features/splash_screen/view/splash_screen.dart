@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/app/application.dart';
-import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/core/mixin/mixin_messages.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
 
 import '../../../widgets/universal_asset_designer.dart';
@@ -28,12 +28,28 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
     super.initState();
 
     controller.onPickColor = (req) async {
-      final initial = req.currentHex?.toColor() ?? Colors.transparent;
-      final picked = await context.pickColor(initial: initial);
+      final initial = req.currentHex?.tryParseColor();
+      final picked = await context.showColorPicker(currentColor: initial);
       return picked?.toHex();
     };
 
     _bloc.load();
+  }
+
+  void _onSnapshotChanged(DesignerSnapshot snap, SplashAssetsState state) {
+    final eff = snap.pages.firstWhere(
+      (e) => e.pageId == DesignerPageIds.splash,
+      orElse: () => snap.pages.first,
+    );
+
+    if (eff.paddingDp != state.padding) {
+      _bloc.selectPadding(eff.paddingDp);
+    }
+
+    final hex = eff.backgroundHex;
+    if (hex != state.backgroundColorHex) {
+      _bloc.selectBackgroundColor(hex?.tryParseColor());
+    }
   }
 
   @override
@@ -104,17 +120,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                   key: designerKey,
                   controller: controller,
                   foregroundAsset: state.selectedAsset,
-                  onSnapshotChanged: (snap) {
-                    final eff = snap.pages.firstWhere(
-                      (e) => e.pageId == DesignerPageIds.splash,
-                      orElse: () => snap.pages.first,
-                    );
-                    if (eff.paddingDp != state.padding) _bloc.selectPadding(eff.paddingDp);
-                    final hex = eff.backgroundHex;
-                    if (hex != state.backgroundColorHex) {
-                      _bloc.selectBackgroundColor(hex?.toColor());
-                    }
-                  },
+                  onSnapshotChanged: (snap) => _onSnapshotChanged(snap, state),
                 ),
               ),
             ),

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
 import '../../../../../widgets/font_item.dart';
-import '../../../../../widgets/fonts_picker.dart';
 
 class FontsConfigTab extends StatelessWidget {
   const FontsConfigTab({
@@ -51,16 +50,7 @@ class FontsConfigTab extends StatelessWidget {
   }
 
   Future<void> _onChangeBaseFont(BuildContext context) async {
-    final selected = await showDialog<String?>(
-      context: context,
-      builder: (ctx) => Center(
-        child: FontsPicker(
-          onChoose: (name) => Navigator.of(ctx).pop(name),
-          onClose: () => Navigator.of(ctx).pop(),
-        ),
-      ),
-      useRootNavigator: false,
-    );
+    final selected = await context.showFontPicker();
 
     if (!context.mounted || selected == null || selected.isEmpty) return;
 

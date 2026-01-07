@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_configurator/core/widgets/widgets.dart';
+import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import 'countdown_field.dart';
 

@@ -6,6 +6,7 @@ sealed class ManageSettingItemState with _$ManageSettingItemState {
     @Default(true) bool enable,
     String? titleL10n,
     String? settingItemIcon,
+    String? settingItemColor,
     EmbeddedResourceModel? selectedEmbeddedResource,
     SettingsFlavor? type,
 
