@@ -42,8 +42,6 @@ class _DialingPageViewState extends State<DialingPageView> {
     _cubit.add(ThemePageEvent.setDialingPage(current.copyWith(actions: actions)));
   }
 
-  // --- Legacy Migration Logic ---
-
   String? _lastLegacySource;
 
   // TODO(Serdun): Remove in future major release after migrating to CallPageActionsConfig
@@ -167,17 +165,6 @@ class _AppBarSettings extends StatelessWidget {
   final AppBarConfig value;
   final ValueChanged<AppBarConfig> onChanged;
 
-  Future<void> _pickColor(
-    BuildContext context,
-    Color? current,
-    ValueChanged<String> onApply,
-  ) async {
-    final newColor = await context.showColorPicker(currentColor: current);
-    if (newColor != null) {
-      onApply(newColor.toHex());
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -241,6 +228,13 @@ class _AppBarSettings extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+    final picked = await context.showColorPicker(currentColor: current);
+    if (context.mounted && picked != null) {
+      onPick(picked.toHex(includeAlpha: true));
+    }
   }
 }
 

@@ -47,20 +47,7 @@ class BarsConfigTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Bottom Navigation Bar', style: theme.textTheme.titleMedium),
-          const SizedBox(height: 8),
-          Card(
-            margin: EdgeInsets.zero,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: BottomNavBarEditorMinimal(
-                value: config.bottomNavigationBar,
-                onChanged: (v) => _onBottomNavChanged(context, v),
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text('App Bar (Header)', style: theme.textTheme.titleMedium),
+          Text('App Bar Configuration', style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
           Card(
             margin: EdgeInsets.zero,
@@ -74,6 +61,19 @@ class BarsConfigTab extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text('Configure colors, geometry, typography and icons for the top bar.'),
                 ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text('Bottom Navigation Bar', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Card(
+            margin: EdgeInsets.zero,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: BottomNavBarEditorMinimal(
+                value: config.bottomNavigationBar,
+                onChanged: (v) => _onBottomNavChanged(context, v),
               ),
             ),
           ),
