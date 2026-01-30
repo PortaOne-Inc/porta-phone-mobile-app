@@ -99,8 +99,8 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     );
 
     // Extract Features
-    final loginFeature = featureAccess?.loginFeature;
-    final bottomMenuFeature = featureAccess?.bottomMenuFeature;
+    final loginFeature = featureAccess?.loginConfig;
+    final bottomMenuFeature = featureAccess?.bottomMenuConfig;
     final loginLabel = loginFeature?.titleL10n;
 
     // Determine Feature Availability

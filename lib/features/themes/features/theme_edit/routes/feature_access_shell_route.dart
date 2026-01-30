@@ -38,11 +38,10 @@ class FeatureAccessShellRoute extends StatelessWidget {
             }
 
             try {
-              final featureAccess = FeatureAccess.init(
+              final featureAccess = FeatureAccess.create(
                 snapshot.data!,
                 state.embeddedResources.where((it) => it.id != null).map((it) => it.toEmbeddedResource()).toList(),
-                ActiveMainFlavorRepositoryPrefsImpl(MockAppPreferences()),
-                CoreSupportImpl(() => const SystemInfoBuilder().buildInfo()),
+                const SystemInfoBuilder().buildInfo(),
               );
               return ProvidersWrapper(
                 featureAccess: featureAccess,
