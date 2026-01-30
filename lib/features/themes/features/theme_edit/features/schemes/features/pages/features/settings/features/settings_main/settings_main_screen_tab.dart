@@ -38,10 +38,7 @@ class SettingsMainScreenTab extends StatelessWidget {
             onChanged: (v) => onChanged(config.copyWith(showSeparators: v)),
           ),
         ),
-
         const SizedBox(height: 16),
-
-        // --- 2. List Items Styling (Text & Icons) ---
         BorderContainer(
           title: 'List Items Styling',
           descriptionWidget: DescriptionRow.info(
@@ -92,10 +89,7 @@ class SettingsMainScreenTab extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 16),
-
-        // --- 3. Group Headers ---
         BorderContainer(
           title: 'Group Headers',
           descriptionWidget: DescriptionRow.info(
@@ -142,7 +136,7 @@ class SettingsMainScreenTab extends StatelessWidget {
   Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
     final picked = await context.showColorPicker(currentColor: current);
     if (context.mounted && picked != null) {
-      onPick(picked.toHex());
+      onPick(picked.toHex(includeAlpha: true));
     }
   }
 }
