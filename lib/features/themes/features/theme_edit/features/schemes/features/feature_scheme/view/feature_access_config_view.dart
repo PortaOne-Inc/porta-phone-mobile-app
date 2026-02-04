@@ -4,6 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
+import '../features/supported/supported.dart';
+
+// Make sure to import the new SupportedConfigWidget file
+// import 'path/to/supported_config_widget.dart';
+
 enum LoginType { defaultLogin, customLogin }
 
 enum CustomLoginOption { url, html }
@@ -19,6 +24,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
   late TabController _tabController;
 
   final _tabs = const [
+    Tab(text: 'Supported'), // NEW TAB
     Tab(text: 'Login'),
     Tab(text: 'Main'),
     Tab(text: 'Settings'),
@@ -57,12 +63,23 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
+              // 1. NEW Supported Features Tab
+              SupportedConfigWidget(
+                supportedFeatures: appConfig.supported,
+                onChanged: (List<SupportedFeature> newList) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSupportedFeatures(newList));
+                },
+              ),
+
+              // 2. Login
               LoginSchemeScreen(
                 sourceAppConfigLogin: appConfig.loginConfig,
                 callback: (AppConfigLogin loginCfg) {
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setLoginConfig(loginCfg));
                 },
               ),
+
+              // 3. Main
               MainConfigWidget(
                 mainConfig: appConfig.mainConfig,
                 onChange: (AppConfigMain value) {
@@ -72,12 +89,16 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setBottomMenuCacheSelectedTab(value));
                 },
               ),
+
+              // 4. Settings
               SettingSchemeScreen(
                 config: appConfig.settingsConfig,
                 callback: (AppConfigSettings value) {
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setSettingsConfig(value));
                 },
               ),
+
+              // 5. Call
               AppConfigCallWidget(
                 initialVideoEnabled: appConfig.callConfig.videoEnabled,
                 initialBlindTransferEnabled: appConfig.callConfig.transfer.enableBlindTransfer,

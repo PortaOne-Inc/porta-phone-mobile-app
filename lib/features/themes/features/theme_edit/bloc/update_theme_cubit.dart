@@ -191,24 +191,24 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
   Future<void> _onAppConfigEvent(AppConfigEvent event, Emitter<UpdateThemeState> emit) async {
     event.map(
-      setLoginConfig: (e) => _featureAccessEditor.setLoginConfig(e.login),
-      setMainConfig: (e) => _featureAccessEditor.setMainConfig(e.main),
-      setMainSystemNotificationsEnabled: (e) => _featureAccessEditor.setMainSystemNotificationsEnabled(e.enabled),
-      setBottomMenu: (e) => _featureAccessEditor.setBottomMenu(e.bottomMenu),
-      setBottomMenuCacheSelectedTab: (e) => _featureAccessEditor.setBottomMenuCacheSelectedTab(e.cache),
-      setBottomMenuTabs: (e) => _featureAccessEditor.setBottomMenuTabs(e.tabs),
-      updateBottomMenuTab: (e) => _featureAccessEditor.updateBottomMenuTab(e.index, e.tab),
-      insertBottomMenuTab: (e) => _featureAccessEditor.insertBottomMenuTab(e.index, e.tab),
-      removeBottomMenuTabAt: (e) => _featureAccessEditor.removeBottomMenuTabAt(e.index),
-      setSettingsConfig: (e) => _featureAccessEditor.setSettingsConfig(e.settings),
-      setSettingsSections: (e) => _featureAccessEditor.setSettingsSections(e.sections),
-      setCallConfig: (e) => _featureAccessEditor.setCallConfig(e.callConfig),
-      setCallVideoEnabled: (e) => _featureAccessEditor.setCallVideoEnabled(e.enabled),
-      setCallTransfer: (e) => _featureAccessEditor.setCallTransfer(e.transfer),
-      setCallEncoding: (e) => _featureAccessEditor.setCallEncoding(e.encoding),
-      setCallPeerConnection: (e) => _featureAccessEditor.setCallPeerConnection(e.pc),
-      setNegotiationOverride: (e) => _featureAccessEditor.setNegotiationOverride(e.negotiation),
-    );
+        setLoginConfig: (e) => _featureAccessEditor.setLoginConfig(e.login),
+        setMainConfig: (e) => _featureAccessEditor.setMainConfig(e.main),
+        setMainSystemNotificationsEnabled: (e) => _featureAccessEditor.setMainSystemNotificationsEnabled(e.enabled),
+        setBottomMenu: (e) => _featureAccessEditor.setBottomMenu(e.bottomMenu),
+        setBottomMenuCacheSelectedTab: (e) => _featureAccessEditor.setBottomMenuCacheSelectedTab(e.cache),
+        setBottomMenuTabs: (e) => _featureAccessEditor.setBottomMenuTabs(e.tabs),
+        updateBottomMenuTab: (e) => _featureAccessEditor.updateBottomMenuTab(e.index, e.tab),
+        insertBottomMenuTab: (e) => _featureAccessEditor.insertBottomMenuTab(e.index, e.tab),
+        removeBottomMenuTabAt: (e) => _featureAccessEditor.removeBottomMenuTabAt(e.index),
+        setSettingsConfig: (e) => _featureAccessEditor.setSettingsConfig(e.settings),
+        setSettingsSections: (e) => _featureAccessEditor.setSettingsSections(e.sections),
+        setCallConfig: (e) => _featureAccessEditor.setCallConfig(e.callConfig),
+        setCallVideoEnabled: (e) => _featureAccessEditor.setCallVideoEnabled(e.enabled),
+        setCallTransfer: (e) => _featureAccessEditor.setCallTransfer(e.transfer),
+        setCallEncoding: (e) => _featureAccessEditor.setCallEncoding(e.encoding),
+        setCallPeerConnection: (e) => _featureAccessEditor.setCallPeerConnection(e.pc),
+        setNegotiationOverride: (e) => _featureAccessEditor.setNegotiationOverride(e.negotiation),
+        setSupportedFeatures: (e) => _featureAccessEditor.setSupportedFeatures(e.features));
   }
 
   Future<void> _onThemeWidgetEvent(ThemeWidgetEvent event, Emitter<UpdateThemeState> emit) async {

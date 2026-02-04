@@ -17,6 +17,44 @@ abstract class FeatureAccessEditorApi {
   void resetTo(AppConfig model, {bool setAsInitial = false});
 
   AppConfig buildFull();
+
+  void setAppConfig(AppConfig app);
+
+  void setLoginConfig(AppConfigLogin login);
+
+  void setMainConfig(AppConfigMain main);
+
+  void setMainSystemNotificationsEnabled(bool enabled);
+
+  void setBottomMenu(AppConfigBottomMenu bottomMenu);
+
+  void setBottomMenuCacheSelectedTab(bool cache);
+
+  void setBottomMenuTabs(List<BottomMenuTabScheme> tabs);
+
+  void updateBottomMenuTab(int index, BottomMenuTabScheme tab);
+
+  void insertBottomMenuTab(int index, BottomMenuTabScheme tab);
+
+  void removeBottomMenuTabAt(int index);
+
+  void setSettingsConfig(AppConfigSettings settings);
+
+  void setSettingsSections(List<AppConfigSettingsSection> sections);
+
+  void setCallConfig(AppConfigCall call);
+
+  void setCallVideoEnabled(bool enabled);
+
+  void setCallTransfer(AppConfigTransfer transfer);
+
+  void setCallEncoding(AppConfigEncoding encoding);
+
+  void setCallPeerConnection(AppConfigPeerConnection pc);
+
+  void setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation);
+
+  void setSupportedFeatures(List<SupportedFeature> features);
 }
 
 class FeatureAccessEditor implements FeatureAccessEditorApi {
@@ -33,10 +71,8 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   final _controller = StreamController<AppConfig>.broadcast();
 
-  /// Публічний стрім змін (опційно користуйся або ігноруй)
   Stream<AppConfig> get stream => _controller.stream;
 
-  /// Прапорець «брудності» (зручно мати)
   bool get isDirty {
     final i = _initial;
     final c = _current;
@@ -48,8 +84,6 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     final c = _current;
     if (c != null && !_controller.isClosed) _controller.add(c);
   }
-
-  // ==== FeatureAccessEditorApi ====
 
   @override
   AppConfig get initial {
@@ -92,21 +126,25 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setAppConfig(AppConfig app) {
     _current = app;
     _emit();
   }
 
+  @override
   void setLoginConfig(AppConfigLogin login) {
     _current = current.copyWith(loginConfig: login);
     _emit();
   }
 
+  @override
   void setMainConfig(AppConfigMain main) {
     _current = current.copyWith(mainConfig: main);
     _emit();
   }
 
+  @override
   void setMainSystemNotificationsEnabled(bool enabled) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(systemNotificationsEnabled: enabled),
@@ -114,6 +152,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setBottomMenu(AppConfigBottomMenu bottomMenu) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(bottomMenu: bottomMenu),
@@ -121,6 +160,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setBottomMenuCacheSelectedTab(bool cache) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(
@@ -130,6 +170,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setBottomMenuTabs(List<BottomMenuTabScheme> tabs) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(
@@ -139,6 +180,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void updateBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
     if (index < 0 || index >= list.length) throw RangeError.index(index, list, 'tabs');
@@ -146,6 +188,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     setBottomMenuTabs(list);
   }
 
+  @override
   void insertBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
     if (index < 0 || index > list.length) throw RangeError.index(index, list, 'tabs');
@@ -153,6 +196,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     setBottomMenuTabs(list);
   }
 
+  @override
   void removeBottomMenuTabAt(int index) {
     final list = [...current.mainConfig.bottomMenu.tabs];
     if (index < 0 || index >= list.length) throw RangeError.index(index, list, 'tabs');
@@ -160,11 +204,13 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     setBottomMenuTabs(list);
   }
 
+  @override
   void setSettingsConfig(AppConfigSettings settings) {
     _current = current.copyWith(settingsConfig: settings);
     _emit();
   }
 
+  @override
   void setSettingsSections(List<AppConfigSettingsSection> sections) {
     _current = current.copyWith(
       settingsConfig: current.settingsConfig.copyWith(sections: sections),
@@ -172,11 +218,13 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setCallConfig(AppConfigCall call) {
     _current = current.copyWith(callConfig: call);
     _emit();
   }
 
+  @override
   void setCallVideoEnabled(bool enabled) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(videoEnabled: enabled),
@@ -184,6 +232,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setCallTransfer(AppConfigTransfer transfer) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(transfer: transfer),
@@ -191,6 +240,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setCallEncoding(AppConfigEncoding encoding) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(encoding: encoding),
@@ -198,6 +248,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setCallPeerConnection(AppConfigPeerConnection pc) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(peerConnection: pc),
@@ -205,12 +256,19 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     _emit();
   }
 
+  @override
   void setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(
         peerConnection: current.callConfig.peerConnection.copyWith(negotiation: negotiation),
       ),
     );
+    _emit();
+  }
+
+  @override
+  void setSupportedFeatures(List<SupportedFeature> features) {
+    _current = current.copyWith(supported: features);
     _emit();
   }
 

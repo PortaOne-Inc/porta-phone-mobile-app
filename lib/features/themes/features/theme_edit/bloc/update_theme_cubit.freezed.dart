@@ -1895,6 +1895,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
     TResult Function(_SetCallEncoding value)? setCallEncoding,
     TResult Function(_SetCallPeerConnection value)? setCallPeerConnection,
     TResult Function(_SetNegotiationOverride value)? setNegotiationOverride,
+    TResult Function(_SetSupportedFeatures value)? setSupportedFeatures,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -1935,6 +1936,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that);
       case _SetNegotiationOverride() when setNegotiationOverride != null:
         return setNegotiationOverride(_that);
+      case _SetSupportedFeatures() when setSupportedFeatures != null:
+        return setSupportedFeatures(_that);
       case _:
         return orElse();
     }
@@ -1977,6 +1980,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
         setCallPeerConnection,
     required TResult Function(_SetNegotiationOverride value)
         setNegotiationOverride,
+    required TResult Function(_SetSupportedFeatures value) setSupportedFeatures,
   }) {
     final _that = this;
     switch (_that) {
@@ -2014,6 +2018,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that);
       case _SetNegotiationOverride():
         return setNegotiationOverride(_that);
+      case _SetSupportedFeatures():
+        return setSupportedFeatures(_that);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -2052,6 +2058,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
     TResult? Function(_SetCallEncoding value)? setCallEncoding,
     TResult? Function(_SetCallPeerConnection value)? setCallPeerConnection,
     TResult? Function(_SetNegotiationOverride value)? setNegotiationOverride,
+    TResult? Function(_SetSupportedFeatures value)? setSupportedFeatures,
   }) {
     final _that = this;
     switch (_that) {
@@ -2091,6 +2098,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that);
       case _SetNegotiationOverride() when setNegotiationOverride != null:
         return setNegotiationOverride(_that);
+      case _SetSupportedFeatures() when setSupportedFeatures != null:
+        return setSupportedFeatures(_that);
       case _:
         return null;
     }
@@ -2129,6 +2138,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
     TResult Function(AppConfigPeerConnection pc)? setCallPeerConnection,
     TResult Function(AppConfigNegotiationSettingsOverride negotiation)?
         setNegotiationOverride,
+    TResult Function(List<SupportedFeature> features)? setSupportedFeatures,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -2169,6 +2179,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that.pc);
       case _SetNegotiationOverride() when setNegotiationOverride != null:
         return setNegotiationOverride(_that.negotiation);
+      case _SetSupportedFeatures() when setSupportedFeatures != null:
+        return setSupportedFeatures(_that.features);
       case _:
         return orElse();
     }
@@ -2210,6 +2222,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
     required TResult Function(AppConfigPeerConnection pc) setCallPeerConnection,
     required TResult Function(AppConfigNegotiationSettingsOverride negotiation)
         setNegotiationOverride,
+    required TResult Function(List<SupportedFeature> features)
+        setSupportedFeatures,
   }) {
     final _that = this;
     switch (_that) {
@@ -2247,6 +2261,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that.pc);
       case _SetNegotiationOverride():
         return setNegotiationOverride(_that.negotiation);
+      case _SetSupportedFeatures():
+        return setSupportedFeatures(_that.features);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -2285,6 +2301,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
     TResult? Function(AppConfigPeerConnection pc)? setCallPeerConnection,
     TResult? Function(AppConfigNegotiationSettingsOverride negotiation)?
         setNegotiationOverride,
+    TResult? Function(List<SupportedFeature> features)? setSupportedFeatures,
   }) {
     final _that = this;
     switch (_that) {
@@ -2324,6 +2341,8 @@ extension AppConfigEventPatterns on AppConfigEvent {
         return setCallPeerConnection(_that.pc);
       case _SetNegotiationOverride() when setNegotiationOverride != null:
         return setNegotiationOverride(_that.negotiation);
+      case _SetSupportedFeatures() when setSupportedFeatures != null:
+        return setSupportedFeatures(_that.features);
       case _:
         return null;
     }
@@ -3593,6 +3612,78 @@ class __$SetNegotiationOverrideCopyWithImpl<$Res>
         _self.negotiation, (value) {
       return _then(_self.copyWith(negotiation: value));
     });
+  }
+}
+
+/// @nodoc
+
+class _SetSupportedFeatures implements AppConfigEvent {
+  const _SetSupportedFeatures(final List<SupportedFeature> features)
+      : _features = features;
+
+  final List<SupportedFeature> _features;
+  List<SupportedFeature> get features {
+    if (_features is EqualUnmodifiableListView) return _features;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_features);
+  }
+
+  /// Create a copy of AppConfigEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetSupportedFeaturesCopyWith<_SetSupportedFeatures> get copyWith =>
+      __$SetSupportedFeaturesCopyWithImpl<_SetSupportedFeatures>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetSupportedFeatures &&
+            const DeepCollectionEquality().equals(other._features, _features));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_features));
+
+  @override
+  String toString() {
+    return 'AppConfigEvent.setSupportedFeatures(features: $features)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetSupportedFeaturesCopyWith<$Res>
+    implements $AppConfigEventCopyWith<$Res> {
+  factory _$SetSupportedFeaturesCopyWith(_SetSupportedFeatures value,
+          $Res Function(_SetSupportedFeatures) _then) =
+      __$SetSupportedFeaturesCopyWithImpl;
+  @useResult
+  $Res call({List<SupportedFeature> features});
+}
+
+/// @nodoc
+class __$SetSupportedFeaturesCopyWithImpl<$Res>
+    implements _$SetSupportedFeaturesCopyWith<$Res> {
+  __$SetSupportedFeaturesCopyWithImpl(this._self, this._then);
+
+  final _SetSupportedFeatures _self;
+  final $Res Function(_SetSupportedFeatures) _then;
+
+  /// Create a copy of AppConfigEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? features = null,
+  }) {
+    return _then(_SetSupportedFeatures(
+      null == features
+          ? _self._features
+          : features // ignore: cast_nullable_to_non_nullable
+              as List<SupportedFeature>,
+    ));
   }
 }
 

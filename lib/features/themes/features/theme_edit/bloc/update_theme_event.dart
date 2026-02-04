@@ -72,6 +72,8 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
   const factory AppConfigEvent.setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation) =
       _SetNegotiationOverride;
 
+  const factory AppConfigEvent.setSupportedFeatures(List<SupportedFeature> features) = _SetSupportedFeatures;
+
 // // embeddedResources
 // const factory AppConfigEvent.setEmbeddedResources(List<EmbeddedResource> list) = _SetEmbeddedResources;
 }

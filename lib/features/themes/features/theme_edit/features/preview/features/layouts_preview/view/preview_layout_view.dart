@@ -158,7 +158,9 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
       const SettingScreenScreenshot(),
-      const MediaSettingsScreenScreenshot(),
+      const MediaSettingsScreenScreenshot(
+        key: ValueKey('MediaSettingsScreenScreenshot'),
+      ),
       const PrivacyScreenScreenshot(),
       const AboutScreenshot(),
       const EmbeddedErrorDialogScreenshot(),
