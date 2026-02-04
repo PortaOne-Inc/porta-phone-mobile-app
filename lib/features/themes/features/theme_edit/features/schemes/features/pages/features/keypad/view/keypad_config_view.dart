@@ -7,7 +7,6 @@ import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import 'action_pad_editor_minimal.dart';
 
-
 class KeypadConfigView extends StatefulWidget {
   const KeypadConfigView({super.key});
 

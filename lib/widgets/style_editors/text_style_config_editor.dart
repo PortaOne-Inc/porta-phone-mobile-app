@@ -137,8 +137,8 @@ class TextStyleConfigEditor extends StatelessWidget {
 class _Header extends StatelessWidget {
   const _Header({
     required this.label,
-    this.description,
     required this.isEnabled,
+    this.description,
     this.onClear,
   });
 
@@ -291,7 +291,7 @@ class _MetricsRow extends StatelessWidget {
               labelText: 'Weight',
               isDense: true,
               border: OutlineInputBorder(),
-              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 12),
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<int>(
@@ -522,7 +522,6 @@ class _EmptyState extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: theme.dividerColor.withValues(alpha: 0.5),
-            style: BorderStyle.solid,
           ),
           borderRadius: BorderRadius.circular(12),
           color: theme.colorScheme.surfaceContainerLowest.withValues(alpha: 0.3),

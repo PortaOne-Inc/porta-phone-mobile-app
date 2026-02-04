@@ -40,7 +40,7 @@ class ThemeOverrideSelector extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                SegmentedButton<ThemeModeOverride>(
+                SegmentedButton<ThemeModeConfig>(
                   showSelectedIcon: false,
                   segments: _buildSegments(),
                   selected: {config.mode},
@@ -62,9 +62,9 @@ class ThemeOverrideSelector extends StatelessWidget {
     );
   }
 
-  List<ButtonSegment<ThemeModeOverride>> _buildSegments() {
-    return ThemeModeOverride.values.map((mode) {
-      return ButtonSegment<ThemeModeOverride>(
+  List<ButtonSegment<ThemeModeConfig>> _buildSegments() {
+    return ThemeModeConfig.values.map((mode) {
+      return ButtonSegment<ThemeModeConfig>(
         value: mode,
         tooltip: mode.name,
         icon: Icon(_getIconForMode(mode)),
@@ -72,7 +72,7 @@ class ThemeOverrideSelector extends StatelessWidget {
     }).toList();
   }
 
-  IconData _getIconForMode(ThemeModeOverride mode) {
+  IconData _getIconForMode(ThemeModeConfig mode) {
     switch (mode.name.toLowerCase()) {
       case 'light':
         return Icons.light_mode;
@@ -83,7 +83,7 @@ class ThemeOverrideSelector extends StatelessWidget {
     }
   }
 
-  void _onModeChanged(Set<ThemeModeOverride> values) {
+  void _onModeChanged(Set<ThemeModeConfig> values) {
     onChanged(config.copyWith(mode: values.first));
   }
 
