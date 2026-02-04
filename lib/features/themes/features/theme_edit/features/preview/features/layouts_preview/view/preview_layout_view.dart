@@ -4,6 +4,7 @@ import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart' hide LoginType;
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 import 'package:webtrit_configurator/mocks/mocks.dart';
 import 'package:webtrit_configurator/widgets/screen_error_boundary.dart';
@@ -13,18 +14,14 @@ import 'package:webtrit_phone/data/app_metadata_provider.dart';
 import 'package:webtrit_phone/data/feature_access.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/utils/utils.dart';
+import 'package:domain/domain.dart';
 
-/// A widget that provides a split-view layout for previewing app screens.
-///
-/// It displays a detailed interactive preview (TypePreview) on one side and
-/// a drawer of available screenshots (DrawerPreview) on the other.
 class PreviewLayoutView extends StatefulWidget {
   const PreviewLayoutView({
     required this.frameVisibility,
     super.key,
   });
 
-  /// Controls the visibility of the device frame around the preview.
   final bool frameVisibility;
 
   @override
@@ -32,7 +29,6 @@ class PreviewLayoutView extends StatefulWidget {
 }
 
 class _PreviewLayoutViewState extends State<PreviewLayoutView> {
-  // Constants for layout configuration
   static const _initialColumnProportions = [0.75, 0.25];
   static const _dividerThickness = 4.0;
 
@@ -42,8 +38,6 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   @override
   void initState() {
     super.initState();
-    // Temporarily override the global ErrorWidget builder to show a custom placeholder
-    // within the preview area if a mock screen crashes.
     _defaultErrorBuilder = ErrorWidget.builder;
     ErrorWidget.builder = (FlutterErrorDetails details) {
       return ErrorScreenPlaceholder(details: details);
@@ -52,7 +46,6 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
   @override
   void dispose() {
-    // Restore the original ErrorWidget builder when leaving this view
     if (_defaultErrorBuilder != null) {
       ErrorWidget.builder = _defaultErrorBuilder!;
     }
@@ -62,7 +55,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   @override
   Widget build(BuildContext context) {
     final featureAccess = context.watch<FeatureAccess?>();
-    final screenshots = _generatePhoneScreenshots(featureAccess);
+
+    final selectedVariant = context.watch<UpdateThemCubit>().state.selectedVariant;
+
+    final themeMode = selectedVariant == BrightnessVariant.dark ? ThemeMode.dark : ThemeMode.light;
+
+    final screenshots = _generatePhoneScreenshots(featureAccess, themeMode);
 
     return ResizableColumns(
       initialProportions: _initialColumnProportions,
@@ -70,7 +68,6 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       dividerThickness: _dividerThickness,
       orientation: ResizableOrientation.vertical,
       children: [
-        // Main Preview Area
         (_) => Align(
               child: TypePreview(
                 screens: screenshots,
@@ -79,7 +76,6 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
                 onFocusPosition: _setFocusedScreen,
               ),
             ),
-        // Sidebar/Drawer Area
         (_) => DrawerPreview(
               screenshots: screenshots,
               focusScreenPosition: _focusScreenPosition,
@@ -89,21 +85,20 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     );
   }
 
-  /// Generates the list of mocked screens based on the current [FeatureAccess] configuration.
-  List<Widget> _generatePhoneScreenshots(FeatureAccess? featureAccess) {
-    // Setup Mock AppBloc
+  List<Widget> _generatePhoneScreenshots(
+    FeatureAccess? featureAccess,
+    ThemeMode themeMode,
+  ) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: ThemeProvider.of(context).settings,
-      themeMode: ThemeMode.light,
+      themeMode: themeMode,
       locale: const Locale('en'),
     );
 
-    // Extract Features
     final loginFeature = featureAccess?.loginConfig;
     final bottomMenuFeature = featureAccess?.bottomMenuConfig;
     final loginLabel = loginFeature?.titleL10n;
 
-    // Determine Feature Availability
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
     final isFavoritePreview = bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
     final isContactPreview = bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
@@ -112,18 +107,13 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
-    // Build List of Screens
     final rawScreens = <Widget>[
       const LoginModeSelectScreenScreenshot(),
-
-      // Authentication Flow
       if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
       if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
-
-      // Main Tabs
       if (isFavoritePreview)
         MainScreenScreenshot(
           key: bottomMenuKey,
@@ -148,9 +138,6 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
           MainFlavor.keypad,
           loginLabel != null ? Text(loginLabel) : null,
         ),
-
-      // Other Screens
-
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
         true,
@@ -166,12 +153,9 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const EmbeddedErrorDialogScreenshot(),
     ];
 
-    // Wrap screens with necessary providers and environment widgets
     return rawScreens.map((screen) => _wrapWithPreviewEnvironment(screen, appBloc)).toList();
   }
 
-  /// Wraps a raw screen widget with the necessary Providers and Mock logic
-  /// required for the preview to render correctly.
   Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc) {
     return Provider<AppMetadataProvider>(
       create: (context) => const MockAppMetadataProvider(),

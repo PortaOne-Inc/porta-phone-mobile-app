@@ -1636,24 +1636,18 @@ class _UpdateAppConfigEvent implements UpdateLocalConfigEvent {
 
 /// @nodoc
 mixin _$UpdateColorSchemeEvent {
-  String get key;
-  Color? get color;
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UpdateColorSchemeEvent &&
-            (identical(other.key, key) || other.key == key) &&
-            (identical(other.color, color) || other.color == color));
+        (other.runtimeType == runtimeType && other is UpdateColorSchemeEvent);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, key, color);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'UpdateColorSchemeEvent(key: $key, color: $color)';
+    return 'UpdateColorSchemeEvent()';
   }
 }
 
@@ -1674,12 +1668,15 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateColorSchemeEvent value)? chane,
+    TResult Function(_ImportJsonColorSchemeEvent value)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent() when chane != null:
         return chane(_that);
+      case _ImportJsonColorSchemeEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return orElse();
     }
@@ -1701,11 +1698,14 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateColorSchemeEvent value) chane,
+    required TResult Function(_ImportJsonColorSchemeEvent value) importJson,
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent():
         return chane(_that);
+      case _ImportJsonColorSchemeEvent():
+        return importJson(_that);
     }
   }
 
@@ -1724,11 +1724,14 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateColorSchemeEvent value)? chane,
+    TResult? Function(_ImportJsonColorSchemeEvent value)? importJson,
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent() when chane != null:
         return chane(_that);
+      case _ImportJsonColorSchemeEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return null;
     }
@@ -1749,12 +1752,15 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String key, Color? color)? chane,
+    TResult Function(Map<String, dynamic> jsonMap)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent() when chane != null:
         return chane(_that.key, _that.color);
+      case _ImportJsonColorSchemeEvent() when importJson != null:
+        return importJson(_that.jsonMap);
       case _:
         return orElse();
     }
@@ -1776,11 +1782,14 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String key, Color? color) chane,
+    required TResult Function(Map<String, dynamic> jsonMap) importJson,
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent():
         return chane(_that.key, _that.color);
+      case _ImportJsonColorSchemeEvent():
+        return importJson(_that.jsonMap);
     }
   }
 
@@ -1799,11 +1808,14 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String key, Color? color)? chane,
+    TResult? Function(Map<String, dynamic> jsonMap)? importJson,
   }) {
     final _that = this;
     switch (_that) {
       case _UpdateColorSchemeEvent() when chane != null:
         return chane(_that.key, _that.color);
+      case _ImportJsonColorSchemeEvent() when importJson != null:
+        return importJson(_that.jsonMap);
       case _:
         return null;
     }
@@ -1815,9 +1827,7 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
 class _UpdateColorSchemeEvent implements UpdateColorSchemeEvent {
   const _UpdateColorSchemeEvent(this.key, this.color);
 
-  @override
   final String key;
-  @override
   final Color? color;
 
   @override
@@ -1835,6 +1845,37 @@ class _UpdateColorSchemeEvent implements UpdateColorSchemeEvent {
   @override
   String toString() {
     return 'UpdateColorSchemeEvent.chane(key: $key, color: $color)';
+  }
+}
+
+/// @nodoc
+
+class _ImportJsonColorSchemeEvent implements UpdateColorSchemeEvent {
+  const _ImportJsonColorSchemeEvent(final Map<String, dynamic> jsonMap)
+      : _jsonMap = jsonMap;
+
+  final Map<String, dynamic> _jsonMap;
+  Map<String, dynamic> get jsonMap {
+    if (_jsonMap is EqualUnmodifiableMapView) return _jsonMap;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_jsonMap);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ImportJsonColorSchemeEvent &&
+            const DeepCollectionEquality().equals(other._jsonMap, _jsonMap));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_jsonMap));
+
+  @override
+  String toString() {
+    return 'UpdateColorSchemeEvent.importJson(jsonMap: $jsonMap)';
   }
 }
 
@@ -3760,6 +3801,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult Function(_SetFavoritesPage value)? setFavoritesPage,
     TResult Function(_SetConversationsPage value)? setConversationsPage,
     TResult Function(_SetEmbeddedPage value)? setEmbeddedPage,
+    TResult Function(_ImportJsonPageEvent value)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -3823,6 +3865,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that);
       case _SetEmbeddedPage() when setEmbeddedPage != null:
         return setEmbeddedPage(_that);
+      case _ImportJsonPageEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return orElse();
     }
@@ -3879,6 +3923,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     required TResult Function(_SetFavoritesPage value) setFavoritesPage,
     required TResult Function(_SetConversationsPage value) setConversationsPage,
     required TResult Function(_SetEmbeddedPage value) setEmbeddedPage,
+    required TResult Function(_ImportJsonPageEvent value) importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -3934,6 +3979,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that);
       case _SetEmbeddedPage():
         return setEmbeddedPage(_that);
+      case _ImportJsonPageEvent():
+        return importJson(_that);
     }
   }
 
@@ -3986,6 +4033,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult? Function(_SetFavoritesPage value)? setFavoritesPage,
     TResult? Function(_SetConversationsPage value)? setConversationsPage,
     TResult? Function(_SetEmbeddedPage value)? setEmbeddedPage,
+    TResult? Function(_ImportJsonPageEvent value)? importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -4048,6 +4096,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that);
       case _SetEmbeddedPage() when setEmbeddedPage != null:
         return setEmbeddedPage(_that);
+      case _ImportJsonPageEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return null;
     }
@@ -4096,6 +4146,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult Function(FavoritesPageConfig config)? setFavoritesPage,
     TResult Function(ConversationsPageConfig config)? setConversationsPage,
     TResult Function(EmbeddedPageConfig config)? setEmbeddedPage,
+    TResult Function(Map<String, dynamic> json)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -4159,6 +4210,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that.config);
       case _SetEmbeddedPage() when setEmbeddedPage != null:
         return setEmbeddedPage(_that.config);
+      case _ImportJsonPageEvent() when importJson != null:
+        return importJson(_that.json);
       case _:
         return orElse();
     }
@@ -4213,6 +4266,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     required TResult Function(ConversationsPageConfig config)
         setConversationsPage,
     required TResult Function(EmbeddedPageConfig config) setEmbeddedPage,
+    required TResult Function(Map<String, dynamic> json) importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -4268,6 +4322,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that.config);
       case _SetEmbeddedPage():
         return setEmbeddedPage(_that.config);
+      case _ImportJsonPageEvent():
+        return importJson(_that.json);
     }
   }
 
@@ -4314,6 +4370,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult? Function(FavoritesPageConfig config)? setFavoritesPage,
     TResult? Function(ConversationsPageConfig config)? setConversationsPage,
     TResult? Function(EmbeddedPageConfig config)? setEmbeddedPage,
+    TResult? Function(Map<String, dynamic> json)? importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -4376,6 +4433,8 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setConversationsPage(_that.config);
       case _SetEmbeddedPage() when setEmbeddedPage != null:
         return setEmbeddedPage(_that.config);
+      case _ImportJsonPageEvent() when importJson != null:
+        return importJson(_that.json);
       case _:
         return null;
     }
@@ -6367,6 +6426,77 @@ class __$SetEmbeddedPageCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
+class _ImportJsonPageEvent implements ThemePageEvent {
+  const _ImportJsonPageEvent(final Map<String, dynamic> json) : _json = json;
+
+  final Map<String, dynamic> _json;
+  Map<String, dynamic> get json {
+    if (_json is EqualUnmodifiableMapView) return _json;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_json);
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ImportJsonPageEventCopyWith<_ImportJsonPageEvent> get copyWith =>
+      __$ImportJsonPageEventCopyWithImpl<_ImportJsonPageEvent>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ImportJsonPageEvent &&
+            const DeepCollectionEquality().equals(other._json, _json));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_json));
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.importJson(json: $json)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ImportJsonPageEventCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$ImportJsonPageEventCopyWith(_ImportJsonPageEvent value,
+          $Res Function(_ImportJsonPageEvent) _then) =
+      __$ImportJsonPageEventCopyWithImpl;
+  @useResult
+  $Res call({Map<String, dynamic> json});
+}
+
+/// @nodoc
+class __$ImportJsonPageEventCopyWithImpl<$Res>
+    implements _$ImportJsonPageEventCopyWith<$Res> {
+  __$ImportJsonPageEventCopyWithImpl(this._self, this._then);
+
+  final _ImportJsonPageEvent _self;
+  final $Res Function(_ImportJsonPageEvent) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? json = null,
+  }) {
+    return _then(_ImportJsonPageEvent(
+      null == json
+          ? _self._json
+          : json // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$ThemeWidgetEvent {
   @override
   bool operator ==(Object other) {
@@ -6479,6 +6609,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(_SetDecoration value)? setDecoration,
     TResult Function(_SetPrimaryGradient value)? setPrimaryGradient,
     TResult Function(_SetPrimaryGradientColors value)? setPrimaryGradientColors,
+    TResult Function(_ImportJsonWidgetEvent value)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -6614,6 +6745,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that);
       case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
         return setPrimaryGradientColors(_that);
+      case _ImportJsonWidgetEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return orElse();
     }
@@ -6722,6 +6855,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(_SetPrimaryGradient value) setPrimaryGradient,
     required TResult Function(_SetPrimaryGradientColors value)
         setPrimaryGradientColors,
+    required TResult Function(_ImportJsonWidgetEvent value) importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -6849,6 +6983,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that);
       case _SetPrimaryGradientColors():
         return setPrimaryGradientColors(_that);
+      case _ImportJsonWidgetEvent():
+        return importJson(_that);
     }
   }
 
@@ -6941,6 +7077,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(_SetPrimaryGradient value)? setPrimaryGradient,
     TResult? Function(_SetPrimaryGradientColors value)?
         setPrimaryGradientColors,
+    TResult? Function(_ImportJsonWidgetEvent value)? importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -7075,6 +7212,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that);
       case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
         return setPrimaryGradientColors(_that);
+      case _ImportJsonWidgetEvent() when importJson != null:
+        return importJson(_that);
       case _:
         return null;
     }
@@ -7159,6 +7298,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(DecorationConfig cfg)? setDecoration,
     TResult Function(GradientColorsConfig cfg)? setPrimaryGradient,
     TResult Function(List<CustomColor> colors)? setPrimaryGradientColors,
+    TResult Function(Map<String, dynamic> json)? importJson,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -7294,6 +7434,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that.cfg);
       case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
         return setPrimaryGradientColors(_that.colors);
+      case _ImportJsonWidgetEvent() when importJson != null:
+        return importJson(_that.json);
       case _:
         return orElse();
     }
@@ -7385,6 +7527,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(GradientColorsConfig cfg) setPrimaryGradient,
     required TResult Function(List<CustomColor> colors)
         setPrimaryGradientColors,
+    required TResult Function(Map<String, dynamic> json) importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -7512,6 +7655,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that.cfg);
       case _SetPrimaryGradientColors():
         return setPrimaryGradientColors(_that.colors);
+      case _ImportJsonWidgetEvent():
+        return importJson(_that.json);
     }
   }
 
@@ -7595,6 +7740,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(DecorationConfig cfg)? setDecoration,
     TResult? Function(GradientColorsConfig cfg)? setPrimaryGradient,
     TResult? Function(List<CustomColor> colors)? setPrimaryGradientColors,
+    TResult? Function(Map<String, dynamic> json)? importJson,
   }) {
     final _that = this;
     switch (_that) {
@@ -7729,6 +7875,8 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setPrimaryGradient(_that.cfg);
       case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
         return setPrimaryGradientColors(_that.colors);
+      case _ImportJsonWidgetEvent() when importJson != null:
+        return importJson(_that.json);
       case _:
         return null;
     }
@@ -12142,6 +12290,77 @@ class __$SetPrimaryGradientColorsCopyWithImpl<$Res>
           ? _self._colors
           : colors // ignore: cast_nullable_to_non_nullable
               as List<CustomColor>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _ImportJsonWidgetEvent implements ThemeWidgetEvent {
+  const _ImportJsonWidgetEvent(final Map<String, dynamic> json) : _json = json;
+
+  final Map<String, dynamic> _json;
+  Map<String, dynamic> get json {
+    if (_json is EqualUnmodifiableMapView) return _json;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_json);
+  }
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ImportJsonWidgetEventCopyWith<_ImportJsonWidgetEvent> get copyWith =>
+      __$ImportJsonWidgetEventCopyWithImpl<_ImportJsonWidgetEvent>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ImportJsonWidgetEvent &&
+            const DeepCollectionEquality().equals(other._json, _json));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_json));
+
+  @override
+  String toString() {
+    return 'ThemeWidgetEvent.importJson(json: $json)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ImportJsonWidgetEventCopyWith<$Res>
+    implements $ThemeWidgetEventCopyWith<$Res> {
+  factory _$ImportJsonWidgetEventCopyWith(_ImportJsonWidgetEvent value,
+          $Res Function(_ImportJsonWidgetEvent) _then) =
+      __$ImportJsonWidgetEventCopyWithImpl;
+  @useResult
+  $Res call({Map<String, dynamic> json});
+}
+
+/// @nodoc
+class __$ImportJsonWidgetEventCopyWithImpl<$Res>
+    implements _$ImportJsonWidgetEventCopyWith<$Res> {
+  __$ImportJsonWidgetEventCopyWithImpl(this._self, this._then);
+
+  final _ImportJsonWidgetEvent _self;
+  final $Res Function(_ImportJsonWidgetEvent) _then;
+
+  /// Create a copy of ThemeWidgetEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? json = null,
+  }) {
+    return _then(_ImportJsonWidgetEvent(
+      null == json
+          ? _self._json
+          : json // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }

@@ -43,7 +43,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     required this.upsertPageConfigByVariantUsecase,
     required this.getPageConfigByVariantUsecase,
     required this.watchApplicationAssetsUsecase,
-    // required this.watchEmbedsUsecase,
     required this.getApplicationEmbedsUsecase,
   }) : super(
           UpdateThemeState(
@@ -83,8 +82,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   final UpsertPageConfigByVariantUsecase upsertPageConfigByVariantUsecase;
   final GetPageConfigByVariantUsecase getPageConfigByVariantUsecase;
   final WatchApplicationAssetsUsecase watchApplicationAssetsUsecase;
-
-  // final WatchEmbedsUsecase watchEmbedsUsecase;
   final GetApplicationEmbedsUsecase getApplicationEmbedsUsecase;
 
   final ThemePageEditor _pageEditor = ThemePageEditor();
@@ -104,11 +101,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
           (assets) => add(ResourcesEvent.assetsUpdated(assets)),
           onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
         );
-
-    // _embedssSub = watchEmbedsUsecase.execute(applicationId).listen(
-    //       (embeds) => add(ResourcesEvent.embedsUpdated(embeds)),
-    //       onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'embeds', error: error)),
-    //     );
 
     add(const InitializeEvent());
   }
@@ -131,16 +123,75 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     UpdateVariantEvent event,
     Emitter<UpdateThemeState> emit,
   ) async {
-    final v = event.variant;
-    emit(state.copyWith(selectedVariant: v, status: ThemePropertyStatus.progress));
+    if (state.selectedVariant == event.variant) return;
 
-    await Future.wait([
-      _initializeColorScheme(applicationId, themeId, v),
-      _initializePageConfig(applicationId, themeId, v),
-      _initializeWidgetsConfig(applicationId, themeId, v),
-    ]);
+    final preservedComponents =
+        state.loadedComponents.where((c) => c == ThemeComponents.navigation || c == ThemeComponents.embeds).toList();
 
-    emit(state.copyWith(status: ThemePropertyStatus.success));
+    emit(state.copyWith(
+      selectedVariant: event.variant,
+      status: ThemePropertyStatus.progress,
+      colorSchemeConfig: const ColorSchemeConfig(),
+      themePageConfig: const ThemePageConfig(),
+      themeWidgetConfig: const ThemeWidgetConfig(),
+      loadedComponents: preservedComponents,
+    ));
+
+    try {
+      await Future.wait([
+        _initializeColorScheme(applicationId, themeId, event.variant),
+        _initializePageConfig(applicationId, themeId, event.variant),
+        _initializeWidgetsConfig(applicationId, themeId, event.variant),
+      ]);
+
+      emit(state.copyWith(status: ThemePropertyStatus.success));
+    } catch (e) {
+      _logger.severe('Failed to switch variant', e);
+      emit(state.copyWith(status: ThemePropertyStatus.error, error: Exception(e.toString())));
+    }
+  }
+
+  Future<void> _syncConfigWithServer(SyncConfigEvent event, Emitter<UpdateThemeState> emit) async {
+    try {
+      emit(state.copyWith(status: ThemePropertyStatus.progress));
+
+      final featureAccess = _featureAccessEditor.buildFull();
+      final colorScheme = _colorSchemeEditor.buildFull();
+      final pageConfig = _pageEditor.buildFull();
+      final themeWidget = _widgetEditor.buildFull();
+
+      await Future.wait([
+        updateFeatureAccessUsecase.execute(
+          applicationId: applicationId,
+          themeId: themeId,
+          status: FeatureAccessStatus.draft,
+          config: featureAccess.toJson(),
+        ),
+        upsertColorSchemeByThemeVariantUsecase.execute(
+          applicationId: applicationId,
+          themeId: themeId,
+          variant: state.selectedVariant,
+          config: colorScheme.toJson(),
+        ),
+        upsertPageConfigByVariantUsecase.execute(
+          applicationId: applicationId,
+          themeId: themeId,
+          variant: state.selectedVariant,
+          config: pageConfig.toJson(),
+        ),
+        upsertWidgetConfig.execute(
+          applicationId,
+          themeId,
+          state.selectedVariant,
+          themeWidget.toJson(),
+        ),
+      ]);
+
+      emit(state.copyWith(status: ThemePropertyStatus.success));
+    } on Exception catch (e) {
+      _logger.severe('Failed to sync config with server: $e');
+      emit(state.copyWith(status: ThemePropertyStatus.error, error: e));
+    }
   }
 
   Future<void> _onResourcesEvent(
@@ -225,7 +276,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setGroup: (e) => _widgetEditor.setGroup(e.group),
       setGroupTitleListTile: (e) => _widgetEditor.setGroupTitleListTile(e.cfg),
       setGroupTitleListTileBackground: (e) => _widgetEditor.setGroupTitleListTileBackground(e.color),
-      // setGroupTitleListTileTextColor: (e) => _widgetEditor.setGroupTitleListTileTextColor(e.color),
       setBar: (e) => _widgetEditor.setBar(e.bar),
       setBottomNavigationBar: (e) => _widgetEditor.setBottomNavigationBar(e.cfg),
       setBottomNavBarBackground: (e) => _widgetEditor.setBottomNavBarBackground(e.color),
@@ -276,10 +326,19 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setPrimaryGradient: (e) => _widgetEditor.setPrimaryGradient(e.cfg),
       setPrimaryGradientColors: (e) => _widgetEditor.setPrimaryGradientColors(e.colors),
       setDefaultPlaceholderImage: (e) => _widgetEditor.setDefaultPlaceholderImage(e.imageSource),
+      importJson: (e) => _onImportWidgetJson(e.json),
     );
   }
 
-  /// Handles theme page configuration events by delegating to the page editor.
+  void _onImportWidgetJson(Map<String, dynamic> json) {
+    try {
+      final config = ThemeWidgetConfig.fromJson(json);
+      _widgetEditor.setThemeWidgetConfig(config);
+    } catch (e) {
+      _logger.warning('Failed to parse ThemeWidgetConfig from JSON', e);
+    }
+  }
+
   Future<void> _onThemePageEvent(
     ThemePageEvent event,
     Emitter<UpdateThemeState> emit,
@@ -311,70 +370,53 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setFavoritesPage: (e) => _pageEditor.setFavoritesPage(e.config),
       setConversationsPage: (e) => _pageEditor.setConversationsPage(e.config),
       setEmbeddedPage: (e) => _pageEditor.setEmbeddedPage(e.config),
+      importJson: (e) => _onImportPageJson(e.json),
     );
   }
 
-  /// Maps asset metadata to an image source for the about page.
+  void _onImportPageJson(Map<String, dynamic> json) {
+    try {
+      final config = ThemePageConfig.fromJson(json);
+      _pageEditor.setThemePageConfig(config);
+    } catch (e) {
+      _logger.warning('Failed to parse ThemePageConfig from JSON', e);
+    }
+  }
+
   void _onSetAboutPicture(_SetAboutPicture e) => _pageEditor.setAboutPicture(
         ImageSource(id: e.asset.id, uri: e.asset.downloadUrl),
       );
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<UpdateThemeState> emit) {
     return event.map(
-        chane: (_UpdateColorSchemeEvent value) async =>
-            _colorSchemeEditor.patchOverride({value.key: value.color?.toHex()}));
+      chane: (_UpdateColorSchemeEvent value) async =>
+          _colorSchemeEditor.patchOverride({value.key: value.color?.toHex()}),
+      importJson: (_ImportJsonColorSchemeEvent value) async => _processJsonImport(value.jsonMap),
+    );
   }
 
-  Future<void> _syncConfigWithServer(SyncConfigEvent event, Emitter<UpdateThemeState> emit) async {
-    try {
-      emit(state.copyWith(status: ThemePropertyStatus.progress));
-      emit(state.copyWith(status: ThemePropertyStatus.progress));
+  Future<void> _processJsonImport(Map<String, dynamic> jsonMap) async {
+    final patchData = <String, String>{};
 
-      final featureAccess = _featureAccessEditor.buildFull();
-      final colorScheme = _colorSchemeEditor.buildFull();
-      final pageConfig = _pageEditor.buildFull();
-      final themeWidget = _widgetEditor.buildFull();
+    for (final entry in jsonMap.entries) {
+      final val = entry.value;
+      if (val is String) {
+        // Ensure the value is treated as a string, e.g. "#FFFFFF"
+        patchData[entry.key] = val;
+      }
+    }
 
-      await Future.wait([
-        updateFeatureAccessUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          status: FeatureAccessStatus.draft,
-          config: featureAccess.toJson(),
-        ),
-        upsertColorSchemeByThemeVariantUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          variant: state.selectedVariant,
-          config: colorScheme.toJson(),
-        ),
-        upsertPageConfigByVariantUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          variant: state.selectedVariant,
-          config: pageConfig.toJson(),
-        ),
-        upsertWidgetConfig.execute(
-          applicationId,
-          themeId,
-          state.selectedVariant,
-          themeWidget.toJson(),
-        ),
-      ]);
-
-      emit(state.copyWith(status: ThemePropertyStatus.success));
-    } on Exception catch (e) {
-      _logger.severe('Failed to sync config with server: $e');
-      emit(state.copyWith(status: ThemePropertyStatus.error, error: e));
+    if (patchData.isNotEmpty) {
+      _colorSchemeEditor.patchOverride(patchData);
     }
   }
 
   Future<void> _initializeEditing(InitializeEvent event, Emitter<UpdateThemeState> emit) async {
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
+    await _initializeFeatureAccess(applicationId, themeId);
     await _initializeEmbeddedResourceModel(applicationId);
     await _initializeColorScheme(applicationId, themeId, state.selectedVariant);
-    await _initializeFeatureAccess(applicationId, themeId);
     await _initializePageConfig(applicationId, themeId, state.selectedVariant);
     await _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant);
 
@@ -449,8 +491,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       final embeds = await getApplicationEmbedsUsecase.execute(applicationId);
       add(ResourcesEvent.embedsUpdated(embeds));
     } catch (e) {
-      _logger.warning('Failed to load color scheme: $e');
-      _colorSchemeEditor.setInitial(const ColorSchemeConfig());
+      _logger.warning('Failed to load embedded resources: $e');
     } finally {
       add(const LoadingEvent.markLoaded(ThemeComponents.embeds));
     }

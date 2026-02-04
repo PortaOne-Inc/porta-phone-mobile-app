@@ -33,14 +33,27 @@ abstract class UpdateThemeState with _$UpdateThemeState {
 
   bool get isHasError => status == ThemePropertyStatus.error;
 
-  List<SchemeColor> get colorsScheme => themeSettings.lightSchemeColors;
+  List<SchemeColor> get colorsScheme {
+    if (selectedVariant == BrightnessVariant.dark) {
+      return themeSettings.darkSchemeColors;
+    }
+    return themeSettings.lightSchemeColors;
+  }
 
   ThemeSettings get themeSettings {
-    return ThemeSettings(
-      lightColorSchemeConfig: colorSchemeConfig,
-      themeWidgetLightConfig: themeWidgetConfig,
-      themePageLightConfig: themePageConfig,
-    );
+    if (selectedVariant == BrightnessVariant.dark) {
+      return ThemeSettings(
+        darkColorSchemeConfig: colorSchemeConfig,
+        themeWidgetDarkConfig: themeWidgetConfig,
+        themePageDarkConfig: themePageConfig,
+      );
+    } else {
+      return ThemeSettings(
+        lightColorSchemeConfig: colorSchemeConfig,
+        themeWidgetLightConfig: themeWidgetConfig,
+        themePageLightConfig: themePageConfig,
+      );
+    }
   }
 
   String loadingStatusText() {

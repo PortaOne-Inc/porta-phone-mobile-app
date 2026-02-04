@@ -28,6 +28,8 @@ class UpdateLocalConfigEvent with _$UpdateLocalConfigEvent implements Configurat
 @Freezed(copyWith: false)
 sealed class UpdateColorSchemeEvent with _$UpdateColorSchemeEvent implements ConfiguratorEvent {
   const factory UpdateColorSchemeEvent.chane(String key, Color? color) = _UpdateColorSchemeEvent;
+
+  const factory UpdateColorSchemeEvent.importJson(Map<String, dynamic> jsonMap) = _ImportJsonColorSchemeEvent;
 }
 
 @freezed
@@ -160,6 +162,7 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
 
   /// Configuration for the embedded web or custom page.
   const factory ThemePageEvent.setEmbeddedPage(EmbeddedPageConfig config) = _SetEmbeddedPage;
+  const factory ThemePageEvent.importJson(Map<String, dynamic> json) = _ImportJsonPageEvent;
 }
 
 @freezed
@@ -301,6 +304,8 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
   const factory ThemeWidgetEvent.setPrimaryGradient(GradientColorsConfig cfg) = _SetPrimaryGradient;
 
   const factory ThemeWidgetEvent.setPrimaryGradientColors(List<CustomColor> colors) = _SetPrimaryGradientColors;
+
+  const factory ThemeWidgetEvent.importJson(Map<String, dynamic> json) = _ImportJsonWidgetEvent;
 }
 
 @Freezed(copyWith: false)
