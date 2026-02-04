@@ -150,13 +150,15 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         ),
 
       // Other Screens
-      const SettingScreenScreenshot(),
+
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
         true,
         localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
         remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
+      const SettingScreenScreenshot(),
+      const MediaSettingsScreenScreenshot(),
       const PrivacyScreenScreenshot(),
       const AboutScreenshot(),
       const EmbeddedErrorDialogScreenshot(),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:domain/domain.dart';
+
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
+import 'package:webtrit_configurator/extensions/extensions.dart';
 
 import '../bloc/assets_cubit.dart';
 
@@ -131,6 +133,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
           return _AssetTile(
             asset: asset,
             isDeleting: isDeleting,
+            onDownload: () => asset.downloadUrl?.launchAsUrl(),
             onDelete: () => context.read<AssetsCubit>().deleteAsset(asset.id),
           );
         },
@@ -142,11 +145,13 @@ class _AssetsScreenState extends State<AssetsScreen> {
 class _AssetTile extends StatelessWidget {
   const _AssetTile({
     required this.asset,
+    required this.onDownload,
     required this.onDelete,
     this.isDeleting = false,
   });
 
   final AssetModel asset;
+  final VoidCallback onDownload;
   final VoidCallback onDelete;
   final bool isDeleting;
 
@@ -156,6 +161,7 @@ class _AssetTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     final url = asset.downloadUrl;
+    final hasUrl = url != null && url.isNotEmpty;
 
     return InkWell(
       borderRadius: BorderRadius.circular(12),
@@ -172,7 +178,7 @@ class _AssetTile extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: (url != null && url.isNotEmpty)
+                child: hasUrl
                     ? MimeAwareImage(resource: MimeImageResource.fromUrl(url, mimeType: asset.mimeType))
                     : Container(
                         color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
@@ -186,7 +192,7 @@ class _AssetTile extends StatelessWidget {
             ),
             const SizedBox(height: 8),
 
-            // Meta + delete
+            // Meta + actions
             Row(
               children: [
                 Expanded(
@@ -196,6 +202,11 @@ class _AssetTile extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.download),
+                  onPressed: hasUrl ? onDownload : null,
+                  tooltip: 'Download',
                 ),
                 IconButton(
                   icon: isDeleting

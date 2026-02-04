@@ -25,7 +25,7 @@ class TabBarConfigEditor extends StatelessWidget {
   ) async {
     final newColor = await context.showColorPicker(currentColor: current);
     if (newColor != null) {
-      onApply(newColor.toHex());
+      onApply(newColor.toHex(includeAlpha: true));
     }
   }
 

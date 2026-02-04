@@ -10,8 +10,6 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/feature
 import 'package:webtrit_configurator/mocks/mocks.dart';
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_phone/repositories/active_main_flavor/active_main_flavor_repository.dart';
-import 'package:webtrit_phone/utils/core_support.dart';
 
 import '../bloc/update_theme_cubit.dart';
 import '../mocks/mocks.dart';

@@ -21,4 +21,10 @@ class MockAppMetadataProvider implements AppMetadataProvider {
 
   @override
   String get userAgent => 'WebTrit Phone/1.0.0 (Mock Device; Android: 14)';
+
+  @override
+  String get appInfo => 'WebTrit Phone/1.0.0 (Mock Device; Android: 14)';
+
+  @override
+  String get deviceInfo => 'Google/Mock Device/14';
 }
