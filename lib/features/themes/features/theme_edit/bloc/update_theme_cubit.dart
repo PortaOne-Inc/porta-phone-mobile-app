@@ -279,41 +279,45 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     );
   }
 
-  Future<void> _onThemePageEvent(ThemePageEvent event, Emitter<UpdateThemeState> emit) async {
+  /// Handles theme page configuration events by delegating to the page editor.
+  Future<void> _onThemePageEvent(
+    ThemePageEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     event.map(
-      // login
       setLoginPage: (e) => _pageEditor.setLoginPage(e.login),
+      updateSwitchPage: (e) => _pageEditor.updateSwitchScreenConfig(e.login),
       setLoginPicture: (e) => _pageEditor.setLoginPicture(e.imageSource),
       setLoginModeSelect: (e) => _pageEditor.setLoginModeSelect(e.modeSelect),
       setLoginModeSelectButtonLoginStyle: (e) => _pageEditor.setLoginModeSelectButtonLoginStyle(e.type),
       setLoginModeSelectButtonSignupStyle: (e) => _pageEditor.setLoginModeSelectButtonSignupStyle(e.type),
-
-      // about
       setAboutPage: (e) => _pageEditor.setAboutPage(e.about),
-      setAboutPicture: (e) => _pageEditor.setAboutPicture(ImageSource(id: e.asset.id, uri: e.asset.downloadUrl)),
+      setAboutPicture: _onSetAboutPicture,
       setAboutMetadata: (e) => _pageEditor.setAboutMetadata(e.metadata),
-
-      // dialing
       setDialingPage: (e) => _pageEditor.setDialingPage(e.dialingPage),
       setDialingSystemUiOverlay: (e) => _pageEditor.setDialingSystemUiOverlay(e.style),
       setDialingAppBarStyle: (e) => _pageEditor.setDialingAppBarStyle(e.appBarStyle),
       setDialingInfo: (e) => _pageEditor.setDialingInfo(e.info),
-
-      // dialing info fields
+      setSettingsPage: (e) => _pageEditor.setSettingsPage(e.info),
       setDialingInfoUsernameStyle: (e) => _pageEditor.setDialingInfoUsernameStyle(e.style),
       setDialingInfoNumberStyle: (e) => _pageEditor.setDialingInfoNumberStyle(e.style),
       setDialingInfoCallStatusStyle: (e) => _pageEditor.setDialingInfoCallStatusStyle(e.style),
       setDialingInfoProcessingStatusStyle: (e) => _pageEditor.setDialingInfoProcessingStatusStyle(e.style),
-
-      /// login otp signin verify
+      setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
       setLoginOtpSigninVerifyCountdown: (e) => _pageEditor.setLoginOtpSigninVerifyCountdown(e.seconds),
       setLoginSignupVerifyCountdown: (e) => _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
-
-      setSettingsPage: (_SetSettingsPage value) => _pageEditor.setSettingsPage(value.info),
-      setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
-      updateSwitchPage: (it) => _pageEditor.updateSwitchScreenConfig(it.login),
+      setContactsPage: (e) => _pageEditor.setContactsPage(e.config),
+      setRecentsPage: (e) => _pageEditor.setRecentsPage(e.config),
+      setFavoritesPage: (e) => _pageEditor.setFavoritesPage(e.config),
+      setConversationsPage: (e) => _pageEditor.setConversationsPage(e.config),
+      setEmbeddedPage: (e) => _pageEditor.setEmbeddedPage(e.config),
     );
   }
+
+  /// Maps asset metadata to an image source for the about page.
+  void _onSetAboutPicture(_SetAboutPicture e) => _pageEditor.setAboutPicture(
+        ImageSource(id: e.asset.id, uri: e.asset.downloadUrl),
+      );
 
   Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<UpdateThemeState> emit) {
     return event.map(

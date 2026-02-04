@@ -21,6 +21,13 @@ class SettingsMainScreenTab extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        // НОВЕ
+        ThemeOverrideSelector(
+          config: config.themeOverride,
+          onChanged: (value) => onChanged(config.copyWith(themeOverride: value)),
+        ),
+        const SizedBox(height: 16),
+
         PageBackgroundEditor(
           value: config.background,
           onChanged: (value) => onChanged(config.copyWith(background: value)),
@@ -38,6 +45,7 @@ class SettingsMainScreenTab extends StatelessWidget {
             onChanged: (v) => onChanged(config.copyWith(showSeparators: v)),
           ),
         ),
+        // ... (решта коду без змін)
         const SizedBox(height: 16),
         BorderContainer(
           title: 'List Items Styling',
@@ -48,7 +56,6 @@ class SettingsMainScreenTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Typography
               TextStyleConfigEditor(
                 label: 'Item Text Style',
                 value: config.itemTextStyle,
@@ -56,8 +63,6 @@ class SettingsMainScreenTab extends StatelessWidget {
                 onClear: () => onChanged(config.copyWith(itemTextStyle: null)),
               ),
               const Divider(height: 32),
-
-              // Icons Colors
               Text('Icon Colors', style: Theme.of(context).textTheme.titleSmall),
               const SizedBox(height: 12),
               ColorInput(

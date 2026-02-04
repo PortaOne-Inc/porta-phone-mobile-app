@@ -6,9 +6,14 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 import '../features/about/about.dart';
+import '../features/contacts/contacts.dart';
 import '../features/dialing/dialing.dart';
+import '../features/embedded/embedded_view.dart';
+import '../features/favorites/favorites_view.dart';
 import '../features/keypad/keypad.dart';
 import '../features/login/login.dart';
+import '../features/messaging/conversations_view.dart';
+import '../features/recents/recent_view.dart';
 import '../features/settings/settings.dart';
 
 class ConfigureThemePageView extends StatefulWidget {
@@ -24,7 +29,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 10, vsync: this);
   }
 
   @override
@@ -46,11 +51,16 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
           controller: _tabController,
           isScrollable: true,
           tabs: const [
-            Tab(text: 'Login Page'),
-            Tab(text: 'About Page'),
-            Tab(text: 'Dialing Page'),
-            Tab(text: 'Keypad Page'),
-            Tab(text: 'Settings Page'),
+            Tab(text: 'Login'),
+            Tab(text: 'About'),
+            Tab(text: 'Dialing'),
+            Tab(text: 'Keypad'),
+            Tab(text: 'Settings'),
+            Tab(text: 'Contacts'),
+            Tab(text: 'Recents'),
+            Tab(text: 'Favorites'),
+            Tab(text: 'Conversations'),
+            Tab(text: 'Embedded'),
           ],
         ),
       ),
@@ -70,12 +80,26 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
               const AboutPageView(),
               DialingPageView(
                 dialingPageConfig: themePageConfig.dialing,
-                // ignore: deprecated_member_use
                 callActions: themeWidgetLightConfig.group?.callActions,
               ),
               const KeypadConfigView(),
               SettingsPageTabbedView(
                 config: themePageConfig.settings,
+              ),
+              ContactsPageView(
+                config: themePageConfig.contacts,
+              ),
+              RecentsPageView(
+                config: themePageConfig.recents,
+              ),
+              FavoritesPageView(
+                config: themePageConfig.favorites,
+              ),
+              ConversationsPageView(
+                config: themePageConfig.conversations,
+              ),
+              EmbeddedPageView(
+                config: themePageConfig.embedded,
               ),
             ],
           );

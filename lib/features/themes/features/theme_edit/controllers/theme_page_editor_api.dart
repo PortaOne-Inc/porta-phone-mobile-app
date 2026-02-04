@@ -66,6 +66,16 @@ abstract class ThemePageEditorApi {
   void setLoginOtpSigninVerifyCountdown(int seconds);
 
   void setLoginSignupVerifyCountdown(int seconds);
+
+  void setContactsPage(ContactsPageConfig config);
+
+  void setRecentsPage(RecentsPageConfig config);
+
+  void setFavoritesPage(FavoritesPageConfig config);
+
+  void setConversationsPage(ConversationsPageConfig config);
+
+  void setEmbeddedPage(EmbeddedPageConfig config);
 }
 
 class ThemePageEditor implements ThemePageEditorApi {
@@ -320,6 +330,36 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   void setSettingsPage(SettingsPageConfig settingsPage) {
     _current = current.copyWith(settings: settingsPage);
+    _emit();
+  }
+
+  @override
+  void setContactsPage(ContactsPageConfig config) {
+    _current = current.copyWith(contacts: config);
+    _emit();
+  }
+
+  @override
+  void setRecentsPage(RecentsPageConfig config) {
+    _current = current.copyWith(recents: config);
+    _emit();
+  }
+
+  @override
+  void setFavoritesPage(FavoritesPageConfig config) {
+    _current = current.copyWith(favorites: config);
+    _emit();
+  }
+
+  @override
+  void setConversationsPage(ConversationsPageConfig config) {
+    _current = current.copyWith(conversations: config);
+    _emit();
+  }
+
+  @override
+  void setEmbeddedPage(EmbeddedPageConfig config) {
+    _current = current.copyWith(embedded: config);
     _emit();
   }
 }

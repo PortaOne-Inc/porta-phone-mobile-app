@@ -3664,6 +3664,11 @@ extension ThemePageEventPatterns on ThemePageEvent {
         setLoginOtpSigninVerifyCountdown,
     TResult Function(_SetLoginSignupVerifyCountdown value)?
         setLoginSignupVerifyCountdown,
+    TResult Function(_SetContactsPage value)? setContactsPage,
+    TResult Function(_SetRecentsPage value)? setRecentsPage,
+    TResult Function(_SetFavoritesPage value)? setFavoritesPage,
+    TResult Function(_SetConversationsPage value)? setConversationsPage,
+    TResult Function(_SetEmbeddedPage value)? setEmbeddedPage,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -3717,6 +3722,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
       case _SetLoginSignupVerifyCountdown()
           when setLoginSignupVerifyCountdown != null:
         return setLoginSignupVerifyCountdown(_that);
+      case _SetContactsPage() when setContactsPage != null:
+        return setContactsPage(_that);
+      case _SetRecentsPage() when setRecentsPage != null:
+        return setRecentsPage(_that);
+      case _SetFavoritesPage() when setFavoritesPage != null:
+        return setFavoritesPage(_that);
+      case _SetConversationsPage() when setConversationsPage != null:
+        return setConversationsPage(_that);
+      case _SetEmbeddedPage() when setEmbeddedPage != null:
+        return setEmbeddedPage(_that);
       case _:
         return orElse();
     }
@@ -3768,6 +3783,11 @@ extension ThemePageEventPatterns on ThemePageEvent {
         setLoginOtpSigninVerifyCountdown,
     required TResult Function(_SetLoginSignupVerifyCountdown value)
         setLoginSignupVerifyCountdown,
+    required TResult Function(_SetContactsPage value) setContactsPage,
+    required TResult Function(_SetRecentsPage value) setRecentsPage,
+    required TResult Function(_SetFavoritesPage value) setFavoritesPage,
+    required TResult Function(_SetConversationsPage value) setConversationsPage,
+    required TResult Function(_SetEmbeddedPage value) setEmbeddedPage,
   }) {
     final _that = this;
     switch (_that) {
@@ -3813,6 +3833,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setLoginOtpSigninVerifyCountdown(_that);
       case _SetLoginSignupVerifyCountdown():
         return setLoginSignupVerifyCountdown(_that);
+      case _SetContactsPage():
+        return setContactsPage(_that);
+      case _SetRecentsPage():
+        return setRecentsPage(_that);
+      case _SetFavoritesPage():
+        return setFavoritesPage(_that);
+      case _SetConversationsPage():
+        return setConversationsPage(_that);
+      case _SetEmbeddedPage():
+        return setEmbeddedPage(_that);
     }
   }
 
@@ -3860,6 +3890,11 @@ extension ThemePageEventPatterns on ThemePageEvent {
         setLoginOtpSigninVerifyCountdown,
     TResult? Function(_SetLoginSignupVerifyCountdown value)?
         setLoginSignupVerifyCountdown,
+    TResult? Function(_SetContactsPage value)? setContactsPage,
+    TResult? Function(_SetRecentsPage value)? setRecentsPage,
+    TResult? Function(_SetFavoritesPage value)? setFavoritesPage,
+    TResult? Function(_SetConversationsPage value)? setConversationsPage,
+    TResult? Function(_SetEmbeddedPage value)? setEmbeddedPage,
   }) {
     final _that = this;
     switch (_that) {
@@ -3912,6 +3947,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
       case _SetLoginSignupVerifyCountdown()
           when setLoginSignupVerifyCountdown != null:
         return setLoginSignupVerifyCountdown(_that);
+      case _SetContactsPage() when setContactsPage != null:
+        return setContactsPage(_that);
+      case _SetRecentsPage() when setRecentsPage != null:
+        return setRecentsPage(_that);
+      case _SetFavoritesPage() when setFavoritesPage != null:
+        return setFavoritesPage(_that);
+      case _SetConversationsPage() when setConversationsPage != null:
+        return setConversationsPage(_that);
+      case _SetEmbeddedPage() when setEmbeddedPage != null:
+        return setEmbeddedPage(_that);
       case _:
         return null;
     }
@@ -3955,6 +4000,11 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult Function(KeypadPageConfig keypad)? setKeypadPage,
     TResult Function(int seconds)? setLoginOtpSigninVerifyCountdown,
     TResult Function(int seconds)? setLoginSignupVerifyCountdown,
+    TResult Function(ContactsPageConfig config)? setContactsPage,
+    TResult Function(RecentsPageConfig config)? setRecentsPage,
+    TResult Function(FavoritesPageConfig config)? setFavoritesPage,
+    TResult Function(ConversationsPageConfig config)? setConversationsPage,
+    TResult Function(EmbeddedPageConfig config)? setEmbeddedPage,
     required TResult orElse(),
   }) {
     final _that = this;
@@ -4008,6 +4058,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
       case _SetLoginSignupVerifyCountdown()
           when setLoginSignupVerifyCountdown != null:
         return setLoginSignupVerifyCountdown(_that.seconds);
+      case _SetContactsPage() when setContactsPage != null:
+        return setContactsPage(_that.config);
+      case _SetRecentsPage() when setRecentsPage != null:
+        return setRecentsPage(_that.config);
+      case _SetFavoritesPage() when setFavoritesPage != null:
+        return setFavoritesPage(_that.config);
+      case _SetConversationsPage() when setConversationsPage != null:
+        return setConversationsPage(_that.config);
+      case _SetEmbeddedPage() when setEmbeddedPage != null:
+        return setEmbeddedPage(_that.config);
       case _:
         return orElse();
     }
@@ -4056,6 +4116,12 @@ extension ThemePageEventPatterns on ThemePageEvent {
     required TResult Function(KeypadPageConfig keypad) setKeypadPage,
     required TResult Function(int seconds) setLoginOtpSigninVerifyCountdown,
     required TResult Function(int seconds) setLoginSignupVerifyCountdown,
+    required TResult Function(ContactsPageConfig config) setContactsPage,
+    required TResult Function(RecentsPageConfig config) setRecentsPage,
+    required TResult Function(FavoritesPageConfig config) setFavoritesPage,
+    required TResult Function(ConversationsPageConfig config)
+        setConversationsPage,
+    required TResult Function(EmbeddedPageConfig config) setEmbeddedPage,
   }) {
     final _that = this;
     switch (_that) {
@@ -4101,6 +4167,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
         return setLoginOtpSigninVerifyCountdown(_that.seconds);
       case _SetLoginSignupVerifyCountdown():
         return setLoginSignupVerifyCountdown(_that.seconds);
+      case _SetContactsPage():
+        return setContactsPage(_that.config);
+      case _SetRecentsPage():
+        return setRecentsPage(_that.config);
+      case _SetFavoritesPage():
+        return setFavoritesPage(_that.config);
+      case _SetConversationsPage():
+        return setConversationsPage(_that.config);
+      case _SetEmbeddedPage():
+        return setEmbeddedPage(_that.config);
     }
   }
 
@@ -4142,6 +4218,11 @@ extension ThemePageEventPatterns on ThemePageEvent {
     TResult? Function(KeypadPageConfig keypad)? setKeypadPage,
     TResult? Function(int seconds)? setLoginOtpSigninVerifyCountdown,
     TResult? Function(int seconds)? setLoginSignupVerifyCountdown,
+    TResult? Function(ContactsPageConfig config)? setContactsPage,
+    TResult? Function(RecentsPageConfig config)? setRecentsPage,
+    TResult? Function(FavoritesPageConfig config)? setFavoritesPage,
+    TResult? Function(ConversationsPageConfig config)? setConversationsPage,
+    TResult? Function(EmbeddedPageConfig config)? setEmbeddedPage,
   }) {
     final _that = this;
     switch (_that) {
@@ -4194,6 +4275,16 @@ extension ThemePageEventPatterns on ThemePageEvent {
       case _SetLoginSignupVerifyCountdown()
           when setLoginSignupVerifyCountdown != null:
         return setLoginSignupVerifyCountdown(_that.seconds);
+      case _SetContactsPage() when setContactsPage != null:
+        return setContactsPage(_that.config);
+      case _SetRecentsPage() when setRecentsPage != null:
+        return setRecentsPage(_that.config);
+      case _SetFavoritesPage() when setFavoritesPage != null:
+        return setFavoritesPage(_that.config);
+      case _SetConversationsPage() when setConversationsPage != null:
+        return setConversationsPage(_that.config);
+      case _SetEmbeddedPage() when setEmbeddedPage != null:
+        return setEmbeddedPage(_that.config);
       case _:
         return null;
     }
@@ -5800,6 +5891,387 @@ class __$SetLoginSignupVerifyCountdownCopyWithImpl<$Res>
           : seconds // ignore: cast_nullable_to_non_nullable
               as int,
     ));
+  }
+}
+
+/// @nodoc
+
+class _SetContactsPage implements ThemePageEvent {
+  const _SetContactsPage(this.config);
+
+  final ContactsPageConfig config;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetContactsPageCopyWith<_SetContactsPage> get copyWith =>
+      __$SetContactsPageCopyWithImpl<_SetContactsPage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetContactsPage &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setContactsPage(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetContactsPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetContactsPageCopyWith(
+          _SetContactsPage value, $Res Function(_SetContactsPage) _then) =
+      __$SetContactsPageCopyWithImpl;
+  @useResult
+  $Res call({ContactsPageConfig config});
+
+  $ContactsPageConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class __$SetContactsPageCopyWithImpl<$Res>
+    implements _$SetContactsPageCopyWith<$Res> {
+  __$SetContactsPageCopyWithImpl(this._self, this._then);
+
+  final _SetContactsPage _self;
+  final $Res Function(_SetContactsPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_SetContactsPage(
+      null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as ContactsPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactsPageConfigCopyWith<$Res> get config {
+    return $ContactsPageConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _SetRecentsPage implements ThemePageEvent {
+  const _SetRecentsPage(this.config);
+
+  final RecentsPageConfig config;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetRecentsPageCopyWith<_SetRecentsPage> get copyWith =>
+      __$SetRecentsPageCopyWithImpl<_SetRecentsPage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetRecentsPage &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setRecentsPage(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetRecentsPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetRecentsPageCopyWith(
+          _SetRecentsPage value, $Res Function(_SetRecentsPage) _then) =
+      __$SetRecentsPageCopyWithImpl;
+  @useResult
+  $Res call({RecentsPageConfig config});
+
+  $RecentsPageConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class __$SetRecentsPageCopyWithImpl<$Res>
+    implements _$SetRecentsPageCopyWith<$Res> {
+  __$SetRecentsPageCopyWithImpl(this._self, this._then);
+
+  final _SetRecentsPage _self;
+  final $Res Function(_SetRecentsPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_SetRecentsPage(
+      null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as RecentsPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecentsPageConfigCopyWith<$Res> get config {
+    return $RecentsPageConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _SetFavoritesPage implements ThemePageEvent {
+  const _SetFavoritesPage(this.config);
+
+  final FavoritesPageConfig config;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetFavoritesPageCopyWith<_SetFavoritesPage> get copyWith =>
+      __$SetFavoritesPageCopyWithImpl<_SetFavoritesPage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetFavoritesPage &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setFavoritesPage(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetFavoritesPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetFavoritesPageCopyWith(
+          _SetFavoritesPage value, $Res Function(_SetFavoritesPage) _then) =
+      __$SetFavoritesPageCopyWithImpl;
+  @useResult
+  $Res call({FavoritesPageConfig config});
+
+  $FavoritesPageConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class __$SetFavoritesPageCopyWithImpl<$Res>
+    implements _$SetFavoritesPageCopyWith<$Res> {
+  __$SetFavoritesPageCopyWithImpl(this._self, this._then);
+
+  final _SetFavoritesPage _self;
+  final $Res Function(_SetFavoritesPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_SetFavoritesPage(
+      null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as FavoritesPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FavoritesPageConfigCopyWith<$Res> get config {
+    return $FavoritesPageConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _SetConversationsPage implements ThemePageEvent {
+  const _SetConversationsPage(this.config);
+
+  final ConversationsPageConfig config;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetConversationsPageCopyWith<_SetConversationsPage> get copyWith =>
+      __$SetConversationsPageCopyWithImpl<_SetConversationsPage>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetConversationsPage &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setConversationsPage(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetConversationsPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetConversationsPageCopyWith(_SetConversationsPage value,
+          $Res Function(_SetConversationsPage) _then) =
+      __$SetConversationsPageCopyWithImpl;
+  @useResult
+  $Res call({ConversationsPageConfig config});
+
+  $ConversationsPageConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class __$SetConversationsPageCopyWithImpl<$Res>
+    implements _$SetConversationsPageCopyWith<$Res> {
+  __$SetConversationsPageCopyWithImpl(this._self, this._then);
+
+  final _SetConversationsPage _self;
+  final $Res Function(_SetConversationsPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_SetConversationsPage(
+      null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as ConversationsPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ConversationsPageConfigCopyWith<$Res> get config {
+    return $ConversationsPageConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _SetEmbeddedPage implements ThemePageEvent {
+  const _SetEmbeddedPage(this.config);
+
+  final EmbeddedPageConfig config;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SetEmbeddedPageCopyWith<_SetEmbeddedPage> get copyWith =>
+      __$SetEmbeddedPageCopyWithImpl<_SetEmbeddedPage>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetEmbeddedPage &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'ThemePageEvent.setEmbeddedPage(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SetEmbeddedPageCopyWith<$Res>
+    implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetEmbeddedPageCopyWith(
+          _SetEmbeddedPage value, $Res Function(_SetEmbeddedPage) _then) =
+      __$SetEmbeddedPageCopyWithImpl;
+  @useResult
+  $Res call({EmbeddedPageConfig config});
+
+  $EmbeddedPageConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class __$SetEmbeddedPageCopyWithImpl<$Res>
+    implements _$SetEmbeddedPageCopyWith<$Res> {
+  __$SetEmbeddedPageCopyWithImpl(this._self, this._then);
+
+  final _SetEmbeddedPage _self;
+  final $Res Function(_SetEmbeddedPage) _then;
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_SetEmbeddedPage(
+      null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as EmbeddedPageConfig,
+    ));
+  }
+
+  /// Create a copy of ThemePageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EmbeddedPageConfigCopyWith<$Res> get config {
+    return $EmbeddedPageConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
   }
 }
 

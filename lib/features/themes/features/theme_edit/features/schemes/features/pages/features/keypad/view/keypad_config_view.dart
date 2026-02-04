@@ -35,6 +35,13 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
+          // НОВЕ
+          ThemeOverrideSelector(
+            config: cfg.themeOverride,
+            onChanged: (v) => _set(cfg.copyWith(themeOverride: v)),
+          ),
+          const SizedBox(height: 16),
+
           BorderContainer(
             title: 'System UI Overlay',
             descriptionWidget: DescriptionRow.info(

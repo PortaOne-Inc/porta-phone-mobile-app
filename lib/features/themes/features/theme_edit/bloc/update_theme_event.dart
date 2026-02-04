@@ -78,55 +78,86 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
 
 @freezed
 sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
-  // Login page
+  /// Configuration for the login page.
   const factory ThemePageEvent.setLoginPage(LoginPageConfig login) = _SetLoginPage;
 
+  /// Updates the configuration for switching between login pages.
   const factory ThemePageEvent.updateSwitchPage(LoginSwitchPageConfig login) = _UpdateSwitchPage;
 
+  /// Sets the image source for the login page background or illustration.
   const factory ThemePageEvent.setLoginPicture(ImageSource imageSource) = _SetLoginPicture;
 
+  /// Configuration for the login mode selection screen.
   const factory ThemePageEvent.setLoginModeSelect(LoginModeSelectPageConfig modeSelect) = _SetLoginModeSelect;
 
+  /// Sets the style for the login button on the mode selection screen.
   const factory ThemePageEvent.setLoginModeSelectButtonLoginStyle(ElevatedButtonStyleType type) =
       _SetLoginModeSelectButtonLoginStyle;
 
+  /// Sets the style for the signup button on the mode selection screen.
   const factory ThemePageEvent.setLoginModeSelectButtonSignupStyle(ElevatedButtonStyleType type) =
       _SetLoginModeSelectButtonSignupStyle;
 
-  // About page
+  /// Configuration for the about page.
   const factory ThemePageEvent.setAboutPage(AboutPageConfig about) = _SetAboutPage;
 
+  /// Sets the asset used as the about page illustration.
   const factory ThemePageEvent.setAboutPicture(AssetModel asset) = _SetAboutPicture;
 
+  /// Sets the metadata information displayed on the about page.
   const factory ThemePageEvent.setAboutMetadata(Metadata metadata) = _SetAboutMetadata;
 
+  /// Configuration for the dialing (active call) page.
   const factory ThemePageEvent.setDialingPage(CallPageConfig dialingPage) = _SetDialingPage;
 
+  /// Sets the System UI overlay style for the dialing screen.
   const factory ThemePageEvent.setDialingSystemUiOverlay(OverlayStyleModel? style) = _SetDialingSystemUiOverlay;
 
+  /// Sets the app bar style for the dialing screen.
   const factory ThemePageEvent.setDialingAppBarStyle(AppBarConfig? appBarStyle) = _SetDialingAppBarStyle;
 
+  /// Configuration for information display on the dialing page.
   const factory ThemePageEvent.setDialingInfo(CallPageInfoConfig? info) = _SetDialingInfo;
 
+  /// Configuration for the settings page.
   const factory ThemePageEvent.setSettingsPage(SettingsPageConfig info) = _SetSettingsPage;
 
-  // Dialing info fields
+  /// Sets the text style for the username on the dialing screen.
   const factory ThemePageEvent.setDialingInfoUsernameStyle(TextStyleConfig? style) = _SetDialingInfoUsernameStyle;
 
+  /// Sets the text style for the phone number on the dialing screen.
   const factory ThemePageEvent.setDialingInfoNumberStyle(TextStyleConfig? style) = _SetDialingInfoNumberStyle;
 
+  /// Sets the text style for the call status (e.g., "Connected") on the dialing screen.
   const factory ThemePageEvent.setDialingInfoCallStatusStyle(TextStyleConfig? style) = _SetDialingInfoCallStatusStyle;
 
+  /// Sets the text style for the processing status on the dialing screen.
   const factory ThemePageEvent.setDialingInfoProcessingStatusStyle(TextStyleConfig? style) =
       _SetDialingInfoProcessingStatusStyle;
 
+  /// Configuration for the keypad page.
   const factory ThemePageEvent.setKeypadPage(KeypadPageConfig keypad) = _SetKeypadPage;
 
-  /// OTP Sign-in verify countdown (seconds, 0 disables)
+  /// OTP sign-in verify countdown in seconds (0 disables the countdown).
   const factory ThemePageEvent.setLoginOtpSigninVerifyCountdown(int seconds) = _SetLoginOtpSigninVerifyCountdown;
 
-  /// Sign-up verify countdown (seconds, 0 disables)
+  /// Sign-up verify countdown in seconds (0 disables the countdown).
   const factory ThemePageEvent.setLoginSignupVerifyCountdown(int seconds) = _SetLoginSignupVerifyCountdown;
+
+  /// Configuration for the contacts page.
+  const factory ThemePageEvent.setContactsPage(ContactsPageConfig config) = _SetContactsPage;
+
+  /// Configuration for the recents (call log) page.
+  const factory ThemePageEvent.setRecentsPage(RecentsPageConfig config) = _SetRecentsPage;
+
+  /// Configuration for the favorites page.
+  const factory ThemePageEvent.setFavoritesPage(FavoritesPageConfig config) = _SetFavoritesPage;
+
+  /// Configuration for the conversations (chat list) page.
+  const factory ThemePageEvent.setConversationsPage(ConversationsPageConfig config) = _SetConversationsPage;
+
+  /// Configuration for the embedded web or custom page.
+  const factory ThemePageEvent.setEmbeddedPage(EmbeddedPageConfig config) = _SetEmbeddedPage;
 }
 
 @freezed
