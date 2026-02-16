@@ -27,25 +27,13 @@ abstract class ThemeWidgetEditorApi {
 
   void setButton(ButtonWidgetConfig button);
 
-  void setPrimaryElevatedButton(ElevatedButtonWidgetConfig cfg);
-
-  void setPrimaryElevatedButtonBackground(String? color);
-
-  void setPrimaryElevatedButtonForeground(String? color);
-
-  void setPrimaryElevatedButtonTextColor(String? color);
-
-  void setPrimaryElevatedButtonIconColor(String? color);
-
-  void setPrimaryElevatedButtonDisabledIconColor(String? color);
+  void setPrimaryElevatedButton(ButtonStyleConfig? cfg);
 
   void setGroup(GroupWidgetConfig group);
 
   void setGroupTitleListTile(GroupTitleListTileWidgetConfig cfg);
 
   void setGroupTitleListTileBackground(String? color);
-
-  // void setGroupTitleListTileTextColor(String? color);
 
   void setBar(BarWidgetConfig bar);
 
@@ -110,14 +98,6 @@ abstract class ThemeWidgetEditorApi {
   void setConfirmDialogDefault(String? color);
 
   void setSnackBar(SnackBarWidgetConfig cfg);
-
-  void setActionPad(ActionPadWidgetConfig cfg);
-
-  void setActionPadCallStart(ElevatedButtonWidgetConfig cfg);
-
-  void setActionPadTransfer(ElevatedButtonWidgetConfig cfg);
-
-  void setActionPadBackspacePressed(ElevatedButtonWidgetConfig cfg);
 
   void setStatuses(StatusesWidgetConfig cfg);
 
@@ -239,58 +219,8 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   }
 
   @override
-  void setPrimaryElevatedButton(ElevatedButtonWidgetConfig cfg) {
+  void setPrimaryElevatedButton(ButtonStyleConfig? cfg) {
     _current = current.copyWith(button: current.button.copyWith(primaryElevatedButton: cfg));
-    _emit();
-  }
-
-  @override
-  void setPrimaryElevatedButtonBackground(String? color) {
-    _current = current.copyWith(
-      button: current.button.copyWith(
-        primaryElevatedButton: current.button.primaryElevatedButton.copyWith(backgroundColor: color),
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setPrimaryElevatedButtonForeground(String? color) {
-    _current = current.copyWith(
-      button: current.button.copyWith(
-        primaryElevatedButton: current.button.primaryElevatedButton.copyWith(foregroundColor: color),
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setPrimaryElevatedButtonTextColor(String? color) {
-    _current = current.copyWith(
-      button: current.button.copyWith(
-        primaryElevatedButton: current.button.primaryElevatedButton.copyWith(textColor: color),
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setPrimaryElevatedButtonIconColor(String? color) {
-    _current = current.copyWith(
-      button: current.button.copyWith(
-        primaryElevatedButton: current.button.primaryElevatedButton.copyWith(iconColor: color),
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setPrimaryElevatedButtonDisabledIconColor(String? color) {
-    _current = current.copyWith(
-      button: current.button.copyWith(
-        primaryElevatedButton: current.button.primaryElevatedButton.copyWith(disabledIconColor: color),
-      ),
-    );
     _emit();
   }
 
@@ -564,30 +494,6 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   @override
   void setSnackBar(SnackBarWidgetConfig cfg) {
     _current = current.copyWith(dialog: current.dialog.copyWith(snackBar: cfg));
-    _emit();
-  }
-
-  @override
-  void setActionPad(ActionPadWidgetConfig cfg) {
-    _current = current.copyWith(actionPad: cfg);
-    _emit();
-  }
-
-  @override
-  void setActionPadCallStart(ElevatedButtonWidgetConfig cfg) {
-    _current = current.copyWith(actionPad: current.actionPad.copyWith(callStart: cfg));
-    _emit();
-  }
-
-  @override
-  void setActionPadTransfer(ElevatedButtonWidgetConfig cfg) {
-    _current = current.copyWith(actionPad: current.actionPad.copyWith(callTransfer: cfg));
-    _emit();
-  }
-
-  @override
-  void setActionPadBackspacePressed(ElevatedButtonWidgetConfig cfg) {
-    _current = current.copyWith(actionPad: current.actionPad.copyWith(backspacePressed: cfg));
     _emit();
   }
 

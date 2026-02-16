@@ -48,10 +48,10 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
   const factory AppConfigEvent.setBottomMenuTabs(List<BottomMenuTabScheme> tabs) = _SetBottomMenuTabs;
 
   const factory AppConfigEvent.updateBottomMenuTab({required int index, required BottomMenuTabScheme tab}) =
-      _UpdateBottomMenuTab;
+  _UpdateBottomMenuTab;
 
   const factory AppConfigEvent.insertBottomMenuTab({required int index, required BottomMenuTabScheme tab}) =
-      _InsertBottomMenuTab;
+  _InsertBottomMenuTab;
 
   const factory AppConfigEvent.removeBottomMenuTabAt(int index) = _RemoveBottomMenuTabAt;
 
@@ -72,7 +72,7 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
   const factory AppConfigEvent.setCallPeerConnection(AppConfigPeerConnection pc) = _SetCallPeerConnection;
 
   const factory AppConfigEvent.setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation) =
-      _SetNegotiationOverride;
+  _SetNegotiationOverride;
 
   const factory AppConfigEvent.setSupportedFeatures(List<SupportedFeature> features) = _SetSupportedFeatures;
 
@@ -96,11 +96,11 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
 
   /// Sets the style for the login button on the mode selection screen.
   const factory ThemePageEvent.setLoginModeSelectButtonLoginStyle(ElevatedButtonStyleType type) =
-      _SetLoginModeSelectButtonLoginStyle;
+  _SetLoginModeSelectButtonLoginStyle;
 
   /// Sets the style for the signup button on the mode selection screen.
   const factory ThemePageEvent.setLoginModeSelectButtonSignupStyle(ElevatedButtonStyleType type) =
-      _SetLoginModeSelectButtonSignupStyle;
+  _SetLoginModeSelectButtonSignupStyle;
 
   /// Configuration for the about page.
   const factory ThemePageEvent.setAboutPage(AboutPageConfig about) = _SetAboutPage;
@@ -137,7 +137,7 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
 
   /// Sets the text style for the processing status on the dialing screen.
   const factory ThemePageEvent.setDialingInfoProcessingStatusStyle(TextStyleConfig? style) =
-      _SetDialingInfoProcessingStatusStyle;
+  _SetDialingInfoProcessingStatusStyle;
 
   /// Configuration for the keypad page.
   const factory ThemePageEvent.setKeypadPage(KeypadPageConfig keypad) = _SetKeypadPage;
@@ -162,6 +162,7 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
 
   /// Configuration for the embedded web or custom page.
   const factory ThemePageEvent.setEmbeddedPage(EmbeddedPageConfig config) = _SetEmbeddedPage;
+
   const factory ThemePageEvent.importJson(Map<String, dynamic> json) = _ImportJsonPageEvent;
 }
 
@@ -175,17 +176,7 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
   // Button
   const factory ThemeWidgetEvent.setButton(ButtonWidgetConfig button) = _SetButton;
 
-  const factory ThemeWidgetEvent.setPEButton(ElevatedButtonWidgetConfig cfg) = _SetPrimaryElevatedButton;
-
-  const factory ThemeWidgetEvent.setPEButtonBackground(String? color) = _SetPEBBackground;
-
-  const factory ThemeWidgetEvent.setPEButtonForeground(String? color) = _SetPEBForeground;
-
-  const factory ThemeWidgetEvent.setPEButtonTextColor(String? color) = _SetPEBTextColor;
-
-  const factory ThemeWidgetEvent.setPEButtonIconColor(String? color) = _SetPEBIconColor;
-
-  const factory ThemeWidgetEvent.setPEButtonDisabledIconColor(String? color) = _SetPEBDisabledIconColor;
+  const factory ThemeWidgetEvent.setPEButton(ButtonStyleConfig? cfg) = _SetPrimaryElevatedButton;
 
   // Group
   const factory ThemeWidgetEvent.setGroup(GroupWidgetConfig group) = _SetGroup;
@@ -265,20 +256,11 @@ sealed class ThemeWidgetEvent with _$ThemeWidgetEvent implements ConfiguratorEve
 
   const factory ThemeWidgetEvent.setSnackBar(SnackBarWidgetConfig cfg) = _SetSnackBar;
 
-  // ActionPad
-  const factory ThemeWidgetEvent.setActionPad(ActionPadWidgetConfig cfg) = _SetActionPad;
-
-  const factory ThemeWidgetEvent.setActionPadCallStart(ElevatedButtonWidgetConfig cfg) = _SetActionPadCallStart;
-
-  const factory ThemeWidgetEvent.setActionPadTransfer(ElevatedButtonWidgetConfig cfg) = _SetActionPadTransfer;
-
-  const factory ThemeWidgetEvent.setActionPadBackspacePressed(ElevatedButtonWidgetConfig cfg) = _SetActionPadBackspace;
-
   // Statuses
   const factory ThemeWidgetEvent.setStatuses(StatusesWidgetConfig cfg) = _SetStatuses;
 
   const factory ThemeWidgetEvent.setRegistrationStatuses(RegistrationStatusesWidgetConfig cfg) =
-      _SetRegistrationStatuses;
+  _SetRegistrationStatuses;
 
   const factory ThemeWidgetEvent.setRegistrationOnline(String color) = _SetRegistrationOnline;
 

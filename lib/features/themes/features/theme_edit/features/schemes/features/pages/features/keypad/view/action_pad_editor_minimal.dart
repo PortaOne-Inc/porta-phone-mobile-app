@@ -17,22 +17,25 @@ class ActionPadEditorMinimal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButtonConfigEditor(
-          title: 'Call Start Button',
+        ButtonStyleConfigEditor(
+          label: 'Call Start Button',
           value: value.callStart,
           onChanged: (v) => onChanged(value.copyWith(callStart: v)),
+          onClear: () => onChanged(value.copyWith(callStart: const ButtonStyleConfig())),
         ),
-        const SizedBox(height: 16),
-        ElevatedButtonConfigEditor(
-          title: 'Call Transfer Button',
+        const SizedBox(height: 24),
+        ButtonStyleConfigEditor(
+          label: 'Call Transfer Button',
           value: value.callTransfer,
           onChanged: (v) => onChanged(value.copyWith(callTransfer: v)),
+          onClear: () => onChanged(value.copyWith(callTransfer: const ButtonStyleConfig())),
         ),
-        const SizedBox(height: 16),
-        ElevatedButtonConfigEditor(
-          title: 'Backspace Pressed State',
+        const SizedBox(height: 24),
+        ButtonStyleConfigEditor(
+          label: 'Backspace Pressed State',
           value: value.backspacePressed,
           onChanged: (v) => onChanged(value.copyWith(backspacePressed: v)),
+          onClear: () => onChanged(value.copyWith(backspacePressed: const ButtonStyleConfig())),
         ),
       ],
     );

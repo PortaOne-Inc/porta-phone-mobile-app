@@ -20,44 +20,71 @@ class _AboutPageViewState extends State<AboutPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
-      builder: (context, state) {
-        final about = state.themePageConfig.about;
+    // Використовуємо select для оптимізації ребілдів
+    final currentConfig = context.select(
+      (UpdateThemCubit cubit) => cubit.state.themePageConfig.about,
+    );
 
-        return Padding(
-          padding: const EdgeInsets.all(16),
-          child: ListView(
-            children: [
-              ImageRenderEditor(
-                description: 'Pick a logo or illustration for the About screen.',
-                source: about.mainLogo,
-                onPick: () => _pickAsset(context, state.assets),
-                onChanged: (updated) {
-                  context
-                      .read<UpdateThemCubit>()
-                      .add(ThemePageEvent.setAboutPage(state.themePageConfig.about.copyWith(mainLogo: updated)));
-                },
-                title: 'About screen',
-              ),
-              const SizedBox(height: 16),
-              PageBackgroundEditor(
-                value: state.themePageConfig.about.background,
-                onChanged: (PageBackground? value) {
-                  context
-                      .read<UpdateThemCubit>()
-                      .add(ThemePageEvent.setAboutPage(state.themePageConfig.about.copyWith(background: value)));
-                },
-              )
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: ListView(
+        children: [
+          // ThemeOverrideSelector(
+          //   config: currentConfig.themeOverride,
+          //   onChanged: (v) {
+          //     _cubit.add(
+          //       ThemePageEvent.setAboutPage(
+          //         currentConfig.copyWith(themeOverride: v),
+          //       ),
+          //     );
+          //   },
+          // ),
+          const SizedBox(height: 16),
+          PageBackgroundEditor(
+            value: currentConfig.background,
+            onChanged: (PageBackground? value) {
+              _cubit.add(
+                ThemePageEvent.setAboutPage(
+                  currentConfig.copyWith(background: value),
+                ),
+              );
+            },
           ),
-        );
-      },
+          const SizedBox(height: 16),
+          ImageRenderEditor(
+            description: 'Pick a logo or illustration for the About screen.',
+            source: currentConfig.mainLogo,
+            onPick: () => _pickAsset(context, _cubit.state.assets),
+            onChanged: (updated) {
+              // Беремо свіжий конфіг перед оновленням
+              final freshConfig = _cubit.state.themePageConfig.about;
+              _cubit.add(
+                ThemePageEvent.setAboutPage(
+                  freshConfig.copyWith(mainLogo: updated),
+                ),
+              );
+            },
+            title: 'About screen',
+          ),
+        ],
+      ),
     );
   }
 
   Future<void> _pickAsset(BuildContext context, List<AssetModel> assets) async {
     final picked = await context.pickAsset(assets);
-    if (!mounted || picked == null) return;
-    _cubit.add(ThemePageEvent.setAboutPicture(picked));
+
+    if (mounted && picked != null) {
+      final imageSource = ImageSource(id: picked.id, uri: picked.downloadUrl);
+
+      // Беремо свіжий конфіг
+      final freshConfig = _cubit.state.themePageConfig.about;
+
+      _cubit.add(
+        ThemePageEvent.setAboutPage(
+          freshConfig.copyWith(mainLogo: imageSource),
+        ),
+      );
+    }
   }
 }

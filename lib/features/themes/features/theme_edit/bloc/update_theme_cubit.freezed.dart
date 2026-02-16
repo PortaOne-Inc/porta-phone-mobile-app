@@ -6539,12 +6539,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(_SetGlobalFontFamily value)? setGlobalFontFamily,
     TResult Function(_SetButton value)? setButton,
     TResult Function(_SetPrimaryElevatedButton value)? setPEButton,
-    TResult Function(_SetPEBBackground value)? setPEButtonBackground,
-    TResult Function(_SetPEBForeground value)? setPEButtonForeground,
-    TResult Function(_SetPEBTextColor value)? setPEButtonTextColor,
-    TResult Function(_SetPEBIconColor value)? setPEButtonIconColor,
-    TResult Function(_SetPEBDisabledIconColor value)?
-        setPEButtonDisabledIconColor,
     TResult Function(_SetGroup value)? setGroup,
     TResult Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
     TResult Function(_SetGroupTitleListTileBackground value)?
@@ -6585,11 +6579,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(_SetConfirmDialogActive2 value)? setConfirmDialogActive2,
     TResult Function(_SetConfirmDialogDefault value)? setConfirmDialogDefault,
     TResult Function(_SetSnackBar value)? setSnackBar,
-    TResult Function(_SetActionPad value)? setActionPad,
-    TResult Function(_SetActionPadCallStart value)? setActionPadCallStart,
-    TResult Function(_SetActionPadTransfer value)? setActionPadTransfer,
-    TResult Function(_SetActionPadBackspace value)?
-        setActionPadBackspacePressed,
     TResult Function(_SetStatuses value)? setStatuses,
     TResult Function(_SetRegistrationStatuses value)? setRegistrationStatuses,
     TResult Function(_SetRegistrationOnline value)? setRegistrationOnline,
@@ -6622,16 +6611,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that);
       case _SetPrimaryElevatedButton() when setPEButton != null:
         return setPEButton(_that);
-      case _SetPEBBackground() when setPEButtonBackground != null:
-        return setPEButtonBackground(_that);
-      case _SetPEBForeground() when setPEButtonForeground != null:
-        return setPEButtonForeground(_that);
-      case _SetPEBTextColor() when setPEButtonTextColor != null:
-        return setPEButtonTextColor(_that);
-      case _SetPEBIconColor() when setPEButtonIconColor != null:
-        return setPEButtonIconColor(_that);
-      case _SetPEBDisabledIconColor() when setPEButtonDisabledIconColor != null:
-        return setPEButtonDisabledIconColor(_that);
       case _SetGroup() when setGroup != null:
         return setGroup(_that);
       case _SetGroupTitleListTile() when setGroupTitleListTile != null:
@@ -6705,14 +6684,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that);
       case _SetSnackBar() when setSnackBar != null:
         return setSnackBar(_that);
-      case _SetActionPad() when setActionPad != null:
-        return setActionPad(_that);
-      case _SetActionPadCallStart() when setActionPadCallStart != null:
-        return setActionPadCallStart(_that);
-      case _SetActionPadTransfer() when setActionPadTransfer != null:
-        return setActionPadTransfer(_that);
-      case _SetActionPadBackspace() when setActionPadBackspacePressed != null:
-        return setActionPadBackspacePressed(_that);
       case _SetStatuses() when setStatuses != null:
         return setStatuses(_that);
       case _SetRegistrationStatuses() when setRegistrationStatuses != null:
@@ -6771,12 +6742,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(_SetGlobalFontFamily value) setGlobalFontFamily,
     required TResult Function(_SetButton value) setButton,
     required TResult Function(_SetPrimaryElevatedButton value) setPEButton,
-    required TResult Function(_SetPEBBackground value) setPEButtonBackground,
-    required TResult Function(_SetPEBForeground value) setPEButtonForeground,
-    required TResult Function(_SetPEBTextColor value) setPEButtonTextColor,
-    required TResult Function(_SetPEBIconColor value) setPEButtonIconColor,
-    required TResult Function(_SetPEBDisabledIconColor value)
-        setPEButtonDisabledIconColor,
     required TResult Function(_SetGroup value) setGroup,
     required TResult Function(_SetGroupTitleListTile value)
         setGroupTitleListTile,
@@ -6826,12 +6791,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(_SetConfirmDialogDefault value)
         setConfirmDialogDefault,
     required TResult Function(_SetSnackBar value) setSnackBar,
-    required TResult Function(_SetActionPad value) setActionPad,
-    required TResult Function(_SetActionPadCallStart value)
-        setActionPadCallStart,
-    required TResult Function(_SetActionPadTransfer value) setActionPadTransfer,
-    required TResult Function(_SetActionPadBackspace value)
-        setActionPadBackspacePressed,
     required TResult Function(_SetStatuses value) setStatuses,
     required TResult Function(_SetRegistrationStatuses value)
         setRegistrationStatuses,
@@ -6867,16 +6826,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that);
       case _SetPrimaryElevatedButton():
         return setPEButton(_that);
-      case _SetPEBBackground():
-        return setPEButtonBackground(_that);
-      case _SetPEBForeground():
-        return setPEButtonForeground(_that);
-      case _SetPEBTextColor():
-        return setPEButtonTextColor(_that);
-      case _SetPEBIconColor():
-        return setPEButtonIconColor(_that);
-      case _SetPEBDisabledIconColor():
-        return setPEButtonDisabledIconColor(_that);
       case _SetGroup():
         return setGroup(_that);
       case _SetGroupTitleListTile():
@@ -6947,14 +6896,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that);
       case _SetSnackBar():
         return setSnackBar(_that);
-      case _SetActionPad():
-        return setActionPad(_that);
-      case _SetActionPadCallStart():
-        return setActionPadCallStart(_that);
-      case _SetActionPadTransfer():
-        return setActionPadTransfer(_that);
-      case _SetActionPadBackspace():
-        return setActionPadBackspacePressed(_that);
       case _SetStatuses():
         return setStatuses(_that);
       case _SetRegistrationStatuses():
@@ -7006,12 +6947,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(_SetGlobalFontFamily value)? setGlobalFontFamily,
     TResult? Function(_SetButton value)? setButton,
     TResult? Function(_SetPrimaryElevatedButton value)? setPEButton,
-    TResult? Function(_SetPEBBackground value)? setPEButtonBackground,
-    TResult? Function(_SetPEBForeground value)? setPEButtonForeground,
-    TResult? Function(_SetPEBTextColor value)? setPEButtonTextColor,
-    TResult? Function(_SetPEBIconColor value)? setPEButtonIconColor,
-    TResult? Function(_SetPEBDisabledIconColor value)?
-        setPEButtonDisabledIconColor,
     TResult? Function(_SetGroup value)? setGroup,
     TResult? Function(_SetGroupTitleListTile value)? setGroupTitleListTile,
     TResult? Function(_SetGroupTitleListTileBackground value)?
@@ -7052,11 +6987,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(_SetConfirmDialogActive2 value)? setConfirmDialogActive2,
     TResult? Function(_SetConfirmDialogDefault value)? setConfirmDialogDefault,
     TResult? Function(_SetSnackBar value)? setSnackBar,
-    TResult? Function(_SetActionPad value)? setActionPad,
-    TResult? Function(_SetActionPadCallStart value)? setActionPadCallStart,
-    TResult? Function(_SetActionPadTransfer value)? setActionPadTransfer,
-    TResult? Function(_SetActionPadBackspace value)?
-        setActionPadBackspacePressed,
     TResult? Function(_SetStatuses value)? setStatuses,
     TResult? Function(_SetRegistrationStatuses value)? setRegistrationStatuses,
     TResult? Function(_SetRegistrationOnline value)? setRegistrationOnline,
@@ -7089,16 +7019,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that);
       case _SetPrimaryElevatedButton() when setPEButton != null:
         return setPEButton(_that);
-      case _SetPEBBackground() when setPEButtonBackground != null:
-        return setPEButtonBackground(_that);
-      case _SetPEBForeground() when setPEButtonForeground != null:
-        return setPEButtonForeground(_that);
-      case _SetPEBTextColor() when setPEButtonTextColor != null:
-        return setPEButtonTextColor(_that);
-      case _SetPEBIconColor() when setPEButtonIconColor != null:
-        return setPEButtonIconColor(_that);
-      case _SetPEBDisabledIconColor() when setPEButtonDisabledIconColor != null:
-        return setPEButtonDisabledIconColor(_that);
       case _SetGroup() when setGroup != null:
         return setGroup(_that);
       case _SetGroupTitleListTile() when setGroupTitleListTile != null:
@@ -7172,14 +7092,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that);
       case _SetSnackBar() when setSnackBar != null:
         return setSnackBar(_that);
-      case _SetActionPad() when setActionPad != null:
-        return setActionPad(_that);
-      case _SetActionPadCallStart() when setActionPadCallStart != null:
-        return setActionPadCallStart(_that);
-      case _SetActionPadTransfer() when setActionPadTransfer != null:
-        return setActionPadTransfer(_that);
-      case _SetActionPadBackspace() when setActionPadBackspacePressed != null:
-        return setActionPadBackspacePressed(_that);
       case _SetStatuses() when setStatuses != null:
         return setStatuses(_that);
       case _SetRegistrationStatuses() when setRegistrationStatuses != null:
@@ -7236,12 +7148,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(FontsConfig fonts)? setFonts,
     TResult Function(String? fontFamily)? setGlobalFontFamily,
     TResult Function(ButtonWidgetConfig button)? setButton,
-    TResult Function(ElevatedButtonWidgetConfig cfg)? setPEButton,
-    TResult Function(String? color)? setPEButtonBackground,
-    TResult Function(String? color)? setPEButtonForeground,
-    TResult Function(String? color)? setPEButtonTextColor,
-    TResult Function(String? color)? setPEButtonIconColor,
-    TResult Function(String? color)? setPEButtonDisabledIconColor,
+    TResult Function(ButtonStyleConfig? cfg)? setPEButton,
     TResult Function(GroupWidgetConfig group)? setGroup,
     TResult Function(GroupTitleListTileWidgetConfig cfg)? setGroupTitleListTile,
     TResult Function(String? color)? setGroupTitleListTileBackground,
@@ -7278,11 +7185,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult Function(String? color)? setConfirmDialogActive2,
     TResult Function(String? color)? setConfirmDialogDefault,
     TResult Function(SnackBarWidgetConfig cfg)? setSnackBar,
-    TResult Function(ActionPadWidgetConfig cfg)? setActionPad,
-    TResult Function(ElevatedButtonWidgetConfig cfg)? setActionPadCallStart,
-    TResult Function(ElevatedButtonWidgetConfig cfg)? setActionPadTransfer,
-    TResult Function(ElevatedButtonWidgetConfig cfg)?
-        setActionPadBackspacePressed,
     TResult Function(StatusesWidgetConfig cfg)? setStatuses,
     TResult Function(RegistrationStatusesWidgetConfig cfg)?
         setRegistrationStatuses,
@@ -7311,16 +7213,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that.button);
       case _SetPrimaryElevatedButton() when setPEButton != null:
         return setPEButton(_that.cfg);
-      case _SetPEBBackground() when setPEButtonBackground != null:
-        return setPEButtonBackground(_that.color);
-      case _SetPEBForeground() when setPEButtonForeground != null:
-        return setPEButtonForeground(_that.color);
-      case _SetPEBTextColor() when setPEButtonTextColor != null:
-        return setPEButtonTextColor(_that.color);
-      case _SetPEBIconColor() when setPEButtonIconColor != null:
-        return setPEButtonIconColor(_that.color);
-      case _SetPEBDisabledIconColor() when setPEButtonDisabledIconColor != null:
-        return setPEButtonDisabledIconColor(_that.color);
       case _SetGroup() when setGroup != null:
         return setGroup(_that.group);
       case _SetGroupTitleListTile() when setGroupTitleListTile != null:
@@ -7394,14 +7286,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that.color);
       case _SetSnackBar() when setSnackBar != null:
         return setSnackBar(_that.cfg);
-      case _SetActionPad() when setActionPad != null:
-        return setActionPad(_that.cfg);
-      case _SetActionPadCallStart() when setActionPadCallStart != null:
-        return setActionPadCallStart(_that.cfg);
-      case _SetActionPadTransfer() when setActionPadTransfer != null:
-        return setActionPadTransfer(_that.cfg);
-      case _SetActionPadBackspace() when setActionPadBackspacePressed != null:
-        return setActionPadBackspacePressed(_that.cfg);
       case _SetStatuses() when setStatuses != null:
         return setStatuses(_that.cfg);
       case _SetRegistrationStatuses() when setRegistrationStatuses != null:
@@ -7459,12 +7343,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(FontsConfig fonts) setFonts,
     required TResult Function(String? fontFamily) setGlobalFontFamily,
     required TResult Function(ButtonWidgetConfig button) setButton,
-    required TResult Function(ElevatedButtonWidgetConfig cfg) setPEButton,
-    required TResult Function(String? color) setPEButtonBackground,
-    required TResult Function(String? color) setPEButtonForeground,
-    required TResult Function(String? color) setPEButtonTextColor,
-    required TResult Function(String? color) setPEButtonIconColor,
-    required TResult Function(String? color) setPEButtonDisabledIconColor,
+    required TResult Function(ButtonStyleConfig? cfg) setPEButton,
     required TResult Function(GroupWidgetConfig group) setGroup,
     required TResult Function(GroupTitleListTileWidgetConfig cfg)
         setGroupTitleListTile,
@@ -7504,13 +7383,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     required TResult Function(String? color) setConfirmDialogActive2,
     required TResult Function(String? color) setConfirmDialogDefault,
     required TResult Function(SnackBarWidgetConfig cfg) setSnackBar,
-    required TResult Function(ActionPadWidgetConfig cfg) setActionPad,
-    required TResult Function(ElevatedButtonWidgetConfig cfg)
-        setActionPadCallStart,
-    required TResult Function(ElevatedButtonWidgetConfig cfg)
-        setActionPadTransfer,
-    required TResult Function(ElevatedButtonWidgetConfig cfg)
-        setActionPadBackspacePressed,
     required TResult Function(StatusesWidgetConfig cfg) setStatuses,
     required TResult Function(RegistrationStatusesWidgetConfig cfg)
         setRegistrationStatuses,
@@ -7539,16 +7411,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that.button);
       case _SetPrimaryElevatedButton():
         return setPEButton(_that.cfg);
-      case _SetPEBBackground():
-        return setPEButtonBackground(_that.color);
-      case _SetPEBForeground():
-        return setPEButtonForeground(_that.color);
-      case _SetPEBTextColor():
-        return setPEButtonTextColor(_that.color);
-      case _SetPEBIconColor():
-        return setPEButtonIconColor(_that.color);
-      case _SetPEBDisabledIconColor():
-        return setPEButtonDisabledIconColor(_that.color);
       case _SetGroup():
         return setGroup(_that.group);
       case _SetGroupTitleListTile():
@@ -7619,14 +7481,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that.color);
       case _SetSnackBar():
         return setSnackBar(_that.cfg);
-      case _SetActionPad():
-        return setActionPad(_that.cfg);
-      case _SetActionPadCallStart():
-        return setActionPadCallStart(_that.cfg);
-      case _SetActionPadTransfer():
-        return setActionPadTransfer(_that.cfg);
-      case _SetActionPadBackspace():
-        return setActionPadBackspacePressed(_that.cfg);
       case _SetStatuses():
         return setStatuses(_that.cfg);
       case _SetRegistrationStatuses():
@@ -7677,12 +7531,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(FontsConfig fonts)? setFonts,
     TResult? Function(String? fontFamily)? setGlobalFontFamily,
     TResult? Function(ButtonWidgetConfig button)? setButton,
-    TResult? Function(ElevatedButtonWidgetConfig cfg)? setPEButton,
-    TResult? Function(String? color)? setPEButtonBackground,
-    TResult? Function(String? color)? setPEButtonForeground,
-    TResult? Function(String? color)? setPEButtonTextColor,
-    TResult? Function(String? color)? setPEButtonIconColor,
-    TResult? Function(String? color)? setPEButtonDisabledIconColor,
+    TResult? Function(ButtonStyleConfig? cfg)? setPEButton,
     TResult? Function(GroupWidgetConfig group)? setGroup,
     TResult? Function(GroupTitleListTileWidgetConfig cfg)?
         setGroupTitleListTile,
@@ -7720,11 +7569,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
     TResult? Function(String? color)? setConfirmDialogActive2,
     TResult? Function(String? color)? setConfirmDialogDefault,
     TResult? Function(SnackBarWidgetConfig cfg)? setSnackBar,
-    TResult? Function(ActionPadWidgetConfig cfg)? setActionPad,
-    TResult? Function(ElevatedButtonWidgetConfig cfg)? setActionPadCallStart,
-    TResult? Function(ElevatedButtonWidgetConfig cfg)? setActionPadTransfer,
-    TResult? Function(ElevatedButtonWidgetConfig cfg)?
-        setActionPadBackspacePressed,
     TResult? Function(StatusesWidgetConfig cfg)? setStatuses,
     TResult? Function(RegistrationStatusesWidgetConfig cfg)?
         setRegistrationStatuses,
@@ -7752,16 +7596,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setButton(_that.button);
       case _SetPrimaryElevatedButton() when setPEButton != null:
         return setPEButton(_that.cfg);
-      case _SetPEBBackground() when setPEButtonBackground != null:
-        return setPEButtonBackground(_that.color);
-      case _SetPEBForeground() when setPEButtonForeground != null:
-        return setPEButtonForeground(_that.color);
-      case _SetPEBTextColor() when setPEButtonTextColor != null:
-        return setPEButtonTextColor(_that.color);
-      case _SetPEBIconColor() when setPEButtonIconColor != null:
-        return setPEButtonIconColor(_that.color);
-      case _SetPEBDisabledIconColor() when setPEButtonDisabledIconColor != null:
-        return setPEButtonDisabledIconColor(_that.color);
       case _SetGroup() when setGroup != null:
         return setGroup(_that.group);
       case _SetGroupTitleListTile() when setGroupTitleListTile != null:
@@ -7835,14 +7669,6 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
         return setConfirmDialogDefault(_that.color);
       case _SetSnackBar() when setSnackBar != null:
         return setSnackBar(_that.cfg);
-      case _SetActionPad() when setActionPad != null:
-        return setActionPad(_that.cfg);
-      case _SetActionPadCallStart() when setActionPadCallStart != null:
-        return setActionPadCallStart(_that.cfg);
-      case _SetActionPadTransfer() when setActionPadTransfer != null:
-        return setActionPadTransfer(_that.cfg);
-      case _SetActionPadBackspace() when setActionPadBackspacePressed != null:
-        return setActionPadBackspacePressed(_that.cfg);
       case _SetStatuses() when setStatuses != null:
         return setStatuses(_that.cfg);
       case _SetRegistrationStatuses() when setRegistrationStatuses != null:
@@ -8103,7 +7929,7 @@ class __$SetButtonCopyWithImpl<$Res> implements _$SetButtonCopyWith<$Res> {
 class _SetPrimaryElevatedButton implements ThemeWidgetEvent {
   const _SetPrimaryElevatedButton(this.cfg);
 
-  final ElevatedButtonWidgetConfig cfg;
+  final ButtonStyleConfig? cfg;
 
   /// Create a copy of ThemeWidgetEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -8137,9 +7963,9 @@ abstract mixin class _$SetPrimaryElevatedButtonCopyWith<$Res>
           $Res Function(_SetPrimaryElevatedButton) _then) =
       __$SetPrimaryElevatedButtonCopyWithImpl;
   @useResult
-  $Res call({ElevatedButtonWidgetConfig cfg});
+  $Res call({ButtonStyleConfig? cfg});
 
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg;
+  $ButtonStyleConfigCopyWith<$Res>? get cfg;
 }
 
 /// @nodoc
@@ -8154,13 +7980,13 @@ class __$SetPrimaryElevatedButtonCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? cfg = null,
+    Object? cfg = freezed,
   }) {
     return _then(_SetPrimaryElevatedButton(
-      null == cfg
+      freezed == cfg
           ? _self.cfg
           : cfg // ignore: cast_nullable_to_non_nullable
-              as ElevatedButtonWidgetConfig,
+              as ButtonStyleConfig?,
     ));
   }
 
@@ -8168,331 +7994,14 @@ class __$SetPrimaryElevatedButtonCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg {
-    return $ElevatedButtonWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
+  $ButtonStyleConfigCopyWith<$Res>? get cfg {
+    if (_self.cfg == null) {
+      return null;
+    }
+
+    return $ButtonStyleConfigCopyWith<$Res>(_self.cfg!, (value) {
       return _then(_self.copyWith(cfg: value));
     });
-  }
-}
-
-/// @nodoc
-
-class _SetPEBBackground implements ThemeWidgetEvent {
-  const _SetPEBBackground(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPEBBackgroundCopyWith<_SetPEBBackground> get copyWith =>
-      __$SetPEBBackgroundCopyWithImpl<_SetPEBBackground>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPEBBackground &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPEButtonBackground(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPEBBackgroundCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPEBBackgroundCopyWith(
-          _SetPEBBackground value, $Res Function(_SetPEBBackground) _then) =
-      __$SetPEBBackgroundCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetPEBBackgroundCopyWithImpl<$Res>
-    implements _$SetPEBBackgroundCopyWith<$Res> {
-  __$SetPEBBackgroundCopyWithImpl(this._self, this._then);
-
-  final _SetPEBBackground _self;
-  final $Res Function(_SetPEBBackground) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetPEBBackground(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetPEBForeground implements ThemeWidgetEvent {
-  const _SetPEBForeground(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPEBForegroundCopyWith<_SetPEBForeground> get copyWith =>
-      __$SetPEBForegroundCopyWithImpl<_SetPEBForeground>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPEBForeground &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPEButtonForeground(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPEBForegroundCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPEBForegroundCopyWith(
-          _SetPEBForeground value, $Res Function(_SetPEBForeground) _then) =
-      __$SetPEBForegroundCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetPEBForegroundCopyWithImpl<$Res>
-    implements _$SetPEBForegroundCopyWith<$Res> {
-  __$SetPEBForegroundCopyWithImpl(this._self, this._then);
-
-  final _SetPEBForeground _self;
-  final $Res Function(_SetPEBForeground) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetPEBForeground(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetPEBTextColor implements ThemeWidgetEvent {
-  const _SetPEBTextColor(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPEBTextColorCopyWith<_SetPEBTextColor> get copyWith =>
-      __$SetPEBTextColorCopyWithImpl<_SetPEBTextColor>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPEBTextColor &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPEButtonTextColor(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPEBTextColorCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPEBTextColorCopyWith(
-          _SetPEBTextColor value, $Res Function(_SetPEBTextColor) _then) =
-      __$SetPEBTextColorCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetPEBTextColorCopyWithImpl<$Res>
-    implements _$SetPEBTextColorCopyWith<$Res> {
-  __$SetPEBTextColorCopyWithImpl(this._self, this._then);
-
-  final _SetPEBTextColor _self;
-  final $Res Function(_SetPEBTextColor) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetPEBTextColor(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetPEBIconColor implements ThemeWidgetEvent {
-  const _SetPEBIconColor(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPEBIconColorCopyWith<_SetPEBIconColor> get copyWith =>
-      __$SetPEBIconColorCopyWithImpl<_SetPEBIconColor>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPEBIconColor &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPEButtonIconColor(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPEBIconColorCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPEBIconColorCopyWith(
-          _SetPEBIconColor value, $Res Function(_SetPEBIconColor) _then) =
-      __$SetPEBIconColorCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetPEBIconColorCopyWithImpl<$Res>
-    implements _$SetPEBIconColorCopyWith<$Res> {
-  __$SetPEBIconColorCopyWithImpl(this._self, this._then);
-
-  final _SetPEBIconColor _self;
-  final $Res Function(_SetPEBIconColor) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetPEBIconColor(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _SetPEBDisabledIconColor implements ThemeWidgetEvent {
-  const _SetPEBDisabledIconColor(this.color);
-
-  final String? color;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetPEBDisabledIconColorCopyWith<_SetPEBDisabledIconColor> get copyWith =>
-      __$SetPEBDisabledIconColorCopyWithImpl<_SetPEBDisabledIconColor>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetPEBDisabledIconColor &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, color);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setPEButtonDisabledIconColor(color: $color)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetPEBDisabledIconColorCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPEBDisabledIconColorCopyWith(_SetPEBDisabledIconColor value,
-          $Res Function(_SetPEBDisabledIconColor) _then) =
-      __$SetPEBDisabledIconColorCopyWithImpl;
-  @useResult
-  $Res call({String? color});
-}
-
-/// @nodoc
-class __$SetPEBDisabledIconColorCopyWithImpl<$Res>
-    implements _$SetPEBDisabledIconColorCopyWith<$Res> {
-  __$SetPEBDisabledIconColorCopyWithImpl(this._self, this._then);
-
-  final _SetPEBDisabledIconColor _self;
-  final $Res Function(_SetPEBDisabledIconColor) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? color = freezed,
-  }) {
-    return _then(_SetPEBDisabledIconColor(
-      freezed == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
   }
 }
 
@@ -11005,313 +10514,6 @@ class __$SetSnackBarCopyWithImpl<$Res> implements _$SetSnackBarCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $SnackBarWidgetConfigCopyWith<$Res> get cfg {
     return $SnackBarWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetActionPad implements ThemeWidgetEvent {
-  const _SetActionPad(this.cfg);
-
-  final ActionPadWidgetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetActionPadCopyWith<_SetActionPad> get copyWith =>
-      __$SetActionPadCopyWithImpl<_SetActionPad>(this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetActionPad &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setActionPad(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetActionPadCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetActionPadCopyWith(
-          _SetActionPad value, $Res Function(_SetActionPad) _then) =
-      __$SetActionPadCopyWithImpl;
-  @useResult
-  $Res call({ActionPadWidgetConfig cfg});
-
-  $ActionPadWidgetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetActionPadCopyWithImpl<$Res>
-    implements _$SetActionPadCopyWith<$Res> {
-  __$SetActionPadCopyWithImpl(this._self, this._then);
-
-  final _SetActionPad _self;
-  final $Res Function(_SetActionPad) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetActionPad(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ActionPadWidgetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ActionPadWidgetConfigCopyWith<$Res> get cfg {
-    return $ActionPadWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetActionPadCallStart implements ThemeWidgetEvent {
-  const _SetActionPadCallStart(this.cfg);
-
-  final ElevatedButtonWidgetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetActionPadCallStartCopyWith<_SetActionPadCallStart> get copyWith =>
-      __$SetActionPadCallStartCopyWithImpl<_SetActionPadCallStart>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetActionPadCallStart &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setActionPadCallStart(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetActionPadCallStartCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetActionPadCallStartCopyWith(_SetActionPadCallStart value,
-          $Res Function(_SetActionPadCallStart) _then) =
-      __$SetActionPadCallStartCopyWithImpl;
-  @useResult
-  $Res call({ElevatedButtonWidgetConfig cfg});
-
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetActionPadCallStartCopyWithImpl<$Res>
-    implements _$SetActionPadCallStartCopyWith<$Res> {
-  __$SetActionPadCallStartCopyWithImpl(this._self, this._then);
-
-  final _SetActionPadCallStart _self;
-  final $Res Function(_SetActionPadCallStart) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetActionPadCallStart(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ElevatedButtonWidgetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg {
-    return $ElevatedButtonWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetActionPadTransfer implements ThemeWidgetEvent {
-  const _SetActionPadTransfer(this.cfg);
-
-  final ElevatedButtonWidgetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetActionPadTransferCopyWith<_SetActionPadTransfer> get copyWith =>
-      __$SetActionPadTransferCopyWithImpl<_SetActionPadTransfer>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetActionPadTransfer &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setActionPadTransfer(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetActionPadTransferCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetActionPadTransferCopyWith(_SetActionPadTransfer value,
-          $Res Function(_SetActionPadTransfer) _then) =
-      __$SetActionPadTransferCopyWithImpl;
-  @useResult
-  $Res call({ElevatedButtonWidgetConfig cfg});
-
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetActionPadTransferCopyWithImpl<$Res>
-    implements _$SetActionPadTransferCopyWith<$Res> {
-  __$SetActionPadTransferCopyWithImpl(this._self, this._then);
-
-  final _SetActionPadTransfer _self;
-  final $Res Function(_SetActionPadTransfer) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetActionPadTransfer(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ElevatedButtonWidgetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg {
-    return $ElevatedButtonWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
-      return _then(_self.copyWith(cfg: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _SetActionPadBackspace implements ThemeWidgetEvent {
-  const _SetActionPadBackspace(this.cfg);
-
-  final ElevatedButtonWidgetConfig cfg;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SetActionPadBackspaceCopyWith<_SetActionPadBackspace> get copyWith =>
-      __$SetActionPadBackspaceCopyWithImpl<_SetActionPadBackspace>(
-          this, _$identity);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SetActionPadBackspace &&
-            (identical(other.cfg, cfg) || other.cfg == cfg));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cfg);
-
-  @override
-  String toString() {
-    return 'ThemeWidgetEvent.setActionPadBackspacePressed(cfg: $cfg)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SetActionPadBackspaceCopyWith<$Res>
-    implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetActionPadBackspaceCopyWith(_SetActionPadBackspace value,
-          $Res Function(_SetActionPadBackspace) _then) =
-      __$SetActionPadBackspaceCopyWithImpl;
-  @useResult
-  $Res call({ElevatedButtonWidgetConfig cfg});
-
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg;
-}
-
-/// @nodoc
-class __$SetActionPadBackspaceCopyWithImpl<$Res>
-    implements _$SetActionPadBackspaceCopyWith<$Res> {
-  __$SetActionPadBackspaceCopyWithImpl(this._self, this._then);
-
-  final _SetActionPadBackspace _self;
-  final $Res Function(_SetActionPadBackspace) _then;
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? cfg = null,
-  }) {
-    return _then(_SetActionPadBackspace(
-      null == cfg
-          ? _self.cfg
-          : cfg // ignore: cast_nullable_to_non_nullable
-              as ElevatedButtonWidgetConfig,
-    ));
-  }
-
-  /// Create a copy of ThemeWidgetEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ElevatedButtonWidgetConfigCopyWith<$Res> get cfg {
-    return $ElevatedButtonWidgetConfigCopyWith<$Res>(_self.cfg, (value) {
       return _then(_self.copyWith(cfg: value));
     });
   }

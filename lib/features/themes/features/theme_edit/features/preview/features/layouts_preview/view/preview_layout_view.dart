@@ -114,6 +114,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
       if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
+      // const UserAgreementScreenScreenshot(),
       if (isFavoritePreview)
         MainScreenScreenshot(
           key: bottomMenuKey,

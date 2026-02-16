@@ -8,10 +8,7 @@ import 'package:data/dto/dto.dart';
 
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
-  ThemeRepositoryImpl({
-    required this.configuratorBackandDatasource,
-    required this.themeMapper,
-  });
+  ThemeRepositoryImpl({required this.configuratorBackandDatasource, required this.themeMapper});
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
@@ -30,11 +27,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeModel> createTheme(
-    String applicationId,
-    String title,
-    String description,
-  ) async {
+  Future<ThemeModel> createTheme(String applicationId, String title, String description) async {
     final dto = await configuratorBackandDatasource.createTheme(
       applicationId,
       CreateThemeDTO(title: title, description: description),
@@ -44,16 +37,19 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<List<ThemeModel>> getApplicationThemes(String applicationId) async {
-    final dtos = await configuratorBackandDatasource.getApplicationThemes(applicationId);
-    return dtos.map(themeMapper.convertFrom).toList();
+    try {
+      final dtos = await configuratorBackandDatasource.getApplicationThemes(applicationId);
+      // Mapping can throw TypeError if DTO fields are null but Model expects non-null
+      return dtos.map(themeMapper.convertFrom).toList();
+    } on Object catch (e, stackTrace) {
+      // Catch both Exception (network) and Error (parsing/mapping)
+      Error.throwWithStackTrace(BaseException(message: e.toString()), stackTrace);
+    }
   }
 
   @override
   Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    final dto = await configuratorBackandDatasource.getTheme(
-      applicationId: applicationId,
-      themeId: themeId,
-    );
+    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
     return themeMapper.convertFrom(dto);
   }
 

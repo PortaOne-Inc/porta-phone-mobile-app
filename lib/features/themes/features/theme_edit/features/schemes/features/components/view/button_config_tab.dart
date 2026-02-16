@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_configurator/widgets/widgets.dart';
@@ -27,12 +26,14 @@ class ButtonConfigTab extends StatelessWidget {
       child: BorderContainer(
         title: 'Primary Elevated Button',
         descriptionWidget: DescriptionRow.info(
-          'Configure the colors used by the primary elevated button.',
+          'Configure the visual properties (colors, geometry, padding) used by the primary elevated button.',
         ),
         padding: const EdgeInsets.all(16),
-        child: ElevatedButtonConfigEditor(
+        child: ButtonStyleConfigEditor(
+          label: 'Properties',
           value: pe,
           onChanged: (v) => cubit.add(ThemeWidgetEvent.setPEButton(v)),
+          onClear: () => cubit.add(const ThemeWidgetEvent.setPEButton(null)),
         ),
       ),
     );

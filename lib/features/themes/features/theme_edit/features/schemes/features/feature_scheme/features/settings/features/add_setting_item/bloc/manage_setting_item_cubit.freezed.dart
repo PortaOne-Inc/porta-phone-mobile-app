@@ -19,7 +19,7 @@ mixin _$ManageSettingItemState {
   String? get settingItemIcon;
   String? get settingItemColor;
   EmbeddedResourceModel? get selectedEmbeddedResource;
-  SettingsFlavor? get type; // Set final values
+  SettingsFlavor? get type;
   AppConfigSettingsItem? get resultSettingItem;
 
   /// Create a copy of ManageSettingItemState
@@ -394,7 +394,6 @@ class _Initial extends ManageSettingItemState {
   final EmbeddedResourceModel? selectedEmbeddedResource;
   @override
   final SettingsFlavor? type;
-// Set final values
   @override
   final AppConfigSettingsItem? resultSettingItem;
 

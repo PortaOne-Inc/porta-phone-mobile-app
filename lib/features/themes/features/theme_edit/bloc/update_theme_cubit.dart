@@ -52,7 +52,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
               themeWidgetConfig: const ThemeWidgetConfig(),
               themePageConfig: const ThemePageConfig()),
         ) {
-    on<UpdateLocalConfigEvent>(_onUpdateLocalConfigEvent, transformer: restartable());
+    on<UpdateLocalConfigEvent>(_onUpdateLocalConfigEvent, transformer: sequential());
+
     on<InitializeEvent>(_initializeEditing, transformer: droppable());
     on<SyncConfigEvent>(_syncConfigWithServer, transformer: droppable());
     on<UpdateColorSchemeEvent>(_onChangeColorEvent, transformer: restartable());
@@ -125,12 +126,14 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   ) async {
     if (state.selectedVariant == event.variant) return;
 
+    // Залишаємо тільки спільні компоненти
     final preservedComponents =
         state.loadedComponents.where((c) => c == ThemeComponents.navigation || c == ThemeComponents.embeds).toList();
 
     emit(state.copyWith(
       selectedVariant: event.variant,
       status: ThemePropertyStatus.progress,
+      // Важливо очистити старі конфіги, щоб UI не показував дані від попередньої теми
       colorSchemeConfig: const ColorSchemeConfig(),
       themePageConfig: const ThemePageConfig(),
       themeWidgetConfig: const ThemeWidgetConfig(),
@@ -268,11 +271,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setGlobalFontFamily: (e) => _widgetEditor.setGlobalFontFamily(e.fontFamily),
       setButton: (e) => _widgetEditor.setButton(e.button),
       setPEButton: (e) => _widgetEditor.setPrimaryElevatedButton(e.cfg),
-      setPEButtonBackground: (e) => _widgetEditor.setPrimaryElevatedButtonBackground(e.color),
-      setPEButtonForeground: (e) => _widgetEditor.setPrimaryElevatedButtonForeground(e.color),
-      setPEButtonTextColor: (e) => _widgetEditor.setPrimaryElevatedButtonTextColor(e.color),
-      setPEButtonIconColor: (e) => _widgetEditor.setPrimaryElevatedButtonIconColor(e.color),
-      setPEButtonDisabledIconColor: (e) => _widgetEditor.setPrimaryElevatedButtonDisabledIconColor(e.color),
       setGroup: (e) => _widgetEditor.setGroup(e.group),
       setGroupTitleListTile: (e) => _widgetEditor.setGroupTitleListTile(e.cfg),
       setGroupTitleListTileBackground: (e) => _widgetEditor.setGroupTitleListTileBackground(e.color),
@@ -307,10 +305,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setConfirmDialogActive2: (e) => _widgetEditor.setConfirmDialogActive2(e.color),
       setConfirmDialogDefault: (e) => _widgetEditor.setConfirmDialogDefault(e.color),
       setSnackBar: (e) => _widgetEditor.setSnackBar(e.cfg),
-      setActionPad: (e) => _widgetEditor.setActionPad(e.cfg),
-      setActionPadCallStart: (e) => _widgetEditor.setActionPadCallStart(e.cfg),
-      setActionPadTransfer: (e) => _widgetEditor.setActionPadTransfer(e.cfg),
-      setActionPadBackspacePressed: (e) => _widgetEditor.setActionPadBackspacePressed(e.cfg),
       setStatuses: (e) => _widgetEditor.setStatuses(e.cfg),
       setRegistrationStatuses: (e) => _widgetEditor.setRegistrationStatuses(e.cfg),
       setRegistrationOnline: (e) => _widgetEditor.setRegistrationOnline(e.color),
@@ -401,7 +395,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     for (final entry in jsonMap.entries) {
       final val = entry.value;
       if (val is String) {
-        // Ensure the value is treated as a string, e.g. "#FFFFFF"
         patchData[entry.key] = val;
       }
     }

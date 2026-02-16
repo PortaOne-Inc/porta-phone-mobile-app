@@ -19,7 +19,9 @@ class WelcomeScreenTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<UpdateThemCubit>();
 
-    final modeSelect = config.modeSelect;
+    final currentConfig = context.select(
+          (UpdateThemCubit cubit) => cubit.state.themePageConfig.login.modeSelect,
+    );
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -32,10 +34,10 @@ class WelcomeScreenTab extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(16),
           child: SystemUiOverlayQuickToggles(
-            value: modeSelect.systemUiOverlayStyle,
+            value: currentConfig.systemUiOverlayStyle,
             onChanged: (v) => cubit.add(
               ThemePageEvent.setLoginModeSelect(
-                modeSelect.copyWith(systemUiOverlayStyle: v),
+                currentConfig.copyWith(systemUiOverlayStyle: v),
               ),
             ),
           ),
@@ -44,7 +46,7 @@ class WelcomeScreenTab extends StatelessWidget {
         ImageRenderEditor(
           key: const ValueKey('login_logo'),
           description: 'Image that displays on the login/signup mode selection screen.',
-          source: modeSelect.mainLogo,
+          source: currentConfig.mainLogo,
           onPick: () => _pickAsset(context, cubit.state.assets),
           onChanged: (updated) {
             context.read<UpdateThemCubit>().add(ThemePageEvent.setLoginPicture(updated!));
@@ -62,7 +64,7 @@ class WelcomeScreenTab extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropdownButtonFormField<ElevatedButtonStyleType>(
-                initialValue: modeSelect.buttonLoginStyleType,
+                initialValue: currentConfig.buttonLoginStyleType,
                 decoration: const InputDecoration(labelText: 'Login Button Style'),
                 items: ElevatedButtonStyleType.values
                     .map(
@@ -80,7 +82,7 @@ class WelcomeScreenTab extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<ElevatedButtonStyleType>(
-                initialValue: modeSelect.buttonSignupStyleType,
+                initialValue: currentConfig.buttonSignupStyleType,
                 decoration: const InputDecoration(labelText: 'Signup Button Style'),
                 items: ElevatedButtonStyleType.values
                     .map(

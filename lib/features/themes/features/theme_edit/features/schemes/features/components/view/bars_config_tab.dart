@@ -17,7 +17,11 @@ class BarsConfigTab extends StatelessWidget {
 
   void _onBottomNavChanged(BuildContext context, BottomNavigationBarWidgetConfig newValue) {
     final cubit = context.read<UpdateThemCubit>();
-    final current = config.bottomNavigationBar;
+
+    // FIX: Беремо актуальний конфіг зі стейта для порівняння,
+    // бо this.config може бути застарілим після зміни теми.
+    final currentBarConfig = cubit.state.themeWidgetConfig.bar;
+    final current = currentBarConfig.bottomNavigationBar;
 
     if (newValue.backgroundColor != current.backgroundColor) {
       cubit.add(ThemeWidgetEvent.setBottomNavBarBackground(newValue.backgroundColor));
@@ -42,6 +46,10 @@ class BarsConfigTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final currentConfig = context.select(
+      (UpdateThemCubit cubit) => cubit.state.themeWidgetConfig.bar,
+    );
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -55,7 +63,7 @@ class BarsConfigTab extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: AppBarConfigEditor(
-                value: config.appBarConfig,
+                value: currentConfig.appBarConfig,
                 onChanged: (v) => _onAppBarChanged(context, v),
                 description: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
@@ -72,7 +80,7 @@ class BarsConfigTab extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: BottomNavBarEditorMinimal(
-                value: config.bottomNavigationBar,
+                value: currentConfig.bottomNavigationBar,
                 onChanged: (v) => _onBottomNavChanged(context, v),
               ),
             ),
@@ -86,7 +94,7 @@ class BarsConfigTab extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: TabBarConfigEditor(
-                value: config.tabBarConfig,
+                value: currentConfig.tabBarConfig,
                 onChanged: (v) => _onTabBarChanged(context, v),
                 description: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),

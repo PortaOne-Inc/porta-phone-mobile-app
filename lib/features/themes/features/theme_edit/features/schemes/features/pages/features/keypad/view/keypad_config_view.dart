@@ -18,7 +18,10 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
   UpdateThemCubit get _cubit => context.read<UpdateThemCubit>();
 
   KeypadPageConfig get _cfg {
-    final pages = context.watch<UpdateThemCubit>().state.themePageConfig;
+    final pages = context
+        .watch<UpdateThemCubit>()
+        .state
+        .themePageConfig;
     return pages.keypad;
   }
 
@@ -34,7 +37,6 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
-          // НОВЕ
           ThemeOverrideSelector(
             config: cfg.themeOverride,
             onChanged: (v) => _set(cfg.copyWith(themeOverride: v)),

@@ -9,8 +9,6 @@ sealed class ManageSettingItemState with _$ManageSettingItemState {
     String? settingItemColor,
     EmbeddedResourceModel? selectedEmbeddedResource,
     SettingsFlavor? type,
-
-    // Set final values
     AppConfigSettingsItem? resultSettingItem,
   }) = _Initial;
 

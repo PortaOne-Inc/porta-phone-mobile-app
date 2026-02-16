@@ -29,6 +29,9 @@ class DialingPageView extends StatefulWidget {
 class _DialingPageViewState extends State<DialingPageView> {
   UpdateThemCubit get _cubit => context.read<UpdateThemCubit>();
 
+  // Helper to get fresh config for callbacks
+  CallPageConfig get _freshConfig => _cubit.state.themePageConfig.dialing;
+
   void _onAppBarChanged(AppBarConfig config) {
     _cubit.add(ThemePageEvent.setDialingAppBarStyle(config));
   }
@@ -38,8 +41,7 @@ class _DialingPageViewState extends State<DialingPageView> {
   }
 
   void _onActionsChanged(CallPageActionsConfig actions) {
-    final current = widget.dialingPageConfig;
-    _cubit.add(ThemePageEvent.setDialingPage(current.copyWith(actions: actions)));
+    _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(actions: actions)));
   }
 
   String? _lastLegacySource;
@@ -124,29 +126,54 @@ class _DialingPageViewState extends State<DialingPageView> {
 
   @override
   Widget build(BuildContext context) {
-    final cfg = context.watch<UpdateThemCubit>().state.themeSettings.themePageLightConfig.dialing;
+    // FIX: Use select to listen to the specific part of the state
+    final currentConfig = context.select(
+      (UpdateThemCubit cubit) => cubit.state.themePageConfig.dialing,
+    );
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
+          // ThemeOverrideSelector(
+          //   config: currentConfig.themeOverride,
+          //   onChanged: (v) {
+          //     _cubit.add(
+          //       ThemePageEvent.setDialingPage(
+          //         currentConfig.copyWith(themeOverride: v),
+          //       ),
+          //     );
+          //   },
+          // ),
+          const SizedBox(height: 16),
+          PageBackgroundEditor(
+            value: currentConfig.background,
+            onChanged: (v) {
+              _cubit.add(
+                ThemePageEvent.setDialingPage(
+                  currentConfig.copyWith(background: v),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
           _AppBarSettings(
-            value: cfg.appBarStyle ?? const AppBarConfig(),
+            value: currentConfig.appBarStyle ?? const AppBarConfig(),
             onChanged: _onAppBarChanged,
           ),
           const SizedBox(height: 16),
           _SystemOverlaySettings(
-            value: cfg.systemUiOverlayStyle,
+            value: currentConfig.systemUiOverlayStyle,
             onChanged: _onOverlayChanged,
           ),
           const SizedBox(height: 16),
           _CallInfoSettings(
-            value: cfg.callInfo ?? const CallPageInfoConfig(),
+            value: currentConfig.callInfo ?? const CallPageInfoConfig(),
             onUpdate: (event) => _cubit.add(event),
           ),
           const SizedBox(height: 16),
           _ActionsSettings(
-            value: cfg.actions ?? const CallPageActionsConfig(),
+            value: currentConfig.actions ?? const CallPageActionsConfig(),
             onChanged: _onActionsChanged,
             onImportLegacy: _importLegacyActions,
           ),
