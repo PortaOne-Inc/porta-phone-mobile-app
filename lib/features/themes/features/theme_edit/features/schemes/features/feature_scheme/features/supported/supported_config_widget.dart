@@ -64,8 +64,8 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
         widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSipPresence) as SupportedSipPresence?;
 
     final currentThemeMode = themeFeature?.mode ?? ThemeModeConfig.system;
-    final isVideoEnabled = videoFeature?.enabled ?? true;
-    final isSystemNotificationsEnabled = systemNotificationsFeature?.enabled ?? true;
+    final isVideoEnabled = videoFeature?.enabled ?? false;
+    final isSystemNotificationsEnabled = systemNotificationsFeature?.enabled ?? false;
     final isSipPresenceEnabled = sipPresenceFeature?.enabled ?? false;
 
     return ListView(
