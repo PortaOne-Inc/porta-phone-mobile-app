@@ -9,20 +9,19 @@ class UpdateBuildNumberUseCaseImpl implements UpdateBuildNumberUseCase {
   final UpdateApplicationUsecase updateApplicationUsecase;
 
   @override
-  Future<BuildVersionModel?> execute({
-    required ApplicationModel application,
-    required BuildPlatform platform,
-  }) async {
+  Future<BuildVersionModel?> execute({required ApplicationModel application, required BuildPlatform platform}) async {
     final currentVersion = platform == BuildPlatform.android ? application.androidVersion : application.iosVersion;
 
     final newVersion = currentVersion == null
-        ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0000000)
+        ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0)
         : _incrementBuildNumber(currentVersion);
 
-    final updatedApplication = await updateApplicationUsecase.execute(application.copyWith(
-      androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
-      iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
-    ));
+    final updatedApplication = await updateApplicationUsecase.execute(
+      application.copyWith(
+        androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
+        iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
+      ),
+    );
 
     return platform == BuildPlatform.android ? updatedApplication.androidVersion : updatedApplication.iosVersion;
   }
@@ -31,9 +30,6 @@ class UpdateBuildNumberUseCaseImpl implements UpdateBuildNumberUseCase {
     final currentBuildNumber = buildVersion.buildNumber ?? 1;
     final newBuildNumber = currentBuildNumber + 1;
 
-    return BuildVersionModel(
-      buildName: buildVersion.buildName,
-      buildNumber: newBuildNumber,
-    );
+    return BuildVersionModel(buildName: buildVersion.buildName, buildNumber: newBuildNumber);
   }
 }

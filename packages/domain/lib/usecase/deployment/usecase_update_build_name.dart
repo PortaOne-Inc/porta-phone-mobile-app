@@ -17,13 +17,15 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     final currentVersion = platform == BuildPlatform.android ? application.androidVersion : application.iosVersion;
 
     final newVersion = currentVersion == null
-        ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0000000)
+        ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0)
         : _incrementBuildName(currentVersion, part);
 
-    final updatedApplication = await updateApplicationUsecase.execute(application.copyWith(
-      androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
-      iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
-    ));
+    final updatedApplication = await updateApplicationUsecase.execute(
+      application.copyWith(
+        androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
+        iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
+      ),
+    );
 
     return platform == BuildPlatform.android ? updatedApplication.androidVersion : updatedApplication.iosVersion;
   }
@@ -46,12 +48,21 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     }
 
     final newBuildName = parts.join('.');
-    final newBuildNumber = int.tryParse('${parts.join()}00000');
+    final newPrefix = parts.join();
+
+    final currentBuildNumberStr = (buildVersion.buildNumber ?? 0).toString();
+    final oldPrefix = currentBuildName.replaceAll('.', '');
+
+    var suffixLength = currentBuildNumberStr.length - oldPrefix.length;
+    if (suffixLength <= 0) {
+      suffixLength = 5;
+    }
+
+    final newBuildNumberStr = newPrefix + ''.padLeft(suffixLength, '0');
+    final newBuildNumber = int.tryParse(newBuildNumberStr);
+
     if (newBuildNumber == null) return null;
 
-    return BuildVersionModel(
-      buildName: newBuildName,
-      buildNumber: newBuildNumber,
-    );
+    return BuildVersionModel(buildName: newBuildName, buildNumber: newBuildNumber);
   }
 }
