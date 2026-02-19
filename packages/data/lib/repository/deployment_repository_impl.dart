@@ -14,6 +14,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
   DeploymentRepositoryImpl({
     required this.configuratorBackandDatasource,
     required this.phoneBranchMapper,
+    required this.callkeepBranchMapper,
     required this.appVersionMapper,
     required this.authPrefDataSource,
   });
@@ -21,6 +22,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
   final AuthPrefDatasource authPrefDataSource;
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<PhoneBranch, PhoneBranchDto> phoneBranchMapper;
+  final CommonMapper<CallkeepBranch, CallkeepBranchDto> callkeepBranchMapper;
   final CommonMapper<AppVersion, BuildVersionModel> appVersionMapper;
 
   @override
@@ -73,6 +75,18 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     try {
       final dto = await configuratorBackandDatasource.getPhoneBranches();
       return phoneBranchMapper.convertListFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(message: e.response.toString());
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<List<CallkeepBranch>> getCallkeepBranches() async {
+    try {
+      final dto = await configuratorBackandDatasource.getCallkeepBranches();
+      return callkeepBranchMapper.convertListFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {

@@ -274,25 +274,25 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
                                     state.applicationDeploy.android.playStoreConfig.isUserFractionAvailable,
                                 onChangedTrack: (String value) {
                                   final config = state.applicationDeploy.android.playStoreConfig.copyWith(track: value);
-                                  final platform = state.applicationDeploy.copyWithAndroidPlayStoreConfig(config);
+                                  final platform = state.applicationDeploy.copyWith(android: state.applicationDeploy.android.copyWith(playStoreConfig: config));
                                   deploymentCubit.updateApplicationDeploy(platform);
                                 },
                                 onChangedStatus: (String value) {
                                   final config =
                                       state.applicationDeploy.android.playStoreConfig.copyWith(status: value);
-                                  final platform = state.applicationDeploy.copyWithAndroidPlayStoreConfig(config);
+                                  final platform = state.applicationDeploy.copyWith(android: state.applicationDeploy.android.copyWith(playStoreConfig: config));
                                   deploymentCubit.updateApplicationDeploy(platform);
                                 },
                                 onChangedUpdatePriority: (int value) {
                                   final config =
                                       state.applicationDeploy.android.playStoreConfig.copyWith(updatePriority: value);
-                                  final platform = state.applicationDeploy.copyWithAndroidPlayStoreConfig(config);
+                                  final platform = state.applicationDeploy.copyWith(android: state.applicationDeploy.android.copyWith(playStoreConfig: config));
                                   deploymentCubit.updateApplicationDeploy(platform);
                                 },
                                 onChangedUserFraction: (double value) {
                                   final config =
                                       state.applicationDeploy.android.playStoreConfig.copyWith(userFraction: value);
-                                  final platform = state.applicationDeploy.copyWithAndroidPlayStoreConfig(config);
+                                  final platform = state.applicationDeploy.copyWith(android: state.applicationDeploy.android.copyWith(playStoreConfig: config));
                                   deploymentCubit.updateApplicationDeploy(platform);
                                 },
                               ),
@@ -333,7 +333,9 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
                               title: context
                                   .l10n.feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep,
                               initialBranch: state.applicationDeploy.applicationDependencyBranches.callkeepSourceBranch,
-                              branches: state.applicationDeploy.applicationDependencyBranches.defaultCallkeepBranches,
+                              branches: state.applicationDeploy.applicationDependencyBranches.callkeepBranches
+                                  .map((it) => it.name)
+                                  .toList(),
                               onUpdate: (value) => deploymentCubit.updateApplicationDeploy(
                                 state.applicationDeploy.copyWith(
                                   applicationDependencyBranches:

@@ -20,10 +20,12 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
     required this.getPhoneBranchesUsecase,
+    required this.getCallkeepBranchesUsecase,
     required this.usecaseDeployBuilds,
   }) : super(const DeploymentState()) {
     _getApplication();
     _getPhoneBranches();
+    _getCallkeepBranches();
   }
 
   final String applicationId;
@@ -32,6 +34,7 @@ class DeploymentCubit extends Cubit<DeploymentState> {
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
   final GetPhoneBranchesUsecase getPhoneBranchesUsecase;
+  final GetCallkeepBranchesUsecase getCallkeepBranchesUsecase;
   final UsecaseDeployBuilds usecaseDeployBuilds;
 
   // TODO(Serdun): Clean up code
@@ -76,9 +79,29 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     });
   }
 
+  Future<void> _getCallkeepBranches() async {
+    await _executeWithErrorHandling(() async {
+      final branches = await getCallkeepBranchesUsecase.execute();
+
+      final updatedDependencyBranches = state.applicationDeploy.applicationDependencyBranches.copyWith(
+        callkeepBranches: branches,
+      );
+      final updatedApplicationDeploy = state.applicationDeploy.copyWith(
+        applicationDependencyBranches: updatedDependencyBranches,
+      );
+
+      emit(state.copyWith(
+        applicationDeploy: updatedApplicationDeploy,
+        status: DeploymentDetailsStatus.success,
+      ));
+    });
+  }
+
   Future<void> updateBuildName(BuildPlatform platform, VersionPart part) async {
     try {
-      emit(state.copyWithAddingProgressName(platform));
+      emit(state.copyWith.buildVersionProgress(
+        progressNameUpdating: [...state.buildVersionProgress.progressNameUpdating, platform],
+      ));
 
       final version = await updateBuildNameUseCase.execute(
         application: state.application!,
@@ -86,44 +109,58 @@ class DeploymentCubit extends Cubit<DeploymentState> {
         part: part,
       );
 
-      final versionState = state.copyWithVersions(
-        android: platform == BuildPlatform.android ? version : null,
-        ios: platform == BuildPlatform.ios ? version : null,
-      );
-
-      emit(versionState.copyWithRemovingProgressName(platform));
+      emit(state.copyWith(
+        application: state.application?.copyWith(
+          androidVersion: platform == BuildPlatform.android ? version : state.application?.androidVersion,
+          iosVersion: platform == BuildPlatform.ios ? version : state.application?.iosVersion,
+        ),
+        buildVersionProgress: state.buildVersionProgress.copyWith(
+          progressNameUpdating:
+              state.buildVersionProgress.progressNameUpdating.where((it) => it != platform).toList(),
+        ),
+      ));
     } catch (e) {
-      final errorState = state.copyWith(
+      emit(state.copyWith(
         error: e,
         status: DeploymentDetailsStatus.error,
-      );
-
-      emit(errorState.copyWithRemovingProgressName(platform));
+        buildVersionProgress: state.buildVersionProgress.copyWith(
+          progressNameUpdating:
+              state.buildVersionProgress.progressNameUpdating.where((it) => it != platform).toList(),
+        ),
+      ));
     }
   }
 
   Future<void> updateBuildNumber(BuildPlatform platform) async {
     try {
-      emit(state.copyWithAddingProgressNumber(platform));
+      emit(state.copyWith.buildVersionProgress(
+        progressNumberUpdating: [...state.buildVersionProgress.progressNumberUpdating, platform],
+      ));
 
       final version = await updateBuildNumberUseCase.execute(
         application: state.application!,
         platform: platform,
       );
 
-      final versionState = state.copyWithVersions(
-        android: platform == BuildPlatform.android ? version : null,
-        ios: platform == BuildPlatform.ios ? version : null,
-      );
-
-      emit(versionState.copyWithRemovingProgressNumber(platform));
+      emit(state.copyWith(
+        application: state.application?.copyWith(
+          androidVersion: platform == BuildPlatform.android ? version : state.application?.androidVersion,
+          iosVersion: platform == BuildPlatform.ios ? version : state.application?.iosVersion,
+        ),
+        buildVersionProgress: state.buildVersionProgress.copyWith(
+          progressNumberUpdating:
+              state.buildVersionProgress.progressNumberUpdating.where((it) => it != platform).toList(),
+        ),
+      ));
     } catch (e) {
-      final errorState = state.copyWith(
+      emit(state.copyWith(
         error: e,
         status: DeploymentDetailsStatus.error,
-      );
-
-      emit(errorState.copyWithRemovingProgressNumber(platform));
+        buildVersionProgress: state.buildVersionProgress.copyWith(
+          progressNumberUpdating:
+              state.buildVersionProgress.progressNumberUpdating.where((it) => it != platform).toList(),
+        ),
+      ));
     }
   }
 

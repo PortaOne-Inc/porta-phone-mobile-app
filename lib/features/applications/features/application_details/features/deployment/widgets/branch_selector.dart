@@ -86,7 +86,7 @@ class _BranchSelectorState extends State<BranchSelector> {
           const SizedBox(height: 4),
           if (_isDropdown)
             DropdownButtonFormField<String>(
-              value: _selectedBranch,
+              initialValue: _selectedBranch,
               decoration: decoration,
               items: widget.branches.map(_buildDropdownMenuItem).toList(),
               onChanged: _updateBranch,

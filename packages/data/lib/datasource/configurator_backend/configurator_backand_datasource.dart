@@ -329,6 +329,17 @@ class ConfiguratorBackandDatasource {
     return responseData.map((it) => PhoneBranchDto.fromJson(it as Map<String, dynamic>)).toList();
   }
 
+  /// Retrieves a list of callkeep branches.
+  ///
+  /// Returns a list of [CallkeepBranchDto] objects.
+  Future<List<CallkeepBranchDto>> getCallkeepBranches() async {
+    final response = await _client.get<List<dynamic>>(
+      DeployConfiguratorBackandAPI.callkeepBranches,
+    );
+    final responseData = List.of(response.data?.toList() ?? []);
+    return responseData.map((it) => CallkeepBranchDto.fromJson(it as Map<String, dynamic>)).toList();
+  }
+
   /// Retrieves the app version for the given [branch].
   ///
   /// Returns the [AppVersion] for the specified branch.

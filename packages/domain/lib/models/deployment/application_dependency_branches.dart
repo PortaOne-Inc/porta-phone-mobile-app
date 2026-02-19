@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'callkeep_branch.dart';
 import 'phone_branch.dart';
 
 part 'application_dependency_branches.freezed.dart';
@@ -14,6 +15,7 @@ const String _kDefaultKeystoreSourceBranch = 'main';
 sealed class ApplicationDependencyBranches with _$ApplicationDependencyBranches {
   const factory ApplicationDependencyBranches({
     @Default([]) List<PhoneBranch> phoneBranches,
+    @Default([]) List<CallkeepBranch> callkeepBranches,
     @Default(_kDefaultPhoneMainSourceBranch) String phoneSourceBranch,
     @Default(_kDefaultCallkeepSourceBranch) String callkeepSourceBranch,
     @Default(_kConfiguratorSourceBranch) String configuratorSourceBranch,
@@ -22,8 +24,6 @@ sealed class ApplicationDependencyBranches with _$ApplicationDependencyBranches 
   }) = _ApplicationDependencyBranches;
 
   const ApplicationDependencyBranches._();
-
-  List<String> get defaultCallkeepBranches => [_kDefaultCallkeepSourceBranch];
 
   List<String> get defaultConfiguratorBranches => [_kConfiguratorSourceBranch];
 

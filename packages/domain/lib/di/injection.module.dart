@@ -65,6 +65,8 @@ import 'package:domain/usecase/auth/monitor_token_expiration_usecase.dart'
     as _i490;
 import 'package:domain/usecase/auth/reset_auth_password_usecase.dart' as _i1021;
 import 'package:domain/usecase/auth/sign_in_auth_usecase.dart' as _i337;
+import 'package:domain/usecase/deployment/get_callkeep_branches_usecase.dart'
+    as _i903;
 import 'package:domain/usecase/deployment/get_phone_branches_usecase.dart'
     as _i902;
 import 'package:domain/usecase/deployment/usecase_deploy_builds.dart' as _i606;
@@ -228,6 +230,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i833.DeleteApplicationPublicationResourceUsecase>(() =>
         _i833.DeleteApplicationPublicationResourceUsecaseImpl(
             gh<_i1048.PublicationResourcesRepository>()));
+    gh.lazySingleton<_i903.GetCallkeepBranchesUsecase>(() =>
+        _i903.GetCallkeepBranchesUsecaseImpl(
+            deploymentRepository: gh<_i174.DeploymentRepository>()));
     gh.lazySingleton<_i902.GetPhoneBranchesUsecase>(() =>
         _i902.GetPhoneBranchesUsecaseImpl(
             deploymentRepository: gh<_i174.DeploymentRepository>()));

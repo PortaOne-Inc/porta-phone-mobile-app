@@ -24,16 +24,4 @@ sealed class ThemeCollectionState with _$ThemeCollectionState {
   bool get isProgress => status == ThemeCollectionStateStatus.progress;
 
   bool get isApplicationHasDefaultThem => application?.theme != null;
-
-  ThemeCollectionState copyWithVersions({
-    BuildVersionModel? android,
-    BuildVersionModel? ios,
-  }) {
-    return copyWith(
-      application: application?.copyWith(
-        androidVersion: android ?? application?.androidVersion,
-        iosVersion: ios ?? application?.iosVersion,
-      ),
-    );
-  }
 }

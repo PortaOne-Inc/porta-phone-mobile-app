@@ -34,6 +34,7 @@ import 'package:data/mappers/applications/embedded_resource_mapper.dart'
     as _i285;
 import 'package:data/mappers/applications/publication_resource_mapper.dart'
     as _i553;
+import 'package:data/mappers/deployment/callkeep_branch_mapper.dart' as _i730;
 import 'package:data/mappers/deployment/phone_branch_mapper.dart' as _i729;
 import 'package:data/mappers/mapper.dart' as _i602;
 import 'package:data/mappers/mappers.dart' as _i1058;
@@ -127,6 +128,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
         () => _i51.TranslationHttpMapper());
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
         () => _i729.PhoneBranchMapper());
+    gh.factory<_i602.CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>>(
+        () => _i730.CallkeepBranchMapper());
     gh.factory<
             _i602.CommonMapper<_i494.ColorSchemeModel, _i862.ColorSchemeDto>>(
         () => _i684.ColorSchemeMapper());
@@ -201,6 +204,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
               gh<_i822.ConfiguratorBackandDatasource>(),
           phoneBranchMapper: gh<
               _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+          callkeepBranchMapper: gh<
+              _i1058.CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>>(),
           appVersionMapper: gh<
               _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
           authPrefDataSource: gh<_i822.AuthPrefDatasource>(),

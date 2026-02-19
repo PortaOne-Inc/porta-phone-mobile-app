@@ -198,6 +198,7 @@ class AppRoute {
                         updateBuildNumberUseCase: getIt.get(),
                         updateApplicationUsecase: getIt.get(),
                         getPhoneBranchesUsecase: getIt.get(),
+                        getCallkeepBranchesUsecase: getIt.get(),
                         usecaseDeployBuilds: getIt.get(),
                       ),
                       child: const DeploymentView(),

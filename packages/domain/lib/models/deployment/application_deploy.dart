@@ -20,17 +20,4 @@ sealed class ApplicationDeploy with _$ApplicationDeploy {
   bool get isAndroidPlatformSelected => android.deploy == true;
 
   bool get isIOSPlatformSelected => ios.deploy == true;
-
-  // Custom copyWith methods
-  ApplicationDeploy copyWithAndroid(AndroidBuildPlatform? android) {
-    return copyWith(android: android ?? this.android);
-  }
-
-  ApplicationDeploy copyWithAndroidPlayStoreConfig(AndroidPlayStoreConfig config) {
-    return copyWith(android: android.copyWithPlayStoreConfig(config));
-  }
-
-  ApplicationDeploy copyWithIos(IOSBuildPlatform? ios) {
-    return copyWith(ios: ios ?? this.ios);
-  }
 }
