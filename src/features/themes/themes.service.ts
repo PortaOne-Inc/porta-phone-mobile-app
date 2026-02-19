@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,13 +14,10 @@ import { CreateThemeDto } from './dto/themes.dto';
 
 const ASSET_URL_TTL_SEC = 3600;
 
-/** Options for cascading theme deletion */
 type DeleteOpts = {
-  /** Also delete orphaned assets with refCount == 0 */
   purgeOrphanAssets?: boolean;
 };
 
-// ---------- Legacy DTOs for response shape compatibility ----------
 type LegacyAssetItem = {
   id: number | string;
   name: string;
@@ -67,13 +64,16 @@ type AggregatedTheme = Theme & {
 
 @Injectable()
 export class ThemesService {
+  private readonly logger = new Logger(ThemesService.name);
+
   constructor(
     @InjectRepository(Theme)
     private readonly themeRepository: BaseFirestoreRepository<Theme>,
     private readonly artifacts: ArtifactsService,
     private readonly assetsService: AssetsService,
     private readonly cloud: CloudStorageService,
-  ) {}
+  ) {
+  }
 
   // -------------------- Public API --------------------
 
@@ -123,21 +123,18 @@ export class ThemesService {
     const themePageConfig = buildLegacyPageConfig(pageCfgRaw);
     const themeWidgetConfig = buildLegacyWidgetConfig(widgetCfgRaw);
 
-    const legacy = {
+    return {
       id: theme.id,
       fontFamily: null,
       name: theme.title ?? (theme as any).name ?? 'Original',
       style: null,
       applicationId: theme.applicationId,
-
       texts: {
         contactEmail: null,
         greeting: 'Webtrit',
       },
-
       images,
       colors,
-
       splashAsset: {
         originalAssetId: splashLegacy.originalAssetId,
         pictureUrl: splashLegacy.pictureUrl,
@@ -145,18 +142,21 @@ export class ThemesService {
       },
       launchAssets: launchLegacy,
       splashAssets: splashLegacy,
-
       themePageConfig,
       themeWidgetConfig,
-
       assets: assetsLegacy,
-
       ...((theme as any).appConfig
-        ? { appConfig: (theme as any).appConfig }
+        ? {appConfig: (theme as any).appConfig}
         : {}),
     };
+  }
 
-    return legacy;
+  async getThemeById(applicationId: string, themeId: string, uid: string) {
+    const theme = await this.themeRepository.findById(themeId);
+    if (!theme || theme.applicationId !== applicationId) {
+      throw new NotFoundException(`Theme with ID ${themeId} not found`);
+    }
+    return theme;
   }
 
   async createTheme(
@@ -178,9 +178,9 @@ export class ThemesService {
   ): Promise<Theme> {
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
-      throw new NotFoundException(`Theme with  ID ${themeId} not found`);
+      throw new NotFoundException(`Theme with ID ${themeId} not found`);
     }
-    Object.assign(theme, updateThemeDto, { updatedAt: nowIso() });
+    Object.assign(theme, updateThemeDto, {updatedAt: nowIso()});
     await this.themeRepository.update(theme);
     return theme;
   }
@@ -198,31 +198,17 @@ export class ThemesService {
       }
 
       await this.deleteFeatureEntitlements(themeId);
-
-      // 1) launcher
       await this.deleteLaunchAssetsCascade(uid, applicationId, themeId);
-
-      // 2) splash
       await this.deleteSplashAssetsCascade(uid, themeId);
-
-      // 3) widgets
       await this.deleteWidgetConfigs(themeId);
-
-      // 4) color-schemes
       await this.deleteColorSchemeConfig(themeId);
-
-      // 5) page-configs
       await this.deletePageConfigs(themeId);
-
-      // 6) artefacts
       await this.deleteThemeArtifacts(uid, applicationId, themeId);
 
-      // 7) purge orphans
       if (opts.purgeOrphanAssets) {
         await this.purgeOrphanAssets(uid, applicationId);
       }
 
-      // 8) delete theme doc
       await this.themeRepository.delete(theme.id);
     } catch {
       return null;
@@ -240,38 +226,32 @@ export class ThemesService {
     }
 
     const newThemeId = uuidv4();
+    const now = nowIso();
+
     const target: Theme = {
+      ...source,
       id: newThemeId,
       applicationId,
       title: overrides?.title ?? `${source.title ?? 'Theme'} (Copy)`,
       description: overrides?.description ?? source.description,
       label: overrides?.label ?? source.label,
-
-      ...((source as any).appConfig
-        ? { appConfig: (source as any).appConfig }
-        : {}),
-      ...((source as any).colorSchemeConfig
-        ? { colorSchemeConfig: (source as any).colorSchemeConfig }
-        : {}),
-      ...((source as any).themeWidgetConfig
-        ? { themeWidgetConfig: (source as any).themeWidgetConfig }
-        : {}),
-      ...((source as any).themePageConfig
-        ? { themePageConfig: (source as any).themePageConfig }
-        : {}),
-      ...((source as any).createdAt ? { createdAt: nowIso() } : {}),
-      ...((source as any).updatedAt ? { updatedAt: nowIso() } : {}),
-    } as any;
+      createdAt: now,
+      updatedAt: now,
+    } as Theme;
 
     await this.themeRepository.create(target);
 
-    await Promise.all([
-      this.cloneWidgetConfigs(sourceThemeId, newThemeId),
-      this.cloneColorSchemeConfigs(sourceThemeId, newThemeId),
-      this.clonePageConfigs(sourceThemeId, newThemeId),
-      this.cloneSplash(sourceThemeId, newThemeId),
-      this.cloneLaunch(sourceThemeId, newThemeId),
-    ]);
+    try {
+      await Promise.all([
+        this.cloneWidgetConfigs(sourceThemeId, newThemeId),
+        this.cloneColorSchemeConfigs(sourceThemeId, newThemeId),
+        this.clonePageConfigs(sourceThemeId, newThemeId),
+        this.cloneSplash(sourceThemeId, newThemeId),
+        this.cloneLaunch(sourceThemeId, newThemeId),
+      ]);
+    } catch (e) {
+      this.logger.error(`Copy theme partial failure: ${e}`);
+    }
 
     return this.aggregateTheme(target, 'system');
   }
@@ -283,7 +263,6 @@ export class ThemesService {
       .firestore()
       .collection(Collections.themeFeatureEntitlements);
 
-    // legacy: doc id === themeId
     const legacyRef = col.doc(themeId);
     const legacySnap = await legacyRef.get();
     if (legacySnap.exists) {
@@ -361,7 +340,6 @@ export class ThemesService {
       .firestore()
       .collection(Collections.themeConfigColorSchemes);
 
-    // legacy: id === themeId
     const legacyRef = col.doc(themeId);
     const legacySnap = await legacyRef.get();
     if (legacySnap.exists) {
@@ -414,38 +392,41 @@ export class ThemesService {
 
   private async cloneWidgetConfigs(srcThemeId: string, dstThemeId: string) {
     const col = admin.firestore().collection(Collections.themeConfigWidgets);
+    const batch = admin.firestore().batch();
+    let batchSize = 0;
 
     const qByField = await col.where('themeId', '==', srcThemeId).get();
+
     if (!qByField.empty) {
-      const batch = admin.firestore().batch();
       qByField.docs.forEach((doc) => {
         const data = doc.data();
         const variant = (data as any)?.variant ?? 'light';
         const newId = `${dstThemeId}_${variant}`;
-        const newRef = col.doc(newId);
-        batch.set(newRef, {
+        batch.set(col.doc(newId), {
           ...data,
           themeId: dstThemeId,
           id: newId,
           updatedAt: nowIso(),
         });
+        batchSize++;
       });
-      await batch.commit();
-      return;
+    } else {
+      const legacyId = `${srcThemeId}_light`;
+      const legacySnap = await col.doc(legacyId).get();
+      if (legacySnap.exists) {
+        const data = legacySnap.data() as any;
+        const newId = `${dstThemeId}_light`;
+        batch.set(col.doc(newId), {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          updatedAt: nowIso(),
+        });
+        batchSize++;
+      }
     }
 
-    const legacyId = `${srcThemeId}_light`;
-    const legacySnap = await col.doc(legacyId).get();
-    if (legacySnap.exists) {
-      const data = legacySnap.data() as any;
-      const newId = `${dstThemeId}_light`;
-      await col.doc(newId).set({
-        ...data,
-        themeId: dstThemeId,
-        id: newId,
-        updatedAt: nowIso(),
-      });
-    }
+    if (batchSize > 0) await batch.commit();
   }
 
   private async cloneColorSchemeConfigs(
@@ -455,36 +436,40 @@ export class ThemesService {
     const col = admin
       .firestore()
       .collection(Collections.themeConfigColorSchemes);
-
-    const legacyRef = col.doc(srcThemeId);
-    const legacySnap = await legacyRef.get();
-    if (legacySnap.exists) {
-      const data = legacySnap.data();
-      await col.doc(dstThemeId).set({
-        ...data,
-        themeId: dstThemeId,
-        id: dstThemeId,
-        updatedAt: nowIso(),
-      });
-    }
+    const batch = admin.firestore().batch();
+    let batchSize = 0;
 
     const q = await col.where('themeId', '==', srcThemeId).get();
-    if (!q.empty) {
-      const batch = admin.firestore().batch();
-      q.docs.forEach((d) => {
-        const data = d.data() as any;
-        const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
-        const newId = `${dstThemeId}_${variant}`;
-        const newRef = col.doc(newId);
-        batch.set(newRef, {
+
+    q.docs.forEach((d) => {
+      const data = d.data() as any;
+      const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
+      const newId = `${dstThemeId}_${variant}`;
+      batch.set(col.doc(newId), {
+        ...data,
+        themeId: dstThemeId,
+        id: newId,
+        updatedAt: nowIso(),
+      });
+      batchSize++;
+    });
+
+    if (q.empty) {
+      const legacyRef = col.doc(srcThemeId);
+      const legacySnap = await legacyRef.get();
+      if (legacySnap.exists) {
+        const data = legacySnap.data();
+        batch.set(col.doc(dstThemeId), {
           ...data,
           themeId: dstThemeId,
-          id: newId,
+          id: dstThemeId,
           updatedAt: nowIso(),
         });
-      });
-      await batch.commit();
+        batchSize++;
+      }
     }
+
+    if (batchSize > 0) await batch.commit();
   }
 
   private async clonePageConfigs(srcThemeId: string, dstThemeId: string) {
@@ -514,15 +499,15 @@ export class ThemesService {
 
     const data = snap.data() as any;
     const dstRef = col.doc(dstThemeId);
-    const cloned = {
+
+    await dstRef.set({
       ...data,
       id: dstThemeId,
       themeId: dstThemeId,
       outputsArtifacts: {},
       updatedAt: nowIso(),
       createdAt: nowIso(),
-    };
-    await dstRef.set(cloned);
+    });
   }
 
   private async cloneLaunch(srcThemeId: string, dstThemeId: string) {
@@ -533,18 +518,18 @@ export class ThemesService {
 
     const data = snap.data() as any;
     const dstRef = col.doc(dstThemeId);
-    const cloned = {
+
+    await dstRef.set({
       ...data,
       id: dstThemeId,
       themeId: dstThemeId,
       outputsArtifacts: {},
       updatedAt: nowIso(),
       createdAt: nowIso(),
-    };
-    await dstRef.set(cloned);
+    });
   }
 
-  // -------------------- Modern aggregate (existing) --------------------
+  // -------------------- Modern aggregate --------------------
 
   private async aggregateTheme(
     theme: Theme,
@@ -566,9 +551,18 @@ export class ThemesService {
       this.loadThemePageConfig(theme.applicationId, theme.id),
     ]);
 
-    const resolveUrl = (id: string) =>
-      this.assetsService.getSignedUrlByIdForApp(theme.applicationId, id, ASSET_URL_TTL_SEC);
-
+    const resolveUrl = async (id: string) => {
+      try {
+        return await this.assetsService.getSignedUrlByIdForApp(
+          theme.applicationId,
+          id,
+          ASSET_URL_TTL_SEC,
+        );
+      } catch (e) {
+        this.logger.error(e);
+        return null;
+      }
+    };
     const themeWidgetConfig = widgetCfgRaw
       ? await resolveImageSourceUrlsDeep(widgetCfgRaw, resolveUrl)
       : (theme as any).themeWidgetConfig ?? undefined;
@@ -592,10 +586,6 @@ export class ThemesService {
 
   // -------------------- Loaders --------------------
 
-  /**
-   * Returns assets in legacy format (with direct URL),
-   * using AssetsService with short-lived URLs.
-   */
   private async loadAssetsLegacy(
     uid: string,
     applicationId: string,
@@ -772,15 +762,9 @@ export class ThemesService {
     });
     return result;
   }
-
-  async getThemeById(applicationId: string, themeId: string, uid: string) {
-    const theme = await this.themeRepository.findById(themeId);
-    if (!theme || theme.applicationId !== applicationId) {
-      throw new NotFoundException(`Theme with ID ${themeId} not found`);
-    }
-    return theme;
-  }
 }
+
+// -------------------- Helpers --------------------
 
 type ColorSchemeRaw = {
   seedColor?: string;
@@ -812,7 +796,6 @@ function buildLegacyColors(colorScheme: ColorSchemeRaw) {
     primaryFixedDim: toArgb(c.primaryFixedDim),
     onPrimaryFixed: toArgb(c.onPrimaryFixed),
     onPrimaryFixedVariant: toArgb(c.onPrimaryFixedVariant),
-
     secondary,
     onSecondary: toArgb(c.onSecondary) ?? '#ffffffff',
     secondaryContainer: toArgb(c.secondaryContainer) ?? '#ffeef3f6',
@@ -821,7 +804,6 @@ function buildLegacyColors(colorScheme: ColorSchemeRaw) {
     secondaryFixedDim: toArgb(c.secondaryFixedDim),
     onSecondaryFixed: toArgb(c.onSecondaryFixed),
     onSecondaryFixedVariant: toArgb(c.onSecondaryFixedVariant),
-
     tertiary: toArgb(c.tertiary) ?? '#ff75b943',
     onTertiary: toArgb(c.onTertiary) ?? '#ffffffff',
     tertiaryContainer: toArgb(c.tertiaryContainer) ?? '#ffe1f7c1',
@@ -830,12 +812,10 @@ function buildLegacyColors(colorScheme: ColorSchemeRaw) {
     tertiaryFixedDim: toArgb(c.tertiaryFixedDim),
     onTertiaryFixed: toArgb(c.onTertiaryFixed),
     onTertiaryFixedVariant: toArgb(c.onTertiaryFixedVariant),
-
     error: toArgb(c.error) ?? '#ffe74c3c',
     onError: toArgb(c.onError) ?? '#ffffffff',
     errorContainer: toArgb(c.errorContainer) ?? '#fff5b7b1',
     onErrorContainer: toArgb(c.onErrorContainer) ?? '#ff8b1e13',
-
     outline: toArgb(c.outline) ?? '#ff4c4d4a',
     outlineVariant: toArgb(c.outlineVariant) ?? '#ffcdcfc9',
     surface: toArgb(c.surface) ?? '#ffeef3f6',
@@ -854,32 +834,26 @@ function buildLegacyColors(colorScheme: ColorSchemeRaw) {
     shadow: toArgb(c.shadow) ?? '#ff000000',
     scrim: toArgb(c.scrim) ?? '#ff000000',
     surfaceTint: toArgb(c.surfaceTint) ?? '#fff95a14',
-
     gradientTabColor: [primary, secondary],
     launch: {
       adaptiveIconBackground: '#ffffffff',
       splashBackground: '#ffffffff',
     },
   };
-
   return colors;
 }
 
 function pickImageUrlFromImageAssetConfig(node?: any): string | null {
   if (!node) return null;
-
   const metaAttrs = node?.metadata?.attributes ?? {};
   const metaUrl: string | null =
     metaAttrs.primaryOnboardingLogoUrl ??
     metaAttrs.secondaryOnboardingLogoUrl ??
     null;
-
   if (typeof metaUrl === 'string' && metaUrl.length) return metaUrl;
-
   const src = node?.imageSource ?? {};
   const uri: string | null = typeof src.uri === 'string' ? src.uri : null;
   const url: string | null = typeof src.url === 'string' ? src.url : null;
-
   if (uri?.startsWith('http')) return uri;
   if (url?.startsWith('http')) return url;
   return null;
@@ -887,14 +861,12 @@ function pickImageUrlFromImageAssetConfig(node?: any): string | null {
 
 function buildLegacyImages(widgetCfgRaw: any, launchLegacy: any) {
   const imageAssets = widgetCfgRaw?.imageAssets ?? {};
-
   const primaryLogoUrl = pickImageUrlFromImageAssetConfig(
     imageAssets.primaryOnboardingLogo,
   );
   const secondaryLogoUrl = pickImageUrlFromImageAssetConfig(
     imageAssets.secondaryOnboardingLogo,
   );
-
   return {
     adaptiveIconBackground: launchLegacy.adaptiveIconBackgroundUrl ?? null,
     iosLauncherIcon: launchLegacy.iosLauncherIconUrl ?? null,
@@ -911,7 +883,6 @@ function buildLegacyPageConfig(pageCfgRaw: any) {
   const light = pageCfgRaw?.light ?? pageCfgRaw ?? {};
   const login = light.login ?? {};
   const about = light.about ?? {};
-
   return {
     login: {
       picture: login.picture ?? null,
@@ -939,7 +910,7 @@ function buildLegacyPageConfig(pageCfgRaw: any) {
 function buildLegacyWidgetConfig(widgetCfgRaw: any) {
   if (!widgetCfgRaw) {
     return {
-      fonts: { fontFamily: 'Montserrat' },
+      fonts: {fontFamily: 'Montserrat'},
       dialog: {
         confirmDialog: {
           activeButtonColor1: null,
@@ -958,15 +929,15 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
           uri: 'asset://assets/primary_onboardin_logo.svg',
           widthFactor: 0.42,
           labelColor: '#FFFFFF',
-          metadata: { attributes: {} },
+          metadata: {attributes: {}},
         },
         secondaryOnboardingLogo: {
           uri: 'asset://assets/secondary_onboardin_logo.svg',
           widthFactor: 0.25,
           labelColor: '#FFFFFF',
-          metadata: { attributes: {} },
+          metadata: {attributes: {}},
         },
-        appIcon: { color: null },
+        appIcon: {color: null},
       },
     };
   }
@@ -990,7 +961,7 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
         metadata: {
           attributes: {
             ...(imgAssets.primaryOnboardingLogo?.metadata?.attributes ?? {}),
-            ...(primaryUrl ? { primaryOnboardingLogoUrl: primaryUrl } : {}),
+            ...(primaryUrl ? {primaryOnboardingLogoUrl: primaryUrl} : {}),
           },
         },
       },
@@ -1002,15 +973,15 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
           attributes: {
             ...(imgAssets.secondaryOnboardingLogo?.metadata?.attributes ?? {}),
             ...(secondaryUrl
-              ? { secondaryOnboardingLogoUrl: secondaryUrl }
+              ? {secondaryOnboardingLogoUrl: secondaryUrl}
               : {}),
           },
         },
       },
-      appIcon: imgAssets.appIcon ?? { color: null },
+      appIcon: imgAssets.appIcon ?? {color: null},
     },
   };
 
-  if (!out.fonts) out.fonts = { fontFamily: 'Montserrat' };
+  if (!out.fonts) out.fonts = {fontFamily: 'Montserrat'};
   return out;
 }

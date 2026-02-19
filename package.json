@@ -35,7 +35,7 @@
     "dev:watch": "concurrently -k -n BUILD,EMU \"npm run build:dev -- --watch\" \"npm run emulators:dev\""
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "main": "dist/index.js",
   "dependencies": {
