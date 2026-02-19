@@ -9,6 +9,8 @@ export class GithubProxyService {
         'https://api.github.com/repos/WebTrit/webtrit_phone_builder/actions';
     private readonly GITHUB_WEBTRIT_PHONE_URL =
         'https://api.github.com/repos/WebTrit/webtrit_phone';
+    private readonly GITHUB_WEBTRIT_CALLKEEP_URL =
+        'https://api.github.com/repos/WebTrit/webtrit_callkeep';
 
     constructor(private readonly configService: ConfigService) {
     }
@@ -144,6 +146,37 @@ export class GithubProxyService {
         } catch (error: any) {
             this.logger.error(`Error fetching branches: ${error.message}`);
             throw new Error(`Error fetching branches: ${error.message}`);
+        }
+    }
+
+    async getCallkeepBranches(): Promise<any[]> {
+        const perPage = 100;
+        let page = 1;
+        let allBranches: any[] = [];
+
+        try {
+            while (true) {
+                const url = `${this.GITHUB_WEBTRIT_CALLKEEP_URL}/branches?per_page=${perPage}&page=${page}`;
+                const res = await fetch(url, {headers: this.buildHeaders()});
+
+                if (!res.ok) {
+                    const body = await safeText(res);
+                    throw new Error(
+                        `GET ${url} failed: ${res.status} ${res.statusText}${body ? ` - ${body}` : ''}`,
+                    );
+                }
+
+                const branches = (await res.json()) ?? [];
+                allBranches = allBranches.concat(branches);
+
+                const linkHeader = res.headers.get('link');
+                if (!linkHeader || !linkHeader.includes('rel="next"')) break;
+                page++;
+            }
+            return allBranches;
+        } catch (error: any) {
+            this.logger.error(`Error fetching callkeep branches: ${error.message}`);
+            throw new Error(`Error fetching callkeep branches: ${error.message}`);
         }
     }
 
