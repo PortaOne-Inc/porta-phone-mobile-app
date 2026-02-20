@@ -18,6 +18,14 @@ It integrates with **Firebase**, **Localizely**, **GitHub**, and **OpenAI APIs**
 
 ---
 
+## 📚 Documentation
+
+| Topic                                            | File                                               |
+|--------------------------------------------------|----------------------------------------------------|
+| AI Theme Generation (generate & nudge endpoints) | [docs/generate-themes.md](docs/generate-themes.md) |
+
+---
+
 ## ⚙️ Environment Setup
 
 ### 1. Environment variables
@@ -178,6 +186,7 @@ Each command:
 ```
 .
 --- src/              # NestJS source code
+--- docs/             # Feature documentation
 --- dist/             # Compiled output
 --- creds/            # Firebase service accounts (gitignored)
 --- .env.*            # Environment configs

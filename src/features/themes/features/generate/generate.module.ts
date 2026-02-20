@@ -10,6 +10,10 @@ import { ThemesService } from '../../themes.service';
 import { ColorScheme } from '../color-schemes/entities/color-scheme.entity';
 import { WidgetConfigEntity } from '../widget-configs/entities/widget-config.entity';
 import { PageConfigEntity } from '../page-configs/entities/page-config.entity';
+import { OpenAiClientService } from './generators/openai-client.service';
+import { ColorSchemeGenerator } from './generators/color-scheme.generator';
+import { WidgetConfigGenerator } from './generators/widget-config.generator';
+import { PageConfigGenerator } from './generators/page-config.generator';
 
 @Module({
   imports: [
@@ -24,6 +28,13 @@ import { PageConfigEntity } from '../page-configs/entities/page-config.entity';
     ]),
   ],
   controllers: [GenerateThemesController],
-  providers: [GenerateThemesService, ThemesService],
+  providers: [
+    GenerateThemesService,
+    ThemesService,
+    OpenAiClientService,
+    ColorSchemeGenerator,
+    WidgetConfigGenerator,
+    PageConfigGenerator,
+  ],
 })
 export class GenerateThemesModule {}
