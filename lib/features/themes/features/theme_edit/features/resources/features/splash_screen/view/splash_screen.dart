@@ -85,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
             previewOnlyColor: true,
             sizeDp: slice.fullSizeDp,
             safeZoneDp: slice.maskDiameterDp,
-            maskDp: slice.toleranceDp,
+            maskDp: slice.maskDiameterDp,
             exportSizePx: (slice.fullSizeDp * 2).round(),
             paddingDp: state.padding,
             initialBackgroundHex: state.backgroundColorHex,

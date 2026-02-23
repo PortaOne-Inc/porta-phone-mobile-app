@@ -54,11 +54,16 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       ..strokeWidth = artboardPx * 0.01
       ..color = Colors.white.withValues(alpha: 0.9);
 
-    if (safeZonePx != null && safeZonePx! > 0) {
+    final hasMask = maskDiameterPx != null && maskDiameterPx! > 0;
+    final hasSafe = safeZonePx != null && safeZonePx! > 0;
+    final overlap = hasMask && hasSafe &&
+        (safeZonePx! - maskDiameterPx!).abs() < artboardPx * 0.02;
+
+    if (hasSafe && !overlap) {
       canvas.drawCircle(center, safeZonePx! / 2, safePaint);
     }
 
-    if (maskDiameterPx != null && maskDiameterPx! > 0) {
+    if (hasMask) {
       final ring = Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = artboardPx * 0.012

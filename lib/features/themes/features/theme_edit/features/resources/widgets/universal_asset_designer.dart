@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/core/widgets/pattern_painter.dart';
 
 import 'universal_asset_preview_painter.dart';
@@ -234,25 +233,22 @@ class _PageState {
 
   FitModel? fitOverride;
   double? paddingOverrideDp;
+  bool paddingLocked = true;
 
   bool bgInheritCommon = true;
   String? bgHexOverride;
 }
 
-class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
-    with TickerProviderStateMixin {
+class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
   ui.Image? _bgImg;
   ui.Image? _fgImg;
 
   late double _commonPaddingDp;
   late String? _commonBgHex;
+  late double _paddingRatio;
+  late TextEditingController _basePaddingTextCtrl;
 
   late final Map<String, _PageState> _pageStates;
-
-  late final TabController _tab = TabController(
-    length: widget.pages.length,
-    vsync: this,
-  );
 
   DesignerPageConfig? get _commonPage => widget.pages
       .cast<DesignerPageConfig?>()
@@ -260,6 +256,17 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
 
   List<DesignerPageConfig> get _nonCommonPages =>
       widget.pages.where((p) => p.isCommon == false).toList();
+
+  double _minPadFor(DesignerPageConfig p) =>
+      (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2;
+
+  double _maxPadFor(DesignerPageConfig p) => p.sizeDp / 2;
+
+  double _proportionalPadFor(DesignerPageConfig p) {
+    final mn = _minPadFor(p);
+    final mx = _maxPadFor(p);
+    return mn + _paddingRatio * (mx - mn);
+  }
 
   @override
   void initState() {
@@ -272,6 +279,21 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
     _commonPaddingDp = math.max(cp?.paddingDp ?? 0, commonMinPad);
     _commonBgHex = cp?.initialBackgroundHex ?? '#FFFFFFFF';
 
+    // Compute initial ratio from common page
+    if (cp != null) {
+      final cMin = _minPadFor(cp);
+      final cMax = _maxPadFor(cp);
+      _paddingRatio = (cMax > cMin)
+          ? ((_commonPaddingDp - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
+          : 0.0;
+    } else {
+      _paddingRatio = 0.0;
+    }
+
+    _basePaddingTextCtrl = TextEditingController(
+      text: _commonPaddingDp.toStringAsFixed(0),
+    );
+
     _pageStates = {
       for (final p in _nonCommonPages)
         p.id: _PageState(
@@ -282,7 +304,15 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
         ),
     };
 
-    _tab.addListener(_reloadPreview);
+    // Detect if saved padding matches proportional (within 1dp tolerance)
+    for (final p in _nonCommonPages) {
+      final st = _pageStates[p.id]!;
+      final proportional = _proportionalPadFor(p);
+      final diff = (st.paddingOverrideDp! - proportional).abs();
+      st.paddingLocked = diff < 1.0;
+      if (st.paddingLocked) st.paddingOverrideDp = null;
+    }
+
     widget.controller?._attach(this);
 
     _reloadPreview();
@@ -310,9 +340,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
   @override
   void dispose() {
     widget.controller?._detach(this);
-    _tab
-      ..removeListener(_reloadPreview)
-      ..dispose();
+    _basePaddingTextCtrl.dispose();
     super.dispose();
   }
 
@@ -325,10 +353,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
       );
     }
     final st = _pageStates[p.id]!;
-    final pad = st.paddingOverrideDp ?? _commonPaddingDp;
-    final bg = st.bgInheritCommon
-        ? _commonBgHex
-        : (st.bgHexOverride ?? _commonBgHex);
+    final pad = st.paddingLocked
+        ? _proportionalPadFor(p)
+        : (st.paddingOverrideDp ?? _proportionalPadFor(p));
+    final bg = _commonBgHex;
     return DesignerPageEffective(
       pageId: p.id,
       paddingDp: pad,
@@ -351,16 +379,8 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
   }
 
   void _reloadPreview() {
-    final page = widget.pages[_tab.index];
-
-    final sizeDp = page.sizeDp;
-    final scale = _scaleForPreview(
-      artboardDp: sizeDp,
-      previewPx: widget.previewSize,
-    );
-    final artboardPx = (sizeDp * scale).round().clamp(64, 4096);
-
-    _loadImagesForSize(artboardPx);
+    final sizePx = (widget.previewSize * 2).round().clamp(64, 4096);
+    _loadImagesForSize(sizePx);
   }
 
   Future<void> _loadImagesForSize(int sizePx) async {
@@ -381,60 +401,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
     });
   }
 
-  // allow controller to switch tab by id
-  void _setActiveTabById(String pageId) {
-    final idx = widget.pages.indexWhere((p) => p.id == pageId);
-    if (idx == -1) return;
-    if (idx >= 0 && idx < _tab.length) {
-      _tab.animateTo(idx);
-    }
-  }
-
-  Widget _paddingEditor({
-    required double currentDp,
-    required double minDp,
-    required double maxDp,
-    required ValueChanged<double> onChanged,
-  }) {
-    final clamped = currentDp.clamp(minDp, maxDp);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: 180,
-          child: Slider(
-            min: minDp,
-            max: maxDp,
-            value: clamped.toDouble(),
-            onChanged: onChanged,
-          ),
-        ),
-        const SizedBox(width: 8),
-        SizedBox(
-          width: 84,
-          child: TextFormField(
-            initialValue: clamped.toStringAsFixed(0),
-            decoration: const InputDecoration(
-              isDense: true,
-              labelText: 'dp',
-              border: OutlineInputBorder(),
-            ),
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            onFieldSubmitted: (txt) {
-              final v = double.tryParse(txt) ?? clamped;
-              onChanged(v.clamp(minDp, maxDp).toDouble());
-            },
-          ),
-        ),
-      ],
-    );
-  }
+  // Controller API — kept as no-op for backward compatibility
+  void _setActiveTabById(String pageId) {}
 
   Widget _bgColorPickerRow({
     required String scopeId,
-    required bool enabled,
     required String? currentHex,
-    required VoidCallback onColorChanged,
   }) {
     final color = _parseHexColor(currentHex);
     return Row(
@@ -451,186 +423,256 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
         ),
         const SizedBox(width: 10),
         OutlinedButton.icon(
-          onPressed: !enabled
-              ? null
-              : () async {
-                  final picker = widget.controller?.onPickColor;
-                  if (picker == null) return;
-                  final picked = await picker(
-                    ColorPickRequest(scopeId: scopeId, currentHex: currentHex),
-                  );
-                  if (picked != null) {
-                    setState(() {
-                      final hex = _normalizeHex(picked);
-                      if (scopeId == 'common') {
-                        _commonBgHex = hex;
-                      } else {
-                        final st = _pageStates[scopeId];
-                        if (st != null) st.bgHexOverride = hex;
-                      }
-                    });
-                    _emitSnapshot();
-                    _reloadPreview();
-                    onColorChanged();
-                  }
-                },
+          onPressed: () async {
+            final picker = widget.controller?.onPickColor;
+            if (picker == null) return;
+            final picked = await picker(
+              ColorPickRequest(scopeId: scopeId, currentHex: currentHex),
+            );
+            if (picked != null) {
+              setState(() {
+                _commonBgHex = _normalizeHex(picked);
+              });
+              _emitSnapshot();
+              _reloadPreview();
+            }
+          },
           icon: const Icon(Icons.color_lens_outlined),
-          label: Text(enabled ? 'Pick color' : 'Inherited'),
+          label: const Text('Pick color'),
         ),
       ],
     );
   }
 
-  Widget _buildCommonTab(DesignerPageConfig p) {
-    final scale = _scaleForPreview(
-      artboardDp: p.sizeDp,
-      previewPx: widget.previewSize,
-    );
-    final artboardPx = p.sizeDp * scale;
-    final paddingPx = _dpToPx(_commonPaddingDp, scale);
-    final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
-    final maskPx = p.maskDp != null ? _dpToPx(p.maskDp!, scale) : null;
-    final w = artboardPx;
+  Widget _buildSharedControls() {
+    final cp = _commonPage;
+    final minDp = cp != null ? _minPadFor(cp) : 0.0;
+    final maxDp = cp != null ? _maxPadFor(cp) : 100.0;
+    final clamped = _commonPaddingDp.clamp(minDp, maxDp);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(p.label, style: Theme.of(context).textTheme.titleMedium),
-        const SizedBox(height: 12),
-        Stack(
-          children: [
-            Positioned.fill(
-              child: CustomPaint(
-                painter: PatternPainter(primaryColor: Colors.blue),
-              ),
-            ),
-            CustomPaint(
-              size: Size(w, w),
-              painter: UniversalAssetPreviewPainter(
-                backgroundImage: _bgImg,
-                foregroundImage: _fgImg,
-                backgroundColor: _parseHexColor(_commonBgHex),
-                artboardPx: artboardPx,
-                paddingPx: paddingPx,
-                fit: BoxFit.scaleDown,
-                safeZonePx: safePx,
-                maskDiameterPx: maskPx,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 16,
-          runSpacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            _bgColorPickerRow(
-              scopeId: 'common',
-              enabled: true,
-              currentHex: _commonBgHex,
-              onColorChanged: () {},
-            ),
-            const Text('Padding:'),
-            _paddingEditor(
-              currentDp: _commonPaddingDp,
-              minDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
-              maxDp: p.sizeDp / 2,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Wrap(
+        spacing: 16,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          _bgColorPickerRow(
+            scopeId: 'common',
+            currentHex: _commonBgHex,
+          ),
+          const Text('Padding:'),
+          SizedBox(
+            width: 180,
+            child: Slider(
+              min: minDp,
+              max: maxDp,
+              value: clamped,
               onChanged: (v) {
-                setState(() => _commonPaddingDp = v);
+                setState(() {
+                  _commonPaddingDp = v;
+                  // Recompute ratio
+                  if (cp != null) {
+                    final cMin = _minPadFor(cp);
+                    final cMax = _maxPadFor(cp);
+                    _paddingRatio = (cMax > cMin)
+                        ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
+                        : 0.0;
+                  }
+                  _basePaddingTextCtrl.text = v.toStringAsFixed(0);
+                });
                 _emitSnapshot();
-                _reloadPreview();
               },
             ),
-          ],
-        ),
-      ],
+          ),
+          SizedBox(
+            width: 84,
+            child: TextField(
+              controller: _basePaddingTextCtrl,
+              decoration: const InputDecoration(
+                isDense: true,
+                labelText: 'dp',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (txt) {
+                final v =
+                    (double.tryParse(txt) ?? clamped).clamp(minDp, maxDp);
+                setState(() {
+                  _commonPaddingDp = v;
+                  if (cp != null) {
+                    final cMin = _minPadFor(cp);
+                    final cMax = _maxPadFor(cp);
+                    _paddingRatio = (cMax > cMin)
+                        ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
+                        : 0.0;
+                  }
+                  _basePaddingTextCtrl.text = v.toStringAsFixed(0);
+                });
+                _emitSnapshot();
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildPageTab(DesignerPageConfig p) {
-    final st = _pageStates[p.id]!;
-    final eff = _effectiveFor(p);
-
-    final scale = _scaleForPreview(
-      artboardDp: p.sizeDp,
-      previewPx: widget.previewSize,
+  Widget _buildPreviewGrid(double previewSize) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final p in widget.pages)
+            _buildPlatformCard(p, previewSize),
+        ],
+      ),
     );
+  }
+
+  Widget _buildPlatformCard(DesignerPageConfig p, double cardSize) {
+    final eff = _effectiveFor(p);
+    final scale = _scaleForPreview(artboardDp: p.sizeDp, previewPx: cardSize);
     final artboardPx = p.sizeDp * scale;
     final paddingPx = _dpToPx(eff.paddingDp, scale);
-    final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
+    final safePx =
+        p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
     final maskPx = p.maskDp != null ? _dpToPx(p.maskDp!, scale) : null;
-    final w = artboardPx;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(p.label, style: Theme.of(context).textTheme.titleMedium),
-        const SizedBox(height: 12),
-        Stack(
-          children: [
-            Positioned.fill(
-              child: CustomPaint(
-                painter: PatternPainter(primaryColor: Colors.blue),
-              ),
-            ),
-            CustomPaint(
-              size: Size(w, w),
-              painter: UniversalAssetPreviewPainter(
-                backgroundImage: _bgImg,
-                foregroundImage: _fgImg,
-                backgroundColor: _parseHexColor(eff.backgroundHex),
-                artboardPx: artboardPx,
-                paddingPx: paddingPx,
-                fit: BoxFit.scaleDown,
-                safeZonePx: safePx,
-                maskDiameterPx: maskPx,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 16,
-          runSpacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
+    final isCommon = p.isCommon;
+    final st = isCommon ? null : _pageStates[p.id];
+    final locked = st?.paddingLocked ?? true;
+
+    return SizedBox(
+      width: cardSize,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Header — fixed height so common and non-common cards align
+          SizedBox(
+            height: 36,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Switch(
-                  value: st.bgInheritCommon,
-                  onChanged: (v) {
-                    setState(() => st.bgInheritCommon = v);
-                    _emitSnapshot();
-                    _reloadPreview();
-                  },
-                ),
-                const SizedBox(width: 4),
-                const Text('Inherit Common background'),
+                Text(p.label, style: Theme.of(context).textTheme.titleSmall),
+                if (!isCommon) ...[
+                  const SizedBox(width: 4),
+                  IconButton(
+                    icon: Icon(
+                      locked ? Icons.lock_outline : Icons.lock_open,
+                      size: 18,
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    tooltip: locked ? 'Unlock padding' : 'Lock padding',
+                    onPressed: () {
+                      setState(() {
+                        st!.paddingLocked = !st.paddingLocked;
+                        if (st.paddingLocked) {
+                          st.paddingOverrideDp = null;
+                        } else {
+                          st.paddingOverrideDp = _proportionalPadFor(p);
+                        }
+                      });
+                      _emitSnapshot();
+                    },
+                  ),
+                ],
               ],
             ),
-            _bgColorPickerRow(
-              scopeId: p.id,
-              enabled: !st.bgInheritCommon,
-              currentHex: st.bgInheritCommon
-                  ? _commonBgHex
-                  : (st.bgHexOverride ?? _commonBgHex),
-              onColorChanged: () {},
+          ),
+          const SizedBox(height: 4),
+          // Preview
+          Center(
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: CustomPaint(
+                    painter: PatternPainter(primaryColor: Colors.blue),
+                  ),
+                ),
+                CustomPaint(
+                  size: Size(artboardPx, artboardPx),
+                  painter: UniversalAssetPreviewPainter(
+                    backgroundImage: _bgImg,
+                    foregroundImage: _fgImg,
+                    backgroundColor: _parseHexColor(eff.backgroundHex),
+                    artboardPx: artboardPx,
+                    paddingPx: paddingPx,
+                    fit: BoxFit.scaleDown,
+                    safeZonePx: safePx,
+                    maskDiameterPx: maskPx,
+                  ),
+                ),
+              ],
             ),
-            const Text('Padding:'),
-            _paddingEditor(
-              currentDp: st.paddingOverrideDp ?? _commonPaddingDp,
-              minDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
-              maxDp: p.sizeDp / 2,
-              onChanged: (v) {
-                setState(() => st.paddingOverrideDp = v);
-                _emitSnapshot();
-                _reloadPreview();
-              },
+          ),
+          const SizedBox(height: 4),
+          // Footer
+          if (isCommon)
+            Text(
+              '${eff.paddingDp.toStringAsFixed(0)} dp',
+              style: Theme.of(context).textTheme.bodySmall,
+            )
+          else if (locked)
+            Text(
+              '${eff.paddingDp.toStringAsFixed(0)} dp',
+              style: Theme.of(context).textTheme.bodySmall,
+            )
+          else
+            _buildUnlockedFooter(p, st!, cardSize),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUnlockedFooter(
+    DesignerPageConfig p,
+    _PageState st,
+    double cardWidth,
+  ) {
+    final minDp = _minPadFor(p);
+    final maxDp = _maxPadFor(p);
+    final current = (st.paddingOverrideDp ?? _proportionalPadFor(p))
+        .clamp(minDp, maxDp);
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: cardWidth - 100,
+          child: Slider(
+            min: minDp,
+            max: maxDp,
+            value: current,
+            onChanged: (v) {
+              setState(() => st.paddingOverrideDp = v);
+              _emitSnapshot();
+            },
+          ),
+        ),
+        SizedBox(
+          width: 72,
+          child: TextFormField(
+            key: ValueKey('pad_${p.id}_${current.toStringAsFixed(0)}'),
+            initialValue: current.toStringAsFixed(0),
+            decoration: const InputDecoration(
+              isDense: true,
+              labelText: 'dp',
+              border: OutlineInputBorder(),
             ),
-          ],
+            keyboardType:
+                const TextInputType.numberWithOptions(decimal: true),
+            onFieldSubmitted: (txt) {
+              final v =
+                  (double.tryParse(txt) ?? current).clamp(minDp, maxDp);
+              setState(() => st.paddingOverrideDp = v);
+              _emitSnapshot();
+            },
+          ),
         ),
       ],
     );
@@ -675,28 +717,20 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
 
   @override
   Widget build(BuildContext context) {
-    final tabs = <Tab>[];
-    final views = <Widget>[];
-
-    for (final p in widget.pages) {
-      tabs.add(Tab(text: p.label));
-      views.add(
-        Center(child: p.isCommon ? _buildCommonTab(p) : _buildPageTab(p)),
-      );
-    }
-
-    final hasTabs = tabs.length > 1;
-
-    return Column(
-      children: [
-        if (hasTabs) TabBar(controller: _tab, tabs: tabs),
-        const SizedBox(height: 12),
-        Expanded(
-          child: hasTabs
-              ? TabBarView(controller: _tab, children: views)
-              : views.first,
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardPreviewSize =
+            ((constraints.maxWidth - 48) / 2).clamp(0.0, 260.0);
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildSharedControls(),
+              const SizedBox(height: 16),
+              _buildPreviewGrid(cardPreviewSize),
+            ],
+          ),
+        );
+      },
     );
   }
 }
