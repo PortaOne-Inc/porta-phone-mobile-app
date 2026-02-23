@@ -216,7 +216,24 @@ ThemesModule
 | `source`           | object? | `foregroundAssetId`, `backgroundAssetId`, `backgroundColorHex` |
 | `params`           | object? | `fit` (SplashFit), `paddingDp`, `backgroundColorHex`           |
 | `mode`             | enum    | `'withBackground'` / `'withoutBackground'`                     |
-| `outputsArtifacts` | object? | `splashArtifactId` → Cloud Storage artifact                    |
+| `outputsArtifacts` | object? | `splashArtifactId`, `android12SplashArtifactId` → Cloud Storage artifacts |
+
+**Upload targets:**
+
+| Target             | Description                                                        | Export size          |
+|--------------------|--------------------------------------------------------------------|----------------------|
+| `splash`           | General splash image for all platforms                             | 1024px (512dp × 2)  |
+| `android12Splash`  | Android 12+ circular-masked icon area (optional)                   | 1152px (288dp × 4)  |
+
+**Constraints defaults** (`GET .../constraints-defaults`):
+
+| Slice              | `fullSizeDp` | `maskDiameterDp` | `toleranceDp` | Notes                              |
+|--------------------|--------------|-------------------|---------------|------------------------------------|
+| `withBackground`   | 240          | 160               | 240           | General splash with background     |
+| `withoutBackground`| 288          | 192               | 288           | General splash without background  |
+| `android12`        | 288          | 192               | 288           | Android 12 circular mask safe zone |
+
+The `android12` slice and `android12SplashArtifactId` are optional for backward compatibility — old clients that don't send the `android12Splash` upload target continue working unchanged.
 
 ### LaunchAssets
 
@@ -309,7 +326,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 |----------|-----------------------------------------------|--------------------------------------------------------------------|
 | `GET`    | `/:themeId/splash-asset`                      | Get config (optional: `withValidation`, `includeUrl`, `urlTtlSec`) |
 | `PUT`    | `/:themeId/splash-asset/upload-batch`         | Multipart upload + config merge                                    |
-| `DELETE` | `/:themeId/splash-asset`                      | Delete config + Cloud Storage artifact                             |
+| `DELETE` | `/:themeId/splash-asset`                      | Delete config + Cloud Storage artifacts (splash + android12)       |
 | `GET`    | `/:themeId/splash-asset/constraints-defaults` | Get default constraints from Firestore                             |
 
 ### Launch Assets
@@ -404,7 +421,7 @@ DELETE /applications/:appId/themes/:themeId?purgeOrphanAssets=true
         ├── Delete widget configs      (themeId_light, themeId_dark)
         ├── Delete page configs        (themeId_light, themeId_dark)
         ├── Delete splash asset        (themeId)
-        │     └── if purgeOrphanAssets: delete Cloud Storage artifact
+        │     └── if purgeOrphanAssets: delete Cloud Storage artifacts (splash + android12Splash)
         ├── Delete launch assets       (themeId)
         │     └── if purgeOrphanAssets: delete 5 Cloud Storage artifacts
         ├── Delete feature access      (themeId)
@@ -453,16 +470,19 @@ Only requested `targets` are updated.
 ```
 PUT /:themeId/splash-asset/upload-batch
   Content-Type: multipart/form-data
-  ├── config (JSON): { source, params, mode }
-  └── files: foreground image, background image
+  ├── dto (JSON):     { source, params, mode }
+  ├── targets (JSON): { "field1": "splash", "field2": "android12Splash" }
+  └── files:          field1 → general splash, field2 → Android 12 splash
         │
         ▼
   SplashAssetsService.upsertWithFiles()
         │
-        ├── Upload images → ArtifactsService → Cloud Storage
-        ├── Get artifact IDs
+        ├── Remove previous artifacts (splash + android12Splash)
+        ├── Upload each file mapped to its target → ArtifactsService → Cloud Storage
         ├── Deep merge config with existing doc
-        └── Save to Firestore (outputsArtifacts.splashArtifactId = ...)
+        └── Save to Firestore:
+              ├── outputsArtifacts.splashArtifactId = ...
+              └── outputsArtifacts.android12SplashArtifactId = ... (optional)
 ```
 
 **Resolution (Widget/Page configs)**:

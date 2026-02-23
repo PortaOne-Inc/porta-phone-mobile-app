@@ -35,12 +35,14 @@ export const SplashParamsZ = z
 export const SplashOutputArtifactsZ = z
   .object({
     splashArtifactId: z.string().optional(),
+    android12SplashArtifactId: z.string().optional(),
   })
   .partial();
 
 export const SplashUrlsZ = z
   .object({
     splashUrl: z.string().url().optional(),
+    android12SplashUrl: z.string().url().optional(),
   })
   .partial();
 

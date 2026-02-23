@@ -66,6 +66,11 @@ export class SplashOutputArtifactsDto {
     @IsString()
     @ValidateIf((_, v) => v !== null && v !== undefined)
     splashArtifactId?: string;
+
+    @IsOptional()
+    @IsString()
+    @ValidateIf((_, v) => v !== null && v !== undefined)
+    android12SplashArtifactId?: string;
 }
 
 /**

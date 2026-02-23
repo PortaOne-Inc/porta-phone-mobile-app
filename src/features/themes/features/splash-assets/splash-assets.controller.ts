@@ -76,7 +76,7 @@ export class SplashAssetsController {
     console.log('files keys:', Object.keys(files ?? {}), 'fields:', fields);
 
     const targetsMap = fields['targets']
-      ? (JSON.parse(fields['targets']) as Record<string, 'splash'>)
+      ? (JSON.parse(fields['targets']) as Record<string, 'splash' | 'android12Splash'>)
       : {};
     const dtoRaw = fields['dto'];
     const dto: UpsertSplashAssetDto = dtoRaw ? JSON.parse(dtoRaw) : {};

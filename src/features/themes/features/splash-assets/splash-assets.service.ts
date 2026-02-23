@@ -38,20 +38,19 @@ export type SplashValidationEnvelope = {
     validation: SplashValidationBlock;
 };
 
-export type SplashConstraintsDefaultsDto = {
-    withBackground: {
-        fullSizeDp: number;
-        maskDiameterDp: number;
-        toleranceDp: number;
-    };
-    withoutBackground: {
-        fullSizeDp: number;
-        maskDiameterDp: number;
-        toleranceDp: number;
-    };
+type ConstraintsSlice = {
+    fullSizeDp: number;
+    maskDiameterDp: number;
+    toleranceDp: number;
 };
 
-type SplashOutputTarget = 'splash';
+export type SplashConstraintsDefaultsDto = {
+    withBackground: ConstraintsSlice;
+    withoutBackground: ConstraintsSlice;
+    android12?: ConstraintsSlice;
+};
+
+type SplashOutputTarget = 'splash' | 'android12Splash';
 
 const ARTIFACT_KIND = 'splash-asset-output';
 const ARTIFACT_TAG = 'splash-asset';
@@ -118,30 +117,30 @@ export class SplashAssetsService {
                 maskDiameterDp: 192,
                 toleranceDp: 288,
             },
+            android12: {
+                fullSizeDp: 288,
+                maskDiameterDp: 192,
+                toleranceDp: 288,
+            },
         };
 
         if (!snap.exists) return fallback;
 
         const data = snap.data() as any;
         const c = (data?.constraints ?? {}) as {
-            withBackground?: Partial<{
-                fullSizeDp: number;
-                maskDiameterDp: number;
-                toleranceDp: number;
-            }>;
-            withoutBackground?: Partial<{
-                fullSizeDp: number;
-                maskDiameterDp: number;
-                toleranceDp: number;
-            }>;
+            withBackground?: Partial<ConstraintsSlice>;
+            withoutBackground?: Partial<ConstraintsSlice>;
+            android12?: Partial<ConstraintsSlice>;
         };
 
         const wb = normalizeSlice(c.withBackground);
         const wob = normalizeSlice(c.withoutBackground);
+        const a12 = normalizeSlice(c.android12);
 
         return {
             withBackground: {...fallback.withBackground, ...(wb ?? {})},
             withoutBackground: {...fallback.withoutBackground, ...(wob ?? {})},
+            android12: {...fallback.android12!, ...(a12 ?? {})},
         };
     }
 
@@ -196,6 +195,16 @@ export class SplashAssetsService {
             try {
                 const a = await this.artifacts.findOne(uid, outs.splashArtifactId, {}); // ownership check
                 urls.splashUrl = a.storagePath
+                    ? await this.cloud.getSignedUrl(a.storagePath, {ttlSec})
+                    : undefined;
+            } catch {
+                // ignore
+            }
+        }
+        if (outs.android12SplashArtifactId) {
+            try {
+                const a = await this.artifacts.findOne(uid, outs.android12SplashArtifactId, {});
+                urls.android12SplashUrl = a.storagePath
                     ? await this.cloud.getSignedUrl(a.storagePath, {ttlSec})
                     : undefined;
             } catch {
@@ -351,71 +360,76 @@ export class SplashAssetsService {
             return fresh;
         }
 
-        // replace previous artifact
+        // replace previous artifacts
         const outs = entity.outputsArtifacts ?? {};
-        if (outs.splashArtifactId) {
+        const oldArtifactIds = [outs.splashArtifactId, outs.android12SplashArtifactId].filter(Boolean) as string[];
+        for (const oldId of oldArtifactIds) {
             this.logger.log(
-                `artifact:remove:attempt ${logCtx({ oldArtifactId: outs.splashArtifactId })}`,
+                `artifact:remove:attempt ${logCtx({ oldArtifactId: oldId })}`,
             );
-            await this.artifacts.remove(uid, outs.splashArtifactId).then(
+            await this.artifacts.remove(uid, oldId).then(
                 () => this.logger.log(
-                    `artifact:remove:ok ${logCtx({ oldArtifactId: outs.splashArtifactId })}`,
+                    `artifact:remove:ok ${logCtx({ oldArtifactId: oldId })}`,
                 ),
             ).catch((e) => {
                 this.logger.warn(
-                    `artifact:remove:failed ${logCtx({ oldArtifactId: outs.splashArtifactId, error: e?.message })}`,
+                    `artifact:remove:failed ${logCtx({ oldArtifactId: oldId, error: e?.message })}`,
                 );
                 return undefined;
             });
-        } else {
-            this.logger.log(`artifact:remove:skip ${logCtx({ reason: 'no_previous_artifact' })}`);
+        }
+        if (oldArtifactIds.length === 0) {
+            this.logger.log(`artifact:remove:skip ${logCtx({ reason: 'no_previous_artifacts' })}`);
         }
 
-        // upload first file mapped to target="splash"
-        const newOuts: { splashArtifactId?: string } = {};
-        for (const [fieldName, target] of Object.entries(targetsMap ?? {})) {
-            if (target !== 'splash') continue;
-            const v = filesMap[fieldName];
-            const file = Array.isArray(v) ? v?.[0] : v;
-            if (!file && allFiles.length !== 1) {
+        // upload files mapped to targets
+        const newOuts: { splashArtifactId?: string; android12SplashArtifactId?: string } = {};
+        const targetKeys: Array<{ target: SplashOutputTarget; field: keyof typeof newOuts }> = [
+            { target: 'splash', field: 'splashArtifactId' },
+            { target: 'android12Splash', field: 'android12SplashArtifactId' },
+        ];
+
+        for (const { target, field } of targetKeys) {
+            for (const [fieldName, t] of Object.entries(targetsMap ?? {})) {
+                if (t !== target) continue;
+                const v = filesMap[fieldName];
+                const file = Array.isArray(v) ? v?.[0] : v;
+                if (!file) {
+                    this.logger.log(
+                        `target:${target}:skip_field ${logCtx({ fieldName, reason: 'no_file_for_field' })}`,
+                    );
+                    continue;
+                }
+
+                const size = (file as any)?.buffer?.length ?? (file as any)?.size ?? undefined;
                 this.logger.log(
-                    `target:splash:skip_field ${logCtx({ fieldName, reason: 'no_file_for_field' })}`,
+                    `artifact:upload:start ${logCtx({ fieldName, target, size })}`,
                 );
-                continue;
+
+                const art = await this.artifacts.uploadAndCreate(
+                    uid,
+                    applicationId,
+                    themeId,
+                    ARTIFACT_KIND,
+                    file as any,
+                    [{ type: ARTIFACT_TAG, id: themeId }],
+                );
+
+                this.logger.log(
+                    `artifact:upload:ok ${logCtx({
+                        target,
+                        artifactId: art.id,
+                        storagePath: art.storagePath,
+                        mimeType: art.mimeType,
+                        bytes: art.size,
+                    })}`,
+                );
+                newOuts[field] = art.id;
+                break; // one file per target
             }
-
-            const chosen = (file ?? allFiles[0]) as CloudFile;
-            const size = (chosen as any)?.buffer?.length ?? (chosen as any)?.size ?? undefined;
-            this.logger.log(
-                `artifact:upload:start ${logCtx({
-                    fieldName,
-                    picked: !!file ? 'fieldFile' : 'fallbackFirst',
-                    size,
-                })}`,
-            );
-
-            const art = await this.artifacts.uploadAndCreate(
-                uid,
-                applicationId,
-                themeId,
-                ARTIFACT_KIND,
-                chosen as any,
-                [{ type: ARTIFACT_TAG, id: themeId }],
-            );
-
-            this.logger.log(
-                `artifact:upload:ok ${logCtx({
-                    artifactId: art.id,
-                    storagePath: art.storagePath,
-                    mimeType: art.mimeType,
-                    bytes: art.size,
-                })}`,
-            );
-            newOuts.splashArtifactId = art.id;
-            break; // only one splash output
         }
 
-        // fallback: no mapping but exactly one file
+        // fallback: no mapping but exactly one file → treat as splash
         if (!newOuts.splashArtifactId && allFiles.length === 1) {
             const chosen = allFiles[0];
             const size = (chosen as any)?.buffer?.length ?? (chosen as any)?.size ?? undefined;
@@ -490,6 +504,11 @@ export class SplashAssetsService {
         if (outs?.splashArtifactId) {
             await this.artifacts
                 .remove(uid, outs.splashArtifactId)
+                .catch(() => undefined);
+        }
+        if (outs?.android12SplashArtifactId) {
+            await this.artifacts
+                .remove(uid, outs.android12SplashArtifactId)
                 .catch(() => undefined);
         }
 
