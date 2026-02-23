@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
 
 abstract class ThemePageEditorApi {
@@ -83,8 +81,6 @@ class ThemePageEditor implements ThemePageEditorApi {
     if (initial != null) setInitial(initial);
   }
 
-  final DeepCollectionEquality _eq = const DeepCollectionEquality();
-
   ThemePageConfig? _initial;
   ThemePageConfig? _current;
 
@@ -96,7 +92,7 @@ class ThemePageEditor implements ThemePageEditorApi {
     final i = _initial;
     final c = _current;
     if (i == null || c == null) return false;
-    return !_eq.equals(i.toJson(), c.toJson());
+    return i != c;
   }
 
   void _emit() {

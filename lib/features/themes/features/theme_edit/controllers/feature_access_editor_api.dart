@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:collection/collection.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
 
@@ -64,8 +63,6 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     }
   }
 
-  final DeepCollectionEquality _eq = const DeepCollectionEquality();
-
   AppConfig? _initial;
   AppConfig? _current;
 
@@ -77,7 +74,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
     final i = _initial;
     final c = _current;
     if (i == null || c == null) return false;
-    return !_eq.equals(i.toJson(), c.toJson());
+    return i != c;
   }
 
   void _emit() {

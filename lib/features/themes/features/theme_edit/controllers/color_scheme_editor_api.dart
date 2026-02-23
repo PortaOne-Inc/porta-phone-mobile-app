@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/extensions/color_extension.dart';
 
@@ -32,7 +30,6 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
     if (initial != null) setInitial(initial);
   }
 
-  final DeepCollectionEquality _eq = const DeepCollectionEquality();
   ColorSchemeConfig? _initial;
   ColorSchemeConfig? _current;
 
@@ -44,7 +41,7 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
     final i = _initial;
     final c = _current;
     if (i == null || c == null) return false;
-    return !_eq.equals(i.toJson(), c.toJson());
+    return i != c;
   }
 
   void _emit() {
