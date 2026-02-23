@@ -156,7 +156,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
     final epoch = ++_initEpoch;
 
-    // Залишаємо тільки спільні компоненти
+    // Keep only shared components
     final preservedComponents = state.loadedComponents
         .where(
           (c) => c == ThemeComponents.navigation || c == ThemeComponents.embeds,
@@ -168,7 +168,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         selectedVariant: event.variant,
         status: ThemePropertyStatus.progress,
         error: null,
-        // Важливо очистити старі конфіги, щоб UI не показував дані від попередньої теми
+        // Important: clear old configs so the UI does not display data from the previous theme
         colorSchemeConfig: const ColorSchemeConfig(),
         themePageConfig: const ThemePageConfig(),
         themeWidgetConfig: const ThemeWidgetConfig(),

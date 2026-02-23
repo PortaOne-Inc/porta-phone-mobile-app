@@ -15,7 +15,7 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
     this.entityMapper,
     this.sourceMapper,
     this.paramsMapper,
-    this.constraintsMapper, // для defaults
+    this.constraintsMapper, // for defaults
   );
 
   final ConfiguratorBackandDatasource api;
@@ -63,10 +63,10 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       final dto = await api.upsertLaunchAssetsUploadBatch(
         applicationId: applicationId,
         themeId: themeId,
-        // dto-частина
+        // dto part
         source: source != null ? sourceMapper.convertTo(source) : null,
         params: params != null ? paramsMapper.convertTo(params) : null,
-        // файли
+        // files
         uploads: uploads
             .map(
               (u) => LaunchArtifactUploadWire(

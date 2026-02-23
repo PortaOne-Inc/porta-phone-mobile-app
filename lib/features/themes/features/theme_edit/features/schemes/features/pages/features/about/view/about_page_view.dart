@@ -20,7 +20,6 @@ class _AboutPageViewState extends State<AboutPageView> {
 
   @override
   Widget build(BuildContext context) {
-    // Використовуємо select для оптимізації ребілдів
     final currentConfig = context.select(
       (UpdateThemCubit cubit) => cubit.state.themePageConfig.about,
     );
@@ -29,16 +28,6 @@ class _AboutPageViewState extends State<AboutPageView> {
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
-          // ThemeOverrideSelector(
-          //   config: currentConfig.themeOverride,
-          //   onChanged: (v) {
-          //     _cubit.add(
-          //       ThemePageEvent.setAboutPage(
-          //         currentConfig.copyWith(themeOverride: v),
-          //       ),
-          //     );
-          //   },
-          // ),
           const SizedBox(height: 16),
           PageBackgroundEditor(
             value: currentConfig.background,
@@ -56,7 +45,6 @@ class _AboutPageViewState extends State<AboutPageView> {
             source: currentConfig.mainLogo,
             onPick: () => _pickAsset(context, _cubit.state.assets),
             onChanged: (updated) {
-              // Беремо свіжий конфіг перед оновленням
               final freshConfig = _cubit.state.themePageConfig.about;
               _cubit.add(
                 ThemePageEvent.setAboutPage(
@@ -77,7 +65,6 @@ class _AboutPageViewState extends State<AboutPageView> {
     if (mounted && picked != null) {
       final imageSource = ImageSource(id: picked.id, uri: picked.downloadUrl);
 
-      // Беремо свіжий конфіг
       final freshConfig = _cubit.state.themePageConfig.about;
 
       _cubit.add(

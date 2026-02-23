@@ -5,7 +5,7 @@ class Dropdown extends StatefulWidget {
   const Dropdown({
     required this.items,
     required this.onSelect,
-    this.constraints, // застосовується до меню, не до кнопки
+    this.constraints, // applied to the menu, not the button
     this.icon,
     this.position = 0,
     super.key,
@@ -38,7 +38,7 @@ class _DropDownState extends State<Dropdown> {
         : '';
 
     return ConstrainedBox(
-      // захист від "нульової" ширини в хитрих контейнерах (ListTile.trailing, scroll, тощо)
+      // guard against zero width in tricky containers (ListTile.trailing, scroll, etc.)
       constraints: const BoxConstraints(minWidth: 96),
       child: PopupMenuButton<int>(
         padding: EdgeInsets.zero,
@@ -57,7 +57,7 @@ class _DropDownState extends State<Dropdown> {
         itemBuilder: (context) => widget.items
             .mapIndexed(
               (index, value) => PopupMenuItem<int>(
-                // не роби тут занадто малу висоту — лиши дефолт або свій сталий розмір
+                // do not set too small a height here — keep the default or a fixed size
                 value: index,
                 child: Text(
                   value,
@@ -69,11 +69,11 @@ class _DropDownState extends State<Dropdown> {
             )
             .toList(),
         child: IntrinsicWidth(
-          // під контент, але з minWidth зверху
+          // fits the content, but respects minWidth from above
           child: SizedBox(
             height: kToolbarHeight - 8,
             child: Row(
-              mainAxisSize: MainAxisSize.min, // ключ до "мінімум за контентом"
+              mainAxisSize: MainAxisSize.min, // key to "shrink to content"
               children: [
                 if (widget.icon != null) ...[
                   widget.icon!,

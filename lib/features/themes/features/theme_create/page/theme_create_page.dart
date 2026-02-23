@@ -67,7 +67,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages {
                 20,
                 24,
                 96,
-              ), // місце під панель дій
+              ), // space for the action bar
               sliver: SliverToBoxAdapter(
                 child: _GridArea(
                   children: [
@@ -138,8 +138,8 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages {
 
 /// ---------- Layout pieces ----------
 
-/// Адаптивна двоколонка через Wrap:
-/// кожна картка має minWidth 420, тому на вузьких екранах піде у стовпчик.
+/// Adaptive two-column layout using Wrap:
+/// each card has minWidth 420, so on narrow screens it falls back to a single column.
 class _GridArea extends StatelessWidget {
   const _GridArea({required this.children});
 
@@ -209,7 +209,7 @@ class SectionCard extends StatelessWidget {
   }
 }
 
-/// Нижня «липка» панель з єдиною кнопкою дії.
+/// Bottom sticky bar with a single action button.
 class _ActionBar extends StatelessWidget {
   const _ActionBar({
     required this.busy,

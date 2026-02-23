@@ -20,7 +20,7 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
   @override
   Future<List<FeatureAccessModel>> getFeatureAccessList({
     required String applicationId,
-    String? themeId, // тепер не потрібен, але лишимо для зворотної сумісності
+    String? themeId, // no longer needed, kept for backward compatibility
   }) async {
     final dtos = await _api.getFeatureAccesses(applicationId: applicationId);
     return dtos.map(_mapper.convertFrom).toList();

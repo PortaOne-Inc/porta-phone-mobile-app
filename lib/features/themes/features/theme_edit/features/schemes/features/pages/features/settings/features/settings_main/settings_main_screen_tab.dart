@@ -22,7 +22,6 @@ class SettingsMainScreenTab extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        // НОВЕ
         ThemeOverrideSelector(
           config: config.themeOverride,
           onChanged: (value) =>
@@ -49,7 +48,6 @@ class SettingsMainScreenTab extends StatelessWidget {
             onChanged: (v) => onChanged(config.copyWith(showSeparators: v)),
           ),
         ),
-        // ... (решта коду без змін)
         const SizedBox(height: 16),
         BorderContainer(
           title: 'List Items Styling',

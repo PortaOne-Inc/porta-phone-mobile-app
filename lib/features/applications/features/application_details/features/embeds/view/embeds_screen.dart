@@ -229,7 +229,7 @@ class _EmbedTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    const SizedBox(width: 72), // відступ під лівий блок
+                    const SizedBox(width: 72), // offset for the left block
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -273,7 +273,7 @@ class _EmbedTile extends StatelessWidget {
               ),
             ),
 
-            // Єдина кнопка меню справа з усіма діями
+            // Single menu button on the right with all actions
             Positioned.fill(
               child: Align(
                 alignment: Alignment.centerRight,

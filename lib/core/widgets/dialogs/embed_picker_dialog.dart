@@ -112,7 +112,7 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
           ),
           itemBuilder: (context, i) {
             final item = widget.items[i];
-            final id = item.id ?? item.uri; // fallback якщо id відсутній
+            final id = item.id ?? item.uri; // fallback if id is absent
             final selected = _selectedIds.contains(id);
 
             final canOpen = _canOpenInBrowser(item.uri);
@@ -289,7 +289,7 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
   }
 
   void _confirmSelection() {
-    // match за id (fallback на uri якщо id null)
+    // match by id (fallback to uri if id is null)
     final byId = <String, EmbeddedResourceModel>{};
     for (final e in widget.items) {
       final key = e.id ?? e.uri;
@@ -341,7 +341,7 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
   }
 
   String _displayLabelFromUri(String uri) {
-    // для http(s) показуємо hostname, інакше останній сегмент або сам рядок
+    // for http(s) show hostname, otherwise the last segment or the string itself
     try {
       final u = Uri.parse(uri);
       if (u.hasScheme && (u.scheme == 'http' || u.scheme == 'https')) {

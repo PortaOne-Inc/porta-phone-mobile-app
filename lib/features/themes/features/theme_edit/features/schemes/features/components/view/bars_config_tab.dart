@@ -18,8 +18,7 @@ class BarsConfigTab extends StatelessWidget {
   ) {
     final cubit = context.read<UpdateThemCubit>();
 
-    // FIX: Беремо актуальний конфіг зі стейта для порівняння,
-    // бо this.config може бути застарілим після зміни теми.
+    // Read fresh config from state — this.config may be stale after a theme switch.
     final currentBarConfig = cubit.state.themeWidgetConfig.bar;
     final current = currentBarConfig.bottomNavigationBar;
 

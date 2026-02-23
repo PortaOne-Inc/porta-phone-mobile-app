@@ -54,7 +54,7 @@ sealed class OutputArtifactsDto with _$OutputArtifactsDto {
       _$OutputArtifactsDtoFromJson(json);
 }
 
-/// Головна сутність (1:1 з темою; id == themeId)
+/// Main entity (1:1 with a theme; id == themeId)
 @freezed
 sealed class LaunchAssetsDto with _$LaunchAssetsDto {
   const factory LaunchAssetsDto({
