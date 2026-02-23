@@ -12,6 +12,7 @@ color schemes, widget & page configs, splash/launch assets, and feature entitlem
 - [Module Dependency Graph](#module-dependency-graph)
 - [Data Model](#data-model)
 - [Firestore Collections](#firestore-collections)
+    - [Composite Indexes](#composite-indexes)
 - [API Endpoints](#api-endpoints)
     - [Themes (CRUD)](#themes-crud)
     - [Color Schemes](#color-schemes)
@@ -27,6 +28,7 @@ color schemes, widget & page configs, splash/launch assets, and feature entitlem
     - [Theme Deletion (Cascade)](#theme-deletion-cascade)
     - [AI Generation Flow](#ai-generation-flow)
     - [Asset Upload & Resolution](#asset-upload--resolution)
+    - [Error Handling in Asset Services](#error-handling-in-asset-services)
 - [Configuration](#configuration)
 - [Authentication](#authentication)
 
@@ -272,6 +274,25 @@ The `android12` slice and `android12SplashArtifactId` are optional for backward 
 | `theme_feature_entitlements` | FeatureAccess | `= themeId`                                    |
 | `theme_configs_defaults`     | —             | `splashAssetsDefaults`, `launchAssetsDefaults` |
 
+### Composite Indexes
+
+Queries that filter on two or more fields require Firestore composite indexes to avoid full collection scans.
+These are defined in `firestore.indexes.json` and deployed via `firebase deploy --only firestore:indexes`.
+
+| Collection                       | Indexed Fields                              | Used By                                     |
+|----------------------------------|---------------------------------------------|---------------------------------------------|
+| `theme_config_color_schemes`     | `applicationId` + `themeId`                 | `ColorSchemesService.listForTheme()`        |
+| `theme_config_widgets`           | `applicationId` + `themeId`                 | `WidgetConfigsService.listForTheme()`       |
+| `theme_config_pages`             | `applicationId` + `themeId`                 | `PageConfigsService.listForTheme()`         |
+| `theme_feature_entitlements`     | `applicationId` + `themeId`                 | `FeatureAccessService.getByTheme()` / `upsertByTheme()` |
+| `application_assets_renditions`  | `ownerId` + `applicationId` + `themeId`     | `ArtifactsService.findAll()`                |
+| `themes`                         | `applicationId` + `label`                   | `ApplicationsService.resolveThemeIdForBuild()` |
+| `translations`                   | `applicationId` + `locale` + `key`          | `TranslationsRepository.deleteOverrideByAppId()` |
+
+> **Note:** If `COLLECTION_PREFIX` is set, the actual collection names in Firestore will be prefixed
+> (e.g., `dev_theme_config_widgets`). The index file must be updated to match the prefixed names
+> before deploying to that environment.
+
 ---
 
 ## API Endpoints
@@ -502,6 +523,17 @@ GET /:themeId/widget-configs/:variant
 
 This allows widget/page configs to reference assets by ID. On read, IDs are transparently
 resolved to time-limited signed URLs that the client can fetch directly.
+
+### Error Handling in Asset Services
+
+Asset upload and resolution operations use **fail-fast** error handling — errors are surfaced
+to the caller rather than swallowed silently:
+
+| Operation | Service | Behavior |
+|---|---|---|
+| Image URL resolution | `WidgetConfigsService` | If a signed URL cannot be generated for a known asset ID, the request fails (500). Prevents returning configs with silently broken image references. |
+| Old artifact removal | `SplashAssetsService` | If removing a previous artifact fails during re-upload, the operation aborts (`400`). Prevents orphaned files in Cloud Storage. |
+| Platform uploads | `LaunchAssetsService` | All platform uploads run in parallel. If any upload fails, the entity is **not** persisted — prevents saving partial state with missing artifact IDs. |
 
 ---
 

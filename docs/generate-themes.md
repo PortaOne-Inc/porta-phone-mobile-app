@@ -464,8 +464,10 @@ All three response schemas live in `schemas/` and validate OpenAI output:
 | Schema                    | File                              | Validates                                      |
 |---------------------------|-----------------------------------|------------------------------------------------|
 | `ColorSchemeConfigSchema` | `schemas/color-scheme.schema.ts`  | `seedColor` + 40 `#RRGGBB` fields              |
-| `WidgetConfigSchema`      | `schemas/widget-config.schema.ts` | All widget fields, lenient (optional/nullable) |
-| `PageConfigSchema`        | `schemas/page-config.schema.ts`   | Login + dialing pages, lenient                 |
+| `WidgetConfigSchema`      | `schemas/widget-config.schema.ts` | All widget fields, strict + optional/nullable |
+| `PageConfigSchema`        | `schemas/page-config.schema.ts`   | Login + dialing pages, strict + optional/nullable |
 
-All widget and page schema fields are `optional().nullable()` so partial AI output still passes. The color scheme schema
-is strict — all 40 fields must be valid `#RRGGBB` strings.
+All three AI response schemas use `.strict()` — unknown fields returned by the AI are rejected to prevent
+arbitrary field injection. Widget and page schema fields are individually `optional().nullable()` so partial
+AI output still passes, but no extra keys are allowed. The color scheme schema requires all 40 fields to be
+valid `#RRGGBB` strings.
