@@ -6,8 +6,12 @@ publish_to: 'none'
 version: 0.0.8
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ^3.11.0
   flutter: ^3.19.0
+
+workspace:
+  - packages/domain
+  - packages/data
 
 dependencies:
   flutter:
@@ -72,6 +76,7 @@ dev_dependencies:
   injectable_generator: ^2.9.1
   build_runner: ^2.10.2
   json_serializable: ^6.11.1
+  melos: ^7.4.0
 
 flutter:
   generate: true
@@ -82,3 +87,71 @@ flutter:
     - assets/themes/
     - assets/scheme/
     - assets/environment/
+
+melos:
+  useRootAsPackage: true
+  scripts:
+    generate:
+      description: Run build_runner code generation in all packages.
+      run: dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dependsOn: build_runner
+
+    generate:watch:
+      description: Run build_runner watch (use --scope to target a package).
+      run: dart run build_runner watch --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn: build_runner
+
+    analyze:
+      description: Run dart analyze in all packages.
+      run: dart analyze --fatal-infos
+      exec:
+        concurrency: 3
+
+    format:check:
+      description: Check Dart formatting in all packages.
+      run: dart format --set-exit-if-changed .
+      exec:
+        concurrency: 3
+
+    format:
+      description: Fix Dart formatting in all packages.
+      run: dart format .
+      exec:
+        concurrency: 3
+
+    test:
+      description: Run tests in all packages.
+      run: flutter test
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dirExists: test
+
+    test:coverage:
+      description: Run tests with coverage in all packages.
+      run: flutter test --coverage
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dirExists: test
+
+    clean:
+      description: Clean all packages.
+      run: flutter clean
+      exec:
+        concurrency: 3
+
+    deps:get:
+      description: Get dependencies for all packages.
+      run: flutter pub get
+      exec:
+        concurrency: 3

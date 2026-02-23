@@ -6,6 +6,8 @@ publish_to: none
 environment:
   sdk: ^3.8.0
 
+resolution: workspace
+
 dependencies:
   injectable: ^2.6.0
   get_it: ^9.0.5

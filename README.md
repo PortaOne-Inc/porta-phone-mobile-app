@@ -38,6 +38,40 @@ Env parameters:
         - ip  (_default **127.0.0.1**_)
         - port  (_default**7980**_)
 
+## Melos (monorepo tooling)
+
+The project uses [Melos](https://melos.invertase.dev/) to manage the multi-package workspace (`packages/domain`, `packages/data`, and the root app).
+
+### Prerequisites
+
+```bash
+dart pub global activate melos
+```
+
+### Available commands
+
+| Command | Description |
+|---|---|
+| `melos run generate` | Run `build_runner` code generation across all packages |
+| `melos run generate:watch` | Run `build_runner` in watch mode (use `--scope` to target a package) |
+| `melos run analyze` | Run `dart analyze` across all packages |
+| `melos run format` | Auto-fix formatting in all packages |
+| `melos run format:check` | Check formatting without modifying files |
+| `melos run test` | Run tests in all packages that have a `test/` directory |
+| `melos run test:coverage` | Run tests with coverage |
+| `melos run clean` | `flutter clean` in all packages |
+| `melos run deps:get` | `flutter pub get` in all packages |
+
+### Useful flags
+
+```bash
+# Target a specific package
+melos run generate --scope=domain
+
+# List all workspace packages
+melos list
+```
+
 ## Build
     flutter build web --output firebase/public
 

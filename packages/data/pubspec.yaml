@@ -7,6 +7,8 @@ environment:
   sdk: ^3.8.0
   flutter: ^3.19.0
 
+resolution: workspace
+
 dependencies:
   domain:
     path: ../domain
