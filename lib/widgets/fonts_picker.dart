@@ -31,8 +31,9 @@ class _FontsPickerState extends State<FontsPicker> {
       return state.items?.length ?? 0;
     },
     fetchPage: (pageKey) async {
-      if (pageKey > 24)
+      if (pageKey > 24) {
         await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
 
       final startIndex = pageKey;
 

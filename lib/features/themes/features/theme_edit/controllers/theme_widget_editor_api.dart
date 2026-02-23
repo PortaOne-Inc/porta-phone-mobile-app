@@ -157,10 +157,11 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   @override
   ThemeWidgetConfig get initial {
     final i = _initial;
-    if (i == null)
+    if (i == null) {
       throw StateError(
         'ThemeWidgetEditor not initialized. Call setInitial() first.',
       );
+    }
     return i;
   }
 
@@ -170,10 +171,11 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   @override
   ThemeWidgetConfig get current {
     final c = _current;
-    if (c == null)
+    if (c == null) {
       throw StateError(
         'ThemeWidgetEditor not initialized. Call setInitial() first.',
       );
+    }
     return c;
   }
 

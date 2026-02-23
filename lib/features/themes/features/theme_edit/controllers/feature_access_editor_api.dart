@@ -191,8 +191,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void updateBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index >= list.length)
+    if (index < 0 || index >= list.length) {
       throw RangeError.index(index, list, 'tabs');
+    }
     list[index] = tab;
     setBottomMenuTabs(list);
   }
@@ -200,8 +201,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void insertBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index > list.length)
+    if (index < 0 || index > list.length) {
       throw RangeError.index(index, list, 'tabs');
+    }
     list.insert(index, tab);
     setBottomMenuTabs(list);
   }
@@ -209,8 +211,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void removeBottomMenuTabAt(int index) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index >= list.length)
+    if (index < 0 || index >= list.length) {
       throw RangeError.index(index, list, 'tabs');
+    }
     list.removeAt(index);
     setBottomMenuTabs(list);
   }

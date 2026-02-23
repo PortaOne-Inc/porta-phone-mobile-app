@@ -21,26 +21,28 @@ class SupportedConfigWidget extends StatefulWidget {
 }
 
 class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
+  static const _logLevels = ['ALL', 'FINEST', 'FINER', 'FINE', 'CONFIG', 'INFO', 'WARNING', 'SEVERE', 'SHOUT', 'OFF'];
+
   late TextEditingController _monitorIntervalController;
 
   @override
   void initState() {
     super.initState();
-    final currentInterval = _getMonitorInterval(widget.supportedFeatures);
+    final loggingConfig = _getLoggingConfig(widget.supportedFeatures);
     _monitorIntervalController = TextEditingController(
-      text: currentInterval.toString(),
+      text: loggingConfig.checkIntervalSec.toString(),
     );
   }
 
   @override
   void didUpdateWidget(covariant SupportedConfigWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final oldInterval = _getMonitorInterval(oldWidget.supportedFeatures);
-    final newInterval = _getMonitorInterval(widget.supportedFeatures);
+    final oldConfig = _getLoggingConfig(oldWidget.supportedFeatures);
+    final newConfig = _getLoggingConfig(widget.supportedFeatures);
 
-    if (oldInterval != newInterval &&
-        _monitorIntervalController.text != newInterval.toString()) {
-      _monitorIntervalController.text = newInterval.toString();
+    if (oldConfig.checkIntervalSec != newConfig.checkIntervalSec &&
+        _monitorIntervalController.text != newConfig.checkIntervalSec.toString()) {
+      _monitorIntervalController.text = newConfig.checkIntervalSec.toString();
     }
   }
 
@@ -50,11 +52,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     super.dispose();
   }
 
-  int _getMonitorInterval(List<SupportedFeature> features) {
-    final monitorFeature =
-        features.firstWhereOrNull((e) => e is SupportedMonitorConfig)
-            as SupportedMonitorConfig?;
-    return monitorFeature?.checkIntervalSec ?? 15;
+  SupportedLoggingConfig _getLoggingConfig(List<SupportedFeature> features) {
+    final feature = features.firstWhereOrNull((e) => e is SupportedLoggingConfig) as SupportedLoggingConfig?;
+    return feature ?? const SupportedLoggingConfig();
   }
 
   @override
@@ -79,6 +79,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               (e) => e is SupportedSipPresence,
             )
             as SupportedSipPresence?;
+    final loggingConfig = _getLoggingConfig(widget.supportedFeatures);
 
     final currentThemeMode = themeFeature?.mode ?? ThemeModeConfig.system;
     final isVideoEnabled = videoFeature?.enabled ?? false;
@@ -137,6 +138,26 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               const SizedBox(height: 8),
               const Divider(),
               const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                initialValue: _logLevels.contains(loggingConfig.logLevel) ? loggingConfig.logLevel : 'INFO',
+                decoration: const InputDecoration(
+                  labelText: 'Log Level',
+                  helperText: 'Controls the application log level.',
+                  border: OutlineInputBorder(),
+                ),
+                items: _logLevels
+                    .map((level) => DropdownMenuItem(value: level, child: Text(level)))
+                    .toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    _onLoggingConfigChanged(
+                      logLevel: value,
+                      checkIntervalSec: loggingConfig.checkIntervalSec,
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _monitorIntervalController,
                 keyboardType: TextInputType.number,
@@ -147,7 +168,13 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
                       'Defines how often the RTP traffic monitor checks for traffic.',
                   border: OutlineInputBorder(),
                 ),
-                onChanged: _onMonitorInputChanged,
+                onChanged: (value) {
+                  final interval = int.tryParse(value) ?? 15;
+                  _onLoggingConfigChanged(
+                    logLevel: loggingConfig.logLevel,
+                    checkIntervalSec: interval,
+                  );
+                },
               ),
             ],
           ),
@@ -188,15 +215,16 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     widget.onChanged(newList);
   }
 
-  void _onMonitorInputChanged(String value) {
-    final interval = int.tryParse(value) ?? 15;
-    _onMonitorConfigChanged(interval);
-  }
-
-  void _onMonitorConfigChanged(int interval) {
+  void _onLoggingConfigChanged({
+    required String logLevel,
+    required int checkIntervalSec,
+  }) {
     final newList = List<SupportedFeature>.from(widget.supportedFeatures)
-      ..removeWhere((e) => e is SupportedMonitorConfig)
-      ..add(SupportedFeature.monitorConfig(checkIntervalSec: interval));
+      ..removeWhere((e) => e is SupportedLoggingConfig)
+      ..add(SupportedFeature.loggingConfig(
+        logLevel: logLevel,
+        checkIntervalSec: checkIntervalSec,
+      ));
 
     widget.onChanged(newList);
   }

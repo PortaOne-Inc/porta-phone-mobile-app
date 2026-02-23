@@ -152,8 +152,9 @@ bool _isSvg(AssetModel a) => a.mimeType.toLowerCase().contains('svg');
 
 Future<Uint8List> _bytesFromUrl(String url) async {
   final resp = await http.get(Uri.parse(url));
-  if (resp.statusCode != 200)
+  if (resp.statusCode != 200) {
     throw Exception('HTTP ${resp.statusCode} while fetching $url');
+  }
   return resp.bodyBytes;
 }
 

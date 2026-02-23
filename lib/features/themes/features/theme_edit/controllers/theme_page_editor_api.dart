@@ -107,10 +107,11 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   ThemePageConfig get initial {
     final i = _initial;
-    if (i == null)
+    if (i == null) {
       throw StateError(
         'ThemePageEditor not initialized. Call setInitial() first.',
       );
+    }
     return i;
   }
 
@@ -120,10 +121,11 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   ThemePageConfig get current {
     final c = _current;
-    if (c == null)
+    if (c == null) {
       throw StateError(
         'ThemePageEditor not initialized. Call setInitial() first.',
       );
+    }
     return c;
   }
 

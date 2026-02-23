@@ -61,8 +61,9 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   }
 
   Future<void> confirmDeleteApplication() async {
-    if (state.deleteApplication != null)
+    if (state.deleteApplication != null) {
       await _tryDeleteApplication(state.deleteApplication!);
+    }
     emit(state.copyWith(deleteApplication: null));
   }
 

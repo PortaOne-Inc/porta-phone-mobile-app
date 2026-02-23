@@ -187,14 +187,18 @@ class _GradientBackgroundEditor extends StatelessWidget {
 
   String? _detectPreset() {
     final v = value;
-    if (v.beginX == 0 && v.beginY == -1 && v.endX == 0 && v.endY == 1)
+    if (v.beginX == 0 && v.beginY == -1 && v.endX == 0 && v.endY == 1) {
       return 'top_bottom';
-    if (v.beginX == -1 && v.beginY == 0 && v.endX == 1 && v.endY == 0)
+    }
+    if (v.beginX == -1 && v.beginY == 0 && v.endX == 1 && v.endY == 0) {
       return 'left_right';
-    if (v.beginX == -1 && v.beginY == -1 && v.endX == 1 && v.endY == 1)
+    }
+    if (v.beginX == -1 && v.beginY == -1 && v.endX == 1 && v.endY == 1) {
       return 'tl_br';
-    if (v.beginX == -1 && v.beginY == 1 && v.endX == 1 && v.endY == -1)
+    }
+    if (v.beginX == -1 && v.beginY == 1 && v.endX == 1 && v.endY == -1) {
       return 'bl_tr';
+    }
     return 'custom';
   }
 

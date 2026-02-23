@@ -81,9 +81,10 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                     scrollDirection: Axis.horizontal,
                     onReorder: (oldIndex, newIndex) {
                       setState(() {
-                        if (newIndex > oldIndex) newIndex -= 1;
+                        var adjustedIndex = newIndex;
+                        if (adjustedIndex > oldIndex) adjustedIndex -= 1;
                         final item = _activeTabs.removeAt(oldIndex);
-                        _activeTabs.insert(newIndex, item);
+                        _activeTabs.insert(adjustedIndex, item);
                         _updateAppConfig();
                       });
                     },

@@ -54,10 +54,11 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
   @override
   ColorSchemeConfig get initial {
     final i = _initial;
-    if (i == null)
+    if (i == null) {
       throw StateError(
         'ColorSchemeEditor not initialized. Call setInitial() first.',
       );
+    }
     return i;
   }
 
@@ -67,10 +68,11 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
   @override
   ColorSchemeConfig get current {
     final c = _current;
-    if (c == null)
+    if (c == null) {
       throw StateError(
         'ColorSchemeEditor not initialized. Call setInitial() first.',
       );
+    }
     return c;
   }
 

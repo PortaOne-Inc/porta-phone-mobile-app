@@ -334,9 +334,10 @@ class MimeAwareImage extends StatelessWidget {
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) return _p(context);
         final data = snap.data;
-        if (data == null)
+        if (data == null) {
           return errorWidget ??
               const Icon(Icons.broken_image_outlined, size: 40);
+        }
         return builder(data);
       },
     );

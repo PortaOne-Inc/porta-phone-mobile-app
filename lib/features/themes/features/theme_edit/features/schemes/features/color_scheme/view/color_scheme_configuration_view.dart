@@ -227,7 +227,7 @@ class _ColorSchemeConfigurationViewState
   }
 
   void _showImportJsonDialog(BuildContext context, UpdateThemCubit bloc) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (dialogContext) => JsonImportDialog(
         onImport: (jsonMap) =>

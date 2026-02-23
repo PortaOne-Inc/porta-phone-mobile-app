@@ -148,7 +148,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
   }
 
   void _showImportJsonDialog(BuildContext context, UpdateThemCubit cubit) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) => _WidgetJsonImportDialog(
         onImport: (json) => cubit.add(ThemeWidgetEvent.importJson(json)),
