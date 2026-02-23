@@ -1,53 +1,22 @@
-// src/features/embeds/dto/create-embedded.dto.ts
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsBoolean,
-  IsEnum,
-  IsObject,
-  IsOptional,
-  IsString,
-  IsUrl,
-  IsArray,
-} from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 import { EmbeddedResourceType } from '../entities/embed.entity';
 
-export class CreateEmbeddedDto {
-  @ApiProperty({ example: 'https://example.com/terms.html' })
-  @IsString()
-  @IsUrl()
-  uri!: string;
-
-  @ApiProperty({
-    enum: EmbeddedResourceType,
-    default: EmbeddedResourceType.unknown,
+export const CreateEmbeddedSchema = z
+  .object({
+    uri: z.string().url(),
+    type: z
+      .nativeEnum(EmbeddedResourceType)
+      .default(EmbeddedResourceType.unknown),
+    attributes: z.record(z.string(), z.any()).optional(),
+    metadata: z
+      .object({ attributes: z.record(z.string(), z.any()).optional() })
+      .optional(),
+    payload: z.array(z.string()).optional(),
+    enableConsoleLogCapture: z.boolean().optional(),
+    reconnectStrategy: z.string().optional(),
+    applicationId: z.string().optional(),
   })
-  @IsEnum(EmbeddedResourceType)
-  type: EmbeddedResourceType = EmbeddedResourceType.unknown;
+  .strict();
 
-  @ApiProperty({ type: Object, default: {} })
-  @IsObject()
-  @IsOptional()
-  attributes?: Record<string, any>;
-
-  @ApiProperty({ type: Object, default: { attributes: {} } })
-  @IsObject()
-  @IsOptional()
-  metadata?: { attributes?: Record<string, any> };
-
-  @ApiProperty({ type: [String], default: [] })
-  @IsArray()
-  @IsOptional()
-  payload?: string[];
-
-  @ApiProperty({ default: false })
-  @IsBoolean()
-  @IsOptional()
-  enableConsoleLogCapture?: boolean;
-
-  @ApiProperty({ required: false })
-  @IsString()
-  @IsOptional()
-  reconnectStrategy?: string;
-
-  applicationId?: string;
-}
+export class CreateEmbeddedDto extends createZodDto(CreateEmbeddedSchema) {}

@@ -1,4 +1,6 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateEmbeddedDto } from './create-embed.dto';
+import { createZodDto } from 'nestjs-zod';
+import { CreateEmbeddedSchema } from './create-embed.dto';
 
-export class UpdateEmbeddedDto extends PartialType(CreateEmbeddedDto) {}
+export const UpdateEmbeddedSchema = CreateEmbeddedSchema.partial();
+
+export class UpdateEmbeddedDto extends createZodDto(UpdateEmbeddedSchema) {}

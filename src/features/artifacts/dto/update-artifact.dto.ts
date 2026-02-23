@@ -1,11 +1,13 @@
-import { IsOptional, IsString, IsArray } from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpdateArtifactDto {
-  @IsOptional()
-  @IsString()
-  checksum?: string;
+export const UpdateArtifactSchema = z
+  .object({
+    checksum: z.string().optional(),
+    usedBy: z
+      .array(z.object({ type: z.string(), id: z.string() }))
+      .optional(),
+  })
+  .strict();
 
-  @IsOptional()
-  @IsArray()
-  usedBy?: Array<{ type: string; id: string }>;
-}
+export class UpdateArtifactDto extends createZodDto(UpdateArtifactSchema) {}

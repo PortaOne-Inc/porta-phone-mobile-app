@@ -1,57 +1,15 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { SplashMode } from '../entities/splash-asset.entity';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
+import { SplashSourceZ, SplashParamsZ, SplashModeZ } from './get-splash-asset.zod';
 
-export type SplashFit =
-  | 'fill'
-  | 'contain'
-  | 'cover'
-  | 'fitWidth'
-  | 'fitHeight'
-  | 'none'
-  | 'scaleDown';
-
-export class SplashSourceDto {
-  @ApiPropertyOptional({ description: 'Foreground asset id (logo/image)' })
-  foregroundAssetId?: string;
-
-  @ApiPropertyOptional({ description: 'Optional background asset id' })
-  backgroundAssetId?: string;
-
-  @ApiPropertyOptional({
-    description: 'Optional background color (#RRGGBB or #AARRGGBB)',
+export const UpsertSplashAssetSchema = z
+  .object({
+    source: SplashSourceZ.optional(),
+    params: SplashParamsZ.optional(),
+    mode: SplashModeZ.optional(),
   })
-  backgroundColorHex?: string | null;
-}
+  .strict();
 
-export class SplashParamsDto {
-  @ApiPropertyOptional({
-    enum: [
-      'fill',
-      'contain',
-      'cover',
-      'fitWidth',
-      'fitHeight',
-      'none',
-      'scaleDown',
-    ],
-    description: 'How to fit the image (BoxFit analogue)',
-  })
-  fit?: SplashFit;
-
-  @ApiPropertyOptional({ description: 'Padding in dp' })
-  paddingDp?: number;
-}
-
-export class UpsertSplashAssetDto {
-  @ApiPropertyOptional({ type: SplashSourceDto })
-  source?: SplashSourceDto;
-
-  @ApiPropertyOptional({ type: SplashParamsDto })
-  params?: SplashParamsDto;
-
-  @ApiPropertyOptional({
-    enum: ['withBackground', 'withoutBackground'],
-    description: 'Constraints mode (used for validation recommendations)',
-  })
-  mode?: SplashMode;
-}
+export class UpsertSplashAssetDto extends createZodDto(
+  UpsertSplashAssetSchema,
+) {}

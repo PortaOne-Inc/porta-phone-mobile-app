@@ -10,7 +10,10 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiQuery } from '@nestjs/swagger';
 import { SplashAssetsService } from './splash-assets.service';
-import { UpsertSplashAssetDto } from './dto/upsert-splash-asset.dto';
+import {
+  UpsertSplashAssetDto,
+  UpsertSplashAssetSchema,
+} from './dto/upsert-splash-asset.dto';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
 import {
   CloudAnyUpload,
@@ -79,7 +82,9 @@ export class SplashAssetsController {
       ? (JSON.parse(fields['targets']) as Record<string, 'splash' | 'android12Splash'>)
       : {};
     const dtoRaw = fields['dto'];
-    const dto: UpsertSplashAssetDto = dtoRaw ? JSON.parse(dtoRaw) : {};
+    const dto: UpsertSplashAssetDto = dtoRaw
+      ? UpsertSplashAssetSchema.parse(JSON.parse(dtoRaw))
+      : {};
     return this.service.upsertWithFiles(
       uid,
       appId,

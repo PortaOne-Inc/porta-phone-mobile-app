@@ -20,9 +20,15 @@ It integrates with **Firebase**, **Localizely**, **GitHub**, and **OpenAI APIs**
 
 ## 📚 Documentation
 
-| Topic                                            | File                                               |
-|--------------------------------------------------|----------------------------------------------------|
-| AI Theme Generation (generate & nudge endpoints) | [docs/generate-themes.md](docs/generate-themes.md) |
+| Topic | File |
+|---|---|
+| Feature Index (all docs) | [docs/features.md](docs/features.md) |
+| Themes Overview | [docs/themes-overview.md](docs/themes-overview.md) |
+| Themes Data Model | [docs/themes-data-model.md](docs/themes-data-model.md) |
+| Themes API Endpoints | [docs/themes-api-endpoints.md](docs/themes-api-endpoints.md) |
+| Themes Core Flows | [docs/themes-core-flows.md](docs/themes-core-flows.md) |
+| AI Theme Generation | [docs/generate-themes.md](docs/generate-themes.md) |
+| DTO & Validation | [docs/validation.md](docs/validation.md) |
 
 ---
 

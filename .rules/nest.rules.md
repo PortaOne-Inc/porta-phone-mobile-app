@@ -17,8 +17,20 @@
 
 ## 3. Validation & DTOs
 
-* **Zod:** Use `nestjs-zod` for all DTOs and validation.
-* **Swagger:** Annotate controllers and DTOs to ensure the API is fully documented.
+* **Zod-only:** Every DTO uses `z.object().strict()` + `createZodDto()` from `nestjs-zod`. No `class-validator` decorators in DTOs.
+* **Pattern:**
+  ```typescript
+  import { z } from 'zod';
+  import { createZodDto } from 'nestjs-zod';
+
+  export const CreateFooSchema = z.object({ name: z.string().min(1) }).strict();
+  export class CreateFooDto extends createZodDto(CreateFooSchema) {}
+  ```
+* **Partial updates:** Use `Schema.partial()` instead of `PartialType()`.
+* **Response DTOs:** Omit `.strict()` (allow extra fields from Firestore).
+* **Swagger:** `nestjs-zod` auto-generates OpenAPI metadata from Zod schemas.
+* **Global pipe:** `ZodValidationPipe` from `nestjs-zod` is registered globally in `app.module.ts`. No per-route pipes needed.
+* **Multipart JSON:** When a DTO arrives as a JSON string in a form field (e.g. splash upload), parse and validate manually: `Schema.parse(JSON.parse(raw))`.
 
 ## 4. Lifecycle & Methods
 

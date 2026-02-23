@@ -1,30 +1,15 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsObject,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class CreateFeatureAccessDto {
-  @ApiPropertyOptional({
-    description:
-      'Theme id (optional). If omitted, applies to entire application',
+export const CreateFeatureAccessSchema = z
+  .object({
+    themeId: z.string().optional(),
+    status: z.enum(['draft', 'published']).default('draft'),
+    config: z.record(z.string(), z.any()),
+    applicationId: z.string().optional(),
   })
-  @IsOptional()
-  @IsString()
-  themeId?: string;
+  .strict();
 
-  @ApiProperty({ enum: ['draft', 'published'], default: 'draft' })
-  @IsEnum(['draft', 'published'] as any)
-  status: 'draft' | 'published' = 'draft';
-
-  @ApiProperty({ description: 'Arbitrary JSON config' })
-  @IsObject()
-  @IsNotEmpty()
-  config!: Record<string, any>;
-
-  // Will be injected from path:
-  applicationId!: string;
-}
+export class CreateFeatureAccessDto extends createZodDto(
+  CreateFeatureAccessSchema,
+) {}

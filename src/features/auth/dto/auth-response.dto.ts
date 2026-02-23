@@ -1,29 +1,16 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class AuthResponseDto {
-  @ApiProperty({
-    description: 'Status of the request',
-    example: 'success',
-  })
-  status: string;
+export const AuthResponseSchema = z.object({
+  status: z.string(),
+  token: z.string(),
+});
 
-  @ApiProperty({
-    description: 'JWT token for the authenticated user',
-    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-  })
-  token: string;
-}
+export class AuthResponseDto extends createZodDto(AuthResponseSchema) {}
 
-export class ErrorResponseDto {
-  @ApiProperty({
-    description: 'Status of the request',
-    example: 'error',
-  })
-  status: string;
+export const ErrorResponseSchema = z.object({
+  status: z.string(),
+  message: z.string(),
+});
 
-  @ApiProperty({
-    description: 'Error message',
-    example: 'Registration failed',
-  })
-  message: string;
-}
+export class ErrorResponseDto extends createZodDto(ErrorResponseSchema) {}

@@ -1,9 +1,15 @@
-// src/features/publication-resources/dto/update-publication-resource.dto.ts
-import { ApiProperty } from '@nestjs/swagger';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpdatePublicationResourceDto {
-  @ApiProperty({ required: false }) title?: string;
-  @ApiProperty({ required: false }) url?: string;
-  @ApiProperty({ required: false }) note?: string;
-  @ApiProperty({ required: false }) text?: string;
-}
+export const UpdatePublicationResourceSchema = z
+  .object({
+    title: z.string().optional(),
+    url: z.string().optional(),
+    note: z.string().optional(),
+    text: z.string().optional(),
+  })
+  .strict();
+
+export class UpdatePublicationResourceDto extends createZodDto(
+  UpdatePublicationResourceSchema,
+) {}

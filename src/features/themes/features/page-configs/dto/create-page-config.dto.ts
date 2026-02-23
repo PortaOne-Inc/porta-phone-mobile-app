@@ -1,19 +1,13 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsInt, IsOptional, Min } from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpsertPageConfigDto {
-  @ApiPropertyOptional({
-    description: 'Partial config to deep-merge',
-    type: Object,
-    additionalProperties: true,
+export const UpsertPageConfigSchema = z
+  .object({
+    config: z.record(z.string(), z.any()).optional(),
+    expectedVersion: z.number().int().min(0).optional(),
   })
-  config?: Record<string, any>;
+  .strict();
 
-  @ApiPropertyOptional({
-    description: 'Expected version for optimistic locking (409 on mismatch)',
-  })
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  expectedVersion?: number;
-}
+export class UpsertPageConfigDto extends createZodDto(
+  UpsertPageConfigSchema,
+) {}

@@ -23,7 +23,7 @@ precision, following modular architecture and strict safety rules.
 - **Feature Structure:** logic must be inside `src/features/{domain}/`.
 - **Stateless Services:** Services should not hold state. Use FireORM entities for data.
 - **Repository Access:** Use `@InjectRepository(Entity)` from `nestjs-fireorm`.
-- **DTOs:** Always use Zod schemas for request validation and Swagger documentation.
+- **DTOs:** Always use `z.object().strict()` + `createZodDto()` from `nestjs-zod`. No `class-validator` in DTOs. Use `Schema.partial()` for update DTOs. Response DTOs omit `.strict()`.
 
 ## 4. Git & Workflow Standards
 

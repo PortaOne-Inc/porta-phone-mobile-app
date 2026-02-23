@@ -1,40 +1,21 @@
-// src/features/artifacts/dto/create-artifact.dto.ts
-import {
-    IsNotEmpty,
-    IsOptional,
-    IsString,
-    IsArray,
-    ArrayNotEmpty,
-} from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class CreateArtifactDto {
-    @IsString()
-    @IsNotEmpty()
-    applicationId!: string;
+export const CreateArtifactSchema = z
+  .object({
+    applicationId: z.string().optional(),
+    themeId: z.string().optional(),
+    kind: z.string().min(1),
+    storagePath: z.string().optional(),
+    mimeType: z.string().optional(),
+    size: z.number().optional(),
+    checksum: z.string().optional(),
+    sources: z
+      .array(z.object({ type: z.string(), id: z.string() }))
+      .optional(),
+  })
+  .strict();
 
-    @IsString()
-    @IsNotEmpty()
-    themeId!: string;
-
-    @IsString()
-    @IsNotEmpty()
-    kind!: string;
-
-    @IsString()
-    @IsOptional()
-    storagePath?: string;
-
-    @IsString()
-    @IsOptional()
-    mimeType?: string;
-
-    @IsOptional()
-    size?: number;
-
-    @IsOptional()
-    checksum?: string;
-
-    @IsArray()
-    @IsOptional()
-    sources?: Array<{ type: string; id: string }>;
+export class CreateArtifactDto extends createZodDto(CreateArtifactSchema) {
+  declare sources?: Array<{ type: string; id: string }>;
 }

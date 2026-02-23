@@ -1,26 +1,14 @@
-// src/features/color-schemes/dto/upsert-color-scheme.dto.ts
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsIn, IsInt, IsObject, IsOptional, Min } from 'class-validator';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpsertColorSchemeDto {
-  @ApiPropertyOptional({ enum: ['light', 'dark'] })
-  @IsOptional()
-  @IsIn(['light', 'dark'])
-  variant?: 'light' | 'dark';
-
-  @ApiPropertyOptional({
-    type: Object,
-    description: 'Partial config to merge (deep merge for objects)',
+export const UpsertColorSchemeSchema = z
+  .object({
+    variant: z.enum(['light', 'dark']).optional(),
+    config: z.record(z.string(), z.any()).optional(),
+    expectedVersion: z.number().int().min(0).optional(),
   })
-  @IsOptional()
-  @IsObject()
-  config?: Record<string, any>;
+  .strict();
 
-  @ApiPropertyOptional({
-    description: 'Expected version for optimistic locking (409 on mismatch)',
-  })
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  expectedVersion?: number;
-}
+export class UpsertColorSchemeDto extends createZodDto(
+  UpsertColorSchemeSchema,
+) {}

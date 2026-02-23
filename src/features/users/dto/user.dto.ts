@@ -1,27 +1,11 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class UserDto {
-  @ApiProperty({
-    description: 'ID of the user',
-    example: '25OyoPiSatTi11E9ORSaQ14JsTH2',
-  })
-  uid: string;
+export const UserSchema = z.object({
+  uid: z.string(),
+  email: z.string().email(),
+  displayName: z.string().optional(),
+  role: z.string(),
+});
 
-  @ApiProperty({
-    description: 'Email of the user',
-    example: 'user@example.com',
-  })
-  email: string;
-
-  @ApiProperty({
-    description: 'Display name of the user',
-    example: 'user-user',
-  })
-  displayName?: string;
-
-  @ApiProperty({
-    description: 'Role of the user',
-    example: 'user',
-  })
-  role: string;
-}
+export class UserDto extends createZodDto(UserSchema) {}
