@@ -59,16 +59,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                       : () => _cubit.add(const InitializeEvent()),
                 ),
               ),
-              Tooltip(
-                message: 'Save all changes which you have made',
-                child: TextButton.icon(
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save'),
-                  onPressed: state.isProgress
-                      ? null
-                      : () => _cubit.add(const SyncConfigEvent()),
-                ),
-              ),
+              _buildSyncIndicator(state),
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
                 onThemeChange: (mode) =>
@@ -133,8 +124,55 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
+  Widget _buildSyncIndicator(UpdateThemeState state) {
+    switch (state.syncStatus) {
+      case SyncStatus.syncing:
+        return Tooltip(
+          message: 'Saving changes...',
+          child: TextButton.icon(
+            icon: const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            label: const Text('Saving...'),
+            onPressed: null,
+          ),
+        );
+      case SyncStatus.synced:
+        return Tooltip(
+          message: 'All changes saved',
+          child: TextButton.icon(
+            icon: const Icon(Icons.check_circle, color: Colors.green),
+            label: const Text('Saved'),
+            onPressed: null,
+          ),
+        );
+      case SyncStatus.failed:
+        return Tooltip(
+          message: 'Save failed — tap to retry',
+          child: TextButton.icon(
+            icon: const Icon(Icons.error_outline, color: Colors.red),
+            label: const Text('Failed'),
+            onPressed: () => _cubit.add(const SyncConfigEvent()),
+          ),
+        );
+      case SyncStatus.idle:
+        return Tooltip(
+          message: 'Save all changes',
+          child: TextButton.icon(
+            icon: const Icon(Icons.save),
+            label: const Text('Save'),
+            onPressed: state.isProgress
+                ? null
+                : () => _cubit.add(const SyncConfigEvent()),
+          ),
+        );
+    }
+  }
+
   void _handleStateChanges(BuildContext context, UpdateThemeState state) {
-    if (state.isHasError) {
+    if (state.status == ThemePropertyStatus.error) {
       _showErrorDialog(context, state.error);
     }
   }

@@ -2,6 +2,8 @@ part of 'update_theme_cubit.dart';
 
 enum ThemePropertyStatus { progress, validation, success, error }
 
+enum SyncStatus { idle, syncing, synced, failed }
+
 enum ThemeComponents { widgets, pages, colors, navigation, embeds }
 
 @freezed
@@ -20,6 +22,7 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     ThemeModel? theme,
     FeatureAccessModel? featureAccessModel,
     ThemePropertyStatus? status,
+    @Default(SyncStatus.idle) SyncStatus syncStatus,
     ColorSchemeModel? colorSchemeModel,
     Exception? error,
   }) = _UpdateThemeState;

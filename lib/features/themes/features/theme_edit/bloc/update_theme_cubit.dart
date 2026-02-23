@@ -199,7 +199,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     SyncConfigEvent event,
     Emitter<UpdateThemeState> emit,
   ) async {
-    emit(state.copyWith(status: ThemePropertyStatus.progress, error: null));
+    emit(state.copyWith(syncStatus: SyncStatus.syncing, error: null));
 
     final featureAccess = _featureAccessEditor.buildFull();
     final colorScheme = _colorSchemeEditor.buildFull();
@@ -244,12 +244,12 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     ]);
 
     if (failures.isEmpty) {
-      emit(state.copyWith(status: ThemePropertyStatus.success));
+      emit(state.copyWith(syncStatus: SyncStatus.synced));
     } else {
       final message = 'Failed to save: ${failures.join(', ')}';
       _logger.severe(message);
       emit(state.copyWith(
-        status: ThemePropertyStatus.error,
+        syncStatus: SyncStatus.failed,
         error: Exception(message),
       ));
     }
@@ -319,13 +319,13 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   ) async {
     event.map(
       colorScheme: (_UpdateThemeSchemeColorEvent value) =>
-          emit(state.copyWith(colorSchemeConfig: value.scheme)),
+          emit(state.copyWith(colorSchemeConfig: value.scheme, syncStatus: SyncStatus.idle)),
       page: (_UpdateThemePageEvent value) =>
-          emit(state.copyWith(themePageConfig: value.page)),
+          emit(state.copyWith(themePageConfig: value.page, syncStatus: SyncStatus.idle)),
       widget: (_UpdateThemeWidgetEvent value) =>
-          emit(state.copyWith(themeWidgetConfig: value.widget)),
+          emit(state.copyWith(themeWidgetConfig: value.widget, syncStatus: SyncStatus.idle)),
       featureAccess: (_UpdateAppConfigEvent value) =>
-          emit(state.copyWith(appConfig: value.config)),
+          emit(state.copyWith(appConfig: value.config, syncStatus: SyncStatus.idle)),
     );
   }
 
