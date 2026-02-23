@@ -9,7 +9,7 @@ part of 'launch_assets_dto.dart';
 _FitPaddingDto _$FitPaddingDtoFromJson(Map<String, dynamic> json) =>
     _FitPaddingDto(
       fit: $enumDecodeNullable(_$FitDtoEnumMap, json['fit']),
-      paddingDp: (json['paddingDp'] as num?)?.toDouble(),
+      paddingDp: (json['paddingDp'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$FitPaddingDtoToJson(_FitPaddingDto instance) =>

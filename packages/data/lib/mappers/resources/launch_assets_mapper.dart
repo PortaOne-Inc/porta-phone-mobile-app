@@ -15,13 +15,13 @@ class FitPaddingMapper extends CommonMapper<d.FitPaddingModel, FitPaddingDto> {
   @override
   FitPaddingDto convertTo(d.FitPaddingModel it) => FitPaddingDto(
     fit: it.fit != null ? fitMapper.convertTo(it.fit!) : null,
-    paddingDp: it.paddingDp,
+    paddingDp: it.paddingDp?.round(),
   );
 
   @override
   d.FitPaddingModel convertFrom(FitPaddingDto it) => d.FitPaddingModel(
     fit: it.fit != null ? fitMapper.convertFrom(it.fit!) : null,
-    paddingDp: it.paddingDp,
+    paddingDp: it.paddingDp?.toDouble(),
   );
 }
 

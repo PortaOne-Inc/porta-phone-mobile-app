@@ -8,7 +8,7 @@ part 'launch_assets_dto.g.dart';
 
 @freezed
 sealed class FitPaddingDto with _$FitPaddingDto {
-  const factory FitPaddingDto({FitDto? fit, double? paddingDp}) =
+  const factory FitPaddingDto({FitDto? fit, int? paddingDp}) =
       _FitPaddingDto;
 
   factory FitPaddingDto.fromJson(Map<String, dynamic> json) =>

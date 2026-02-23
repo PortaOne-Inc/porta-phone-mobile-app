@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FitPaddingDto {
 
- FitDto? get fit; double? get paddingDp;
+ FitDto? get fit; int? get paddingDp;
 /// Create a copy of FitPaddingDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FitPaddingDtoCopyWith<$Res>  {
   factory $FitPaddingDtoCopyWith(FitPaddingDto value, $Res Function(FitPaddingDto) _then) = _$FitPaddingDtoCopyWithImpl;
 @useResult
 $Res call({
- FitDto? fit, double? paddingDp
+ FitDto? fit, int? paddingDp
 });
 
 
@@ -69,7 +69,7 @@ class _$FitPaddingDtoCopyWithImpl<$Res>
   return _then(_self.copyWith(
 fit: freezed == fit ? _self.fit : fit // ignore: cast_nullable_to_non_nullable
 as FitDto?,paddingDp: freezed == paddingDp ? _self.paddingDp : paddingDp // ignore: cast_nullable_to_non_nullable
-as double?,
+as int?,
   ));
 }
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FitDto? fit,  double? paddingDp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FitDto? fit,  int? paddingDp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FitPaddingDto() when $default != null:
 return $default(_that.fit,_that.paddingDp);case _:
@@ -172,7 +172,7 @@ return $default(_that.fit,_that.paddingDp);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FitDto? fit,  double? paddingDp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FitDto? fit,  int? paddingDp)  $default,) {final _that = this;
 switch (_that) {
 case _FitPaddingDto():
 return $default(_that.fit,_that.paddingDp);}
@@ -189,7 +189,7 @@ return $default(_that.fit,_that.paddingDp);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FitDto? fit,  double? paddingDp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FitDto? fit,  int? paddingDp)?  $default,) {final _that = this;
 switch (_that) {
 case _FitPaddingDto() when $default != null:
 return $default(_that.fit,_that.paddingDp);case _:
@@ -208,7 +208,7 @@ class _FitPaddingDto implements FitPaddingDto {
   factory _FitPaddingDto.fromJson(Map<String, dynamic> json) => _$FitPaddingDtoFromJson(json);
 
 @override final  FitDto? fit;
-@override final  double? paddingDp;
+@override final  int? paddingDp;
 
 /// Create a copy of FitPaddingDto
 /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +243,7 @@ abstract mixin class _$FitPaddingDtoCopyWith<$Res> implements $FitPaddingDtoCopy
   factory _$FitPaddingDtoCopyWith(_FitPaddingDto value, $Res Function(_FitPaddingDto) _then) = __$FitPaddingDtoCopyWithImpl;
 @override @useResult
 $Res call({
- FitDto? fit, double? paddingDp
+ FitDto? fit, int? paddingDp
 });
 
 
@@ -264,7 +264,7 @@ class __$FitPaddingDtoCopyWithImpl<$Res>
   return _then(_FitPaddingDto(
 fit: freezed == fit ? _self.fit : fit // ignore: cast_nullable_to_non_nullable
 as FitDto?,paddingDp: freezed == paddingDp ? _self.paddingDp : paddingDp // ignore: cast_nullable_to_non_nullable
-as double?,
+as int?,
   ));
 }
 
