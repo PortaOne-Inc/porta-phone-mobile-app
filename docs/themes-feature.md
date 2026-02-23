@@ -115,14 +115,16 @@ src/features/themes/
         ├── generate.controller.ts
         ├── generate.service.ts         # Orchestrates 3 generators
         ├── dto/
-        │   ├── create-generate.dto.ts
-        │   └── nudge-theme.dto.ts
+        │   ├── create-generate.dto.ts  # Zod schema: GenerateThemeSchema
+        │   └── nudge-theme.dto.ts      # Zod schema: NudgeThemeSchema
+        ├── guards/
+        │   └── firebase-uid-throttler.guard.ts  # Rate limiting by Firebase UID
         ├── schemas/
         │   ├── color-scheme.schema.ts  # Zod — 39 Material 3 color fields
         │   ├── widget-config.schema.ts # Zod — fonts, buttons, dialogs, statuses
         │   └── page-config.schema.ts   # Zod — login & dialing page styles
         └── generators/
-            ├── openai-client.service.ts     # OpenAI wrapper (gpt-4o-mini, temp 0.2)
+            ├── openai-client.service.ts     # OpenAI wrapper (gpt-4o-mini, temp 0.2, 30s timeout)
             ├── color-scheme.generator.ts    # generate / nudge / fallback
             ├── widget-config.generator.ts   # generate / nudge / fallback
             └── page-config.generator.ts     # generate / nudge / fallback
@@ -166,9 +168,10 @@ ThemesModule
 | `applicationId` | string  | Parent application reference   |
 | `title`         | string? | Human-readable name            |
 | `description`   | string? | Theme description              |
-| `label`         | enum?   | `'dev'` / `'stage'` / `'prod'` |
-| `createdAt`     | string  | ISO timestamp                  |
-| `updatedAt`     | string  | ISO timestamp                  |
+| `label`         | enum?   | `'dev'` / `'stage'` / `'prod'`              |
+| `version`       | number? | Optimistic locking counter (starts at 1)    |
+| `createdAt`     | string  | ISO timestamp                               |
+| `updatedAt`     | string  | ISO timestamp                               |
 
 ### ColorScheme
 
@@ -179,6 +182,7 @@ ThemesModule
 | `themeId`       | string                 |                       |
 | `variant`       | `'light'` / `'dark'`   |                       |
 | `config`        | object (39 hex colors) | Material 3 palette    |
+| `version`       | number?                | Optimistic locking    |
 
 ### WidgetConfig
 
@@ -189,6 +193,7 @@ ThemesModule
 | `themeId`       | string               |                                              |
 | `variant`       | `'light'` / `'dark'` |                                              |
 | `config`        | object               | Fonts, buttons, dialogs, statuses, gradients |
+| `version`       | number?              | Optimistic locking                           |
 
 ### PageConfig
 
@@ -199,6 +204,7 @@ ThemesModule
 | `themeId`       | string               |                                          |
 | `variant`       | `'light'` / `'dark'` |                                          |
 | `config`        | object               | Login page, dialing page, overlay styles |
+| `version`       | number?              | Optimistic locking                       |
 
 ### SplashAsset
 
@@ -232,6 +238,7 @@ ThemesModule
 | `themeId`       | string                    |                              |
 | `status`        | `'draft'` / `'published'` |                              |
 | `config`        | object                    | Arbitrary feature flags JSON |
+| `version`       | number?                   | Optimistic locking           |
 
 ---
 
@@ -263,7 +270,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `GET`    | `/:themeId`        | Get a specific theme                          |
 | `GET`    | `/:themeId/legacy` | Get aggregated legacy theme (backward compat) |
 | `POST`   | `/`                | Create a new theme                            |
-| `PATCH`  | `/:themeId`        | Update theme title / description / label      |
+| `PATCH`  | `/:themeId`        | Update theme (supports `expectedVersion` for optimistic locking) |
 | `DELETE` | `/:themeId`        | Cascade delete theme + all related data       |
 | `POST`   | `/:themeId/copy`   | Clone theme with all configs                  |
 
@@ -276,7 +283,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `GET`  | `/:themeId/color-schemes`             | List all variants (light/dark) |
 | `GET`  | `/:themeId/color-schemes/:variant`    | Get specific variant           |
 | `PUT`  | `/:themeId/color-schemes/ensure-pair` | Ensure both light & dark exist |
-| `PUT`  | `/:themeId/color-schemes/:variant`    | Upsert with deep merge         |
+| `PUT`  | `/:themeId/color-schemes/:variant`    | Upsert with deep merge (supports `expectedVersion`) |
 
 ### Widget Configs
 
@@ -285,7 +292,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `GET`  | `/:themeId/widget-configs`             | List all variants                          |
 | `GET`  | `/:themeId/widget-configs/:variant`    | Get specific variant (resolves image URLs) |
 | `PUT`  | `/:themeId/widget-configs/ensure-pair` | Ensure both light & dark exist             |
-| `PUT`  | `/:themeId/widget-configs/:variant`    | Upsert with deep merge                     |
+| `PUT`  | `/:themeId/widget-configs/:variant`    | Upsert with deep merge (supports `expectedVersion`) |
 
 ### Page Configs
 
@@ -294,7 +301,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `GET`  | `/:themeId/page-configs`             | List all variants                          |
 | `GET`  | `/:themeId/page-configs/:variant`    | Get specific variant (resolves image URLs) |
 | `PUT`  | `/:themeId/page-configs/ensure-pair` | Ensure both light & dark exist             |
-| `PUT`  | `/:themeId/page-configs/:variant`    | Upsert with deep merge                     |
+| `PUT`  | `/:themeId/page-configs/:variant`    | Upsert with deep merge (supports `expectedVersion`) |
 
 ### Splash Assets
 
@@ -319,7 +326,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | Method   | Path                       | Description                  |
 |----------|----------------------------|------------------------------|
 | `GET`    | `/:themeId/feature-access` | Get feature entitlements     |
-| `PUT`    | `/:themeId/feature-access` | Upsert feature access config |
+| `PUT`    | `/:themeId/feature-access` | Upsert feature access config (supports `expectedVersion`) |
 | `DELETE` | `/:themeId/feature-access` | Delete feature entitlements  |
 
 ### AI Generation
@@ -356,6 +363,9 @@ sub-feature endpoints or via AI generation.
 
 ### Theme Copy
 
+The copy operation is **atomic** — all documents are written in a single Firestore `WriteBatch`.
+If any write fails, nothing is committed.
+
 ```
 POST /applications/:appId/themes/:themeId/copy
   { title?, description?, label? }
@@ -363,28 +373,24 @@ POST /applications/:appId/themes/:themeId/copy
         ▼
   ThemesService.copyTheme()
         │
-        ├── 1. Create new Theme entity (with optional overrides)
+        ├── 1. Read source theme
         │
-        ├── 2. Clone color schemes (both light & dark variants)
-        │      └── Copy config, assign new themeId in doc ID
+        ├── 2. Collect all writes into a single Firestore WriteBatch:
+        │      ├── New Theme entity (version: 1, optional overrides)
+        │      ├── Color schemes (both light & dark variants)
+        │      ├── Widget configs (both variants)
+        │      ├── Page configs (both variants)
+        │      ├── Splash asset config (reset outputsArtifacts)
+        │      ├── Launch asset config (reset outputsArtifacts)
+        │      └── Feature access entitlements
         │
-        ├── 3. Clone widget configs (both variants)
-        │      └── Copy config, assign new themeId
-        │
-        ├── 4. Clone page configs (both variants)
-        │      └── Copy config, assign new themeId
-        │
-        ├── 5. Clone splash asset config
-        │      └── Copy config, reset outputsArtifacts (no binary copy)
-        │
-        ├── 6. Clone launch asset config
-        │      └── Copy config, reset outputsArtifacts (no binary copy)
+        ├── 3. batch.commit() — atomic write
         │
         └── Return new theme with all cloned data
 ```
 
 Note: artifact binaries are NOT copied — only configuration is cloned. The user must re-upload
-splash/launch images for the new theme.
+splash/launch images for the new theme. Feature access entitlements are now included in the copy.
 
 ### Theme Deletion (Cascade)
 
@@ -479,6 +485,39 @@ resolved to time-limited signed URLs that the client can fetch directly.
 
 ---
 
+## Optimistic Locking
+
+All theme entities and sub-config entities include an optional `version` field for optimistic concurrency control.
+
+**How it works:**
+
+1. Client reads an entity and receives its current `version` (e.g., `3`)
+2. Client sends an update with `expectedVersion: 3`
+3. Server checks: if `expectedVersion` matches the current `version`, the update proceeds and `version` is incremented
+4. If `expectedVersion` does not match (another client updated in between), the server returns **409 Conflict**
+
+**Backwards compatible:** If `expectedVersion` is not provided, the update proceeds without version checking (overwrite semantics).
+
+Supported on: `PATCH /themes/:themeId`, `PUT` color-schemes, widget-configs, page-configs, and feature-access upsert endpoints.
+
+New entities start at `version: 1`. Copied themes and all their sub-resources also start at `version: 1`.
+
+---
+
+## Rate Limiting
+
+AI generation endpoints are rate-limited per Firebase UID using `@nestjs/throttler`:
+
+| Endpoint                          | Limit    | Window |
+|-----------------------------------|----------|--------|
+| `POST /themes/generate`          | 5 req    | 60 sec |
+| `POST /themes/:id/generate/nudge`| 10 req   | 60 sec |
+
+When the limit is exceeded, the server returns **429 Too Many Requests** with a `Retry-After` header.
+Falls back to IP-based throttling if the Firebase UID is not available.
+
+---
+
 ## Configuration
 
 | Variable         | Required | Description                                                   |
@@ -490,6 +529,7 @@ OpenAI settings (inside `OpenAiClientService`):
 - Model: `gpt-4o-mini`
 - Temperature: `0.2`
 - Response format: `{ type: 'json_object' }`
+- Request timeout: `30 seconds`
 
 ---
 

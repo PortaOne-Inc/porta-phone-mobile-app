@@ -42,15 +42,17 @@ src/features/themes/features/generate/
 ├── generate.controller.ts      — HTTP endpoints (POST generate, POST nudge)
 ├── generate.service.ts         — Orchestrator (~230 lines); delegates to generators
 ├── dto/
-│   ├── create-generate.dto.ts  — GenerateThemeDto (title, description, prompt, seedColor, variant)
-│   ├── nudge-theme.dto.ts      — NudgeThemeDto (prompt, targets, mode, variant, seedColorHint)
+│   ├── create-generate.dto.ts  — Zod: GenerateThemeSchema (title, description, prompt, seedColor, variant, assetIds, options)
+│   ├── nudge-theme.dto.ts      — Zod: NudgeThemeSchema (prompt, targets, mode, variant, seedColorHint)
 │   └── update-generate.dto.ts
+├── guards/
+│   └── firebase-uid-throttler.guard.ts — Rate limiting by Firebase UID (extends ThrottlerGuard)
 ├── schemas/
 │   ├── color-scheme.schema.ts  — Zod schema for ColorSchemeConfig (35 fields, all #RRGGBB)
 │   ├── widget-config.schema.ts — Zod schema for ThemeWidgetConfig (fonts, buttons, avatars, dialogs, statuses, gradients)
 │   └── page-config.schema.ts   — Zod schema for ThemePageConfig (login, dialing, overlayStyle, callInfo)
 └── generators/
-    ├── openai-client.service.ts   — Shared OpenAI wrapper; always uses response_format: json_object
+    ├── openai-client.service.ts   — Shared OpenAI wrapper; json_object format, 30s timeout
     ├── color-scheme.generator.ts  — generate() / nudge() / fallback()
     ├── widget-config.generator.ts — generate() / nudge() / fallback()
     └── page-config.generator.ts   — generate() / nudge() / fallback()
@@ -74,8 +76,8 @@ GenerateThemesService
 |------------------|----------|------------------------------------------------|
 | `OPENAI_API_KEY` | No       | If absent, all generators return fallback data |
 
-The model used is `gpt-4o-mini` at temperature `0.2`. Both can be overridden inside `OpenAiClientService.chatJson()` via
-the `options` parameter if needed.
+The model used is `gpt-4o-mini` at temperature `0.2` with a **30-second request timeout**. Both model and temperature can
+be overridden inside `OpenAiClientService.chatJson()` via the `options` parameter if needed.
 
 ---
 
@@ -87,7 +89,11 @@ Generates a **new theme** from scratch.
 
 **Auth:** Firebase Bearer token required (`admin` or `user` role)
 
+**Rate limit:** 5 requests per minute per user (429 on exceed)
+
 #### Request body
+
+All fields are validated via Zod (`GenerateThemeSchema`). Extra fields are rejected (`.strict()`).
 
 ```json
 {
@@ -95,17 +101,21 @@ Generates a **new theme** from scratch.
   "description": "A calm, professional app for VoIP calls. Blue and teal tones.",
   "prompt": "Create a light theme with cool blues and subtle green accents.",
   "seedColor": "#1A73E8",
-  "variant": "light"
+  "variant": "light",
+  "assetIds": ["asset_01"],
+  "options": {}
 }
 ```
 
-| Field         | Type                 | Required | Description                                            |
-|---------------|----------------------|----------|--------------------------------------------------------|
-| `title`       | `string`             | Yes      | Theme name; used as the Firestore Theme document title |
-| `description` | `string`             | Yes      | Business/design context appended to the prompt         |
-| `prompt`      | `string`             | Yes      | LLM instruction (what to generate, constraints)        |
-| `seedColor`   | `string` (`#RRGGBB`) | No       | Seed color for the palette; overrides AI choice        |
-| `variant`     | `"light" \| "dark"`  | No       | Default: `"light"`                                     |
+| Field       | Type                      | Required | Constraints              | Description                                            |
+|-------------|---------------------------|----------|--------------------------|--------------------------------------------------------|
+| `title`     | `string`                  | Yes      | 1..120 chars, trimmed    | Theme name; used as the Firestore Theme document title |
+| `description` | `string`               | No       | max 2000 chars, trimmed  | Business/design context appended to the prompt         |
+| `prompt`    | `string`                  | Yes      | 1..5000 chars, trimmed   | LLM instruction (what to generate, constraints)        |
+| `seedColor` | `string` (`#RRGGBB[AA]`)  | No       | Regex: `^#([0-9A-Fa-f]{6}\|[0-9A-Fa-f]{8})$` | Seed color for the palette        |
+| `variant`   | `"light" \| "dark"`       | No       | Default: `"light"`       |                                                        |
+| `assetIds`  | `string[]`                | No       | max 20 items             | IDs of assets to reference during generation           |
+| `options`   | `Record<string, unknown>` | No       |                          | Advanced generation options                            |
 
 #### Response
 
@@ -167,7 +177,11 @@ changes, and saves.
 
 **Auth:** Firebase Bearer token required (`admin` or `user` role)
 
+**Rate limit:** 10 requests per minute per user (429 on exceed)
+
 #### Request body
+
+All fields are validated via Zod (`NudgeThemeSchema`). Extra fields are rejected (`.strict()`).
 
 ```json
 {
@@ -182,13 +196,13 @@ changes, and saves.
 }
 ```
 
-| Field           | Type                                                  | Required | Description                                                                               |
-|-----------------|-------------------------------------------------------|----------|-------------------------------------------------------------------------------------------|
-| `prompt`        | `string`                                              | Yes      | What to change                                                                            |
-| `targets`       | `("colorScheme" \| "widgetConfig" \| "pageConfig")[]` | No       | Which configs to update. Default: all three                                               |
-| `mode`          | `"patch" \| "replace"`                                | No       | `patch` = deep-merge AI output over current. `replace` = full replace. Default: `"patch"` |
-| `variant`       | `"light" \| "dark"`                                   | No       | Default: `"light"`                                                                        |
-| `seedColorHint` | `string` (`#RRGGBB`)                                  | No       | Hints the color generator toward a specific seed                                          |
+| Field           | Type                                                  | Required | Constraints                     | Description                                                                               |
+|-----------------|-------------------------------------------------------|----------|---------------------------------|-------------------------------------------------------------------------------------------|
+| `prompt`        | `string`                                              | Yes      | 1..5000 chars, trimmed          | What to change                                                                            |
+| `targets`       | `("colorScheme" \| "widgetConfig" \| "pageConfig")[]` | No       | min 1 item if provided          | Which configs to update. Default: all three                                               |
+| `mode`          | `"patch" \| "replace"`                                | No       | Default: `"patch"`              | `patch` = deep-merge AI output over current. `replace` = full replace                     |
+| `variant`       | `"light" \| "dark"`                                   | No       | Default: `"light"`              |                                                                                           |
+| `seedColorHint` | `string \| null` (`#RRGGBB[AA]`)                      | No       | Regex validated, nullable       | Hints the color generator toward a specific seed                                          |
 
 #### Response
 
@@ -337,7 +351,10 @@ Produced by `PageConfigGenerator`.
 POST /themes/generate
         │
         ▼
-  Validate DTO (title, description, prompt required)
+  Zod validation (GenerateThemeSchema — title, prompt required; auto-trim, length limits)
+        │
+        ▼
+  Rate limit check (5/min per Firebase UID)
         │
         ▼
   Create Theme doc in Firestore
@@ -381,7 +398,10 @@ POST /themes/generate
 POST /themes/:themeId/generate/nudge
         │
         ▼
-  Validate DTO (prompt required)
+  Zod validation (NudgeThemeSchema — prompt required; auto-trim, length limits)
+  Rate limit check (10/min per Firebase UID)
+        │
+        ▼
   Load Theme from Firestore (404 if not found or wrong applicationId)
         │
         ▼
@@ -420,7 +440,22 @@ This ensures the endpoint **always returns a valid, complete theme** regardless 
 
 ## Zod Validation
 
-All three schemas live in `schemas/` and are used in two places:
+Validation happens at two levels:
+
+### 1. Request DTOs (input validation)
+
+Request bodies are validated via Zod schemas + `nestjs-zod` global pipe before reaching the service:
+
+| Schema                 | File                         | Validates                                                      |
+|------------------------|------------------------------|----------------------------------------------------------------|
+| `GenerateThemeSchema`  | `dto/create-generate.dto.ts` | title (1..120), prompt (1..5000), seedColor regex, variant, assetIds (max 20) |
+| `NudgeThemeSchema`     | `dto/nudge-theme.dto.ts`     | prompt (1..5000), targets enum array, mode, variant, seedColorHint regex      |
+
+Both schemas use `.strict()` to reject unknown fields. String fields are auto-trimmed.
+
+### 2. AI Response schemas (output validation)
+
+All three response schemas live in `schemas/` and validate OpenAI output:
 
 1. **Generate**: validates the full AI response; falls back if invalid
 2. **Nudge (replace mode)**: validates the full AI response; keeps current if invalid
