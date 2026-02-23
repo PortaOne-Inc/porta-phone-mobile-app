@@ -138,15 +138,12 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
             child: Card(
               clipBehavior: Clip.antiAlias,
               elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: ConfigurableAssetDesigner(
-                  pages: pages,
-                  key: designerKey,
-                  controller: controller,
-                  foregroundAsset: state.selectedAsset,
-                  onSnapshotChanged: (snap) => _onSnapshotChanged(snap, state),
-                ),
+              child: ConfigurableAssetDesigner(
+                pages: pages,
+                key: designerKey,
+                controller: controller,
+                foregroundAsset: state.selectedAsset,
+                onSnapshotChanged: (snap) => _onSnapshotChanged(snap, state),
               ),
             ),
           ),

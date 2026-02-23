@@ -551,13 +551,14 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Header — fixed height so common and non-common cards align
+          // Header — fixed height so common and non-common align
           SizedBox(
             height: 36,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(p.label, style: Theme.of(context).textTheme.titleSmall),
+                Text(p.label,
+                    style: Theme.of(context).textTheme.titleSmall),
                 if (!isCommon) ...[
                   const SizedBox(width: 4),
                   IconButton(
@@ -587,27 +588,18 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
           const SizedBox(height: 4),
           // Preview
           Center(
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: CustomPaint(
-                    painter: PatternPainter(primaryColor: Colors.blue),
-                  ),
-                ),
-                CustomPaint(
-                  size: Size(artboardPx, artboardPx),
-                  painter: UniversalAssetPreviewPainter(
-                    backgroundImage: _bgImg,
-                    foregroundImage: _fgImg,
-                    backgroundColor: _parseHexColor(eff.backgroundHex),
-                    artboardPx: artboardPx,
-                    paddingPx: paddingPx,
-                    fit: BoxFit.scaleDown,
-                    safeZonePx: safePx,
-                    maskDiameterPx: maskPx,
-                  ),
-                ),
-              ],
+            child: CustomPaint(
+              size: Size(artboardPx, artboardPx),
+              painter: UniversalAssetPreviewPainter(
+                backgroundImage: _bgImg,
+                foregroundImage: _fgImg,
+                backgroundColor: _parseHexColor(eff.backgroundHex),
+                artboardPx: artboardPx,
+                paddingPx: paddingPx,
+                fit: BoxFit.scaleDown,
+                safeZonePx: safePx,
+                maskDiameterPx: maskPx,
+              ),
             ),
           ),
           const SizedBox(height: 4),
@@ -721,14 +713,28 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
       builder: (context, constraints) {
         final cardPreviewSize =
             ((constraints.maxWidth - 48) / 2).clamp(0.0, 260.0);
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildSharedControls(),
-              const SizedBox(height: 16),
-              _buildPreviewGrid(cardPreviewSize),
-            ],
-          ),
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: CustomPaint(
+                painter: PatternPainter(
+                  primaryColor:
+                      Theme.of(context).colorScheme.surfaceContainerHighest,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 12),
+                  _buildSharedControls(),
+                  const SizedBox(height: 16),
+                  _buildPreviewGrid(cardPreviewSize),
+                  const SizedBox(height: 12),
+                ],
+              ),
+            ),
+          ],
         );
       },
     );

@@ -65,16 +65,13 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
             child: Card(
               clipBehavior: Clip.antiAlias,
               elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: ConfigurableAssetDesigner(
-                  key: designerKey,
-                  controller: controller,
-                  pages: buildDesignerPages(state: state, constraints: cons),
-                  foregroundAsset: state.selectedForegroundAsset,
-                  backgroundAsset: state.selectedBackgroundAsset,
-                  onSnapshotChanged: _onDesignerSnapshot,
-                ),
+              child: ConfigurableAssetDesigner(
+                key: designerKey,
+                controller: controller,
+                pages: buildDesignerPages(state: state, constraints: cons),
+                foregroundAsset: state.selectedForegroundAsset,
+                backgroundAsset: state.selectedBackgroundAsset,
+                onSnapshotChanged: _onDesignerSnapshot,
               ),
             ),
           ),
