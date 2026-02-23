@@ -63,11 +63,11 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     on<InitializeEvent>(_initializeEditing, transformer: droppable());
     on<SyncConfigEvent>(_syncConfigWithServer, transformer: droppable());
     on<UpdateColorSchemeEvent>(_onChangeColorEvent, transformer: restartable());
-    on<AppConfigEvent>(_onAppConfigEvent, transformer: concurrent());
-    on<ThemePageEvent>(_onThemePageEvent, transformer: concurrent());
-    on<ThemeWidgetEvent>(_onThemeWidgetEvent, transformer: concurrent());
+    on<AppConfigEvent>(_onAppConfigEvent, transformer: sequential());
+    on<ThemePageEvent>(_onThemePageEvent, transformer: sequential());
+    on<ThemeWidgetEvent>(_onThemeWidgetEvent, transformer: sequential());
     on<UpdateVariantEvent>(_onUpdateVariantEvent, transformer: droppable());
-    on<ResourcesEvent>(_onResourcesEvent, transformer: concurrent());
+    on<ResourcesEvent>(_onResourcesEvent, transformer: sequential());
     on<LoadingEvent>(_onLoadingEvent, transformer: droppable());
 
     _init(applicationId, themeId);
@@ -96,6 +96,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   final FeatureAccessEditor _featureAccessEditor = FeatureAccessEditor();
   final ColorSchemeEditor _colorSchemeEditor = ColorSchemeEditor();
   final ThemeWidgetEditor _widgetEditor = ThemeWidgetEditor();
+
+  /// Monotonic counter that invalidates in-flight init/variant-switch work
+  /// when a newer initialization starts.
+  int _initEpoch = 0;
 
   StreamSubscription<ThemePageConfig>? _pageEditorSub;
   StreamSubscription<AppConfig>? _featureAccessSub;
@@ -150,6 +154,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   ) async {
     if (state.selectedVariant == event.variant) return;
 
+    final epoch = ++_initEpoch;
+
     // Залишаємо тільки спільні компоненти
     final preservedComponents = state.loadedComponents
         .where(
@@ -161,6 +167,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       state.copyWith(
         selectedVariant: event.variant,
         status: ThemePropertyStatus.progress,
+        error: null,
         // Важливо очистити старі конфіги, щоб UI не показував дані від попередньої теми
         colorSchemeConfig: const ColorSchemeConfig(),
         themePageConfig: const ThemePageConfig(),
@@ -170,10 +177,12 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     );
 
     final results = await Future.wait([
-      _initializeColorScheme(applicationId, themeId, event.variant),
-      _initializePageConfig(applicationId, themeId, event.variant),
-      _initializeWidgetsConfig(applicationId, themeId, event.variant),
+      _initializeColorScheme(applicationId, themeId, event.variant, epoch),
+      _initializePageConfig(applicationId, themeId, event.variant, epoch),
+      _initializeWidgetsConfig(applicationId, themeId, event.variant, epoch),
     ]);
+
+    if (_initEpoch != epoch) return; // Superseded by newer init
 
     final allSucceeded = results.every((ok) => ok);
     emit(state.copyWith(
@@ -540,15 +549,19 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     InitializeEvent event,
     Emitter<UpdateThemeState> emit,
   ) async {
+    final epoch = ++_initEpoch;
+
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
     final results = await Future.wait([
-      _initializeFeatureAccess(applicationId, themeId),
-      _initializeEmbeddedResourceModel(applicationId),
-      _initializeColorScheme(applicationId, themeId, state.selectedVariant),
-      _initializePageConfig(applicationId, themeId, state.selectedVariant),
-      _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant),
+      _initializeFeatureAccess(applicationId, themeId, epoch),
+      _initializeEmbeddedResourceModel(applicationId, epoch),
+      _initializeColorScheme(applicationId, themeId, state.selectedVariant, epoch),
+      _initializePageConfig(applicationId, themeId, state.selectedVariant, epoch),
+      _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant, epoch),
     ]);
+
+    if (_initEpoch != epoch) return; // Superseded by newer init or variant switch
 
     final allSucceeded = results.every((ok) => ok);
     add(LoadingEvent.setStatus(
@@ -560,6 +573,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     String applicationId,
     String themeId,
     BrightnessVariant variant,
+    int epoch,
   ) async {
     try {
       final widgetConfig = await getWidgetConfigUsecase.execute(
@@ -567,14 +581,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         themeId,
         variant,
       );
+      if (_initEpoch != epoch) return true;
       _widgetEditor.setInitial(ThemeWidgetConfig.fromJson(widgetConfig.config));
       return true;
     } catch (e, stackTrace) {
+      if (_initEpoch != epoch) return true;
       _logger.severe('Failed to load widget config', e, stackTrace);
       _widgetEditor.setInitial(const ThemeWidgetConfig());
       return false;
     } finally {
-      add(const LoadingEvent.markLoaded(ThemeComponents.widgets));
+      if (_initEpoch == epoch) {
+        add(const LoadingEvent.markLoaded(ThemeComponents.widgets));
+      }
     }
   }
 
@@ -582,6 +600,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     String applicationId,
     String themeId,
     BrightnessVariant variant,
+    int epoch,
   ) async {
     try {
       final loadTheme = await getPageConfigByVariantUsecase.execute(
@@ -589,37 +608,46 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         themeId: themeId,
         variant: variant,
       );
+      if (_initEpoch != epoch) return true;
       _pageEditor.setInitial(ThemePageConfig.fromJson(loadTheme.config));
       return true;
     } catch (e, stackTrace) {
+      if (_initEpoch != epoch) return true;
       _logger.severe('Failed to load page config', e, stackTrace);
       _pageEditor.setInitial(const ThemePageConfig());
       return false;
     } finally {
-      add(const LoadingEvent.markLoaded(ThemeComponents.pages));
+      if (_initEpoch == epoch) {
+        add(const LoadingEvent.markLoaded(ThemeComponents.pages));
+      }
     }
   }
 
   Future<bool> _initializeFeatureAccess(
     String applicationId,
     String themeId,
+    int epoch,
   ) async {
     try {
       final featureAccess = await getFeatureAccessUsecase.execute(
         applicationId,
         themeId,
       );
+      if (_initEpoch != epoch) return true;
 
       final navigation = AppConfig.fromJson(featureAccess.config).copyWith();
 
       _featureAccessEditor.setInitial(navigation);
       return true;
     } catch (e, stackTrace) {
+      if (_initEpoch != epoch) return true;
       _logger.severe('Failed to load feature access', e, stackTrace);
       _featureAccessEditor.setInitial(const AppConfig());
       return false;
     } finally {
-      add(const LoadingEvent.markLoaded(ThemeComponents.navigation));
+      if (_initEpoch == epoch) {
+        add(const LoadingEvent.markLoaded(ThemeComponents.navigation));
+      }
     }
   }
 
@@ -627,6 +655,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     String applicationId,
     String themeId,
     BrightnessVariant variant,
+    int epoch,
   ) async {
     try {
       final colorScheme = await getColorSchemeByThemeVariantUsecase.execute(
@@ -634,29 +663,40 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         themeId: themeId,
         variant: variant,
       );
+      if (_initEpoch != epoch) return true;
       _colorSchemeEditor.setInitial(
         ColorSchemeConfig.fromJson(colorScheme.config),
       );
       return true;
     } catch (e, stackTrace) {
+      if (_initEpoch != epoch) return true;
       _logger.severe('Failed to load color scheme', e, stackTrace);
       _colorSchemeEditor.setInitial(const ColorSchemeConfig());
       return false;
     } finally {
-      add(const LoadingEvent.markLoaded(ThemeComponents.colors));
+      if (_initEpoch == epoch) {
+        add(const LoadingEvent.markLoaded(ThemeComponents.colors));
+      }
     }
   }
 
-  Future<bool> _initializeEmbeddedResourceModel(String applicationId) async {
+  Future<bool> _initializeEmbeddedResourceModel(
+    String applicationId,
+    int epoch,
+  ) async {
     try {
       final embeds = await getApplicationEmbedsUsecase.execute(applicationId);
+      if (_initEpoch != epoch) return true;
       add(ResourcesEvent.embedsUpdated(embeds));
       return true;
     } catch (e, stackTrace) {
+      if (_initEpoch != epoch) return true;
       _logger.severe('Failed to load embedded resources', e, stackTrace);
       return false;
     } finally {
-      add(const LoadingEvent.markLoaded(ThemeComponents.embeds));
+      if (_initEpoch == epoch) {
+        add(const LoadingEvent.markLoaded(ThemeComponents.embeds));
+      }
     }
   }
 

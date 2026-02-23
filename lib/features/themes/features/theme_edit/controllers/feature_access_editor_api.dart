@@ -82,7 +82,12 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   void _emit() {
     final c = _current;
-    if (c != null && !_controller.isClosed) _controller.add(c);
+    if (c == null || _controller.isClosed) return;
+    try {
+      _controller.add(c);
+    } catch (_) {
+      // Controller closed between check and add
+    }
   }
 
   @override
