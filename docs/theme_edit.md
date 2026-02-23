@@ -304,16 +304,43 @@ Each page supports: background images, text styles, metadata display, system UI 
 
 ### 6. Resources (`features/resources/`)
 
+Both Launch Assets and Splash Screen use the shared `ConfigurableAssetDesigner` widget — a multi-page
+tabbed designer with per-page padding, background color, safe zone overlay, and mask overlay.
+
+**ConfigurableAssetDesigner:**
+
+- Each page has its own independent padding slider, clamped to `minPaddingDp = (sizeDp - safeZoneDp) / 2`
+- Background color can optionally inherit from the common page (`bgInheritsFromCommon`)
+- `safeZoneDp` draws the inner safe zone guide; `maskDp` draws the outer mask boundary overlay
+- Export renders each page at its `exportSizePx` resolution
+
 **Launch Assets:**
 
-- Foreground & background images for app startup
-- Animation constraints, size/position configuration
-- Visual designer canvas (`LaunchAssetsCubit`)
+- 5-page designer: **Common**, **Android (Adaptive)**, **Android (Legacy)**, **iOS**, **Web**
+- Common page mirrors Android Adaptive constraints and sets shared foreground/background
+- Platform constraints loaded from backend (`GetConstraintsDefaultsUsecase`), with hardcoded fallbacks
+- Saved padding values are clamped to per-platform minimums on load to prevent clipping on real devices
+- State managed by `LaunchAssetsCubit`
+
+Platform constraints (hardcoded fallbacks in `default_constraints_model.dart`):
+
+| Platform         | sizeDp | safeZoneDp | maskDp | minPaddingDp | Notes                                     |
+|------------------|--------|------------|--------|--------------|-------------------------------------------|
+| Android Adaptive | 432    | 264        | 288    | 84           | 108dp canvas ×4; 66dp safe zone ×4        |
+| Android Legacy   | 512    | 384        | —      | 64           | No system mask                             |
+| iOS              | 1024   | 832        | 922    | 96           | Superellipse mask, ~22% corner radius      |
+| Web              | 512    | 460.8      | —      | 25.6         | No system mask                             |
+
+Android Adaptive geometry (per [official spec](https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)):
+- Canvas: 108×108 dp per layer, outer 18dp per side reserved for masking/parallax
+- Safe zone: 66×66 dp (centered) — content here is never clipped regardless of OEM mask shape
+- maskDp 288 = (108 − 18×2) × 4 — the outer boundary where all mask shapes start clipping
 
 **Splash Screen:**
 
-- Multi-page designer with 2 pages: **Splash** (common/primary) and **Android 12**
+- 2-page designer: **Splash** (common/primary) and **Android 12**
 - The Splash page acts as the common page; Android 12 inherits foreground and background from it
+- Each page manages its own padding independently (no padding inheritance between pages)
 - Android 12 page uses dedicated sizing constraints optimized for the circular mask area (288/192/288 dp)
 - Constraints loaded from backend (`GET .../splash-asset/constraints-defaults`), with hardcoded fallbacks
 - On save, exports both pages and uploads via `upload-batch` with targets `splash` and `android12Splash`
