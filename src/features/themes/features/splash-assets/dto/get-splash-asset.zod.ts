@@ -57,6 +57,7 @@ export const SplashValidationEnvelopeZ = z.object({
   mode: SplashModeZ,
   fullSizeDp: z.number(),
   maskDiameterDp: z.number(),
+  circleDiameterDp: z.number().optional(),
   recommendedPaddingDp: z.number(),
   recommendationBasis: z.literal('safeZone'),
   validation: SplashValidationBlockZ,

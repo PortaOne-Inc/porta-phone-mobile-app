@@ -33,6 +33,7 @@ export type SplashValidationEnvelope = {
     mode: SplashMode;
     fullSizeDp: number;
     maskDiameterDp: number;
+    circleDiameterDp?: number;
     recommendedPaddingDp: number;
     recommendationBasis: 'safeZone';
     validation: SplashValidationBlock;
@@ -41,6 +42,7 @@ export type SplashValidationEnvelope = {
 type ConstraintsSlice = {
     fullSizeDp: number;
     maskDiameterDp: number;
+    circleDiameterDp?: number;
     toleranceDp: number;
 };
 
@@ -64,6 +66,7 @@ function normalizeSlice(
     x?: Partial<{
         fullSizeDp: number;
         maskDiameterDp: number;
+        circleDiameterDp: number;
         toleranceDp: number;
     }>,
 ) {
@@ -72,6 +75,8 @@ function normalizeSlice(
             fullSizeDp: typeof x.fullSizeDp === 'number' ? x.fullSizeDp : undefined,
             maskDiameterDp:
                 typeof x.maskDiameterDp === 'number' ? x.maskDiameterDp : undefined,
+            circleDiameterDp:
+                typeof x.circleDiameterDp === 'number' ? x.circleDiameterDp : undefined,
             toleranceDp:
                 typeof x.toleranceDp === 'number' ? x.toleranceDp : undefined,
         }
@@ -109,17 +114,20 @@ export class SplashAssetsService {
         const fallback: SplashConstraintsDefaultsDto = {
             withBackground: {
                 fullSizeDp: 240,
-                maskDiameterDp: 160,
+                maskDiameterDp: 113,
+                circleDiameterDp: 160,
                 toleranceDp: 4,
             },
             withoutBackground: {
                 fullSizeDp: 288,
-                maskDiameterDp: 192,
+                maskDiameterDp: 135,
+                circleDiameterDp: 192,
                 toleranceDp: 4,
             },
             android12: {
                 fullSizeDp: 288,
-                maskDiameterDp: 192,
+                maskDiameterDp: 135,
+                circleDiameterDp: 192,
                 toleranceDp: 4,
             },
         };
@@ -165,6 +173,7 @@ export class SplashAssetsService {
             mode,
             fullSizeDp: slice.fullSizeDp,
             maskDiameterDp: slice.maskDiameterDp,
+            ...(slice.circleDiameterDp != null ? { circleDiameterDp: slice.circleDiameterDp } : {}),
             recommendedPaddingDp: recommended,
             recommendationBasis: 'safeZone',
             validation: {
