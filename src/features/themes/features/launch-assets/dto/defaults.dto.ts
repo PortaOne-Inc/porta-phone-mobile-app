@@ -4,12 +4,13 @@ const nullToUndef = <T extends z.ZodTypeAny>(schema: T) =>
     z.preprocess((v) => (v === null ? undefined : v), schema);
 
 const NonNegInt = z.number().int().nonnegative();
+const NonNegNum = z.number().nonnegative();
 
 /** Constraints defaults */
 export const PlatformConstraintsSchema = z.object({
-    sizeDp: nullToUndef(NonNegInt).default(0),
-    safeZoneDp: nullToUndef(NonNegInt).default(0),
-    toleranceDp: nullToUndef(NonNegInt).default(0),
+    sizeDp: nullToUndef(NonNegNum).default(0),
+    safeZoneDp: nullToUndef(NonNegNum).default(0),
+    toleranceDp: nullToUndef(NonNegNum).default(0),
 });
 
 export const ConstraintsDefaultsSchema = z.object({

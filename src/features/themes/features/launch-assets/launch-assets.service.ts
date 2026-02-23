@@ -81,10 +81,10 @@ export class LaunchAssetsService {
         const snap = await ref.get();
 
         const fallback: ConstraintsDefaults = {
-            androidAdaptive: {sizeDp: 432, safeZoneDp: 324, toleranceDp: 432},
-            androidLegacy: {sizeDp: 512, safeZoneDp: 384, toleranceDp: 512},
-            ios: {sizeDp: 1024, safeZoneDp: 832, toleranceDp: 1024},
-            web: {sizeDp: 512, safeZoneDp: 460.8, toleranceDp: 512},
+            androidAdaptive: {sizeDp: 432, safeZoneDp: 264, toleranceDp: 4},
+            androidLegacy: {sizeDp: 512, safeZoneDp: 384, toleranceDp: 4},
+            ios: {sizeDp: 1024, safeZoneDp: 832, toleranceDp: 4},
+            web: {sizeDp: 512, safeZoneDp: 460.8, toleranceDp: 4},
         };
 
         if (!snap.exists) return fallback;
