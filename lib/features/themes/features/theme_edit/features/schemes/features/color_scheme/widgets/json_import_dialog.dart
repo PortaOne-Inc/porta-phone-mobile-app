@@ -113,6 +113,11 @@ class _JsonImportDialogState extends State<JsonImportDialog> {
       } else {
         _showErrorSnackBar(context, 'Invalid JSON format: Expected a Map.');
       }
+    } on FormatException catch (e) {
+      _showErrorSnackBar(
+        context,
+        'Invalid JSON at offset ${e.offset}: ${e.message}',
+      );
     } catch (e) {
       _showErrorSnackBar(context, 'JSON Parsing Error: $e');
     }

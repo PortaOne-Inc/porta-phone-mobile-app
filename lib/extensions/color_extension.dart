@@ -1,5 +1,11 @@
 import 'dart:ui';
 
+/// Matches #RRGGBB or #AARRGGBB (case-insensitive).
+final _hexColorRegExp = RegExp(r'^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$');
+
+/// Returns `true` when [value] is a valid hex color string (#RRGGBB or #AARRGGBB).
+bool isValidHexColor(String value) => _hexColorRegExp.hasMatch(value);
+
 extension ExtensionHexColor on Color {
   /// Converts a [Color] to its hex representation.
   ///

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/extensions/color_extension.dart';
 
 abstract class ColorSchemeEditorApi {
   ColorSchemeConfig get initial;
@@ -115,10 +116,18 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
 
   @override
   void patchOverride(Map<String, dynamic> partial) {
+    final sanitized = <String, dynamic>{
+      for (final entry in partial.entries)
+        if (entry.value == null ||
+            (entry.value is String && isValidHexColor(entry.value as String)))
+          entry.key: entry.value,
+    };
+    if (sanitized.isEmpty) return;
+
     final map = Map<String, dynamic>.from(current.toJson());
     final existing = Map<String, dynamic>.from(
       (map['colorSchemeOverride'] as Map?) ?? const <String, dynamic>{},
-    )..addAll(partial);
+    )..addAll(sanitized);
     map['colorSchemeOverride'] = existing;
     _current = ColorSchemeConfig.fromJson(map);
     _emit();
