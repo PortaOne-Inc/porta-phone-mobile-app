@@ -110,17 +110,17 @@ export class SplashAssetsService {
             withBackground: {
                 fullSizeDp: 240,
                 maskDiameterDp: 160,
-                toleranceDp: 240,
+                toleranceDp: 4,
             },
             withoutBackground: {
                 fullSizeDp: 288,
                 maskDiameterDp: 192,
-                toleranceDp: 288,
+                toleranceDp: 4,
             },
             android12: {
                 fullSizeDp: 288,
                 maskDiameterDp: 192,
-                toleranceDp: 288,
+                toleranceDp: 4,
             },
         };
 
@@ -144,16 +144,12 @@ export class SplashAssetsService {
         };
     }
 
-    /** Compute validation against default constraints. */
-    private computeValidationFromDefaults(
+    /** Validate params against a single constraints slice. */
+    private validateSlice(
         mode: SplashMode,
+        slice: ConstraintsSlice,
         params: SplashAssetEntity['params'] | undefined,
-        defaults: SplashConstraintsDefaultsDto,
     ): SplashValidationEnvelope {
-        const slice =
-            mode === 'withoutBackground'
-                ? defaults.withoutBackground
-                : defaults.withBackground;
         const recommended = calcRecommended(slice.fullSizeDp, slice.maskDiameterDp);
         const actual = Number(
             (params as any)?.paddingDp ?? (params as any)?.padding ?? 0,
@@ -180,6 +176,28 @@ export class SplashAssetsService {
                 toleranceDp: tolerance,
             },
         };
+    }
+
+    /** Compute validation against default constraints for main splash and android12. */
+    private computeValidationFromDefaults(
+        mode: SplashMode,
+        params: SplashAssetEntity['params'] | undefined,
+        defaults: SplashConstraintsDefaultsDto,
+    ): { validation: SplashValidationEnvelope; android12Validation?: SplashValidationEnvelope } {
+        const mainSlice =
+            mode === 'withoutBackground'
+                ? defaults.withoutBackground
+                : defaults.withBackground;
+
+        const result: { validation: SplashValidationEnvelope; android12Validation?: SplashValidationEnvelope } = {
+            validation: this.validateSlice(mode, mainSlice, params),
+        };
+
+        if (defaults.android12) {
+            result.android12Validation = this.validateSlice(mode, defaults.android12, params);
+        }
+
+        return result;
     }
 
     private async expandUrls(
@@ -227,6 +245,7 @@ export class SplashAssetsService {
         entity: SplashAssetEntity;
         urls?: Record<string, string | undefined>;
         validation?: SplashValidationEnvelope;
+        android12Validation?: SplashValidationEnvelope;
     }
     > {
         const id = this.idFor(themeId);
@@ -241,6 +260,7 @@ export class SplashAssetsService {
             entity: SplashAssetEntity;
             urls?: Record<string, string | undefined>;
             validation?: SplashValidationEnvelope;
+            android12Validation?: SplashValidationEnvelope;
         } = {entity: found};
 
         if (opt?.includeUrl && opt.uid)
@@ -248,11 +268,13 @@ export class SplashAssetsService {
         if (opt?.withValidation) {
             const defs = await this.getConstraintsDefaults();
             const mode: SplashMode = found.mode ?? 'withBackground';
-            ret.validation = this.computeValidationFromDefaults(
+            const { validation, android12Validation } = this.computeValidationFromDefaults(
                 mode,
                 found.params,
                 defs,
             );
+            ret.validation = validation;
+            ret.android12Validation = android12Validation;
         }
         return ret;
     }

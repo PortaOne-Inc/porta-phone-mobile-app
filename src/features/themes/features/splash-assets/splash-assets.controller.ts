@@ -59,6 +59,9 @@ export class SplashAssetsController {
             ...((raw as any).validation
               ? { validation: (raw as any).validation }
               : {}),
+            ...((raw as any).android12Validation
+              ? { android12Validation: (raw as any).android12Validation }
+              : {}),
           }
         : raw;
 

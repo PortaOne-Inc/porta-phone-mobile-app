@@ -76,6 +76,7 @@ export const GetSplashAssetZ = z.object({
 
   urls: SplashUrlsZ.optional(),
   validation: SplashValidationEnvelopeZ.optional(),
+  android12Validation: SplashValidationEnvelopeZ.optional(),
 });
 
 export class GetSplashAssetDto extends createZodDto(GetSplashAssetZ) {}
