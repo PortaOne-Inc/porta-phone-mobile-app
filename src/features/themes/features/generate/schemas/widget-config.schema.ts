@@ -167,6 +167,6 @@ export const WidgetConfigSchema = z
             .optional()
             .nullable(),
     })
-    .passthrough();
+    .strict();
 
 export type WidgetConfig = z.infer<typeof WidgetConfigSchema>;

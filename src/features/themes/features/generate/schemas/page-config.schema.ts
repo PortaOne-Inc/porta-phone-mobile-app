@@ -75,6 +75,6 @@ export const PageConfigSchema = z
             .optional()
             .nullable(),
     })
-    .passthrough();
+    .strict();
 
 export type PageConfig = z.infer<typeof PageConfigSchema>;
