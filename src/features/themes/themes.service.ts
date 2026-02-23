@@ -10,7 +10,7 @@ import { AssetsService } from '../assets/assets.service';
 import { resolveImageSourceUrlsDeep } from '../../common';
 import { CloudStorageService } from '../common';
 import { Collections, nowIso } from '../../common';
-import { CreateThemeDto } from './dto/themes.dto';
+import { CreateThemeDto, UpdateThemeDto } from './dto/themes.dto';
 
 const ASSET_URL_TTL_SEC = 3600;
 
@@ -174,13 +174,16 @@ export class ThemesService {
   async patchTheme(
     applicationId: string,
     themeId: string,
-    updateThemeDto: Theme,
+    dto: UpdateThemeDto,
   ): Promise<Theme> {
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${themeId} not found`);
     }
-    Object.assign(theme, updateThemeDto, {updatedAt: nowIso()});
+    if (dto.title !== undefined) theme.title = dto.title;
+    if (dto.description !== undefined) theme.description = dto.description;
+    if (dto.label !== undefined) theme.label = dto.label;
+    theme.updatedAt = nowIso();
     await this.themeRepository.update(theme);
     return theme;
   }
@@ -190,28 +193,125 @@ export class ThemesService {
     applicationId: string,
     themeId: string,
     opts: DeleteOpts = {},
-  ): Promise<void | null> {
-    try {
-      const theme = await this.themeRepository.findById(themeId);
-      if (!theme || theme.applicationId !== applicationId) {
-        throw new NotFoundException(`Theme with ID ${themeId} not found`);
+  ): Promise<void> {
+    const theme = await this.themeRepository.findById(themeId);
+    if (!theme || theme.applicationId !== applicationId) {
+      throw new NotFoundException(`Theme with ID ${themeId} not found`);
+    }
+
+    const db = admin.firestore();
+
+    // 1. Collect all Firestore document refs to delete atomically
+    const refsToDelete: FirebaseFirestore.DocumentReference[] = [];
+    const artifactIdsToClean: string[] = [];
+
+    // Feature entitlements
+    const feCol = db.collection(Collections.themeFeatureEntitlements);
+    const feLegacySnap = await feCol.doc(themeId).get();
+    if (feLegacySnap.exists) refsToDelete.push(feLegacySnap.ref);
+    const feQuery = await feCol.where('themeId', '==', themeId).get();
+    feQuery.docs.forEach((d) => refsToDelete.push(d.ref));
+
+    // Launch assets — collect doc ref + artifact IDs for storage cleanup
+    const launchRef = db.collection(Collections.themeAssetsLauncher).doc(themeId);
+    const launchSnap = await launchRef.get();
+    if (launchSnap.exists) {
+      refsToDelete.push(launchRef);
+      const outs = (launchSnap.data() as any)?.outputsArtifacts ?? {};
+      [
+        outs.androidLegacyArtifactId,
+        outs.androidAdaptiveForegroundArtifactId,
+        outs.androidAdaptiveBackgroundArtifactId,
+        outs.iosArtifactId,
+        outs.webArtifactId,
+      ]
+        .filter(Boolean)
+        .forEach((id: string) => artifactIdsToClean.push(id));
+    }
+
+    // Splash assets — collect doc ref + artifact IDs for storage cleanup
+    const splashRef = db.collection(Collections.themeAssetsSplash).doc(themeId);
+    const splashSnap = await splashRef.get();
+    if (splashSnap.exists) {
+      refsToDelete.push(splashRef);
+      const splashArtifactId = (splashSnap.data() as any)?.outputsArtifacts
+        ?.splashArtifactId;
+      if (splashArtifactId) artifactIdsToClean.push(splashArtifactId);
+    }
+
+    // Widget configs
+    const widgetQuery = await db
+      .collection(Collections.themeConfigWidgets)
+      .where('themeId', '==', themeId)
+      .get();
+    widgetQuery.docs.forEach((d) => refsToDelete.push(d.ref));
+
+    // Color scheme configs
+    const csCol = db.collection(Collections.themeConfigColorSchemes);
+    const csLegacySnap = await csCol.doc(themeId).get();
+    if (csLegacySnap.exists) refsToDelete.push(csLegacySnap.ref);
+    const csQuery = await csCol.where('themeId', '==', themeId).get();
+    csQuery.docs.forEach((d) => refsToDelete.push(d.ref));
+
+    // Page configs
+    const pageQuery = await db
+      .collection(Collections.themeConfigPages)
+      .where('themeId', '==', themeId)
+      .get();
+    pageQuery.docs.forEach((d) => refsToDelete.push(d.ref));
+
+    // Theme artifacts (Firestore docs)
+    const themeArtifacts = await this.artifacts.findAll(
+      uid,
+      applicationId,
+      themeId,
+      {},
+    );
+    themeArtifacts.forEach((a) => artifactIdsToClean.push(a.id));
+
+    // Theme entity itself
+    const themeRef = db
+      .collection(Collections.themes)
+      .doc(theme.id);
+    refsToDelete.push(themeRef);
+
+    // 2. Atomic Firestore batch delete (max 500 per batch)
+    this.logger.log({
+      msg: 'deleteTheme: atomic batch delete',
+      themeId,
+      firestoreDocsCount: refsToDelete.length,
+      artifactCount: artifactIdsToClean.length,
+    });
+
+    for (let i = 0; i < refsToDelete.length; i += 500) {
+      const chunk = refsToDelete.slice(i, i + 500);
+      const batch = db.batch();
+      chunk.forEach((ref) => batch.delete(ref));
+      await batch.commit();
+    }
+
+    // 3. Cloud Storage artifact cleanup — best-effort, never blocks the delete
+    const uniqueArtifactIds = [...new Set(artifactIdsToClean)];
+    if (uniqueArtifactIds.length > 0) {
+      const results = await Promise.allSettled(
+        uniqueArtifactIds.map((id) => this.artifacts.remove(uid, id)),
+      );
+      const failed = results.filter((r) => r.status === 'rejected');
+      if (failed.length > 0) {
+        this.logger.warn({
+          msg: 'deleteTheme: some artifact cleanups failed',
+          themeId,
+          failedCount: failed.length,
+          failedIds: uniqueArtifactIds.filter(
+            (_, i) => results[i].status === 'rejected',
+          ),
+        });
       }
+    }
 
-      await this.deleteFeatureEntitlements(themeId);
-      await this.deleteLaunchAssetsCascade(uid, applicationId, themeId);
-      await this.deleteSplashAssetsCascade(uid, themeId);
-      await this.deleteWidgetConfigs(themeId);
-      await this.deleteColorSchemeConfig(themeId);
-      await this.deletePageConfigs(themeId);
-      await this.deleteThemeArtifacts(uid, applicationId, themeId);
-
-      if (opts.purgeOrphanAssets) {
-        await this.purgeOrphanAssets(uid, applicationId);
-      }
-
-      await this.themeRepository.delete(theme.id);
-    } catch {
-      return null;
+    // 4. Optional orphan asset purge
+    if (opts.purgeOrphanAssets) {
+      await this.purgeOrphanAssets(uid, applicationId);
     }
   }
 
@@ -254,126 +354,6 @@ export class ThemesService {
     }
 
     return this.aggregateTheme(target, 'system');
-  }
-
-  // -------------------- Cleanup helpers --------------------
-
-  private async deleteFeatureEntitlements(themeId: string) {
-    const col = admin
-      .firestore()
-      .collection(Collections.themeFeatureEntitlements);
-
-    const legacyRef = col.doc(themeId);
-    const legacySnap = await legacyRef.get();
-    if (legacySnap.exists) {
-      await legacyRef.delete();
-    }
-
-    const q = await col.where('themeId', '==', themeId).get();
-    if (!q.empty) {
-      const batch = admin.firestore().batch();
-      q.docs.forEach((d) => batch.delete(d.ref));
-      await batch.commit();
-    }
-  }
-
-  private async deleteLaunchAssetsCascade(
-    uid: string,
-    applicationId: string,
-    themeId: string,
-  ) {
-    const ref = admin
-      .firestore()
-      .collection(Collections.themeAssetsLauncher)
-      .doc(themeId);
-    const snap = await ref.get();
-    if (!snap.exists) return;
-
-    const data = snap.data() as any;
-    const outs = data?.outputsArtifacts ?? {};
-    const ids: string[] = [
-      outs.androidLegacyArtifactId,
-      outs.androidAdaptiveForegroundArtifactId,
-      outs.androidAdaptiveBackgroundArtifactId,
-      outs.iosArtifactId,
-      outs.webArtifactId,
-    ].filter(Boolean);
-
-    await Promise.all(
-      ids.map((id) => this.artifacts.remove(uid, id).catch(() => undefined)),
-    );
-    await ref.delete();
-  }
-
-  private async deleteSplashAssetsCascade(uid: string, themeId: string) {
-    const ref = admin
-      .firestore()
-      .collection(Collections.themeAssetsSplash)
-      .doc(themeId);
-    const snap = await ref.get();
-    if (!snap.exists) return;
-
-    const data = snap.data() as any;
-    const outs = data?.outputsArtifacts ?? {};
-    const splashId: string | undefined = outs?.splashArtifactId;
-
-    if (splashId) {
-      await this.artifacts.remove(uid, splashId).catch(() => undefined);
-    }
-
-    await ref.delete();
-  }
-
-  private async deleteWidgetConfigs(themeId: string) {
-    const q = await admin
-      .firestore()
-      .collection(Collections.themeConfigWidgets)
-      .where('themeId', '==', themeId)
-      .get();
-    const batch = admin.firestore().batch();
-    q.docs.forEach((d) => batch.delete(d.ref));
-    if (!q.empty) await batch.commit();
-  }
-
-  private async deleteColorSchemeConfig(themeId: string) {
-    const col = admin
-      .firestore()
-      .collection(Collections.themeConfigColorSchemes);
-
-    const legacyRef = col.doc(themeId);
-    const legacySnap = await legacyRef.get();
-    if (legacySnap.exists) {
-      await legacyRef.delete();
-    }
-
-    const q = await col.where('themeId', '==', themeId).get();
-    if (!q.empty) {
-      const batch = admin.firestore().batch();
-      q.docs.forEach((d) => batch.delete(d.ref));
-      await batch.commit();
-    }
-  }
-
-  private async deletePageConfigs(themeId: string) {
-    const q = await admin
-      .firestore()
-      .collection(Collections.themeConfigPages)
-      .where('themeId', '==', themeId)
-      .get();
-    const batch = admin.firestore().batch();
-    q.docs.forEach((d) => batch.delete(d.ref));
-    if (!q.empty) await batch.commit();
-  }
-
-  private async deleteThemeArtifacts(
-    uid: string,
-    applicationId: string,
-    themeId: string,
-  ) {
-    const list = await this.artifacts.findAll(uid, applicationId, themeId, {});
-    await Promise.all(
-      list.map((a) => this.artifacts.remove(uid, a.id).catch(() => undefined)),
-    );
   }
 
   private async purgeOrphanAssets(uid: string, applicationId: string) {

@@ -14,12 +14,10 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ThemesService } from './themes.service';
-import { Theme } from './entities/theme';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';
-import { CreateThemeDto } from './dto/themes.dto';
-import { CopyThemeDto } from './dto/themes.dto';
+import { CreateThemeDto, UpdateThemeDto, CopyThemeDto } from './dto/themes.dto';
 
 @ApiTags('themes')
 @Controller('applications/:applicationId/themes')
@@ -111,7 +109,7 @@ export class ThemesController {
   async patchTheme(
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
-    @Body() updateThemeDto: Theme,
+    @Body() updateThemeDto: UpdateThemeDto,
   ) {
     return this.themesService.patchTheme(
       applicationId,
