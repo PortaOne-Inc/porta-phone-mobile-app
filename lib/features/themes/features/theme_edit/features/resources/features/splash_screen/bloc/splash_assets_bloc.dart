@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:logging/logging.dart';
 import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/extensions/extensions.dart';
+
+import '../constants/default_constraints_model.dart';
 
 part 'splash_assets_state.dart';
 
@@ -79,6 +82,10 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
         model.source?.foregroundAssetId,
       );
 
+      final android12Slice = defaults.android12 ?? defaultAndroid12ConstraintsModel;
+      final android12MinPad =
+          (android12Slice.fullSizeDp - android12Slice.maskDiameterDp) / 2;
+
       emit(
         state.copyWith(
           status: SplashAssetsStatus.success,
@@ -87,6 +94,7 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
           updatedAt: model.updatedAt,
           selectedAsset: resolved ?? state.selectedAsset,
           padding: model.params?.padding ?? 0,
+          android12Padding: math.max(state.android12Padding, android12MinPad),
           backgroundColorHex: model.source?.backgroundColorHex,
         ),
       );

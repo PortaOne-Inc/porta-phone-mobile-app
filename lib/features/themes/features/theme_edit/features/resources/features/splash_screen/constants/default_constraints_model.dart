@@ -8,6 +8,6 @@ const defaultConstraintsModel = SplashConstraintsDefaultsSliceModel(
 
 const defaultAndroid12ConstraintsModel = SplashConstraintsDefaultsSliceModel(
   fullSizeDp: 288,
-  maskDiameterDp: 192,
+  maskDiameterDp: 135, // inscribed square in 192dp circle: 192 / √2 ≈ 135
   toleranceDp: 288,
 );

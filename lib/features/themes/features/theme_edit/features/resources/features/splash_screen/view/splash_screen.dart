@@ -98,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
             previewOnlyColor: true,
             sizeDp: android12Slice.fullSizeDp,
             safeZoneDp: android12Slice.maskDiameterDp,
-            maskDp: android12Slice.toleranceDp,
+            maskDp: android12Slice.fullSizeDp * 2 / 3, // actual circular mask (192dp)
             exportSizePx: (android12Slice.fullSizeDp * 4).round(),
             paddingDp: state.android12Padding,
             initialBackgroundHex: state.backgroundColorHex,
