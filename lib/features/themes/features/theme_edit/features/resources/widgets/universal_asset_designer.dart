@@ -14,6 +14,12 @@ import 'package:webtrit_configurator/core/widgets/pattern_painter.dart';
 import 'universal_asset_preview_painter.dart';
 import 'universal_asset_render_painter.dart';
 
+/// Configuration for a single platform page in the asset designer.
+///
+/// Each page represents one export target (e.g. Android Adaptive, iOS, Web).
+/// The "common" page ([isCommon] = true) acts as the reference for
+/// proportional padding — its min/max range defines the ratio that drives
+/// all other locked pages.
 class DesignerPageConfig {
   const DesignerPageConfig({
     required this.id,
@@ -21,7 +27,6 @@ class DesignerPageConfig {
     required this.sizeDp,
     required this.exportSizePx,
     this.safeZoneDp,
-    this.maskDp,
     this.isCommon = false,
     this.previewOnlyColor = false,
     this.exportEnabled = true,
@@ -32,19 +37,29 @@ class DesignerPageConfig {
 
   final String id;
   final String label;
+
+  /// Square artboard side in dp. Used for preview scaling and padding math.
   final double sizeDp;
+
+  /// Diameter (dp) of the circular safe zone. Content padding cannot go below
+  /// `(sizeDp - safeZoneDp) / 2`, guaranteeing the image stays inside this
+  /// area. Drawn as a white circle guide in the preview.
   final double? safeZoneDp;
-  final double? maskDp;
+
+  /// Export resolution in pixels (square).
   final int exportSizePx;
 
+  /// When true this page is the proportional-padding reference.
   final bool isCommon;
 
+  /// When true the background color is used only for preview, not for export.
   final bool previewOnlyColor;
 
   final bool exportEnabled;
-
   final bool bgInheritsFromCommon;
 
+  /// Saved padding value (dp). On init, if it matches the proportional value
+  /// (within 1 dp) the page is auto-locked to follow the base slider.
   final double? paddingDp;
 
   final String? initialBackgroundHex;
@@ -540,7 +555,6 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     final paddingPx = _dpToPx(eff.paddingDp, scale);
     final safePx =
         p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
-    final maskPx = p.maskDp != null ? _dpToPx(p.maskDp!, scale) : null;
 
     final isCommon = p.isCommon;
     final st = isCommon ? null : _pageStates[p.id];
@@ -598,7 +612,6 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                 paddingPx: paddingPx,
                 fit: BoxFit.scaleDown,
                 safeZonePx: safePx,
-                maskDiameterPx: maskPx,
               ),
             ),
           ),

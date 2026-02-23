@@ -56,14 +56,13 @@ safe_square_side = circle_diameter / sqrt(2)
 `android:windowSplashScreenIconBackgroundColor`, which means the **"without icon background"** mode
 applies.
 
-| Configurator field            | Value   | Derivation                                  |
-|-------------------------------|---------|---------------------------------------------|
-| `fullSizeDp`                  | 288     | Official drawable size                      |
-| `maskDiameterDp` (safeZoneDp) | **135** | Inscribed square in 192dp circle            |
-| Visual circle guide (maskDp)  | **192** | Actual circular mask, or `fullSizeDp * 2/3` |
-| `exportSizePx`                | 1152    | 288 x 4 (xxxhdpi)                           |
-| `minPaddingDp`                | 76.5    | (288 - 135) / 2                             |
-| `toleranceDp`                 | 4       | Small compliance margin                     |
+| Configurator field            | Value   | Derivation                       |
+|-------------------------------|---------|----------------------------------|
+| `fullSizeDp`                  | 288     | Official drawable size           |
+| `maskDiameterDp` (safeZoneDp) | **135** | Inscribed square in 192dp circle |
+| `exportSizePx`                | 1152    | 288 x 4 (xxxhdpi)               |
+| `minPaddingDp`                | 76.5    | (288 - 135) / 2                 |
+| `toleranceDp`                 | 4       | Small compliance margin          |
 
 ---
 
@@ -101,14 +100,13 @@ margin.
 
 The configurator uses a canvas 4x the spec size for higher resolution exports:
 
-| Configurator field         | Value   | Derivation                                                |
-|----------------------------|---------|-----------------------------------------------------------|
-| `sizeDp`                   | 432     | 108 x 4                                                   |
-| `safeZoneDp`               | **264** | 66 x 4 (official safe zone)                               |
-| Visual mask guide (maskDp) | **288** | (108 - 18*2) x 4 = 72 x 4 (area outside is always masked) |
-| `exportSizePx`             | 432     | Direct export at canvas dp                                |
-| `minPaddingDp`             | 84      | (432 - 264) / 2                                           |
-| `toleranceDp`              | 4       | Small compliance margin                                   |
+| Configurator field | Value   | Derivation                    |
+|--------------------|---------|-------------------------------|
+| `sizeDp`           | 432     | 108 x 4                       |
+| `safeZoneDp`       | **264** | 66 x 4 (official safe zone)   |
+| `exportSizePx`     | 432     | Direct export at canvas dp    |
+| `minPaddingDp`     | 84      | (432 - 264) / 2               |
+| `toleranceDp`      | 4       | Small compliance margin       |
 
 ### Verification
 
@@ -136,7 +134,6 @@ Canvas at 1x scale:     432 / 4 = 108dp (matches spec)
 |--------------------|-------|-----------------------------------------------|
 | `sizeDp`           | 512   | Export canvas                                 |
 | `safeZoneDp`       | 384   | 75% — design recommendation, no clipping risk |
-| `maskDp`           | null  | No system mask                                |
 | `exportSizePx`     | 512   | Direct export                                 |
 | `minPaddingDp`     | 64    | (512 - 384) / 2                               |
 | `toleranceDp`      | 4     | Compliance margin                             |
@@ -164,14 +161,13 @@ corners is at risk.
 
 ### Configurator Mapping
 
-| Configurator field | Value | Notes                                            |
-|--------------------|-------|--------------------------------------------------|
-| `sizeDp`           | 1024  | Matches App Store requirement                    |
-| `safeZoneDp`       | 832   | ~81% — avoids superellipse corner clipping       |
-| `maskDp`           | 922   | ~90% — outer superellipse boundary approximation |
-| `exportSizePx`     | 1024  | Direct export                                    |
-| `minPaddingDp`     | 96    | (1024 - 832) / 2                                 |
-| `toleranceDp`      | 4     | Compliance margin                                |
+| Configurator field | Value | Notes                                      |
+|--------------------|-------|--------------------------------------------|
+| `sizeDp`           | 1024  | Matches App Store requirement              |
+| `safeZoneDp`       | 832   | ~81% — avoids superellipse corner clipping |
+| `exportSizePx`     | 1024  | Direct export                              |
+| `minPaddingDp`     | 96    | (1024 - 832) / 2                           |
+| `toleranceDp`      | 4     | Compliance margin                          |
 
 ---
 
@@ -186,7 +182,6 @@ padding.
 |--------------------|-------|-----------------------------|
 | `sizeDp`           | 512   | Export canvas               |
 | `safeZoneDp`       | 460.8 | 90% — design recommendation |
-| `maskDp`           | null  | No system mask              |
 | `exportSizePx`     | 512   | Direct export               |
 | `minPaddingDp`     | 25.6  | (512 - 460.8) / 2           |
 | `toleranceDp`      | 4     | Compliance margin           |
@@ -309,3 +304,15 @@ parameter expansion `${VAR:-default}` also broke when the default contained `#` 
 quotes.
 
 **Impact:** `make generate-native-splash-config` failed with "unexpected EOF" error.
+
+### Issue 5: maskDp (red circle overlay) removed from designer
+
+**Was:** `maskDp` field on `DesignerPageConfig` drew a red circle showing the outer mask boundary.
+**Fix:** Removed `maskDp` from config, page factories, and the preview painter entirely.
+
+**Root cause:** The mask overlay was redundant — padding is already clamped to
+`minPaddingDp = (sizeDp - safeZoneDp) / 2`, so content can never extend beyond the safe zone.
+The red circle duplicated information already conveyed by the white safe zone circle and the
+padding constraint itself.
+
+**Impact:** Cleaner preview with only the white safe zone guide remaining.

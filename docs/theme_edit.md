@@ -304,19 +304,36 @@ Each page supports: background images, text styles, metadata display, system UI 
 
 ### 6. Resources (`features/resources/`)
 
-Both Launch Assets and Splash Screen use the shared `ConfigurableAssetDesigner` widget — a multi-page
-tabbed designer with per-page padding, background color, safe zone overlay, and mask overlay.
+Both Launch Assets and Splash Screen use the shared `ConfigurableAssetDesigner` widget — a
+single-page grid designer with proportional padding, shared background color, and safe zone overlay.
 
 **ConfigurableAssetDesigner:**
 
-- Each page has its own independent padding slider, clamped to `minPaddingDp = (sizeDp - safeZoneDp) / 2`
-- Background color can optionally inherit from the common page (`bgInheritsFromCommon`)
-- `safeZoneDp` draws the inner safe zone guide; `maskDp` draws the outer mask boundary overlay
+- All pages are shown simultaneously in a 2-column grid (no tabs)
+- A shared base padding slider at the top controls all platforms proportionally via a ratio
+- Each card can be **locked** (follows proportional ratio) or **unlocked** (independent override)
+- One shared background color for all platforms (no per-card bg override)
+- `safeZoneDp` draws a white circle guide showing the guaranteed visible area
+- Padding is clamped to `minPaddingDp = (sizeDp - safeZoneDp) / 2`
+- The "common" page (isCommon: true) acts as the reference for ratio calculation
+- PatternPainter checkerboard background gives a workspace/dashboard feel
 - Export renders each page at its `exportSizePx` resolution
+
+**Proportional padding math:**
+```
+ratio = (commonPad - commonMinPad) / (commonMaxPad - commonMinPad)
+
+For each locked platform:
+  platformPad = minPad + ratio * (maxPad - minPad)
+  where minPad = (sizeDp - safeZoneDp) / 2, maxPad = sizeDp / 2
+```
+
+On load, saved padding is compared to the proportional value (1dp tolerance) — if it matches,
+the page auto-locks; otherwise it stays unlocked with its saved override.
 
 **Launch Assets:**
 
-- 5-page designer: **Common**, **Android (Adaptive)**, **Android (Legacy)**, **iOS**, **Web**
+- 5-card grid: **Common**, **Android (Adaptive)**, **Android (Legacy)**, **iOS**, **Web**
 - Common page mirrors Android Adaptive constraints and sets shared foreground/background
 - Platform constraints loaded from backend (`GetConstraintsDefaultsUsecase`), with hardcoded fallbacks
 - Saved padding values are clamped to per-platform minimums on load to prevent clipping on real devices
@@ -324,21 +341,20 @@ tabbed designer with per-page padding, background color, safe zone overlay, and 
 
 Platform constraints (hardcoded fallbacks in `default_constraints_model.dart`):
 
-| Platform         | sizeDp | safeZoneDp | maskDp | minPaddingDp | Notes                                     |
-|------------------|--------|------------|--------|--------------|-------------------------------------------|
-| Android Adaptive | 432    | 264        | 288    | 84           | 108dp canvas ×4; 66dp safe zone ×4        |
-| Android Legacy   | 512    | 384        | —      | 64           | No system mask                             |
-| iOS              | 1024   | 832        | 922    | 96           | Superellipse mask, ~22% corner radius      |
-| Web              | 512    | 460.8      | —      | 25.6         | No system mask                             |
+| Platform         | sizeDp | safeZoneDp | minPaddingDp | Notes                                |
+|------------------|--------|------------|--------------|--------------------------------------|
+| Android Adaptive | 432    | 264        | 84           | 108dp canvas ×4; 66dp safe zone ×4   |
+| Android Legacy   | 512    | 384        | 64           | No system mask                       |
+| iOS              | 1024   | 832        | 96           | Superellipse mask, ~22% corner radius |
+| Web              | 512    | 460.8      | 25.6         | No system mask                       |
 
 Android Adaptive geometry (per [official spec](https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)):
 - Canvas: 108×108 dp per layer, outer 18dp per side reserved for masking/parallax
 - Safe zone: 66×66 dp (centered) — content here is never clipped regardless of OEM mask shape
-- maskDp 288 = (108 − 18×2) × 4 — the outer boundary where all mask shapes start clipping
 
 **Splash Screen:**
 
-- 2-page designer: **Splash** (common/primary) and **Android 12**
+- 2-card grid: **Splash** (common/primary) and **Android 12**
 - The Splash page acts as the common page; Android 12 inherits foreground and background from it
 - Each page manages its own padding independently (no padding inheritance between pages)
 - Android 12 page uses dedicated sizing constraints optimized for the circular mask area (288/192/288 dp)

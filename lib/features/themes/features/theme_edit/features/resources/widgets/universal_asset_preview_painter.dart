@@ -4,6 +4,15 @@ import 'package:flutter/material.dart';
 
 import 'universal_asset_painter_common.dart';
 
+/// Paints a square artboard preview for a single designer page.
+///
+/// Layers (bottom → top):
+///   1. Solid [backgroundColor] fill
+///   2. [backgroundImage] fitted inside padding inset
+///   3. [foregroundImage] fitted inside padding inset
+///   4. Safe-zone circle (white stroke) — visual guide showing the area
+///      guaranteed to be visible on the target platform
+///   5. Artboard border frame
 class UniversalAssetPreviewPainter extends CustomPainter {
   UniversalAssetPreviewPainter({
     required this.backgroundImage,
@@ -13,29 +22,35 @@ class UniversalAssetPreviewPainter extends CustomPainter {
     required this.paddingPx,
     required this.fit,
     required this.safeZonePx,
-    required this.maskDiameterPx,
   });
 
   final ui.Image? backgroundImage;
   final ui.Image? foregroundImage;
   final Color backgroundColor;
+
+  /// Square artboard side length in logical pixels (already scaled for preview).
   final double artboardPx;
+
+  /// Content inset from each edge in px. Controls how much space is left
+  /// between the artboard border and the images.
   final double paddingPx;
+
   final BoxFit fit;
+
+  /// Diameter (in px) of the safe-zone circle drawn as a white stroke.
+  /// Represents the area guaranteed visible after platform masking/cropping.
+  /// `null` means no safe-zone guide is drawn.
   final double? safeZonePx;
-  final double? maskDiameterPx;
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Окремі пенти
     final bgPaint = Paint()
       ..isAntiAlias = true
       ..color = backgroundColor;
 
     final imgPaint = Paint()
       ..isAntiAlias = true
-      ..filterQuality = FilterQuality.high; // кращий скейл
-    // ВАЖЛИВО: не задаємо color з альфою тут
+      ..filterQuality = FilterQuality.high;
 
     final board = Rect.fromLTWH(0, 0, artboardPx, artboardPx);
     canvas.drawRect(board, bgPaint);
@@ -47,30 +62,19 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       _drawFitted(canvas, foregroundImage!, board, paddingPx, fit, imgPaint);
     }
 
-    final center = Offset(artboardPx / 2, artboardPx / 2);
-
-    final safePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = artboardPx * 0.01
-      ..color = Colors.white.withValues(alpha: 0.9);
-
-    final hasMask = maskDiameterPx != null && maskDiameterPx! > 0;
-    final hasSafe = safeZonePx != null && safeZonePx! > 0;
-    final overlap = hasMask && hasSafe &&
-        (safeZonePx! - maskDiameterPx!).abs() < artboardPx * 0.02;
-
-    if (hasSafe && !overlap) {
+    // Safe-zone circle — contrasting stroke for visibility on any background
+    if (safeZonePx != null && safeZonePx! > 0) {
+      final center = Offset(artboardPx / 2, artboardPx / 2);
+      final lum = backgroundColor.computeLuminance();
+      final guideColor = lum > 0.5 ? Colors.black : Colors.white;
+      final safePaint = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = artboardPx * 0.01
+        ..color = guideColor.withValues(alpha: 0.7);
       canvas.drawCircle(center, safeZonePx! / 2, safePaint);
     }
 
-    if (hasMask) {
-      final ring = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = artboardPx * 0.012
-        ..color = Colors.redAccent.withValues(alpha: 0.88);
-      canvas.drawCircle(center, maskDiameterPx! / 2, ring);
-    }
-
+    // Artboard border frame
     final frame = Paint()
       ..style = PaintingStyle.stroke
       ..color = Colors.black.withValues(alpha: 0.25)
@@ -103,7 +107,6 @@ class UniversalAssetPreviewPainter extends CustomPainter {
     final inputSubrect = Alignment.center.inscribe(output.source, src);
     final outputSubrect = Alignment.center.inscribe(renderSize, dest);
 
-    // Малюємо завжди пеном без альфи/кольору (imgPaint)
     canvas.drawImageRect(img, inputSubrect, outputSubrect, paint);
   }
 
@@ -115,6 +118,5 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       old.artboardPx != artboardPx ||
       old.paddingPx != paddingPx ||
       old.fit != fit ||
-      old.safeZonePx != safeZonePx ||
-      old.maskDiameterPx != maskDiameterPx;
+      old.safeZonePx != safeZonePx;
 }

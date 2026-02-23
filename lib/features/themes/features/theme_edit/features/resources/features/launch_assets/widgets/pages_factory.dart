@@ -18,7 +18,6 @@ List<DesignerPageConfig> buildDesignerPages({
       exportEnabled: false,
       sizeDp: cons.androidAdaptive?.sizeDp ?? 432,
       safeZoneDp: cons.androidAdaptive?.safeZoneDp ?? 264,
-      maskDp: 288, // outer mask boundary: (108 - 18*2) × 4
       exportSizePx: 0,
       paddingDp: state.paddingAndroidAdaptive,
       initialBackgroundHex: state.selectedBackgroundColorHex,
@@ -28,7 +27,6 @@ List<DesignerPageConfig> buildDesignerPages({
       label: 'Android (Adaptive)',
       sizeDp: cons.androidAdaptive?.sizeDp ?? 432,
       safeZoneDp: cons.androidAdaptive?.safeZoneDp ?? 264,
-      maskDp: 288, // outer mask boundary: (108 - 18*2) × 4
       exportSizePx: 432,
       paddingDp: state.paddingAndroidAdaptive,
     ),
@@ -45,7 +43,6 @@ List<DesignerPageConfig> buildDesignerPages({
       label: 'iOS',
       sizeDp: cons.ios?.sizeDp ?? 1024,
       safeZoneDp: cons.ios?.safeZoneDp,
-      maskDp: 922, // superellipse boundary approximation: 1024 × 0.9
       exportSizePx: 1024,
       paddingDp: state.paddingIOS,
     ),
