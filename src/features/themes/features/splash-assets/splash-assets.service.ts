@@ -363,20 +363,27 @@ export class SplashAssetsService {
         // replace previous artifacts
         const outs = entity.outputsArtifacts ?? {};
         const oldArtifactIds = [outs.splashArtifactId, outs.android12SplashArtifactId].filter(Boolean) as string[];
+        const removalErrors: Array<{ id: string; message: string }> = [];
         for (const oldId of oldArtifactIds) {
             this.logger.log(
                 `artifact:remove:attempt ${logCtx({ oldArtifactId: oldId })}`,
             );
-            await this.artifacts.remove(uid, oldId).then(
-                () => this.logger.log(
+            try {
+                await this.artifacts.remove(uid, oldId);
+                this.logger.log(
                     `artifact:remove:ok ${logCtx({ oldArtifactId: oldId })}`,
-                ),
-            ).catch((e) => {
+                );
+            } catch (e: any) {
                 this.logger.warn(
                     `artifact:remove:failed ${logCtx({ oldArtifactId: oldId, error: e?.message })}`,
                 );
-                return undefined;
-            });
+                removalErrors.push({ id: oldId, message: e?.message });
+            }
+        }
+        if (removalErrors.length) {
+            throw new BadRequestException(
+                `Failed to remove ${removalErrors.length} old artifact(s): ${removalErrors.map((r) => r.id).join(', ')}. Aborting to prevent orphaned files.`,
+            );
         }
         if (oldArtifactIds.length === 0) {
             this.logger.log(`artifact:remove:skip ${logCtx({ reason: 'no_previous_artifacts' })}`);

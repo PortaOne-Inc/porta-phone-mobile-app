@@ -50,12 +50,7 @@ export class WidgetConfigsService {
     if (!entity.config) return entity;
 
     const resolveUrl = async (id: string) => {
-      try {
-        return await this.assets.getSignedUrlByIdForApp(applicationId, id, ttlSec);
-      } catch (e) {
-        this.logger.error(e);
-        return null;
-      }
+      return this.assets.getSignedUrlByIdForApp(applicationId, id, ttlSec);
     };
 
     const configResolved = await resolveImageSourceUrlsDeep(entity.config, resolveUrl);

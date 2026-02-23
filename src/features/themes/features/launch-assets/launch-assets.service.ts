@@ -320,6 +320,7 @@ export class LaunchAssetsService {
         );
 
         const outsA: NonNullable<LaunchAssetsEntity['outputsArtifacts']> = {};
+        const uploadErrors: Array<{ target: string; fieldName: string; message: string }> = [];
         const jobs: Array<Promise<void>> = [];
 
         for (const fieldName of Object.keys(filesMap ?? {})) {
@@ -385,12 +386,18 @@ export class LaunchAssetsService {
                             })}`,
                             e?.stack,
                         );
+                        uploadErrors.push({ target, fieldName, message: e?.message });
                     }
                 })(),
             );
         }
 
         await Promise.all(jobs);
+        if (uploadErrors.length) {
+            throw new BadRequestException(
+                `${uploadErrors.length} platform upload(s) failed: ${uploadErrors.map((e) => e.target).join(', ')}. Entity not saved to prevent partial state.`,
+            );
+        }
         this.logger.log(
             `LaunchAssetsService.upsertWithFiles:uploads_done ${ctx({
                 mappedTargets: outsA,
