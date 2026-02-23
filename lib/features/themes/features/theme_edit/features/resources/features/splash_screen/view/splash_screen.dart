@@ -89,7 +89,6 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
             exportSizePx: (slice.fullSizeDp * 2).round(),
             paddingDp: state.padding,
             initialBackgroundHex: state.backgroundColorHex,
-            inheritsFromCommon: false,
             bgInheritsFromCommon: false,
           ),
           DesignerPageConfig(

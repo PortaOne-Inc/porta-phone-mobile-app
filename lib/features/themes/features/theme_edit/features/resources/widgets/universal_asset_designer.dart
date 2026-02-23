@@ -26,7 +26,6 @@ class DesignerPageConfig {
     this.isCommon = false,
     this.previewOnlyColor = false,
     this.exportEnabled = true,
-    this.inheritsFromCommon = true,
     this.bgInheritsFromCommon = true,
     this.paddingDp,
     this.initialBackgroundHex,
@@ -44,8 +43,6 @@ class DesignerPageConfig {
   final bool previewOnlyColor;
 
   final bool exportEnabled;
-
-  final bool inheritsFromCommon;
 
   final bool bgInheritsFromCommon;
 
@@ -222,24 +219,19 @@ class ConfigurableAssetDesigner extends StatefulWidget {
 
 class _PageState {
   _PageState({
-    required bool startInherit,
     required bool startBgInherit,
     double? paddingDp,
     double minPaddingDp = 0,
     String? initialBgHex,
   }) {
-    inheritCommon = startInherit;
     bgInheritCommon = startBgInherit;
 
-    if (!startInherit && paddingDp != null) {
-      paddingOverrideDp = math.max(paddingDp, minPaddingDp);
-    }
+    paddingOverrideDp = math.max(paddingDp ?? minPaddingDp, minPaddingDp);
     if (!startBgInherit && initialBgHex != null) {
       bgHexOverride = initialBgHex;
     }
   }
 
-  bool inheritCommon = true;
   FitModel? fitOverride;
   double? paddingOverrideDp;
 
@@ -283,7 +275,6 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
     _pageStates = {
       for (final p in _nonCommonPages)
         p.id: _PageState(
-          startInherit: p.inheritsFromCommon,
           startBgInherit: p.bgInheritsFromCommon,
           paddingDp: p.paddingDp,
           minPaddingDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
@@ -334,9 +325,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
       );
     }
     final st = _pageStates[p.id]!;
-    final pad = st.inheritCommon
-        ? _commonPaddingDp
-        : (st.paddingOverrideDp ?? _commonPaddingDp);
+    final pad = st.paddingOverrideDp ?? _commonPaddingDp;
     final bg = st.bgInheritCommon
         ? _commonBgHex
         : (st.bgHexOverride ?? _commonBgHex);
@@ -611,21 +600,6 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Switch(
-                  value: st.inheritCommon,
-                  onChanged: (v) {
-                    setState(() => st.inheritCommon = v);
-                    _emitSnapshot();
-                    _reloadPreview();
-                  },
-                ),
-                const SizedBox(width: 4),
-                const Text('Inherit Common fit/padding'),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Switch(
                   value: st.bgInheritCommon,
                   onChanged: (v) {
                     setState(() => st.bgInheritCommon = v);
@@ -647,18 +621,14 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
             ),
             const Text('Padding:'),
             _paddingEditor(
-              currentDp: st.inheritCommon
-                  ? _commonPaddingDp
-                  : (st.paddingOverrideDp ?? _commonPaddingDp),
+              currentDp: st.paddingOverrideDp ?? _commonPaddingDp,
               minDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
               maxDp: p.sizeDp / 2,
-              onChanged: st.inheritCommon
-                  ? (_) {}
-                  : (v) {
-                      setState(() => st.paddingOverrideDp = v);
-                      _emitSnapshot();
-                      _reloadPreview();
-                    },
+              onChanged: (v) {
+                setState(() => st.paddingOverrideDp = v);
+                _emitSnapshot();
+                _reloadPreview();
+              },
             ),
           ],
         ),
