@@ -6,17 +6,16 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationIdentifierValidationError {
-  toLong,
-  toShort,
-}
+enum ApplicationIdentifierValidationError { toLong, toShort }
 
-class ApplicationIdentifierInput extends FormzInput<String, ApplicationIdentifierValidationError> {
+class ApplicationIdentifierInput
+    extends FormzInput<String, ApplicationIdentifierValidationError> {
   const ApplicationIdentifierInput.pure([super.value = '']) : super.pure();
 
   const ApplicationIdentifierInput.dirty([super.value = '']) : super.dirty();
 
-  ApplicationIdentifierInput toDirty() => ApplicationIdentifierInput.dirty(value);
+  ApplicationIdentifierInput toDirty() =>
+      ApplicationIdentifierInput.dirty(value);
 
   @override
   ApplicationIdentifierValidationError? validator(String value) {

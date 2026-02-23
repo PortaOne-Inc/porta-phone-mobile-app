@@ -18,15 +18,14 @@ import 'application_details_screen.dart';
 import 'application_themes_screen.dart';
 
 class ApplicationDetailsPage extends StatefulWidget with MixinMessages {
-  const ApplicationDetailsPage({
-    super.key,
-  });
+  const ApplicationDetailsPage({super.key});
 
   @override
   State<ApplicationDetailsPage> createState() => _ApplicationDetailsPageState();
 }
 
-class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with MixinMessages {
+class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
+    with MixinMessages {
   late final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
 
   @override
@@ -42,13 +41,15 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
             centerTitle: true,
             title: Text(
               context.l10n.feature_application_details_Toolbar_title,
-              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             actions: [
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
                 onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-              )
+              ),
             ],
           ),
           drawer: Drawer(
@@ -58,23 +59,32 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
                 ListTile(
                   title: Text(
                     state.application?.name ?? '...',
-                    style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.gif_box),
-                  title: Text('Add theme', style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+                  title: Text(
+                    'Add theme',
+                    style: textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   onTap: () => _onNewTheme(context, state.application!.id!),
                 ),
                 ListTile(
                   leading: const Icon(Icons.translate),
                   title: const Text('Translations'),
-                  onTap: () => _openApplicationTranslations(context, bloc.applicationId),
+                  onTap: () =>
+                      _openApplicationTranslations(context, bloc.applicationId),
                 ),
                 ListTile(
                   leading: const Icon(Icons.edit),
                   title: const Text('Edit'),
-                  onTap: () => _openEditApplication(context, bloc.applicationId),
+                  onTap: () =>
+                      _openEditApplication(context, bloc.applicationId),
                 ),
                 ListTile(
                   iconColor: colorScheme.error,
@@ -107,48 +117,75 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
             initialProportions: const [0.7, 0.3],
             children: [
               (context) => Stack(
+                children: [
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          Expanded(
-                            child: ApplicationDetailsScreen(
-                                application: state.application,
-                                onOpenDefaultTheme: (String applicationId, String themeId) =>
-                                    _openTheme(context, applicationId, themeId),
-                                onDeploy: () => _navigateToDeployment(context, state.application!.id!),
-                                onEnvironment: () => _navigateToChangeEnvConfiguration(context, state.application!.id!),
-                                onAssets: () => _navigateToAssets(context, state.application!.id!),
-                                onEmbeds: () => _navigateToEmbeds(context, state.application!.id!),
-                                onCapabilities: () => _navigateToCapabilities(context, state.application!.id!),
-                                onPublicationResources: () =>
-                                    _navigateToPublicationResources(context, state.application!.id!)),
-                          )
-                        ],
+                      Expanded(
+                        child: ApplicationDetailsScreen(
+                          application: state.application,
+                          onOpenDefaultTheme:
+                              (String applicationId, String themeId) =>
+                                  _openTheme(context, applicationId, themeId),
+                          onDeploy: () => _navigateToDeployment(
+                            context,
+                            state.application!.id!,
+                          ),
+                          onEnvironment: () =>
+                              _navigateToChangeEnvConfiguration(
+                                context,
+                                state.application!.id!,
+                              ),
+                          onAssets: () => _navigateToAssets(
+                            context,
+                            state.application!.id!,
+                          ),
+                          onEmbeds: () => _navigateToEmbeds(
+                            context,
+                            state.application!.id!,
+                          ),
+                          onCapabilities: () => _navigateToCapabilities(
+                            context,
+                            state.application!.id!,
+                          ),
+                          onPublicationResources: () =>
+                              _navigateToPublicationResources(
+                                context,
+                                state.application!.id!,
+                              ),
+                        ),
                       ),
                     ],
                   ),
+                ],
+              ),
               (context) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: ConditionalProgressBar(
-                          condition: !state.isProgress,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 16, left: 16),
-                            child: ApplicationThemesScreen(
-                              themes: state.themes,
-                              onNewBranding: () => _onNewTheme(context, state.application!.id!),
-                              onOpenBranding: (String themeId) => _openTheme(context, bloc.applicationId, themeId),
-                              onMakeDefault: bloc.tryMakeThemeAsDefault,
-                              onDelete: bloc.tryDeleteTheme,
-                              onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
-                              onCopy: bloc.copyTheme,
-                            ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ConditionalProgressBar(
+                      condition: !state.isProgress,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16, left: 16),
+                        child: ApplicationThemesScreen(
+                          themes: state.themes,
+                          onNewBranding: () =>
+                              _onNewTheme(context, state.application!.id!),
+                          onOpenBranding: (String themeId) =>
+                              _openTheme(context, bloc.applicationId, themeId),
+                          onMakeDefault: bloc.tryMakeThemeAsDefault,
+                          onDelete: bloc.tryDeleteTheme,
+                          onShowInfo: (theme) => _showThemeInfo(
+                            context,
+                            state.application!.id!,
+                            theme,
                           ),
+                          onCopy: bloc.copyTheme,
                         ),
-                      )
-                    ],
+                      ),
+                    ),
                   ),
+                ],
+              ),
             ],
           ),
         );
@@ -156,10 +193,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  void _listenThemesState(
-    BuildContext context,
-    ApplicationDetailsState state,
-  ) {
+  void _listenThemesState(BuildContext context, ApplicationDetailsState state) {
     if (state.status == ApplicationDetailsStateStatus.error) {
       showFailureMessage(context, state.error.toString());
     }
@@ -173,7 +207,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
         context: context,
         builder: (context) => ConfirmationDialog(
           title: 'Remove application',
-          description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
+          description:
+              'Are you sure to delete the application ${state.deleteApplication?.name}?',
           onConfirm: () {
             Navigator.pop(context);
             bloc.confirmDeleteTheme();
@@ -199,21 +234,29 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
   void _openTheme(BuildContext context, String applicationId, String themeId) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.themesEdit.name,
-      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationId, AppRoutInfo.keyThemeId: themeId},
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationId,
+        AppRoutInfo.keyThemeId: themeId,
+      },
     );
   }
 
-  Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
+  Future<void> _showThemeInfo(
+    BuildContext context,
+    String applicationId,
+    ThemeModel model,
+  ) async {
     await showDialog<void>(
       context: context,
-      builder: (context) => CredentialsDialog(
-        themeId: model.id!,
-        applicationId: applicationId,
-      ),
+      builder: (context) =>
+          CredentialsDialog(themeId: model.id!, applicationId: applicationId),
     );
   }
 
-  void _openApplicationTranslations(BuildContext context, String applicationId) {
+  void _openApplicationTranslations(
+    BuildContext context,
+    String applicationId,
+  ) {
     Navigator.pop(context);
     GoRouter.of(context).pushNamed(
       AppRoutInfo.translations.name,
@@ -246,7 +289,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     BlocProvider.of<CommonBloc>(context).setThemeMode(themeMode);
   }
 
-  Future<void> _navigateToChangeEnvConfiguration(BuildContext context, String applicationId) async {
+  Future<void> _navigateToChangeEnvConfiguration(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetailsEnv.name,
       pathParameters: <String, String>{
@@ -255,7 +301,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _navigateToDeployment(BuildContext context, String applicationId) async {
+  Future<void> _navigateToDeployment(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDeployment.name,
       pathParameters: <String, String>{
@@ -264,7 +313,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _navigateToAssets(BuildContext context, String applicationId) async {
+  Future<void> _navigateToAssets(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationAssets.name,
       pathParameters: <String, String>{
@@ -273,7 +325,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _navigateToEmbeds(BuildContext context, String applicationId) async {
+  Future<void> _navigateToEmbeds(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationEmbeds.name,
       pathParameters: <String, String>{
@@ -282,7 +337,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _navigateToPublicationResources(BuildContext context, String applicationId) async {
+  Future<void> _navigateToPublicationResources(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationPublicationResources.name,
       pathParameters: <String, String>{
@@ -291,7 +349,10 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage> with Mi
     );
   }
 
-  Future<void> _navigateToCapabilities(BuildContext context, String applicationId) async {
+  Future<void> _navigateToCapabilities(
+    BuildContext context,
+    String applicationId,
+  ) async {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationCapabilities.name,
       pathParameters: <String, String>{

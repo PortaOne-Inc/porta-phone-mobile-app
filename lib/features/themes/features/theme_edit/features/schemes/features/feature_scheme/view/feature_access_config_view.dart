@@ -20,7 +20,8 @@ class ConfigureAppConfigView extends StatefulWidget {
   State<ConfigureAppConfigView> createState() => _ConfigureAppConfigViewState();
 }
 
-class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with SingleTickerProviderStateMixin {
+class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   final _tabs = const [
@@ -67,7 +68,9 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
               SupportedConfigWidget(
                 supportedFeatures: appConfig.supported,
                 onChanged: (List<SupportedFeature> newList) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSupportedFeatures(newList));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setSupportedFeatures(newList),
+                  );
                 },
               ),
 
@@ -75,7 +78,9 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
               LoginSchemeScreen(
                 sourceAppConfigLogin: appConfig.loginConfig,
                 callback: (AppConfigLogin loginCfg) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setLoginConfig(loginCfg));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setLoginConfig(loginCfg),
+                  );
                 },
               ),
 
@@ -83,10 +88,14 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
               MainConfigWidget(
                 mainConfig: appConfig.mainConfig,
                 onChange: (AppConfigMain value) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setMainConfig(value));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setMainConfig(value),
+                  );
                 },
                 onCacheSelectedTabChange: (bool value) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setBottomMenuCacheSelectedTab(value));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setBottomMenuCacheSelectedTab(value),
+                  );
                 },
               ),
 
@@ -94,25 +103,39 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
               SettingSchemeScreen(
                 config: appConfig.settingsConfig,
                 callback: (AppConfigSettings value) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSettingsConfig(value));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setSettingsConfig(value),
+                  );
                 },
               ),
 
               // 5. Call
               AppConfigCallWidget(
                 initialVideoEnabled: appConfig.callConfig.videoEnabled,
-                initialBlindTransferEnabled: appConfig.callConfig.transfer.enableBlindTransfer,
-                initialAttendedTransferEnabled: appConfig.callConfig.transfer.enableAttendedTransfer,
+                initialBlindTransferEnabled:
+                    appConfig.callConfig.transfer.enableBlindTransfer,
+                initialAttendedTransferEnabled:
+                    appConfig.callConfig.transfer.enableAttendedTransfer,
                 onVideoEnabledChanged: (bool enabled) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallVideoEnabled(enabled));
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallVideoEnabled(enabled),
+                  );
                 },
                 onBlindTransferChanged: (bool enabled) {
-                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableBlindTransfer: enabled);
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(
+                    enableBlindTransfer: enabled,
+                  );
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallTransfer(newTransfer),
+                  );
                 },
                 onAttendedTransferChanged: (bool enabled) {
-                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: enabled);
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(
+                    enableAttendedTransfer: enabled,
+                  );
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallTransfer(newTransfer),
+                  );
                 },
               ),
             ],

@@ -65,7 +65,13 @@ class BorderContainer extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (title != null) Expanded(child: Text(title!, style: titleStyle ?? textTheme.labelLarge)),
+              if (title != null)
+                Expanded(
+                  child: Text(
+                    title!,
+                    style: titleStyle ?? textTheme.labelLarge,
+                  ),
+                ),
               if (trailing != null) trailing!,
             ],
           ),

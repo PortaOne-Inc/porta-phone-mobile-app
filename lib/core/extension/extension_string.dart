@@ -14,7 +14,12 @@ extension StringExtension on String {
     if (trimmed.isEmpty) {
       return '';
     } else {
-      return trimmed.split(' ').where((v) => v.isNotEmpty).map((v) => Characters(v).first).take(3).join();
+      return trimmed
+          .split(' ')
+          .where((v) => v.isNotEmpty)
+          .map((v) => Characters(v).first)
+          .take(3)
+          .join();
     }
   }
 }

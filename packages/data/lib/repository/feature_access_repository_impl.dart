@@ -11,8 +11,8 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
   FeatureAccessRepositoryImpl({
     required ConfiguratorBackandDatasource api,
     required CommonMapper<FeatureAccessModel, FeatureAccessDto> mapper,
-  })  : _api = api,
-        _mapper = mapper;
+  }) : _api = api,
+       _mapper = mapper;
 
   final ConfiguratorBackandDatasource _api;
   final CommonMapper<FeatureAccessModel, FeatureAccessDto> _mapper;
@@ -31,7 +31,10 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     required String applicationId,
     required String themeId,
   }) async {
-    final dto = await _api.getFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
+    final dto = await _api.getFeatureAccessByTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+    );
     return _mapper.convertFrom(dto);
   }
 
@@ -45,7 +48,9 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     final dto = await _api.upsertFeatureAccessByTheme(
       applicationId: applicationId,
       themeId: themeId,
-      status: status == null ? null : (status == FeatureAccessStatus.published ? 'published' : 'draft'),
+      status: status == null
+          ? null
+          : (status == FeatureAccessStatus.published ? 'published' : 'draft'),
       config: config,
     );
     return _mapper.convertFrom(dto);
@@ -56,6 +61,9 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     required String applicationId,
     required String themeId,
   }) async {
-    await _api.deleteFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
+    await _api.deleteFeatureAccessByTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+    );
   }
 }

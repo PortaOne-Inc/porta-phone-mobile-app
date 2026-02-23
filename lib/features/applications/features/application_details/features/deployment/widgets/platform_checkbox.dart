@@ -1,4 +1,4 @@
-import  'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 
@@ -26,14 +26,13 @@ class PlatformCheckbox extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                platform,
-                style: textTheme.labelLarge,
-              ),
+              Text(platform, style: textTheme.labelLarge),
               const SizedBox(width: 8),
               Icon(
                 deploy ? Icons.check_box : Icons.check_box_outline_blank,
-                color: deploy ? colorScheme.primary : colorScheme.surfaceDim.withValues(alpha: .5),
+                color: deploy
+                    ? colorScheme.primary
+                    : colorScheme.surfaceDim.withValues(alpha: .5),
               ),
             ],
           ),

@@ -90,8 +90,9 @@ class AssetPickerDialog extends StatefulWidget {
 }
 
 class _AssetPickerDialogState extends State<AssetPickerDialog> {
-  late final Set<String> _selectedIds =
-      {...widget.initialSelectedIds}.intersection(widget.assets.map((a) => a.id).toSet());
+  late final Set<String> _selectedIds = {
+    ...widget.initialSelectedIds,
+  }.intersection(widget.assets.map((a) => a.id).toSet());
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +115,12 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
             final asset = widget.assets[i];
             final selected = _selectedIds.contains(asset.id);
 
-            final resource = (asset.downloadUrl != null && asset.downloadUrl!.isNotEmpty)
-                ? MimeImageResource.fromUrl(asset.downloadUrl!, mimeType: asset.mimeType)
+            final resource =
+                (asset.downloadUrl != null && asset.downloadUrl!.isNotEmpty)
+                ? MimeImageResource.fromUrl(
+                    asset.downloadUrl!,
+                    mimeType: asset.mimeType,
+                  )
                 : MimeImageResource.empty();
 
             return InkWell(
@@ -141,10 +146,14 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: selected ? cs.primary : Theme.of(context).dividerColor,
+                          color: selected
+                              ? cs.primary
+                              : Theme.of(context).dividerColor,
                           width: selected ? 3 : 1,
                         ),
-                        color: selected ? cs.primary.withValues(alpha: 0.08) : Colors.transparent,
+                        color: selected
+                            ? cs.primary.withValues(alpha: 0.08)
+                            : Colors.transparent,
                       ),
                     ),
                   ),
@@ -159,7 +168,11 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
                           borderRadius: BorderRadius.circular(999),
                         ),
                         padding: const EdgeInsets.all(4),
-                        child: const Icon(Icons.check, size: 16, color: Colors.white),
+                        child: const Icon(
+                          Icons.check,
+                          size: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   // Filename footer
@@ -168,10 +181,15 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
                     right: 0,
                     bottom: 0,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.45),
-                        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12)),
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(12),
+                        ),
                       ),
                       child: Text(
                         _filenameFromPath(asset.storagePath),
@@ -189,7 +207,8 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop<List<AssetModel>>(<AssetModel>[]),
+          onPressed: () =>
+              Navigator.of(context).pop<List<AssetModel>>(<AssetModel>[]),
           child: const Text('Cancel'),
         ),
         if (widget.multiSelect)
@@ -224,7 +243,9 @@ class _AssetPickerDialogState extends State<AssetPickerDialog> {
   }
 
   void _confirmSelection() {
-    final selected = widget.assets.where((a) => _selectedIds.contains(a.id)).toList(growable: false);
+    final selected = widget.assets
+        .where((a) => _selectedIds.contains(a.id))
+        .toList(growable: false);
     Navigator.of(context).pop<List<AssetModel>>(selected);
   }
 

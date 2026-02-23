@@ -6,7 +6,9 @@ part 'login_credentials.g.dart';
 
 @unfreezed
 sealed class LoginCredentials with _$LoginCredentials {
-  factory LoginCredentials({required String email, required String password}) = _LoginCredentials;
+  factory LoginCredentials({required String email, required String password}) =
+      _LoginCredentials;
 
-  factory LoginCredentials.fromJson(Map<String, dynamic> json) => _$LoginCredentialsFromJson(json);
+  factory LoginCredentials.fromJson(Map<String, dynamic> json) =>
+      _$LoginCredentialsFromJson(json);
 }

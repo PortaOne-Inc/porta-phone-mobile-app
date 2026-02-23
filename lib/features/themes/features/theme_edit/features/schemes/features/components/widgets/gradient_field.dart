@@ -42,15 +42,26 @@ class GradientField extends StatelessWidget {
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            if (colors.isEmpty) Text('No colors set yet', style: textTheme.bodyMedium),
+                            if (colors.isEmpty)
+                              Text(
+                                'No colors set yet',
+                                style: textTheme.bodyMedium,
+                              ),
                             ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: constraints.maxWidth - 48, minHeight: 24),
+                              constraints: BoxConstraints(
+                                maxWidth: constraints.maxWidth - 48,
+                                minHeight: 24,
+                              ),
                               child: Wrap(
                                 children: colors
-                                    .map((e) => Text(
-                                          '${e.toHex()} ',
-                                          style: textTheme.labelSmall?.copyWith(color: e),
-                                        ))
+                                    .map(
+                                      (e) => Text(
+                                        '${e.toHex()} ',
+                                        style: textTheme.labelSmall?.copyWith(
+                                          color: e,
+                                        ),
+                                      ),
+                                    )
                                     .toList(),
                               ),
                             ),
@@ -66,15 +77,24 @@ class GradientField extends StatelessWidget {
                           width: gradientWidth,
                           height: 40,
                           decoration: BoxDecoration(
-                            gradient: hasGradient ? LinearGradient(colors: colors) : null,
+                            gradient: hasGradient
+                                ? LinearGradient(colors: colors)
+                                : null,
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                         const SizedBox(width: 8),
                         Column(
                           mainAxisSize: MainAxisSize.min,
-                          children:
-                              colors.map((e) => Container(width: 24, height: 40 / colors.length, color: e)).toList(),
+                          children: colors
+                              .map(
+                                (e) => Container(
+                                  width: 24,
+                                  height: 40 / colors.length,
+                                  color: e,
+                                ),
+                              )
+                              .toList(),
                         ),
                       ],
                     ),

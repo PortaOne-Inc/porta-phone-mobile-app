@@ -18,5 +18,6 @@ sealed class DeployApplicationDto with _$DeployApplicationDto {
     required String androidPlayStoreConfig,
   }) = _DeployApplicationDto;
 
-  factory DeployApplicationDto.fromJson(Map<String, dynamic> json) => _$DeployApplicationDtoFromJson(json);
+  factory DeployApplicationDto.fromJson(Map<String, dynamic> json) =>
+      _$DeployApplicationDtoFromJson(json);
 }

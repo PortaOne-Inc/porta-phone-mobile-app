@@ -14,7 +14,8 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
   final TextFieldConfig value;
   final ValueChanged<TextFieldConfig> onChanged;
 
-  InputDecorationConfig _ensureDecoration(InputDecorationConfig? d) => d ?? const InputDecorationConfig();
+  InputDecorationConfig _ensureDecoration(InputDecorationConfig? d) =>
+      d ?? const InputDecorationConfig();
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +49,18 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Alignment',
                           isDense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
                         ),
                         items: const ['left', 'center', 'right']
-                            .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                            .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)),
+                            )
                             .toList(),
-                        onChanged: (v) => onChanged(value.copyWith(textAlign: v ?? 'center')),
+                        onChanged: (v) =>
+                            onChanged(value.copyWith(textAlign: v ?? 'center')),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -63,12 +70,30 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
                         decoration: const InputDecoration(
                           labelText: 'Keyboard',
                           isDense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
                         ),
-                        items: const ['none', 'number', 'phone', 'text', 'email', 'multiline']
-                            .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                            .toList(),
-                        onChanged: (v) => onChanged(value.copyWith(keyboardType: v ?? 'none')),
+                        items:
+                            const [
+                                  'none',
+                                  'number',
+                                  'phone',
+                                  'text',
+                                  'email',
+                                  'multiline',
+                                ]
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ),
+                                )
+                                .toList(),
+                        onChanged: (v) => onChanged(
+                          value.copyWith(keyboardType: v ?? 'none'),
+                        ),
                       ),
                     ),
                   ],
@@ -102,7 +127,10 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: 'Hint Text',
                       isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 12,
+                      ),
                     ),
                     onChanged: _updateHintText,
                   ),
@@ -128,9 +156,9 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
   void _updateHintText(String v) {
     onChanged(
       value.copyWith(
-        decoration: _ensureDecoration(value.decoration).copyWith(
-          hintText: v.isEmpty ? null : v,
-        ),
+        decoration: _ensureDecoration(
+          value.decoration,
+        ).copyWith(hintText: v.isEmpty ? null : v),
       ),
     );
   }
@@ -143,9 +171,9 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
     if (context.mounted && picked != null) {
       onChanged(
         value.copyWith(
-          decoration: _ensureDecoration(value.decoration).copyWith(
-            fillColor: picked.toHex(),
-          ),
+          decoration: _ensureDecoration(
+            value.decoration,
+          ).copyWith(fillColor: picked.toHex()),
         ),
       );
     }
@@ -155,9 +183,9 @@ class TextFieldConfigEditorMinimal extends StatelessWidget {
   void _clearFillColor() {
     onChanged(
       value.copyWith(
-        decoration: _ensureDecoration(value.decoration).copyWith(
-          fillColor: null,
-        ),
+        decoration: _ensureDecoration(
+          value.decoration,
+        ).copyWith(fillColor: null),
       ),
     );
   }

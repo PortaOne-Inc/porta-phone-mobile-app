@@ -11,38 +11,39 @@ part 'login_state.dart';
 part 'login_cubit.freezed.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit({
-    required this.signInUsecase,
-    required this.getAuthStatusUsecase,
-  }) : super(LoginState());
+  LoginCubit({required this.signInUsecase, required this.getAuthStatusUsecase})
+    : super(LoginState());
 
   final SignInAuthUsecase signInUsecase;
   final GetAuthStatusUsecase getAuthStatusUsecase;
 
   void authPasswordChanged(String password) {
-    emit(state.copyWithValidate(
-      passwordInput: AuthPasswordInput.dirty(password),
-    ));
+    emit(
+      state.copyWithValidate(passwordInput: AuthPasswordInput.dirty(password)),
+    );
   }
 
   void authEmailChanged(String email) {
-    emit(
-      state.copyWithValidate(
-        emailInput: AuthEmailInput.dirty(email),
-      ),
-    );
+    emit(state.copyWithValidate(emailInput: AuthEmailInput.dirty(email)));
   }
 
   Future<void> validateAndTryLogin() async {
     if (_isValidFields()) {
       try {
-        await _loginInServerSuccess(state.emailInput!.value, state.passwordInput!.value);
+        await _loginInServerSuccess(
+          state.emailInput!.value,
+          state.passwordInput!.value,
+        );
       } on AuthUserNotFountException catch (_) {
         emit(state.copyWithError(failure: AuthException.noUser()));
       } on AuthWrongPasswordException catch (_) {
         emit(state.copyWithError(failure: AuthException.wrongPassword()));
       } on Exception catch (e) {
-        emit(state.copyWithError(failure: AuthException.another(message: e.toString())));
+        emit(
+          state.copyWithError(
+            failure: AuthException.another(message: e.toString()),
+          ),
+        );
       }
     } else {
       emit(

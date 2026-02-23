@@ -1,12 +1,6 @@
 part of 'theme_collection_cubit.dart';
 
-enum ThemeCollectionStateStatus {
-  initial,
-  progress,
-  error,
-  deleted,
-  success,
-}
+enum ThemeCollectionStateStatus { initial, progress, error, deleted, success }
 
 @freezed
 sealed class ThemeCollectionState with _$ThemeCollectionState {

@@ -55,19 +55,26 @@ class ApplicationPreviewItem extends StatelessWidget {
                     elevation: 6,
                     onSelected: _handleMenuTab,
                     padding: const EdgeInsets.only(top: 8),
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
                     child: const Icon(Icons.more_vert_outlined),
                     itemBuilder: (c) => [
                       PopupMenuItem(
                         value: _menuKeyUpdateVersion,
                         padding: const EdgeInsets.all(8),
-                        child: Text(context.l10n.feature_applications_Menu_increment, style: textTheme.bodyMedium),
+                        child: Text(
+                          context.l10n.feature_applications_Menu_increment,
+                          style: textTheme.bodyMedium,
+                        ),
                       ),
                       PopupMenuItem(
                         value: _menuKeyEdit,
                         padding: const EdgeInsets.all(8),
                         child: Text(
-                          context.l10n.feature_application_collection_ApplicationPreviewItem_edit,
+                          context
+                              .l10n
+                              .feature_application_collection_ApplicationPreviewItem_edit,
                           style: textTheme.bodyMedium,
                         ),
                       ),
@@ -75,8 +82,12 @@ class ApplicationPreviewItem extends StatelessWidget {
                         value: _menuKeyDelete,
                         padding: const EdgeInsets.all(8),
                         child: Text(
-                          context.l10n.feature_application_collection_ApplicationPreviewItem_delete,
-                          style: textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+                          context
+                              .l10n
+                              .feature_application_collection_ApplicationPreviewItem_delete,
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.error,
+                          ),
                         ),
                       ),
                     ],

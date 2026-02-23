@@ -15,7 +15,9 @@ extension ExtensionHexColor on Color {
       to255(b),
     ];
 
-    final hexColor = components.map((c) => c.toRadixString(16).padLeft(2, '0')).join();
+    final hexColor = components
+        .map((c) => c.toRadixString(16).padLeft(2, '0'))
+        .join();
 
     return (leadingHashSign ? '#$hexColor' : hexColor).toUpperCase();
   }

@@ -26,7 +26,12 @@ class _TranslationsPageState extends State<TranslationsPage> {
     final listLinearBackground = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [theme.colorScheme.onSurface, Colors.transparent, Colors.transparent, theme.colorScheme.onSurface],
+      colors: [
+        theme.colorScheme.onSurface,
+        Colors.transparent,
+        Colors.transparent,
+        theme.colorScheme.onSurface,
+      ],
       stops: const [0.0, 0.05, 0.95, 1.0],
     );
     return BlocBuilder<TranslationsCubit, TranslationsState>(
@@ -36,13 +41,15 @@ class _TranslationsPageState extends State<TranslationsPage> {
             centerTitle: true,
             title: Text(
               'Translations',
-              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             actions: [
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
                 onThemeChange: commonBloc.setThemeMode,
-              )
+              ),
             ],
           ),
           body: SizedBox.expand(
@@ -55,7 +62,9 @@ class _TranslationsPageState extends State<TranslationsPage> {
                     children: [
                       ControlBar(
                         enabled: state.isCommon,
-                        locales: state.translations.original.map((e) => e.locale).toSet(),
+                        locales: state.translations.original
+                            .map((e) => e.locale)
+                            .toSet(),
                         localeFilter: state.filter.localeFilter,
                         onLocaleChanged: bloc.updateLocaleFilter,
                         onSearchChanged: bloc.updateSearchFilter,
@@ -71,14 +80,20 @@ class _TranslationsPageState extends State<TranslationsPage> {
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               itemCount: state.filteredTranslations.length,
                               itemBuilder: (context, index) {
-                                final translation = state.filteredTranslations[index];
-                                final override = state.findOverride(translation.locale, translation.key);
+                                final translation =
+                                    state.filteredTranslations[index];
+                                final override = state.findOverride(
+                                  translation.locale,
+                                  translation.key,
+                                );
 
                                 return TranslationItem(
                                   originalTranslation: translation,
                                   overrideTranslation: override,
-                                  onChange: (value) => bloc.setOverride(translation, value),
-                                  onRestore: () => bloc.deleteOverride(translation),
+                                  onChange: (value) =>
+                                      bloc.setOverride(translation, value),
+                                  onRestore: () =>
+                                      bloc.deleteOverride(translation),
                                 );
                               },
                             ),
@@ -87,7 +102,11 @@ class _TranslationsPageState extends State<TranslationsPage> {
                       ),
                     ],
                   ),
-                  if (state.isInitializingError) ErrorMessage(error: state.exception, onPressed: bloc.fetchTranslation),
+                  if (state.isInitializingError)
+                    ErrorMessage(
+                      error: state.exception,
+                      onPressed: bloc.fetchTranslation,
+                    ),
                   if (state.isInitializing) const CircularProgressIndicator(),
                 ],
               ),

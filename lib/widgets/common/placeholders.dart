@@ -30,10 +30,7 @@ class NoDataPlaceholder extends StatelessWidget {
 }
 
 class ErrorPlaceholder extends StatelessWidget {
-  const ErrorPlaceholder({
-    this.message = 'Error loading data',
-    super.key,
-  });
+  const ErrorPlaceholder({this.message = 'Error loading data', super.key});
 
   final String message;
 

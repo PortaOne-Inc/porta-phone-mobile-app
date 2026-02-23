@@ -22,14 +22,16 @@ class MenuSpace extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4, top: 4),
       decoration: BoxDecoration(
         border: Border(
-            top: isTopPosition ? BorderSide.none : BorderSide(width: borderWidth, color: border),
-            bottom: isTopPosition ? BorderSide(width: borderWidth, color: border) : BorderSide.none),
+          top: isTopPosition
+              ? BorderSide.none
+              : BorderSide(width: borderWidth, color: border),
+          bottom: isTopPosition
+              ? BorderSide(width: borderWidth, color: border)
+              : BorderSide.none,
+        ),
         color: background,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: children,
-      ),
+      child: Row(mainAxisAlignment: MainAxisAlignment.end, children: children),
     );
   }
 }

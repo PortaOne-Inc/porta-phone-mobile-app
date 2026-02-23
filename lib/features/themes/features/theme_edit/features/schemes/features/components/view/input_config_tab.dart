@@ -20,11 +20,14 @@ class InputConfigTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final labelColor = inputDecorationTheme.labelStyle?.color ?? Colors.black;
-    final disabledColor = inputDecorationTheme.disabledBorder?.borderSide.color ?? Colors.grey;
-    final focusedColor = inputDecorationTheme.focusedBorder?.borderSide.color ?? Colors.blue;
+    final disabledColor =
+        inputDecorationTheme.disabledBorder?.borderSide.color ?? Colors.grey;
+    final focusedColor =
+        inputDecorationTheme.focusedBorder?.borderSide.color ?? Colors.blue;
     final errorColor = inputDecorationTheme.errorStyle?.color ?? Colors.red;
-    final fillColor =
-        inputDecorationTheme.filled ? (inputDecorationTheme.fillColor ?? Colors.transparent) : Colors.transparent;
+    final fillColor = inputDecorationTheme.filled
+        ? (inputDecorationTheme.fillColor ?? Colors.transparent)
+        : Colors.transparent;
 
     final cubit = context.read<UpdateThemCubit>();
 
@@ -45,33 +48,42 @@ class InputConfigTab extends StatelessWidget {
               children: [
                 ColorField(
                   title: 'Label color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                  constraints: const BoxConstraints(
+                    minWidth: 140,
+                    minHeight: 60,
+                  ),
                   color: labelColor,
                   onTap: (_) => _pickColor(
                     context,
                     labelColor,
-                    (hex) => cubit.add(ThemeWidgetEvent.setInputLabelColor(hex)),
+                    (hex) =>
+                        cubit.add(ThemeWidgetEvent.setInputLabelColor(hex)),
                   ),
                 ),
                 ColorField(
                   title: 'Disabled border color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                  constraints: const BoxConstraints(
+                    minWidth: 140,
+                    minHeight: 60,
+                  ),
                   color: disabledColor,
                   onTap: (_) => _pickColor(
                     context,
                     disabledColor,
                     (hex) => cubit.add(
                       ThemeWidgetEvent.setInputBorderDisabled(
-                        sourceInputWidgetConfig.primary.border.disabled.copyWith(
-                          typicalColor: hex,
-                        ),
+                        sourceInputWidgetConfig.primary.border.disabled
+                            .copyWith(typicalColor: hex),
                       ),
                     ),
                   ),
                 ),
                 ColorField(
                   title: 'Focused border color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                  constraints: const BoxConstraints(
+                    minWidth: 140,
+                    minHeight: 60,
+                  ),
                   color: focusedColor,
                   onTap: (_) => _pickColor(
                     context,
@@ -87,7 +99,10 @@ class InputConfigTab extends StatelessWidget {
                 ),
                 ColorField(
                   title: 'Error border color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                  constraints: const BoxConstraints(
+                    minWidth: 140,
+                    minHeight: 60,
+                  ),
                   color: errorColor,
                   onTap: (_) => _pickColor(
                     context,
@@ -103,7 +118,10 @@ class InputConfigTab extends StatelessWidget {
                 ),
                 ColorField(
                   title: 'Fill color',
-                  constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                  constraints: const BoxConstraints(
+                    minWidth: 140,
+                    minHeight: 60,
+                  ),
                   color: fillColor,
                   onTap: (_) => _pickColor(
                     context,
@@ -130,7 +148,9 @@ class InputConfigTab extends StatelessWidget {
     Color currentColor,
     void Function(String hex) onColorSelected,
   ) async {
-    final pickedColor = await context.showColorPicker(currentColor: currentColor);
+    final pickedColor = await context.showColorPicker(
+      currentColor: currentColor,
+    );
     if (pickedColor != null && context.mounted) {
       onColorSelected(pickedColor.toHex());
     }

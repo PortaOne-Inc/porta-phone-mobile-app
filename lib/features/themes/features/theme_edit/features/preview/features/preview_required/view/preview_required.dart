@@ -4,10 +4,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_phone/models/models.dart';
 
 class PreviewRequired extends StatelessWidget {
-  const PreviewRequired({
-    required this.exception,
-    super.key,
-  });
+  const PreviewRequired({required this.exception, super.key});
 
   final Object exception;
 
@@ -20,7 +17,8 @@ class PreviewRequired extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final errorMessage = _getErrorMessage(exception);
 
-    final isEmbeddedResourceMissingException = exception is EmbeddedResourceMissingException;
+    final isEmbeddedResourceMissingException =
+        exception is EmbeddedResourceMissingException;
     const borderSide = BorderSide(width: 0.1, color: Colors.black87);
 
     return Scaffold(
@@ -29,12 +27,15 @@ class PreviewRequired extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const ConfiguratorGroupTitleTile(
-            titleData: 'Preview is not available till the required data is provided',
+            titleData:
+                'Preview is not available till the required data is provided',
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             decoration: BoxDecoration(border: Border(bottom: borderSide)),
           ),
           if (isEmbeddedResourceMissingException)
-            EmbeddedResourceMissingView(exception: exception as EmbeddedResourceMissingException),
+            EmbeddedResourceMissingView(
+              exception: exception as EmbeddedResourceMissingException,
+            ),
           if (!isEmbeddedResourceMissingException)
             Text(
               errorMessage,
@@ -48,10 +49,7 @@ class PreviewRequired extends StatelessWidget {
 }
 
 class EmbeddedResourceMissingView extends StatelessWidget {
-  const EmbeddedResourceMissingView({
-    required this.exception,
-    super.key,
-  });
+  const EmbeddedResourceMissingView({required this.exception, super.key});
 
   final EmbeddedResourceMissingException exception;
 
@@ -87,7 +85,7 @@ class EmbeddedResourceMissingView extends StatelessWidget {
             subtitle: Text(
               'Navigate to the Feature Access section and select Embedded Resources to add the missing resource.',
             ),
-          )
+          ),
         ],
       ),
     );

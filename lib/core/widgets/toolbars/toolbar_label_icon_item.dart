@@ -21,10 +21,7 @@ class ToolbarLabelWidgetItem extends StatelessWidget {
       height: kToolbarHeight - 8,
       child: InkWell(
         onTap: onTap,
-        child: Icon(
-          icon,
-          color: color,
-        ),
+        child: Icon(icon, color: color),
       ),
     );
   }

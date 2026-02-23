@@ -30,11 +30,7 @@ class ToolbarLabelItem extends StatelessWidget {
           textStyle: textStyle,
         ),
         onPressed: onTap,
-        child: Text(
-          text,
-          style: textStyle,
-          textAlign: TextAlign.center,
-        ),
+        child: Text(text, style: textStyle, textAlign: TextAlign.center),
       ),
     );
   }

@@ -52,7 +52,9 @@ class ColorField extends StatelessWidget {
             children: [
               if (color == null)
                 Positioned.fill(
-                  child: CustomPaint(painter: PatternPainter(primaryColor: effectiveColor)),
+                  child: CustomPaint(
+                    painter: PatternPainter(primaryColor: effectiveColor),
+                  ),
                 ),
               Padding(
                 padding: padding,
@@ -78,13 +80,15 @@ class ColorField extends StatelessWidget {
   void _copyColorToClipboard(BuildContext context, Color color) {
     final hexValue = color.toHex();
     Clipboard.setData(ClipboardData(text: hexValue));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Copied "$hexValue" to clipboard')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Copied "$hexValue" to clipboard')));
   }
 
   Color _getTextColorForBackground(Color backgroundColor) {
-    return backgroundColor.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+    return backgroundColor.computeLuminance() > 0.5
+        ? Colors.black
+        : Colors.white;
   }
 }
 
@@ -133,12 +137,8 @@ class _Content extends StatelessWidget {
           if (subtitle != null || subtitleWidget != null) ...[
             _buildSubtitle(context, inverseColor),
           ],
-          if (showCopyButton) ...[
-            _buildColorDisplay(context, inverseColor),
-          ],
-          if (child != null) ...[
-            child!,
-          ],
+          if (showCopyButton) ...[_buildColorDisplay(context, inverseColor)],
+          if (child != null) ...[child!],
         ],
       ),
     );
@@ -150,9 +150,9 @@ class _Content extends StatelessWidget {
         data: IconThemeData(color: textColor),
         child: DefaultTextStyle(
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: textColor.withValues(alpha: 0.9),
-                height: 1.2,
-              ),
+            color: textColor.withValues(alpha: 0.9),
+            height: 1.2,
+          ),
           child: subtitleWidget!,
         ),
       );
@@ -163,9 +163,9 @@ class _Content extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       softWrap: true,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: textColor.withValues(alpha: 0.9),
-            height: 1.2,
-          ),
+        color: textColor.withValues(alpha: 0.9),
+        height: 1.2,
+      ),
     );
   }
 
@@ -179,7 +179,9 @@ class _Content extends StatelessWidget {
           color != null ? effectiveColor.toHex() : 'Not defined.',
           overflow: TextOverflow.ellipsis,
           softWrap: false,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(color: textColor),
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium?.copyWith(color: textColor),
         ),
         if (color != null)
           IconButton(

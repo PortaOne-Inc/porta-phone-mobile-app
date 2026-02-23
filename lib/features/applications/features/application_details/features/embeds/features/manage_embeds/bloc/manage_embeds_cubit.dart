@@ -14,11 +14,11 @@ class ManageEmbedsCubit extends Cubit<ManageEmbedsState> {
     required GetApplicationEmbedsUsecase getUsecase,
     required CreateApplicationEmbedUsecase createUsecase,
     required DeleteApplicationEmbedUsecase deleteUsecase,
-  })  : _applicationId = applicationId,
-        _get = getUsecase,
-        _create = createUsecase,
-        _delete = deleteUsecase,
-        super(ManageEmbedsState(routeEmbedId: id));
+  }) : _applicationId = applicationId,
+       _get = getUsecase,
+       _create = createUsecase,
+       _delete = deleteUsecase,
+       super(ManageEmbedsState(routeEmbedId: id));
 
   final String _applicationId;
   final GetApplicationEmbedsUsecase _get;
@@ -36,9 +36,13 @@ class ManageEmbedsCubit extends Cubit<ManageEmbedsState> {
 
       final prioritized = _prioritizeRouteEmbed(items, state.routeEmbedId);
 
-      emit(state.copyWith(status: ManageEmbedsStatus.loaded, items: prioritized));
+      emit(
+        state.copyWith(status: ManageEmbedsStatus.loaded, items: prioritized),
+      );
     } catch (e) {
-      emit(state.copyWith(status: ManageEmbedsStatus.failure, error: e.toString()));
+      emit(
+        state.copyWith(status: ManageEmbedsStatus.failure, error: e.toString()),
+      );
     }
   }
 
@@ -62,35 +66,44 @@ class ManageEmbedsCubit extends Cubit<ManageEmbedsState> {
         applicationId: _applicationId,
       );
 
-      final created = await _create.execute(applicationId: _applicationId, resource: resource);
+      final created = await _create.execute(
+        applicationId: _applicationId,
+        resource: resource,
+      );
 
       final updated = [created, ...state.items];
       final prioritized = _prioritizeRouteEmbed(updated, state.routeEmbedId);
 
-      emit(state.copyWith(
-        creating: false,
-        items: prioritized,
-      ));
+      emit(state.copyWith(creating: false, items: prioritized));
     } catch (e) {
       emit(state.copyWith(creating: false, createError: e.toString()));
     }
   }
 
   Future<void> delete(String id) async {
-    emit(state.copyWith(deletingIds: {...state.deletingIds, id}, deleteError: null));
+    emit(
+      state.copyWith(
+        deletingIds: {...state.deletingIds, id},
+        deleteError: null,
+      ),
+    );
     try {
       await _delete.execute(applicationId: _applicationId, id: id);
       final filtered = state.items.where((e) => e.id != id).toList();
-      emit(state.copyWith(
-        deletingIds: {...state.deletingIds}..remove(id),
-        items: filtered,
-        routeEmbedId: state.routeEmbedId == id ? null : state.routeEmbedId,
-      ));
+      emit(
+        state.copyWith(
+          deletingIds: {...state.deletingIds}..remove(id),
+          items: filtered,
+          routeEmbedId: state.routeEmbedId == id ? null : state.routeEmbedId,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        deletingIds: {...state.deletingIds}..remove(id),
-        deleteError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          deletingIds: {...state.deletingIds}..remove(id),
+          deleteError: e.toString(),
+        ),
+      );
     }
   }
 

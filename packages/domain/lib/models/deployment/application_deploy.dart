@@ -10,7 +10,8 @@ sealed class ApplicationDeploy with _$ApplicationDeploy {
   const factory ApplicationDeploy({
     @Default(AndroidBuildPlatform()) AndroidBuildPlatform android,
     @Default(IOSBuildPlatform()) IOSBuildPlatform ios,
-    @Default(ApplicationDependencyBranches()) ApplicationDependencyBranches applicationDependencyBranches,
+    @Default(ApplicationDependencyBranches())
+    ApplicationDependencyBranches applicationDependencyBranches,
   }) = _ApplicationDeploy;
 
   const ApplicationDeploy._();

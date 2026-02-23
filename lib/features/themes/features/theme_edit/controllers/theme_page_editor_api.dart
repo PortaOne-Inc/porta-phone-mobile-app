@@ -107,7 +107,10 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   ThemePageConfig get initial {
     final i = _initial;
-    if (i == null) throw StateError('ThemePageEditor not initialized. Call setInitial() first.');
+    if (i == null)
+      throw StateError(
+        'ThemePageEditor not initialized. Call setInitial() first.',
+      );
     return i;
   }
 
@@ -117,7 +120,10 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   ThemePageConfig get current {
     final c = _current;
-    if (c == null) throw StateError('ThemePageEditor not initialized. Call setInitial() first.');
+    if (c == null)
+      throw StateError(
+        'ThemePageEditor not initialized. Call setInitial() first.',
+      );
     return c;
   }
 
@@ -159,13 +165,18 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   void setLoginPicture(ImageSource? imageSource) {
     _current = current.copyWith(
-        login: current.login.copyWith(modeSelect: current.login.modeSelect.copyWith(mainLogo: imageSource)));
+      login: current.login.copyWith(
+        modeSelect: current.login.modeSelect.copyWith(mainLogo: imageSource),
+      ),
+    );
     _emit();
   }
 
   @override
   void setLoginModeSelect(LoginModeSelectPageConfig modeSelect) {
-    _current = current.copyWith(login: current.login.copyWith(modeSelect: modeSelect));
+    _current = current.copyWith(
+      login: current.login.copyWith(modeSelect: modeSelect),
+    );
     _emit();
   }
 
@@ -173,7 +184,9 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setLoginModeSelectButtonLoginStyle(ElevatedButtonStyleType type) {
     _current = current.copyWith(
       login: current.login.copyWith(
-        modeSelect: current.login.modeSelect.copyWith(buttonLoginStyleType: type),
+        modeSelect: current.login.modeSelect.copyWith(
+          buttonLoginStyleType: type,
+        ),
       ),
     );
     _emit();
@@ -183,7 +196,9 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setLoginModeSelectButtonSignupStyle(ElevatedButtonStyleType type) {
     _current = current.copyWith(
       login: current.login.copyWith(
-        modeSelect: current.login.modeSelect.copyWith(buttonSignupStyleType: type),
+        modeSelect: current.login.modeSelect.copyWith(
+          buttonSignupStyleType: type,
+        ),
       ),
     );
     _emit();
@@ -197,13 +212,17 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setAboutPicture(ImageSource? imageSource) {
-    _current = current.copyWith(about: current.about.copyWith(mainLogo: imageSource));
+    _current = current.copyWith(
+      about: current.about.copyWith(mainLogo: imageSource),
+    );
     _emit();
   }
 
   @override
   void setAboutMetadata(Metadata metadata) {
-    _current = current.copyWith(about: current.about.copyWith(metadata: metadata));
+    _current = current.copyWith(
+      about: current.about.copyWith(metadata: metadata),
+    );
     _emit();
   }
 
@@ -215,19 +234,25 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setDialingSystemUiOverlay(OverlayStyleModel? style) {
-    _current = current.copyWith(dialing: current.dialing.copyWith(systemUiOverlayStyle: style));
+    _current = current.copyWith(
+      dialing: current.dialing.copyWith(systemUiOverlayStyle: style),
+    );
     _emit();
   }
 
   @override
   void setDialingAppBarStyle(AppBarConfig? appBarStyle) {
-    _current = current.copyWith(dialing: current.dialing.copyWith(appBarStyle: appBarStyle));
+    _current = current.copyWith(
+      dialing: current.dialing.copyWith(appBarStyle: appBarStyle),
+    );
     _emit();
   }
 
   @override
   void setDialingInfo(CallPageInfoConfig? info) {
-    _current = current.copyWith(dialing: current.dialing.copyWith(callInfo: info));
+    _current = current.copyWith(
+      dialing: current.dialing.copyWith(callInfo: info),
+    );
     _emit();
   }
 
@@ -235,7 +260,8 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setDialingInfoUsernameStyle(TextStyleConfig? style) {
     _current = current.copyWith(
       dialing: current.dialing.copyWith(
-        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig()).copyWith(usernameTextStyle: style),
+        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig())
+            .copyWith(usernameTextStyle: style),
       ),
     );
     _emit();
@@ -245,7 +271,8 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setDialingInfoNumberStyle(TextStyleConfig? style) {
     _current = current.copyWith(
       dialing: current.dialing.copyWith(
-        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig()).copyWith(numberTextStyle: style),
+        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig())
+            .copyWith(numberTextStyle: style),
       ),
     );
     _emit();
@@ -255,7 +282,8 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setDialingInfoCallStatusStyle(TextStyleConfig? style) {
     _current = current.copyWith(
       dialing: current.dialing.copyWith(
-        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig()).copyWith(callStatusTextStyle: style),
+        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig())
+            .copyWith(callStatusTextStyle: style),
       ),
     );
     _emit();
@@ -265,7 +293,8 @@ class ThemePageEditor implements ThemePageEditorApi {
   void setDialingInfoProcessingStatusStyle(TextStyleConfig? style) {
     _current = current.copyWith(
       dialing: current.dialing.copyWith(
-        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig()).copyWith(processingStatusTextStyle: style),
+        callInfo: (current.dialing.callInfo ?? const CallPageInfoConfig())
+            .copyWith(processingStatusTextStyle: style),
       ),
     );
     _emit();
@@ -283,7 +312,9 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setLoginOtpSigninVerify(LoginOtpSigninVerifyScreenPageConfig cfg) {
-    _current = current.copyWith(login: current.login.copyWith(otpSigninVerify: cfg));
+    _current = current.copyWith(
+      login: current.login.copyWith(otpSigninVerify: cfg),
+    );
     _emit();
   }
 
@@ -303,7 +334,9 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void setLoginSignupVerify(LoginSignupVerifyScreenPageConfig cfg) {
-    _current = current.copyWith(login: current.login.copyWith(signupVerify: cfg));
+    _current = current.copyWith(
+      login: current.login.copyWith(signupVerify: cfg),
+    );
     _emit();
   }
 
@@ -323,7 +356,9 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   @override
   void updateSwitchScreenConfig(LoginSwitchPageConfig config) {
-    _current = current.copyWith(login: current.login.copyWith(switchPage: config));
+    _current = current.copyWith(
+      login: current.login.copyWith(switchPage: config),
+    );
     _emit();
   }
 

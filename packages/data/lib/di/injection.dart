@@ -16,14 +16,14 @@ abstract class RegisterModule {
   Future<SharedPreferences> prefs() => SharedPreferences.getInstance();
 
   @LazySingleton()
-  Dio serverApiClient(@Named('baseUrl') String baseUrl, AuthPrefDatasource authPref) {
+  Dio serverApiClient(
+    @Named('baseUrl') String baseUrl,
+    AuthPrefDatasource authPref,
+  ) {
     final options = BaseOptions(baseUrl: baseUrl);
     final dio = Dio(options);
 
-    dio.interceptors.addAll([
-      AuthInterceptor(authPref),
-      LoggingInterceptor(),
-    ]);
+    dio.interceptors.addAll([AuthInterceptor(authPref), LoggingInterceptor()]);
 
     return dio;
   }
@@ -32,5 +32,6 @@ abstract class RegisterModule {
 @module
 abstract class StorageModule {
   @preResolve
-  Future<LocalStorage> provideLocalStorage() => providePlatformSpecificStorage();
+  Future<LocalStorage> provideLocalStorage() =>
+      providePlatformSpecificStorage();
 }

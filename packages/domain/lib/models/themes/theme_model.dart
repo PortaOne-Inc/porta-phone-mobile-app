@@ -34,7 +34,8 @@ sealed class ThemeModel with _$ThemeModel {
     @Default(<String>[]) List<String> tags,
   }) = _ThemeModel;
 
-  factory ThemeModel.fromJson(Map<String, dynamic> json) => _$ThemeModelFromJson(json);
+  factory ThemeModel.fromJson(Map<String, dynamic> json) =>
+      _$ThemeModelFromJson(json);
 
   const ThemeModel._();
 

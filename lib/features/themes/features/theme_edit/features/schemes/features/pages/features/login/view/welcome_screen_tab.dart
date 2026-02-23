@@ -8,10 +8,7 @@ import '../../../../../../../../../../../exports/exports.dart';
 import '../../../../../../../bloc/update_theme_cubit.dart';
 
 class WelcomeScreenTab extends StatelessWidget {
-  const WelcomeScreenTab({
-    required this.config,
-    super.key,
-  });
+  const WelcomeScreenTab({required this.config, super.key});
 
   final LoginPageConfig config;
 
@@ -20,7 +17,7 @@ class WelcomeScreenTab extends StatelessWidget {
     final cubit = context.read<UpdateThemCubit>();
 
     final currentConfig = context.select(
-          (UpdateThemCubit cubit) => cubit.state.themePageConfig.login.modeSelect,
+      (UpdateThemCubit cubit) => cubit.state.themePageConfig.login.modeSelect,
     );
 
     return ListView(
@@ -45,11 +42,14 @@ class WelcomeScreenTab extends StatelessWidget {
         const SizedBox(height: 16),
         ImageRenderEditor(
           key: const ValueKey('login_logo'),
-          description: 'Image that displays on the login/signup mode selection screen.',
+          description:
+              'Image that displays on the login/signup mode selection screen.',
           source: currentConfig.mainLogo,
           onPick: () => _pickAsset(context, cubit.state.assets),
           onChanged: (updated) {
-            context.read<UpdateThemCubit>().add(ThemePageEvent.setLoginPicture(updated!));
+            context.read<UpdateThemCubit>().add(
+              ThemePageEvent.setLoginPicture(updated!),
+            );
           },
           title: 'login_logo',
         ),
@@ -65,7 +65,9 @@ class WelcomeScreenTab extends StatelessWidget {
             children: [
               DropdownButtonFormField<ElevatedButtonStyleType>(
                 initialValue: currentConfig.buttonLoginStyleType,
-                decoration: const InputDecoration(labelText: 'Login Button Style'),
+                decoration: const InputDecoration(
+                  labelText: 'Login Button Style',
+                ),
                 items: ElevatedButtonStyleType.values
                     .map(
                       (type) => DropdownMenuItem(
@@ -76,14 +78,18 @@ class WelcomeScreenTab extends StatelessWidget {
                     .toList(),
                 onChanged: (value) {
                   if (value != null) {
-                    cubit.add(ThemePageEvent.setLoginModeSelectButtonLoginStyle(value));
+                    cubit.add(
+                      ThemePageEvent.setLoginModeSelectButtonLoginStyle(value),
+                    );
                   }
                 },
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<ElevatedButtonStyleType>(
                 initialValue: currentConfig.buttonSignupStyleType,
-                decoration: const InputDecoration(labelText: 'Signup Button Style'),
+                decoration: const InputDecoration(
+                  labelText: 'Signup Button Style',
+                ),
                 items: ElevatedButtonStyleType.values
                     .map(
                       (type) => DropdownMenuItem(
@@ -94,7 +100,9 @@ class WelcomeScreenTab extends StatelessWidget {
                     .toList(),
                 onChanged: (value) {
                   if (value != null) {
-                    cubit.add(ThemePageEvent.setLoginModeSelectButtonSignupStyle(value));
+                    cubit.add(
+                      ThemePageEvent.setLoginModeSelectButtonSignupStyle(value),
+                    );
                   }
                 },
               ),
@@ -109,7 +117,9 @@ class WelcomeScreenTab extends StatelessWidget {
     final picked = await context.pickAsset(assets);
     if (context.mounted && picked != null) {
       final imageSource = ImageSource(id: picked.id, uri: picked.downloadUrl);
-      context.read<UpdateThemCubit>().add(ThemePageEvent.setLoginPicture(imageSource));
+      context.read<UpdateThemCubit>().add(
+        ThemePageEvent.setLoginPicture(imageSource),
+      );
     }
   }
 }

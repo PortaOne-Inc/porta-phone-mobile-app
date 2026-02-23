@@ -13,7 +13,8 @@ abstract class GetSplashConstraintsDefaultsUsecase {
 }
 
 @Injectable(as: GetSplashConstraintsDefaultsUsecase)
-class GetSplashConstraintsDefaultsUsecaseImpl implements GetSplashConstraintsDefaultsUsecase {
+class GetSplashConstraintsDefaultsUsecaseImpl
+    implements GetSplashConstraintsDefaultsUsecase {
   GetSplashConstraintsDefaultsUsecaseImpl(this._repo);
 
   final SplashAssetRepository _repo;
@@ -23,6 +24,9 @@ class GetSplashConstraintsDefaultsUsecaseImpl implements GetSplashConstraintsDef
     required String applicationId,
     required String themeId,
   }) {
-    return _repo.getConstraintsDefaults(applicationId: applicationId, themeId: themeId);
+    return _repo.getConstraintsDefaults(
+      applicationId: applicationId,
+      themeId: themeId,
+    );
   }
 }

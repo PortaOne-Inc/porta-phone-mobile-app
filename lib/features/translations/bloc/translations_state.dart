@@ -1,10 +1,6 @@
 part of 'translations_cubit.dart';
 
-enum TranslationsStateType {
-  initializing,
-  pending,
-  common,
-}
+enum TranslationsStateType { initializing, pending, common }
 
 @freezed
 sealed class TranslationsState with _$TranslationsState {
@@ -17,9 +13,11 @@ sealed class TranslationsState with _$TranslationsState {
 
   const TranslationsState._();
 
-  bool get isPending => isInitializing || state == TranslationsStateType.pending;
+  bool get isPending =>
+      isInitializing || state == TranslationsStateType.pending;
 
-  bool get isInitializing => state == TranslationsStateType.initializing && exception == null;
+  bool get isInitializing =>
+      state == TranslationsStateType.initializing && exception == null;
 
   bool get isInitializingError => exception != null;
 
@@ -28,11 +26,17 @@ sealed class TranslationsState with _$TranslationsState {
   List<Translation> get filteredTranslations {
     var translations = this.translations.original;
     if (filter.localeFilter.isNotEmpty) {
-      translations = translations.where((e) => e.locale == filter.localeFilter).toList();
+      translations = translations
+          .where((e) => e.locale == filter.localeFilter)
+          .toList();
     }
     if (filter.searchFilter.isNotEmpty) {
       translations = translations
-          .where((e) => e.key.contains(filter.searchFilter) || e.value.contains(filter.searchFilter))
+          .where(
+            (e) =>
+                e.key.contains(filter.searchFilter) ||
+                e.value.contains(filter.searchFilter),
+          )
           .toList();
     }
     return translations;

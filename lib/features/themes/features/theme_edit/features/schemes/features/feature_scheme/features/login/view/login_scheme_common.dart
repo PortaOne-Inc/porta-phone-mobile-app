@@ -22,7 +22,8 @@ class LoginSchemeCommon extends StatefulWidget {
 }
 
 class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
-  bool get _isEmbedded => widget.config?.fullScreenLaunchEmbeddedResourceId?.isNotEmpty ?? false;
+  bool get _isEmbedded =>
+      widget.config?.fullScreenLaunchEmbeddedResourceId?.isNotEmpty ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
         .read<UpdateThemCubit>()
         .state
         .embeddedResources
-        .firstWhereOrNull((it) => it.id == widget.config?.fullScreenLaunchEmbeddedResourceId);
+        .firstWhereOrNull(
+          (it) => it.id == widget.config?.fullScreenLaunchEmbeddedResourceId,
+        );
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -85,7 +88,10 @@ class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
   }
 
   Future<void> _pickEmbedded() async {
-    final selectedEmbed = context.read<UpdateThemCubit>().state.embeddedResources;
+    final selectedEmbed = context
+        .read<UpdateThemCubit>()
+        .state
+        .embeddedResources;
     final picked = await EmbedPickerDialog.show(
       context,
       title: 'Select embedded resource',
@@ -95,19 +101,14 @@ class _LoginSchemeCommonState extends State<LoginSchemeCommon> {
       final current = widget.config;
       if (current == null) return;
       widget.callback(
-        current.copyWith(
-          fullScreenLaunchEmbeddedResourceId: picked.first.id,
-        ),
+        current.copyWith(fullScreenLaunchEmbeddedResourceId: picked.first.id),
       );
     }
   }
 }
 
 class _ModeStatusBar extends StatelessWidget {
-  const _ModeStatusBar({
-    required this.isEmbedded,
-    this.onClearToNative,
-  });
+  const _ModeStatusBar({required this.isEmbedded, this.onClearToNative});
 
   final bool isEmbedded;
   final VoidCallback? onClearToNative;
@@ -117,8 +118,12 @@ class _ModeStatusBar extends StatelessWidget {
     final theme = Theme.of(context);
     final title = isEmbedded ? 'Mode: Embedded' : 'Mode: Native';
     final icon = isEmbedded ? Icons.web : Icons.phone_android;
-    final bg = isEmbedded ? theme.colorScheme.primaryContainer : theme.colorScheme.secondaryContainer;
-    final fg = isEmbedded ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSecondaryContainer;
+    final bg = isEmbedded
+        ? theme.colorScheme.primaryContainer
+        : theme.colorScheme.secondaryContainer;
+    final fg = isEmbedded
+        ? theme.colorScheme.onPrimaryContainer
+        : theme.colorScheme.onSecondaryContainer;
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -126,7 +131,9 @@ class _ModeStatusBar extends StatelessWidget {
         color: bg,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isEmbedded ? theme.colorScheme.primary : theme.colorScheme.secondary,
+          color: isEmbedded
+              ? theme.colorScheme.primary
+              : theme.colorScheme.secondary,
           width: 1.5,
         ),
       ),
@@ -159,9 +166,7 @@ class _ModeStatusBar extends StatelessWidget {
               onPressed: onClearToNative,
               icon: const Icon(Icons.delete_outline),
               label: const Text('Remove embedded'),
-              style: TextButton.styleFrom(
-                foregroundColor: fg,
-              ),
+              style: TextButton.styleFrom(foregroundColor: fg),
             ),
         ],
       ),
@@ -234,10 +239,7 @@ class _SelectedEmbeddedCard extends StatelessWidget {
                 Icon(Icons.web, color: theme.colorScheme.primary),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    title,
-                    style: theme.textTheme.titleMedium,
-                  ),
+                  child: Text(title, style: theme.textTheme.titleMedium),
                 ),
                 const SizedBox(width: 12),
                 OutlinedButton.icon(

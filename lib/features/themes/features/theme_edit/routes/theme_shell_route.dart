@@ -6,10 +6,7 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class ThemeShellRoute extends StatelessWidget {
-  const ThemeShellRoute({
-    required this.child,
-    super.key,
-  });
+  const ThemeShellRoute({required this.child, super.key});
 
   final Widget child;
 

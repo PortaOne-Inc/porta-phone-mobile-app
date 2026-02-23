@@ -5,15 +5,13 @@ import 'package:webtrit_configurator/core/core.dart';
 enum BackgroundType { color, resource, none }
 
 class Background {
-  const Background._({
-    required this.type,
-    this.color,
-    this.resource,
-  });
+  const Background._({required this.type, this.color, this.resource});
 
-  factory Background.color(Color color) => Background._(color: color, type: BackgroundType.color);
+  factory Background.color(Color color) =>
+      Background._(color: color, type: BackgroundType.color);
 
-  factory Background.resource(Resource resource) => Background._(resource: resource, type: BackgroundType.resource);
+  factory Background.resource(Resource resource) =>
+      Background._(resource: resource, type: BackgroundType.resource);
 
   static const Background none = Background._(type: BackgroundType.none);
 
@@ -63,15 +61,14 @@ class AssetsLaunchIcon extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.5),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.tertiary.withValues(alpha: 0.5),
                 ),
               ),
             ),
             SizedBox(
-              child: ImageRender(
-                resource: foreground,
-                fit: BoxFit.contain,
-              ),
+              child: ImageRender(resource: foreground, fit: BoxFit.contain),
             ),
             Container(
               width: safeZone.width,
@@ -79,7 +76,9 @@ class AssetsLaunchIcon extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: radius,
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.75),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.tertiary.withValues(alpha: 0.75),
                 ),
               ),
             ),

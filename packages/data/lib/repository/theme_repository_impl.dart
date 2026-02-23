@@ -8,16 +8,25 @@ import 'package:data/dto/dto.dart';
 
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
-  ThemeRepositoryImpl({required this.configuratorBackandDatasource, required this.themeMapper});
+  ThemeRepositoryImpl({
+    required this.configuratorBackandDatasource,
+    required this.themeMapper,
+  });
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
 
   @override
-  Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
+  Future<ThemeModel> updateTheme(
+    String applicationId,
+    ThemeModel? theme,
+  ) async {
     try {
       final param = themeMapper.convertTo(theme!);
-      final dto = await configuratorBackandDatasource.updateTheme(applicationId, param);
+      final dto = await configuratorBackandDatasource.updateTheme(
+        applicationId,
+        param,
+      );
       return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
@@ -27,7 +36,11 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeModel> createTheme(String applicationId, String title, String description) async {
+  Future<ThemeModel> createTheme(
+    String applicationId,
+    String title,
+    String description,
+  ) async {
     final dto = await configuratorBackandDatasource.createTheme(
       applicationId,
       CreateThemeDTO(title: title, description: description),
@@ -38,18 +51,26 @@ class ThemeRepositoryImpl extends ThemeRepository {
   @override
   Future<List<ThemeModel>> getApplicationThemes(String applicationId) async {
     try {
-      final dtos = await configuratorBackandDatasource.getApplicationThemes(applicationId);
+      final dtos = await configuratorBackandDatasource.getApplicationThemes(
+        applicationId,
+      );
       // Mapping can throw TypeError if DTO fields are null but Model expects non-null
       return dtos.map(themeMapper.convertFrom).toList();
     } on Object catch (e, stackTrace) {
       // Catch both Exception (network) and Error (parsing/mapping)
-      Error.throwWithStackTrace(BaseException(message: e.toString()), stackTrace);
+      Error.throwWithStackTrace(
+        BaseException(message: e.toString()),
+        stackTrace,
+      );
     }
   }
 
   @override
   Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
+    final dto = await configuratorBackandDatasource.getTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+    );
     return themeMapper.convertFrom(dto);
   }
 
@@ -146,7 +167,9 @@ class ThemeRepositoryImpl extends ThemeRepository {
       );
       return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

@@ -6,13 +6,10 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationEmailValidationError {
-  blank,
-  toLong,
-  toShort,
-}
+enum ApplicationEmailValidationError { blank, toLong, toShort }
 
-class ApplicationEmailInput extends FormzInput<String, ApplicationEmailValidationError> {
+class ApplicationEmailInput
+    extends FormzInput<String, ApplicationEmailValidationError> {
   const ApplicationEmailInput.pure([super.value = '']) : super.pure();
 
   // ignore: use_super_parameters
@@ -43,9 +40,13 @@ extension ExtensionValidationEmailErrorL10n on ApplicationEmailInput {
         case ApplicationEmailValidationError.blank:
           return context.l10n.validationBlankError;
         case ApplicationEmailValidationError.toLong:
-          return context.l10n.feature_application_create_Validation_description_to_long;
+          return context
+              .l10n
+              .feature_application_create_Validation_description_to_long;
         case ApplicationEmailValidationError.toShort:
-          return context.l10n.feature_application_create_Validation_description_to_short;
+          return context
+              .l10n
+              .feature_application_create_Validation_description_to_short;
       }
     }
   }

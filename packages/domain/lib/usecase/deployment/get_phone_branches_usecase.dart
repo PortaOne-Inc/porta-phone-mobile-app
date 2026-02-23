@@ -14,9 +14,7 @@ abstract class GetPhoneBranchesUsecase {
 
 @LazySingleton(as: GetPhoneBranchesUsecase)
 class GetPhoneBranchesUsecaseImpl extends GetPhoneBranchesUsecase {
-  GetPhoneBranchesUsecaseImpl({
-    required this.deploymentRepository,
-  });
+  GetPhoneBranchesUsecaseImpl({required this.deploymentRepository});
 
   final DeploymentRepository deploymentRepository;
 
@@ -32,8 +30,12 @@ class GetPhoneBranchesUsecaseImpl extends GetPhoneBranchesUsecase {
         final bIndex = PhoneBranchType.values.indexOf(b.type);
 
         // Handle cases where a.type or b.type might not be in the _branchTypeOrder list
-        final effectiveAIndex = aIndex != -1 ? aIndex : PhoneBranchType.values.length;
-        final effectiveBIndex = bIndex != -1 ? bIndex : PhoneBranchType.values.length;
+        final effectiveAIndex = aIndex != -1
+            ? aIndex
+            : PhoneBranchType.values.length;
+        final effectiveBIndex = bIndex != -1
+            ? bIndex
+            : PhoneBranchType.values.length;
 
         return effectiveAIndex.compareTo(effectiveBIndex);
       });

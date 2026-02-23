@@ -29,20 +29,22 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
     required this.getConstraintsDefaultsUsecase,
     required this.deleteSplashAssetUsecase,
   }) : super(
-          SplashAssetsState(
-            applicationId: applicationId,
-            themeId: themeId,
-          ),
-        ) {
-    _assetsSub = watchApplicationAssetsUsecase.execute(state.applicationId).listen((assets) {
-      final fgId = state.existing?.source?.foregroundAssetId;
-      final selected = _resolveById(assets, fgId) ?? state.selectedAsset;
+         SplashAssetsState(applicationId: applicationId, themeId: themeId),
+       ) {
+    _assetsSub = watchApplicationAssetsUsecase
+        .execute(state.applicationId)
+        .listen(
+          (assets) {
+            final fgId = state.existing?.source?.foregroundAssetId;
+            final selected = _resolveById(assets, fgId) ?? state.selectedAsset;
 
-      emit(state.copyWith(
-        assets: assets,
-        selectedAsset: selected,
-      ));
-    }, onError: (Object error) => _logger.warning('watchApplicationAssetsUsecase stream error', error));
+            emit(state.copyWith(assets: assets, selectedAsset: selected));
+          },
+          onError: (Object error) => _logger.warning(
+            'watchApplicationAssetsUsecase stream error',
+            error,
+          ),
+        );
   }
 
   final GetSplashAssetUsecase getSplashAssetUsecase;
@@ -72,7 +74,10 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
         themeId: state.themeId,
       );
 
-      final resolved = _resolveById(state.assets, model.source?.foregroundAssetId);
+      final resolved = _resolveById(
+        state.assets,
+        model.source?.foregroundAssetId,
+      );
 
       emit(
         state.copyWith(
@@ -92,7 +97,11 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
           themeId: state.themeId,
         );
         emit(
-          state.copyWith(constraintsDefaults: defaults, status: SplashAssetsStatus.initial, error: null),
+          state.copyWith(
+            constraintsDefaults: defaults,
+            status: SplashAssetsStatus.initial,
+            error: null,
+          ),
         );
       } catch (_) {
         emit(state.copyWith(status: SplashAssetsStatus.failure, error: e));
@@ -101,17 +110,18 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
   }
 
   void selectAsset(AssetModel? asset) {
-    emit(state.copyWith(
-      selectedAsset: asset,
-      status: SplashAssetsStatus.initial,
-    ));
+    emit(
+      state.copyWith(selectedAsset: asset, status: SplashAssetsStatus.initial),
+    );
   }
 
   void selectBackgroundColor(Color? color) {
-    emit(state.copyWith(
-      backgroundColorHex: color?.toHex(),
-      status: SplashAssetsStatus.initial,
-    ));
+    emit(
+      state.copyWith(
+        backgroundColorHex: color?.toHex(),
+        status: SplashAssetsStatus.initial,
+      ),
+    );
   }
 
   void selectPadding(double padding) {
@@ -135,9 +145,7 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
       await upsertWithFilesUsecase.execute(
         applicationId: state.applicationId,
         themeId: state.themeId,
-        params: SplashAssetParams(
-          padding: state.padding,
-        ),
+        params: SplashAssetParams(padding: state.padding),
         source: SplashSource(
           foregroundAssetId: state.selectedAsset?.id,
           backgroundColorHex: state.backgroundColorHex,
@@ -150,10 +158,7 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
         themeId: state.themeId,
       );
 
-      emit(state.copyWith(
-        existing: fresh,
-        status: SplashAssetsStatus.success,
-      ));
+      emit(state.copyWith(existing: fresh, status: SplashAssetsStatus.success));
     } catch (e) {
       emit(state.copyWith(status: SplashAssetsStatus.failure, error: e));
     }
@@ -166,13 +171,15 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
         applicationId: state.applicationId,
         themeId: state.themeId,
       );
-      emit(state.copyWith(
-        existing: null,
-        selectedAsset: null,
-        backgroundColorHex: null,
-        padding: 0,
-        status: SplashAssetsStatus.success,
-      ));
+      emit(
+        state.copyWith(
+          existing: null,
+          selectedAsset: null,
+          backgroundColorHex: null,
+          padding: 0,
+          status: SplashAssetsStatus.success,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(status: SplashAssetsStatus.failure, error: e));
     }

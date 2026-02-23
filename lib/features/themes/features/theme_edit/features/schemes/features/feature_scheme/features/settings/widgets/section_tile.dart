@@ -48,17 +48,19 @@ class SectionTile extends StatelessWidget {
             child: Icon(Icons.drag_handle),
           ),
         ),
-        title: Text(
-          section.titleL10n,
-          style: theme.textTheme.titleMedium,
-        ),
+        title: Text(section.titleL10n, style: theme.textTheme.titleMedium),
         trailing: _buildActionMenu(),
         children: [
           const Divider(height: 1),
           SettingSectionItemList(
             section: section,
-            onReorderItems: (oldIdx, newIdx) => controller.reorderItems(section, oldIdx, newIdx),
-            onToggleItemEnabled: (item) => controller.updateItem(section, item, item.copyWith(enabled: !item.enabled)),
+            onReorderItems: (oldIdx, newIdx) =>
+                controller.reorderItems(section, oldIdx, newIdx),
+            onToggleItemEnabled: (item) => controller.updateItem(
+              section,
+              item,
+              item.copyWith(enabled: !item.enabled),
+            ),
             onDeleteItem: (item) => controller.removeItem(section, item),
             onEditItem: onEditItem,
           ),

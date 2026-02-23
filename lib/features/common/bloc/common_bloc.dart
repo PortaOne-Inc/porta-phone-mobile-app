@@ -10,9 +10,8 @@ part 'common_state.dart';
 part 'common_bloc.freezed.dart';
 
 class CommonBloc extends Cubit<CommonState> {
-  CommonBloc({
-    required this.usecaseAuthLogOut,
-  }) : super(const CommonState.initial());
+  CommonBloc({required this.usecaseAuthLogOut})
+    : super(const CommonState.initial());
   UsecaseAuthLogOut usecaseAuthLogOut;
 
   Future<void> logout() async {

@@ -3,10 +3,7 @@
 import 'package:formz/formz.dart';
 import 'package:validated/validated.dart' as validate;
 
-enum EmailValidationError {
-  blank,
-  invalid,
-}
+enum EmailValidationError { blank, invalid }
 
 class AuthEmailInput extends FormzInput<String, EmailValidationError> {
   const AuthEmailInput.pure([String value = '']) : super.pure(value);

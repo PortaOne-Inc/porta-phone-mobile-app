@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 class InfoDialog extends StatelessWidget {
-  const InfoDialog({
-    required this.title,
-    required this.message,
-    super.key,
-  });
+  const InfoDialog({required this.title, required this.message, super.key});
 
   final String title;
   final String message;
@@ -15,9 +11,7 @@ class InfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       title: Text(title),
       content: Column(
         mainAxisSize: MainAxisSize.min,

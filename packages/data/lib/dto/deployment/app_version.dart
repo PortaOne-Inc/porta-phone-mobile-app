@@ -6,7 +6,8 @@ part 'app_version.g.dart';
 class AppVersion {
   AppVersion(this.appVersion);
 
-  factory AppVersion.fromJson(Map<String, dynamic> json) => _$AppVersionFromJson(json);
+  factory AppVersion.fromJson(Map<String, dynamic> json) =>
+      _$AppVersionFromJson(json);
   @JsonKey(name: 'app_version')
   final String? appVersion;
 

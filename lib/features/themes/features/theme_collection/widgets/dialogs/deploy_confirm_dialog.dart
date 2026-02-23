@@ -20,10 +20,12 @@ class DeployConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      title: Text(
+        context
+            .l10n
+            .feature_application_details_DeployConfirmDialog_confirm_deployment,
       ),
-      title: Text(context.l10n.feature_application_details_DeployConfirmDialog_confirm_deployment),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -39,24 +41,41 @@ class DeployConfirmDialog extends StatelessWidget {
             const Divider(),
             const SizedBox(height: 8),
             BranchInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_phone_source_branch,
-              branch: deployInfo.applicationDependencyBranches.phoneSourceBranch,
+              title: context
+                  .l10n
+                  .feature_application_details_DeployConfirmDialog_phone_source_branch,
+              branch:
+                  deployInfo.applicationDependencyBranches.phoneSourceBranch,
             ),
             BranchInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_callkeep_source_branch,
-              branch: deployInfo.applicationDependencyBranches.callkeepSourceBranch,
+              title: context
+                  .l10n
+                  .feature_application_details_DeployConfirmDialog_callkeep_source_branch,
+              branch:
+                  deployInfo.applicationDependencyBranches.callkeepSourceBranch,
             ),
             BranchInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_common_dependency_source_branch,
-              branch: deployInfo.applicationDependencyBranches.configuratorSourceBranch,
+              title: context
+                  .l10n
+                  .feature_application_details_DeployConfirmDialog_common_dependency_source_branch,
+              branch: deployInfo
+                  .applicationDependencyBranches
+                  .configuratorSourceBranch,
             ),
             BranchInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch,
-              branch: deployInfo.applicationDependencyBranches.phoneConfiguratorToolSourceBranch,
+              title: context
+                  .l10n
+                  .feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch,
+              branch: deployInfo
+                  .applicationDependencyBranches
+                  .phoneConfiguratorToolSourceBranch,
             ),
             BranchInfoRow(
-              title: context.l10n.feature_application_details_DeployConfirmDialog_keystore_source_branch,
-              branch: deployInfo.applicationDependencyBranches.keystoreSourceBranch,
+              title: context
+                  .l10n
+                  .feature_application_details_DeployConfirmDialog_keystore_source_branch,
+              branch:
+                  deployInfo.applicationDependencyBranches.keystoreSourceBranch,
             ),
             const SizedBox(height: 8),
           ],
@@ -81,10 +100,7 @@ class DeployConfirmDialog extends StatelessWidget {
 }
 
 class AndroidDeploymentDetails extends StatelessWidget {
-  const AndroidDeploymentDetails({
-    required this.deployInfo,
-    super.key,
-  });
+  const AndroidDeploymentDetails({required this.deployInfo, super.key});
 
   final ApplicationDeploy deployInfo;
 
@@ -95,23 +111,20 @@ class AndroidDeploymentDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          context.l10n.feature_application_details_DeployConfirmDialog_android_deployment,
+          context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_android_deployment,
           style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        PlayStoreConfigInfo(
-          config: deployInfo.android.playStoreConfig,
-        ),
+        PlayStoreConfigInfo(config: deployInfo.android.playStoreConfig),
       ],
     );
   }
 }
 
 class IOSDeploymentDetails extends StatelessWidget {
-  const IOSDeploymentDetails({
-    required this.deployInfo,
-    super.key,
-  });
+  const IOSDeploymentDetails({required this.deployInfo, super.key});
 
   final ApplicationDeploy deployInfo;
 
@@ -122,12 +135,16 @@ class IOSDeploymentDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          context.l10n.feature_application_details_DeployConfirmDialog_ios_deployment,
+          context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_ios_deployment,
           style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         ConfigInfoRow(
-          title: context.l10n.feature_application_details_DeployConfirmDialog_track,
+          title: context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_track,
           value: 'Testflight',
         ),
       ],
@@ -136,10 +153,7 @@ class IOSDeploymentDetails extends StatelessWidget {
 }
 
 class PlayStoreConfigInfo extends StatelessWidget {
-  const PlayStoreConfigInfo({
-    required this.config,
-    super.key,
-  });
+  const PlayStoreConfigInfo({required this.config, super.key});
 
   final AndroidPlayStoreConfig config;
 
@@ -150,19 +164,27 @@ class PlayStoreConfigInfo extends StatelessWidget {
       children: <Widget>[
         const Divider(),
         ConfigInfoRow(
-          title: context.l10n.feature_application_details_DeployConfirmDialog_track,
+          title: context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_track,
           value: config.track,
         ),
         ConfigInfoRow(
-          title: context.l10n.feature_application_details_DeployConfirmDialog_status,
+          title: context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_status,
           value: config.status,
         ),
         ConfigInfoRow(
-          title: context.l10n.feature_application_details_DeployConfirmDialog_update_priority,
+          title: context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_update_priority,
           value: config.updatePriority.toString(),
         ),
         ConfigInfoRow(
-          title: context.l10n.feature_application_details_DeployConfirmDialog_user_fraction,
+          title: context
+              .l10n
+              .feature_application_details_DeployConfirmDialog_user_fraction,
           value: config.userFraction.toString(),
         ),
       ],
@@ -181,15 +203,13 @@ class ConfigInfoRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Flexible(
-          child: Text(
-            title,
-          ),
-        ),
+        Flexible(child: Text(title)),
         Flexible(
           child: Text(
             value,
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
           ),
         ),
       ],
@@ -218,9 +238,7 @@ class BranchInfoRow extends StatelessWidget {
                     text: branch,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
-                  const WidgetSpan(
-                    child: SizedBox(width: 8),
-                  ),
+                  const WidgetSpan(child: SizedBox(width: 8)),
                   WidgetSpan(
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,

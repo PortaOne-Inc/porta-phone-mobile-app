@@ -10,8 +10,8 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
   PageConfigRepositoryImpl({
     required ConfiguratorBackandDatasource api,
     required CommonMapper<PageConfigModel, PageConfigDto> mapper,
-  })  : _api = api,
-        _mapper = mapper;
+  }) : _api = api,
+       _mapper = mapper;
 
   final ConfiguratorBackandDatasource _api;
   final CommonMapper<PageConfigModel, PageConfigDto> _mapper;
@@ -28,7 +28,9 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return dtos.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -44,9 +46,14 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
         applicationId: applicationId,
         themeId: themeId,
       );
-      return (light: _mapper.convertFrom(pair.light), dark: _mapper.convertFrom(pair.dark));
+      return (
+        light: _mapper.convertFrom(pair.light),
+        dark: _mapper.convertFrom(pair.dark),
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -66,7 +73,9 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -88,7 +97,9 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

@@ -4,10 +4,7 @@ import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 
 class ColorSchemeActionBar extends StatelessWidget {
-  const ColorSchemeActionBar({
-    required this.onBack,
-    super.key,
-  });
+  const ColorSchemeActionBar({required this.onBack, super.key});
 
   final void Function() onBack;
 
@@ -29,7 +26,7 @@ class ColorSchemeActionBar extends StatelessWidget {
                   onPressed: onBack,
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -45,12 +42,9 @@ class ColorSchemeActionBar extends StatelessWidget {
               Dropdown(
                 icon: const Icon(Icons.light_mode_outlined),
                 constraints: const BoxConstraints(maxWidth: 124),
-                items: const [
-                  'Light mode',
-                  'Dark mode',
-                ],
+                items: const ['Light mode', 'Dark mode'],
                 onSelect: (int position) {},
-              )
+              ),
             ],
           ),
         ),

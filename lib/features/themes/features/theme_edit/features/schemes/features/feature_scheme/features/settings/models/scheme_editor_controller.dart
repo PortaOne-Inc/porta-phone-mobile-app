@@ -5,24 +5,21 @@ import 'package:webtrit_configurator/exports/exports.dart';
 /// Manages the state and logic for modifying the App Configuration Scheme.
 /// Handles adding, removing, updating, and reordering sections and items.
 class SchemeEditorController {
-  SchemeEditorController({
-    required this.config,
-    required this.onUpdate,
-  });
+  SchemeEditorController({required this.config, required this.onUpdate});
 
   final AppConfigSettings config;
   final ValueChanged<AppConfigSettings> onUpdate;
 
   /// Appends a new section to the configuration.
   void addSection(AppConfigSettingsSection section) {
-    _emit(config.copyWith(
-      sections: [...config.sections, section],
-    ));
+    _emit(config.copyWith(sections: [...config.sections, section]));
   }
 
   /// Removes a specific section based on its localized title.
   void removeSection(AppConfigSettingsSection section) {
-    final updated = config.sections.where((s) => s.titleL10n != section.titleL10n).toList();
+    final updated = config.sections
+        .where((s) => s.titleL10n != section.titleL10n)
+        .toList();
     _emit(config.copyWith(sections: updated));
   }
 
@@ -47,10 +44,7 @@ class SchemeEditorController {
     AppConfigSettingsSection targetSection,
     AppConfigSettingsItem item,
   ) {
-    _updateSection(
-      targetSection,
-      (s) => s.copyWith(items: [...s.items, item]),
-    );
+    _updateSection(targetSection, (s) => s.copyWith(items: [...s.items, item]));
   }
 
   /// Updates an existing item within a specific section.
@@ -60,7 +54,9 @@ class SchemeEditorController {
     AppConfigSettingsItem newItem,
   ) {
     _updateSection(targetSection, (s) {
-      final newItems = s.items.map((i) => i.titleL10n == oldItem.titleL10n ? newItem : i).toList();
+      final newItems = s.items
+          .map((i) => i.titleL10n == oldItem.titleL10n ? newItem : i)
+          .toList();
       return s.copyWith(items: newItems);
     });
   }
@@ -71,7 +67,9 @@ class SchemeEditorController {
     AppConfigSettingsItem item,
   ) {
     _updateSection(targetSection, (s) {
-      final newItems = s.items.where((i) => i.titleL10n != item.titleL10n).toList();
+      final newItems = s.items
+          .where((i) => i.titleL10n != item.titleL10n)
+          .toList();
       return s.copyWith(items: newItems);
     });
   }

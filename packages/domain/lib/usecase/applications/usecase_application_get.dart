@@ -6,9 +6,7 @@ import 'package:domain/models/models.dart';
 import 'package:domain/repository/repository.dart';
 
 abstract class UsecaseApplicationGet {
-  Future<ApplicationModel> execute({
-    required String id,
-  });
+  Future<ApplicationModel> execute({required String id});
 }
 
 @Injectable(as: UsecaseApplicationGet)
@@ -22,9 +20,7 @@ class UsecaseApplicationGetImpl extends UsecaseApplicationGet {
   final AuthRepository authRepository;
 
   @override
-  Future<ApplicationModel> execute({
-    required String id,
-  }) async {
+  Future<ApplicationModel> execute({required String id}) async {
     return applicationRepository.getApplication(id);
   }
 }

@@ -6,16 +6,12 @@ import 'package:domain/models/models.dart';
 import 'package:domain/repository/repository.dart';
 
 abstract class UsecaseApplicationIncVersion {
-  FutureOr<ApplicationModel> execute({
-    required String applicationId,
-  });
+  FutureOr<ApplicationModel> execute({required String applicationId});
 }
 
 @Injectable(as: UsecaseApplicationIncVersion)
 class UsecaseApplicationIncVersionImpl extends UsecaseApplicationIncVersion {
-  UsecaseApplicationIncVersionImpl(
-    this.applicationRepository,
-  );
+  UsecaseApplicationIncVersionImpl(this.applicationRepository);
 
   final ApplicationRepository applicationRepository;
 

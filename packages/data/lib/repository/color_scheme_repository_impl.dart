@@ -7,10 +7,7 @@ import '../mappers/mapper.dart';
 
 @Injectable(as: ColorSchemeRepository)
 class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
-  ColorSchemeRepositoryImpl(
-    this._api,
-    this._mapper,
-  );
+  ColorSchemeRepositoryImpl(this._api, this._mapper);
 
   final ConfiguratorBackandDatasource _api;
   final CommonMapper<ColorSchemeModel, ColorSchemeDto> _mapper;
@@ -29,7 +26,9 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -47,7 +46,9 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return list.nonNulls.map(_mapper.convertFrom).toList().nonNulls.toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -73,11 +74,15 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
         if (m.variant == BrightnessVariant.dark) dark = m;
       }
       if (light == null || dark == null) {
-        throw BaseException(message: 'ensurePair: server did not return both variants');
+        throw BaseException(
+          message: 'ensurePair: server did not return both variants',
+        );
       }
       return (light, dark);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -99,7 +104,9 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

@@ -26,18 +26,16 @@ class ChooseSeedColor extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                    child: Text(
-                  'Choose type of color scheme generation',
-                  style: textScheme.labelLarge,
-                  textAlign: TextAlign.center,
-                )),
+                  child: Text(
+                    'Choose type of color scheme generation',
+                    style: textScheme.labelLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),
-          ColorPicker(
-            onDeclineColor: onCancel,
-            onAcceptColor: onApply,
-          )
+          ColorPicker(onDeclineColor: onCancel, onAcceptColor: onApply),
         ],
       ),
     );

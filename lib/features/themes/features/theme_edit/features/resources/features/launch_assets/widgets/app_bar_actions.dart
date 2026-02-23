@@ -39,7 +39,11 @@ class LaunchAssetsAppBarActions extends StatelessWidget {
           tooltip: 'Save',
           onPressed: saving ? null : () async => onSave(),
           icon: saving
-              ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Icon(Icons.save),
         ),
       ],

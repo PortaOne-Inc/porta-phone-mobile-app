@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ErrorHolder extends StatelessWidget {
-  const ErrorHolder({
-    required this.onRetry,
-    super.key,
-    this.error,
-  });
+  const ErrorHolder({required this.onRetry, super.key, this.error});
 
   final Object? error;
   final VoidCallback onRetry;
@@ -24,9 +20,7 @@ class ErrorHolder extends StatelessWidget {
       ),
       child: Card(
         elevation: 1,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
@@ -40,10 +34,7 @@ class ErrorHolder extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.error_outline,
-                            color: colorScheme.error,
-                          ),
+                          Icon(Icons.error_outline, color: colorScheme.error),
                           const SizedBox(width: 16),
                           Text(
                             'Something went wrong',
@@ -63,7 +54,9 @@ class ErrorHolder extends StatelessWidget {
                             child: Text(
                               error.toString(),
                               style: textTheme.bodyMedium?.copyWith(
-                                color: textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
+                                color: textTheme.bodyMedium?.color?.withValues(
+                                  alpha: 0.8,
+                                ),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -81,7 +74,10 @@ class ErrorHolder extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: colorScheme.onPrimary,
                     backgroundColor: colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 32,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

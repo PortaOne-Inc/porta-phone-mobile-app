@@ -40,7 +40,7 @@ class TypeOfPreview extends StatelessWidget {
               ),
             ),
           ),
-          focusIndicator ?? const SizedBox()
+          focusIndicator ?? const SizedBox(),
         ],
       ),
     );

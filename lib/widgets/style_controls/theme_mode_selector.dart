@@ -34,8 +34,8 @@ class ThemeModeSelector extends StatelessWidget {
                   Text(
                     helperText!,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                   ),
                 ],
               ],

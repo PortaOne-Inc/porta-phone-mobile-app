@@ -89,7 +89,8 @@ typedef PickColorCallback = Future<String?> Function(ColorPickRequest request);
 class ConfigurableAssetDesignerController {
   _ConfigurableAssetDesignerState? _state;
 
-  final ValueNotifier<DesignerSnapshot?> snapshot = ValueNotifier<DesignerSnapshot?>(null);
+  final ValueNotifier<DesignerSnapshot?> snapshot =
+      ValueNotifier<DesignerSnapshot?>(null);
 
   PickColorCallback? onPickColor;
 
@@ -98,7 +99,9 @@ class ConfigurableAssetDesignerController {
   Future<Map<String, Uint8List>> exportAll() async {
     final s = _state;
     if (s == null) {
-      throw StateError('ConfigurableAssetDesignerController is not attached to a widget.');
+      throw StateError(
+        'ConfigurableAssetDesignerController is not attached to a widget.',
+      );
     }
     return s._exportAll(returnOnly: true);
   }
@@ -138,7 +141,10 @@ String _normalizeHex(String raw) {
   return raw;
 }
 
-double _scaleForPreview({required double artboardDp, required double previewPx}) => previewPx / artboardDp;
+double _scaleForPreview({
+  required double artboardDp,
+  required double previewPx,
+}) => previewPx / artboardDp;
 
 double _dpToPx(double dp, double scale) => dp * scale;
 
@@ -146,7 +152,8 @@ bool _isSvg(AssetModel a) => a.mimeType.toLowerCase().contains('svg');
 
 Future<Uint8List> _bytesFromUrl(String url) async {
   final resp = await http.get(Uri.parse(url));
-  if (resp.statusCode != 200) throw Exception('HTTP ${resp.statusCode} while fetching $url');
+  if (resp.statusCode != 200)
+    throw Exception('HTTP ${resp.statusCode} while fetching $url');
   return resp.bodyBytes;
 }
 
@@ -171,7 +178,11 @@ Future<ui.Image?> _rasterizeAsset(AssetModel? asset, int sizePx) async {
     final frame = await codec.getNextFrame();
     return frame.image;
   } else {
-    final codec = await ui.instantiateImageCodec(bytes, targetWidth: sizePx, targetHeight: sizePx);
+    final codec = await ui.instantiateImageCodec(
+      bytes,
+      targetWidth: sizePx,
+      targetHeight: sizePx,
+    );
     final frame = await codec.getNextFrame();
     return frame.image;
   }
@@ -203,7 +214,8 @@ class ConfigurableAssetDesigner extends StatefulWidget {
   final ConfigurableAssetDesignerController? controller;
 
   @override
-  State<ConfigurableAssetDesigner> createState() => _ConfigurableAssetDesignerState();
+  State<ConfigurableAssetDesigner> createState() =>
+      _ConfigurableAssetDesignerState();
 }
 
 class _PageState {
@@ -232,7 +244,8 @@ class _PageState {
   String? bgHexOverride;
 }
 
-class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> with TickerProviderStateMixin {
+class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
+    with TickerProviderStateMixin {
   ui.Image? _bgImg;
   ui.Image? _fgImg;
 
@@ -246,10 +259,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
     vsync: this,
   );
 
-  DesignerPageConfig? get _commonPage =>
-      widget.pages.cast<DesignerPageConfig?>().firstWhere((p) => p?.isCommon ?? true, orElse: () => null);
+  DesignerPageConfig? get _commonPage => widget.pages
+      .cast<DesignerPageConfig?>()
+      .firstWhere((p) => p?.isCommon ?? true, orElse: () => null);
 
-  List<DesignerPageConfig> get _nonCommonPages => widget.pages.where((p) => p.isCommon == false).toList();
+  List<DesignerPageConfig> get _nonCommonPages =>
+      widget.pages.where((p) => p.isCommon == false).toList();
 
   @override
   void initState() {
@@ -312,8 +327,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
       );
     }
     final st = _pageStates[p.id]!;
-    final pad = st.inheritCommon ? _commonPaddingDp : (st.paddingOverrideDp ?? _commonPaddingDp);
-    final bg = st.bgInheritCommon ? _commonBgHex : (st.bgHexOverride ?? _commonBgHex);
+    final pad = st.inheritCommon
+        ? _commonPaddingDp
+        : (st.paddingOverrideDp ?? _commonPaddingDp);
+    final bg = st.bgInheritCommon
+        ? _commonBgHex
+        : (st.bgHexOverride ?? _commonBgHex);
     return DesignerPageEffective(
       pageId: p.id,
       paddingDp: pad,
@@ -339,7 +358,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
     final page = widget.pages[_tab.index];
 
     final sizeDp = page.sizeDp;
-    final scale = _scaleForPreview(artboardDp: sizeDp, previewPx: widget.previewSize);
+    final scale = _scaleForPreview(
+      artboardDp: sizeDp,
+      previewPx: widget.previewSize,
+    );
     final artboardPx = (sizeDp * scale).round().clamp(64, 4096);
 
     _loadImagesForSize(artboardPx);
@@ -347,8 +369,14 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
 
   Future<void> _loadImagesForSize(int sizePx) async {
     final futures = await Future.wait<ui.Image?>([
-      if (widget.backgroundAsset != null) _rasterizeAsset(widget.backgroundAsset, sizePx) else Future.value(),
-      if (widget.foregroundAsset != null) _rasterizeAsset(widget.foregroundAsset, sizePx) else Future.value(),
+      if (widget.backgroundAsset != null)
+        _rasterizeAsset(widget.backgroundAsset, sizePx)
+      else
+        Future.value(),
+      if (widget.foregroundAsset != null)
+        _rasterizeAsset(widget.foregroundAsset, sizePx)
+      else
+        Future.value(),
     ]);
     if (!mounted) return;
     setState(() {
@@ -377,14 +405,22 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
       children: [
         SizedBox(
           width: 180,
-          child: Slider(max: maxDp, value: clamped.toDouble(), onChanged: onChanged),
+          child: Slider(
+            max: maxDp,
+            value: clamped.toDouble(),
+            onChanged: onChanged,
+          ),
         ),
         const SizedBox(width: 8),
         SizedBox(
           width: 84,
           child: TextFormField(
             initialValue: clamped.toStringAsFixed(0),
-            decoration: const InputDecoration(isDense: true, labelText: 'dp', border: OutlineInputBorder()),
+            decoration: const InputDecoration(
+              isDense: true,
+              labelText: 'dp',
+              border: OutlineInputBorder(),
+            ),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             onFieldSubmitted: (txt) {
               final v = double.tryParse(txt) ?? clamped;
@@ -422,7 +458,9 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
               : () async {
                   final picker = widget.controller?.onPickColor;
                   if (picker == null) return;
-                  final picked = await picker(ColorPickRequest(scopeId: scopeId, currentHex: currentHex));
+                  final picked = await picker(
+                    ColorPickRequest(scopeId: scopeId, currentHex: currentHex),
+                  );
                   if (picked != null) {
                     setState(() {
                       final hex = _normalizeHex(picked);
@@ -446,7 +484,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
   }
 
   Widget _buildCommonTab(DesignerPageConfig p) {
-    final scale = _scaleForPreview(artboardDp: p.sizeDp, previewPx: widget.previewSize);
+    final scale = _scaleForPreview(
+      artboardDp: p.sizeDp,
+      previewPx: widget.previewSize,
+    );
     final artboardPx = p.sizeDp * scale;
     final paddingPx = _dpToPx(_commonPaddingDp, scale);
     final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
@@ -459,26 +500,28 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
       children: [
         Text(p.label, style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 12),
-        Stack(children: [
-          Positioned.fill(
-            child: CustomPaint(
-              painter: PatternPainter(primaryColor: Colors.blue),
+        Stack(
+          children: [
+            Positioned.fill(
+              child: CustomPaint(
+                painter: PatternPainter(primaryColor: Colors.blue),
+              ),
             ),
-          ),
-          CustomPaint(
-            size: Size(w, w),
-            painter: UniversalAssetPreviewPainter(
-              backgroundImage: _bgImg,
-              foregroundImage: _fgImg,
-              backgroundColor: _parseHexColor(_commonBgHex),
-              artboardPx: artboardPx,
-              paddingPx: paddingPx,
-              fit: BoxFit.scaleDown,
-              safeZonePx: safePx,
-              maskDiameterPx: maskPx,
+            CustomPaint(
+              size: Size(w, w),
+              painter: UniversalAssetPreviewPainter(
+                backgroundImage: _bgImg,
+                foregroundImage: _fgImg,
+                backgroundColor: _parseHexColor(_commonBgHex),
+                artboardPx: artboardPx,
+                paddingPx: paddingPx,
+                fit: BoxFit.scaleDown,
+                safeZonePx: safePx,
+                maskDiameterPx: maskPx,
+              ),
             ),
-          )
-        ]),
+          ],
+        ),
         const SizedBox(height: 8),
         Wrap(
           spacing: 16,
@@ -511,7 +554,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
     final st = _pageStates[p.id]!;
     final eff = _effectiveFor(p);
 
-    final scale = _scaleForPreview(artboardDp: p.sizeDp, previewPx: widget.previewSize);
+    final scale = _scaleForPreview(
+      artboardDp: p.sizeDp,
+      previewPx: widget.previewSize,
+    );
     final artboardPx = p.sizeDp * scale;
     final paddingPx = _dpToPx(eff.paddingDp, scale);
     final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
@@ -542,7 +588,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
                 safeZonePx: safePx,
                 maskDiameterPx: maskPx,
               ),
-            )
+            ),
           ],
         ),
         const SizedBox(height: 8),
@@ -584,12 +630,16 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
             _bgColorPickerRow(
               scopeId: p.id,
               enabled: !st.bgInheritCommon,
-              currentHex: st.bgInheritCommon ? _commonBgHex : (st.bgHexOverride ?? _commonBgHex),
+              currentHex: st.bgInheritCommon
+                  ? _commonBgHex
+                  : (st.bgHexOverride ?? _commonBgHex),
               onColorChanged: () {},
             ),
             const Text('Padding:'),
             _paddingEditor(
-              currentDp: st.inheritCommon ? _commonPaddingDp : (st.paddingOverrideDp ?? _commonPaddingDp),
+              currentDp: st.inheritCommon
+                  ? _commonPaddingDp
+                  : (st.paddingOverrideDp ?? _commonPaddingDp),
               maxDp: p.sizeDp / 2,
               onChanged: st.inheritCommon
                   ? (_) {}
@@ -649,7 +699,9 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
 
     for (final p in widget.pages) {
       tabs.add(Tab(text: p.label));
-      views.add(Center(child: p.isCommon ? _buildCommonTab(p) : _buildPageTab(p)));
+      views.add(
+        Center(child: p.isCommon ? _buildCommonTab(p) : _buildPageTab(p)),
+      );
     }
 
     final hasTabs = tabs.length > 1;
@@ -659,7 +711,9 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> w
         if (hasTabs) TabBar(controller: _tab, tabs: tabs),
         const SizedBox(height: 12),
         Expanded(
-          child: hasTabs ? TabBarView(controller: _tab, children: views) : views.first,
+          child: hasTabs
+              ? TabBarView(controller: _tab, children: views)
+              : views.first,
         ),
       ],
     );

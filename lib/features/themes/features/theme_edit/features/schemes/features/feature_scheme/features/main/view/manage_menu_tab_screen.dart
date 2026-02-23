@@ -23,7 +23,9 @@ class ManageMenuTabScreen extends StatefulWidget {
 
 class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TabFormModel _form = TabFormModel.fromScheme(widget.bottomMenuTabScheme);
+  late final TabFormModel _form = TabFormModel.fromScheme(
+    widget.bottomMenuTabScheme,
+  );
 
   // UI controllers are local to the screen
   late final _titleL10nController = TextEditingController(text: _form.title);
@@ -70,7 +72,8 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
               if (isEmbedded) ...[
                 const SizedBox(height: 16),
                 EmbeddedPickerTile(
-                  selectedTitle: _form.embeddedResourceId ?? 'Select embedded resource',
+                  selectedTitle:
+                      _form.embeddedResourceId ?? 'Select embedded resource',
                   onTap: _pickEmbedded,
                 ),
               ],
@@ -124,7 +127,9 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
       final updated = buildSchemeFromForm(_form);
       GoRouter.of(context).pop(updated);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
 }

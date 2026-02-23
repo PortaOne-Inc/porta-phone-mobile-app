@@ -10,8 +10,11 @@ abstract class UsecaseTranslationsGetOverridesByAppId {
 }
 
 @Injectable(as: UsecaseTranslationsGetOverridesByAppId)
-class UsecaseTranslationsGetOverridesByAppIdImpl extends UsecaseTranslationsGetOverridesByAppId {
-  UsecaseTranslationsGetOverridesByAppIdImpl({required this.translationsRepository});
+class UsecaseTranslationsGetOverridesByAppIdImpl
+    extends UsecaseTranslationsGetOverridesByAppId {
+  UsecaseTranslationsGetOverridesByAppIdImpl({
+    required this.translationsRepository,
+  });
 
   final TranslationsRepository translationsRepository;
 

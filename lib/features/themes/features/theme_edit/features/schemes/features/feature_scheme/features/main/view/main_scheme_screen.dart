@@ -54,7 +54,10 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
               children: [
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text('Cache Selected Tab', style: textTheme.titleMedium),
+                  title: Text(
+                    'Cache Selected Tab',
+                    style: textTheme.titleMedium,
+                  ),
                   value: widget.mainConfig.bottomMenu.cacheSelectedTab,
                   onChanged: (it) => widget.onCacheSelectedTabChange(it),
                 ),
@@ -101,11 +104,20 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                                     Row(
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.edit, size: 16, color: colorScheme.onSurface),
-                                          onPressed: () => _manageBottomMenuTab(index, tab),
+                                          icon: Icon(
+                                            Icons.edit,
+                                            size: 16,
+                                            color: colorScheme.onSurface,
+                                          ),
+                                          onPressed: () =>
+                                              _manageBottomMenuTab(index, tab),
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.close, size: 16, color: colorScheme.error),
+                                          icon: Icon(
+                                            Icons.close,
+                                            size: 16,
+                                            color: colorScheme.error,
+                                          ),
                                           onPressed: () => _removeTab(index),
                                         ),
                                       ],
@@ -164,8 +176,9 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
   }
 
   Future<void> _addTab() async {
-    final result =
-        await GoRouter.of(context).pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name);
+    final result = await GoRouter.of(context).pushNamed<BottomMenuTabScheme?>(
+      SchemeRoute.appFeatureSchemeMainManageTab.name,
+    );
     if (result != null) {
       addTabToLocalState(result);
       _sync();
@@ -173,9 +186,11 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
   }
 
   void _sync() {
-    widget.onChange(widget.mainConfig.copyWith(
-      bottomMenu: widget.mainConfig.bottomMenu.copyWith(tabs: _activeTabs),
-    ));
+    widget.onChange(
+      widget.mainConfig.copyWith(
+        bottomMenu: widget.mainConfig.bottomMenu.copyWith(tabs: _activeTabs),
+      ),
+    );
   }
 
   void addTabToLocalState(BottomMenuTabScheme tab) {
@@ -187,8 +202,10 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
   }
 
   Future<void> _manageBottomMenuTab(int index, BottomMenuTabScheme tab) async {
-    final result = await GoRouter.of(context)
-        .pushNamed<BottomMenuTabScheme?>(SchemeRoute.appFeatureSchemeMainManageTab.name, extra: tab);
+    final result = await GoRouter.of(context).pushNamed<BottomMenuTabScheme?>(
+      SchemeRoute.appFeatureSchemeMainManageTab.name,
+      extra: tab,
+    );
     if (result != null) {
       _activeTabs[index] = result;
       _sync();
@@ -220,29 +237,29 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
 
   // ---------- helpers ----------
   bool _isEnabled(BottomMenuTabScheme tab) => tab.map(
-        favorites: (t) => t.enabled,
-        recents: (t) => t.enabled,
-        contacts: (t) => t.enabled,
-        keypad: (t) => t.enabled,
-        messaging: (t) => t.enabled,
-        embedded: (t) => t.enabled,
-      );
+    favorites: (t) => t.enabled,
+    recents: (t) => t.enabled,
+    contacts: (t) => t.enabled,
+    keypad: (t) => t.enabled,
+    messaging: (t) => t.enabled,
+    embedded: (t) => t.enabled,
+  );
 
   String _tabLabel(BottomMenuTabScheme tab) => tab.map(
-        favorites: (_) => 'favorites',
-        recents: (_) => 'recents',
-        contacts: (_) => 'contacts',
-        keypad: (_) => 'keypad',
-        messaging: (_) => 'messaging',
-        embedded: (_) => 'embedded',
-      );
+    favorites: (_) => 'favorites',
+    recents: (_) => 'recents',
+    contacts: (_) => 'contacts',
+    keypad: (_) => 'keypad',
+    messaging: (_) => 'messaging',
+    embedded: (_) => 'embedded',
+  );
 
   IconData _tabIcon(BottomMenuTabScheme tab) => tab.map(
-        favorites: (t) => t.icon.toIconData(),
-        recents: (t) => t.icon.toIconData(),
-        contacts: (t) => t.icon.toIconData(),
-        keypad: (t) => t.icon.toIconData(),
-        messaging: (t) => t.icon.toIconData(),
-        embedded: (t) => t.icon.toIconData(),
-      );
+    favorites: (t) => t.icon.toIconData(),
+    recents: (t) => t.icon.toIconData(),
+    contacts: (t) => t.icon.toIconData(),
+    keypad: (t) => t.icon.toIconData(),
+    messaging: (t) => t.icon.toIconData(),
+    embedded: (t) => t.icon.toIconData(),
+  );
 }

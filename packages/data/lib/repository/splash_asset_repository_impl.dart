@@ -30,7 +30,9 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
       );
       return splashAssetMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -47,27 +49,34 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
   }) async {
     try {
       final wire = uploads
-          .map((u) => ArtifactUploadWire(
-                target: u.target,
-                mimeType: u.mimeType,
-                bytes: u.bytes,
-              ))
+          .map(
+            (u) => ArtifactUploadWire(
+              target: u.target,
+              mimeType: u.mimeType,
+              bytes: u.bytes,
+            ),
+          )
           .toList();
 
-      final dto = await configuratorBackendDatasource.upsertSplashAssetUploadBatch(
-        applicationId: applicationId,
-        themeId: themeId,
-        mode: mode?.name,
-        fit: params?.fit != null ? splashFitMapper.convertTo(params!.fit!) : null,
-        padding: params?.padding,
-        foregroundAssetId: source?.foregroundAssetId,
-        backgroundAssetId: source?.backgroundAssetId,
-        backgroundColorHex: source?.backgroundColorHex,
-        uploads: wire,
-      );
+      final dto = await configuratorBackendDatasource
+          .upsertSplashAssetUploadBatch(
+            applicationId: applicationId,
+            themeId: themeId,
+            mode: mode?.name,
+            fit: params?.fit != null
+                ? splashFitMapper.convertTo(params!.fit!)
+                : null,
+            padding: params?.padding,
+            foregroundAssetId: source?.foregroundAssetId,
+            backgroundAssetId: source?.backgroundAssetId,
+            backgroundColorHex: source?.backgroundColorHex,
+            uploads: wire,
+          );
       return splashAssetMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -84,7 +93,9 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
         themeId: themeId,
       );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -96,10 +107,8 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
     required String themeId,
   }) async {
     try {
-      final dto = await configuratorBackendDatasource.getSplashConstraintsDefaults(
-        applicationId,
-        themeId,
-      );
+      final dto = await configuratorBackendDatasource
+          .getSplashConstraintsDefaults(applicationId, themeId);
       return SplashConstraintsDefaultsModel(
         withBackground: SplashConstraintsDefaultsSliceModel(
           fullSizeDp: dto.withBackground.fullSizeDp,
@@ -113,7 +122,9 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
         ),
       );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

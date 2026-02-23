@@ -18,10 +18,7 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
   UpdateThemCubit get _cubit => context.read<UpdateThemCubit>();
 
   KeypadPageConfig get _cfg {
-    final pages = context
-        .watch<UpdateThemCubit>()
-        .state
-        .themePageConfig;
+    final pages = context.watch<UpdateThemCubit>().state.themePageConfig;
     return pages.keypad;
   }
 
@@ -56,7 +53,8 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
           const SizedBox(height: 16),
           PageBackgroundEditor(
             value: cfg.background,
-            onChanged: (PageBackground? value) => _set(cfg.copyWith(background: value)),
+            onChanged: (PageBackground? value) =>
+                _set(cfg.copyWith(background: value)),
           ),
           const SizedBox(height: 16),
           BorderContainer(
@@ -81,7 +79,8 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
           const SizedBox(height: 16),
           BorderContainer(
             title: 'Keypad styles',
-            description: 'Configure digits, subtext, and spacing for the keypad.',
+            description:
+                'Configure digits, subtext, and spacing for the keypad.',
             padding: const EdgeInsets.all(16),
             child: KeypadStyleEditorMinimal(
               value: cfg.keypad ?? const KeypadStyleConfig(),

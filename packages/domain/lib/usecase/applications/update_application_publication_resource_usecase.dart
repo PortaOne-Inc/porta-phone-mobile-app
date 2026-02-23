@@ -14,7 +14,8 @@ abstract class UpdateApplicationPublicationResourceUsecase {
 }
 
 @Injectable(as: UpdateApplicationPublicationResourceUsecase)
-class UpdateApplicationPublicationResourceUsecaseImpl extends UpdateApplicationPublicationResourceUsecase {
+class UpdateApplicationPublicationResourceUsecaseImpl
+    extends UpdateApplicationPublicationResourceUsecase {
   UpdateApplicationPublicationResourceUsecaseImpl(this.repo);
 
   final PublicationResourcesRepository repo;
@@ -27,6 +28,12 @@ class UpdateApplicationPublicationResourceUsecaseImpl extends UpdateApplicationP
     String? note,
     String? text,
   }) {
-    return repo.updateResource(resourceId, title: title, url: url, note: note, text: text);
+    return repo.updateResource(
+      resourceId,
+      title: title,
+      url: url,
+      note: note,
+      text: text,
+    );
   }
 }

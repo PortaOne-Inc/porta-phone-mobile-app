@@ -4,9 +4,7 @@ import '../../models/themes/theme_model.dart';
 import '../../repository/repository.dart';
 
 abstract class UsecaseThemeUpdate {
-  Future<ThemeModel?> execute({
-    required ThemeModel themeModel,
-  });
+  Future<ThemeModel?> execute({required ThemeModel themeModel});
 }
 
 @Injectable(as: UsecaseThemeUpdate)
@@ -25,9 +23,7 @@ class UsecaseThemeUpdateImpl extends UsecaseThemeUpdate {
   final ResourcesRepository resourcesRepository;
 
   @override
-  Future<ThemeModel?> execute({
-    required ThemeModel themeModel,
-  }) async {
+  Future<ThemeModel?> execute({required ThemeModel themeModel}) async {
     return themeRepository.updateTheme(applicationId, themeModel);
   }
 }

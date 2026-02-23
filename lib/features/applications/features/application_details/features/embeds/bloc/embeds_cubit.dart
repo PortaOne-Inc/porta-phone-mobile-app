@@ -15,11 +15,11 @@ class EmbedsCubit extends Cubit<EmbedsState> {
     required DeleteApplicationEmbedUsecase deleteApplicationEmbedUsecase,
     required CreateApplicationEmbedUsecase createApplicationEmbedUsecase,
     required UpdateApplicationEmbedUsecase updateApplicationEmbedUsecase,
-  })  : _getApplicationEmbedsUsecase = getApplicationEmbedsUsecase,
-        _deleteApplicationEmbedUsecase = deleteApplicationEmbedUsecase,
-        _createApplicationEmbedUsecase = createApplicationEmbedUsecase,
-        _updateApplicationEmbedUsecase = updateApplicationEmbedUsecase,
-        super(const EmbedsState());
+  }) : _getApplicationEmbedsUsecase = getApplicationEmbedsUsecase,
+       _deleteApplicationEmbedUsecase = deleteApplicationEmbedUsecase,
+       _createApplicationEmbedUsecase = createApplicationEmbedUsecase,
+       _updateApplicationEmbedUsecase = updateApplicationEmbedUsecase,
+       super(const EmbedsState());
 
   final String applicationId;
 
@@ -34,21 +34,43 @@ class EmbedsCubit extends Cubit<EmbedsState> {
       final items = await _getApplicationEmbedsUsecase.execute(applicationId);
       emit(state.copyWith(status: EmbedsStatus.loaded, items: items));
     } catch (e) {
-      emit(state.copyWith(status: EmbedsStatus.failure, errorMessage: e.toString()));
+      emit(
+        state.copyWith(
+          status: EmbedsStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
   Future<void> deleteEmbed(String embedId) async {
-    emit(state.copyWith(deletingIds: {...state.deletingIds, embedId}, deleteError: null));
+    emit(
+      state.copyWith(
+        deletingIds: {...state.deletingIds, embedId},
+        deleteError: null,
+      ),
+    );
     try {
-      await _deleteApplicationEmbedUsecase.execute(applicationId: applicationId, id: embedId);
-      final next = state.items.where((e) => e.id.toString() != embedId).toList();
-      emit(state.copyWith(items: next, deletingIds: {...state.deletingIds}..remove(embedId)));
+      await _deleteApplicationEmbedUsecase.execute(
+        applicationId: applicationId,
+        id: embedId,
+      );
+      final next = state.items
+          .where((e) => e.id.toString() != embedId)
+          .toList();
+      emit(
+        state.copyWith(
+          items: next,
+          deletingIds: {...state.deletingIds}..remove(embedId),
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        deletingIds: {...state.deletingIds}..remove(embedId),
-        deleteError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          deletingIds: {...state.deletingIds}..remove(embedId),
+          deleteError: e.toString(),
+        ),
+      );
     }
   }
 
@@ -77,10 +99,7 @@ class EmbedsCubit extends Cubit<EmbedsState> {
         resource: draft,
       );
 
-      emit(state.copyWith(
-        creating: false,
-        items: [created, ...state.items],
-      ));
+      emit(state.copyWith(creating: false, items: [created, ...state.items]));
     } catch (e) {
       emit(state.copyWith(creating: false, createError: e.toString()));
     }
@@ -95,10 +114,12 @@ class EmbedsCubit extends Cubit<EmbedsState> {
     bool enableConsoleLogCapture = false,
     String? reconnectStrategy,
   }) async {
-    emit(state.copyWith(
-      updatingIds: {...state.updatingIds, id},
-      updateError: null,
-    ));
+    emit(
+      state.copyWith(
+        updatingIds: {...state.updatingIds, id},
+        updateError: null,
+      ),
+    );
     try {
       final updatedModel = EmbeddedResourceModel(
         id: id,
@@ -122,15 +143,19 @@ class EmbedsCubit extends Cubit<EmbedsState> {
           if (e.id == id) saved else e,
       ];
 
-      emit(state.copyWith(
-        updatingIds: {...state.updatingIds}..remove(id),
-        items: next,
-      ));
+      emit(
+        state.copyWith(
+          updatingIds: {...state.updatingIds}..remove(id),
+          items: next,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        updatingIds: {...state.updatingIds}..remove(id),
-        updateError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          updatingIds: {...state.updatingIds}..remove(id),
+          updateError: e.toString(),
+        ),
+      );
     }
   }
 }

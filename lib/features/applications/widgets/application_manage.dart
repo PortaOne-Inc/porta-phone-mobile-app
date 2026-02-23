@@ -59,7 +59,12 @@ class ApplicationManage extends StatelessWidget {
             elevation: 2,
             child: SingleChildScrollView(
               child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 16, top: 64, bottom: 16),
+                margin: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 64,
+                  bottom: 16,
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,8 +83,13 @@ class ApplicationManage extends StatelessWidget {
                         errorText: nameInput?.errorL10n(context),
                         hintText: 'Will be displayed in the app',
                         suffixIcon: Tooltip(
-                          message: context.l10n.feature_application_create_Tooltip_name_info,
-                          child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                          message: context
+                              .l10n
+                              .feature_application_create_Tooltip_name_info,
+                          child: Icon(
+                            Icons.info_outlined,
+                            color: colorScheme.secondary,
+                          ),
                         ),
                       ),
                     ),
@@ -90,7 +100,9 @@ class ApplicationManage extends StatelessWidget {
                             contentPadding: EdgeInsets.zero,
                             horizontalTitleGap: 8,
                             title: Text(
-                              context.l10n.feature_application_android_identifier,
+                              context
+                                  .l10n
+                                  .feature_application_android_identifier,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             subtitle: TextFormField(
@@ -101,10 +113,17 @@ class ApplicationManage extends StatelessWidget {
                                 prefixIcon: const Icon(Icons.android),
                                 hintText: 'com.example.app',
                                 helperText: 'com.example.app',
-                                errorText: androidPlatformIdInput?.errorL10n(context),
+                                errorText: androidPlatformIdInput?.errorL10n(
+                                  context,
+                                ),
                                 suffixIcon: Tooltip(
-                                  message: context.l10n.feature_application_create_Tooltip_identifier_info,
-                                  child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                                  message: context
+                                      .l10n
+                                      .feature_application_create_Tooltip_identifier_info,
+                                  child: Icon(
+                                    Icons.info_outlined,
+                                    color: colorScheme.secondary,
+                                  ),
                                 ),
                               ),
                             ),
@@ -127,10 +146,17 @@ class ApplicationManage extends StatelessWidget {
                                 prefixIcon: const Icon(Icons.apple),
                                 hintText: 'com.example.app',
                                 helperText: 'com.example.app',
-                                errorText: iosPlatformIdInput?.errorL10n(context),
+                                errorText: iosPlatformIdInput?.errorL10n(
+                                  context,
+                                ),
                                 suffixIcon: Tooltip(
-                                  message: context.l10n.feature_application_create_Tooltip_identifier_info,
-                                  child: Icon(Icons.info_outlined, color: colorScheme.secondary),
+                                  message: context
+                                      .l10n
+                                      .feature_application_create_Tooltip_identifier_info,
+                                  child: Icon(
+                                    Icons.info_outlined,
+                                    color: colorScheme.secondary,
+                                  ),
                                 ),
                               ),
                             ),
@@ -148,18 +174,31 @@ class ApplicationManage extends StatelessWidget {
             elevation: 2,
             child: SingleChildScrollView(
               child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 32),
+                margin: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 16,
+                  bottom: 32,
+                ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
-                    inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(
+                    inputDecorationTheme: Theme.of(context).inputDecorationTheme
+                        .copyWith(
                           filled: true,
-                          fillColor: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerHighest
+                              .withValues(alpha: 0.5),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Theme.of(context).colorScheme.outlineVariant),
+                            borderSide: BorderSide(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.outlineVariant,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -170,9 +209,14 @@ class ApplicationManage extends StatelessWidget {
                           ),
                           errorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.error,
+                            ),
                           ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 14,
+                          ),
                         ),
                   ),
                   child: Column(
@@ -194,12 +238,18 @@ class ApplicationManage extends StatelessWidget {
                                 initialValue: androidBuildNameInput?.value,
                                 onChanged: updateAndroidBuildName,
                                 maxLength: ApplicationConsts.maxCoreLimit,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9.]'),
+                                  ),
+                                ],
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.android),
                                   hintText: '1.0.0',
                                   helperText: 'Example: 1.0.0',
-                                  errorText: androidBuildNameInput?.errorL10n(context),
+                                  errorText: androidBuildNameInput?.errorL10n(
+                                    context,
+                                  ),
                                   counterText: '', // hide counter
                                 ),
                               ),
@@ -218,12 +268,18 @@ class ApplicationManage extends StatelessWidget {
                                 initialValue: androidBuildNumberInput?.value,
                                 onChanged: updateAndroidBuildNumber,
                                 maxLength: ApplicationConsts.maxCoreLimit,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
                                 decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.confirmation_number),
+                                  prefixIcon: const Icon(
+                                    Icons.confirmation_number,
+                                  ),
                                   hintText: '1',
                                   helperText: 'Integer number, e.g.: 1',
-                                  errorText: androidBuildNumberInput?.errorL10n(context),
+                                  errorText: androidBuildNumberInput?.errorL10n(
+                                    context,
+                                  ),
                                   counterText: '',
                                 ),
                               ),
@@ -245,12 +301,18 @@ class ApplicationManage extends StatelessWidget {
                                 initialValue: iosBuildNameInput?.value,
                                 onChanged: updateIosBuildName,
                                 maxLength: ApplicationConsts.maxCoreLimit,
-                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.]'))],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9.]'),
+                                  ),
+                                ],
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.apple),
                                   hintText: '1.0.0',
                                   helperText: 'Example: 1.0.0',
-                                  errorText: iosBuildNameInput?.errorL10n(context),
+                                  errorText: iosBuildNameInput?.errorL10n(
+                                    context,
+                                  ),
                                   counterText: '',
                                 ),
                               ),
@@ -269,12 +331,18 @@ class ApplicationManage extends StatelessWidget {
                                 initialValue: iosBuildNumberInput?.value,
                                 onChanged: updateIosBuildNumber,
                                 maxLength: ApplicationConsts.maxCoreLimit,
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
                                 decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.confirmation_number),
+                                  prefixIcon: const Icon(
+                                    Icons.confirmation_number,
+                                  ),
                                   hintText: '1',
                                   helperText: 'Integer number, e.g.: 1',
-                                  errorText: iosBuildNumberInput?.errorL10n(context),
+                                  errorText: iosBuildNumberInput?.errorL10n(
+                                    context,
+                                  ),
                                   counterText: '',
                                 ),
                               ),
@@ -285,17 +353,14 @@ class ApplicationManage extends StatelessWidget {
                       const SizedBox(height: 24),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Button(
-                          title: action,
-                          onPressed: actionManage,
-                        ),
+                        child: Button(title: action, onPressed: actionManage),
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

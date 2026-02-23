@@ -10,17 +10,23 @@ enum SplashMode { withBackground, withoutBackground }
 
 @freezed
 sealed class SplashSource with _$SplashSource {
-  const factory SplashSource({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
-      _SplashSource;
+  const factory SplashSource({
+    String? foregroundAssetId,
+    String? backgroundAssetId,
+    String? backgroundColorHex,
+  }) = _SplashSource;
 
-  factory SplashSource.fromJson(Map<String, dynamic> json) => _$SplashSourceFromJson(json);
+  factory SplashSource.fromJson(Map<String, dynamic> json) =>
+      _$SplashSourceFromJson(json);
 }
 
 @freezed
 sealed class SplashAssetParams with _$SplashAssetParams {
-  const factory SplashAssetParams({FitModel? fit, double? padding}) = _SplashAssetParams;
+  const factory SplashAssetParams({FitModel? fit, double? padding}) =
+      _SplashAssetParams;
 
-  factory SplashAssetParams.fromJson(Map<String, dynamic> json) => _$SplashAssetParamsFromJson(json);
+  factory SplashAssetParams.fromJson(Map<String, dynamic> json) =>
+      _$SplashAssetParamsFromJson(json);
 }
 
 @freezed
@@ -47,7 +53,8 @@ sealed class SplashIconConstraints with _$SplashIconConstraints {
     String? recommendationBasis,
   }) = _SplashIconConstraints;
 
-  factory SplashIconConstraints.fromJson(Map<String, dynamic> json) => _$SplashIconConstraintsFromJson(json);
+  factory SplashIconConstraints.fromJson(Map<String, dynamic> json) =>
+      _$SplashIconConstraintsFromJson(json);
 }
 
 @freezed
@@ -77,5 +84,6 @@ sealed class SplashAssetModel with _$SplashAssetModel {
     SplashIconConstraints? iconConstraints,
   }) = _SplashAssetModel;
 
-  factory SplashAssetModel.fromJson(Map<String, dynamic> json) => _$SplashAssetModelFromJson(json);
+  factory SplashAssetModel.fromJson(Map<String, dynamic> json) =>
+      _$SplashAssetModelFromJson(json);
 }

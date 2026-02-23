@@ -36,8 +36,8 @@ class GroupConfigTab extends StatelessWidget {
             child: GroupTitleListTileEditorMinimal(
               value: group.groupTitleListTile,
               onChanged: (v) => context.read<UpdateThemCubit>().add(
-                    ThemeWidgetEvent.setGroupTitleListTile(v),
-                  ),
+                ThemeWidgetEvent.setGroupTitleListTile(v),
+              ),
               // optional preview hint: pull colors from style ext if you want
             ),
           ),

@@ -13,7 +13,8 @@ abstract class UpsertColorSchemeByThemeVariantUsecase {
 }
 
 @LazySingleton(as: UpsertColorSchemeByThemeVariantUsecase)
-class UpsertColorSchemeByThemeVariantUsecaseImpl implements UpsertColorSchemeByThemeVariantUsecase {
+class UpsertColorSchemeByThemeVariantUsecaseImpl
+    implements UpsertColorSchemeByThemeVariantUsecase {
   UpsertColorSchemeByThemeVariantUsecaseImpl(this._repo);
 
   final ColorSchemeRepository _repo;

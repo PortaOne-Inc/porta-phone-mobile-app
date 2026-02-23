@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class ResetToolbar extends StatelessWidget {
-  const ResetToolbar({
-    required this.onLanguageChanged,
-    super.key,
-  });
+  const ResetToolbar({required this.onLanguageChanged, super.key});
 
   final Function onLanguageChanged;
 
@@ -29,11 +26,7 @@ class ResetToolbar extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-          ),
-        ),
+        const Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.end)),
       ],
     );
   }

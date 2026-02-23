@@ -6,9 +6,11 @@ part 'build_version_model.g.dart';
 
 @freezed
 sealed class BuildVersionModel with _$BuildVersionModel {
-  const factory BuildVersionModel({String? buildName, int? buildNumber}) = _BuildVersionModel;
+  const factory BuildVersionModel({String? buildName, int? buildNumber}) =
+      _BuildVersionModel;
 
-  factory BuildVersionModel.fromJson(Map<String, Object?> json) => _$BuildVersionModelFromJson(json);
+  factory BuildVersionModel.fromJson(Map<String, Object?> json) =>
+      _$BuildVersionModelFromJson(json);
 }
 
 extension BuildVersionModelExtension on BuildVersionModel {

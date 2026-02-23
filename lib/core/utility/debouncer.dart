@@ -3,9 +3,7 @@ import 'dart:async';
 import '../typedef/callbacks.dart';
 
 class Debouncer {
-  Debouncer({
-    required this.milliseconds,
-  });
+  Debouncer({required this.milliseconds});
 
   final int milliseconds;
   Timer? _timer;

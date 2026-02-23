@@ -24,7 +24,9 @@ class FontsConfigTab extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final effectiveFont = (fontFamily?.isNotEmpty ?? false)
         ? fontFamily!
-        : (sourceFontsConfig.fontFamily?.isNotEmpty ?? false ? sourceFontsConfig.fontFamily : 'System');
+        : (sourceFontsConfig.fontFamily?.isNotEmpty ?? false
+              ? sourceFontsConfig.fontFamily
+              : 'System');
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -55,7 +57,7 @@ class FontsConfigTab extends StatelessWidget {
     if (!context.mounted || selected == null || selected.isEmpty) return;
 
     context.read<UpdateThemCubit>().add(
-          ThemeWidgetEvent.setGlobalFontFamily(selected),
-        );
+      ThemeWidgetEvent.setGlobalFontFamily(selected),
+    );
   }
 }

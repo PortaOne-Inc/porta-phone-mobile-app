@@ -8,7 +8,6 @@ import 'package:webtrit_configurator/widgets/widgets.dart';
 
 import '../../../../../bloc/update_theme_cubit.dart';
 
-
 class DialogConfig extends StatelessWidget {
   const DialogConfig({
     required this.sourceDialogWidgetConfig,
@@ -39,8 +38,8 @@ class DialogConfig extends StatelessWidget {
             child: ConfirmDialogEditorMinimal(
               value: dialogCfg.confirmDialog,
               onChanged: (v) => context.read<UpdateThemCubit>().add(
-                    ThemeWidgetEvent.setConfirmDialog(v),
-                  ),
+                ThemeWidgetEvent.setConfirmDialog(v),
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -53,8 +52,8 @@ class DialogConfig extends StatelessWidget {
             child: SnackBarEditorMinimal(
               value: dialogCfg.snackBar,
               onChanged: (v) => context.read<UpdateThemCubit>().add(
-                    ThemeWidgetEvent.setSnackBar(v),
-                  ),
+                ThemeWidgetEvent.setSnackBar(v),
+              ),
             ),
           ),
         ],

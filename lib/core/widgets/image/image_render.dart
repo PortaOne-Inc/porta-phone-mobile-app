@@ -5,7 +5,7 @@ import 'package:webtrit_configurator/core/widgets/pattern_painter.dart';
 
 class ImageRender extends StatelessWidget {
   const ImageRender({
-     this.fit=BoxFit.cover,
+    this.fit = BoxFit.cover,
     this.constraints,
     this.resource,
     super.key,
@@ -26,15 +26,14 @@ class ImageRender extends StatelessWidget {
           if (resource == null)
             Positioned.fill(
               child: CustomPaint(
-                painter: PatternPainter(primaryColor: theme.colorScheme.primary),
+                painter: PatternPainter(
+                  primaryColor: theme.colorScheme.primary,
+                ),
               ),
             )
           else
             Positioned.fill(
-              child: ImageRenderer(
-                resource: resource!,
-                fit: fit,
-              ),
+              child: ImageRenderer(resource: resource!, fit: fit),
             ),
         ],
       ),

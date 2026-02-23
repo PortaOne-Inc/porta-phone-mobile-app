@@ -6,16 +6,14 @@ import 'package:domain/domain.dart';
 import '../mapper.dart';
 
 @Injectable(as: CommonMapper<CallkeepBranch, CallkeepBranchDto>)
-class CallkeepBranchMapper extends CommonMapper<CallkeepBranch, CallkeepBranchDto> {
+class CallkeepBranchMapper
+    extends CommonMapper<CallkeepBranch, CallkeepBranchDto> {
   @override
   CallkeepBranch convertFrom(CallkeepBranchDto it) {
     final name = it.name;
     final type = _determineType(name);
 
-    return CallkeepBranch(
-      name: name,
-      type: type,
-    );
+    return CallkeepBranch(name: name, type: type);
   }
 
   CallkeepBranchType _determineType(String name) {

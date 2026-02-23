@@ -13,7 +13,9 @@ extension AuthPasswordInputErrorL10n on AuthPasswordInput {
         case PasswordValidationError.blank:
           return context.l10n.validationBlankError;
         case PasswordValidationError.invalid:
-          return context.l10n.feature_auth_Input_invalid_password_not_meet_requirements;
+          return context
+              .l10n
+              .feature_auth_Input_invalid_password_not_meet_requirements;
       }
     }
   }

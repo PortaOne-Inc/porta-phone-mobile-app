@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class FailureDialog extends StatelessWidget {
-  const FailureDialog({
-    required this.message,
-    super.key,
-  });
+  const FailureDialog({required this.message, super.key});
 
   final String message;
 

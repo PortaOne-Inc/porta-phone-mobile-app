@@ -180,16 +180,16 @@ class _ImageRenderEditorState extends State<ImageRenderEditor> {
           ),
           if (isEnabled) ...[
             const Divider(height: 1),
-            _LivePreview(
-              source: _draftSource,
-              onPick: widget.onPick,
-            ),
+            _LivePreview(source: _draftSource, onPick: widget.onPick),
             const Divider(height: 1),
             Theme(
-              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              data: Theme.of(
+                context,
+              ).copyWith(dividerColor: Colors.transparent),
               child: ExpansionTile(
                 initiallyExpanded: _isSettingsExpanded,
-                onExpansionChanged: (v) => setState(() => _isSettingsExpanded = v),
+                onExpansionChanged: (v) =>
+                    setState(() => _isSettingsExpanded = v),
                 title: const Text('Appearance Settings'),
                 subtitle: Text(
                   '${_fit.name.toUpperCase()} • ${(_scaleValue * 100).toInt()}% Scale',
@@ -270,10 +270,7 @@ class _EditorHeader extends StatelessWidget {
               color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              Icons.image_outlined,
-              color: theme.colorScheme.primary,
-            ),
+            child: Icon(Icons.image_outlined, color: theme.colorScheme.primary),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -284,7 +281,9 @@ class _EditorHeader extends StatelessWidget {
                 if (description != null)
                   Text(
                     description!,
-                    style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.hintColor,
+                    ),
                   ),
               ],
             ),
@@ -324,10 +323,7 @@ class _EmptyState extends StatelessWidget {
 }
 
 class _LivePreview extends StatelessWidget {
-  const _LivePreview({
-    required this.source,
-    this.onPick,
-  });
+  const _LivePreview({required this.source, this.onPick});
 
   final ImageSource? source;
   final VoidCallback? onPick;
@@ -344,7 +340,9 @@ class _LivePreview extends StatelessWidget {
           Positioned.fill(
             child: CustomPaint(
               painter: PatternPainter(
-                primaryColor: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                primaryColor: theme.colorScheme.onSurface.withValues(
+                  alpha: 0.05,
+                ),
               ),
             ),
           ),
@@ -361,7 +359,9 @@ class _LivePreview extends StatelessWidget {
               label: const Text('Change'),
               style: FilledButton.styleFrom(
                 visualDensity: VisualDensity.compact,
-                backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
+                backgroundColor: theme.colorScheme.surface.withValues(
+                  alpha: 0.9,
+                ),
               ),
             ),
           ),

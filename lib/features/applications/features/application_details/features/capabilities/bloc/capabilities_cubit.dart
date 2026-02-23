@@ -20,7 +20,11 @@ class CapabilitiesCubit extends Cubit<CapabilitiesState> {
         Capability(key: 'messaging', title: 'Messaging', enabled: false),
         Capability(key: 'voicemail', title: 'Voicemail', enabled: false),
         Capability(key: 'embeddedTabs', title: 'Embedded tabs', enabled: false),
-        Capability(key: 'systemNotifications', title: 'System notifications', enabled: true),
+        Capability(
+          key: 'systemNotifications',
+          title: 'System notifications',
+          enabled: true,
+        ),
       ];
       emit(CapabilitiesState.ready(capabilities: data));
     } catch (e) {
@@ -31,7 +35,9 @@ class CapabilitiesCubit extends Cubit<CapabilitiesState> {
   void toggle(String key, bool value) {
     final s = state;
     if (s is _Ready) {
-      final updated = s.capabilities.map((c) => c.key == key ? c.copyWith(enabled: value) : c).toList(growable: false);
+      final updated = s.capabilities
+          .map((c) => c.key == key ? c.copyWith(enabled: value) : c)
+          .toList(growable: false);
       emit(s.copyWith(capabilities: updated, dirty: true));
     }
   }

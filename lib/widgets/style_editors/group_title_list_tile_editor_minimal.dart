@@ -25,16 +25,12 @@ class GroupTitleListTileEditorMinimal extends StatelessWidget {
       currentColor: value.backgroundColor?.toColor(),
     );
     if (newColor != null) {
-      onChanged(value.copyWith(
-        backgroundColor: newColor.toHex(),
-      ));
+      onChanged(value.copyWith(backgroundColor: newColor.toHex()));
     }
   }
 
   void _onTextStyleChanged(TextStyleConfig newStyle) {
-    onChanged(value.copyWith(
-      textStyle: newStyle,
-    ));
+    onChanged(value.copyWith(textStyle: newStyle));
   }
 
   @override

@@ -17,5 +17,6 @@ sealed class PublicationResourceDto with _$PublicationResourceDto {
     String? text,
   }) = _PublicationResourceDto;
 
-  factory PublicationResourceDto.fromJson(Map<String, dynamic> json) => _$PublicationResourceDtoFromJson(json);
+  factory PublicationResourceDto.fromJson(Map<String, dynamic> json) =>
+      _$PublicationResourceDtoFromJson(json);
 }

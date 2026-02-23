@@ -6,10 +6,7 @@ import '../../../../../widgets/menu_preview.dart';
 import '../features/layouts_preview/bloc/preview_theme_cubit.dart';
 
 class PreviewShellRoute extends StatelessWidget {
-  const PreviewShellRoute({
-    required this.child,
-    super.key,
-  });
+  const PreviewShellRoute({required this.child, super.key});
 
   final Widget child;
 
@@ -17,14 +14,16 @@ class PreviewShellRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     final previewCubit = context.watch<PreviewThemeCubit>();
 
-    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (BuildContext context, PreviewThemeState state) {
-      return Scaffold(
-        appBar: MenuPreviewToolbar(
-          onFrameTab: previewCubit.setFrame,
-          isEnableFrame: state.frameVisible,
-        ),
-        body: child,
-      );
-    });
+    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(
+      builder: (BuildContext context, PreviewThemeState state) {
+        return Scaffold(
+          appBar: MenuPreviewToolbar(
+            onFrameTab: previewCubit.setFrame,
+            isEnableFrame: state.frameVisible,
+          ),
+          body: child,
+        );
+      },
+    );
   }
 }

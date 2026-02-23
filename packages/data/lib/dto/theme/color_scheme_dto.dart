@@ -16,5 +16,6 @@ sealed class ColorSchemeDto with _$ColorSchemeDto {
     String? updatedAt,
   }) = _ColorSchemeDto;
 
-  factory ColorSchemeDto.fromJson(Map<String, dynamic> json) => _$ColorSchemeDtoFromJson(json);
+  factory ColorSchemeDto.fromJson(Map<String, dynamic> json) =>
+      _$ColorSchemeDtoFromJson(json);
 }

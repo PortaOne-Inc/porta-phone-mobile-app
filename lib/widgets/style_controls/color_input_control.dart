@@ -60,7 +60,9 @@ class ColorInput extends StatelessWidget {
               child: Text(
                 color?.toHex() ?? 'Default',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: color == null ? theme.hintColor : colorScheme.onSurface,
+                  color: color == null
+                      ? theme.hintColor
+                      : colorScheme.onSurface,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),

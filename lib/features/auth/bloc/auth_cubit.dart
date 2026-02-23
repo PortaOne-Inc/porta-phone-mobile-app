@@ -28,17 +28,19 @@ class AuthCubit extends Cubit<AuthState> {
   /// Initializes the AuthCubit by setting up a listener for token expiration.
   void _init() {
     _logger.info('Initializing AuthCubit');
-    _tokenExpirationSubscription = _monitorTokenExpirationUsecase.execute().listen(
-      (status) {
-        _logger.info('Token status: $status');
-        emit(state.copyWith(status: status));
-      },
-      onError: (Object error) {
-        emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
-        _logger.severe('Error monitoring token expiration: $error');
-      },
-      onDone: () => _logger.info('Token expiration monitoring done'),
-    );
+    _tokenExpirationSubscription = _monitorTokenExpirationUsecase
+        .execute()
+        .listen(
+          (status) {
+            _logger.info('Token status: $status');
+            emit(state.copyWith(status: status));
+          },
+          onError: (Object error) {
+            emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
+            _logger.severe('Error monitoring token expiration: $error');
+          },
+          onDone: () => _logger.info('Token expiration monitoring done'),
+        );
   }
 
   /// Redirects based on the authentication status.
@@ -56,8 +58,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
 
     return state.status == AuthenticationStatus.authenticated
-        ? (currentLocation == AppRoutInfo.login.path ? AppRoutInfo.applicationCollection.path : null)
-        : (state.status == AuthenticationStatus.expired ? null : AppRoutInfo.login.path);
+        ? (currentLocation == AppRoutInfo.login.path
+              ? AppRoutInfo.applicationCollection.path
+              : null)
+        : (state.status == AuthenticationStatus.expired
+              ? null
+              : AppRoutInfo.login.path);
   }
 
   /// Closes the AuthCubit and cancels the token expiration subscription.

@@ -28,10 +28,13 @@ sealed class ApplicationDTO with _$ApplicationDTO {
     @Default(false) bool demo,
   }) = _ApplicationDTO;
 
-  factory ApplicationDTO.fromJson(Map<String, dynamic> json) => _$ApplicationDTOFromJson(json);
+  factory ApplicationDTO.fromJson(Map<String, dynamic> json) =>
+      _$ApplicationDTOFromJson(json);
 
   factory ApplicationDTO.fromJsonString(String stringJson) {
-    return ApplicationDTO.fromJson(jsonDecode(stringJson) as Map<String, dynamic>);
+    return ApplicationDTO.fromJson(
+      jsonDecode(stringJson) as Map<String, dynamic>,
+    );
   }
 }
 
@@ -41,7 +44,8 @@ sealed class ContactInfo with _$ContactInfo {
   @JsonSerializable(includeIfNull: false)
   const factory ContactInfo({String? appSalesEmail}) = _ContactInfo;
 
-  factory ContactInfo.fromJson(Map<String, dynamic> json) => _$ContactInfoFromJson(json);
+  factory ContactInfo.fromJson(Map<String, dynamic> json) =>
+      _$ContactInfoFromJson(json);
 }
 
 extension ApplicationDTOConversionExtension on ApplicationDTO {

@@ -5,7 +5,8 @@ abstract class DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
+    ApplicationDependencyBranches branches =
+        const ApplicationDependencyBranches(),
   });
 
   Future<List<PhoneBranch>> getPhoneBranched();

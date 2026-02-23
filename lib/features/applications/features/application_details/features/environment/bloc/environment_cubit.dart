@@ -11,9 +11,7 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
     required String applicationId,
     required this.updateApplicationEnvironmentUsecase,
     required this.getApplicationEnvironmentUsecase,
-  }) : super(EnvironmentState(
-          applicationId: applicationId,
-        )) {
+  }) : super(EnvironmentState(applicationId: applicationId)) {
     getEnvironment();
   }
 
@@ -26,12 +24,19 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
       final environment = await getApplicationEnvironmentUsecase.execute(
         applicationId: state.applicationId,
       );
-      emit(state.copyWith(
-        status: EnvironmentStatus.loaded,
-        environment: environment,
-      ));
+      emit(
+        state.copyWith(
+          status: EnvironmentStatus.loaded,
+          environment: environment,
+        ),
+      );
     } catch (error) {
-      emit(state.copyWith(status: EnvironmentStatus.error, errorMessage: error.toString()));
+      emit(
+        state.copyWith(
+          status: EnvironmentStatus.error,
+          errorMessage: error.toString(),
+        ),
+      );
     }
   }
 
@@ -42,23 +47,25 @@ class EnvironmentCubit extends Cubit<EnvironmentState> {
         applicationId: state.applicationId,
         environment: state.environment,
       );
-      emit(state.copyWith(
-        status: EnvironmentStatus.initial,
-      ));
+      emit(state.copyWith(status: EnvironmentStatus.initial));
     } catch (error) {
-      emit(state.copyWith(status: EnvironmentStatus.error, errorMessage: error.toString()));
+      emit(
+        state.copyWith(
+          status: EnvironmentStatus.error,
+          errorMessage: error.toString(),
+        ),
+      );
     }
   }
 
   void updateKeyValue<T>(String key, T value) {
-    emit(state.copyWith(
-      environment: Map.of(state.environment)..[key] = value,
-    ));
+    emit(state.copyWith(environment: Map.of(state.environment)..[key] = value));
   }
 
   void removeAttribute(String key) {
     if (!state.environment.containsKey(key)) return;
-    final updatedEnvironment = Map<String, dynamic>.from(state.environment)..remove(key);
+    final updatedEnvironment = Map<String, dynamic>.from(state.environment)
+      ..remove(key);
     emit(state.copyWith(environment: updatedEnvironment));
   }
 }

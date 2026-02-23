@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 
 class AddSettingSectionScreen extends StatefulWidget {
-  const AddSettingSectionScreen({
-    super.key,
-  });
+  const AddSettingSectionScreen({super.key});
 
   @override
-  _AddSettingSectionScreenState createState() => _AddSettingSectionScreenState();
+  _AddSettingSectionScreenState createState() =>
+      _AddSettingSectionScreenState();
 }
 
 class _AddSettingSectionScreenState extends State<AddSettingSectionScreen> {
@@ -35,10 +34,7 @@ class _AddSettingSectionScreenState extends State<AddSettingSectionScreen> {
         title: const Text('Add Embedded Section'),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: _saveData,
-          ),
+          IconButton(icon: const Icon(Icons.save), onPressed: _saveData),
         ],
       ),
       body: Form(
@@ -56,7 +52,9 @@ class _AddSettingSectionScreenState extends State<AddSettingSectionScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.title),
                 ),
-                validator: (value) => (value?.trim().isEmpty ?? true) ? 'Title is required' : null,
+                validator: (value) => (value?.trim().isEmpty ?? true)
+                    ? 'Title is required'
+                    : null,
               ),
               SwitchListTile(
                 title: const Text('Enable'),

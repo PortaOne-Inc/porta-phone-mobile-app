@@ -8,9 +8,11 @@ part 'launch_assets_dto.g.dart';
 
 @freezed
 sealed class FitPaddingDto with _$FitPaddingDto {
-  const factory FitPaddingDto({FitDto? fit, double? paddingDp}) = _FitPaddingDto;
+  const factory FitPaddingDto({FitDto? fit, double? paddingDp}) =
+      _FitPaddingDto;
 
-  factory FitPaddingDto.fromJson(Map<String, dynamic> json) => _$FitPaddingDtoFromJson(json);
+  factory FitPaddingDto.fromJson(Map<String, dynamic> json) =>
+      _$FitPaddingDtoFromJson(json);
 }
 
 @freezed
@@ -22,15 +24,20 @@ sealed class PlatformParamsDto with _$PlatformParamsDto {
     FitPaddingDto? web,
   }) = _PlatformParamsDto;
 
-  factory PlatformParamsDto.fromJson(Map<String, dynamic> json) => _$PlatformParamsDtoFromJson(json);
+  factory PlatformParamsDto.fromJson(Map<String, dynamic> json) =>
+      _$PlatformParamsDtoFromJson(json);
 }
 
 @freezed
 sealed class SourceConfigDto with _$SourceConfigDto {
-  const factory SourceConfigDto({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
-      _SourceConfigDto;
+  const factory SourceConfigDto({
+    String? foregroundAssetId,
+    String? backgroundAssetId,
+    String? backgroundColorHex,
+  }) = _SourceConfigDto;
 
-  factory SourceConfigDto.fromJson(Map<String, dynamic> json) => _$SourceConfigDtoFromJson(json);
+  factory SourceConfigDto.fromJson(Map<String, dynamic> json) =>
+      _$SourceConfigDtoFromJson(json);
 }
 
 @freezed
@@ -43,7 +50,8 @@ sealed class OutputArtifactsDto with _$OutputArtifactsDto {
     String? webArtifactId,
   }) = _OutputArtifactsDto;
 
-  factory OutputArtifactsDto.fromJson(Map<String, dynamic> json) => _$OutputArtifactsDtoFromJson(json);
+  factory OutputArtifactsDto.fromJson(Map<String, dynamic> json) =>
+      _$OutputArtifactsDtoFromJson(json);
 }
 
 /// Головна сутність (1:1 з темою; id == themeId)
@@ -60,15 +68,20 @@ sealed class LaunchAssetsDto with _$LaunchAssetsDto {
     OutputArtifactsDto? outputsArtifacts,
   }) = _LaunchAssetsDto;
 
-  factory LaunchAssetsDto.fromJson(Map<String, dynamic> json) => _$LaunchAssetsDtoFromJson(json);
+  factory LaunchAssetsDto.fromJson(Map<String, dynamic> json) =>
+      _$LaunchAssetsDtoFromJson(json);
 }
 
 @freezed
 sealed class ValidationSliceDto with _$ValidationSliceDto {
-  const factory ValidationSliceDto({required bool compliant, required double deltaDp, String? message}) =
-      _ValidationSliceDto;
+  const factory ValidationSliceDto({
+    required bool compliant,
+    required double deltaDp,
+    String? message,
+  }) = _ValidationSliceDto;
 
-  factory ValidationSliceDto.fromJson(Map<String, dynamic> json) => _$ValidationSliceDtoFromJson(json);
+  factory ValidationSliceDto.fromJson(Map<String, dynamic> json) =>
+      _$ValidationSliceDtoFromJson(json);
 }
 
 @freezed
@@ -80,7 +93,8 @@ sealed class ValidationReportDto with _$ValidationReportDto {
     ValidationSliceDto? web,
   }) = _ValidationReportDto;
 
-  factory ValidationReportDto.fromJson(Map<String, dynamic> json) => _$ValidationReportDtoFromJson(json);
+  factory ValidationReportDto.fromJson(Map<String, dynamic> json) =>
+      _$ValidationReportDtoFromJson(json);
 }
 
 @freezed
@@ -91,13 +105,15 @@ sealed class LaunchAssetsEnvelopeDto with _$LaunchAssetsEnvelopeDto {
     ValidationReportDto? validation,
   }) = _LaunchAssetsEnvelopeDto;
 
-  factory LaunchAssetsEnvelopeDto.fromJson(Map<String, dynamic> json) => _$LaunchAssetsEnvelopeDtoFromJson(json);
+  factory LaunchAssetsEnvelopeDto.fromJson(Map<String, dynamic> json) =>
+      _$LaunchAssetsEnvelopeDtoFromJson(json);
 }
 
 extension LaunchAssetsEnvelopeDtoUrlsX on LaunchAssetsEnvelopeDto {
   String? get androidLegacyUrl => urls?['androidLegacyUrl'];
 
-  String? get androidAdaptiveForegroundUrl => urls?['androidAdaptiveForegroundUrl'];
+  String? get androidAdaptiveForegroundUrl =>
+      urls?['androidAdaptiveForegroundUrl'];
 
   String? get iosUrl => urls?['iosUrl'];
 

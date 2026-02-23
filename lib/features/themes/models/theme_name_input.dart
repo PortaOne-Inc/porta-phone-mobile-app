@@ -1,10 +1,6 @@
 import 'package:formz/formz.dart';
 
-enum ThemeNameValidationError {
-  blank,
-  toLong,
-  toShort,
-}
+enum ThemeNameValidationError { blank, toLong, toShort }
 
 class ThemeNameInput extends FormzInput<String, ThemeNameValidationError> {
   const ThemeNameInput.pure([super.value = '']) : super.pure();

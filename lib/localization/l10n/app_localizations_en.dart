@@ -593,7 +593,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String feature_application_collection_ApplicationStatus_not_resolved_issues(
-      Object count) {
+    Object count,
+  ) {
     return 'Not resolved $count issues';
   }
 
@@ -607,23 +608,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_PlayStoreConfigForm_update_priority_label =>
-          'Update Priority';
+  get feature_application_details_PlayStoreConfigForm_update_priority_label =>
+      'Update Priority';
 
   @override
   String
-      get feature_application_details_PlayStoreConfigForm_update_priority_validator =>
-          'Please enter a valid priority (0-5)';
+  get feature_application_details_PlayStoreConfigForm_update_priority_validator =>
+      'Please enter a valid priority (0-5)';
 
   @override
   String
-      get feature_application_details_PlayStoreConfigForm_user_fraction_label =>
-          'User Fraction';
+  get feature_application_details_PlayStoreConfigForm_user_fraction_label =>
+      'User Fraction';
 
   @override
   String
-      get feature_application_details_PlayStoreConfigForm_user_fraction_validator =>
-          'Please enter a valid fraction (0.0-1.0)';
+  get feature_application_details_PlayStoreConfigForm_user_fraction_validator =>
+      'Please enter a valid fraction (0.0-1.0)';
 
   @override
   String get feature_application_details_BranchSelector_input_custom_branch =>
@@ -635,23 +636,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_demo_flow_title =>
-          'Demo flow:';
+  get feature_application_details_ApplicationDetailsScreen_demo_flow_title =>
+      'Demo flow:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle =>
-          'Enable this option to use the demo authentication flow.';
+  get feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle =>
+      'Enable this option to use the demo authentication flow.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_configuration =>
-          'Configuration';
+  get feature_application_details_ApplicationDetailsScreen_configuration =>
+      'Configuration';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_project_name =>
-          'Project name:';
+  get feature_application_details_ApplicationDetailsScreen_project_name =>
+      'Project name:';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_project_id =>
@@ -659,48 +660,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_platform_identifier =>
-          'Platform identifier:';
+  get feature_application_details_ApplicationDetailsScreen_platform_identifier =>
+      'Platform identifier:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_android_platform_id =>
-          'Android platform ID:';
+  get feature_application_details_ApplicationDetailsScreen_android_platform_id =>
+      'Android platform ID:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_ios_platform_id =>
-          'iOS platform ID:';
+  get feature_application_details_ApplicationDetailsScreen_ios_platform_id =>
+      'iOS platform ID:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_android_build_name =>
-          'Android build name:';
+  get feature_application_details_ApplicationDetailsScreen_android_build_name =>
+      'Android build name:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_android_build_number =>
-          'Android build number:';
+  get feature_application_details_ApplicationDetailsScreen_android_build_number =>
+      'Android build number:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_ios_build_name =>
-          'iOS build name:';
+  get feature_application_details_ApplicationDetailsScreen_ios_build_name =>
+      'iOS build name:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_ios_build_number =>
-          'iOS build number:';
+  get feature_application_details_ApplicationDetailsScreen_ios_build_number =>
+      'iOS build number:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_application_core =>
-          'Application core:';
+  get feature_application_details_ApplicationDetailsScreen_application_core =>
+      'Application core:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_terms_and_conditions =>
-          'Terms and conditions:';
+  get feature_application_details_ApplicationDetailsScreen_terms_and_conditions =>
+      'Terms and conditions:';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_version =>
@@ -708,8 +709,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_default_theme =>
-          'Default theme:';
+  get feature_application_details_ApplicationDetailsScreen_default_theme =>
+      'Default theme:';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_open =>
@@ -717,18 +718,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet =>
-          'Not selected default theme yet';
+  get feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet =>
+      'Not selected default theme yet';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_google_services =>
-          'Google services:';
+  get feature_application_details_ApplicationDetailsScreen_google_services =>
+      'Google services:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded =>
-          'Google services have not been uploaded';
+  get feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded =>
+      'Google services have not been uploaded';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_deployment =>
@@ -740,18 +741,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_android_configuration =>
-          'Android configuration';
+  get feature_application_details_ApplicationDetailsScreen_android_configuration =>
+      'Android configuration';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone =>
-          'Select branch for Phone:';
+  get feature_application_details_ApplicationDetailsScreen_select_branch_for_phone =>
+      'Select branch for Phone:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_additional_configuration =>
-          'Additional configuration';
+  get feature_application_details_ApplicationDetailsScreen_additional_configuration =>
+      'Additional configuration';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_branches =>
@@ -759,23 +760,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep =>
-          'Enter branch for Callkeep:';
+  get feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep =>
+      'Enter branch for Callkeep:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency =>
-          'Enter branch for Common Dependency:';
+  get feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency =>
+      'Enter branch for Common Dependency:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool =>
-          'Enter branch for Phone Configurator Tool:';
+  get feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool =>
+      'Enter branch for Phone Configurator Tool:';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore =>
-          'Enter branch for Keystore';
+  get feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore =>
+      'Enter branch for Keystore';
 
   @override
   String get feature_application_details_ApplicationDetailsScreen_deploy =>
@@ -783,68 +784,68 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_deploy_success_message =>
-          'Deploy process successfully started';
+  get feature_application_details_ApplicationDetailsScreen_deploy_success_message =>
+      'Deploy process successfully started';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_builds_configuration =>
-          'Builds configuration';
+  get feature_application_details_ApplicationDetailsScreen_builds_configuration =>
+      'Builds configuration';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl =>
-          'The core URL provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidCoreUrl =>
+      'The core URL provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl =>
-          'The terms and conditions URL provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl =>
+      'The terms and conditions URL provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName =>
-          'The Android version name provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName =>
+      'The Android version name provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber =>
-          'The Android version number provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber =>
+      'The Android version number provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName =>
-          'The iOS version name provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidIosVersionName =>
+      'The iOS version name provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber =>
-          'The iOS version number provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber =>
+      'The iOS version number provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId =>
-          'The iOS platform ID provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId =>
+      'The iOS platform ID provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId =>
-          'The Android platform ID provided is invalid.';
+  get feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId =>
+      'The Android platform ID provided is invalid.';
 
   @override
   String
-      get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error =>
-          'The application can’t be deployed due to existing errors:';
+  get feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error =>
+      'The application can’t be deployed due to existing errors:';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_confirm_deployment =>
-          'Confirm Deployment';
+  get feature_application_details_DeployConfirmDialog_confirm_deployment =>
+      'Confirm Deployment';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_android_deployment =>
-          'Android Deployment';
+  get feature_application_details_DeployConfirmDialog_android_deployment =>
+      'Android Deployment';
 
   @override
   String get feature_application_details_DeployConfirmDialog_ios_deployment =>
@@ -870,28 +871,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_phone_source_branch =>
-          'Phone Source Branch';
+  get feature_application_details_DeployConfirmDialog_phone_source_branch =>
+      'Phone Source Branch';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_callkeep_source_branch =>
-          'Callkeep Source Branch';
+  get feature_application_details_DeployConfirmDialog_callkeep_source_branch =>
+      'Callkeep Source Branch';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_common_dependency_source_branch =>
-          'Common Dependency Source Branch';
+  get feature_application_details_DeployConfirmDialog_common_dependency_source_branch =>
+      'Common Dependency Source Branch';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch =>
-          'Phone Configurator Tool Source Branch';
+  get feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch =>
+      'Phone Configurator Tool Source Branch';
 
   @override
   String
-      get feature_application_details_DeployConfirmDialog_keystore_source_branch =>
-          'Keystore Source Branch';
+  get feature_application_details_DeployConfirmDialog_keystore_source_branch =>
+      'Keystore Source Branch';
 
   @override
   String get feature_application_details_DeployConfirmDialog_cancel => 'Cancel';

@@ -12,9 +12,7 @@ abstract class UsecaseThemeCreate {
 
 @Injectable(as: UsecaseThemeCreate)
 class UsecaseThemeCreateImpl implements UsecaseThemeCreate {
-  UsecaseThemeCreateImpl(
-    this._themeRepository,
-  );
+  UsecaseThemeCreateImpl(this._themeRepository);
 
   final ThemeRepository _themeRepository;
 

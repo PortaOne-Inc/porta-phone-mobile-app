@@ -43,10 +43,18 @@ class _BranchSelectorState extends State<BranchSelector> {
 
     final borderSideColor = theme.colorScheme.primary.withValues(alpha: 0.1);
     final decoration = InputDecoration(
-      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      border: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      disabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
       contentPadding: const EdgeInsets.symmetric(vertical: 8),
       isDense: true,
     );
@@ -76,8 +84,12 @@ class _BranchSelectorState extends State<BranchSelector> {
                 ),
                 child: Text(
                   _isDropdown
-                      ? context.l10n.feature_application_details_BranchSelector_input_custom_branch
-                      : context.l10n.feature_application_details_BranchSelector_choose_branch,
+                      ? context
+                            .l10n
+                            .feature_application_details_BranchSelector_input_custom_branch
+                      : context
+                            .l10n
+                            .feature_application_details_BranchSelector_choose_branch,
                   style: theme.textTheme.labelMedium,
                 ),
               ),
@@ -105,10 +117,7 @@ class _BranchSelectorState extends State<BranchSelector> {
   }
 
   DropdownMenuItem<String> _buildDropdownMenuItem(String branch) {
-    return DropdownMenuItem<String>(
-      value: branch,
-      child: Text(branch),
-    );
+    return DropdownMenuItem<String>(value: branch, child: Text(branch));
   }
 
   void _updateBranch(String? newBranch) {

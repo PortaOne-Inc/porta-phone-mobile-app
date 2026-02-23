@@ -25,18 +25,25 @@ class ColorSchemeConfigurationView extends StatefulWidget {
   const ColorSchemeConfigurationView({super.key});
 
   @override
-  State<ColorSchemeConfigurationView> createState() => _ColorSchemeConfigurationViewState();
+  State<ColorSchemeConfigurationView> createState() =>
+      _ColorSchemeConfigurationViewState();
 }
 
-class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationView> {
-  static const _tileConstraints = BoxConstraints.tightFor(width: 180, height: 120);
+class _ColorSchemeConfigurationViewState
+    extends State<ColorSchemeConfigurationView> {
+  static const _tileConstraints = BoxConstraints.tightFor(
+    width: 180,
+    height: 120,
+  );
 
   // Definitions for grouping and explaining color roles
   final List<_ColorGroupDefinition> _colorGroups = [
     const _ColorGroupDefinition(
       title: 'Primary Brand Colors',
-      description: 'Main brand colors used for high-emphasis buttons, active states, and headers.',
-      contrastTip: 'Ensure "On Primary" text is clearly visible against the "Primary" background.',
+      description:
+          'Main brand colors used for high-emphasis buttons, active states, and headers.',
+      contrastTip:
+          'Ensure "On Primary" text is clearly visible against the "Primary" background.',
       keys: [
         'primary',
         'onPrimary',
@@ -49,7 +56,8 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
       title: 'Secondary & Accents',
       description:
           'Used for less prominent components like filter chips, floating action buttons, or secondary navigation.',
-      contrastTip: 'Secondary Container is often used for filled chips; ensure it is not too bold.',
+      contrastTip:
+          'Secondary Container is often used for filled chips; ensure it is not too bold.',
       keys: [
         'secondary',
         'onSecondary',
@@ -73,7 +81,8 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
       title: 'Surface (Backgrounds)',
       description:
           'The canvas of your app. "Surface" is the base. "Containers" create depth for Cards, Dialogs, and Menus.',
-      contrastTip: 'CRITICAL: "On Surface" is your main text color. It must contrast well with all surface variants.',
+      contrastTip:
+          'CRITICAL: "On Surface" is your main text color. It must contrast well with all surface variants.',
       keys: [
         'surface',
         'onSurface',
@@ -92,28 +101,22 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
     const _ColorGroupDefinition(
       title: 'Feedback (Error)',
       description: 'Indicates errors, destructive actions, or critical alerts.',
-      contrastTip: 'Standard pattern: Red background with White text, or Red text on White background.',
-      keys: [
-        'error',
-        'onError',
-        'errorContainer',
-        'onErrorContainer',
-      ],
+      contrastTip:
+          'Standard pattern: Red background with White text, or Red text on White background.',
+      keys: ['error', 'onError', 'errorContainer', 'onErrorContainer'],
     ),
     const _ColorGroupDefinition(
       title: 'Borders & Outlines',
-      description: 'Defines boundaries for dividers, input fields, and card outlines.',
-      contrastTip: 'Outline Variant is softer (for dividers). Outline is stronger (for input fields).',
-      keys: [
-        'outline',
-        'outlineVariant',
-        'shadow',
-        'scrim',
-      ],
+      description:
+          'Defines boundaries for dividers, input fields, and card outlines.',
+      contrastTip:
+          'Outline Variant is softer (for dividers). Outline is stronger (for input fields).',
+      keys: ['outline', 'outlineVariant', 'shadow', 'scrim'],
     ),
     const _ColorGroupDefinition(
       title: 'Fixed & Dim (Advanced)',
-      description: 'Colors that stay similar across Light/Dark themes (Fixed) or muted states (Dim).',
+      description:
+          'Colors that stay similar across Light/Dark themes (Fixed) or muted states (Dim).',
       contrastTip: 'Modify these only if you have specific tonal requirements.',
       keys: [
         'primaryFixed',
@@ -155,12 +158,8 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
         padding: const EdgeInsets.all(16),
         itemCount: _colorGroups.length,
         separatorBuilder: (_, __) => const SizedBox(height: 32),
-        itemBuilder: (context, index) => _buildGroupItem(
-          context,
-          _colorGroups[index],
-          allColors,
-          bloc,
-        ),
+        itemBuilder: (context, index) =>
+            _buildGroupItem(context, _colorGroups[index], allColors, bloc),
       ),
     );
   }
@@ -202,9 +201,8 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
     await _selectColor(
       context,
       currentColor,
-      (newColor) => bloc.add(
-        UpdateColorSchemeEvent.chane(item.schemeKey, newColor),
-      ),
+      (newColor) =>
+          bloc.add(UpdateColorSchemeEvent.chane(item.schemeKey, newColor)),
     );
   }
 
@@ -232,7 +230,8 @@ class _ColorSchemeConfigurationViewState extends State<ColorSchemeConfigurationV
     showDialog(
       context: context,
       builder: (dialogContext) => JsonImportDialog(
-        onImport: (jsonMap) => bloc.add(UpdateColorSchemeEvent.importJson(jsonMap)),
+        onImport: (jsonMap) =>
+            bloc.add(UpdateColorSchemeEvent.importJson(jsonMap)),
       ),
     );
   }
@@ -301,11 +300,7 @@ class _ColorSchemeGroupCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.info_outline,
-            size: 18,
-            color: theme.colorScheme.primary,
-          ),
+          Icon(Icons.info_outline, size: 18, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
           Expanded(
             child: Text(

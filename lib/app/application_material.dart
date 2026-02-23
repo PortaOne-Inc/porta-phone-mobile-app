@@ -16,10 +16,7 @@ import 'application.dart';
 import 'route/app_route.dart';
 
 class MaterialApplication extends StatefulWidget {
-  const MaterialApplication({
-    required this.getIt,
-    super.key,
-  });
+  const MaterialApplication({required this.getIt, super.key});
 
   final GetIt getIt;
 
@@ -38,7 +35,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       const Breakpoint(start: 0, end: 450, name: MOBILE),
       const Breakpoint(start: 451, end: 800, name: TABLET),
       const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-      const Breakpoint(start: 1921, end: double.infinity, name: '4K')
+      const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
     ];
 
     const localizationsDelegates = [
@@ -48,9 +45,7 @@ class _MaterialApplicationState extends State<MaterialApplication> {
       GlobalCupertinoLocalizations.delegate,
     ];
 
-    const supportedLocales = [
-      Locale('en', ''),
-    ];
+    const supportedLocales = [Locale('en', '')];
 
     return MultiProvider(
       providers: [
@@ -63,15 +58,12 @@ class _MaterialApplicationState extends State<MaterialApplication> {
           providers: [
             BlocProvider(
               lazy: false,
-              create: (BuildContext context) => CommonBloc(
-                usecaseAuthLogOut: widget.getIt.get(),
-              ),
+              create: (BuildContext context) =>
+                  CommonBloc(usecaseAuthLogOut: widget.getIt.get()),
             ),
             BlocProvider<AuthCubit>(
-              create: (BuildContext context) => AuthCubit(
-                widget.getIt.get(),
-              ),
-            )
+              create: (BuildContext context) => AuthCubit(widget.getIt.get()),
+            ),
           ],
           child: BlocConsumer<CommonBloc, CommonState>(
             listener: (BuildContext context, CommonState state) {

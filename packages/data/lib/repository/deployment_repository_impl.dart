@@ -30,18 +30,22 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     required String applicationId,
     AndroidBuildPlatform? android,
     IOSBuildPlatform? ios,
-    ApplicationDependencyBranches branches = const ApplicationDependencyBranches(),
+    ApplicationDependencyBranches branches =
+        const ApplicationDependencyBranches(),
   }) {
     final deployPlatform = _getDeployPlatform(android, ios);
 
-    final androidPlayStoreConfig = jsonEncode(_mapAndroidPlayStoreConfigToJson(android?.playStoreConfig));
+    final androidPlayStoreConfig = jsonEncode(
+      _mapAndroidPlayStoreConfigToJson(android?.playStoreConfig),
+    );
 
     final deployApplication = DeployApplicationDto(
       applicationId: applicationId,
       token: authPrefDataSource.getAuthToken()!,
       platforms: deployPlatform,
       phoneSourceBranch: branches.phoneSourceBranch,
-      phoneConfiguratorToolSourceBranch: branches.phoneConfiguratorToolSourceBranch,
+      phoneConfiguratorToolSourceBranch:
+          branches.phoneConfiguratorToolSourceBranch,
       androidPlayStoreConfig: androidPlayStoreConfig,
       callkeepSourceBranch: branches.callkeepSourceBranch,
       keystoreSourceBranch: branches.keystoreSourceBranch,
@@ -51,7 +55,10 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     return configuratorBackandDatasource.deployBuilds(deployApplication);
   }
 
-  String _getDeployPlatform(AndroidBuildPlatform? android, IOSBuildPlatform? ios) {
+  String _getDeployPlatform(
+    AndroidBuildPlatform? android,
+    IOSBuildPlatform? ios,
+  ) {
     final isDeployAndroid = android?.deploy ?? false;
     final isDeployIOS = ios?.deploy ?? false;
 
@@ -61,11 +68,14 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
     return 'any';
   }
 
-  Map<String, dynamic> _mapAndroidPlayStoreConfigToJson(AndroidPlayStoreConfig? config) {
+  Map<String, dynamic> _mapAndroidPlayStoreConfigToJson(
+    AndroidPlayStoreConfig? config,
+  ) {
     return {
       if (config?.track != null) 'track': config?.track,
       if (config?.status != null) 'status': config?.status,
-      if (config?.updatePriority != null) 'updatePriority': config?.updatePriority,
+      if (config?.updatePriority != null)
+        'updatePriority': config?.updatePriority,
       if (config?.userFraction != null) 'userFraction': config?.userFraction,
     };
   }
@@ -97,7 +107,9 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
   @override
   Future<BuildVersionModel> getAppVersionByPhoneBranch(String branch) async {
     try {
-      final dto = await configuratorBackandDatasource.getAppVersionByBranch(branch);
+      final dto = await configuratorBackandDatasource.getAppVersionByBranch(
+        branch,
+      );
       return appVersionMapper.convertTo(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());

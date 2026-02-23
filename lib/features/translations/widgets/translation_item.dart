@@ -33,14 +33,13 @@ class _TranslationItemState extends State<TranslationItem> {
   late Debouncer _debouncer;
   late String _previousText;
 
-  final _border = const OutlineInputBorder(
-    borderSide: BorderSide(width: 0.1),
-  );
+  final _border = const OutlineInputBorder(borderSide: BorderSide(width: 0.1));
 
   @override
   void initState() {
     super.initState();
-    _previousText = widget.overrideTranslation?.value ?? widget.originalTranslation.value;
+    _previousText =
+        widget.overrideTranslation?.value ?? widget.originalTranslation.value;
     _controller = TextEditingController(text: _previousText);
     _debouncer = Debouncer(milliseconds: 500);
     _controller.addListener(_onTextChanged);
@@ -62,10 +61,14 @@ class _TranslationItemState extends State<TranslationItem> {
                 cursor: SystemMouseCursors.click,
                 child: Text(
                   widget.originalTranslation.key,
-                  style: textTheme.labelLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: .25)),
+                  style: textTheme.labelLarge?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: .25),
+                  ),
                 ),
               ),
-              onTap: () => Clipboard.setData(ClipboardData(text: widget.originalTranslation.key)),
+              onTap: () => Clipboard.setData(
+                ClipboardData(text: widget.originalTranslation.key),
+              ),
             ),
           ),
           subtitle: Row(
@@ -77,9 +80,7 @@ class _TranslationItemState extends State<TranslationItem> {
                   color: colorScheme.secondary.withValues(alpha: 0.25),
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                 ),
-                child: Center(
-                  child: Text(widget.originalTranslation.locale),
-                ),
+                child: Center(child: Text(widget.originalTranslation.locale)),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -87,7 +88,9 @@ class _TranslationItemState extends State<TranslationItem> {
                   focusNode: _focusNode,
                   controller: _controller,
                   decoration: InputDecoration(
-                    hintText: context.l10n.feature_translation_TranslationItem_hint_text,
+                    hintText: context
+                        .l10n
+                        .feature_translation_TranslationItem_hint_text,
                     enabledBorder: _border,
                     focusedBorder: _border,
                     disabledBorder: _border,
@@ -96,7 +99,9 @@ class _TranslationItemState extends State<TranslationItem> {
               ),
               IconButton(
                 splashRadius: 24,
-                tooltip: context.l10n.feature_translation_TranslationItem_tooltip_clear_override,
+                tooltip: context
+                    .l10n
+                    .feature_translation_TranslationItem_tooltip_clear_override,
                 icon: const Icon(Icons.restore),
                 onPressed: _isRestoreDisabled ? null : _handleRestore,
               ),
@@ -108,7 +113,8 @@ class _TranslationItemState extends State<TranslationItem> {
   }
 
   bool get _isRestoreDisabled {
-    return widget.originalTranslation.value == widget.overrideTranslation?.value ||
+    return widget.originalTranslation.value ==
+            widget.overrideTranslation?.value ||
         widget.overrideTranslation?.value == null;
   }
 

@@ -35,7 +35,8 @@ class SystemUiOverlayQuickToggles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isCustom = value != null && !_matches(_lightModel) && !_matches(_darkModel);
+    final isCustom =
+        value != null && !_matches(_lightModel) && !_matches(_darkModel);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,7 +71,11 @@ class SystemUiOverlayQuickToggles extends StatelessWidget {
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainer,
               borderRadius: BorderRadius.circular(8),
-              border: isCustom ? Border.all(color: theme.colorScheme.tertiary.withValues(alpha: 0.5)) : null,
+              border: isCustom
+                  ? Border.all(
+                      color: theme.colorScheme.tertiary.withValues(alpha: 0.5),
+                    )
+                  : null,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,9 +83,13 @@ class SystemUiOverlayQuickToggles extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      isCustom ? 'Custom Configuration' : 'Active Configuration',
+                      isCustom
+                          ? 'Custom Configuration'
+                          : 'Active Configuration',
                       style: theme.textTheme.labelMedium?.copyWith(
-                        color: isCustom ? theme.colorScheme.tertiary : theme.colorScheme.primary,
+                        color: isCustom
+                            ? theme.colorScheme.tertiary
+                            : theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -91,17 +100,31 @@ class SystemUiOverlayQuickToggles extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Text(
                           'Reset',
-                          style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.error),
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: theme.colorScheme.error,
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
-                _DetailRow(label: 'Nav Bar Color', value: value?.systemNavigationBarColor),
-                _DetailRow(label: 'Nav Icons', value: value?.systemNavigationBarIconBrightness),
-                _DetailRow(label: 'Status Bar Icons', value: value?.statusBarIconBrightness),
-                _DetailRow(label: 'Status Bar Brightness', value: value?.statusBarBrightness),
+                _DetailRow(
+                  label: 'Nav Bar Color',
+                  value: value?.systemNavigationBarColor,
+                ),
+                _DetailRow(
+                  label: 'Nav Icons',
+                  value: value?.systemNavigationBarIconBrightness,
+                ),
+                _DetailRow(
+                  label: 'Status Bar Icons',
+                  value: value?.statusBarIconBrightness,
+                ),
+                _DetailRow(
+                  label: 'Status Bar Brightness',
+                  value: value?.statusBarBrightness,
+                ),
               ],
             ),
           ),
@@ -129,7 +152,9 @@ class _PresetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderColor = isSelected ? theme.colorScheme.primary : theme.dividerColor;
+    final borderColor = isSelected
+        ? theme.colorScheme.primary
+        : theme.dividerColor;
     final borderWidth = isSelected ? 2.0 : 1.0;
 
     return InkWell(
@@ -149,7 +174,9 @@ class _PresetCard extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                 color: backgroundColor,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(10),
+                ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
@@ -166,14 +193,22 @@ class _PresetCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (isSelected) ...[
-                      Icon(Icons.check_circle, size: 16, color: theme.colorScheme.primary),
+                      Icon(
+                        Icons.check_circle,
+                        size: 16,
+                        color: theme.colorScheme.primary,
+                      ),
                       const SizedBox(width: 6),
                     ],
                     Text(
                       label,
                       style: theme.textTheme.labelLarge?.copyWith(
-                        color: isSelected ? theme.colorScheme.primary : theme.textTheme.bodyMedium?.color,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected
+                            ? theme.colorScheme.primary
+                            : theme.textTheme.bodyMedium?.color,
+                        fontWeight: isSelected
+                            ? FontWeight.bold
+                            : FontWeight.normal,
                       ),
                     ),
                   ],
@@ -201,7 +236,10 @@ class _DetailRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor)),
+          Text(
+            label,
+            style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
+          ),
           Text(
             value ?? '-',
             style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'monospace'),

@@ -17,10 +17,10 @@ class AssetsCubit extends Cubit<AssetsState> {
     required GetApplicationAssetsUsecase getApplicationAssetsUsecase,
     required CreateApplicationAssetUsecase createApplicationAssetUsecase,
     required DeleteApplicationAssetUsecase deleteApplicationAssetUsecase,
-  })  : _get = getApplicationAssetsUsecase,
-        _create = createApplicationAssetUsecase,
-        _delete = deleteApplicationAssetUsecase,
-        super(AssetsState(applicationId: applicationId));
+  }) : _get = getApplicationAssetsUsecase,
+       _create = createApplicationAssetUsecase,
+       _delete = deleteApplicationAssetUsecase,
+       super(AssetsState(applicationId: applicationId));
 
   final GetApplicationAssetsUsecase _get;
   final CreateApplicationAssetUsecase _create;
@@ -33,18 +33,25 @@ class AssetsCubit extends Cubit<AssetsState> {
       final items = await _get.execute(applicationId: state.applicationId);
       emit(state.copyWith(status: AssetsStatus.loaded, assets: items));
     } catch (e) {
-      emit(state.copyWith(status: AssetsStatus.failure, errorMessage: e.toString()));
+      emit(
+        state.copyWith(
+          status: AssetsStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
   /// Change application scope at runtime and reload.
   Future<void> changeApplication(String applicationId) async {
-    emit(state.copyWith(
-      applicationId: applicationId,
-      status: AssetsStatus.initial,
-      assets: const [],
-      errorMessage: null,
-    ));
+    emit(
+      state.copyWith(
+        applicationId: applicationId,
+        status: AssetsStatus.initial,
+        assets: const [],
+        errorMessage: null,
+      ),
+    );
     await load();
   }
 
@@ -65,22 +72,24 @@ class AssetsCubit extends Cubit<AssetsState> {
       final filename = picked.name;
 
       // Ensure bytes on all platforms (web requires withData: true).
-      final bytes = picked.bytes ??
-          (await file_picker.FilePicker.platform
-                  .pickFiles(withData: true, allowedExtensions: picked.extension != null ? [picked.extension!] : null))
-              ?.files
-              .single
-              .bytes;
+      final bytes =
+          picked.bytes ??
+          (await file_picker.FilePicker.platform.pickFiles(
+            withData: true,
+            allowedExtensions: picked.extension != null
+                ? [picked.extension!]
+                : null,
+          ))?.files.single.bytes;
 
       if (bytes == null) {
-        throw Exception('Unable to read file bytes. On web use pickFiles(withData: true).');
+        throw Exception(
+          'Unable to read file bytes. On web use pickFiles(withData: true).',
+        );
       }
 
       // Detect MIME by filename/signature
-      final mimeType = lookupMimeType(
-            filename,
-            headerBytes: bytes.take(12).toList(),
-          ) ??
+      final mimeType =
+          lookupMimeType(filename, headerBytes: bytes.take(12).toList()) ??
           'application/octet-stream';
 
       final created = await _create.execute(
@@ -91,10 +100,7 @@ class AssetsCubit extends Cubit<AssetsState> {
       );
 
       // No extra URL resolution needed; append straight to the list.
-      emit(state.copyWith(
-        creating: false,
-        assets: [created, ...state.assets],
-      ));
+      emit(state.copyWith(creating: false, assets: [created, ...state.assets]));
       return created;
     } catch (e) {
       emit(state.copyWith(creating: false, createError: e.toString()));
@@ -104,20 +110,33 @@ class AssetsCubit extends Cubit<AssetsState> {
 
   /// Delete an asset by id.
   Future<void> deleteAsset(String assetId) async {
-    emit(state.copyWith(deleting: true, deletingAssetId: assetId, deleteError: null));
+    emit(
+      state.copyWith(
+        deleting: true,
+        deletingAssetId: assetId,
+        deleteError: null,
+      ),
+    );
     try {
-      await _delete.execute(applicationId: state.applicationId, assetId: assetId);
-      emit(state.copyWith(
-        deleting: false,
-        deletingAssetId: null,
-        assets: state.assets.where((a) => a.id != assetId).toList(),
-      ));
+      await _delete.execute(
+        applicationId: state.applicationId,
+        assetId: assetId,
+      );
+      emit(
+        state.copyWith(
+          deleting: false,
+          deletingAssetId: null,
+          assets: state.assets.where((a) => a.id != assetId).toList(),
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        deleting: false,
-        deletingAssetId: null,
-        deleteError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          deleting: false,
+          deletingAssetId: null,
+          deleteError: e.toString(),
+        ),
+      );
     }
   }
 }

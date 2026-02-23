@@ -22,5 +22,6 @@ sealed class AssetModel with _$AssetModel {
     String? downloadUrl,
   }) = _AssetModel;
 
-  factory AssetModel.fromJson(Map<String, dynamic> json) => _$AssetModelFromJson(json);
+  factory AssetModel.fromJson(Map<String, dynamic> json) =>
+      _$AssetModelFromJson(json);
 }

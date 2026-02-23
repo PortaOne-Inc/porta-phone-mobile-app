@@ -12,7 +12,8 @@ part of 'deprecated_theme_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DeprecatedThemeDTO {
@@ -43,20 +44,22 @@ mixin _$DeprecatedThemeDTO {
 /// @nodoc
 abstract class $DeprecatedThemeDTOCopyWith<$Res> {
   factory $DeprecatedThemeDTOCopyWith(
-          DeprecatedThemeDTO value, $Res Function(DeprecatedThemeDTO) then) =
-      _$DeprecatedThemeDTOCopyWithImpl<$Res, DeprecatedThemeDTO>;
+    DeprecatedThemeDTO value,
+    $Res Function(DeprecatedThemeDTO) then,
+  ) = _$DeprecatedThemeDTOCopyWithImpl<$Res, DeprecatedThemeDTO>;
   @useResult
-  $Res call(
-      {String? id,
-      String? applicationId,
-      String? name,
-      ColorSchemeConfig colorSchemeConfig,
-      ThemeWidgetConfig themeWidgetConfig,
-      ThemePageConfig themePageConfig,
-      AppConfig appConfig,
-      DeprecatedLaunchAssetsDto launchAssets,
-      DeprecatedSplashAssetsDto splashAssets,
-      List<DeprecatedThemeAssetDto> assets});
+  $Res call({
+    String? id,
+    String? applicationId,
+    String? name,
+    ColorSchemeConfig colorSchemeConfig,
+    ThemeWidgetConfig themeWidgetConfig,
+    ThemePageConfig themePageConfig,
+    AppConfig appConfig,
+    DeprecatedLaunchAssetsDto launchAssets,
+    DeprecatedSplashAssetsDto splashAssets,
+    List<DeprecatedThemeAssetDto> assets,
+  });
 
   $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;
   $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;
@@ -92,48 +95,51 @@ class _$DeprecatedThemeDTOCopyWithImpl<$Res, $Val extends DeprecatedThemeDTO>
     Object? splashAssets = null,
     Object? assets = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      applicationId: freezed == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      colorSchemeConfig: null == colorSchemeConfig
-          ? _value.colorSchemeConfig
-          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeConfig,
-      themeWidgetConfig: null == themeWidgetConfig
-          ? _value.themeWidgetConfig
-          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
-              as ThemeWidgetConfig,
-      themePageConfig: null == themePageConfig
-          ? _value.themePageConfig
-          : themePageConfig // ignore: cast_nullable_to_non_nullable
-              as ThemePageConfig,
-      appConfig: null == appConfig
-          ? _value.appConfig
-          : appConfig // ignore: cast_nullable_to_non_nullable
-              as AppConfig,
-      launchAssets: null == launchAssets
-          ? _value.launchAssets
-          : launchAssets // ignore: cast_nullable_to_non_nullable
-              as DeprecatedLaunchAssetsDto,
-      splashAssets: null == splashAssets
-          ? _value.splashAssets
-          : splashAssets // ignore: cast_nullable_to_non_nullable
-              as DeprecatedSplashAssetsDto,
-      assets: null == assets
-          ? _value.assets
-          : assets // ignore: cast_nullable_to_non_nullable
-              as List<DeprecatedThemeAssetDto>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            applicationId: freezed == applicationId
+                ? _value.applicationId
+                : applicationId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            name: freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            colorSchemeConfig: null == colorSchemeConfig
+                ? _value.colorSchemeConfig
+                : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
+                      as ColorSchemeConfig,
+            themeWidgetConfig: null == themeWidgetConfig
+                ? _value.themeWidgetConfig
+                : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
+                      as ThemeWidgetConfig,
+            themePageConfig: null == themePageConfig
+                ? _value.themePageConfig
+                : themePageConfig // ignore: cast_nullable_to_non_nullable
+                      as ThemePageConfig,
+            appConfig: null == appConfig
+                ? _value.appConfig
+                : appConfig // ignore: cast_nullable_to_non_nullable
+                      as AppConfig,
+            launchAssets: null == launchAssets
+                ? _value.launchAssets
+                : launchAssets // ignore: cast_nullable_to_non_nullable
+                      as DeprecatedLaunchAssetsDto,
+            splashAssets: null == splashAssets
+                ? _value.splashAssets
+                : splashAssets // ignore: cast_nullable_to_non_nullable
+                      as DeprecatedSplashAssetsDto,
+            assets: null == assets
+                ? _value.assets
+                : assets // ignore: cast_nullable_to_non_nullable
+                      as List<DeprecatedThemeAssetDto>,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of DeprecatedThemeDTO
@@ -181,8 +187,9 @@ class _$DeprecatedThemeDTOCopyWithImpl<$Res, $Val extends DeprecatedThemeDTO>
   @override
   @pragma('vm:prefer-inline')
   $DeprecatedLaunchAssetsDtoCopyWith<$Res> get launchAssets {
-    return $DeprecatedLaunchAssetsDtoCopyWith<$Res>(_value.launchAssets,
-        (value) {
+    return $DeprecatedLaunchAssetsDtoCopyWith<$Res>(_value.launchAssets, (
+      value,
+    ) {
       return _then(_value.copyWith(launchAssets: value) as $Val);
     });
   }
@@ -192,8 +199,9 @@ class _$DeprecatedThemeDTOCopyWithImpl<$Res, $Val extends DeprecatedThemeDTO>
   @override
   @pragma('vm:prefer-inline')
   $DeprecatedSplashAssetsDtoCopyWith<$Res> get splashAssets {
-    return $DeprecatedSplashAssetsDtoCopyWith<$Res>(_value.splashAssets,
-        (value) {
+    return $DeprecatedSplashAssetsDtoCopyWith<$Res>(_value.splashAssets, (
+      value,
+    ) {
       return _then(_value.copyWith(splashAssets: value) as $Val);
     });
   }
@@ -202,22 +210,24 @@ class _$DeprecatedThemeDTOCopyWithImpl<$Res, $Val extends DeprecatedThemeDTO>
 /// @nodoc
 abstract class _$$DeprecatedThemeDTOImplCopyWith<$Res>
     implements $DeprecatedThemeDTOCopyWith<$Res> {
-  factory _$$DeprecatedThemeDTOImplCopyWith(_$DeprecatedThemeDTOImpl value,
-          $Res Function(_$DeprecatedThemeDTOImpl) then) =
-      __$$DeprecatedThemeDTOImplCopyWithImpl<$Res>;
+  factory _$$DeprecatedThemeDTOImplCopyWith(
+    _$DeprecatedThemeDTOImpl value,
+    $Res Function(_$DeprecatedThemeDTOImpl) then,
+  ) = __$$DeprecatedThemeDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String? applicationId,
-      String? name,
-      ColorSchemeConfig colorSchemeConfig,
-      ThemeWidgetConfig themeWidgetConfig,
-      ThemePageConfig themePageConfig,
-      AppConfig appConfig,
-      DeprecatedLaunchAssetsDto launchAssets,
-      DeprecatedSplashAssetsDto splashAssets,
-      List<DeprecatedThemeAssetDto> assets});
+  $Res call({
+    String? id,
+    String? applicationId,
+    String? name,
+    ColorSchemeConfig colorSchemeConfig,
+    ThemeWidgetConfig themeWidgetConfig,
+    ThemePageConfig themePageConfig,
+    AppConfig appConfig,
+    DeprecatedLaunchAssetsDto launchAssets,
+    DeprecatedSplashAssetsDto splashAssets,
+    List<DeprecatedThemeAssetDto> assets,
+  });
 
   @override
   $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;
@@ -237,9 +247,10 @@ abstract class _$$DeprecatedThemeDTOImplCopyWith<$Res>
 class __$$DeprecatedThemeDTOImplCopyWithImpl<$Res>
     extends _$DeprecatedThemeDTOCopyWithImpl<$Res, _$DeprecatedThemeDTOImpl>
     implements _$$DeprecatedThemeDTOImplCopyWith<$Res> {
-  __$$DeprecatedThemeDTOImplCopyWithImpl(_$DeprecatedThemeDTOImpl _value,
-      $Res Function(_$DeprecatedThemeDTOImpl) _then)
-      : super(_value, _then);
+  __$$DeprecatedThemeDTOImplCopyWithImpl(
+    _$DeprecatedThemeDTOImpl _value,
+    $Res Function(_$DeprecatedThemeDTOImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DeprecatedThemeDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -257,66 +268,68 @@ class __$$DeprecatedThemeDTOImplCopyWithImpl<$Res>
     Object? splashAssets = null,
     Object? assets = null,
   }) {
-    return _then(_$DeprecatedThemeDTOImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      applicationId: freezed == applicationId
-          ? _value.applicationId
-          : applicationId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      colorSchemeConfig: null == colorSchemeConfig
-          ? _value.colorSchemeConfig
-          : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
-              as ColorSchemeConfig,
-      themeWidgetConfig: null == themeWidgetConfig
-          ? _value.themeWidgetConfig
-          : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
-              as ThemeWidgetConfig,
-      themePageConfig: null == themePageConfig
-          ? _value.themePageConfig
-          : themePageConfig // ignore: cast_nullable_to_non_nullable
-              as ThemePageConfig,
-      appConfig: null == appConfig
-          ? _value.appConfig
-          : appConfig // ignore: cast_nullable_to_non_nullable
-              as AppConfig,
-      launchAssets: null == launchAssets
-          ? _value.launchAssets
-          : launchAssets // ignore: cast_nullable_to_non_nullable
-              as DeprecatedLaunchAssetsDto,
-      splashAssets: null == splashAssets
-          ? _value.splashAssets
-          : splashAssets // ignore: cast_nullable_to_non_nullable
-              as DeprecatedSplashAssetsDto,
-      assets: null == assets
-          ? _value.assets
-          : assets // ignore: cast_nullable_to_non_nullable
-              as List<DeprecatedThemeAssetDto>,
-    ));
+    return _then(
+      _$DeprecatedThemeDTOImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        applicationId: freezed == applicationId
+            ? _value.applicationId
+            : applicationId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        name: freezed == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        colorSchemeConfig: null == colorSchemeConfig
+            ? _value.colorSchemeConfig
+            : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
+                  as ColorSchemeConfig,
+        themeWidgetConfig: null == themeWidgetConfig
+            ? _value.themeWidgetConfig
+            : themeWidgetConfig // ignore: cast_nullable_to_non_nullable
+                  as ThemeWidgetConfig,
+        themePageConfig: null == themePageConfig
+            ? _value.themePageConfig
+            : themePageConfig // ignore: cast_nullable_to_non_nullable
+                  as ThemePageConfig,
+        appConfig: null == appConfig
+            ? _value.appConfig
+            : appConfig // ignore: cast_nullable_to_non_nullable
+                  as AppConfig,
+        launchAssets: null == launchAssets
+            ? _value.launchAssets
+            : launchAssets // ignore: cast_nullable_to_non_nullable
+                  as DeprecatedLaunchAssetsDto,
+        splashAssets: null == splashAssets
+            ? _value.splashAssets
+            : splashAssets // ignore: cast_nullable_to_non_nullable
+                  as DeprecatedSplashAssetsDto,
+        assets: null == assets
+            ? _value.assets
+            : assets // ignore: cast_nullable_to_non_nullable
+                  as List<DeprecatedThemeAssetDto>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class _$DeprecatedThemeDTOImpl extends _DeprecatedThemeDTO {
-  const _$DeprecatedThemeDTOImpl(
-      {this.id,
-      this.applicationId,
-      this.name,
-      this.colorSchemeConfig = const ColorSchemeConfig(),
-      this.themeWidgetConfig = const ThemeWidgetConfig(),
-      this.themePageConfig = const ThemePageConfig(),
-      this.appConfig = const AppConfig(),
-      this.launchAssets = const DeprecatedLaunchAssetsDto(),
-      this.splashAssets = const DeprecatedSplashAssetsDto(),
-      this.assets = const []})
-      : super._();
+  const _$DeprecatedThemeDTOImpl({
+    this.id,
+    this.applicationId,
+    this.name,
+    this.colorSchemeConfig = const ColorSchemeConfig(),
+    this.themeWidgetConfig = const ThemeWidgetConfig(),
+    this.themePageConfig = const ThemePageConfig(),
+    this.appConfig = const AppConfig(),
+    this.launchAssets = const DeprecatedLaunchAssetsDto(),
+    this.splashAssets = const DeprecatedSplashAssetsDto(),
+    this.assets = const [],
+  }) : super._();
 
   @override
   final String? id;
@@ -378,17 +391,18 @@ class _$DeprecatedThemeDTOImpl extends _DeprecatedThemeDTO {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      applicationId,
-      name,
-      colorSchemeConfig,
-      themeWidgetConfig,
-      themePageConfig,
-      appConfig,
-      launchAssets,
-      splashAssets,
-      const DeepCollectionEquality().hash(assets));
+    runtimeType,
+    id,
+    applicationId,
+    name,
+    colorSchemeConfig,
+    themeWidgetConfig,
+    themePageConfig,
+    appConfig,
+    launchAssets,
+    splashAssets,
+    const DeepCollectionEquality().hash(assets),
+  );
 
   /// Create a copy of DeprecatedThemeDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -397,28 +411,29 @@ class _$DeprecatedThemeDTOImpl extends _DeprecatedThemeDTO {
   @pragma('vm:prefer-inline')
   _$$DeprecatedThemeDTOImplCopyWith<_$DeprecatedThemeDTOImpl> get copyWith =>
       __$$DeprecatedThemeDTOImplCopyWithImpl<_$DeprecatedThemeDTOImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DeprecatedThemeDTOImplToJson(
-      this,
-    );
+    return _$$DeprecatedThemeDTOImplToJson(this);
   }
 }
 
 abstract class _DeprecatedThemeDTO extends DeprecatedThemeDTO {
-  const factory _DeprecatedThemeDTO(
-      {final String? id,
-      final String? applicationId,
-      final String? name,
-      final ColorSchemeConfig colorSchemeConfig,
-      final ThemeWidgetConfig themeWidgetConfig,
-      final ThemePageConfig themePageConfig,
-      final AppConfig appConfig,
-      final DeprecatedLaunchAssetsDto launchAssets,
-      final DeprecatedSplashAssetsDto splashAssets,
-      final List<DeprecatedThemeAssetDto> assets}) = _$DeprecatedThemeDTOImpl;
+  const factory _DeprecatedThemeDTO({
+    final String? id,
+    final String? applicationId,
+    final String? name,
+    final ColorSchemeConfig colorSchemeConfig,
+    final ThemeWidgetConfig themeWidgetConfig,
+    final ThemePageConfig themePageConfig,
+    final AppConfig appConfig,
+    final DeprecatedLaunchAssetsDto launchAssets,
+    final DeprecatedSplashAssetsDto splashAssets,
+    final List<DeprecatedThemeAssetDto> assets,
+  }) = _$DeprecatedThemeDTOImpl;
   const _DeprecatedThemeDTO._() : super._();
 
   @override
@@ -451,7 +466,8 @@ abstract class _DeprecatedThemeDTO extends DeprecatedThemeDTO {
 }
 
 DeprecatedThemeAssetDto _$DeprecatedThemeAssetDtoFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _DeprecatedThemeAssetDto.fromJson(json);
 }
 
@@ -476,21 +492,25 @@ mixin _$DeprecatedThemeAssetDto {
 
 /// @nodoc
 abstract class $DeprecatedThemeAssetDtoCopyWith<$Res> {
-  factory $DeprecatedThemeAssetDtoCopyWith(DeprecatedThemeAssetDto value,
-          $Res Function(DeprecatedThemeAssetDto) then) =
-      _$DeprecatedThemeAssetDtoCopyWithImpl<$Res, DeprecatedThemeAssetDto>;
+  factory $DeprecatedThemeAssetDtoCopyWith(
+    DeprecatedThemeAssetDto value,
+    $Res Function(DeprecatedThemeAssetDto) then,
+  ) = _$DeprecatedThemeAssetDtoCopyWithImpl<$Res, DeprecatedThemeAssetDto>;
   @useResult
-  $Res call(
-      {@IntToStringConverter() String id,
-      String name,
-      String description,
-      String? url,
-      String? type});
+  $Res call({
+    @IntToStringConverter() String id,
+    String name,
+    String description,
+    String? url,
+    String? type,
+  });
 }
 
 /// @nodoc
-class _$DeprecatedThemeAssetDtoCopyWithImpl<$Res,
-        $Val extends DeprecatedThemeAssetDto>
+class _$DeprecatedThemeAssetDtoCopyWithImpl<
+  $Res,
+  $Val extends DeprecatedThemeAssetDto
+>
     implements $DeprecatedThemeAssetDtoCopyWith<$Res> {
   _$DeprecatedThemeAssetDtoCopyWithImpl(this._value, this._then);
 
@@ -510,28 +530,31 @@ class _$DeprecatedThemeAssetDtoCopyWithImpl<$Res,
     Object? url = freezed,
     Object? type = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            url: freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            type: freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -539,28 +562,32 @@ class _$DeprecatedThemeAssetDtoCopyWithImpl<$Res,
 abstract class _$$DeprecatedThemeAssetDtoImplCopyWith<$Res>
     implements $DeprecatedThemeAssetDtoCopyWith<$Res> {
   factory _$$DeprecatedThemeAssetDtoImplCopyWith(
-          _$DeprecatedThemeAssetDtoImpl value,
-          $Res Function(_$DeprecatedThemeAssetDtoImpl) then) =
-      __$$DeprecatedThemeAssetDtoImplCopyWithImpl<$Res>;
+    _$DeprecatedThemeAssetDtoImpl value,
+    $Res Function(_$DeprecatedThemeAssetDtoImpl) then,
+  ) = __$$DeprecatedThemeAssetDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@IntToStringConverter() String id,
-      String name,
-      String description,
-      String? url,
-      String? type});
+  $Res call({
+    @IntToStringConverter() String id,
+    String name,
+    String description,
+    String? url,
+    String? type,
+  });
 }
 
 /// @nodoc
 class __$$DeprecatedThemeAssetDtoImplCopyWithImpl<$Res>
-    extends _$DeprecatedThemeAssetDtoCopyWithImpl<$Res,
-        _$DeprecatedThemeAssetDtoImpl>
+    extends
+        _$DeprecatedThemeAssetDtoCopyWithImpl<
+          $Res,
+          _$DeprecatedThemeAssetDtoImpl
+        >
     implements _$$DeprecatedThemeAssetDtoImplCopyWith<$Res> {
   __$$DeprecatedThemeAssetDtoImplCopyWithImpl(
-      _$DeprecatedThemeAssetDtoImpl _value,
-      $Res Function(_$DeprecatedThemeAssetDtoImpl) _then)
-      : super(_value, _then);
+    _$DeprecatedThemeAssetDtoImpl _value,
+    $Res Function(_$DeprecatedThemeAssetDtoImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DeprecatedThemeAssetDto
   /// with the given fields replaced by the non-null parameter values.
@@ -573,40 +600,43 @@ class __$$DeprecatedThemeAssetDtoImplCopyWithImpl<$Res>
     Object? url = freezed,
     Object? type = freezed,
   }) {
-    return _then(_$DeprecatedThemeAssetDtoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$DeprecatedThemeAssetDtoImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        url: freezed == url
+            ? _value.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        type: freezed == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$DeprecatedThemeAssetDtoImpl implements _DeprecatedThemeAssetDto {
-  const _$DeprecatedThemeAssetDtoImpl(
-      {@IntToStringConverter() required this.id,
-      required this.name,
-      this.description = '',
-      this.url,
-      this.type});
+  const _$DeprecatedThemeAssetDtoImpl({
+    @IntToStringConverter() required this.id,
+    required this.name,
+    this.description = '',
+    this.url,
+    this.type,
+  });
 
   factory _$DeprecatedThemeAssetDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DeprecatedThemeAssetDtoImplFromJson(json);
@@ -653,24 +683,25 @@ class _$DeprecatedThemeAssetDtoImpl implements _DeprecatedThemeAssetDto {
   @override
   @pragma('vm:prefer-inline')
   _$$DeprecatedThemeAssetDtoImplCopyWith<_$DeprecatedThemeAssetDtoImpl>
-      get copyWith => __$$DeprecatedThemeAssetDtoImplCopyWithImpl<
-          _$DeprecatedThemeAssetDtoImpl>(this, _$identity);
+  get copyWith =>
+      __$$DeprecatedThemeAssetDtoImplCopyWithImpl<
+        _$DeprecatedThemeAssetDtoImpl
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DeprecatedThemeAssetDtoImplToJson(
-      this,
-    );
+    return _$$DeprecatedThemeAssetDtoImplToJson(this);
   }
 }
 
 abstract class _DeprecatedThemeAssetDto implements DeprecatedThemeAssetDto {
-  const factory _DeprecatedThemeAssetDto(
-      {@IntToStringConverter() required final String id,
-      required final String name,
-      final String description,
-      final String? url,
-      final String? type}) = _$DeprecatedThemeAssetDtoImpl;
+  const factory _DeprecatedThemeAssetDto({
+    @IntToStringConverter() required final String id,
+    required final String name,
+    final String description,
+    final String? url,
+    final String? type,
+  }) = _$DeprecatedThemeAssetDtoImpl;
 
   factory _DeprecatedThemeAssetDto.fromJson(Map<String, dynamic> json) =
       _$DeprecatedThemeAssetDtoImpl.fromJson;
@@ -692,11 +723,12 @@ abstract class _DeprecatedThemeAssetDto implements DeprecatedThemeAssetDto {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeprecatedThemeAssetDtoImplCopyWith<_$DeprecatedThemeAssetDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 DeprecatedSplashAssetsDto _$DeprecatedSplashAssetsDtoFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _SplashAssetsDto.fromJson(json);
 }
 
@@ -720,21 +752,25 @@ mixin _$DeprecatedSplashAssetsDto {
 
 /// @nodoc
 abstract class $DeprecatedSplashAssetsDtoCopyWith<$Res> {
-  factory $DeprecatedSplashAssetsDtoCopyWith(DeprecatedSplashAssetsDto value,
-          $Res Function(DeprecatedSplashAssetsDto) then) =
-      _$DeprecatedSplashAssetsDtoCopyWithImpl<$Res, DeprecatedSplashAssetsDto>;
+  factory $DeprecatedSplashAssetsDtoCopyWith(
+    DeprecatedSplashAssetsDto value,
+    $Res Function(DeprecatedSplashAssetsDto) then,
+  ) = _$DeprecatedSplashAssetsDtoCopyWithImpl<$Res, DeprecatedSplashAssetsDto>;
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? pictureUrl,
-      String? color,
-      double padding,
-      String fit});
+  $Res call({
+    int? originalAssetId,
+    String? pictureUrl,
+    String? color,
+    double padding,
+    String fit,
+  });
 }
 
 /// @nodoc
-class _$DeprecatedSplashAssetsDtoCopyWithImpl<$Res,
-        $Val extends DeprecatedSplashAssetsDto>
+class _$DeprecatedSplashAssetsDtoCopyWithImpl<
+  $Res,
+  $Val extends DeprecatedSplashAssetsDto
+>
     implements $DeprecatedSplashAssetsDtoCopyWith<$Res> {
   _$DeprecatedSplashAssetsDtoCopyWithImpl(this._value, this._then);
 
@@ -754,45 +790,50 @@ class _$DeprecatedSplashAssetsDtoCopyWithImpl<$Res,
     Object? padding = null,
     Object? fit = null,
   }) {
-    return _then(_value.copyWith(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pictureUrl: freezed == pictureUrl
-          ? _value.pictureUrl
-          : pictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      padding: null == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double,
-      fit: null == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            originalAssetId: freezed == originalAssetId
+                ? _value.originalAssetId
+                : originalAssetId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            pictureUrl: freezed == pictureUrl
+                ? _value.pictureUrl
+                : pictureUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            color: freezed == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            padding: null == padding
+                ? _value.padding
+                : padding // ignore: cast_nullable_to_non_nullable
+                      as double,
+            fit: null == fit
+                ? _value.fit
+                : fit // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SplashAssetsDtoImplCopyWith<$Res>
     implements $DeprecatedSplashAssetsDtoCopyWith<$Res> {
-  factory _$$SplashAssetsDtoImplCopyWith(_$SplashAssetsDtoImpl value,
-          $Res Function(_$SplashAssetsDtoImpl) then) =
-      __$$SplashAssetsDtoImplCopyWithImpl<$Res>;
+  factory _$$SplashAssetsDtoImplCopyWith(
+    _$SplashAssetsDtoImpl value,
+    $Res Function(_$SplashAssetsDtoImpl) then,
+  ) = __$$SplashAssetsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? pictureUrl,
-      String? color,
-      double padding,
-      String fit});
+  $Res call({
+    int? originalAssetId,
+    String? pictureUrl,
+    String? color,
+    double padding,
+    String fit,
+  });
 }
 
 /// @nodoc
@@ -800,8 +841,9 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
     extends _$DeprecatedSplashAssetsDtoCopyWithImpl<$Res, _$SplashAssetsDtoImpl>
     implements _$$SplashAssetsDtoImplCopyWith<$Res> {
   __$$SplashAssetsDtoImplCopyWithImpl(
-      _$SplashAssetsDtoImpl _value, $Res Function(_$SplashAssetsDtoImpl) _then)
-      : super(_value, _then);
+    _$SplashAssetsDtoImpl _value,
+    $Res Function(_$SplashAssetsDtoImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DeprecatedSplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -814,28 +856,30 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
     Object? padding = null,
     Object? fit = null,
   }) {
-    return _then(_$SplashAssetsDtoImpl(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pictureUrl: freezed == pictureUrl
-          ? _value.pictureUrl
-          : pictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      padding: null == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double,
-      fit: null == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$SplashAssetsDtoImpl(
+        originalAssetId: freezed == originalAssetId
+            ? _value.originalAssetId
+            : originalAssetId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        pictureUrl: freezed == pictureUrl
+            ? _value.pictureUrl
+            : pictureUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        color: freezed == color
+            ? _value.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        padding: null == padding
+            ? _value.padding
+            : padding // ignore: cast_nullable_to_non_nullable
+                  as double,
+        fit: null == fit
+            ? _value.fit
+            : fit // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -843,12 +887,13 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
-  const _$SplashAssetsDtoImpl(
-      {this.originalAssetId,
-      this.pictureUrl,
-      this.color,
-      this.padding = 0.0,
-      this.fit = 'scaleDown'});
+  const _$SplashAssetsDtoImpl({
+    this.originalAssetId,
+    this.pictureUrl,
+    this.color,
+    this.padding = 0.0,
+    this.fit = 'scaleDown',
+  });
 
   factory _$SplashAssetsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SplashAssetsDtoImplFromJson(json);
@@ -888,7 +933,13 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, originalAssetId, pictureUrl, color, padding, fit);
+    runtimeType,
+    originalAssetId,
+    pictureUrl,
+    color,
+    padding,
+    fit,
+  );
 
   /// Create a copy of DeprecatedSplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -897,23 +948,24 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   @pragma('vm:prefer-inline')
   _$$SplashAssetsDtoImplCopyWith<_$SplashAssetsDtoImpl> get copyWith =>
       __$$SplashAssetsDtoImplCopyWithImpl<_$SplashAssetsDtoImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SplashAssetsDtoImplToJson(
-      this,
-    );
+    return _$$SplashAssetsDtoImplToJson(this);
   }
 }
 
 abstract class _SplashAssetsDto implements DeprecatedSplashAssetsDto {
-  const factory _SplashAssetsDto(
-      {final int? originalAssetId,
-      final String? pictureUrl,
-      final String? color,
-      final double padding,
-      final String fit}) = _$SplashAssetsDtoImpl;
+  const factory _SplashAssetsDto({
+    final int? originalAssetId,
+    final String? pictureUrl,
+    final String? color,
+    final double padding,
+    final String fit,
+  }) = _$SplashAssetsDtoImpl;
 
   factory _SplashAssetsDto.fromJson(Map<String, dynamic> json) =
       _$SplashAssetsDtoImpl.fromJson;
@@ -938,13 +990,14 @@ abstract class _SplashAssetsDto implements DeprecatedSplashAssetsDto {
 }
 
 DeprecatedLaunchAssetsDto _$DeprecatedLaunchAssetsDtoFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _DeprecatedLaunchAssetsDto.fromJson(json);
 }
 
 /// @nodoc
 mixin _$DeprecatedLaunchAssetsDto {
-// Linking to the original asset
+  // Linking to the original asset
   int? get originalAssetId =>
       throw _privateConstructorUsedError; // System generated assets
   String? get notificationLogoUrl =>
@@ -970,24 +1023,28 @@ mixin _$DeprecatedLaunchAssetsDto {
 
 /// @nodoc
 abstract class $DeprecatedLaunchAssetsDtoCopyWith<$Res> {
-  factory $DeprecatedLaunchAssetsDtoCopyWith(DeprecatedLaunchAssetsDto value,
-          $Res Function(DeprecatedLaunchAssetsDto) then) =
-      _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res, DeprecatedLaunchAssetsDto>;
+  factory $DeprecatedLaunchAssetsDtoCopyWith(
+    DeprecatedLaunchAssetsDto value,
+    $Res Function(DeprecatedLaunchAssetsDto) then,
+  ) = _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res, DeprecatedLaunchAssetsDto>;
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? notificationLogoUrl,
-      String? adaptiveIconForegroundUrl,
-      String? androidLauncherIconUrl,
-      String? iosLauncherIconUrl,
-      String? webLauncherIconUrl,
-      String? adaptiveIconBackgroundUrl,
-      String? backgroundColor});
+  $Res call({
+    int? originalAssetId,
+    String? notificationLogoUrl,
+    String? adaptiveIconForegroundUrl,
+    String? androidLauncherIconUrl,
+    String? iosLauncherIconUrl,
+    String? webLauncherIconUrl,
+    String? adaptiveIconBackgroundUrl,
+    String? backgroundColor,
+  });
 }
 
 /// @nodoc
-class _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res,
-        $Val extends DeprecatedLaunchAssetsDto>
+class _$DeprecatedLaunchAssetsDtoCopyWithImpl<
+  $Res,
+  $Val extends DeprecatedLaunchAssetsDto
+>
     implements $DeprecatedLaunchAssetsDtoCopyWith<$Res> {
   _$DeprecatedLaunchAssetsDtoCopyWithImpl(this._value, this._then);
 
@@ -1010,40 +1067,43 @@ class _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res,
     Object? adaptiveIconBackgroundUrl = freezed,
     Object? backgroundColor = freezed,
   }) {
-    return _then(_value.copyWith(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      notificationLogoUrl: freezed == notificationLogoUrl
-          ? _value.notificationLogoUrl
-          : notificationLogoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adaptiveIconForegroundUrl: freezed == adaptiveIconForegroundUrl
-          ? _value.adaptiveIconForegroundUrl
-          : adaptiveIconForegroundUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      androidLauncherIconUrl: freezed == androidLauncherIconUrl
-          ? _value.androidLauncherIconUrl
-          : androidLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosLauncherIconUrl: freezed == iosLauncherIconUrl
-          ? _value.iosLauncherIconUrl
-          : iosLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      webLauncherIconUrl: freezed == webLauncherIconUrl
-          ? _value.webLauncherIconUrl
-          : webLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adaptiveIconBackgroundUrl: freezed == adaptiveIconBackgroundUrl
-          ? _value.adaptiveIconBackgroundUrl
-          : adaptiveIconBackgroundUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            originalAssetId: freezed == originalAssetId
+                ? _value.originalAssetId
+                : originalAssetId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            notificationLogoUrl: freezed == notificationLogoUrl
+                ? _value.notificationLogoUrl
+                : notificationLogoUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            adaptiveIconForegroundUrl: freezed == adaptiveIconForegroundUrl
+                ? _value.adaptiveIconForegroundUrl
+                : adaptiveIconForegroundUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            androidLauncherIconUrl: freezed == androidLauncherIconUrl
+                ? _value.androidLauncherIconUrl
+                : androidLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            iosLauncherIconUrl: freezed == iosLauncherIconUrl
+                ? _value.iosLauncherIconUrl
+                : iosLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            webLauncherIconUrl: freezed == webLauncherIconUrl
+                ? _value.webLauncherIconUrl
+                : webLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            adaptiveIconBackgroundUrl: freezed == adaptiveIconBackgroundUrl
+                ? _value.adaptiveIconBackgroundUrl
+                : adaptiveIconBackgroundUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            backgroundColor: freezed == backgroundColor
+                ? _value.backgroundColor
+                : backgroundColor // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -1051,31 +1111,35 @@ class _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res,
 abstract class _$$DeprecatedLaunchAssetsDtoImplCopyWith<$Res>
     implements $DeprecatedLaunchAssetsDtoCopyWith<$Res> {
   factory _$$DeprecatedLaunchAssetsDtoImplCopyWith(
-          _$DeprecatedLaunchAssetsDtoImpl value,
-          $Res Function(_$DeprecatedLaunchAssetsDtoImpl) then) =
-      __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<$Res>;
+    _$DeprecatedLaunchAssetsDtoImpl value,
+    $Res Function(_$DeprecatedLaunchAssetsDtoImpl) then,
+  ) = __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? notificationLogoUrl,
-      String? adaptiveIconForegroundUrl,
-      String? androidLauncherIconUrl,
-      String? iosLauncherIconUrl,
-      String? webLauncherIconUrl,
-      String? adaptiveIconBackgroundUrl,
-      String? backgroundColor});
+  $Res call({
+    int? originalAssetId,
+    String? notificationLogoUrl,
+    String? adaptiveIconForegroundUrl,
+    String? androidLauncherIconUrl,
+    String? iosLauncherIconUrl,
+    String? webLauncherIconUrl,
+    String? adaptiveIconBackgroundUrl,
+    String? backgroundColor,
+  });
 }
 
 /// @nodoc
 class __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<$Res>
-    extends _$DeprecatedLaunchAssetsDtoCopyWithImpl<$Res,
-        _$DeprecatedLaunchAssetsDtoImpl>
+    extends
+        _$DeprecatedLaunchAssetsDtoCopyWithImpl<
+          $Res,
+          _$DeprecatedLaunchAssetsDtoImpl
+        >
     implements _$$DeprecatedLaunchAssetsDtoImplCopyWith<$Res> {
   __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl(
-      _$DeprecatedLaunchAssetsDtoImpl _value,
-      $Res Function(_$DeprecatedLaunchAssetsDtoImpl) _then)
-      : super(_value, _then);
+    _$DeprecatedLaunchAssetsDtoImpl _value,
+    $Res Function(_$DeprecatedLaunchAssetsDtoImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DeprecatedLaunchAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1091,40 +1155,42 @@ class __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<$Res>
     Object? adaptiveIconBackgroundUrl = freezed,
     Object? backgroundColor = freezed,
   }) {
-    return _then(_$DeprecatedLaunchAssetsDtoImpl(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      notificationLogoUrl: freezed == notificationLogoUrl
-          ? _value.notificationLogoUrl
-          : notificationLogoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adaptiveIconForegroundUrl: freezed == adaptiveIconForegroundUrl
-          ? _value.adaptiveIconForegroundUrl
-          : adaptiveIconForegroundUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      androidLauncherIconUrl: freezed == androidLauncherIconUrl
-          ? _value.androidLauncherIconUrl
-          : androidLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iosLauncherIconUrl: freezed == iosLauncherIconUrl
-          ? _value.iosLauncherIconUrl
-          : iosLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      webLauncherIconUrl: freezed == webLauncherIconUrl
-          ? _value.webLauncherIconUrl
-          : webLauncherIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      adaptiveIconBackgroundUrl: freezed == adaptiveIconBackgroundUrl
-          ? _value.adaptiveIconBackgroundUrl
-          : adaptiveIconBackgroundUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$DeprecatedLaunchAssetsDtoImpl(
+        originalAssetId: freezed == originalAssetId
+            ? _value.originalAssetId
+            : originalAssetId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        notificationLogoUrl: freezed == notificationLogoUrl
+            ? _value.notificationLogoUrl
+            : notificationLogoUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        adaptiveIconForegroundUrl: freezed == adaptiveIconForegroundUrl
+            ? _value.adaptiveIconForegroundUrl
+            : adaptiveIconForegroundUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        androidLauncherIconUrl: freezed == androidLauncherIconUrl
+            ? _value.androidLauncherIconUrl
+            : androidLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        iosLauncherIconUrl: freezed == iosLauncherIconUrl
+            ? _value.iosLauncherIconUrl
+            : iosLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        webLauncherIconUrl: freezed == webLauncherIconUrl
+            ? _value.webLauncherIconUrl
+            : webLauncherIconUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        adaptiveIconBackgroundUrl: freezed == adaptiveIconBackgroundUrl
+            ? _value.adaptiveIconBackgroundUrl
+            : adaptiveIconBackgroundUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        backgroundColor: freezed == backgroundColor
+            ? _value.backgroundColor
+            : backgroundColor // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
@@ -1132,26 +1198,27 @@ class __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
-  const _$DeprecatedLaunchAssetsDtoImpl(
-      {this.originalAssetId,
-      this.notificationLogoUrl,
-      this.adaptiveIconForegroundUrl,
-      this.androidLauncherIconUrl,
-      this.iosLauncherIconUrl,
-      this.webLauncherIconUrl,
-      this.adaptiveIconBackgroundUrl,
-      this.backgroundColor});
+  const _$DeprecatedLaunchAssetsDtoImpl({
+    this.originalAssetId,
+    this.notificationLogoUrl,
+    this.adaptiveIconForegroundUrl,
+    this.androidLauncherIconUrl,
+    this.iosLauncherIconUrl,
+    this.webLauncherIconUrl,
+    this.adaptiveIconBackgroundUrl,
+    this.backgroundColor,
+  });
 
   factory _$DeprecatedLaunchAssetsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DeprecatedLaunchAssetsDtoImplFromJson(json);
 
-// Linking to the original asset
+  // Linking to the original asset
   @override
   final int? originalAssetId;
-// System generated assets
+  // System generated assets
   @override
   final String? notificationLogoUrl;
-// Generated images
+  // Generated images
   @override
   final String? adaptiveIconForegroundUrl;
   @override
@@ -1160,10 +1227,10 @@ class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
   final String? iosLauncherIconUrl;
   @override
   final String? webLauncherIconUrl;
-// Generated background images
+  // Generated background images
   @override
   final String? adaptiveIconBackgroundUrl;
-// Background color
+  // Background color
   @override
   final String? backgroundColor;
 
@@ -1181,8 +1248,10 @@ class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
                 other.originalAssetId == originalAssetId) &&
             (identical(other.notificationLogoUrl, notificationLogoUrl) ||
                 other.notificationLogoUrl == notificationLogoUrl) &&
-            (identical(other.adaptiveIconForegroundUrl,
-                    adaptiveIconForegroundUrl) ||
+            (identical(
+                  other.adaptiveIconForegroundUrl,
+                  adaptiveIconForegroundUrl,
+                ) ||
                 other.adaptiveIconForegroundUrl == adaptiveIconForegroundUrl) &&
             (identical(other.androidLauncherIconUrl, androidLauncherIconUrl) ||
                 other.androidLauncherIconUrl == androidLauncherIconUrl) &&
@@ -1190,8 +1259,10 @@ class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
                 other.iosLauncherIconUrl == iosLauncherIconUrl) &&
             (identical(other.webLauncherIconUrl, webLauncherIconUrl) ||
                 other.webLauncherIconUrl == webLauncherIconUrl) &&
-            (identical(other.adaptiveIconBackgroundUrl,
-                    adaptiveIconBackgroundUrl) ||
+            (identical(
+                  other.adaptiveIconBackgroundUrl,
+                  adaptiveIconBackgroundUrl,
+                ) ||
                 other.adaptiveIconBackgroundUrl == adaptiveIconBackgroundUrl) &&
             (identical(other.backgroundColor, backgroundColor) ||
                 other.backgroundColor == backgroundColor));
@@ -1200,15 +1271,16 @@ class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      originalAssetId,
-      notificationLogoUrl,
-      adaptiveIconForegroundUrl,
-      androidLauncherIconUrl,
-      iosLauncherIconUrl,
-      webLauncherIconUrl,
-      adaptiveIconBackgroundUrl,
-      backgroundColor);
+    runtimeType,
+    originalAssetId,
+    notificationLogoUrl,
+    adaptiveIconForegroundUrl,
+    androidLauncherIconUrl,
+    iosLauncherIconUrl,
+    webLauncherIconUrl,
+    adaptiveIconBackgroundUrl,
+    backgroundColor,
+  );
 
   /// Create a copy of DeprecatedLaunchAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1216,32 +1288,33 @@ class _$DeprecatedLaunchAssetsDtoImpl implements _DeprecatedLaunchAssetsDto {
   @override
   @pragma('vm:prefer-inline')
   _$$DeprecatedLaunchAssetsDtoImplCopyWith<_$DeprecatedLaunchAssetsDtoImpl>
-      get copyWith => __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<
-          _$DeprecatedLaunchAssetsDtoImpl>(this, _$identity);
+  get copyWith =>
+      __$$DeprecatedLaunchAssetsDtoImplCopyWithImpl<
+        _$DeprecatedLaunchAssetsDtoImpl
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DeprecatedLaunchAssetsDtoImplToJson(
-      this,
-    );
+    return _$$DeprecatedLaunchAssetsDtoImplToJson(this);
   }
 }
 
 abstract class _DeprecatedLaunchAssetsDto implements DeprecatedLaunchAssetsDto {
-  const factory _DeprecatedLaunchAssetsDto(
-      {final int? originalAssetId,
-      final String? notificationLogoUrl,
-      final String? adaptiveIconForegroundUrl,
-      final String? androidLauncherIconUrl,
-      final String? iosLauncherIconUrl,
-      final String? webLauncherIconUrl,
-      final String? adaptiveIconBackgroundUrl,
-      final String? backgroundColor}) = _$DeprecatedLaunchAssetsDtoImpl;
+  const factory _DeprecatedLaunchAssetsDto({
+    final int? originalAssetId,
+    final String? notificationLogoUrl,
+    final String? adaptiveIconForegroundUrl,
+    final String? androidLauncherIconUrl,
+    final String? iosLauncherIconUrl,
+    final String? webLauncherIconUrl,
+    final String? adaptiveIconBackgroundUrl,
+    final String? backgroundColor,
+  }) = _$DeprecatedLaunchAssetsDtoImpl;
 
   factory _DeprecatedLaunchAssetsDto.fromJson(Map<String, dynamic> json) =
       _$DeprecatedLaunchAssetsDtoImpl.fromJson;
 
-// Linking to the original asset
+  // Linking to the original asset
   @override
   int? get originalAssetId; // System generated assets
   @override
@@ -1264,5 +1337,5 @@ abstract class _DeprecatedLaunchAssetsDto implements DeprecatedLaunchAssetsDto {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeprecatedLaunchAssetsDtoImplCopyWith<_$DeprecatedLaunchAssetsDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

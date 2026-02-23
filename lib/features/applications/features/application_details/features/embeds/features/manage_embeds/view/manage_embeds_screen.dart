@@ -28,7 +28,8 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
     return MultiBlocListener(
       listeners: [
         BlocListener<ManageEmbedsCubit, ManageEmbedsState>(
-          listenWhen: (p, n) => p.createError != n.createError && n.createError != null,
+          listenWhen: (p, n) =>
+              p.createError != n.createError && n.createError != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Create failed: ${state.createError}')),
@@ -36,7 +37,8 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
           },
         ),
         BlocListener<ManageEmbedsCubit, ManageEmbedsState>(
-          listenWhen: (p, n) => p.deleteError != n.deleteError && n.deleteError != null,
+          listenWhen: (p, n) =>
+              p.deleteError != n.deleteError && n.deleteError != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Delete failed: ${state.deleteError}')),
@@ -58,7 +60,9 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
               ],
             ),
             floatingActionButton: FloatingActionButton.extended(
-              onPressed: state.creating ? null : () => _openCreateDialog(context),
+              onPressed: state.creating
+                  ? null
+                  : () => _openCreateDialog(context),
               icon: const Icon(Icons.add),
               label: const Text('New'),
             ),
@@ -80,7 +84,9 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
         );
       case ManageEmbedsStatus.loaded:
         if (state.items.isEmpty) {
-          return _EmptyView(onRefresh: () => context.read<ManageEmbedsCubit>().load());
+          return _EmptyView(
+            onRefresh: () => context.read<ManageEmbedsCubit>().load(),
+          );
         }
         return ListView.separated(
           padding: const EdgeInsets.all(12),
@@ -91,14 +97,25 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
             final isDeleting = state.deletingIds.contains(item.id);
             return ListTile(
               leading: const Icon(Icons.extension),
-              title: Text(item.uri, maxLines: 1, overflow: TextOverflow.ellipsis),
-              subtitle:
-                  Text('type: ${item.type.name} • payload: ${item.payload.length} • attrs: ${item.attributes.length}'),
+              title: Text(
+                item.uri,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(
+                'type: ${item.type.name} • payload: ${item.payload.length} • attrs: ${item.attributes.length}',
+              ),
               trailing: IconButton(
                 tooltip: 'Delete',
-                onPressed: isDeleting ? null : () => context.read<ManageEmbedsCubit>().delete(item.id!),
+                onPressed: isDeleting
+                    ? null
+                    : () => context.read<ManageEmbedsCubit>().delete(item.id!),
                 icon: isDeleting
-                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
                     : const Icon(Icons.delete, color: Colors.redAccent),
               ),
             );
@@ -117,13 +134,13 @@ class _ManageEmbedsScreenState extends State<ManageEmbedsScreen> {
     if (!context.mounted || created == null) return;
 
     await context.read<ManageEmbedsCubit>().create(
-          uri: created.uri,
-          type: created.type,
-          attributes: created.attributes,
-          payload: created.payload,
-          enableConsoleLogCapture: created.enableConsoleLogCapture,
-          reconnectStrategy: created.reconnectStrategy,
-        );
+      uri: created.uri,
+      type: created.type,
+      attributes: created.attributes,
+      payload: created.payload,
+      enableConsoleLogCapture: created.enableConsoleLogCapture,
+      reconnectStrategy: created.reconnectStrategy,
+    );
   }
 }
 
@@ -248,25 +265,34 @@ class _CreateEmbedDialogState extends State<_CreateEmbedDialog> {
                 TextFormField(
                   controller: _uriCtrl,
                   decoration: const InputDecoration(labelText: 'URI'),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+                  validator: (v) =>
+                      (v == null || v.trim().isEmpty) ? 'Required' : null,
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<EmbeddedResourceModelType>(
                   initialValue: _type,
                   decoration: const InputDecoration(labelText: 'Type'),
                   items: EmbeddedResourceModelType.values
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+                      .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.name)),
+                      )
                       .toList(),
-                  onChanged: (v) => setState(() => _type = v ?? EmbeddedResourceModelType.unknown),
+                  onChanged: (v) => setState(
+                    () => _type = v ?? EmbeddedResourceModelType.unknown,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _attrsCtrl,
-                  decoration: const InputDecoration(labelText: 'Attributes (JSON)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Attributes (JSON)',
+                  ),
                   maxLines: 4,
                   validator: (v) {
                     try {
-                      final decoded = (v?.trim().isEmpty ?? true) ? <String, dynamic>{} : jsonDecode(v!);
+                      final decoded = (v?.trim().isEmpty ?? true)
+                          ? <String, dynamic>{}
+                          : jsonDecode(v!);
                       if (decoded is Map<String, dynamic>) return null;
                       return 'Must be a JSON object';
                     } catch (_) {
@@ -277,7 +303,9 @@ class _CreateEmbedDialogState extends State<_CreateEmbedDialog> {
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _payloadCtrl,
-                  decoration: const InputDecoration(labelText: 'Payload (comma separated)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Payload (comma separated)',
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SwitchListTile(
@@ -288,7 +316,9 @@ class _CreateEmbedDialogState extends State<_CreateEmbedDialog> {
                 ),
                 TextFormField(
                   controller: _reconnectCtrl,
-                  decoration: const InputDecoration(labelText: 'Reconnect strategy (optional)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Reconnect strategy (optional)',
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -301,20 +331,31 @@ class _CreateEmbedDialogState extends State<_CreateEmbedDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
         FilledButton(
           onPressed: () {
             if (!(_formKey.currentState?.validate() ?? false)) return;
             final attrs = _safeJsonObject(_attrsCtrl.text);
-            final payload = _payloadCtrl.text.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
-            Navigator.of(context).pop(_CreateEmbedResult(
-              uri: _uriCtrl.text.trim(),
-              type: _type,
-              attributes: attrs,
-              payload: payload,
-              enableConsoleLogCapture: _captureLogs,
-              reconnectStrategy: _reconnectCtrl.text.trim().isEmpty ? null : _reconnectCtrl.text.trim(),
-            ));
+            final payload = _payloadCtrl.text
+                .split(',')
+                .map((e) => e.trim())
+                .where((e) => e.isNotEmpty)
+                .toList();
+            Navigator.of(context).pop(
+              _CreateEmbedResult(
+                uri: _uriCtrl.text.trim(),
+                type: _type,
+                attributes: attrs,
+                payload: payload,
+                enableConsoleLogCapture: _captureLogs,
+                reconnectStrategy: _reconnectCtrl.text.trim().isEmpty
+                    ? null
+                    : _reconnectCtrl.text.trim(),
+              ),
+            );
           },
           child: const Text('Create'),
         ),

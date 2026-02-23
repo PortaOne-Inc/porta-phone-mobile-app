@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GridWidget extends StatelessWidget {
-  const GridWidget({
-    required this.density,
-    super.key,
-  });
+  const GridWidget({required this.density, super.key});
 
   final int density;
 

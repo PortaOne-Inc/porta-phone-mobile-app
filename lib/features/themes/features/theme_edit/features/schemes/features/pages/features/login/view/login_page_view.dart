@@ -31,10 +31,7 @@ class LoginPageTabbedView extends StatelessWidget {
       length: tabs.length,
       child: Column(
         children: [
-          TabBar(
-            isScrollable: true,
-            tabs: tabs,
-          ),
+          TabBar(isScrollable: true, tabs: tabs),
           const SizedBox(height: 12),
           Expanded(
             child: TabBarView(

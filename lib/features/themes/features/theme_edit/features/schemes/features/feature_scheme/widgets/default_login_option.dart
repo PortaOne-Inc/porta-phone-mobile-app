@@ -25,19 +25,17 @@ class DefaultLoginOption extends StatelessWidget {
         const SizedBox(height: 16),
         Row(
           children: [
-            Expanded(
-              child: Text(
-                'Welcome Text:',
-                style: textTheme.labelLarge,
-              ),
-            ),
+            Expanded(child: Text('Welcome Text:', style: textTheme.labelLarge)),
             Expanded(
               flex: 2,
               child: TextFormField(
                 // initialValue: sourceAppConfigLogin.label ?? '',
-                initialValue:  '',
+                initialValue: '',
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 8,
+                  ),
                   border: OutlineInputBorder(),
                 ),
                 onChanged: onWelcomeTextChanged,

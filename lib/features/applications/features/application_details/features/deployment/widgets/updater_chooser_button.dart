@@ -55,24 +55,26 @@ class _UpdaterChooserButtonState extends State<UpdaterChooserButton> {
                 value: value,
                 child: Text(
                   value.capitalize,
-                  style: textTheme.labelLarge?.copyWith(color: colorScheme.secondary),
+                  style: textTheme.labelLarge?.copyWith(
+                    color: colorScheme.secondary,
+                  ),
                 ),
               );
             }).toList(),
           ),
         ),
-        const SizedBox(
-          width: 8,
-        ),
+        const SizedBox(width: 8),
         OutlinedButton(
-          onPressed: widget.progress ? null : () => widget.onPressed(_currentSelect),
+          onPressed: widget.progress
+              ? null
+              : () => widget.onPressed(_currentSelect),
           child: widget.progress
               ? const SizedBox.square(
                   dimension: 16,
                   child: CircularProgressIndicator(strokeWidth: 1),
                 )
               : const Icon(Icons.add),
-        )
+        ),
       ],
     );
   }

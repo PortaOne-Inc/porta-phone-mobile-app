@@ -15,15 +15,15 @@ import '../widgets/widgets.dart';
 import 'application_themes_screen.dart';
 
 class ThemeCollectionDetailsPage extends StatefulWidget with MixinMessages {
-  const ThemeCollectionDetailsPage({
-    super.key,
-  });
+  const ThemeCollectionDetailsPage({super.key});
 
   @override
-  State<ThemeCollectionDetailsPage> createState() => _ThemeCollectionDetailsPageState();
+  State<ThemeCollectionDetailsPage> createState() =>
+      _ThemeCollectionDetailsPageState();
 }
 
-class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage> with MixinMessages {
+class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
+    with MixinMessages {
   late final bloc = BlocProvider.of<ThemeCollectionCubit>(context);
 
   @override
@@ -38,13 +38,15 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
             centerTitle: true,
             title: Text(
               'Themes',
-              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             actions: [
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
                 onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-              )
+              ),
             ],
           ),
           drawer: Drawer(
@@ -72,11 +74,13 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
               child: ApplicationThemesScreen(
                 themes: state.themes,
                 crossAxisCount: 6,
-                onNewBranding: () => _onNewTheme(context, state.application!.id!),
+                onNewBranding: () =>
+                    _onNewTheme(context, state.application!.id!),
                 onOpenBranding: (String themeId) => {},
                 onMakeDefault: (it) {},
                 onDelete: bloc.tryDeleteTheme,
-                onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+                onShowInfo: (theme) =>
+                    _showThemeInfo(context, state.application!.id!, theme),
               ),
             ),
           ),
@@ -85,10 +89,7 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
     );
   }
 
-  void _listenThemesState(
-    BuildContext context,
-    ThemeCollectionState state,
-  ) {
+  void _listenThemesState(BuildContext context, ThemeCollectionState state) {
     if (state.status == ThemeCollectionStateStatus.error) {
       showFailureMessage(context, state.error.toString());
     }
@@ -102,7 +103,8 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
         context: context,
         builder: (context) => ConfirmationDialog(
           title: 'Remove application',
-          description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
+          description:
+              'Are you sure to delete the application ${state.deleteApplication?.name}?',
           onConfirm: () {
             Navigator.pop(context);
             bloc.confirmDeleteTheme();
@@ -125,13 +127,15 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
     );
   }
 
-  Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
+  Future<void> _showThemeInfo(
+    BuildContext context,
+    String applicationId,
+    ThemeModel model,
+  ) async {
     await showDialog<void>(
       context: context,
-      builder: (context) => CredentialsDialog(
-        themeId: model.id!,
-        applicationId: applicationId,
-      ),
+      builder: (context) =>
+          CredentialsDialog(themeId: model.id!, applicationId: applicationId),
     );
   }
 

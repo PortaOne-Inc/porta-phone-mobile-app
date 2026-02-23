@@ -8,19 +8,14 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import '../../features.dart';
 
 class PageThemePreview extends StatelessWidget {
-  const PageThemePreview({
-    super.key,
-  });
+  const PageThemePreview({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(builder: (
-      BuildContext context,
-      PreviewThemeState state,
-    ) {
-      return PreviewLayoutView(
-        frameVisibility: state.frameVisible,
-      );
-    });
+    return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(
+      builder: (BuildContext context, PreviewThemeState state) {
+        return PreviewLayoutView(frameVisibility: state.frameVisible);
+      },
+    );
   }
 }

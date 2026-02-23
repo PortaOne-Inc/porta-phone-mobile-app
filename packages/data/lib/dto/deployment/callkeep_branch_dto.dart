@@ -6,7 +6,8 @@ part 'callkeep_branch_dto.g.dart';
 class CallkeepBranchDto {
   CallkeepBranchDto(this.name, this.commit, this.protected);
 
-  factory CallkeepBranchDto.fromJson(Map<String, dynamic> json) => _$CallkeepBranchDtoFromJson(json);
+  factory CallkeepBranchDto.fromJson(Map<String, dynamic> json) =>
+      _$CallkeepBranchDtoFromJson(json);
   final String name;
   final CallkeepBranchDtoCommit? commit;
   final bool? protected;
@@ -18,7 +19,8 @@ class CallkeepBranchDto {
 class CallkeepBranchDtoCommit {
   CallkeepBranchDtoCommit(this.sha, this.url);
 
-  factory CallkeepBranchDtoCommit.fromJson(Map<String, dynamic> json) => _$CallkeepBranchDtoCommitFromJson(json);
+  factory CallkeepBranchDtoCommit.fromJson(Map<String, dynamic> json) =>
+      _$CallkeepBranchDtoCommitFromJson(json);
   final String? sha;
   final String? url;
 

@@ -27,7 +27,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   void initState() {
     super.initState();
     final currentInterval = _getMonitorInterval(widget.supportedFeatures);
-    _monitorIntervalController = TextEditingController(text: currentInterval.toString());
+    _monitorIntervalController = TextEditingController(
+      text: currentInterval.toString(),
+    );
   }
 
   @override
@@ -36,7 +38,8 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     final oldInterval = _getMonitorInterval(oldWidget.supportedFeatures);
     final newInterval = _getMonitorInterval(widget.supportedFeatures);
 
-    if (oldInterval != newInterval && _monitorIntervalController.text != newInterval.toString()) {
+    if (oldInterval != newInterval &&
+        _monitorIntervalController.text != newInterval.toString()) {
       _monitorIntervalController.text = newInterval.toString();
     }
   }
@@ -48,24 +51,39 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   }
 
   int _getMonitorInterval(List<SupportedFeature> features) {
-    final monitorFeature = features.firstWhereOrNull((e) => e is SupportedMonitorConfig) as SupportedMonitorConfig?;
+    final monitorFeature =
+        features.firstWhereOrNull((e) => e is SupportedMonitorConfig)
+            as SupportedMonitorConfig?;
     return monitorFeature?.checkIntervalSec ?? 15;
   }
 
   @override
   Widget build(BuildContext context) {
     final themeFeature =
-        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedThemeMode) as SupportedThemeMode?;
+        widget.supportedFeatures.firstWhereOrNull(
+              (e) => e is SupportedThemeMode,
+            )
+            as SupportedThemeMode?;
     final videoFeature =
-        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedVideoCall) as SupportedVideoCall?;
-    final systemNotificationsFeature = widget.supportedFeatures
-        .firstWhereOrNull((e) => e is SupportedSystemNotifications) as SupportedSystemNotifications?;
+        widget.supportedFeatures.firstWhereOrNull(
+              (e) => e is SupportedVideoCall,
+            )
+            as SupportedVideoCall?;
+    final systemNotificationsFeature =
+        widget.supportedFeatures.firstWhereOrNull(
+              (e) => e is SupportedSystemNotifications,
+            )
+            as SupportedSystemNotifications?;
     final sipPresenceFeature =
-        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSipPresence) as SupportedSipPresence?;
+        widget.supportedFeatures.firstWhereOrNull(
+              (e) => e is SupportedSipPresence,
+            )
+            as SupportedSipPresence?;
 
     final currentThemeMode = themeFeature?.mode ?? ThemeModeConfig.system;
     final isVideoEnabled = videoFeature?.enabled ?? false;
-    final isSystemNotificationsEnabled = systemNotificationsFeature?.enabled ?? false;
+    final isSystemNotificationsEnabled =
+        systemNotificationsFeature?.enabled ?? false;
     final isSipPresenceEnabled = sipPresenceFeature?.enabled ?? false;
 
     return ListView(
@@ -90,7 +108,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable Video Calling'),
-                subtitle: const Text('Global switch to allow video call features.'),
+                subtitle: const Text(
+                  'Global switch to allow video call features.',
+                ),
                 value: isVideoEnabled,
                 onChanged: _onVideoCallChanged,
               ),
@@ -98,7 +118,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable System Notifications'),
-                subtitle: const Text('Global switch to allow system push notifications.'),
+                subtitle: const Text(
+                  'Global switch to allow system push notifications.',
+                ),
                 value: isSystemNotificationsEnabled,
                 onChanged: _onSystemNotificationsChanged,
               ),
@@ -106,7 +128,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable SIP Presence'),
-                subtitle: const Text('Global switch to allow SIP presence monitoring.'),
+                subtitle: const Text(
+                  'Global switch to allow SIP presence monitoring.',
+                ),
                 value: isSipPresenceEnabled,
                 onChanged: _onSipPresenceChanged,
               ),
@@ -119,7 +143,8 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: 'RTC Monitor Check Interval (sec)',
-                  helperText: 'Defines how often the RTP traffic monitor checks for traffic.',
+                  helperText:
+                      'Defines how often the RTP traffic monitor checks for traffic.',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: _onMonitorInputChanged,

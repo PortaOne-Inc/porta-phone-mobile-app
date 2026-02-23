@@ -1,4 +1,1 @@
-enum BuildPlatform {
-  android,
-  ios,
-}
+enum BuildPlatform { android, ios }

@@ -1,5 +1,1 @@
-enum VersionPart {
-  major,
-  minor,
-  patch,
-}
+enum VersionPart { major, minor, patch }

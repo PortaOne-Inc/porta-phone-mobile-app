@@ -7,7 +7,9 @@ extension EmbeddedResourceModelX on EmbeddedResourceModel {
     return EmbeddedResource(
       id: id ?? uri,
       uri: uri,
-      type: type == EmbeddedResourceModelType.terms ? EmbeddedResourceType.terms : EmbeddedResourceType.unknown,
+      type: type == EmbeddedResourceModelType.terms
+          ? EmbeddedResourceType.terms
+          : EmbeddedResourceType.unknown,
       attributes: attributes,
       metadata: Metadata.fromJson(metadata.toJson()),
       payload: payload,

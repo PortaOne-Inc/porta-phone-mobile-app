@@ -6,10 +6,7 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 class AddModeActionPage extends StatefulWidget {
-  const AddModeActionPage({
-    required this.embedded,
-    super.key,
-  });
+  const AddModeActionPage({required this.embedded, super.key});
 
   final List<EmbeddedResourceModel> embedded;
 
@@ -65,7 +62,8 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.title),
                 ),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Required' : null,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
@@ -99,7 +97,11 @@ class _AddModeActionPageState extends State<AddModeActionPage> {
                 ),
                 const SizedBox(height: 16),
               ],
-              Divider(height: 16, thickness: 4, color: colorScheme.surfaceContainerLow),
+              Divider(
+                height: 16,
+                thickness: 4,
+                color: colorScheme.surfaceContainerLow,
+              ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable'),
@@ -168,9 +170,7 @@ class _EmbeddedPickerTile extends StatelessWidget {
     return Card(
       child: ListTile(
         title: const Text('Embedded'),
-        subtitle: Text(
-          selected?.displayLabel() ?? 'No embedded selected',
-        ),
+        subtitle: Text(selected?.displayLabel() ?? 'No embedded selected'),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

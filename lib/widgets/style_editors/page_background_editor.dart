@@ -39,11 +39,13 @@ class PageBackgroundEditor extends StatelessWidget {
       case _BackgroundType.solid:
         onChanged(const PageBackground.solid(color: '#FFFFFF'));
       case _BackgroundType.gradient:
-        onChanged(const PageBackground.gradient(
-          colors: ['#FFFFFF', '#000000'],
-          beginY: -1,
-          endX: 0,
-        ));
+        onChanged(
+          const PageBackground.gradient(
+            colors: ['#FFFFFF', '#000000'],
+            beginY: -1,
+            endX: 0,
+          ),
+        );
       case _BackgroundType.image:
         onChanged(const PageBackground.image(imageUrl: ''));
       case _BackgroundType.none:
@@ -64,10 +66,22 @@ class PageBackgroundEditor extends StatelessWidget {
             border: OutlineInputBorder(),
           ),
           items: const [
-            DropdownMenuItem(value: _BackgroundType.none, child: Text('None (Default)')),
-            DropdownMenuItem(value: _BackgroundType.solid, child: Text('Solid Color')),
-            DropdownMenuItem(value: _BackgroundType.gradient, child: Text('Gradient')),
-            DropdownMenuItem(value: _BackgroundType.image, child: Text('Image')),
+            DropdownMenuItem(
+              value: _BackgroundType.none,
+              child: Text('None (Default)'),
+            ),
+            DropdownMenuItem(
+              value: _BackgroundType.solid,
+              child: Text('Solid Color'),
+            ),
+            DropdownMenuItem(
+              value: _BackgroundType.gradient,
+              child: Text('Gradient'),
+            ),
+            DropdownMenuItem(
+              value: _BackgroundType.image,
+              child: Text('Image'),
+            ),
           ],
           onChanged: _onTypeChanged,
         ),
@@ -92,14 +106,9 @@ class PageBackgroundEditor extends StatelessWidget {
         onChanged: onChanged,
         boxConstraints: boxConstraints,
       ),
-      gradient: (v) => _GradientBackgroundEditor(
-        value: v,
-        onChanged: onChanged,
-      ),
-      image: (v) => _ImageBackgroundEditor(
-        value: v,
-        onChanged: onChanged,
-      ),
+      gradient: (v) =>
+          _GradientBackgroundEditor(value: v, onChanged: onChanged),
+      image: (v) => _ImageBackgroundEditor(value: v, onChanged: onChanged),
     );
   }
 }
@@ -116,7 +125,9 @@ class _SolidBackgroundEditor extends StatelessWidget {
   final BoxConstraints boxConstraints;
 
   Future<void> _pickColor(BuildContext context) async {
-    final picked = await context.showColorPicker(currentColor: value.color.toColor());
+    final picked = await context.showColorPicker(
+      currentColor: value.color.toColor(),
+    );
     if (context.mounted && picked != null) {
       onChanged(value.copyWith(color: picked.toHex()));
     }
@@ -176,10 +187,14 @@ class _GradientBackgroundEditor extends StatelessWidget {
 
   String? _detectPreset() {
     final v = value;
-    if (v.beginX == 0 && v.beginY == -1 && v.endX == 0 && v.endY == 1) return 'top_bottom';
-    if (v.beginX == -1 && v.beginY == 0 && v.endX == 1 && v.endY == 0) return 'left_right';
-    if (v.beginX == -1 && v.beginY == -1 && v.endX == 1 && v.endY == 1) return 'tl_br';
-    if (v.beginX == -1 && v.beginY == 1 && v.endX == 1 && v.endY == -1) return 'bl_tr';
+    if (v.beginX == 0 && v.beginY == -1 && v.endX == 0 && v.endY == 1)
+      return 'top_bottom';
+    if (v.beginX == -1 && v.beginY == 0 && v.endX == 1 && v.endY == 0)
+      return 'left_right';
+    if (v.beginX == -1 && v.beginY == -1 && v.endX == 1 && v.endY == 1)
+      return 'tl_br';
+    if (v.beginX == -1 && v.beginY == 1 && v.endX == 1 && v.endY == -1)
+      return 'bl_tr';
     return 'custom';
   }
 
@@ -194,19 +209,30 @@ class _GradientBackgroundEditor extends StatelessWidget {
       children: [
         DropdownButtonFormField<String>(
           initialValue: _detectPreset() == 'custom' ? null : _detectPreset(),
-          decoration: const InputDecoration(labelText: 'Direction', isDense: true, border: OutlineInputBorder()),
+          decoration: const InputDecoration(
+            labelText: 'Direction',
+            isDense: true,
+            border: OutlineInputBorder(),
+          ),
           items: const [
             DropdownMenuItem(value: 'top_bottom', child: Text('Top ↓ Bottom')),
             DropdownMenuItem(value: 'left_right', child: Text('Left → Right')),
-            DropdownMenuItem(value: 'tl_br', child: Text('Top-Left ↘ Bottom-Right')),
-            DropdownMenuItem(value: 'bl_tr', child: Text('Bottom-Left ↗ Top-Right')),
+            DropdownMenuItem(
+              value: 'tl_br',
+              child: Text('Top-Left ↘ Bottom-Right'),
+            ),
+            DropdownMenuItem(
+              value: 'bl_tr',
+              child: Text('Bottom-Left ↗ Top-Right'),
+            ),
           ],
           onChanged: _onPresetChanged,
         ),
         const SizedBox(height: 16),
         GradientEditor(
           colors: value.colors,
-          onChanged: (newColors) => onChanged(value.copyWith(colors: newColors)),
+          onChanged: (newColors) =>
+              onChanged(value.copyWith(colors: newColors)),
           description: const Text('Gradient Stops'),
         ),
       ],
@@ -215,10 +241,7 @@ class _GradientBackgroundEditor extends StatelessWidget {
 }
 
 class _ImageBackgroundEditor extends StatefulWidget {
-  const _ImageBackgroundEditor({
-    required this.value,
-    required this.onChanged,
-  });
+  const _ImageBackgroundEditor({required this.value, required this.onChanged});
 
   final PageBackgroundImage value;
   final ValueChanged<PageBackground> onChanged;
@@ -239,7 +262,8 @@ class _ImageBackgroundEditorState extends State<_ImageBackgroundEditor> {
   @override
   void didUpdateWidget(covariant _ImageBackgroundEditor oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.value.imageUrl != oldWidget.value.imageUrl && _urlCtrl.text != widget.value.imageUrl) {
+    if (widget.value.imageUrl != oldWidget.value.imageUrl &&
+        _urlCtrl.text != widget.value.imageUrl) {
       _urlCtrl.text = widget.value.imageUrl;
     }
   }
@@ -274,7 +298,8 @@ class _ImageBackgroundEditorState extends State<_ImageBackgroundEditor> {
             border: OutlineInputBorder(),
             hintText: 'https://example.com/bg.png',
           ),
-          onChanged: (v) => widget.onChanged(widget.value.copyWith(imageUrl: v)),
+          onChanged: (v) =>
+              widget.onChanged(widget.value.copyWith(imageUrl: v)),
         ),
         const SizedBox(height: 12),
         Row(
@@ -282,14 +307,20 @@ class _ImageBackgroundEditorState extends State<_ImageBackgroundEditor> {
             Expanded(
               child: DropdownButtonFormField<BoxFitConfig>(
                 initialValue: widget.value.fit,
-                decoration: const InputDecoration(labelText: 'Fit', isDense: true, border: OutlineInputBorder()),
+                decoration: const InputDecoration(
+                  labelText: 'Fit',
+                  isDense: true,
+                  border: OutlineInputBorder(),
+                ),
                 items: BoxFitConfig.values.map((fit) {
                   return DropdownMenuItem(
                     value: fit,
                     child: Text(_getFitLabel(fit)),
                   );
                 }).toList(),
-                onChanged: (v) => widget.onChanged(widget.value.copyWith(fit: v ?? BoxFitConfig.cover)),
+                onChanged: (v) => widget.onChanged(
+                  widget.value.copyWith(fit: v ?? BoxFitConfig.cover),
+                ),
               ),
             ),
             const SizedBox(width: 12),
@@ -305,7 +336,8 @@ class _ImageBackgroundEditorState extends State<_ImageBackgroundEditor> {
                     value: widget.value.opacity,
                     divisions: 100,
                     label: widget.value.opacity.toStringAsFixed(2),
-                    onChanged: (v) => widget.onChanged(widget.value.copyWith(opacity: v)),
+                    onChanged: (v) =>
+                        widget.onChanged(widget.value.copyWith(opacity: v)),
                   ),
                 ],
               ),

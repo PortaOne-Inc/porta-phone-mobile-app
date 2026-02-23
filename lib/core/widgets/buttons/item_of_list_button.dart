@@ -37,9 +37,7 @@ class ItemOfListButton extends StatelessWidget {
                 ),
                 overflow: TextOverflow.fade,
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               Text(
                 description,
                 textAlign: TextAlign.start,
@@ -53,9 +51,7 @@ class ItemOfListButton extends StatelessWidget {
                 height: 0,
                 color: colorScheme.surface.withValues(alpha: 0.5),
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               Expanded(
                 flex: 0,
                 child: Row(

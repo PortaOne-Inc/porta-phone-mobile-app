@@ -1,7 +1,8 @@
 import 'package:webtrit_phone/data/data.dart';
 
 class MockAppPreferences implements AppPreferences {
-  MockAppPreferences({Map<String, dynamic>? initialData}) : _storage = initialData ?? {};
+  MockAppPreferences({Map<String, dynamic>? initialData})
+    : _storage = initialData ?? {};
 
   final Map<String, dynamic> _storage;
 

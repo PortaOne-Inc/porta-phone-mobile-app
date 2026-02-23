@@ -67,16 +67,16 @@ class $AssetsThemesGen {
 
   /// List of all assets
   List<String> get values => [
-        appConfig,
-        appEmbeddedConfig,
-        customSignup,
-        originalColorSchemeDarkConfig,
-        originalColorSchemeLightConfig,
-        originalPageDarkConfig,
-        originalPageLightConfig,
-        originalWidgetDarkConfig,
-        originalWidgetLightConfig
-      ];
+    appConfig,
+    appEmbeddedConfig,
+    customSignup,
+    originalColorSchemeDarkConfig,
+    originalColorSchemeLightConfig,
+    originalPageDarkConfig,
+    originalPageLightConfig,
+    originalWidgetDarkConfig,
+    originalWidgetLightConfig,
+  ];
 }
 
 class Assets {

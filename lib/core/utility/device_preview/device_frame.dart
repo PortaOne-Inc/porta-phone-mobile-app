@@ -23,18 +23,19 @@ class DeviceFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (isFrameVisible) const Positioned.fill(child: CustomPaint(painter: FramePainter())),
+        if (isFrameVisible)
+          const Positioned.fill(child: CustomPaint(painter: FramePainter())),
         Padding(
-          padding: isFrameVisible ? EdgeInsets.all(frameThickness) : EdgeInsets.zero,
+          padding: isFrameVisible
+              ? EdgeInsets.all(frameThickness)
+              : EdgeInsets.zero,
           child: ClipPath(
             clipper: const ScreenClipper(),
             child: SizedBox(
               width: size.width,
               height: size.height,
               child: MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  size: size,
-                ),
+                data: MediaQuery.of(context).copyWith(size: size),
                 child: Column(
                   children: [
                     Container(

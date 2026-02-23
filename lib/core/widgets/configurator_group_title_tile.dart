@@ -25,10 +25,7 @@ class ConfiguratorGroupTitleTile extends StatelessWidget {
       child: ListTile(
         dense: false,
         contentPadding: padding,
-        title: Text(
-          titleData,
-          style: themeData.textTheme.bodyMedium,
-        ),
+        title: Text(titleData, style: themeData.textTheme.bodyMedium),
         trailing: trailing,
       ),
     );

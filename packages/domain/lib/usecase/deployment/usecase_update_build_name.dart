@@ -14,7 +14,9 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     required BuildPlatform platform,
     required VersionPart part,
   }) async {
-    final currentVersion = platform == BuildPlatform.android ? application.androidVersion : application.iosVersion;
+    final currentVersion = platform == BuildPlatform.android
+        ? application.androidVersion
+        : application.iosVersion;
 
     final newVersion = currentVersion == null
         ? const BuildVersionModel(buildName: '0.0.0', buildNumber: 0)
@@ -22,15 +24,24 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
 
     final updatedApplication = await updateApplicationUsecase.execute(
       application.copyWith(
-        androidVersion: platform == BuildPlatform.android ? newVersion : application.androidVersion,
-        iosVersion: platform == BuildPlatform.ios ? newVersion : application.iosVersion,
+        androidVersion: platform == BuildPlatform.android
+            ? newVersion
+            : application.androidVersion,
+        iosVersion: platform == BuildPlatform.ios
+            ? newVersion
+            : application.iosVersion,
       ),
     );
 
-    return platform == BuildPlatform.android ? updatedApplication.androidVersion : updatedApplication.iosVersion;
+    return platform == BuildPlatform.android
+        ? updatedApplication.androidVersion
+        : updatedApplication.iosVersion;
   }
 
-  BuildVersionModel? _incrementBuildName(BuildVersionModel buildVersion, VersionPart part) {
+  BuildVersionModel? _incrementBuildName(
+    BuildVersionModel buildVersion,
+    VersionPart part,
+  ) {
     final currentBuildName = buildVersion.buildName ?? '1.0.0';
     final parts = currentBuildName.split('.').map(int.tryParse).toList();
     if (parts.length != 3 || parts.contains(null)) return null;
@@ -63,6 +74,9 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
 
     if (newBuildNumber == null) return null;
 
-    return BuildVersionModel(buildName: newBuildName, buildNumber: newBuildNumber);
+    return BuildVersionModel(
+      buildName: newBuildName,
+      buildNumber: newBuildNumber,
+    );
   }
 }

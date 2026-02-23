@@ -2,18 +2,18 @@ part of 'capabilities_cubit.dart';
 
 /// Minimal model: key, title, enabled (no groups, no defaults)
 class Capability {
-  Capability({
-    required this.key,
-    required this.title,
-    required this.enabled,
-  });
+  Capability({required this.key, required this.title, required this.enabled});
 
   final String key; // e.g. "messaging"
   final String title; // l10n-resolved label
   final bool enabled;
 
   Capability copyWith({String? key, String? title, bool? enabled}) =>
-      Capability(key: key ?? this.key, title: title ?? this.title, enabled: enabled ?? this.enabled);
+      Capability(
+        key: key ?? this.key,
+        title: title ?? this.title,
+        enabled: enabled ?? this.enabled,
+      );
 }
 
 @freezed

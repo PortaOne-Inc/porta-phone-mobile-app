@@ -24,16 +24,19 @@ sealed class EmbeddedResourceDto with _$EmbeddedResourceDto {
 
   const EmbeddedResourceDto._();
 
-  factory EmbeddedResourceDto.fromJson(Map<String, dynamic> json) => _$EmbeddedResourceDtoFromJson(json);
+  factory EmbeddedResourceDto.fromJson(Map<String, dynamic> json) =>
+      _$EmbeddedResourceDtoFromJson(json);
 }
 
 @freezed
 sealed class MetadataDto with _$MetadataDto {
   // ignore: invalid_annotation_target
   @JsonSerializable(includeIfNull: false)
-  const factory MetadataDto({@Default({}) Map<String, dynamic> attributes}) = _MetadataDto;
+  const factory MetadataDto({@Default({}) Map<String, dynamic> attributes}) =
+      _MetadataDto;
 
   const MetadataDto._();
 
-  factory MetadataDto.fromJson(Map<String, dynamic> json) => _$MetadataDtoFromJson(json);
+  factory MetadataDto.fromJson(Map<String, dynamic> json) =>
+      _$MetadataDtoFromJson(json);
 }

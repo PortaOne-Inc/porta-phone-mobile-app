@@ -89,7 +89,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   AppConfig get initial {
     final i = _initial;
     if (i == null) {
-      throw StateError('FeatureAccessEditor not initialized. Call setInitial() first.');
+      throw StateError(
+        'FeatureAccessEditor not initialized. Call setInitial() first.',
+      );
     }
     return i;
   }
@@ -101,7 +103,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   AppConfig get current {
     final c = _current;
     if (c == null) {
-      throw StateError('FeatureAccessEditor not initialized. Call setInitial() first.');
+      throw StateError(
+        'FeatureAccessEditor not initialized. Call setInitial() first.',
+      );
     }
     return c;
   }
@@ -147,7 +151,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void setMainSystemNotificationsEnabled(bool enabled) {
     _current = current.copyWith(
-      mainConfig: current.mainConfig.copyWith(systemNotificationsEnabled: enabled),
+      mainConfig: current.mainConfig.copyWith(
+        systemNotificationsEnabled: enabled,
+      ),
     );
     _emit();
   }
@@ -164,7 +170,9 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   void setBottomMenuCacheSelectedTab(bool cache) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(
-        bottomMenu: current.mainConfig.bottomMenu.copyWith(cacheSelectedTab: cache),
+        bottomMenu: current.mainConfig.bottomMenu.copyWith(
+          cacheSelectedTab: cache,
+        ),
       ),
     );
     _emit();
@@ -183,7 +191,8 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void updateBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index >= list.length) throw RangeError.index(index, list, 'tabs');
+    if (index < 0 || index >= list.length)
+      throw RangeError.index(index, list, 'tabs');
     list[index] = tab;
     setBottomMenuTabs(list);
   }
@@ -191,7 +200,8 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void insertBottomMenuTab(int index, BottomMenuTabScheme tab) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index > list.length) throw RangeError.index(index, list, 'tabs');
+    if (index < 0 || index > list.length)
+      throw RangeError.index(index, list, 'tabs');
     list.insert(index, tab);
     setBottomMenuTabs(list);
   }
@@ -199,7 +209,8 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void removeBottomMenuTabAt(int index) {
     final list = [...current.mainConfig.bottomMenu.tabs];
-    if (index < 0 || index >= list.length) throw RangeError.index(index, list, 'tabs');
+    if (index < 0 || index >= list.length)
+      throw RangeError.index(index, list, 'tabs');
     list.removeAt(index);
     setBottomMenuTabs(list);
   }
@@ -257,10 +268,14 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   }
 
   @override
-  void setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation) {
+  void setNegotiationOverride(
+    AppConfigNegotiationSettingsOverride negotiation,
+  ) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(
-        peerConnection: current.callConfig.peerConnection.copyWith(negotiation: negotiation),
+        peerConnection: current.callConfig.peerConnection.copyWith(
+          negotiation: negotiation,
+        ),
       ),
     );
     _emit();

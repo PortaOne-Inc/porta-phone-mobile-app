@@ -6,7 +6,9 @@ part 'build_version_dto.g.dart';
 
 @freezed
 sealed class BuildVersionDTO with _$BuildVersionDTO {
-  const factory BuildVersionDTO({String? buildName, int? buildNumber}) = _BuildVersionDTO;
+  const factory BuildVersionDTO({String? buildName, int? buildNumber}) =
+      _BuildVersionDTO;
 
-  factory BuildVersionDTO.fromJson(Map<String, Object?> json) => _$BuildVersionDTOFromJson(json);
+  factory BuildVersionDTO.fromJson(Map<String, Object?> json) =>
+      _$BuildVersionDTOFromJson(json);
 }

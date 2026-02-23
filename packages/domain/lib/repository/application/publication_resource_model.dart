@@ -1,7 +1,9 @@
 import '../../models/applications/publication_resource_model.dart';
 
 abstract class PublicationResourcesRepository {
-  Future<List<PublicationResourceModel>> getApplicationResources(String applicationId);
+  Future<List<PublicationResourceModel>> getApplicationResources(
+    String applicationId,
+  );
 
   Future<PublicationResourceModel> createResource(
     String applicationId, {

@@ -40,9 +40,15 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
     _iconController = TextEditingController(text: state.settingItemIcon);
     _iconColorController = TextEditingController(text: state.settingItemColor);
 
-    _titleController.addListener(() => _cubit.changeTitleL10n(_titleController.text));
-    _iconController.addListener(() => _cubit.chaneSettingItemIcon(_iconController.text));
-    _iconColorController.addListener(() => _cubit.changeIconColor(_iconColorController.text));
+    _titleController.addListener(
+      () => _cubit.changeTitleL10n(_titleController.text),
+    );
+    _iconController.addListener(
+      () => _cubit.chaneSettingItemIcon(_iconController.text),
+    );
+    _iconColorController.addListener(
+      () => _cubit.changeIconColor(_iconColorController.text),
+    );
   }
 
   @override
@@ -60,7 +66,8 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
 
     final state = _cubit.state;
 
-    if (state.type == SettingsFlavor.embedded && state.selectedEmbeddedResource == null) {
+    if (state.type == SettingsFlavor.embedded &&
+        state.selectedEmbeddedResource == null) {
       setState(() => _showEmbeddedError = true);
       _showErrorSnackBar('Required: Please select an embedded resource.');
       return;
@@ -178,10 +185,10 @@ class _SectionLabel extends StatelessWidget {
       child: Text(
         title.toUpperCase(),
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1.2,
+        ),
       ),
     );
   }
@@ -220,7 +227,10 @@ class _GeneralSection extends StatelessWidget {
                   labelText: 'Settings Flavor',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.tune_rounded),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 16,
+                  ),
                 ),
                 items: SettingsFlavor.values.map((flavor) {
                   return DropdownMenuItem(
@@ -243,7 +253,8 @@ class _GeneralSection extends StatelessWidget {
                 hintText: 'e.g. settings_profile',
                 helperText: 'Key used for translation',
               ),
-              validator: (v) => (v?.trim().isEmpty ?? true) ? 'This field is required' : null,
+              validator: (v) =>
+                  (v?.trim().isEmpty ?? true) ? 'This field is required' : null,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16),
@@ -308,7 +319,8 @@ class _IconSelectionField extends StatelessWidget {
               tooltip: 'Select Icon',
             ),
           ),
-          validator: (v) => (v?.trim().isEmpty ?? true) ? 'Icon name is required' : null,
+          validator: (v) =>
+              (v?.trim().isEmpty ?? true) ? 'Icon name is required' : null,
         );
       },
     );
@@ -325,10 +337,11 @@ class _ColorSelectionField extends StatefulWidget {
 }
 
 class _ColorSelectionFieldState extends State<_ColorSelectionField> {
-  Future<void> _handleColorPick(BuildContext context, Color? currentColor) async {
-    final result = await context.showColorPicker(
-      currentColor: currentColor,
-    );
+  Future<void> _handleColorPick(
+    BuildContext context,
+    Color? currentColor,
+  ) async {
+    final result = await context.showColorPicker(currentColor: currentColor);
 
     if (result != null && mounted) {
       widget.controller.text = result.toHex(includeAlpha: true);
@@ -365,7 +378,9 @@ class _ColorSelectionFieldState extends State<_ColorSelectionField> {
                       color: Theme.of(context).colorScheme.outlineVariant,
                     ),
                   ),
-                  child: color == null ? const Icon(Icons.colorize, size: 18) : null,
+                  child: color == null
+                      ? const Icon(Icons.colorize, size: 18)
+                      : null,
                 ),
               ),
             ),
@@ -395,20 +410,26 @@ class _VisibilityCard extends StatelessWidget {
     return Card(
       elevation: 0,
       clipBehavior: Clip.antiAlias,
-      color: isEnabled ? colorScheme.primaryContainer : colorScheme.surfaceContainer,
+      color: isEnabled
+          ? colorScheme.primaryContainer
+          : colorScheme.surfaceContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: SwitchListTile(
         title: Text(
           'Enable Setting Item',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: isEnabled ? colorScheme.onPrimaryContainer : colorScheme.onSurface,
+            color: isEnabled
+                ? colorScheme.onPrimaryContainer
+                : colorScheme.onSurface,
           ),
         ),
         subtitle: Text(
           isEnabled ? 'Visible to users' : 'Hidden from users',
           style: TextStyle(
-            color: isEnabled ? colorScheme.onPrimaryContainer.withValues(alpha: 0.8) : colorScheme.onSurfaceVariant,
+            color: isEnabled
+                ? colorScheme.onPrimaryContainer.withValues(alpha: 0.8)
+                : colorScheme.onSurfaceVariant,
           ),
         ),
         value: isEnabled,
@@ -439,7 +460,9 @@ class _EmbeddedSelectorCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final hasResource = resource != null;
 
-    final borderColor = hasError ? colorScheme.error : (hasResource ? colorScheme.primary : colorScheme.outline);
+    final borderColor = hasError
+        ? colorScheme.error
+        : (hasResource ? colorScheme.primary : colorScheme.outline);
 
     final borderWidth = (hasResource || hasError) ? 1.5 : 1.0;
 
@@ -461,12 +484,16 @@ class _EmbeddedSelectorCard extends StatelessWidget {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: hasResource ? colorScheme.primaryContainer : colorScheme.surfaceContainerHighest,
+                  color: hasResource
+                      ? colorScheme.primaryContainer
+                      : colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
                   hasResource ? Icons.link_rounded : Icons.add_link_rounded,
-                  color: hasResource ? colorScheme.onPrimaryContainer : colorScheme.onSurfaceVariant,
+                  color: hasResource
+                      ? colorScheme.onPrimaryContainer
+                      : colorScheme.onSurfaceVariant,
                 ),
               ),
               const SizedBox(width: 16),
@@ -476,13 +503,17 @@ class _EmbeddedSelectorCard extends StatelessWidget {
                   children: [
                     Text(
                       hasResource ? (resource!.uri) : 'Select Resource',
-                      style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      hasResource ? 'ID: ${resource!.id}' : 'Tap to link external content',
+                      hasResource
+                          ? 'ID: ${resource!.id}'
+                          : 'Tap to link external content',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                         fontFamily: hasResource ? 'monospace' : null,

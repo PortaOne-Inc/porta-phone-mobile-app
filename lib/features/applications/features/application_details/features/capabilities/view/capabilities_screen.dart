@@ -17,7 +17,9 @@ class _CapabilitiesScreenState extends State<CapabilitiesScreen> {
   void initState() {
     super.initState();
     context.read<CapabilitiesCubit>().load();
-    _searchCtrl.addListener(() => context.read<CapabilitiesCubit>().updateQuery(_searchCtrl.text));
+    _searchCtrl.addListener(
+      () => context.read<CapabilitiesCubit>().updateQuery(_searchCtrl.text),
+    );
   }
 
   @override
@@ -31,14 +33,18 @@ class _CapabilitiesScreenState extends State<CapabilitiesScreen> {
     return BlocConsumer<CapabilitiesCubit, CapabilitiesState>(
       listener: (context, state) {
         state.maybeWhen(
-          failure: (msg) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $msg'))),
+          failure: (msg) => ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Error: $msg'))),
           orElse: () {},
         );
       },
       builder: (context, state) {
         return state.when(
-          initial: () => const _Shell(body: Center(child: CircularProgressIndicator())),
-          loading: () => const _Shell(body: Center(child: CircularProgressIndicator())),
+          initial: () =>
+              const _Shell(body: Center(child: CircularProgressIndicator())),
+          loading: () =>
+              const _Shell(body: Center(child: CircularProgressIndicator())),
           failure: (msg) => _Shell(
             body: Center(
               child: Column(
@@ -74,9 +80,13 @@ class _CapabilitiesScreenState extends State<CapabilitiesScreen> {
                     return Card(
                       child: SwitchListTile(
                         title: Text(c.title),
-                        subtitle: Text(c.key, style: Theme.of(context).textTheme.bodySmall),
+                        subtitle: Text(
+                          c.key,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                         value: c.enabled,
-                        onChanged: (v) => context.read<CapabilitiesCubit>().toggle(c.key, v),
+                        onChanged: (v) =>
+                            context.read<CapabilitiesCubit>().toggle(c.key, v),
                       ),
                     );
                   },
@@ -93,13 +103,22 @@ class _CapabilitiesScreenState extends State<CapabilitiesScreen> {
     if (query.trim().isEmpty) return caps;
     final q = query.trim().toLowerCase();
     return caps
-        .where((c) => c.title.toLowerCase().contains(q) || c.key.toLowerCase().contains(q))
+        .where(
+          (c) =>
+              c.title.toLowerCase().contains(q) ||
+              c.key.toLowerCase().contains(q),
+        )
         .toList(growable: false);
   }
 }
 
 class _Shell extends StatelessWidget {
-  const _Shell({required this.body, this.header, this.dirty = false, this.onSave});
+  const _Shell({
+    required this.body,
+    this.header,
+    this.dirty = false,
+    this.onSave,
+  });
 
   final Widget body;
   final Widget? header;
@@ -115,7 +134,10 @@ class _Shell extends StatelessWidget {
             ? null
             : PreferredSize(
                 preferredSize: const Size.fromHeight(60),
-                child: Padding(padding: const EdgeInsets.all(12), child: header),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: header,
+                ),
               ),
       ),
       body: body,
@@ -137,12 +159,12 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextField(
-        controller: controller,
-        decoration: const InputDecoration(
-          isDense: true,
-          hintText: 'Search capabilities…',
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(),
-        ),
-      );
+    controller: controller,
+    decoration: const InputDecoration(
+      isDense: true,
+      hintText: 'Search capabilities…',
+      prefixIcon: Icon(Icons.search),
+      border: OutlineInputBorder(),
+    ),
+  );
 }

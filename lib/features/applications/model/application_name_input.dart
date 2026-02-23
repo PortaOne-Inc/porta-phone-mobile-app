@@ -6,13 +6,10 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationNameValidationError {
-  blank,
-  toLong,
-  toShort,
-}
+enum ApplicationNameValidationError { blank, toLong, toShort }
 
-class ApplicationNameInput extends FormzInput<String, ApplicationNameValidationError> {
+class ApplicationNameInput
+    extends FormzInput<String, ApplicationNameValidationError> {
   const ApplicationNameInput.pure([super.value = '']) : super.pure();
 
   // ignore: use_super_parameters
@@ -43,9 +40,13 @@ extension ExtensionValidationNameErrorL10n on ApplicationNameInput {
         case ApplicationNameValidationError.blank:
           return context.l10n.validationBlankError;
         case ApplicationNameValidationError.toLong:
-          return context.l10n.feature_application_create_Validation_description_to_long;
+          return context
+              .l10n
+              .feature_application_create_Validation_description_to_long;
         case ApplicationNameValidationError.toShort:
-          return context.l10n.feature_application_create_Validation_description_to_short;
+          return context
+              .l10n
+              .feature_application_create_Validation_description_to_short;
       }
     }
   }

@@ -28,8 +28,13 @@ class UsecaseApplicationAddThemeImpl extends UsecaseApplicationAddTheme {
     required ThemeModel themeModel,
   }) async {
     final applications = await applicationRepository.getUserApplications();
-    final fountApplication = applications.firstWhere((element) => element.id == applicationID);
+    final fountApplication = applications.firstWhere(
+      (element) => element.id == applicationID,
+    );
     final applicationDTO = fountApplication.copyWith(theme: themeModel.id);
-    await applicationRepository.updateApplication(applicationID, applicationDTO);
+    await applicationRepository.updateApplication(
+      applicationID,
+      applicationDTO,
+    );
   }
 }

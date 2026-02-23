@@ -13,7 +13,8 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     required ThemePageConfig themePageConfig,
     @Default(BrightnessVariant.light) BrightnessVariant selectedVariant,
     @Default(<AssetModel>[]) List<AssetModel> assets,
-    @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeddedResources,
+    @Default(<EmbeddedResourceModel>[])
+    List<EmbeddedResourceModel> embeddedResources,
     @Default(<ThemeComponents>[]) List<ThemeComponents> loadedComponents,
     ApplicationModel? applicationModel,
     ThemeModel? theme,
@@ -61,12 +62,14 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     final loaded = loadedComponents.toSet();
     final done = loaded.length;
 
-    final parts = ThemeComponents.values.map((c) {
-      final isLoaded = loaded.contains(c);
-      final label = _componentLabel(c);
-      final mark = isLoaded ? '✓' : '…';
-      return '$label $mark';
-    }).join(' • ');
+    final parts = ThemeComponents.values
+        .map((c) {
+          final isLoaded = loaded.contains(c);
+          final label = _componentLabel(c);
+          final mark = isLoaded ? '✓' : '…';
+          return '$label $mark';
+        })
+        .join(' • ');
 
     if (isHasError) {
       return 'Failed to load ($done/$total): $parts';

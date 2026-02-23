@@ -10,10 +10,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class ImageAssetsConfigTab extends StatelessWidget {
-  const ImageAssetsConfigTab({
-    required this.imageAssetsConfig,
-    super.key,
-  });
+  const ImageAssetsConfigTab({required this.imageAssetsConfig, super.key});
 
   final ImageAssetsConfig imageAssetsConfig;
 
@@ -21,17 +18,26 @@ class ImageAssetsConfigTab extends StatelessWidget {
     final picked = await context.pickAsset(assets);
     if (context.mounted && picked != null) {
       final imageSource = ImageSource(id: picked.id, uri: picked.downloadUrl);
-      context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setDefaultPlaceholderImage(imageSource));
+      context.read<UpdateThemCubit>().add(
+        ThemeWidgetEvent.setDefaultPlaceholderImage(imageSource),
+      );
     }
   }
 
-  void _updateLeadingAvatar(BuildContext context, LeadingAvatarStyleConfig config) {
-    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setLeadingAvatarStyle(config));
+  void _updateLeadingAvatar(
+    BuildContext context,
+    LeadingAvatarStyleConfig config,
+  ) {
+    context.read<UpdateThemCubit>().add(
+      ThemeWidgetEvent.setLeadingAvatarStyle(config),
+    );
   }
 
   void _onPlaceholderChanged(BuildContext context, ImageSource? updated) {
     if (updated != null) {
-      context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setDefaultPlaceholderImage(updated));
+      context.read<UpdateThemCubit>().add(
+        ThemeWidgetEvent.setDefaultPlaceholderImage(updated),
+      );
     }
   }
 
@@ -58,7 +64,9 @@ class ImageAssetsConfigTab extends StatelessWidget {
             margin: EdgeInsets.zero,
             clipBehavior: Clip.antiAlias,
             child: Theme(
-              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              data: Theme.of(
+                context,
+              ).copyWith(dividerColor: Colors.transparent),
               child: ExpansionTile(
                 title: const Text('Leading Avatar Style'),
                 subtitle: const Text('Contact avatars, indicators, and badges'),
@@ -76,28 +84,52 @@ class ImageAssetsConfigTab extends StatelessWidget {
                   TextStyleConfigEditor(
                     label: 'Initials Typography',
                     value: leading.initialsTextStyle,
-                    onChanged: (s) => _updateLeadingAvatar(context, leading.copyWith(initialsTextStyle: s)),
-                    onClear: () => _updateLeadingAvatar(context, leading.copyWith(initialsTextStyle: null)),
+                    onChanged: (s) => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(initialsTextStyle: s),
+                    ),
+                    onClear: () => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(initialsTextStyle: null),
+                    ),
                   ),
                   const SizedBox(height: 24),
                   _PlaceholderIconSettings(
-                    value: leading.placeholderIcon ?? const IconDataConfig(codePoint: 0xe497),
-                    onChanged: (icon) => _updateLeadingAvatar(context, leading.copyWith(placeholderIcon: icon)),
+                    value:
+                        leading.placeholderIcon ??
+                        const IconDataConfig(codePoint: 0xe497),
+                    onChanged: (icon) => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(placeholderIcon: icon),
+                    ),
                   ),
                   const SizedBox(height: 24),
                   _LoadingOverlaySettings(
                     value: leading.loading ?? const LoadingOverlayStyleConfig(),
-                    onChanged: (loading) => _updateLeadingAvatar(context, leading.copyWith(loading: loading)),
+                    onChanged: (loading) => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(loading: loading),
+                    ),
                   ),
                   const SizedBox(height: 24),
                   _SmartIndicatorSettings(
-                    value: leading.smartIndicator ?? const SmartIndicatorStyleConfig(),
-                    onChanged: (smart) => _updateLeadingAvatar(context, leading.copyWith(smartIndicator: smart)),
+                    value:
+                        leading.smartIndicator ??
+                        const SmartIndicatorStyleConfig(),
+                    onChanged: (smart) => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(smartIndicator: smart),
+                    ),
                   ),
                   const SizedBox(height: 24),
                   _BadgeSettings(
-                    value: leading.registeredBadge ?? const RegisteredBadgeStyleConfig(),
-                    onChanged: (badge) => _updateLeadingAvatar(context, leading.copyWith(registeredBadge: badge)),
+                    value:
+                        leading.registeredBadge ??
+                        const RegisteredBadgeStyleConfig(),
+                    onChanged: (badge) => _updateLeadingAvatar(
+                      context,
+                      leading.copyWith(registeredBadge: badge),
+                    ),
                   ),
                 ],
               ),
@@ -149,7 +181,10 @@ class _LeadingGeneralSettings extends StatelessWidget {
 }
 
 class _PlaceholderIconSettings extends StatelessWidget {
-  const _PlaceholderIconSettings({required this.value, required this.onChanged});
+  const _PlaceholderIconSettings({
+    required this.value,
+    required this.onChanged,
+  });
 
   final IconDataConfig value;
   final ValueChanged<IconDataConfig> onChanged;
@@ -282,7 +317,12 @@ class _SmartIndicatorSettings extends StatelessWidget {
                 value: value.icon?.codePoint ?? _defaultCodePoint,
                 onChanged: (v) => onChanged(
                   value.copyWith(
-                    icon: (value.icon ?? const IconDataConfig(codePoint: _defaultCodePoint)).copyWith(codePoint: v),
+                    icon:
+                        (value.icon ??
+                                const IconDataConfig(
+                                  codePoint: _defaultCodePoint,
+                                ))
+                            .copyWith(codePoint: v),
                   ),
                 ),
               ),
@@ -298,7 +338,12 @@ class _SmartIndicatorSettings extends StatelessWidget {
                 ),
                 onChanged: (v) => onChanged(
                   value.copyWith(
-                    icon: (value.icon ?? const IconDataConfig(codePoint: _defaultCodePoint)).copyWith(fontFamily: v),
+                    icon:
+                        (value.icon ??
+                                const IconDataConfig(
+                                  codePoint: _defaultCodePoint,
+                                ))
+                            .copyWith(fontFamily: v),
                   ),
                 ),
               ),
@@ -375,10 +420,7 @@ class _BadgeSettings extends StatelessWidget {
 }
 
 class _CodePointInput extends StatefulWidget {
-  const _CodePointInput({
-    required this.value,
-    required this.onChanged,
-  });
+  const _CodePointInput({required this.value, required this.onChanged});
 
   final int value;
   final ValueChanged<int> onChanged;

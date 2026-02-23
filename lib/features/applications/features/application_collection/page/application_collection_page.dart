@@ -15,15 +15,15 @@ import '../bloc/application_collection_cubit.dart';
 import '../widgets/widgets.dart';
 
 class ApplicationCollectionPage extends StatefulWidget {
-  const ApplicationCollectionPage({
-    super.key,
-  });
+  const ApplicationCollectionPage({super.key});
 
   @override
-  State<ApplicationCollectionPage> createState() => _ApplicationCollectionPageState();
+  State<ApplicationCollectionPage> createState() =>
+      _ApplicationCollectionPageState();
 }
 
-class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> with MixinMessages {
+class _ApplicationCollectionPageState extends State<ApplicationCollectionPage>
+    with MixinMessages {
   late final _bloc = BlocProvider.of<ApplicationCollectionCubit>(context);
 
   @override
@@ -41,27 +41,31 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
               centerTitle: true,
               title: Text(
                 context.l10n.feature_applications_title,
-                style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                style: textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               actions: [
                 ThemeModeSwitcher(
-                  themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                  themeMode: BlocProvider.of<CommonBloc>(
+                    context,
+                  ).state.themeMode,
                   onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-                )
+                ),
               ],
             ),
             drawer: Drawer(
               child: Column(
                 children: [
-                  DrawerHeaderWidget(
-                    user: state.user,
-                  ),
+                  DrawerHeaderWidget(user: state.user),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.align_horizontal_left_rounded),
                     title: const Text('All themes (Admin)'),
                     onTap: () {
-                      GoRouter.of(context).goNamed(AppRoutInfo.themesCollection.name);
+                      GoRouter.of(
+                        context,
+                      ).goNamed(AppRoutInfo.themesCollection.name);
                       Navigator.pop(context);
                     },
                   ),
@@ -81,10 +85,7 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
               children: [
                 if (state.error != null)
                   Center(
-                    child: ErrorHolder(
-                      error: state.error,
-                      onRetry: bloc.load,
-                    ),
+                    child: ErrorHolder(error: state.error, onRetry: bloc.load),
                   ),
                 if (state.error == null) ...[
                   Visibility(
@@ -97,7 +98,8 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         if (index == 0) {
                           return ItemOfListButton(
                             name: 'New application',
-                            description: 'Create an application for initial configuration and style binding',
+                            description:
+                                'Create an application for initial configuration and style binding',
                             onTab: _onCreateApplication,
                           );
                         } else {
@@ -112,19 +114,18 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
                         }
                       },
                       itemCount: state.applications.length + 1,
-                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 300,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: 1.5,
-                      ),
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 300,
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 8,
+                            childAspectRatio: 1.5,
+                          ),
                     ),
                   ),
                   Visibility(
                     visible: state.isProgress,
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    child: const Center(child: CircularProgressIndicator()),
                   ),
                 ],
               ],
@@ -138,26 +139,31 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   void _listenState(BuildContext context, ApplicationCollectionState state) {
     if (state.deleteApplication != null) {
       showDialog<void>(
-          context: context,
-          builder: (BuildContext context) => ConfirmationDialog(
-                title: 'Remove application',
-                description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
-                onConfirm: () {
-                  Navigator.maybePop(context);
-                  _bloc.confirmDeleteApplication();
-                },
-                onDecline: () {
-                  Navigator.maybePop(context);
-                  _bloc.declineDeleteApplication();
-                },
-              ));
+        context: context,
+        builder: (BuildContext context) => ConfirmationDialog(
+          title: 'Remove application',
+          description:
+              'Are you sure to delete the application ${state.deleteApplication?.name}?',
+          onConfirm: () {
+            Navigator.maybePop(context);
+            _bloc.confirmDeleteApplication();
+          },
+          onDecline: () {
+            Navigator.maybePop(context);
+            _bloc.declineDeleteApplication();
+          },
+        ),
+      );
     }
   }
 
   void _onEditApplication(ApplicationModel applicationModel) {
-    GoRouter.of(context).pushNamed(AppRoutInfo.applicationEdit.name, pathParameters: <String, String>{
-      AppRoutInfo.keyApplicationId: applicationModel.id!,
-    });
+    GoRouter.of(context).pushNamed(
+      AppRoutInfo.applicationEdit.name,
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationModel.id!,
+      },
+    );
   }
 
   void _onCreateApplication() {
@@ -165,13 +171,17 @@ class _ApplicationCollectionPageState extends State<ApplicationCollectionPage> w
   }
 
   void _incrementApplicationVersion(ApplicationModel applicationModel) {
-    BlocProvider.of<ApplicationCollectionCubit>(context).incrementApplicationVersion(applicationModel);
+    BlocProvider.of<ApplicationCollectionCubit>(
+      context,
+    ).incrementApplicationVersion(applicationModel);
   }
 
   void _onOpenApplication(ApplicationModel applicationModel) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetails.name,
-      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationModel.id!},
+      pathParameters: <String, String>{
+        AppRoutInfo.keyApplicationId: applicationModel.id!,
+      },
       extra: applicationModel,
     );
   }

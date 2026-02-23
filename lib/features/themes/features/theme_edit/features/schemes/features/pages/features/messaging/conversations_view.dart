@@ -19,14 +19,22 @@ class ConversationsPageView extends StatelessWidget {
         ThemeOverrideSelector(
           config: config.themeOverride,
           onChanged: (v) {
-            context.read<UpdateThemCubit>().add(ThemePageEvent.setConversationsPage(config.copyWith(themeOverride: v)));
+            context.read<UpdateThemCubit>().add(
+              ThemePageEvent.setConversationsPage(
+                config.copyWith(themeOverride: v),
+              ),
+            );
           },
         ),
         const SizedBox(height: 16),
         PageBackgroundEditor(
           value: config.background,
           onChanged: (v) {
-            context.read<UpdateThemCubit>().add(ThemePageEvent.setConversationsPage(config.copyWith(background: v)));
+            context.read<UpdateThemCubit>().add(
+              ThemePageEvent.setConversationsPage(
+                config.copyWith(background: v),
+              ),
+            );
           },
         ),
       ],

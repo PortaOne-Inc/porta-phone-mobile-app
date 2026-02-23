@@ -94,9 +94,10 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
   }
 
   Future<void> _onAddSection() async {
-    final result = await GoRouter.of(context).pushNamed<AppConfigSettingsSection>(
-      SchemeRoute.appFeatureSchemeAddSettingSection.name,
-    );
+    final result = await GoRouter.of(context)
+        .pushNamed<AppConfigSettingsSection>(
+          SchemeRoute.appFeatureSchemeAddSettingSection.name,
+        );
 
     if (result != null && mounted) {
       _controller.addSection(result);

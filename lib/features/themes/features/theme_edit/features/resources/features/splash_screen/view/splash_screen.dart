@@ -65,7 +65,9 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
       },
       builder: (context, state) {
         final defaults = state.constraintsDefaults;
-        final slice = (defaults != null) ? defaults.withBackground : defaultConstraintsModel;
+        final slice = (defaults != null)
+            ? defaults.withBackground
+            : defaultConstraintsModel;
         final pages = <DesignerPageConfig>[
           DesignerPageConfig(
             id: DesignerPageIds.splash,
@@ -103,7 +105,11 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
                 tooltip: 'Save',
                 onPressed: state.isLoading ? null : _save,
                 icon: state.isLoading
-                    ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 1))
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(strokeWidth: 1),
+                      )
                     : const Icon(Icons.save),
               ),
             ],

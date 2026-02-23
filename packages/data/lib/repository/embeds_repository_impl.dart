@@ -10,10 +10,7 @@ import '../mappers/mapper.dart';
 
 @Injectable(as: EmbedsRepository)
 class EmbedsRepositoryImpl extends EmbedsRepository {
-  EmbedsRepositoryImpl({
-    required this.datasource,
-    required this.mapper,
-  });
+  EmbedsRepositoryImpl({required this.datasource, required this.mapper});
 
   final ConfiguratorBackandDatasource datasource;
   final CommonMapper<EmbeddedResourceModel, EmbeddedResourceDto> mapper;
@@ -22,7 +19,8 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   // In-memory cache
   // ----------------------------
   final Map<String, List<EmbeddedResourceModel>> _cache = {};
-  final Map<String, StreamController<List<EmbeddedResourceModel>>> _controllers = {};
+  final Map<String, StreamController<List<EmbeddedResourceModel>>>
+  _controllers = {};
 
   Stream<List<EmbeddedResourceModel>> _controllerWithCache(String appId) {
     final existing = _controllers[appId];
@@ -62,7 +60,8 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   }
 
   void _removeOne(String appId, String id) {
-    final list = List<EmbeddedResourceModel>.from(_cache[appId] ?? const [])..removeWhere((e) => e.id == id);
+    final list = List<EmbeddedResourceModel>.from(_cache[appId] ?? const [])
+      ..removeWhere((e) => e.id == id);
     _emit(appId, list);
   }
 
@@ -79,14 +78,22 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   }
 
   @override
-  Future<EmbeddedResourceModel> getEmbed(String applicationId, String id) async {
+  Future<EmbeddedResourceModel> getEmbed(
+    String applicationId,
+    String id,
+  ) async {
     try {
-      final dto = await datasource.getEmbed(applicationId: applicationId, id: id);
+      final dto = await datasource.getEmbed(
+        applicationId: applicationId,
+        id: id,
+      );
       final model = mapper.convertFrom(dto);
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -98,13 +105,17 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
     EmbeddedResourceModel resource,
   ) async {
     try {
-      final dto = mapper.convertTo(resource).copyWith(applicationId: applicationId);
+      final dto = mapper
+          .convertTo(resource)
+          .copyWith(applicationId: applicationId);
       final created = await datasource.createEmbed(applicationId, dto);
       final model = mapper.convertFrom(created);
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -117,13 +128,17 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
     EmbeddedResourceModel resource,
   ) async {
     try {
-      final dto = mapper.convertTo(resource).copyWith(id: id, applicationId: applicationId);
+      final dto = mapper
+          .convertTo(resource)
+          .copyWith(id: id, applicationId: applicationId);
       final updated = await datasource.updateEmbed(applicationId, id, dto);
       final model = mapper.convertFrom(updated);
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -135,7 +150,9 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
       await datasource.deleteEmbed(applicationId, id);
       _removeOne(applicationId, id);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

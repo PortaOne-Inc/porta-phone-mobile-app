@@ -32,7 +32,9 @@ class GradientEditor extends StatelessWidget {
 
   Future<void> _onEditColor(BuildContext context, int index) async {
     final current = _activeColors;
-    final newColor = await context.showColorPicker(currentColor: current[index]);
+    final newColor = await context.showColorPicker(
+      currentColor: current[index],
+    );
 
     if (newColor != null) {
       final updated = List<Color>.from(_activeColors);
@@ -76,7 +78,9 @@ class GradientEditor extends StatelessWidget {
           Center(
             child: Text(
               'No colors added.',
-              style: theme.textTheme.bodyMedium?.copyWith(color: theme.hintColor),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.hintColor,
+              ),
             ),
           )
         else
@@ -141,13 +145,17 @@ class _GradientPreviewBar extends StatelessWidget {
         color: theme.cardColor,
         gradient: hasGradient
             ? LinearGradient(colors: colors)
-            : (colors.length == 1 ? LinearGradient(colors: [colors.first, colors.first]) : null),
+            : (colors.length == 1
+                  ? LinearGradient(colors: [colors.first, colors.first])
+                  : null),
       ),
       child: !hasGradient && colors.isEmpty
           ? Center(
               child: Text(
                 'Preview',
-                style: theme.textTheme.labelMedium?.copyWith(color: theme.hintColor),
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: theme.hintColor,
+                ),
               ),
             )
           : null,
@@ -225,7 +233,9 @@ class _ColorListItem extends StatelessWidget {
                       ),
                       Text(
                         'Stop ${index + 1}',
-                        style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.hintColor,
+                        ),
                       ),
                     ],
                   ),

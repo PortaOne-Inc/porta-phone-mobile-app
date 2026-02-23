@@ -52,9 +52,7 @@ class ItemTheme extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         title: const Text('Application id:'),
@@ -76,25 +74,25 @@ class ItemTheme extends StatelessWidget {
                     child: const Icon(Icons.more_vert_outlined),
                     itemBuilder: (c) => [
                       PopupMenuItem(
-                          value: _menuKeyThemeDefault,
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            context.l10n.feature_application_use_current_theme,
-                          )),
+                        value: _menuKeyThemeDefault,
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          context.l10n.feature_application_use_current_theme,
+                        ),
+                      ),
                       PopupMenuItem(
-                          value: _menuKeyInfo,
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            context.l10n.feature_theme_info,
-                          )),
+                        value: _menuKeyInfo,
+                        padding: const EdgeInsets.all(8),
+                        child: Text(context.l10n.feature_theme_info),
+                      ),
                       PopupMenuItem(
                         value: _menuKeyDelete,
                         padding: const EdgeInsets.all(8),
                         child: Text(
                           context.l10n.common_text_delete,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.red,
-                              ),
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyMedium?.copyWith(color: Colors.red),
                         ),
                       ),
                     ],

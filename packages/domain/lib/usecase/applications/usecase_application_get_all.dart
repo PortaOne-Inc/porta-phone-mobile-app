@@ -11,10 +11,7 @@ abstract class UsecaseApplicationGetAll {
 
 @Injectable(as: UsecaseApplicationGetAll)
 class UsecaseApplicationGetAllImpl implements UsecaseApplicationGetAll {
-  UsecaseApplicationGetAllImpl(
-    this.applicationRepository,
-    this.authRepository,
-  );
+  UsecaseApplicationGetAllImpl(this.applicationRepository, this.authRepository);
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;

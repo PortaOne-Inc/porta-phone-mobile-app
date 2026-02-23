@@ -41,7 +41,9 @@ class _DialingPageViewState extends State<DialingPageView> {
   }
 
   void _onActionsChanged(CallPageActionsConfig actions) {
-    _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(actions: actions)));
+    _cubit.add(
+      ThemePageEvent.setDialingPage(_freshConfig.copyWith(actions: actions)),
+    );
   }
 
   String? _lastLegacySource;
@@ -73,7 +75,9 @@ class _DialingPageViewState extends State<DialingPageView> {
     final legacy = _findLegacyCallActions();
     if (legacy == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Legacy CallActionsWidgetConfig not found.')),
+        const SnackBar(
+          content: Text('Legacy CallActionsWidgetConfig not found.'),
+        ),
       );
       return;
     }
@@ -120,7 +124,11 @@ class _DialingPageViewState extends State<DialingPageView> {
     _onActionsChanged(converted);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Imported actions from deprecated ${_lastLegacySource ?? 'unknown'}')),
+      SnackBar(
+        content: Text(
+          'Imported actions from deprecated ${_lastLegacySource ?? 'unknown'}',
+        ),
+      ),
     );
   }
 
@@ -184,10 +192,7 @@ class _DialingPageViewState extends State<DialingPageView> {
 }
 
 class _AppBarSettings extends StatelessWidget {
-  const _AppBarSettings({
-    required this.value,
-    required this.onChanged,
-  });
+  const _AppBarSettings({required this.value, required this.onChanged});
 
   final AppBarConfig value;
   final ValueChanged<AppBarConfig> onChanged;
@@ -217,7 +222,8 @@ class _AppBarSettings extends StatelessWidget {
                         onTap: (_) => _pickColor(
                           context,
                           value.backgroundColor?.tryParseColor(),
-                          (hex) => onChanged(value.copyWith(backgroundColor: hex)),
+                          (hex) =>
+                              onChanged(value.copyWith(backgroundColor: hex)),
                         ),
                       ),
                     ),
@@ -229,7 +235,8 @@ class _AppBarSettings extends StatelessWidget {
                         onTap: (_) => _pickColor(
                           context,
                           value.foregroundColor?.tryParseColor(),
-                          (hex) => onChanged(value.copyWith(foregroundColor: hex)),
+                          (hex) =>
+                              onChanged(value.copyWith(foregroundColor: hex)),
                         ),
                       ),
                     ),
@@ -247,7 +254,8 @@ class _AppBarSettings extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   title: const Text('Show Back Button'),
                   value: value.showBackButton,
-                  onChanged: (v) => onChanged(value.copyWith(showBackButton: v)),
+                  onChanged: (v) =>
+                      onChanged(value.copyWith(showBackButton: v)),
                 ),
               ],
             ),
@@ -257,7 +265,11 @@ class _AppBarSettings extends StatelessWidget {
     );
   }
 
-  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+  Future<void> _pickColor(
+    BuildContext context,
+    Color? current,
+    ValueChanged<String> onPick,
+  ) async {
     final picked = await context.showColorPicker(currentColor: current);
     if (context.mounted && picked != null) {
       onPick(picked.toHex(includeAlpha: true));
@@ -266,10 +278,7 @@ class _AppBarSettings extends StatelessWidget {
 }
 
 class _SystemOverlaySettings extends StatelessWidget {
-  const _SystemOverlaySettings({
-    required this.value,
-    required this.onChanged,
-  });
+  const _SystemOverlaySettings({required this.value, required this.onChanged});
 
   final OverlayStyleModel? value;
   final ValueChanged<OverlayStyleModel?> onChanged;
@@ -300,10 +309,7 @@ class _SystemOverlaySettings extends StatelessWidget {
 }
 
 class _CallInfoSettings extends StatelessWidget {
-  const _CallInfoSettings({
-    required this.value,
-    required this.onUpdate,
-  });
+  const _CallInfoSettings({required this.value, required this.onUpdate});
 
   final CallPageInfoConfig value;
   final ValueChanged<ThemePageEvent> onUpdate;
@@ -321,25 +327,29 @@ class _CallInfoSettings extends StatelessWidget {
           TextStyleConfigEditor(
             label: 'Username',
             value: value.usernameTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoUsernameStyle(s)),
+            onChanged: (s) =>
+                onUpdate(ThemePageEvent.setDialingInfoUsernameStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Number',
             value: value.numberTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoNumberStyle(s)),
+            onChanged: (s) =>
+                onUpdate(ThemePageEvent.setDialingInfoNumberStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Call Status',
             value: value.callStatusTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoCallStatusStyle(s)),
+            onChanged: (s) =>
+                onUpdate(ThemePageEvent.setDialingInfoCallStatusStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Processing Status',
             value: value.processingStatusTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoProcessingStatusStyle(s)),
+            onChanged: (s) =>
+                onUpdate(ThemePageEvent.setDialingInfoProcessingStatusStyle(s)),
           ),
         ],
       ),
@@ -378,10 +388,7 @@ class _ActionsSettings extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(height: 8),
-          CallActionsEditorMinimal(
-            value: value,
-            onChanged: onChanged,
-          ),
+          CallActionsEditorMinimal(value: value, onChanged: onChanged),
         ],
       ),
     );

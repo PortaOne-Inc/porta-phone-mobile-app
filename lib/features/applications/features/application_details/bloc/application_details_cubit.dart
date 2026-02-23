@@ -22,10 +22,12 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.updateApplicationUsecase,
     required this.copyThemeUsecase,
     ApplicationModel? applicationModel,
-  }) : super(ApplicationDetailsState(
-          status: ApplicationDetailsStateStatus.progress,
-          application: applicationModel,
-        )) {
+  }) : super(
+         ApplicationDetailsState(
+           status: ApplicationDetailsStateStatus.progress,
+           application: applicationModel,
+         ),
+       ) {
     _init();
   }
 
@@ -54,7 +56,12 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   Future<void> confirmDeleteTheme() async {
     final deleteTheme = state.deleteTheme;
     if (deleteTheme != null) {
-      emit(state.copyWith(deleteTheme: null, status: ApplicationDetailsStateStatus.progress));
+      emit(
+        state.copyWith(
+          deleteTheme: null,
+          status: ApplicationDetailsStateStatus.progress,
+        ),
+      );
       await _deleteTheme(deleteTheme);
     }
   }
@@ -68,7 +75,8 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   Future<void> confirmDeleteApplication() async {
-    if (state.deleteApplication != null) await _tryDeleteApplication(state.deleteApplication!);
+    if (state.deleteApplication != null)
+      await _tryDeleteApplication(state.deleteApplication!);
     emit(state.copyWith(deleteApplication: null));
   }
 
@@ -79,18 +87,27 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   Future<void> _tryDeleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
+      await applicationDeleteUsecase.execute(
+        applicationId: applicationModel.id!,
+      );
       emit(state.copyWith(status: ApplicationDetailsStateStatus.deleted));
     } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+      emit(
+        state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+      );
     }
   }
 
   Future<void> tryMakeThemeAsDefault(ThemeModel themeModel) async {
     try {
-      await makeThemeAsDefaultUseCase.execute(applicationId: applicationId, themeId: themeModel.id!);
+      await makeThemeAsDefaultUseCase.execute(
+        applicationId: applicationId,
+        themeId: themeModel.id!,
+      );
     } on BaseException catch (e) {
-      emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+      emit(
+        state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+      );
     }
   }
 
@@ -98,10 +115,19 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     if (state.themes.isEmpty || force) {
       try {
         emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-        final themes = await getThemesUseCase.execute(applicationId: applicationId);
-        emit(state.copyWith(themes: themes, status: ApplicationDetailsStateStatus.success));
+        final themes = await getThemesUseCase.execute(
+          applicationId: applicationId,
+        );
+        emit(
+          state.copyWith(
+            themes: themes,
+            status: ApplicationDetailsStateStatus.success,
+          ),
+        );
       } on BaseException catch (e) {
-        emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+        emit(
+          state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+        );
       }
     }
   }
@@ -113,30 +139,42 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
         emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
         final application = await getApplicationGet.execute(id: applicationId);
 
-        emit(state.copyWith(
-          application: application,
-          status: ApplicationDetailsStateStatus.success,
-        ));
+        emit(
+          state.copyWith(
+            application: application,
+            status: ApplicationDetailsStateStatus.success,
+          ),
+        );
       } on BaseException catch (e) {
-        emit(state.copyWith(error: e, status: ApplicationDetailsStateStatus.error));
+        emit(
+          state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+        );
       }
     } else {
-      emit(state.copyWith(
-        application: state.application,
-        status: ApplicationDetailsStateStatus.success,
-      ));
+      emit(
+        state.copyWith(
+          application: state.application,
+          status: ApplicationDetailsStateStatus.success,
+        ),
+      );
     }
   }
 
   Future<void> _deleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-    await deleteThemeUseCase.execute(themeId: themeModel.id!, applicationId: applicationId);
+    await deleteThemeUseCase.execute(
+      themeId: themeModel.id!,
+      applicationId: applicationId,
+    );
     await _getThemes();
   }
 
   Future<void> copyTheme(ThemeModel themeModel) async {
     emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-    await copyThemeUsecase.execute(applicationId: applicationId, themeId: themeModel.id!);
+    await copyThemeUsecase.execute(
+      applicationId: applicationId,
+      themeId: themeModel.id!,
+    );
     await _getThemes();
   }
 }

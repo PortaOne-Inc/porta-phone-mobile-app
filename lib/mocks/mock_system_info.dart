@@ -55,7 +55,7 @@ class SystemInfoBuilder {
         'custom': <dynamic, dynamic>{},
         'name': adapterName,
         'supported': adapterSupported,
-        'version': adapterVersion
+        'version': adapterVersion,
       },
       'postgres': {'version': postgresVersion},
       'janus': {

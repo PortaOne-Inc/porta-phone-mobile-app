@@ -84,7 +84,9 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -140,7 +142,9 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -150,17 +154,24 @@ class AssetRepositoryImpl extends AssetRepository {
   Future<void> deleteAsset(String applicationId, String assetId) async {
     try {
       await configuratorBackendDatasource.deleteAsset(applicationId, assetId);
-      final list = List<AssetModel>.from(_cache[applicationId] ?? const [])..removeWhere((a) => a.id == assetId);
+      final list = List<AssetModel>.from(_cache[applicationId] ?? const [])
+        ..removeWhere((a) => a.id == assetId);
       _emit(applicationId, list);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
   }
 
   @override
-  Future<AssetModel> linkAsset(String applicationId, String assetId, AssetLink link) async {
+  Future<AssetModel> linkAsset(
+    String applicationId,
+    String assetId,
+    AssetLink link,
+  ) async {
     try {
       final dto = await configuratorBackendDatasource.linkAsset(
         applicationId,
@@ -171,14 +182,20 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
   }
 
   @override
-  Future<AssetModel> unlinkAsset(String applicationId, String assetId, AssetLink link) async {
+  Future<AssetModel> unlinkAsset(
+    String applicationId,
+    String assetId,
+    AssetLink link,
+  ) async {
     try {
       final dto = await configuratorBackendDatasource.unlinkAsset(
         applicationId,
@@ -189,7 +206,9 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -198,9 +217,14 @@ class AssetRepositoryImpl extends AssetRepository {
   @override
   Future<String> getDownloadUrl(String applicationId, String assetId) async {
     try {
-      return await configuratorBackendDatasource.getAssetDownloadUrl(applicationId, assetId);
+      return await configuratorBackendDatasource.getAssetDownloadUrl(
+        applicationId,
+        assetId,
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -222,7 +246,11 @@ class AssetRepositoryImpl extends AssetRepository {
     // If cache is empty, trigger initial load
     if (_cache.containsKey(applicationId)) {
       // ignore: discarded_futures
-      getApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec);
+      getApplicationAssets(
+        applicationId,
+        includeUrl: includeUrl,
+        urlTtlSec: urlTtlSec,
+      );
     }
 
     return stream;
@@ -235,7 +263,11 @@ class AssetRepositoryImpl extends AssetRepository {
     bool includeUrl = true,
     int? urlTtlSec,
   }) {
-    return watchApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec)
+    return watchApplicationAssets(
+          applicationId,
+          includeUrl: includeUrl,
+          urlTtlSec: urlTtlSec,
+        )
         .where((list) => list.any((a) => a.id == assetId))
         .map((list) => list.firstWhere((a) => a.id == assetId))
         .distinct((a, b) => a == b); // relies on == from Freezed

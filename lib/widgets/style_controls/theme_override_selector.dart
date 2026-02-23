@@ -44,7 +44,8 @@ class ThemeOverrideSelector extends StatelessWidget {
               title: const Text('Apply to AppBar'),
               subtitle: const Text('Force theme on the App Bar as well'),
               value: config.applyToAppBar,
-              onChanged: (val) => onChanged(config.copyWith(applyToAppBar: val)),
+              onChanged: (val) =>
+                  onChanged(config.copyWith(applyToAppBar: val)),
             ),
           ],
         ),

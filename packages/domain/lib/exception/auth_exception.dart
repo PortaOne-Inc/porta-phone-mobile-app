@@ -1,16 +1,9 @@
 import 'common/base_exception.dart';
 
-enum AuthStateEnum {
-  userNotFount,
-  wrongPassword,
-  another,
-}
+enum AuthStateEnum { userNotFount, wrongPassword, another }
 
 class AuthException extends BaseException {
-  AuthException({
-    required this.state,
-    required super.message,
-  });
+  AuthException({required this.state, required super.message});
 
   AuthException.noUser({
     this.state = AuthStateEnum.userNotFount,

@@ -60,21 +60,26 @@ class ButtonStyleConfigEditor extends StatelessWidget {
                     onBgColorPick: () => _pickColor(
                       context,
                       safeValue.backgroundColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(backgroundColor: hex)),
+                      (hex) =>
+                          onChanged(safeValue.copyWith(backgroundColor: hex)),
                     ),
-                    onBgColorClear: () => onChanged(safeValue.copyWith(backgroundColor: null)),
+                    onBgColorClear: () =>
+                        onChanged(safeValue.copyWith(backgroundColor: null)),
                     onFgColorPick: () => _pickColor(
                       context,
                       safeValue.foregroundColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(foregroundColor: hex)),
+                      (hex) =>
+                          onChanged(safeValue.copyWith(foregroundColor: hex)),
                     ),
-                    onFgColorClear: () => onChanged(safeValue.copyWith(foregroundColor: null)),
+                    onFgColorClear: () =>
+                        onChanged(safeValue.copyWith(foregroundColor: null)),
                     onOverlayColorPick: () => _pickColor(
                       context,
                       safeValue.overlayColor?.toColor(),
                       (hex) => onChanged(safeValue.copyWith(overlayColor: hex)),
                     ),
-                    onOverlayColorClear: () => onChanged(safeValue.copyWith(overlayColor: null)),
+                    onOverlayColorClear: () =>
+                        onChanged(safeValue.copyWith(overlayColor: null)),
                   ),
 
                   const SizedBox(height: 12),
@@ -93,27 +98,39 @@ class ButtonStyleConfigEditor extends StatelessWidget {
 
                   // Row 2: Disabled Colors
                   _DisabledColorsRow(
-                    backgroundColor: safeValue.disabledBackgroundColor?.toColor(),
-                    foregroundColor: safeValue.disabledForegroundColor?.toColor(),
+                    backgroundColor: safeValue.disabledBackgroundColor
+                        ?.toColor(),
+                    foregroundColor: safeValue.disabledForegroundColor
+                        ?.toColor(),
                     iconColor: safeValue.disabledIconColor?.toColor(),
                     onBgColorPick: () => _pickColor(
                       context,
                       safeValue.disabledBackgroundColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(disabledBackgroundColor: hex)),
+                      (hex) => onChanged(
+                        safeValue.copyWith(disabledBackgroundColor: hex),
+                      ),
                     ),
-                    onBgColorClear: () => onChanged(safeValue.copyWith(disabledBackgroundColor: null)),
+                    onBgColorClear: () => onChanged(
+                      safeValue.copyWith(disabledBackgroundColor: null),
+                    ),
                     onFgColorPick: () => _pickColor(
                       context,
                       safeValue.disabledForegroundColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(disabledForegroundColor: hex)),
+                      (hex) => onChanged(
+                        safeValue.copyWith(disabledForegroundColor: hex),
+                      ),
                     ),
-                    onFgColorClear: () => onChanged(safeValue.copyWith(disabledForegroundColor: null)),
+                    onFgColorClear: () => onChanged(
+                      safeValue.copyWith(disabledForegroundColor: null),
+                    ),
                     onIconColorPick: () => _pickColor(
                       context,
                       safeValue.disabledIconColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(disabledIconColor: hex)),
+                      (hex) =>
+                          onChanged(safeValue.copyWith(disabledIconColor: hex)),
                     ),
-                    onIconColorClear: () => onChanged(safeValue.copyWith(disabledIconColor: null)),
+                    onIconColorClear: () =>
+                        onChanged(safeValue.copyWith(disabledIconColor: null)),
                   ),
 
                   const SizedBox(height: 12),
@@ -125,12 +142,16 @@ class ButtonStyleConfigEditor extends StatelessWidget {
                     borderRadius: safeValue.shape?.borderRadius,
                     elevation: safeValue.elevation,
                     onRadiusChanged: (v) {
-                      final currentShape = safeValue.shape ?? const ShapeBorderConfig();
-                      onChanged(safeValue.copyWith(
-                        shape: currentShape.copyWith(borderRadius: v),
-                      ));
+                      final currentShape =
+                          safeValue.shape ?? const ShapeBorderConfig();
+                      onChanged(
+                        safeValue.copyWith(
+                          shape: currentShape.copyWith(borderRadius: v),
+                        ),
+                      );
                     },
-                    onElevationChanged: (v) => onChanged(safeValue.copyWith(elevation: v)),
+                    onElevationChanged: (v) =>
+                        onChanged(safeValue.copyWith(elevation: v)),
                   ),
                   const SizedBox(height: 12),
 
@@ -316,10 +337,7 @@ class _GeometryRow extends StatelessWidget {
 }
 
 class _PaddingRow extends StatelessWidget {
-  const _PaddingRow({
-    required this.padding,
-    required this.onChanged,
-  });
+  const _PaddingRow({required this.padding, required this.onChanged});
 
   final EdgeInsetsConfig? padding;
   final ValueChanged<EdgeInsetsConfig?> onChanged;
@@ -383,7 +401,9 @@ class _Header extends StatelessWidget {
         children: [
           Text(
             label,
-            style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           if (description != null) ...[
             const SizedBox(width: 8),
@@ -434,11 +454,11 @@ class _EmptyState extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.dividerColor.withValues(alpha: 0.5),
-          ),
+          border: Border.all(color: theme.dividerColor.withValues(alpha: 0.5)),
           borderRadius: BorderRadius.circular(12),
-          color: theme.colorScheme.surfaceContainerLowest.withValues(alpha: 0.3),
+          color: theme.colorScheme.surfaceContainerLowest.withValues(
+            alpha: 0.3,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

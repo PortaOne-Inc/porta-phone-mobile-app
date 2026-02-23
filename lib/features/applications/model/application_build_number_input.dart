@@ -4,17 +4,18 @@ import 'package:formz/formz.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
-enum ApplicationBuildNumberValidationError {
-  blank,
-}
+enum ApplicationBuildNumberValidationError { blank }
 
-class ApplicationBuildNumberInput extends FormzInput<String, ApplicationBuildNumberValidationError> {
+class ApplicationBuildNumberInput
+    extends FormzInput<String, ApplicationBuildNumberValidationError> {
   const ApplicationBuildNumberInput.pure([super.value = '']) : super.pure();
 
   // ignore: use_super_parameters
-  const ApplicationBuildNumberInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationBuildNumberInput.dirty([String value = ''])
+    : super.dirty(value);
 
-  ApplicationBuildNumberInput toDirty() => ApplicationBuildNumberInput.dirty(value);
+  ApplicationBuildNumberInput toDirty() =>
+      ApplicationBuildNumberInput.dirty(value);
 
   @override
   ApplicationBuildNumberValidationError? validator(String value) {
@@ -26,7 +27,8 @@ class ApplicationBuildNumberInput extends FormzInput<String, ApplicationBuildNum
   }
 }
 
-extension ExtensionValidationBuildNumberErrorL10n on ApplicationBuildNumberInput {
+extension ExtensionValidationBuildNumberErrorL10n
+    on ApplicationBuildNumberInput {
   String? errorL10n(BuildContext context) {
     if (isValid) {
       return null;

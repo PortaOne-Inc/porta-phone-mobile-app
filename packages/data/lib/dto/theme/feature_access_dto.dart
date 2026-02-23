@@ -15,5 +15,6 @@ sealed class FeatureAccessDto with _$FeatureAccessDto {
     String? updatedAt,
   }) = _FeatureAccessDto;
 
-  factory FeatureAccessDto.fromJson(Map<String, dynamic> json) => _$FeatureAccessDtoFromJson(json);
+  factory FeatureAccessDto.fromJson(Map<String, dynamic> json) =>
+      _$FeatureAccessDtoFromJson(json);
 }

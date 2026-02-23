@@ -6,11 +6,11 @@ part 'metadata_model.g.dart';
 
 @freezed
 sealed class MetadataModel with _$MetadataModel {
-  const factory MetadataModel({
-    @Default({}) Map<String, dynamic> attributes,
-  }) = _MetadataModel;
+  const factory MetadataModel({@Default({}) Map<String, dynamic> attributes}) =
+      _MetadataModel;
 
   const MetadataModel._();
 
-  factory MetadataModel.fromJson(Map<String, dynamic> json) => _$MetadataModelFromJson(json);
+  factory MetadataModel.fromJson(Map<String, dynamic> json) =>
+      _$MetadataModelFromJson(json);
 }

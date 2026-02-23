@@ -32,7 +32,8 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
     return MultiBlocListener(
       listeners: [
         BlocListener<EmbedsCubit, EmbedsState>(
-          listenWhen: (p, n) => p.deleteError != n.deleteError && n.deleteError != null,
+          listenWhen: (p, n) =>
+              p.deleteError != n.deleteError && n.deleteError != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Delete failed: ${state.deleteError}')),
@@ -40,7 +41,8 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
           },
         ),
         BlocListener<EmbedsCubit, EmbedsState>(
-          listenWhen: (p, n) => p.createError != n.createError && n.createError != null,
+          listenWhen: (p, n) =>
+              p.createError != n.createError && n.createError != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Create failed: ${state.createError}')),
@@ -48,7 +50,8 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
           },
         ),
         BlocListener<EmbedsCubit, EmbedsState>(
-          listenWhen: (p, n) => p.updateError != n.updateError && n.updateError != null,
+          listenWhen: (p, n) =>
+              p.updateError != n.updateError && n.updateError != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Update failed: ${state.updateError}')),
@@ -71,7 +74,11 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
             ),
             floatingActionButton: FloatingActionButton.extended(
               icon: state.creating
-                  ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
                   : const Icon(Icons.add),
               label: const Text('Add'),
               onPressed: state.creating
@@ -83,13 +90,14 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
                       );
                       if (context.mounted && created != null) {
                         await context.read<EmbedsCubit>().createEmbed(
-                              uri: created.uri,
-                              type: created.type,
-                              attributes: created.attributes,
-                              payload: created.payload,
-                              enableConsoleLogCapture: created.enableConsoleLogCapture,
-                              reconnectStrategy: created.reconnectStrategy,
-                            );
+                          uri: created.uri,
+                          type: created.type,
+                          attributes: created.attributes,
+                          payload: created.payload,
+                          enableConsoleLogCapture:
+                              created.enableConsoleLogCapture,
+                          reconnectStrategy: created.reconnectStrategy,
+                        );
                       }
                     },
             ),
@@ -111,7 +119,9 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
         );
       case EmbedsStatus.loaded:
         if (state.items.isEmpty) {
-          return _EmptyView(onRefresh: () => context.read<EmbedsCubit>().load());
+          return _EmptyView(
+            onRefresh: () => context.read<EmbedsCubit>().load(),
+          );
         }
         return Padding(
           padding: const EdgeInsets.all(16),
@@ -132,7 +142,9 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
                   context.pushNamed(
                     AppRoutInfo.applicationEmbedsManage.name,
                     pathParameters: {
-                      AppRoutInfo.keyApplicationId: context.read<EmbedsCubit>().applicationId,
+                      AppRoutInfo.keyApplicationId: context
+                          .read<EmbedsCubit>()
+                          .applicationId,
                       AppRoutInfo.keyEmbedsId: id,
                     },
                   );
@@ -146,17 +158,20 @@ class _EmbedsScreenState extends State<EmbedsScreen> {
                         );
                         if (updated != null && context.mounted) {
                           await context.read<EmbedsCubit>().updateEmbed(
-                                id: id,
-                                uri: updated.uri,
-                                type: updated.type,
-                                attributes: updated.attributes,
-                                payload: updated.payload,
-                                enableConsoleLogCapture: updated.enableConsoleLogCapture,
-                                reconnectStrategy: updated.reconnectStrategy,
-                              );
+                            id: id,
+                            uri: updated.uri,
+                            type: updated.type,
+                            attributes: updated.attributes,
+                            payload: updated.payload,
+                            enableConsoleLogCapture:
+                                updated.enableConsoleLogCapture,
+                            reconnectStrategy: updated.reconnectStrategy,
+                          );
                         }
                       },
-                onDelete: isDeleting ? null : () => context.read<EmbedsCubit>().deleteEmbed(id),
+                onDelete: isDeleting
+                    ? null
+                    : () => context.read<EmbedsCubit>().deleteEmbed(id),
               );
             },
           ),
@@ -224,21 +239,31 @@ class _EmbedTile extends StatelessWidget {
                             _displayLabelFromUri(model.uri),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: t.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+                            style: t.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             model.uri,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: t.bodySmall?.copyWith(color: t.bodySmall?.color?.withValues(alpha: 0.75)),
+                            style: t.bodySmall?.copyWith(
+                              color: t.bodySmall?.color?.withValues(
+                                alpha: 0.75,
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             'type: ${model.type.name} · payload: ${model.payload.length} · attrs: ${model.attributes.length}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: t.bodySmall?.copyWith(color: t.bodySmall?.color?.withValues(alpha: 0.75)),
+                            style: t.bodySmall?.copyWith(
+                              color: t.bodySmall?.color?.withValues(
+                                alpha: 0.75,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -280,7 +305,10 @@ class _EmbedTile extends StatelessWidget {
                         value: _TileMenuAction.delete,
                         child: ListTile(
                           dense: true,
-                          leading: const Icon(Icons.delete, color: Colors.redAccent),
+                          leading: const Icon(
+                            Icons.delete,
+                            color: Colors.redAccent,
+                          ),
                           title: Text(isDeleting ? 'Deleting…' : 'Delete'),
                         ),
                       ),
@@ -299,7 +327,9 @@ class _EmbedTile extends StatelessWidget {
                         child: ListTile(
                           dense: true,
                           leading: const Icon(Icons.open_in_new),
-                          title: Text(canOpen ? 'Open in browser' : 'Cannot open'),
+                          title: Text(
+                            canOpen ? 'Open in browser' : 'Cannot open',
+                          ),
                         ),
                       ),
                     ];
@@ -422,15 +452,27 @@ class _TypeChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final (bg, fg, label) = switch (type) {
-      EmbeddedResourceModelType.terms => (cs.secondaryContainer, cs.onSecondaryContainer, 'terms'),
-      EmbeddedResourceModelType.unknown => (cs.surfaceContainerHigh, cs.onSurfaceVariant, 'unknown'),
+      EmbeddedResourceModelType.terms => (
+        cs.secondaryContainer,
+        cs.onSecondaryContainer,
+        'terms',
+      ),
+      EmbeddedResourceModelType.unknown => (
+        cs.surfaceContainerHigh,
+        cs.onSurfaceVariant,
+        'unknown',
+      ),
     };
     return _LabeledBadge(label: label, background: bg, foreground: fg);
   }
 }
 
 class _Badge extends StatelessWidget {
-  const _Badge({required this.background, required this.foreground, required this.child});
+  const _Badge({
+    required this.background,
+    required this.foreground,
+    required this.child,
+  });
 
   final Color background;
   final Color foreground;
@@ -439,7 +481,10 @@ class _Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       child: IconTheme.merge(
         data: IconThemeData(size: 14, color: foreground),
@@ -450,7 +495,11 @@ class _Badge extends StatelessWidget {
 }
 
 class _LabeledBadge extends StatelessWidget {
-  const _LabeledBadge({required this.label, required this.background, required this.foreground});
+  const _LabeledBadge({
+    required this.label,
+    required this.background,
+    required this.foreground,
+  });
 
   final String label;
   final Color background;
@@ -460,11 +509,17 @@ class _LabeledBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return Container(
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Text(
         label,
-        style: t.labelSmall?.copyWith(color: foreground, fontWeight: FontWeight.w600),
+        style: t.labelSmall?.copyWith(
+          color: foreground,
+          fontWeight: FontWeight.w600,
+        ),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
@@ -484,9 +539,9 @@ bool _canOpenInBrowser(String uri) {
 Future<void> _copyLink(BuildContext context, String uri) async {
   await Clipboard.setData(ClipboardData(text: uri));
   if (context.mounted) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Link copied')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Link copied')));
   }
 }
 
@@ -495,15 +550,15 @@ Future<void> _openInBrowser(BuildContext context, String uri) async {
     final parsed = Uri.parse(uri);
     final ok = await launchUrl(parsed, mode: LaunchMode.externalApplication);
     if (!ok && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to open link')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to open link')));
     }
   } catch (_) {
     if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid link')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Invalid link')));
     }
   }
 }
@@ -662,21 +717,28 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
                 TextFormField(
                   controller: _uriCtrl,
                   decoration: const InputDecoration(labelText: 'URI'),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+                  validator: (v) =>
+                      (v == null || v.trim().isEmpty) ? 'Required' : null,
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<EmbeddedResourceModelType>(
                   initialValue: _type,
                   decoration: const InputDecoration(labelText: 'Type'),
                   items: EmbeddedResourceModelType.values
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+                      .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.name)),
+                      )
                       .toList(),
-                  onChanged: (v) => setState(() => _type = v ?? EmbeddedResourceModelType.unknown),
+                  onChanged: (v) => setState(
+                    () => _type = v ?? EmbeddedResourceModelType.unknown,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _attrsCtrl,
-                  decoration: const InputDecoration(labelText: 'Attributes (JSON)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Attributes (JSON)',
+                  ),
                   maxLines: 4,
                   validator: (v) {
                     try {
@@ -693,7 +755,9 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _payloadCtrl,
-                  decoration: const InputDecoration(labelText: 'Payload (comma separated)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Payload (comma separated)',
+                  ),
                 ),
                 const SizedBox(height: 12),
                 SwitchListTile(
@@ -704,7 +768,9 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
                 ),
                 TextFormField(
                   controller: _reconnectCtrl,
-                  decoration: const InputDecoration(labelText: 'Reconnect strategy (optional)'),
+                  decoration: const InputDecoration(
+                    labelText: 'Reconnect strategy (optional)',
+                  ),
                 ),
               ],
             ),
@@ -712,12 +778,19 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
         FilledButton(
           onPressed: () {
             if (!(_formKey.currentState?.validate() ?? false)) return;
             final attrs = _safeJsonObject(_attrsCtrl.text);
-            final payload = _payloadCtrl.text.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
+            final payload = _payloadCtrl.text
+                .split(',')
+                .map((e) => e.trim())
+                .where((e) => e.isNotEmpty)
+                .toList();
             Navigator.of(context).pop(
               _EmbedEditorResult(
                 uri: _uriCtrl.text.trim(),
@@ -725,7 +798,9 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
                 attributes: attrs,
                 payload: payload,
                 enableConsoleLogCapture: _captureLogs,
-                reconnectStrategy: _reconnectCtrl.text.trim().isEmpty ? null : _reconnectCtrl.text.trim(),
+                reconnectStrategy: _reconnectCtrl.text.trim().isEmpty
+                    ? null
+                    : _reconnectCtrl.text.trim(),
               ),
             );
           },

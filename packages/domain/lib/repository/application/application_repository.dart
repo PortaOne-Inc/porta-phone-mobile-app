@@ -1,7 +1,10 @@
 import 'package:domain/domain.dart';
 
 abstract class ApplicationRepository {
-  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model);
+  Future<ApplicationModel> updateApplication(
+    String applicationId,
+    ApplicationModel model,
+  );
 
   Future<ApplicationModel> createApplication(ApplicationModel model);
 
@@ -15,12 +18,16 @@ abstract class ApplicationRepository {
 
   Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId);
 
-  Future<Map<String, dynamic>> updateApplicationEnvironment(String applicationId, Map<String, dynamic> environment);
+  Future<Map<String, dynamic>> updateApplicationEnvironment(
+    String applicationId,
+    Map<String, dynamic> environment,
+  );
 
   Future<ApplicationModel> updateThemeBindings(
     String applicationId, {
     String? defaultThemeId,
-    Map<String, String>? themeByEnv, // e.g. {'dev': 'themeDevId', 'stage': '...', 'prod': '...'}
+    Map<String, String>?
+    themeByEnv, // e.g. {'dev': 'themeDevId', 'stage': '...', 'prod': '...'}
   });
 
   /// Resolve effective themeId for a build based on [env] ('dev' | 'stage' | 'prod').

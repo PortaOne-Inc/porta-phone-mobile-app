@@ -126,7 +126,8 @@ class OutlineInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveBorderColor = borderColor ?? Theme.of(context).colorScheme.primary;
+    final effectiveBorderColor =
+        borderColor ?? Theme.of(context).colorScheme.primary;
 
     return Container(
       padding: padding,

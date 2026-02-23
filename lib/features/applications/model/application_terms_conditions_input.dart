@@ -7,17 +7,17 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationTermsConditionsValidationError {
-  toLong,
-  invalid,
-}
+enum ApplicationTermsConditionsValidationError { toLong, invalid }
 
-class ApplicationTermsConditionsInput extends FormzInput<String, ApplicationTermsConditionsValidationError> {
+class ApplicationTermsConditionsInput
+    extends FormzInput<String, ApplicationTermsConditionsValidationError> {
   const ApplicationTermsConditionsInput.pure([super.value = '']) : super.pure();
 
-  const ApplicationTermsConditionsInput.dirty([super.value = '']) : super.dirty();
+  const ApplicationTermsConditionsInput.dirty([super.value = ''])
+    : super.dirty();
 
-  ApplicationTermsConditionsInput toDirty() => ApplicationTermsConditionsInput.dirty(value);
+  ApplicationTermsConditionsInput toDirty() =>
+      ApplicationTermsConditionsInput.dirty(value);
 
   @override
   ApplicationTermsConditionsValidationError? validator(String value) {

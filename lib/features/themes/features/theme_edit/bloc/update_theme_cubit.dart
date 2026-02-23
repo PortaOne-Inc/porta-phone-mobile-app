@@ -45,14 +45,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     required this.watchApplicationAssetsUsecase,
     required this.getApplicationEmbedsUsecase,
   }) : super(
-          UpdateThemeState(
-              status: ThemePropertyStatus.progress,
-              appConfig: const AppConfig(),
-              colorSchemeConfig: const ColorSchemeConfig(),
-              themeWidgetConfig: const ThemeWidgetConfig(),
-              themePageConfig: const ThemePageConfig()),
-        ) {
-    on<UpdateLocalConfigEvent>(_onUpdateLocalConfigEvent, transformer: sequential());
+         UpdateThemeState(
+           status: ThemePropertyStatus.progress,
+           appConfig: const AppConfig(),
+           colorSchemeConfig: const ColorSchemeConfig(),
+           themeWidgetConfig: const ThemeWidgetConfig(),
+           themePageConfig: const ThemePageConfig(),
+         ),
+       ) {
+    on<UpdateLocalConfigEvent>(
+      _onUpdateLocalConfigEvent,
+      transformer: sequential(),
+    );
 
     on<InitializeEvent>(_initializeEditing, transformer: droppable());
     on<SyncConfigEvent>(_syncConfigWithServer, transformer: droppable());
@@ -77,7 +81,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   final GetFeatureAccessUsecase getFeatureAccessUsecase;
   final UpdateFeatureAccessUsecase updateFeatureAccessUsecase;
   final GetColorSchemeByThemeVariantUsecase getColorSchemeByThemeVariantUsecase;
-  final UpsertColorSchemeByThemeVariantUsecase upsertColorSchemeByThemeVariantUsecase;
+  final UpsertColorSchemeByThemeVariantUsecase
+  upsertColorSchemeByThemeVariantUsecase;
   final GetWidgetConfigUsecase getWidgetConfigUsecase;
   final UpsertWidgetConfigUsecase upsertWidgetConfig;
   final UpsertPageConfigByVariantUsecase upsertPageConfigByVariantUsecase;
@@ -98,25 +103,42 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   StreamSubscription<List<EmbeddedResourceModel>>? _embedssSub;
 
   void _init(String applicationId, String themeId) {
-    _assetsSub = watchApplicationAssetsUsecase.execute(applicationId).listen(
+    _assetsSub = watchApplicationAssetsUsecase
+        .execute(applicationId)
+        .listen(
           (assets) => add(ResourcesEvent.assetsUpdated(assets)),
-          onError: (Object error) => add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
+          onError: (Object error) =>
+              add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
         );
 
     add(const InitializeEvent());
   }
 
-  Future<void> _onLoadingEvent(LoadingEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _onLoadingEvent(
+    LoadingEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     event.map(
       setStatus: (e) => emit(state.copyWith(status: e.status)),
       markLoaded: (e) {
         final already = state.loadedComponents.contains(e.component);
         if (!already) {
-          emit(state.copyWith(loadedComponents: [...state.loadedComponents, e.component]));
+          emit(
+            state.copyWith(
+              loadedComponents: [...state.loadedComponents, e.component],
+            ),
+          );
         }
       },
-      setLoaded: (e) => emit(state.copyWith(loadedComponents: List.unmodifiable(e.components))),
-      reset: (e) => emit(state.copyWith(loadedComponents: const <ThemeComponents>[], status: e.status)),
+      setLoaded: (e) => emit(
+        state.copyWith(loadedComponents: List.unmodifiable(e.components)),
+      ),
+      reset: (e) => emit(
+        state.copyWith(
+          loadedComponents: const <ThemeComponents>[],
+          status: e.status,
+        ),
+      ),
     );
   }
 
@@ -127,18 +149,23 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     if (state.selectedVariant == event.variant) return;
 
     // Залишаємо тільки спільні компоненти
-    final preservedComponents =
-        state.loadedComponents.where((c) => c == ThemeComponents.navigation || c == ThemeComponents.embeds).toList();
+    final preservedComponents = state.loadedComponents
+        .where(
+          (c) => c == ThemeComponents.navigation || c == ThemeComponents.embeds,
+        )
+        .toList();
 
-    emit(state.copyWith(
-      selectedVariant: event.variant,
-      status: ThemePropertyStatus.progress,
-      // Важливо очистити старі конфіги, щоб UI не показував дані від попередньої теми
-      colorSchemeConfig: const ColorSchemeConfig(),
-      themePageConfig: const ThemePageConfig(),
-      themeWidgetConfig: const ThemeWidgetConfig(),
-      loadedComponents: preservedComponents,
-    ));
+    emit(
+      state.copyWith(
+        selectedVariant: event.variant,
+        status: ThemePropertyStatus.progress,
+        // Важливо очистити старі конфіги, щоб UI не показував дані від попередньої теми
+        colorSchemeConfig: const ColorSchemeConfig(),
+        themePageConfig: const ThemePageConfig(),
+        themeWidgetConfig: const ThemeWidgetConfig(),
+        loadedComponents: preservedComponents,
+      ),
+    );
 
     try {
       await Future.wait([
@@ -150,11 +177,19 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       emit(state.copyWith(status: ThemePropertyStatus.success));
     } catch (e) {
       _logger.severe('Failed to switch variant', e);
-      emit(state.copyWith(status: ThemePropertyStatus.error, error: Exception(e.toString())));
+      emit(
+        state.copyWith(
+          status: ThemePropertyStatus.error,
+          error: Exception(e.toString()),
+        ),
+      );
     }
   }
 
-  Future<void> _syncConfigWithServer(SyncConfigEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _syncConfigWithServer(
+    SyncConfigEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     try {
       emit(state.copyWith(status: ThemePropertyStatus.progress));
 
@@ -204,7 +239,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     event.map(
       assetsUpdated: (e) => emit(state.copyWith(assets: e.assets)),
       embedsUpdated: (e) => _onEmbedsUpdated(e, emit),
-      streamFailed: (e) => _logger.warning('Resources stream "${e.source}" error', e.error),
+      streamFailed: (e) =>
+          _logger.warning('Resources stream "${e.source}" error', e.error),
     );
   }
 
@@ -234,53 +270,85 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     });
   }
 
-  Future<void> _onUpdateLocalConfigEvent(UpdateLocalConfigEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _onUpdateLocalConfigEvent(
+    UpdateLocalConfigEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     event.map(
-      colorScheme: (_UpdateThemeSchemeColorEvent value) => emit(state.copyWith(colorSchemeConfig: value.scheme)),
-      page: (_UpdateThemePageEvent value) => emit(state.copyWith(themePageConfig: value.page)),
-      widget: (_UpdateThemeWidgetEvent value) => emit(state.copyWith(themeWidgetConfig: value.widget)),
-      featureAccess: (_UpdateAppConfigEvent value) => emit(state.copyWith(appConfig: value.config)),
+      colorScheme: (_UpdateThemeSchemeColorEvent value) =>
+          emit(state.copyWith(colorSchemeConfig: value.scheme)),
+      page: (_UpdateThemePageEvent value) =>
+          emit(state.copyWith(themePageConfig: value.page)),
+      widget: (_UpdateThemeWidgetEvent value) =>
+          emit(state.copyWith(themeWidgetConfig: value.widget)),
+      featureAccess: (_UpdateAppConfigEvent value) =>
+          emit(state.copyWith(appConfig: value.config)),
     );
   }
 
-  Future<void> _onAppConfigEvent(AppConfigEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _onAppConfigEvent(
+    AppConfigEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     event.map(
-        setLoginConfig: (e) => _featureAccessEditor.setLoginConfig(e.login),
-        setMainConfig: (e) => _featureAccessEditor.setMainConfig(e.main),
-        setMainSystemNotificationsEnabled: (e) => _featureAccessEditor.setMainSystemNotificationsEnabled(e.enabled),
-        setBottomMenu: (e) => _featureAccessEditor.setBottomMenu(e.bottomMenu),
-        setBottomMenuCacheSelectedTab: (e) => _featureAccessEditor.setBottomMenuCacheSelectedTab(e.cache),
-        setBottomMenuTabs: (e) => _featureAccessEditor.setBottomMenuTabs(e.tabs),
-        updateBottomMenuTab: (e) => _featureAccessEditor.updateBottomMenuTab(e.index, e.tab),
-        insertBottomMenuTab: (e) => _featureAccessEditor.insertBottomMenuTab(e.index, e.tab),
-        removeBottomMenuTabAt: (e) => _featureAccessEditor.removeBottomMenuTabAt(e.index),
-        setSettingsConfig: (e) => _featureAccessEditor.setSettingsConfig(e.settings),
-        setSettingsSections: (e) => _featureAccessEditor.setSettingsSections(e.sections),
-        setCallConfig: (e) => _featureAccessEditor.setCallConfig(e.callConfig),
-        setCallVideoEnabled: (e) => _featureAccessEditor.setCallVideoEnabled(e.enabled),
-        setCallTransfer: (e) => _featureAccessEditor.setCallTransfer(e.transfer),
-        setCallEncoding: (e) => _featureAccessEditor.setCallEncoding(e.encoding),
-        setCallPeerConnection: (e) => _featureAccessEditor.setCallPeerConnection(e.pc),
-        setNegotiationOverride: (e) => _featureAccessEditor.setNegotiationOverride(e.negotiation),
-        setSupportedFeatures: (e) => _featureAccessEditor.setSupportedFeatures(e.features));
+      setLoginConfig: (e) => _featureAccessEditor.setLoginConfig(e.login),
+      setMainConfig: (e) => _featureAccessEditor.setMainConfig(e.main),
+      setMainSystemNotificationsEnabled: (e) =>
+          _featureAccessEditor.setMainSystemNotificationsEnabled(e.enabled),
+      setBottomMenu: (e) => _featureAccessEditor.setBottomMenu(e.bottomMenu),
+      setBottomMenuCacheSelectedTab: (e) =>
+          _featureAccessEditor.setBottomMenuCacheSelectedTab(e.cache),
+      setBottomMenuTabs: (e) => _featureAccessEditor.setBottomMenuTabs(e.tabs),
+      updateBottomMenuTab: (e) =>
+          _featureAccessEditor.updateBottomMenuTab(e.index, e.tab),
+      insertBottomMenuTab: (e) =>
+          _featureAccessEditor.insertBottomMenuTab(e.index, e.tab),
+      removeBottomMenuTabAt: (e) =>
+          _featureAccessEditor.removeBottomMenuTabAt(e.index),
+      setSettingsConfig: (e) =>
+          _featureAccessEditor.setSettingsConfig(e.settings),
+      setSettingsSections: (e) =>
+          _featureAccessEditor.setSettingsSections(e.sections),
+      setCallConfig: (e) => _featureAccessEditor.setCallConfig(e.callConfig),
+      setCallVideoEnabled: (e) =>
+          _featureAccessEditor.setCallVideoEnabled(e.enabled),
+      setCallTransfer: (e) => _featureAccessEditor.setCallTransfer(e.transfer),
+      setCallEncoding: (e) => _featureAccessEditor.setCallEncoding(e.encoding),
+      setCallPeerConnection: (e) =>
+          _featureAccessEditor.setCallPeerConnection(e.pc),
+      setNegotiationOverride: (e) =>
+          _featureAccessEditor.setNegotiationOverride(e.negotiation),
+      setSupportedFeatures: (e) =>
+          _featureAccessEditor.setSupportedFeatures(e.features),
+    );
   }
 
-  Future<void> _onThemeWidgetEvent(ThemeWidgetEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _onThemeWidgetEvent(
+    ThemeWidgetEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     event.map(
       setFonts: (e) => _widgetEditor.setFonts(e.fonts),
-      setGlobalFontFamily: (e) => _widgetEditor.setGlobalFontFamily(e.fontFamily),
+      setGlobalFontFamily: (e) =>
+          _widgetEditor.setGlobalFontFamily(e.fontFamily),
       setButton: (e) => _widgetEditor.setButton(e.button),
       setPEButton: (e) => _widgetEditor.setPrimaryElevatedButton(e.cfg),
       setGroup: (e) => _widgetEditor.setGroup(e.group),
       setGroupTitleListTile: (e) => _widgetEditor.setGroupTitleListTile(e.cfg),
-      setGroupTitleListTileBackground: (e) => _widgetEditor.setGroupTitleListTileBackground(e.color),
+      setGroupTitleListTileBackground: (e) =>
+          _widgetEditor.setGroupTitleListTileBackground(e.color),
       setBar: (e) => _widgetEditor.setBar(e.bar),
-      setBottomNavigationBar: (e) => _widgetEditor.setBottomNavigationBar(e.cfg),
-      setBottomNavBarBackground: (e) => _widgetEditor.setBottomNavBarBackground(e.color),
-      setBottomNavBarSelected: (e) => _widgetEditor.setBottomNavBarSelected(e.color),
-      setBottomNavBarUnselected: (e) => _widgetEditor.setBottomNavBarUnselected(e.color),
+      setBottomNavigationBar: (e) =>
+          _widgetEditor.setBottomNavigationBar(e.cfg),
+      setBottomNavBarBackground: (e) =>
+          _widgetEditor.setBottomNavBarBackground(e.color),
+      setBottomNavBarSelected: (e) =>
+          _widgetEditor.setBottomNavBarSelected(e.color),
+      setBottomNavBarUnselected: (e) =>
+          _widgetEditor.setBottomNavBarUnselected(e.color),
       setExtTabBar: (e) => _widgetEditor.setExtTabBar(e.cfg),
-      setTabBarConfig: (_SetTabBarConfig value) => _widgetEditor.setTabBar(value.cfg),
+      setTabBarConfig: (_SetTabBarConfig value) =>
+          _widgetEditor.setTabBar(value.cfg),
       setImageAssets: (e) => _widgetEditor.setImageAssets(e.cfg),
       setAppIcon: (e) => _widgetEditor.setAppIcon(e.cfg),
       setLeadingAvatarStyle: (e) => _widgetEditor.setLeadingAvatarStyle(e.cfg),
@@ -288,38 +356,54 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setTextFormField: (e) => _widgetEditor.setTextFormField(e.cfg),
       setInputLabelColor: (e) => _widgetEditor.setInputLabelColor(e.color),
       setInputBorder: (e) => _widgetEditor.setInputBorder(e.cfg),
-      setInputBorderDisabled: (e) => _widgetEditor.setInputBorderDisabled(e.cfg),
+      setInputBorderDisabled: (e) =>
+          _widgetEditor.setInputBorderDisabled(e.cfg),
       setInputBorderFocused: (e) => _widgetEditor.setInputBorderFocused(e.cfg),
       setInputBorderAny: (e) => _widgetEditor.setInputBorderAny(e.cfg),
       setText: (e) => _widgetEditor.setText(e.cfg),
       setTextSelection: (e) => _widgetEditor.setTextSelection(e.cfg),
       setTextCursorColor: (e) => _widgetEditor.setTextCursorColor(e.color),
-      setTextSelectionColor: (e) => _widgetEditor.setTextSelectionColor(e.color),
-      setTextSelectionHandleColor: (e) => _widgetEditor.setTextSelectionHandleColor(e.color),
+      setTextSelectionColor: (e) =>
+          _widgetEditor.setTextSelectionColor(e.color),
+      setTextSelectionHandleColor: (e) =>
+          _widgetEditor.setTextSelectionHandleColor(e.color),
       setLinkify: (e) => _widgetEditor.setLinkify(e.cfg),
       setLinkifyStyleColor: (e) => _widgetEditor.setLinkifyStyleColor(e.color),
       setLinkifyLinkColor: (e) => _widgetEditor.setLinkifyLinkColor(e.color),
       setDialog: (e) => _widgetEditor.setDialog(e.cfg),
       setConfirmDialog: (e) => _widgetEditor.setConfirmDialog(e.cfg),
-      setConfirmDialogActive1: (e) => _widgetEditor.setConfirmDialogActive1(e.color),
-      setConfirmDialogActive2: (e) => _widgetEditor.setConfirmDialogActive2(e.color),
-      setConfirmDialogDefault: (e) => _widgetEditor.setConfirmDialogDefault(e.color),
+      setConfirmDialogActive1: (e) =>
+          _widgetEditor.setConfirmDialogActive1(e.color),
+      setConfirmDialogActive2: (e) =>
+          _widgetEditor.setConfirmDialogActive2(e.color),
+      setConfirmDialogDefault: (e) =>
+          _widgetEditor.setConfirmDialogDefault(e.color),
       setSnackBar: (e) => _widgetEditor.setSnackBar(e.cfg),
       setStatuses: (e) => _widgetEditor.setStatuses(e.cfg),
-      setRegistrationStatuses: (e) => _widgetEditor.setRegistrationStatuses(e.cfg),
-      setRegistrationOnline: (e) => _widgetEditor.setRegistrationOnline(e.color),
-      setRegistrationOffline: (e) => _widgetEditor.setRegistrationOffline(e.color),
+      setRegistrationStatuses: (e) =>
+          _widgetEditor.setRegistrationStatuses(e.cfg),
+      setRegistrationOnline: (e) =>
+          _widgetEditor.setRegistrationOnline(e.color),
+      setRegistrationOffline: (e) =>
+          _widgetEditor.setRegistrationOffline(e.color),
       setCallStatuses: (e) => _widgetEditor.setCallStatuses(e.cfg),
-      setCallStatusesConnectivityNone: (e) => _widgetEditor.setCallStatusesConnectivityNone(e.color),
-      setCallStatusesConnectError: (e) => _widgetEditor.setCallStatusesConnectError(e.color),
-      setCallStatusesAppUnregistered: (e) => _widgetEditor.setCallStatusesAppUnregistered(e.color),
-      setCallStatusesConnectIssue: (e) => _widgetEditor.setCallStatusesConnectIssue(e.color),
-      setCallStatusesInProgress: (e) => _widgetEditor.setCallStatusesInProgress(e.color),
+      setCallStatusesConnectivityNone: (e) =>
+          _widgetEditor.setCallStatusesConnectivityNone(e.color),
+      setCallStatusesConnectError: (e) =>
+          _widgetEditor.setCallStatusesConnectError(e.color),
+      setCallStatusesAppUnregistered: (e) =>
+          _widgetEditor.setCallStatusesAppUnregistered(e.color),
+      setCallStatusesConnectIssue: (e) =>
+          _widgetEditor.setCallStatusesConnectIssue(e.color),
+      setCallStatusesInProgress: (e) =>
+          _widgetEditor.setCallStatusesInProgress(e.color),
       setCallStatusesReady: (e) => _widgetEditor.setCallStatusesReady(e.color),
       setDecoration: (e) => _widgetEditor.setDecoration(e.cfg),
       setPrimaryGradient: (e) => _widgetEditor.setPrimaryGradient(e.cfg),
-      setPrimaryGradientColors: (e) => _widgetEditor.setPrimaryGradientColors(e.colors),
-      setDefaultPlaceholderImage: (e) => _widgetEditor.setDefaultPlaceholderImage(e.imageSource),
+      setPrimaryGradientColors: (e) =>
+          _widgetEditor.setPrimaryGradientColors(e.colors),
+      setDefaultPlaceholderImage: (e) =>
+          _widgetEditor.setDefaultPlaceholderImage(e.imageSource),
       importJson: (e) => _onImportWidgetJson(e.json),
     );
   }
@@ -342,23 +426,33 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       updateSwitchPage: (e) => _pageEditor.updateSwitchScreenConfig(e.login),
       setLoginPicture: (e) => _pageEditor.setLoginPicture(e.imageSource),
       setLoginModeSelect: (e) => _pageEditor.setLoginModeSelect(e.modeSelect),
-      setLoginModeSelectButtonLoginStyle: (e) => _pageEditor.setLoginModeSelectButtonLoginStyle(e.type),
-      setLoginModeSelectButtonSignupStyle: (e) => _pageEditor.setLoginModeSelectButtonSignupStyle(e.type),
+      setLoginModeSelectButtonLoginStyle: (e) =>
+          _pageEditor.setLoginModeSelectButtonLoginStyle(e.type),
+      setLoginModeSelectButtonSignupStyle: (e) =>
+          _pageEditor.setLoginModeSelectButtonSignupStyle(e.type),
       setAboutPage: (e) => _pageEditor.setAboutPage(e.about),
       setAboutPicture: _onSetAboutPicture,
       setAboutMetadata: (e) => _pageEditor.setAboutMetadata(e.metadata),
       setDialingPage: (e) => _pageEditor.setDialingPage(e.dialingPage),
-      setDialingSystemUiOverlay: (e) => _pageEditor.setDialingSystemUiOverlay(e.style),
-      setDialingAppBarStyle: (e) => _pageEditor.setDialingAppBarStyle(e.appBarStyle),
+      setDialingSystemUiOverlay: (e) =>
+          _pageEditor.setDialingSystemUiOverlay(e.style),
+      setDialingAppBarStyle: (e) =>
+          _pageEditor.setDialingAppBarStyle(e.appBarStyle),
       setDialingInfo: (e) => _pageEditor.setDialingInfo(e.info),
       setSettingsPage: (e) => _pageEditor.setSettingsPage(e.info),
-      setDialingInfoUsernameStyle: (e) => _pageEditor.setDialingInfoUsernameStyle(e.style),
-      setDialingInfoNumberStyle: (e) => _pageEditor.setDialingInfoNumberStyle(e.style),
-      setDialingInfoCallStatusStyle: (e) => _pageEditor.setDialingInfoCallStatusStyle(e.style),
-      setDialingInfoProcessingStatusStyle: (e) => _pageEditor.setDialingInfoProcessingStatusStyle(e.style),
+      setDialingInfoUsernameStyle: (e) =>
+          _pageEditor.setDialingInfoUsernameStyle(e.style),
+      setDialingInfoNumberStyle: (e) =>
+          _pageEditor.setDialingInfoNumberStyle(e.style),
+      setDialingInfoCallStatusStyle: (e) =>
+          _pageEditor.setDialingInfoCallStatusStyle(e.style),
+      setDialingInfoProcessingStatusStyle: (e) =>
+          _pageEditor.setDialingInfoProcessingStatusStyle(e.style),
       setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
-      setLoginOtpSigninVerifyCountdown: (e) => _pageEditor.setLoginOtpSigninVerifyCountdown(e.seconds),
-      setLoginSignupVerifyCountdown: (e) => _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
+      setLoginOtpSigninVerifyCountdown: (e) =>
+          _pageEditor.setLoginOtpSigninVerifyCountdown(e.seconds),
+      setLoginSignupVerifyCountdown: (e) =>
+          _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
       setContactsPage: (e) => _pageEditor.setContactsPage(e.config),
       setRecentsPage: (e) => _pageEditor.setRecentsPage(e.config),
       setFavoritesPage: (e) => _pageEditor.setFavoritesPage(e.config),
@@ -378,14 +472,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   }
 
   void _onSetAboutPicture(_SetAboutPicture e) => _pageEditor.setAboutPicture(
-        ImageSource(id: e.asset.id, uri: e.asset.downloadUrl),
-      );
+    ImageSource(id: e.asset.id, uri: e.asset.downloadUrl),
+  );
 
-  Future<void> _onChangeColorEvent(UpdateColorSchemeEvent event, Emitter<UpdateThemeState> emit) {
+  Future<void> _onChangeColorEvent(
+    UpdateColorSchemeEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) {
     return event.map(
       chane: (_UpdateColorSchemeEvent value) async =>
           _colorSchemeEditor.patchOverride({value.key: value.color?.toHex()}),
-      importJson: (_ImportJsonColorSchemeEvent value) async => _processJsonImport(value.jsonMap),
+      importJson: (_ImportJsonColorSchemeEvent value) async =>
+          _processJsonImport(value.jsonMap),
     );
   }
 
@@ -404,19 +502,30 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     }
   }
 
-  Future<void> _initializeEditing(InitializeEvent event, Emitter<UpdateThemeState> emit) async {
+  Future<void> _initializeEditing(
+    InitializeEvent event,
+    Emitter<UpdateThemeState> emit,
+  ) async {
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
     await _initializeFeatureAccess(applicationId, themeId);
     await _initializeEmbeddedResourceModel(applicationId);
     await _initializeColorScheme(applicationId, themeId, state.selectedVariant);
     await _initializePageConfig(applicationId, themeId, state.selectedVariant);
-    await _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant);
+    await _initializeWidgetsConfig(
+      applicationId,
+      themeId,
+      state.selectedVariant,
+    );
 
     add(const LoadingEvent.setStatus(ThemePropertyStatus.success));
   }
 
-  Future<void> _initializeWidgetsConfig(String applicationId, String themeId, BrightnessVariant variant) async {
+  Future<void> _initializeWidgetsConfig(
+    String applicationId,
+    String themeId,
+    BrightnessVariant variant,
+  ) async {
     try {
       final widgetConfig = await getWidgetConfigUsecase.execute(
         applicationId,
@@ -432,7 +541,11 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     }
   }
 
-  Future<void> _initializePageConfig(String applicationId, String themeId, BrightnessVariant variant) async {
+  Future<void> _initializePageConfig(
+    String applicationId,
+    String themeId,
+    BrightnessVariant variant,
+  ) async {
     try {
       final loadTheme = await getPageConfigByVariantUsecase.execute(
         applicationId: applicationId,
@@ -448,9 +561,15 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     }
   }
 
-  Future<void> _initializeFeatureAccess(String applicationId, String themeId) async {
+  Future<void> _initializeFeatureAccess(
+    String applicationId,
+    String themeId,
+  ) async {
     try {
-      final featureAccess = await getFeatureAccessUsecase.execute(applicationId, themeId);
+      final featureAccess = await getFeatureAccessUsecase.execute(
+        applicationId,
+        themeId,
+      );
 
       final navigation = AppConfig.fromJson(featureAccess.config).copyWith();
 
@@ -463,14 +582,20 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     }
   }
 
-  Future<void> _initializeColorScheme(String applicationId, String themeId, BrightnessVariant variant) async {
+  Future<void> _initializeColorScheme(
+    String applicationId,
+    String themeId,
+    BrightnessVariant variant,
+  ) async {
     try {
       final colorScheme = await getColorSchemeByThemeVariantUsecase.execute(
         applicationId: applicationId,
         themeId: themeId,
         variant: variant,
       );
-      _colorSchemeEditor.setInitial(ColorSchemeConfig.fromJson(colorScheme.config));
+      _colorSchemeEditor.setInitial(
+        ColorSchemeConfig.fromJson(colorScheme.config),
+      );
     } catch (e) {
       _logger.warning('Failed to load color scheme: $e');
       _colorSchemeEditor.setInitial(const ColorSchemeConfig());

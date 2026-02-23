@@ -44,20 +44,24 @@ class DeploymentCubit extends Cubit<DeploymentState> {
         emit(state.copyWith(status: DeploymentDetailsStatus.progress));
         final application = await getApplicationGet.execute(id: applicationId);
 
-        emit(state.copyWith(
-          application: application,
-          applicationDeploy: state.applicationDeploy,
-          status: DeploymentDetailsStatus.success,
-        ));
+        emit(
+          state.copyWith(
+            application: application,
+            applicationDeploy: state.applicationDeploy,
+            status: DeploymentDetailsStatus.success,
+          ),
+        );
       } on BaseException catch (e) {
         emit(state.copyWith(error: e, status: DeploymentDetailsStatus.error));
       }
     } else {
-      emit(state.copyWith(
-        application: state.application,
-        applicationDeploy: state.applicationDeploy,
-        status: DeploymentDetailsStatus.success,
-      ));
+      emit(
+        state.copyWith(
+          application: state.application,
+          applicationDeploy: state.applicationDeploy,
+          status: DeploymentDetailsStatus.success,
+        ),
+      );
     }
   }
 
@@ -65,17 +69,20 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     await _executeWithErrorHandling(() async {
       final branches = await getPhoneBranchesUsecase.execute();
 
-      final updatedDependencyBranches = state.applicationDeploy.applicationDependencyBranches.copyWith(
-        phoneBranches: branches,
-      );
+      final updatedDependencyBranches = state
+          .applicationDeploy
+          .applicationDependencyBranches
+          .copyWith(phoneBranches: branches);
       final updatedApplicationDeploy = state.applicationDeploy.copyWith(
         applicationDependencyBranches: updatedDependencyBranches,
       );
 
-      emit(state.copyWith(
-        applicationDeploy: updatedApplicationDeploy,
-        status: DeploymentDetailsStatus.success,
-      ));
+      emit(
+        state.copyWith(
+          applicationDeploy: updatedApplicationDeploy,
+          status: DeploymentDetailsStatus.success,
+        ),
+      );
     });
   }
 
@@ -83,25 +90,33 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     await _executeWithErrorHandling(() async {
       final branches = await getCallkeepBranchesUsecase.execute();
 
-      final updatedDependencyBranches = state.applicationDeploy.applicationDependencyBranches.copyWith(
-        callkeepBranches: branches,
-      );
+      final updatedDependencyBranches = state
+          .applicationDeploy
+          .applicationDependencyBranches
+          .copyWith(callkeepBranches: branches);
       final updatedApplicationDeploy = state.applicationDeploy.copyWith(
         applicationDependencyBranches: updatedDependencyBranches,
       );
 
-      emit(state.copyWith(
-        applicationDeploy: updatedApplicationDeploy,
-        status: DeploymentDetailsStatus.success,
-      ));
+      emit(
+        state.copyWith(
+          applicationDeploy: updatedApplicationDeploy,
+          status: DeploymentDetailsStatus.success,
+        ),
+      );
     });
   }
 
   Future<void> updateBuildName(BuildPlatform platform, VersionPart part) async {
     try {
-      emit(state.copyWith.buildVersionProgress(
-        progressNameUpdating: [...state.buildVersionProgress.progressNameUpdating, platform],
-      ));
+      emit(
+        state.copyWith.buildVersionProgress(
+          progressNameUpdating: [
+            ...state.buildVersionProgress.progressNameUpdating,
+            platform,
+          ],
+        ),
+      );
 
       final version = await updateBuildNameUseCase.execute(
         application: state.application!,
@@ -109,58 +124,91 @@ class DeploymentCubit extends Cubit<DeploymentState> {
         part: part,
       );
 
-      emit(state.copyWith(
-        application: state.application?.copyWith(
-          androidVersion: platform == BuildPlatform.android ? version : state.application?.androidVersion,
-          iosVersion: platform == BuildPlatform.ios ? version : state.application?.iosVersion,
+      emit(
+        state.copyWith(
+          application: state.application?.copyWith(
+            androidVersion: platform == BuildPlatform.android
+                ? version
+                : state.application?.androidVersion,
+            iosVersion: platform == BuildPlatform.ios
+                ? version
+                : state.application?.iosVersion,
+          ),
+          buildVersionProgress: state.buildVersionProgress.copyWith(
+            progressNameUpdating: state
+                .buildVersionProgress
+                .progressNameUpdating
+                .where((it) => it != platform)
+                .toList(),
+          ),
         ),
-        buildVersionProgress: state.buildVersionProgress.copyWith(
-          progressNameUpdating:
-              state.buildVersionProgress.progressNameUpdating.where((it) => it != platform).toList(),
-        ),
-      ));
+      );
     } catch (e) {
-      emit(state.copyWith(
-        error: e,
-        status: DeploymentDetailsStatus.error,
-        buildVersionProgress: state.buildVersionProgress.copyWith(
-          progressNameUpdating:
-              state.buildVersionProgress.progressNameUpdating.where((it) => it != platform).toList(),
+      emit(
+        state.copyWith(
+          error: e,
+          status: DeploymentDetailsStatus.error,
+          buildVersionProgress: state.buildVersionProgress.copyWith(
+            progressNameUpdating: state
+                .buildVersionProgress
+                .progressNameUpdating
+                .where((it) => it != platform)
+                .toList(),
+          ),
         ),
-      ));
+      );
     }
   }
 
   Future<void> updateBuildNumber(BuildPlatform platform) async {
     try {
-      emit(state.copyWith.buildVersionProgress(
-        progressNumberUpdating: [...state.buildVersionProgress.progressNumberUpdating, platform],
-      ));
+      emit(
+        state.copyWith.buildVersionProgress(
+          progressNumberUpdating: [
+            ...state.buildVersionProgress.progressNumberUpdating,
+            platform,
+          ],
+        ),
+      );
 
       final version = await updateBuildNumberUseCase.execute(
         application: state.application!,
         platform: platform,
       );
 
-      emit(state.copyWith(
-        application: state.application?.copyWith(
-          androidVersion: platform == BuildPlatform.android ? version : state.application?.androidVersion,
-          iosVersion: platform == BuildPlatform.ios ? version : state.application?.iosVersion,
+      emit(
+        state.copyWith(
+          application: state.application?.copyWith(
+            androidVersion: platform == BuildPlatform.android
+                ? version
+                : state.application?.androidVersion,
+            iosVersion: platform == BuildPlatform.ios
+                ? version
+                : state.application?.iosVersion,
+          ),
+          buildVersionProgress: state.buildVersionProgress.copyWith(
+            progressNumberUpdating: state
+                .buildVersionProgress
+                .progressNumberUpdating
+                .where((it) => it != platform)
+                .toList(),
+          ),
         ),
-        buildVersionProgress: state.buildVersionProgress.copyWith(
-          progressNumberUpdating:
-              state.buildVersionProgress.progressNumberUpdating.where((it) => it != platform).toList(),
-        ),
-      ));
+      );
     } catch (e) {
-      emit(state.copyWith(
-        error: e,
-        status: DeploymentDetailsStatus.error,
-        buildVersionProgress: state.buildVersionProgress.copyWith(
-          progressNumberUpdating:
-              state.buildVersionProgress.progressNumberUpdating.where((it) => it != platform).toList(),
+      emit(
+        state.copyWith(
+          error: e,
+          status: DeploymentDetailsStatus.error,
+          buildVersionProgress: state.buildVersionProgress.copyWith(
+            progressNumberUpdating: state
+                .buildVersionProgress
+                .progressNumberUpdating
+                .where((it) => it != platform)
+                .toList(),
+          ),
         ),
-      ));
+      );
     }
   }
 
@@ -173,7 +221,9 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     emitRollback(state.copyWith(status: DeploymentDetailsStatus.deployConfirm));
   }
 
-  Future<void> _executeWithErrorHandling(Future<void> Function() operation) async {
+  Future<void> _executeWithErrorHandling(
+    Future<void> Function() operation,
+  ) async {
     try {
       emit(state.copyWith(status: DeploymentDetailsStatus.progress));
       await operation();
@@ -192,9 +242,13 @@ class DeploymentCubit extends Cubit<DeploymentState> {
 
       await _getApplication(force: true);
 
-      emitRollback(state.copyWith(status: DeploymentDetailsStatus.deploySuccess));
+      emitRollback(
+        state.copyWith(status: DeploymentDetailsStatus.deploySuccess),
+      );
     } catch (e) {
-      emitRollback(state.copyWith(error: e, status: DeploymentDetailsStatus.error));
+      emitRollback(
+        state.copyWith(error: e, status: DeploymentDetailsStatus.error),
+      );
     }
   }
 }

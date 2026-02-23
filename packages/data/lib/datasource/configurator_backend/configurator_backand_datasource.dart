@@ -63,7 +63,9 @@ class ConfiguratorBackandDatasource {
   ///
   /// Returns an [AuthResponseDTO] containing the registration response.
   Future<AuthResponseDTO> register(LoginCredentials login) async {
-    final response = await _client.post<Map<String, dynamic>>(AuthConfiguratorBackandAPI.register);
+    final response = await _client.post<Map<String, dynamic>>(
+      AuthConfiguratorBackandAPI.register,
+    );
     final responseData = Map<String, dynamic>.of(response.data!);
     return AuthResponseDTO.fromJson(responseData);
   }
@@ -76,13 +78,17 @@ class ConfiguratorBackandDatasource {
       ApplicationConfiguratorBackandAPI.applications,
     );
     final responseData = List.of(response.data?.toList() ?? []);
-    return responseData.map((it) => ApplicationDTO.fromJson(it as Map<String, dynamic>)).toList();
+    return responseData
+        .map((it) => ApplicationDTO.fromJson(it as Map<String, dynamic>))
+        .toList();
   }
 
   /// Creates a new application with the given [applicationDTO] data.
   ///
   /// Returns the created [ApplicationDTO].
-  Future<ApplicationDTO> createApplications(ApplicationDTO applicationDTO) async {
+  Future<ApplicationDTO> createApplications(
+    ApplicationDTO applicationDTO,
+  ) async {
     final response = await _client.post<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.applications,
       data: applicationDTO.toJson(),
@@ -93,7 +99,10 @@ class ConfiguratorBackandDatasource {
   /// Updates an application with the given [applicationId] and [application] data.
   ///
   /// Returns the updated [ApplicationDTO].
-  Future<ApplicationDTO> putApplication(String applicationId, ApplicationDTO application) async {
+  Future<ApplicationDTO> putApplication(
+    String applicationId,
+    ApplicationDTO application,
+  ) async {
     final response = await _client.put<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.application(applicationId),
       data: application.toJson(),
@@ -136,7 +145,9 @@ class ConfiguratorBackandDatasource {
   /// Retrieves the environment of an application with the given [applicationId].
   ///
   /// Returns a map containing the environment data.
-  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
+  Future<Map<String, dynamic>> getApplicationEnvironment(
+    String applicationId,
+  ) async {
     final response = await _client.get<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.applicationEnvironment(applicationId),
     );
@@ -164,7 +175,10 @@ class ConfiguratorBackandDatasource {
     final response = await _client.get<List<dynamic>>(
       ThemeConfiguratorBackandAPI.applicationThemes(applicationId),
     );
-    return (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
+    return (response.data!)
+        .cast<Map<String, dynamic>>()
+        .map(ThemeDTO.fromJson)
+        .toList();
   }
 
   /// Returns a list of [ThemeDTO] objects.
@@ -173,7 +187,10 @@ class ConfiguratorBackandDatasource {
       final response = await _client.get<List<dynamic>>(
         ThemeConfiguratorBackandAPI.allThemes(),
       );
-      final re = (response.data!).cast<Map<String, dynamic>>().map(ThemeDTO.fromJson).toList();
+      final re = (response.data!)
+          .cast<Map<String, dynamic>>()
+          .map(ThemeDTO.fromJson)
+          .toList();
       return re;
     } catch (e) {
       throw BaseException(message: e.toString());
@@ -183,7 +200,10 @@ class ConfiguratorBackandDatasource {
   /// Creates a new theme for the given [applicationId] with the given [themeDTO] data.
   ///
   /// Returns the created [ThemeDTO].
-  Future<ThemeDTO> createTheme(String applicationId, CreateThemeDTO themeDTO) async {
+  Future<ThemeDTO> createTheme(
+    String applicationId,
+    CreateThemeDTO themeDTO,
+  ) async {
     final response = await _client.post<Map<String, dynamic>>(
       ThemeConfiguratorBackandAPI.applicationThemes(applicationId),
       data: themeDTO.toJson(),
@@ -230,7 +250,10 @@ class ConfiguratorBackandDatasource {
   }
 
   /// Resolve themeId for a given env ('dev' | 'stage' | 'prod'), server returns { "themeId": "..." }.
-  Future<String> resolveThemeIdForBuild(String applicationId, {String env = 'prod'}) async {
+  Future<String> resolveThemeIdForBuild(
+    String applicationId, {
+    String env = 'prod',
+  }) async {
     final resp = await _client.get<Map<String, dynamic>>(
       ApplicationConfiguratorBackandAPI.resolveTheme(applicationId),
       queryParameters: {'env': env},
@@ -238,7 +261,10 @@ class ConfiguratorBackandDatasource {
     final json = resp.data ?? const <String, dynamic>{};
     final themeId = json['themeId'] as String?;
     if (themeId == null || themeId.isEmpty) {
-      throw BaseException(message: 'resolveThemeIdForBuild: themeId is missing in server response');
+      throw BaseException(
+        message:
+            'resolveThemeIdForBuild: themeId is missing in server response',
+      );
     }
     return themeId;
   }
@@ -286,22 +312,31 @@ class ConfiguratorBackandDatasource {
       TranslationConfiguratorBackandAPI.translations,
     );
     final responseData = List.of(response.data?.toList() ?? []);
-    return responseData.map((it) => TranslationHttpModel.fromJson(it as Map<String, dynamic>)).toList();
+    return responseData
+        .map((it) => TranslationHttpModel.fromJson(it as Map<String, dynamic>))
+        .toList();
   }
 
   /// Retrieves a list of translation overrides for the given [applicationId].
   ///
   /// Returns a list of [TranslationHttpModel] objects.
-  Future<List<TranslationHttpModel>> getTranslationOverrides(String applicationId) async {
+  Future<List<TranslationHttpModel>> getTranslationOverrides(
+    String applicationId,
+  ) async {
     final response = await _client.get<List<dynamic>>(
       TranslationConfiguratorBackandAPI.translationOverrides(applicationId),
     );
     final responseData = List.of(response.data?.toList() ?? []);
-    return responseData.map((it) => TranslationHttpModel.fromJson(it as Map<String, dynamic>)).toList();
+    return responseData
+        .map((it) => TranslationHttpModel.fromJson(it as Map<String, dynamic>))
+        .toList();
   }
 
   /// Sets a translation override for the given [applicationId] with the given [translation] data.
-  Future<void> setTranslationOverride(String applicationId, TranslationHttpModel translation) async {
+  Future<void> setTranslationOverride(
+    String applicationId,
+    TranslationHttpModel translation,
+  ) async {
     await _client.post<void>(
       TranslationConfiguratorBackandAPI.translationOverrides(applicationId),
       data: translation.toJson(),
@@ -310,7 +345,10 @@ class ConfiguratorBackandDatasource {
   }
 
   /// Deletes a translation override for the given [applicationId] with the given [translation] data.
-  Future<void> deleteTranslationOverride(String applicationId, TranslationHttpModel translation) async {
+  Future<void> deleteTranslationOverride(
+    String applicationId,
+    TranslationHttpModel translation,
+  ) async {
     await _client.delete<void>(
       TranslationConfiguratorBackandAPI.translationOverrides(applicationId),
       data: translation.toJson(),
@@ -326,7 +364,9 @@ class ConfiguratorBackandDatasource {
       DeployConfiguratorBackandAPI.phoneBranched,
     );
     final responseData = List.of(response.data?.toList() ?? []);
-    return responseData.map((it) => PhoneBranchDto.fromJson(it as Map<String, dynamic>)).toList();
+    return responseData
+        .map((it) => PhoneBranchDto.fromJson(it as Map<String, dynamic>))
+        .toList();
   }
 
   /// Retrieves a list of callkeep branches.
@@ -337,7 +377,9 @@ class ConfiguratorBackandDatasource {
       DeployConfiguratorBackandAPI.callkeepBranches,
     );
     final responseData = List.of(response.data?.toList() ?? []);
-    return responseData.map((it) => CallkeepBranchDto.fromJson(it as Map<String, dynamic>)).toList();
+    return responseData
+        .map((it) => CallkeepBranchDto.fromJson(it as Map<String, dynamic>))
+        .toList();
   }
 
   /// Retrieves the app version for the given [branch].
@@ -356,14 +398,14 @@ class ConfiguratorBackandDatasource {
       // Construct the full URL with query parameters
       final response = await _client.get<Map<String, dynamic>>(
         DeployConfiguratorBackandAPI.getAppVersionByBranch,
-        queryParameters: {
-          'branch': branch,
-        },
+        queryParameters: {'branch': branch},
       );
 
       // Check if the response contains the expected data
       if (response.data == null || !response.data!.containsKey('app_version')) {
-        throw Exception('app_version not found in the response for branch: $branch');
+        throw Exception(
+          'app_version not found in the response for branch: $branch',
+        );
       }
 
       // Parse the response data into AppVersion DTO
@@ -375,7 +417,8 @@ class ConfiguratorBackandDatasource {
       if (dioError.response != null) {
         // Server responded with a non-2xx status code
         throw Exception(
-            'Failed to fetch app_version: ${dioError.response?.statusCode} ${dioError.response?.statusMessage}');
+          'Failed to fetch app_version: ${dioError.response?.statusCode} ${dioError.response?.statusMessage}',
+        );
       } else {
         // Something happened while setting up the request
         throw Exception('Failed to fetch app_version: ${dioError.message}');
@@ -386,7 +429,10 @@ class ConfiguratorBackandDatasource {
     }
   }
 
-  Future<AssetDTO> createAsset(String applicationId, CreateAssetDtoReq body) async {
+  Future<AssetDTO> createAsset(
+    String applicationId,
+    CreateAssetDtoReq body,
+  ) async {
     // ignore: parameter_assignments
     body = body.copyWith(applicationId: applicationId);
 
@@ -409,7 +455,10 @@ class ConfiguratorBackandDatasource {
         if (includeUrl && urlTtlSec != null) 'urlTtlSec': urlTtlSec,
       },
     );
-    return (res.data ?? const []).cast<Map<String, dynamic>>().map(AssetDTO.fromJson).toList();
+    return (res.data ?? const [])
+        .cast<Map<String, dynamic>>()
+        .map(AssetDTO.fromJson)
+        .toList();
   }
 
   Future<AssetDTO> getAsset(
@@ -428,7 +477,11 @@ class ConfiguratorBackandDatasource {
     return AssetDTO.fromJson(res.data!);
   }
 
-  Future<AssetDTO> updateAsset(String applicationId, String assetId, UpdateAssetDtoReq body) async {
+  Future<AssetDTO> updateAsset(
+    String applicationId,
+    String assetId,
+    UpdateAssetDtoReq body,
+  ) async {
     final res = await _client.patch<Map<String, dynamic>>(
       AssetConfiguratorBackandAPI.asset(applicationId, assetId),
       data: body.toJson(),
@@ -442,7 +495,11 @@ class ConfiguratorBackandDatasource {
     );
   }
 
-  Future<AssetDTO> linkAsset(String applicationId, String assetId, AssetLinkDto link) async {
+  Future<AssetDTO> linkAsset(
+    String applicationId,
+    String assetId,
+    AssetLinkDto link,
+  ) async {
     final res = await _client.post<Map<String, dynamic>>(
       AssetConfiguratorBackandAPI.link(applicationId, assetId),
       data: link.toJson(),
@@ -450,7 +507,11 @@ class ConfiguratorBackandDatasource {
     return AssetDTO.fromJson(res.data!);
   }
 
-  Future<AssetDTO> unlinkAsset(String applicationId, String assetId, AssetLinkDto link) async {
+  Future<AssetDTO> unlinkAsset(
+    String applicationId,
+    String assetId,
+    AssetLinkDto link,
+  ) async {
     final res = await _client.post<Map<String, dynamic>>(
       AssetConfiguratorBackandAPI.unlink(applicationId, assetId),
       data: link.toJson(),
@@ -458,7 +519,10 @@ class ConfiguratorBackandDatasource {
     return AssetDTO.fromJson(res.data!);
   }
 
-  Future<String> getAssetDownloadUrl(String applicationId, String assetId) async {
+  Future<String> getAssetDownloadUrl(
+    String applicationId,
+    String assetId,
+  ) async {
     final res = await _client.get<Map<String, dynamic>>(
       AssetConfiguratorBackandAPI.downloadUrl(applicationId, assetId),
     );
@@ -482,11 +546,7 @@ class ConfiguratorBackandDatasource {
     final res = await _client.post<Map<String, dynamic>>(
       AssetConfiguratorBackandAPI.upload(applicationId),
       data: formData,
-      options: Options(
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      ),
+      options: Options(headers: {'Content-Type': 'multipart/form-data'}),
     );
 
     return AssetDTO.fromJson(res.data!);
@@ -533,18 +593,19 @@ class ConfiguratorBackandDatasource {
     return EmbeddedResourceDto.fromJson(response.data!);
   }
 
-  Future<void> deleteEmbed(
-    String applicationId,
-    String id,
-  ) async {
+  Future<void> deleteEmbed(String applicationId, String id) async {
     await _client.delete<void>(
       EmbedConfiguratorBackandAPI.embed(applicationId, id),
     );
   }
 
   Future<List<PublicationResourceDto>> getAll(String applicationId) async {
-    final resp = await _client.get<List<dynamic>>(PublicationResourcesAPI.list(applicationId));
-    return (resp.data ?? []).map((e) => PublicationResourceDto.fromJson(e as Map<String, dynamic>)).toList();
+    final resp = await _client.get<List<dynamic>>(
+      PublicationResourcesAPI.list(applicationId),
+    );
+    return (resp.data ?? [])
+        .map((e) => PublicationResourceDto.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<PublicationResourceDto> create(
@@ -556,12 +617,7 @@ class ConfiguratorBackandDatasource {
   }) async {
     final resp = await _client.post<Map<String, dynamic>>(
       PublicationResourcesAPI.create(applicationId),
-      data: {
-        'title': title,
-        'url': url,
-        'note': note,
-        'text': text,
-      },
+      data: {'title': title, 'url': url, 'note': note, 'text': text},
     );
     return PublicationResourceDto.fromJson(resp.data!);
   }
@@ -575,12 +631,7 @@ class ConfiguratorBackandDatasource {
   }) async {
     final resp = await _client.patch<Map<String, dynamic>>(
       PublicationResourcesAPI.item(resourceId),
-      data: {
-        'title': title,
-        'url': url,
-        'note': note,
-        'text': text,
-      },
+      data: {'title': title, 'url': url, 'note': note, 'text': text},
     );
     return PublicationResourceDto.fromJson(resp.data!);
   }
@@ -596,7 +647,10 @@ class ConfiguratorBackandDatasource {
       FeatureAccessConfiguratorBackandAPI.list(applicationId),
     );
     final data = resp.data ?? const [];
-    return data.cast<Map<String, dynamic>>().map(FeatureAccessDto.fromJson).toList();
+    return data
+        .cast<Map<String, dynamic>>()
+        .map(FeatureAccessDto.fromJson)
+        .toList();
   }
 
   Future<FeatureAccessDto> getFeatureAccessByTheme({
@@ -609,7 +663,7 @@ class ConfiguratorBackandDatasource {
     return FeatureAccessDto.fromJson(resp.data!);
   }
 
-// idempotent upsert
+  // idempotent upsert
   Future<FeatureAccessDto> upsertFeatureAccessByTheme({
     required String applicationId,
     required String themeId,
@@ -643,7 +697,10 @@ class ConfiguratorBackandDatasource {
       ColorSchemeConfiguratorBackandAPI.list(applicationId, themeId),
     );
     final list = resp.data ?? const [];
-    return list.cast<Map<String, dynamic>>().map(ColorSchemeDto.fromJson).toList();
+    return list
+        .cast<Map<String, dynamic>>()
+        .map(ColorSchemeDto.fromJson)
+        .toList();
   }
 
   Future<ColorSchemeDto> getColorSchemeByVariant({
@@ -666,7 +723,10 @@ class ConfiguratorBackandDatasource {
       ColorSchemeConfiguratorBackandAPI.ensurePair(applicationId, themeId),
     );
     final list = resp.data ?? const [];
-    return list.cast<Map<String, dynamic>>().map(ColorSchemeDto.fromJson).toList();
+    return list
+        .cast<Map<String, dynamic>>()
+        .map(ColorSchemeDto.fromJson)
+        .toList();
   }
 
   /// upsert with partial deep-merge of `config` on server
@@ -677,10 +737,12 @@ class ConfiguratorBackandDatasource {
     Map<String, dynamic>? config, // only changed nodes
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
-      ColorSchemeConfiguratorBackandAPI.upsertVariant(applicationId, themeId, variant),
-      data: <String, dynamic>{
-        if (config != null) 'config': config,
-      },
+      ColorSchemeConfiguratorBackandAPI.upsertVariant(
+        applicationId,
+        themeId,
+        variant,
+      ),
+      data: <String, dynamic>{if (config != null) 'config': config},
     );
     return ColorSchemeDto.fromJson(resp.data!);
   }
@@ -693,7 +755,9 @@ class ConfiguratorBackandDatasource {
       WidgetConfiguratorBackendAPI.list(applicationId, themeId),
     );
     final data = resp.data ?? const [];
-    return data.map((e) => WidgetsConfigDto.fromJson(e as Map<String, dynamic>)).toList();
+    return data
+        .map((e) => WidgetsConfigDto.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<WidgetsConfigDto> getWidgetConfigByThemeVariant({
@@ -715,10 +779,12 @@ class ConfiguratorBackandDatasource {
     Map<String, dynamic>? config, // only changed nodes
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
-      WidgetConfiguratorBackendAPI.upsertVariant(applicationId, themeId, variant),
-      data: <String, dynamic>{
-        if (config != null) 'config': config,
-      },
+      WidgetConfiguratorBackendAPI.upsertVariant(
+        applicationId,
+        themeId,
+        variant,
+      ),
+      data: <String, dynamic>{if (config != null) 'config': config},
     );
     return WidgetsConfigDto.fromJson(resp.data!);
   }
@@ -794,9 +860,7 @@ class ConfiguratorBackandDatasource {
   }) async {
     final resp = await _client.get<Map<String, dynamic>>(
       SplashAssetConfiguratorBackendAPI.item(applicationId, themeId),
-      queryParameters: {
-        'includeUrl': true,
-      },
+      queryParameters: {'includeUrl': true},
     );
     return SplashAssetDto.fromJson(resp.data!);
   }
@@ -810,9 +874,15 @@ class ConfiguratorBackandDatasource {
     );
   }
 
-  Future<SplashConstraintsDefaultsDto> getSplashConstraintsDefaults(String applicationId, String themeId) async {
+  Future<SplashConstraintsDefaultsDto> getSplashConstraintsDefaults(
+    String applicationId,
+    String themeId,
+  ) async {
     final resp = await _client.get<Map<String, dynamic>>(
-      SplashAssetConfiguratorBackendAPI.constraintsDefaults(applicationId, themeId),
+      SplashAssetConfiguratorBackendAPI.constraintsDefaults(
+        applicationId,
+        themeId,
+      ),
     );
     return SplashConstraintsDefaultsDto.fromJson(resp.data!);
   }
@@ -831,11 +901,14 @@ class ConfiguratorBackandDatasource {
     final form = FormData();
     final dto = <String, dynamic>{
       if (mode != null) 'mode': mode,
-      if (foregroundAssetId != null || backgroundAssetId != null || backgroundColorHex != null)
+      if (foregroundAssetId != null ||
+          backgroundAssetId != null ||
+          backgroundColorHex != null)
         'source': <String, dynamic>{
           if (foregroundAssetId != null) 'foregroundAssetId': foregroundAssetId,
           if (backgroundAssetId != null) 'backgroundAssetId': backgroundAssetId,
-          if (backgroundColorHex != null) 'backgroundColorHex': backgroundColorHex,
+          if (backgroundColorHex != null)
+            'backgroundColorHex': backgroundColorHex,
         },
       if (fit != null || padding != null)
         'params': <String, dynamic>{
@@ -850,13 +923,22 @@ class ConfiguratorBackandDatasource {
     for (var i = 0; i < uploads.length; i++) {
       final u = uploads[i];
       final field = 'file$i';
-      final generatedFieldName = u.target.replaceAll(RegExp('[^a-zA-Z0-9]'), '_');
+      final generatedFieldName = u.target.replaceAll(
+        RegExp('[^a-zA-Z0-9]'),
+        '_',
+      );
       if (u.bytes.isEmpty) throw StateError('Upload is empty');
       targets[field] = u.target; // "splash"
-      form.files.add(MapEntry(
-        field,
-        MultipartFile.fromBytes(u.bytes, filename: generatedFieldName, contentType: MediaType.parse(u.mimeType)),
-      ));
+      form.files.add(
+        MapEntry(
+          field,
+          MultipartFile.fromBytes(
+            u.bytes,
+            filename: generatedFieldName,
+            contentType: MediaType.parse(u.mimeType),
+          ),
+        ),
+      );
     }
     form.fields.add(MapEntry('targets', jsonEncode(targets)));
     if (form.files.isEmpty) throw StateError('FormData.files is empty');
@@ -905,7 +987,10 @@ class ConfiguratorBackandDatasource {
     for (var i = 0; i < uploads.length; i++) {
       final u = uploads[i];
       final fieldName = 'file$i';
-      final generatedFieldName = u.target.replaceAll(RegExp('[^a-zA-Z0-9]'), '_');
+      final generatedFieldName = u.target.replaceAll(
+        RegExp('[^a-zA-Z0-9]'),
+        '_',
+      );
       targets[fieldName] = u.target;
 
       form.files.add(
@@ -941,7 +1026,10 @@ class ConfiguratorBackandDatasource {
 
   Future<ConstraintsDto> getLaunchConstraintsDefaults() async {
     final resp = await _client.get<Map<String, dynamic>>(
-      LaunchAssetsConfiguratorBackendAPI.constraintsDefaults('<ignored>', '<ignored>'),
+      LaunchAssetsConfiguratorBackendAPI.constraintsDefaults(
+        '<ignored>',
+        '<ignored>',
+      ),
     );
     return ConstraintsDto.fromJson(resp.data!);
   }
@@ -1018,7 +1106,10 @@ class ConfiguratorBackandDatasource {
       },
     );
     final data = resp.data ?? const [];
-    return data.cast<Map<String, dynamic>>().map(AssetsRendition.fromJson).toList();
+    return data
+        .cast<Map<String, dynamic>>()
+        .map(AssetsRendition.fromJson)
+        .toList();
   }
 
   /// Get single artifact (with optional signed URL)

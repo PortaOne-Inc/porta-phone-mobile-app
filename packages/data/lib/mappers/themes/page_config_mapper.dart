@@ -34,5 +34,6 @@ class PageConfigMapper extends CommonMapper<PageConfigModel, PageConfigDto> {
   }
 
   @override
-  List<PageConfigModel> convertListFrom(List<PageConfigDto> it) => it.map(convertFrom).toList();
+  List<PageConfigModel> convertListFrom(List<PageConfigDto> it) =>
+      it.map(convertFrom).toList();
 }

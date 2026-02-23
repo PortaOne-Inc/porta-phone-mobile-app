@@ -7,17 +7,11 @@ import 'package:data/mappers/mappers.dart';
 class AssetLinkMapper extends CommonMapper<AssetLink, AssetLinkDto> {
   @override
   AssetLinkDto convertTo(AssetLink it) {
-    return AssetLinkDto(
-      type: it.type,
-      id: it.id,
-    );
+    return AssetLinkDto(type: it.type, id: it.id);
   }
 
   @override
   AssetLink convertFrom(AssetLinkDto it) {
-    return AssetLink(
-      type: it.type,
-      id: it.id,
-    );
+    return AssetLink(type: it.type, id: it.id);
   }
 }

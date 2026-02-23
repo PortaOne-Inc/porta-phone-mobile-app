@@ -11,9 +11,7 @@ abstract class GetAuthStatusUsecase {
 
 @Injectable(as: GetAuthStatusUsecase)
 class GetAuthStatusUsecaseHandler extends GetAuthStatusUsecase {
-  GetAuthStatusUsecaseHandler({
-    required this.authRepository,
-  });
+  GetAuthStatusUsecaseHandler({required this.authRepository});
 
   final AuthRepository authRepository;
 

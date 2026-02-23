@@ -9,7 +9,8 @@ abstract class UpdateApplicationEnvironmentUsecase {
 }
 
 @Injectable(as: UpdateApplicationEnvironmentUsecase)
-class UpdateApplicationEnvironmentUsecaseImpl implements UpdateApplicationEnvironmentUsecase {
+class UpdateApplicationEnvironmentUsecaseImpl
+    implements UpdateApplicationEnvironmentUsecase {
   UpdateApplicationEnvironmentUsecaseImpl(this._applicationRepository);
 
   final ApplicationRepository _applicationRepository;
@@ -19,6 +20,9 @@ class UpdateApplicationEnvironmentUsecaseImpl implements UpdateApplicationEnviro
     required String applicationId,
     required Map<String, dynamic> environment,
   }) {
-    return _applicationRepository.updateApplicationEnvironment(applicationId, environment);
+    return _applicationRepository.updateApplicationEnvironment(
+      applicationId,
+      environment,
+    );
   }
 }

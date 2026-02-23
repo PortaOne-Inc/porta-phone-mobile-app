@@ -89,8 +89,9 @@ class EmbedPickerDialog extends StatefulWidget {
 }
 
 class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
-  late final Set<String> _selectedIds =
-      {...widget.initialSelectedIds}.intersection(widget.items.map((e) => e.id).whereType<String>().toSet());
+  late final Set<String> _selectedIds = {
+    ...widget.initialSelectedIds,
+  }.intersection(widget.items.map((e) => e.id).whereType<String>().toSet());
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +134,14 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: selected ? cs.primary : Theme.of(context).dividerColor,
+                          color: selected
+                              ? cs.primary
+                              : Theme.of(context).dividerColor,
                           width: selected ? 3 : 1,
                         ),
-                        color: selected ? cs.primary.withValues(alpha: 0.08) : Colors.transparent,
+                        color: selected
+                            ? cs.primary.withValues(alpha: 0.08)
+                            : Colors.transparent,
                       ),
                     ),
                   ),
@@ -155,9 +160,13 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
                         ),
                         const SizedBox(width: 6),
                         _IconCircleButton(
-                          tooltip: canOpen ? 'Open in browser' : 'Cannot open this scheme',
+                          tooltip: canOpen
+                              ? 'Open in browser'
+                              : 'Cannot open this scheme',
                           icon: Icons.open_in_new,
-                          onPressed: canOpen ? () => _openInBrowser(item.uri) : null,
+                          onPressed: canOpen
+                              ? () => _openInBrowser(item.uri)
+                              : null,
                         ),
                       ],
                     ),
@@ -200,10 +209,15 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
                     right: 0,
                     bottom: 0,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.45),
-                        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12)),
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(12),
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,14 +226,19 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
                             _displayLabelFromUri(item.uri),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: t.bodySmall?.copyWith(color: Colors.white, fontWeight: FontWeight.w600),
+                            style: t.bodySmall?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           if (item.uri.isNotEmpty)
                             Text(
                               item.uri,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: t.bodySmall?.copyWith(color: Colors.white70),
+                              style: t.bodySmall?.copyWith(
+                                color: Colors.white70,
+                              ),
                             ),
                         ],
                       ),
@@ -233,7 +252,9 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop<List<EmbeddedResourceModel>>(<EmbeddedResourceModel>[]),
+          onPressed: () => Navigator.of(
+            context,
+          ).pop<List<EmbeddedResourceModel>>(<EmbeddedResourceModel>[]),
           child: const Text('Cancel'),
         ),
         if (widget.multiSelect)
@@ -274,7 +295,10 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
       final key = e.id ?? e.uri;
       byId[key] = e;
     }
-    final selected = _selectedIds.map((id) => byId[id]).whereType<EmbeddedResourceModel>().toList(growable: false);
+    final selected = _selectedIds
+        .map((id) => byId[id])
+        .whereType<EmbeddedResourceModel>()
+        .toList(growable: false);
     Navigator.of(context).pop<List<EmbeddedResourceModel>>(selected);
   }
 
@@ -292,9 +316,9 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
   Future<void> _copyLink(String uri) async {
     await Clipboard.setData(ClipboardData(text: uri));
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Link copied')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Link copied')));
     }
   }
 
@@ -303,15 +327,15 @@ class _EmbedPickerDialogState extends State<EmbedPickerDialog> {
       final parsed = Uri.parse(uri);
       final ok = await launchUrl(parsed, mode: LaunchMode.externalApplication);
       if (!ok && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to open link')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Failed to open link')));
       }
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid link')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Invalid link')));
       }
     }
   }
@@ -357,7 +381,11 @@ class _IconCircleButton extends StatelessWidget {
           onTap: onPressed,
           child: Padding(
             padding: const EdgeInsets.all(6),
-            child: Icon(icon, size: 16, color: disabled ? cs.onSurfaceVariant : cs.onSurface),
+            child: Icon(
+              icon,
+              size: 16,
+              color: disabled ? cs.onSurfaceVariant : cs.onSurface,
+            ),
           ),
         ),
       ),
@@ -388,7 +416,11 @@ class _ResourceCardBackground extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       alignment: Alignment.center,
-      child: Icon(icon, size: 48, color: Theme.of(context).colorScheme.onSurfaceVariant),
+      child: Icon(
+        icon,
+        size: 48,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
     );
   }
 }
@@ -402,15 +434,27 @@ class _TypeChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final (bg, fg, label) = switch (type) {
-      EmbeddedResourceModelType.terms => (cs.secondaryContainer, cs.onSecondaryContainer, 'terms'),
-      EmbeddedResourceModelType.unknown => (cs.surfaceContainerHigh, cs.onSurfaceVariant, 'unknown'),
+      EmbeddedResourceModelType.terms => (
+        cs.secondaryContainer,
+        cs.onSecondaryContainer,
+        'terms',
+      ),
+      EmbeddedResourceModelType.unknown => (
+        cs.surfaceContainerHigh,
+        cs.onSurfaceVariant,
+        'unknown',
+      ),
     };
     return _LabeledBadge(label: label, background: bg, foreground: fg);
   }
 }
 
 class _Badge extends StatelessWidget {
-  const _Badge({required this.background, required this.foreground, required this.child});
+  const _Badge({
+    required this.background,
+    required this.foreground,
+    required this.child,
+  });
 
   final Color background;
   final Color foreground;
@@ -419,7 +463,10 @@ class _Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       child: IconTheme.merge(
         data: IconThemeData(size: 14, color: foreground),
@@ -430,7 +477,11 @@ class _Badge extends StatelessWidget {
 }
 
 class _LabeledBadge extends StatelessWidget {
-  const _LabeledBadge({required this.label, required this.background, required this.foreground});
+  const _LabeledBadge({
+    required this.label,
+    required this.background,
+    required this.foreground,
+  });
 
   final String label;
   final Color background;
@@ -440,11 +491,17 @@ class _LabeledBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return Container(
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(999),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Text(
         label,
-        style: t.labelSmall?.copyWith(color: foreground, fontWeight: FontWeight.w600),
+        style: t.labelSmall?.copyWith(
+          color: foreground,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

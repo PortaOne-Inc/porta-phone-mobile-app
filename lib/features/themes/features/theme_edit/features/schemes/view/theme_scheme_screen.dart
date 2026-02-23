@@ -9,9 +9,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
-  const ThemeSchemeScreen({
-    super.key,
-  });
+  const ThemeSchemeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,9 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             ConfiguratorGroupTitleTile(
               titleData: 'Application Runtime configuration',
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: const BoxDecoration(border: Border(bottom: borderSide)),
+              decoration: const BoxDecoration(
+                border: Border(bottom: borderSide),
+              ),
               trailing: Dropdown(
                 icon: Icon(
                   state.selectedVariant == BrightnessVariant.light
@@ -34,12 +34,11 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                       : Icons.dark_mode_outlined,
                 ),
                 constraints: const BoxConstraints(maxWidth: 124, minHeight: 80),
-                items: const [
-                  'Light mode',
-                  'Dark mode',
-                ],
+                items: const ['Light mode', 'Dark mode'],
                 onSelect: (int position) {
-                  final v = position == 0 ? BrightnessVariant.light : BrightnessVariant.dark;
+                  final v = position == 0
+                      ? BrightnessVariant.light
+                      : BrightnessVariant.dark;
                   context.read<UpdateThemCubit>().add(UpdateVariantEvent(v));
                 },
               ),
@@ -47,9 +46,12 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
             ListTile(
               leading: Icon(Icons.palette, color: colorScheme.primary),
               title: Text(context.l10n.configurator_color_template_title),
-              subtitle: const Text('Defines the material color scheme used for theming all UI components.'),
+              subtitle: const Text(
+                'Defines the material color scheme used for theming all UI components.',
+              ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.colorScheme.name),
+              onTap: () =>
+                  GoRouter.of(context).goNamed(SchemeRoute.colorScheme.name),
             ),
             ListTile(
               leading: Icon(Icons.settings_display, color: colorScheme.primary),
@@ -61,22 +63,30 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Adjust settings for custom and advanced widgets in the app.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.widgetConfiguration.name),
+              onTap: () => GoRouter.of(
+                context,
+              ).goNamed(SchemeRoute.widgetConfiguration.name),
             ),
             ListTile(
-              leading: Icon(Icons.screenshot_outlined, color: colorScheme.primary),
+              leading: Icon(
+                Icons.screenshot_outlined,
+                color: colorScheme.primary,
+              ),
               title: const Text(
                 'Pages style configuration',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              subtitle: const Text(
-                'Adjust settings for pages in the app.',
-              ),
+              subtitle: const Text('Adjust settings for pages in the app.'),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(SchemeRoute.pagesConfiguration.name),
+              onTap: () => GoRouter.of(
+                context,
+              ).goNamed(SchemeRoute.pagesConfiguration.name),
             ),
             ListTile(
-              leading: Icon(Icons.view_comfy_alt_rounded, color: colorScheme.primary),
+              leading: Icon(
+                Icons.view_comfy_alt_rounded,
+                color: colorScheme.primary,
+              ),
               title: const Text(
                 'Feature Access',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -85,13 +95,11 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Manage and configure features available in the current build.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(
-                SchemeRoute.appFeatureConfiguration.name,
-              ),
+              onTap: () => GoRouter.of(
+                context,
+              ).goNamed(SchemeRoute.appFeatureConfiguration.name),
             ),
-            const ConfiguratorGroupTitleTile(
-              titleData: 'Static Data',
-            ),
+            const ConfiguratorGroupTitleTile(titleData: 'Static Data'),
             // ListTile(
             //   leading: Icon(Icons.file_present_rounded, color: colorScheme.primary),
             //   title: const Text(
@@ -116,13 +124,15 @@ class ThemeSchemeScreen extends StatelessWidget with MixinMessages {
                 'Configure and prepare resources for app launch icons.',
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => GoRouter.of(context).goNamed(
-                SchemeRoute.launchScheme.name,
-                extra: state.theme,
-              ),
+              onTap: () => GoRouter.of(
+                context,
+              ).goNamed(SchemeRoute.launchScheme.name, extra: state.theme),
             ),
             ListTile(
-              leading: Icon(Icons.rocket_launch_outlined, color: colorScheme.primary),
+              leading: Icon(
+                Icons.rocket_launch_outlined,
+                color: colorScheme.primary,
+              ),
               title: const Text(
                 'Splash Screen',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),

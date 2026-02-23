@@ -6,9 +6,11 @@ part 'asset_dto.g.dart';
 
 @freezed
 sealed class AssetLinkDto with _$AssetLinkDto {
-  const factory AssetLinkDto({required String type, required String id}) = _AssetLinkDto;
+  const factory AssetLinkDto({required String type, required String id}) =
+      _AssetLinkDto;
 
-  factory AssetLinkDto.fromJson(Map<String, dynamic> json) => _$AssetLinkDtoFromJson(json);
+  factory AssetLinkDto.fromJson(Map<String, dynamic> json) =>
+      _$AssetLinkDtoFromJson(json);
 }
 
 @Freezed(makeCollectionsUnmodifiable: false, toJson: true)
@@ -31,5 +33,6 @@ sealed class AssetDTO with _$AssetDTO {
 
   const AssetDTO._();
 
-  factory AssetDTO.fromJson(Map<String, Object?> json) => _$AssetDTOFromJson(json);
+  factory AssetDTO.fromJson(Map<String, Object?> json) =>
+      _$AssetDTOFromJson(json);
 }

@@ -13,9 +13,21 @@ class AlignmentControl extends StatelessWidget {
   final ValueChanged<AlignmentConfig> onChanged;
 
   static const _alignments = <List<AlignmentConfig>>[
-    [AlignmentConfig.topLeft, AlignmentConfig.topCenter, AlignmentConfig.topRight],
-    [AlignmentConfig.centerLeft, AlignmentConfig.center, AlignmentConfig.centerRight],
-    [AlignmentConfig.bottomLeft, AlignmentConfig.bottomCenter, AlignmentConfig.bottomRight],
+    [
+      AlignmentConfig.topLeft,
+      AlignmentConfig.topCenter,
+      AlignmentConfig.topRight,
+    ],
+    [
+      AlignmentConfig.centerLeft,
+      AlignmentConfig.center,
+      AlignmentConfig.centerRight,
+    ],
+    [
+      AlignmentConfig.bottomLeft,
+      AlignmentConfig.bottomCenter,
+      AlignmentConfig.bottomRight,
+    ],
   ];
 
   @override
@@ -45,13 +57,17 @@ class AlignmentControl extends StatelessWidget {
                   height: 30,
                   margin: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    color: isSelected ? colorScheme.primary : Colors.transparent,
+                    color: isSelected
+                        ? colorScheme.primary
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Icon(
                     Icons.circle,
                     size: 6,
-                    color: isSelected ? colorScheme.onPrimary : theme.disabledColor,
+                    color: isSelected
+                        ? colorScheme.onPrimary
+                        : theme.disabledColor,
                   ),
                 ),
               );

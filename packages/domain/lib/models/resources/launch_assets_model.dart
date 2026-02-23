@@ -8,9 +8,11 @@ part 'launch_assets_model.g.dart';
 
 @freezed
 sealed class FitPaddingModel with _$FitPaddingModel {
-  const factory FitPaddingModel({FitModel? fit, double? paddingDp}) = _FitPaddingModel;
+  const factory FitPaddingModel({FitModel? fit, double? paddingDp}) =
+      _FitPaddingModel;
 
-  factory FitPaddingModel.fromJson(Map<String, dynamic> json) => _$FitPaddingModelFromJson(json);
+  factory FitPaddingModel.fromJson(Map<String, dynamic> json) =>
+      _$FitPaddingModelFromJson(json);
 }
 
 @freezed
@@ -22,15 +24,20 @@ sealed class PlatformParamsModel with _$PlatformParamsModel {
     FitPaddingModel? web,
   }) = _PlatformParamsModel;
 
-  factory PlatformParamsModel.fromJson(Map<String, dynamic> json) => _$PlatformParamsModelFromJson(json);
+  factory PlatformParamsModel.fromJson(Map<String, dynamic> json) =>
+      _$PlatformParamsModelFromJson(json);
 }
 
 @freezed
 sealed class SourceConfigModel with _$SourceConfigModel {
-  const factory SourceConfigModel({String? foregroundAssetId, String? backgroundAssetId, String? backgroundColorHex}) =
-      _SourceConfigModel;
+  const factory SourceConfigModel({
+    String? foregroundAssetId,
+    String? backgroundAssetId,
+    String? backgroundColorHex,
+  }) = _SourceConfigModel;
 
-  factory SourceConfigModel.fromJson(Map<String, dynamic> json) => _$SourceConfigModelFromJson(json);
+  factory SourceConfigModel.fromJson(Map<String, dynamic> json) =>
+      _$SourceConfigModelFromJson(json);
 }
 
 @freezed
@@ -43,7 +50,8 @@ sealed class OutputArtifactsModel with _$OutputArtifactsModel {
     String? webArtifactId,
   }) = _OutputArtifactsModel;
 
-  factory OutputArtifactsModel.fromJson(Map<String, dynamic> json) => _$OutputArtifactsModelFromJson(json);
+  factory OutputArtifactsModel.fromJson(Map<String, dynamic> json) =>
+      _$OutputArtifactsModelFromJson(json);
 }
 
 @freezed
@@ -59,14 +67,20 @@ sealed class LaunchAssetsModel with _$LaunchAssetsModel {
     OutputArtifactsModel? outputsArtifacts,
   }) = _LaunchAssetsModel;
 
-  factory LaunchAssetsModel.fromJson(Map<String, dynamic> json) => _$LaunchAssetsModelFromJson(json);
+  factory LaunchAssetsModel.fromJson(Map<String, dynamic> json) =>
+      _$LaunchAssetsModelFromJson(json);
 }
 
 @freezed
 sealed class ValidationSlice with _$ValidationSlice {
-  const factory ValidationSlice({required bool compliant, required double deltaDp, String? message}) = _ValidationSlice;
+  const factory ValidationSlice({
+    required bool compliant,
+    required double deltaDp,
+    String? message,
+  }) = _ValidationSlice;
 
-  factory ValidationSlice.fromJson(Map<String, dynamic> json) => _$ValidationSliceFromJson(json);
+  factory ValidationSlice.fromJson(Map<String, dynamic> json) =>
+      _$ValidationSliceFromJson(json);
 }
 
 @freezed
@@ -78,7 +92,8 @@ sealed class ValidationReport with _$ValidationReport {
     ValidationSlice? web,
   }) = _ValidationReport;
 
-  factory ValidationReport.fromJson(Map<String, dynamic> json) => _$ValidationReportFromJson(json);
+  factory ValidationReport.fromJson(Map<String, dynamic> json) =>
+      _$ValidationReportFromJson(json);
 }
 
 @freezed
@@ -89,5 +104,6 @@ sealed class LaunchAssetsEnvelope with _$LaunchAssetsEnvelope {
     ValidationReport? validation,
   }) = _LaunchAssetsEnvelope;
 
-  factory LaunchAssetsEnvelope.fromJson(Map<String, dynamic> json) => _$LaunchAssetsEnvelopeFromJson(json);
+  factory LaunchAssetsEnvelope.fromJson(Map<String, dynamic> json) =>
+      _$LaunchAssetsEnvelopeFromJson(json);
 }

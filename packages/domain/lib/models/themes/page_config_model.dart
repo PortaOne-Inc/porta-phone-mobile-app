@@ -18,5 +18,6 @@ sealed class PageConfigModel with _$PageConfigModel {
     String? updatedAt,
   }) = _PageConfigModel;
 
-  factory PageConfigModel.fromJson(Map<String, dynamic> json) => _$PageConfigModelFromJson(json);
+  factory PageConfigModel.fromJson(Map<String, dynamic> json) =>
+      _$PageConfigModelFromJson(json);
 }

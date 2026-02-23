@@ -65,10 +65,18 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
 
     final borderSideColor = theme.colorScheme.primary.withValues(alpha: .10);
     final decoration = InputDecoration(
-      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      disabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
-      border: UnderlineInputBorder(borderSide: BorderSide(color: borderSideColor)),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      disabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: borderSideColor),
+      ),
     );
 
     return Form(
@@ -81,10 +89,14 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
             child: DropdownButtonFormField<String>(
               decoration: decoration.copyWith(
                 label: Text(
-                  context.l10n.feature_application_details_PlayStoreConfigForm_track_label,
+                  context
+                      .l10n
+                      .feature_application_details_PlayStoreConfigForm_track_label,
                 ),
               ),
-              initialValue: widget.availableTrack.contains(_track) ? _track : null,
+              initialValue: widget.availableTrack.contains(_track)
+                  ? _track
+                  : null,
               onChanged: (newValue) {
                 if (_formKey!.currentState!.validate()) {
                   _track = newValue!;
@@ -92,7 +104,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                   setState(() {});
                 }
               },
-              items: widget.availableTrack.map<DropdownMenuItem<String>>((String value) {
+              items: widget.availableTrack.map<DropdownMenuItem<String>>((
+                String value,
+              ) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -105,10 +119,14 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
             child: DropdownButtonFormField<String>(
               decoration: decoration.copyWith(
                 label: Text(
-                  context.l10n.feature_application_details_PlayStoreConfigForm_status_label,
+                  context
+                      .l10n
+                      .feature_application_details_PlayStoreConfigForm_status_label,
                 ),
               ),
-              initialValue: widget.availableStatuses.contains(_status) ? _status : null,
+              initialValue: widget.availableStatuses.contains(_status)
+                  ? _status
+                  : null,
               onChanged: (newValue) {
                 if (_formKey!.currentState!.validate()) {
                   _status = newValue!;
@@ -116,7 +134,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                   setState(() {});
                 }
               },
-              items: widget.availableStatuses.map<DropdownMenuItem<String>>((String value) {
+              items: widget.availableStatuses.map<DropdownMenuItem<String>>((
+                String value,
+              ) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -129,7 +149,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
             child: TextFormField(
               decoration: decoration.copyWith(
                 label: Text(
-                  context.l10n.feature_application_details_PlayStoreConfigForm_update_priority_label,
+                  context
+                      .l10n
+                      .feature_application_details_PlayStoreConfigForm_update_priority_label,
                 ),
               ),
               keyboardType: TextInputType.number,
@@ -137,7 +159,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
               validator: (value) {
                 final priority = int.tryParse(value!);
                 if (priority == null || priority < 0 || priority > 5) {
-                  return context.l10n.feature_application_details_PlayStoreConfigForm_update_priority_validator;
+                  return context
+                      .l10n
+                      .feature_application_details_PlayStoreConfigForm_update_priority_validator;
                 }
                 return null;
               },
@@ -160,7 +184,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                 enabled: widget.userFractionAvailability,
                 decoration: decoration.copyWith(
                   label: Text(
-                    context.l10n.feature_application_details_PlayStoreConfigForm_user_fraction_label,
+                    context
+                        .l10n
+                        .feature_application_details_PlayStoreConfigForm_user_fraction_label,
                   ),
                 ),
                 keyboardType: TextInputType.number,
@@ -168,7 +194,9 @@ class _PlayStoreConfigFormState extends State<PlayStoreConfigForm> {
                 validator: (value) {
                   final fraction = double.tryParse(value!);
                   if (fraction == null || fraction < 0.0 || fraction > 1.0) {
-                    return context.l10n.feature_application_details_PlayStoreConfigForm_user_fraction_validator;
+                    return context
+                        .l10n
+                        .feature_application_details_PlayStoreConfigForm_user_fraction_validator;
                   }
                   return null;
                 },

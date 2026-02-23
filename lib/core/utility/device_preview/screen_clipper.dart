@@ -10,11 +10,9 @@ class ScreenClipper extends CustomClipper<Path> {
     final bounds = screenPath.getBounds();
     final matrix = Matrix4.identity()
       ..translateByVector3(Vector3(-bounds.left / 2, -bounds.top / 2, 0))
-      ..scaleByVector3(Vector3(
-        size.width / bounds.width,
-        size.height / bounds.height,
-        1,
-      ));
+      ..scaleByVector3(
+        Vector3(size.width / bounds.width, size.height / bounds.height, 1),
+      );
     return screenPath.transform(matrix.storage);
   }
 

@@ -11,5 +11,6 @@ sealed class AssetLink with _$AssetLink {
     required String id,
   }) = _AssetLink;
 
-  factory AssetLink.fromJson(Map<String, dynamic> json) => _$AssetLinkFromJson(json);
+  factory AssetLink.fromJson(Map<String, dynamic> json) =>
+      _$AssetLinkFromJson(json);
 }

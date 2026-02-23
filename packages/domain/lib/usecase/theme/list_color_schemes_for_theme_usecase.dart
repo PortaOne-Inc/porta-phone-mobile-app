@@ -11,7 +11,8 @@ abstract class ListColorSchemesForThemeUsecase {
 }
 
 @LazySingleton(as: ListColorSchemesForThemeUsecase)
-class ListColorSchemesForThemeUsecaseImpl implements ListColorSchemesForThemeUsecase {
+class ListColorSchemesForThemeUsecaseImpl
+    implements ListColorSchemesForThemeUsecase {
   ListColorSchemesForThemeUsecaseImpl(this._repo);
 
   final ColorSchemeRepository _repo;

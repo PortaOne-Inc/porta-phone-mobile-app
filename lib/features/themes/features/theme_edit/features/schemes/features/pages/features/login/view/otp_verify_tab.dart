@@ -18,11 +18,11 @@ class OtpVerifyTab extends StatelessWidget {
         VerifyCountdownSection(
           title: 'OTP Sign-in Verify',
           description:
-          'Controls countdown before the "Repeat" button becomes active again on OTP sign-in verification screen. 0 = disabled.',
+              'Controls countdown before the "Repeat" button becomes active again on OTP sign-in verification screen. 0 = disabled.',
           value: config.otpSigninVerify.countdownRepeatIntervalSeconds,
-          onChanged: (seconds) => context
-              .read<UpdateThemCubit>()
-              .add(ThemePageEvent.setLoginOtpSigninVerifyCountdown(seconds)),
+          onChanged: (seconds) => context.read<UpdateThemCubit>().add(
+            ThemePageEvent.setLoginOtpSigninVerifyCountdown(seconds),
+          ),
         ),
       ],
     );

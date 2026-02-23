@@ -14,9 +14,7 @@ abstract class GetCallkeepBranchesUsecase {
 
 @LazySingleton(as: GetCallkeepBranchesUsecase)
 class GetCallkeepBranchesUsecaseImpl extends GetCallkeepBranchesUsecase {
-  GetCallkeepBranchesUsecaseImpl({
-    required this.deploymentRepository,
-  });
+  GetCallkeepBranchesUsecaseImpl({required this.deploymentRepository});
 
   final DeploymentRepository deploymentRepository;
 
@@ -29,8 +27,12 @@ class GetCallkeepBranchesUsecaseImpl extends GetCallkeepBranchesUsecase {
         final aIndex = CallkeepBranchType.values.indexOf(a.type);
         final bIndex = CallkeepBranchType.values.indexOf(b.type);
 
-        final effectiveAIndex = aIndex != -1 ? aIndex : CallkeepBranchType.values.length;
-        final effectiveBIndex = bIndex != -1 ? bIndex : CallkeepBranchType.values.length;
+        final effectiveAIndex = aIndex != -1
+            ? aIndex
+            : CallkeepBranchType.values.length;
+        final effectiveBIndex = bIndex != -1
+            ? bIndex
+            : CallkeepBranchType.values.length;
 
         return effectiveAIndex.compareTo(effectiveBIndex);
       });

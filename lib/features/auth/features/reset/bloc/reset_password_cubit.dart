@@ -11,29 +11,20 @@ part 'reset_password_state.dart';
 part 'reset_password_cubit.freezed.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
-  ResetPasswordCubit({
-    required this.resetAuthPassword,
-  }) : super(ResetPasswordState());
+  ResetPasswordCubit({required this.resetAuthPassword})
+    : super(ResetPasswordState());
 
   final ResetAuthPasswordUsecase resetAuthPassword;
 
   void authEmailChanged(String email) {
-    emit(
-      state.copyWithValidate(
-        emailInput: AuthEmailInput.dirty(email),
-      ),
-    );
+    emit(state.copyWithValidate(emailInput: AuthEmailInput.dirty(email)));
   }
 
   void validateAndTryLogin() {
     if (_isValidFields()) {
       _tryToReset();
     } else {
-      emit(
-        state.copyWith(
-          emailInput: state.emailInput?.toDirty(),
-        ),
-      );
+      emit(state.copyWith(emailInput: state.emailInput?.toDirty()));
     }
   }
 
@@ -55,7 +46,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     } on AuthWrongPasswordException catch (_) {
       emit(state.copyWithError(failure: AuthException.wrongPassword()));
     } on BaseException catch (e) {
-      emit(state.copyWithError(failure: AuthException.another(message: e.message)));
+      emit(
+        state.copyWithError(failure: AuthException.another(message: e.message)),
+      );
     }
   }
 

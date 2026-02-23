@@ -28,7 +28,8 @@ class AuthReLoginShell extends StatefulWidget {
   State<AuthReLoginShell> createState() => _AuthReLoginShellState();
 }
 
-class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages {
+class _AuthReLoginShellState extends State<AuthReLoginShell>
+    with MixinMessages {
   @override
   void initState() {
     super.initState();

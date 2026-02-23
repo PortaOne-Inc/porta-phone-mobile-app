@@ -17,5 +17,6 @@ sealed class PublicationResourceModel with _$PublicationResourceModel {
     String? text,
   }) = _PublicationResourceModel;
 
-  factory PublicationResourceModel.fromJson(Map<String, dynamic> json) => _$PublicationResourceModelFromJson(json);
+  factory PublicationResourceModel.fromJson(Map<String, dynamic> json) =>
+      _$PublicationResourceModelFromJson(json);
 }

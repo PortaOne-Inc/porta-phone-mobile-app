@@ -16,5 +16,6 @@ sealed class PageConfigDto with _$PageConfigDto {
     String? updatedAt,
   }) = _PageConfigDto;
 
-  factory PageConfigDto.fromJson(Map<String, dynamic> json) => _$PageConfigDtoFromJson(json);
+  factory PageConfigDto.fromJson(Map<String, dynamic> json) =>
+      _$PageConfigDtoFromJson(json);
 }

@@ -31,12 +31,16 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
       Logger.root.clearListeners();
       Logger.root.level = Level.ALL;
 
-      PrintAppender(formatter: const ColorFormatter()).attachToLogger(Logger.root);
+      PrintAppender(
+        formatter: const ColorFormatter(),
+      ).attachToLogger(Logger.root);
 
       final diContainer = await configureDependencies();
 
       // Initialize Firebase
-      await Firebase.initializeApp(options: ApplicationEnvironment.firebaseOptions);
+      await Firebase.initializeApp(
+        options: ApplicationEnvironment.firebaseOptions,
+      );
 
       // // Load phone environment
       // final phoneEnvironment = await _getJson(Assets.environment.dartDefine) as Map<String, dynamic>;
@@ -71,7 +75,8 @@ Future<void> bootstrap(FutureOr<Widget> Function(GetIt di) builder) async {
 }
 
 Future<ConfiguratorThemeSettings> _initializeAppThemes() async {
-  final themeJson = await _getJson(Assets.scheme.original) as Map<String, dynamic>;
+  final themeJson =
+      await _getJson(Assets.scheme.original) as Map<String, dynamic>;
   final settings = ConfiguratorThemeSettings.fromJson(themeJson);
 
   try {

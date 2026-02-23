@@ -18,8 +18,12 @@ class ImageRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final width = constraints.maxWidth == double.infinity ? null : constraints.maxWidth;
-        final height = constraints.maxHeight == double.infinity ? null : constraints.maxHeight;
+        final width = constraints.maxWidth == double.infinity
+            ? null
+            : constraints.maxWidth;
+        final height = constraints.maxHeight == double.infinity
+            ? null
+            : constraints.maxHeight;
 
         if (resource is UrlResource) {
           final urlResource = resource as UrlResource;
@@ -29,9 +33,8 @@ class ImageRenderer extends StatelessWidget {
               width: width,
               height: height,
               fit: fit,
-              placeholderBuilder: (BuildContext context) => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              placeholderBuilder: (BuildContext context) =>
+                  const Center(child: CircularProgressIndicator()),
             );
           } else {
             return Image.network(
@@ -39,21 +42,30 @@ class ImageRenderer extends StatelessWidget {
               width: width,
               height: height,
               fit: fit,
-              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                }
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                        : null,
-                  ),
-                );
-              },
-              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                return const Center(child: Icon(Icons.broken_image, size: 48));
-              },
+              loadingBuilder:
+                  (
+                    BuildContext context,
+                    Widget child,
+                    ImageChunkEvent? loadingProgress,
+                  ) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                  (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
+                  },
+              errorBuilder:
+                  (BuildContext context, Object error, StackTrace? stackTrace) {
+                    return const Center(
+                      child: Icon(Icons.broken_image, size: 48),
+                    );
+                  },
             );
           }
         } else if (resource is ByteResource) {
@@ -66,7 +78,9 @@ class ImageRenderer extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError || !snapshot.hasData || snapshot.data == null) {
+              } else if (snapshot.hasError ||
+                  !snapshot.hasData ||
+                  snapshot.data == null) {
                 return const Center(child: Icon(Icons.broken_image, size: 48));
               }
               return _buildByteImage(snapshot.data!, width, height);
@@ -89,9 +103,8 @@ class ImageRenderer extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
-        placeholderBuilder: (BuildContext context) => const Center(
-          child: CircularProgressIndicator(),
-        ),
+        placeholderBuilder: (BuildContext context) =>
+            const Center(child: CircularProgressIndicator()),
       );
     } else {
       return Image.memory(
@@ -99,9 +112,10 @@ class ImageRenderer extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
-        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-          return const Center(child: Icon(Icons.broken_image, size: 48));
-        },
+        errorBuilder:
+            (BuildContext context, Object error, StackTrace? stackTrace) {
+              return const Center(child: Icon(Icons.broken_image, size: 48));
+            },
       );
     }
   }
@@ -113,13 +127,20 @@ class ImageRenderer extends StatelessWidget {
   }
 
   bool _isSvgBytes(Uint8List bytes) {
-    final header = utf8.decode(bytes.take(100).toList(), allowMalformed: true).trimLeft();
+    final header = utf8
+        .decode(bytes.take(100).toList(), allowMalformed: true)
+        .trimLeft();
     return header.startsWith('<svg') || header.contains('<svg');
   }
 
   Uint8List _cleanSvgBytes(Uint8List bytes) {
     final svgString = utf8.decode(bytes, allowMalformed: true);
-    final cleanedSvg = svgString.replaceAll(RegExp(r'<\?xml.*?\?>|<!DOCTYPE[^>]*>', multiLine: true), '').trim();
+    final cleanedSvg = svgString
+        .replaceAll(
+          RegExp(r'<\?xml.*?\?>|<!DOCTYPE[^>]*>', multiLine: true),
+          '',
+        )
+        .trim();
     return Uint8List.fromList(utf8.encode(cleanedSvg));
   }
 }

@@ -10,7 +10,8 @@ abstract class UsecaseTranslationsSetOverride {
 }
 
 @Injectable(as: UsecaseTranslationsSetOverride)
-class UsecaseTranslationsSetOverrideImpl extends UsecaseTranslationsSetOverride {
+class UsecaseTranslationsSetOverrideImpl
+    extends UsecaseTranslationsSetOverride {
   UsecaseTranslationsSetOverrideImpl({required this.translationsRepository});
 
   final TranslationsRepository translationsRepository;

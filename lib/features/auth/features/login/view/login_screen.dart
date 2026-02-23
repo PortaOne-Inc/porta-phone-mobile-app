@@ -12,11 +12,7 @@ import '../bloc/bloc.dart';
 import '../extensions/extensions.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({
-    required this.title,
-    required this.onLogin,
-    super.key,
-  });
+  const LoginScreen({required this.title, required this.onLogin, super.key});
 
   final String title;
   final VoidCallback onLogin;
@@ -82,11 +78,14 @@ class _LoginScreenState extends State<LoginScreen> with MixinMessages {
                       initialValue: state.passwordInput?.value,
                       onChanged: authCubit.authPasswordChanged,
                       decoration: InputDecoration(
-                        hintText: context.l10n.authorization_enter_password_hint,
+                        hintText:
+                            context.l10n.authorization_enter_password_hint,
                         errorText: state.passwordInput?.errorL10n(context),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                           ),
                           onPressed: () => setState(() {
                             _isPasswordVisible = !_isPasswordVisible;

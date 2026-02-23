@@ -16,7 +16,9 @@ class ThemeCreatePage extends StatefulWidget {
 }
 
 class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages {
-  late final ThemeCreateCubit _bloc = BlocProvider.of<ThemeCreateCubit>(context);
+  late final ThemeCreateCubit _bloc = BlocProvider.of<ThemeCreateCubit>(
+    context,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,12 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages {
         body: CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.fromLTRB(24, 20, 24, 96), // місце під панель дій
+              padding: const EdgeInsets.fromLTRB(
+                24,
+                20,
+                24,
+                96,
+              ), // місце під панель дій
               sliver: SliverToBoxAdapter(
                 child: _GridArea(
                   children: [
@@ -144,10 +151,12 @@ class _GridArea extends StatelessWidget {
       spacing: 20,
       runSpacing: 20,
       children: children
-          .map((w) => ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: 420, maxWidth: 720),
-                child: w,
-              ))
+          .map(
+            (w) => ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 420, maxWidth: 720),
+              child: w,
+            ),
+          )
           .toList(),
     );
   }
@@ -220,7 +229,9 @@ class _ActionBar extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          border: Border(top: BorderSide(color: Theme.of(context).dividerColor)),
+          border: Border(
+            top: BorderSide(color: Theme.of(context).dividerColor),
+          ),
         ),
         child: SizedBox(
           height: 48,
@@ -309,7 +320,9 @@ class _AiContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;
     return AnimatedCrossFade(
-      crossFadeState: enabled ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      crossFadeState: enabled
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
       duration: const Duration(milliseconds: 180),
       firstChild: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

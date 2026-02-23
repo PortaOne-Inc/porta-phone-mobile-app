@@ -55,7 +55,8 @@ class _FloatingPopupState extends State<FloatingPopup> {
   void _showOverlay() {
     _hideOverlay();
 
-    final renderBox = _targetKey.currentContext!.findRenderObject()! as RenderBox;
+    final renderBox =
+        _targetKey.currentContext!.findRenderObject()! as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
     final size = renderBox.size;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -92,7 +93,8 @@ class _FloatingPopupState extends State<FloatingPopup> {
                   elevation: 4,
                   borderRadius: BorderRadius.circular(8),
                   child: ConstrainedBox(
-                    constraints: widget.constraints ??
+                    constraints:
+                        widget.constraints ??
                         BoxConstraints(
                           minWidth: 150,
                           minHeight: 40,
@@ -104,7 +106,9 @@ class _FloatingPopupState extends State<FloatingPopup> {
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(8),
-                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4)],
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black26, blurRadius: 4),
+                        ],
                       ),
                       child: widget.floatingContent,
                     ),
@@ -133,10 +137,7 @@ class _FloatingPopupState extends State<FloatingPopup> {
       onTap: _showOverlay,
       child: CompositedTransformTarget(
         link: _layerLink,
-        child: Container(
-          key: _targetKey,
-          child: widget.trigger,
-        ),
+        child: Container(key: _targetKey, child: widget.trigger),
       ),
     );
   }

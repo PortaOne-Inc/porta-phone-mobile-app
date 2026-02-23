@@ -63,12 +63,12 @@ class _NumberInputControlState extends State<NumberInputControl> {
         isDense: true,
         border: const OutlineInputBorder(),
         suffixText: widget.suffixText,
-        suffixIcon: tooltip != null ? const Icon(Icons.info_outline, size: 14) : null,
+        suffixIcon: tooltip != null
+            ? const Icon(Icons.info_outline, size: 14)
+            : null,
       ),
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]')),
-      ],
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]'))],
       onChanged: _handleChanged,
     );
 

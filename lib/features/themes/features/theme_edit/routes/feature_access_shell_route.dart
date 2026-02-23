@@ -20,10 +20,7 @@ import '../mocks/mocks.dart';
 /// A wrapper widget that provides feature access configuration and ensures correct asset rendering
 /// in app preview screens by mapping local assets to data URIs.
 class FeatureAccessShellRoute extends StatelessWidget {
-  const FeatureAccessShellRoute({
-    required this.child,
-    super.key,
-  });
+  const FeatureAccessShellRoute({required this.child, super.key});
 
   final Widget child;
 
@@ -35,19 +32,28 @@ class FeatureAccessShellRoute extends StatelessWidget {
           future: _replaceLocalAssetsWithDataUri(state.appConfig),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const LoadingScreen(status: LoadingStatus.initializingPreview);
+              return const LoadingScreen(
+                status: LoadingStatus.initializingPreview,
+              );
             }
 
             final systemInfo = const SystemInfoBuilder().buildInfo();
             final featureOverrides = FeatureOverridesFactory.create(
-                RemoteConfigSnapshot(<String, String>{}, MockRemoteCacheConfigService()));
+              RemoteConfigSnapshot(
+                <String, String>{},
+                MockRemoteCacheConfigService(),
+              ),
+            );
 
             final coreSupport = CoreSupportFactory.create(systemInfo);
 
             try {
               final featureAccess = FeatureAccess.create(
                 snapshot.data!,
-                state.embeddedResources.where((it) => it.id != null).map((it) => it.toEmbeddedResource()).toList(),
+                state.embeddedResources
+                    .where((it) => it.id != null)
+                    .map((it) => it.toEmbeddedResource())
+                    .toList(),
                 coreSupport,
                 featureOverrides,
               );
@@ -69,11 +75,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
   }
 }
 
-enum LoadingStatus {
-  loadingTheme,
-  initializingPreview,
-  fetchingResources,
-}
+enum LoadingStatus { loadingTheme, initializingPreview, fetchingResources }
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({required this.status, super.key});
@@ -107,7 +109,11 @@ class LoadingScreen extends StatelessWidget {
 }
 
 class ProvidersWrapper extends StatelessWidget {
-  const ProvidersWrapper({required this.featureAccess, required this.child, super.key});
+  const ProvidersWrapper({
+    required this.featureAccess,
+    required this.child,
+    super.key,
+  });
 
   final FeatureAccess featureAccess;
   final Widget child;
@@ -118,7 +124,9 @@ class ProvidersWrapper extends StatelessWidget {
       providers: [
         Provider<AppPreferences>.value(value: MockAppPreferences()),
         Provider<DeviceInfo>.value(value: DeviceInfoMock()),
-        Provider<MockAppMetadataProvider>.value(value: const MockAppMetadataProvider()),
+        Provider<MockAppMetadataProvider>.value(
+          value: const MockAppMetadataProvider(),
+        ),
         Provider<FeatureAccess>.value(value: featureAccess),
       ],
       child: child,

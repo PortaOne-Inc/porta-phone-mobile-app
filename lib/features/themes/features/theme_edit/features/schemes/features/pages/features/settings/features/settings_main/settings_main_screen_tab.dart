@@ -16,7 +16,8 @@ class SettingsMainScreenTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groupConfig = config.groupTitleListTile ?? const GroupTitleListTileWidgetConfig();
+    final groupConfig =
+        config.groupTitleListTile ?? const GroupTitleListTileWidgetConfig();
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -24,7 +25,8 @@ class SettingsMainScreenTab extends StatelessWidget {
         // НОВЕ
         ThemeOverrideSelector(
           config: config.themeOverride,
-          onChanged: (value) => onChanged(config.copyWith(themeOverride: value)),
+          onChanged: (value) =>
+              onChanged(config.copyWith(themeOverride: value)),
         ),
         const SizedBox(height: 16),
 
@@ -40,7 +42,9 @@ class SettingsMainScreenTab extends StatelessWidget {
           ),
           child: SwitchListTile(
             title: const Text('Show List Separators'),
-            subtitle: const Text('Display divider lines between setting items.'),
+            subtitle: const Text(
+              'Display divider lines between setting items.',
+            ),
             value: config.showSeparators,
             onChanged: (v) => onChanged(config.copyWith(showSeparators: v)),
           ),
@@ -59,37 +63,52 @@ class SettingsMainScreenTab extends StatelessWidget {
               TextStyleConfigEditor(
                 label: 'Item Text Style',
                 value: config.itemTextStyle,
-                onChanged: (newStyle) => onChanged(config.copyWith(itemTextStyle: newStyle)),
+                onChanged: (newStyle) =>
+                    onChanged(config.copyWith(itemTextStyle: newStyle)),
                 onClear: () => onChanged(config.copyWith(itemTextStyle: null)),
               ),
               const Divider(height: 32),
-              Text('Icon Colors', style: Theme.of(context).textTheme.titleSmall),
+              Text(
+                'Icon Colors',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
               const SizedBox(height: 12),
               ColorInput(
                 label: 'Leading Icons',
                 color: config.leadingIconsColor?.toColor(),
-                onTap: () => _pickColor(context, config.leadingIconsColor?.toColor(), (hex) {
-                  onChanged(config.copyWith(leadingIconsColor: hex));
-                }),
-                onClear: () => onChanged(config.copyWith(leadingIconsColor: null)),
+                onTap: () => _pickColor(
+                  context,
+                  config.leadingIconsColor?.toColor(),
+                  (hex) {
+                    onChanged(config.copyWith(leadingIconsColor: hex));
+                  },
+                ),
+                onClear: () =>
+                    onChanged(config.copyWith(leadingIconsColor: null)),
               ),
               const SizedBox(height: 12),
               ColorInput(
                 label: 'User Icon',
                 color: config.userIconColor?.toColor(),
-                onTap: () => _pickColor(context, config.userIconColor?.toColor(), (hex) {
-                  onChanged(config.copyWith(userIconColor: hex));
-                }),
+                onTap: () =>
+                    _pickColor(context, config.userIconColor?.toColor(), (hex) {
+                      onChanged(config.copyWith(userIconColor: hex));
+                    }),
                 onClear: () => onChanged(config.copyWith(userIconColor: null)),
               ),
               const SizedBox(height: 12),
               ColorInput(
                 label: 'Logout Icon',
                 color: config.logoutIconColor?.toColor(),
-                onTap: () => _pickColor(context, config.logoutIconColor?.toColor(), (hex) {
-                  onChanged(config.copyWith(logoutIconColor: hex));
-                }),
-                onClear: () => onChanged(config.copyWith(logoutIconColor: null)),
+                onTap: () => _pickColor(
+                  context,
+                  config.logoutIconColor?.toColor(),
+                  (hex) {
+                    onChanged(config.copyWith(logoutIconColor: hex));
+                  },
+                ),
+                onClear: () =>
+                    onChanged(config.copyWith(logoutIconColor: null)),
               ),
             ],
           ),
@@ -107,14 +126,26 @@ class SettingsMainScreenTab extends StatelessWidget {
               ColorInput(
                 label: 'Background Color',
                 color: groupConfig.backgroundColor?.toColor(),
-                onTap: () => _pickColor(context, groupConfig.backgroundColor?.toColor(), (hex) {
-                  onChanged(config.copyWith(
-                    groupTitleListTile: groupConfig.copyWith(backgroundColor: hex),
-                  ));
-                }),
-                onClear: () => onChanged(config.copyWith(
-                  groupTitleListTile: groupConfig.copyWith(backgroundColor: null),
-                )),
+                onTap: () => _pickColor(
+                  context,
+                  groupConfig.backgroundColor?.toColor(),
+                  (hex) {
+                    onChanged(
+                      config.copyWith(
+                        groupTitleListTile: groupConfig.copyWith(
+                          backgroundColor: hex,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                onClear: () => onChanged(
+                  config.copyWith(
+                    groupTitleListTile: groupConfig.copyWith(
+                      backgroundColor: null,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 16),
               TextStyleConfigEditor(
@@ -122,7 +153,9 @@ class SettingsMainScreenTab extends StatelessWidget {
                 value: groupConfig.textStyle,
                 onChanged: (newTextStyle) => onChanged(
                   config.copyWith(
-                    groupTitleListTile: groupConfig.copyWith(textStyle: newTextStyle),
+                    groupTitleListTile: groupConfig.copyWith(
+                      textStyle: newTextStyle,
+                    ),
                   ),
                 ),
                 onClear: () => onChanged(
@@ -138,7 +171,11 @@ class SettingsMainScreenTab extends StatelessWidget {
     );
   }
 
-  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+  Future<void> _pickColor(
+    BuildContext context,
+    Color? current,
+    ValueChanged<String> onPick,
+  ) async {
     final picked = await context.showColorPicker(currentColor: current);
     if (context.mounted && picked != null) {
       onPick(picked.toHex(includeAlpha: true));

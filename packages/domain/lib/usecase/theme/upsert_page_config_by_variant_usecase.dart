@@ -15,7 +15,8 @@ abstract class UpsertPageConfigByVariantUsecase {
 }
 
 @Injectable(as: UpsertPageConfigByVariantUsecase)
-class UpsertPageConfigByVariantUsecaseImpl extends UpsertPageConfigByVariantUsecase {
+class UpsertPageConfigByVariantUsecaseImpl
+    extends UpsertPageConfigByVariantUsecase {
   UpsertPageConfigByVariantUsecaseImpl({required this.repo});
 
   final PageConfigRepository repo;

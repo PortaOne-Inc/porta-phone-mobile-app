@@ -35,10 +35,27 @@ class ControlBar extends StatelessWidget {
                 isDense: true,
                 value: localeFilter.isEmpty ? '' : localeFilter,
                 underline: const SizedBox(),
-                items: locales.map((locale) => DropdownMenuItem(value: locale, child: Text(locale))).toList()
-                  ..add(DropdownMenuItem(value: '', child: Text(context.l10n.feature_translation_ControlBar_all))),
+                items:
+                    locales
+                        .map(
+                          (locale) => DropdownMenuItem(
+                            value: locale,
+                            child: Text(locale),
+                          ),
+                        )
+                        .toList()
+                      ..add(
+                        DropdownMenuItem(
+                          value: '',
+                          child: Text(
+                            context.l10n.feature_translation_ControlBar_all,
+                          ),
+                        ),
+                      ),
                 onChanged: enabled ? (it) => onLocaleChanged(it!) : null,
-                disabledHint: localeFilter.isEmpty ? Text(context.l10n.feature_translation_ControlBar_all) : Text(localeFilter),
+                disabledHint: localeFilter.isEmpty
+                    ? Text(context.l10n.feature_translation_ControlBar_all)
+                    : Text(localeFilter),
               ),
             ),
             const SizedBox(width: 16),
@@ -48,7 +65,10 @@ class ControlBar extends StatelessWidget {
                 child: TextField(
                   onChanged: enabled ? onSearchChanged : null,
                   cursorRadius: const Radius.circular(16),
-                  decoration: InputDecoration.collapsed(hintText: context.l10n.feature_translation_ControlBar_search_hint),
+                  decoration: InputDecoration.collapsed(
+                    hintText:
+                        context.l10n.feature_translation_ControlBar_search_hint,
+                  ),
                   enabled: enabled,
                 ),
               ),

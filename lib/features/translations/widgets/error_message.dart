@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
 
 class ErrorMessage extends StatelessWidget {
-  const ErrorMessage({
-    required this.onPressed,
-    required this.error,
-    super.key,
-  });
+  const ErrorMessage({required this.onPressed, required this.error, super.key});
 
   final Object? error;
 
@@ -29,10 +25,7 @@ class ErrorMessage extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
-        ElevatedButton(
-          onPressed: onPressed,
-          child: const Text('Retry'),
-        ),
+        ElevatedButton(onPressed: onPressed, child: const Text('Retry')),
       ],
     );
   }

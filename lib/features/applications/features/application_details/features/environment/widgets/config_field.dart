@@ -30,7 +30,8 @@ class ConfigField extends StatelessWidget {
   final List<String>? options;
   final Map<String, dynamic> config;
   final void Function<T>(String key, T value)? onConfigUpdate;
-  final void Function(bool isEnabled, String key, dynamic value) onEnabledChanged;
+  final void Function(bool isEnabled, String key, dynamic value)
+  onEnabledChanged;
   final dynamic defaultValue;
 
   @override
@@ -41,27 +42,27 @@ class ConfigField extends StatelessWidget {
 
     return switch (value) {
       bool _ => BoolConfigField(
-          label: label,
-          value: value,
-          enable: enable,
-          onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
-          onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
-        ),
+        label: label,
+        value: value,
+        enable: enable,
+        onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
+        onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
+      ),
       String? _ when hasOptions => OptionsConfigField(
-          label: label,
-          value: value ?? options!.first,
-          enable: enable,
-          options: options!,
-          onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
-          onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
-        ),
+        label: label,
+        value: value ?? options!.first,
+        enable: enable,
+        options: options!,
+        onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
+        onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
+      ),
       _ => StringConfigField(
-          label: label,
-          enable: enable,
-          value: value?.toString() ?? '',
-          onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
-          onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
-        ),
+        label: label,
+        enable: enable,
+        value: value?.toString() ?? '',
+        onEnabledChanged: (it) => onEnabledChanged(it, keyName, value),
+        onConfigUpdate: (val) => onConfigUpdate?.call(keyName, val),
+      ),
     };
   }
 }
@@ -175,13 +176,16 @@ class BoolConfigField extends StatelessWidget {
               label: label,
               value: value,
               options: const [true, false],
-              onChanged: enable ? (value) => onConfigUpdate?.call(value ?? false) : null,
+              onChanged: enable
+                  ? (value) => onConfigUpdate?.call(value ?? false)
+                  : null,
               optionBuilder: (val) => val ? 'Enable' : 'Disable',
             ),
           ),
           Checkbox(
             value: enable,
-            onChanged: (enabled) => enabled != null ? onEnabledChanged?.call(enabled) : null,
+            onChanged: (enabled) =>
+                enabled != null ? onEnabledChanged?.call(enabled) : null,
           ),
         ],
       ),
@@ -229,13 +233,16 @@ class OptionsConfigField extends StatelessWidget {
               label: label,
               value: value,
               options: options,
-              onChanged: enable ? (it) => it != null ? onConfigUpdate?.call(it) : null : null,
+              onChanged: enable
+                  ? (it) => it != null ? onConfigUpdate?.call(it) : null
+                  : null,
               optionBuilder: (val) => val,
             ),
           ),
           Checkbox(
             value: enable,
-            onChanged: (enabled) => enabled != null ? onEnabledChanged?.call(enabled) : null,
+            onChanged: (enabled) =>
+                enabled != null ? onEnabledChanged?.call(enabled) : null,
           ),
         ],
       ),

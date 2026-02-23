@@ -20,8 +20,9 @@ class SignupVerifyTab extends StatelessWidget {
           description:
               'Controls countdown before the "Repeat" button becomes active again on sign-up verification screen. 0 = disabled.',
           value: config.signupVerify.countdownRepeatIntervalSeconds,
-          onChanged: (seconds) =>
-              context.read<UpdateThemCubit>().add(ThemePageEvent.setLoginSignupVerifyCountdown(seconds)),
+          onChanged: (seconds) => context.read<UpdateThemCubit>().add(
+            ThemePageEvent.setLoginSignupVerifyCountdown(seconds),
+          ),
         ),
       ],
     );

@@ -24,12 +24,17 @@ sealed class AssetsRendition with _$AssetsRendition {
     required String downloadUrl,
   }) = _AssetsRendition;
 
-  factory AssetsRendition.fromJson(Map<String, dynamic> json) => _$AssetsRenditionFromJson(json);
+  factory AssetsRendition.fromJson(Map<String, dynamic> json) =>
+      _$AssetsRenditionFromJson(json);
 }
 
 @freezed
 sealed class AssetsRenditionSource with _$AssetsRenditionSource {
-  const factory AssetsRenditionSource({required String type, required String id}) = _AssetsRenditionSource;
+  const factory AssetsRenditionSource({
+    required String type,
+    required String id,
+  }) = _AssetsRenditionSource;
 
-  factory AssetsRenditionSource.fromJson(Map<String, dynamic> json) => _$AssetsRenditionSourceFromJson(json);
+  factory AssetsRenditionSource.fromJson(Map<String, dynamic> json) =>
+      _$AssetsRenditionSourceFromJson(json);
 }

@@ -34,7 +34,8 @@ class ApplicationThemesScreen extends StatelessWidget {
         if (themes.isEmpty)
           ItemOfListButton(
             name: 'New theme',
-            description: 'Create new theme for application and change this style when you want',
+            description:
+                'Create new theme for application and change this style when you want',
             onTab: onNewBranding,
           )
         else

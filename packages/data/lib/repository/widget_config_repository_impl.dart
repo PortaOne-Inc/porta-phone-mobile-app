@@ -22,14 +22,17 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
     BrightnessVariant variant,
   ) async {
     try {
-      final dto = await configuratorBackendDatasource.getWidgetConfigByThemeVariant(
-        applicationId: applicationId,
-        themeId: themeId,
-        variant: variant.name,
-      );
+      final dto = await configuratorBackendDatasource
+          .getWidgetConfigByThemeVariant(
+            applicationId: applicationId,
+            themeId: themeId,
+            variant: variant.name,
+          );
       return widgetConfigMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -41,13 +44,16 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
     String themeId,
   ) async {
     try {
-      final dtos = await configuratorBackendDatasource.listWidgetConfigsForTheme(
-        applicationId: applicationId,
-        themeId: themeId,
-      );
+      final dtos = await configuratorBackendDatasource
+          .listWidgetConfigsForTheme(
+            applicationId: applicationId,
+            themeId: themeId,
+          );
       return dtos.map(widgetConfigMapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -69,7 +75,9 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
       );
       return widgetConfigMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -87,7 +95,9 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
       );
       return map.map((k, v) => MapEntry(k, widgetConfigMapper.convertFrom(v)));
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

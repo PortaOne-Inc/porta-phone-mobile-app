@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SimpleScaffold extends StatelessWidget {
-  const SimpleScaffold({
-    required this.body,
-    required this.appBar,
-    super.key,
-  });
+  const SimpleScaffold({required this.body, required this.appBar, super.key});
 
   final Widget body;
   final AppBar appBar;
@@ -21,9 +17,7 @@ class SimpleScaffold extends StatelessWidget {
             thickness: 4,
             color: Theme.of(context).colorScheme.surfaceContainerLow,
           ),
-          Flexible(
-            child: body,
-          ),
+          Flexible(child: body),
         ],
       ),
     );

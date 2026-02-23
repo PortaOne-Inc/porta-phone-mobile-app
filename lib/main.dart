@@ -6,8 +6,6 @@ import 'bootstrap.dart';
 
 void main() {
   bootstrap((GetIt di) async {
-    return MaterialApplication(
-      getIt: di,
-    );
+    return MaterialApplication(getIt: di);
   });
 }

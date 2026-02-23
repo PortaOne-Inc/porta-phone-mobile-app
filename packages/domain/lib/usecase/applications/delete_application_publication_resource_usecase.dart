@@ -7,7 +7,8 @@ abstract class DeleteApplicationPublicationResourceUsecase {
 }
 
 @Injectable(as: DeleteApplicationPublicationResourceUsecase)
-class DeleteApplicationPublicationResourceUsecaseImpl extends DeleteApplicationPublicationResourceUsecase {
+class DeleteApplicationPublicationResourceUsecaseImpl
+    extends DeleteApplicationPublicationResourceUsecase {
   DeleteApplicationPublicationResourceUsecaseImpl(this.repo);
 
   final PublicationResourcesRepository repo;

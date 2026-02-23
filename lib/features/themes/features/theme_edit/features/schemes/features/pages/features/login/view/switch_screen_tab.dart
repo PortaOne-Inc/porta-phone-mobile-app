@@ -10,10 +10,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class SwitchScreenTab extends StatelessWidget {
-  const SwitchScreenTab({
-    required this.config,
-    super.key,
-  });
+  const SwitchScreenTab({required this.config, super.key});
 
   final LoginSwitchPageConfig config;
 
@@ -52,7 +49,8 @@ class SwitchScreenTab extends StatelessWidget {
         const SizedBox(height: 16),
         ImageRenderEditor(
           key: const ValueKey('switch_logo'),
-          description: 'Image displayed on the login, signup, or OTP verification screen switcher.',
+          description:
+              'Image displayed on the login, signup, or OTP verification screen switcher.',
           source: currentConfig.mainLogo,
           onPick: () => _pickAsset(context, cubit.state.assets),
           onChanged: (updated) {
@@ -68,7 +66,8 @@ class SwitchScreenTab extends StatelessWidget {
         const SizedBox(height: 24),
         ButtonStyleConfigEditor(
           label: 'Segment Button Style',
-          description: 'Customize the login type switcher (e.g. corner radius, colors).',
+          description:
+              'Customize the login type switcher (e.g. corner radius, colors).',
           value: currentConfig.segmentButtonStyle,
           onChanged: (newStyle) {
             cubit.add(

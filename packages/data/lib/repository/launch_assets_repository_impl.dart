@@ -43,7 +43,9 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       );
       return envelopeMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -66,16 +68,20 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
         params: params != null ? paramsMapper.convertTo(params) : null,
         // файли
         uploads: uploads
-            .map((u) => LaunchArtifactUploadWire(
-                  target: _mapTarget(u.target),
-                  mimeType: u.mimeType,
-                  bytes: u.bytes,
-                ))
+            .map(
+              (u) => LaunchArtifactUploadWire(
+                target: _mapTarget(u.target),
+                mimeType: u.mimeType,
+                bytes: u.bytes,
+              ),
+            )
             .toList(),
       );
       return entityMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -87,9 +93,14 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
     required String themeId,
   }) async {
     try {
-      await api.deleteLaunchAssets(applicationId: applicationId, themeId: themeId);
+      await api.deleteLaunchAssets(
+        applicationId: applicationId,
+        themeId: themeId,
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -101,7 +112,9 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       final dto = await api.getLaunchConstraintsDefaults();
       return constraintsMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

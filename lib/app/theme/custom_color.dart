@@ -8,11 +8,10 @@ part 'custom_color.g.dart';
 
 @themeJsonSerializable
 class CustomColor {
-  const CustomColor({
-    required this.color,
-  });
+  const CustomColor({required this.color});
 
-  factory CustomColor.fromJson(Map<String, dynamic> json) => _$CustomColorFromJson(json);
+  factory CustomColor.fromJson(Map<String, dynamic> json) =>
+      _$CustomColorFromJson(json);
 
   final Color color;
 

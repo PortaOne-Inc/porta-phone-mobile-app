@@ -11,7 +11,8 @@ class CountdownField extends StatefulWidget {
     this.min = 0,
     this.max = 120,
     this.label = 'Countdown (seconds)',
-    this.tooltip = '0 disables countdown — the "Repeat" button is available immediately.',
+    this.tooltip =
+        '0 disables countdown — the "Repeat" button is available immediately.',
     this.debounce = const Duration(milliseconds: 150),
     this.onCommitted,
   });

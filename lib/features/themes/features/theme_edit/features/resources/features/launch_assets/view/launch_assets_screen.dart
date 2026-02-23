@@ -43,7 +43,9 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
 
         final cons = state.constraints ?? defaultConstraintsModel;
 
-        final designerKey = ValueKey(state.envelope?.entity.updatedAt.toIso8601String() ?? 'init');
+        final designerKey = ValueKey(
+          state.envelope?.entity.updatedAt.toIso8601String() ?? 'init',
+        );
 
         return Scaffold(
           appBar: AppBar(

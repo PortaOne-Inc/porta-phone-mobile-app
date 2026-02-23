@@ -3,10 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class JsonImportDialog extends StatefulWidget {
-  const JsonImportDialog({
-    required this.onImport,
-    super.key,
-  });
+  const JsonImportDialog({required this.onImport, super.key});
 
   final ValueChanged<Map<String, dynamic>> onImport;
 
@@ -44,7 +41,9 @@ class _JsonImportDialogState extends State<JsonImportDialog> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Theme(
-                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                data: Theme.of(
+                  context,
+                ).copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   leading: const Icon(Icons.info_outline, size: 20),
@@ -56,19 +55,20 @@ class _JsonImportDialogState extends State<JsonImportDialog> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: Theme.of(context).dividerColor.withValues(alpha: 0.2),
+                          color: Theme.of(
+                            context,
+                          ).dividerColor.withValues(alpha: 0.2),
                         ),
                       ),
                       width: double.infinity,
                       child: const SelectableText(
                         _exampleJson,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(fontFamily: 'monospace', fontSize: 12),
                       ),
                     ),
                     const SizedBox(height: 16),

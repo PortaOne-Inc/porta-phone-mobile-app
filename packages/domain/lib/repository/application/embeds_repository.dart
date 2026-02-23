@@ -5,12 +5,16 @@ abstract class EmbedsRepository {
 
   Future<EmbeddedResourceModel> getEmbed(String applicationId, String id);
 
-  Future<EmbeddedResourceModel> createEmbed(String applicationId,
-      EmbeddedResourceModel resource,);
+  Future<EmbeddedResourceModel> createEmbed(
+    String applicationId,
+    EmbeddedResourceModel resource,
+  );
 
-  Future<EmbeddedResourceModel> updateEmbed(String applicationId,
-      String id,
-      EmbeddedResourceModel resource,);
+  Future<EmbeddedResourceModel> updateEmbed(
+    String applicationId,
+    String id,
+    EmbeddedResourceModel resource,
+  );
 
   Future<void> deleteEmbed(String applicationId, String id);
 

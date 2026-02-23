@@ -13,10 +13,7 @@ abstract class UsecaseThemeDeleteCreate {
 
 @Injectable(as: UsecaseThemeDeleteCreate)
 class UsecaseThemeDeleteCreateImpl implements UsecaseThemeDeleteCreate {
-  UsecaseThemeDeleteCreateImpl(
-    this.themeRepository,
-    this.authRepository,
-  );
+  UsecaseThemeDeleteCreateImpl(this.themeRepository, this.authRepository);
 
   final ThemeRepository themeRepository;
   final AuthRepository authRepository;

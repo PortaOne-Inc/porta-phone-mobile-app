@@ -9,8 +9,8 @@ class ToolbarMenuItem<T> extends PopupMenuItem<T> {
     super.value,
     super.key,
   }) : super(
-          child: Text(text, style: style),
-          height: menuItemHeight,
-          padding: const EdgeInsets.all(4),
-        );
+         child: Text(text, style: style),
+         height: menuItemHeight,
+         padding: const EdgeInsets.all(4),
+       );
 }

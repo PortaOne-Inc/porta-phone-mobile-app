@@ -14,5 +14,6 @@ sealed class CreateAssetDtoReq with _$CreateAssetDtoReq {
     String? checksum,
   }) = _CreateAssetDtoReq;
 
-  factory CreateAssetDtoReq.fromJson(Map<String, dynamic> json) => _$CreateAssetDtoReqFromJson(json);
+  factory CreateAssetDtoReq.fromJson(Map<String, dynamic> json) =>
+      _$CreateAssetDtoReqFromJson(json);
 }

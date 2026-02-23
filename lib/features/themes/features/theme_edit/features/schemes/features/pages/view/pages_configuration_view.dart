@@ -25,7 +25,8 @@ class ConfigureThemePageView extends StatefulWidget {
   State<ConfigureThemePageView> createState() => _ConfigureThemePageViewState();
 }
 
-class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with SingleTickerProviderStateMixin {
+class _ConfigureThemePageViewState extends State<ConfigureThemePageView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -44,7 +45,8 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final light = ThemeProvider.of(context).light();
-    final loginModeSelectScreenStyles = light.extension<LoginModeSelectScreenStyles>();
+    final loginModeSelectScreenStyles = light
+        .extension<LoginModeSelectScreenStyles>();
 
     final cubit = context.read<UpdateThemCubit>();
 
@@ -78,7 +80,8 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
       body: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
         builder: (context, state) {
           final themePageConfig = state.themeSettings.themePageLightConfig;
-          final themeWidgetLightConfig = state.themeSettings.themeWidgetLightConfig;
+          final themeWidgetLightConfig =
+              state.themeSettings.themeWidgetLightConfig;
 
           return TabBarView(
             controller: _tabController,
@@ -94,24 +97,12 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
                 callActions: themeWidgetLightConfig.group?.callActions,
               ),
               const KeypadConfigView(),
-              SettingsPageTabbedView(
-                config: themePageConfig.settings,
-              ),
-              ContactsPageView(
-                config: themePageConfig.contacts,
-              ),
-              RecentsPageView(
-                config: themePageConfig.recents,
-              ),
-              FavoritesPageView(
-                config: themePageConfig.favorites,
-              ),
-              ConversationsPageView(
-                config: themePageConfig.conversations,
-              ),
-              EmbeddedPageView(
-                config: themePageConfig.embedded,
-              ),
+              SettingsPageTabbedView(config: themePageConfig.settings),
+              ContactsPageView(config: themePageConfig.contacts),
+              RecentsPageView(config: themePageConfig.recents),
+              FavoritesPageView(config: themePageConfig.favorites),
+              ConversationsPageView(config: themePageConfig.conversations),
+              EmbeddedPageView(config: themePageConfig.embedded),
             ],
           );
         },
@@ -130,9 +121,7 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView> with Si
 }
 
 class _PageJsonImportDialog extends StatefulWidget {
-  const _PageJsonImportDialog({
-    required this.onImport,
-  });
+  const _PageJsonImportDialog({required this.onImport});
 
   final ValueChanged<Map<String, dynamic>> onImport;
 
@@ -210,7 +199,9 @@ class _PageJsonImportDialogState extends State<_PageJsonImportDialog> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Theme(
-                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                data: Theme.of(
+                  context,
+                ).copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   leading: const Icon(Icons.info_outline, size: 20),
@@ -222,19 +213,20 @@ class _PageJsonImportDialogState extends State<_PageJsonImportDialog> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: Theme.of(context).dividerColor.withValues(alpha: 0.2),
+                          color: Theme.of(
+                            context,
+                          ).dividerColor.withValues(alpha: 0.2),
                         ),
                       ),
                       width: double.infinity,
                       child: const SelectableText(
                         _exampleJson,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(fontFamily: 'monospace', fontSize: 12),
                       ),
                     ),
                     const SizedBox(height: 16),

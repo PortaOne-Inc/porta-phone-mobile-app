@@ -36,10 +36,7 @@ class TabBarConfigEditor extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (description != null) ...[
-          description!,
-          const SizedBox(height: 16),
-        ],
+        if (description != null) ...[description!, const SizedBox(height: 16)],
         Card(
           margin: EdgeInsets.zero,
           child: Padding(
@@ -55,7 +52,10 @@ class TabBarConfigEditor extends StatelessWidget {
                   children: [
                     ColorField(
                       title: 'Indicator Fill',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.indicatorColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -65,7 +65,10 @@ class TabBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Divider',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.dividerColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -75,7 +78,10 @@ class TabBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Selected Label',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.labelColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -85,17 +91,24 @@ class TabBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Unselected Label',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.unselectedLabelColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
                         value.unselectedLabelColor?.toColor(),
-                        (hex) => _update(value.copyWith(unselectedLabelColor: hex)),
+                        (hex) =>
+                            _update(value.copyWith(unselectedLabelColor: hex)),
                       ),
                     ),
                     ColorField(
                       title: 'Overlay / Splash',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.overlayColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -133,10 +146,14 @@ class TabBarConfigEditor extends StatelessWidget {
                         items: [
                           const DropdownMenuItem(child: Text('Default')),
                           ...TabAlignmentConfig.values.map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e.label)),
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e.label),
+                            ),
                           ),
                         ],
-                        onChanged: (v) => _update(value.copyWith(tabAlignment: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(tabAlignment: v)),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -151,10 +168,14 @@ class TabBarConfigEditor extends StatelessWidget {
                         items: [
                           const DropdownMenuItem(child: Text('Default')),
                           ...TabBarIndicatorSizeConfig.values.map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e.label)),
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e.label),
+                            ),
                           ),
                         ],
-                        onChanged: (v) => _update(value.copyWith(indicatorSize: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(indicatorSize: v)),
                       ),
                     ),
                   ],
@@ -166,7 +187,8 @@ class TabBarConfigEditor extends StatelessWidget {
                       child: NumberInputControl(
                         label: 'Divider Height',
                         value: value.dividerHeight,
-                        onChanged: (v) => _update(value.copyWith(dividerHeight: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(dividerHeight: v)),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -181,10 +203,14 @@ class TabBarConfigEditor extends StatelessWidget {
                         items: [
                           const DropdownMenuItem(child: Text('Default')),
                           ...TabSplashFactoryConfig.values.map(
-                            (e) => DropdownMenuItem(value: e, child: Text(e.label)),
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e.label),
+                            ),
                           ),
                         ],
-                        onChanged: (v) => _update(value.copyWith(splashFactory: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(splashFactory: v)),
                       ),
                     ),
                   ],
@@ -203,7 +229,8 @@ class TabBarConfigEditor extends StatelessWidget {
                       (e) => DropdownMenuItem(value: e, child: Text(e.label)),
                     ),
                   ],
-                  onChanged: (v) => _update(value.copyWith(indicatorAnimation: v)),
+                  onChanged: (v) =>
+                      _update(value.copyWith(indicatorAnimation: v)),
                 ),
               ],
             ),
@@ -241,8 +268,10 @@ class TabBarConfigEditor extends StatelessWidget {
               TextStyleConfigEditor(
                 label: 'Unselected Label Style',
                 value: value.unselectedLabelStyle,
-                onChanged: (s) => _update(value.copyWith(unselectedLabelStyle: s)),
-                onClear: () => _update(value.copyWith(unselectedLabelStyle: null)),
+                onChanged: (s) =>
+                    _update(value.copyWith(unselectedLabelStyle: s)),
+                onClear: () =>
+                    _update(value.copyWith(unselectedLabelStyle: null)),
               ),
             ],
           ),
@@ -253,10 +282,7 @@ class TabBarConfigEditor extends StatelessWidget {
 }
 
 class _BorderConfigEditor extends StatelessWidget {
-  const _BorderConfigEditor({
-    required this.value,
-    required this.onChanged,
-  });
+  const _BorderConfigEditor({required this.value, required this.onChanged});
 
   final BorderConfig? value;
   final ValueChanged<BorderConfig?> onChanged;
@@ -286,7 +312,10 @@ class _BorderConfigEditor extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Indicator Decoration', style: Theme.of(context).textTheme.titleSmall),
+        Text(
+          'Indicator Decoration',
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
         const SizedBox(height: 12),
         DropdownButtonFormField<BorderTypeConfig>(
           initialValue: cfg.type,

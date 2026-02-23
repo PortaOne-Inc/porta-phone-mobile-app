@@ -113,7 +113,10 @@ class IconThemeEditor extends StatelessWidget {
   }
 
   /// Handles the color picker dialog interaction and updates the configuration.
-  Future<void> _handleColorPicker(BuildContext context, IconThemeDataConfig cfg) async {
+  Future<void> _handleColorPicker(
+    BuildContext context,
+    IconThemeDataConfig cfg,
+  ) async {
     final selectedColor = await context.showColorPicker(
       currentColor: cfg.color?.toColor(),
     );

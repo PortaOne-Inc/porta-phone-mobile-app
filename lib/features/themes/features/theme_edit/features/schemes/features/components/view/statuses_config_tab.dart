@@ -22,8 +22,11 @@ class StatusesConfigTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final light = ThemeProvider.of(context).light();
-    final callStyles = (callStatusStyles ?? light.extension<CallStatusStyles>())?.primary;
-    final regStyles = (registeredStatusStyles ?? light.extension<RegisteredStatusStyles>())?.primary;
+    final callStyles =
+        (callStatusStyles ?? light.extension<CallStatusStyles>())?.primary;
+    final regStyles =
+        (registeredStatusStyles ?? light.extension<RegisteredStatusStyles>())
+            ?.primary;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -42,8 +45,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
+                    );
                   }
                 },
               ),
@@ -53,8 +56,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
+                    );
                   }
                 },
               ),
@@ -73,8 +76,10 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesConnectivityNone(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesConnectivityNone(
+                        c.toHex(),
+                      ),
+                    );
                   }
                 },
               ),
@@ -84,8 +89,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
+                    );
                   }
                 },
               ),
@@ -95,8 +100,10 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesAppUnregistered(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesAppUnregistered(
+                        c.toHex(),
+                      ),
+                    );
                   }
                 },
               ),
@@ -106,8 +113,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
+                    );
                   }
                 },
               ),
@@ -117,8 +124,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
+                    );
                   }
                 },
               ),
@@ -128,8 +135,8 @@ class StatusesConfigTab extends StatelessWidget {
                 onColorSelected: (c) {
                   if (c != null) {
                     context.read<UpdateThemCubit>().add(
-                          ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
-                        );
+                      ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
+                    );
                   }
                 },
               ),

@@ -14,5 +14,6 @@ sealed class ManageSettingItemState with _$ManageSettingItemState {
 
   ManageSettingItemState._();
 
-  bool get isFormValid => titleL10n != null && settingItemIcon != null && type != null;
+  bool get isFormValid =>
+      titleL10n != null && settingItemIcon != null && type != null;
 }

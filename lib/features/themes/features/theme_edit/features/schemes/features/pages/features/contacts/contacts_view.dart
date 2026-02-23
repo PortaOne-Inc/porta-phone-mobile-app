@@ -19,14 +19,18 @@ class ContactsPageView extends StatelessWidget {
         ThemeOverrideSelector(
           config: config.themeOverride,
           onChanged: (v) {
-            context.read<UpdateThemCubit>().add(ThemePageEvent.setContactsPage(config.copyWith(themeOverride: v)));
+            context.read<UpdateThemCubit>().add(
+              ThemePageEvent.setContactsPage(config.copyWith(themeOverride: v)),
+            );
           },
         ),
         const SizedBox(height: 16),
         PageBackgroundEditor(
           value: config.background,
           onChanged: (v) {
-            context.read<UpdateThemCubit>().add(ThemePageEvent.setContactsPage(config.copyWith(background: v)));
+            context.read<UpdateThemCubit>().add(
+              ThemePageEvent.setContactsPage(config.copyWith(background: v)),
+            );
           },
         ),
       ],

@@ -21,7 +21,9 @@ class TabTypeDropdown extends StatelessWidget {
         labelText: 'Bottom menu tab type',
         border: OutlineInputBorder(),
       ),
-      items: BottomMenuTabKind.values.map((k) => DropdownMenuItem(value: k, child: Text(k.label))).toList(),
+      items: BottomMenuTabKind.values
+          .map((k) => DropdownMenuItem(value: k, child: Text(k.label)))
+          .toList(),
     );
   }
 }

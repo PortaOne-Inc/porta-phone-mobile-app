@@ -11,9 +11,7 @@ abstract class GetUserUsecase {
 
 @Injectable(as: GetUserUsecase)
 class GetUserUsecaseImpl extends GetUserUsecase {
-  GetUserUsecaseImpl({
-    required this.authRepository,
-  });
+  GetUserUsecaseImpl({required this.authRepository});
 
   final AuthRepository authRepository;
 

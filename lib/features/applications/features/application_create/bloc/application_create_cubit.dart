@@ -11,9 +11,8 @@ part 'application_create_state.dart';
 part 'application_create_cubit.freezed.dart';
 
 class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
-  ApplicationCreateCubit({
-    required this.applicationCreateUsecase,
-  }) : super(const ApplicationCreateState());
+  ApplicationCreateCubit({required this.applicationCreateUsecase})
+    : super(const ApplicationCreateState());
 
   final ApplicationCreate applicationCreateUsecase;
 
@@ -22,27 +21,51 @@ class ApplicationCreateCubit extends Cubit<ApplicationCreateState> {
   }
 
   void updateAndroidPlatformId(String platformId) {
-    emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+    emit(
+      state.copyWith(
+        androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId),
+      ),
+    );
   }
 
   void updateIosPlatformId(String platformId) {
-    emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+    emit(
+      state.copyWith(
+        iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId),
+      ),
+    );
   }
 
   void updateAndroidBuildName(String buildName) {
-    emit(state.copyWith(androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+    emit(
+      state.copyWith(
+        androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName),
+      ),
+    );
   }
 
   void updateAndroidBuildNumber(String buildNumber) {
-    emit(state.copyWith(androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+    emit(
+      state.copyWith(
+        androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber),
+      ),
+    );
   }
 
   void updateIosBuildName(String buildName) {
-    emit(state.copyWith(iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+    emit(
+      state.copyWith(
+        iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName),
+      ),
+    );
   }
 
   void updateIosBuildNumber(String buildNumber) {
-    emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+    emit(
+      state.copyWith(
+        iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber),
+      ),
+    );
   }
 
   void validateAndTryCreateApplication() {

@@ -19,11 +19,13 @@ sealed class ConfiguratorThemeSettings with _$ConfiguratorThemeSettings {
     String? fontFamily,
   }) = _ConfiguratorThemeSettings;
 
-  factory ConfiguratorThemeSettings.fromJson(Map<String, dynamic> json) => _$ConfiguratorThemeSettingsFromJson(json);
+  factory ConfiguratorThemeSettings.fromJson(Map<String, dynamic> json) =>
+      _$ConfiguratorThemeSettingsFromJson(json);
 }
 
 @freezed
-sealed class ConfiguratorColorSchemeOverride with _$ConfiguratorColorSchemeOverride {
+sealed class ConfiguratorColorSchemeOverride
+    with _$ConfiguratorColorSchemeOverride {
   // ignore: invalid_annotation_target
   @themeJsonSerializable
   const factory ConfiguratorColorSchemeOverride({

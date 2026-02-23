@@ -33,7 +33,8 @@ sealed class ThemeDTO with _$ThemeDTO {
 
   const ThemeDTO._();
 
-  factory ThemeDTO.fromJson(Map<String, Object?> json) => _$ThemeDTOFromJson(json);
+  factory ThemeDTO.fromJson(Map<String, Object?> json) =>
+      _$ThemeDTOFromJson(json);
 }
 
 @freezed
@@ -52,5 +53,6 @@ sealed class CreateThemeDTO with _$CreateThemeDTO {
     @Default('dev') String label,
   }) = _CreateThemeDTO;
 
-  factory CreateThemeDTO.fromJson(Map<String, dynamic> json) => _$CreateThemeDTOFromJson(json);
+  factory CreateThemeDTO.fromJson(Map<String, dynamic> json) =>
+      _$CreateThemeDTOFromJson(json);
 }

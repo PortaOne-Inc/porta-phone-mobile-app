@@ -8,7 +8,8 @@ import 'package:data/dto/dto.dart';
 import '../mappers/mapper.dart';
 
 @Injectable(as: PublicationResourcesRepository)
-class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository {
+class PublicationResourcesRepositoryImpl
+    extends PublicationResourcesRepository {
   PublicationResourcesRepositoryImpl({
     required this.datasource,
     required this.mapper,
@@ -18,12 +19,16 @@ class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository 
   final CommonMapper<PublicationResourceModel, PublicationResourceDto> mapper;
 
   @override
-  Future<List<PublicationResourceModel>> getApplicationResources(String applicationId) async {
+  Future<List<PublicationResourceModel>> getApplicationResources(
+    String applicationId,
+  ) async {
     try {
       final dtos = await datasource.getAll(applicationId);
       return dtos.map(mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     }
   }
 
@@ -36,10 +41,18 @@ class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository 
     String? text,
   }) async {
     try {
-      final dto = await datasource.create(applicationId, title: title, url: url, note: note, text: text);
+      final dto = await datasource.create(
+        applicationId,
+        title: title,
+        url: url,
+        note: note,
+        text: text,
+      );
       return mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     }
   }
 
@@ -52,10 +65,18 @@ class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository 
     String? text,
   }) async {
     try {
-      final dto = await datasource.update(id, title: title, url: url, note: note, text: text);
+      final dto = await datasource.update(
+        id,
+        title: title,
+        url: url,
+        note: note,
+        text: text,
+      );
       return mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     }
   }
 
@@ -64,7 +85,9 @@ class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository 
     try {
       await datasource.delete(id);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     }
   }
 }

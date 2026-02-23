@@ -4,15 +4,15 @@ import 'package:formz/formz.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
-enum ApplicationBuildNameValidationError {
-  blank,
-}
+enum ApplicationBuildNameValidationError { blank }
 
-class ApplicationBuildNameInput extends FormzInput<String, ApplicationBuildNameValidationError> {
+class ApplicationBuildNameInput
+    extends FormzInput<String, ApplicationBuildNameValidationError> {
   const ApplicationBuildNameInput.pure([super.value = '']) : super.pure();
 
   // ignore: use_super_parameters
-  const ApplicationBuildNameInput.dirty([String value = '']) : super.dirty(value);
+  const ApplicationBuildNameInput.dirty([String value = ''])
+    : super.dirty(value);
 
   ApplicationBuildNameInput toDirty() => ApplicationBuildNameInput.dirty(value);
 

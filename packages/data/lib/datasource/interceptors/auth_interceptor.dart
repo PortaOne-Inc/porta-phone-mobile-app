@@ -8,9 +8,13 @@ class AuthInterceptor extends Interceptor {
   final AuthPrefDatasource authPrefDatasource;
 
   @override
-  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     if (authPrefDatasource.isAuthTokenExist()) {
-      options.headers['Authorization'] = 'Bearer ${authPrefDatasource.getAuthToken()}';
+      options.headers['Authorization'] =
+          'Bearer ${authPrefDatasource.getAuthToken()}';
     }
     handler.next(options);
   }
@@ -22,7 +26,10 @@ class HeadersInterceptor extends Interceptor {
   final Map<String, String> headers;
 
   @override
-  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     options.headers.addAll(headers);
     handler.next(options);
   }

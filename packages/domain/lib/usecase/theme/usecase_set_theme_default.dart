@@ -14,10 +14,7 @@ abstract class UseCaseSetThemeDefault {
 
 @Injectable(as: UseCaseSetThemeDefault)
 class UseCaseSetThemeDefaultImpl extends UseCaseSetThemeDefault {
-  UseCaseSetThemeDefaultImpl(
-    this.applicationRepository,
-    this.authRepository,
-  );
+  UseCaseSetThemeDefaultImpl(this.applicationRepository, this.authRepository);
 
   final ApplicationRepository applicationRepository;
   final AuthRepository authRepository;

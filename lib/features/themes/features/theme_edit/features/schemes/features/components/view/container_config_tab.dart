@@ -7,14 +7,15 @@ import 'package:webtrit_configurator/widgets/widgets.dart';
 import '../../../../../bloc/update_theme_cubit.dart';
 
 class ContainerConfigTab extends StatelessWidget {
-  const ContainerConfigTab({
-    required this.decorationConfig,
-    super.key,
-  });
+  const ContainerConfigTab({required this.decorationConfig, super.key});
 
   final DecorationConfig decorationConfig;
 
-  List<String> get _hexList => decorationConfig.primaryGradientColorsConfig.colors.map((e) => e.color).toList();
+  List<String> get _hexList => decorationConfig
+      .primaryGradientColorsConfig
+      .colors
+      .map((e) => e.color)
+      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,10 @@ class ContainerConfigTab extends StatelessWidget {
           colors: _hexList,
           onChanged: (hexColors) {
             context.read<UpdateThemCubit>().add(
-                  ThemeWidgetEvent.setPrimaryGradientColors(
-                    hexColors.map((h) => CustomColor(color: h)).toList(),
-                  ),
-                );
+              ThemeWidgetEvent.setPrimaryGradientColors(
+                hexColors.map((h) => CustomColor(color: h)).toList(),
+              ),
+            );
           },
         ),
       ),

@@ -8,11 +8,7 @@ import '../features/themes/features/theme_edit/consts/font_const.dart';
 import 'common/common.dart';
 
 class FontsPicker extends StatefulWidget {
-  const FontsPicker({
-    required this.onChoose,
-    required this.onClose,
-    super.key,
-  });
+  const FontsPicker({required this.onChoose, required this.onClose, super.key});
 
   final void Function(String name) onChoose;
   final VoidCallback onClose;
@@ -35,14 +31,17 @@ class _FontsPickerState extends State<FontsPicker> {
       return state.items?.length ?? 0;
     },
     fetchPage: (pageKey) async {
-      if (pageKey > 24) await Future<void>.delayed(const Duration(milliseconds: 500));
+      if (pageKey > 24)
+        await Future<void>.delayed(const Duration(milliseconds: 500));
 
       final startIndex = pageKey;
 
       if (startIndex >= _filteredFonts.length) return [];
 
       final endIndex = startIndex + _pageSize;
-      final effectiveEndIndex = endIndex > _filteredFonts.length ? _filteredFonts.length : endIndex;
+      final effectiveEndIndex = endIndex > _filteredFonts.length
+          ? _filteredFonts.length
+          : endIndex;
 
       return _filteredFonts.sublist(startIndex, effectiveEndIndex);
     },
@@ -97,20 +96,25 @@ class _FontsPickerState extends State<FontsPicker> {
                     state: state,
                     fetchNextPage: fetchNextPage,
                     cacheExtent: 500,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     builderDelegate: PagedChildBuilderDelegate<String>(
                       animateTransitions: true,
                       itemBuilder: (context, item, index) => _FontCardItem(
                         fontName: item,
                         onTap: () => widget.onChoose(item),
                       ),
-                      firstPageErrorIndicatorBuilder: (_) => const ErrorPlaceholder(
-                        message: 'Error loading fonts',
-                      ),
-                      noItemsFoundIndicatorBuilder: (_) => const NoDataPlaceholder(
-                        message: 'No fonts found',
-                        icon: Icons.text_fields,
-                      ),
+                      firstPageErrorIndicatorBuilder: (_) =>
+                          const ErrorPlaceholder(
+                            message: 'Error loading fonts',
+                          ),
+                      noItemsFoundIndicatorBuilder: (_) =>
+                          const NoDataPlaceholder(
+                            message: 'No fonts found',
+                            icon: Icons.text_fields,
+                          ),
                     ),
                   );
                 },
@@ -124,10 +128,7 @@ class _FontsPickerState extends State<FontsPicker> {
 }
 
 class _FontSearchHeader extends StatelessWidget {
-  const _FontSearchHeader({
-    required this.controller,
-    required this.onClose,
-  });
+  const _FontSearchHeader({required this.controller, required this.onClose});
 
   final TextEditingController controller;
   final VoidCallback onClose;
@@ -168,7 +169,10 @@ class _FontSearchHeader extends StatelessWidget {
                 hintStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey[100],
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
@@ -179,7 +183,11 @@ class _FontSearchHeader extends StatelessWidget {
                   builder: (context, value, child) {
                     if (controller.text.isEmpty) return const SizedBox.shrink();
                     return IconButton(
-                      icon: const Icon(Icons.cancel, size: 18, color: Colors.grey),
+                      icon: const Icon(
+                        Icons.cancel,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
                       onPressed: controller.clear,
                     );
                   },
@@ -194,10 +202,7 @@ class _FontSearchHeader extends StatelessWidget {
 }
 
 class _FontCardItem extends StatelessWidget {
-  const _FontCardItem({
-    required this.fontName,
-    required this.onTap,
-  });
+  const _FontCardItem({required this.fontName, required this.onTap});
 
   final String fontName;
   final VoidCallback onTap;

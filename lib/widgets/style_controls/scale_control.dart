@@ -28,16 +28,16 @@ class ScaleControl extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Scale', style: theme.textTheme.labelLarge),
-            Text('${(value * 100).toInt()}%', style: theme.textTheme.bodyMedium),
+            Text(
+              '${(value * 100).toInt()}%',
+              style: theme.textTheme.bodyMedium,
+            ),
           ],
         ),
         Row(
           children: [
             Expanded(
-              child: Slider(
-                value: value,
-                onChanged: onChanged,
-              ),
+              child: Slider(value: value, onChanged: onChanged),
             ),
             const SizedBox(width: 12),
             SizedBox(
@@ -48,10 +48,15 @@ class ScaleControl extends StatelessWidget {
                 onChanged: onInputChanged,
                 decoration: const InputDecoration(
                   isDense: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 8,
+                  ),
                   border: OutlineInputBorder(),
                 ),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]')),
                 ],

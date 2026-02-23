@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DescriptionRow extends StatelessWidget {
-  const DescriptionRow({
-    required this.icon,
-    required this.text,
-    super.key,
-  });
+  const DescriptionRow({required this.icon, required this.text, super.key});
 
   factory DescriptionRow.info(String text) {
     return DescriptionRow(icon: Icons.info_outline, text: text);
@@ -24,8 +20,10 @@ class DescriptionRow extends StatelessWidget {
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.75),
-                ),
+              color: Theme.of(
+                context,
+              ).textTheme.bodySmall?.color?.withValues(alpha: 0.75),
+            ),
           ),
         ),
       ],

@@ -12,12 +12,11 @@ abstract class SubMenu {
 }
 
 class Menu<T extends Enum> {
-  Menu({
-    required this.items,
-    required this.callback,
-    this.name,
-    this.iconData,
-  }) : assert(!(name == null && iconData == null), 'name or iconData must not be null');
+  Menu({required this.items, required this.callback, this.name, this.iconData})
+    : assert(
+        !(name == null && iconData == null),
+        'name or iconData must not be null',
+      );
 
   final String? name;
   final IconData? iconData;
@@ -92,7 +91,11 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 Expanded(
-                  child: Row(children: left.map((menu) => MenuWidget(menu: menu)).toList()),
+                  child: Row(
+                    children: left
+                        .map((menu) => MenuWidget(menu: menu))
+                        .toList(),
+                  ),
                 ),
                 Text(
                   name,
@@ -113,10 +116,10 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -124,10 +127,7 @@ class AppToolbar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class MenuWidget<T extends Enum> extends StatelessWidget {
-  const MenuWidget({
-    required this.menu,
-    super.key,
-  });
+  const MenuWidget({required this.menu, super.key});
 
   final Menu<T> menu;
 
@@ -153,10 +153,7 @@ class MenuWidget<T extends Enum> extends StatelessWidget {
       items: items.toList(),
       background: colorScheme.surfaceBright,
       child: menu.name != null
-          ? ToolbarLabelItem(
-              text: menu.name!,
-              color: colorScheme.primary,
-            )
+          ? ToolbarLabelItem(text: menu.name!, color: colorScheme.primary)
           : ToolbarLabelWidgetItem(
               icon: menu.iconData!,
               color: colorScheme.secondary,

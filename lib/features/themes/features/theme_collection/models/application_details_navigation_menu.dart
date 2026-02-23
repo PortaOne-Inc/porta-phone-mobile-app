@@ -13,7 +13,9 @@ enum ApplicationDetailNavigate implements SubMenu {
       case ApplicationDetailNavigate.application:
         return context.l10n.feature_application_Toolbar_edit_navigate_new;
       case ApplicationDetailNavigate.translations:
-        return context.l10n.feature_application_Toolbar_edit_navigate_translations;
+        return context
+            .l10n
+            .feature_application_Toolbar_edit_navigate_translations;
     }
   }
 }

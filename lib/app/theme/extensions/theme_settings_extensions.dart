@@ -8,7 +8,9 @@ extension ThemeSettingsExtensions on ConfiguratorThemeSettings {
   /// Builds a [ColorScheme] for the given brightness.
   ColorScheme _buildColorScheme(Brightness brightness, Color? targetColor) {
     final isLight = brightness == Brightness.light;
-    final override = isLight ? lightColorSchemeOverride : darkColorSchemeOverride;
+    final override = isLight
+        ? lightColorSchemeOverride
+        : darkColorSchemeOverride;
     if (override == null) {
       throw Exception('Color scheme override must not be null.');
     }
@@ -20,7 +22,9 @@ extension ThemeSettingsExtensions on ConfiguratorThemeSettings {
     final fontFamily = this.fontFamily;
     if (fontFamily == null) return null;
 
-    final baseTheme = brightness == Brightness.light ? ThemeData.light() : ThemeData.dark();
+    final baseTheme = brightness == Brightness.light
+        ? ThemeData.light()
+        : ThemeData.dark();
     return GoogleFonts.getTextTheme(fontFamily, baseTheme.textTheme);
   }
 
@@ -36,16 +40,16 @@ extension ThemeSettingsExtensions on ConfiguratorThemeSettings {
       primaryColorDark: scheme.primary,
       unselectedWidgetColor: scheme.onSurface,
       scaffoldBackgroundColor: scheme.surfaceContainer,
-      cardTheme: CardThemeData(
-        color: scheme.surface,
-        elevation: 2,
-      ), tabBarTheme: TabBarThemeData(indicatorColor: scheme.tertiary),
+      cardTheme: CardThemeData(color: scheme.surface, elevation: 2),
+      tabBarTheme: TabBarThemeData(indicatorColor: scheme.tertiary),
     );
   }
 
   /// Generates a light [ThemeData].
-  ThemeData light([Color? targetColor]) => _buildThemeData(Brightness.light, targetColor);
+  ThemeData light([Color? targetColor]) =>
+      _buildThemeData(Brightness.light, targetColor);
 
   /// Generates a dark [ThemeData].
-  ThemeData dark([Color? targetColor]) => _buildThemeData(Brightness.dark, targetColor);
+  ThemeData dark([Color? targetColor]) =>
+      _buildThemeData(Brightness.dark, targetColor);
 }

@@ -8,8 +8,8 @@ class GoRouteRedirects {
     required this.basePath,
     this.maxExtraPaths = 0,
     this.redirectCallback,
-  })  : assert(basePath.isNotEmpty, 'basePath cannot be empty'),
-        assert(maxExtraPaths >= 0, 'maxExtraPaths cannot be negative');
+  }) : assert(basePath.isNotEmpty, 'basePath cannot be empty'),
+       assert(maxExtraPaths >= 0, 'maxExtraPaths cannot be negative');
 
   final String basePath;
   final int maxExtraPaths;
@@ -19,8 +19,10 @@ class GoRouteRedirects {
     final routes = <GoRoute>[
       GoRoute(
         path: basePath,
-        redirect: redirectCallback != null ? (context, state) => redirectCallback!(state) : null,
-      )
+        redirect: redirectCallback != null
+            ? (context, state) => redirectCallback!(state)
+            : null,
+      ),
     ];
 
     // Generate routes with extra path segments
@@ -29,7 +31,9 @@ class GoRouteRedirects {
       routes.add(
         GoRoute(
           path: fullPath,
-          redirect: redirectCallback != null ? (context, state) => redirectCallback!(state) : null,
+          redirect: redirectCallback != null
+              ? (context, state) => redirectCallback!(state)
+              : null,
         ),
       );
     }

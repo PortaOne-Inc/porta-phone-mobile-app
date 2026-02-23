@@ -7,12 +7,10 @@ import 'package:webtrit_configurator/localization/localization.dart';
 
 import 'applications_consts.dart';
 
-enum ApplicationCoreValidationError {
-  toLong,
-  invalid,
-}
+enum ApplicationCoreValidationError { toLong, invalid }
 
-class ApplicationCoreInput extends FormzInput<String, ApplicationCoreValidationError> {
+class ApplicationCoreInput
+    extends FormzInput<String, ApplicationCoreValidationError> {
   const ApplicationCoreInput.pure([super.value = '']) : super.pure();
 
   const ApplicationCoreInput.dirty([super.value = '']) : super.dirty();

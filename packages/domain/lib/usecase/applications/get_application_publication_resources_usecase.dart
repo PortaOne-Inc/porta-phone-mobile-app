@@ -8,7 +8,8 @@ abstract class GetApplicationPublicationResourcesUsecase {
 }
 
 @Injectable(as: GetApplicationPublicationResourcesUsecase)
-class GetApplicationPublicationResourcesUsecaseImpl extends GetApplicationPublicationResourcesUsecase {
+class GetApplicationPublicationResourcesUsecaseImpl
+    extends GetApplicationPublicationResourcesUsecase {
   GetApplicationPublicationResourcesUsecaseImpl(this.repo);
 
   final PublicationResourcesRepository repo;

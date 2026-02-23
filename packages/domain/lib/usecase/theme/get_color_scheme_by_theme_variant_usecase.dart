@@ -12,7 +12,8 @@ abstract class GetColorSchemeByThemeVariantUsecase {
 }
 
 @LazySingleton(as: GetColorSchemeByThemeVariantUsecase)
-class GetColorSchemeByThemeVariantUsecaseImpl implements GetColorSchemeByThemeVariantUsecase {
+class GetColorSchemeByThemeVariantUsecaseImpl
+    implements GetColorSchemeByThemeVariantUsecase {
   GetColorSchemeByThemeVariantUsecaseImpl(this._repo);
 
   final ColorSchemeRepository _repo;

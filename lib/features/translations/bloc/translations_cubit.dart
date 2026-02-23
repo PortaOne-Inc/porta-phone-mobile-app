@@ -22,7 +22,8 @@ class TranslationsCubit extends Cubit<TranslationsState> {
 
   final String appId;
   final UsecaseTranslationsGetAll usecaseTranslationsGetAll;
-  final UsecaseTranslationsGetOverridesByAppId usecaseTranslationsGetOverridesByAppId;
+  final UsecaseTranslationsGetOverridesByAppId
+  usecaseTranslationsGetOverridesByAppId;
   final UsecaseTranslationsSetOverride usecaseTranslationsSetOverride;
   final UsecaseTranslationsDeleteOverride usecaseTranslationsDeleteOverride;
 
@@ -34,14 +35,14 @@ class TranslationsCubit extends Cubit<TranslationsState> {
         usecaseTranslationsGetOverridesByAppId.execute(appId),
       ]);
 
-      emit(state.copyWith(
-        state: TranslationsStateType.common,
-        translations: Translations(original: data[0], overrided: data[1]),
-      ));
+      emit(
+        state.copyWith(
+          state: TranslationsStateType.common,
+          translations: Translations(original: data[0], overrided: data[1]),
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        exception: e as Exception,
-      ));
+      emit(state.copyWith(exception: e as Exception));
     }
   }
 
@@ -55,8 +56,11 @@ class TranslationsCubit extends Cubit<TranslationsState> {
       await usecaseTranslationsSetOverride.execute(appId, override);
 
       final overrides = List<Translation>.from(state.translations.overrided);
-      final overrideIndex =
-          overrides.indexWhere((element) => element.locale == translation.locale && element.key == translation.key);
+      final overrideIndex = overrides.indexWhere(
+        (element) =>
+            element.locale == translation.locale &&
+            element.key == translation.key,
+      );
 
       if (overrideIndex != -1) {
         overrides[overrideIndex] = override;
@@ -64,14 +68,14 @@ class TranslationsCubit extends Cubit<TranslationsState> {
         overrides.add(override);
       }
 
-      emit(state.copyWith(
-        translations: state.translations.copyWith(overrided: overrides),
-        state: TranslationsStateType.common,
-      ));
+      emit(
+        state.copyWith(
+          translations: state.translations.copyWith(overrided: overrides),
+          state: TranslationsStateType.common,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        exception: e as Exception,
-      ));
+      emit(state.copyWith(exception: e as Exception));
     }
   }
 
@@ -84,16 +88,19 @@ class TranslationsCubit extends Cubit<TranslationsState> {
       await usecaseTranslationsDeleteOverride.execute(appId, override);
 
       final overrides = List<Translation>.from(state.translations.overrided)
-        ..removeWhere((element) => element.locale == override.locale && element.key == override.key);
+        ..removeWhere(
+          (element) =>
+              element.locale == override.locale && element.key == override.key,
+        );
 
-      emit(state.copyWith(
-        translations: state.translations.copyWith(overrided: overrides),
-        state: TranslationsStateType.common,
-      ));
+      emit(
+        state.copyWith(
+          translations: state.translations.copyWith(overrided: overrides),
+          state: TranslationsStateType.common,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        exception: e as Exception,
-      ));
+      emit(state.copyWith(exception: e as Exception));
     }
   }
 

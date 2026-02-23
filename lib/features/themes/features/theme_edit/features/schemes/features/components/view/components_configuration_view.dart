@@ -28,7 +28,8 @@ class ConfigureWidgetsView extends StatefulWidget {
   State<ConfigureWidgetsView> createState() => _ConfigureWidgetsViewState();
 }
 
-class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with SingleTickerProviderStateMixin {
+class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   final _tabs = const [
@@ -60,9 +61,10 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
   Widget build(BuildContext context) {
     final cubit = context.read<UpdateThemCubit>();
 
-    final themeWidgetConfig = context.select<UpdateThemCubit, ThemeWidgetConfig>(
-      (value) => value.state.themeSettings.themeWidgetLightConfig,
-    );
+    final themeWidgetConfig = context
+        .select<UpdateThemCubit, ThemeWidgetConfig>(
+          (value) => value.state.themeSettings.themeWidgetLightConfig,
+        );
 
     final light = ThemeProvider.of(context).light();
 
@@ -114,9 +116,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
             callActionsStyles: callActionsStyles,
             sourceGroupWidgetConfig: themeWidgetConfig.group,
           ),
-          BarsConfigTab(
-            config: themeWidgetConfig.bar,
-          ),
+          BarsConfigTab(config: themeWidgetConfig.bar),
           ImageAssetsConfigTab(
             imageAssetsConfig: themeWidgetConfig.imageAssets,
           ),
@@ -163,7 +163,8 @@ class _WidgetJsonImportDialog extends StatefulWidget {
   final ValueChanged<Map<String, dynamic>> onImport;
 
   @override
-  State<_WidgetJsonImportDialog> createState() => _WidgetJsonImportDialogState();
+  State<_WidgetJsonImportDialog> createState() =>
+      _WidgetJsonImportDialogState();
 }
 
 class _WidgetJsonImportDialogState extends State<_WidgetJsonImportDialog> {
@@ -239,7 +240,9 @@ class _WidgetJsonImportDialogState extends State<_WidgetJsonImportDialog> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Theme(
-                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                data: Theme.of(
+                  context,
+                ).copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   leading: const Icon(Icons.info_outline, size: 20),
@@ -251,19 +254,20 @@ class _WidgetJsonImportDialogState extends State<_WidgetJsonImportDialog> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: Theme.of(context).dividerColor.withValues(alpha: 0.2),
+                          color: Theme.of(
+                            context,
+                          ).dividerColor.withValues(alpha: 0.2),
                         ),
                       ),
                       width: double.infinity,
                       child: const SelectableText(
                         _exampleJson,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(fontFamily: 'monospace', fontSize: 12),
                       ),
                     ),
                     const SizedBox(height: 16),

@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class FontItem extends StatelessWidget {
-  const FontItem({
-    required this.onTap,
-    this.fontName = '',
-    super.key,
-  });
+  const FontItem({required this.onTap, this.fontName = '', super.key});
 
   final void Function() onTap;
   final String? fontName;
@@ -33,10 +29,7 @@ class FontItem extends StatelessWidget {
                 ),
               ),
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,

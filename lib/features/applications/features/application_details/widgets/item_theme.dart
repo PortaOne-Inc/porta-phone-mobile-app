@@ -37,7 +37,9 @@ class ItemTheme extends StatelessWidget {
     final hasDescription = description?.isNotEmpty ?? false;
 
     return InkWell(
-      customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       onTap: () => onTap(model),
       child: Card(
         elevation: 1,
@@ -67,8 +69,13 @@ class ItemTheme extends StatelessWidget {
                         const SizedBox(width: 8),
                         if (model.isDefault)
                           Tooltip(
-                            message: context.l10n.feature_application_use_current_theme,
-                            child: Icon(Icons.star_rounded, color: colorScheme.primary),
+                            message: context
+                                .l10n
+                                .feature_application_use_current_theme,
+                            child: Icon(
+                              Icons.star_rounded,
+                              color: colorScheme.primary,
+                            ),
                           ),
                         const SizedBox(width: 6),
                         _StatusChip(status: model.status),
@@ -109,7 +116,9 @@ class ItemTheme extends StatelessWidget {
                         if (model.tags.isNotEmpty)
                           _MetaIconText(
                             icon: Icons.sell_outlined,
-                            text: model.tags.take(3).join(', ') + (model.tags.length > 3 ? '…' : ''),
+                            text:
+                                model.tags.take(3).join(', ') +
+                                (model.tags.length > 3 ? '…' : ''),
                           ),
                       ],
                     ),
@@ -133,7 +142,9 @@ class ItemTheme extends StatelessWidget {
                   PopupMenuItem(
                     value: _menuKeyThemeDefault,
                     padding: const EdgeInsets.all(8),
-                    child: Text(context.l10n.feature_application_use_current_theme),
+                    child: Text(
+                      context.l10n.feature_application_use_current_theme,
+                    ),
                   ),
                   PopupMenuItem(
                     value: _menuKeyInfo,
@@ -198,7 +209,11 @@ class _PreviewBox extends StatelessWidget {
         border: Border.all(color: cs.outlineVariant),
       ),
       alignment: Alignment.center,
-      child: Icon(Icons.image_outlined, size: size * 0.5, color: cs.onSurfaceVariant),
+      child: Icon(
+        Icons.image_outlined,
+        size: size * 0.5,
+        color: cs.onSurfaceVariant,
+      ),
     );
   }
 }
@@ -212,15 +227,36 @@ class _StatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Theme.of(context);
     final (bg, fg, label) = switch (status) {
-      ThemeStatus.draft => (t.colorScheme.surfaceContainerHighest, t.colorScheme.onSurface, 'Draft'),
-      ThemeStatus.published => (t.colorScheme.primaryContainer, t.colorScheme.onPrimaryContainer, 'Published'),
-      ThemeStatus.archived => (t.colorScheme.surfaceContainerHigh, t.colorScheme.onSurfaceVariant, 'Archived'),
+      ThemeStatus.draft => (
+        t.colorScheme.surfaceContainerHighest,
+        t.colorScheme.onSurface,
+        'Draft',
+      ),
+      ThemeStatus.published => (
+        t.colorScheme.primaryContainer,
+        t.colorScheme.onPrimaryContainer,
+        'Published',
+      ),
+      ThemeStatus.archived => (
+        t.colorScheme.surfaceContainerHigh,
+        t.colorScheme.onSurfaceVariant,
+        'Archived',
+      ),
     };
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(999)),
-      child: Text(label, style: t.textTheme.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w600)),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text(
+        label,
+        style: t.textTheme.labelSmall?.copyWith(
+          color: fg,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }

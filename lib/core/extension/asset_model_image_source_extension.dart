@@ -8,11 +8,6 @@ extension AssetModelImageSourceX on AssetModel {
     String ref = 'asset',
     Metadata metadata = const Metadata(),
   }) {
-    return ImageSource(
-      id: id,
-      uri: downloadUrl,
-      ref: ref,
-      metadata: metadata,
-    );
+    return ImageSource(id: id, uri: downloadUrl, ref: ref, metadata: metadata);
   }
 }

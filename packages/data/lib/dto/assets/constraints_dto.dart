@@ -6,10 +6,14 @@ part 'constraints_dto.g.dart';
 
 @freezed
 sealed class PlatformConstraintsDto with _$PlatformConstraintsDto {
-  const factory PlatformConstraintsDto({double? sizeDp, double? safeZoneDp, double? toleranceDp}) =
-      _PlatformConstraintsDto;
+  const factory PlatformConstraintsDto({
+    double? sizeDp,
+    double? safeZoneDp,
+    double? toleranceDp,
+  }) = _PlatformConstraintsDto;
 
-  factory PlatformConstraintsDto.fromJson(Map<String, dynamic> json) => _$PlatformConstraintsDtoFromJson(json);
+  factory PlatformConstraintsDto.fromJson(Map<String, dynamic> json) =>
+      _$PlatformConstraintsDtoFromJson(json);
 }
 
 @freezed
@@ -21,5 +25,6 @@ sealed class ConstraintsDto with _$ConstraintsDto {
     PlatformConstraintsDto? web,
   }) = _ConstraintsDto;
 
-  factory ConstraintsDto.fromJson(Map<String, dynamic> json) => _$ConstraintsDtoFromJson(json);
+  factory ConstraintsDto.fromJson(Map<String, dynamic> json) =>
+      _$ConstraintsDtoFromJson(json);
 }

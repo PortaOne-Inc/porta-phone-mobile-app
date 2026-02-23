@@ -17,9 +17,7 @@ class CredentialsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       title: const Text('Credentials'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -27,9 +25,7 @@ class CredentialsDialog extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Flexible(
-                child: Text(context.l10n.feature_application_id),
-              ),
+              Flexible(child: Text(context.l10n.feature_application_id)),
               Flexible(
                 child: GestureDetector(
                   child: Text.rich(
@@ -39,11 +35,7 @@ class CredentialsDialog extends StatelessWidget {
                           text: applicationId,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
-                        const WidgetSpan(
-                          child: SizedBox(
-                            width: 8,
-                          ),
-                        ),
+                        const WidgetSpan(child: SizedBox(width: 8)),
                         WidgetSpan(
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
@@ -57,20 +49,17 @@ class CredentialsDialog extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: () => Clipboard.setData(ClipboardData(text: applicationId)),
+                  onTap: () =>
+                      Clipboard.setData(ClipboardData(text: applicationId)),
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Flexible(
-                child: Text('Theme id:'),
-              ),
+              const Flexible(child: Text('Theme id:')),
               Flexible(
                 child: GestureDetector(
                   child: Text.rich(
@@ -80,11 +69,7 @@ class CredentialsDialog extends StatelessWidget {
                           text: themeId,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
-                        const WidgetSpan(
-                          child: SizedBox(
-                            width: 8,
-                          ),
-                        ),
+                        const WidgetSpan(child: SizedBox(width: 8)),
                         WidgetSpan(
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,

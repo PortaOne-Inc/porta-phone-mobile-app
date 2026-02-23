@@ -3,11 +3,7 @@ import 'package:logger/logger.dart';
 
 class LoggingInterceptor extends Interceptor {
   final Logger _logger = Logger(
-    printer: PrettyPrinter(
-      methodCount: 0,
-      errorMethodCount: 5,
-      lineLength: 80,
-    ),
+    printer: PrettyPrinter(methodCount: 0, errorMethodCount: 5, lineLength: 80),
   );
 
   String _formatFormData(FormData formData) {
@@ -50,7 +46,10 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+  void onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
     _logger.i(
       '✅ RESPONSE ← [${response.statusCode}] ${response.requestOptions.uri}\n'
       '📝 HEADERS: ${response.headers.map}\n'

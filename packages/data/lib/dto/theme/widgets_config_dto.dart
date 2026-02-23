@@ -16,5 +16,6 @@ sealed class WidgetsConfigDto with _$WidgetsConfigDto {
     required DateTime updatedAt,
   }) = _WidgetsConfigDto;
 
-  factory WidgetsConfigDto.fromJson(Map<String, dynamic> json) => _$WidgetsConfigDtoFromJson(json);
+  factory WidgetsConfigDto.fromJson(Map<String, dynamic> json) =>
+      _$WidgetsConfigDtoFromJson(json);
 }

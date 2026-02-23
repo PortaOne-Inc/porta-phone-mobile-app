@@ -9,21 +9,29 @@ extension ApplicationValidateErrorL10n on ApplicationValidateError {
     final localizations = AppLocalizations.of(context)!;
     return switch (this) {
       ApplicationValidateError.invalidCoreUrl =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidCoreUrl,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidCoreUrl,
       ApplicationValidateError.invalidTermsConditionsUrl =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl,
       ApplicationValidateError.invalidAndroidVersionName =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName,
       ApplicationValidateError.invalidAndroidVersionNumber =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber,
       ApplicationValidateError.invalidIosVersionName =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidIosVersionName,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidIosVersionName,
       ApplicationValidateError.invalidIosVersionNumber =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber,
       ApplicationValidateError.invalidIosPlatformId =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId,
       ApplicationValidateError.invalidAndroidPlatformId =>
-        localizations.feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId,
+        localizations
+            .feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId,
     };
   }
 }

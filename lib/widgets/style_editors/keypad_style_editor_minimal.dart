@@ -25,13 +25,15 @@ class KeypadStyleEditorMinimal extends StatelessWidget {
         TextStyleConfigEditor(
           label: 'Digit Typography',
           value: value.textStyle ?? const TextStyleConfig(),
-          onChanged: (newStyle) => onChanged(value.copyWith(textStyle: newStyle)),
+          onChanged: (newStyle) =>
+              onChanged(value.copyWith(textStyle: newStyle)),
         ),
         const SizedBox(height: 16),
         TextStyleConfigEditor(
           label: 'Subtext Typography',
           value: value.subtextStyle ?? const TextStyleConfig(),
-          onChanged: (newStyle) => onChanged(value.copyWith(subtextStyle: newStyle)),
+          onChanged: (newStyle) =>
+              onChanged(value.copyWith(subtextStyle: newStyle)),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -127,12 +129,13 @@ class _LayoutNumberInputState extends State<_LayoutNumberInput> {
         suffixText: widget.suffix,
         isDense: true,
         border: const OutlineInputBorder(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 12,
+        ),
       ),
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]')),
-      ],
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9\.,]'))],
       onChanged: (v) {
         if (v.isEmpty) {
           widget.onChanged(null);

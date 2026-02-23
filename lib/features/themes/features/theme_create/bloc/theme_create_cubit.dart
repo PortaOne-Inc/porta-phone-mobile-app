@@ -17,12 +17,14 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
     required this.generateThemeUsecase,
     required AppConfig defaultFeatureAccess,
     required ThemeSettings defaultThemeConfig,
-  }) : super(ThemeCreateState(
-          status: ThemeCreateStateStatus.initial,
-          defaultFeatureAccess: defaultFeatureAccess,
-          defaultThemeConfig: defaultThemeConfig,
-          useAi: false,
-        ));
+  }) : super(
+         ThemeCreateState(
+           status: ThemeCreateStateStatus.initial,
+           defaultFeatureAccess: defaultFeatureAccess,
+           defaultThemeConfig: defaultThemeConfig,
+           useAi: false,
+         ),
+       );
 
   final UsecaseThemeCreate createThemeUseCase;
   final GenerateThemeUsecase generateThemeUsecase;
@@ -64,18 +66,23 @@ class ThemeCreateCubit extends Cubit<ThemeCreateState> {
   Future<void> _doGenerate() async {
     final prompt = (state.prompt ?? '').trim();
     if (prompt.isEmpty) {
-      emit(state.copyWith(
-        status: ThemeCreateStateStatus.error,
-        error: BaseException(message: 'Prompt is required when AI generation is enabled'),
-      ));
+      emit(
+        state.copyWith(
+          status: ThemeCreateStateStatus.error,
+          error: BaseException(
+            message: 'Prompt is required when AI generation is enabled',
+          ),
+        ),
+      );
       return;
     }
     await _tx(() async {
       await generateThemeUsecase.execute(
-          applicationId: applicationId,
-          title: state.nameInput!.value,
-          description: state.description ?? '',
-          prompt: prompt);
+        applicationId: applicationId,
+        title: state.nameInput!.value,
+        description: state.description ?? '',
+        prompt: prompt,
+      );
     });
   }
 

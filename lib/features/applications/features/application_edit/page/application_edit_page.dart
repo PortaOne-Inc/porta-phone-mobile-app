@@ -13,16 +13,17 @@ import '../../../widgets/widgets.dart';
 import '../bloc/application_edit_cubit.dart';
 
 class ApplicationEditPage extends StatefulWidget {
-  const ApplicationEditPage({
-    super.key,
-  });
+  const ApplicationEditPage({super.key});
 
   @override
   State<ApplicationEditPage> createState() => _ApplicationEditPageState();
 }
 
-class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMessages {
-  late final ApplicationEditCubit _bloc = BlocProvider.of<ApplicationEditCubit>(context);
+class _ApplicationEditPageState extends State<ApplicationEditPage>
+    with MixinMessages {
+  late final ApplicationEditCubit _bloc = BlocProvider.of<ApplicationEditCubit>(
+    context,
+  );
 
   final _identifierEditController = TextEditingController();
 
@@ -31,7 +32,8 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
     final textTheme = Theme.of(context).textTheme;
 
     return BlocConsumer<ApplicationEditCubit, ApplicationEditState>(
-      listener: (BuildContext context, ApplicationEditState state) => _listenAppCreateState(state),
+      listener: (BuildContext context, ApplicationEditState state) =>
+          _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -43,7 +45,7 @@ class _ApplicationEditPageState extends State<ApplicationEditPage> with MixinMes
             ThemeModeSwitcher(
               themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            )
+            ),
           ],
         ),
         body: Center(

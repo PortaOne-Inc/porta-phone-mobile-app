@@ -5,9 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/core/core.dart';
 
 extension ContextExtensions on BuildContext {
-  Future<Color?> pickColor({
-    required Color initial,
-  }) {
+  Future<Color?> pickColor({required Color initial}) {
     return showDialog<Color?>(
       context: this,
       builder: (context) => Center(

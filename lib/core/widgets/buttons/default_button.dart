@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  const Button({
-    required this.title,
-    required this.onPressed,
-    super.key,
-  });
+  const Button({required this.title, required this.onPressed, super.key});
 
   final String title;
   final VoidCallback? onPressed;
@@ -15,16 +11,12 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
       child: SizedBox(
         width: double.infinity,
         height: 48,
-        child: Center(
-          child: Text(title),
-        ),
+        child: Center(child: Text(title)),
       ),
     );
   }

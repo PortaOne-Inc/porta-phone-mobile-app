@@ -1,12 +1,6 @@
 part of 'application_collection_cubit.dart';
 
-enum ApplicationsStateStatus {
-  initial,
-  progress,
-  error,
-  deleted,
-  success,
-}
+enum ApplicationsStateStatus { initial, progress, error, deleted, success }
 
 @freezed
 sealed class ApplicationCollectionState with _$ApplicationCollectionState {

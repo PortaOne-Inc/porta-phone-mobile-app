@@ -8,7 +8,10 @@ class AttributesWidget extends StatefulWidget {
     required this.onAddAttribute,
     required this.onUpdateAttribute,
     required this.onRemoveAttribute,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 8,
+    ),
     super.key,
   });
 
@@ -35,8 +38,12 @@ class _AttributesWidgetState extends State<AttributesWidget> {
 
   void _initializeControllers() {
     _keys = widget.attributes.keys.toList();
-    _keyControllers = _keys.map((key) => TextEditingController(text: key)).toList();
-    _valueControllers = _keys.map((key) => TextEditingController(text: widget.attributes[key])).toList();
+    _keyControllers = _keys
+        .map((key) => TextEditingController(text: key))
+        .toList();
+    _valueControllers = _keys
+        .map((key) => TextEditingController(text: widget.attributes[key]))
+        .toList();
   }
 
   @override
@@ -59,7 +66,9 @@ class _AttributesWidgetState extends State<AttributesWidget> {
           }
         } else {
           _keyControllers.add(TextEditingController(text: _keys[i]));
-          _valueControllers.add(TextEditingController(text: widget.attributes[_keys[i]]));
+          _valueControllers.add(
+            TextEditingController(text: widget.attributes[_keys[i]]),
+          );
         }
       }
 
@@ -117,18 +126,30 @@ class _AttributesWidgetState extends State<AttributesWidget> {
                 Expanded(
                   child: TextField(
                     key: ValueKey(index.toString()),
-                    decoration: const InputDecoration(labelText: 'Key', border: OutlineInputBorder()),
+                    decoration: const InputDecoration(
+                      labelText: 'Key',
+                      border: OutlineInputBorder(),
+                    ),
                     controller: _keyControllers[index],
-                    onChanged: (value) => widget.onUpdateAttribute(value, _valueControllers[index].text),
+                    onChanged: (value) => widget.onUpdateAttribute(
+                      value,
+                      _valueControllers[index].text,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: TextField(
                     key: ValueKey(index.toString()),
-                    decoration: const InputDecoration(labelText: 'Value', border: OutlineInputBorder()),
+                    decoration: const InputDecoration(
+                      labelText: 'Value',
+                      border: OutlineInputBorder(),
+                    ),
                     controller: _valueControllers[index],
-                    onChanged: (value) => widget.onUpdateAttribute(_keyControllers[index].text, value),
+                    onChanged: (value) => widget.onUpdateAttribute(
+                      _keyControllers[index].text,
+                      value,
+                    ),
                   ),
                 ),
                 IconButton(

@@ -12,15 +12,17 @@ part 'manage_setting_item_state.dart';
 part 'manage_setting_item_cubit.freezed.dart';
 
 class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
-  ManageSettingItemCubit({
-    required this.embedded,
-    this.item,
-  }) : super(ManageSettingItemState()) {
-    assignEmbeddedPage(embedded.firstWhereOrNull((it) => it.id == item?.embeddedResourceId));
+  ManageSettingItemCubit({required this.embedded, this.item})
+    : super(ManageSettingItemState()) {
+    assignEmbeddedPage(
+      embedded.firstWhereOrNull((it) => it.id == item?.embeddedResourceId),
+    );
     changeTitleL10n(item?.titleL10n);
     chaneSettingItemIcon(item?.icon);
     changeEnable(item?.enabled ?? false);
-    changeType(SettingsFlavor.values.firstWhereOrNull((it) => it.name == item?.type));
+    changeType(
+      SettingsFlavor.values.firstWhereOrNull((it) => it.name == item?.type),
+    );
   }
 
   final AppConfigSettingsItem? item;
@@ -41,7 +43,6 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
   void changeIconColor(String? value) {
     emit(state.copyWith(settingItemColor: value));
   }
-
 
   void changeType(SettingsFlavor? value) {
     emit(state.copyWith(type: value));

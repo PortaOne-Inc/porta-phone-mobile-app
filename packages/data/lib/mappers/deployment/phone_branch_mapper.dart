@@ -12,10 +12,7 @@ class PhoneBranchMapper extends CommonMapper<PhoneBranch, PhoneBranchDto> {
     final name = it.name;
     final type = _determineType(name);
 
-    return PhoneBranch(
-      name: name,
-      type: type,
-    );
+    return PhoneBranch(name: name, type: type);
   }
 
   PhoneBranchType _determineType(String name) {

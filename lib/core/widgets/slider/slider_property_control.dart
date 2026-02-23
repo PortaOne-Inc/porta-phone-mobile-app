@@ -73,7 +73,9 @@ class SliderPropertyControlState extends State<SliderPropertyControl> {
               value: updatedValue,
               min: widget.min,
               max: widget.max,
-              divisions: widget.showDivisions ? (widget.max - widget.min) ~/ 4 : null,
+              divisions: widget.showDivisions
+                  ? (widget.max - widget.min) ~/ 4
+                  : null,
               onChangeEnd: widget.onValueChanged,
               onChanged: (value) {
                 updatedValue = value;

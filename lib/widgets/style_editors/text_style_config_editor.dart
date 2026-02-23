@@ -54,8 +54,10 @@ class TextStyleConfigEditor extends StatelessWidget {
                     fontFamily: safeValue.fontFamily,
                     fontSize: safeValue.fontSize,
                     onPickFont: () => _handlePickFont(context, safeValue),
-                    onClearFont: () => onChanged(safeValue.copyWith(fontFamily: null)),
-                    onSizeChanged: (v) => onChanged(safeValue.copyWith(fontSize: v)),
+                    onClearFont: () =>
+                        onChanged(safeValue.copyWith(fontFamily: null)),
+                    onSizeChanged: (v) =>
+                        onChanged(safeValue.copyWith(fontSize: v)),
                   ),
                   const SizedBox(height: 12),
 
@@ -66,11 +68,15 @@ class TextStyleConfigEditor extends StatelessWidget {
                     letterSpacing: safeValue.letterSpacing,
                     onWeightChanged: (w) => onChanged(
                       safeValue.copyWith(
-                        fontWeight: w == null ? null : FontWeightConfig(weight: w),
+                        fontWeight: w == null
+                            ? null
+                            : FontWeightConfig(weight: w),
                       ),
                     ),
-                    onHeightChanged: (v) => onChanged(safeValue.copyWith(height: v)),
-                    onSpacingChanged: (v) => onChanged(safeValue.copyWith(letterSpacing: v)),
+                    onHeightChanged: (v) =>
+                        onChanged(safeValue.copyWith(height: v)),
+                    onSpacingChanged: (v) =>
+                        onChanged(safeValue.copyWith(letterSpacing: v)),
                   ),
                   const SizedBox(height: 12),
 
@@ -85,23 +91,30 @@ class TextStyleConfigEditor extends StatelessWidget {
                       safeValue.color?.toColor(),
                       (hex) => onChanged(safeValue.copyWith(color: hex)),
                     ),
-                    onTextColorClear: () => onChanged(safeValue.copyWith(color: null)),
+                    onTextColorClear: () =>
+                        onChanged(safeValue.copyWith(color: null)),
                     onBgColorPick: () => _handlePickColor(
                       context,
                       safeValue.backgroundColor?.toColor(),
-                      (hex) => onChanged(safeValue.copyWith(backgroundColor: hex)),
+                      (hex) =>
+                          onChanged(safeValue.copyWith(backgroundColor: hex)),
                     ),
-                    onBgColorClear: () => onChanged(safeValue.copyWith(backgroundColor: null)),
+                    onBgColorClear: () =>
+                        onChanged(safeValue.copyWith(backgroundColor: null)),
                     onItalicChanged: (isItalic) => onChanged(
                       safeValue.copyWith(
-                        fontStyle: isItalic ? const FontStyleConfig(value: 'italic') : null,
+                        fontStyle: isItalic
+                            ? const FontStyleConfig(value: 'italic')
+                            : null,
                       ),
                     ),
                     onDecorationChanged: (types) => onChanged(
                       safeValue.copyWith(
                         decoration: types.isEmpty
                             ? null
-                            : (safeValue.decoration ?? const TextDecorationConfig()).copyWith(types: types),
+                            : (safeValue.decoration ??
+                                      const TextDecorationConfig())
+                                  .copyWith(types: types),
                       ),
                     ),
                   ),
@@ -115,7 +128,10 @@ class TextStyleConfigEditor extends StatelessWidget {
     );
   }
 
-  Future<void> _handlePickFont(BuildContext context, TextStyleConfig current) async {
+  Future<void> _handlePickFont(
+    BuildContext context,
+    TextStyleConfig current,
+  ) async {
     final selected = await context.showFontPicker();
     if (context.mounted && selected != null && selected.isNotEmpty) {
       onChanged(current.copyWith(fontFamily: selected));
@@ -158,7 +174,9 @@ class _Header extends StatelessWidget {
         children: [
           Text(
             label,
-            style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           if (description != null) ...[
             const SizedBox(width: 8),
@@ -224,7 +242,10 @@ class _FontAndSizeRow extends StatelessWidget {
                 labelText: 'Font Family',
                 isDense: true,
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 12,
+                ),
               ),
               child: Row(
                 children: [
@@ -232,7 +253,9 @@ class _FontAndSizeRow extends StatelessWidget {
                     child: Text(
                       fontFamily ?? 'Default',
                       style: fontFamily == null
-                          ? theme.textTheme.bodyMedium?.copyWith(color: theme.hintColor)
+                          ? theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.hintColor,
+                            )
                           : theme.textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -301,16 +324,18 @@ class _MetricsRow extends StatelessWidget {
                 icon: const Icon(Icons.arrow_drop_down, size: 20),
                 style: Theme.of(context).textTheme.bodyMedium,
                 items: [100, 200, 300, 400, 500, 600, 700, 800, 900]
-                    .map((w) => DropdownMenuItem(
-                          value: w,
-                          child: Text(
-                            _getWeightLabel(w),
-                            style: TextStyle(
-                              fontWeight: FontWeight.values[(w ~/ 100) - 1],
-                            ),
-                            overflow: TextOverflow.ellipsis,
+                    .map(
+                      (w) => DropdownMenuItem(
+                        value: w,
+                        child: Text(
+                          _getWeightLabel(w),
+                          style: TextStyle(
+                            fontWeight: FontWeight.values[(w ~/ 100) - 1],
                           ),
-                        ))
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    )
                     .toList(),
                 onChanged: onWeightChanged,
               ),
@@ -428,7 +453,9 @@ class _VisualsRow extends StatelessWidget {
             Container(
               height: 48, // Match standard input height
               decoration: BoxDecoration(
-                color: theme.colorScheme.surfaceContainerHigh.withValues(alpha: 0.3),
+                color: theme.colorScheme.surfaceContainerHigh.withValues(
+                  alpha: 0.3,
+                ),
                 borderRadius: BorderRadius.circular(4),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -493,8 +520,12 @@ class _ToolbarIcon extends StatelessWidget {
       tooltip: tooltip,
       isSelected: isSelected,
       style: IconButton.styleFrom(
-        foregroundColor: isSelected ? colorScheme.primary : (isDark ? Colors.white70 : Colors.black54),
-        backgroundColor: isSelected ? colorScheme.primary.withValues(alpha: 0.1) : null,
+        foregroundColor: isSelected
+            ? colorScheme.primary
+            : (isDark ? Colors.white70 : Colors.black54),
+        backgroundColor: isSelected
+            ? colorScheme.primary.withValues(alpha: 0.1)
+            : null,
         visualDensity: VisualDensity.compact,
         padding: const EdgeInsets.all(8),
         minimumSize: const Size(36, 36),
@@ -520,11 +551,11 @@ class _EmptyState extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.dividerColor.withValues(alpha: 0.5),
-          ),
+          border: Border.all(color: theme.dividerColor.withValues(alpha: 0.5)),
           borderRadius: BorderRadius.circular(12),
-          color: theme.colorScheme.surfaceContainerLowest.withValues(alpha: 0.3),
+          color: theme.colorScheme.surfaceContainerLowest.withValues(
+            alpha: 0.3,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

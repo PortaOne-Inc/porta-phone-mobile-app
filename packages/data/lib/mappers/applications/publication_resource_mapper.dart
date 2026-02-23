@@ -5,7 +5,8 @@ import '../../dto/application/publication_resource_dto.dart';
 import '../mapper.dart';
 
 @Injectable(as: CommonMapper<PublicationResourceModel, PublicationResourceDto>)
-class PublicationResourceMapper extends CommonMapper<PublicationResourceModel, PublicationResourceDto> {
+class PublicationResourceMapper
+    extends CommonMapper<PublicationResourceModel, PublicationResourceDto> {
   @override
   PublicationResourceModel convertFrom(PublicationResourceDto it) {
     return PublicationResourceModel(

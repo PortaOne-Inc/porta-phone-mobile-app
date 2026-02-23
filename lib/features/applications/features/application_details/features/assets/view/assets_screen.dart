@@ -50,7 +50,9 @@ class _AssetsScreenState extends State<AssetsScreen> {
           },
         ),
         BlocListener<AssetsCubit, AssetsState>(
-          listenWhen: (prev, curr) => prev.deleting != curr.deleting || prev.deleteError != curr.deleteError,
+          listenWhen: (prev, curr) =>
+              prev.deleting != curr.deleting ||
+              prev.deleteError != curr.deleteError,
           listener: (context, state) {
             if (state.deleting) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -111,9 +113,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
     }
 
     if (state.assets.isEmpty) {
-      return _EmptyView(
-        onRefresh: () => context.read<AssetsCubit>().load(),
-      );
+      return _EmptyView(onRefresh: () => context.read<AssetsCubit>().load());
     }
 
     return Padding(
@@ -128,7 +128,8 @@ class _AssetsScreenState extends State<AssetsScreen> {
         ),
         itemBuilder: (context, index) {
           final asset = state.assets[index];
-          final isDeleting = state.deleting && state.deletingAssetId == asset.id;
+          final isDeleting =
+              state.deleting && state.deletingAssetId == asset.id;
 
           return _AssetTile(
             asset: asset,
@@ -179,9 +180,17 @@ class _AssetTile extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: hasUrl
-                    ? MimeAwareImage(resource: MimeImageResource.fromUrl(url, mimeType: asset.mimeType))
+                    ? MimeAwareImage(
+                        resource: MimeImageResource.fromUrl(
+                          url,
+                          mimeType: asset.mimeType,
+                        ),
+                      )
                     : Container(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest
+                            .withValues(alpha: 0.5),
                         alignment: Alignment.center,
                         child: Icon(
                           _isImage ? Icons.image : Icons.insert_drive_file,
@@ -223,7 +232,8 @@ class _AssetTile extends StatelessWidget {
             ),
             Text('MIME: ${asset.mimeType}', style: t.bodySmall),
             Text('Size: ${_humanSize(asset.size)}', style: t.bodySmall),
-            if ((asset.refCount) > 0) Text('Used by: ${asset.refCount}', style: t.bodySmall),
+            if ((asset.refCount) > 0)
+              Text('Used by: ${asset.refCount}', style: t.bodySmall),
           ],
         ),
       ),

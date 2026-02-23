@@ -28,27 +28,51 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   void updateAndroidPlatformId(String platformId) {
-    emit(state.copyWith(androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+    emit(
+      state.copyWith(
+        androidPlatformIdInput: ApplicationIdentifierInput.dirty(platformId),
+      ),
+    );
   }
 
   void updateIosPlatformId(String platformId) {
-    emit(state.copyWith(iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId)));
+    emit(
+      state.copyWith(
+        iosPlatformIdInput: ApplicationIdentifierInput.dirty(platformId),
+      ),
+    );
   }
 
   void updateAndroidBuildName(String buildName) {
-    emit(state.copyWith(androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+    emit(
+      state.copyWith(
+        androidBuildNameInput: ApplicationBuildNameInput.dirty(buildName),
+      ),
+    );
   }
 
   void updateAndroidBuildNumber(String buildNumber) {
-    emit(state.copyWith(androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+    emit(
+      state.copyWith(
+        androidBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber),
+      ),
+    );
   }
 
   void updateIosBuildName(String buildName) {
-    emit(state.copyWith(iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName)));
+    emit(
+      state.copyWith(
+        iosBuildNameInput: ApplicationBuildNameInput.dirty(buildName),
+      ),
+    );
   }
 
   void updateIosBuildNumber(String buildNumber) {
-    emit(state.copyWith(iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber)));
+    emit(
+      state.copyWith(
+        iosBuildNumberInput: ApplicationBuildNumberInput.dirty(buildNumber),
+      ),
+    );
   }
 
   void validateAndTryCreateApplication() {
@@ -66,20 +90,22 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
     try {
       emit(state.copyWith(status: ApplicationEditStatus.loading));
 
-      updateApplicationUsecase.execute(ApplicationModel(
-        id: applicationId,
-        name: state.nameInput!.value,
-        androidPlatformId: state.androidPlatformIdInput!.value,
-        iosPlatformId: state.iosPlatformIdInput!.value,
-        androidVersion: BuildVersionModel(
-          buildName: state.androidBuildNameInput!.value,
-          buildNumber: int.tryParse(state.androidBuildNumberInput!.value),
+      updateApplicationUsecase.execute(
+        ApplicationModel(
+          id: applicationId,
+          name: state.nameInput!.value,
+          androidPlatformId: state.androidPlatformIdInput!.value,
+          iosPlatformId: state.iosPlatformIdInput!.value,
+          androidVersion: BuildVersionModel(
+            buildName: state.androidBuildNameInput!.value,
+            buildNumber: int.tryParse(state.androidBuildNumberInput!.value),
+          ),
+          iosVersion: BuildVersionModel(
+            buildName: state.iosBuildNameInput!.value,
+            buildNumber: int.tryParse(state.iosBuildNumberInput!.value),
+          ),
         ),
-        iosVersion: BuildVersionModel(
-          buildName: state.iosBuildNameInput!.value,
-          buildNumber: int.tryParse(state.iosBuildNumberInput!.value),
-        ),
-      ));
+      );
 
       emit(state.copyWith(status: ApplicationEditStatus.finish));
     } on Exception catch (e) {
@@ -88,20 +114,32 @@ class ApplicationEditCubit extends Cubit<ApplicationEditState> {
   }
 
   Future<void> tryGetApplication(String id) async {
-      emit(state.copyWith(status: ApplicationEditStatus.loading));
-      final app = await applicationGetUsecase.execute(id: id);
-      emit(
-        ApplicationEditState(
-          status: ApplicationEditStatus.success,
-          androidPlatformIdInput: ApplicationIdentifierInput.dirty(app.androidPlatformId ?? ''),
-          iosPlatformIdInput: ApplicationIdentifierInput.dirty(app.iosPlatformId ?? ''),
-          androidBuildNameInput: ApplicationBuildNameInput.dirty(app.androidVersion?.buildName ?? ''),
-          androidBuildNumberInput: ApplicationBuildNumberInput.dirty(app.androidVersion?.buildNumber?.toString() ?? ''),
-          iosBuildNameInput: ApplicationBuildNameInput.dirty(app.iosVersion?.buildName ?? ''),
-          iosBuildNumberInput: ApplicationBuildNumberInput.dirty(app.iosVersion?.buildNumber?.toString() ?? ''),
-          nameInput: ApplicationNameInput.dirty(app.name ?? ''),
+    emit(state.copyWith(status: ApplicationEditStatus.loading));
+    final app = await applicationGetUsecase.execute(id: id);
+    emit(
+      ApplicationEditState(
+        status: ApplicationEditStatus.success,
+        androidPlatformIdInput: ApplicationIdentifierInput.dirty(
+          app.androidPlatformId ?? '',
         ),
-      );
+        iosPlatformIdInput: ApplicationIdentifierInput.dirty(
+          app.iosPlatformId ?? '',
+        ),
+        androidBuildNameInput: ApplicationBuildNameInput.dirty(
+          app.androidVersion?.buildName ?? '',
+        ),
+        androidBuildNumberInput: ApplicationBuildNumberInput.dirty(
+          app.androidVersion?.buildNumber?.toString() ?? '',
+        ),
+        iosBuildNameInput: ApplicationBuildNameInput.dirty(
+          app.iosVersion?.buildName ?? '',
+        ),
+        iosBuildNumberInput: ApplicationBuildNumberInput.dirty(
+          app.iosVersion?.buildNumber?.toString() ?? '',
+        ),
+        nameInput: ApplicationNameInput.dirty(app.name ?? ''),
+      ),
+    );
   }
 
   bool _isValidFields() {

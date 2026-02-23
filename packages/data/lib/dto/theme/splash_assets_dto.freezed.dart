@@ -12,7 +12,8 @@ part of 'splash_assets_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 SplashAssetsDto _$SplashAssetsDtoFromJson(Map<String, dynamic> json) {
   return _SplashAssetsDto.fromJson(json);
@@ -39,15 +40,17 @@ mixin _$SplashAssetsDto {
 /// @nodoc
 abstract class $SplashAssetsDtoCopyWith<$Res> {
   factory $SplashAssetsDtoCopyWith(
-          SplashAssetsDto value, $Res Function(SplashAssetsDto) then) =
-      _$SplashAssetsDtoCopyWithImpl<$Res, SplashAssetsDto>;
+    SplashAssetsDto value,
+    $Res Function(SplashAssetsDto) then,
+  ) = _$SplashAssetsDtoCopyWithImpl<$Res, SplashAssetsDto>;
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? pictureUrl,
-      String? color,
-      double padding,
-      String fit});
+  $Res call({
+    int? originalAssetId,
+    String? pictureUrl,
+    String? color,
+    double padding,
+    String fit,
+  });
 }
 
 /// @nodoc
@@ -71,45 +74,50 @@ class _$SplashAssetsDtoCopyWithImpl<$Res, $Val extends SplashAssetsDto>
     Object? padding = null,
     Object? fit = null,
   }) {
-    return _then(_value.copyWith(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pictureUrl: freezed == pictureUrl
-          ? _value.pictureUrl
-          : pictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      padding: null == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double,
-      fit: null == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            originalAssetId: freezed == originalAssetId
+                ? _value.originalAssetId
+                : originalAssetId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            pictureUrl: freezed == pictureUrl
+                ? _value.pictureUrl
+                : pictureUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            color: freezed == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            padding: null == padding
+                ? _value.padding
+                : padding // ignore: cast_nullable_to_non_nullable
+                      as double,
+            fit: null == fit
+                ? _value.fit
+                : fit // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SplashAssetsDtoImplCopyWith<$Res>
     implements $SplashAssetsDtoCopyWith<$Res> {
-  factory _$$SplashAssetsDtoImplCopyWith(_$SplashAssetsDtoImpl value,
-          $Res Function(_$SplashAssetsDtoImpl) then) =
-      __$$SplashAssetsDtoImplCopyWithImpl<$Res>;
+  factory _$$SplashAssetsDtoImplCopyWith(
+    _$SplashAssetsDtoImpl value,
+    $Res Function(_$SplashAssetsDtoImpl) then,
+  ) = __$$SplashAssetsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? originalAssetId,
-      String? pictureUrl,
-      String? color,
-      double padding,
-      String fit});
+  $Res call({
+    int? originalAssetId,
+    String? pictureUrl,
+    String? color,
+    double padding,
+    String fit,
+  });
 }
 
 /// @nodoc
@@ -117,8 +125,9 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
     extends _$SplashAssetsDtoCopyWithImpl<$Res, _$SplashAssetsDtoImpl>
     implements _$$SplashAssetsDtoImplCopyWith<$Res> {
   __$$SplashAssetsDtoImplCopyWithImpl(
-      _$SplashAssetsDtoImpl _value, $Res Function(_$SplashAssetsDtoImpl) _then)
-      : super(_value, _then);
+    _$SplashAssetsDtoImpl _value,
+    $Res Function(_$SplashAssetsDtoImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of SplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -131,28 +140,30 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
     Object? padding = null,
     Object? fit = null,
   }) {
-    return _then(_$SplashAssetsDtoImpl(
-      originalAssetId: freezed == originalAssetId
-          ? _value.originalAssetId
-          : originalAssetId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pictureUrl: freezed == pictureUrl
-          ? _value.pictureUrl
-          : pictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      padding: null == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as double,
-      fit: null == fit
-          ? _value.fit
-          : fit // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$SplashAssetsDtoImpl(
+        originalAssetId: freezed == originalAssetId
+            ? _value.originalAssetId
+            : originalAssetId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        pictureUrl: freezed == pictureUrl
+            ? _value.pictureUrl
+            : pictureUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        color: freezed == color
+            ? _value.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        padding: null == padding
+            ? _value.padding
+            : padding // ignore: cast_nullable_to_non_nullable
+                  as double,
+        fit: null == fit
+            ? _value.fit
+            : fit // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -160,12 +171,13 @@ class __$$SplashAssetsDtoImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
-  const _$SplashAssetsDtoImpl(
-      {this.originalAssetId,
-      this.pictureUrl,
-      this.color,
-      this.padding = 0.0,
-      this.fit = 'scaleDown'});
+  const _$SplashAssetsDtoImpl({
+    this.originalAssetId,
+    this.pictureUrl,
+    this.color,
+    this.padding = 0.0,
+    this.fit = 'scaleDown',
+  });
 
   factory _$SplashAssetsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SplashAssetsDtoImplFromJson(json);
@@ -205,7 +217,13 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, originalAssetId, pictureUrl, color, padding, fit);
+    runtimeType,
+    originalAssetId,
+    pictureUrl,
+    color,
+    padding,
+    fit,
+  );
 
   /// Create a copy of SplashAssetsDto
   /// with the given fields replaced by the non-null parameter values.
@@ -214,23 +232,24 @@ class _$SplashAssetsDtoImpl implements _SplashAssetsDto {
   @pragma('vm:prefer-inline')
   _$$SplashAssetsDtoImplCopyWith<_$SplashAssetsDtoImpl> get copyWith =>
       __$$SplashAssetsDtoImplCopyWithImpl<_$SplashAssetsDtoImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SplashAssetsDtoImplToJson(
-      this,
-    );
+    return _$$SplashAssetsDtoImplToJson(this);
   }
 }
 
 abstract class _SplashAssetsDto implements SplashAssetsDto {
-  const factory _SplashAssetsDto(
-      {final int? originalAssetId,
-      final String? pictureUrl,
-      final String? color,
-      final double padding,
-      final String fit}) = _$SplashAssetsDtoImpl;
+  const factory _SplashAssetsDto({
+    final int? originalAssetId,
+    final String? pictureUrl,
+    final String? color,
+    final double padding,
+    final String fit,
+  }) = _$SplashAssetsDtoImpl;
 
   factory _SplashAssetsDto.fromJson(Map<String, dynamic> json) =
       _$SplashAssetsDtoImpl.fromJson;

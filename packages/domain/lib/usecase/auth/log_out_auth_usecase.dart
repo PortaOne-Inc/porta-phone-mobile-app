@@ -10,9 +10,7 @@ abstract class UsecaseAuthLogOut {
 
 @Injectable(as: UsecaseAuthLogOut)
 class UsecaseAuthLogOutImpl extends UsecaseAuthLogOut {
-  UsecaseAuthLogOutImpl({
-    required this.authRepository,
-  });
+  UsecaseAuthLogOutImpl({required this.authRepository});
 
   final AuthRepository authRepository;
 

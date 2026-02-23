@@ -8,10 +8,7 @@ import 'package:data/datasource/datasource.dart';
 
 @Injectable(as: TranslationsRepository)
 class TranslationsRepositoryImpl extends TranslationsRepository {
-  TranslationsRepositoryImpl(
-    this._datasource,
-    this._mapper,
-  );
+  TranslationsRepositoryImpl(this._datasource, this._mapper);
 
   final ConfiguratorBackandDatasource _datasource;
   final CommonMapper<Translation, TranslationHttpModel> _mapper;
@@ -53,7 +50,10 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
   }
 
   @override
-  Future<void> deleteOverrideByAppId(String appId, Translation translation) async {
+  Future<void> deleteOverrideByAppId(
+    String appId,
+    Translation translation,
+  ) async {
     try {
       final model = _mapper.convertTo(translation);
       await _datasource.deleteTranslationOverride(appId, model);

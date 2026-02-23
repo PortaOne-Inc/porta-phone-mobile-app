@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart' as color_picker;
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart'
+    as color_picker;
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
@@ -42,24 +43,20 @@ class _ColorPickerState extends State<ColorPicker> {
               color: _currentColor,
               onChanged: (value) => _currentColor = value,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             Row(
               children: [
                 ElevatedButton(
                   onPressed: _hide,
                   child: Text(context.l10n.configurator_cancel),
                 ),
-                const SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: _hideColorChooserAndReturnResult,
                   child: Text(context.l10n.configurator_got_it),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

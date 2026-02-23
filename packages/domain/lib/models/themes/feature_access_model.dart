@@ -17,5 +17,6 @@ sealed class FeatureAccessModel with _$FeatureAccessModel {
     String? updatedAt,
   }) = _FeatureAccessModel;
 
-  factory FeatureAccessModel.fromJson(Map<String, dynamic> json) => _$FeatureAccessModelFromJson(json);
+  factory FeatureAccessModel.fromJson(Map<String, dynamic> json) =>
+      _$FeatureAccessModelFromJson(json);
 }

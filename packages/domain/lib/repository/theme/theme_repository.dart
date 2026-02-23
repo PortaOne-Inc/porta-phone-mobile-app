@@ -17,25 +17,17 @@ abstract class ThemeRepository {
   /// Updates an existing [theme] under the given [applicationId].
   ///
   /// Returns the updated [ThemeModel].
-  Future<ThemeModel> updateTheme(
-    String applicationId,
-    ThemeModel? theme,
-  );
+  Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme);
 
   /// Deletes the theme with the given [themeId] under the [applicationId].
   ///
   /// Returns `void` when the operation completes.
-  Future<void> deleteTheme(
-    String applicationId,
-    String themeId,
-  );
+  Future<void> deleteTheme(String applicationId, String themeId);
 
   /// Retrieves all themes associated with the given [applicationId].
   ///
   /// Returns a list of [ThemeModel].
-  Future<List<ThemeModel>> getApplicationThemes(
-    String applicationId,
-  );
+  Future<List<ThemeModel>> getApplicationThemes(String applicationId);
 
   /// Retrieves all themes across all applications.
   ///
@@ -45,18 +37,12 @@ abstract class ThemeRepository {
   /// Retrieves a specific theme by [themeId] under the given [applicationId].
   ///
   /// Returns the requested [ThemeModel].
-  Future<ThemeModel> getTheme(
-    String applicationId,
-    String themeId,
-  );
+  Future<ThemeModel> getTheme(String applicationId, String themeId);
 
   /// Downloads theme assets/config for offline use.
   ///
   /// Returns `void` when the operation completes.
-  Future<void> downloadTheme(
-    String applicationId,
-    String themeId,
-  );
+  Future<void> downloadTheme(String applicationId, String themeId);
 
   /// Generates a new theme from a natural-language [prompt].
   ///

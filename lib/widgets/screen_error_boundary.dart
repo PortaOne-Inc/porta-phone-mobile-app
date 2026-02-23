@@ -18,8 +18,10 @@ class ErrorScreenPlaceholder extends StatelessWidget {
       builder: (context, constraints) {
         // Перевіряємо, чи є місце для тексту.
         // Вимагаємо мінімум 100px по висоті та ширині.
-        final hasSpaceForText = constraints.maxHeight > 100 && constraints.maxWidth > 100;
-        final isVerySmall = constraints.maxHeight < 40 || constraints.maxWidth < 40;
+        final hasSpaceForText =
+            constraints.maxHeight > 100 && constraints.maxWidth > 100;
+        final isVerySmall =
+            constraints.maxHeight < 40 || constraints.maxWidth < 40;
 
         if (isVerySmall) {
           return ColoredBox(
@@ -37,7 +39,9 @@ class ErrorScreenPlaceholder extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.all(8),
           child: ClipRect(
-            child: hasSpaceForText ? _buildFullError(theme, constraints) : _buildCompactError(theme),
+            child: hasSpaceForText
+                ? _buildFullError(theme, constraints)
+                : _buildCompactError(theme),
           ),
         );
       },
@@ -48,10 +52,7 @@ class ErrorScreenPlaceholder extends StatelessWidget {
   // Ми прибрали Tooltip. Тепер це просто іконка.
   Widget _buildCompactError(ThemeData theme) {
     return Center(
-      child: Icon(
-        Icons.broken_image_rounded,
-        color: theme.colorScheme.error,
-      ),
+      child: Icon(Icons.broken_image_rounded, color: theme.colorScheme.error),
     );
   }
 
@@ -63,7 +64,11 @@ class ErrorScreenPlaceholder extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.broken_image_rounded, size: 32, color: theme.colorScheme.error),
+          Icon(
+            Icons.broken_image_rounded,
+            size: 32,
+            color: theme.colorScheme.error,
+          ),
           const SizedBox(height: 8),
           Text(
             'Preview Error',

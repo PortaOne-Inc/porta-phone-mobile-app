@@ -19,7 +19,9 @@ class AuthRepositoryImpl extends AuthRepository {
     required this.authPrefDataSource,
     required this.userPrefDataSource,
   }) {
-    configuratorBackandDatasource.setUnauthorizedListener(_onBackendUnauthorizedListener);
+    configuratorBackandDatasource.setUnauthorizedListener(
+      _onBackendUnauthorizedListener,
+    );
   }
 
   final AuthPrefDatasource authPrefDataSource;
@@ -27,7 +29,9 @@ class AuthRepositoryImpl extends AuthRepository {
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
   late final StreamController<AuthenticationStatus> _tokenExpirationController =
-      StreamController<AuthenticationStatus>.broadcast(onListen: _emitInitialStatus);
+      StreamController<AuthenticationStatus>.broadcast(
+        onListen: _emitInitialStatus,
+      );
 
   Future<void> _emitInitialStatus() async {
     _tokenExpirationController.add(await isUserAuthorized());
@@ -79,7 +83,10 @@ class AuthRepositoryImpl extends AuthRepository {
       final jwtToken = authPrefDataSource.getAuthToken();
       final expiredTime = authPrefDataSource.getExpiredTime();
 
-      if (userId == null || email == null || jwtToken == null || expiredTime == null) {
+      if (userId == null ||
+          email == null ||
+          jwtToken == null ||
+          expiredTime == null) {
         return null;
       }
 
@@ -102,7 +109,9 @@ class AuthRepositoryImpl extends AuthRepository {
     if (!authPrefDataSource.isAuthTokenExist()) {
       return AuthenticationStatus.unauthenticated;
     }
-    return authPrefDataSource.isAuthTokenExpired() ? AuthenticationStatus.expired : AuthenticationStatus.authenticated;
+    return authPrefDataSource.isAuthTokenExpired()
+        ? AuthenticationStatus.expired
+        : AuthenticationStatus.authenticated;
   }
 
   /// Monitors the token expiration status.

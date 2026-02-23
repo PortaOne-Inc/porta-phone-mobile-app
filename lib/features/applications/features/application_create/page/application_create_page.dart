@@ -13,23 +13,24 @@ import '../../../widgets/widgets.dart';
 import '../bloc/application_create_cubit.dart';
 
 class ApplicationCreatePage extends StatefulWidget {
-  const ApplicationCreatePage({
-    super.key,
-  });
+  const ApplicationCreatePage({super.key});
 
   @override
   State<ApplicationCreatePage> createState() => _ApplicationCreatePageState();
 }
 
-class _ApplicationCreatePageState extends State<ApplicationCreatePage> with MixinMessages, MixinMessages {
-  late final ApplicationCreateCubit _bloc = BlocProvider.of<ApplicationCreateCubit>(context);
+class _ApplicationCreatePageState extends State<ApplicationCreatePage>
+    with MixinMessages, MixinMessages {
+  late final ApplicationCreateCubit _bloc =
+      BlocProvider.of<ApplicationCreateCubit>(context);
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
     return BlocConsumer<ApplicationCreateCubit, ApplicationCreateState>(
-      listener: (BuildContext context, ApplicationCreateState state) => _listenAppCreateState(state),
+      listener: (BuildContext context, ApplicationCreateState state) =>
+          _listenAppCreateState(state),
       builder: (ctx, state) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -41,7 +42,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage> with Mixi
             ThemeModeSwitcher(
               themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
               onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-            )
+            ),
           ],
         ),
         body: Center(

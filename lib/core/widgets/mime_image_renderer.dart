@@ -11,23 +11,30 @@ bool _isImage(String mime) => _nm(mime).startsWith('image/');
 abstract class MimeImageResource {
   const MimeImageResource(this.mimeType);
 
-  factory MimeImageResource.fromUrl(String url, {required String mimeType}) => _isSvg(mimeType)
+  factory MimeImageResource.fromUrl(String url, {required String mimeType}) =>
+      _isSvg(mimeType)
       ? _SvgUrl(url, mimeType)
       : _isImage(mimeType)
-          ? _RasterUrl(url, mimeType)
-          : _OtherUrl(url, mimeType);
+      ? _RasterUrl(url, mimeType)
+      : _OtherUrl(url, mimeType);
 
-  factory MimeImageResource.fromBytes(Uint8List bytes, {required String mimeType}) => _isSvg(mimeType)
+  factory MimeImageResource.fromBytes(
+    Uint8List bytes, {
+    required String mimeType,
+  }) => _isSvg(mimeType)
       ? _SvgBytes(bytes, mimeType)
       : _isImage(mimeType)
-          ? _RasterBytes(bytes, mimeType)
-          : _OtherBytes(bytes, mimeType);
+      ? _RasterBytes(bytes, mimeType)
+      : _OtherBytes(bytes, mimeType);
 
-  factory MimeImageResource.fromFuture(Future<Uint8List?> future, {required String mimeType}) => _isSvg(mimeType)
+  factory MimeImageResource.fromFuture(
+    Future<Uint8List?> future, {
+    required String mimeType,
+  }) => _isSvg(mimeType)
       ? _SvgFuture(future, mimeType)
       : _isImage(mimeType)
-          ? _RasterFuture(future, mimeType)
-          : _OtherFuture(future, mimeType);
+      ? _RasterFuture(future, mimeType)
+      : _OtherFuture(future, mimeType);
 
   factory MimeImageResource.empty() => const _Empty();
 
@@ -63,8 +70,7 @@ class _SvgUrl extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      urlSvg != null ? urlSvg(url, mimeType) : orElse();
+  }) => urlSvg != null ? urlSvg(url, mimeType) : orElse();
 }
 
 class _RasterUrl extends MimeImageResource {
@@ -81,8 +87,7 @@ class _RasterUrl extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      urlRaster != null ? urlRaster(url, mimeType) : orElse();
+  }) => urlRaster != null ? urlRaster(url, mimeType) : orElse();
 }
 
 class _SvgBytes extends MimeImageResource {
@@ -99,8 +104,7 @@ class _SvgBytes extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      bytesSvg != null ? bytesSvg(bytes, mimeType) : orElse();
+  }) => bytesSvg != null ? bytesSvg(bytes, mimeType) : orElse();
 }
 
 class _RasterBytes extends MimeImageResource {
@@ -117,8 +121,7 @@ class _RasterBytes extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      bytesRaster != null ? bytesRaster(bytes, mimeType) : orElse();
+  }) => bytesRaster != null ? bytesRaster(bytes, mimeType) : orElse();
 }
 
 class _SvgFuture extends MimeImageResource {
@@ -135,8 +138,7 @@ class _SvgFuture extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      futureSvg != null ? futureSvg(future, mimeType) : orElse();
+  }) => futureSvg != null ? futureSvg(future, mimeType) : orElse();
 }
 
 class _RasterFuture extends MimeImageResource {
@@ -153,8 +155,7 @@ class _RasterFuture extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      futureRaster != null ? futureRaster(future, mimeType) : orElse();
+  }) => futureRaster != null ? futureRaster(future, mimeType) : orElse();
 }
 
 class _OtherUrl extends MimeImageResource {
@@ -171,8 +172,7 @@ class _OtherUrl extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      other != null ? other(mimeType) : orElse();
+  }) => other != null ? other(mimeType) : orElse();
 }
 
 class _OtherBytes extends MimeImageResource {
@@ -189,8 +189,7 @@ class _OtherBytes extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      other != null ? other(mimeType) : orElse();
+  }) => other != null ? other(mimeType) : orElse();
 }
 
 class _OtherFuture extends MimeImageResource {
@@ -207,8 +206,7 @@ class _OtherFuture extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      other != null ? other(mimeType) : orElse();
+  }) => other != null ? other(mimeType) : orElse();
 }
 
 class _Empty extends MimeImageResource {
@@ -224,8 +222,7 @@ class _Empty extends MimeImageResource {
     T Function(Future<Uint8List?> fut, String mimeType)? futureSvg,
     T Function(Future<Uint8List?> fut, String mimeType)? futureRaster,
     T Function(String mimeType)? other,
-  }) =>
-      orElse();
+  }) => orElse();
 }
 
 class MimeAwareImage extends StatelessWidget {
@@ -249,7 +246,11 @@ class MimeAwareImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = backgroundColor ?? Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4);
+    final bg =
+        backgroundColor ??
+        Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4);
     return ClipRRect(
       borderRadius: borderRadius,
       child: Container(
@@ -263,13 +264,16 @@ class MimeAwareImage extends StatelessWidget {
   Widget _build(BuildContext context) {
     if (resource.isSvg) return _buildSvg();
     if (resource.isImage) return _buildRaster();
-    return errorWidget ?? const Icon(Icons.insert_drive_file_outlined, size: 40);
+    return errorWidget ??
+        const Icon(Icons.insert_drive_file_outlined, size: 40);
   }
 
   Widget _buildSvg() {
     return resource.when<Widget>(
-      urlSvg: (url, _) => SvgPicture.network(url, fit: fit, placeholderBuilder: _p),
-      bytesSvg: (bytes, _) => SvgPicture.memory(bytes, fit: fit, placeholderBuilder: _p),
+      urlSvg: (url, _) =>
+          SvgPicture.network(url, fit: fit, placeholderBuilder: _p),
+      bytesSvg: (bytes, _) =>
+          SvgPicture.memory(bytes, fit: fit, placeholderBuilder: _p),
       futureSvg: (fut, _) => _fromFuture(
         fut,
         (b) => SvgPicture.memory(b, fit: fit, placeholderBuilder: _p),
@@ -287,31 +291,52 @@ class MimeAwareImage extends StatelessWidget {
           if (evt == null) return child;
           final total = evt.expectedTotalBytes ?? 1;
           return Center(
-              child: CircularProgressIndicator(
-                  strokeWidth: 2, value: evt.expectedTotalBytes != null ? evt.cumulativeBytesLoaded / total : null));
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              value: evt.expectedTotalBytes != null
+                  ? evt.cumulativeBytesLoaded / total
+                  : null,
+            ),
+          );
         },
-        errorBuilder: (_, __, ___) => errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40),
+        errorBuilder: (_, __, ___) =>
+            errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40),
       ),
-      bytesRaster: (bytes, _) => Image.memory(bytes,
-          fit: fit, errorBuilder: (_, __, ___) => errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40)),
+      bytesRaster: (bytes, _) => Image.memory(
+        bytes,
+        fit: fit,
+        errorBuilder: (_, __, ___) =>
+            errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40),
+      ),
       futureRaster: (fut, _) => _fromFuture(
         fut,
-        (b) => Image.memory(b,
-            fit: fit, errorBuilder: (_, __, ___) => errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40)),
+        (b) => Image.memory(
+          b,
+          fit: fit,
+          errorBuilder: (_, __, ___) =>
+              errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40),
+        ),
       ),
       orElse: () => const SizedBox.shrink(),
     );
   }
 
-  Widget _p(BuildContext _) => placeholder ?? const Center(child: CircularProgressIndicator(strokeWidth: 2));
+  Widget _p(BuildContext _) =>
+      placeholder ??
+      const Center(child: CircularProgressIndicator(strokeWidth: 2));
 
-  Widget _fromFuture(Future<Uint8List?> fut, Widget Function(Uint8List) builder) {
+  Widget _fromFuture(
+    Future<Uint8List?> fut,
+    Widget Function(Uint8List) builder,
+  ) {
     return FutureBuilder<Uint8List?>(
       future: fut,
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) return _p(context);
         final data = snap.data;
-        if (data == null) return errorWidget ?? const Icon(Icons.broken_image_outlined, size: 40);
+        if (data == null)
+          return errorWidget ??
+              const Icon(Icons.broken_image_outlined, size: 40);
         return builder(data);
       },
     );

@@ -26,10 +26,7 @@ class ConfirmationDialog extends StatelessWidget {
     final textTheme = theme.textTheme;
 
     return AlertDialog(
-      title: Text(
-        title,
-        style: textTheme.titleLarge,
-      ),
+      title: Text(title, style: textTheme.titleLarge),
       content: Text(
         description,
         style: textTheme.bodyMedium,

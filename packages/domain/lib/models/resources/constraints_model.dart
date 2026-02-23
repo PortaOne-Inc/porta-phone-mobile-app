@@ -13,13 +13,18 @@ sealed class ConstraintsModel with _$ConstraintsModel {
     PlatformConstraintsModel? web,
   }) = _ConstraintsModel;
 
-  factory ConstraintsModel.fromJson(Map<String, dynamic> json) => _$ConstraintsModelFromJson(json);
+  factory ConstraintsModel.fromJson(Map<String, dynamic> json) =>
+      _$ConstraintsModelFromJson(json);
 }
 
 @freezed
 sealed class PlatformConstraintsModel with _$PlatformConstraintsModel {
-  const factory PlatformConstraintsModel({double? sizeDp, double? safeZoneDp, double? toleranceDp}) =
-      _PlatformConstraintsModel;
+  const factory PlatformConstraintsModel({
+    double? sizeDp,
+    double? safeZoneDp,
+    double? toleranceDp,
+  }) = _PlatformConstraintsModel;
 
-  factory PlatformConstraintsModel.fromJson(Map<String, dynamic> json) => _$PlatformConstraintsModelFromJson(json);
+  factory PlatformConstraintsModel.fromJson(Map<String, dynamic> json) =>
+      _$PlatformConstraintsModelFromJson(json);
 }

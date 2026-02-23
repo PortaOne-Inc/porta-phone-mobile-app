@@ -24,7 +24,8 @@ sealed class EmbeddedResourceModel with _$EmbeddedResourceModel {
 
   const EmbeddedResourceModel._();
 
-  factory EmbeddedResourceModel.fromJson(Map<String, dynamic> json) => _$EmbeddedResourceModelFromJson(json);
+  factory EmbeddedResourceModel.fromJson(Map<String, dynamic> json) =>
+      _$EmbeddedResourceModelFromJson(json);
 
   String displayLabel() {
     final shortUri = uri.length > 40 ? '${uri.substring(0, 37)}...' : uri;

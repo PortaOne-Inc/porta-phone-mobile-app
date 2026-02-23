@@ -88,7 +88,8 @@ class _LoginSchemeWelcomeState extends State<LoginSchemeWelcome> {
                     return _ActionCard(
                       action: action,
                       colorScheme: cs,
-                      onMenuSelected: (value) => _modeSelectActionsMenuHandler(value, action),
+                      onMenuSelected: (value) =>
+                          _modeSelectActionsMenuHandler(value, action),
                     );
                   },
                 ),
@@ -103,15 +104,15 @@ class _LoginSchemeWelcomeState extends State<LoginSchemeWelcome> {
     );
     widget.callback(
       widget.config.copyWith(
-        actions: [
-          ...widget.config.actions,
-          if (action != null) action,
-        ],
+        actions: [...widget.config.actions, if (action != null) action],
       ),
     );
   }
 
-  void _modeSelectActionsMenuHandler(String value, AppConfigModeSelectAction action) {
+  void _modeSelectActionsMenuHandler(
+    String value,
+    AppConfigModeSelectAction action,
+  ) {
     final actions = widget.config.actions.toList();
     final index = actions.indexOf(action);
     if (index == -1) return;
@@ -124,11 +125,7 @@ class _LoginSchemeWelcomeState extends State<LoginSchemeWelcome> {
         actions.removeAt(index);
     }
 
-    widget.callback(
-      widget.config.copyWith(
-        actions: actions,
-      ),
-    );
+    widget.callback(widget.config.copyWith(actions: actions));
   }
 }
 
@@ -193,8 +190,12 @@ class _ActionCard extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  action.enabled ? Icons.check_circle : Icons.radio_button_unchecked,
-                  color: action.enabled ? colorScheme.primary : colorScheme.outline,
+                  action.enabled
+                      ? Icons.check_circle
+                      : Icons.radio_button_unchecked,
+                  color: action.enabled
+                      ? colorScheme.primary
+                      : colorScheme.outline,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -203,8 +204,12 @@ class _ActionCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: action.enabled ? colorScheme.onSurface : colorScheme.onSurface.withValues(alpha: 0.6),
-                      fontWeight: action.enabled ? FontWeight.w600 : FontWeight.w400,
+                      color: action.enabled
+                          ? colorScheme.onSurface
+                          : colorScheme.onSurface.withValues(alpha: 0.6),
+                      fontWeight: action.enabled
+                          ? FontWeight.w600
+                          : FontWeight.w400,
                       fontSize: 15,
                     ),
                   ),
@@ -220,10 +225,7 @@ class _ActionCard extends StatelessWidget {
                       value: 'enable_disable',
                       child: Text(action.enabled ? 'Disable' : 'Enable'),
                     ),
-                    const PopupMenuItem(
-                      value: 'delete',
-                      child: Text('Delete'),
-                    ),
+                    const PopupMenuItem(value: 'delete', child: Text('Delete')),
                   ],
                 ),
               ],
@@ -232,7 +234,9 @@ class _ActionCard extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 'Embedded: ${action.embeddedId}',
-                style: tt.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
+                style: tt.bodySmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ],
@@ -251,8 +255,12 @@ class _TypePill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLogin = type == 'login';
-    final bg = isLogin ? colorScheme.secondaryContainer : colorScheme.tertiaryContainer;
-    final fg = isLogin ? colorScheme.onSecondaryContainer : colorScheme.onTertiaryContainer;
+    final bg = isLogin
+        ? colorScheme.secondaryContainer
+        : colorScheme.tertiaryContainer;
+    final fg = isLogin
+        ? colorScheme.onSecondaryContainer
+        : colorScheme.onTertiaryContainer;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),

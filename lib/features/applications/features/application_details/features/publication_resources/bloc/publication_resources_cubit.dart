@@ -14,11 +14,11 @@ class PublicationResourcesCubit extends Cubit<PublicationResourcesState> {
     required CreateApplicationPublicationResourceUsecase createUsecase,
     required UpdateApplicationPublicationResourceUsecase updateUsecase,
     required DeleteApplicationPublicationResourceUsecase deleteUsecase,
-  })  : _get = getUsecase,
-        _create = createUsecase,
-        _update = updateUsecase,
-        _delete = deleteUsecase,
-        super(const PublicationResourcesState());
+  }) : _get = getUsecase,
+       _create = createUsecase,
+       _update = updateUsecase,
+       _delete = deleteUsecase,
+       super(const PublicationResourcesState());
 
   final String applicationId;
   final GetApplicationPublicationResourcesUsecase _get;
@@ -51,10 +51,7 @@ class PublicationResourcesCubit extends Cubit<PublicationResourcesState> {
         note: note,
         text: text,
       );
-      emit(state.copyWith(
-        creating: false,
-        items: [created, ...state.items],
-      ));
+      emit(state.copyWith(creating: false, items: [created, ...state.items]));
     } catch (e) {
       emit(state.copyWith(creating: false, createError: e.toString()));
     }
@@ -67,7 +64,12 @@ class PublicationResourcesCubit extends Cubit<PublicationResourcesState> {
     String? note,
     String? text,
   }) async {
-    emit(state.copyWith(updatingIds: {...state.updatingIds, id}, updateError: null));
+    emit(
+      state.copyWith(
+        updatingIds: {...state.updatingIds, id},
+        updateError: null,
+      ),
+    );
     try {
       final saved = await _update.execute(
         resourceId: id,
@@ -80,28 +82,44 @@ class PublicationResourcesCubit extends Cubit<PublicationResourcesState> {
         for (final it in state.items)
           if (it.id == id) saved else it,
       ];
-      emit(state.copyWith(updatingIds: {...state.updatingIds}..remove(id), items: next));
+      emit(
+        state.copyWith(
+          updatingIds: {...state.updatingIds}..remove(id),
+          items: next,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        updatingIds: {...state.updatingIds}..remove(id),
-        updateError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          updatingIds: {...state.updatingIds}..remove(id),
+          updateError: e.toString(),
+        ),
+      );
     }
   }
 
   Future<void> delete(String id) async {
-    emit(state.copyWith(deletingIds: {...state.deletingIds, id}, deleteError: null));
+    emit(
+      state.copyWith(
+        deletingIds: {...state.deletingIds, id},
+        deleteError: null,
+      ),
+    );
     try {
       await _delete.execute(id);
-      emit(state.copyWith(
-        deletingIds: {...state.deletingIds}..remove(id),
-        items: state.items.where((e) => e.id != id).toList(),
-      ));
+      emit(
+        state.copyWith(
+          deletingIds: {...state.deletingIds}..remove(id),
+          items: state.items.where((e) => e.id != id).toList(),
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        deletingIds: {...state.deletingIds}..remove(id),
-        deleteError: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          deletingIds: {...state.deletingIds}..remove(id),
+          deleteError: e.toString(),
+        ),
+      );
     }
   }
 }

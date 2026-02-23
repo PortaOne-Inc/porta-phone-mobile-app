@@ -9,10 +9,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Card(
-          margin: const EdgeInsets.all(16),
-          child: child,
-        ),
+        child: Card(margin: const EdgeInsets.all(16), child: child),
       ),
     );
   }

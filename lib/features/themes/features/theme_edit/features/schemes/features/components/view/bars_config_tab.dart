@@ -8,14 +8,14 @@ import 'package:webtrit_configurator/widgets/widgets.dart';
 import '../../../../../bloc/update_theme_cubit.dart';
 
 class BarsConfigTab extends StatelessWidget {
-  const BarsConfigTab({
-    required this.config,
-    super.key,
-  });
+  const BarsConfigTab({required this.config, super.key});
 
   final BarWidgetConfig config;
 
-  void _onBottomNavChanged(BuildContext context, BottomNavigationBarWidgetConfig newValue) {
+  void _onBottomNavChanged(
+    BuildContext context,
+    BottomNavigationBarWidgetConfig newValue,
+  ) {
     final cubit = context.read<UpdateThemCubit>();
 
     // FIX: Беремо актуальний конфіг зі стейта для порівняння,
@@ -24,22 +24,34 @@ class BarsConfigTab extends StatelessWidget {
     final current = currentBarConfig.bottomNavigationBar;
 
     if (newValue.backgroundColor != current.backgroundColor) {
-      cubit.add(ThemeWidgetEvent.setBottomNavBarBackground(newValue.backgroundColor));
+      cubit.add(
+        ThemeWidgetEvent.setBottomNavBarBackground(newValue.backgroundColor),
+      );
     }
     if (newValue.selectedItemColor != current.selectedItemColor) {
-      cubit.add(ThemeWidgetEvent.setBottomNavBarSelected(newValue.selectedItemColor));
+      cubit.add(
+        ThemeWidgetEvent.setBottomNavBarSelected(newValue.selectedItemColor),
+      );
     }
     if (newValue.unSelectedItemColor != current.unSelectedItemColor) {
-      cubit.add(ThemeWidgetEvent.setBottomNavBarUnselected(newValue.unSelectedItemColor));
+      cubit.add(
+        ThemeWidgetEvent.setBottomNavBarUnselected(
+          newValue.unSelectedItemColor,
+        ),
+      );
     }
   }
 
   void _onAppBarChanged(BuildContext context, AppBarConfig newValue) {
-    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setExtTabBar(newValue));
+    context.read<UpdateThemCubit>().add(
+      ThemeWidgetEvent.setExtTabBar(newValue),
+    );
   }
 
   void _onTabBarChanged(BuildContext context, TabBarConfig newValue) {
-    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setTabBarConfig(newValue));
+    context.read<UpdateThemCubit>().add(
+      ThemeWidgetEvent.setTabBarConfig(newValue),
+    );
   }
 
   @override
@@ -67,7 +79,9 @@ class BarsConfigTab extends StatelessWidget {
                 onChanged: (v) => _onAppBarChanged(context, v),
                 description: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Configure colors, geometry, typography and icons for the top bar.'),
+                  child: Text(
+                    'Configure colors, geometry, typography and icons for the top bar.',
+                  ),
                 ),
               ),
             ),
@@ -98,7 +112,9 @@ class BarsConfigTab extends StatelessWidget {
                 onChanged: (v) => _onTabBarChanged(context, v),
                 description: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Configure indicators, dividers, and label styles for tabbed views.'),
+                  child: Text(
+                    'Configure indicators, dividers, and label styles for tabbed views.',
+                  ),
                 ),
               ),
             ),

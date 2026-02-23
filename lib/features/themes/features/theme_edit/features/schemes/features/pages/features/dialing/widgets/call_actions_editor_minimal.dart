@@ -15,7 +15,8 @@ class CallActionsEditorMinimal extends StatelessWidget {
   final CallPageActionsConfig value;
   final ValueChanged<CallPageActionsConfig> onChanged;
 
-  ElevatedButtonWidgetConfig _btnOrNew(ElevatedButtonWidgetConfig? b) => b ?? const ElevatedButtonWidgetConfig();
+  ElevatedButtonWidgetConfig _btnOrNew(ElevatedButtonWidgetConfig? b) =>
+      b ?? const ElevatedButtonWidgetConfig();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,8 @@ class CallActionsEditorMinimal extends StatelessWidget {
           child: ElevatedButtonConfigEditor(
             title: 'Call start',
             value: value.callStart,
-            onChanged: (v) => onChanged(value.copyWith(callStart: _btnOrNew(v))),
+            onChanged: (v) =>
+                onChanged(value.copyWith(callStart: _btnOrNew(v))),
           ),
         ),
         const SizedBox(height: 12),

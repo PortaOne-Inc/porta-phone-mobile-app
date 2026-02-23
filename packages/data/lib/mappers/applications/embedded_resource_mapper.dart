@@ -6,7 +6,8 @@ import 'package:data/mappers/mappers.dart';
 import 'package:data/dto/dto.dart';
 
 @Injectable(as: CommonMapper<EmbeddedResourceModel, EmbeddedResourceDto>)
-class EmbeddedResourceMapper extends CommonMapper<EmbeddedResourceModel, EmbeddedResourceDto> {
+class EmbeddedResourceMapper
+    extends CommonMapper<EmbeddedResourceModel, EmbeddedResourceDto> {
   @override
   EmbeddedResourceDto convertTo(EmbeddedResourceModel it) {
     return EmbeddedResourceDto(

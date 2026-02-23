@@ -19,9 +19,7 @@ class TypePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (screens.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     } else {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),

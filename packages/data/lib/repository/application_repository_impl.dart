@@ -23,7 +23,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationModel> createApplication(ApplicationModel model) async {
     try {
       final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.createApplications(dtoParam);
+      final dto = await configuratorBackandDatasource.createApplications(
+        dtoParam,
+      );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
@@ -41,7 +43,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<void> deleteApplication(String applicationId) async {
     try {
-      return await configuratorBackandDatasource.deleteApplications(applicationId);
+      return await configuratorBackandDatasource.deleteApplications(
+        applicationId,
+      );
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
     } catch (e) {
@@ -50,10 +54,16 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model) async {
+  Future<ApplicationModel> updateApplication(
+    String applicationId,
+    ApplicationModel model,
+  ) async {
     try {
       final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.putApplication(applicationId, dtoParam);
+      final dto = await configuratorBackandDatasource.putApplication(
+        applicationId,
+        dtoParam,
+      );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
@@ -65,7 +75,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationModel> getApplication(String id) async {
     try {
-      final dto = await configuratorBackandDatasource.getApplication(applicationId: id);
+      final dto = await configuratorBackandDatasource.getApplication(
+        applicationId: id,
+      );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
@@ -77,7 +89,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationModel> incApplicationVersion(String applicationId) async {
     try {
-      final dto = await configuratorBackandDatasource.incApplicationVersion(applicationId);
+      final dto = await configuratorBackandDatasource.incApplicationVersion(
+        applicationId,
+      );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw BaseException(message: e.response.toString());
@@ -87,11 +101,17 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
+  Future<Map<String, dynamic>> getApplicationEnvironment(
+    String applicationId,
+  ) async {
     try {
-      return await configuratorBackandDatasource.getApplicationEnvironment(applicationId);
+      return await configuratorBackandDatasource.getApplicationEnvironment(
+        applicationId,
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data.toString() ?? 'Failed to fetch environment');
+      throw BaseException(
+        message: e.response?.data.toString() ?? 'Failed to fetch environment',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -99,11 +119,18 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
 
   @override
   Future<Map<String, dynamic>> updateApplicationEnvironment(
-      String applicationId, Map<String, dynamic> environment) async {
+    String applicationId,
+    Map<String, dynamic> environment,
+  ) async {
     try {
-      return await configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment);
+      return await configuratorBackandDatasource.updateApplicationEnvironment(
+        applicationId,
+        environment,
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data.toString() ?? 'Failed to update environment');
+      throw BaseException(
+        message: e.response?.data.toString() ?? 'Failed to update environment',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -123,7 +150,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -135,9 +164,14 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
     String env = 'prod',
   }) async {
     try {
-      return await configuratorBackandDatasource.resolveThemeIdForBuild(applicationId, env: env);
+      return await configuratorBackandDatasource.resolveThemeIdForBuild(
+        applicationId,
+        env: env,
+      );
     } on DioException catch (e) {
-      throw BaseException(message: e.response?.data?.toString() ?? e.message ?? 'Network error');
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
     } catch (e) {
       throw BaseException(message: e.toString());
     }

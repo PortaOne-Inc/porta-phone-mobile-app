@@ -23,7 +23,10 @@ class UsecaseThemeGetAllImpl extends UsecaseThemeGetAll {
   final AuthRepository authRepository;
 
   @override
-  FutureOr<List<ThemeModel>> execute({required String applicationId, int? countThemes}) async {
+  FutureOr<List<ThemeModel>> execute({
+    required String applicationId,
+    int? countThemes,
+  }) async {
     return themeRepository.getApplicationThemes(applicationId);
   }
 }

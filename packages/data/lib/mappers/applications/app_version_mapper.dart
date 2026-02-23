@@ -18,10 +18,7 @@ class AppVersionMapper extends CommonMapper<AppVersion, BuildVersionModel> {
     final buildName = parts[0];
     final buildNumber = parts.length > 1 ? int.tryParse(parts[1]) ?? 0 : 0;
 
-    return BuildVersionModel(
-      buildName: buildName,
-      buildNumber: buildNumber,
-    );
+    return BuildVersionModel(buildName: buildName, buildNumber: buildNumber);
   }
 
   @override

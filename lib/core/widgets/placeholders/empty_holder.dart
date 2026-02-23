@@ -58,9 +58,7 @@ class EmptyHolder extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               shape: const RoundedRectangleBorder(
@@ -74,11 +72,9 @@ class EmptyHolder extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               height: 48,
-              child: Center(
-                child: Text(button),
-              ),
+              child: Center(child: Text(button)),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 
 import 'package:domain/domain.dart';
 
-
 import '../widgets/widgets.dart';
 
 class ApplicationThemesScreen extends StatelessWidget {
@@ -56,7 +55,7 @@ class ApplicationThemesScreen extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

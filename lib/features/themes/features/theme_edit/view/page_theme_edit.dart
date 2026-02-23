@@ -11,11 +11,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
-  const PageThemeEdit({
-    required this.title,
-    required this.children,
-    super.key,
-  });
+  const PageThemeEdit({required this.title, required this.children, super.key});
 
   final String title;
 
@@ -58,7 +54,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 child: TextButton.icon(
                   icon: const Icon(Icons.update),
                   label: const Text('Update'),
-                  onPressed: state.isProgress ? null : () => _cubit.add(const InitializeEvent()),
+                  onPressed: state.isProgress
+                      ? null
+                      : () => _cubit.add(const InitializeEvent()),
                 ),
               ),
               Tooltip(
@@ -66,13 +64,16 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 child: TextButton.icon(
                   icon: const Icon(Icons.save),
                   label: const Text('Save'),
-                  onPressed: state.isProgress ? null : () => _cubit.add(const SyncConfigEvent()),
+                  onPressed: state.isProgress
+                      ? null
+                      : () => _cubit.add(const SyncConfigEvent()),
                 ),
               ),
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-                onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
-              )
+                onThemeChange: (mode) =>
+                    context.read<CommonBloc>().setThemeMode(mode),
+              ),
             ],
           ),
           drawer: Drawer(
@@ -82,7 +83,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 ListTile(
                   title: Text(
                     state.theme?.title ?? '...',
-                    style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const Divider(),
@@ -90,7 +93,10 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                   leading: const Icon(Icons.arrow_back_ios),
                   title: const Text('Application details'),
                   subtitle: Text(state.applicationModel?.name ?? '...'),
-                  onTap: () => _openApplicationDetailsCollection(context, state.applicationModel?.id ?? ''),
+                  onTap: () => _openApplicationDetailsCollection(
+                    context,
+                    state.applicationModel?.id ?? '',
+                  ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.list),
@@ -114,7 +120,12 @@ class _PageThemeEditState extends State<PageThemeEdit> {
               dividerThickness: 4,
               minChildSize: 200,
               initialProportions: const [.65, .35],
-              children: widget.children.map((child) => (_) => child).toList(),
+              children: widget.children
+                  .map(
+                    (child) =>
+                        (_) => child,
+                  )
+                  .toList(),
             ),
           ),
         );
@@ -129,8 +140,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   }
 
   void _showErrorDialog(BuildContext context, Object? error) {
-    final message =
-        (error is ThemeIsNotValidException) ? 'The theme is not valid.' : error?.toString() ?? 'An error occurred.';
+    final message = (error is ThemeIsNotValidException)
+        ? 'The theme is not valid.'
+        : error?.toString() ?? 'An error occurred.';
 
     showDialog<void>(
       context: context,
@@ -138,7 +150,10 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     );
   }
 
-  void _openApplicationDetailsCollection(BuildContext context, String applicationId) {
+  void _openApplicationDetailsCollection(
+    BuildContext context,
+    String applicationId,
+  ) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetails.name,
       pathParameters: <String, String>{

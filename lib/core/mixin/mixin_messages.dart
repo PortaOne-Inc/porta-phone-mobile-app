@@ -20,7 +20,10 @@ mixin MixinMessages {
         ),
       ),
       margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - kToolbarHeight - kMinInteractiveDimension,
+        bottom:
+            MediaQuery.of(context).size.height -
+            kToolbarHeight -
+            kMinInteractiveDimension,
       ),
     );
 
@@ -29,6 +32,9 @@ mixin MixinMessages {
 
   void showFailureMessage(BuildContext context, String message) {
     final dialog = FailureDialog(message: message);
-    showDialog<void>(context: context, builder: (BuildContext context) => dialog);
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => dialog,
+    );
   }
 }

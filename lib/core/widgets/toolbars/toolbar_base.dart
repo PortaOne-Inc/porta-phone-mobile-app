@@ -44,11 +44,11 @@ class _BaseToolBarState extends State<BaseToolBar> {
   }
 
   List<BoxShadow> _getBoxShadow(BuildContext context) => [
-        BoxShadow(
-          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
-          spreadRadius: 1,
-          blurRadius: 1,
-          offset: const Offset(1, 1),
-        ),
-      ];
+    BoxShadow(
+      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+      spreadRadius: 1,
+      blurRadius: 1,
+      offset: const Offset(1, 1),
+    ),
+  ];
 }

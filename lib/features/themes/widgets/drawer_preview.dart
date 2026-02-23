@@ -33,8 +33,12 @@ class DrawerPreview extends StatelessWidget {
               focusIndicator: IconButton(
                 onPressed: () => onTapScreen.call(index),
                 icon: Icon(
-                  index == focusScreenPosition ? Icons.radio_button_checked : Icons.radio_button_off_outlined,
-                  color: index == focusScreenPosition ? Colors.green : Colors.black45,
+                  index == focusScreenPosition
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_off_outlined,
+                  color: index == focusScreenPosition
+                      ? Colors.green
+                      : Colors.black45,
                   size: 16,
                 ),
               ),

@@ -18,7 +18,11 @@ class SnackBarEditorMinimal extends StatelessWidget {
   final BoxConstraints boxConstraints;
   final Widget? description;
 
-  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+  Future<void> _pickColor(
+    BuildContext context,
+    Color? current,
+    ValueChanged<String> onPick,
+  ) async {
     final picked = await context.showColorPicker(currentColor: current);
     if (context.mounted && picked != null) {
       onPick(picked.toHex());

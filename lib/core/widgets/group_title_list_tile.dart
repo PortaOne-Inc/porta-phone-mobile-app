@@ -24,10 +24,7 @@ class GroupTitleTile extends StatelessWidget {
       color: backgroundColor,
       child: ListTile(
         contentPadding: contentPadding,
-        title: Text(
-          titleData,
-          style: style,
-        ),
+        title: Text(titleData, style: style),
         trailing: trailing,
         tileColor: themeData.colorScheme.surface,
       ),

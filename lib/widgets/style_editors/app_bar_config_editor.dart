@@ -39,10 +39,7 @@ class AppBarConfigEditor extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (description != null) ...[
-          description!,
-          const SizedBox(height: 16),
-        ],
+        if (description != null) ...[description!, const SizedBox(height: 16)],
         Card(
           margin: EdgeInsets.zero,
           child: Padding(
@@ -90,7 +87,8 @@ class AppBarConfigEditor extends StatelessWidget {
                       child: NumberInputControl(
                         label: 'Scrolled Elev.',
                         value: value.scrolledUnderElevation,
-                        onChanged: (v) => _update(value.copyWith(scrolledUnderElevation: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(scrolledUnderElevation: v)),
                       ),
                     ),
                   ],
@@ -102,7 +100,8 @@ class AppBarConfigEditor extends StatelessWidget {
                       child: NumberInputControl(
                         label: 'Toolbar H',
                         value: value.toolbarHeight,
-                        onChanged: (v) => _update(value.copyWith(toolbarHeight: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(toolbarHeight: v)),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -110,7 +109,8 @@ class AppBarConfigEditor extends StatelessWidget {
                       child: NumberInputControl(
                         label: 'Leading W',
                         value: value.leadingWidth,
-                        onChanged: (v) => _update(value.copyWith(leadingWidth: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(leadingWidth: v)),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -118,7 +118,8 @@ class AppBarConfigEditor extends StatelessWidget {
                       child: NumberInputControl(
                         label: 'Title Spacing',
                         value: value.titleSpacing,
-                        onChanged: (v) => _update(value.copyWith(titleSpacing: v)),
+                        onChanged: (v) =>
+                            _update(value.copyWith(titleSpacing: v)),
                       ),
                     ),
                   ],
@@ -143,7 +144,10 @@ class AppBarConfigEditor extends StatelessWidget {
                   children: [
                     ColorField(
                       title: 'Background',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.backgroundColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -153,7 +157,10 @@ class AppBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Foreground',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.foregroundColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -163,7 +170,10 @@ class AppBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Shadow',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.shadowColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -173,7 +183,10 @@ class AppBarConfigEditor extends StatelessWidget {
                     ),
                     ColorField(
                       title: 'Surface Tint',
-                      constraints: const BoxConstraints(minWidth: 140, minHeight: 60),
+                      constraints: const BoxConstraints(
+                        minWidth: 140,
+                        minHeight: 60,
+                      ),
                       color: value.surfaceTintColor?.toColor(),
                       onTap: (_) => _pickColor(
                         context,
@@ -223,12 +236,16 @@ class AppBarConfigEditor extends StatelessWidget {
               const Divider(),
               Padding(
                 padding: const EdgeInsets.only(top: 8),
-                child: Text('System UI Overlay', style: theme.textTheme.titleSmall),
+                child: Text(
+                  'System UI Overlay',
+                  style: theme.textTheme.titleSmall,
+                ),
               ),
               const SizedBox(height: 8),
               SystemUiOverlayQuickToggles(
                 value: value.systemOverlayStyle,
-                onChanged: (v) => _update(value.copyWith(systemOverlayStyle: v)),
+                onChanged: (v) =>
+                    _update(value.copyWith(systemOverlayStyle: v)),
               ),
             ],
           ),

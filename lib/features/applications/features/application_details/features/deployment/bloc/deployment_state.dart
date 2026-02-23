@@ -15,7 +15,12 @@ sealed class DeploymentState with _$DeploymentState {
     @Default(DeploymentDetailsStatus.initial) DeploymentDetailsStatus status,
     @Default(ApplicationDeploy()) ApplicationDeploy applicationDeploy,
     @Default([]) List<ApplicationValidateError> applicationValidateErrors,
-    @Default(ApplicationBuildVersionProgress(progressNameUpdating: [], progressNumberUpdating: []))
+    @Default(
+      ApplicationBuildVersionProgress(
+        progressNameUpdating: [],
+        progressNumberUpdating: [],
+      ),
+    )
     ApplicationBuildVersionProgress buildVersionProgress,
     ApplicationModel? application,
     Object? error,

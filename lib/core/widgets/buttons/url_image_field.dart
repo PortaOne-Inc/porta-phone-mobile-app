@@ -39,15 +39,13 @@ class UrlImageField extends StatelessWidget {
               if (resource == null || resource is EmptyResource)
                 Positioned.fill(
                   child: CustomPaint(
-                    painter: PatternPainter(primaryColor: theme.colorScheme.primary),
+                    painter: PatternPainter(
+                      primaryColor: theme.colorScheme.primary,
+                    ),
                   ),
                 )
               else
-                Positioned.fill(
-                  child: ImageRenderer(
-                    resource: resource!,
-                  ),
-                ),
+                Positioned.fill(child: ImageRenderer(resource: resource!)),
               if (title != null)
                 Padding(
                   padding: padding,

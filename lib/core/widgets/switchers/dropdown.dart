@@ -33,7 +33,9 @@ class _DropDownState extends State<Dropdown> {
   @override
   Widget build(BuildContext context) {
     final label =
-        (widget.items.isNotEmpty && _selectedPosition < widget.items.length) ? widget.items[_selectedPosition] : '';
+        (widget.items.isNotEmpty && _selectedPosition < widget.items.length)
+        ? widget.items[_selectedPosition]
+        : '';
 
     return ConstrainedBox(
       // захист від "нульової" ширини в хитрих контейнерах (ListTile.trailing, scroll, тощо)

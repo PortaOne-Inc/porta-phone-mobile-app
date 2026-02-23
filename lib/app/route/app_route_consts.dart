@@ -1,30 +1,18 @@
 class DestinationInfo {
-  const DestinationInfo({
-    required this.name,
-    required this.path,
-  });
+  const DestinationInfo({required this.name, required this.path});
 
   final String name;
   final String path;
 }
 
 abstract class AppRoutInfo {
-  static const login = DestinationInfo(
-    name: 'login',
-    path: '/',
-  );
-  static const reset = DestinationInfo(
-    name: 'reset',
-    path: '/auth/reset',
-  );
+  static const login = DestinationInfo(name: 'login', path: '/');
+  static const reset = DestinationInfo(name: 'reset', path: '/auth/reset');
   static const applicationCollection = DestinationInfo(
     name: 'applications',
     path: '/applications',
   );
-  static const admin = DestinationInfo(
-    name: 'admin',
-    path: '/admin',
-  );
+  static const admin = DestinationInfo(name: 'admin', path: '/admin');
   static const applicationCreate = DestinationInfo(
     name: 'applications/create',
     path: '/applications/create',

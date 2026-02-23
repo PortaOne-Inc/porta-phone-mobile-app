@@ -16,7 +16,12 @@ class LoginSchemeScreen extends StatelessWidget {
   final AppConfigLogin sourceAppConfigLogin;
   final ObjectCallback<AppConfigLogin> callback;
 
-  bool get _isEmbedded => sourceAppConfigLogin.common.fullScreenLaunchEmbeddedResourceId?.isNotEmpty ?? false;
+  bool get _isEmbedded =>
+      sourceAppConfigLogin
+          .common
+          .fullScreenLaunchEmbeddedResourceId
+          ?.isNotEmpty ??
+      false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,8 @@ class LoginSchemeScreen extends StatelessWidget {
       if (showNativeTab)
         LoginSchemeWelcome(
           config: sourceAppConfigLogin.modeSelect,
-          callback: (it) => callback(sourceAppConfigLogin.copyWith(modeSelect: it)),
+          callback: (it) =>
+              callback(sourceAppConfigLogin.copyWith(modeSelect: it)),
         ),
     ];
 

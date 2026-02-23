@@ -5,13 +5,12 @@ import 'package:injectable/injectable.dart';
 import '../../repository/repository.dart';
 
 abstract class UsecaseApplicationDeleteTemplate {
-  FutureOr<void> execute({
-    required String applicationId,
-  });
+  FutureOr<void> execute({required String applicationId});
 }
 
 @Injectable(as: UsecaseApplicationDeleteTemplate)
-class UsecaseApplicationDeleteTemplateImpl implements UsecaseApplicationDeleteTemplate {
+class UsecaseApplicationDeleteTemplateImpl
+    implements UsecaseApplicationDeleteTemplate {
   UsecaseApplicationDeleteTemplateImpl(
     this.applicationRepository,
     this.authRepository,

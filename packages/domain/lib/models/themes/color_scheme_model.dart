@@ -18,5 +18,6 @@ sealed class ColorSchemeModel with _$ColorSchemeModel {
     String? updatedAt,
   }) = _ColorSchemeModel;
 
-  factory ColorSchemeModel.fromJson(Map<String, dynamic> json) => _$ColorSchemeModelFromJson(json);
+  factory ColorSchemeModel.fromJson(Map<String, dynamic> json) =>
+      _$ColorSchemeModelFromJson(json);
 }

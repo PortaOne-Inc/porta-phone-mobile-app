@@ -12,9 +12,16 @@ class PatternPainter extends CustomPainter {
 
     for (var row = 0; row < (size.height / cellSize).ceil(); row++) {
       for (var col = 0; col < (size.width / cellSize).ceil(); col++) {
-        paint.color = (row + col).isEven ? primaryColor.withValues(alpha: 0.85) : primaryColor.withValues(alpha: 0.65);
+        paint.color = (row + col).isEven
+            ? primaryColor.withValues(alpha: 0.85)
+            : primaryColor.withValues(alpha: 0.65);
 
-        final rect = Rect.fromLTWH(col * cellSize, row * cellSize, cellSize, cellSize);
+        final rect = Rect.fromLTWH(
+          col * cellSize,
+          row * cellSize,
+          cellSize,
+          cellSize,
+        );
         canvas.drawRect(rect, paint);
       }
     }

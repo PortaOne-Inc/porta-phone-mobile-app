@@ -6,7 +6,9 @@ part 'auth_response_dto.g.dart';
 
 @unfreezed
 sealed class AuthResponseDTO with _$AuthResponseDTO {
-  factory AuthResponseDTO({required String status, required String token}) = _AuthResponseDTO;
+  factory AuthResponseDTO({required String status, required String token}) =
+      _AuthResponseDTO;
 
-  factory AuthResponseDTO.fromJson(Map<String, dynamic> json) => _$AuthResponseDTOFromJson(json);
+  factory AuthResponseDTO.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseDTOFromJson(json);
 }

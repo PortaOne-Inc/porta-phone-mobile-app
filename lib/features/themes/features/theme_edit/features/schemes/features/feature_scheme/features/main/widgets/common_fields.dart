@@ -31,7 +31,8 @@ class CommonFields extends StatelessWidget {
             border: OutlineInputBorder(),
             prefixIcon: Icon(Icons.title),
           ),
-          validator: (v) => (v == null || v.isEmpty) ? 'Title is required' : null,
+          validator: (v) =>
+              (v == null || v.isEmpty) ? 'Title is required' : null,
         ),
         const SizedBox(height: 12),
         Row(
@@ -44,7 +45,8 @@ class CommonFields extends StatelessWidget {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.tag),
                 ),
-                validator: (v) => (v == null || v.isEmpty) ? 'Icon is required' : null,
+                validator: (v) =>
+                    (v == null || v.isEmpty) ? 'Icon is required' : null,
               ),
             ),
             const SizedBox(width: 12),

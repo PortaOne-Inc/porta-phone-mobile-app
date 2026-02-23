@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'menu_space.dart';
 
-class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget {
+class MenuPreviewToolbar extends StatelessWidget
+    implements PreferredSizeWidget {
   const MenuPreviewToolbar({
     required this.onFrameTab,
     required this.isEnableFrame,
@@ -29,7 +30,9 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
             child: GestureDetector(
               onTap: () => onFrameTab(!isEnableFrame),
               child: Icon(
-                isEnableFrame ? Icons.phone_android : Icons.phonelink_erase_outlined,
+                isEnableFrame
+                    ? Icons.phone_android
+                    : Icons.phonelink_erase_outlined,
                 size: 20,
               ),
             ),

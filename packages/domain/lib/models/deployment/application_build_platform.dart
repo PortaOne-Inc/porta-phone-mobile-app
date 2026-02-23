@@ -35,7 +35,9 @@ sealed class AndroidBuildPlatform with _$AndroidBuildPlatform {
 
   const AndroidBuildPlatform._();
 
-  AndroidBuildPlatform copyWithPlayStoreConfig(AndroidPlayStoreConfig? playStoreConfig) {
+  AndroidBuildPlatform copyWithPlayStoreConfig(
+    AndroidPlayStoreConfig? playStoreConfig,
+  ) {
     return copyWith(playStoreConfig: playStoreConfig ?? this.playStoreConfig);
   }
 
@@ -47,7 +49,9 @@ sealed class AndroidBuildPlatform with _$AndroidBuildPlatform {
 
     return copyWith(
       playStoreConfig: playStoreConfig.copyWith(
-        userFraction: isUserFractionAvailable ? userFraction ?? _kPlayStoreUserFractionMax : null,
+        userFraction: isUserFractionAvailable
+            ? userFraction ?? _kPlayStoreUserFractionMax
+            : null,
       ),
     );
   }
@@ -55,8 +59,10 @@ sealed class AndroidBuildPlatform with _$AndroidBuildPlatform {
 
 @freezed
 sealed class IOSBuildPlatform with _$IOSBuildPlatform {
-  const factory IOSBuildPlatform({@Default(_kPlatformIOSKey) String key, @Default(false) bool deploy}) =
-      _IOSBuildPlatform;
+  const factory IOSBuildPlatform({
+    @Default(_kPlatformIOSKey) String key,
+    @Default(false) bool deploy,
+  }) = _IOSBuildPlatform;
 
   const IOSBuildPlatform._();
 }
@@ -86,7 +92,11 @@ sealed class AndroidPlayStoreConfig with _$AndroidPlayStoreConfig {
     _kPlayStoreStatusDraft,
   ];
 
-  List<String> get unavailableUserFractionStatuses => [_kPlayStoreStatusCompleted, _kPlayStoreStatusDraft];
+  List<String> get unavailableUserFractionStatuses => [
+    _kPlayStoreStatusCompleted,
+    _kPlayStoreStatusDraft,
+  ];
 
-  bool get isUserFractionAvailable => !unavailableUserFractionStatuses.contains(status);
+  bool get isUserFractionAvailable =>
+      !unavailableUserFractionStatuses.contains(status);
 }

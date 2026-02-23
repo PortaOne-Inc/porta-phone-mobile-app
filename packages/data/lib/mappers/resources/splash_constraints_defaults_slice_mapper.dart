@@ -4,11 +4,23 @@ import 'package:domain/domain.dart';
 import 'package:data/dto/dto.dart';
 import 'package:data/mappers/mappers.dart';
 
-@Injectable(as: CommonMapper<SplashConstraintsDefaultsSliceModel, SplashConstraintsDefaultsSliceDto>)
+@Injectable(
+  as:
+      CommonMapper<
+        SplashConstraintsDefaultsSliceModel,
+        SplashConstraintsDefaultsSliceDto
+      >,
+)
 class SplashConstraintsDefaultsSliceMapper
-    extends CommonMapper<SplashConstraintsDefaultsSliceModel, SplashConstraintsDefaultsSliceDto> {
+    extends
+        CommonMapper<
+          SplashConstraintsDefaultsSliceModel,
+          SplashConstraintsDefaultsSliceDto
+        > {
   @override
-  SplashConstraintsDefaultsSliceDto convertTo(SplashConstraintsDefaultsSliceModel it) {
+  SplashConstraintsDefaultsSliceDto convertTo(
+    SplashConstraintsDefaultsSliceModel it,
+  ) {
     return SplashConstraintsDefaultsSliceDto(
       fullSizeDp: it.fullSizeDp,
       maskDiameterDp: it.maskDiameterDp,
@@ -17,7 +29,9 @@ class SplashConstraintsDefaultsSliceMapper
   }
 
   @override
-  SplashConstraintsDefaultsSliceModel convertFrom(SplashConstraintsDefaultsSliceDto it) {
+  SplashConstraintsDefaultsSliceModel convertFrom(
+    SplashConstraintsDefaultsSliceDto it,
+  ) {
     return SplashConstraintsDefaultsSliceModel(
       fullSizeDp: it.fullSizeDp,
       maskDiameterDp: it.maskDiameterDp,
@@ -26,12 +40,26 @@ class SplashConstraintsDefaultsSliceMapper
   }
 }
 
-@Injectable(as: CommonMapper<SplashConstraintsDefaultsModel, SplashConstraintsDefaultsDto>)
+@Injectable(
+  as:
+      CommonMapper<
+        SplashConstraintsDefaultsModel,
+        SplashConstraintsDefaultsDto
+      >,
+)
 class SplashConstraintsDefaultsMapper
-    extends CommonMapper<SplashConstraintsDefaultsModel, SplashConstraintsDefaultsDto> {
+    extends
+        CommonMapper<
+          SplashConstraintsDefaultsModel,
+          SplashConstraintsDefaultsDto
+        > {
   SplashConstraintsDefaultsMapper(this._sliceMapper);
 
-  final CommonMapper<SplashConstraintsDefaultsSliceModel, SplashConstraintsDefaultsSliceDto> _sliceMapper;
+  final CommonMapper<
+    SplashConstraintsDefaultsSliceModel,
+    SplashConstraintsDefaultsSliceDto
+  >
+  _sliceMapper;
 
   @override
   SplashConstraintsDefaultsDto convertTo(SplashConstraintsDefaultsModel it) {

@@ -11,9 +11,7 @@ abstract class MonitorTokenExpirationUsecase {
 
 @Injectable(as: MonitorTokenExpirationUsecase)
 class MonitorTokenExpirationUsecaseImpl extends MonitorTokenExpirationUsecase {
-  MonitorTokenExpirationUsecaseImpl({
-    required this.authRepository,
-  });
+  MonitorTokenExpirationUsecaseImpl({required this.authRepository});
 
   final AuthRepository authRepository;
 
