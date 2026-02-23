@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -224,13 +225,14 @@ class _PageState {
     required bool startInherit,
     required bool startBgInherit,
     double? paddingDp,
+    double minPaddingDp = 0,
     String? initialBgHex,
   }) {
     inheritCommon = startInherit;
     bgInheritCommon = startBgInherit;
 
     if (!startInherit && paddingDp != null) {
-      paddingOverrideDp = paddingDp;
+      paddingOverrideDp = math.max(paddingDp, minPaddingDp);
     }
     if (!startBgInherit && initialBgHex != null) {
       bgHexOverride = initialBgHex;
@@ -272,7 +274,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
     super.initState();
 
     final cp = _commonPage;
-    _commonPaddingDp = cp?.paddingDp ?? 0;
+    final commonMinPad = cp != null
+        ? (cp.sizeDp - (cp.safeZoneDp ?? cp.sizeDp)) / 2
+        : 0.0;
+    _commonPaddingDp = math.max(cp?.paddingDp ?? 0, commonMinPad);
     _commonBgHex = cp?.initialBackgroundHex ?? '#FFFFFFFF';
 
     _pageStates = {
@@ -281,6 +286,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
           startInherit: p.inheritsFromCommon,
           startBgInherit: p.bgInheritsFromCommon,
           paddingDp: p.paddingDp,
+          minPaddingDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
           initialBgHex: p.initialBackgroundHex,
         ),
     };
@@ -397,16 +403,18 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
 
   Widget _paddingEditor({
     required double currentDp,
+    required double minDp,
     required double maxDp,
     required ValueChanged<double> onChanged,
   }) {
-    final clamped = currentDp.clamp(0, maxDp);
+    final clamped = currentDp.clamp(minDp, maxDp);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
           width: 180,
           child: Slider(
+            min: minDp,
             max: maxDp,
             value: clamped.toDouble(),
             onChanged: onChanged,
@@ -425,7 +433,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             onFieldSubmitted: (txt) {
               final v = double.tryParse(txt) ?? clamped;
-              onChanged(v.clamp(0, maxDp).toDouble());
+              onChanged(v.clamp(minDp, maxDp).toDouble());
             },
           ),
         ),
@@ -538,6 +546,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
             const Text('Padding:'),
             _paddingEditor(
               currentDp: _commonPaddingDp,
+              minDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
               maxDp: p.sizeDp / 2,
               onChanged: (v) {
                 setState(() => _commonPaddingDp = v);
@@ -641,6 +650,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner>
               currentDp: st.inheritCommon
                   ? _commonPaddingDp
                   : (st.paddingOverrideDp ?? _commonPaddingDp),
+              minDp: (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2,
               maxDp: p.sizeDp / 2,
               onChanged: st.inheritCommon
                   ? (_) {}
