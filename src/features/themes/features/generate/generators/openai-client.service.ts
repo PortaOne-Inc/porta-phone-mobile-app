@@ -25,12 +25,15 @@ export class OpenAiClientService {
     ): Promise<Record<string, any> | null> {
         if (!this.client) return null;
         try {
-            const completion = await this.client.chat.completions.create({
-                model: options?.model ?? 'gpt-4o-mini',
-                temperature: options?.temperature ?? 0.2,
-                messages,
-                response_format: { type: 'json_object' },
-            });
+            const completion = await this.client.chat.completions.create(
+                {
+                    model: options?.model ?? 'gpt-4o-mini',
+                    temperature: options?.temperature ?? 0.2,
+                    messages,
+                    response_format: { type: 'json_object' },
+                },
+                { timeout: 30_000 },
+            );
             const content = completion.choices[0]?.message?.content ?? '{}';
             return JSON.parse(content);
         } catch (err) {

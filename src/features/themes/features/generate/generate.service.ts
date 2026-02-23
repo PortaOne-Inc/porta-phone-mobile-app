@@ -1,6 +1,5 @@
 import {
     Injectable,
-    BadRequestException,
     NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
@@ -10,7 +9,7 @@ import { Theme } from '../../entities/theme';
 import { ColorScheme } from '../color-schemes/entities/color-scheme.entity';
 import { WidgetConfigEntity } from '../widget-configs/entities/widget-config.entity';
 import { PageConfigEntity } from '../page-configs/entities/page-config.entity';
-import { NudgeMode, NudgeTarget, NudgeThemeDto } from './dto/nudge-theme.dto';
+import { NudgeThemeDto } from './dto/nudge-theme.dto';
 import { GenerateThemeDto } from './dto/create-generate.dto';
 import { ColorSchemeGenerator } from './generators/color-scheme.generator';
 import { WidgetConfigGenerator } from './generators/widget-config.generator';
@@ -37,13 +36,6 @@ export class GenerateThemesService {
         applicationId: string,
         dto: GenerateThemeDto,
     ) {
-        if (!dto?.description?.trim())
-            throw new BadRequestException('description is required');
-        if (!dto?.title?.trim())
-            throw new BadRequestException('title is required');
-        if (!dto?.prompt?.trim())
-            throw new BadRequestException('prompt is required');
-
         const variant: 'light' | 'dark' = dto.variant ?? 'light';
         const theme = await this.themeRepo.create({
             applicationId,
@@ -77,14 +69,11 @@ export class GenerateThemesService {
         themeId: string,
         dto: NudgeThemeDto,
     ) {
-        if (!dto?.prompt?.trim())
-            throw new BadRequestException('prompt is required');
-
         const variant: 'light' | 'dark' = dto.variant ?? 'light';
-        const targets: NudgeTarget[] = dto.targets?.length
+        const targets = dto.targets?.length
             ? dto.targets
-            : ['colorScheme', 'widgetConfig', 'pageConfig'];
-        const mode: NudgeMode = dto.mode ?? 'patch';
+            : (['colorScheme', 'widgetConfig', 'pageConfig'] as const);
+        const mode = dto.mode ?? 'patch';
 
         const theme = await this.themeRepo.findById(themeId).catch(() => null);
         if (!theme || theme.applicationId !== applicationId) {

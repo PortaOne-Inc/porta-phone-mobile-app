@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
 
@@ -33,16 +33,25 @@ export class ColorSchemesService {
     applicationId: string,
     themeId: string,
     variant: ThemeVariant,
-    dto: { config?: Record<string, any> },
+    dto: { config?: Record<string, any>; expectedVersion?: number },
   ): Promise<ColorScheme> {
     const id = this.buildId(themeId, variant);
     const now = nowIso();
 
     const existing = await this.repo.findById(id).catch(() => null);
     if (existing) {
+      if (
+        typeof dto.expectedVersion === 'number' &&
+        dto.expectedVersion !== (existing.version ?? 0)
+      ) {
+        throw new ConflictException(
+          `Version mismatch: expected ${dto.expectedVersion}, actual ${existing.version ?? 0}`,
+        );
+      }
       if (dto.config && Object.keys(dto.config).length > 0) {
         existing.config = deepMerge(existing.config ?? {}, dto.config);
       }
+      existing.version = (existing.version ?? 0) + 1;
       existing.updatedAt = now;
       return this.repo.update(existing);
     }
@@ -53,6 +62,7 @@ export class ColorSchemesService {
       themeId,
       variant,
       config: dto.config ?? {},
+      version: 1,
       createdAt: now,
       updatedAt: now,
     };

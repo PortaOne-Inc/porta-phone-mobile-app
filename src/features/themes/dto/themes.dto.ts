@@ -18,7 +18,11 @@ export const CopyThemeSchema = z
     label: z.enum(['dev', 'stage', 'prod']).optional().default('dev'),
   })
   .strict();
-export const UpdateThemeSchema = CreateThemeSchema.partial().strict();
+export const UpdateThemeSchema = CreateThemeSchema.partial()
+  .extend({
+    expectedVersion: z.number().int().min(0).optional(),
+  })
+  .strict();
 
 export class CreateThemeDto extends createZodDto(CreateThemeSchema) {}
 

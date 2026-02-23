@@ -63,6 +63,7 @@ export class WidgetConfigsController {
     ) {
         return this.service.upsertByThemeVariant(appId, themeId, variant, {
             config: dto.config,
+            expectedVersion: dto.expectedVersion,
         });
     }
 }

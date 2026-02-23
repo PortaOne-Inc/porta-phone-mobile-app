@@ -16,6 +16,7 @@ export class ColorScheme {
   themeId!: string;
   variant!: ThemeVariant;
   config!: Record<string, any>;
+  version?: number;
 
   createdAt!: string; // ISO timestamp
   updatedAt!: string; // ISO timestamp

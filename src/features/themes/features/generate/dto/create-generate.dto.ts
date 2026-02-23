@@ -1,42 +1,19 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
-export class GenerateThemeDto {
-  @ApiProperty({
-    description: 'Theme title (will be used when creating the Theme doc)',
+export const GenerateThemeSchema = z
+  .object({
+    title: z.string().min(1).max(120).trim(),
+    description: z.string().max(2000).trim().optional().default(''),
+    prompt: z.string().min(1).max(5000).trim(),
+    seedColor: z
+      .string()
+      .regex(/^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/)
+      .optional(),
+    variant: z.enum(['light', 'dark']).optional().default('light'),
+    assetIds: z.array(z.string()).max(20).optional(),
+    options: z.record(z.unknown()).optional(),
   })
-  title!: string;
+  .strict();
 
-  @ApiProperty({ description: 'Plain text description / context of the theme' })
-  description!: string;
-
-  @ApiProperty({
-    description: 'LLM instructions (what to generate, constraints, tone, etc.)',
-  })
-  prompt!: string;
-
-  @ApiPropertyOptional({
-    description: 'Optional seed color in #RRGGBB',
-    example: '#F95A14',
-  })
-  seedColor?: string;
-
-  @ApiPropertyOptional({
-    description: 'Color scheme variant to generate',
-    enum: ['light', 'dark'],
-    default: 'light',
-  })
-  variant?: 'light' | 'dark';
-
-  @ApiPropertyOptional({
-    description:
-      'IDs of assets to reference during generation (images, logos, etc.)',
-    type: [String],
-  })
-  assetIds?: string[];
-
-  @ApiPropertyOptional({
-    description: 'Advanced generation options (model, temperature, etc.)',
-    type: Object,
-  })
-  options?: Record<string, any>;
-}
+export class GenerateThemeDto extends createZodDto(GenerateThemeSchema) {}

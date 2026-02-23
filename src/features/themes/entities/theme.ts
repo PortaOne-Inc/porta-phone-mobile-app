@@ -8,6 +8,7 @@ export class Theme {
   description?: string;
   label?: 'dev' | 'stage' | 'prod';
   applicationId?: string;
+  version?: number;
   createdAt?: string;
   updatedAt?: string;
 }

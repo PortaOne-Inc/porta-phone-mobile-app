@@ -39,7 +39,11 @@ export class FeatureAccessController {
     @Param('themeId') themeId: string,
     @Body() dto: UpsertFeatureAccessDto,
   ) {
-    return this.service.upsertByTheme(appId, themeId, dto);
+    return this.service.upsertByTheme(appId, themeId, {
+      status: dto.status,
+      config: dto.config,
+      expectedVersion: dto.expectedVersion,
+    });
   }
 
   @Delete('by-theme/:themeId')

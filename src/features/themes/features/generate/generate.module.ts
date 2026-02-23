@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { FireormModule } from 'nestjs-fireorm';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { ArtifactsModule } from '../../../artifacts';
 import { CommonModule } from '../../../../common/common.module';
 import { AssetsModule } from '../../../assets/assets.module';
@@ -20,6 +21,10 @@ import { PageConfigGenerator } from './generators/page-config.generator';
     CommonModule,
     ArtifactsModule,
     AssetsModule,
+    ThrottlerModule.forRoot([
+      { name: 'generate', ttl: 60_000, limit: 5 },
+      { name: 'nudge', ttl: 60_000, limit: 10 },
+    ]),
     FireormModule.forFeature([
       Theme,
       ColorScheme,

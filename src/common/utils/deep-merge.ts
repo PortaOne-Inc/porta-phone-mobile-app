@@ -1,3 +1,9 @@
+/**
+ * Deep merges source into target.
+ * - Objects: recursively merged
+ * - Arrays: fully replaced (not element-merged) — intentional for ordered config lists
+ * - Primitives: replaced by source value
+ */
 export function deepMerge<
     T extends Record<string, any>,
     U extends Record<string, any>,

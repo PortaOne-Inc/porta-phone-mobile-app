@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 import { v4 as uuidv4 } from 'uuid';
@@ -168,6 +168,7 @@ export class ThemesService {
       title: dto.title,
       description: dto.description,
       label: dto.label,
+      version: 1,
     } as Theme);
   }
 
@@ -176,16 +177,39 @@ export class ThemesService {
     themeId: string,
     dto: UpdateThemeDto,
   ): Promise<Theme> {
-    const theme = await this.themeRepository.findById(themeId);
-    if (!theme || theme.applicationId !== applicationId) {
-      throw new NotFoundException(`Theme with ID ${themeId} not found`);
-    }
-    if (dto.title !== undefined) theme.title = dto.title;
-    if (dto.description !== undefined) theme.description = dto.description;
-    if (dto.label !== undefined) theme.label = dto.label;
-    theme.updatedAt = nowIso();
-    await this.themeRepository.update(theme);
-    return theme;
+    const db = admin.firestore();
+    const ref = db.collection(Collections.themes).doc(themeId);
+
+    return db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (!snap.exists) {
+        throw new NotFoundException(`Theme with ID ${themeId} not found`);
+      }
+
+      const current = snap.data() as Theme;
+      if (current.applicationId !== applicationId) {
+        throw new NotFoundException(`Theme with ID ${themeId} not found`);
+      }
+
+      if (
+        typeof dto.expectedVersion === 'number' &&
+        dto.expectedVersion !== (current.version ?? 0)
+      ) {
+        throw new ConflictException(
+          `Version mismatch: expected ${dto.expectedVersion}, actual ${current.version ?? 0}`,
+        );
+      }
+
+      const next: Theme = { ...current, id: themeId };
+      if (dto.title !== undefined) next.title = dto.title;
+      if (dto.description !== undefined) next.description = dto.description;
+      if (dto.label !== undefined) next.label = dto.label;
+      next.version = (current.version ?? 0) + 1;
+      next.updatedAt = nowIso();
+
+      tx.set(ref, next);
+      return next;
+    });
   }
 
   async deleteTheme(
@@ -327,6 +351,8 @@ export class ThemesService {
 
     const newThemeId = uuidv4();
     const now = nowIso();
+    const db = admin.firestore();
+    const batch = db.batch();
 
     const target: Theme = {
       ...source,
@@ -335,23 +361,27 @@ export class ThemesService {
       title: overrides?.title ?? `${source.title ?? 'Theme'} (Copy)`,
       description: overrides?.description ?? source.description,
       label: overrides?.label ?? source.label,
+      version: 1,
       createdAt: now,
       updatedAt: now,
     } as Theme;
 
-    await this.themeRepository.create(target);
+    // Add theme doc to batch
+    const themeRef = db.collection(Collections.themes).doc(newThemeId);
+    batch.set(themeRef, { ...target });
 
-    try {
-      await Promise.all([
-        this.cloneWidgetConfigs(sourceThemeId, newThemeId),
-        this.cloneColorSchemeConfigs(sourceThemeId, newThemeId),
-        this.clonePageConfigs(sourceThemeId, newThemeId),
-        this.cloneSplash(sourceThemeId, newThemeId),
-        this.cloneLaunch(sourceThemeId, newThemeId),
-      ]);
-    } catch (e) {
-      this.logger.error(`Copy theme partial failure: ${e}`);
-    }
+    // Collect all sub-resource writes into the shared batch
+    await Promise.all([
+      this.collectWidgetConfigWrites(sourceThemeId, newThemeId, batch),
+      this.collectColorSchemeWrites(sourceThemeId, newThemeId, batch),
+      this.collectPageConfigWrites(sourceThemeId, newThemeId, batch),
+      this.collectSplashWrites(sourceThemeId, newThemeId, batch),
+      this.collectLaunchWrites(sourceThemeId, newThemeId, batch),
+      this.collectFeatureAccessWrites(sourceThemeId, newThemeId, applicationId, batch),
+    ]);
+
+    // Single atomic commit
+    await batch.commit();
 
     return this.aggregateTheme(target, 'system');
   }
@@ -368,14 +398,16 @@ export class ThemesService {
     );
   }
 
-  // -------------------- Clone helpers --------------------
+  // -------------------- Batch-collect helpers --------------------
 
-  private async cloneWidgetConfigs(srcThemeId: string, dstThemeId: string) {
+  private async collectWidgetConfigWrites(
+    srcThemeId: string,
+    dstThemeId: string,
+    batch: FirebaseFirestore.WriteBatch,
+  ) {
     const col = admin.firestore().collection(Collections.themeConfigWidgets);
-    const batch = admin.firestore().batch();
-    let batchSize = 0;
-
     const qByField = await col.where('themeId', '==', srcThemeId).get();
+    const now = nowIso();
 
     if (!qByField.empty) {
       qByField.docs.forEach((doc) => {
@@ -386,9 +418,9 @@ export class ThemesService {
           ...data,
           themeId: dstThemeId,
           id: newId,
-          updatedAt: nowIso(),
+          version: 1,
+          updatedAt: now,
         });
-        batchSize++;
       });
     } else {
       const legacyId = `${srcThemeId}_light`;
@@ -400,41 +432,36 @@ export class ThemesService {
           ...data,
           themeId: dstThemeId,
           id: newId,
-          updatedAt: nowIso(),
+          version: 1,
+          updatedAt: now,
         });
-        batchSize++;
       }
     }
-
-    if (batchSize > 0) await batch.commit();
   }
 
-  private async cloneColorSchemeConfigs(
+  private async collectColorSchemeWrites(
     srcThemeId: string,
     dstThemeId: string,
+    batch: FirebaseFirestore.WriteBatch,
   ) {
-    const col = admin
-      .firestore()
-      .collection(Collections.themeConfigColorSchemes);
-    const batch = admin.firestore().batch();
-    let batchSize = 0;
-
+    const col = admin.firestore().collection(Collections.themeConfigColorSchemes);
     const q = await col.where('themeId', '==', srcThemeId).get();
+    const now = nowIso();
 
-    q.docs.forEach((d) => {
-      const data = d.data() as any;
-      const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
-      const newId = `${dstThemeId}_${variant}`;
-      batch.set(col.doc(newId), {
-        ...data,
-        themeId: dstThemeId,
-        id: newId,
-        updatedAt: nowIso(),
+    if (!q.empty) {
+      q.docs.forEach((d) => {
+        const data = d.data() as any;
+        const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
+        const newId = `${dstThemeId}_${variant}`;
+        batch.set(col.doc(newId), {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          version: 1,
+          updatedAt: now,
+        });
       });
-      batchSize++;
-    });
-
-    if (q.empty) {
+    } else {
       const legacyRef = col.doc(srcThemeId);
       const legacySnap = await legacyRef.get();
       if (legacySnap.exists) {
@@ -443,21 +470,23 @@ export class ThemesService {
           ...data,
           themeId: dstThemeId,
           id: dstThemeId,
-          updatedAt: nowIso(),
+          version: 1,
+          updatedAt: now,
         });
-        batchSize++;
       }
     }
-
-    if (batchSize > 0) await batch.commit();
   }
 
-  private async clonePageConfigs(srcThemeId: string, dstThemeId: string) {
+  private async collectPageConfigWrites(
+    srcThemeId: string,
+    dstThemeId: string,
+    batch: FirebaseFirestore.WriteBatch,
+  ) {
     const col = admin.firestore().collection(Collections.themeConfigPages);
     const q = await col.where('themeId', '==', srcThemeId).get();
     if (q.empty) return;
 
-    const batch = admin.firestore().batch();
+    const now = nowIso();
     q.docs.forEach((d) => {
       const data = d.data() as any;
       const newRef = col.doc();
@@ -465,47 +494,76 @@ export class ThemesService {
         ...data,
         themeId: dstThemeId,
         id: newRef.id,
-        updatedAt: nowIso(),
+        version: 1,
+        updatedAt: now,
       });
     });
-    await batch.commit();
   }
 
-  private async cloneSplash(srcThemeId: string, dstThemeId: string) {
+  private async collectSplashWrites(
+    srcThemeId: string,
+    dstThemeId: string,
+    batch: FirebaseFirestore.WriteBatch,
+  ) {
     const col = admin.firestore().collection(Collections.themeAssetsSplash);
-    const srcRef = col.doc(srcThemeId);
-    const snap = await srcRef.get();
+    const snap = await col.doc(srcThemeId).get();
     if (!snap.exists) return;
 
     const data = snap.data() as any;
-    const dstRef = col.doc(dstThemeId);
-
-    await dstRef.set({
+    const now = nowIso();
+    batch.set(col.doc(dstThemeId), {
       ...data,
       id: dstThemeId,
       themeId: dstThemeId,
       outputsArtifacts: {},
-      updatedAt: nowIso(),
-      createdAt: nowIso(),
+      updatedAt: now,
+      createdAt: now,
     });
   }
 
-  private async cloneLaunch(srcThemeId: string, dstThemeId: string) {
+  private async collectLaunchWrites(
+    srcThemeId: string,
+    dstThemeId: string,
+    batch: FirebaseFirestore.WriteBatch,
+  ) {
     const col = admin.firestore().collection(Collections.themeAssetsLauncher);
-    const srcRef = col.doc(srcThemeId);
-    const snap = await srcRef.get();
+    const snap = await col.doc(srcThemeId).get();
     if (!snap.exists) return;
 
     const data = snap.data() as any;
-    const dstRef = col.doc(dstThemeId);
-
-    await dstRef.set({
+    const now = nowIso();
+    batch.set(col.doc(dstThemeId), {
       ...data,
       id: dstThemeId,
       themeId: dstThemeId,
       outputsArtifacts: {},
-      updatedAt: nowIso(),
-      createdAt: nowIso(),
+      updatedAt: now,
+      createdAt: now,
+    });
+  }
+
+  private async collectFeatureAccessWrites(
+    srcThemeId: string,
+    dstThemeId: string,
+    applicationId: string,
+    batch: FirebaseFirestore.WriteBatch,
+  ) {
+    const col = admin.firestore().collection(Collections.themeFeatureEntitlements);
+    const q = await col.where('themeId', '==', srcThemeId).get();
+    if (q.empty) return;
+
+    const now = nowIso();
+    q.docs.forEach((d) => {
+      const data = d.data() as any;
+      batch.set(col.doc(dstThemeId), {
+        ...data,
+        id: dstThemeId,
+        applicationId,
+        themeId: dstThemeId,
+        version: 1,
+        createdAt: now,
+        updatedAt: now,
+      });
     });
   }
 

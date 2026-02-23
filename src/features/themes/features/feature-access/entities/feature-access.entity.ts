@@ -17,6 +17,7 @@ export class FeatureAccess {
 
   status!: FeatureAccessStatus;
   config!: Record<string, any>; // arbitrary JSON
+  version?: number;
 
   createdAt!: string; // ISO timestamp
   updatedAt!: string; // ISO timestamp

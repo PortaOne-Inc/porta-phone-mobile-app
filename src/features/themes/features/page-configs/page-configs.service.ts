@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
 
@@ -59,16 +59,25 @@ export class PageConfigsService {
         applicationId: string,
         themeId: string,
         variant: PageVariant,
-        dto: { config?: Record<string, any> },
+        dto: { config?: Record<string, any>; expectedVersion?: number },
     ): Promise<PageConfigEntity> {
         const id = makePageConfigId(themeId, variant);
         const now = nowIso();
 
         const existing = await this.findByThemeVariant(applicationId, themeId, variant);
         if (existing) {
+            if (
+                typeof dto.expectedVersion === 'number' &&
+                dto.expectedVersion !== (existing.version ?? 0)
+            ) {
+                throw new ConflictException(
+                    `Version mismatch: expected ${dto.expectedVersion}, actual ${existing.version ?? 0}`,
+                );
+            }
             const next: PageConfigEntity = {
                 ...existing,
                 config: mergeConfig(existing.config, dto.config) ?? {},
+                version: (existing.version ?? 0) + 1,
                 updatedAt: now,
             };
             return this.repo.update(next);
@@ -80,6 +89,7 @@ export class PageConfigsService {
             themeId,
             variant,
             config: dto.config ?? {},
+            version: 1,
             createdAt: now,
             updatedAt: now,
         };

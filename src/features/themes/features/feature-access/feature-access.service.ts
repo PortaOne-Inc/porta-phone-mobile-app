@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 
@@ -31,9 +31,8 @@ export class FeatureAccessService {
   async upsertByTheme(
     applicationId: string,
     themeId: string,
-    dto: { status?: FeatureAccessStatus; config?: Record<string, any> },
+    dto: { status?: FeatureAccessStatus; config?: Record<string, any>; expectedVersion?: number },
   ): Promise<FeatureAccess> {
-    // could be wrapped in a transaction if you expect contention
     const existing = await this.repo
       .whereEqualTo('applicationId', applicationId)
       .whereEqualTo('themeId', themeId)
@@ -44,12 +43,22 @@ export class FeatureAccessService {
     if (existing.length) {
       const it = existing[0];
 
+      if (
+        typeof dto.expectedVersion === 'number' &&
+        dto.expectedVersion !== (it.version ?? 0)
+      ) {
+        throw new ConflictException(
+          `Version mismatch: expected ${dto.expectedVersion}, actual ${it.version ?? 0}`,
+        );
+      }
+
       if (dto.status) it.status = dto.status;
 
       if (dto.config && Object.keys(dto.config).length > 0) {
         it.config = deepMerge(it.config ?? {}, dto.config);
       }
 
+      it.version = (it.version ?? 0) + 1;
       it.updatedAt = now;
       return this.repo.update(it);
     }
@@ -60,6 +69,7 @@ export class FeatureAccessService {
       themeId,
       status: dto.status ?? 'draft',
       config: dto.config ?? {},
+      version: 1,
       createdAt: now,
       updatedAt: now,
     };

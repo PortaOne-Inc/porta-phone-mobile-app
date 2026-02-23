@@ -10,6 +10,7 @@ export class WidgetConfigEntity {
   themeId!: string;
   variant!: WidgetVariant;
   config!: Record<string, any>;
+  version?: number;
 
   createdAt!: string; // ISO timestamp
   updatedAt!: string; // ISO timestamp

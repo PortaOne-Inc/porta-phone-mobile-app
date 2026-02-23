@@ -8,21 +8,24 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
 import { Roles } from '../../../auth/guard/roles.decorator';
 import { GenerateThemesService } from './generate.service';
 import { GenerateThemeDto } from './dto/create-generate.dto';
 import { NudgeThemeDto } from './dto/nudge-theme.dto';
+import { FirebaseUidThrottlerGuard } from './guards/firebase-uid-throttler.guard';
 
 @ApiTags('themes-generator')
 @Controller('applications/:applicationId/themes/generate')
 @ApiBearerAuth()
-@UseGuards(FirebaseAuthGuard)
+@UseGuards(FirebaseAuthGuard, FirebaseUidThrottlerGuard)
 @Roles('admin', 'user')
 export class GenerateThemesController {
   constructor(private readonly gen: GenerateThemesService) {}
 
   @Post()
+  @Throttle({ generate: { limit: 5, ttl: 60_000 } })
   async generate(
     @Req() req: any,
     @Param('applicationId') applicationId: string,
@@ -36,6 +39,7 @@ export class GenerateThemesController {
   }
 
   @Post(':themeId/generate/nudge')
+  @Throttle({ nudge: { limit: 10, ttl: 60_000 } })
   async nudge(
     @Req() req: any,
     @Param('applicationId') applicationId: string,

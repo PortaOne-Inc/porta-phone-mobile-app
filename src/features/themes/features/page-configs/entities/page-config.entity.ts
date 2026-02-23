@@ -16,6 +16,7 @@ export class PageConfigEntity {
   themeId!: string;
   variant!: PageVariant;
   config!: Record<string, any>;
+  version?: number;
 
   createdAt!: string; // ISO timestamp
   updatedAt!: string; // ISO timestamp
