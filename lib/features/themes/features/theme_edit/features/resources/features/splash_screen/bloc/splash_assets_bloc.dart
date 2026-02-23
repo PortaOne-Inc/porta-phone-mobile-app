@@ -82,6 +82,10 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
         model.source?.foregroundAssetId,
       );
 
+      final splashSlice = defaults.withBackground;
+      final splashMinPad =
+          (splashSlice.fullSizeDp - splashSlice.maskDiameterDp) / 2;
+
       final android12Slice = defaults.android12 ?? defaultAndroid12ConstraintsModel;
       final android12MinPad =
           (android12Slice.fullSizeDp - android12Slice.maskDiameterDp) / 2;
@@ -93,7 +97,7 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
           existing: model,
           updatedAt: model.updatedAt,
           selectedAsset: resolved ?? state.selectedAsset,
-          padding: model.params?.padding ?? 0,
+          padding: math.max(model.params?.padding ?? 0, splashMinPad),
           android12Padding: math.max(state.android12Padding, android12MinPad),
           backgroundColorHex: model.source?.backgroundColorHex,
         ),
