@@ -35,7 +35,7 @@ class UpdateLocalConfigEvent
 sealed class UpdateColorSchemeEvent
     with _$UpdateColorSchemeEvent
     implements ConfiguratorEvent {
-  const factory UpdateColorSchemeEvent.chane(String key, Color? color) =
+  const factory UpdateColorSchemeEvent.change(String key, Color? color) =
       _UpdateColorSchemeEvent;
 
   const factory UpdateColorSchemeEvent.importJson(

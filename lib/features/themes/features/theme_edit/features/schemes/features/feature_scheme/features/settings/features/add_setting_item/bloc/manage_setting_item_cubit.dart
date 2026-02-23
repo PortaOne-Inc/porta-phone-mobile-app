@@ -18,7 +18,7 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
       embedded.firstWhereOrNull((it) => it.id == item?.embeddedResourceId),
     );
     changeTitleL10n(item?.titleL10n);
-    chaneSettingItemIcon(item?.icon);
+    changeSettingItemIcon(item?.icon);
     changeEnable(item?.enabled ?? false);
     changeType(
       SettingsFlavor.values.firstWhereOrNull((it) => it.name == item?.type),
@@ -36,7 +36,7 @@ class ManageSettingItemCubit extends Cubit<ManageSettingItemState> {
     emit(state.copyWith(titleL10n: value));
   }
 
-  void chaneSettingItemIcon(String? value) {
+  void changeSettingItemIcon(String? value) {
     emit(state.copyWith(settingItemIcon: value));
   }
 

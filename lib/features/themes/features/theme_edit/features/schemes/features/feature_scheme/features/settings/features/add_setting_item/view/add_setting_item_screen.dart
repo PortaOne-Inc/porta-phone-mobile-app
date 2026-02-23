@@ -44,7 +44,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
       () => _cubit.changeTitleL10n(_titleController.text),
     );
     _iconController.addListener(
-      () => _cubit.chaneSettingItemIcon(_iconController.text),
+      () => _cubit.changeSettingItemIcon(_iconController.text),
     );
     _iconColorController.addListener(
       () => _cubit.changeIconColor(_iconColorController.text),

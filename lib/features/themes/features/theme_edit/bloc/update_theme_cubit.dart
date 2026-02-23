@@ -523,7 +523,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     Emitter<UpdateThemeState> emit,
   ) {
     return event.map(
-      chane: (_UpdateColorSchemeEvent value) async =>
+      change: (_UpdateColorSchemeEvent value) async =>
           _colorSchemeEditor.patchOverride({value.key: value.color?.toHex()}),
       importJson: (_ImportJsonColorSchemeEvent value) async =>
           _processJsonImport(value.jsonMap),

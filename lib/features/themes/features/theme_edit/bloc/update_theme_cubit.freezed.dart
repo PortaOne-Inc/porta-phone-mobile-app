@@ -1218,11 +1218,11 @@ extension UpdateColorSchemeEventPatterns on UpdateColorSchemeEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _UpdateColorSchemeEvent value)?  chane,TResult Function( _ImportJsonColorSchemeEvent value)?  importJson,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _UpdateColorSchemeEvent value)?  change,TResult Function( _ImportJsonColorSchemeEvent value)?  importJson,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _UpdateColorSchemeEvent() when chane != null:
-return chane(_that);case _ImportJsonColorSchemeEvent() when importJson != null:
+case _UpdateColorSchemeEvent() when change != null:
+return change(_that);case _ImportJsonColorSchemeEvent() when importJson != null:
 return importJson(_that);case _:
   return orElse();
 
@@ -1241,11 +1241,11 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _UpdateColorSchemeEvent value)  chane,required TResult Function( _ImportJsonColorSchemeEvent value)  importJson,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _UpdateColorSchemeEvent value)  change,required TResult Function( _ImportJsonColorSchemeEvent value)  importJson,}){
 final _that = this;
 switch (_that) {
 case _UpdateColorSchemeEvent():
-return chane(_that);case _ImportJsonColorSchemeEvent():
+return change(_that);case _ImportJsonColorSchemeEvent():
 return importJson(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -1260,11 +1260,11 @@ return importJson(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _UpdateColorSchemeEvent value)?  chane,TResult? Function( _ImportJsonColorSchemeEvent value)?  importJson,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _UpdateColorSchemeEvent value)?  change,TResult? Function( _ImportJsonColorSchemeEvent value)?  importJson,}){
 final _that = this;
 switch (_that) {
-case _UpdateColorSchemeEvent() when chane != null:
-return chane(_that);case _ImportJsonColorSchemeEvent() when importJson != null:
+case _UpdateColorSchemeEvent() when change != null:
+return change(_that);case _ImportJsonColorSchemeEvent() when importJson != null:
 return importJson(_that);case _:
   return null;
 
@@ -1282,10 +1282,10 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String key,  Color? color)?  chane,TResult Function( Map<String, dynamic> jsonMap)?  importJson,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String key,  Color? color)?  change,TResult Function( Map<String, dynamic> jsonMap)?  importJson,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _UpdateColorSchemeEvent() when chane != null:
-return chane(_that.key,_that.color);case _ImportJsonColorSchemeEvent() when importJson != null:
+case _UpdateColorSchemeEvent() when change != null:
+return change(_that.key,_that.color);case _ImportJsonColorSchemeEvent() when importJson != null:
 return importJson(_that.jsonMap);case _:
   return orElse();
 
@@ -1304,10 +1304,10 @@ return importJson(_that.jsonMap);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String key,  Color? color)  chane,required TResult Function( Map<String, dynamic> jsonMap)  importJson,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String key,  Color? color)  change,required TResult Function( Map<String, dynamic> jsonMap)  importJson,}) {final _that = this;
 switch (_that) {
 case _UpdateColorSchemeEvent():
-return chane(_that.key,_that.color);case _ImportJsonColorSchemeEvent():
+return change(_that.key,_that.color);case _ImportJsonColorSchemeEvent():
 return importJson(_that.jsonMap);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -1322,10 +1322,10 @@ return importJson(_that.jsonMap);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String key,  Color? color)?  chane,TResult? Function( Map<String, dynamic> jsonMap)?  importJson,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String key,  Color? color)?  change,TResult? Function( Map<String, dynamic> jsonMap)?  importJson,}) {final _that = this;
 switch (_that) {
-case _UpdateColorSchemeEvent() when chane != null:
-return chane(_that.key,_that.color);case _ImportJsonColorSchemeEvent() when importJson != null:
+case _UpdateColorSchemeEvent() when change != null:
+return change(_that.key,_that.color);case _ImportJsonColorSchemeEvent() when importJson != null:
 return importJson(_that.jsonMap);case _:
   return null;
 
@@ -1358,7 +1358,7 @@ int get hashCode => Object.hash(runtimeType,key,color);
 
 @override
 String toString() {
-  return 'UpdateColorSchemeEvent.chane(key: $key, color: $color)';
+  return 'UpdateColorSchemeEvent.change(key: $key, color: $color)';
 }
 
 

@@ -202,7 +202,7 @@ class _ColorSchemeConfigurationViewState
       context,
       currentColor,
       (newColor) =>
-          bloc.add(UpdateColorSchemeEvent.chane(item.schemeKey, newColor)),
+          bloc.add(UpdateColorSchemeEvent.change(item.schemeKey, newColor)),
     );
   }
 
