@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:domain/domain.dart';
@@ -102,10 +103,22 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
               _resolveById(state.assets, src?.backgroundAssetId) ??
               state.selectedBackgroundAsset,
           selectedBackgroundColorHex: src?.backgroundColorHex,
-          paddingAndroidLegacy: params?.androidLegacy?.paddingDp ?? 0,
-          paddingAndroidAdaptive: params?.androidAdaptive?.paddingDp ?? 0,
-          paddingIOS: params?.ios?.paddingDp ?? 0,
-          paddingWEB: params?.web?.paddingDp ?? 0,
+          paddingAndroidLegacy: _clampPadding(
+            params?.androidLegacy?.paddingDp ?? 0,
+            defaultConstraints.androidLegacy,
+          ),
+          paddingAndroidAdaptive: _clampPadding(
+            params?.androidAdaptive?.paddingDp ?? 0,
+            defaultConstraints.androidAdaptive,
+          ),
+          paddingIOS: _clampPadding(
+            params?.ios?.paddingDp ?? 0,
+            defaultConstraints.ios,
+          ),
+          paddingWEB: _clampPadding(
+            params?.web?.paddingDp ?? 0,
+            defaultConstraints.web,
+          ),
         ),
       );
     } catch (e, st) {
@@ -224,6 +237,12 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
   }
 
   // helpers
+  static double _clampPadding(double padding, PlatformConstraintsModel? c) {
+    if (c == null || c.sizeDp == null) return padding;
+    final minPad = (c.sizeDp! - (c.safeZoneDp ?? c.sizeDp!)) / 2;
+    return math.max(padding, minPad);
+  }
+
   static AssetModel? _resolveById(List<AssetModel> list, String? id) {
     if (id == null || id.isEmpty) return null;
     for (final a in list) {
