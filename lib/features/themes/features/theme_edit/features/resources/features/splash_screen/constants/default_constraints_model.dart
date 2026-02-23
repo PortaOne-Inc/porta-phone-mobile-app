@@ -5,3 +5,9 @@ const defaultConstraintsModel = SplashConstraintsDefaultsSliceModel(
   maskDiameterDp: 384,
   toleranceDp: 512,
 );
+
+const defaultAndroid12ConstraintsModel = SplashConstraintsDefaultsSliceModel(
+  fullSizeDp: 288,
+  maskDiameterDp: 192,
+  toleranceDp: 288,
+);

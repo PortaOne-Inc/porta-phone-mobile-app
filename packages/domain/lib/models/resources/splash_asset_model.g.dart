@@ -104,6 +104,7 @@ _SplashAssetModel _$SplashAssetModelFromJson(Map<String, dynamic> json) =>
           : SplashAssetParams.fromJson(json['params'] as Map<String, dynamic>),
       mode: $enumDecodeNullable(_$SplashModeEnumMap, json['mode']),
       splashArtifactId: json['splashArtifactId'] as String?,
+      android12SplashArtifactId: json['android12SplashArtifactId'] as String?,
       iconConstraints: json['iconConstraints'] == null
           ? null
           : SplashIconConstraints.fromJson(
@@ -122,5 +123,6 @@ Map<String, dynamic> _$SplashAssetModelToJson(_SplashAssetModel instance) =>
       'params': instance.params,
       'mode': _$SplashModeEnumMap[instance.mode],
       'splashArtifactId': instance.splashArtifactId,
+      'android12SplashArtifactId': instance.android12SplashArtifactId,
       'iconConstraints': instance.iconConstraints,
     };

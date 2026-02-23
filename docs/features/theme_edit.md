@@ -312,8 +312,13 @@ Each page supports: background images, text styles, metadata display, system UI 
 
 **Splash Screen:**
 
-- Splash screen asset configuration
-- Page ID-based designer constraints (`SplashAssetsBloc`)
+- Multi-page designer with 2 pages: **Splash** (common/primary) and **Android 12**
+- The Splash page acts as the common page; Android 12 inherits foreground and background from it
+- Android 12 page uses dedicated sizing constraints optimized for the circular mask area (288/192/288 dp)
+- Constraints loaded from backend (`GET .../splash-asset/constraints-defaults`), with hardcoded fallbacks
+- On save, exports both pages and uploads via `upload-batch` with targets `splash` and `android12Splash`
+- Backward compatible: if backend doesn't return `android12` constraints, fallback defaults are used
+- State managed by `SplashAssetsBloc` with per-page padding tracking
 
 ---
 
@@ -337,7 +342,11 @@ Each page supports: background images, text styles, metadata display, system UI 
 | `GetLaunchAssetsUsecase`                 | Get launch screen assets               |
 | `UpsertLaunchAssetsUsecase`              | Save launch screen assets              |
 | `DeleteLaunchAssetsUsecase`              | Remove launch screen assets            |
-| `GetConstraintsDefaultsUsecase`          | Get designer canvas defaults           |
+| `GetConstraintsDefaultsUsecase`          | Get launch designer canvas defaults    |
+| `GetSplashAssetUsecase`                  | Get splash screen asset                |
+| `UpsertSplashAssetUsecase`               | Save splash screen asset (with files)  |
+| `DeleteSplashAssetUsecase`               | Remove splash screen asset             |
+| `GetSplashConstraintsDefaultsUsecase`    | Get splash designer canvas defaults    |
 
 ---
 
@@ -420,6 +429,59 @@ The `isDirty` getter enables unsaved changes warnings.
 
 ---
 
+## Architecture Decisions
+
+### Config Validation: Client-Side Only (by design)
+
+The backend stores theme configs (color schemes, widget configs, page configs, feature access) as
+**arbitrary JSON** (`Record<string, any>` / `Map<String, dynamic>`) without schema validation.
+This is an intentional architectural decision, not a gap.
+
+**Why:** All config schemas are defined in the shared
+[`webtrit_appearance_theme`](../../../webtrit_phone/packages/webtrit_appearance_theme/) package
+as strongly-typed Dart models (freezed + json_serializable). The backend acts as **transparent
+storage** — it persists and returns JSON as-is, with deep merge on PUT.
+
+**Benefits:**
+- Schema changes only require updating the `webtrit_appearance_theme` package and the client apps
+- No backend deployment needed when the theme model evolves (new fields, renamed fields, etc.)
+- Faster iteration cycle for UI/design changes
+
+**How integrity is maintained:**
+- `webtrit_appearance_theme` models provide type safety via Dart's type system and freezed
+  immutability
+- `fromJson()` / `toJson()` handle serialization with defaults for missing fields
+- Optional fields (`String?`, `TextStyleConfig?`) ensure backwards compatibility — new fields don't
+  break older stored JSON
+- Enum deserialization uses `unknownEnumValue: JsonKey.nullForUndefinedEnumValue` for graceful
+  handling of unknown values
+- Deprecated fields coexist with new ones during migration periods (`@Deprecated` annotation)
+
+**Data flow:**
+```
+Backend (Map<String, dynamic>)
+    ↓
+DTO (config: Map<String, dynamic>)
+    ↓
+Domain Model (config: Map<String, dynamic>)
+    ↓
+webtrit_appearance_theme model (.fromJson())
+    ↓
+Strongly-typed: ColorSchemeConfig / ThemeWidgetConfig / ThemePageConfig
+```
+
+**Implication for developers:** All config validation and schema evolution is the responsibility of
+`webtrit_appearance_theme`. Never add config schema validation to the backend — it would couple the
+backend to the client's schema and break the decoupled iteration model.
+
+### Zod `.passthrough()` in Backend AI Generation (by design)
+
+The backend's AI generation feature uses Zod schemas with `.passthrough()` (not `.strict()`) for
+validating AI-generated configs. This allows the AI to return fields from newer schema versions
+that the current backend Zod schema doesn't yet define, preserving forward compatibility.
+
+---
+
 ## Dependencies
 
 ### Packages
@@ -428,6 +490,7 @@ The `isDirty` getter enables unsaved changes warnings.
 - `go_router` — nested routing
 - `freezed_annotation` — immutable models / code generation
 - `provider` — dependency injection
+- `webtrit_appearance_theme` — shared theme models (source of truth for config schemas)
 
 ### Domain Layer
 

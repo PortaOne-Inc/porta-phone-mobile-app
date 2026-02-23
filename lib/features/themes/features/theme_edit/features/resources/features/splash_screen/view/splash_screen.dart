@@ -50,6 +50,14 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
     if (hex != state.backgroundColorHex) {
       _bloc.selectBackgroundColor(hex?.tryParseColor());
     }
+
+    final android12Eff = snap.pages.cast<DesignerPageEffective?>().firstWhere(
+      (e) => e!.pageId == DesignerPageIds.android12Splash,
+      orElse: () => null,
+    );
+    if (android12Eff != null && android12Eff.paddingDp != state.android12Padding) {
+      _bloc.selectAndroid12Padding(android12Eff.paddingDp);
+    }
   }
 
   @override
@@ -68,6 +76,7 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
         final slice = (defaults != null)
             ? defaults.withBackground
             : defaultConstraintsModel;
+        final android12Slice = defaults?.android12 ?? defaultAndroid12ConstraintsModel;
         final pages = <DesignerPageConfig>[
           DesignerPageConfig(
             id: DesignerPageIds.splash,
@@ -82,6 +91,17 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
             initialBackgroundHex: state.backgroundColorHex,
             inheritsFromCommon: false,
             bgInheritsFromCommon: false,
+          ),
+          DesignerPageConfig(
+            id: DesignerPageIds.android12Splash,
+            label: 'Android 12',
+            previewOnlyColor: true,
+            sizeDp: android12Slice.fullSizeDp,
+            safeZoneDp: android12Slice.maskDiameterDp,
+            maskDp: android12Slice.toleranceDp,
+            exportSizePx: (android12Slice.fullSizeDp * 4).round(),
+            paddingDp: state.android12Padding,
+            initialBackgroundHex: state.backgroundColorHex,
           ),
         ];
 
@@ -139,7 +159,10 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
   Future<void> _save() async {
     await _bloc.startRender();
     final files = await controller.exportAll();
-    await _bloc.saveWithExports(files[DesignerPageIds.splash]!);
+    await _bloc.saveWithExports(
+      files[DesignerPageIds.splash]!,
+      files[DesignerPageIds.android12Splash],
+    );
   }
 
   Future<void> _pickAsset(List<AssetModel> assets) async {

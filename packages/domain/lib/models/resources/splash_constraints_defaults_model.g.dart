@@ -31,6 +31,11 @@ _SplashConstraintsDefaultsModel _$SplashConstraintsDefaultsModelFromJson(
   withoutBackground: SplashConstraintsDefaultsSliceModel.fromJson(
     json['withoutBackground'] as Map<String, dynamic>,
   ),
+  android12: json['android12'] == null
+      ? null
+      : SplashConstraintsDefaultsSliceModel.fromJson(
+          json['android12'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$SplashConstraintsDefaultsModelToJson(
@@ -38,4 +43,5 @@ Map<String, dynamic> _$SplashConstraintsDefaultsModelToJson(
 ) => <String, dynamic>{
   'withBackground': instance.withBackground,
   'withoutBackground': instance.withoutBackground,
+  'android12': instance.android12,
 };

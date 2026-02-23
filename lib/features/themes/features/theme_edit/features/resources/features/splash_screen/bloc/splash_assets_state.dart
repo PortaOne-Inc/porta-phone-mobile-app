@@ -12,6 +12,7 @@ sealed class SplashAssetsState with _$SplashAssetsState {
     String? selectedAssetId,
     AssetModel? selectedAsset,
     @Default(0) double padding,
+    @Default(0) double android12Padding,
     String? backgroundColorHex,
     @Default(SplashAssetsStatus.initial) SplashAssetsStatus status,
     Object? error,

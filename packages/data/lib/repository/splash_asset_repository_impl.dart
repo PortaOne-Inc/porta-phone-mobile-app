@@ -120,6 +120,13 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
           maskDiameterDp: dto.withoutBackground.maskDiameterDp,
           toleranceDp: dto.withoutBackground.toleranceDp,
         ),
+        android12: dto.android12 != null
+            ? SplashConstraintsDefaultsSliceModel(
+                fullSizeDp: dto.android12!.fullSizeDp,
+                maskDiameterDp: dto.android12!.maskDiameterDp,
+                toleranceDp: dto.android12!.toleranceDp,
+              )
+            : null,
       );
     } on DioException catch (e) {
       throw BaseException(

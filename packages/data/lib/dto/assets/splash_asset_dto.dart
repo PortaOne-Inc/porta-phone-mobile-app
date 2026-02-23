@@ -108,6 +108,7 @@ sealed class SplashConstraintsDefaultsDto with _$SplashConstraintsDefaultsDto {
   const factory SplashConstraintsDefaultsDto({
     required SplashConstraintsDefaultsSliceDto withBackground,
     required SplashConstraintsDefaultsSliceDto withoutBackground,
+    SplashConstraintsDefaultsSliceDto? android12,
   }) = _SplashConstraintsDefaultsDto;
 
   factory SplashConstraintsDefaultsDto.fromJson(Map<String, dynamic> json) =>
@@ -116,8 +117,10 @@ sealed class SplashConstraintsDefaultsDto with _$SplashConstraintsDefaultsDto {
 
 @freezed
 sealed class SplashOutputsArtifactsDto with _$SplashOutputsArtifactsDto {
-  const factory SplashOutputsArtifactsDto({String? splashArtifactId}) =
-      _SplashOutputsArtifactsDto;
+  const factory SplashOutputsArtifactsDto({
+    String? splashArtifactId,
+    String? android12SplashArtifactId,
+  }) = _SplashOutputsArtifactsDto;
 
   factory SplashOutputsArtifactsDto.fromJson(Map<String, dynamic> json) =>
       _$SplashOutputsArtifactsDtoFromJson(json);

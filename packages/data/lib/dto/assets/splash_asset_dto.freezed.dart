@@ -1745,7 +1745,7 @@ as double,
 /// @nodoc
 mixin _$SplashConstraintsDefaultsDto {
 
- SplashConstraintsDefaultsSliceDto get withBackground; SplashConstraintsDefaultsSliceDto get withoutBackground;
+ SplashConstraintsDefaultsSliceDto get withBackground; SplashConstraintsDefaultsSliceDto get withoutBackground; SplashConstraintsDefaultsSliceDto? get android12;
 /// Create a copy of SplashConstraintsDefaultsDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1758,16 +1758,16 @@ $SplashConstraintsDefaultsDtoCopyWith<SplashConstraintsDefaultsDto> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashConstraintsDefaultsDto&&(identical(other.withBackground, withBackground) || other.withBackground == withBackground)&&(identical(other.withoutBackground, withoutBackground) || other.withoutBackground == withoutBackground));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashConstraintsDefaultsDto&&(identical(other.withBackground, withBackground) || other.withBackground == withBackground)&&(identical(other.withoutBackground, withoutBackground) || other.withoutBackground == withoutBackground)&&(identical(other.android12, android12) || other.android12 == android12));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,withBackground,withoutBackground);
+int get hashCode => Object.hash(runtimeType,withBackground,withoutBackground,android12);
 
 @override
 String toString() {
-  return 'SplashConstraintsDefaultsDto(withBackground: $withBackground, withoutBackground: $withoutBackground)';
+  return 'SplashConstraintsDefaultsDto(withBackground: $withBackground, withoutBackground: $withoutBackground, android12: $android12)';
 }
 
 
@@ -1778,11 +1778,11 @@ abstract mixin class $SplashConstraintsDefaultsDtoCopyWith<$Res>  {
   factory $SplashConstraintsDefaultsDtoCopyWith(SplashConstraintsDefaultsDto value, $Res Function(SplashConstraintsDefaultsDto) _then) = _$SplashConstraintsDefaultsDtoCopyWithImpl;
 @useResult
 $Res call({
- SplashConstraintsDefaultsSliceDto withBackground, SplashConstraintsDefaultsSliceDto withoutBackground
+ SplashConstraintsDefaultsSliceDto withBackground, SplashConstraintsDefaultsSliceDto withoutBackground, SplashConstraintsDefaultsSliceDto? android12
 });
 
 
-$SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withBackground;$SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground;
+$SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withBackground;$SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground;$SplashConstraintsDefaultsSliceDtoCopyWith<$Res>? get android12;
 
 }
 /// @nodoc
@@ -1795,11 +1795,12 @@ class _$SplashConstraintsDefaultsDtoCopyWithImpl<$Res>
 
 /// Create a copy of SplashConstraintsDefaultsDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? withBackground = null,Object? withoutBackground = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? withBackground = null,Object? withoutBackground = null,Object? android12 = freezed,}) {
   return _then(_self.copyWith(
 withBackground: null == withBackground ? _self.withBackground : withBackground // ignore: cast_nullable_to_non_nullable
 as SplashConstraintsDefaultsSliceDto,withoutBackground: null == withoutBackground ? _self.withoutBackground : withoutBackground // ignore: cast_nullable_to_non_nullable
-as SplashConstraintsDefaultsSliceDto,
+as SplashConstraintsDefaultsSliceDto,android12: freezed == android12 ? _self.android12 : android12 // ignore: cast_nullable_to_non_nullable
+as SplashConstraintsDefaultsSliceDto?,
   ));
 }
 /// Create a copy of SplashConstraintsDefaultsDto
@@ -1819,6 +1820,18 @@ $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground {
   
   return $SplashConstraintsDefaultsSliceDtoCopyWith<$Res>(_self.withoutBackground, (value) {
     return _then(_self.copyWith(withoutBackground: value));
+  });
+}/// Create a copy of SplashConstraintsDefaultsDto
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashConstraintsDefaultsSliceDtoCopyWith<$Res>? get android12 {
+    if (_self.android12 == null) {
+    return null;
+  }
+
+  return $SplashConstraintsDefaultsSliceDtoCopyWith<$Res>(_self.android12!, (value) {
+    return _then(_self.copyWith(android12: value));
   });
 }
 }
@@ -1899,10 +1912,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground,  SplashConstraintsDefaultsSliceDto? android12)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SplashConstraintsDefaultsDto() when $default != null:
-return $default(_that.withBackground,_that.withoutBackground);case _:
+return $default(_that.withBackground,_that.withoutBackground,_that.android12);case _:
   return orElse();
 
 }
@@ -1920,10 +1933,10 @@ return $default(_that.withBackground,_that.withoutBackground);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground,  SplashConstraintsDefaultsSliceDto? android12)  $default,) {final _that = this;
 switch (_that) {
 case _SplashConstraintsDefaultsDto():
-return $default(_that.withBackground,_that.withoutBackground);}
+return $default(_that.withBackground,_that.withoutBackground,_that.android12);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1937,10 +1950,10 @@ return $default(_that.withBackground,_that.withoutBackground);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SplashConstraintsDefaultsSliceDto withBackground,  SplashConstraintsDefaultsSliceDto withoutBackground,  SplashConstraintsDefaultsSliceDto? android12)?  $default,) {final _that = this;
 switch (_that) {
 case _SplashConstraintsDefaultsDto() when $default != null:
-return $default(_that.withBackground,_that.withoutBackground);case _:
+return $default(_that.withBackground,_that.withoutBackground,_that.android12);case _:
   return null;
 
 }
@@ -1952,11 +1965,12 @@ return $default(_that.withBackground,_that.withoutBackground);case _:
 @JsonSerializable()
 
 class _SplashConstraintsDefaultsDto implements SplashConstraintsDefaultsDto {
-  const _SplashConstraintsDefaultsDto({required this.withBackground, required this.withoutBackground});
+  const _SplashConstraintsDefaultsDto({required this.withBackground, required this.withoutBackground, this.android12});
   factory _SplashConstraintsDefaultsDto.fromJson(Map<String, dynamic> json) => _$SplashConstraintsDefaultsDtoFromJson(json);
 
 @override final  SplashConstraintsDefaultsSliceDto withBackground;
 @override final  SplashConstraintsDefaultsSliceDto withoutBackground;
+@override final  SplashConstraintsDefaultsSliceDto? android12;
 
 /// Create a copy of SplashConstraintsDefaultsDto
 /// with the given fields replaced by the non-null parameter values.
@@ -1971,16 +1985,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashConstraintsDefaultsDto&&(identical(other.withBackground, withBackground) || other.withBackground == withBackground)&&(identical(other.withoutBackground, withoutBackground) || other.withoutBackground == withoutBackground));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashConstraintsDefaultsDto&&(identical(other.withBackground, withBackground) || other.withBackground == withBackground)&&(identical(other.withoutBackground, withoutBackground) || other.withoutBackground == withoutBackground)&&(identical(other.android12, android12) || other.android12 == android12));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,withBackground,withoutBackground);
+int get hashCode => Object.hash(runtimeType,withBackground,withoutBackground,android12);
 
 @override
 String toString() {
-  return 'SplashConstraintsDefaultsDto(withBackground: $withBackground, withoutBackground: $withoutBackground)';
+  return 'SplashConstraintsDefaultsDto(withBackground: $withBackground, withoutBackground: $withoutBackground, android12: $android12)';
 }
 
 
@@ -1991,11 +2005,11 @@ abstract mixin class _$SplashConstraintsDefaultsDtoCopyWith<$Res> implements $Sp
   factory _$SplashConstraintsDefaultsDtoCopyWith(_SplashConstraintsDefaultsDto value, $Res Function(_SplashConstraintsDefaultsDto) _then) = __$SplashConstraintsDefaultsDtoCopyWithImpl;
 @override @useResult
 $Res call({
- SplashConstraintsDefaultsSliceDto withBackground, SplashConstraintsDefaultsSliceDto withoutBackground
+ SplashConstraintsDefaultsSliceDto withBackground, SplashConstraintsDefaultsSliceDto withoutBackground, SplashConstraintsDefaultsSliceDto? android12
 });
 
 
-@override $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withBackground;@override $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground;
+@override $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withBackground;@override $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground;@override $SplashConstraintsDefaultsSliceDtoCopyWith<$Res>? get android12;
 
 }
 /// @nodoc
@@ -2008,11 +2022,12 @@ class __$SplashConstraintsDefaultsDtoCopyWithImpl<$Res>
 
 /// Create a copy of SplashConstraintsDefaultsDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? withBackground = null,Object? withoutBackground = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? withBackground = null,Object? withoutBackground = null,Object? android12 = freezed,}) {
   return _then(_SplashConstraintsDefaultsDto(
 withBackground: null == withBackground ? _self.withBackground : withBackground // ignore: cast_nullable_to_non_nullable
 as SplashConstraintsDefaultsSliceDto,withoutBackground: null == withoutBackground ? _self.withoutBackground : withoutBackground // ignore: cast_nullable_to_non_nullable
-as SplashConstraintsDefaultsSliceDto,
+as SplashConstraintsDefaultsSliceDto,android12: freezed == android12 ? _self.android12 : android12 // ignore: cast_nullable_to_non_nullable
+as SplashConstraintsDefaultsSliceDto?,
   ));
 }
 
@@ -2034,6 +2049,18 @@ $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground {
   return $SplashConstraintsDefaultsSliceDtoCopyWith<$Res>(_self.withoutBackground, (value) {
     return _then(_self.copyWith(withoutBackground: value));
   });
+}/// Create a copy of SplashConstraintsDefaultsDto
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SplashConstraintsDefaultsSliceDtoCopyWith<$Res>? get android12 {
+    if (_self.android12 == null) {
+    return null;
+  }
+
+  return $SplashConstraintsDefaultsSliceDtoCopyWith<$Res>(_self.android12!, (value) {
+    return _then(_self.copyWith(android12: value));
+  });
 }
 }
 
@@ -2041,7 +2068,7 @@ $SplashConstraintsDefaultsSliceDtoCopyWith<$Res> get withoutBackground {
 /// @nodoc
 mixin _$SplashOutputsArtifactsDto {
 
- String? get splashArtifactId;
+ String? get splashArtifactId; String? get android12SplashArtifactId;
 /// Create a copy of SplashOutputsArtifactsDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2054,16 +2081,16 @@ $SplashOutputsArtifactsDtoCopyWith<SplashOutputsArtifactsDto> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashOutputsArtifactsDto&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashOutputsArtifactsDto&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.android12SplashArtifactId, android12SplashArtifactId) || other.android12SplashArtifactId == android12SplashArtifactId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,splashArtifactId);
+int get hashCode => Object.hash(runtimeType,splashArtifactId,android12SplashArtifactId);
 
 @override
 String toString() {
-  return 'SplashOutputsArtifactsDto(splashArtifactId: $splashArtifactId)';
+  return 'SplashOutputsArtifactsDto(splashArtifactId: $splashArtifactId, android12SplashArtifactId: $android12SplashArtifactId)';
 }
 
 
@@ -2074,7 +2101,7 @@ abstract mixin class $SplashOutputsArtifactsDtoCopyWith<$Res>  {
   factory $SplashOutputsArtifactsDtoCopyWith(SplashOutputsArtifactsDto value, $Res Function(SplashOutputsArtifactsDto) _then) = _$SplashOutputsArtifactsDtoCopyWithImpl;
 @useResult
 $Res call({
- String? splashArtifactId
+ String? splashArtifactId, String? android12SplashArtifactId
 });
 
 
@@ -2091,9 +2118,10 @@ class _$SplashOutputsArtifactsDtoCopyWithImpl<$Res>
 
 /// Create a copy of SplashOutputsArtifactsDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? splashArtifactId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? splashArtifactId = freezed,Object? android12SplashArtifactId = freezed,}) {
   return _then(_self.copyWith(
 splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,android12SplashArtifactId: freezed == android12SplashArtifactId ? _self.android12SplashArtifactId : android12SplashArtifactId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -2176,10 +2204,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? splashArtifactId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? splashArtifactId,  String? android12SplashArtifactId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SplashOutputsArtifactsDto() when $default != null:
-return $default(_that.splashArtifactId);case _:
+return $default(_that.splashArtifactId,_that.android12SplashArtifactId);case _:
   return orElse();
 
 }
@@ -2197,10 +2225,10 @@ return $default(_that.splashArtifactId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? splashArtifactId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? splashArtifactId,  String? android12SplashArtifactId)  $default,) {final _that = this;
 switch (_that) {
 case _SplashOutputsArtifactsDto():
-return $default(_that.splashArtifactId);}
+return $default(_that.splashArtifactId,_that.android12SplashArtifactId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -2214,10 +2242,10 @@ return $default(_that.splashArtifactId);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? splashArtifactId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? splashArtifactId,  String? android12SplashArtifactId)?  $default,) {final _that = this;
 switch (_that) {
 case _SplashOutputsArtifactsDto() when $default != null:
-return $default(_that.splashArtifactId);case _:
+return $default(_that.splashArtifactId,_that.android12SplashArtifactId);case _:
   return null;
 
 }
@@ -2229,10 +2257,11 @@ return $default(_that.splashArtifactId);case _:
 @JsonSerializable()
 
 class _SplashOutputsArtifactsDto implements SplashOutputsArtifactsDto {
-  const _SplashOutputsArtifactsDto({this.splashArtifactId});
+  const _SplashOutputsArtifactsDto({this.splashArtifactId, this.android12SplashArtifactId});
   factory _SplashOutputsArtifactsDto.fromJson(Map<String, dynamic> json) => _$SplashOutputsArtifactsDtoFromJson(json);
 
 @override final  String? splashArtifactId;
+@override final  String? android12SplashArtifactId;
 
 /// Create a copy of SplashOutputsArtifactsDto
 /// with the given fields replaced by the non-null parameter values.
@@ -2247,16 +2276,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashOutputsArtifactsDto&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashOutputsArtifactsDto&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.android12SplashArtifactId, android12SplashArtifactId) || other.android12SplashArtifactId == android12SplashArtifactId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,splashArtifactId);
+int get hashCode => Object.hash(runtimeType,splashArtifactId,android12SplashArtifactId);
 
 @override
 String toString() {
-  return 'SplashOutputsArtifactsDto(splashArtifactId: $splashArtifactId)';
+  return 'SplashOutputsArtifactsDto(splashArtifactId: $splashArtifactId, android12SplashArtifactId: $android12SplashArtifactId)';
 }
 
 
@@ -2267,7 +2296,7 @@ abstract mixin class _$SplashOutputsArtifactsDtoCopyWith<$Res> implements $Splas
   factory _$SplashOutputsArtifactsDtoCopyWith(_SplashOutputsArtifactsDto value, $Res Function(_SplashOutputsArtifactsDto) _then) = __$SplashOutputsArtifactsDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? splashArtifactId
+ String? splashArtifactId, String? android12SplashArtifactId
 });
 
 
@@ -2284,9 +2313,10 @@ class __$SplashOutputsArtifactsDtoCopyWithImpl<$Res>
 
 /// Create a copy of SplashOutputsArtifactsDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? splashArtifactId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? splashArtifactId = freezed,Object? android12SplashArtifactId = freezed,}) {
   return _then(_SplashOutputsArtifactsDto(
 splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,android12SplashArtifactId: freezed == android12SplashArtifactId ? _self.android12SplashArtifactId : android12SplashArtifactId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

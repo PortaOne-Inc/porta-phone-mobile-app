@@ -80,6 +80,9 @@ sealed class SplashAssetModel with _$SplashAssetModel {
     /// outputsArtifacts.splashArtifactId
     String? splashArtifactId,
 
+    /// outputsArtifacts.android12SplashArtifactId
+    String? android12SplashArtifactId,
+
     /// Computed constraints & validation
     SplashIconConstraints? iconConstraints,
   }) = _SplashAssetModel;

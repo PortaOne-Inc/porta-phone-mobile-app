@@ -166,6 +166,11 @@ _SplashConstraintsDefaultsDto _$SplashConstraintsDefaultsDtoFromJson(
   withoutBackground: SplashConstraintsDefaultsSliceDto.fromJson(
     json['withoutBackground'] as Map<String, dynamic>,
   ),
+  android12: json['android12'] == null
+      ? null
+      : SplashConstraintsDefaultsSliceDto.fromJson(
+          json['android12'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$SplashConstraintsDefaultsDtoToJson(
@@ -173,14 +178,19 @@ Map<String, dynamic> _$SplashConstraintsDefaultsDtoToJson(
 ) => <String, dynamic>{
   'withBackground': instance.withBackground,
   'withoutBackground': instance.withoutBackground,
+  'android12': instance.android12,
 };
 
 _SplashOutputsArtifactsDto _$SplashOutputsArtifactsDtoFromJson(
   Map<String, dynamic> json,
 ) => _SplashOutputsArtifactsDto(
   splashArtifactId: json['splashArtifactId'] as String?,
+  android12SplashArtifactId: json['android12SplashArtifactId'] as String?,
 );
 
 Map<String, dynamic> _$SplashOutputsArtifactsDtoToJson(
   _SplashOutputsArtifactsDto instance,
-) => <String, dynamic>{'splashArtifactId': instance.splashArtifactId};
+) => <String, dynamic>{
+  'splashArtifactId': instance.splashArtifactId,
+  'android12SplashArtifactId': instance.android12SplashArtifactId,
+};

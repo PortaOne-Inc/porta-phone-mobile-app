@@ -14,4 +14,5 @@ class ArtifactUpload {
 
 class SplashUploadTarget {
   static const String splash = 'splash';
+  static const String android12Splash = 'android12Splash';
 }

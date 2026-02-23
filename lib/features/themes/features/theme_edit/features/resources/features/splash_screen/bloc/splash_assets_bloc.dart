@@ -128,19 +128,33 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
     emit(state.copyWith(padding: padding, status: SplashAssetsStatus.initial));
   }
 
+  void selectAndroid12Padding(double padding) {
+    emit(state.copyWith(android12Padding: padding, status: SplashAssetsStatus.initial));
+  }
+
   Future<void> startRender() async {
     emit(state.copyWith(status: SplashAssetsStatus.loading, error: null));
   }
 
-  Future<void> saveWithExports(Uint8List splash) async {
+  Future<void> saveWithExports(Uint8List splash, Uint8List? android12Splash) async {
     emit(state.copyWith(status: SplashAssetsStatus.loading, error: null));
 
     try {
-      final upload = ArtifactUpload(
-        target: SplashUploadTarget.splash,
-        mimeType: 'image/png',
-        bytes: splash,
-      );
+      final uploads = <ArtifactUpload>[
+        ArtifactUpload(
+          target: SplashUploadTarget.splash,
+          mimeType: 'image/png',
+          bytes: splash,
+        ),
+      ];
+
+      if (android12Splash != null) {
+        uploads.add(ArtifactUpload(
+          target: SplashUploadTarget.android12Splash,
+          mimeType: 'image/png',
+          bytes: android12Splash,
+        ));
+      }
 
       await upsertWithFilesUsecase.execute(
         applicationId: state.applicationId,
@@ -150,7 +164,7 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
           foregroundAssetId: state.selectedAsset?.id,
           backgroundColorHex: state.backgroundColorHex,
         ),
-        uploads: [upload],
+        uploads: uploads,
       );
 
       final fresh = await getSplashAssetUsecase.execute(

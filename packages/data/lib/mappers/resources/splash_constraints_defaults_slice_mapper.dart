@@ -66,6 +66,9 @@ class SplashConstraintsDefaultsMapper
     return SplashConstraintsDefaultsDto(
       withBackground: _sliceMapper.convertTo(it.withBackground),
       withoutBackground: _sliceMapper.convertTo(it.withoutBackground),
+      android12: it.android12 != null
+          ? _sliceMapper.convertTo(it.android12!)
+          : null,
     );
   }
 
@@ -74,6 +77,9 @@ class SplashConstraintsDefaultsMapper
     return SplashConstraintsDefaultsModel(
       withBackground: _sliceMapper.convertFrom(it.withBackground),
       withoutBackground: _sliceMapper.convertFrom(it.withoutBackground),
+      android12: it.android12 != null
+          ? _sliceMapper.convertFrom(it.android12!)
+          : null,
     );
   }
 }

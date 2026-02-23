@@ -24,6 +24,7 @@ sealed class SplashConstraintsDefaultsModel
   const factory SplashConstraintsDefaultsModel({
     required SplashConstraintsDefaultsSliceModel withBackground,
     required SplashConstraintsDefaultsSliceModel withoutBackground,
+    SplashConstraintsDefaultsSliceModel? android12,
   }) = _SplashConstraintsDefaultsModel;
 
   factory SplashConstraintsDefaultsModel.fromJson(Map<String, dynamic> json) =>

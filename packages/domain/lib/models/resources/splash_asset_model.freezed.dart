@@ -1099,7 +1099,8 @@ mixin _$SplashAssetModel {
  SplashSource? get source;/// Render parameters
  SplashAssetParams? get params;/// Mode (withBackground / withoutBackground)
  SplashMode? get mode;/// outputsArtifacts.splashArtifactId
- String? get splashArtifactId;/// Computed constraints & validation
+ String? get splashArtifactId;/// outputsArtifacts.android12SplashArtifactId
+ String? get android12SplashArtifactId;/// Computed constraints & validation
  SplashIconConstraints? get iconConstraints;
 /// Create a copy of SplashAssetModel
 /// with the given fields replaced by the non-null parameter values.
@@ -1113,16 +1114,16 @@ $SplashAssetModelCopyWith<SplashAssetModel> get copyWith => _$SplashAssetModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.android12SplashArtifactId, android12SplashArtifactId) || other.android12SplashArtifactId == android12SplashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,iconConstraints);
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,android12SplashArtifactId,iconConstraints);
 
 @override
 String toString() {
-  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, iconConstraints: $iconConstraints)';
+  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, android12SplashArtifactId: $android12SplashArtifactId, iconConstraints: $iconConstraints)';
 }
 
 
@@ -1133,7 +1134,7 @@ abstract mixin class $SplashAssetModelCopyWith<$Res>  {
   factory $SplashAssetModelCopyWith(SplashAssetModel value, $Res Function(SplashAssetModel) _then) = _$SplashAssetModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, SplashIconConstraints? iconConstraints
+ String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, String? android12SplashArtifactId, SplashIconConstraints? iconConstraints
 });
 
 
@@ -1150,7 +1151,7 @@ class _$SplashAssetModelCopyWithImpl<$Res>
 
 /// Create a copy of SplashAssetModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? iconConstraints = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? android12SplashArtifactId = freezed,Object? iconConstraints = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
@@ -1161,6 +1162,7 @@ as String,source: freezed == source ? _self.source : source // ignore: cast_null
 as SplashSource?,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
 as SplashAssetParams?,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
 as SplashMode?,splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,android12SplashArtifactId: freezed == android12SplashArtifactId ? _self.android12SplashArtifactId : android12SplashArtifactId // ignore: cast_nullable_to_non_nullable
 as String?,iconConstraints: freezed == iconConstraints ? _self.iconConstraints : iconConstraints // ignore: cast_nullable_to_non_nullable
 as SplashIconConstraints?,
   ));
@@ -1280,10 +1282,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  String? android12SplashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SplashAssetModel() when $default != null:
-return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);case _:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.android12SplashArtifactId,_that.iconConstraints);case _:
   return orElse();
 
 }
@@ -1301,10 +1303,10 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  String? android12SplashArtifactId,  SplashIconConstraints? iconConstraints)  $default,) {final _that = this;
 switch (_that) {
 case _SplashAssetModel():
-return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);}
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.android12SplashArtifactId,_that.iconConstraints);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1318,10 +1320,10 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  String createdAt,  String updatedAt,  SplashSource? source,  SplashAssetParams? params,  SplashMode? mode,  String? splashArtifactId,  String? android12SplashArtifactId,  SplashIconConstraints? iconConstraints)?  $default,) {final _that = this;
 switch (_that) {
 case _SplashAssetModel() when $default != null:
-return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.iconConstraints);case _:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that.updatedAt,_that.source,_that.params,_that.mode,_that.splashArtifactId,_that.android12SplashArtifactId,_that.iconConstraints);case _:
   return null;
 
 }
@@ -1333,7 +1335,7 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.createdAt,_that
 @JsonSerializable()
 
 class _SplashAssetModel implements SplashAssetModel {
-  const _SplashAssetModel({required this.id, required this.applicationId, required this.themeId, required this.createdAt, required this.updatedAt, this.source, this.params, this.mode, this.splashArtifactId, this.iconConstraints});
+  const _SplashAssetModel({required this.id, required this.applicationId, required this.themeId, required this.createdAt, required this.updatedAt, this.source, this.params, this.mode, this.splashArtifactId, this.android12SplashArtifactId, this.iconConstraints});
   factory _SplashAssetModel.fromJson(Map<String, dynamic> json) => _$SplashAssetModelFromJson(json);
 
 @override final  String id;
@@ -1350,6 +1352,8 @@ class _SplashAssetModel implements SplashAssetModel {
 @override final  SplashMode? mode;
 /// outputsArtifacts.splashArtifactId
 @override final  String? splashArtifactId;
+/// outputsArtifacts.android12SplashArtifactId
+@override final  String? android12SplashArtifactId;
 /// Computed constraints & validation
 @override final  SplashIconConstraints? iconConstraints;
 
@@ -1366,16 +1370,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SplashAssetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.params, params) || other.params == params)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.splashArtifactId, splashArtifactId) || other.splashArtifactId == splashArtifactId)&&(identical(other.android12SplashArtifactId, android12SplashArtifactId) || other.android12SplashArtifactId == android12SplashArtifactId)&&(identical(other.iconConstraints, iconConstraints) || other.iconConstraints == iconConstraints));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,iconConstraints);
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,createdAt,updatedAt,source,params,mode,splashArtifactId,android12SplashArtifactId,iconConstraints);
 
 @override
 String toString() {
-  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, iconConstraints: $iconConstraints)';
+  return 'SplashAssetModel(id: $id, applicationId: $applicationId, themeId: $themeId, createdAt: $createdAt, updatedAt: $updatedAt, source: $source, params: $params, mode: $mode, splashArtifactId: $splashArtifactId, android12SplashArtifactId: $android12SplashArtifactId, iconConstraints: $iconConstraints)';
 }
 
 
@@ -1386,7 +1390,7 @@ abstract mixin class _$SplashAssetModelCopyWith<$Res> implements $SplashAssetMod
   factory _$SplashAssetModelCopyWith(_SplashAssetModel value, $Res Function(_SplashAssetModel) _then) = __$SplashAssetModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, SplashIconConstraints? iconConstraints
+ String id, String applicationId, String themeId, String createdAt, String updatedAt, SplashSource? source, SplashAssetParams? params, SplashMode? mode, String? splashArtifactId, String? android12SplashArtifactId, SplashIconConstraints? iconConstraints
 });
 
 
@@ -1403,7 +1407,7 @@ class __$SplashAssetModelCopyWithImpl<$Res>
 
 /// Create a copy of SplashAssetModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? iconConstraints = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? createdAt = null,Object? updatedAt = null,Object? source = freezed,Object? params = freezed,Object? mode = freezed,Object? splashArtifactId = freezed,Object? android12SplashArtifactId = freezed,Object? iconConstraints = freezed,}) {
   return _then(_SplashAssetModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
@@ -1414,6 +1418,7 @@ as String,source: freezed == source ? _self.source : source // ignore: cast_null
 as SplashSource?,params: freezed == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
 as SplashAssetParams?,mode: freezed == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
 as SplashMode?,splashArtifactId: freezed == splashArtifactId ? _self.splashArtifactId : splashArtifactId // ignore: cast_nullable_to_non_nullable
+as String?,android12SplashArtifactId: freezed == android12SplashArtifactId ? _self.android12SplashArtifactId : android12SplashArtifactId // ignore: cast_nullable_to_non_nullable
 as String?,iconConstraints: freezed == iconConstraints ? _self.iconConstraints : iconConstraints // ignore: cast_nullable_to_non_nullable
 as SplashIconConstraints?,
   ));
