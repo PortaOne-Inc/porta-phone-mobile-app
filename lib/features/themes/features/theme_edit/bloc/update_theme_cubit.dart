@@ -213,7 +213,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         updateFeatureAccessUsecase.execute(
           applicationId: applicationId,
           themeId: themeId,
-          status: FeatureAccessStatus.draft,
           config: featureAccess.toJson(),
         ),
       ),

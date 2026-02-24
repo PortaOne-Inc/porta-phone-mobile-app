@@ -21,6 +21,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
     required this.copyThemeUsecase,
+    required this.updateThemeUseCase,
     ApplicationModel? applicationModel,
   }) : super(
          ApplicationDetailsState(
@@ -43,6 +44,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
   final CopyThemeUsecase copyThemeUsecase;
+  final UsecaseThemeUpdate updateThemeUseCase;
 
   Future<void> _init() async {
     await _getThemes();
@@ -177,5 +179,20 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
       themeId: themeModel.id!,
     );
     await _getThemes();
+  }
+
+  Future<void> changeThemeStatus(ThemeModel themeModel, ThemeStatus newStatus) async {
+    if (themeModel.status == newStatus) return;
+    final updated = themeModel.copyWith(status: newStatus);
+
+    try {
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+      await updateThemeUseCase.execute(themeModel: updated);
+      await _getThemes(force: true);
+    } on BaseException catch (e) {
+      emit(
+        state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+      );
+    }
   }
 }

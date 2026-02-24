@@ -10,6 +10,7 @@ class ItemTheme extends StatelessWidget {
     required this.onDelete,
     required this.onInfo,
     required this.onCopy,
+    this.onChangeStatus,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class ItemTheme extends StatelessWidget {
   final void Function(ThemeModel model) onInfo;
   final void Function(ThemeModel model) onMakeDefault;
   final void Function(ThemeModel model) onCopy;
+  final void Function(ThemeModel model, ThemeStatus status)? onChangeStatus;
 
   static const _menuKeyDelete = '_menuKeyDelete';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';
@@ -78,7 +80,12 @@ class ItemTheme extends StatelessWidget {
                             ),
                           ),
                         const SizedBox(width: 6),
-                        _StatusChip(status: model.status),
+                        _StatusChip(
+                          status: model.status,
+                          onSelected: onChangeStatus != null
+                              ? (status) => onChangeStatus!(model, status)
+                              : null,
+                        ),
                       ],
                     ),
                     if (hasDescription) ...[
@@ -219,44 +226,77 @@ class _PreviewBox extends StatelessWidget {
 }
 
 class _StatusChip extends StatelessWidget {
-  const _StatusChip({required this.status});
+  const _StatusChip({required this.status, this.onSelected});
 
   final ThemeStatus status;
+  final ValueChanged<ThemeStatus>? onSelected;
+
+  static (Color bg, Color fg, String label) _style(ThemeStatus s, ThemeData t) =>
+      switch (s) {
+        ThemeStatus.draft => (
+          t.colorScheme.surfaceContainerHighest,
+          t.colorScheme.onSurface,
+          'Draft',
+        ),
+        ThemeStatus.published => (
+          t.colorScheme.primaryContainer,
+          t.colorScheme.onPrimaryContainer,
+          'Published',
+        ),
+        ThemeStatus.archived => (
+          t.colorScheme.surfaceContainerHigh,
+          t.colorScheme.onSurfaceVariant,
+          'Archived',
+        ),
+      };
 
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context);
-    final (bg, fg, label) = switch (status) {
-      ThemeStatus.draft => (
-        t.colorScheme.surfaceContainerHighest,
-        t.colorScheme.onSurface,
-        'Draft',
-      ),
-      ThemeStatus.published => (
-        t.colorScheme.primaryContainer,
-        t.colorScheme.onPrimaryContainer,
-        'Published',
-      ),
-      ThemeStatus.archived => (
-        t.colorScheme.surfaceContainerHigh,
-        t.colorScheme.onSurfaceVariant,
-        'Archived',
-      ),
-    };
+    final (bg, fg, label) = _style(status, t);
 
-    return Container(
+    final chip = Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(999),
       ),
-      child: Text(
-        label,
-        style: t.textTheme.labelSmall?.copyWith(
-          color: fg,
-          fontWeight: FontWeight.w600,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: t.textTheme.labelSmall?.copyWith(
+              color: fg,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          if (onSelected != null) ...[
+            const SizedBox(width: 2),
+            Icon(Icons.arrow_drop_down, size: 16, color: fg),
+          ],
+        ],
       ),
+    );
+
+    if (onSelected == null) return chip;
+
+    return PopupMenuButton<ThemeStatus>(
+      onSelected: onSelected,
+      offset: const Offset(0, 32),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+      itemBuilder: (_) => ThemeStatus.values.map((s) {
+        final (_, _, itemLabel) = _style(s, t);
+        return PopupMenuItem(
+          value: s,
+          enabled: s != status,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          child: Text(itemLabel),
+        );
+      }).toList(),
+      child: chip,
     );
   }
 }

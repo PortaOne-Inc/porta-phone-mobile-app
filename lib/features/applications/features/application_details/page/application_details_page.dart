@@ -180,6 +180,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
                             theme,
                           ),
                           onCopy: bloc.copyTheme,
+                          onChangeStatus: bloc.changeThemeStatus,
                         ),
                       ),
                     ),
