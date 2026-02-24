@@ -5,8 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
-import 'package:domain/domain.dart';
-
 import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
@@ -108,8 +106,8 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                   title: const Text('History'),
                   onTap: () => _openThemeHistory(
                     context,
-                    state.applicationModel?.id ?? '',
-                    state.theme?.id ?? '',
+                    _cubit.applicationId,
+                    _cubit.themeId,
                   ),
                 ),
                 const Divider(),
