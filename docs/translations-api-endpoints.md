@@ -6,9 +6,9 @@ All endpoints are under `/translations`.
 
 ## Base Translations
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/` | Fetch all base translations from Localizely (flattened to array) |
+| Method | Path | Description                                                      |
+|--------|------|------------------------------------------------------------------|
+| `GET`  | `/`  | Fetch all base translations from Localizely (flattened to array) |
 
 Returns `Translation[]` sorted by key. Each entry has `locale`, `key`, and `value`;
 `id` and `applicationId` are empty strings (base translations are not persisted).
@@ -17,11 +17,11 @@ Returns `Translation[]` sorted by key. Each entry has `locale`, `key`, and `valu
 
 ## Overrides
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/overrides/:appId` | List all translation overrides for an application |
-| `POST` | `/overrides/:appId` | Upsert a single translation override |
-| `DELETE` | `/overrides/:appId` | Delete a single translation override |
+| Method   | Path                | Description                                       |
+|----------|---------------------|---------------------------------------------------|
+| `GET`    | `/overrides/:appId` | List all translation overrides for an application |
+| `POST`   | `/overrides/:appId` | Upsert a single translation override              |
+| `DELETE` | `/overrides/:appId` | Delete a single translation override              |
 
 ### POST /overrides/:appId
 
@@ -40,9 +40,9 @@ Finds the override by `(applicationId, locale, key)` and deletes it. No error if
 
 ## ARB Composition
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/compose-arb/:appId` | Download a ZIP of Flutter ARB files with overrides applied |
+| Method | Path                  | Description                                                |
+|--------|-----------------------|------------------------------------------------------------|
+| `GET`  | `/compose-arb/:appId` | Download a ZIP of Flutter ARB files with overrides applied |
 
 Returns `Content-Type: application/zip`. The ZIP contains one `.arb` file per locale with
 app-specific overrides merged into the base Localizely translations.

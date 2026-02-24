@@ -6,11 +6,11 @@ in Firestore, and composing Flutter ARB files with overrides applied.
 
 ## Sub-docs
 
-| Document | Description |
-|---|---|
-| [Data Model](./translations-data-model.md) | Entity, Firestore collection, composite indexes |
-| [API Endpoints](./translations-api-endpoints.md) | REST endpoints for translations |
-| [Core Flows](./translations-core-flows.md) | Override upsert, ARB composition, base translation fetch |
+| Document                                         | Description                                              |
+|--------------------------------------------------|----------------------------------------------------------|
+| [Data Model](./translations-data-model.md)       | Entity, Firestore collection, composite indexes          |
+| [API Endpoints](./translations-api-endpoints.md) | REST endpoints for translations                          |
+| [Core Flows](./translations-core-flows.md)       | Override upsert, ARB composition, base translation fetch |
 
 ---
 
@@ -65,10 +65,10 @@ overrides per locale, and returns a new ZIP stream with the modified ARB files.
 
 ## Configuration
 
-| Variable | Required | Description |
-|---|---|---|
-| `LOCALIZELY_DOWNLOAD_URL` | Yes | Localizely API endpoint for downloading translations |
-| `LOCALIZELY_API_KEY` | Yes | API token sent as `X-Api-Token` header |
+| Variable                  | Required | Description                                          |
+|---------------------------|----------|------------------------------------------------------|
+| `LOCALIZELY_DOWNLOAD_URL` | Yes      | Localizely API endpoint for downloading translations |
+| `LOCALIZELY_API_KEY`      | Yes      | API token sent as `X-Api-Token` header               |
 
 ---
 
