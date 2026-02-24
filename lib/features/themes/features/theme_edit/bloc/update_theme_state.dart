@@ -2,9 +2,55 @@ part of 'update_theme_cubit.dart';
 
 enum ThemePropertyStatus { progress, validation, success, error }
 
-enum SyncStatus { idle, syncing, synced, failed, conflict }
+enum SyncStatus { idle, syncing, synced, failed, conflict, partiallyFailed }
 
 enum ThemeComponents { widgets, pages, colors, navigation, embeds }
+
+enum ConfigSyncResult { pending, success, failed, conflict }
+
+@freezed
+abstract class SyncDetail with _$SyncDetail {
+  const factory SyncDetail({
+    @Default(ConfigSyncResult.pending) ConfigSyncResult featureAccess,
+    @Default(ConfigSyncResult.pending) ConfigSyncResult colorScheme,
+    @Default(ConfigSyncResult.pending) ConfigSyncResult pageConfig,
+    @Default(ConfigSyncResult.pending) ConfigSyncResult widgetConfig,
+  }) = _SyncDetail;
+
+  const SyncDetail._();
+
+  bool get hasFailures =>
+      featureAccess == ConfigSyncResult.failed ||
+      colorScheme == ConfigSyncResult.failed ||
+      pageConfig == ConfigSyncResult.failed ||
+      widgetConfig == ConfigSyncResult.failed;
+
+  bool get hasConflicts =>
+      featureAccess == ConfigSyncResult.conflict ||
+      colorScheme == ConfigSyncResult.conflict ||
+      pageConfig == ConfigSyncResult.conflict ||
+      widgetConfig == ConfigSyncResult.conflict;
+
+  bool get allSucceeded =>
+      featureAccess == ConfigSyncResult.success &&
+      colorScheme == ConfigSyncResult.success &&
+      pageConfig == ConfigSyncResult.success &&
+      widgetConfig == ConfigSyncResult.success;
+
+  List<String> get failedNames => [
+        if (featureAccess == ConfigSyncResult.failed) 'Feature access',
+        if (colorScheme == ConfigSyncResult.failed) 'Color scheme',
+        if (pageConfig == ConfigSyncResult.failed) 'Page config',
+        if (widgetConfig == ConfigSyncResult.failed) 'Widget config',
+      ];
+
+  List<String> get conflictNames => [
+        if (featureAccess == ConfigSyncResult.conflict) 'Feature access',
+        if (colorScheme == ConfigSyncResult.conflict) 'Color scheme',
+        if (pageConfig == ConfigSyncResult.conflict) 'Page config',
+        if (widgetConfig == ConfigSyncResult.conflict) 'Widget config',
+      ];
+}
 
 @freezed
 abstract class UpdateThemeState with _$UpdateThemeState {
@@ -23,8 +69,10 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     FeatureAccessModel? featureAccessModel,
     ThemePropertyStatus? status,
     @Default(SyncStatus.idle) SyncStatus syncStatus,
+    @Default(SyncDetail()) SyncDetail syncDetail,
     ColorSchemeModel? colorSchemeModel,
     Exception? error,
+    String? errorSource,
   }) = _UpdateThemeState;
 
   const UpdateThemeState._();

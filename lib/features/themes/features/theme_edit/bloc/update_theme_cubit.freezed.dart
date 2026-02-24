@@ -12,9 +12,275 @@ part of 'update_theme_cubit.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
+mixin _$SyncDetail {
+
+ ConfigSyncResult get featureAccess; ConfigSyncResult get colorScheme; ConfigSyncResult get pageConfig; ConfigSyncResult get widgetConfig;
+/// Create a copy of SyncDetail
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SyncDetailCopyWith<SyncDetail> get copyWith => _$SyncDetailCopyWithImpl<SyncDetail>(this as SyncDetail, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SyncDetail&&(identical(other.featureAccess, featureAccess) || other.featureAccess == featureAccess)&&(identical(other.colorScheme, colorScheme) || other.colorScheme == colorScheme)&&(identical(other.pageConfig, pageConfig) || other.pageConfig == pageConfig)&&(identical(other.widgetConfig, widgetConfig) || other.widgetConfig == widgetConfig));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,featureAccess,colorScheme,pageConfig,widgetConfig);
+
+@override
+String toString() {
+  return 'SyncDetail(featureAccess: $featureAccess, colorScheme: $colorScheme, pageConfig: $pageConfig, widgetConfig: $widgetConfig)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SyncDetailCopyWith<$Res>  {
+  factory $SyncDetailCopyWith(SyncDetail value, $Res Function(SyncDetail) _then) = _$SyncDetailCopyWithImpl;
+@useResult
+$Res call({
+ ConfigSyncResult featureAccess, ConfigSyncResult colorScheme, ConfigSyncResult pageConfig, ConfigSyncResult widgetConfig
+});
+
+
+
+
+}
+/// @nodoc
+class _$SyncDetailCopyWithImpl<$Res>
+    implements $SyncDetailCopyWith<$Res> {
+  _$SyncDetailCopyWithImpl(this._self, this._then);
+
+  final SyncDetail _self;
+  final $Res Function(SyncDetail) _then;
+
+/// Create a copy of SyncDetail
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? featureAccess = null,Object? colorScheme = null,Object? pageConfig = null,Object? widgetConfig = null,}) {
+  return _then(_self.copyWith(
+featureAccess: null == featureAccess ? _self.featureAccess : featureAccess // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,colorScheme: null == colorScheme ? _self.colorScheme : colorScheme // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,pageConfig: null == pageConfig ? _self.pageConfig : pageConfig // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,widgetConfig: null == widgetConfig ? _self.widgetConfig : widgetConfig // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SyncDetail].
+extension SyncDetailPatterns on SyncDetail {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SyncDetail value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SyncDetail() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SyncDetail value)  $default,){
+final _that = this;
+switch (_that) {
+case _SyncDetail():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SyncDetail value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SyncDetail() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ConfigSyncResult featureAccess,  ConfigSyncResult colorScheme,  ConfigSyncResult pageConfig,  ConfigSyncResult widgetConfig)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SyncDetail() when $default != null:
+return $default(_that.featureAccess,_that.colorScheme,_that.pageConfig,_that.widgetConfig);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ConfigSyncResult featureAccess,  ConfigSyncResult colorScheme,  ConfigSyncResult pageConfig,  ConfigSyncResult widgetConfig)  $default,) {final _that = this;
+switch (_that) {
+case _SyncDetail():
+return $default(_that.featureAccess,_that.colorScheme,_that.pageConfig,_that.widgetConfig);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ConfigSyncResult featureAccess,  ConfigSyncResult colorScheme,  ConfigSyncResult pageConfig,  ConfigSyncResult widgetConfig)?  $default,) {final _that = this;
+switch (_that) {
+case _SyncDetail() when $default != null:
+return $default(_that.featureAccess,_that.colorScheme,_that.pageConfig,_that.widgetConfig);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _SyncDetail extends SyncDetail {
+  const _SyncDetail({this.featureAccess = ConfigSyncResult.pending, this.colorScheme = ConfigSyncResult.pending, this.pageConfig = ConfigSyncResult.pending, this.widgetConfig = ConfigSyncResult.pending}): super._();
+  
+
+@override@JsonKey() final  ConfigSyncResult featureAccess;
+@override@JsonKey() final  ConfigSyncResult colorScheme;
+@override@JsonKey() final  ConfigSyncResult pageConfig;
+@override@JsonKey() final  ConfigSyncResult widgetConfig;
+
+/// Create a copy of SyncDetail
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SyncDetailCopyWith<_SyncDetail> get copyWith => __$SyncDetailCopyWithImpl<_SyncDetail>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SyncDetail&&(identical(other.featureAccess, featureAccess) || other.featureAccess == featureAccess)&&(identical(other.colorScheme, colorScheme) || other.colorScheme == colorScheme)&&(identical(other.pageConfig, pageConfig) || other.pageConfig == pageConfig)&&(identical(other.widgetConfig, widgetConfig) || other.widgetConfig == widgetConfig));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,featureAccess,colorScheme,pageConfig,widgetConfig);
+
+@override
+String toString() {
+  return 'SyncDetail(featureAccess: $featureAccess, colorScheme: $colorScheme, pageConfig: $pageConfig, widgetConfig: $widgetConfig)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SyncDetailCopyWith<$Res> implements $SyncDetailCopyWith<$Res> {
+  factory _$SyncDetailCopyWith(_SyncDetail value, $Res Function(_SyncDetail) _then) = __$SyncDetailCopyWithImpl;
+@override @useResult
+$Res call({
+ ConfigSyncResult featureAccess, ConfigSyncResult colorScheme, ConfigSyncResult pageConfig, ConfigSyncResult widgetConfig
+});
+
+
+
+
+}
+/// @nodoc
+class __$SyncDetailCopyWithImpl<$Res>
+    implements _$SyncDetailCopyWith<$Res> {
+  __$SyncDetailCopyWithImpl(this._self, this._then);
+
+  final _SyncDetail _self;
+  final $Res Function(_SyncDetail) _then;
+
+/// Create a copy of SyncDetail
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? featureAccess = null,Object? colorScheme = null,Object? pageConfig = null,Object? widgetConfig = null,}) {
+  return _then(_SyncDetail(
+featureAccess: null == featureAccess ? _self.featureAccess : featureAccess // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,colorScheme: null == colorScheme ? _self.colorScheme : colorScheme // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,pageConfig: null == pageConfig ? _self.pageConfig : pageConfig // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,widgetConfig: null == widgetConfig ? _self.widgetConfig : widgetConfig // ignore: cast_nullable_to_non_nullable
+as ConfigSyncResult,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$UpdateThemeState {
 
- AppConfig get appConfig; ColorSchemeConfig get colorSchemeConfig; ThemeWidgetConfig get themeWidgetConfig; ThemePageConfig get themePageConfig; BrightnessVariant get selectedVariant; List<AssetModel> get assets; List<EmbeddedResourceModel> get embeddedResources; List<ThemeComponents> get loadedComponents; ApplicationModel? get applicationModel; ThemeModel? get theme; FeatureAccessModel? get featureAccessModel; ThemePropertyStatus? get status; SyncStatus get syncStatus; ColorSchemeModel? get colorSchemeModel; Exception? get error;
+ AppConfig get appConfig; ColorSchemeConfig get colorSchemeConfig; ThemeWidgetConfig get themeWidgetConfig; ThemePageConfig get themePageConfig; BrightnessVariant get selectedVariant; List<AssetModel> get assets; List<EmbeddedResourceModel> get embeddedResources; List<ThemeComponents> get loadedComponents; ApplicationModel? get applicationModel; ThemeModel? get theme; FeatureAccessModel? get featureAccessModel; ThemePropertyStatus? get status; SyncStatus get syncStatus; SyncDetail get syncDetail; ColorSchemeModel? get colorSchemeModel; Exception? get error; String? get errorSource;
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +291,16 @@ $UpdateThemeStateCopyWith<UpdateThemeState> get copyWith => _$UpdateThemeStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other.assets, assets)&&const DeepCollectionEquality().equals(other.embeddedResources, embeddedResources)&&const DeepCollectionEquality().equals(other.loadedComponents, loadedComponents)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other.assets, assets)&&const DeepCollectionEquality().equals(other.embeddedResources, embeddedResources)&&const DeepCollectionEquality().equals(other.loadedComponents, loadedComponents)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(assets),const DeepCollectionEquality().hash(embeddedResources),const DeepCollectionEquality().hash(loadedComponents),applicationModel,theme,featureAccessModel,status,syncStatus,colorSchemeModel,error);
+int get hashCode => Object.hash(runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(assets),const DeepCollectionEquality().hash(embeddedResources),const DeepCollectionEquality().hash(loadedComponents),applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource);
 
 @override
 String toString() {
-  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, colorSchemeModel: $colorSchemeModel, error: $error)';
+  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
 }
 
 
@@ -45,11 +311,11 @@ abstract mixin class $UpdateThemeStateCopyWith<$Res>  {
   factory $UpdateThemeStateCopyWith(UpdateThemeState value, $Res Function(UpdateThemeState) _then) = _$UpdateThemeStateCopyWithImpl;
 @useResult
 $Res call({
- AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, ColorSchemeModel? colorSchemeModel, Exception? error
+ AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
 });
 
 
-$AppConfigCopyWith<$Res> get appConfig;$ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;$ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;$ThemePageConfigCopyWith<$Res> get themePageConfig;$ApplicationModelCopyWith<$Res>? get applicationModel;$ThemeModelCopyWith<$Res>? get theme;$FeatureAccessModelCopyWith<$Res>? get featureAccessModel;$ColorSchemeModelCopyWith<$Res>? get colorSchemeModel;
+$AppConfigCopyWith<$Res> get appConfig;$ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;$ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;$ThemePageConfigCopyWith<$Res> get themePageConfig;$ApplicationModelCopyWith<$Res>? get applicationModel;$ThemeModelCopyWith<$Res>? get theme;$FeatureAccessModelCopyWith<$Res>? get featureAccessModel;$SyncDetailCopyWith<$Res> get syncDetail;$ColorSchemeModelCopyWith<$Res>? get colorSchemeModel;
 
 }
 /// @nodoc
@@ -62,7 +328,7 @@ class _$UpdateThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? colorSchemeModel = freezed,Object? error = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
   return _then(_self.copyWith(
 appConfig: null == appConfig ? _self.appConfig : appConfig // ignore: cast_nullable_to_non_nullable
 as AppConfig,colorSchemeConfig: null == colorSchemeConfig ? _self.colorSchemeConfig : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
@@ -77,9 +343,11 @@ as ApplicationModel?,theme: freezed == theme ? _self.theme : theme // ignore: ca
 as ThemeModel?,featureAccessModel: freezed == featureAccessModel ? _self.featureAccessModel : featureAccessModel // ignore: cast_nullable_to_non_nullable
 as FeatureAccessModel?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as ThemePropertyStatus?,syncStatus: null == syncStatus ? _self.syncStatus : syncStatus // ignore: cast_nullable_to_non_nullable
-as SyncStatus,colorSchemeModel: freezed == colorSchemeModel ? _self.colorSchemeModel : colorSchemeModel // ignore: cast_nullable_to_non_nullable
+as SyncStatus,syncDetail: null == syncDetail ? _self.syncDetail : syncDetail // ignore: cast_nullable_to_non_nullable
+as SyncDetail,colorSchemeModel: freezed == colorSchemeModel ? _self.colorSchemeModel : colorSchemeModel // ignore: cast_nullable_to_non_nullable
 as ColorSchemeModel?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as Exception?,
+as Exception?,errorSource: freezed == errorSource ? _self.errorSource : errorSource // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of UpdateThemeState
@@ -153,6 +421,15 @@ $FeatureAccessModelCopyWith<$Res>? get featureAccessModel {
 
   return $FeatureAccessModelCopyWith<$Res>(_self.featureAccessModel!, (value) {
     return _then(_self.copyWith(featureAccessModel: value));
+  });
+}/// Create a copy of UpdateThemeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SyncDetailCopyWith<$Res> get syncDetail {
+  
+  return $SyncDetailCopyWith<$Res>(_self.syncDetail, (value) {
+    return _then(_self.copyWith(syncDetail: value));
   });
 }/// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
@@ -248,10 +525,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  ColorSchemeModel? colorSchemeModel,  Exception? error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateThemeState() when $default != null:
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.colorSchemeModel,_that.error);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   return orElse();
 
 }
@@ -269,10 +546,10 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  ColorSchemeModel? colorSchemeModel,  Exception? error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateThemeState():
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.colorSchemeModel,_that.error);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -289,10 +566,10 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  ColorSchemeModel? colorSchemeModel,  Exception? error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateThemeState() when $default != null:
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.colorSchemeModel,_that.error);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   return null;
 
 }
@@ -304,7 +581,7 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 
 
 class _UpdateThemeState extends UpdateThemeState {
-   _UpdateThemeState({required this.appConfig, required this.colorSchemeConfig, required this.themeWidgetConfig, required this.themePageConfig, this.selectedVariant = BrightnessVariant.light, final  List<AssetModel> assets = const <AssetModel>[], final  List<EmbeddedResourceModel> embeddedResources = const <EmbeddedResourceModel>[], final  List<ThemeComponents> loadedComponents = const <ThemeComponents>[], this.applicationModel, this.theme, this.featureAccessModel, this.status, this.syncStatus = SyncStatus.idle, this.colorSchemeModel, this.error}): _assets = assets,_embeddedResources = embeddedResources,_loadedComponents = loadedComponents,super._();
+   _UpdateThemeState({required this.appConfig, required this.colorSchemeConfig, required this.themeWidgetConfig, required this.themePageConfig, this.selectedVariant = BrightnessVariant.light, final  List<AssetModel> assets = const <AssetModel>[], final  List<EmbeddedResourceModel> embeddedResources = const <EmbeddedResourceModel>[], final  List<ThemeComponents> loadedComponents = const <ThemeComponents>[], this.applicationModel, this.theme, this.featureAccessModel, this.status, this.syncStatus = SyncStatus.idle, this.syncDetail = const SyncDetail(), this.colorSchemeModel, this.error, this.errorSource}): _assets = assets,_embeddedResources = embeddedResources,_loadedComponents = loadedComponents,super._();
   
 
 @override final  AppConfig appConfig;
@@ -338,8 +615,10 @@ class _UpdateThemeState extends UpdateThemeState {
 @override final  FeatureAccessModel? featureAccessModel;
 @override final  ThemePropertyStatus? status;
 @override@JsonKey() final  SyncStatus syncStatus;
+@override@JsonKey() final  SyncDetail syncDetail;
 @override final  ColorSchemeModel? colorSchemeModel;
 @override final  Exception? error;
+@override final  String? errorSource;
 
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
@@ -351,16 +630,16 @@ _$UpdateThemeStateCopyWith<_UpdateThemeState> get copyWith => __$UpdateThemeStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other._assets, _assets)&&const DeepCollectionEquality().equals(other._embeddedResources, _embeddedResources)&&const DeepCollectionEquality().equals(other._loadedComponents, _loadedComponents)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other._assets, _assets)&&const DeepCollectionEquality().equals(other._embeddedResources, _embeddedResources)&&const DeepCollectionEquality().equals(other._loadedComponents, _loadedComponents)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(_assets),const DeepCollectionEquality().hash(_embeddedResources),const DeepCollectionEquality().hash(_loadedComponents),applicationModel,theme,featureAccessModel,status,syncStatus,colorSchemeModel,error);
+int get hashCode => Object.hash(runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(_assets),const DeepCollectionEquality().hash(_embeddedResources),const DeepCollectionEquality().hash(_loadedComponents),applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource);
 
 @override
 String toString() {
-  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, colorSchemeModel: $colorSchemeModel, error: $error)';
+  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
 }
 
 
@@ -371,11 +650,11 @@ abstract mixin class _$UpdateThemeStateCopyWith<$Res> implements $UpdateThemeSta
   factory _$UpdateThemeStateCopyWith(_UpdateThemeState value, $Res Function(_UpdateThemeState) _then) = __$UpdateThemeStateCopyWithImpl;
 @override @useResult
 $Res call({
- AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, ColorSchemeModel? colorSchemeModel, Exception? error
+ AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
 });
 
 
-@override $AppConfigCopyWith<$Res> get appConfig;@override $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;@override $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;@override $ThemePageConfigCopyWith<$Res> get themePageConfig;@override $ApplicationModelCopyWith<$Res>? get applicationModel;@override $ThemeModelCopyWith<$Res>? get theme;@override $FeatureAccessModelCopyWith<$Res>? get featureAccessModel;@override $ColorSchemeModelCopyWith<$Res>? get colorSchemeModel;
+@override $AppConfigCopyWith<$Res> get appConfig;@override $ColorSchemeConfigCopyWith<$Res> get colorSchemeConfig;@override $ThemeWidgetConfigCopyWith<$Res> get themeWidgetConfig;@override $ThemePageConfigCopyWith<$Res> get themePageConfig;@override $ApplicationModelCopyWith<$Res>? get applicationModel;@override $ThemeModelCopyWith<$Res>? get theme;@override $FeatureAccessModelCopyWith<$Res>? get featureAccessModel;@override $SyncDetailCopyWith<$Res> get syncDetail;@override $ColorSchemeModelCopyWith<$Res>? get colorSchemeModel;
 
 }
 /// @nodoc
@@ -388,7 +667,7 @@ class __$UpdateThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? colorSchemeModel = freezed,Object? error = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
   return _then(_UpdateThemeState(
 appConfig: null == appConfig ? _self.appConfig : appConfig // ignore: cast_nullable_to_non_nullable
 as AppConfig,colorSchemeConfig: null == colorSchemeConfig ? _self.colorSchemeConfig : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
@@ -403,9 +682,11 @@ as ApplicationModel?,theme: freezed == theme ? _self.theme : theme // ignore: ca
 as ThemeModel?,featureAccessModel: freezed == featureAccessModel ? _self.featureAccessModel : featureAccessModel // ignore: cast_nullable_to_non_nullable
 as FeatureAccessModel?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as ThemePropertyStatus?,syncStatus: null == syncStatus ? _self.syncStatus : syncStatus // ignore: cast_nullable_to_non_nullable
-as SyncStatus,colorSchemeModel: freezed == colorSchemeModel ? _self.colorSchemeModel : colorSchemeModel // ignore: cast_nullable_to_non_nullable
+as SyncStatus,syncDetail: null == syncDetail ? _self.syncDetail : syncDetail // ignore: cast_nullable_to_non_nullable
+as SyncDetail,colorSchemeModel: freezed == colorSchemeModel ? _self.colorSchemeModel : colorSchemeModel // ignore: cast_nullable_to_non_nullable
 as ColorSchemeModel?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as Exception?,
+as Exception?,errorSource: freezed == errorSource ? _self.errorSource : errorSource // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -480,6 +761,15 @@ $FeatureAccessModelCopyWith<$Res>? get featureAccessModel {
 
   return $FeatureAccessModelCopyWith<$Res>(_self.featureAccessModel!, (value) {
     return _then(_self.copyWith(featureAccessModel: value));
+  });
+}/// Create a copy of UpdateThemeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SyncDetailCopyWith<$Res> get syncDetail {
+  
+  return $SyncDetailCopyWith<$Res>(_self.syncDetail, (value) {
+    return _then(_self.copyWith(syncDetail: value));
   });
 }/// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
@@ -688,28 +978,62 @@ String toString() {
 /// @nodoc
 mixin _$SyncConfigEvent {
 
-
+ Set<String>? get retryOnly;
+/// Create a copy of SyncConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SyncConfigEventCopyWith<SyncConfigEvent> get copyWith => _$SyncConfigEventCopyWithImpl<SyncConfigEvent>(this as SyncConfigEvent, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SyncConfigEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SyncConfigEvent&&const DeepCollectionEquality().equals(other.retryOnly, retryOnly));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(retryOnly));
 
 @override
 String toString() {
-  return 'SyncConfigEvent()';
+  return 'SyncConfigEvent(retryOnly: $retryOnly)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $SyncConfigEventCopyWith<$Res>  {
+  factory $SyncConfigEventCopyWith(SyncConfigEvent value, $Res Function(SyncConfigEvent) _then) = _$SyncConfigEventCopyWithImpl;
+@useResult
+$Res call({
+ Set<String>? retryOnly
+});
 
+
+
+
+}
+/// @nodoc
+class _$SyncConfigEventCopyWithImpl<$Res>
+    implements $SyncConfigEventCopyWith<$Res> {
+  _$SyncConfigEventCopyWithImpl(this._self, this._then);
+
+  final SyncConfigEvent _self;
+  final $Res Function(SyncConfigEvent) _then;
+
+/// Create a copy of SyncConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? retryOnly = freezed,}) {
+  return _then(_self.copyWith(
+retryOnly: freezed == retryOnly ? _self.retryOnly : retryOnly // ignore: cast_nullable_to_non_nullable
+as Set<String>?,
+  ));
+}
+
+}
 
 
 /// Adds pattern-matching-related methods to [SyncConfigEvent].
@@ -752,10 +1076,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _SyncConfigEvent():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -790,10 +1111,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Set<String>? retryOnly)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SyncConfigEvent() when $default != null:
-return $default();case _:
+return $default(_that.retryOnly);case _:
   return orElse();
 
 }
@@ -811,13 +1132,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Set<String>? retryOnly)  $default,) {final _that = this;
 switch (_that) {
 case _SyncConfigEvent():
-return $default();case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.retryOnly);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -831,10 +1149,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Set<String>? retryOnly)?  $default,) {final _that = this;
 switch (_that) {
 case _SyncConfigEvent() when $default != null:
-return $default();case _:
+return $default(_that.retryOnly);case _:
   return null;
 
 }
@@ -846,33 +1164,75 @@ return $default();case _:
 
 
 class _SyncConfigEvent implements SyncConfigEvent {
-  const _SyncConfigEvent();
+  const _SyncConfigEvent({final  Set<String>? retryOnly}): _retryOnly = retryOnly;
   
 
+ final  Set<String>? _retryOnly;
+@override Set<String>? get retryOnly {
+  final value = _retryOnly;
+  if (value == null) return null;
+  if (_retryOnly is EqualUnmodifiableSetView) return _retryOnly;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(value);
+}
 
 
+/// Create a copy of SyncConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SyncConfigEventCopyWith<_SyncConfigEvent> get copyWith => __$SyncConfigEventCopyWithImpl<_SyncConfigEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SyncConfigEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SyncConfigEvent&&const DeepCollectionEquality().equals(other._retryOnly, _retryOnly));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_retryOnly));
 
 @override
 String toString() {
-  return 'SyncConfigEvent()';
+  return 'SyncConfigEvent(retryOnly: $retryOnly)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$SyncConfigEventCopyWith<$Res> implements $SyncConfigEventCopyWith<$Res> {
+  factory _$SyncConfigEventCopyWith(_SyncConfigEvent value, $Res Function(_SyncConfigEvent) _then) = __$SyncConfigEventCopyWithImpl;
+@override @useResult
+$Res call({
+ Set<String>? retryOnly
+});
 
 
+
+
+}
+/// @nodoc
+class __$SyncConfigEventCopyWithImpl<$Res>
+    implements _$SyncConfigEventCopyWith<$Res> {
+  __$SyncConfigEventCopyWithImpl(this._self, this._then);
+
+  final _SyncConfigEvent _self;
+  final $Res Function(_SyncConfigEvent) _then;
+
+/// Create a copy of SyncConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? retryOnly = freezed,}) {
+  return _then(_SyncConfigEvent(
+retryOnly: freezed == retryOnly ? _self._retryOnly : retryOnly // ignore: cast_nullable_to_non_nullable
+as Set<String>?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$UpdateLocalConfigEvent {
@@ -9841,13 +10201,14 @@ extension ResourcesEventPatterns on ResourcesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _AssetsUpdated value)?  assetsUpdated,TResult Function( _EmbedsUpdated value)?  embedsUpdated,TResult Function( _ResourcesStreamFailed value)?  streamFailed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _AssetsUpdated value)?  assetsUpdated,TResult Function( _EmbedsUpdated value)?  embedsUpdated,TResult Function( _ResourcesStreamFailed value)?  streamFailed,TResult Function( _RetryStream value)?  retryStream,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _AssetsUpdated() when assetsUpdated != null:
 return assetsUpdated(_that);case _EmbedsUpdated() when embedsUpdated != null:
 return embedsUpdated(_that);case _ResourcesStreamFailed() when streamFailed != null:
-return streamFailed(_that);case _:
+return streamFailed(_that);case _RetryStream() when retryStream != null:
+return retryStream(_that);case _:
   return orElse();
 
 }
@@ -9865,13 +10226,14 @@ return streamFailed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _AssetsUpdated value)  assetsUpdated,required TResult Function( _EmbedsUpdated value)  embedsUpdated,required TResult Function( _ResourcesStreamFailed value)  streamFailed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _AssetsUpdated value)  assetsUpdated,required TResult Function( _EmbedsUpdated value)  embedsUpdated,required TResult Function( _ResourcesStreamFailed value)  streamFailed,required TResult Function( _RetryStream value)  retryStream,}){
 final _that = this;
 switch (_that) {
 case _AssetsUpdated():
 return assetsUpdated(_that);case _EmbedsUpdated():
 return embedsUpdated(_that);case _ResourcesStreamFailed():
-return streamFailed(_that);}
+return streamFailed(_that);case _RetryStream():
+return retryStream(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -9885,13 +10247,14 @@ return streamFailed(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _AssetsUpdated value)?  assetsUpdated,TResult? Function( _EmbedsUpdated value)?  embedsUpdated,TResult? Function( _ResourcesStreamFailed value)?  streamFailed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _AssetsUpdated value)?  assetsUpdated,TResult? Function( _EmbedsUpdated value)?  embedsUpdated,TResult? Function( _ResourcesStreamFailed value)?  streamFailed,TResult? Function( _RetryStream value)?  retryStream,}){
 final _that = this;
 switch (_that) {
 case _AssetsUpdated() when assetsUpdated != null:
 return assetsUpdated(_that);case _EmbedsUpdated() when embedsUpdated != null:
 return embedsUpdated(_that);case _ResourcesStreamFailed() when streamFailed != null:
-return streamFailed(_that);case _:
+return streamFailed(_that);case _RetryStream() when retryStream != null:
+return retryStream(_that);case _:
   return null;
 
 }
@@ -9908,12 +10271,13 @@ return streamFailed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<AssetModel> assets)?  assetsUpdated,TResult Function( List<EmbeddedResourceModel> embeds)?  embedsUpdated,TResult Function( String source,  Object error,  StackTrace? stackTrace)?  streamFailed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<AssetModel> assets)?  assetsUpdated,TResult Function( List<EmbeddedResourceModel> embeds)?  embedsUpdated,TResult Function( String source,  Object error,  StackTrace? stackTrace)?  streamFailed,TResult Function( String source)?  retryStream,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AssetsUpdated() when assetsUpdated != null:
 return assetsUpdated(_that.assets);case _EmbedsUpdated() when embedsUpdated != null:
 return embedsUpdated(_that.embeds);case _ResourcesStreamFailed() when streamFailed != null:
-return streamFailed(_that.source,_that.error,_that.stackTrace);case _:
+return streamFailed(_that.source,_that.error,_that.stackTrace);case _RetryStream() when retryStream != null:
+return retryStream(_that.source);case _:
   return orElse();
 
 }
@@ -9931,12 +10295,13 @@ return streamFailed(_that.source,_that.error,_that.stackTrace);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<AssetModel> assets)  assetsUpdated,required TResult Function( List<EmbeddedResourceModel> embeds)  embedsUpdated,required TResult Function( String source,  Object error,  StackTrace? stackTrace)  streamFailed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<AssetModel> assets)  assetsUpdated,required TResult Function( List<EmbeddedResourceModel> embeds)  embedsUpdated,required TResult Function( String source,  Object error,  StackTrace? stackTrace)  streamFailed,required TResult Function( String source)  retryStream,}) {final _that = this;
 switch (_that) {
 case _AssetsUpdated():
 return assetsUpdated(_that.assets);case _EmbedsUpdated():
 return embedsUpdated(_that.embeds);case _ResourcesStreamFailed():
-return streamFailed(_that.source,_that.error,_that.stackTrace);}
+return streamFailed(_that.source,_that.error,_that.stackTrace);case _RetryStream():
+return retryStream(_that.source);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -9950,12 +10315,13 @@ return streamFailed(_that.source,_that.error,_that.stackTrace);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<AssetModel> assets)?  assetsUpdated,TResult? Function( List<EmbeddedResourceModel> embeds)?  embedsUpdated,TResult? Function( String source,  Object error,  StackTrace? stackTrace)?  streamFailed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<AssetModel> assets)?  assetsUpdated,TResult? Function( List<EmbeddedResourceModel> embeds)?  embedsUpdated,TResult? Function( String source,  Object error,  StackTrace? stackTrace)?  streamFailed,TResult? Function( String source)?  retryStream,}) {final _that = this;
 switch (_that) {
 case _AssetsUpdated() when assetsUpdated != null:
 return assetsUpdated(_that.assets);case _EmbedsUpdated() when embedsUpdated != null:
 return embedsUpdated(_that.embeds);case _ResourcesStreamFailed() when streamFailed != null:
-return streamFailed(_that.source,_that.error,_that.stackTrace);case _:
+return streamFailed(_that.source,_that.error,_that.stackTrace);case _RetryStream() when retryStream != null:
+return retryStream(_that.source);case _:
   return null;
 
 }
@@ -10171,6 +10537,72 @@ class __$ResourcesStreamFailedCopyWithImpl<$Res>
 source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String,error: null == error ? _self.error : error ,stackTrace: freezed == stackTrace ? _self.stackTrace : stackTrace // ignore: cast_nullable_to_non_nullable
 as StackTrace?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _RetryStream implements ResourcesEvent {
+  const _RetryStream(this.source);
+  
+
+ final  String source;
+
+/// Create a copy of ResourcesEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RetryStreamCopyWith<_RetryStream> get copyWith => __$RetryStreamCopyWithImpl<_RetryStream>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RetryStream&&(identical(other.source, source) || other.source == source));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,source);
+
+@override
+String toString() {
+  return 'ResourcesEvent.retryStream(source: $source)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RetryStreamCopyWith<$Res> implements $ResourcesEventCopyWith<$Res> {
+  factory _$RetryStreamCopyWith(_RetryStream value, $Res Function(_RetryStream) _then) = __$RetryStreamCopyWithImpl;
+@useResult
+$Res call({
+ String source
+});
+
+
+
+
+}
+/// @nodoc
+class __$RetryStreamCopyWithImpl<$Res>
+    implements _$RetryStreamCopyWith<$Res> {
+  __$RetryStreamCopyWithImpl(this._self, this._then);
+
+  final _RetryStream _self;
+  final $Res Function(_RetryStream) _then;
+
+/// Create a copy of ResourcesEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? source = null,}) {
+  return _then(_RetryStream(
+null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

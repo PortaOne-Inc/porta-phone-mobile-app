@@ -157,6 +157,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             onPressed: () => _cubit.add(const SyncConfigEvent()),
           ),
         );
+      case SyncStatus.partiallyFailed:
+        return Tooltip(
+          message: 'Some configs failed to save — tap for details',
+          child: TextButton.icon(
+            icon: const Icon(Icons.warning_amber, color: Colors.orange),
+            label: const Text('Partial Save'),
+            onPressed: () => _showPartialSyncDialog(context, state),
+          ),
+        );
       case SyncStatus.conflict:
         return Tooltip(
           message: 'Version conflict — tap to resolve',
@@ -212,14 +221,91 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     }
   }
 
+  void _showPartialSyncDialog(BuildContext context, UpdateThemeState state) {
+    final detail = state.syncDetail;
+
+    Widget statusRow(String label, ConfigSyncResult result) {
+      final IconData icon;
+      final Color color;
+      switch (result) {
+        case ConfigSyncResult.success:
+          icon = Icons.check_circle;
+          color = Colors.green;
+        case ConfigSyncResult.failed:
+          icon = Icons.error_outline;
+          color = Colors.red;
+        case ConfigSyncResult.conflict:
+          icon = Icons.warning;
+          color = Colors.orange;
+        case ConfigSyncResult.pending:
+          icon = Icons.hourglass_empty;
+          color = Colors.grey;
+      }
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            Icon(icon, color: color, size: 20),
+            const SizedBox(width: 8),
+            Text(label),
+          ],
+        ),
+      );
+    }
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Partial Save Results'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            statusRow('Feature access', detail.featureAccess),
+            statusRow('Color scheme', detail.colorScheme),
+            statusRow('Page config', detail.pageConfig),
+            statusRow('Widget config', detail.widgetConfig),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Dismiss'),
+          ),
+          if (detail.hasFailures)
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                _cubit.add(SyncConfigEvent(retryOnly: detail.failedNames.toSet()));
+              },
+              child: const Text('Retry Failed'),
+            ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              _cubit.add(const SyncConfigEvent());
+            },
+            child: const Text('Retry All'),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showErrorDialog(BuildContext context, Object? error) {
     final message = (error is ThemeIsNotValidException)
         ? 'The theme is not valid.'
         : error?.toString() ?? 'An error occurred.';
 
+    final errorSource = _cubit.state.errorSource;
+
     showDialog<void>(
       context: context,
-      builder: (BuildContext context) => FailureDialog(message: message),
+      builder: (BuildContext context) => FailureDialog(
+        message: message,
+        onRetry: errorSource != null
+            ? () => _cubit.add(ResourcesEvent.retryStream(errorSource))
+            : null,
+      ),
     );
   }
 

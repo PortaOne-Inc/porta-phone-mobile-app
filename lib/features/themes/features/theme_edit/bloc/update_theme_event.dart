@@ -9,9 +9,9 @@ class InitializeEvent with _$InitializeEvent implements ConfiguratorEvent {
   const factory InitializeEvent() = _InitializeEvent;
 }
 
-@Freezed(copyWith: false)
-class SyncConfigEvent with _$SyncConfigEvent implements ConfiguratorEvent {
-  const factory SyncConfigEvent() = _SyncConfigEvent;
+@freezed
+sealed class SyncConfigEvent with _$SyncConfigEvent implements ConfiguratorEvent {
+  const factory SyncConfigEvent({Set<String>? retryOnly}) = _SyncConfigEvent;
 }
 
 @Freezed(copyWith: false)
@@ -443,6 +443,9 @@ sealed class ResourcesEvent with _$ResourcesEvent implements ConfiguratorEvent {
     required Object error,
     StackTrace? stackTrace,
   }) = _ResourcesStreamFailed;
+
+  /// Retry a failed stream subscription
+  const factory ResourcesEvent.retryStream(String source) = _RetryStream;
 }
 
 @freezed

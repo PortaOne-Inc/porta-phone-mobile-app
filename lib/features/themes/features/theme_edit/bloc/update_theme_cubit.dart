@@ -106,7 +106,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   StreamSubscription<ColorSchemeConfig>? _colorSchemeEditorSub;
   StreamSubscription<ThemeWidgetConfig>? _widgetEditorSub;
   StreamSubscription<List<AssetModel>>? _assetsSub;
-  StreamSubscription<List<EmbeddedResourceModel>>? _embedssSub;
 
   void _init(String applicationId, String themeId) {
     _assetsSub = watchApplicationAssetsUsecase
@@ -156,6 +155,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
     final epoch = ++_initEpoch;
 
+    _pauseEditorSubscriptions();
+
     // Keep only shared components
     final preservedComponents = state.loadedComponents
         .where(
@@ -182,7 +183,9 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       _initializeWidgetsConfig(applicationId, themeId, event.variant, epoch),
     ]);
 
-    if (_initEpoch != epoch) return; // Superseded by newer init
+    if (_initEpoch != epoch) return; // Superseded by newer init — next switch resumes
+
+    _resumeEditorSubscriptions();
 
     final allSucceeded = results.every((ok) => ok);
     emit(state.copyWith(
@@ -199,87 +202,124 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     SyncConfigEvent event,
     Emitter<UpdateThemeState> emit,
   ) async {
-    emit(state.copyWith(syncStatus: SyncStatus.syncing, error: null));
+    final retryOnly = event.retryOnly;
+    final isPartialRetry = retryOnly != null && retryOnly.isNotEmpty;
+
+    // For partial retry, start from previous detail; otherwise reset all to pending
+    var detail = isPartialRetry ? state.syncDetail : const SyncDetail();
+
+    emit(state.copyWith(syncStatus: SyncStatus.syncing, error: null, syncDetail: detail));
 
     final featureAccess = _featureAccessEditor.buildFull();
     final colorScheme = _colorSchemeEditor.buildFull();
     final pageConfig = _pageEditor.buildFull();
     final themeWidget = _widgetEditor.buildFull();
 
-    final failures = <String>[];
-    final conflicts = <String>[];
+    final results = <String, ConfigSyncResult>{};
+
+    bool shouldSync(String name) => !isPartialRetry || retryOnly.contains(name);
 
     await Future.wait([
-      _guardSync('Feature access', failures, conflicts, () async {
-        final result = await updateFeatureAccessUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          config: featureAccess.toJson(),
-          expectedVersion: _featureAccessEditor.version,
-        );
-        _featureAccessEditor.version = result.version;
-      }),
-      _guardSync('Color scheme', failures, conflicts, () async {
-        final result = await upsertColorSchemeByThemeVariantUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          variant: state.selectedVariant,
-          config: colorScheme.toJson(),
-          expectedVersion: _colorSchemeEditor.version,
-        );
-        _colorSchemeEditor.version = result.version;
-      }),
-      _guardSync('Page config', failures, conflicts, () async {
-        final result = await upsertPageConfigByVariantUsecase.execute(
-          applicationId: applicationId,
-          themeId: themeId,
-          variant: state.selectedVariant,
-          config: pageConfig.toJson(),
-          expectedVersion: _pageEditor.version,
-        );
-        _pageEditor.version = result.version;
-      }),
-      _guardSync('Widget config', failures, conflicts, () async {
-        final result = await upsertWidgetConfig.execute(
-          applicationId,
-          themeId,
-          state.selectedVariant,
-          themeWidget.toJson(),
-          expectedVersion: _widgetEditor.version,
-        );
-        _widgetEditor.version = result.version;
-      }),
+      if (shouldSync('Feature access'))
+        _guardSyncResult('Feature access', results, () async {
+          final result = await updateFeatureAccessUsecase.execute(
+            applicationId: applicationId,
+            themeId: themeId,
+            config: featureAccess.toJson(),
+            expectedVersion: _featureAccessEditor.version,
+          );
+          _featureAccessEditor.version = result.version;
+        }),
+      if (shouldSync('Color scheme'))
+        _guardSyncResult('Color scheme', results, () async {
+          final result = await upsertColorSchemeByThemeVariantUsecase.execute(
+            applicationId: applicationId,
+            themeId: themeId,
+            variant: state.selectedVariant,
+            config: colorScheme.toJson(),
+            expectedVersion: _colorSchemeEditor.version,
+          );
+          _colorSchemeEditor.version = result.version;
+        }),
+      if (shouldSync('Page config'))
+        _guardSyncResult('Page config', results, () async {
+          final result = await upsertPageConfigByVariantUsecase.execute(
+            applicationId: applicationId,
+            themeId: themeId,
+            variant: state.selectedVariant,
+            config: pageConfig.toJson(),
+            expectedVersion: _pageEditor.version,
+          );
+          _pageEditor.version = result.version;
+        }),
+      if (shouldSync('Widget config'))
+        _guardSyncResult('Widget config', results, () async {
+          final result = await upsertWidgetConfig.execute(
+            applicationId,
+            themeId,
+            state.selectedVariant,
+            themeWidget.toJson(),
+            expectedVersion: _widgetEditor.version,
+          );
+          _widgetEditor.version = result.version;
+        }),
     ]);
 
-    if (conflicts.isNotEmpty) {
-      final message = 'Version conflict: ${conflicts.join(', ')}';
-      _logger.warning(message);
-      emit(state.copyWith(syncStatus: SyncStatus.conflict));
-    } else if (failures.isNotEmpty) {
-      final message = 'Failed to save: ${failures.join(', ')}';
+    // Merge results into detail
+    detail = detail.copyWith(
+      featureAccess: results['Feature access'] ?? detail.featureAccess,
+      colorScheme: results['Color scheme'] ?? detail.colorScheme,
+      pageConfig: results['Page config'] ?? detail.pageConfig,
+      widgetConfig: results['Widget config'] ?? detail.widgetConfig,
+    );
+
+    final SyncStatus overallStatus;
+    if (detail.hasConflicts) {
+      overallStatus = SyncStatus.conflict;
+    } else if (detail.allSucceeded) {
+      overallStatus = SyncStatus.synced;
+    } else if (detail.hasFailures) {
+      // Some succeeded, some failed
+      final anySuccess = [
+        detail.featureAccess,
+        detail.colorScheme,
+        detail.pageConfig,
+        detail.widgetConfig,
+      ].any((r) => r == ConfigSyncResult.success);
+      overallStatus = anySuccess ? SyncStatus.partiallyFailed : SyncStatus.failed;
+    } else {
+      overallStatus = SyncStatus.synced;
+    }
+
+    if (overallStatus == SyncStatus.failed || overallStatus == SyncStatus.partiallyFailed) {
+      final message = 'Failed to save: ${detail.failedNames.join(', ')}';
       _logger.severe(message);
       emit(state.copyWith(
-        syncStatus: SyncStatus.failed,
+        syncStatus: overallStatus,
+        syncDetail: detail,
         error: Exception(message),
       ));
+    } else if (overallStatus == SyncStatus.conflict) {
+      _logger.warning('Version conflict: ${detail.conflictNames.join(', ')}');
+      emit(state.copyWith(syncStatus: overallStatus, syncDetail: detail));
     } else {
-      emit(state.copyWith(syncStatus: SyncStatus.synced));
+      emit(state.copyWith(syncStatus: overallStatus, syncDetail: detail));
     }
   }
 
-  Future<void> _guardSync(
+  Future<void> _guardSyncResult(
     String name,
-    List<String> failures,
-    List<String> conflicts,
+    Map<String, ConfigSyncResult> results,
     Future<void> Function() action,
   ) async {
     try {
       await action();
+      results[name] = ConfigSyncResult.success;
     } on VersionConflictException {
-      conflicts.add(name);
+      results[name] = ConfigSyncResult.conflict;
     } catch (e, stackTrace) {
       _logger.severe('Sync failed for $name', e, stackTrace);
-      failures.add(name);
+      results[name] = ConfigSyncResult.failed;
     }
   }
 
@@ -294,12 +334,43 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         _logger.warning('Resources stream "${e.source}" error', e.error);
         emit(state.copyWith(
           status: ThemePropertyStatus.error,
+          errorSource: e.source,
           error: e.error is Exception
               ? e.error as Exception
               : Exception('${e.source} stream failed: ${e.error}'),
         ));
       },
+      retryStream: (e) => _onRetryStream(e, emit),
     );
+  }
+
+  Future<void> _onRetryStream(
+    _RetryStream e,
+    Emitter<UpdateThemeState> emit,
+  ) async {
+    emit(state.copyWith(
+      status: ThemePropertyStatus.progress,
+      error: null,
+      errorSource: null,
+    ));
+
+    if (e.source == 'assets') {
+      await _assetsSub?.cancel();
+      _assetsSub = watchApplicationAssetsUsecase
+          .execute(applicationId)
+          .listen(
+            (assets) => add(ResourcesEvent.assetsUpdated(assets)),
+            onError: (Object error) =>
+                add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
+          );
+    } else if (e.source == 'embeds') {
+      await _initializeEmbeddedResourceModel(applicationId, _initEpoch);
+    }
+
+    // Restore status unless loading was already in progress
+    if (state.status == ThemePropertyStatus.progress && !state.isProgress) {
+      emit(state.copyWith(status: ThemePropertyStatus.success));
+    }
   }
 
   Future<void> _onEmbedsUpdated(
@@ -328,10 +399,26 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     });
   }
 
+  void _pauseEditorSubscriptions() {
+    _pageEditorSub?.pause();
+    _featureAccessSub?.pause();
+    _colorSchemeEditorSub?.pause();
+    _widgetEditorSub?.pause();
+  }
+
+  void _resumeEditorSubscriptions() {
+    _pageEditorSub?.resume();
+    _featureAccessSub?.resume();
+    _colorSchemeEditorSub?.resume();
+    _widgetEditorSub?.resume();
+  }
+
   Future<void> _onUpdateLocalConfigEvent(
     UpdateLocalConfigEvent event,
     Emitter<UpdateThemeState> emit,
   ) async {
+    if (state.status == ThemePropertyStatus.progress) return;
+
     event.map(
       colorScheme: (_UpdateThemeSchemeColorEvent value) =>
           emit(state.copyWith(colorSchemeConfig: value.scheme, syncStatus: SyncStatus.idle)),
@@ -566,6 +653,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   ) async {
     final epoch = ++_initEpoch;
 
+    _pauseEditorSubscriptions();
+
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
     final results = await Future.wait([
@@ -576,7 +665,9 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant, epoch),
     ]);
 
-    if (_initEpoch != epoch) return; // Superseded by newer init or variant switch
+    if (_initEpoch != epoch) return; // Superseded — next init resumes
+
+    _resumeEditorSubscriptions();
 
     final allSucceeded = results.every((ok) => ok);
     add(LoadingEvent.setStatus(
@@ -729,7 +820,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     await _colorSchemeEditorSub?.cancel();
     await _widgetEditorSub?.cancel();
     await _assetsSub?.cancel();
-    await _embedssSub?.cancel();
 
     await _pageEditor.dispose();
     await _featureAccessEditor.dispose();
