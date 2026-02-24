@@ -7,7 +7,7 @@ export const UpsertFeatureAccessSchema = z
     config: z.record(z.string(), z.any()).optional(),
     expectedVersion: z.number().int().min(0).optional(),
   })
-  .strict();
+  .strip();
 
 export class UpsertFeatureAccessDto extends createZodDto(
   UpsertFeatureAccessSchema,

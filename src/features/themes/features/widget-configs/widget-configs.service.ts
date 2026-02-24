@@ -83,7 +83,10 @@ export class WidgetConfigsService {
         version: (existing.version ?? 0) + 1,
         updatedAt: now,
       };
-      return this.repo.update(next);
+      const result = await this.repo.update(next);
+
+
+      return result;
     }
 
     const created: WidgetConfigEntity = {
@@ -96,7 +99,9 @@ export class WidgetConfigsService {
       createdAt: now,
       updatedAt: now,
     };
-    return this.repo.create(created);
+    const result = await this.repo.create(created);
+
+    return result;
   }
 
   /** Ensure both variants exist (light & dark). */

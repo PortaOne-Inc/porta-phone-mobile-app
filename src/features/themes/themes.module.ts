@@ -11,6 +11,7 @@ import { SplashAssetsModule } from './features/splash-assets/splash-assets.modul
 import { LaunchAssetsModule } from './features/launch-assets/launch-assets.module';
 import { AssetsModule } from '../assets/assets.module';
 import { ArtifactsModule } from '../artifacts';
+import { ThemeHistoryModule } from './features/theme-history/theme-history.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ArtifactsModule } from '../artifacts';
     LaunchAssetsModule,
     ArtifactsModule,
     AssetsModule,
+    ThemeHistoryModule,
   ],
   controllers: [ThemesController],
   providers: [ThemesService],

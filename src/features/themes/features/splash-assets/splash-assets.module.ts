@@ -5,7 +5,6 @@ import { FireormModule } from 'nestjs-fireorm';
 import { SplashAssetEntity } from './entities/splash-asset.entity';
 import { AssetsModule } from '../../../assets/assets.module';
 import { ArtifactsModule } from '../../../artifacts/artifacts.module';
-import { FirebaseModule } from '../../../../firebase.module';
 import { RefsModule } from '../../../common/refs/refs.module';
 
 @Module({

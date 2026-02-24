@@ -24,6 +24,7 @@ export const Collections = {
   applicationCapabilities: `${COLLECTION_PREFIX}application_capabilities`,
 
   themeFeatureEntitlements: `${COLLECTION_PREFIX}theme_feature_entitlements`,
+  themeHistory: `${COLLECTION_PREFIX}theme_history`,
 
   users: `${COLLECTION_PREFIX}users`,
   userRoles: `${COLLECTION_PREFIX}user_roles`,

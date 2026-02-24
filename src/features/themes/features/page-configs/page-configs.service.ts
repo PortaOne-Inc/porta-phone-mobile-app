@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
 
@@ -16,6 +16,8 @@ const ASSET_URL_TTL_SEC = 3600;
 
 @Injectable()
 export class PageConfigsService {
+    private readonly logger = new Logger(PageConfigsService.name);
+
     constructor(
         @InjectRepository(PageConfigEntity)
         private readonly repo: BaseFirestoreRepository<PageConfigEntity>,
@@ -80,7 +82,10 @@ export class PageConfigsService {
                 version: (existing.version ?? 0) + 1,
                 updatedAt: now,
             };
-            return this.repo.update(next);
+            const result = await this.repo.update(next);
+
+
+            return result;
         }
 
         const created: PageConfigEntity = {
@@ -93,7 +98,9 @@ export class PageConfigsService {
             createdAt: now,
             updatedAt: now,
         };
-        return this.repo.create(created);
+        const result = await this.repo.create(created);
+
+        return result;
     }
 
     /** Ensure both variants exist (light & dark). */

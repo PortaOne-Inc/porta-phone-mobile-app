@@ -6,7 +6,6 @@ import {
     Put,
     UseGuards,
     ParseEnumPipe,
-    Req,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { WidgetConfigsService } from './widget-configs.service';
@@ -44,12 +43,10 @@ export class WidgetConfigsController {
     @Get(':variant')
     @ApiParam({name: 'variant', enum: ['light', 'dark']})
     getByThemeVariant(
-        @Req() req: any,
         @Param('applicationId') appId: string,
         @Param('themeId') themeId: string,
         @Param('variant', new ParseEnumPipe(VariantEnum)) variant: Variant,
     ) {
-        const uid: string = req.user?.uid ?? '';
         return this.service.getByThemeVariant(appId, themeId, variant);
     }
 

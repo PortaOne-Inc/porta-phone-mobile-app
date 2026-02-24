@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 
@@ -10,6 +10,8 @@ import { deepMerge, nowIso } from '../../../../common';
 
 @Injectable()
 export class FeatureAccessService {
+  private readonly logger = new Logger(FeatureAccessService.name);
+
   constructor(
     @InjectRepository(FeatureAccess)
     private readonly repo: BaseFirestoreRepository<FeatureAccess>,
@@ -60,7 +62,10 @@ export class FeatureAccessService {
 
       it.version = (it.version ?? 0) + 1;
       it.updatedAt = now;
-      return this.repo.update(it);
+      const result = await this.repo.update(it);
+
+
+      return result;
     }
 
     const created: FeatureAccess = {
@@ -73,7 +78,9 @@ export class FeatureAccessService {
       createdAt: now,
       updatedAt: now,
     };
-    return this.repo.create(created);
+    const result = await this.repo.create(created);
+
+    return result;
   }
 
   async deleteByTheme(applicationId: string, themeId: string): Promise<void> {

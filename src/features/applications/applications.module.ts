@@ -8,6 +8,7 @@ import { AssetsModule } from '../assets/assets.module';
 import { CloudStorageModule } from '../common/storage/cloud-storage.module';
 import { RefsModule } from '../common/refs/refs.module';
 import { CapabilitiesModule } from './features/capabilities/capabilities.module';
+import { ThemeHistoryModule } from '../themes/features/theme-history/theme-history.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { CapabilitiesModule } from './features/capabilities/capabilities.module'
     CloudStorageModule,
     RefsModule,
     CapabilitiesModule,
+    ThemeHistoryModule,
   ],
   controllers: [ApplicationsController],
   providers: [ApplicationsService, ThemesService],

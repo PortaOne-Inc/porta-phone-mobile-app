@@ -388,6 +388,8 @@ export class SplashAssetsService {
             this.logger.log(
                 `upsertWithFiles:done:no_files ${logCtx({ entityId: id, ms: Date.now() - started })}`,
             );
+
+
             return fresh;
         }
 
@@ -527,6 +529,7 @@ export class SplashAssetsService {
                 ms: Date.now() - started,
             })}`,
         );
+
         return result;
     }
 

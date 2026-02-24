@@ -102,6 +102,24 @@ The `android12` slice and `android12SplashArtifactId` are optional for backward 
 | `config` | object | Arbitrary feature flags JSON |
 | `version` | number? | Optimistic locking |
 
+### ThemeHistory
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | string | Auto-generated UUID |
+| `themeId` | string | Parent theme reference |
+| `applicationId` | string | Parent application reference |
+| `snapshotVersion` | number | Auto-incrementing per theme (starts at 1) |
+| `action` | string | Always `"snapshot"` for explicit snapshots |
+| `changedBy` | string | Firebase UID of the user who made the change |
+| `snapshot` | ThemeSnapshot | Full aggregate: `{ theme, colorSchemes[], widgetConfigs[], pageConfigs[], splashAsset, launchAsset, featureAccess }`. **Only returned by detail endpoint**, not in list. |
+| `schemaVersion` | number | Schema version at time of recording (`THEME_SCHEMA_VERSION`, currently `1`) |
+| `tag` | string | Optional user-supplied label (e.g. `"v2.1-release"`), default `""` |
+| `description` | string | Optional user-supplied note, default `""` |
+| `createdAt` | string | ISO timestamp |
+
+See [Change History](./theme-history.md) for API details and snapshot workflow.
+
 ---
 
 ## Firestore Collections
@@ -116,6 +134,7 @@ The `android12` slice and `android12SplashArtifactId` are optional for backward 
 | `theme_assets_launcher` | LaunchAssets | `= themeId` |
 | `theme_feature_entitlements` | FeatureAccess | `= themeId` |
 | `theme_configs_defaults` | -- | `splashAssetsDefaults`, `launchAssetsDefaults` |
+| `theme_history` | ThemeHistory | UUID (auto-generated) |
 
 ---
 
@@ -133,6 +152,8 @@ These are defined in `firestore.indexes.json` and deployed via `firebase deploy 
 | `application_assets_renditions` | `ownerId` + `applicationId` + `themeId` | `ArtifactsService.findAll()` |
 | `themes` | `applicationId` + `label` | `ApplicationsService.resolveThemeIdForBuild()` |
 | `translations` | `applicationId` + `locale` + `key` | `TranslationsRepository.deleteOverrideByAppId()` |
+| `theme_history` | `applicationId` + `themeId` + `snapshotVersion` (desc) | `ThemeHistoryService.listByTheme()` |
+| `theme_history` | `themeId` + `snapshotVersion` (desc) | `ThemeHistoryService.getNextVersion()` |
 
 > **Note:** If `COLLECTION_PREFIX` is set, the actual collection names in Firestore will be prefixed
 > (e.g., `dev_theme_config_widgets`). The index file must be updated to match the prefixed names

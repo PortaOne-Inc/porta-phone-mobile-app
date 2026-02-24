@@ -266,6 +266,7 @@ export class LaunchAssetsService {
                         entityId: id,
                     })}`,
                 );
+
             } catch (e: any) {
                 this.logger.error(
                     `LaunchAssetsService.upsertWithFiles:persist:error ${JSON.stringify({

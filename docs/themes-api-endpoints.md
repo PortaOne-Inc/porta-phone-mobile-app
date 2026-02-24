@@ -86,6 +86,17 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 
 ---
 
+## Change History
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/:themeId/history` | List history entries (paginated, newest first). Query: `limit` (1-100, default 20), `startAfter` (cursor) |
+| `GET` | `/:themeId/history/:historyId` | Get a single history entry with full theme snapshot |
+
+See [Change History docs](./theme-history.md) for response schemas and tracked actions.
+
+---
+
 ## AI Generation
 
 | Method | Path | Description |

@@ -6,7 +6,7 @@ export const UpsertWidgetConfigSchema = z
     config: z.record(z.string(), z.any()).optional(),
     expectedVersion: z.number().int().min(0).optional(),
   })
-  .strict();
+  .strip();
 
 export class UpsertWidgetConfigDto extends createZodDto(
   UpsertWidgetConfigSchema,

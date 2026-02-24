@@ -162,8 +162,9 @@ export class ThemesService {
   async createTheme(
     applicationId: string,
     dto: CreateThemeDto,
+    uid?: string,
   ): Promise<Theme> {
-    return await this.themeRepository.create({
+    return this.themeRepository.create({
       applicationId,
       title: dto.title,
       description: dto.description,
@@ -176,11 +177,12 @@ export class ThemesService {
     applicationId: string,
     themeId: string,
     dto: UpdateThemeDto,
+    uid?: string,
   ): Promise<Theme> {
     const db = admin.firestore();
     const ref = db.collection(Collections.themes).doc(themeId);
 
-    return db.runTransaction(async (tx) => {
+    const result = await db.runTransaction(async (tx) => {
       const snap = await tx.get(ref);
       if (!snap.exists) {
         throw new NotFoundException(`Theme with ID ${themeId} not found`);
@@ -211,6 +213,8 @@ export class ThemesService {
       tx.set(ref, next);
       return next;
     });
+
+    return result;
   }
 
   async deleteTheme(
@@ -344,6 +348,7 @@ export class ThemesService {
     applicationId: string,
     sourceThemeId: string,
     overrides?: Partial<Pick<Theme, 'title' | 'description' | 'label'>>,
+    uid?: string,
   ): Promise<Theme | null> {
     const source = await this.themeRepository.findById(sourceThemeId);
     if (!source || source.applicationId !== applicationId) {

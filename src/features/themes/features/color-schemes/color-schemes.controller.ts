@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Put } from '@nestjs/common';
-import { ApiBearerAuth, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { ColorSchemesService } from './color-schemes.service';
 import { UpsertColorSchemeDto } from './dto/upsert-color-scheme.dto';
 

@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
 
@@ -7,6 +7,8 @@ import { deepMerge, nowIso } from '../../../../common';
 
 @Injectable()
 export class ColorSchemesService {
+  private readonly logger = new Logger(ColorSchemesService.name);
+
   constructor(
     @InjectRepository(ColorScheme)
     private readonly repo: BaseFirestoreRepository<ColorScheme>,
@@ -53,7 +55,10 @@ export class ColorSchemesService {
       }
       existing.version = (existing.version ?? 0) + 1;
       existing.updatedAt = now;
-      return this.repo.update(existing);
+      const result = await this.repo.update(existing);
+
+
+      return result;
     }
 
     const created: ColorScheme = {
@@ -66,7 +71,9 @@ export class ColorSchemesService {
       createdAt: now,
       updatedAt: now,
     };
-    return this.repo.create(created);
+    const result = await this.repo.create(created);
+
+    return result;
   }
 
   /** Ensure both variants exist (light & dark). */

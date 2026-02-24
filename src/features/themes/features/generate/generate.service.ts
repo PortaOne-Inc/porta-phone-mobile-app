@@ -1,5 +1,6 @@
 import {
     Injectable,
+    Logger,
     NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
@@ -14,9 +15,10 @@ import { GenerateThemeDto } from './dto/create-generate.dto';
 import { ColorSchemeGenerator } from './generators/color-scheme.generator';
 import { WidgetConfigGenerator } from './generators/widget-config.generator';
 import { PageConfigGenerator } from './generators/page-config.generator';
-
 @Injectable()
 export class GenerateThemesService {
+    private readonly logger = new Logger(GenerateThemesService.name);
+
     constructor(
         @InjectRepository(Theme)
         private readonly themeRepo: BaseFirestoreRepository<Theme>,

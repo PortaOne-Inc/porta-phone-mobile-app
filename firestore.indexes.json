@@ -57,6 +57,23 @@
         { "fieldPath": "locale", "order": "ASCENDING" },
         { "fieldPath": "key", "order": "ASCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "theme_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "applicationId", "order": "ASCENDING" },
+        { "fieldPath": "themeId", "order": "ASCENDING" },
+        { "fieldPath": "snapshotVersion", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "theme_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "themeId", "order": "ASCENDING" },
+        { "fieldPath": "snapshotVersion", "order": "DESCENDING" }
+      ]
     }
   ]
 }

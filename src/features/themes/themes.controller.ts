@@ -95,10 +95,12 @@ export class ThemesController {
 
   @Post()
   async createTheme(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
     @Body() dto: CreateThemeDto,
   ) {
-    const newTheme = await this.themesService.createTheme(applicationId, dto);
+    const uid: string = req.user?.uid ?? '';
+    const newTheme = await this.themesService.createTheme(applicationId, dto, uid);
     if (!newTheme) {
       throw new HttpException('Failed to create theme', HttpStatus.BAD_REQUEST);
     }
@@ -107,14 +109,17 @@ export class ThemesController {
 
   @Patch(':themeId')
   async patchTheme(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() updateThemeDto: UpdateThemeDto,
   ) {
+    const uid: string = req.user?.uid ?? '';
     return this.themesService.patchTheme(
       applicationId,
       themeId,
       updateThemeDto,
+      uid,
     );
   }
 
@@ -133,14 +138,17 @@ export class ThemesController {
 
   @Post(':themeId/copy')
   async copyTheme(
+    @Req() req: any,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() overrides: CopyThemeDto,
   ) {
+    const uid: string = req.user?.uid ?? '';
     const cloned = await this.themesService.copyTheme(
       applicationId,
       themeId,
       overrides,
+      uid,
     );
     if (!cloned) {
       throw new HttpException('Failed to copy theme', HttpStatus.BAD_REQUEST);

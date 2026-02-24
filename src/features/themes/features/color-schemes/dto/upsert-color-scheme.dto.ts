@@ -7,7 +7,7 @@ export const UpsertColorSchemeSchema = z
     config: z.record(z.string(), z.any()).optional(),
     expectedVersion: z.number().int().min(0).optional(),
   })
-  .strict();
+  .strip();
 
 export class UpsertColorSchemeDto extends createZodDto(
   UpsertColorSchemeSchema,

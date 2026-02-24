@@ -158,6 +158,38 @@ resolved to time-limited signed URLs that the client can fetch directly.
 
 ---
 
+## Change History Recording
+
+Every mutating operation triggers a fire-and-forget snapshot after the primary write completes.
+
+```
+  Any mutation (theme CRUD, sub-resource upsert, AI generation)
+        |
+        v
+  Primary write completes (returns result to caller)
+        |
+        v
+  ThemeHistoryService.recordSnapshot()   <-- async, non-blocking
+        |
+        |-- 7 parallel Firestore reads:
+        |     |-- Theme doc
+        |     |-- ColorSchemes (query by themeId)
+        |     |-- WidgetConfigs (query by themeId)
+        |     |-- PageConfigs (query by themeId)
+        |     |-- SplashAsset doc (id = themeId)
+        |     |-- LaunchAsset doc (id = themeId)
+        |     +-- FeatureAccess (query by themeId)
+        |
+        |-- nextVersion: query latest snapshotVersion + 1
+        |
+        +-- Create ThemeHistory doc in theme_history collection
+```
+
+If `recordSnapshot()` fails, the error is logged but the original mutation is unaffected.
+See [Change History docs](./theme-history.md) for the full list of tracked actions.
+
+---
+
 ## Error Handling in Asset Services
 
 Asset upload and resolution operations use **fail-fast** error handling -- errors are surfaced

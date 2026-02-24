@@ -11,6 +11,7 @@ color schemes, widget & page configs, splash/launch assets, and feature entitlem
 | [API Endpoints](./themes-api-endpoints.md) | REST endpoints for themes and all sub-features |
 | [Core Flows](./themes-core-flows.md) | Theme creation, copy, cascade delete, asset upload, error handling |
 | [AI Generation](./generate-themes.md) | OpenAI-powered theme generation and nudge |
+| [Change History](./theme-history.md) | Theme snapshot history, tracked actions, pagination API |
 
 ---
 
@@ -31,7 +32,7 @@ color schemes, widget & page configs, splash/launch assets, and feature entitlem
 |  |  ColorSchemesModule   WidgetConfigsModule         |    |
 |  |  PageConfigsModule    SplashAssetsModule           |    |
 |  |  LaunchAssetsModule   FeatureAccessModule          |    |
-|  |  GenerateModule                                    |    |
+|  |  GenerateModule       ThemeHistoryModule           |    |
 |  |                                                   |    |
 |  +---------------------------------------------------+    |
 +-----------------------------------------------------------+
@@ -105,6 +106,14 @@ src/features/themes/
     |   |   +-- upsert-feature-access.dto.ts # Zod: UpsertFeatureAccessSchema
     |   +-- entities/feature-access.ts
     |
+    |-- theme-history/
+    |   |-- theme-history.module.ts
+    |   |-- theme-history.controller.ts
+    |   |-- theme-history.service.ts
+    |   |-- dto/
+    |   |   +-- theme-history.dto.ts       # Zod: ListThemeHistoryQuerySchema
+    |   +-- entities/theme-history.entity.ts
+    |
     +-- generate/
         |-- generate.module.ts
         |-- generate.controller.ts
@@ -144,10 +153,12 @@ ThemesModule
  |-- LaunchAssetsModule
  |     +-- ArtifactsModule    <-- manages launcher icon artifacts (5 platforms)
  |-- FeatureAccessModule
+ |-- ThemeHistoryModule       <-- snapshot recording (imported by all mutating modules)
  +-- GenerateModule
        |-- ColorSchemesModule
        |-- WidgetConfigsModule
        |-- PageConfigsModule
+       |-- ThemeHistoryModule
        +-- OpenAiClientService
 ```
 
