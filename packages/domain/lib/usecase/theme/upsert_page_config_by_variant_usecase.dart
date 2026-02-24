@@ -11,6 +11,7 @@ abstract class UpsertPageConfigByVariantUsecase {
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   });
 }
 
@@ -27,12 +28,14 @@ class UpsertPageConfigByVariantUsecaseImpl
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) {
     return repo.upsertByThemeVariant(
       applicationId: applicationId,
       themeId: themeId,
       variant: variant,
       config: config,
+      expectedVersion: expectedVersion,
     );
   }
 }

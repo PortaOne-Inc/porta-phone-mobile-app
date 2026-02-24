@@ -69,10 +69,7 @@ import 'package:data/repository/widget_config_repository_impl.dart' as _i340;
 import 'package:domain/domain.dart' as _i494;
 import 'package:domain/models/applications/publication_resource_model.dart'
     as _i96;
-import 'package:domain/models/themes/feature_access_model.dart' as _i169;
 import 'package:domain/repository/repository.dart' as _i174;
-import 'package:domain/repository/theme/feature_access_repository.dart'
-    as _i908;
 import 'package:firebase_storage/firebase_storage.dart' as _i457;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -218,11 +215,11 @@ class DataPackageModule extends _i526.MicroPackageModule {
           gh<_i552.PlatformParamsMapper>(),
           gh<_i552.OutputArtifactsMapper>(),
         ));
-    gh.factory<_i908.FeatureAccessRepository>(
+    gh.factory<_i494.FeatureAccessRepository>(
         () => _i144.FeatureAccessRepositoryImpl(
               api: gh<_i342.ConfiguratorBackandDatasource>(),
               mapper: gh<
-                  _i602.CommonMapper<_i169.FeatureAccessModel,
+                  _i602.CommonMapper<_i494.FeatureAccessModel,
                       _i803.FeatureAccessDto>>(),
             ));
     gh.factory<_i494.WidgetConfigRepository>(

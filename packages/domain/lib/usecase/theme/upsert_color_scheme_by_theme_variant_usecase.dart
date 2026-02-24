@@ -9,6 +9,7 @@ abstract class UpsertColorSchemeByThemeVariantUsecase {
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   });
 }
 
@@ -25,12 +26,14 @@ class UpsertColorSchemeByThemeVariantUsecaseImpl
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) {
     return _repo.upsertByThemeVariant(
       applicationId: applicationId,
       themeId: themeId,
       variant: variant,
       config: config,
+      expectedVersion: expectedVersion,
     );
   }
 }

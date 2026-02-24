@@ -13,6 +13,7 @@ _PageConfigModel _$PageConfigModelFromJson(Map<String, dynamic> json) =>
       variant: $enumDecode(_$BrightnessVariantEnumMap, json['variant']),
       config: json['config'] as Map<String, dynamic>,
       id: json['id'] as String?,
+      version: (json['version'] as num?)?.toInt(),
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$PageConfigModelToJson(_PageConfigModel instance) =>
       'variant': _$BrightnessVariantEnumMap[instance.variant]!,
       'config': instance.config,
       'id': instance.id,
+      'version': instance.version,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };

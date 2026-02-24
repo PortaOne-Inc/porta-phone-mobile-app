@@ -12,6 +12,7 @@ sealed class ColorSchemeDto with _$ColorSchemeDto {
     required String variant,
     required Map<String, dynamic> config,
     String? id,
+    int? version,
     String? createdAt,
     String? updatedAt,
   }) = _ColorSchemeDto;

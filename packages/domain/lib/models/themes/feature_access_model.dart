@@ -10,6 +10,7 @@ sealed class FeatureAccessModel with _$FeatureAccessModel {
     required String applicationId,
     required Map<String, dynamic> config,
     String? themeId,
+    int? version,
     @Default('draft') String status,
     String? createdAt,
     String? updatedAt,

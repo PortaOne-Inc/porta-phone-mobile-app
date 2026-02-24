@@ -9,7 +9,7 @@ abstract class FeatureAccessEditorApi {
 
   AppConfig get current;
 
-  void setInitial(AppConfig initial);
+  void setInitial(AppConfig initial, {int? version});
 
   void resetToInitial();
 
@@ -65,6 +65,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   AppConfig? _initial;
   AppConfig? _current;
+  int? version;
 
   final _controller = StreamController<AppConfig>.broadcast();
 
@@ -113,9 +114,10 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   }
 
   @override
-  void setInitial(AppConfig initial) {
+  void setInitial(AppConfig initial, {int? version}) {
     _initial = initial;
     _current = initial;
+    this.version = version;
     _emit();
   }
 

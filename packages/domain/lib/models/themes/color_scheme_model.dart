@@ -14,6 +14,7 @@ sealed class ColorSchemeModel with _$ColorSchemeModel {
     required BrightnessVariant variant,
     required Map<String, dynamic> config,
     String? id,
+    int? version,
     String? createdAt,
     String? updatedAt,
   }) = _ColorSchemeModel;

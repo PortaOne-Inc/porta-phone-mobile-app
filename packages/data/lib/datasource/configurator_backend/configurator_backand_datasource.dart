@@ -669,12 +669,14 @@ class ConfiguratorBackandDatasource {
     required String themeId,
     String? status, // 'draft' | 'published'
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
       FeatureAccessConfiguratorBackandAPI.byTheme(applicationId, themeId),
       data: {
         if (status != null) 'status': status,
         if (config != null) 'config': config,
+        if (expectedVersion != null) 'expectedVersion': expectedVersion,
       },
     );
     return FeatureAccessDto.fromJson(resp.data!);
@@ -735,6 +737,7 @@ class ConfiguratorBackandDatasource {
     required String themeId,
     required String variant, // "light" | "dark"
     Map<String, dynamic>? config, // only changed nodes
+    int? expectedVersion,
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
       ColorSchemeConfiguratorBackandAPI.upsertVariant(
@@ -742,7 +745,10 @@ class ConfiguratorBackandDatasource {
         themeId,
         variant,
       ),
-      data: <String, dynamic>{if (config != null) 'config': config},
+      data: <String, dynamic>{
+        if (config != null) 'config': config,
+        if (expectedVersion != null) 'expectedVersion': expectedVersion,
+      },
     );
     return ColorSchemeDto.fromJson(resp.data!);
   }
@@ -777,6 +783,7 @@ class ConfiguratorBackandDatasource {
     required String themeId,
     required String variant, // "light" | "dark"
     Map<String, dynamic>? config, // only changed nodes
+    int? expectedVersion,
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
       WidgetConfiguratorBackendAPI.upsertVariant(
@@ -784,7 +791,10 @@ class ConfiguratorBackandDatasource {
         themeId,
         variant,
       ),
-      data: <String, dynamic>{if (config != null) 'config': config},
+      data: <String, dynamic>{
+        if (config != null) 'config': config,
+        if (expectedVersion != null) 'expectedVersion': expectedVersion,
+      },
     );
     return WidgetsConfigDto.fromJson(resp.data!);
   }
@@ -846,10 +856,14 @@ class ConfiguratorBackandDatasource {
     required String themeId,
     required String variant, // "light" | "dark"
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) async {
     final resp = await _client.put<Map<String, dynamic>>(
       PageConfiguratorBackendAPI.item(applicationId, themeId, variant),
-      data: {'config': config ?? <String, dynamic>{}},
+      data: {
+        'config': config ?? <String, dynamic>{},
+        if (expectedVersion != null) 'expectedVersion': expectedVersion,
+      },
     );
     return PageConfigDto.fromJson(resp.data!);
   }

@@ -11,6 +11,7 @@ sealed class FeatureAccessDto with _$FeatureAccessDto {
     required String status,
     required Map<String, dynamic> config,
     String? themeId,
+    int? version,
     String? createdAt,
     String? updatedAt,
   }) = _FeatureAccessDto;

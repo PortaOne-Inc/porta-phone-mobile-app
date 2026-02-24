@@ -207,60 +207,76 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     final themeWidget = _widgetEditor.buildFull();
 
     final failures = <String>[];
+    final conflicts = <String>[];
 
     await Future.wait([
-      _guardSync('Feature access', failures, () =>
-        updateFeatureAccessUsecase.execute(
+      _guardSync('Feature access', failures, conflicts, () async {
+        final result = await updateFeatureAccessUsecase.execute(
           applicationId: applicationId,
           themeId: themeId,
           config: featureAccess.toJson(),
-        ),
-      ),
-      _guardSync('Color scheme', failures, () =>
-        upsertColorSchemeByThemeVariantUsecase.execute(
+          expectedVersion: _featureAccessEditor.version,
+        );
+        _featureAccessEditor.version = result.version;
+      }),
+      _guardSync('Color scheme', failures, conflicts, () async {
+        final result = await upsertColorSchemeByThemeVariantUsecase.execute(
           applicationId: applicationId,
           themeId: themeId,
           variant: state.selectedVariant,
           config: colorScheme.toJson(),
-        ),
-      ),
-      _guardSync('Page config', failures, () =>
-        upsertPageConfigByVariantUsecase.execute(
+          expectedVersion: _colorSchemeEditor.version,
+        );
+        _colorSchemeEditor.version = result.version;
+      }),
+      _guardSync('Page config', failures, conflicts, () async {
+        final result = await upsertPageConfigByVariantUsecase.execute(
           applicationId: applicationId,
           themeId: themeId,
           variant: state.selectedVariant,
           config: pageConfig.toJson(),
-        ),
-      ),
-      _guardSync('Widget config', failures, () =>
-        upsertWidgetConfig.execute(
+          expectedVersion: _pageEditor.version,
+        );
+        _pageEditor.version = result.version;
+      }),
+      _guardSync('Widget config', failures, conflicts, () async {
+        final result = await upsertWidgetConfig.execute(
           applicationId,
           themeId,
           state.selectedVariant,
           themeWidget.toJson(),
-        ),
-      ),
+          expectedVersion: _widgetEditor.version,
+        );
+        _widgetEditor.version = result.version;
+      }),
     ]);
 
-    if (failures.isEmpty) {
-      emit(state.copyWith(syncStatus: SyncStatus.synced));
-    } else {
+    if (conflicts.isNotEmpty) {
+      final message = 'Version conflict: ${conflicts.join(', ')}';
+      _logger.warning(message);
+      emit(state.copyWith(syncStatus: SyncStatus.conflict));
+    } else if (failures.isNotEmpty) {
       final message = 'Failed to save: ${failures.join(', ')}';
       _logger.severe(message);
       emit(state.copyWith(
         syncStatus: SyncStatus.failed,
         error: Exception(message),
       ));
+    } else {
+      emit(state.copyWith(syncStatus: SyncStatus.synced));
     }
   }
 
   Future<void> _guardSync(
     String name,
     List<String> failures,
+    List<String> conflicts,
     Future<void> Function() action,
   ) async {
     try {
       await action();
+    } on VersionConflictException {
+      conflicts.add(name);
     } catch (e, stackTrace) {
       _logger.severe('Sync failed for $name', e, stackTrace);
       failures.add(name);
@@ -581,7 +597,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         variant,
       );
       if (_initEpoch != epoch) return true;
-      _widgetEditor.setInitial(ThemeWidgetConfig.fromJson(widgetConfig.config));
+      _widgetEditor.setInitial(
+        ThemeWidgetConfig.fromJson(widgetConfig.config),
+        version: widgetConfig.version,
+      );
       return true;
     } catch (e, stackTrace) {
       if (_initEpoch != epoch) return true;
@@ -608,7 +627,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         variant: variant,
       );
       if (_initEpoch != epoch) return true;
-      _pageEditor.setInitial(ThemePageConfig.fromJson(loadTheme.config));
+      _pageEditor.setInitial(
+        ThemePageConfig.fromJson(loadTheme.config),
+        version: loadTheme.version,
+      );
       return true;
     } catch (e, stackTrace) {
       if (_initEpoch != epoch) return true;
@@ -636,7 +658,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
       final navigation = AppConfig.fromJson(featureAccess.config).copyWith();
 
-      _featureAccessEditor.setInitial(navigation);
+      _featureAccessEditor.setInitial(navigation, version: featureAccess.version);
       return true;
     } catch (e, stackTrace) {
       if (_initEpoch != epoch) return true;
@@ -665,6 +687,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       if (_initEpoch != epoch) return true;
       _colorSchemeEditor.setInitial(
         ColorSchemeConfig.fromJson(colorScheme.config),
+        version: colorScheme.version,
       );
       return true;
     } catch (e, stackTrace) {

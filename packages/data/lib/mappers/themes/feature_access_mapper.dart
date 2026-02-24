@@ -14,6 +14,7 @@ class FeatureAccessMapper
       themeId: it.themeId,
       status: it.status,
       config: it.config,
+      version: it.version,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
     );
@@ -26,6 +27,7 @@ class FeatureAccessMapper
       themeId: it.themeId,
       status: it.status,
       config: it.config,
+      version: it.version,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
     );

@@ -9,7 +9,7 @@ abstract class ThemePageEditorApi {
 
   ThemePageConfig get current;
 
-  void setInitial(ThemePageConfig initial);
+  void setInitial(ThemePageConfig initial, {int? version});
 
   void resetToInitial();
 
@@ -83,6 +83,7 @@ class ThemePageEditor implements ThemePageEditorApi {
 
   ThemePageConfig? _initial;
   ThemePageConfig? _current;
+  int? version;
 
   final _controller = StreamController<ThemePageConfig>.broadcast();
 
@@ -131,9 +132,10 @@ class ThemePageEditor implements ThemePageEditorApi {
   }
 
   @override
-  void setInitial(ThemePageConfig initial) {
+  void setInitial(ThemePageConfig initial, {int? version}) {
     _initial = initial;
     _current = initial;
+    this.version = version;
     _emit();
   }
 

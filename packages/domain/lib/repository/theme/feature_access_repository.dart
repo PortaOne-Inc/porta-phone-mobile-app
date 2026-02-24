@@ -15,6 +15,7 @@ abstract class FeatureAccessRepository {
     required String themeId,
     String? status,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   });
 
   Future<void> deleteFeatureAccess({

@@ -13,6 +13,7 @@ _PageConfigDto _$PageConfigDtoFromJson(Map<String, dynamic> json) =>
       themeId: json['themeId'] as String,
       variant: json['variant'] as String,
       config: json['config'] as Map<String, dynamic>,
+      version: (json['version'] as num?)?.toInt(),
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$PageConfigDtoToJson(_PageConfigDto instance) =>
       'themeId': instance.themeId,
       'variant': instance.variant,
       'config': instance.config,
+      'version': instance.version,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };

@@ -12,6 +12,7 @@ _FeatureAccessDto _$FeatureAccessDtoFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       config: json['config'] as Map<String, dynamic>,
       themeId: json['themeId'] as String?,
+      version: (json['version'] as num?)?.toInt(),
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$FeatureAccessDtoToJson(_FeatureAccessDto instance) =>
       'status': instance.status,
       'config': instance.config,
       'themeId': instance.themeId,
+      'version': instance.version,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };

@@ -157,6 +157,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             onPressed: () => _cubit.add(const SyncConfigEvent()),
           ),
         );
+      case SyncStatus.conflict:
+        return Tooltip(
+          message: 'Version conflict — tap to resolve',
+          child: TextButton.icon(
+            icon: const Icon(Icons.warning, color: Colors.orange),
+            label: const Text('Conflict'),
+            onPressed: () => _showConflictDialog(context),
+          ),
+        );
       case SyncStatus.idle:
         return Tooltip(
           message: 'Save all changes',
@@ -169,6 +178,32 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           ),
         );
     }
+  }
+
+  void _showConflictDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Theme was modified by another user'),
+        content: const Text(
+          'Your changes conflict with remote changes. '
+          'Reload to get the latest version?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              _cubit.add(const InitializeEvent());
+            },
+            child: const Text('Reload'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _handleStateChanges(BuildContext context, UpdateThemeState state) {

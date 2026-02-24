@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WidgetsConfig {
 
- String get id; String get applicationId; String get themeId; BrightnessVariant get variant; Map<String, dynamic> get config; DateTime get createdAt; DateTime get updatedAt;
+ String get id; String get applicationId; String get themeId; BrightnessVariant get variant; Map<String, dynamic> get config; DateTime get createdAt; DateTime get updatedAt; int? get version;
 /// Create a copy of WidgetsConfig
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $WidgetsConfigCopyWith<WidgetsConfig> get copyWith => _$WidgetsConfigCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetsConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetsConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.version, version) || other.version == version));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(config),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(config),createdAt,updatedAt,version);
 
 @override
 String toString() {
-  return 'WidgetsConfig(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'WidgetsConfig(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt, version: $version)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $WidgetsConfigCopyWith<$Res>  {
   factory $WidgetsConfigCopyWith(WidgetsConfig value, $Res Function(WidgetsConfig) _then) = _$WidgetsConfigCopyWithImpl;
 @useResult
 $Res call({
- String id, String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt
+ String id, String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt, int? version
 });
 
 
@@ -62,7 +62,7 @@ class _$WidgetsConfigCopyWithImpl<$Res>
 
 /// Create a copy of WidgetsConfig
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,Object? version = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as String,variant: null == variant ? _self.variant : variant // ignore: cast_nul
 as BrightnessVariant,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -153,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt,  int? version)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WidgetsConfig() when $default != null:
-return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt,_that.version);case _:
   return orElse();
 
 }
@@ -174,10 +175,10 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt,  int? version)  $default,) {final _that = this;
 switch (_that) {
 case _WidgetsConfig():
-return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);}
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt,_that.version);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -191,10 +192,10 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  DateTime createdAt,  DateTime updatedAt,  int? version)?  $default,) {final _that = this;
 switch (_that) {
 case _WidgetsConfig() when $default != null:
-return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.config,_that.createdAt,_that.updatedAt,_that.version);case _:
   return null;
 
 }
@@ -206,7 +207,7 @@ return $default(_that.id,_that.applicationId,_that.themeId,_that.variant,_that.c
 
 
 class _WidgetsConfig implements WidgetsConfig {
-  const _WidgetsConfig({required this.id, required this.applicationId, required this.themeId, required this.variant, required final  Map<String, dynamic> config, required this.createdAt, required this.updatedAt}): _config = config;
+  const _WidgetsConfig({required this.id, required this.applicationId, required this.themeId, required this.variant, required final  Map<String, dynamic> config, required this.createdAt, required this.updatedAt, this.version}): _config = config;
   
 
 @override final  String id;
@@ -222,6 +223,7 @@ class _WidgetsConfig implements WidgetsConfig {
 
 @override final  DateTime createdAt;
 @override final  DateTime updatedAt;
+@override final  int? version;
 
 /// Create a copy of WidgetsConfig
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +235,16 @@ _$WidgetsConfigCopyWith<_WidgetsConfig> get copyWith => __$WidgetsConfigCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WidgetsConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WidgetsConfig&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.version, version) || other.version == version));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(_config),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,applicationId,themeId,variant,const DeepCollectionEquality().hash(_config),createdAt,updatedAt,version);
 
 @override
 String toString() {
-  return 'WidgetsConfig(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'WidgetsConfig(id: $id, applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, createdAt: $createdAt, updatedAt: $updatedAt, version: $version)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$WidgetsConfigCopyWith<$Res> implements $WidgetsConfigCopy
   factory _$WidgetsConfigCopyWith(_WidgetsConfig value, $Res Function(_WidgetsConfig) _then) = __$WidgetsConfigCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt
+ String id, String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, DateTime createdAt, DateTime updatedAt, int? version
 });
 
 
@@ -270,7 +272,7 @@ class __$WidgetsConfigCopyWithImpl<$Res>
 
 /// Create a copy of WidgetsConfig
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? createdAt = null,Object? updatedAt = null,Object? version = freezed,}) {
   return _then(_WidgetsConfig(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
@@ -279,7 +281,8 @@ as String,variant: null == variant ? _self.variant : variant // ignore: cast_nul
 as BrightnessVariant,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as DateTime,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

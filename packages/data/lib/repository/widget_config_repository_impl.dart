@@ -64,17 +64,24 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
     String applicationId,
     String themeId,
     BrightnessVariant variant,
-    Map<String, dynamic>? config,
-  ) async {
+    Map<String, dynamic>? config, {
+    int? expectedVersion,
+  }) async {
     try {
       final dto = await configuratorBackendDatasource.upsertWidgetConfigVariant(
         applicationId: applicationId,
         themeId: themeId,
         variant: variant.name,
         config: config,
+        expectedVersion: expectedVersion,
       );
       return widgetConfigMapper.convertFrom(dto);
     } on DioException catch (e) {
+      if (e.response?.statusCode == 409) {
+        throw VersionConflictException(
+          message: e.response?.data?.toString() ?? 'Version conflict',
+        );
+      }
       throw BaseException(
         message: e.response?.data?.toString() ?? e.message ?? 'Network error',
       );

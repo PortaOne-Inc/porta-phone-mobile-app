@@ -13,6 +13,7 @@ _ColorSchemeDto _$ColorSchemeDtoFromJson(Map<String, dynamic> json) =>
       variant: json['variant'] as String,
       config: json['config'] as Map<String, dynamic>,
       id: json['id'] as String?,
+      version: (json['version'] as num?)?.toInt(),
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$ColorSchemeDtoToJson(_ColorSchemeDto instance) =>
       'variant': instance.variant,
       'config': instance.config,
       'id': instance.id,
+      'version': instance.version,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };

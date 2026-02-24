@@ -94,6 +94,7 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) async {
     try {
       final dto = await _api.upsertVariant(
@@ -101,9 +102,15 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
         themeId: themeId,
         variant: variant.name,
         config: config,
+        expectedVersion: expectedVersion,
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
+      if (e.response?.statusCode == 409) {
+        throw VersionConflictException(
+          message: e.response?.data?.toString() ?? 'Version conflict',
+        );
+      }
       throw BaseException(
         message: e.response?.data?.toString() ?? e.message ?? 'Network error',
       );

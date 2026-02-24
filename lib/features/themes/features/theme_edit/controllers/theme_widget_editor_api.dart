@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/extensions/color_extension.dart';
 
 abstract class ThemeWidgetEditorApi {
   ThemeWidgetConfig get initial;
@@ -9,7 +10,7 @@ abstract class ThemeWidgetEditorApi {
 
   ThemeWidgetConfig get current;
 
-  void setInitial(ThemeWidgetConfig initial);
+  void setInitial(ThemeWidgetConfig initial, {int? version});
 
   void resetToInitial();
 
@@ -133,8 +134,13 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   ThemeWidgetConfig? _initial;
   ThemeWidgetConfig? _current;
+  int? version;
 
   final _controller = StreamController<ThemeWidgetConfig>.broadcast();
+
+  /// Returns `true` when [color] is `null` (clear) or a valid hex color string.
+  static bool _isValidColor(String? color) =>
+      color == null || isValidHexColor(color);
 
   Stream<ThemeWidgetConfig> get stream => _controller.stream;
 
@@ -181,9 +187,10 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   }
 
   @override
-  void setInitial(ThemeWidgetConfig initial) {
+  void setInitial(ThemeWidgetConfig initial, {int? version}) {
     _initial = initial;
     _current = initial;
+    this.version = version;
     _emit();
   }
 
@@ -255,6 +262,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setGroupTitleListTileBackground(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       group: (current.group ?? const GroupWidgetConfig()).copyWith(
         groupTitleListTile:
@@ -293,6 +301,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setBottomNavBarBackground(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       bar: current.bar.copyWith(
         bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
@@ -305,6 +314,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setBottomNavBarSelected(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       bar: current.bar.copyWith(
         bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
@@ -317,6 +327,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setBottomNavBarUnselected(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       bar: current.bar.copyWith(
         bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
@@ -380,6 +391,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setInputLabelColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       input: current.input.copyWith(
         primary: current.input.primary.copyWith(labelColor: color),
@@ -448,6 +460,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setTextCursorColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       text: current.text.copyWith(
         selection: current.text.selection.copyWith(cursorColor: color),
@@ -458,6 +471,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setTextSelectionColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       text: current.text.copyWith(
         selection: current.text.selection.copyWith(selectionColor: color),
@@ -468,6 +482,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setTextSelectionHandleColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       text: current.text.copyWith(
         selection: current.text.selection.copyWith(selectionHandleColor: color),
@@ -484,6 +499,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setLinkifyStyleColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       text: current.text.copyWith(
         linkify: current.text.linkify.copyWith(styleColor: color),
@@ -494,6 +510,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setLinkifyLinkColor(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       text: current.text.copyWith(
         linkify: current.text.linkify.copyWith(linkifyStyleColor: color),
@@ -518,6 +535,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setConfirmDialogActive1(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       dialog: current.dialog.copyWith(
         confirmDialog: current.dialog.confirmDialog.copyWith(
@@ -530,6 +548,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setConfirmDialogActive2(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       dialog: current.dialog.copyWith(
         confirmDialog: current.dialog.confirmDialog.copyWith(
@@ -542,6 +561,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setConfirmDialogDefault(String? color) {
+    if (!_isValidColor(color)) return;
     _current = current.copyWith(
       dialog: current.dialog.copyWith(
         confirmDialog: current.dialog.confirmDialog.copyWith(
@@ -574,6 +594,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setRegistrationOnline(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         registrationStatuses: current.statuses.registrationStatuses.copyWith(
@@ -586,6 +607,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setRegistrationOffline(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         registrationStatuses: current.statuses.registrationStatuses.copyWith(
@@ -606,6 +628,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesConnectivityNone(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(
@@ -618,6 +641,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesConnectError(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(
@@ -630,6 +654,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesAppUnregistered(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(
@@ -642,6 +667,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesConnectIssue(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(
@@ -654,6 +680,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesInProgress(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(inProgress: color),
@@ -664,6 +691,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatusesReady(String color) {
+    if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
         callStatuses: current.statuses.callStatuses.copyWith(ready: color),

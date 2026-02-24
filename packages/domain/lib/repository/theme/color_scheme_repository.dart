@@ -22,5 +22,6 @@ abstract class ColorSchemeRepository {
     required String themeId,
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   });
 }

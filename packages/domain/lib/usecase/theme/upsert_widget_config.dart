@@ -8,8 +8,9 @@ abstract class UpsertWidgetConfigUsecase {
     String appId,
     String themeId,
     BrightnessVariant variant,
-    Map<String, dynamic>? config,
-  );
+    Map<String, dynamic>? config, {
+    int? expectedVersion,
+  });
 }
 
 @Injectable(as: UpsertWidgetConfigUsecase)
@@ -23,8 +24,15 @@ class UpsertWidgetConfigUsecaseImpl extends UpsertWidgetConfigUsecase {
     String appId,
     String themeId,
     BrightnessVariant variant,
-    Map<String, dynamic>? config,
-  ) {
-    return repository.upsertByThemeVariant(appId, themeId, variant, config);
+    Map<String, dynamic>? config, {
+    int? expectedVersion,
+  }) {
+    return repository.upsertByThemeVariant(
+      appId,
+      themeId,
+      variant,
+      config,
+      expectedVersion: expectedVersion,
+    );
   }
 }

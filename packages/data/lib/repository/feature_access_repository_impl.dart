@@ -1,5 +1,4 @@
-import 'package:domain/models/themes/feature_access_model.dart';
-import 'package:domain/repository/theme/feature_access_repository.dart';
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../datasource/configurator_backend/configurator_backand_datasource.dart';
@@ -44,14 +43,27 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     required String themeId,
     String? status,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) async {
-    final dto = await _api.upsertFeatureAccessByTheme(
-      applicationId: applicationId,
-      themeId: themeId,
-      status: status,
-      config: config,
-    );
-    return _mapper.convertFrom(dto);
+    try {
+      final dto = await _api.upsertFeatureAccessByTheme(
+        applicationId: applicationId,
+        themeId: themeId,
+        status: status,
+        config: config,
+        expectedVersion: expectedVersion,
+      );
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 409) {
+        throw VersionConflictException(
+          message: e.response?.data?.toString() ?? 'Version conflict',
+        );
+      }
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
+    }
   }
 
   @override

@@ -10,7 +10,7 @@ abstract class ColorSchemeEditorApi {
 
   ColorSchemeConfig get current;
 
-  void setInitial(ColorSchemeConfig initial);
+  void setInitial(ColorSchemeConfig initial, {int? version});
 
   void resetToInitial();
 
@@ -32,6 +32,7 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
 
   ColorSchemeConfig? _initial;
   ColorSchemeConfig? _current;
+  int? version;
 
   final _controller = StreamController<ColorSchemeConfig>.broadcast();
 
@@ -80,9 +81,10 @@ class ColorSchemeEditor implements ColorSchemeEditorApi {
   }
 
   @override
-  void setInitial(ColorSchemeConfig initial) {
+  void setInitial(ColorSchemeConfig initial, {int? version}) {
     _initial = initial;
     _current = initial;
+    this.version = version;
     _emit();
   }
 

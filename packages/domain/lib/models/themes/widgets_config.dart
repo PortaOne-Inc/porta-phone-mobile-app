@@ -14,5 +14,6 @@ sealed class WidgetsConfig with _$WidgetsConfig {
     required Map<String, dynamic> config,
     required DateTime createdAt,
     required DateTime updatedAt,
+    int? version,
   }) = _WidgetsConfig;
 }

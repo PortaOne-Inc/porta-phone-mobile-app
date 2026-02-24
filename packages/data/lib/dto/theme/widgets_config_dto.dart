@@ -14,6 +14,7 @@ sealed class WidgetsConfigDto with _$WidgetsConfigDto {
     required Map<String, dynamic> config,
     required DateTime createdAt,
     required DateTime updatedAt,
+    int? version,
   }) = _WidgetsConfigDto;
 
   factory WidgetsConfigDto.fromJson(Map<String, dynamic> json) =>

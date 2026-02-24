@@ -2,7 +2,7 @@ part of 'update_theme_cubit.dart';
 
 enum ThemePropertyStatus { progress, validation, success, error }
 
-enum SyncStatus { idle, syncing, synced, failed }
+enum SyncStatus { idle, syncing, synced, failed, conflict }
 
 enum ThemeComponents { widgets, pages, colors, navigation, embeds }
 

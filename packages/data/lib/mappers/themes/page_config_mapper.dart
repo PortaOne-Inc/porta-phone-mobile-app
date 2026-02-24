@@ -15,6 +15,7 @@ class PageConfigMapper extends CommonMapper<PageConfigModel, PageConfigDto> {
       themeId: it.themeId,
       variant: BrightnessVariant.values.byName(it.variant),
       config: it.config,
+      version: it.version,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
     );
@@ -28,6 +29,7 @@ class PageConfigMapper extends CommonMapper<PageConfigModel, PageConfigDto> {
       themeId: it.themeId,
       variant: it.variant.name,
       config: it.config,
+      version: it.version,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
     );

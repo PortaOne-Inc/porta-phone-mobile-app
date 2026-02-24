@@ -9,6 +9,7 @@ abstract class UpdateFeatureAccessUsecase {
     required String themeId,
     String? status,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   });
 }
 
@@ -24,12 +25,14 @@ class UpdateFeatureAccessUsecaseImpl extends UpdateFeatureAccessUsecase {
     required String themeId,
     String? status,
     Map<String, dynamic>? config,
+    int? expectedVersion,
   }) {
     return _repo.upsertFeatureAccess(
       applicationId: applicationId,
       themeId: themeId,
       status: status,
       config: config,
+      expectedVersion: expectedVersion,
     );
   }
 }

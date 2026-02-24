@@ -15,6 +15,7 @@ _WidgetsConfigDto _$WidgetsConfigDtoFromJson(Map<String, dynamic> json) =>
       config: json['config'] as Map<String, dynamic>,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      version: (json['version'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$WidgetsConfigDtoToJson(_WidgetsConfigDto instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$WidgetsConfigDtoToJson(_WidgetsConfigDto instance) =>
       'config': instance.config,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'version': instance.version,
     };

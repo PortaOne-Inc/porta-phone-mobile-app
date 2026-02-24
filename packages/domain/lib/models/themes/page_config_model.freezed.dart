@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PageConfigModel {
 
- String get applicationId; String get themeId; BrightnessVariant get variant; Map<String, dynamic> get config; String? get id; String? get createdAt; String? get updatedAt;
+ String get applicationId; String get themeId; BrightnessVariant get variant; Map<String, dynamic> get config; String? get id; int? get version; String? get createdAt; String? get updatedAt;
 /// Create a copy of PageConfigModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PageConfigModelCopyWith<PageConfigModel> get copyWith => _$PageConfigModelCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageConfigModel&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.id, id) || other.id == id)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageConfigModel&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,themeId,variant,const DeepCollectionEquality().hash(config),id,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,themeId,variant,const DeepCollectionEquality().hash(config),id,version,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PageConfigModel(applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, id: $id, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PageConfigModel(applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $PageConfigModelCopyWith<$Res>  {
   factory $PageConfigModelCopyWith(PageConfigModel value, $Res Function(PageConfigModel) _then) = _$PageConfigModelCopyWithImpl;
 @useResult
 $Res call({
- String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, String? id, String? createdAt, String? updatedAt
+ String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, String? id, int? version, String? createdAt, String? updatedAt
 });
 
 
@@ -65,14 +65,15 @@ class _$PageConfigModelCopyWithImpl<$Res>
 
 /// Create a copy of PageConfigModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? id = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? id = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String,variant: null == variant ? _self.variant : variant // ignore: cast_nullable_to_non_nullable
 as BrightnessVariant,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  int? version,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PageConfigModel() when $default != null:
-return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.version,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  int? version,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _PageConfigModel():
-return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.createdAt,_that.updatedAt);}
+return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.version,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +195,10 @@ return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String themeId,  BrightnessVariant variant,  Map<String, dynamic> config,  String? id,  int? version,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PageConfigModel() when $default != null:
-return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_that.id,_that.version,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -209,7 +210,7 @@ return $default(_that.applicationId,_that.themeId,_that.variant,_that.config,_th
 @JsonSerializable()
 
 class _PageConfigModel implements PageConfigModel {
-  const _PageConfigModel({required this.applicationId, required this.themeId, required this.variant, required final  Map<String, dynamic> config, this.id, this.createdAt, this.updatedAt}): _config = config;
+  const _PageConfigModel({required this.applicationId, required this.themeId, required this.variant, required final  Map<String, dynamic> config, this.id, this.version, this.createdAt, this.updatedAt}): _config = config;
   factory _PageConfigModel.fromJson(Map<String, dynamic> json) => _$PageConfigModelFromJson(json);
 
 @override final  String applicationId;
@@ -223,6 +224,7 @@ class _PageConfigModel implements PageConfigModel {
 }
 
 @override final  String? id;
+@override final  int? version;
 @override final  String? createdAt;
 @override final  String? updatedAt;
 
@@ -239,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PageConfigModel&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.id, id) || other.id == id)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PageConfigModel&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.variant, variant) || other.variant == variant)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,themeId,variant,const DeepCollectionEquality().hash(_config),id,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,themeId,variant,const DeepCollectionEquality().hash(_config),id,version,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PageConfigModel(applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, id: $id, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PageConfigModel(applicationId: $applicationId, themeId: $themeId, variant: $variant, config: $config, id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$PageConfigModelCopyWith<$Res> implements $PageConfigModel
   factory _$PageConfigModelCopyWith(_PageConfigModel value, $Res Function(_PageConfigModel) _then) = __$PageConfigModelCopyWithImpl;
 @override @useResult
 $Res call({
- String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, String? id, String? createdAt, String? updatedAt
+ String applicationId, String themeId, BrightnessVariant variant, Map<String, dynamic> config, String? id, int? version, String? createdAt, String? updatedAt
 });
 
 
@@ -276,14 +278,15 @@ class __$PageConfigModelCopyWithImpl<$Res>
 
 /// Create a copy of PageConfigModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? id = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? themeId = null,Object? variant = null,Object? config = null,Object? id = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_PageConfigModel(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,themeId: null == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String,variant: null == variant ? _self.variant : variant // ignore: cast_nullable_to_non_nullable
 as BrightnessVariant,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

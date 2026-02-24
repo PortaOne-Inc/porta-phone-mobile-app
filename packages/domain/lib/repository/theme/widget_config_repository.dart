@@ -16,8 +16,9 @@ abstract class WidgetConfigRepository {
     String applicationId,
     String themeId,
     BrightnessVariant variant,
-    Map<String, dynamic>? config,
-  );
+    Map<String, dynamic>? config, {
+    int? expectedVersion,
+  });
 
   Future<Map<String, WidgetsConfig>> ensurePair(
     String applicationId,

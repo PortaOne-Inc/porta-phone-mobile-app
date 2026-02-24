@@ -12,6 +12,7 @@ sealed class PageConfigDto with _$PageConfigDto {
     required String themeId,
     required String variant, // "light" | "dark"
     required Map<String, dynamic> config,
+    int? version,
     String? createdAt,
     String? updatedAt,
   }) = _PageConfigDto;
