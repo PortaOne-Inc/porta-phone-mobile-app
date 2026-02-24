@@ -158,7 +158,7 @@ class AppRoute {
                       updateApplicationUsecase: getIt.get(),
                       copyThemeUsecase: getIt.get(),
                       updateThemeUseCase: getIt<UsecaseThemeUpdate>(
-                        param1: state.pathParameters[AppRoutInfo.keyApplicationId]!,
+                        param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                       ),
                     ),
                   ),
