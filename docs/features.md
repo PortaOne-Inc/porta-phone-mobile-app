@@ -21,3 +21,14 @@ Quick navigation to all feature docs in the project.
 | [API Endpoints](./themes-api-endpoints.md) | REST endpoints for themes and all sub-features |
 | [Core Flows](./themes-core-flows.md) | Theme creation, copy, cascade delete, asset upload, error handling |
 | [AI Generation](./generate-themes.md) | OpenAI-powered theme generation and nudge, request/response schemas, fallback behavior |
+
+---
+
+## Translations
+
+| Document | Description |
+|---|---|
+| [Overview](./translations-overview.md) | Architecture, directory structure, key concepts, configuration |
+| [Data Model](./translations-data-model.md) | Entity, Firestore collection, composite indexes |
+| [API Endpoints](./translations-api-endpoints.md) | REST endpoints for base translations and overrides |
+| [Core Flows](./translations-core-flows.md) | Override upsert, ARB composition, base translation fetch |
