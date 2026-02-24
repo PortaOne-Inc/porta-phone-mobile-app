@@ -111,7 +111,18 @@ export class TranslationsRepository {
       applicationId: string,
       translation: Translation,
   ): Promise<void> {
-    await this.translationRepo.create({ applicationId, ...translation });
+    const existing = await this.translationRepo
+        .whereEqualTo('applicationId', applicationId)
+        .whereEqualTo('locale', translation.locale)
+        .whereEqualTo('key', translation.key)
+        .findOne();
+
+    if (existing) {
+      existing.value = translation.value;
+      await this.translationRepo.update(existing);
+    } else {
+      await this.translationRepo.create({ applicationId, ...translation });
+    }
   }
 
   /**
