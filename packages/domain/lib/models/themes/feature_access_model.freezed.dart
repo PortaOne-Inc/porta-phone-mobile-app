@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FeatureAccessModel {
 
- String get applicationId; Map<String, dynamic> get config; String? get themeId; FeatureAccessStatus get status; String? get createdAt; String? get updatedAt;
+ String get applicationId; Map<String, dynamic> get config; String? get themeId; String get status; String? get createdAt; String? get updatedAt;
 /// Create a copy of FeatureAccessModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FeatureAccessModelCopyWith<$Res>  {
   factory $FeatureAccessModelCopyWith(FeatureAccessModel value, $Res Function(FeatureAccessModel) _then) = _$FeatureAccessModelCopyWithImpl;
 @useResult
 $Res call({
- String applicationId, Map<String, dynamic> config, String? themeId, FeatureAccessStatus status, String? createdAt, String? updatedAt
+ String applicationId, Map<String, dynamic> config, String? themeId, String status, String? createdAt, String? updatedAt
 });
 
 
@@ -71,7 +71,7 @@ applicationId: null == applicationId ? _self.applicationId : applicationId // ig
 as String,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,themeId: freezed == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as FeatureAccessStatus,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  FeatureAccessStatus status,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  String status,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FeatureAccessModel() when $default != null:
 return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_that.createdAt,_that.updatedAt);case _:
@@ -176,7 +176,7 @@ return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  FeatureAccessStatus status,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  String status,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _FeatureAccessModel():
 return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_that.createdAt,_that.updatedAt);}
@@ -193,7 +193,7 @@ return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  FeatureAccessStatus status,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  String status,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _FeatureAccessModel() when $default != null:
 return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_that.createdAt,_that.updatedAt);case _:
@@ -208,7 +208,7 @@ return $default(_that.applicationId,_that.config,_that.themeId,_that.status,_tha
 @JsonSerializable()
 
 class _FeatureAccessModel implements FeatureAccessModel {
-  const _FeatureAccessModel({required this.applicationId, required final  Map<String, dynamic> config, this.themeId, this.status = FeatureAccessStatus.draft, this.createdAt, this.updatedAt}): _config = config;
+  const _FeatureAccessModel({required this.applicationId, required final  Map<String, dynamic> config, this.themeId, this.status = 'draft', this.createdAt, this.updatedAt}): _config = config;
   factory _FeatureAccessModel.fromJson(Map<String, dynamic> json) => _$FeatureAccessModelFromJson(json);
 
 @override final  String applicationId;
@@ -220,7 +220,7 @@ class _FeatureAccessModel implements FeatureAccessModel {
 }
 
 @override final  String? themeId;
-@override@JsonKey() final  FeatureAccessStatus status;
+@override@JsonKey() final  String status;
 @override final  String? createdAt;
 @override final  String? updatedAt;
 
@@ -257,7 +257,7 @@ abstract mixin class _$FeatureAccessModelCopyWith<$Res> implements $FeatureAcces
   factory _$FeatureAccessModelCopyWith(_FeatureAccessModel value, $Res Function(_FeatureAccessModel) _then) = __$FeatureAccessModelCopyWithImpl;
 @override @useResult
 $Res call({
- String applicationId, Map<String, dynamic> config, String? themeId, FeatureAccessStatus status, String? createdAt, String? updatedAt
+ String applicationId, Map<String, dynamic> config, String? themeId, String status, String? createdAt, String? updatedAt
 });
 
 
@@ -280,7 +280,7 @@ applicationId: null == applicationId ? _self.applicationId : applicationId // ig
 as String,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,themeId: freezed == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as FeatureAccessStatus,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

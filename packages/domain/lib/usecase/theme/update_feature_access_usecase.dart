@@ -7,7 +7,7 @@ abstract class UpdateFeatureAccessUsecase {
   Future<FeatureAccessModel> execute({
     required String applicationId,
     required String themeId,
-    FeatureAccessStatus? status,
+    String? status,
     Map<String, dynamic>? config,
   });
 }
@@ -22,7 +22,7 @@ class UpdateFeatureAccessUsecaseImpl extends UpdateFeatureAccessUsecase {
   Future<FeatureAccessModel> execute({
     required String applicationId,
     required String themeId,
-    FeatureAccessStatus? status,
+    String? status,
     Map<String, dynamic>? config,
   }) {
     return _repo.upsertFeatureAccess(

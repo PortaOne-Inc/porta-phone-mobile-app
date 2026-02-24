@@ -42,15 +42,13 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
   Future<FeatureAccessModel> upsertFeatureAccess({
     required String applicationId,
     required String themeId,
-    FeatureAccessStatus? status,
+    String? status,
     Map<String, dynamic>? config,
   }) async {
     final dto = await _api.upsertFeatureAccessByTheme(
       applicationId: applicationId,
       themeId: themeId,
-      status: status == null
-          ? null
-          : (status == FeatureAccessStatus.published ? 'published' : 'draft'),
+      status: status,
       config: config,
     );
     return _mapper.convertFrom(dto);

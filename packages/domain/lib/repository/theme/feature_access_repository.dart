@@ -13,7 +13,7 @@ abstract class FeatureAccessRepository {
   Future<FeatureAccessModel> upsertFeatureAccess({
     required String applicationId,
     required String themeId,
-    FeatureAccessStatus? status,
+    String? status,
     Map<String, dynamic>? config,
   });
 

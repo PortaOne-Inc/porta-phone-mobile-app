@@ -11,9 +11,7 @@ _FeatureAccessModel _$FeatureAccessModelFromJson(Map<String, dynamic> json) =>
       applicationId: json['applicationId'] as String,
       config: json['config'] as Map<String, dynamic>,
       themeId: json['themeId'] as String?,
-      status:
-          $enumDecodeNullable(_$FeatureAccessStatusEnumMap, json['status']) ??
-          FeatureAccessStatus.draft,
+      status: json['status'] as String? ?? 'draft',
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
     );
@@ -23,12 +21,7 @@ Map<String, dynamic> _$FeatureAccessModelToJson(_FeatureAccessModel instance) =>
       'applicationId': instance.applicationId,
       'config': instance.config,
       'themeId': instance.themeId,
-      'status': _$FeatureAccessStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };
-
-const _$FeatureAccessStatusEnumMap = {
-  FeatureAccessStatus.draft: 'draft',
-  FeatureAccessStatus.published: 'published',
-};

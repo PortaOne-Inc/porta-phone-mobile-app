@@ -12,9 +12,7 @@ class FeatureAccessMapper
     return FeatureAccessModel(
       applicationId: it.applicationId,
       themeId: it.themeId,
-      status: it.status == 'published'
-          ? FeatureAccessStatus.published
-          : FeatureAccessStatus.draft,
+      status: it.status,
       config: it.config,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
@@ -26,9 +24,7 @@ class FeatureAccessMapper
     return FeatureAccessDto(
       applicationId: it.applicationId,
       themeId: it.themeId,
-      status: it.status == FeatureAccessStatus.published
-          ? 'published'
-          : 'draft',
+      status: it.status,
       config: it.config,
       createdAt: it.createdAt,
       updatedAt: it.updatedAt,
