@@ -204,6 +204,7 @@ export class ThemesService {
       if (dto.title !== undefined) next.title = dto.title;
       if (dto.description !== undefined) next.description = dto.description;
       if (dto.label !== undefined) next.label = dto.label;
+      if (dto.status !== undefined) next.status = dto.status;
       next.version = (current.version ?? 0) + 1;
       next.updatedAt = nowIso();
 

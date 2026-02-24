@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
 
 export const ThemeLabelSchema = z.enum(['dev', 'stage', 'prod']);
+export const ThemeStatusSchema = z.enum(['draft', 'published', 'archived']);
 
 export const CreateThemeSchema = z
   .object({
@@ -20,9 +21,10 @@ export const CopyThemeSchema = z
   .strict();
 export const UpdateThemeSchema = CreateThemeSchema.partial()
   .extend({
+    status: ThemeStatusSchema.optional(),
     expectedVersion: z.number().int().min(0).optional(),
   })
-  .strict();
+  .strip();
 
 export class CreateThemeDto extends createZodDto(CreateThemeSchema) {}
 

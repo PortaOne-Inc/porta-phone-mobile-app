@@ -13,7 +13,7 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `GET` | `/:themeId` | Get a specific theme |
 | `GET` | `/:themeId/legacy` | Get aggregated legacy theme (backward compat) |
 | `POST` | `/` | Create a new theme |
-| `PATCH` | `/:themeId` | Update theme (supports `expectedVersion` for optimistic locking) |
+| `PATCH` | `/:themeId` | Update theme fields: `title`, `description`, `label`, `status`, `expectedVersion`. Unknown fields are silently stripped. |
 | `DELETE` | `/:themeId` | Cascade delete theme + all related data |
 | `POST` | `/:themeId/copy` | Clone theme with all configs |
 

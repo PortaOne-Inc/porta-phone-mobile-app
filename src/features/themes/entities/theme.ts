@@ -7,6 +7,7 @@ export class Theme {
   title?: string;
   description?: string;
   label?: 'dev' | 'stage' | 'prod';
+  status?: 'draft' | 'published' | 'archived';
   applicationId?: string;
   version?: number;
   createdAt?: string;

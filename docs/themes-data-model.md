@@ -13,6 +13,7 @@
 | `title` | string? | Human-readable name |
 | `description` | string? | Theme description |
 | `label` | enum? | `'dev'` / `'stage'` / `'prod'` |
+| `status` | enum? | `'draft'` / `'published'` / `'archived'` |
 | `version` | number? | Optimistic locking counter (starts at 1) |
 | `createdAt` | string | ISO timestamp |
 | `updatedAt` | string | ISO timestamp |
