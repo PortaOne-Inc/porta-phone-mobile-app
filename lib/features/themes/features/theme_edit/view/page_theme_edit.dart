@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
+
+import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_history/theme_history.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
-  const PageThemeEdit({required this.title, required this.children, super.key});
+  const PageThemeEdit({
+    required this.title,
+    required this.children,
+    required this.getIt,
+    super.key,
+  });
 
   final String title;
-
   final List<Router<dynamic>> children;
+  final GetIt getIt;
 
   @override
   State<PageThemeEdit> createState() => _PageThemeEditState();
@@ -93,6 +102,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                   leading: const Icon(Icons.list),
                   title: const Text('Applications'),
                   onTap: () => _openApplicationCollection(context),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.history),
+                  title: const Text('History'),
+                  onTap: () => _openThemeHistory(
+                    context,
+                    state.applicationModel?.id ?? '',
+                    state.theme?.id ?? '',
+                  ),
                 ),
                 const Divider(),
                 const Spacer(),
@@ -323,6 +341,25 @@ class _PageThemeEditState extends State<PageThemeEdit> {
 
   void _openApplicationCollection(BuildContext context) {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
+  }
+
+  void _openThemeHistory(
+    BuildContext context,
+    String applicationId,
+    String themeId,
+  ) {
+    Navigator.of(context, rootNavigator: true).push(
+      MaterialPageRoute<void>(
+        builder: (_) => BlocProvider<ThemeHistoryCubit>(
+          create: (_) => ThemeHistoryCubit(
+            getThemeHistoryUsecase: widget.getIt.get(),
+            applicationId: applicationId,
+            themeId: themeId,
+          ),
+          child: const ThemeHistoryPage(),
+        ),
+      ),
+    );
   }
 
   void _logout(BuildContext context) {

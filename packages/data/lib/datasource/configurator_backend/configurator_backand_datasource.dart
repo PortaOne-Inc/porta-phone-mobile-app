@@ -1101,6 +1101,24 @@ class ConfiguratorBackandDatasource {
     );
   }
 
+  // --- Theme History ---
+
+  Future<ThemeHistoryPageDto> getThemeHistory({
+    required String applicationId,
+    required String themeId,
+    int? limit,
+    String? startAfter,
+  }) async {
+    final resp = await _client.get<Map<String, dynamic>>(
+      ThemeHistoryConfiguratorBackendAPI.history(applicationId, themeId),
+      queryParameters: <String, dynamic>{
+        if (limit != null) 'limit': limit,
+        if (startAfter != null) 'startAfter': startAfter,
+      },
+    );
+    return ThemeHistoryPageDto.fromJson(resp.data!);
+  }
+
   // --- Artifacts (AssetsRendition) ---
 
   /// List artifacts for a theme (optionally by kind, includeUrl, urlTtlSec)

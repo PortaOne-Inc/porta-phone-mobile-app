@@ -26,6 +26,7 @@ import 'package:data/dto/theme/color_scheme_dto.dart' as _i687;
 import 'package:data/dto/theme/feature_access_dto.dart' as _i803;
 import 'package:data/dto/theme/page_config_dto.dart' as _i610;
 import 'package:data/dto/theme/theme_dto.dart' as _i592;
+import 'package:data/dto/theme/theme_history_entry_dto.dart' as _i420;
 import 'package:data/mappers/applications/app_version_mapper.dart' as _i377;
 import 'package:data/mappers/applications/application_mapper.dart' as _i518;
 import 'package:data/mappers/applications/asset_link_mapper.dart' as _i675;
@@ -47,6 +48,7 @@ import 'package:data/mappers/resources/splash_mappers.dart' as _i832;
 import 'package:data/mappers/themes/color_scheme_mapper.dart' as _i684;
 import 'package:data/mappers/themes/feature_access_mapper.dart' as _i135;
 import 'package:data/mappers/themes/page_config_mapper.dart' as _i229;
+import 'package:data/mappers/themes/theme_history_mapper.dart' as _i1048;
 import 'package:data/mappers/themes/theme_mapper.dart' as _i177;
 import 'package:data/mappers/themes/widget_config_mapper.dart' as _i467;
 import 'package:data/mappers/translations/translation_http_mapper.dart' as _i51;
@@ -63,6 +65,7 @@ import 'package:data/repository/publication_resources_repository_impl.dart'
     as _i591;
 import 'package:data/repository/resources_repository_impl.dart' as _i136;
 import 'package:data/repository/splash_asset_repository_impl.dart' as _i316;
+import 'package:data/repository/theme_history_repository_impl.dart' as _i360;
 import 'package:data/repository/theme_repository_impl.dart' as _i165;
 import 'package:data/repository/translations_repository_impl.dart' as _i591;
 import 'package:data/repository/widget_config_repository_impl.dart' as _i340;
@@ -135,6 +138,9 @@ class DataPackageModule extends _i526.MicroPackageModule {
       () => _i99.FileStorage(gh<String>()),
       instanceName: 'FileStorage',
     );
+    gh.factory<
+        _i602.CommonMapper<_i494.ThemeHistoryEntryModel,
+            _i420.ThemeHistoryEntryDto>>(() => _i1048.ThemeHistoryMapper());
     gh.factory<_i848.ConstraintsMapper>(
         () => _i848.ConstraintsMapper(gh<_i848.PlatformConstraintsMapper>()));
     gh.lazySingleton<
@@ -279,6 +285,13 @@ class DataPackageModule extends _i526.MicroPackageModule {
       ),
       dispose: (i) => i.dispose(),
     );
+    gh.factory<_i494.ThemeHistoryRepository>(
+        () => _i360.ThemeHistoryRepositoryImpl(
+              gh<_i342.ConfiguratorBackandDatasource>(),
+              gh<
+                  _i602.CommonMapper<_i494.ThemeHistoryEntryModel,
+                      _i420.ThemeHistoryEntryDto>>(),
+            ));
     gh.factory<_i494.EmbedsRepository>(() => _i712.EmbedsRepositoryImpl(
           datasource: gh<_i822.ConfiguratorBackandDatasource>(),
           mapper: gh<

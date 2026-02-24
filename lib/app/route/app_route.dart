@@ -331,6 +331,7 @@ class AppRoute {
                   ],
                   child: PageThemeEdit(
                     title: context.l10n.feature_theme_edit_Toolbar_dashboard,
+                    getIt: getIt,
                     children: [
                       GoRouterWrapper(
                         router: SchemeRoute(getIt).build(

@@ -17,6 +17,7 @@ import 'package:domain/repository/theme/color_scheme_repository.dart' as _i323;
 import 'package:domain/repository/theme/feature_access_repository.dart'
     as _i908;
 import 'package:domain/repository/theme/page_config_repository.dart' as _i278;
+import 'package:domain/repository/theme/theme_history_repository.dart' as _i519;
 import 'package:domain/repository/theme/widget_config_repository.dart' as _i551;
 import 'package:domain/usecase/applications/application_create.dart' as _i53;
 import 'package:domain/usecase/applications/create_application_embed_usecase.dart'
@@ -114,6 +115,7 @@ import 'package:domain/usecase/theme/get_page_config_by_variant_usecase.dart'
     as _i1061;
 import 'package:domain/usecase/theme/get_page_configs_for_theme_usecase.dart'
     as _i217;
+import 'package:domain/usecase/theme/get_theme_history_usecase.dart' as _i35;
 import 'package:domain/usecase/theme/get_widget_config.dart' as _i899;
 import 'package:domain/usecase/theme/list_color_schemes_for_theme_usecase.dart'
     as _i2;
@@ -363,6 +365,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
     gh.factory<_i554.ResolveThemeIdForBuildUsecase>(() =>
         _i554.ResolveThemeIdForBuildUsecaseImpl(
             gh<_i494.ApplicationRepository>()));
+    gh.lazySingleton<_i35.GetThemeHistoryUsecase>(() =>
+        _i35.GetThemeHistoryUsecaseImpl(
+            repository: gh<_i519.ThemeHistoryRepository>()));
     gh.lazySingleton<_i351.EnsureColorSchemePairUsecase>(() =>
         _i351.EnsureColorSchemePairUsecaseImpl(
             gh<_i323.ColorSchemeRepository>()));

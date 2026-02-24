@@ -192,6 +192,11 @@ class LaunchArtifactUploadWire {
   final List<int> bytes;
 }
 
+class ThemeHistoryConfiguratorBackendAPI {
+  static String history(String appId, String themeId) =>
+      '/applications/$appId/themes/$themeId/history';
+}
+
 class ArtifactsConfiguratorBackendAPI {
   static String list(String appId, String themeId) =>
       '/applications/$appId/themes/$themeId/artifacts';

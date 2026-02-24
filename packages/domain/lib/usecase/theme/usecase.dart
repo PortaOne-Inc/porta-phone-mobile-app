@@ -24,3 +24,4 @@ export 'usecase_theme_delete.dart';
 export 'usecase_theme_get.dart';
 export 'usecase_theme_get_all.dart';
 export 'usecase_theme_update.dart';
+export 'get_theme_history_usecase.dart';
