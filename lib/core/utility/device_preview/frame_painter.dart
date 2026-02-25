@@ -115,11 +115,11 @@ class FramePainter extends CustomPainter {
     canvas.drawPath(path_5, paint_5_fill);
 
     final path_6 = Path();
-    path_6.moveTo(108.673, 110.847);
-    path_6.cubicTo(120.677, 110.847, 130.408, 101.116, 130.408, 89.1121);
-    path_6.cubicTo(130.408, 77.1084, 120.677, 67.3774, 108.673, 67.3774);
-    path_6.cubicTo(96.6694, 67.3774, 86.9385, 77.1084, 86.9385, 89.1121);
-    path_6.cubicTo(86.9385, 101.116, 96.6694, 110.847, 108.673, 110.847);
+    path_6.moveTo(426, 110.847);
+    path_6.cubicTo(438.004, 110.847, 447.735, 101.116, 447.735, 89.1121);
+    path_6.cubicTo(447.735, 77.1084, 438.004, 67.3774, 426, 67.3774);
+    path_6.cubicTo(413.996, 67.3774, 404.266, 77.1084, 404.266, 89.1121);
+    path_6.cubicTo(404.266, 101.116, 413.996, 110.847, 426, 110.847);
     path_6.close();
 
     final paint_6_fill = Paint()..style = PaintingStyle.fill;
@@ -127,11 +127,11 @@ class FramePainter extends CustomPainter {
     canvas.drawPath(path_6, paint_6_fill);
 
     final path_7 = Path();
-    path_7.moveTo(108.673, 102.696);
-    path_7.cubicTo(116.175, 102.696, 122.257, 96.6144, 122.257, 89.112);
-    path_7.cubicTo(122.257, 81.6097, 116.175, 75.5278, 108.673, 75.5278);
-    path_7.cubicTo(101.171, 75.5278, 95.0889, 81.6097, 95.0889, 89.112);
-    path_7.cubicTo(95.0889, 96.6144, 101.171, 102.696, 108.673, 102.696);
+    path_7.moveTo(426, 102.696);
+    path_7.cubicTo(433.502, 102.696, 439.584, 96.6144, 439.584, 89.112);
+    path_7.cubicTo(439.584, 81.6097, 433.502, 75.5278, 426, 75.5278);
+    path_7.cubicTo(418.498, 75.5278, 412.416, 81.6097, 412.416, 89.112);
+    path_7.cubicTo(412.416, 96.6144, 418.498, 102.696, 426, 102.696);
     path_7.close();
 
     final paint_7_fill = Paint()..style = PaintingStyle.fill;
@@ -139,11 +139,11 @@ class FramePainter extends CustomPainter {
     canvas.drawPath(path_7, paint_7_fill);
 
     final path_8 = Path();
-    path_8.moveTo(108.673, 86.3951);
-    path_8.cubicTo(110.173, 86.3951, 111.39, 85.1787, 111.39, 83.6783);
-    path_8.cubicTo(111.39, 82.1778, 110.173, 80.9614, 108.673, 80.9614);
-    path_8.cubicTo(107.172, 80.9614, 105.956, 82.1778, 105.956, 83.6783);
-    path_8.cubicTo(105.956, 85.1787, 107.172, 86.3951, 108.673, 86.3951);
+    path_8.moveTo(426, 86.3951);
+    path_8.cubicTo(427.5, 86.3951, 428.717, 85.1787, 428.717, 83.6783);
+    path_8.cubicTo(428.717, 82.1778, 427.5, 80.9614, 426, 80.9614);
+    path_8.cubicTo(424.499, 80.9614, 423.283, 82.1778, 423.283, 83.6783);
+    path_8.cubicTo(423.283, 85.1787, 424.499, 86.3951, 426, 86.3951);
     path_8.close();
 
     final paint_8_fill = Paint()..style = PaintingStyle.fill;

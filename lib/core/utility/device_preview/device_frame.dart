@@ -38,9 +38,9 @@ class DeviceFrame extends StatelessWidget {
                 data: MediaQuery.of(context).copyWith(size: size),
                 child: Column(
                   children: [
-                    Container(
+                    _MockStatusBar(
                       height: statusBarHeight,
-                      color: Theme.of(context).primaryColor,
+                      backgroundColor: Theme.of(context).primaryColor,
                     ),
                     Expanded(child: child),
                   ],
@@ -50,6 +50,48 @@ class DeviceFrame extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _MockStatusBar extends StatelessWidget {
+  const _MockStatusBar({required this.height, required this.backgroundColor});
+
+  final double height;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground =
+        ThemeData.estimateBrightnessForColor(backgroundColor) == Brightness.dark
+        ? Colors.white70
+        : Colors.black54;
+    final iconSize = height * 0.4;
+    final fontSize = height * 0.38;
+
+    return Container(
+      height: height,
+      color: backgroundColor,
+      padding: EdgeInsets.symmetric(horizontal: height * 0.33),
+      child: Row(
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              color: foreground,
+              fontSize: fontSize,
+              fontWeight: FontWeight.w600,
+              height: 1,
+            ),
+          ),
+          const Spacer(),
+          Icon(Icons.signal_cellular_4_bar, size: iconSize, color: foreground),
+          SizedBox(width: iconSize * 0.3),
+          Icon(Icons.wifi, size: iconSize, color: foreground),
+          SizedBox(width: iconSize * 0.3),
+          Icon(Icons.battery_full, size: iconSize, color: foreground),
+        ],
+      ),
     );
   }
 }
