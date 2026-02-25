@@ -2087,6 +2087,18 @@ abstract class AppLocalizations {
   /// **'Please enter a value'**
   String get validationBlankError;
 
+  /// No description provided for @validationInvalidVersionFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be in format X.Y.Z (e.g. 1.0.0)'**
+  String get validationInvalidVersionFormat;
+
+  /// No description provided for @validationInvalidBuildNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be a positive integer'**
+  String get validationInvalidBuildNumber;
+
   /// No description provided for @recentTimeBeforeMidnight.
   ///
   /// In en, this message translates to:

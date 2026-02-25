@@ -70,9 +70,14 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     }
 
     final newBuildNumberStr = newPrefix + ''.padLeft(suffixLength, '0');
-    final newBuildNumber = int.tryParse(newBuildNumberStr);
+    var newBuildNumber = int.tryParse(newBuildNumberStr);
 
     if (newBuildNumber == null) return null;
+
+    final currentBuildNumber = buildVersion.buildNumber ?? 0;
+    if (newBuildNumber <= currentBuildNumber) {
+      newBuildNumber = currentBuildNumber + 1;
+    }
 
     return BuildVersionModel(
       buildName: newBuildName,

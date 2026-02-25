@@ -473,6 +473,12 @@
   "validationBlankError": "Please enter a value",
   "@validationBlankError": {
   },
+  "validationInvalidVersionFormat": "Must be in format X.Y.Z (e.g. 1.0.0)",
+  "@validationInvalidVersionFormat": {
+  },
+  "validationInvalidBuildNumber": "Must be a positive integer",
+  "@validationInvalidBuildNumber": {
+  },
   "recentTimeBeforeMidnight": "{time}",
   "@recentTimeBeforeMidnight": {
     "placeholders": {

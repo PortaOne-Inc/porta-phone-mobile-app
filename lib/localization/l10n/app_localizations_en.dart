@@ -1158,6 +1158,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validationBlankError => 'Please enter a value';
 
   @override
+  String get validationInvalidVersionFormat =>
+      'Must be in format X.Y.Z (e.g. 1.0.0)';
+
+  @override
+  String get validationInvalidBuildNumber => 'Must be a positive integer';
+
+  @override
   String recentTimeBeforeMidnight(DateTime time) {
     final intl.DateFormat timeDateFormat = intl.DateFormat.Hm(localeName);
     final String timeString = timeDateFormat.format(time);

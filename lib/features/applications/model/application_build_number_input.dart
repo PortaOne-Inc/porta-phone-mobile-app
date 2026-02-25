@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 
 import 'package:webtrit_configurator/localization/localization.dart';
 
-enum ApplicationBuildNumberValidationError { blank }
+enum ApplicationBuildNumberValidationError { blank, invalidFormat }
 
 class ApplicationBuildNumberInput
     extends FormzInput<String, ApplicationBuildNumberValidationError> {
@@ -21,9 +21,12 @@ class ApplicationBuildNumberInput
   ApplicationBuildNumberValidationError? validator(String value) {
     if (value.isEmpty) {
       return ApplicationBuildNumberValidationError.blank;
-    } else {
-      return null;
     }
+    final number = int.tryParse(value);
+    if (number == null || number <= 0) {
+      return ApplicationBuildNumberValidationError.invalidFormat;
+    }
+    return null;
   }
 }
 
@@ -36,6 +39,8 @@ extension ExtensionValidationBuildNumberErrorL10n
       switch (error!) {
         case ApplicationBuildNumberValidationError.blank:
           return context.l10n.validationBlankError;
+        case ApplicationBuildNumberValidationError.invalidFormat:
+          return context.l10n.validationInvalidBuildNumber;
       }
     }
   }
