@@ -462,6 +462,23 @@ export class ThemesService {
       if (src.backgroundAssetId) allAssetIds.add(src.backgroundAssetId);
     }
 
+    // 4b. Collect output artifact IDs from splash and launch
+    const allArtifactIds = new Set<string>();
+
+    if (splashSnap.exists) {
+      const outs = (splashSnap.data() as any)?.outputsArtifacts ?? {};
+      if (outs.splashArtifactId) allArtifactIds.add(outs.splashArtifactId);
+      if (outs.android12SplashArtifactId) allArtifactIds.add(outs.android12SplashArtifactId);
+    }
+    if (launchSnap.exists) {
+      const outs = (launchSnap.data() as any)?.outputsArtifacts ?? {};
+      if (outs.androidLegacyArtifactId) allArtifactIds.add(outs.androidLegacyArtifactId);
+      if (outs.androidAdaptiveForegroundArtifactId) allArtifactIds.add(outs.androidAdaptiveForegroundArtifactId);
+      if (outs.androidAdaptiveBackgroundArtifactId) allArtifactIds.add(outs.androidAdaptiveBackgroundArtifactId);
+      if (outs.iosArtifactId) allArtifactIds.add(outs.iosArtifactId);
+      if (outs.webArtifactId) allArtifactIds.add(outs.webArtifactId);
+    }
+
     // 5. Deep copy each asset: GCS copy + new Firestore doc
     const idMap = new Map<string, string>();
     const createdAssetIds: string[] = [];
@@ -503,6 +520,45 @@ export class ThemesService {
       createdAssetIds.push(newAssetId);
 
       idMap.set(oldAssetId, newAssetId);
+    }
+
+    // 5b. Deep copy each output artifact: GCS copy + new Firestore doc
+    const artifactIdMap = new Map<string, string>();
+    const createdArtifactIds: string[] = [];
+    const createdArtifactPaths: string[] = [];
+
+    for (const oldArtifactId of allArtifactIds) {
+      const srcSnap = await db.collection(Collections.applicationAssetsRenditions).doc(oldArtifactId).get();
+      if (!srcSnap.exists) continue;
+
+      const srcArtifact = srcSnap.data() as any;
+      const newArtifactId = uuidv4();
+      const ext = this.extractExtension(srcArtifact.storagePath);
+      const newStoragePath = this.cloud.buildPath({
+        uid,
+        applicationId: targetApplicationId,
+        namespace: UploadNamespaces.applicationAssetsRenditions,
+        id: newArtifactId,
+        ext,
+      });
+
+      await this.cloud.copyFile(srcArtifact.storagePath, newStoragePath);
+      createdArtifactPaths.push(newStoragePath);
+
+      const newArtifact = {
+        ...srcArtifact,
+        id: newArtifactId,
+        ownerId: uid,
+        applicationId: targetApplicationId,
+        themeId: newThemeId,
+        storagePath: newStoragePath,
+        createdAt: now,
+        updatedAt: now,
+      };
+      await db.collection(Collections.applicationAssetsRenditions).doc(newArtifactId).set(newArtifact);
+      createdArtifactIds.push(newArtifactId);
+
+      artifactIdMap.set(oldArtifactId, newArtifactId);
     }
 
     // 6. Build Firestore batch for all theme config docs
@@ -573,7 +629,7 @@ export class ThemesService {
         });
       }
 
-      // Splash — remap source asset IDs, reset outputsArtifacts
+      // Splash — remap source asset IDs and outputsArtifacts
       if (splashSnap.exists) {
         const data = splashSnap.data() as any;
         const src = { ...(data?.source ?? {}) };
@@ -583,19 +639,26 @@ export class ThemesService {
         if (src.backgroundAssetId && idMap.has(src.backgroundAssetId)) {
           src.backgroundAssetId = idMap.get(src.backgroundAssetId);
         }
+        const splashOuts = { ...(data?.outputsArtifacts ?? {}) };
+        if (splashOuts.splashArtifactId && artifactIdMap.has(splashOuts.splashArtifactId)) {
+          splashOuts.splashArtifactId = artifactIdMap.get(splashOuts.splashArtifactId);
+        }
+        if (splashOuts.android12SplashArtifactId && artifactIdMap.has(splashOuts.android12SplashArtifactId)) {
+          splashOuts.android12SplashArtifactId = artifactIdMap.get(splashOuts.android12SplashArtifactId);
+        }
         batch.set(db.collection(Collections.themeAssetsSplash).doc(newThemeId), {
           ...data,
           source: src,
           id: newThemeId,
           themeId: newThemeId,
           applicationId: targetApplicationId,
-          outputsArtifacts: {},
+          outputsArtifacts: splashOuts,
           createdAt: now,
           updatedAt: now,
         });
       }
 
-      // Launch — remap source asset IDs, reset outputsArtifacts
+      // Launch — remap source asset IDs and outputsArtifacts
       if (launchSnap.exists) {
         const data = launchSnap.data() as any;
         const src = { ...(data?.source ?? {}) };
@@ -605,13 +668,29 @@ export class ThemesService {
         if (src.backgroundAssetId && idMap.has(src.backgroundAssetId)) {
           src.backgroundAssetId = idMap.get(src.backgroundAssetId);
         }
+        const launchOuts = { ...(data?.outputsArtifacts ?? {}) };
+        if (launchOuts.androidLegacyArtifactId && artifactIdMap.has(launchOuts.androidLegacyArtifactId)) {
+          launchOuts.androidLegacyArtifactId = artifactIdMap.get(launchOuts.androidLegacyArtifactId);
+        }
+        if (launchOuts.androidAdaptiveForegroundArtifactId && artifactIdMap.has(launchOuts.androidAdaptiveForegroundArtifactId)) {
+          launchOuts.androidAdaptiveForegroundArtifactId = artifactIdMap.get(launchOuts.androidAdaptiveForegroundArtifactId);
+        }
+        if (launchOuts.androidAdaptiveBackgroundArtifactId && artifactIdMap.has(launchOuts.androidAdaptiveBackgroundArtifactId)) {
+          launchOuts.androidAdaptiveBackgroundArtifactId = artifactIdMap.get(launchOuts.androidAdaptiveBackgroundArtifactId);
+        }
+        if (launchOuts.iosArtifactId && artifactIdMap.has(launchOuts.iosArtifactId)) {
+          launchOuts.iosArtifactId = artifactIdMap.get(launchOuts.iosArtifactId);
+        }
+        if (launchOuts.webArtifactId && artifactIdMap.has(launchOuts.webArtifactId)) {
+          launchOuts.webArtifactId = artifactIdMap.get(launchOuts.webArtifactId);
+        }
         batch.set(db.collection(Collections.themeAssetsLauncher).doc(newThemeId), {
           ...data,
           source: src,
           id: newThemeId,
           themeId: newThemeId,
           applicationId: targetApplicationId,
-          outputsArtifacts: {},
+          outputsArtifacts: launchOuts,
           createdAt: now,
           updatedAt: now,
         });
@@ -636,18 +715,23 @@ export class ThemesService {
 
       return this.aggregateTheme(target, uid);
     } catch (err) {
-      // Rollback: best-effort cleanup of created assets
+      // Rollback: best-effort cleanup of created assets and artifacts
       this.logger.warn({
-        msg: 'copyThemeToApplication: batch failed, rolling back assets',
+        msg: 'copyThemeToApplication: batch failed, rolling back assets and artifacts',
         error: err instanceof Error ? err.message : err,
         assetCount: createdAssetIds.length,
+        artifactCount: createdArtifactIds.length,
       });
 
       await Promise.allSettled([
         ...createdAssetIds.map((id) =>
           db.collection(Collections.applicationAssets).doc(id).delete(),
         ),
+        ...createdArtifactIds.map((id) =>
+          db.collection(Collections.applicationAssetsRenditions).doc(id).delete(),
+        ),
         ...createdStoragePaths.map((p) => this.cloud.delete(p)),
+        ...createdArtifactPaths.map((p) => this.cloud.delete(p)),
       ]);
 
       throw err;
