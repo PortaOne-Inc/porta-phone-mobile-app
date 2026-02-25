@@ -11,7 +11,9 @@ class InitializeEvent with _$InitializeEvent implements ConfiguratorEvent {
 
 @freezed
 sealed class SyncConfigEvent with _$SyncConfigEvent implements ConfiguratorEvent {
-  const factory SyncConfigEvent({Set<String>? retryOnly}) = _SyncConfigEvent;
+  const factory SyncConfigEvent({
+    Set<String>? retryOnly,
+  }) = _SyncConfigEvent;
 }
 
 @Freezed(copyWith: false)

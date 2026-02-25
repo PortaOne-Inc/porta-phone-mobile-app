@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resizable_columns/resizable_columns.dart';
 
+import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/app/route/app_route_consts.dart';
 
 import 'package:webtrit_configurator/features/common/bloc/common_bloc.dart';
@@ -192,15 +193,30 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           ),
         );
       case SyncStatus.idle:
-        return Tooltip(
-          message: 'Save all changes',
-          child: TextButton.icon(
-            icon: const Icon(Icons.save),
-            label: const Text('Save'),
-            onPressed: state.isProgress
-                ? null
-                : () => _cubit.add(const SyncConfigEvent()),
-          ),
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Tooltip(
+              message: 'Create a history snapshot',
+              child: TextButton.icon(
+                icon: const Icon(Icons.camera_alt_outlined),
+                label: const Text('Snapshot'),
+                onPressed: state.isProgress
+                    ? null
+                    : () => _showCreateSnapshotDialog(context),
+              ),
+            ),
+            Tooltip(
+              message: 'Save all changes',
+              child: TextButton.icon(
+                icon: const Icon(Icons.save),
+                label: const Text('Save'),
+                onPressed: state.isProgress
+                    ? null
+                    : () => _cubit.add(const SyncConfigEvent()),
+              ),
+            ),
+          ],
         );
     }
   }
@@ -227,6 +243,42 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             child: const Text('Reload'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showCreateSnapshotDialog(BuildContext context) {
+    final tagController = TextEditingController();
+    final descController = TextEditingController();
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => _CreateSnapshotDialog(
+        getIt: widget.getIt,
+        tagController: tagController,
+        descController: descController,
+        onSubmit: (tag, description) async {
+          try {
+            final usecase = widget.getIt.get<GetThemeHistoryUsecase>();
+            await usecase.createSnapshot(
+              applicationId: _cubit.applicationId,
+              themeId: _cubit.themeId,
+              tag: tag,
+              description: description,
+            );
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Snapshot created')),
+              );
+            }
+          } catch (e) {
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Failed to create snapshot: $e')),
+              );
+            }
+          }
+        },
       ),
     );
   }
@@ -363,5 +415,128 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   void _logout(BuildContext context) {
     BlocProvider.of<CommonBloc>(context).logout();
     Navigator.pop(context);
+  }
+}
+
+class _CreateSnapshotDialog extends StatefulWidget {
+  const _CreateSnapshotDialog({
+    required this.getIt,
+    required this.tagController,
+    required this.descController,
+    required this.onSubmit,
+  });
+
+  final GetIt getIt;
+  final TextEditingController tagController;
+  final TextEditingController descController;
+  final void Function(String? tag, String? description) onSubmit;
+
+  @override
+  State<_CreateSnapshotDialog> createState() => _CreateSnapshotDialogState();
+}
+
+class _CreateSnapshotDialogState extends State<_CreateSnapshotDialog> {
+  List<PhoneBranch>? _branches;
+  bool _loadingBranches = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchBranches();
+  }
+
+  Future<void> _fetchBranches() async {
+    try {
+      final usecase = widget.getIt.get<GetPhoneBranchesUsecase>();
+      final branches = await usecase.execute();
+      if (mounted) {
+        setState(() {
+          _branches = branches;
+          _loadingBranches = false;
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => _loadingBranches = false);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Create Snapshot'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text('Create a history snapshot of the current theme state.'),
+          const SizedBox(height: 12),
+          if (_loadingBranches)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: LinearProgressIndicator(),
+            )
+          else if (_branches != null && _branches!.isNotEmpty)
+            Autocomplete<String>(
+              optionsBuilder: (textEditingValue) {
+                final query = textEditingValue.text.toLowerCase();
+                final names = _branches!.map((b) => b.name).toList();
+                if (query.isEmpty) return names;
+                return names.where((n) => n.toLowerCase().contains(query));
+              },
+              onSelected: (value) => widget.tagController.text = value,
+              fieldViewBuilder: (context, controller, focusNode, onSubmitted) {
+                // Sync with external controller
+                controller.addListener(() {
+                  widget.tagController.text = controller.text;
+                });
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  decoration: const InputDecoration(
+                    labelText: 'Tag (branch)',
+                    hintText: 'Select or type a branch name',
+                  ),
+                );
+              },
+            )
+          else
+            TextField(
+              controller: widget.tagController,
+              decoration: const InputDecoration(
+                labelText: 'Tag',
+                hintText: 'e.g. release-1.0',
+              ),
+            ),
+          const SizedBox(height: 12),
+          TextField(
+            controller: widget.descController,
+            decoration: const InputDecoration(
+              labelText: 'Description',
+              hintText: 'Optional description',
+            ),
+            maxLines: 3,
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            final tag = widget.tagController.text.trim();
+            final desc = widget.descController.text.trim();
+            widget.onSubmit(
+              tag.isEmpty ? null : tag,
+              desc.isEmpty ? null : desc,
+            );
+          },
+          child: const Text('Create'),
+        ),
+      ],
+    );
   }
 }

@@ -74,4 +74,41 @@ class ThemeHistoryCubit extends Cubit<ThemeHistoryState> {
       );
     }
   }
+
+  Future<void> createSnapshot({
+    String? tag,
+    String? description,
+  }) async {
+    try {
+      final entry = await getThemeHistoryUsecase.createSnapshot(
+        applicationId: applicationId,
+        themeId: themeId,
+        tag: tag,
+        description: description,
+      );
+      emit(state.copyWith(items: [entry, ...state.items]));
+    } catch (e) {
+      emit(state.copyWith(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> updateEntry(
+    String historyId, {
+    String? tag,
+    String? description,
+  }) async {
+    try {
+      final updated = await getThemeHistoryUsecase.updateEntry(
+        applicationId: applicationId,
+        themeId: themeId,
+        historyId: historyId,
+        tag: tag,
+        description: description,
+      );
+      final items = state.items.map((e) => e.id == historyId ? updated : e).toList();
+      emit(state.copyWith(items: items));
+    } catch (e) {
+      emit(state.copyWith(errorMessage: e.toString()));
+    }
+  }
 }

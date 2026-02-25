@@ -15,6 +15,9 @@ sealed class ThemeHistoryEntryModel with _$ThemeHistoryEntryModel {
     required String createdAt,
     String? changedBy,
     Map<String, dynamic>? snapshot,
+    @Default(0) int schemaVersion,
+    @Default('') String tag,
+    @Default('') String description,
   }) = _ThemeHistoryEntryModel;
 
   factory ThemeHistoryEntryModel.fromJson(Map<String, dynamic> json) =>

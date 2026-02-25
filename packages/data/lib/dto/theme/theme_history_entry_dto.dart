@@ -15,6 +15,9 @@ sealed class ThemeHistoryEntryDto with _$ThemeHistoryEntryDto {
     required String createdAt,
     String? changedBy,
     Map<String, dynamic>? snapshot,
+    @Default(0) int schemaVersion,
+    @Default('') String tag,
+    @Default('') String description,
   }) = _ThemeHistoryEntryDto;
 
   factory ThemeHistoryEntryDto.fromJson(Map<String, dynamic> json) =>

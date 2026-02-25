@@ -38,4 +38,54 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<ThemeHistoryEntryModel> createSnapshot({
+    required String applicationId,
+    required String themeId,
+    String? tag,
+    String? description,
+  }) async {
+    try {
+      final dto = await _api.createThemeHistorySnapshot(
+        applicationId: applicationId,
+        themeId: themeId,
+        tag: tag,
+        description: description,
+      );
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<ThemeHistoryEntryModel> updateEntry({
+    required String applicationId,
+    required String themeId,
+    required String historyId,
+    String? tag,
+    String? description,
+  }) async {
+    try {
+      final dto = await _api.patchThemeHistoryEntry(
+        applicationId: applicationId,
+        themeId: themeId,
+        historyId: historyId,
+        tag: tag,
+        description: description,
+      );
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw BaseException(
+        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
+      );
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

@@ -9,10 +9,70 @@ import '../bloc/theme_history_cubit.dart';
 class ThemeHistoryPage extends StatelessWidget {
   const ThemeHistoryPage({super.key});
 
+  void _showCreateSnapshotDialog(BuildContext context) {
+    final tagController = TextEditingController();
+    final descController = TextEditingController();
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Create Snapshot'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: tagController,
+              decoration: const InputDecoration(
+                labelText: 'Tag',
+                hintText: 'e.g. release-1.0',
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: descController,
+              decoration: const InputDecoration(
+                labelText: 'Description',
+                hintText: 'Optional description',
+              ),
+              maxLines: 3,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              final tag = tagController.text.trim();
+              final desc = descController.text.trim();
+              context.read<ThemeHistoryCubit>().createSnapshot(
+                    tag: tag.isEmpty ? null : tag,
+                    description: desc.isEmpty ? null : desc,
+                  );
+            },
+            child: const Text('Create'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Theme History')),
+      appBar: AppBar(
+        title: const Text('Theme History'),
+        actions: [
+          TextButton.icon(
+            icon: const Icon(Icons.camera_alt_outlined),
+            label: const Text('Create Snapshot'),
+            onPressed: () => _showCreateSnapshotDialog(context),
+          ),
+        ],
+      ),
       body: BlocBuilder<ThemeHistoryCubit, ThemeHistoryState>(
         builder: (context, state) {
           return switch (state.status) {
@@ -146,13 +206,91 @@ class _HistoryEntryTile extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(entry.action),
-        subtitle: Text(
-          [
-            if (entry.changedBy != null) 'by ${entry.changedBy}',
-            _formatDate(entry.createdAt),
-          ].join(' · '),
+        title: Row(
+          children: [
+            Text(entry.action),
+            if (entry.tag.isNotEmpty) ...[
+              const SizedBox(width: 8),
+              Chip(
+                label: Text(entry.tag),
+                labelStyle: textTheme.labelSmall,
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+              ),
+            ],
+          ],
         ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (entry.description.isNotEmpty)
+              Text(entry.description),
+            Text(
+              [
+                if (entry.changedBy != null) 'by ${entry.changedBy}',
+                _formatDate(entry.createdAt),
+              ].join(' · '),
+              style: textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
+        trailing: IconButton(
+          icon: const Icon(Icons.edit_outlined, size: 20),
+          tooltip: 'Edit tag & description',
+          onPressed: () => _showEditDialog(context),
+        ),
+      ),
+    );
+  }
+
+  void _showEditDialog(BuildContext context) {
+    final tagController = TextEditingController(text: entry.tag);
+    final descController = TextEditingController(text: entry.description);
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Edit history v${entry.snapshotVersion}'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: tagController,
+              decoration: const InputDecoration(
+                labelText: 'Tag',
+                hintText: 'e.g. release-1.0',
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: descController,
+              decoration: const InputDecoration(
+                labelText: 'Description',
+                hintText: 'Optional description',
+              ),
+              maxLines: 3,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              context.read<ThemeHistoryCubit>().updateEntry(
+                    entry.id,
+                    tag: tagController.text,
+                    description: descController.text,
+                  );
+            },
+            child: const Text('Save'),
+          ),
+        ],
       ),
     );
   }

@@ -19,6 +19,9 @@ class ThemeHistoryMapper
       changedBy: it.changedBy,
       createdAt: it.createdAt,
       snapshot: it.snapshot,
+      schemaVersion: it.schemaVersion,
+      tag: it.tag,
+      description: it.description,
     );
   }
 
@@ -33,6 +36,9 @@ class ThemeHistoryMapper
       changedBy: it.changedBy,
       createdAt: it.createdAt,
       snapshot: it.snapshot,
+      schemaVersion: it.schemaVersion,
+      tag: it.tag,
+      description: it.description,
     );
   }
 }

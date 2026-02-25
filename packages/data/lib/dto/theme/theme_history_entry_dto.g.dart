@@ -17,6 +17,9 @@ _ThemeHistoryEntryDto _$ThemeHistoryEntryDtoFromJson(
   createdAt: json['createdAt'] as String,
   changedBy: json['changedBy'] as String?,
   snapshot: json['snapshot'] as Map<String, dynamic>?,
+  schemaVersion: (json['schemaVersion'] as num?)?.toInt() ?? 0,
+  tag: json['tag'] as String? ?? '',
+  description: json['description'] as String? ?? '',
 );
 
 Map<String, dynamic> _$ThemeHistoryEntryDtoToJson(
@@ -30,4 +33,7 @@ Map<String, dynamic> _$ThemeHistoryEntryDtoToJson(
   'createdAt': instance.createdAt,
   'changedBy': instance.changedBy,
   'snapshot': instance.snapshot,
+  'schemaVersion': instance.schemaVersion,
+  'tag': instance.tag,
+  'description': instance.description,
 };

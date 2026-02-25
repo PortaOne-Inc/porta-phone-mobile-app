@@ -195,6 +195,9 @@ class LaunchArtifactUploadWire {
 class ThemeHistoryConfiguratorBackendAPI {
   static String history(String appId, String themeId) =>
       '/applications/$appId/themes/$themeId/history';
+
+  static String historyEntry(String appId, String themeId, String historyId) =>
+      '/applications/$appId/themes/$themeId/history/$historyId';
 }
 
 class ArtifactsConfiguratorBackendAPI {

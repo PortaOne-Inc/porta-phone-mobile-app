@@ -1119,6 +1119,43 @@ class ConfiguratorBackandDatasource {
     return ThemeHistoryPageDto.fromJson(resp.data!);
   }
 
+  Future<ThemeHistoryEntryDto> createThemeHistorySnapshot({
+    required String applicationId,
+    required String themeId,
+    String? tag,
+    String? description,
+  }) async {
+    final resp = await _client.post<Map<String, dynamic>>(
+      ThemeHistoryConfiguratorBackendAPI.history(applicationId, themeId),
+      data: <String, dynamic>{
+        if (tag != null) 'tag': tag,
+        if (description != null) 'description': description,
+      },
+    );
+    return ThemeHistoryEntryDto.fromJson(resp.data!);
+  }
+
+  Future<ThemeHistoryEntryDto> patchThemeHistoryEntry({
+    required String applicationId,
+    required String themeId,
+    required String historyId,
+    String? tag,
+    String? description,
+  }) async {
+    final resp = await _client.patch<Map<String, dynamic>>(
+      ThemeHistoryConfiguratorBackendAPI.historyEntry(
+        applicationId,
+        themeId,
+        historyId,
+      ),
+      data: <String, dynamic>{
+        if (tag != null) 'tag': tag,
+        if (description != null) 'description': description,
+      },
+    );
+    return ThemeHistoryEntryDto.fromJson(resp.data!);
+  }
+
   // --- Artifacts (AssetsRendition) ---
 
   /// List artifacts for a theme (optionally by kind, includeUrl, urlTtlSec)
