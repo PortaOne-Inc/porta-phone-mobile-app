@@ -78,13 +78,14 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 class DataPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) async {
     final registerModule = _$RegisterModule();
     final storageModule = _$StorageModule();
     gh.factory<_i244.UnauthorizedInterceptor>(
-        () => _i244.UnauthorizedInterceptor());
+      () => _i244.UnauthorizedInterceptor(),
+    );
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs(),
       preResolve: true,
@@ -94,188 +95,264 @@ class DataPackageModule extends _i526.MicroPackageModule {
       preResolve: true,
     );
     gh.factory<_i848.PlatformConstraintsMapper>(
-        () => _i848.PlatformConstraintsMapper());
+      () => _i848.PlatformConstraintsMapper(),
+    );
     gh.factory<_i788.LaunchFitMapper>(() => _i788.LaunchFitMapper());
     gh.factory<_i552.SourceConfigMapper>(() => _i552.SourceConfigMapper());
     gh.factory<_i552.OutputArtifactsMapper>(
-        () => _i552.OutputArtifactsMapper());
+      () => _i552.OutputArtifactsMapper(),
+    );
     gh.factory<_i552.ValidationSliceMapper>(
-        () => _i552.ValidationSliceMapper());
+      () => _i552.ValidationSliceMapper(),
+    );
     gh.lazySingleton<_i457.FirebaseStorage>(() => registerModule.storage());
     gh.factory<_i602.CommonMapper<_i494.ThemeModel, _i592.ThemeDTO>>(
-        () => _i177.ThemeDtoMapper());
+      () => _i177.ThemeDtoMapper(),
+    );
     gh.factory<
-            _i602.CommonMapper<_i494.ApplicationModel, _i499.ApplicationDTO>>(
-        () => _i518.ApplicationMapper());
+      _i602.CommonMapper<_i494.ApplicationModel, _i499.ApplicationDTO>
+    >(() => _i518.ApplicationMapper());
     gh.factory<
-        _i602.CommonMapper<
-            _i96.PublicationResourceModel,
-            _i948
-            .PublicationResourceDto>>(() => _i553.PublicationResourceMapper());
+      _i602.CommonMapper<
+        _i96.PublicationResourceModel,
+        _i948.PublicationResourceDto
+      >
+    >(() => _i553.PublicationResourceMapper());
     gh.singleton<
-            _i602.CommonMapper<_i494.PageConfigModel, _i862.PageConfigDto>>(
-        () => _i229.PageConfigMapper());
+      _i602.CommonMapper<_i494.PageConfigModel, _i862.PageConfigDto>
+    >(() => _i229.PageConfigMapper());
     gh.factory<
-            _i1058.CommonMapper<_i494.SplashConstraintsValidation,
-                _i862.SplashConstraintsValidationDto>>(
-        () => _i832.SplashConstraintsValidationMapper());
+      _i1058.CommonMapper<
+        _i494.SplashConstraintsValidation,
+        _i862.SplashConstraintsValidationDto
+      >
+    >(() => _i832.SplashConstraintsValidationMapper());
     gh.factory<_i602.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(
-        () => _i377.AppVersionMapper());
+      () => _i377.AppVersionMapper(),
+    );
     gh.factory<_i1058.CommonMapper<_i494.AssetLink, _i862.AssetLinkDto>>(
-        () => _i675.AssetLinkMapper());
+      () => _i675.AssetLinkMapper(),
+    );
     gh.factory<
-            _i602.CommonMapper<_i494.Translation, _i862.TranslationHttpModel>>(
-        () => _i51.TranslationHttpMapper());
+      _i602.CommonMapper<_i494.Translation, _i862.TranslationHttpModel>
+    >(() => _i51.TranslationHttpMapper());
     gh.factory<_i602.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(
-        () => _i729.PhoneBranchMapper());
+      () => _i729.PhoneBranchMapper(),
+    );
     gh.factory<
-            _i602.CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>>(
-        () => _i40.CallkeepBranchMapper());
+      _i602.CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>
+    >(() => _i40.CallkeepBranchMapper());
     gh.factory<
-            _i602.CommonMapper<_i494.ColorSchemeModel, _i862.ColorSchemeDto>>(
-        () => _i684.ColorSchemeMapper());
+      _i602.CommonMapper<_i494.ColorSchemeModel, _i862.ColorSchemeDto>
+    >(() => _i684.ColorSchemeMapper());
     gh.factory<_i191.LocalStorage>(
       () => _i99.FileStorage(gh<String>()),
       instanceName: 'FileStorage',
     );
     gh.factory<
-        _i602.CommonMapper<_i494.ThemeHistoryEntryModel,
-            _i420.ThemeHistoryEntryDto>>(() => _i1048.ThemeHistoryMapper());
+      _i602.CommonMapper<
+        _i494.ThemeHistoryEntryModel,
+        _i420.ThemeHistoryEntryDto
+      >
+    >(() => _i1048.ThemeHistoryMapper());
     gh.factory<_i848.ConstraintsMapper>(
-        () => _i848.ConstraintsMapper(gh<_i848.PlatformConstraintsMapper>()));
+      () => _i848.ConstraintsMapper(gh<_i848.PlatformConstraintsMapper>()),
+    );
     gh.lazySingleton<
-        _i602.CommonMapper<_i494.FeatureAccessModel,
-            _i803.FeatureAccessDto>>(() => _i135.FeatureAccessMapper());
+      _i602.CommonMapper<_i494.FeatureAccessModel, _i803.FeatureAccessDto>
+    >(() => _i135.FeatureAccessMapper());
     gh.lazySingleton<
-            _i602.CommonMapper<_i494.WidgetsConfig, _i862.WidgetsConfigDto>>(
-        () => _i467.WidgetConfigMapper());
-    gh.factory<_i1058.CommonMapper<_i494.AssetModel, _i862.AssetDTO>>(() =>
-        _i1056.AssetMapper(
-            gh<_i1058.CommonMapper<_i494.AssetLink, _i862.AssetLinkDto>>()));
+      _i602.CommonMapper<_i494.WidgetsConfig, _i862.WidgetsConfigDto>
+    >(() => _i467.WidgetConfigMapper());
+    gh.factory<_i1058.CommonMapper<_i494.AssetModel, _i862.AssetDTO>>(
+      () => _i1056.AssetMapper(
+        gh<_i1058.CommonMapper<_i494.AssetLink, _i862.AssetLinkDto>>(),
+      ),
+    );
     gh.factory<_i191.LocalStorage>(
       () => _i578.SharedPreferencesStorage(gh<_i460.SharedPreferences>()),
       instanceName: 'SharedPrefsStorage',
     );
     gh.factory<_i552.ValidationReportMapper>(
-        () => _i552.ValidationReportMapper(gh<_i552.ValidationSliceMapper>()));
+      () => _i552.ValidationReportMapper(gh<_i552.ValidationSliceMapper>()),
+    );
     gh.factory<_i552.FitPaddingMapper>(
-        () => _i552.FitPaddingMapper(gh<_i1058.LaunchFitMapper>()));
+      () => _i552.FitPaddingMapper(gh<_i1058.LaunchFitMapper>()),
+    );
     gh.factory<
-        _i1058.CommonMapper<_i494.EmbeddedResourceModel,
-            _i862.EmbeddedResourceDto>>(() => _i285.EmbeddedResourceMapper());
+      _i1058.CommonMapper<
+        _i494.EmbeddedResourceModel,
+        _i862.EmbeddedResourceDto
+      >
+    >(() => _i285.EmbeddedResourceMapper());
     gh.factory<
-            _i1058.CommonMapper<_i494.SplashConstraintsDefaultsSliceModel,
-                _i862.SplashConstraintsDefaultsSliceDto>>(
-        () => _i192.SplashConstraintsDefaultsSliceMapper());
+      _i1058.CommonMapper<
+        _i494.SplashConstraintsDefaultsSliceModel,
+        _i862.SplashConstraintsDefaultsSliceDto
+      >
+    >(() => _i192.SplashConstraintsDefaultsSliceMapper());
     gh.factory<_i1058.CommonMapper<_i494.FitModel, _i862.FitDto>>(
-        () => _i832.SplashFitEnumMapper());
+      () => _i832.SplashFitEnumMapper(),
+    );
     gh.factory<
-        _i1058.CommonMapper<_i494.SplashConstraintsDefaultsModel,
-            _i862.SplashConstraintsDefaultsDto>>(() =>
-        _i192.SplashConstraintsDefaultsMapper(gh<
-            _i1058.CommonMapper<_i494.SplashConstraintsDefaultsSliceModel,
-                _i862.SplashConstraintsDefaultsSliceDto>>()));
+      _i1058.CommonMapper<
+        _i494.SplashConstraintsDefaultsModel,
+        _i862.SplashConstraintsDefaultsDto
+      >
+    >(
+      () => _i192.SplashConstraintsDefaultsMapper(
+        gh<
+          _i1058.CommonMapper<
+            _i494.SplashConstraintsDefaultsSliceModel,
+            _i862.SplashConstraintsDefaultsSliceDto
+          >
+        >(),
+      ),
+    );
     gh.lazySingleton<_i808.AuthPrefDatasource>(
-        () => _i808.AuthPrefDatasource(gh<_i99.LocalStorage>()));
+      () => _i808.AuthPrefDatasource(gh<_i99.LocalStorage>()),
+    );
     gh.lazySingleton<_i759.UserPrefDatasource>(
-        () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()));
-    gh.lazySingleton<_i822.Dio>(() => registerModule.serverApiClient(
-          gh<String>(instanceName: 'baseUrl'),
-          gh<_i822.AuthPrefDatasource>(),
-        ));
+      () => _i759.UserPrefDatasource(gh<_i99.LocalStorage>()),
+    );
+    gh.lazySingleton<_i822.Dio>(
+      () => registerModule.serverApiClient(
+        gh<String>(instanceName: 'baseUrl'),
+        gh<_i822.AuthPrefDatasource>(),
+      ),
+    );
     gh.factory<_i174.ResourcesRepository>(
-        () => _i136.ResourcesRepositoryImpl(gh<_i457.FirebaseStorage>()));
+      () => _i136.ResourcesRepositoryImpl(gh<_i457.FirebaseStorage>()),
+    );
     gh.factory<
-        _i1058.CommonMapper<_i494.SplashIconConstraints,
-            _i862.SplashIconConstraintsDto>>(() =>
-        _i832.SplashIconConstraintsMapper(gh<
-            _i1058.CommonMapper<_i494.SplashConstraintsValidation,
-                _i862.SplashConstraintsValidationDto>>()));
+      _i1058.CommonMapper<
+        _i494.SplashIconConstraints,
+        _i862.SplashIconConstraintsDto
+      >
+    >(
+      () => _i832.SplashIconConstraintsMapper(
+        gh<
+          _i1058.CommonMapper<
+            _i494.SplashConstraintsValidation,
+            _i862.SplashConstraintsValidationDto
+          >
+        >(),
+      ),
+    );
     gh.factory<
-            _i1058
-            .CommonMapper<_i494.SplashAssetParams, _i862.SplashAssetParamsDto>>(
-        () => _i832.SplashAssetParamsMapper(
-            gh<_i1058.CommonMapper<_i494.FitModel, _i862.FitDto>>()));
+      _i1058.CommonMapper<_i494.SplashAssetParams, _i862.SplashAssetParamsDto>
+    >(
+      () => _i832.SplashAssetParamsMapper(
+        gh<_i1058.CommonMapper<_i494.FitModel, _i862.FitDto>>(),
+      ),
+    );
     gh.factory<_i552.PlatformParamsMapper>(
-        () => _i552.PlatformParamsMapper(gh<_i552.FitPaddingMapper>()));
+      () => _i552.PlatformParamsMapper(gh<_i552.FitPaddingMapper>()),
+    );
     gh.lazySingleton<_i342.ConfiguratorBackandDatasource>(
-        () => _i342.ConfiguratorBackandDatasource(
-              gh<_i342.Dio>(),
-              gh<_i898.UnauthorizedInterceptor>(),
-            ));
-    gh.factory<_i494.PageConfigRepository>(() =>
-        _i1054.PageConfigRepositoryImpl(
-          api: gh<_i342.ConfiguratorBackandDatasource>(),
-          mapper: gh<
-              _i602.CommonMapper<_i494.PageConfigModel, _i610.PageConfigDto>>(),
-        ));
-    gh.factory<_i494.TranslationsRepository>(() =>
-        _i591.TranslationsRepositoryImpl(
-          gh<_i822.ConfiguratorBackandDatasource>(),
-          gh<
-              _i1058
-              .CommonMapper<_i494.Translation, _i862.TranslationHttpModel>>(),
-        ));
-    gh.factory<_i552.LaunchAssetsMapper>(() => _i552.LaunchAssetsMapper(
-          gh<_i552.SourceConfigMapper>(),
-          gh<_i552.PlatformParamsMapper>(),
-          gh<_i552.OutputArtifactsMapper>(),
-        ));
+      () => _i342.ConfiguratorBackandDatasource(
+        gh<_i342.Dio>(),
+        gh<_i898.UnauthorizedInterceptor>(),
+      ),
+    );
+    gh.factory<_i494.PageConfigRepository>(
+      () => _i1054.PageConfigRepositoryImpl(
+        api: gh<_i342.ConfiguratorBackandDatasource>(),
+        mapper:
+            gh<
+              _i602.CommonMapper<_i494.PageConfigModel, _i610.PageConfigDto>
+            >(),
+      ),
+    );
+    gh.factory<_i494.TranslationsRepository>(
+      () => _i591.TranslationsRepositoryImpl(
+        gh<_i822.ConfiguratorBackandDatasource>(),
+        gh<
+          _i1058.CommonMapper<_i494.Translation, _i862.TranslationHttpModel>
+        >(),
+      ),
+    );
+    gh.factory<_i552.LaunchAssetsMapper>(
+      () => _i552.LaunchAssetsMapper(
+        gh<_i552.SourceConfigMapper>(),
+        gh<_i552.PlatformParamsMapper>(),
+        gh<_i552.OutputArtifactsMapper>(),
+      ),
+    );
     gh.factory<_i494.FeatureAccessRepository>(
-        () => _i144.FeatureAccessRepositoryImpl(
-              api: gh<_i342.ConfiguratorBackandDatasource>(),
-              mapper: gh<
-                  _i602.CommonMapper<_i494.FeatureAccessModel,
-                      _i803.FeatureAccessDto>>(),
-            ));
+      () => _i144.FeatureAccessRepositoryImpl(
+        api: gh<_i342.ConfiguratorBackandDatasource>(),
+        mapper:
+            gh<
+              _i602.CommonMapper<
+                _i494.FeatureAccessModel,
+                _i803.FeatureAccessDto
+              >
+            >(),
+      ),
+    );
     gh.factory<_i494.WidgetConfigRepository>(
-        () => _i340.WidgetConfigRepositoryImpl(
-              configuratorBackendDatasource:
-                  gh<_i822.ConfiguratorBackandDatasource>(),
-              widgetConfigMapper: gh<
-                  _i1058
-                  .CommonMapper<_i494.WidgetsConfig, _i862.WidgetsConfigDto>>(),
-            ));
+      () => _i340.WidgetConfigRepositoryImpl(
+        configuratorBackendDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        widgetConfigMapper:
+            gh<
+              _i1058.CommonMapper<_i494.WidgetsConfig, _i862.WidgetsConfigDto>
+            >(),
+      ),
+    );
     gh.factory<
-            _i1058.CommonMapper<_i494.SplashAssetModel, _i862.SplashAssetDto>>(
-        () => _i832.SplashAssetMapper(
-              gh<
-                  _i1058.CommonMapper<_i494.SplashAssetParams,
-                      _i862.SplashAssetParamsDto>>(),
-              gh<
-                  _i1058.CommonMapper<_i494.SplashIconConstraints,
-                      _i862.SplashIconConstraintsDto>>(),
-            ));
-    gh.factory<_i494.ApplicationRepository>(() =>
-        _i747.ApplicationRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          applicationMapper: gh<
-              _i1058
-              .CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>>(),
-        ));
+      _i1058.CommonMapper<_i494.SplashAssetModel, _i862.SplashAssetDto>
+    >(
+      () => _i832.SplashAssetMapper(
+        gh<
+          _i1058.CommonMapper<
+            _i494.SplashAssetParams,
+            _i862.SplashAssetParamsDto
+          >
+        >(),
+        gh<
+          _i1058.CommonMapper<
+            _i494.SplashIconConstraints,
+            _i862.SplashIconConstraintsDto
+          >
+        >(),
+      ),
+    );
+    gh.factory<_i494.ApplicationRepository>(
+      () => _i747.ApplicationRepositoryImpl(
+        configuratorBackandDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        applicationMapper:
+            gh<
+              _i1058.CommonMapper<_i494.ApplicationModel, _i862.ApplicationDTO>
+            >(),
+      ),
+    );
     gh.factory<_i552.LaunchAssetsEnvelopeMapper>(
-        () => _i552.LaunchAssetsEnvelopeMapper(
-              gh<_i552.LaunchAssetsMapper>(),
-              gh<_i552.ValidationReportMapper>(),
-            ));
-    gh.factory<_i494.ColorSchemeRepository>(() =>
-        _i1046.ColorSchemeRepositoryImpl(
-          gh<_i342.ConfiguratorBackandDatasource>(),
-          gh<
-              _i602
-              .CommonMapper<_i494.ColorSchemeModel, _i687.ColorSchemeDto>>(),
-        ));
-    gh.factory<_i494.SplashAssetRepository>(() =>
-        _i316.SplashAssetRepositoryImpl(
-          configuratorBackendDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          splashAssetMapper: gh<
-              _i1058
-              .CommonMapper<_i494.SplashAssetModel, _i862.SplashAssetDto>>(),
-          splashFitMapper:
-              gh<_i1058.CommonMapper<_i494.FitModel, _i862.FitDto>>(),
-        ));
+      () => _i552.LaunchAssetsEnvelopeMapper(
+        gh<_i552.LaunchAssetsMapper>(),
+        gh<_i552.ValidationReportMapper>(),
+      ),
+    );
+    gh.factory<_i494.ColorSchemeRepository>(
+      () => _i1046.ColorSchemeRepositoryImpl(
+        gh<_i342.ConfiguratorBackandDatasource>(),
+        gh<_i602.CommonMapper<_i494.ColorSchemeModel, _i687.ColorSchemeDto>>(),
+      ),
+    );
+    gh.factory<_i494.SplashAssetRepository>(
+      () => _i316.SplashAssetRepositoryImpl(
+        configuratorBackendDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        splashAssetMapper:
+            gh<
+              _i1058.CommonMapper<_i494.SplashAssetModel, _i862.SplashAssetDto>
+            >(),
+        splashFitMapper:
+            gh<_i1058.CommonMapper<_i494.FitModel, _i862.FitDto>>(),
+      ),
+    );
     gh.singleton<_i494.AuthRepository>(
       () => _i442.AuthRepositoryImpl(
         configuratorBackandDatasource:
@@ -286,60 +363,85 @@ class DataPackageModule extends _i526.MicroPackageModule {
       dispose: (i) => i.dispose(),
     );
     gh.factory<_i494.ThemeHistoryRepository>(
-        () => _i360.ThemeHistoryRepositoryImpl(
-              gh<_i342.ConfiguratorBackandDatasource>(),
-              gh<
-                  _i602.CommonMapper<_i494.ThemeHistoryEntryModel,
-                      _i420.ThemeHistoryEntryDto>>(),
-            ));
-    gh.factory<_i494.EmbedsRepository>(() => _i712.EmbedsRepositoryImpl(
-          datasource: gh<_i822.ConfiguratorBackandDatasource>(),
-          mapper: gh<
-              _i602.CommonMapper<_i494.EmbeddedResourceModel,
-                  _i862.EmbeddedResourceDto>>(),
-        ));
-    gh.factory<_i494.DeploymentRepository>(() => _i123.DeploymentRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          phoneBranchMapper: gh<
-              _i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
-          callkeepBranchMapper: gh<
-              _i1058
-              .CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>>(),
-          appVersionMapper: gh<
-              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>>(),
-          authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
-        ));
+      () => _i360.ThemeHistoryRepositoryImpl(
+        gh<_i342.ConfiguratorBackandDatasource>(),
+        gh<
+          _i602.CommonMapper<
+            _i494.ThemeHistoryEntryModel,
+            _i420.ThemeHistoryEntryDto
+          >
+        >(),
+      ),
+    );
+    gh.factory<_i494.EmbedsRepository>(
+      () => _i712.EmbedsRepositoryImpl(
+        datasource: gh<_i822.ConfiguratorBackandDatasource>(),
+        mapper:
+            gh<
+              _i602.CommonMapper<
+                _i494.EmbeddedResourceModel,
+                _i862.EmbeddedResourceDto
+              >
+            >(),
+      ),
+    );
+    gh.factory<_i494.DeploymentRepository>(
+      () => _i123.DeploymentRepositoryImpl(
+        configuratorBackandDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        phoneBranchMapper:
+            gh<_i1058.CommonMapper<_i494.PhoneBranch, _i862.PhoneBranchDto>>(),
+        callkeepBranchMapper:
+            gh<
+              _i1058.CommonMapper<_i494.CallkeepBranch, _i862.CallkeepBranchDto>
+            >(),
+        appVersionMapper:
+            gh<
+              _i1058.CommonMapper<_i862.AppVersion, _i494.BuildVersionModel>
+            >(),
+        authPrefDataSource: gh<_i822.AuthPrefDatasource>(),
+      ),
+    );
     gh.factory<_i494.LaunchAssetsRepository>(
-        () => _i959.LaunchAssetsRepositoryImpl(
-              gh<_i342.ConfiguratorBackandDatasource>(),
-              gh<_i1058.LaunchAssetsEnvelopeMapper>(),
-              gh<_i1058.LaunchAssetsMapper>(),
-              gh<_i1058.SourceConfigMapper>(),
-              gh<_i1058.PlatformParamsMapper>(),
-              gh<_i848.ConstraintsMapper>(),
-            ));
+      () => _i959.LaunchAssetsRepositoryImpl(
+        gh<_i342.ConfiguratorBackandDatasource>(),
+        gh<_i1058.LaunchAssetsEnvelopeMapper>(),
+        gh<_i1058.LaunchAssetsMapper>(),
+        gh<_i1058.SourceConfigMapper>(),
+        gh<_i1058.PlatformParamsMapper>(),
+        gh<_i848.ConstraintsMapper>(),
+      ),
+    );
     gh.factory<_i494.PublicationResourcesRepository>(
-        () => _i591.PublicationResourcesRepositoryImpl(
-              datasource: gh<_i822.ConfiguratorBackandDatasource>(),
-              mapper: gh<
-                  _i602.CommonMapper<_i494.PublicationResourceModel,
-                      _i862.PublicationResourceDto>>(),
-            ));
-    gh.factory<_i494.ThemeRepository>(() => _i165.ThemeRepositoryImpl(
-          configuratorBackandDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          themeMapper:
-              gh<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(),
-        ));
-    gh.singleton<_i494.AssetRepository>(() => _i29.AssetRepositoryImpl(
-          configuratorBackendDatasource:
-              gh<_i822.ConfiguratorBackandDatasource>(),
-          assetMapper:
-              gh<_i1058.CommonMapper<_i494.AssetModel, _i862.AssetDTO>>(),
-          assetLinkMapper:
-              gh<_i1058.CommonMapper<_i494.AssetLink, _i862.AssetLinkDto>>(),
-        ));
+      () => _i591.PublicationResourcesRepositoryImpl(
+        datasource: gh<_i822.ConfiguratorBackandDatasource>(),
+        mapper:
+            gh<
+              _i602.CommonMapper<
+                _i494.PublicationResourceModel,
+                _i862.PublicationResourceDto
+              >
+            >(),
+      ),
+    );
+    gh.factory<_i494.ThemeRepository>(
+      () => _i165.ThemeRepositoryImpl(
+        configuratorBackandDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        themeMapper:
+            gh<_i1058.CommonMapper<_i494.ThemeModel, _i862.ThemeDTO>>(),
+      ),
+    );
+    gh.singleton<_i494.AssetRepository>(
+      () => _i29.AssetRepositoryImpl(
+        configuratorBackendDatasource:
+            gh<_i822.ConfiguratorBackandDatasource>(),
+        assetMapper:
+            gh<_i1058.CommonMapper<_i494.AssetModel, _i862.AssetDTO>>(),
+        assetLinkMapper:
+            gh<_i1058.CommonMapper<_i494.AssetLink, _i862.AssetLinkDto>>(),
+      ),
+    );
   }
 }
 

@@ -174,8 +174,7 @@ class SplashAssetMapper extends CommonMapper<SplashAssetModel, SplashAssetDto> {
     themeId: it.themeId,
     mode: _fromDtoModeNullable(it.mode),
     splashArtifactId: it.splashArtifactId,
-    android12SplashArtifactId:
-        it.outputsArtifacts?.android12SplashArtifactId,
+    android12SplashArtifactId: it.outputsArtifacts?.android12SplashArtifactId,
     source: it.source != null
         ? SplashSource(
             foregroundAssetId: it.source!.foregroundAssetId,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class LaunchAssetsAppBarActions extends StatelessWidget {
   const LaunchAssetsAppBarActions({
     required this.saving,
+    required this.loading,
     required this.onDelete,
     required this.onPickForeground,
     required this.onPickBackground,
@@ -11,10 +12,13 @@ class LaunchAssetsAppBarActions extends StatelessWidget {
   });
 
   final bool saving;
+  final bool loading;
   final VoidCallback onDelete;
   final VoidCallback onPickForeground;
   final VoidCallback onPickBackground;
   final Future<void> Function() onSave;
+
+  bool get _disabled => loading || saving;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +26,22 @@ class LaunchAssetsAppBarActions extends StatelessWidget {
       children: [
         IconButton(
           tooltip: 'Clean launcher icons (no image).',
-          onPressed: onDelete,
+          onPressed: _disabled ? null : onDelete,
           icon: const Icon(Icons.delete_outlined),
         ),
         IconButton(
           tooltip: 'Pick foreground (SVG/PNG)',
-          onPressed: onPickForeground,
+          onPressed: _disabled ? null : onPickForeground,
           icon: const Icon(Icons.image),
         ),
         IconButton(
           tooltip: 'Pick background (optional)',
-          onPressed: onPickBackground,
+          onPressed: _disabled ? null : onPickBackground,
           icon: const Icon(Icons.layers),
         ),
         IconButton(
           tooltip: 'Save',
-          onPressed: saving ? null : () async => onSave(),
+          onPressed: _disabled ? null : () async => onSave(),
           icon: saving
               ? const SizedBox(
                   width: 20,

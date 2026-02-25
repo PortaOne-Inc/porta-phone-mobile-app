@@ -136,9 +136,7 @@ class _CopyThemeToApplicationDialogState
                     ),
                     initialValue: _label,
                     items: _labels
-                        .map(
-                          (l) => DropdownMenuItem(value: l, child: Text(l)),
-                        )
+                        .map((l) => DropdownMenuItem(value: l, child: Text(l)))
                         .toList(),
                     onChanged: (v) {
                       if (v != null) setState(() => _label = v);

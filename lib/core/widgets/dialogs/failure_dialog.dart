@@ -12,7 +12,9 @@ class FailureDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final baseException = error is BaseException ? error as BaseException : null;
+    final baseException = error is BaseException
+        ? error as BaseException
+        : null;
     final message = baseException?.message ?? error.toString();
     final statusCode = baseException?.statusCode;
 

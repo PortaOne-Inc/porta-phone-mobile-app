@@ -38,18 +38,18 @@ abstract class SyncDetail with _$SyncDetail {
       widgetConfig == ConfigSyncResult.success;
 
   List<String> get failedNames => [
-        if (featureAccess == ConfigSyncResult.failed) 'Feature access',
-        if (colorScheme == ConfigSyncResult.failed) 'Color scheme',
-        if (pageConfig == ConfigSyncResult.failed) 'Page config',
-        if (widgetConfig == ConfigSyncResult.failed) 'Widget config',
-      ];
+    if (featureAccess == ConfigSyncResult.failed) 'Feature access',
+    if (colorScheme == ConfigSyncResult.failed) 'Color scheme',
+    if (pageConfig == ConfigSyncResult.failed) 'Page config',
+    if (widgetConfig == ConfigSyncResult.failed) 'Widget config',
+  ];
 
   List<String> get conflictNames => [
-        if (featureAccess == ConfigSyncResult.conflict) 'Feature access',
-        if (colorScheme == ConfigSyncResult.conflict) 'Color scheme',
-        if (pageConfig == ConfigSyncResult.conflict) 'Page config',
-        if (widgetConfig == ConfigSyncResult.conflict) 'Widget config',
-      ];
+    if (featureAccess == ConfigSyncResult.conflict) 'Feature access',
+    if (colorScheme == ConfigSyncResult.conflict) 'Color scheme',
+    if (pageConfig == ConfigSyncResult.conflict) 'Page config',
+    if (widgetConfig == ConfigSyncResult.conflict) 'Widget config',
+  ];
 }
 
 @freezed

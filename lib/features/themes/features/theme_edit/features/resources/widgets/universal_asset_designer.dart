@@ -472,10 +472,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
         runSpacing: 8,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          _bgColorPickerRow(
-            scopeId: 'common',
-            currentHex: _commonBgHex,
-          ),
+          _bgColorPickerRow(scopeId: 'common', currentHex: _commonBgHex),
           const Text('Padding:'),
           SizedBox(
             width: 180,
@@ -509,11 +506,11 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                 labelText: 'dp',
                 border: OutlineInputBorder(),
               ),
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               onSubmitted: (txt) {
-                final v =
-                    (double.tryParse(txt) ?? clamped).clamp(minDp, maxDp);
+                final v = (double.tryParse(txt) ?? clamped).clamp(minDp, maxDp);
                 setState(() {
                   _commonPaddingDp = v;
                   if (cp != null) {
@@ -541,8 +538,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
         spacing: 8,
         runSpacing: 8,
         children: [
-          for (final p in widget.pages)
-            _buildPlatformCard(p, previewSize),
+          for (final p in widget.pages) _buildPlatformCard(p, previewSize),
         ],
       ),
     );
@@ -553,8 +549,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     final scale = _scaleForPreview(artboardDp: p.sizeDp, previewPx: cardSize);
     final artboardPx = p.sizeDp * scale;
     final paddingPx = _dpToPx(eff.paddingDp, scale);
-    final safePx =
-        p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
+    final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
 
     final isCommon = p.isCommon;
     final st = isCommon ? null : _pageStates[p.id];
@@ -571,8 +566,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(p.label,
-                    style: Theme.of(context).textTheme.titleSmall),
+                Text(p.label, style: Theme.of(context).textTheme.titleSmall),
                 if (!isCommon) ...[
                   const SizedBox(width: 4),
                   IconButton(
@@ -641,8 +635,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
   ) {
     final minDp = _minPadFor(p);
     final maxDp = _maxPadFor(p);
-    final current = (st.paddingOverrideDp ?? _proportionalPadFor(p))
-        .clamp(minDp, maxDp);
+    final current = (st.paddingOverrideDp ?? _proportionalPadFor(p)).clamp(
+      minDp,
+      maxDp,
+    );
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -669,11 +665,9 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
               labelText: 'dp',
               border: OutlineInputBorder(),
             ),
-            keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             onFieldSubmitted: (txt) {
-              final v =
-                  (double.tryParse(txt) ?? current).clamp(minDp, maxDp);
+              final v = (double.tryParse(txt) ?? current).clamp(minDp, maxDp);
               setState(() => st.paddingOverrideDp = v);
               _emitSnapshot();
             },
@@ -724,15 +718,18 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final cardPreviewSize =
-            ((constraints.maxWidth - 48) / 2).clamp(0.0, 260.0);
+        final cardPreviewSize = ((constraints.maxWidth - 48) / 2).clamp(
+          0.0,
+          260.0,
+        );
         return Stack(
           children: [
             Positioned.fill(
               child: CustomPaint(
                 painter: PatternPainter(
-                  primaryColor:
-                      Theme.of(context).colorScheme.surfaceContainerHighest,
+                  primaryColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest,
                 ),
               ),
             ),

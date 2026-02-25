@@ -183,19 +183,23 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       _initializeWidgetsConfig(applicationId, themeId, event.variant, epoch),
     ]);
 
-    if (_initEpoch != epoch) return; // Superseded by newer init — next switch resumes
+    if (_initEpoch != epoch) {
+      return; // Superseded by newer init — next switch resumes
+    }
 
     _resumeEditorSubscriptions();
 
     final allSucceeded = results.every((ok) => ok);
-    emit(state.copyWith(
-      status: allSucceeded
-          ? ThemePropertyStatus.success
-          : ThemePropertyStatus.error,
-      error: allSucceeded
-          ? null
-          : Exception('Some configs failed to load for variant'),
-    ));
+    emit(
+      state.copyWith(
+        status: allSucceeded
+            ? ThemePropertyStatus.success
+            : ThemePropertyStatus.error,
+        error: allSucceeded
+            ? null
+            : Exception('Some configs failed to load for variant'),
+      ),
+    );
   }
 
   Future<void> _syncConfigWithServer(
@@ -208,7 +212,13 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     // For partial retry, start from previous detail; otherwise reset all to pending
     var detail = isPartialRetry ? state.syncDetail : const SyncDetail();
 
-    emit(state.copyWith(syncStatus: SyncStatus.syncing, error: null, syncDetail: detail));
+    emit(
+      state.copyWith(
+        syncStatus: SyncStatus.syncing,
+        error: null,
+        syncDetail: detail,
+      ),
+    );
 
     final featureAccess = _featureAccessEditor.buildFull();
     final colorScheme = _colorSchemeEditor.buildFull();
@@ -286,19 +296,24 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         detail.pageConfig,
         detail.widgetConfig,
       ].any((r) => r == ConfigSyncResult.success);
-      overallStatus = anySuccess ? SyncStatus.partiallyFailed : SyncStatus.failed;
+      overallStatus = anySuccess
+          ? SyncStatus.partiallyFailed
+          : SyncStatus.failed;
     } else {
       overallStatus = SyncStatus.synced;
     }
 
-    if (overallStatus == SyncStatus.failed || overallStatus == SyncStatus.partiallyFailed) {
+    if (overallStatus == SyncStatus.failed ||
+        overallStatus == SyncStatus.partiallyFailed) {
       final message = 'Failed to save: ${detail.failedNames.join(', ')}';
       _logger.severe(message);
-      emit(state.copyWith(
-        syncStatus: overallStatus,
-        syncDetail: detail,
-        error: Exception(message),
-      ));
+      emit(
+        state.copyWith(
+          syncStatus: overallStatus,
+          syncDetail: detail,
+          error: Exception(message),
+        ),
+      );
     } else if (overallStatus == SyncStatus.conflict) {
       _logger.warning('Version conflict: ${detail.conflictNames.join(', ')}');
       emit(state.copyWith(syncStatus: overallStatus, syncDetail: detail));
@@ -332,13 +347,15 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       embedsUpdated: (e) => _onEmbedsUpdated(e, emit),
       streamFailed: (e) {
         _logger.warning('Resources stream "${e.source}" error', e.error);
-        emit(state.copyWith(
-          status: ThemePropertyStatus.error,
-          errorSource: e.source,
-          error: e.error is Exception
-              ? e.error as Exception
-              : Exception('${e.source} stream failed: ${e.error}'),
-        ));
+        emit(
+          state.copyWith(
+            status: ThemePropertyStatus.error,
+            errorSource: e.source,
+            error: e.error is Exception
+                ? e.error as Exception
+                : Exception('${e.source} stream failed: ${e.error}'),
+          ),
+        );
       },
       retryStream: (e) => _onRetryStream(e, emit),
     );
@@ -348,11 +365,13 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     _RetryStream e,
     Emitter<UpdateThemeState> emit,
   ) async {
-    emit(state.copyWith(
-      status: ThemePropertyStatus.progress,
-      error: null,
-      errorSource: null,
-    ));
+    emit(
+      state.copyWith(
+        status: ThemePropertyStatus.progress,
+        error: null,
+        errorSource: null,
+      ),
+    );
 
     if (e.source == 'assets') {
       await _assetsSub?.cancel();
@@ -360,8 +379,9 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
           .execute(applicationId)
           .listen(
             (assets) => add(ResourcesEvent.assetsUpdated(assets)),
-            onError: (Object error) =>
-                add(ResourcesEvent.streamFailed(source: 'assets', error: error)),
+            onError: (Object error) => add(
+              ResourcesEvent.streamFailed(source: 'assets', error: error),
+            ),
           );
     } else if (e.source == 'embeds') {
       await _initializeEmbeddedResourceModel(applicationId, _initEpoch);
@@ -420,14 +440,27 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     if (state.status == ThemePropertyStatus.progress) return;
 
     event.map(
-      colorScheme: (_UpdateThemeSchemeColorEvent value) =>
-          emit(state.copyWith(colorSchemeConfig: value.scheme, syncStatus: SyncStatus.idle)),
-      page: (_UpdateThemePageEvent value) =>
-          emit(state.copyWith(themePageConfig: value.page, syncStatus: SyncStatus.idle)),
-      widget: (_UpdateThemeWidgetEvent value) =>
-          emit(state.copyWith(themeWidgetConfig: value.widget, syncStatus: SyncStatus.idle)),
-      featureAccess: (_UpdateAppConfigEvent value) =>
-          emit(state.copyWith(appConfig: value.config, syncStatus: SyncStatus.idle)),
+      colorScheme: (_UpdateThemeSchemeColorEvent value) => emit(
+        state.copyWith(
+          colorSchemeConfig: value.scheme,
+          syncStatus: SyncStatus.idle,
+        ),
+      ),
+      page: (_UpdateThemePageEvent value) => emit(
+        state.copyWith(
+          themePageConfig: value.page,
+          syncStatus: SyncStatus.idle,
+        ),
+      ),
+      widget: (_UpdateThemeWidgetEvent value) => emit(
+        state.copyWith(
+          themeWidgetConfig: value.widget,
+          syncStatus: SyncStatus.idle,
+        ),
+      ),
+      featureAccess: (_UpdateAppConfigEvent value) => emit(
+        state.copyWith(appConfig: value.config, syncStatus: SyncStatus.idle),
+      ),
     );
   }
 
@@ -660,9 +693,24 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     final results = await Future.wait([
       _initializeFeatureAccess(applicationId, themeId, epoch),
       _initializeEmbeddedResourceModel(applicationId, epoch),
-      _initializeColorScheme(applicationId, themeId, state.selectedVariant, epoch),
-      _initializePageConfig(applicationId, themeId, state.selectedVariant, epoch),
-      _initializeWidgetsConfig(applicationId, themeId, state.selectedVariant, epoch),
+      _initializeColorScheme(
+        applicationId,
+        themeId,
+        state.selectedVariant,
+        epoch,
+      ),
+      _initializePageConfig(
+        applicationId,
+        themeId,
+        state.selectedVariant,
+        epoch,
+      ),
+      _initializeWidgetsConfig(
+        applicationId,
+        themeId,
+        state.selectedVariant,
+        epoch,
+      ),
     ]);
 
     if (_initEpoch != epoch) return; // Superseded — next init resumes
@@ -670,9 +718,11 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     _resumeEditorSubscriptions();
 
     final allSucceeded = results.every((ok) => ok);
-    add(LoadingEvent.setStatus(
-      allSucceeded ? ThemePropertyStatus.success : ThemePropertyStatus.error,
-    ));
+    add(
+      LoadingEvent.setStatus(
+        allSucceeded ? ThemePropertyStatus.success : ThemePropertyStatus.error,
+      ),
+    );
   }
 
   Future<bool> _initializeWidgetsConfig(
@@ -749,7 +799,10 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
 
       final navigation = AppConfig.fromJson(featureAccess.config).copyWith();
 
-      _featureAccessEditor.setInitial(navigation, version: featureAccess.version);
+      _featureAccessEditor.setInitial(
+        navigation,
+        version: featureAccess.version,
+      );
       return true;
     } catch (e, stackTrace) {
       if (_initEpoch != epoch) return true;

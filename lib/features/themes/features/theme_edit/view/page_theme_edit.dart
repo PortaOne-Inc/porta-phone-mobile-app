@@ -62,7 +62,8 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 child: TextButton.icon(
                   icon: const Icon(Icons.update),
                   label: const Text('Update'),
-                  onPressed: state.isProgress || state.syncStatus == SyncStatus.syncing
+                  onPressed:
+                      state.isProgress || state.syncStatus == SyncStatus.syncing
                       ? null
                       : () => _cubit.add(const InitializeEvent()),
                 ),
@@ -271,9 +272,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
               description: description,
             );
             if (context.mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Snapshot created')),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('Snapshot created')));
             }
           } catch (e) {
             if (context.mounted) {
@@ -347,7 +348,9 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             TextButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
-                _cubit.add(SyncConfigEvent(retryOnly: detail.failedNames.toSet()));
+                _cubit.add(
+                  SyncConfigEvent(retryOnly: detail.failedNames.toSet()),
+                );
               },
               child: const Text('Retry Failed'),
             ),

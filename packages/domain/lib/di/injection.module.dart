@@ -152,249 +152,379 @@ import 'package:domain/usecase/usecase.dart' as _i651;
 import 'package:injectable/injectable.dart' as _i526;
 
 class DomainPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.factory<_i1049.GetLaunchAssetsUsecase>(() =>
-        _i1049.GetLaunchAssetsUsecaseImpl(gh<_i174.LaunchAssetsRepository>()));
+    gh.factory<_i1049.GetLaunchAssetsUsecase>(
+      () =>
+          _i1049.GetLaunchAssetsUsecaseImpl(gh<_i174.LaunchAssetsRepository>()),
+    );
     gh.factory<_i314.UsecaseThemeDeleteCreate>(
-        () => _i314.UsecaseThemeDeleteCreateImpl(
-              gh<_i174.ThemeRepository>(),
-              gh<_i174.AuthRepository>(),
-            ));
-    gh.factory<_i999.DeleteApplicationEmbedUsecase>(() =>
-        _i999.DeleteApplicationEmbedUsecaseImpl(gh<_i494.EmbedsRepository>()));
-    gh.factory<_i358.GetAssetDownloadUrlUsecase>(() =>
-        _i358.GetAssetDownloadUrlUsecaseImpl(gh<_i919.AssetRepository>()));
-    gh.factory<_i13.DeleteLaunchAssetsUsecase>(() =>
-        _i13.DeleteLaunchAssetsUsecaseImpl(gh<_i174.LaunchAssetsRepository>()));
-    gh.factory<_i892.WatchApplicationAssetsUsecase>(() =>
-        _i892.WatchApplicationAssetsUsecaseImpl(gh<_i174.AssetRepository>()));
-    gh.factory<_i53.ApplicationCreate>(() => _i53.ApplicationCreateImpl(
-          gh<_i174.ApplicationRepository>(),
-          gh<_i174.AuthRepository>(),
-          gh<_i174.ResourcesRepository>(),
-        ));
-    gh.factory<_i137.GetSplashConstraintsDefaultsUsecase>(() =>
-        _i137.GetSplashConstraintsDefaultsUsecaseImpl(
-            gh<_i89.SplashAssetRepository>()));
-    gh.factory<_i345.UpsertWidgetConfigUsecase>(() =>
-        _i345.UpsertWidgetConfigUsecaseImpl(
-            gh<_i174.WidgetConfigRepository>()));
-    gh.factory<_i1060.GetSplashAssetUsecase>(() =>
-        _i1060.GetSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()));
-    gh.factory<_i970.UpsertSplashAssetUsecase>(() =>
-        _i970.UpsertSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()));
-    gh.factory<_i852.DeleteFeatureAccessUsecase>(() =>
-        _i852.DeleteFeatureAccessUsecaseImpl(
-            gh<_i908.FeatureAccessRepository>()));
-    gh.factory<_i492.GetApplicationFeatureAccessUsecase>(() =>
-        _i492.GetApplicationFeatureAccessUsecaseImpl(
-            gh<_i908.FeatureAccessRepository>()));
-    gh.factory<_i899.GetWidgetConfigUsecase>(() =>
-        _i899.GetWidgetConfigUsecaseImpl(gh<_i174.WidgetConfigRepository>()));
-    gh.factoryParam<_i109.UsecaseThemeUpdate, String, dynamic>((
-      applicationId,
-      _,
-    ) =>
-        _i109.UsecaseThemeUpdateImpl(
-          themeRepository: gh<_i174.ThemeRepository>(),
-          authRepository: gh<_i174.AuthRepository>(),
-          resourcesRepository: gh<_i174.ResourcesRepository>(),
-          applicationId: applicationId,
-        ));
-    gh.factory<_i199.GetApplicationEmbedsUsecase>(() =>
-        _i199.GetApplicationEmbedsUsecaseImpl(gh<_i174.EmbedsRepository>()));
-    gh.factory<_i157.DeleteApplicationAssetUsecase>(() =>
-        _i157.DeleteApplicationAssetUsecaseImpl(gh<_i174.AssetRepository>()));
-    gh.factory<_i422.GetFeatureAccessUsecase>(() =>
-        _i422.GetFeatureAccessUsecaseImpl(gh<_i908.FeatureAccessRepository>()));
-    gh.factory<_i535.DeleteSplashAssetUsecase>(() =>
-        _i535.DeleteSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()));
-    gh.factory<_i526.GetApplicationPublicationResourcesUsecase>(() =>
-        _i526.GetApplicationPublicationResourcesUsecaseImpl(
-            gh<_i1048.PublicationResourcesRepository>()));
-    gh.factory<_i602.CreateApplicationPublicationResourceUsecase>(() =>
-        _i602.CreateApplicationPublicationResourceUsecaseImpl(
-            gh<_i1048.PublicationResourcesRepository>()));
-    gh.lazySingleton<_i923.GetCallkeepBranchesUsecase>(() =>
-        _i923.GetCallkeepBranchesUsecaseImpl(
-            deploymentRepository: gh<_i174.DeploymentRepository>()));
-    gh.factory<_i392.CreateApplicationEmbedUsecase>(() =>
-        _i392.CreateApplicationEmbedUsecaseImpl(gh<_i174.EmbedsRepository>()));
+      () => _i314.UsecaseThemeDeleteCreateImpl(
+        gh<_i174.ThemeRepository>(),
+        gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i999.DeleteApplicationEmbedUsecase>(
+      () =>
+          _i999.DeleteApplicationEmbedUsecaseImpl(gh<_i494.EmbedsRepository>()),
+    );
+    gh.factory<_i358.GetAssetDownloadUrlUsecase>(
+      () => _i358.GetAssetDownloadUrlUsecaseImpl(gh<_i919.AssetRepository>()),
+    );
+    gh.factory<_i13.DeleteLaunchAssetsUsecase>(
+      () => _i13.DeleteLaunchAssetsUsecaseImpl(
+        gh<_i174.LaunchAssetsRepository>(),
+      ),
+    );
+    gh.factory<_i892.WatchApplicationAssetsUsecase>(
+      () =>
+          _i892.WatchApplicationAssetsUsecaseImpl(gh<_i174.AssetRepository>()),
+    );
+    gh.factory<_i53.ApplicationCreate>(
+      () => _i53.ApplicationCreateImpl(
+        gh<_i174.ApplicationRepository>(),
+        gh<_i174.AuthRepository>(),
+        gh<_i174.ResourcesRepository>(),
+      ),
+    );
+    gh.factory<_i137.GetSplashConstraintsDefaultsUsecase>(
+      () => _i137.GetSplashConstraintsDefaultsUsecaseImpl(
+        gh<_i89.SplashAssetRepository>(),
+      ),
+    );
+    gh.factory<_i345.UpsertWidgetConfigUsecase>(
+      () => _i345.UpsertWidgetConfigUsecaseImpl(
+        gh<_i174.WidgetConfigRepository>(),
+      ),
+    );
+    gh.factory<_i1060.GetSplashAssetUsecase>(
+      () => _i1060.GetSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()),
+    );
+    gh.factory<_i970.UpsertSplashAssetUsecase>(
+      () =>
+          _i970.UpsertSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()),
+    );
+    gh.factory<_i852.DeleteFeatureAccessUsecase>(
+      () => _i852.DeleteFeatureAccessUsecaseImpl(
+        gh<_i908.FeatureAccessRepository>(),
+      ),
+    );
+    gh.factory<_i492.GetApplicationFeatureAccessUsecase>(
+      () => _i492.GetApplicationFeatureAccessUsecaseImpl(
+        gh<_i908.FeatureAccessRepository>(),
+      ),
+    );
+    gh.factory<_i899.GetWidgetConfigUsecase>(
+      () =>
+          _i899.GetWidgetConfigUsecaseImpl(gh<_i174.WidgetConfigRepository>()),
+    );
+    gh.factoryParam<_i109.UsecaseThemeUpdate, String, dynamic>(
+      (applicationId, _) => _i109.UsecaseThemeUpdateImpl(
+        themeRepository: gh<_i174.ThemeRepository>(),
+        authRepository: gh<_i174.AuthRepository>(),
+        resourcesRepository: gh<_i174.ResourcesRepository>(),
+        applicationId: applicationId,
+      ),
+    );
+    gh.factory<_i199.GetApplicationEmbedsUsecase>(
+      () => _i199.GetApplicationEmbedsUsecaseImpl(gh<_i174.EmbedsRepository>()),
+    );
+    gh.factory<_i157.DeleteApplicationAssetUsecase>(
+      () =>
+          _i157.DeleteApplicationAssetUsecaseImpl(gh<_i174.AssetRepository>()),
+    );
+    gh.factory<_i422.GetFeatureAccessUsecase>(
+      () => _i422.GetFeatureAccessUsecaseImpl(
+        gh<_i908.FeatureAccessRepository>(),
+      ),
+    );
+    gh.factory<_i535.DeleteSplashAssetUsecase>(
+      () =>
+          _i535.DeleteSplashAssetUsecaseImpl(gh<_i174.SplashAssetRepository>()),
+    );
+    gh.factory<_i526.GetApplicationPublicationResourcesUsecase>(
+      () => _i526.GetApplicationPublicationResourcesUsecaseImpl(
+        gh<_i1048.PublicationResourcesRepository>(),
+      ),
+    );
+    gh.factory<_i602.CreateApplicationPublicationResourceUsecase>(
+      () => _i602.CreateApplicationPublicationResourceUsecaseImpl(
+        gh<_i1048.PublicationResourcesRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i923.GetCallkeepBranchesUsecase>(
+      () => _i923.GetCallkeepBranchesUsecaseImpl(
+        deploymentRepository: gh<_i174.DeploymentRepository>(),
+      ),
+    );
+    gh.factory<_i392.CreateApplicationEmbedUsecase>(
+      () =>
+          _i392.CreateApplicationEmbedUsecaseImpl(gh<_i174.EmbedsRepository>()),
+    );
     gh.factory<_i88.WatchEmbedsUsecase>(
-        () => _i88.WatchEmbedsUsecaseImpl(gh<_i174.EmbedsRepository>()));
-    gh.factory<_i1002.UpdateFeatureAccessUsecase>(() =>
-        _i1002.UpdateFeatureAccessUsecaseImpl(
-            gh<_i908.FeatureAccessRepository>()));
+      () => _i88.WatchEmbedsUsecaseImpl(gh<_i174.EmbedsRepository>()),
+    );
+    gh.factory<_i1002.UpdateFeatureAccessUsecase>(
+      () => _i1002.UpdateFeatureAccessUsecaseImpl(
+        gh<_i908.FeatureAccessRepository>(),
+      ),
+    );
     gh.factory<_i343.UsecaseThemeCreate>(
-        () => _i343.UsecaseThemeCreateImpl(gh<_i494.ThemeRepository>()));
-    gh.factory<_i43.UsecaseApplicationIncVersion>(() =>
-        _i43.UsecaseApplicationIncVersionImpl(
-            gh<_i174.ApplicationRepository>()));
-    gh.factory<_i767.GetAllThemesUsecase>(() => _i767.GetAllThemesUsecaseImpl(
-        themeRepository: gh<_i174.ThemeRepository>()));
-    gh.factory<_i833.DeleteApplicationPublicationResourceUsecase>(() =>
-        _i833.DeleteApplicationPublicationResourceUsecaseImpl(
-            gh<_i1048.PublicationResourcesRepository>()));
-    gh.lazySingleton<_i902.GetPhoneBranchesUsecase>(() =>
-        _i902.GetPhoneBranchesUsecaseImpl(
-            deploymentRepository: gh<_i174.DeploymentRepository>()));
-    gh.factory<_i450.UpsertLaunchAssetsUsecase>(() =>
-        _i450.UpsertLaunchAssetsUsecaseImpl(
-            gh<_i174.LaunchAssetsRepository>()));
-    gh.factory<_i944.UpdateApplicationEmbedUsecase>(() =>
-        _i944.UpdateApplicationEmbedUsecaseImpl(gh<_i174.EmbedsRepository>()));
-    gh.factory<_i863.UpdateApplicationPublicationResourceUsecase>(() =>
-        _i863.UpdateApplicationPublicationResourceUsecaseImpl(
-            gh<_i1048.PublicationResourcesRepository>()));
+      () => _i343.UsecaseThemeCreateImpl(gh<_i494.ThemeRepository>()),
+    );
+    gh.factory<_i43.UsecaseApplicationIncVersion>(
+      () => _i43.UsecaseApplicationIncVersionImpl(
+        gh<_i174.ApplicationRepository>(),
+      ),
+    );
+    gh.factory<_i767.GetAllThemesUsecase>(
+      () => _i767.GetAllThemesUsecaseImpl(
+        themeRepository: gh<_i174.ThemeRepository>(),
+      ),
+    );
+    gh.factory<_i833.DeleteApplicationPublicationResourceUsecase>(
+      () => _i833.DeleteApplicationPublicationResourceUsecaseImpl(
+        gh<_i1048.PublicationResourcesRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i902.GetPhoneBranchesUsecase>(
+      () => _i902.GetPhoneBranchesUsecaseImpl(
+        deploymentRepository: gh<_i174.DeploymentRepository>(),
+      ),
+    );
+    gh.factory<_i450.UpsertLaunchAssetsUsecase>(
+      () => _i450.UpsertLaunchAssetsUsecaseImpl(
+        gh<_i174.LaunchAssetsRepository>(),
+      ),
+    );
+    gh.factory<_i944.UpdateApplicationEmbedUsecase>(
+      () =>
+          _i944.UpdateApplicationEmbedUsecaseImpl(gh<_i174.EmbedsRepository>()),
+    );
+    gh.factory<_i863.UpdateApplicationPublicationResourceUsecase>(
+      () => _i863.UpdateApplicationPublicationResourceUsecaseImpl(
+        gh<_i1048.PublicationResourcesRepository>(),
+      ),
+    );
     gh.factory<_i151.UploadFileUsecase>(
-        () => _i151.UploadFileUsecaseImpl(gh<_i494.ResourcesRepository>()));
-    gh.factory<_i606.UsecaseDeployBuilds>(() => _i606.UsecaseDeployBuildsImpl(
-          deploymentRepository: gh<_i494.DeploymentRepository>(),
-          applicationRepository: gh<_i494.ApplicationRepository>(),
-        ));
-    gh.factory<_i490.MonitorTokenExpirationUsecase>(() =>
-        _i490.MonitorTokenExpirationUsecaseImpl(
-            authRepository: gh<_i174.AuthRepository>()));
-    gh.factory<_i298.UsecaseTranslationsDeleteOverride>(() =>
-        _i298.UsecaseTranslationsDeleteOverrideImpl(
-            translationsRepository: gh<_i174.TranslationsRepository>()));
-    gh.factory<_i683.GetAuthStatusUsecase>(() =>
-        _i683.GetAuthStatusUsecaseHandler(
-            authRepository: gh<_i174.AuthRepository>()));
-    gh.factory<_i217.GetPageConfigsForThemeUsecase>(() =>
-        _i217.GetPageConfigsForThemeUsecaseImpl(
-            repo: gh<_i278.PageConfigRepository>()));
-    gh.lazySingleton<_i2.ListColorSchemesForThemeUsecase>(() =>
-        _i2.ListColorSchemesForThemeUsecaseImpl(
-            gh<_i323.ColorSchemeRepository>()));
-    gh.factory<_i174.UpsertPageConfigByVariantUsecase>(() =>
-        _i174.UpsertPageConfigByVariantUsecaseImpl(
-            repo: gh<_i174.PageConfigRepository>()));
+      () => _i151.UploadFileUsecaseImpl(gh<_i494.ResourcesRepository>()),
+    );
+    gh.factory<_i606.UsecaseDeployBuilds>(
+      () => _i606.UsecaseDeployBuildsImpl(
+        deploymentRepository: gh<_i494.DeploymentRepository>(),
+        applicationRepository: gh<_i494.ApplicationRepository>(),
+      ),
+    );
+    gh.factory<_i490.MonitorTokenExpirationUsecase>(
+      () => _i490.MonitorTokenExpirationUsecaseImpl(
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i298.UsecaseTranslationsDeleteOverride>(
+      () => _i298.UsecaseTranslationsDeleteOverrideImpl(
+        translationsRepository: gh<_i174.TranslationsRepository>(),
+      ),
+    );
+    gh.factory<_i683.GetAuthStatusUsecase>(
+      () => _i683.GetAuthStatusUsecaseHandler(
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i217.GetPageConfigsForThemeUsecase>(
+      () => _i217.GetPageConfigsForThemeUsecaseImpl(
+        repo: gh<_i278.PageConfigRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i2.ListColorSchemesForThemeUsecase>(
+      () => _i2.ListColorSchemesForThemeUsecaseImpl(
+        gh<_i323.ColorSchemeRepository>(),
+      ),
+    );
+    gh.factory<_i174.UpsertPageConfigByVariantUsecase>(
+      () => _i174.UpsertPageConfigByVariantUsecaseImpl(
+        repo: gh<_i174.PageConfigRepository>(),
+      ),
+    );
     gh.factory<_i434.UsecaseApplicationAddTheme>(
-        () => _i434.UsecaseApplicationAddThemeImpl(
-              gh<_i174.ApplicationRepository>(),
-              gh<_i174.AuthRepository>(),
-            ));
+      () => _i434.UsecaseApplicationAddThemeImpl(
+        gh<_i174.ApplicationRepository>(),
+        gh<_i174.AuthRepository>(),
+      ),
+    );
     gh.factory<_i1046.GenerateThemeUsecase>(
-        () => _i1046.GenerateThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
+      () => _i1046.GenerateThemeUsecaseImpl(gh<_i494.ThemeRepository>()),
+    );
     gh.factory<_i690.NudgeThemeUsecase>(
-        () => _i690.NudgeThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
-    gh.lazySingleton<_i313.UpsertColorSchemeByThemeVariantUsecase>(() =>
-        _i313.UpsertColorSchemeByThemeVariantUsecaseImpl(
-            gh<_i174.ColorSchemeRepository>()));
-    gh.factory<_i337.SignInAuthUsecase>(() => _i337.SignInAuthUsecaseHandler(
-        authRepository: gh<_i174.AuthRepository>()));
-    gh.lazySingleton<_i1069.GetColorSchemeByThemeVariantUsecase>(() =>
-        _i1069.GetColorSchemeByThemeVariantUsecaseImpl(
-            gh<_i174.ColorSchemeRepository>()));
-    gh.factory<_i236.UsecaseTranslationsSetOverride>(() =>
-        _i236.UsecaseTranslationsSetOverrideImpl(
-            translationsRepository: gh<_i174.TranslationsRepository>()));
-    gh.factory<_i490.GetConstraintsDefaultsUsecase>(() =>
-        _i490.GetConstraintsDefaultsUsecaseImpl(
-            gh<_i174.LaunchAssetsRepository>()));
-    gh.factory<_i478.UsecaseTranslationsGetAll>(() =>
-        _i478.UsecaseTranslationsGetAllImpl(
-            translationsRepository: gh<_i174.TranslationsRepository>()));
-    gh.factoryParam<_i320.UsecaseThemeGet, String, String>((
-      applicationId,
-      themeId,
-    ) =>
-        _i320.UsecaseThemeGetImpl(
-          themeRepository: gh<_i174.ThemeRepository>(),
-          authRepository: gh<_i174.AuthRepository>(),
-          applicationId: applicationId,
-          themeId: themeId,
-        ));
-    gh.factory<_i459.GetUserUsecase>(() =>
-        _i459.GetUserUsecaseImpl(authRepository: gh<_i174.AuthRepository>()));
-    gh.factory<_i926.CreateApplicationAssetUsecase>(() =>
-        _i926.CreateApplicationAssetUsecaseImpl(
-            assetRepository: gh<_i174.AssetRepository>()));
-    gh.factory<_i140.UpdateThemeBindingsUsecase>(() =>
-        _i140.UpdateThemeBindingsUsecaseImpl(
-            gh<_i494.ApplicationRepository>()));
+      () => _i690.NudgeThemeUsecaseImpl(gh<_i494.ThemeRepository>()),
+    );
+    gh.lazySingleton<_i313.UpsertColorSchemeByThemeVariantUsecase>(
+      () => _i313.UpsertColorSchemeByThemeVariantUsecaseImpl(
+        gh<_i174.ColorSchemeRepository>(),
+      ),
+    );
+    gh.factory<_i337.SignInAuthUsecase>(
+      () => _i337.SignInAuthUsecaseHandler(
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i1069.GetColorSchemeByThemeVariantUsecase>(
+      () => _i1069.GetColorSchemeByThemeVariantUsecaseImpl(
+        gh<_i174.ColorSchemeRepository>(),
+      ),
+    );
+    gh.factory<_i236.UsecaseTranslationsSetOverride>(
+      () => _i236.UsecaseTranslationsSetOverrideImpl(
+        translationsRepository: gh<_i174.TranslationsRepository>(),
+      ),
+    );
+    gh.factory<_i490.GetConstraintsDefaultsUsecase>(
+      () => _i490.GetConstraintsDefaultsUsecaseImpl(
+        gh<_i174.LaunchAssetsRepository>(),
+      ),
+    );
+    gh.factory<_i478.UsecaseTranslationsGetAll>(
+      () => _i478.UsecaseTranslationsGetAllImpl(
+        translationsRepository: gh<_i174.TranslationsRepository>(),
+      ),
+    );
+    gh.factoryParam<_i320.UsecaseThemeGet, String, String>(
+      (applicationId, themeId) => _i320.UsecaseThemeGetImpl(
+        themeRepository: gh<_i174.ThemeRepository>(),
+        authRepository: gh<_i174.AuthRepository>(),
+        applicationId: applicationId,
+        themeId: themeId,
+      ),
+    );
+    gh.factory<_i459.GetUserUsecase>(
+      () =>
+          _i459.GetUserUsecaseImpl(authRepository: gh<_i174.AuthRepository>()),
+    );
+    gh.factory<_i926.CreateApplicationAssetUsecase>(
+      () => _i926.CreateApplicationAssetUsecaseImpl(
+        assetRepository: gh<_i174.AssetRepository>(),
+      ),
+    );
+    gh.factory<_i140.UpdateThemeBindingsUsecase>(
+      () => _i140.UpdateThemeBindingsUsecaseImpl(
+        gh<_i494.ApplicationRepository>(),
+      ),
+    );
     gh.factory<_i210.UsecaseApplicationGetAll>(
-        () => _i210.UsecaseApplicationGetAllImpl(
-              gh<_i174.ApplicationRepository>(),
-              gh<_i174.AuthRepository>(),
-            ));
-    gh.factory<_i306.CopyThemeToApplicationUsecase>(() =>
-        _i306.CopyThemeToApplicationUsecaseImpl(gh<_i494.ThemeRepository>()));
+      () => _i210.UsecaseApplicationGetAllImpl(
+        gh<_i174.ApplicationRepository>(),
+        gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i306.CopyThemeToApplicationUsecase>(
+      () =>
+          _i306.CopyThemeToApplicationUsecaseImpl(gh<_i494.ThemeRepository>()),
+    );
     gh.factory<_i98.UseCaseSetThemeDefault>(
-        () => _i98.UseCaseSetThemeDefaultImpl(
-              gh<_i174.ApplicationRepository>(),
-              gh<_i174.AuthRepository>(),
-            ));
-    gh.factory<_i1021.ResetAuthPasswordUsecase>(() =>
-        _i1021.ResetAuthPasswordUsecaseHandler(
-            authRepository: gh<_i174.AuthRepository>()));
+      () => _i98.UseCaseSetThemeDefaultImpl(
+        gh<_i174.ApplicationRepository>(),
+        gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i1021.ResetAuthPasswordUsecase>(
+      () => _i1021.ResetAuthPasswordUsecaseHandler(
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
     gh.factory<_i928.CopyThemeUsecase>(
-        () => _i928.CopyThemeUsecaseImpl(gh<_i494.ThemeRepository>()));
+      () => _i928.CopyThemeUsecaseImpl(gh<_i494.ThemeRepository>()),
+    );
     gh.factory<_i548.UsecaseApplicationGet>(
-        () => _i548.UsecaseApplicationGetImpl(
-              applicationRepository: gh<_i174.ApplicationRepository>(),
-              authRepository: gh<_i174.AuthRepository>(),
-            ));
+      () => _i548.UsecaseApplicationGetImpl(
+        applicationRepository: gh<_i174.ApplicationRepository>(),
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
     gh.factory<_i189.UpdateApplicationUsecase>(
-        () => _i189.UpdateApplicationUsecaseImpl(
-              applicationRepository: gh<_i174.ApplicationRepository>(),
-              authRepository: gh<_i174.AuthRepository>(),
-              resourcesRepository: gh<_i174.ResourcesRepository>(),
-            ));
-    gh.factory<_i810.EnsureWidgetConfigPairUsecase>(() =>
-        _i810.EnsureWidgetConfigPairUsecaseImpl(
-            gh<_i551.WidgetConfigRepository>()));
-    gh.factory<_i609.UsecaseTranslationsGetOverridesByAppId>(() =>
-        _i609.UsecaseTranslationsGetOverridesByAppIdImpl(
-            translationsRepository: gh<_i174.TranslationsRepository>()));
-    gh.factory<_i431.UpdateApplicationEnvironmentUsecase>(() =>
-        _i431.UpdateApplicationEnvironmentUsecaseImpl(
-            gh<_i494.ApplicationRepository>()));
-    gh.factory<_i651.UpdateBuildNumberUseCase>(() =>
-        _i95.UpdateBuildNumberUseCaseImpl(
-            gh<_i651.UpdateApplicationUsecase>()));
-    gh.factory<_i43.GetApplicationEnvironmentUsecase>(() =>
-        _i43.GetApplicationEnvironmentUsecaseImpl(
-            gh<_i494.ApplicationRepository>()));
-    gh.factory<_i140.UsecaseThemeGetAll>(() => _i140.UsecaseThemeGetAllImpl(
-          themeRepository: gh<_i174.ThemeRepository>(),
-          authRepository: gh<_i174.AuthRepository>(),
-        ));
-    gh.factory<_i1061.GetPageConfigByVariantUsecase>(() =>
-        _i1061.GetPageConfigByVariantUsecaseImpl(
-            repo: gh<_i174.PageConfigRepository>()));
-    gh.factory<_i554.ResolveThemeIdForBuildUsecase>(() =>
-        _i554.ResolveThemeIdForBuildUsecaseImpl(
-            gh<_i494.ApplicationRepository>()));
-    gh.lazySingleton<_i35.GetThemeHistoryUsecase>(() =>
-        _i35.GetThemeHistoryUsecaseImpl(
-            repository: gh<_i519.ThemeHistoryRepository>()));
-    gh.lazySingleton<_i351.EnsureColorSchemePairUsecase>(() =>
-        _i351.EnsureColorSchemePairUsecaseImpl(
-            gh<_i323.ColorSchemeRepository>()));
-    gh.factoryParam<_i903.GetApplicationAssetsUsecase, bool, int>((
-      defaultIncludeUrl,
-      defaultUrlTtlSec,
-    ) =>
-        _i903.GetApplicationAssetsUsecaseImpl(
-          assetRepository: gh<_i174.AssetRepository>(),
-          defaultIncludeUrl: defaultIncludeUrl,
-          defaultUrlTtlSec: defaultUrlTtlSec,
-        ));
+      () => _i189.UpdateApplicationUsecaseImpl(
+        applicationRepository: gh<_i174.ApplicationRepository>(),
+        authRepository: gh<_i174.AuthRepository>(),
+        resourcesRepository: gh<_i174.ResourcesRepository>(),
+      ),
+    );
+    gh.factory<_i810.EnsureWidgetConfigPairUsecase>(
+      () => _i810.EnsureWidgetConfigPairUsecaseImpl(
+        gh<_i551.WidgetConfigRepository>(),
+      ),
+    );
+    gh.factory<_i609.UsecaseTranslationsGetOverridesByAppId>(
+      () => _i609.UsecaseTranslationsGetOverridesByAppIdImpl(
+        translationsRepository: gh<_i174.TranslationsRepository>(),
+      ),
+    );
+    gh.factory<_i431.UpdateApplicationEnvironmentUsecase>(
+      () => _i431.UpdateApplicationEnvironmentUsecaseImpl(
+        gh<_i494.ApplicationRepository>(),
+      ),
+    );
+    gh.factory<_i651.UpdateBuildNumberUseCase>(
+      () => _i95.UpdateBuildNumberUseCaseImpl(
+        gh<_i651.UpdateApplicationUsecase>(),
+      ),
+    );
+    gh.factory<_i43.GetApplicationEnvironmentUsecase>(
+      () => _i43.GetApplicationEnvironmentUsecaseImpl(
+        gh<_i494.ApplicationRepository>(),
+      ),
+    );
+    gh.factory<_i140.UsecaseThemeGetAll>(
+      () => _i140.UsecaseThemeGetAllImpl(
+        themeRepository: gh<_i174.ThemeRepository>(),
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i1061.GetPageConfigByVariantUsecase>(
+      () => _i1061.GetPageConfigByVariantUsecaseImpl(
+        repo: gh<_i174.PageConfigRepository>(),
+      ),
+    );
+    gh.factory<_i554.ResolveThemeIdForBuildUsecase>(
+      () => _i554.ResolveThemeIdForBuildUsecaseImpl(
+        gh<_i494.ApplicationRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i35.GetThemeHistoryUsecase>(
+      () => _i35.GetThemeHistoryUsecaseImpl(
+        repository: gh<_i519.ThemeHistoryRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i351.EnsureColorSchemePairUsecase>(
+      () => _i351.EnsureColorSchemePairUsecaseImpl(
+        gh<_i323.ColorSchemeRepository>(),
+      ),
+    );
+    gh.factoryParam<_i903.GetApplicationAssetsUsecase, bool, int>(
+      (defaultIncludeUrl, defaultUrlTtlSec) =>
+          _i903.GetApplicationAssetsUsecaseImpl(
+            assetRepository: gh<_i174.AssetRepository>(),
+            defaultIncludeUrl: defaultIncludeUrl,
+            defaultUrlTtlSec: defaultUrlTtlSec,
+          ),
+    );
     gh.factory<_i81.UsecaseApplicationDeleteTemplate>(
-        () => _i81.UsecaseApplicationDeleteTemplateImpl(
-              gh<_i174.ApplicationRepository>(),
-              gh<_i174.AuthRepository>(),
-            ));
-    gh.factory<_i73.UsecaseAuthLogOut>(() =>
-        _i73.UsecaseAuthLogOutImpl(authRepository: gh<_i174.AuthRepository>()));
-    gh.factory<_i175.EnsurePageConfigsPairUsecase>(() =>
-        _i175.EnsurePageConfigsPairUsecaseImpl(
-            repo: gh<_i278.PageConfigRepository>()));
-    gh.factory<_i651.UpdateBuildNameUseCase>(() =>
-        _i638.IncrementBuildNameUseCase(gh<_i651.UpdateApplicationUsecase>()));
+      () => _i81.UsecaseApplicationDeleteTemplateImpl(
+        gh<_i174.ApplicationRepository>(),
+        gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i73.UsecaseAuthLogOut>(
+      () => _i73.UsecaseAuthLogOutImpl(
+        authRepository: gh<_i174.AuthRepository>(),
+      ),
+    );
+    gh.factory<_i175.EnsurePageConfigsPairUsecase>(
+      () => _i175.EnsurePageConfigsPairUsecaseImpl(
+        repo: gh<_i278.PageConfigRepository>(),
+      ),
+    );
+    gh.factory<_i651.UpdateBuildNameUseCase>(
+      () =>
+          _i638.IncrementBuildNameUseCase(gh<_i651.UpdateApplicationUsecase>()),
+    );
   }
 }

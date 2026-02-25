@@ -66,19 +66,11 @@ class ThemeHistoryCubit extends Cubit<ThemeHistoryState> {
         ),
       );
     } catch (e) {
-      emit(
-        state.copyWith(
-          isLoadingMore: false,
-          errorMessage: e.toString(),
-        ),
-      );
+      emit(state.copyWith(isLoadingMore: false, errorMessage: e.toString()));
     }
   }
 
-  Future<void> createSnapshot({
-    String? tag,
-    String? description,
-  }) async {
+  Future<void> createSnapshot({String? tag, String? description}) async {
     try {
       final entry = await getThemeHistoryUsecase.createSnapshot(
         applicationId: applicationId,
@@ -105,7 +97,9 @@ class ThemeHistoryCubit extends Cubit<ThemeHistoryState> {
         tag: tag,
         description: description,
       );
-      final items = state.items.map((e) => e.id == historyId ? updated : e).toList();
+      final items = state.items
+          .map((e) => e.id == historyId ? updated : e)
+          .toList();
       emit(state.copyWith(items: items));
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));

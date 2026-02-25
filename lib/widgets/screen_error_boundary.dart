@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ErrorScreenPlaceholder extends StatelessWidget {
-  const ErrorScreenPlaceholder({required this.details, this.compact = false, super.key});
+  const ErrorScreenPlaceholder({
+    required this.details,
+    this.compact = false,
+    super.key,
+  });
 
   final FlutterErrorDetails details;
   final bool compact;
@@ -12,8 +16,10 @@ class ErrorScreenPlaceholder extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final hasSpaceForText = constraints.maxHeight > 100 && constraints.maxWidth > 100;
-        final isVerySmall = constraints.maxHeight < 40 || constraints.maxWidth < 40;
+        final hasSpaceForText =
+            constraints.maxHeight > 100 && constraints.maxWidth > 100;
+        final isVerySmall =
+            constraints.maxHeight < 40 || constraints.maxWidth < 40;
 
         if (isVerySmall) {
           return ColoredBox(
@@ -30,14 +36,20 @@ class ErrorScreenPlaceholder extends StatelessWidget {
           color: theme.colorScheme.surfaceContainerHighest,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(8),
-          child: ClipRect(child: hasSpaceForText ? _buildFullError(theme, constraints) : _buildCompactError(theme)),
+          child: ClipRect(
+            child: hasSpaceForText
+                ? _buildFullError(theme, constraints)
+                : _buildCompactError(theme),
+          ),
         );
       },
     );
   }
 
   Widget _buildCompactError(ThemeData theme) {
-    return Center(child: Icon(Icons.broken_image_rounded, color: theme.colorScheme.error));
+    return Center(
+      child: Icon(Icons.broken_image_rounded, color: theme.colorScheme.error),
+    );
   }
 
   Widget _buildFullError(ThemeData theme, BoxConstraints constraints) {
@@ -46,11 +58,18 @@ class ErrorScreenPlaceholder extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.broken_image_rounded, size: 32, color: theme.colorScheme.error),
+          Icon(
+            Icons.broken_image_rounded,
+            size: 32,
+            color: theme.colorScheme.error,
+          ),
           const SizedBox(height: 8),
           Text(
             'Preview Error',
-            style: theme.textTheme.labelMedium?.copyWith(color: theme.colorScheme.error, fontWeight: FontWeight.bold),
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.error,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),

@@ -9,18 +9,24 @@ import '../mapper.dart';
 class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
   @override
   ApplicationDTO convertTo(ApplicationModel it) {
-    final appVersion = BuildVersionDTO(
-      buildName: it.appVersion?.buildName,
-      buildNumber: it.appVersion?.buildNumber,
-    );
-    final androidVersion = BuildVersionDTO(
-      buildName: it.androidVersion?.buildName,
-      buildNumber: it.androidVersion?.buildNumber,
-    );
-    final iosVersion = BuildVersionDTO(
-      buildName: it.iosVersion?.buildName,
-      buildNumber: it.iosVersion?.buildNumber,
-    );
+    final appVersion = it.appVersion != null
+        ? BuildVersionDTO(
+            buildName: it.appVersion!.buildName,
+            buildNumber: it.appVersion!.buildNumber,
+          )
+        : null;
+    final androidVersion = it.androidVersion != null
+        ? BuildVersionDTO(
+            buildName: it.androidVersion!.buildName,
+            buildNumber: it.androidVersion!.buildNumber,
+          )
+        : null;
+    final iosVersion = it.iosVersion != null
+        ? BuildVersionDTO(
+            buildName: it.iosVersion!.buildName,
+            buildNumber: it.iosVersion!.buildNumber,
+          )
+        : null;
 
     return ApplicationDTO(
       id: it.id,
@@ -38,18 +44,24 @@ class ApplicationMapper extends CommonMapper<ApplicationModel, ApplicationDTO> {
 
   @override
   ApplicationModel convertFrom(ApplicationDTO it) {
-    final appVersion = BuildVersionModel(
-      buildName: it.appVersion?.buildName,
-      buildNumber: it.appVersion?.buildNumber,
-    );
-    final androidVersion = BuildVersionModel(
-      buildName: it.androidVersion?.buildName,
-      buildNumber: it.androidVersion?.buildNumber,
-    );
-    final iosVersion = BuildVersionModel(
-      buildName: it.iosVersion?.buildName,
-      buildNumber: it.iosVersion?.buildNumber,
-    );
+    final appVersion = it.appVersion != null
+        ? BuildVersionModel(
+            buildName: it.appVersion!.buildName,
+            buildNumber: it.appVersion!.buildNumber,
+          )
+        : null;
+    final androidVersion = it.androidVersion != null
+        ? BuildVersionModel(
+            buildName: it.androidVersion!.buildName,
+            buildNumber: it.androidVersion!.buildNumber,
+          )
+        : null;
+    final iosVersion = it.iosVersion != null
+        ? BuildVersionModel(
+            buildName: it.iosVersion!.buildName,
+            buildNumber: it.iosVersion!.buildNumber,
+          )
+        : null;
 
     return ApplicationModel(
       id: it.id,

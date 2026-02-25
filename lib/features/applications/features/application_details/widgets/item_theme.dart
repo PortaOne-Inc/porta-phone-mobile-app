@@ -273,24 +273,26 @@ class _StatusChip extends StatelessWidget {
   final ThemeStatus status;
   final ValueChanged<ThemeStatus>? onSelected;
 
-  static (Color bg, Color fg, String label) _style(ThemeStatus s, ThemeData t) =>
-      switch (s) {
-        ThemeStatus.draft => (
-          t.colorScheme.surfaceContainerHighest,
-          t.colorScheme.onSurface,
-          'Draft',
-        ),
-        ThemeStatus.published => (
-          t.colorScheme.primaryContainer,
-          t.colorScheme.onPrimaryContainer,
-          'Published',
-        ),
-        ThemeStatus.archived => (
-          t.colorScheme.surfaceContainerHigh,
-          t.colorScheme.onSurfaceVariant,
-          'Archived',
-        ),
-      };
+  static (Color bg, Color fg, String label) _style(
+    ThemeStatus s,
+    ThemeData t,
+  ) => switch (s) {
+    ThemeStatus.draft => (
+      t.colorScheme.surfaceContainerHighest,
+      t.colorScheme.onSurface,
+      'Draft',
+    ),
+    ThemeStatus.published => (
+      t.colorScheme.primaryContainer,
+      t.colorScheme.onPrimaryContainer,
+      'Published',
+    ),
+    ThemeStatus.archived => (
+      t.colorScheme.surfaceContainerHigh,
+      t.colorScheme.onSurfaceVariant,
+      'Archived',
+    ),
+  };
 
   @override
   Widget build(BuildContext context) {

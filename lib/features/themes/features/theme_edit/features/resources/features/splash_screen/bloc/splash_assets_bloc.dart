@@ -18,7 +18,7 @@ part 'splash_assets_state.dart';
 
 part 'splash_assets_bloc.freezed.dart';
 
-enum SplashAssetsStatus { initial, loading, success, failure }
+enum SplashAssetsStatus { initial, loading, loaded, success, failure }
 
 final _logger = Logger('SplashAssetsBloc');
 
@@ -86,13 +86,14 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
       final splashMinPad =
           (splashSlice.fullSizeDp - splashSlice.maskDiameterDp) / 2;
 
-      final android12Slice = defaults.android12 ?? defaultAndroid12ConstraintsModel;
+      final android12Slice =
+          defaults.android12 ?? defaultAndroid12ConstraintsModel;
       final android12MinPad =
           (android12Slice.fullSizeDp - android12Slice.maskDiameterDp) / 2;
 
       emit(
         state.copyWith(
-          status: SplashAssetsStatus.success,
+          status: SplashAssetsStatus.loaded,
           constraintsDefaults: defaults,
           existing: model,
           updatedAt: model.updatedAt,
@@ -141,14 +142,22 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
   }
 
   void selectAndroid12Padding(double padding) {
-    emit(state.copyWith(android12Padding: padding, status: SplashAssetsStatus.initial));
+    emit(
+      state.copyWith(
+        android12Padding: padding,
+        status: SplashAssetsStatus.initial,
+      ),
+    );
   }
 
   Future<void> startRender() async {
     emit(state.copyWith(status: SplashAssetsStatus.loading, error: null));
   }
 
-  Future<void> saveWithExports(Uint8List splash, Uint8List? android12Splash) async {
+  Future<void> saveWithExports(
+    Uint8List splash,
+    Uint8List? android12Splash,
+  ) async {
     emit(state.copyWith(status: SplashAssetsStatus.loading, error: null));
 
     try {
@@ -161,11 +170,13 @@ class SplashAssetsBloc extends Cubit<SplashAssetsState> {
       ];
 
       if (android12Splash != null) {
-        uploads.add(ArtifactUpload(
-          target: SplashUploadTarget.android12Splash,
-          mimeType: 'image/png',
-          bytes: android12Splash,
-        ));
+        uploads.add(
+          ArtifactUpload(
+            target: SplashUploadTarget.android12Splash,
+            mimeType: 'image/png',
+            bytes: android12Splash,
+          ),
+        );
       }
 
       await upsertWithFilesUsecase.execute(

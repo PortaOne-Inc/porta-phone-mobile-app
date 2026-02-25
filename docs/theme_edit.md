@@ -320,6 +320,7 @@ single-page grid designer with proportional padding, shared background color, an
 - Export renders each page at its `exportSizePx` resolution
 
 **Proportional padding math:**
+
 ```
 ratio = (commonPad - commonMinPad) / (commonMaxPad - commonMinPad)
 
@@ -335,20 +336,24 @@ the page auto-locks; otherwise it stays unlocked with its saved override.
 
 - 5-card grid: **Common**, **Android (Adaptive)**, **Android (Legacy)**, **iOS**, **Web**
 - Common page mirrors Android Adaptive constraints and sets shared foreground/background
-- Platform constraints loaded from backend (`GetConstraintsDefaultsUsecase`), with hardcoded fallbacks
-- Saved padding values are clamped to per-platform minimums on load to prevent clipping on real devices
+- Platform constraints loaded from backend (`GetConstraintsDefaultsUsecase`), with hardcoded
+  fallbacks
+- Saved padding values are clamped to per-platform minimums on load to prevent clipping on real
+  devices
 - State managed by `LaunchAssetsCubit`
 
 Platform constraints (hardcoded fallbacks in `default_constraints_model.dart`):
 
-| Platform         | sizeDp | safeZoneDp | minPaddingDp | Notes                                |
-|------------------|--------|------------|--------------|--------------------------------------|
-| Android Adaptive | 432    | 264        | 84           | 108dp canvas ×4; 66dp safe zone ×4   |
-| Android Legacy   | 512    | 384        | 64           | No system mask                       |
+| Platform         | sizeDp | safeZoneDp | minPaddingDp | Notes                                 |
+|------------------|--------|------------|--------------|---------------------------------------|
+| Android Adaptive | 432    | 264        | 84           | 108dp canvas ×4; 66dp safe zone ×4    |
+| Android Legacy   | 512    | 384        | 64           | No system mask                        |
 | iOS              | 1024   | 832        | 96           | Superellipse mask, ~22% corner radius |
-| Web              | 512    | 460.8      | 25.6         | No system mask                       |
+| Web              | 512    | 460.8      | 25.6         | No system mask                        |
 
-Android Adaptive geometry (per [official spec](https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)):
+Android Adaptive geometry (
+per [official spec](https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)):
+
 - Canvas: 108×108 dp per layer, outer 18dp per side reserved for masking/parallax
 - Safe zone: 66×66 dp (centered) — content here is never clipped regardless of OEM mask shape
 
@@ -357,9 +362,12 @@ Android Adaptive geometry (per [official spec](https://developer.android.com/dev
 - 2-card grid: **Splash** (common/primary) and **Android 12**
 - The Splash page acts as the common page; Android 12 inherits foreground and background from it
 - Each page manages its own padding independently (no padding inheritance between pages)
-- Android 12 page uses dedicated sizing constraints optimized for the circular mask area (288/192/288 dp)
-- Constraints loaded from backend (`GET .../splash-asset/constraints-defaults`), with hardcoded fallbacks
-- On save, exports both pages and uploads via `upload-batch` with targets `splash` and `android12Splash`
+- Android 12 page uses dedicated sizing constraints optimized for the circular mask area (
+  288/192/288 dp)
+- Constraints loaded from backend (`GET .../splash-asset/constraints-defaults`), with hardcoded
+  fallbacks
+- On save, exports both pages and uploads via `upload-batch` with targets `splash` and
+  `android12Splash`
 - Backward compatible: if backend doesn't return `android12` constraints, fallback defaults are used
 - State managed by `SplashAssetsBloc` with per-page padding tracking
 
@@ -486,11 +494,13 @@ as strongly-typed Dart models (freezed + json_serializable). The backend acts as
 storage** — it persists and returns JSON as-is, with deep merge on PUT.
 
 **Benefits:**
+
 - Schema changes only require updating the `webtrit_appearance_theme` package and the client apps
 - No backend deployment needed when the theme model evolves (new fields, renamed fields, etc.)
 - Faster iteration cycle for UI/design changes
 
 **How integrity is maintained:**
+
 - `webtrit_appearance_theme` models provide type safety via Dart's type system and freezed
   immutability
 - `fromJson()` / `toJson()` handle serialization with defaults for missing fields
@@ -501,6 +511,7 @@ storage** — it persists and returns JSON as-is, with deep merge on PUT.
 - Deprecated fields coexist with new ones during migration periods (`@Deprecated` annotation)
 
 **Data flow:**
+
 ```
 Backend (Map<String, dynamic>)
     ↓

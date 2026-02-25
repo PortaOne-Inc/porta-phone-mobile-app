@@ -168,21 +168,33 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   }
 
   Future<void> _deleteTheme(ThemeModel themeModel) async {
-    emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-    await deleteThemeUseCase.execute(
-      themeId: themeModel.id!,
-      applicationId: applicationId,
-    );
-    await _getThemes();
+    try {
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+      await deleteThemeUseCase.execute(
+        themeId: themeModel.id!,
+        applicationId: applicationId,
+      );
+      await _getThemes(force: true);
+    } on BaseException catch (e) {
+      emit(
+        state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+      );
+    }
   }
 
   Future<void> copyTheme(ThemeModel themeModel) async {
-    emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
-    await copyThemeUsecase.execute(
-      applicationId: applicationId,
-      themeId: themeModel.id!,
-    );
-    await _getThemes();
+    try {
+      emit(state.copyWith(status: ApplicationDetailsStateStatus.progress));
+      await copyThemeUsecase.execute(
+        applicationId: applicationId,
+        themeId: themeModel.id!,
+      );
+      await _getThemes(force: true);
+    } on BaseException catch (e) {
+      emit(
+        state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
+      );
+    }
   }
 
   Future<void> copyThemeToApplication(
@@ -202,7 +214,10 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     );
   }
 
-  Future<void> changeThemeStatus(ThemeModel themeModel, ThemeStatus newStatus) async {
+  Future<void> changeThemeStatus(
+    ThemeModel themeModel,
+    ThemeStatus newStatus,
+  ) async {
     if (themeModel.status == newStatus) return;
     final updated = themeModel.copyWith(status: newStatus);
 

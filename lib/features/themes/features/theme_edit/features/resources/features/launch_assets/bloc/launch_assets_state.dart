@@ -24,5 +24,11 @@ sealed class LaunchAssetsState with _$LaunchAssetsState {
 
   LaunchAssetsState._();
 
+  bool get isLoading =>
+      status == LaunchAssetsStatus.initial ||
+      status == LaunchAssetsStatus.loading;
+
+  bool get isBusy => isLoading || saving;
+
   String? url(String key) => envelope?.urls?[key];
 }

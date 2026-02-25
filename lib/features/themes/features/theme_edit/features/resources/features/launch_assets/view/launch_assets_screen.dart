@@ -39,8 +39,7 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<LaunchAssetsCubit, LaunchAssetsState>(
       builder: (context, state) {
-        final saving = state.saving;
-
+        final isLoading = state.isLoading;
         final cons = state.constraints ?? defaultConstraintsModel;
 
         final designerKey = ValueKey(
@@ -50,9 +49,16 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Launcher Icons'),
+            bottom: isLoading
+                ? const PreferredSize(
+                    preferredSize: Size.fromHeight(4),
+                    child: LinearProgressIndicator(),
+                  )
+                : null,
             actions: [
               LaunchAssetsAppBarActions(
-                saving: saving,
+                saving: state.saving,
+                loading: isLoading,
                 onDelete: _cubit.delete,
                 onPickForeground: () => _onPickForegroundColor(state.assets),
                 onPickBackground: () => _onPickBackgroundColor(state.assets),
@@ -60,18 +66,25 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
               ),
             ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              elevation: 2,
-              child: ConfigurableAssetDesigner(
-                key: designerKey,
-                controller: controller,
-                pages: buildDesignerPages(state: state, constraints: cons),
-                foregroundAsset: state.selectedForegroundAsset,
-                backgroundAsset: state.selectedBackgroundAsset,
-                onSnapshotChanged: _onDesignerSnapshot,
+          body: AnimatedOpacity(
+            opacity: isLoading ? 0.4 : 1.0,
+            duration: const Duration(milliseconds: 200),
+            child: IgnorePointer(
+              ignoring: isLoading,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 2,
+                  child: ConfigurableAssetDesigner(
+                    key: designerKey,
+                    controller: controller,
+                    pages: buildDesignerPages(state: state, constraints: cons),
+                    foregroundAsset: state.selectedForegroundAsset,
+                    backgroundAsset: state.selectedBackgroundAsset,
+                    onSnapshotChanged: _onDesignerSnapshot,
+                  ),
+                ),
               ),
             ),
           ),

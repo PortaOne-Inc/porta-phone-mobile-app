@@ -11,14 +11,6 @@ const defaultConstraintsModel = ConstraintsModel(
     safeZoneDp: 384,
     toleranceDp: 4,
   ),
-  ios: PlatformConstraintsModel(
-    sizeDp: 1024,
-    safeZoneDp: 832,
-    toleranceDp: 4,
-  ),
-  web: PlatformConstraintsModel(
-    sizeDp: 512,
-    safeZoneDp: 460.8,
-    toleranceDp: 4,
-  ),
+  ios: PlatformConstraintsModel(sizeDp: 1024, safeZoneDp: 832, toleranceDp: 4),
+  web: PlatformConstraintsModel(sizeDp: 512, safeZoneDp: 460.8, toleranceDp: 4),
 );

@@ -21,7 +21,18 @@ class SupportedConfigWidget extends StatefulWidget {
 }
 
 class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
-  static const _logLevels = ['ALL', 'FINEST', 'FINER', 'FINE', 'CONFIG', 'INFO', 'WARNING', 'SEVERE', 'SHOUT', 'OFF'];
+  static const _logLevels = [
+    'ALL',
+    'FINEST',
+    'FINER',
+    'FINE',
+    'CONFIG',
+    'INFO',
+    'WARNING',
+    'SEVERE',
+    'SHOUT',
+    'OFF',
+  ];
 
   late TextEditingController _monitorIntervalController;
 
@@ -41,7 +52,8 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     final newConfig = _getLoggingConfig(widget.supportedFeatures);
 
     if (oldConfig.checkIntervalSec != newConfig.checkIntervalSec &&
-        _monitorIntervalController.text != newConfig.checkIntervalSec.toString()) {
+        _monitorIntervalController.text !=
+            newConfig.checkIntervalSec.toString()) {
       _monitorIntervalController.text = newConfig.checkIntervalSec.toString();
     }
   }
@@ -53,7 +65,9 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   }
 
   SupportedLoggingConfig _getLoggingConfig(List<SupportedFeature> features) {
-    final feature = features.firstWhereOrNull((e) => e is SupportedLoggingConfig) as SupportedLoggingConfig?;
+    final feature =
+        features.firstWhereOrNull((e) => e is SupportedLoggingConfig)
+            as SupportedLoggingConfig?;
     return feature ?? const SupportedLoggingConfig();
   }
 
@@ -139,14 +153,19 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               const Divider(),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                initialValue: _logLevels.contains(loggingConfig.logLevel) ? loggingConfig.logLevel : 'INFO',
+                initialValue: _logLevels.contains(loggingConfig.logLevel)
+                    ? loggingConfig.logLevel
+                    : 'INFO',
                 decoration: const InputDecoration(
                   labelText: 'Log Level',
                   helperText: 'Controls the application log level.',
                   border: OutlineInputBorder(),
                 ),
                 items: _logLevels
-                    .map((level) => DropdownMenuItem(value: level, child: Text(level)))
+                    .map(
+                      (level) =>
+                          DropdownMenuItem(value: level, child: Text(level)),
+                    )
                     .toList(),
                 onChanged: (value) {
                   if (value != null) {
@@ -221,10 +240,12 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   }) {
     final newList = List<SupportedFeature>.from(widget.supportedFeatures)
       ..removeWhere((e) => e is SupportedLoggingConfig)
-      ..add(SupportedFeature.loggingConfig(
-        logLevel: logLevel,
-        checkIntervalSec: checkIntervalSec,
-      ));
+      ..add(
+        SupportedFeature.loggingConfig(
+          logLevel: logLevel,
+          checkIntervalSec: checkIntervalSec,
+        ),
+      );
 
     widget.onChanged(newList);
   }

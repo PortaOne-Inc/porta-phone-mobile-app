@@ -55,7 +55,8 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
       (e) => e!.pageId == DesignerPageIds.android12Splash,
       orElse: () => null,
     );
-    if (android12Eff != null && android12Eff.paddingDp != state.android12Padding) {
+    if (android12Eff != null &&
+        android12Eff.paddingDp != state.android12Padding) {
       _bloc.selectAndroid12Padding(android12Eff.paddingDp);
     }
   }
@@ -72,11 +73,18 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
         }
       },
       builder: (context, state) {
+        final isInitializing =
+            state.constraintsDefaults == null &&
+            (state.status == SplashAssetsStatus.initial ||
+                state.status == SplashAssetsStatus.loading);
+        final isBusy = state.isLoading;
+
         final defaults = state.constraintsDefaults;
         final slice = (defaults != null)
             ? defaults.withBackground
             : defaultConstraintsModel;
-        final android12Slice = defaults?.android12 ?? defaultAndroid12ConstraintsModel;
+        final android12Slice =
+            defaults?.android12 ?? defaultAndroid12ConstraintsModel;
         final pages = <DesignerPageConfig>[
           DesignerPageConfig(
             id: DesignerPageIds.splash,
@@ -107,41 +115,55 @@ class _SplashScreenState extends State<SplashScreen> with MixinMessages {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Splash Screen'),
+            bottom: isInitializing
+                ? const PreferredSize(
+                    preferredSize: Size.fromHeight(4),
+                    child: LinearProgressIndicator(),
+                  )
+                : null,
             actions: [
               IconButton(
                 tooltip: 'Clean splash screen (no image).',
-                onPressed: () => _bloc.delete(),
+                onPressed: isBusy ? null : () => _bloc.delete(),
                 icon: const Icon(Icons.delete_outlined),
               ),
               IconButton(
                 tooltip: 'Choose an image (SVG/PNG).',
-                onPressed: () => _pickAsset(state.assets),
+                onPressed: isBusy ? null : () => _pickAsset(state.assets),
                 icon: const Icon(Icons.file_open),
               ),
               IconButton(
                 tooltip: 'Save',
-                onPressed: state.isLoading ? null : _save,
-                icon: state.isLoading
+                onPressed: isBusy ? null : _save,
+                icon: isBusy
                     ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(strokeWidth: 1),
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.save),
               ),
             ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              elevation: 2,
-              child: ConfigurableAssetDesigner(
-                pages: pages,
-                key: designerKey,
-                controller: controller,
-                foregroundAsset: state.selectedAsset,
-                onSnapshotChanged: (snap) => _onSnapshotChanged(snap, state),
+          body: AnimatedOpacity(
+            opacity: isInitializing ? 0.4 : 1.0,
+            duration: const Duration(milliseconds: 200),
+            child: IgnorePointer(
+              ignoring: isInitializing,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 2,
+                  child: ConfigurableAssetDesigner(
+                    pages: pages,
+                    key: designerKey,
+                    controller: controller,
+                    foregroundAsset: state.selectedAsset,
+                    onSnapshotChanged: (snap) =>
+                        _onSnapshotChanged(snap, state),
+                  ),
+                ),
               ),
             ),
           ),

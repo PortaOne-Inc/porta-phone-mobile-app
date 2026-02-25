@@ -114,87 +114,94 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
           body: Stack(
             children: [
               ResizableColumns(
-            orientation: ResizableOrientation.horizontal,
-            dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
-            dividerThickness: 4,
-            minChildSize: 100,
-            initialProportions: const [0.7, 0.3],
-            children: [
-              (context) => Stack(
+                orientation: ResizableOrientation.horizontal,
+                dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
+                dividerThickness: 4,
+                minChildSize: 100,
+                initialProportions: const [0.7, 0.3],
                 children: [
-                  Column(
+                  (context) => Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Expanded(
+                            child: ApplicationDetailsScreen(
+                              application: state.application,
+                              onOpenDefaultTheme:
+                                  (String applicationId, String themeId) =>
+                                      _openTheme(
+                                        context,
+                                        applicationId,
+                                        themeId,
+                                      ),
+                              onDeploy: () => _navigateToDeployment(
+                                context,
+                                state.application!.id!,
+                              ),
+                              onEnvironment: () =>
+                                  _navigateToChangeEnvConfiguration(
+                                    context,
+                                    state.application!.id!,
+                                  ),
+                              onAssets: () => _navigateToAssets(
+                                context,
+                                state.application!.id!,
+                              ),
+                              onEmbeds: () => _navigateToEmbeds(
+                                context,
+                                state.application!.id!,
+                              ),
+                              onCapabilities: () => _navigateToCapabilities(
+                                context,
+                                state.application!.id!,
+                              ),
+                              onPublicationResources: () =>
+                                  _navigateToPublicationResources(
+                                    context,
+                                    state.application!.id!,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  (context) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: ApplicationDetailsScreen(
-                          application: state.application,
-                          onOpenDefaultTheme:
-                              (String applicationId, String themeId) =>
-                                  _openTheme(context, applicationId, themeId),
-                          onDeploy: () => _navigateToDeployment(
-                            context,
-                            state.application!.id!,
-                          ),
-                          onEnvironment: () =>
-                              _navigateToChangeEnvConfiguration(
+                        child: ConditionalProgressBar(
+                          condition: !state.isProgress,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16, left: 16),
+                            child: ApplicationThemesScreen(
+                              themes: state.themes,
+                              onNewBranding: () =>
+                                  _onNewTheme(context, state.application!.id!),
+                              onOpenBranding: (String themeId) => _openTheme(
+                                context,
+                                bloc.applicationId,
+                                themeId,
+                              ),
+                              onMakeDefault: bloc.tryMakeThemeAsDefault,
+                              onDelete: bloc.tryDeleteTheme,
+                              onShowInfo: (theme) => _showThemeInfo(
                                 context,
                                 state.application!.id!,
+                                theme,
                               ),
-                          onAssets: () => _navigateToAssets(
-                            context,
-                            state.application!.id!,
+                              onCopy: bloc.copyTheme,
+                              onCopyToApplication: (theme) =>
+                                  _onCopyToApplication(context, theme),
+                              onChangeStatus: bloc.changeThemeStatus,
+                            ),
                           ),
-                          onEmbeds: () => _navigateToEmbeds(
-                            context,
-                            state.application!.id!,
-                          ),
-                          onCapabilities: () => _navigateToCapabilities(
-                            context,
-                            state.application!.id!,
-                          ),
-                          onPublicationResources: () =>
-                              _navigateToPublicationResources(
-                                context,
-                                state.application!.id!,
-                              ),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-              (context) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: ConditionalProgressBar(
-                      condition: !state.isProgress,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16, left: 16),
-                        child: ApplicationThemesScreen(
-                          themes: state.themes,
-                          onNewBranding: () =>
-                              _onNewTheme(context, state.application!.id!),
-                          onOpenBranding: (String themeId) =>
-                              _openTheme(context, bloc.applicationId, themeId),
-                          onMakeDefault: bloc.tryMakeThemeAsDefault,
-                          onDelete: bloc.tryDeleteTheme,
-                          onShowInfo: (theme) => _showThemeInfo(
-                            context,
-                            state.application!.id!,
-                            theme,
-                          ),
-                          onCopy: bloc.copyTheme,
-                          onCopyToApplication: (theme) =>
-                              _onCopyToApplication(context, theme),
-                          onChangeStatus: bloc.changeThemeStatus,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
               if (_copyToAppLoading)
                 Positioned.fill(
                   child: ColoredBox(
@@ -287,6 +294,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
     BuildContext context,
     ThemeModel theme,
   ) async {
+    final messenger = ScaffoldMessenger.of(context);
+
     // Phase 1: Fetch applications list
     setState(() {
       _copyToAppLoading = true;
@@ -297,15 +306,14 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
     try {
       apps = await bloc.getApplicationsUseCase.execute();
     } catch (e) {
-      if (mounted) {
-        setState(() {
-          _copyToAppLoading = false;
-          _copyToAppMessage = null;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load applications: $e')),
-        );
-      }
+      if (!mounted) return;
+      setState(() {
+        _copyToAppLoading = false;
+        _copyToAppMessage = null;
+      });
+      messenger.showSnackBar(
+        SnackBar(content: Text('Failed to load applications: $e')),
+      );
       return;
     }
 
@@ -317,6 +325,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
 
     // Show the dialog for user input
     final result = await CopyThemeToApplicationDialog.show(
+      // ignore: use_build_context_synchronously
       context,
       currentApplicationId: bloc.applicationId,
       applications: apps,
@@ -339,29 +348,25 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
         description: result.description,
         label: result.label,
       );
-      if (mounted) {
-        setState(() {
-          _copyToAppLoading = false;
-          _copyToAppMessage = null;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Theme copied to ${result.targetApplicationName}',
-            ),
-          ),
-        );
-      }
+      if (!mounted) return;
+      setState(() {
+        _copyToAppLoading = false;
+        _copyToAppMessage = null;
+      });
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('Theme copied to ${result.targetApplicationName}'),
+        ),
+      );
     } catch (e) {
-      if (mounted) {
-        setState(() {
-          _copyToAppLoading = false;
-          _copyToAppMessage = null;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to copy theme: $e')),
-        );
-      }
+      if (!mounted) return;
+      setState(() {
+        _copyToAppLoading = false;
+        _copyToAppMessage = null;
+      });
+      messenger.showSnackBar(
+        SnackBar(content: Text('Failed to copy theme: $e')),
+      );
     }
   }
 

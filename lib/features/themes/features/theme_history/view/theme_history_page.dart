@@ -49,9 +49,9 @@ class ThemeHistoryPage extends StatelessWidget {
               final tag = tagController.text.trim();
               final desc = descController.text.trim();
               context.read<ThemeHistoryCubit>().createSnapshot(
-                    tag: tag.isEmpty ? null : tag,
-                    description: desc.isEmpty ? null : desc,
-                  );
+                tag: tag.isEmpty ? null : tag,
+                description: desc.isEmpty ? null : desc,
+              );
             },
             child: const Text('Create'),
           ),
@@ -76,23 +76,22 @@ class ThemeHistoryPage extends StatelessWidget {
       body: BlocBuilder<ThemeHistoryCubit, ThemeHistoryState>(
         builder: (context, state) {
           return switch (state.status) {
-            ThemeHistoryStatus.initial ||
-            ThemeHistoryStatus.loading =>
+            ThemeHistoryStatus.initial || ThemeHistoryStatus.loading =>
               const Center(child: CircularProgressIndicator()),
             ThemeHistoryStatus.failure => _FailureView(
-                message: state.errorMessage ?? 'Failed to load history',
-                onRetry: () =>
-                    context.read<ThemeHistoryCubit>().load(),
-              ),
-            ThemeHistoryStatus.loaded => state.items.isEmpty
-                ? const _EmptyView()
-                : _HistoryList(
-                    items: state.items,
-                    isLoadingMore: state.isLoadingMore,
-                    hasMore: state.nextCursor != null,
-                    onLoadMore: () =>
-                        context.read<ThemeHistoryCubit>().loadMore(),
-                  ),
+              message: state.errorMessage ?? 'Failed to load history',
+              onRetry: () => context.read<ThemeHistoryCubit>().load(),
+            ),
+            ThemeHistoryStatus.loaded =>
+              state.items.isEmpty
+                  ? const _EmptyView()
+                  : _HistoryList(
+                      items: state.items,
+                      isLoadingMore: state.isLoadingMore,
+                      hasMore: state.nextCursor != null,
+                      onLoadMore: () =>
+                          context.read<ThemeHistoryCubit>().loadMore(),
+                    ),
           };
         },
       ),
@@ -223,8 +222,7 @@ class _HistoryEntryTile extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (entry.description.isNotEmpty)
-              Text(entry.description),
+            if (entry.description.isNotEmpty) Text(entry.description),
             Text(
               [
                 if (entry.changedBy != null) 'by ${entry.changedBy}',
@@ -283,10 +281,10 @@ class _HistoryEntryTile extends StatelessWidget {
             onPressed: () {
               Navigator.of(ctx).pop();
               context.read<ThemeHistoryCubit>().updateEntry(
-                    entry.id,
-                    tag: tagController.text,
-                    description: descController.text,
-                  );
+                entry.id,
+                tag: tagController.text,
+                description: descController.text,
+              );
             },
             child: const Text('Save'),
           ),

@@ -60,8 +60,8 @@ applies.
 |-------------------------------|---------|----------------------------------|
 | `fullSizeDp`                  | 288     | Official drawable size           |
 | `maskDiameterDp` (safeZoneDp) | **135** | Inscribed square in 192dp circle |
-| `exportSizePx`                | 1152    | 288 x 4 (xxxhdpi)               |
-| `minPaddingDp`                | 76.5    | (288 - 135) / 2                 |
+| `exportSizePx`                | 1152    | 288 x 4 (xxxhdpi)                |
+| `minPaddingDp`                | 76.5    | (288 - 135) / 2                  |
 | `toleranceDp`                 | 4       | Small compliance margin          |
 
 ---
@@ -100,13 +100,13 @@ margin.
 
 The configurator uses a canvas 4x the spec size for higher resolution exports:
 
-| Configurator field | Value   | Derivation                    |
-|--------------------|---------|-------------------------------|
-| `sizeDp`           | 432     | 108 x 4                       |
-| `safeZoneDp`       | **264** | 66 x 4 (official safe zone)   |
-| `exportSizePx`     | 432     | Direct export at canvas dp    |
-| `minPaddingDp`     | 84      | (432 - 264) / 2               |
-| `toleranceDp`      | 4       | Small compliance margin       |
+| Configurator field | Value   | Derivation                  |
+|--------------------|---------|-----------------------------|
+| `sizeDp`           | 432     | 108 x 4                     |
+| `safeZoneDp`       | **264** | 66 x 4 (official safe zone) |
+| `exportSizePx`     | 432     | Direct export at canvas dp  |
+| `minPaddingDp`     | 84      | (432 - 264) / 2             |
+| `toleranceDp`      | 4       | Small compliance margin     |
 
 ### Verification
 

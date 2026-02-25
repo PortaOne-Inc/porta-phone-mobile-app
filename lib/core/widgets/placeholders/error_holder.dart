@@ -53,7 +53,9 @@ class ErrorHolder extends StatelessWidget {
                           constraints: const BoxConstraints(maxHeight: 200),
                           child: SingleChildScrollView(
                             child: Text(
-                              error is BaseException ? error.toDetailedString() : error.toString(),
+                              error is BaseException
+                                  ? error.toDetailedString()
+                                  : error.toString(),
                               style: textTheme.bodyMedium?.copyWith(
                                 color: textTheme.bodyMedium?.color?.withValues(
                                   alpha: 0.8,
