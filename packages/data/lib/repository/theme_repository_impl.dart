@@ -6,6 +6,8 @@ import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
 
+import '../common/api_exception_mapper.dart';
+
 @Injectable(as: ThemeRepository)
 class ThemeRepositoryImpl extends ThemeRepository {
   ThemeRepositoryImpl({
@@ -29,7 +31,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
       );
       return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -79,7 +81,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
     try {
       await configuratorBackandDatasource.deleteTheme(applicationId, themeId);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -116,7 +118,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
         variant: variant,
       );
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -143,7 +145,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
         seedColorHint: seedColorHint,
       );
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -167,9 +169,7 @@ class ThemeRepositoryImpl extends ThemeRepository {
       );
       return themeMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

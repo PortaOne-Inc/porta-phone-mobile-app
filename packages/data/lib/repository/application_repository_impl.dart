@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/mappers/mappers.dart';
 
+import '../common/api_exception_mapper.dart';
 import '../dto/dto.dart';
 
 // TODO(DMITRO): Models can be used in both the data and domain layers to ensure a proper way to return models from a repository.
@@ -28,7 +29,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -47,7 +48,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
         applicationId,
       );
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -66,7 +67,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -80,7 +81,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -94,7 +95,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -109,9 +110,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
         applicationId,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data.toString() ?? 'Failed to fetch environment',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -128,9 +127,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
         environment,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data.toString() ?? 'Failed to update environment',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -150,9 +147,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
       );
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -169,9 +164,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
         env: env,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

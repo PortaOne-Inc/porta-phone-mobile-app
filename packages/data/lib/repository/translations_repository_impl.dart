@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:data/dto/dto.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
+import '../common/api_exception_mapper.dart';
 
 @Injectable(as: TranslationsRepository)
 class TranslationsRepositoryImpl extends TranslationsRepository {
@@ -19,7 +20,7 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
       final models = await _datasource.getTranslations();
       return models.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -31,7 +32,7 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
       final models = await _datasource.getTranslationOverrides(appId);
       return models.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -43,7 +44,7 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
       final model = _mapper.convertTo(translation);
       await _datasource.setTranslationOverride(appId, model);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -58,7 +59,7 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
       final model = _mapper.convertTo(translation);
       await _datasource.deleteTranslationOverride(appId, model);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

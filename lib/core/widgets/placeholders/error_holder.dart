@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class ErrorHolder extends StatelessWidget {
@@ -46,13 +47,13 @@ class ErrorHolder extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (error != null) ...[
+                      if (error case final error?) ...[
                         const SizedBox(height: 12),
                         ConstrainedBox(
                           constraints: const BoxConstraints(maxHeight: 200),
                           child: SingleChildScrollView(
                             child: Text(
-                              error.toString(),
+                              error is BaseException ? error.toDetailedString() : error.toString(),
                               style: textTheme.bodyMedium?.copyWith(
                                 color: textTheme.bodyMedium?.color?.withValues(
                                   alpha: 0.8,

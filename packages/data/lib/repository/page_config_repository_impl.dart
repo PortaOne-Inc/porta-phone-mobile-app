@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
+import '../common/api_exception_mapper.dart';
 import '../datasource/configurator_backend/configurator_backand_datasource.dart';
 import '../dto/theme/page_config_dto.dart';
 import '../mappers/mapper.dart';
@@ -28,9 +29,7 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return dtos.map(_mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -51,9 +50,7 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
         dark: _mapper.convertFrom(pair.dark),
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -73,9 +70,7 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -99,14 +94,7 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      if (e.response?.statusCode == 409) {
-        throw VersionConflictException(
-          message: e.response?.data?.toString() ?? 'Version conflict',
-        );
-      }
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

@@ -7,6 +7,7 @@ import 'package:data/datasource/datasource.dart';
 
 import 'package:injectable/injectable.dart';
 
+import '../common/api_exception_mapper.dart';
 import '../dto/dto.dart';
 
 @Injectable(as: DeploymentRepository)
@@ -86,7 +87,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       final dto = await configuratorBackandDatasource.getPhoneBranches();
       return phoneBranchMapper.convertListFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -98,7 +99,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       final dto = await configuratorBackandDatasource.getCallkeepBranches();
       return callkeepBranchMapper.convertListFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -112,7 +113,7 @@ class DeploymentRepositoryImpl extends DeploymentRepository {
       );
       return appVersionMapper.convertTo(dto);
     } on DioException catch (e) {
-      throw BaseException(message: e.response.toString());
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

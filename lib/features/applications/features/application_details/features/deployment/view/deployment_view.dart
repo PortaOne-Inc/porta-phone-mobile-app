@@ -605,7 +605,7 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
 
   void _listenThemesState(BuildContext context, DeploymentState state) {
     if (state.status == DeploymentDetailsStatus.error) {
-      showFailureMessage(context, state.error.toString());
+      showFailureMessage(context, state.error ?? 'Unknown error');
     }
 
     if (state.status == DeploymentDetailsStatus.deployConfirm) {

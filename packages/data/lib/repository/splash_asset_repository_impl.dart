@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
 import 'package:data/mappers/mappers.dart';
+import '../common/api_exception_mapper.dart';
 
 @Injectable(as: SplashAssetRepository)
 class SplashAssetRepositoryImpl extends SplashAssetRepository {
@@ -30,9 +31,7 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
       );
       return splashAssetMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -74,9 +73,7 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
           );
       return splashAssetMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -93,9 +90,7 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
         themeId: themeId,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -129,9 +124,7 @@ class SplashAssetRepositoryImpl extends SplashAssetRepository {
             : null,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

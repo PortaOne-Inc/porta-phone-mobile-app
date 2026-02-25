@@ -6,6 +6,7 @@ import 'package:domain/domain.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
 
+import '../common/api_exception_mapper.dart';
 import '../mappers/mapper.dart';
 
 @Injectable(as: EmbedsRepository)
@@ -91,9 +92,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -113,9 +112,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -136,9 +133,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -150,9 +145,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
       await datasource.deleteEmbed(applicationId, id);
       _removeOne(applicationId, id);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

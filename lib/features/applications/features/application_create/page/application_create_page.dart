@@ -71,7 +71,7 @@ class _ApplicationCreatePageState extends State<ApplicationCreatePage>
 
   void _listenAppCreateState(ApplicationCreateState state) {
     if (state.status == ApplicationCreateStatus.error) {
-      showFailureMessage(context, state.exception.toString());
+      showFailureMessage(context, state.exception ?? 'Unknown error');
     }
     if (state.status == ApplicationCreateStatus.success) {
       _openApplications();

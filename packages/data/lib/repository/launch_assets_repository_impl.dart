@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'package:data/datasource/configurator_backend/configurator_backand_datasource.dart';
 import 'package:data/mappers/mappers.dart';
+import '../common/api_exception_mapper.dart';
 
 import '../datasource/configurator_backend/configurator_backand_api.dart';
 import '../mappers/resources/constraints_mappers.dart';
@@ -43,9 +44,7 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       );
       return envelopeMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -79,9 +78,7 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       );
       return entityMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -98,9 +95,7 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
         themeId: themeId,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -112,9 +107,7 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
       final dto = await api.getLaunchConstraintsDefaults();
       return constraintsMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

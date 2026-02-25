@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../common/api_exception_mapper.dart';
 import '../datasource/configurator_backend/configurator_backand_datasource.dart';
 import '../dto/theme/color_scheme_dto.dart';
 import '../mappers/mapper.dart';
@@ -26,9 +27,7 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -46,9 +45,7 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return list.nonNulls.map(_mapper.convertFrom).toList().nonNulls.toList();
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -80,9 +77,7 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       }
       return (light, dark);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -106,14 +101,7 @@ class ColorSchemeRepositoryImpl extends ColorSchemeRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      if (e.response?.statusCode == 409) {
-        throw VersionConflictException(
-          message: e.response?.data?.toString() ?? 'Version conflict',
-        );
-      }
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

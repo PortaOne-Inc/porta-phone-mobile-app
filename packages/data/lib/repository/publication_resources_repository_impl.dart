@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
+import '../common/api_exception_mapper.dart';
 
 import '../mappers/mapper.dart';
 
@@ -26,9 +27,7 @@ class PublicationResourcesRepositoryImpl
       final dtos = await datasource.getAll(applicationId);
       return dtos.map(mapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     }
   }
 
@@ -50,9 +49,7 @@ class PublicationResourcesRepositoryImpl
       );
       return mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     }
   }
 
@@ -74,9 +71,7 @@ class PublicationResourcesRepositoryImpl
       );
       return mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     }
   }
 
@@ -85,9 +80,7 @@ class PublicationResourcesRepositoryImpl
     try {
       await datasource.delete(id);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     }
   }
 }

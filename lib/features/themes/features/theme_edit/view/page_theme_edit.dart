@@ -364,16 +364,16 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   }
 
   void _showErrorDialog(BuildContext context, Object? error) {
-    final message = (error is ThemeIsNotValidException)
+    final displayError = (error is ThemeIsNotValidException)
         ? 'The theme is not valid.'
-        : error?.toString() ?? 'An error occurred.';
+        : error ?? 'An error occurred.';
 
     final errorSource = _cubit.state.errorSource;
 
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => FailureDialog(
-        message: message,
+        error: displayError,
         onRetry: errorSource != null
             ? () => _cubit.add(ResourcesEvent.retryStream(errorSource))
             : null,

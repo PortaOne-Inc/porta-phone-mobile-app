@@ -30,8 +30,8 @@ mixin MixinMessages {
     ScaffoldMessenger.of(context).showSnackBar(snakeBar);
   }
 
-  void showFailureMessage(BuildContext context, String message) {
-    final dialog = FailureDialog(message: message);
+  void showFailureMessage(BuildContext context, Object error) {
+    final dialog = FailureDialog(error: error);
     showDialog<void>(
       context: context,
       builder: (BuildContext context) => dialog,

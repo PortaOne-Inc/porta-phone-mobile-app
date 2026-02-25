@@ -75,7 +75,7 @@ class _ApplicationEditPageState extends State<ApplicationEditPage>
 
   void _listenAppCreateState(ApplicationEditState state) {
     if (state.status == ApplicationEditStatus.error) {
-      showFailureMessage(context, state.exception.toString());
+      showFailureMessage(context, state.exception ?? 'Unknown error');
     }
     if (state.status == ApplicationEditStatus.finish) {
       _openApplications();

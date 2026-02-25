@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../common/api_exception_mapper.dart';
 import '../datasource/configurator_backend/configurator_backand_datasource.dart';
 import '../dto/theme/theme_history_entry_dto.dart';
 import '../mappers/mapper.dart';
@@ -31,9 +32,7 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
         nextCursor: page.nextCursor,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -55,9 +54,7 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -81,9 +78,7 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
       );
       return _mapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

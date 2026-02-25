@@ -91,7 +91,7 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
 
   void _listenThemesState(BuildContext context, ThemeCollectionState state) {
     if (state.status == ThemeCollectionStateStatus.error) {
-      showFailureMessage(context, state.error.toString());
+      showFailureMessage(context, state.error ?? 'Unknown error');
     }
 
     if (state.status == ThemeCollectionStateStatus.deleted) {

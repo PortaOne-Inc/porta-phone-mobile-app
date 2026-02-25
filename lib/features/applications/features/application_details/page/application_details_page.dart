@@ -196,7 +196,7 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
 
   void _listenThemesState(BuildContext context, ApplicationDetailsState state) {
     if (state.status == ApplicationDetailsStateStatus.error) {
-      showFailureMessage(context, state.error.toString());
+      showFailureMessage(context, state.error ?? 'Unknown error');
     }
 
     if (state.status == ApplicationDetailsStateStatus.deleted) {

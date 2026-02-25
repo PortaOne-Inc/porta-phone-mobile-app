@@ -5,6 +5,8 @@ import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
 
+import '../common/api_exception_mapper.dart';
+
 @Injectable(as: WidgetConfigRepository)
 class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
   WidgetConfigRepositoryImpl({
@@ -30,9 +32,7 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
           );
       return widgetConfigMapper.convertFrom(dto);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -51,9 +51,7 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
           );
       return dtos.map(widgetConfigMapper.convertFrom).toList();
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -77,14 +75,7 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
       );
       return widgetConfigMapper.convertFrom(dto);
     } on DioException catch (e) {
-      if (e.response?.statusCode == 409) {
-        throw VersionConflictException(
-          message: e.response?.data?.toString() ?? 'Version conflict',
-        );
-      }
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -102,9 +93,7 @@ class WidgetConfigRepositoryImpl extends WidgetConfigRepository {
       );
       return map.map((k, v) => MapEntry(k, widgetConfigMapper.convertFrom(v)));
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }

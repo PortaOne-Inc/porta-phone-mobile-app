@@ -112,7 +112,7 @@ class _ThemeCreatePageState extends State<ThemeCreatePage> with MixinMessages {
 
   void _listenState(BuildContext context, ThemeCreateState state) {
     if (state.status == ThemeCreateStateStatus.error) {
-      showFailureMessage(context, state.error.toString());
+      showFailureMessage(context, state.error ?? 'Unknown error');
     }
     if (state.status == ThemeCreateStateStatus.success) {
       GoRouter.of(context).goNamed(

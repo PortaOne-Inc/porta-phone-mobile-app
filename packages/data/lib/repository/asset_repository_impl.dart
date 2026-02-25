@@ -6,6 +6,7 @@ import 'package:domain/domain.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:data/datasource/datasource.dart';
 import 'package:data/dto/dto.dart';
+import '../common/api_exception_mapper.dart';
 
 @Singleton(as: AssetRepository)
 class AssetRepositoryImpl extends AssetRepository {
@@ -84,9 +85,7 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -142,9 +141,7 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -158,9 +155,7 @@ class AssetRepositoryImpl extends AssetRepository {
         ..removeWhere((a) => a.id == assetId);
       _emit(applicationId, list);
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -182,9 +177,7 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -206,9 +199,7 @@ class AssetRepositoryImpl extends AssetRepository {
       _upsertOne(applicationId, model);
       return model;
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
@@ -222,9 +213,7 @@ class AssetRepositoryImpl extends AssetRepository {
         assetId,
       );
     } on DioException catch (e) {
-      throw BaseException(
-        message: e.response?.data?.toString() ?? e.message ?? 'Network error',
-      );
+      throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
     }
