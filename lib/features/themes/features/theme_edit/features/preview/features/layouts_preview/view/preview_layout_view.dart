@@ -33,6 +33,11 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   int _focusScreenPosition = 0;
   ErrorWidgetBuilder? _defaultErrorBuilder;
 
+  List<Widget> _cachedScreenshots = [];
+  FeatureAccess? _lastFeatureAccess;
+  ThemeMode? _lastThemeMode;
+  Object? _lastThemeSettings;
+
   @override
   void initState() {
     super.initState();
@@ -63,7 +68,18 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         ? ThemeMode.dark
         : ThemeMode.light;
 
-    final screenshots = _generatePhoneScreenshots(featureAccess, themeMode);
+    final themeSettings = ThemeProvider.of(context).settings;
+
+    if (featureAccess != _lastFeatureAccess ||
+        themeMode != _lastThemeMode ||
+        themeSettings != _lastThemeSettings) {
+      _lastFeatureAccess = featureAccess;
+      _lastThemeMode = themeMode;
+      _lastThemeSettings = themeSettings;
+      _cachedScreenshots = _generatePhoneScreenshots(featureAccess, themeMode);
+    }
+
+    final screenshots = _cachedScreenshots;
 
     final focusPosition = screenshots.isEmpty
         ? 0

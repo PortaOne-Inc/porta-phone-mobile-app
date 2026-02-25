@@ -26,29 +26,33 @@ class DrawerPreview extends StatelessWidget {
           ),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
+            cacheExtent: 200,
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(width: 8);
             },
             itemCount: screenshots.length,
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            // Symmetric padding for centering
             itemBuilder: (BuildContext context, int index) {
-              return TypeOfPreview(
-                focusIndicator: IconButton(
-                  onPressed: () => onTapScreen.call(index),
-                  icon: Icon(
-                    index == focusScreenPosition
-                        ? Icons.radio_button_checked
-                        : Icons.radio_button_off_outlined,
-                    color: index == focusScreenPosition
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.outline,
-                    size: 16,
+              final isFocused = index == focusScreenPosition;
+              return RepaintBoundary(
+                child: GestureDetector(
+                  onTap: () => onTapScreen(index),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: isFocused
+                          ? Border.all(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 2,
+                            )
+                          : null,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: TypeOfPreview(
+                      constraints: const BoxConstraints(maxHeight: 124),
+                      child: screenshots[index],
+                    ),
                   ),
                 ),
-                constraints: const BoxConstraints(maxHeight: 124),
-                child: screenshots[index],
               );
             },
           ),
