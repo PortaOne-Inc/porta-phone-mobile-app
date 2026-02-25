@@ -86,6 +86,13 @@ class _JsonEditorPanelState extends State<JsonEditorPanel> {
     }
   }
 
+  void _onPrettify() {
+    final decoded = jsonDecode(_controller.text);
+    final pretty = _encoder.convert(decoded);
+    _controller.text = pretty;
+    _validate(pretty);
+  }
+
   void _onReset() {
     final text = _encode(widget.initialJson);
     _controller.text = text;
@@ -124,6 +131,12 @@ class _JsonEditorPanelState extends State<JsonEditorPanel> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              IconButton(
+                onPressed: _isValid ? _onPrettify : null,
+                icon: const Icon(Icons.auto_fix_high),
+                tooltip: 'Prettify',
+              ),
+              const Spacer(),
               OutlinedButton(
                 onPressed: _isDirty ? _onReset : null,
                 child: const Text('Reset'),
