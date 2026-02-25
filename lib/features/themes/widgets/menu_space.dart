@@ -6,7 +6,7 @@ class MenuSpace extends StatelessWidget {
     required this.isTopPosition,
     this.border = Colors.black87,
     this.borderWidth = 0.1,
-    this.background = const Color(0xffececec),
+    this.background,
     super.key,
   });
 
@@ -14,7 +14,7 @@ class MenuSpace extends StatelessWidget {
   final bool isTopPosition;
   final Color border;
   final double borderWidth;
-  final Color background;
+  final Color? background;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MenuSpace extends StatelessWidget {
               ? BorderSide(width: borderWidth, color: border)
               : BorderSide.none,
         ),
-        color: background,
+        color: background ?? Theme.of(context).colorScheme.surfaceContainerLow,
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: children),
     );

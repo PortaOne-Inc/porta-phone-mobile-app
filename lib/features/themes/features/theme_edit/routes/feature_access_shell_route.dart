@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +7,6 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/preview_required/view/preview_required.dart';
 import 'package:webtrit_configurator/mocks/mocks.dart';
 import 'package:webtrit_phone/data/data.dart';
-import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_phone/models/feature_access/feature_access.dart';
 import 'package:webtrit_phone/services/remote_config_service.dart';
 import 'package:webtrit_phone/utils/utils.dart';
@@ -17,8 +14,7 @@ import 'package:webtrit_phone/utils/utils.dart';
 import '../bloc/update_theme_cubit.dart';
 import '../mocks/mocks.dart';
 
-/// A wrapper widget that provides feature access configuration and ensures correct asset rendering
-/// in app preview screens by mapping local assets to data URIs.
+/// A wrapper widget that provides feature access configuration for app preview screens.
 class FeatureAccessShellRoute extends StatelessWidget {
   const FeatureAccessShellRoute({required this.child, super.key});
 
@@ -39,54 +35,37 @@ class FeatureAccessShellRoute extends StatelessWidget {
           return const LoadingScreen(status: LoadingStatus.fetchingResources);
         }
 
-        return FutureBuilder<AppConfig>(
-          future: _replaceLocalAssetsWithDataUri(state.appConfig),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const LoadingScreen(
-                status: LoadingStatus.initializingPreview,
-              );
-            }
-
-            final systemInfo = const SystemInfoBuilder().buildInfo();
-            final featureOverrides = FeatureOverridesFactory.create(
-              RemoteConfigSnapshot(
-                <String, String>{},
-                MockRemoteCacheConfigService(),
-              ),
-            );
-
-            final coreSupport = CoreSupportFactory.create(systemInfo);
-
-            try {
-              final featureAccess = FeatureAccess.create(
-                snapshot.data!,
-                state.embeddedResources
-                    .where((it) => it.id != null)
-                    .map((it) => it.toEmbeddedResource())
-                    .toList(),
-                coreSupport,
-                featureOverrides,
-              );
-              return ProvidersWrapper(
-                featureAccess: featureAccess,
-                child: child,
-              );
-            } catch (e) {
-              return PreviewRequired(exception: e);
-            }
-          },
+        final appConfig = state.appConfig;
+        final systemInfo = const SystemInfoBuilder().buildInfo();
+        final featureOverrides = FeatureOverridesFactory.create(
+          RemoteConfigSnapshot(
+            <String, String>{},
+            MockRemoteCacheConfigService(),
+          ),
         );
+
+        final coreSupport = CoreSupportFactory.create(systemInfo);
+
+        try {
+          final featureAccess = FeatureAccess.create(
+            appConfig,
+            state.embeddedResources
+                .where((it) => it.id != null)
+                .map((it) => it.toEmbeddedResource())
+                .toList(),
+            coreSupport,
+            featureOverrides,
+          );
+          return ProvidersWrapper(featureAccess: featureAccess, child: child);
+        } catch (e) {
+          return PreviewRequired(exception: e);
+        }
       },
     );
   }
-
-  Future<AppConfig> _replaceLocalAssetsWithDataUri(AppConfig appConfig) async {
-    return appConfig.copyWith();
-  }
 }
 
-enum LoadingStatus { loadingTheme, initializingPreview, fetchingResources }
+enum LoadingStatus { loadingTheme, fetchingResources }
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({required this.status, super.key});
@@ -97,8 +76,6 @@ class LoadingScreen extends StatelessWidget {
     switch (status) {
       case LoadingStatus.loadingTheme:
         return 'Loading theme...';
-      case LoadingStatus.initializingPreview:
-        return 'Initializing preview...';
       case LoadingStatus.fetchingResources:
         return 'Fetching resources...';
     }

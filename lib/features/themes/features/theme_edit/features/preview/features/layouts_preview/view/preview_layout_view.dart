@@ -30,7 +30,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   static const _initialColumnProportions = [0.75, 0.25];
   static const _dividerThickness = 4.0;
 
-  var _focusScreenPosition = 0;
+  int _focusScreenPosition = 0;
   ErrorWidgetBuilder? _defaultErrorBuilder;
 
   @override
@@ -65,6 +65,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final screenshots = _generatePhoneScreenshots(featureAccess, themeMode);
 
+    final focusPosition = screenshots.isEmpty
+        ? 0
+        : _focusScreenPosition.clamp(0, screenshots.length - 1);
+
     return ResizableColumns(
       initialProportions: _initialColumnProportions,
       dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -74,14 +78,13 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         (_) => Align(
           child: TypePreview(
             screens: screenshots,
-            screenFocus: _focusScreenPosition,
+            screenFocus: focusPosition,
             isFrameVisible: widget.frameVisibility,
-            onFocusPosition: _setFocusedScreen,
           ),
         ),
         (_) => DrawerPreview(
           screenshots: screenshots,
-          focusScreenPosition: _focusScreenPosition,
+          focusScreenPosition: focusPosition,
           onTapScreen: _setFocusedScreen,
         ),
       ],
@@ -111,18 +114,27 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
     final isKeypadPreview =
         bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
+    final isMessagingPreview =
+        bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
+    final isEmbeddedPreview =
+        bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
     final rawScreens = <Widget>[
+      // Login
       const LoginModeSelectScreenScreenshot(),
+      const LoginCoreUrlAssignScreenScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
       if (isCustomSignupPreview)
         const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
-      // const UserAgreementScreenScreenshot(),
+      const LoginSwitchScreenScreenshot(),
+      const UserAgreementScreenScreenshot(),
+
+      // Main tabs
       if (isFavoritePreview)
         MainScreenScreenshot(
           key: bottomMenuKey,
@@ -147,6 +159,20 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
           MainFlavor.keypad,
           loginLabel != null ? Text(loginLabel) : null,
         ),
+      if (isMessagingPreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.messaging,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
+      if (isEmbeddedPreview)
+        MainScreenScreenshot(
+          key: bottomMenuKey,
+          MainFlavor.embedded,
+          loginLabel != null ? Text(loginLabel) : null,
+        ),
+
+      // Calls
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
         true,
@@ -155,12 +181,38 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         remotePlaceholderImageUrl:
             ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
+
+      // Contact & messaging
+      const ContactScreenScreenshot(),
+      const ChatConversationScreenScreenshot(),
+      const SmsConversationScreenScreenshot(),
+      const SystemNotificationsScreenScreenshot(),
+
+      // CDRs & call log
+      const CallLogScreenScreenshot(),
+      const RecentCdrsScreenScreenshot(),
+      const NumberCdrsScreenScreenshot(),
+
+      // Settings
       const SettingScreenScreenshot(),
       const MediaSettingsScreenScreenshot(
         key: ValueKey('MediaSettingsScreenScreenshot'),
       ),
+      const NetworkScreenScreenshot(),
+      const LanguageScreenScreenshot(),
+      const DiagnosticScreenScreenshot(),
+      const CallerIdSettingsScreenScreenshot(),
+      const PresenceSettingsScreenScreenshot(),
+      const ThemeModeScreenScreenshot(),
+      const VoicemailScreenScreenshot(),
+
+      // Utility
       const PrivacyScreenScreenshot(),
       const AboutScreenshot(),
+      const PermissionsScreenScreenshot(),
+      const ContactsAgreementScreenScreenshot(),
+      const TeardownScreenScreenshot(),
+      const LogRecordsConsoleScreenScreenshot(),
       const EmbeddedErrorDialogScreenshot(),
     ];
 

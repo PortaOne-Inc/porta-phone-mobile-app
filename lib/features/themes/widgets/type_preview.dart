@@ -7,14 +7,12 @@ class TypePreview extends StatelessWidget {
     required this.screens,
     required this.screenFocus,
     required this.isFrameVisible,
-    required this.onFocusPosition,
     super.key,
   });
 
   final int screenFocus;
   final bool isFrameVisible;
   final List<Widget> screens;
-  final void Function(int position) onFocusPosition;
 
   @override
   Widget build(BuildContext context) {

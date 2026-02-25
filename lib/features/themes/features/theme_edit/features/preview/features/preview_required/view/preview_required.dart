@@ -8,14 +8,10 @@ class PreviewRequired extends StatelessWidget {
 
   final Object exception;
 
-  String _getErrorMessage(Object exception) {
-    return exception.toString();
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final errorMessage = _getErrorMessage(exception);
+    final errorMessage = exception.toString();
 
     final isEmbeddedResourceMissingException =
         exception is EmbeddedResourceMissingException;
