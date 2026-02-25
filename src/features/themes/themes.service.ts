@@ -1,15 +1,17 @@
 import * as admin from 'firebase-admin';
-import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Theme } from './entities/theme';
+import { Application } from '../applications/entities/application';
+import { Asset } from '../assets/entities/asset.entity';
 import { ArtifactsService } from '../artifacts';
 import { AssetsService } from '../assets/assets.service';
-import { resolveImageSourceUrlsDeep } from '../../common';
+import { resolveImageSourceUrlsDeep, extractAssetIdsDeep, remapAssetIdsDeep } from '../../common';
 import { CloudStorageService } from '../common';
-import { Collections, nowIso } from '../../common';
+import { Collections, nowIso, UploadNamespaces } from '../../common';
 import { CreateThemeDto, UpdateThemeDto } from './dto/themes.dto';
 
 const ASSET_URL_TTL_SEC = 3600;
@@ -69,6 +71,8 @@ export class ThemesService {
   constructor(
     @InjectRepository(Theme)
     private readonly themeRepository: BaseFirestoreRepository<Theme>,
+    @InjectRepository(Application)
+    private readonly applicationRepository: BaseFirestoreRepository<Application>,
     private readonly artifacts: ArtifactsService,
     private readonly assetsService: AssetsService,
     private readonly cloud: CloudStorageService,
@@ -390,6 +394,269 @@ export class ThemesService {
     await batch.commit();
 
     return this.aggregateTheme(target, 'system');
+  }
+
+  async copyThemeToApplication(
+    uid: string,
+    sourceApplicationId: string,
+    sourceThemeId: string,
+    targetApplicationId: string,
+    overrides?: Partial<Pick<Theme, 'title' | 'description' | 'label'>>,
+  ): Promise<Theme | null> {
+    // 1. Validate source theme
+    const source = await this.themeRepository.findById(sourceThemeId);
+    if (!source || source.applicationId !== sourceApplicationId) {
+      throw new NotFoundException(`Theme with ID ${sourceThemeId} not found`);
+    }
+
+    // 2. Validate target application exists and is owned by uid
+    const targetApp = await this.applicationRepository.findById(targetApplicationId).catch(() => null);
+    if (!targetApp) {
+      throw new NotFoundException(`Target application ${targetApplicationId} not found`);
+    }
+    if (targetApp.user !== uid) {
+      throw new ForbiddenException('You do not own the target application');
+    }
+
+    const db = admin.firestore();
+    const newThemeId = uuidv4();
+    const now = nowIso();
+
+    // 3. Read all sub-resources in parallel
+    const [widgetSnaps, colorSnaps, pageSnaps, splashSnap, launchSnap, feSnaps] =
+      await Promise.all([
+        db.collection(Collections.themeConfigWidgets).where('themeId', '==', sourceThemeId).get(),
+        db.collection(Collections.themeConfigColorSchemes).where('themeId', '==', sourceThemeId).get(),
+        db.collection(Collections.themeConfigPages).where('themeId', '==', sourceThemeId).get(),
+        db.collection(Collections.themeAssetsSplash).doc(sourceThemeId).get(),
+        db.collection(Collections.themeAssetsLauncher).doc(sourceThemeId).get(),
+        db.collection(Collections.themeFeatureEntitlements).where('themeId', '==', sourceThemeId).get(),
+      ]);
+
+    // 4. Collect all referenced asset IDs
+    const allAssetIds = new Set<string>();
+
+    // From widget configs
+    for (const doc of widgetSnaps.docs) {
+      const data = doc.data();
+      extractAssetIdsDeep(data?.config).forEach((id) => allAssetIds.add(id));
+    }
+
+    // From page configs
+    for (const doc of pageSnaps.docs) {
+      const data = doc.data();
+      extractAssetIdsDeep(data?.config).forEach((id) => allAssetIds.add(id));
+    }
+
+    // From splash
+    if (splashSnap.exists) {
+      const src = (splashSnap.data() as any)?.source ?? {};
+      if (src.foregroundAssetId) allAssetIds.add(src.foregroundAssetId);
+      if (src.backgroundAssetId) allAssetIds.add(src.backgroundAssetId);
+    }
+
+    // From launch
+    if (launchSnap.exists) {
+      const src = (launchSnap.data() as any)?.source ?? {};
+      if (src.foregroundAssetId) allAssetIds.add(src.foregroundAssetId);
+      if (src.backgroundAssetId) allAssetIds.add(src.backgroundAssetId);
+    }
+
+    // 5. Deep copy each asset: GCS copy + new Firestore doc
+    const idMap = new Map<string, string>();
+    const createdAssetIds: string[] = [];
+    const createdStoragePaths: string[] = [];
+
+    for (const oldAssetId of allAssetIds) {
+      const srcAsset = await this.assetsService.findOneByIdForApp(sourceApplicationId, oldAssetId);
+      if (!srcAsset) continue;
+
+      const newAssetId = uuidv4();
+      const ext = this.extractExtension(srcAsset.storagePath);
+      const newStoragePath = this.cloud.buildPath({
+        uid,
+        applicationId: targetApplicationId,
+        namespace: UploadNamespaces.applicationAssets,
+        id: newAssetId,
+        ext,
+      });
+
+      // Server-side GCS copy
+      await this.cloud.copyFile(srcAsset.storagePath, newStoragePath);
+      createdStoragePaths.push(newStoragePath);
+
+      // Create new asset doc
+      const newAsset: Asset = {
+        id: newAssetId,
+        ownerId: uid,
+        applicationId: targetApplicationId,
+        storagePath: newStoragePath,
+        mimeType: srcAsset.mimeType,
+        size: srcAsset.size,
+        checksum: srcAsset.checksum ?? null,
+        createdAt: now,
+        updatedAt: now,
+        refCount: 0,
+        usedBy: [],
+      };
+      await db.collection(Collections.applicationAssets).doc(newAssetId).set(newAsset);
+      createdAssetIds.push(newAssetId);
+
+      idMap.set(oldAssetId, newAssetId);
+    }
+
+    // 6. Build Firestore batch for all theme config docs
+    try {
+      const batch = db.batch();
+
+      // Theme entity — strip undefined values to avoid Firestore rejection
+      const target: Theme = {
+        ...source,
+        id: newThemeId,
+        applicationId: targetApplicationId,
+        title: overrides?.title ?? `${source.title ?? 'Theme'} (Copy)`,
+        description: overrides?.description ?? source.description ?? '',
+        label: overrides?.label ?? source.label ?? 'dev',
+        version: 1,
+        createdAt: now,
+        updatedAt: now,
+      } as Theme;
+      const themeData = JSON.parse(JSON.stringify(target));
+      batch.set(db.collection(Collections.themes).doc(newThemeId), themeData);
+
+      // Widget configs — remap asset IDs in config
+      for (const doc of widgetSnaps.docs) {
+        const data = doc.data() as any;
+        const variant = data?.variant ?? 'light';
+        const newId = `${newThemeId}_${variant}`;
+        const remappedConfig = idMap.size > 0 ? remapAssetIdsDeep(data?.config, idMap) : data?.config;
+        batch.set(db.collection(Collections.themeConfigWidgets).doc(newId), {
+          ...data,
+          config: remappedConfig,
+          themeId: newThemeId,
+          applicationId: targetApplicationId,
+          id: newId,
+          version: 1,
+          updatedAt: now,
+        });
+      }
+
+      // Color schemes — no asset references
+      for (const doc of colorSnaps.docs) {
+        const data = doc.data() as any;
+        const variant = data?.variant ?? doc.id.split('_')[1] ?? 'light';
+        const newId = `${newThemeId}_${variant}`;
+        batch.set(db.collection(Collections.themeConfigColorSchemes).doc(newId), {
+          ...data,
+          themeId: newThemeId,
+          applicationId: targetApplicationId,
+          id: newId,
+          version: 1,
+          updatedAt: now,
+        });
+      }
+
+      // Page configs — remap asset IDs in config
+      for (const doc of pageSnaps.docs) {
+        const data = doc.data() as any;
+        const newRef = db.collection(Collections.themeConfigPages).doc();
+        const remappedConfig = idMap.size > 0 ? remapAssetIdsDeep(data?.config, idMap) : data?.config;
+        batch.set(newRef, {
+          ...data,
+          config: remappedConfig,
+          themeId: newThemeId,
+          applicationId: targetApplicationId,
+          id: newRef.id,
+          version: 1,
+          updatedAt: now,
+        });
+      }
+
+      // Splash — remap source asset IDs, reset outputsArtifacts
+      if (splashSnap.exists) {
+        const data = splashSnap.data() as any;
+        const src = { ...(data?.source ?? {}) };
+        if (src.foregroundAssetId && idMap.has(src.foregroundAssetId)) {
+          src.foregroundAssetId = idMap.get(src.foregroundAssetId);
+        }
+        if (src.backgroundAssetId && idMap.has(src.backgroundAssetId)) {
+          src.backgroundAssetId = idMap.get(src.backgroundAssetId);
+        }
+        batch.set(db.collection(Collections.themeAssetsSplash).doc(newThemeId), {
+          ...data,
+          source: src,
+          id: newThemeId,
+          themeId: newThemeId,
+          applicationId: targetApplicationId,
+          outputsArtifacts: {},
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+
+      // Launch — remap source asset IDs, reset outputsArtifacts
+      if (launchSnap.exists) {
+        const data = launchSnap.data() as any;
+        const src = { ...(data?.source ?? {}) };
+        if (src.foregroundAssetId && idMap.has(src.foregroundAssetId)) {
+          src.foregroundAssetId = idMap.get(src.foregroundAssetId);
+        }
+        if (src.backgroundAssetId && idMap.has(src.backgroundAssetId)) {
+          src.backgroundAssetId = idMap.get(src.backgroundAssetId);
+        }
+        batch.set(db.collection(Collections.themeAssetsLauncher).doc(newThemeId), {
+          ...data,
+          source: src,
+          id: newThemeId,
+          themeId: newThemeId,
+          applicationId: targetApplicationId,
+          outputsArtifacts: {},
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+
+      // Feature entitlements
+      for (const doc of feSnaps.docs) {
+        const data = doc.data() as any;
+        batch.set(db.collection(Collections.themeFeatureEntitlements).doc(newThemeId), {
+          ...data,
+          id: newThemeId,
+          applicationId: targetApplicationId,
+          themeId: newThemeId,
+          version: 1,
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+
+      // 7. Commit atomically
+      await batch.commit();
+
+      return this.aggregateTheme(target, uid);
+    } catch (err) {
+      // Rollback: best-effort cleanup of created assets
+      this.logger.warn({
+        msg: 'copyThemeToApplication: batch failed, rolling back assets',
+        error: err instanceof Error ? err.message : err,
+        assetCount: createdAssetIds.length,
+      });
+
+      await Promise.allSettled([
+        ...createdAssetIds.map((id) =>
+          db.collection(Collections.applicationAssets).doc(id).delete(),
+        ),
+        ...createdStoragePaths.map((p) => this.cloud.delete(p)),
+      ]);
+
+      throw err;
+    }
+  }
+
+  private extractExtension(storagePath: string): string {
+    const lastSegment = storagePath.split('/').pop() ?? '';
+    const dotIndex = lastSegment.lastIndexOf('.');
+    return dotIndex >= 0 ? lastSegment.slice(dotIndex) : '';
   }
 
   private async purgeOrphanAssets(uid: string, applicationId: string) {

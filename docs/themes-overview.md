@@ -1,7 +1,8 @@
 # Themes Feature
 
 The **Themes** feature manages the full lifecycle of application themes: CRUD, AI-powered generation,
-color schemes, widget & page configs, splash/launch assets, and feature entitlements.
+color schemes, widget & page configs, splash/launch assets, feature entitlements, and cross-application
+deep copy with full asset duplication.
 
 ## Sub-docs
 
@@ -48,13 +49,13 @@ cross-feature operations (copy, cascade delete, legacy aggregation).
 ```
 src/features/themes/
 |-- themes.module.ts              # Root module - imports all sub-feature modules
-|-- themes.controller.ts          # CRUD + copy + legacy endpoints
-|-- themes.service.ts             # Orchestrator: copy, cascade delete, aggregation
+|-- themes.controller.ts          # CRUD + copy + cross-app copy + legacy endpoints
+|-- themes.service.ts             # Orchestrator: copy, cross-app copy, cascade delete, aggregation
 |-- entities/
 |   |-- theme.ts                  # Theme Firestore entity
 |   +-- build-version.ts          # BuildVersion helper
 |-- dto/
-|   +-- themes.dto.ts             # CreateThemeDto, UpdateThemeDto, CopyThemeDto
+|   +-- themes.dto.ts             # CreateThemeDto, UpdateThemeDto, CopyThemeDto, CopyThemeToApplicationDto
 |
 +-- features/
     |-- color-schemes/

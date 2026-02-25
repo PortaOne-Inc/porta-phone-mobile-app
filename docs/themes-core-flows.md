@@ -56,6 +56,66 @@ splash/launch images for the new theme. Feature access entitlements are now incl
 
 ---
 
+## Cross-Application Theme Copy (Deep Copy)
+
+Unlike the same-app copy above, `copy-to-application` performs a **deep copy** that includes all
+referenced assets (images in Cloud Storage). The copied theme is fully independent -- deleting the
+original does not affect it.
+
+```
+POST /applications/:appId/themes/:themeId/copy-to-application
+  { targetApplicationId, title?, description?, label? }
+        |
+        v
+  ThemesService.copyThemeToApplication()
+        |
+        |-- 1. Validate source theme exists in source app
+        |-- 2. Validate target app exists and is owned by uid (else 403)
+        |
+        |-- 3. Read all sub-resources in parallel:
+        |      widget configs, color schemes, page configs,
+        |      splash, launch, feature entitlements
+        |
+        |-- 4. Collect all referenced asset IDs:
+        |      |-- Deep walk widget/page config objects for { $ref: 'asset', id }
+        |      +-- Explicit fields: splash/launch source.foregroundAssetId,
+        |          source.backgroundAssetId
+        |
+        |-- 5. For each referenced asset:
+        |      |-- Load source asset doc
+        |      |-- Generate new ID + storage path under target app
+        |      |-- Server-side GCS copy (no data through backend)
+        |      |-- Create new Asset doc in Firestore
+        |      +-- Build oldId -> newId mapping
+        |
+        |-- 6. Build Firestore WriteBatch:
+        |      |-- New Theme entity (version: 1, target applicationId)
+        |      |-- Widget configs with remapped asset IDs
+        |      |-- Color schemes (no asset references)
+        |      |-- Page configs with remapped asset IDs
+        |      |-- Splash config (remapped source asset IDs, outputsArtifacts: {})
+        |      |-- Launch config (remapped source asset IDs, outputsArtifacts: {})
+        |      +-- Feature entitlements
+        |
+        |-- 7. batch.commit() -- atomic write
+        |
+        |-- On failure: best-effort rollback of created asset docs + GCS files
+        |
+        +-- Return new aggregated theme
+```
+
+**Key differences from same-app copy:**
+
+| Aspect | Same-app copy | Cross-app copy |
+|---|---|---|
+| Assets | Shared (same IDs) | Deep copied (new IDs, new GCS files) |
+| GCS files | Not copied | Server-side copy via `File.copy()` |
+| Auth | Same app ownership | Caller must own **both** apps |
+| `outputsArtifacts` | Reset to `{}` | Reset to `{}` |
+| Rollback | Atomic (single batch) | Asset cleanup on batch failure |
+
+---
+
 ## Theme Deletion (Cascade)
 
 ```

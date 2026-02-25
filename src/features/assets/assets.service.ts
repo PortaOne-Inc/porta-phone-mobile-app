@@ -226,6 +226,16 @@ export class AssetsService {
   }
 
 
+  /**
+   * Load an asset by ID + applicationId (no uid ownership check).
+   * Used for cross-app copy where the caller has already verified ownership.
+   */
+  async findOneByIdForApp(applicationId: string, id: string): Promise<Asset | null> {
+    const asset = await this.assetRepository.findById(id).catch(() => null);
+    if (!asset || asset.applicationId !== applicationId) return null;
+    return asset;
+  }
+
   async getSignedUrlByIdForApp(applicationId: string, id: string, expiresInSec = 3600) {
     const asset = await this.assetRepository.findById(id).catch(() => null);
     if (!asset) throw new NotFoundException('Asset not found');

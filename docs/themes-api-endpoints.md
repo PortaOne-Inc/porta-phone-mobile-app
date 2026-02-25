@@ -15,9 +15,42 @@ All endpoints are under `/applications/:applicationId/themes`. Auth: Firebase Be
 | `POST` | `/` | Create a new theme |
 | `PATCH` | `/:themeId` | Update theme fields: `title`, `description`, `label`, `status`, `expectedVersion`. Unknown fields are silently stripped. |
 | `DELETE` | `/:themeId` | Cascade delete theme + all related data |
-| `POST` | `/:themeId/copy` | Clone theme with all configs |
+| `POST` | `/:themeId/copy` | Clone theme with all configs (same application) |
+| `POST` | `/:themeId/copy-to-application` | Deep copy theme to another application (with asset copy) |
 
 **DELETE** accepts `?purgeOrphanAssets=true` to also remove orphaned Cloud Storage artifacts.
+
+### Copy to Application
+
+Deep copies a theme to a different application owned by the same user. All referenced assets (images in Cloud Storage) are duplicated so the copy is fully independent.
+
+**Request:**
+
+```json
+{
+  "targetApplicationId": "abc-123",
+  "title": "My Theme Copy",
+  "description": "...",
+  "label": "dev"
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `targetApplicationId` | string | Yes | ID of the target application (must be owned by the caller) |
+| `title` | string | No | Override title (default: `"{source title} (Copy)"`) |
+| `description` | string | No | Override description (default: source description) |
+| `label` | enum | No | `'dev'` / `'stage'` / `'prod'` (default: `'dev'`) |
+
+**Response:** The newly created Theme object in the target application (aggregated form).
+
+**Errors:**
+
+| Code | Condition |
+|---|---|
+| 404 | Source theme not found in source application |
+| 404 | Target application not found |
+| 403 | Caller does not own the target application |
 
 ---
 

@@ -158,3 +158,18 @@ These are defined in `firestore.indexes.json` and deployed via `firebase deploy 
 > **Note:** If `COLLECTION_PREFIX` is set, the actual collection names in Firestore will be prefixed
 > (e.g., `dev_theme_config_widgets`). The index file must be updated to match the prefixed names
 > before deploying to that environment.
+
+---
+
+## Asset Reference Utilities
+
+Widget and page configs can reference assets via `{ $ref: 'asset', id: '<assetId>' }` nodes embedded
+at any depth within the config JSON. Two utilities in `src/common/utils/` handle these references:
+
+| Utility | Description |
+|---|---|
+| `extractAssetIdsDeep(config)` | Walks the config tree and returns all unique asset IDs |
+| `remapAssetIdsDeep(config, idMap)` | Deep-clones a config, replacing asset IDs via an `oldId -> newId` map |
+
+These are used by the cross-application copy flow to discover which assets need duplication and to
+update references in the copied configs to point at the new asset documents.

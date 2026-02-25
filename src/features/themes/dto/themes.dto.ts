@@ -31,3 +31,14 @@ export class CreateThemeDto extends createZodDto(CreateThemeSchema) {}
 export class UpdateThemeDto extends createZodDto(UpdateThemeSchema) {}
 
 export class CopyThemeDto extends createZodDto(CopyThemeSchema) {}
+
+export const CopyThemeToApplicationSchema = z
+  .object({
+    targetApplicationId: z.string().min(1),
+    title: z.string().max(120).trim().optional(),
+    description: z.string().max(2000).trim().optional(),
+    label: z.enum(['dev', 'stage', 'prod']).optional().default('dev'),
+  })
+  .strict();
+
+export class CopyThemeToApplicationDto extends createZodDto(CopyThemeToApplicationSchema) {}

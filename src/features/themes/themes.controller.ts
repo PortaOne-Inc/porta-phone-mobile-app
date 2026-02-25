@@ -17,7 +17,7 @@ import { ThemesService } from './themes.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';
-import { CreateThemeDto, UpdateThemeDto, CopyThemeDto } from './dto/themes.dto';
+import { CreateThemeDto, UpdateThemeDto, CopyThemeDto, CopyThemeToApplicationDto } from './dto/themes.dto';
 
 @ApiTags('themes')
 @Controller('applications/:applicationId/themes')
@@ -134,6 +134,31 @@ export class ThemesController {
     await this.themesService.deleteTheme(uid, applicationId, themeId, {
       purgeOrphanAssets: purgeOrphanAssets === 'true',
     });
+  }
+
+  @Post(':themeId/copy-to-application')
+  async copyThemeToApplication(
+    @Req() req: any,
+    @Param('applicationId') applicationId: string,
+    @Param('themeId') themeId: string,
+    @Body() dto: CopyThemeToApplicationDto,
+  ) {
+    const uid: string = req.user?.uid ?? '';
+    const cloned = await this.themesService.copyThemeToApplication(
+      uid,
+      applicationId,
+      themeId,
+      dto.targetApplicationId,
+      {
+        title: dto.title,
+        description: dto.description,
+        label: dto.label,
+      },
+    );
+    if (!cloned) {
+      throw new HttpException('Failed to copy theme to application', HttpStatus.BAD_REQUEST);
+    }
+    return cloned;
   }
 
   @Post(':themeId/copy')

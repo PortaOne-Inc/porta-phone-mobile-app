@@ -78,6 +78,13 @@ export class CloudStorageService {
   }
 
   /**
+   * Server-side copy of a GCS object (no data flows through the backend).
+   */
+  async copyFile(srcPath: string, dstPath: string): Promise<void> {
+    await this.storage.bucket().file(srcPath).copy(this.storage.bucket().file(dstPath));
+  }
+
+  /**
    * Deletes the file (ignoreNotFound=true).
    */
   async delete(storagePath: string): Promise<void> {
