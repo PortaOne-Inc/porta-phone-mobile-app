@@ -113,8 +113,8 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
     List<SupportedFeature> features,
   ) = _SetSupportedFeatures;
 
-  // // embeddedResources
-  // const factory AppConfigEvent.setEmbeddedResources(List<EmbeddedResource> list) = _SetEmbeddedResources;
+  const factory AppConfigEvent.importJson(Map<String, dynamic> json) =
+      _ImportJsonAppConfigEvent;
 }
 
 @freezed

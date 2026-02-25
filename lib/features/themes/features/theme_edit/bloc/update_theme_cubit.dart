@@ -498,7 +498,17 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
           _featureAccessEditor.setNegotiationOverride(e.negotiation),
       setSupportedFeatures: (e) =>
           _featureAccessEditor.setSupportedFeatures(e.features),
+      importJson: (e) => _onImportFeatureAccessJson(e.json),
     );
+  }
+
+  void _onImportFeatureAccessJson(Map<String, dynamic> json) {
+    try {
+      final config = AppConfig.fromJson(json);
+      _featureAccessEditor.setAppConfig(config);
+    } catch (e) {
+      _logger.warning('Failed to parse AppConfig from JSON', e);
+    }
   }
 
   Future<void> _onThemeWidgetEvent(

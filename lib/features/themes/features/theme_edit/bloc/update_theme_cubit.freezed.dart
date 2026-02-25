@@ -1809,7 +1809,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginConfig value)?  setLoginConfig,TResult Function( _SetMainConfig value)?  setMainConfig,TResult Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult Function( _SetBottomMenu value)?  setBottomMenu,TResult Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult Function( _SetSettingsConfig value)?  setSettingsConfig,TResult Function( _SetSettingsSections value)?  setSettingsSections,TResult Function( _SetCallConfig value)?  setCallConfig,TResult Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult Function( _SetCallTransfer value)?  setCallTransfer,TResult Function( _SetCallEncoding value)?  setCallEncoding,TResult Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult Function( _SetSupportedFeatures value)?  setSupportedFeatures,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginConfig value)?  setLoginConfig,TResult Function( _SetMainConfig value)?  setMainConfig,TResult Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult Function( _SetBottomMenu value)?  setBottomMenu,TResult Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult Function( _SetSettingsConfig value)?  setSettingsConfig,TResult Function( _SetSettingsSections value)?  setSettingsSections,TResult Function( _SetCallConfig value)?  setCallConfig,TResult Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult Function( _SetCallTransfer value)?  setCallTransfer,TResult Function( _SetCallEncoding value)?  setCallEncoding,TResult Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult Function( _ImportJsonAppConfigEvent value)?  importJson,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
@@ -1830,7 +1830,8 @@ return setCallTransfer(_that);case _SetCallEncoding() when setCallEncoding != nu
 return setCallEncoding(_that);case _SetCallPeerConnection() when setCallPeerConnection != null:
 return setCallPeerConnection(_that);case _SetNegotiationOverride() when setNegotiationOverride != null:
 return setNegotiationOverride(_that);case _SetSupportedFeatures() when setSupportedFeatures != null:
-return setSupportedFeatures(_that);case _:
+return setSupportedFeatures(_that);case _ImportJsonAppConfigEvent() when importJson != null:
+return importJson(_that);case _:
   return orElse();
 
 }
@@ -1848,7 +1849,7 @@ return setSupportedFeatures(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginConfig value)  setLoginConfig,required TResult Function( _SetMainConfig value)  setMainConfig,required TResult Function( _SetMainSystemNotificationsEnabled value)  setMainSystemNotificationsEnabled,required TResult Function( _SetBottomMenu value)  setBottomMenu,required TResult Function( _SetBottomMenuCacheSelectedTab value)  setBottomMenuCacheSelectedTab,required TResult Function( _SetBottomMenuTabs value)  setBottomMenuTabs,required TResult Function( _UpdateBottomMenuTab value)  updateBottomMenuTab,required TResult Function( _InsertBottomMenuTab value)  insertBottomMenuTab,required TResult Function( _RemoveBottomMenuTabAt value)  removeBottomMenuTabAt,required TResult Function( _SetSettingsConfig value)  setSettingsConfig,required TResult Function( _SetSettingsSections value)  setSettingsSections,required TResult Function( _SetCallConfig value)  setCallConfig,required TResult Function( _SetCallVideoEnabled value)  setCallVideoEnabled,required TResult Function( _SetCallTransfer value)  setCallTransfer,required TResult Function( _SetCallEncoding value)  setCallEncoding,required TResult Function( _SetCallPeerConnection value)  setCallPeerConnection,required TResult Function( _SetNegotiationOverride value)  setNegotiationOverride,required TResult Function( _SetSupportedFeatures value)  setSupportedFeatures,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginConfig value)  setLoginConfig,required TResult Function( _SetMainConfig value)  setMainConfig,required TResult Function( _SetMainSystemNotificationsEnabled value)  setMainSystemNotificationsEnabled,required TResult Function( _SetBottomMenu value)  setBottomMenu,required TResult Function( _SetBottomMenuCacheSelectedTab value)  setBottomMenuCacheSelectedTab,required TResult Function( _SetBottomMenuTabs value)  setBottomMenuTabs,required TResult Function( _UpdateBottomMenuTab value)  updateBottomMenuTab,required TResult Function( _InsertBottomMenuTab value)  insertBottomMenuTab,required TResult Function( _RemoveBottomMenuTabAt value)  removeBottomMenuTabAt,required TResult Function( _SetSettingsConfig value)  setSettingsConfig,required TResult Function( _SetSettingsSections value)  setSettingsSections,required TResult Function( _SetCallConfig value)  setCallConfig,required TResult Function( _SetCallVideoEnabled value)  setCallVideoEnabled,required TResult Function( _SetCallTransfer value)  setCallTransfer,required TResult Function( _SetCallEncoding value)  setCallEncoding,required TResult Function( _SetCallPeerConnection value)  setCallPeerConnection,required TResult Function( _SetNegotiationOverride value)  setNegotiationOverride,required TResult Function( _SetSupportedFeatures value)  setSupportedFeatures,required TResult Function( _ImportJsonAppConfigEvent value)  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig():
@@ -1869,7 +1870,8 @@ return setCallTransfer(_that);case _SetCallEncoding():
 return setCallEncoding(_that);case _SetCallPeerConnection():
 return setCallPeerConnection(_that);case _SetNegotiationOverride():
 return setNegotiationOverride(_that);case _SetSupportedFeatures():
-return setSupportedFeatures(_that);case _:
+return setSupportedFeatures(_that);case _ImportJsonAppConfigEvent():
+return importJson(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1886,7 +1888,7 @@ return setSupportedFeatures(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginConfig value)?  setLoginConfig,TResult? Function( _SetMainConfig value)?  setMainConfig,TResult? Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult? Function( _SetBottomMenu value)?  setBottomMenu,TResult? Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult? Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult? Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult? Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult? Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult? Function( _SetSettingsConfig value)?  setSettingsConfig,TResult? Function( _SetSettingsSections value)?  setSettingsSections,TResult? Function( _SetCallConfig value)?  setCallConfig,TResult? Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult? Function( _SetCallTransfer value)?  setCallTransfer,TResult? Function( _SetCallEncoding value)?  setCallEncoding,TResult? Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult? Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult? Function( _SetSupportedFeatures value)?  setSupportedFeatures,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginConfig value)?  setLoginConfig,TResult? Function( _SetMainConfig value)?  setMainConfig,TResult? Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult? Function( _SetBottomMenu value)?  setBottomMenu,TResult? Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult? Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult? Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult? Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult? Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult? Function( _SetSettingsConfig value)?  setSettingsConfig,TResult? Function( _SetSettingsSections value)?  setSettingsSections,TResult? Function( _SetCallConfig value)?  setCallConfig,TResult? Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult? Function( _SetCallTransfer value)?  setCallTransfer,TResult? Function( _SetCallEncoding value)?  setCallEncoding,TResult? Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult? Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult? Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult? Function( _ImportJsonAppConfigEvent value)?  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
@@ -1907,7 +1909,8 @@ return setCallTransfer(_that);case _SetCallEncoding() when setCallEncoding != nu
 return setCallEncoding(_that);case _SetCallPeerConnection() when setCallPeerConnection != null:
 return setCallPeerConnection(_that);case _SetNegotiationOverride() when setNegotiationOverride != null:
 return setNegotiationOverride(_that);case _SetSupportedFeatures() when setSupportedFeatures != null:
-return setSupportedFeatures(_that);case _:
+return setSupportedFeatures(_that);case _ImportJsonAppConfigEvent() when importJson != null:
+return importJson(_that);case _:
   return null;
 
 }
@@ -1924,7 +1927,7 @@ return setSupportedFeatures(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AppConfigLogin login)?  setLoginConfig,TResult Function( AppConfigMain main)?  setMainConfig,TResult Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult Function( int index)?  removeBottomMenuTabAt,TResult Function( AppConfigSettings settings)?  setSettingsConfig,TResult Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult Function( AppConfigCall callConfig)?  setCallConfig,TResult Function( bool enabled)?  setCallVideoEnabled,TResult Function( AppConfigTransfer transfer)?  setCallTransfer,TResult Function( AppConfigEncoding encoding)?  setCallEncoding,TResult Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult Function( List<SupportedFeature> features)?  setSupportedFeatures,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AppConfigLogin login)?  setLoginConfig,TResult Function( AppConfigMain main)?  setMainConfig,TResult Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult Function( int index)?  removeBottomMenuTabAt,TResult Function( AppConfigSettings settings)?  setSettingsConfig,TResult Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult Function( AppConfigCall callConfig)?  setCallConfig,TResult Function( bool enabled)?  setCallVideoEnabled,TResult Function( AppConfigTransfer transfer)?  setCallTransfer,TResult Function( AppConfigEncoding encoding)?  setCallEncoding,TResult Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
 return setLoginConfig(_that.login);case _SetMainConfig() when setMainConfig != null:
@@ -1944,7 +1947,8 @@ return setCallTransfer(_that.transfer);case _SetCallEncoding() when setCallEncod
 return setCallEncoding(_that.encoding);case _SetCallPeerConnection() when setCallPeerConnection != null:
 return setCallPeerConnection(_that.pc);case _SetNegotiationOverride() when setNegotiationOverride != null:
 return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures() when setSupportedFeatures != null:
-return setSupportedFeatures(_that.features);case _:
+return setSupportedFeatures(_that.features);case _ImportJsonAppConfigEvent() when importJson != null:
+return importJson(_that.json);case _:
   return orElse();
 
 }
@@ -1962,7 +1966,7 @@ return setSupportedFeatures(_that.features);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AppConfigLogin login)  setLoginConfig,required TResult Function( AppConfigMain main)  setMainConfig,required TResult Function( bool enabled)  setMainSystemNotificationsEnabled,required TResult Function( AppConfigBottomMenu bottomMenu)  setBottomMenu,required TResult Function( bool cache)  setBottomMenuCacheSelectedTab,required TResult Function( List<BottomMenuTabScheme> tabs)  setBottomMenuTabs,required TResult Function( int index,  BottomMenuTabScheme tab)  updateBottomMenuTab,required TResult Function( int index,  BottomMenuTabScheme tab)  insertBottomMenuTab,required TResult Function( int index)  removeBottomMenuTabAt,required TResult Function( AppConfigSettings settings)  setSettingsConfig,required TResult Function( List<AppConfigSettingsSection> sections)  setSettingsSections,required TResult Function( AppConfigCall callConfig)  setCallConfig,required TResult Function( bool enabled)  setCallVideoEnabled,required TResult Function( AppConfigTransfer transfer)  setCallTransfer,required TResult Function( AppConfigEncoding encoding)  setCallEncoding,required TResult Function( AppConfigPeerConnection pc)  setCallPeerConnection,required TResult Function( AppConfigNegotiationSettingsOverride negotiation)  setNegotiationOverride,required TResult Function( List<SupportedFeature> features)  setSupportedFeatures,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AppConfigLogin login)  setLoginConfig,required TResult Function( AppConfigMain main)  setMainConfig,required TResult Function( bool enabled)  setMainSystemNotificationsEnabled,required TResult Function( AppConfigBottomMenu bottomMenu)  setBottomMenu,required TResult Function( bool cache)  setBottomMenuCacheSelectedTab,required TResult Function( List<BottomMenuTabScheme> tabs)  setBottomMenuTabs,required TResult Function( int index,  BottomMenuTabScheme tab)  updateBottomMenuTab,required TResult Function( int index,  BottomMenuTabScheme tab)  insertBottomMenuTab,required TResult Function( int index)  removeBottomMenuTabAt,required TResult Function( AppConfigSettings settings)  setSettingsConfig,required TResult Function( List<AppConfigSettingsSection> sections)  setSettingsSections,required TResult Function( AppConfigCall callConfig)  setCallConfig,required TResult Function( bool enabled)  setCallVideoEnabled,required TResult Function( AppConfigTransfer transfer)  setCallTransfer,required TResult Function( AppConfigEncoding encoding)  setCallEncoding,required TResult Function( AppConfigPeerConnection pc)  setCallPeerConnection,required TResult Function( AppConfigNegotiationSettingsOverride negotiation)  setNegotiationOverride,required TResult Function( List<SupportedFeature> features)  setSupportedFeatures,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig():
 return setLoginConfig(_that.login);case _SetMainConfig():
@@ -1982,7 +1986,8 @@ return setCallTransfer(_that.transfer);case _SetCallEncoding():
 return setCallEncoding(_that.encoding);case _SetCallPeerConnection():
 return setCallPeerConnection(_that.pc);case _SetNegotiationOverride():
 return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures():
-return setSupportedFeatures(_that.features);case _:
+return setSupportedFeatures(_that.features);case _ImportJsonAppConfigEvent():
+return importJson(_that.json);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1999,7 +2004,7 @@ return setSupportedFeatures(_that.features);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AppConfigLogin login)?  setLoginConfig,TResult? Function( AppConfigMain main)?  setMainConfig,TResult? Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult? Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult? Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult? Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult? Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult? Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult? Function( int index)?  removeBottomMenuTabAt,TResult? Function( AppConfigSettings settings)?  setSettingsConfig,TResult? Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult? Function( AppConfigCall callConfig)?  setCallConfig,TResult? Function( bool enabled)?  setCallVideoEnabled,TResult? Function( AppConfigTransfer transfer)?  setCallTransfer,TResult? Function( AppConfigEncoding encoding)?  setCallEncoding,TResult? Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult? Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult? Function( List<SupportedFeature> features)?  setSupportedFeatures,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AppConfigLogin login)?  setLoginConfig,TResult? Function( AppConfigMain main)?  setMainConfig,TResult? Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult? Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult? Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult? Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult? Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult? Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult? Function( int index)?  removeBottomMenuTabAt,TResult? Function( AppConfigSettings settings)?  setSettingsConfig,TResult? Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult? Function( AppConfigCall callConfig)?  setCallConfig,TResult? Function( bool enabled)?  setCallVideoEnabled,TResult? Function( AppConfigTransfer transfer)?  setCallTransfer,TResult? Function( AppConfigEncoding encoding)?  setCallEncoding,TResult? Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult? Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult? Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
 return setLoginConfig(_that.login);case _SetMainConfig() when setMainConfig != null:
@@ -2019,7 +2024,8 @@ return setCallTransfer(_that.transfer);case _SetCallEncoding() when setCallEncod
 return setCallEncoding(_that.encoding);case _SetCallPeerConnection() when setCallPeerConnection != null:
 return setCallPeerConnection(_that.pc);case _SetNegotiationOverride() when setNegotiationOverride != null:
 return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures() when setSupportedFeatures != null:
-return setSupportedFeatures(_that.features);case _:
+return setSupportedFeatures(_that.features);case _ImportJsonAppConfigEvent() when importJson != null:
+return importJson(_that.json);case _:
   return null;
 
 }
@@ -3330,6 +3336,78 @@ class __$SetSupportedFeaturesCopyWithImpl<$Res>
   return _then(_SetSupportedFeatures(
 null == features ? _self._features : features // ignore: cast_nullable_to_non_nullable
 as List<SupportedFeature>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _ImportJsonAppConfigEvent implements AppConfigEvent {
+  const _ImportJsonAppConfigEvent(final  Map<String, dynamic> json): _json = json;
+  
+
+ final  Map<String, dynamic> _json;
+ Map<String, dynamic> get json {
+  if (_json is EqualUnmodifiableMapView) return _json;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_json);
+}
+
+
+/// Create a copy of AppConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ImportJsonAppConfigEventCopyWith<_ImportJsonAppConfigEvent> get copyWith => __$ImportJsonAppConfigEventCopyWithImpl<_ImportJsonAppConfigEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImportJsonAppConfigEvent&&const DeepCollectionEquality().equals(other._json, _json));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_json));
+
+@override
+String toString() {
+  return 'AppConfigEvent.importJson(json: $json)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ImportJsonAppConfigEventCopyWith<$Res> implements $AppConfigEventCopyWith<$Res> {
+  factory _$ImportJsonAppConfigEventCopyWith(_ImportJsonAppConfigEvent value, $Res Function(_ImportJsonAppConfigEvent) _then) = __$ImportJsonAppConfigEventCopyWithImpl;
+@useResult
+$Res call({
+ Map<String, dynamic> json
+});
+
+
+
+
+}
+/// @nodoc
+class __$ImportJsonAppConfigEventCopyWithImpl<$Res>
+    implements _$ImportJsonAppConfigEventCopyWith<$Res> {
+  __$ImportJsonAppConfigEventCopyWithImpl(this._self, this._then);
+
+  final _ImportJsonAppConfigEvent _self;
+  final $Res Function(_ImportJsonAppConfigEvent) _then;
+
+/// Create a copy of AppConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? json = null,}) {
+  return _then(_ImportJsonAppConfigEvent(
+null == json ? _self._json : json // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,
   ));
 }
 

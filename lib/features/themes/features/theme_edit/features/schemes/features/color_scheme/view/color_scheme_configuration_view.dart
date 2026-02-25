@@ -5,8 +5,6 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
-import '../widgets/widgets.dart';
-
 class _ColorGroupDefinition {
   const _ColorGroupDefinition({
     required this.title,
@@ -35,6 +33,8 @@ class _ColorSchemeConfigurationViewState
     width: 180,
     height: 120,
   );
+
+  bool _isJsonMode = false;
 
   // Definitions for grouping and explaining color roles
   final List<_ColorGroupDefinition> _colorGroups = [
@@ -143,23 +143,42 @@ class _ColorSchemeConfigurationViewState
       (c) => c.state.colorsScheme,
     );
 
+    final colorSchemeJson = context
+        .select<UpdateThemCubit, Map<String, dynamic>>(
+          (c) => c.state.colorSchemeConfig.toJson(),
+        );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Color Scheme'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.code),
-            tooltip: 'Import JSON',
-            onPressed: () => _showImportJsonDialog(context, bloc),
+          SegmentedButton<bool>(
+            segments: const [
+              ButtonSegment(value: false, label: Text('UI')),
+              ButtonSegment(value: true, label: Text('JSON')),
+            ],
+            selected: {_isJsonMode},
+            onSelectionChanged: (v) => setState(() => _isJsonMode = v.first),
           ),
+          const SizedBox(width: 8),
         ],
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(16),
-        itemCount: _colorGroups.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 32),
-        itemBuilder: (context, index) =>
-            _buildGroupItem(context, _colorGroups[index], allColors, bloc),
+      body: IndexedStack(
+        index: _isJsonMode ? 1 : 0,
+        children: [
+          ListView.separated(
+            padding: const EdgeInsets.all(16),
+            itemCount: _colorGroups.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 32),
+            itemBuilder: (context, index) =>
+                _buildGroupItem(context, _colorGroups[index], allColors, bloc),
+          ),
+          JsonEditorPanel(
+            initialJson: colorSchemeJson,
+            onApply: (json) =>
+                bloc.add(UpdateColorSchemeEvent.importJson(json)),
+          ),
+        ],
       ),
     );
   }
@@ -224,16 +243,6 @@ class _ColorSchemeConfigurationViewState
     );
 
     if (result != null) onSelected(result);
-  }
-
-  void _showImportJsonDialog(BuildContext context, UpdateThemCubit bloc) {
-    showDialog<void>(
-      context: context,
-      builder: (dialogContext) => JsonImportDialog(
-        onImport: (jsonMap) =>
-            bloc.add(UpdateColorSchemeEvent.importJson(jsonMap)),
-      ),
-    );
   }
 }
 
