@@ -12,7 +12,6 @@ class FeatureAccessMapper
     return FeatureAccessModel(
       applicationId: it.applicationId,
       themeId: it.themeId,
-      status: it.status,
       config: it.config,
       version: it.version,
       createdAt: it.createdAt,
@@ -25,7 +24,6 @@ class FeatureAccessMapper
     return FeatureAccessDto(
       applicationId: it.applicationId,
       themeId: it.themeId,
-      status: it.status,
       config: it.config,
       version: it.version,
       createdAt: it.createdAt,

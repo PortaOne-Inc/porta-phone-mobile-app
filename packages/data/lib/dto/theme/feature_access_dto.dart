@@ -8,7 +8,6 @@ part 'feature_access_dto.g.dart';
 sealed class FeatureAccessDto with _$FeatureAccessDto {
   const factory FeatureAccessDto({
     required String applicationId,
-    required String status,
     required Map<String, dynamic> config,
     String? themeId,
     int? version,

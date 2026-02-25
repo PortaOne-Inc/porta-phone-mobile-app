@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FeatureAccessDto {
 
- String get applicationId; String get status; Map<String, dynamic> get config; String? get themeId; int? get version; String? get createdAt; String? get updatedAt;
+ String get applicationId; Map<String, dynamic> get config; String? get themeId; int? get version; String? get createdAt; String? get updatedAt;
 /// Create a copy of FeatureAccessDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FeatureAccessDtoCopyWith<FeatureAccessDto> get copyWith => _$FeatureAccessDtoCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FeatureAccessDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FeatureAccessDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&const DeepCollectionEquality().equals(other.config, config)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,status,const DeepCollectionEquality().hash(config),themeId,version,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,const DeepCollectionEquality().hash(config),themeId,version,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'FeatureAccessDto(applicationId: $applicationId, status: $status, config: $config, themeId: $themeId, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'FeatureAccessDto(applicationId: $applicationId, config: $config, themeId: $themeId, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $FeatureAccessDtoCopyWith<$Res>  {
   factory $FeatureAccessDtoCopyWith(FeatureAccessDto value, $Res Function(FeatureAccessDto) _then) = _$FeatureAccessDtoCopyWithImpl;
 @useResult
 $Res call({
- String applicationId, String status, Map<String, dynamic> config, String? themeId, int? version, String? createdAt, String? updatedAt
+ String applicationId, Map<String, dynamic> config, String? themeId, int? version, String? createdAt, String? updatedAt
 });
 
 
@@ -65,10 +65,9 @@ class _$FeatureAccessDtoCopyWithImpl<$Res>
 
 /// Create a copy of FeatureAccessDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? status = null,Object? config = null,Object? themeId = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? config = null,Object? themeId = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,themeId: freezed == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String?,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -156,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String status,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FeatureAccessDto() when $default != null:
-return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -177,10 +176,10 @@ return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String status,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _FeatureAccessDto():
-return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);}
+return $default(_that.applicationId,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +193,10 @@ return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String status,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  Map<String, dynamic> config,  String? themeId,  int? version,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _FeatureAccessDto() when $default != null:
-return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.config,_that.themeId,_that.version,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -209,11 +208,10 @@ return $default(_that.applicationId,_that.status,_that.config,_that.themeId,_tha
 @JsonSerializable()
 
 class _FeatureAccessDto implements FeatureAccessDto {
-  const _FeatureAccessDto({required this.applicationId, required this.status, required final  Map<String, dynamic> config, this.themeId, this.version, this.createdAt, this.updatedAt}): _config = config;
+  const _FeatureAccessDto({required this.applicationId, required final  Map<String, dynamic> config, this.themeId, this.version, this.createdAt, this.updatedAt}): _config = config;
   factory _FeatureAccessDto.fromJson(Map<String, dynamic> json) => _$FeatureAccessDtoFromJson(json);
 
 @override final  String applicationId;
-@override final  String status;
  final  Map<String, dynamic> _config;
 @override Map<String, dynamic> get config {
   if (_config is EqualUnmodifiableMapView) return _config;
@@ -239,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FeatureAccessDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FeatureAccessDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&const DeepCollectionEquality().equals(other._config, _config)&&(identical(other.themeId, themeId) || other.themeId == themeId)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,status,const DeepCollectionEquality().hash(_config),themeId,version,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,const DeepCollectionEquality().hash(_config),themeId,version,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'FeatureAccessDto(applicationId: $applicationId, status: $status, config: $config, themeId: $themeId, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'FeatureAccessDto(applicationId: $applicationId, config: $config, themeId: $themeId, version: $version, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -259,7 +257,7 @@ abstract mixin class _$FeatureAccessDtoCopyWith<$Res> implements $FeatureAccessD
   factory _$FeatureAccessDtoCopyWith(_FeatureAccessDto value, $Res Function(_FeatureAccessDto) _then) = __$FeatureAccessDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String applicationId, String status, Map<String, dynamic> config, String? themeId, int? version, String? createdAt, String? updatedAt
+ String applicationId, Map<String, dynamic> config, String? themeId, int? version, String? createdAt, String? updatedAt
 });
 
 
@@ -276,10 +274,9 @@ class __$FeatureAccessDtoCopyWithImpl<$Res>
 
 /// Create a copy of FeatureAccessDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? status = null,Object? config = null,Object? themeId = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? config = null,Object? themeId = freezed,Object? version = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_FeatureAccessDto(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,themeId: freezed == themeId ? _self.themeId : themeId // ignore: cast_nullable_to_non_nullable
 as String?,version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable

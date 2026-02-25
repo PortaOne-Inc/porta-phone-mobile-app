@@ -9,7 +9,6 @@ part of 'feature_access_dto.dart';
 _FeatureAccessDto _$FeatureAccessDtoFromJson(Map<String, dynamic> json) =>
     _FeatureAccessDto(
       applicationId: json['applicationId'] as String,
-      status: json['status'] as String,
       config: json['config'] as Map<String, dynamic>,
       themeId: json['themeId'] as String?,
       version: (json['version'] as num?)?.toInt(),
@@ -20,7 +19,6 @@ _FeatureAccessDto _$FeatureAccessDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$FeatureAccessDtoToJson(_FeatureAccessDto instance) =>
     <String, dynamic>{
       'applicationId': instance.applicationId,
-      'status': instance.status,
       'config': instance.config,
       'themeId': instance.themeId,
       'version': instance.version,
