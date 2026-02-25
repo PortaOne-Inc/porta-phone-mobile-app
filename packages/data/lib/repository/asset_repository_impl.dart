@@ -233,7 +233,7 @@ class AssetRepositoryImpl extends AssetRepository {
     final stream = _controllerWithCache(applicationId);
 
     // If cache is empty, trigger initial load
-    if (_cache.containsKey(applicationId)) {
+    if (!_cache.containsKey(applicationId)) {
       // ignore: discarded_futures
       getApplicationAssets(
         applicationId,
