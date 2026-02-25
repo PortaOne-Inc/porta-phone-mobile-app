@@ -23,6 +23,14 @@ class SchemeEditorController {
     _emit(config.copyWith(sections: updated));
   }
 
+  /// Toggles the enabled state of a section.
+  void toggleSectionEnabled(AppConfigSettingsSection section) {
+    _updateSection(
+      section,
+      (s) => s.copyWith(enabled: !s.enabled),
+    );
+  }
+
   /// Reorders sections within the main list.
   void reorderSections(int oldIndex, int newIndex) {
     if (oldIndex < 0 || oldIndex >= config.sections.length) return;

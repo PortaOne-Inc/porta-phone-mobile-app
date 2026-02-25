@@ -62,7 +62,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 child: TextButton.icon(
                   icon: const Icon(Icons.update),
                   label: const Text('Update'),
-                  onPressed: state.isProgress
+                  onPressed: state.isProgress || state.syncStatus == SyncStatus.syncing
                       ? null
                       : () => _cubit.add(const InitializeEvent()),
                 ),
@@ -142,6 +142,25 @@ class _PageThemeEditState extends State<PageThemeEdit> {
   }
 
   Widget _buildSyncIndicator(UpdateThemeState state) {
+    final isBusy = state.isProgress || state.syncStatus == SyncStatus.syncing;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Tooltip(
+          message: 'Create a history snapshot',
+          child: TextButton.icon(
+            icon: const Icon(Icons.camera_alt_outlined),
+            label: const Text('Snapshot'),
+            onPressed: isBusy ? null : () => _showCreateSnapshotDialog(context),
+          ),
+        ),
+        _buildSyncAction(state, isBusy),
+      ],
+    );
+  }
+
+  Widget _buildSyncAction(UpdateThemeState state, bool isBusy) {
     switch (state.syncStatus) {
       case SyncStatus.syncing:
         return Tooltip(
@@ -193,30 +212,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           ),
         );
       case SyncStatus.idle:
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Tooltip(
-              message: 'Create a history snapshot',
-              child: TextButton.icon(
-                icon: const Icon(Icons.camera_alt_outlined),
-                label: const Text('Snapshot'),
-                onPressed: state.isProgress
-                    ? null
-                    : () => _showCreateSnapshotDialog(context),
-              ),
-            ),
-            Tooltip(
-              message: 'Save all changes',
-              child: TextButton.icon(
-                icon: const Icon(Icons.save),
-                label: const Text('Save'),
-                onPressed: state.isProgress
-                    ? null
-                    : () => _cubit.add(const SyncConfigEvent()),
-              ),
-            ),
-          ],
+        return Tooltip(
+          message: 'Save all changes',
+          child: TextButton.icon(
+            icon: const Icon(Icons.save),
+            label: const Text('Save'),
+            onPressed: isBusy
+                ? null
+                : () => _cubit.add(const SyncConfigEvent()),
+          ),
         );
     }
   }

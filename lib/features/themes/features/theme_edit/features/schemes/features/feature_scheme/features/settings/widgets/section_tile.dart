@@ -48,7 +48,24 @@ class SectionTile extends StatelessWidget {
             child: Icon(Icons.drag_handle),
           ),
         ),
-        title: Text(section.titleL10n, style: theme.textTheme.titleMedium),
+        title: Row(
+          children: [
+            Flexible(
+              child: Text(
+                section.titleL10n,
+                style: theme.textTheme.titleMedium,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(
+              section.enabled ? Icons.visibility : Icons.visibility_off,
+              size: 18,
+              color: section.enabled
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.outline,
+            ),
+          ],
+        ),
         trailing: _buildActionMenu(),
         children: [
           const Divider(height: 1),
@@ -73,10 +90,21 @@ class SectionTile extends StatelessWidget {
     return PopupMenuButton<String>(
       icon: const Icon(Icons.more_vert),
       onSelected: (value) {
+        if (value == 'toggle') controller.toggleSectionEnabled(section);
         if (value == 'remove') controller.removeSection(section);
         if (value == 'add') onAddSectionItem();
       },
       itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 'toggle',
+          child: ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: Icon(
+              section.enabled ? Icons.visibility_off : Icons.visibility,
+            ),
+            title: Text(section.enabled ? 'Disable' : 'Enable'),
+          ),
+        ),
         const PopupMenuItem(
           value: 'add',
           child: ListTile(
