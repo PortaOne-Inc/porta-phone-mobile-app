@@ -174,4 +174,30 @@ class ThemeRepositoryImpl extends ThemeRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<ThemeModel> copyThemeToApplication(
+    String applicationId,
+    String themeId, {
+    required String targetApplicationId,
+    String? title,
+    String? description,
+    String? label,
+  }) async {
+    try {
+      final dto = await configuratorBackandDatasource.copyThemeToApplication(
+        applicationId,
+        themeId,
+        targetApplicationId: targetApplicationId,
+        title: title,
+        description: description,
+        label: label,
+      );
+      return themeMapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

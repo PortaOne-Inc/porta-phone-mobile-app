@@ -94,4 +94,15 @@ abstract class ThemeRepository {
     String? description,
     String? label,
   });
+
+  /// Deep-copy a theme to a different application (with full asset duplication).
+  /// The [targetApplicationId] must be owned by the current user.
+  Future<ThemeModel> copyThemeToApplication(
+    String applicationId,
+    String themeId, {
+    required String targetApplicationId,
+    String? title,
+    String? description,
+    String? label,
+  });
 }

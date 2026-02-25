@@ -157,6 +157,8 @@ class AppRoute {
                       updateBuildNumberUseCase: getIt.get(),
                       updateApplicationUsecase: getIt.get(),
                       copyThemeUsecase: getIt.get(),
+                      copyThemeToApplicationUsecase: getIt.get(),
+                      getApplicationsUseCase: getIt.get(),
                       updateThemeUseCase: getIt<UsecaseThemeUpdate>(
                         param1: state.pathParameters[AppRoutInfo.keyApplicationId],
                       ),

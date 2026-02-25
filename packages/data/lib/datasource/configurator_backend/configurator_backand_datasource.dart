@@ -232,6 +232,29 @@ class ConfiguratorBackandDatasource {
     return ThemeDTO.fromJson(response.data!);
   }
 
+  Future<ThemeDTO> copyThemeToApplication(
+    String applicationId,
+    String themeId, {
+    required String targetApplicationId,
+    String? title,
+    String? description,
+    String? label,
+  }) async {
+    final body = <String, dynamic>{
+      'targetApplicationId': targetApplicationId,
+      if (title != null) 'title': title,
+      if (description != null) 'description': description,
+      if (label != null) 'label': label,
+    };
+
+    final response = await _client.post<Map<String, dynamic>>(
+      ThemeConfiguratorBackandAPI.copyToApplication(applicationId, themeId),
+      data: body,
+    );
+
+    return ThemeDTO.fromJson(response.data!);
+  }
+
   Future<ApplicationDTO> updateThemeBindings(
     String applicationId, {
     String? defaultThemeId,

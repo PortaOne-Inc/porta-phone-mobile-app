@@ -46,6 +46,9 @@ class ThemeConfiguratorBackandAPI {
 
   static String copy(String applicationId, String themeId) =>
       '/applications/$applicationId/themes/$themeId/copy';
+
+  static String copyToApplication(String applicationId, String themeId) =>
+      '/applications/$applicationId/themes/$themeId/copy-to-application';
 }
 
 class DeployConfiguratorBackandAPI {

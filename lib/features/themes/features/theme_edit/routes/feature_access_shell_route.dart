@@ -28,6 +28,15 @@ class FeatureAccessShellRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
+        final hasNavigation = state.loadedComponents.contains(ThemeComponents.navigation);
+        final hasEmbeds = state.loadedComponents.contains(ThemeComponents.embeds);
+
+        if (!hasNavigation || !hasEmbeds) {
+          return const LoadingScreen(
+            status: LoadingStatus.fetchingResources,
+          );
+        }
+
         return FutureBuilder<AppConfig>(
           future: _replaceLocalAssetsWithDataUri(state.appConfig),
           builder: (context, snapshot) {

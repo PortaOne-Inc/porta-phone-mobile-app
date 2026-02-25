@@ -27,6 +27,8 @@ class ApplicationDetailsPage extends StatefulWidget with MixinMessages {
 class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
     with MixinMessages {
   late final bloc = BlocProvider.of<ApplicationDetailsCubit>(context);
+  bool _copyToAppLoading = false;
+  String? _copyToAppMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +111,9 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
               ],
             ),
           ),
-          body: ResizableColumns(
+          body: Stack(
+            children: [
+              ResizableColumns(
             orientation: ResizableOrientation.horizontal,
             dividerColor: Theme.of(context).colorScheme.surfaceContainerLow,
             dividerThickness: 4,
@@ -180,6 +184,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
                             theme,
                           ),
                           onCopy: bloc.copyTheme,
+                          onCopyToApplication: (theme) =>
+                              _onCopyToApplication(context, theme),
                           onChangeStatus: bloc.changeThemeStatus,
                         ),
                       ),
@@ -187,6 +193,29 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
                   ),
                 ],
               ),
+            ],
+          ),
+              if (_copyToAppLoading)
+                Positioned.fill(
+                  child: ColoredBox(
+                    color: Colors.black26,
+                    child: Center(
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const CircularProgressIndicator(),
+                              const SizedBox(width: 16),
+                              Text(_copyToAppMessage ?? 'Loading...'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         );
@@ -252,6 +281,88 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
       builder: (context) =>
           CredentialsDialog(themeId: model.id!, applicationId: applicationId),
     );
+  }
+
+  Future<void> _onCopyToApplication(
+    BuildContext context,
+    ThemeModel theme,
+  ) async {
+    // Phase 1: Fetch applications list
+    setState(() {
+      _copyToAppLoading = true;
+      _copyToAppMessage = 'Loading applications...';
+    });
+
+    List<ApplicationModel> apps;
+    try {
+      apps = await bloc.getApplicationsUseCase.execute();
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _copyToAppLoading = false;
+          _copyToAppMessage = null;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to load applications: $e')),
+        );
+      }
+      return;
+    }
+
+    if (!mounted) return;
+    setState(() {
+      _copyToAppLoading = false;
+      _copyToAppMessage = null;
+    });
+
+    // Show the dialog for user input
+    final result = await CopyThemeToApplicationDialog.show(
+      context,
+      currentApplicationId: bloc.applicationId,
+      applications: apps,
+      sourceTitle: theme.title,
+    );
+
+    if (result == null || !mounted) return;
+
+    // Phase 2: Copy theme
+    setState(() {
+      _copyToAppLoading = true;
+      _copyToAppMessage = 'Copying theme...';
+    });
+
+    try {
+      await bloc.copyThemeToApplication(
+        theme,
+        result.targetApplicationId,
+        title: result.title,
+        description: result.description,
+        label: result.label,
+      );
+      if (mounted) {
+        setState(() {
+          _copyToAppLoading = false;
+          _copyToAppMessage = null;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Theme copied to ${result.targetApplicationName}',
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _copyToAppLoading = false;
+          _copyToAppMessage = null;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to copy theme: $e')),
+        );
+      }
+    }
   }
 
   void _openApplicationTranslations(

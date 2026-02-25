@@ -11,6 +11,7 @@ class ApplicationThemesScreen extends StatelessWidget {
     required this.onOpenBranding,
     required this.onMakeDefault,
     required this.onCopy,
+    required this.onCopyToApplication,
     required this.onDelete,
     required this.onShowInfo,
     required this.themes,
@@ -24,6 +25,7 @@ class ApplicationThemesScreen extends StatelessWidget {
   final void Function(ThemeModel themeModel) onDelete;
   final void Function(ThemeModel themeModel) onShowInfo;
   final void Function(ThemeModel themeModel) onCopy;
+  final void Function(ThemeModel themeModel) onCopyToApplication;
   final void Function(ThemeModel themeModel, ThemeStatus status)? onChangeStatus;
 
   final List<ThemeModel> themes;
@@ -51,6 +53,7 @@ class ApplicationThemesScreen extends StatelessWidget {
                 onDelete: onDelete,
                 onInfo: onShowInfo,
                 onCopy: onCopy,
+                onCopyToApplication: onCopyToApplication,
                 onChangeStatus: onChangeStatus,
               ),
             ),

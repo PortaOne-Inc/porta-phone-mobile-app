@@ -4,7 +4,14 @@
       "Bash(ls:*)",
       "Bash(grep melos:*)",
       "Bash(melos:*)",
-      "Bash(dart:*)"
+      "Bash(dart:*)",
+      "Bash(git:*)",
+      "Bash(echo === $dir ===:*)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(done)",
+      "Bash(echo file not found:*)",
+      "Bash(identify /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png 2>/dev/null || sips -g pixelHeight -g pixelWidth /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png /Users/serdun/Documents/work/webtrit/webtrit_phone/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png 2>/dev/null)",
+      "Bash(sips:*)"
     ]
   }
 }

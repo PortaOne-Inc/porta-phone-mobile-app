@@ -95,6 +95,8 @@ import 'package:domain/usecase/resources/upsert_splash_asset_usecase.dart'
 import 'package:domain/usecase/resources/watch_application_assets_usecase.dart'
     as _i892;
 import 'package:domain/usecase/resources/watch_embeds_usecase.dart' as _i88;
+import 'package:domain/usecase/theme/copy_theme_to_application_usecase.dart'
+    as _i306;
 import 'package:domain/usecase/theme/copy_theme_usecase.dart' as _i928;
 import 'package:domain/usecase/theme/delete_feature_access_usecase.dart'
     as _i852;
@@ -319,6 +321,8 @@ class DomainPackageModule extends _i526.MicroPackageModule {
               gh<_i174.ApplicationRepository>(),
               gh<_i174.AuthRepository>(),
             ));
+    gh.factory<_i306.CopyThemeToApplicationUsecase>(() =>
+        _i306.CopyThemeToApplicationUsecaseImpl(gh<_i494.ThemeRepository>()));
     gh.factory<_i98.UseCaseSetThemeDefault>(
         () => _i98.UseCaseSetThemeDefaultImpl(
               gh<_i174.ApplicationRepository>(),

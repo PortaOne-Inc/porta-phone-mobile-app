@@ -10,6 +10,7 @@ class ItemTheme extends StatelessWidget {
     required this.onDelete,
     required this.onInfo,
     required this.onCopy,
+    required this.onCopyToApplication,
     this.onChangeStatus,
     super.key,
   });
@@ -20,12 +21,14 @@ class ItemTheme extends StatelessWidget {
   final void Function(ThemeModel model) onInfo;
   final void Function(ThemeModel model) onMakeDefault;
   final void Function(ThemeModel model) onCopy;
+  final void Function(ThemeModel model) onCopyToApplication;
   final void Function(ThemeModel model, ThemeStatus status)? onChangeStatus;
 
   static const _menuKeyDelete = '_menuKeyDelete';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';
   static const _menuKeyInfo = '_menuKeyInfo';
   static const _menuKeyCopy = '_menuKeyCopy';
+  static const _menuKeyCopyToApp = '_menuKeyCopyToApp';
 
   @override
   Widget build(BuildContext context) {
@@ -141,29 +144,65 @@ class ItemTheme extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
                 itemBuilder: (c) => [
-                  const PopupMenuItem(
-                    value: _menuKeyCopy,
-                    padding: EdgeInsets.all(8),
-                    child: Text('Copy'),
-                  ),
                   PopupMenuItem(
                     value: _menuKeyThemeDefault,
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      context.l10n.feature_application_use_current_theme,
+                    enabled: !model.isDefault,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.star_outline_rounded),
+                      title: Text(
+                        context.l10n.feature_application_use_current_theme,
+                      ),
+                    ),
+                  ),
+                  const PopupMenuDivider(),
+                  const PopupMenuItem(
+                    value: _menuKeyCopy,
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.copy_outlined),
+                      title: Text('Duplicate Theme'),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: _menuKeyCopyToApp,
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.drive_file_move_outlined),
+                      title: Text('Copy to Application'),
+                    ),
+                  ),
+                  const PopupMenuDivider(),
+                  PopupMenuItem(
+                    value: _menuKeyInfo,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.info_outline_rounded),
+                      title: Text(context.l10n.feature_theme_info),
                     ),
                   ),
                   PopupMenuItem(
-                    value: _menuKeyInfo,
-                    padding: const EdgeInsets.all(8),
-                    child: Text(context.l10n.feature_theme_info),
-                  ),
-                  PopupMenuItem(
                     value: _menuKeyDelete,
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      context.l10n.common_text_delete,
-                      style: textTheme.bodyMedium?.copyWith(color: Colors.red),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(
+                        Icons.delete_outline_rounded,
+                        color: colorScheme.error,
+                      ),
+                      title: Text(
+                        context.l10n.common_text_delete,
+                        style: TextStyle(color: colorScheme.error),
+                      ),
                     ),
                   ),
                 ],
@@ -192,6 +231,9 @@ class ItemTheme extends StatelessWidget {
         return;
       case _menuKeyCopy:
         onCopy(model);
+        return;
+      case _menuKeyCopyToApp:
+        onCopyToApplication(model);
         return;
     }
   }

@@ -1,3 +1,4 @@
+export 'copy_theme_to_application_usecase.dart';
 export 'copy_theme_usecase.dart';
 export 'delete_feature_access_usecase.dart';
 export 'ensure_color_scheme_pair_usecase.dart';
