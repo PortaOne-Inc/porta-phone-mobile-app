@@ -556,17 +556,18 @@ export class ThemesService {
         });
       }
 
-      // Page configs — remap asset IDs in config
+      // Page configs — remap asset IDs in config (ID must be ${themeId}_${variant})
       for (const doc of pageSnaps.docs) {
         const data = doc.data() as any;
-        const newRef = db.collection(Collections.themeConfigPages).doc();
+        const variant = data?.variant ?? 'light';
+        const newId = `${newThemeId}_${variant}`;
         const remappedConfig = idMap.size > 0 ? remapAssetIdsDeep(data?.config, idMap) : data?.config;
-        batch.set(newRef, {
+        batch.set(db.collection(Collections.themeConfigPages).doc(newId), {
           ...data,
           config: remappedConfig,
           themeId: newThemeId,
           applicationId: targetApplicationId,
-          id: newRef.id,
+          id: newId,
           version: 1,
           updatedAt: now,
         });
@@ -762,11 +763,12 @@ export class ThemesService {
     const now = nowIso();
     q.docs.forEach((d) => {
       const data = d.data() as any;
-      const newRef = col.doc();
-      batch.set(newRef, {
+      const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
+      const newId = `${dstThemeId}_${variant}`;
+      batch.set(col.doc(newId), {
         ...data,
         themeId: dstThemeId,
-        id: newRef.id,
+        id: newId,
         version: 1,
         updatedAt: now,
       });
