@@ -369,16 +369,17 @@ export class ThemesService {
       id: newThemeId,
       applicationId,
       title: overrides?.title ?? `${source.title ?? 'Theme'} (Copy)`,
-      description: overrides?.description ?? source.description,
-      label: overrides?.label ?? source.label,
+      description: overrides?.description ?? source.description ?? '',
+      label: overrides?.label ?? source.label ?? 'dev',
       version: 1,
       createdAt: now,
       updatedAt: now,
     } as Theme;
 
-    // Add theme doc to batch
+    // Add theme doc to batch (strip undefined to avoid Firestore rejection)
     const themeRef = db.collection(Collections.themes).doc(newThemeId);
-    batch.set(themeRef, { ...target });
+    const themeData = JSON.parse(JSON.stringify(target));
+    batch.set(themeRef, themeData);
 
     // Collect all sub-resource writes into the shared batch
     await Promise.all([
@@ -841,22 +842,37 @@ export class ThemesService {
     batch: FirebaseFirestore.WriteBatch,
   ) {
     const col = admin.firestore().collection(Collections.themeConfigPages);
-    const q = await col.where('themeId', '==', srcThemeId).get();
-    if (q.empty) return;
-
+    const qByField = await col.where('themeId', '==', srcThemeId).get();
     const now = nowIso();
-    q.docs.forEach((d) => {
-      const data = d.data() as any;
-      const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
-      const newId = `${dstThemeId}_${variant}`;
-      batch.set(col.doc(newId), {
-        ...data,
-        themeId: dstThemeId,
-        id: newId,
-        version: 1,
-        updatedAt: now,
+
+    if (!qByField.empty) {
+      qByField.docs.forEach((d) => {
+        const data = d.data() as any;
+        const variant = data?.variant ?? d.id.split('_')[1] ?? 'light';
+        const newId = `${dstThemeId}_${variant}`;
+        batch.set(col.doc(newId), {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          version: 1,
+          updatedAt: now,
+        });
       });
-    });
+    } else {
+      const legacyId = `${srcThemeId}_light`;
+      const legacySnap = await col.doc(legacyId).get();
+      if (legacySnap.exists) {
+        const data = legacySnap.data() as any;
+        const newId = `${dstThemeId}_light`;
+        batch.set(col.doc(newId), {
+          ...data,
+          themeId: dstThemeId,
+          id: newId,
+          version: 1,
+          updatedAt: now,
+        });
+      }
+    }
   }
 
   private async collectSplashWrites(
