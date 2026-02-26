@@ -17,18 +17,15 @@ class KeypadConfigView extends StatefulWidget {
 class _KeypadConfigViewState extends State<KeypadConfigView> {
   UpdateThemCubit get _cubit => context.read<UpdateThemCubit>();
 
-  KeypadPageConfig get _cfg {
-    final pages = context.watch<UpdateThemCubit>().state.themePageConfig;
-    return pages.keypad;
-  }
-
   void _set(KeypadPageConfig cfg) {
     _cubit.add(ThemePageEvent.setKeypadPage(cfg));
   }
 
   @override
   Widget build(BuildContext context) {
-    final cfg = _cfg;
+    final cfg = context.select<UpdateThemCubit, KeypadPageConfig>(
+      (cubit) => cubit.state.themePageConfig.keypad,
+    );
 
     return Padding(
       padding: const EdgeInsets.all(16),

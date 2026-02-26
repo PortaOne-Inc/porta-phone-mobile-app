@@ -50,6 +50,14 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView>
 
     final cubit = context.read<UpdateThemCubit>();
 
+    final themePageConfig = context.select<UpdateThemCubit, ThemePageConfig>(
+      (cubit) => cubit.state.themePageConfig,
+    );
+    final themeWidgetConfig = context
+        .select<UpdateThemCubit, ThemeWidgetConfig>(
+          (cubit) => cubit.state.themeWidgetConfig,
+        );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Configure Theme Pages', style: textTheme.titleMedium),
@@ -83,45 +91,37 @@ class _ConfigureThemePageViewState extends State<ConfigureThemePageView>
                 ],
               ),
       ),
-      body: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
-        builder: (context, state) {
-          final themePageConfig = state.themeSettings.themePageLightConfig;
-          final themeWidgetLightConfig =
-              state.themeSettings.themeWidgetLightConfig;
-
-          return IndexedStack(
-            index: _isJsonMode ? 1 : 0,
+      body: IndexedStack(
+        index: _isJsonMode ? 1 : 0,
+        children: [
+          TabBarView(
+            controller: _tabController,
+            physics: const NeverScrollableScrollPhysics(),
             children: [
-              TabBarView(
-                controller: _tabController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  LoginPageTabbedView(
-                    loginModeSelectScreenStyles: loginModeSelectScreenStyles,
-                    loginPageConfig: themePageConfig.login,
-                  ),
-                  const AboutPageView(),
-                  DialingPageView(
-                    dialingPageConfig: themePageConfig.dialing,
-                    // ignore: deprecated_member_use
-                    callActions: themeWidgetLightConfig.group?.callActions,
-                  ),
-                  const KeypadConfigView(),
-                  SettingsPageTabbedView(config: themePageConfig.settings),
-                  ContactsPageView(config: themePageConfig.contacts),
-                  RecentsPageView(config: themePageConfig.recents),
-                  FavoritesPageView(config: themePageConfig.favorites),
-                  ConversationsPageView(config: themePageConfig.conversations),
-                  EmbeddedPageView(config: themePageConfig.embedded),
-                ],
+              LoginPageTabbedView(
+                loginModeSelectScreenStyles: loginModeSelectScreenStyles,
+                loginPageConfig: themePageConfig.login,
               ),
-              JsonEditorPanel(
-                initialJson: themePageConfig.toJson(),
-                onApply: (json) => cubit.add(ThemePageEvent.importJson(json)),
+              const AboutPageView(),
+              DialingPageView(
+                dialingPageConfig: themePageConfig.dialing,
+                // ignore: deprecated_member_use
+                callActions: themeWidgetConfig.group?.callActions,
               ),
+              const KeypadConfigView(),
+              SettingsPageTabbedView(config: themePageConfig.settings),
+              ContactsPageView(config: themePageConfig.contacts),
+              RecentsPageView(config: themePageConfig.recents),
+              FavoritesPageView(config: themePageConfig.favorites),
+              ConversationsPageView(config: themePageConfig.conversations),
+              EmbeddedPageView(config: themePageConfig.embedded),
             ],
-          );
-        },
+          ),
+          JsonEditorPanel(
+            initialJson: themePageConfig.toJson(),
+            onApply: (json) => cubit.add(ThemePageEvent.importJson(json)),
+          ),
+        ],
       ),
     );
   }

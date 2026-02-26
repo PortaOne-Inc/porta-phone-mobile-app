@@ -63,7 +63,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
 
     final themeWidgetConfig = context
         .select<UpdateThemCubit, ThemeWidgetConfig>(
-          (value) => value.state.themeSettings.themeWidgetLightConfig,
+          (cubit) => cubit.state.themeWidgetConfig,
         );
 
     final light = ThemeProvider.of(context).light();

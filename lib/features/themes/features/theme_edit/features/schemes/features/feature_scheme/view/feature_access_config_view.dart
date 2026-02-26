@@ -50,6 +50,10 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
+    final appConfig = context.select<UpdateThemCubit, AppConfig>(
+      (cubit) => cubit.state.appConfig,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Configure App Config', style: textTheme.titleMedium),
@@ -72,90 +76,87 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
                 tabs: _tabs,
               ),
       ),
-      body: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
-        builder: (context, state) {
-          final appConfig = state.appConfig;
-          return IndexedStack(
-            index: _isJsonMode ? 1 : 0,
+      body: IndexedStack(
+        index: _isJsonMode ? 1 : 0,
+        children: [
+          TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _tabController,
             children: [
-              TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: _tabController,
-                children: [
-                  SupportedConfigWidget(
-                    supportedFeatures: appConfig.supported,
-                    onChanged: (List<SupportedFeature> newList) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setSupportedFeatures(newList),
-                      );
-                    },
-                  ),
-                  LoginSchemeScreen(
-                    sourceAppConfigLogin: appConfig.loginConfig,
-                    callback: (AppConfigLogin loginCfg) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setLoginConfig(loginCfg),
-                      );
-                    },
-                  ),
-                  MainConfigWidget(
-                    mainConfig: appConfig.mainConfig,
-                    onChange: (AppConfigMain value) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setMainConfig(value),
-                      );
-                    },
-                    onCacheSelectedTabChange: (bool value) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setBottomMenuCacheSelectedTab(value),
-                      );
-                    },
-                  ),
-                  SettingSchemeScreen(
-                    config: appConfig.settingsConfig,
-                    callback: (AppConfigSettings value) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setSettingsConfig(value),
-                      );
-                    },
-                  ),
-                  AppConfigCallWidget(
-                    initialVideoEnabled: appConfig.callConfig.videoEnabled,
-                    initialBlindTransferEnabled:
-                        appConfig.callConfig.transfer.enableBlindTransfer,
-                    initialAttendedTransferEnabled:
-                        appConfig.callConfig.transfer.enableAttendedTransfer,
-                    onVideoEnabledChanged: (bool enabled) {
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setCallVideoEnabled(enabled),
-                      );
-                    },
-                    onBlindTransferChanged: (bool enabled) {
-                      final newTransfer = appConfig.callConfig.transfer
-                          .copyWith(enableBlindTransfer: enabled);
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setCallTransfer(newTransfer),
-                      );
-                    },
-                    onAttendedTransferChanged: (bool enabled) {
-                      final newTransfer = appConfig.callConfig.transfer
-                          .copyWith(enableAttendedTransfer: enabled);
-                      context.read<UpdateThemCubit>().add(
-                        AppConfigEvent.setCallTransfer(newTransfer),
-                      );
-                    },
-                  ),
-                ],
+              SupportedConfigWidget(
+                supportedFeatures: appConfig.supported,
+                onChanged: (List<SupportedFeature> newList) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setSupportedFeatures(newList),
+                  );
+                },
               ),
-              JsonEditorPanel(
-                initialJson: appConfig.toJson(),
-                onApply: (json) => context.read<UpdateThemCubit>().add(
-                  AppConfigEvent.importJson(json),
-                ),
+              LoginSchemeScreen(
+                sourceAppConfigLogin: appConfig.loginConfig,
+                callback: (AppConfigLogin loginCfg) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setLoginConfig(loginCfg),
+                  );
+                },
+              ),
+              MainConfigWidget(
+                mainConfig: appConfig.mainConfig,
+                onChange: (AppConfigMain value) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setMainConfig(value),
+                  );
+                },
+                onCacheSelectedTabChange: (bool value) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setBottomMenuCacheSelectedTab(value),
+                  );
+                },
+              ),
+              SettingSchemeScreen(
+                config: appConfig.settingsConfig,
+                callback: (AppConfigSettings value) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setSettingsConfig(value),
+                  );
+                },
+              ),
+              AppConfigCallWidget(
+                initialVideoEnabled: appConfig.callConfig.videoEnabled,
+                initialBlindTransferEnabled:
+                    appConfig.callConfig.transfer.enableBlindTransfer,
+                initialAttendedTransferEnabled:
+                    appConfig.callConfig.transfer.enableAttendedTransfer,
+                onVideoEnabledChanged: (bool enabled) {
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallVideoEnabled(enabled),
+                  );
+                },
+                onBlindTransferChanged: (bool enabled) {
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(
+                    enableBlindTransfer: enabled,
+                  );
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallTransfer(newTransfer),
+                  );
+                },
+                onAttendedTransferChanged: (bool enabled) {
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(
+                    enableAttendedTransfer: enabled,
+                  );
+                  context.read<UpdateThemCubit>().add(
+                    AppConfigEvent.setCallTransfer(newTransfer),
+                  );
+                },
               ),
             ],
-          );
-        },
+          ),
+          JsonEditorPanel(
+            initialJson: appConfig.toJson(),
+            onApply: (json) => context.read<UpdateThemCubit>().add(
+              AppConfigEvent.importJson(json),
+            ),
+          ),
+        ],
       ),
     );
   }

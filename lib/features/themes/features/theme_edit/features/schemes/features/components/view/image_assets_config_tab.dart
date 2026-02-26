@@ -43,8 +43,12 @@ class ImageAssetsConfigTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<UpdateThemCubit>().state;
-    final config = state.themeSettings.themeWidgetLightConfig.imageAssets;
+    final config = context.select<UpdateThemCubit, ImageAssetsConfig>(
+      (cubit) => cubit.state.themeWidgetConfig.imageAssets,
+    );
+    final assets = context.select<UpdateThemCubit, List<AssetModel>>(
+      (cubit) => cubit.state.assets,
+    );
     final leading = config.leadingAvatarStyle;
 
     return SingleChildScrollView(
@@ -56,7 +60,7 @@ class ImageAssetsConfigTab extends StatelessWidget {
             title: 'Default Placeholder Image',
             description: 'Used for error states and missing assets.',
             source: config.defaultPlaceholderImage,
-            onPick: () => _pickAsset(context, state.assets),
+            onPick: () => _pickAsset(context, assets),
             onChanged: (updated) => _onPlaceholderChanged(context, updated),
           ),
           const SizedBox(height: 16),

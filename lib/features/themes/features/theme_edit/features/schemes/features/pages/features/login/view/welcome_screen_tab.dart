@@ -1,6 +1,6 @@
 import 'package:domain/models/resources/asset_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
@@ -47,9 +47,7 @@ class WelcomeScreenTab extends StatelessWidget {
           source: currentConfig.mainLogo,
           onPick: () => _pickAsset(context, cubit.state.assets),
           onChanged: (updated) {
-            context.read<UpdateThemCubit>().add(
-              ThemePageEvent.setLoginPicture(updated!),
-            );
+            cubit.add(ThemePageEvent.setLoginPicture(updated!));
           },
           title: 'login_logo',
         ),
