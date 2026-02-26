@@ -107,6 +107,28 @@ class WelcomeScreenTab extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 16),
+        BorderContainer(
+          title: 'Greeting Text Style',
+          descriptionWidget: DescriptionRow.info(
+            'Typography for the greeting text on the mode selection screen.',
+          ),
+          padding: const EdgeInsets.all(16),
+          child: TextStyleConfigEditor(
+            label: 'Greeting Text',
+            value: currentConfig.greetingTextStyle,
+            onChanged: (newStyle) => cubit.add(
+              ThemePageEvent.setLoginModeSelect(
+                currentConfig.copyWith(greetingTextStyle: newStyle),
+              ),
+            ),
+            onClear: () => cubit.add(
+              ThemePageEvent.setLoginModeSelect(
+                currentConfig.copyWith(greetingTextStyle: null),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

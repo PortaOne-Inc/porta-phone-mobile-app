@@ -99,8 +99,13 @@ class TextStyleConfigEditor extends StatelessWidget {
                       (hex) =>
                           onChanged(safeValue.copyWith(backgroundColor: hex)),
                     ),
-                    onBgColorClear: () =>
-                        onChanged(safeValue.copyWith(backgroundColor: null)),
+                    onBgColorClear: () => onChanged(
+                      safeValue.copyWith(
+                        backgroundColor: null,
+                        backgroundBorderRadius: null,
+                        backgroundPadding: null,
+                      ),
+                    ),
                     onItalicChanged: (isItalic) => onChanged(
                       safeValue.copyWith(
                         fontStyle: isItalic
@@ -118,6 +123,21 @@ class TextStyleConfigEditor extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Row 4: Background Decoration (only when backgroundColor is set)
+                  if (safeValue.backgroundColor != null) ...[
+                    const SizedBox(height: 12),
+                    _BackgroundDecorationRow(
+                      borderRadius: safeValue.backgroundBorderRadius,
+                      padding: safeValue.backgroundPadding,
+                      onBorderRadiusChanged: (v) => onChanged(
+                        safeValue.copyWith(backgroundBorderRadius: v),
+                      ),
+                      onPaddingChanged: (v) => onChanged(
+                        safeValue.copyWith(backgroundPadding: v),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -490,6 +510,74 @@ class _VisualsRow extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class _BackgroundDecorationRow extends StatelessWidget {
+  const _BackgroundDecorationRow({
+    required this.borderRadius,
+    required this.padding,
+    required this.onBorderRadiusChanged,
+    required this.onPaddingChanged,
+  });
+
+  final double? borderRadius;
+  final PaddingConfig? padding;
+  final ValueChanged<double?> onBorderRadiusChanged;
+  final ValueChanged<PaddingConfig?> onPaddingChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final safePadding = padding ?? const PaddingConfig();
+    return Row(
+      children: [
+        SizedBox(
+          width: 80,
+          child: NumberInputControl(
+            label: 'Radius',
+            suffixText: 'px',
+            value: borderRadius,
+            onChanged: onBorderRadiusChanged,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: NumberInputControl(
+            label: 'Pad L',
+            value: safePadding.left == 0 ? null : safePadding.left,
+            onChanged: (v) =>
+                onPaddingChanged(safePadding.copyWith(left: v ?? 0)),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: NumberInputControl(
+            label: 'Pad T',
+            value: safePadding.top == 0 ? null : safePadding.top,
+            onChanged: (v) =>
+                onPaddingChanged(safePadding.copyWith(top: v ?? 0)),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: NumberInputControl(
+            label: 'Pad R',
+            value: safePadding.right == 0 ? null : safePadding.right,
+            onChanged: (v) =>
+                onPaddingChanged(safePadding.copyWith(right: v ?? 0)),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: NumberInputControl(
+            label: 'Pad B',
+            value: safePadding.bottom == 0 ? null : safePadding.bottom,
+            onChanged: (v) =>
+                onPaddingChanged(safePadding.copyWith(bottom: v ?? 0)),
+          ),
         ),
       ],
     );
