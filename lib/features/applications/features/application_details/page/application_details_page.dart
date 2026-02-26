@@ -194,6 +194,8 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
                               onCopyToApplication: (theme) =>
                                   _onCopyToApplication(context, theme),
                               onChangeStatus: bloc.changeThemeStatus,
+                              onShare: (theme) =>
+                                  _onShareTheme(context, theme),
                             ),
                           ),
                         ),
@@ -368,6 +370,14 @@ class _ApplicationDetailsPageState extends State<ApplicationDetailsPage>
         SnackBar(content: Text('Failed to copy theme: $e')),
       );
     }
+  }
+
+  Future<void> _onShareTheme(BuildContext context, ThemeModel theme) async {
+    await ShareThemeDialog.show(
+      context,
+      themeName: theme.displayTitle,
+      onGenerateLink: ({String? tag}) => bloc.shareTheme(theme, tag: tag),
+    );
   }
 
   void _openApplicationTranslations(

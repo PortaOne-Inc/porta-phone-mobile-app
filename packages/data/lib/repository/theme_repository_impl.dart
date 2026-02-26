@@ -200,4 +200,47 @@ class ThemeRepositoryImpl extends ThemeRepository {
       throw BaseException(message: e.toString());
     }
   }
+
+  @override
+  Future<String> createShareToken(
+    String applicationId,
+    String themeId, {
+    String? tag,
+  }) async {
+    try {
+      final resp = await configuratorBackandDatasource.createShareToken(
+        applicationId: applicationId,
+        themeId: themeId,
+        tag: tag,
+      );
+      return resp['token'] as String;
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<SharedThemePreviewModel> getSharedThemePreview(String token) async {
+    try {
+      final raw = await configuratorBackandDatasource.getSharedThemePreview(
+        token,
+      );
+      final dto = SharedThemePreviewDto.fromJson(raw);
+      return SharedThemePreviewModel(
+        theme: dto.theme,
+        colorSchemes: SharedThemePreviewVariants.fromArray(dto.colorSchemes),
+        widgetConfigs: SharedThemePreviewVariants.fromArray(dto.widgetConfigs),
+        pageConfigs: SharedThemePreviewVariants.fromArray(dto.pageConfigs),
+        splashAsset: dto.splashAsset,
+        launchAsset: dto.launchAsset,
+        featureAccess: dto.featureAccess,
+      );
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
 }

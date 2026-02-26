@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -217,6 +218,17 @@ class _HistoryEntryTile extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
             ],
+            if (entry.shareTokenId != null) ...[
+              const SizedBox(width: 8),
+              Tooltip(
+                message: 'Has share link',
+                child: Icon(
+                  Icons.link,
+                  size: 18,
+                  color: colorScheme.primary,
+                ),
+              ),
+            ],
           ],
         ),
         subtitle: Column(
@@ -234,12 +246,31 @@ class _HistoryEntryTile extends StatelessWidget {
             ),
           ],
         ),
-        trailing: IconButton(
-          icon: const Icon(Icons.edit_outlined, size: 20),
-          tooltip: 'Edit tag & description',
-          onPressed: () => _showEditDialog(context),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (entry.shareTokenId != null)
+              IconButton(
+                icon: const Icon(Icons.share_outlined, size: 20),
+                tooltip: 'Copy share link',
+                onPressed: () => _copyShareLink(context),
+              ),
+            IconButton(
+              icon: const Icon(Icons.edit_outlined, size: 20),
+              tooltip: 'Edit tag & description',
+              onPressed: () => _showEditDialog(context),
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  void _copyShareLink(BuildContext context) {
+    final shareUrl = '${Uri.base.origin}/share/${entry.shareTokenId}';
+    Clipboard.setData(ClipboardData(text: shareUrl));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Share link copied to clipboard')),
     );
   }
 

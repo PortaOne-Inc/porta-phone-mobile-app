@@ -26,6 +26,21 @@ class AppRoute {
   GoRouter build(GetIt getIt, BuildContext context) {
     return GoRouter(
       routes: [
+        GoRoute(
+          path: AppRoutInfo.sharePreview.path,
+          name: AppRoutInfo.sharePreview.name,
+          builder: (BuildContext context, GoRouterState state) {
+            final token =
+                state.pathParameters[AppRoutInfo.keyShareToken]!;
+            return BlocProvider<SharedPreviewCubit>(
+              create: (_) => SharedPreviewCubit(
+                token: token,
+                getSharedThemePreviewUsecase: getIt.get(),
+              ),
+              child: const SharedPreviewPage(),
+            );
+          },
+        ),
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) =>
               AuthReLoginShell(
@@ -163,6 +178,7 @@ class AppRoute {
                         param1:
                             state.pathParameters[AppRoutInfo.keyApplicationId],
                       ),
+                      createShareTokenUsecase: getIt.get(),
                     ),
                   ),
               routes: [

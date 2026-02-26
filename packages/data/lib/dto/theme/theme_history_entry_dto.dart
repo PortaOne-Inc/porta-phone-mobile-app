@@ -18,6 +18,7 @@ sealed class ThemeHistoryEntryDto with _$ThemeHistoryEntryDto {
     @Default(0) int schemaVersion,
     @Default('') String tag,
     @Default('') String description,
+    String? shareTokenId,
   }) = _ThemeHistoryEntryDto;
 
   factory ThemeHistoryEntryDto.fromJson(Map<String, dynamic> json) =>

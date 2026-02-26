@@ -24,6 +24,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
     required this.copyThemeToApplicationUsecase,
     required this.getApplicationsUseCase,
     required this.updateThemeUseCase,
+    required this.createShareTokenUsecase,
     ApplicationModel? applicationModel,
   }) : super(
          ApplicationDetailsState(
@@ -49,6 +50,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
   final CopyThemeToApplicationUsecase copyThemeToApplicationUsecase;
   final UsecaseApplicationGetAll getApplicationsUseCase;
   final UsecaseThemeUpdate updateThemeUseCase;
+  final CreateShareTokenUsecase createShareTokenUsecase;
 
   Future<void> _init() async {
     await _getThemes();
@@ -230,5 +232,15 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
         state.copyWith(error: e, status: ApplicationDetailsStateStatus.error),
       );
     }
+  }
+
+  /// Creates a share token for the given theme and returns the token.
+  Future<String> shareTheme(ThemeModel themeModel, {String? tag}) async {
+    final token = await createShareTokenUsecase.execute(
+      applicationId: applicationId,
+      themeId: themeModel.id!,
+      tag: tag,
+    );
+    return token;
   }
 }

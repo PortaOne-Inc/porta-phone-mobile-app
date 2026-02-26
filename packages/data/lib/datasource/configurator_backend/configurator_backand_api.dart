@@ -203,6 +203,12 @@ class ThemeHistoryConfiguratorBackendAPI {
       '/applications/$appId/themes/$themeId/history/$historyId';
 }
 
+class ThemeShareConfiguratorBackendAPI {
+  static String get createToken => '/theme-shares';
+
+  static String preview(String token) => '/theme-shares/$token';
+}
+
 class ArtifactsConfiguratorBackendAPI {
   static String list(String appId, String themeId) =>
       '/applications/$appId/themes/$themeId/artifacts';

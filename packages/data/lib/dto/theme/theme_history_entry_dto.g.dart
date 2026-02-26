@@ -20,6 +20,7 @@ _ThemeHistoryEntryDto _$ThemeHistoryEntryDtoFromJson(
   schemaVersion: (json['schemaVersion'] as num?)?.toInt() ?? 0,
   tag: json['tag'] as String? ?? '',
   description: json['description'] as String? ?? '',
+  shareTokenId: json['shareTokenId'] as String?,
 );
 
 Map<String, dynamic> _$ThemeHistoryEntryDtoToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$ThemeHistoryEntryDtoToJson(
   'schemaVersion': instance.schemaVersion,
   'tag': instance.tag,
   'description': instance.description,
+  'shareTokenId': instance.shareTokenId,
 };

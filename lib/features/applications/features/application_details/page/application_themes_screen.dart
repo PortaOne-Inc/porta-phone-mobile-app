@@ -16,6 +16,7 @@ class ApplicationThemesScreen extends StatelessWidget {
     required this.onShowInfo,
     required this.themes,
     this.onChangeStatus,
+    this.onShare,
     super.key,
   });
 
@@ -28,6 +29,7 @@ class ApplicationThemesScreen extends StatelessWidget {
   final void Function(ThemeModel themeModel) onCopyToApplication;
   final void Function(ThemeModel themeModel, ThemeStatus status)?
   onChangeStatus;
+  final void Function(ThemeModel themeModel)? onShare;
 
   final List<ThemeModel> themes;
 
@@ -56,6 +58,7 @@ class ApplicationThemesScreen extends StatelessWidget {
                 onCopy: onCopy,
                 onCopyToApplication: onCopyToApplication,
                 onChangeStatus: onChangeStatus,
+                onShare: onShare,
               ),
             ),
           ),

@@ -53,6 +53,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<String?> redirectGuard(GoRouterState goRouterState) async {
     final currentLocation = goRouterState.fullPath;
 
+    // Public share preview routes bypass authentication entirely
+    if (currentLocation?.startsWith('/share/') ?? false) return null;
+
     if (state.status == null) {
       await stream.firstWhere((updatedState) => updatedState.status != null);
     }

@@ -6,3 +6,4 @@ export 'theme_model.dart';
 export 'theme_history_entry_model.dart';
 export 'theme_history_page_model.dart';
 export 'widgets_config.dart';
+export 'shared_theme_preview_model.dart';

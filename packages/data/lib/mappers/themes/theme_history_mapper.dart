@@ -22,6 +22,7 @@ class ThemeHistoryMapper
       schemaVersion: it.schemaVersion,
       tag: it.tag,
       description: it.description,
+      shareTokenId: it.shareTokenId,
     );
   }
 
@@ -39,6 +40,7 @@ class ThemeHistoryMapper
       schemaVersion: it.schemaVersion,
       tag: it.tag,
       description: it.description,
+      shareTokenId: it.shareTokenId,
     );
   }
 }

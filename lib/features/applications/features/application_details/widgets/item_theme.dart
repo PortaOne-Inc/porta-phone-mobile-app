@@ -12,6 +12,7 @@ class ItemTheme extends StatelessWidget {
     required this.onCopy,
     required this.onCopyToApplication,
     this.onChangeStatus,
+    this.onShare,
     super.key,
   });
 
@@ -23,8 +24,10 @@ class ItemTheme extends StatelessWidget {
   final void Function(ThemeModel model) onCopy;
   final void Function(ThemeModel model) onCopyToApplication;
   final void Function(ThemeModel model, ThemeStatus status)? onChangeStatus;
+  final void Function(ThemeModel model)? onShare;
 
   static const _menuKeyDelete = '_menuKeyDelete';
+  static const _menuKeyShare = '_menuKeyShare';
   static const _menuKeyThemeDefault = '_menuKeyThemeDefault';
   static const _menuKeyInfo = '_menuKeyInfo';
   static const _menuKeyCopy = '_menuKeyCopy';
@@ -178,6 +181,16 @@ class ItemTheme extends StatelessWidget {
                       title: Text('Copy to Application'),
                     ),
                   ),
+                  const PopupMenuItem(
+                    value: _menuKeyShare,
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.share_outlined),
+                      title: Text('Share Preview'),
+                    ),
+                  ),
                   const PopupMenuDivider(),
                   PopupMenuItem(
                     value: _menuKeyInfo,
@@ -234,6 +247,9 @@ class ItemTheme extends StatelessWidget {
         return;
       case _menuKeyCopyToApp:
         onCopyToApplication(model);
+        return;
+      case _menuKeyShare:
+        onShare?.call(model);
         return;
     }
   }

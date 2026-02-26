@@ -1204,6 +1204,31 @@ class ConfiguratorBackandDatasource {
         .toList();
   }
 
+  // --- Theme Share ---
+
+  Future<Map<String, dynamic>> createShareToken({
+    required String applicationId,
+    required String themeId,
+    String? tag,
+  }) async {
+    final resp = await _client.post<Map<String, dynamic>>(
+      ThemeShareConfiguratorBackendAPI.createToken,
+      data: {
+        'applicationId': applicationId,
+        'themeId': themeId,
+        if (tag != null) 'tag': tag,
+      },
+    );
+    return resp.data!;
+  }
+
+  Future<Map<String, dynamic>> getSharedThemePreview(String token) async {
+    final resp = await _client.get<Map<String, dynamic>>(
+      ThemeShareConfiguratorBackendAPI.preview(token),
+    );
+    return resp.data!;
+  }
+
   /// Get single artifact (with optional signed URL)
   Future<AssetsRendition> getArtifact({
     required String applicationId,

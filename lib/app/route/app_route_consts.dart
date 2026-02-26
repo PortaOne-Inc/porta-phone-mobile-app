@@ -74,9 +74,15 @@ abstract class AppRoutInfo {
     path: '/applications/:$keyApplicationId/:$keyThemeId/preview',
   );
 
+  static const sharePreview = DestinationInfo(
+    name: 'share-preview',
+    path: '/share/:$keyShareToken',
+  );
+
   static const String keyEmbedsId = 'id';
   static const String keyApplicationId = 'applicationId';
   static const String keyThemeId = 'themeId';
+  static const String keyShareToken = 'shareToken';
 }
 
 // TODO(vlad): Add theme segment key to theme paths to avoid interfering with new features

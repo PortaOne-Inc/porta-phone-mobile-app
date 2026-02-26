@@ -95,6 +95,16 @@ abstract class ThemeRepository {
     String? label,
   });
 
+  /// Creates a share token for a theme, returning the token string.
+  Future<String> createShareToken(
+    String applicationId,
+    String themeId, {
+    String? tag,
+  });
+
+  /// Retrieves the aggregated theme preview data for a share token.
+  Future<SharedThemePreviewModel> getSharedThemePreview(String token);
+
   /// Deep-copy a theme to a different application (with full asset duplication).
   /// The [targetApplicationId] must be owned by the current user.
   Future<ThemeModel> copyThemeToApplication(
