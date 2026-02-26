@@ -106,13 +106,13 @@ POST /applications/:appId/themes/:themeId/copy-to-application
 
 **Key differences from same-app copy:**
 
-| Aspect | Same-app copy | Cross-app copy |
-|---|---|---|
-| Assets | Shared (same IDs) | Deep copied (new IDs, new GCS files) |
-| GCS files | Not copied | Server-side copy via `File.copy()` |
-| Auth | Same app ownership | Caller must own **both** apps |
-| `outputsArtifacts` | Reset to `{}` | Reset to `{}` |
-| Rollback | Atomic (single batch) | Asset cleanup on batch failure |
+| Aspect             | Same-app copy         | Cross-app copy                       |
+|--------------------|-----------------------|--------------------------------------|
+| Assets             | Shared (same IDs)     | Deep copied (new IDs, new GCS files) |
+| GCS files          | Not copied            | Server-side copy via `File.copy()`   |
+| Auth               | Same app ownership    | Caller must own **both** apps        |
+| `outputsArtifacts` | Reset to `{}`         | Reset to `{}`                        |
+| Rollback           | Atomic (single batch) | Asset cleanup on batch failure       |
 
 ---
 
@@ -255,8 +255,8 @@ See [Change History docs](./theme-history.md) for the full list of tracked actio
 Asset upload and resolution operations use **fail-fast** error handling -- errors are surfaced
 to the caller rather than swallowed silently:
 
-| Operation | Service | Behavior |
-|---|---|---|
-| Image URL resolution | `WidgetConfigsService` | If a signed URL cannot be generated for a known asset ID, the request fails (500). Prevents returning configs with silently broken image references. |
-| Old artifact removal | `SplashAssetsService` | If removing a previous artifact fails during re-upload, the operation aborts (`400`). Prevents orphaned files in Cloud Storage. |
-| Platform uploads | `LaunchAssetsService` | All platform uploads run in parallel. If any upload fails, the entity is **not** persisted -- prevents saving partial state with missing artifact IDs. |
+| Operation            | Service                | Behavior                                                                                                                                               |
+|----------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Image URL resolution | `WidgetConfigsService` | If a signed URL cannot be generated for a known asset ID, the request fails (500). Prevents returning configs with silently broken image references.   |
+| Old artifact removal | `SplashAssetsService`  | If removing a previous artifact fails during re-upload, the operation aborts (`400`). Prevents orphaned files in Cloud Storage.                        |
+| Platform uploads     | `LaunchAssetsService`  | All platform uploads run in parallel. If any upload fails, the entity is **not** persisted -- prevents saving partial state with missing artifact IDs. |

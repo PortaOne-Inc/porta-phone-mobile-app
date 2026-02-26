@@ -6,13 +6,13 @@ deep copy with full asset duplication.
 
 ## Sub-docs
 
-| Document | Description |
-|---|---|
-| [Data Model](./themes-data-model.md) | Entities, Firestore collections, composite indexes |
-| [API Endpoints](./themes-api-endpoints.md) | REST endpoints for themes and all sub-features |
-| [Core Flows](./themes-core-flows.md) | Theme creation, copy, cascade delete, asset upload, error handling |
-| [AI Generation](./generate-themes.md) | OpenAI-powered theme generation and nudge |
-| [Change History](./theme-history.md) | Theme snapshot history, tracked actions, pagination API |
+| Document                                   | Description                                                        |
+|--------------------------------------------|--------------------------------------------------------------------|
+| [Data Model](./themes-data-model.md)       | Entities, Firestore collections, composite indexes                 |
+| [API Endpoints](./themes-api-endpoints.md) | REST endpoints for themes and all sub-features                     |
+| [Core Flows](./themes-core-flows.md)       | Theme creation, copy, cascade delete, asset upload, error handling |
+| [AI Generation](./generate-themes.md)      | OpenAI-powered theme generation and nudge                          |
+| [Change History](./theme-history.md)       | Theme snapshot history, tracked actions, pagination API            |
 
 ---
 
@@ -176,9 +176,11 @@ All theme entities and sub-config entities include an optional `version` field f
 3. Server checks: if `expectedVersion` matches the current `version`, the update proceeds and `version` is incremented
 4. If `expectedVersion` does not match (another client updated in between), the server returns **409 Conflict**
 
-**Backwards compatible:** If `expectedVersion` is not provided, the update proceeds without version checking (overwrite semantics).
+**Backwards compatible:** If `expectedVersion` is not provided, the update proceeds without version checking (overwrite
+semantics).
 
-Supported on: `PATCH /themes/:themeId`, `PUT` color-schemes, widget-configs, page-configs, and feature-access upsert endpoints.
+Supported on: `PATCH /themes/:themeId`, `PUT` color-schemes, widget-configs, page-configs, and feature-access upsert
+endpoints.
 
 New entities start at `version: 1`. Copied themes and all their sub-resources also start at `version: 1`.
 
@@ -188,9 +190,9 @@ New entities start at `version: 1`. Copied themes and all their sub-resources al
 
 AI generation endpoints are rate-limited per Firebase UID using `@nestjs/throttler`:
 
-| Endpoint | Limit | Window |
-|---|---|---|
-| `POST /themes/generate` | 5 req | 60 sec |
+| Endpoint                          | Limit  | Window |
+|-----------------------------------|--------|--------|
+| `POST /themes/generate`           | 5 req  | 60 sec |
 | `POST /themes/:id/generate/nudge` | 10 req | 60 sec |
 
 When the limit is exceeded, the server returns **429 Too Many Requests** with a `Retry-After` header.
@@ -200,9 +202,9 @@ Falls back to IP-based throttling if the Firebase UID is not available.
 
 ## Configuration
 
-| Variable | Required | Description |
-|---|---|---|
-| `OPENAI_API_KEY` | No | Enables AI generation. If absent, fallback palettes are used. |
+| Variable         | Required | Description                                                   |
+|------------------|----------|---------------------------------------------------------------|
+| `OPENAI_API_KEY` | No       | Enables AI generation. If absent, fallback palettes are used. |
 
 OpenAI settings (inside `OpenAiClientService`):
 

@@ -76,7 +76,8 @@ GenerateThemesService
 |------------------|----------|------------------------------------------------|
 | `OPENAI_API_KEY` | No       | If absent, all generators return fallback data |
 
-The model used is `gpt-4o-mini` at temperature `0.2` with a **30-second request timeout**. Both model and temperature can
+The model used is `gpt-4o-mini` at temperature `0.2` with a **30-second request timeout**. Both model and temperature
+can
 be overridden inside `OpenAiClientService.chatJson()` via the `options` parameter if needed.
 
 ---
@@ -102,20 +103,22 @@ All fields are validated via Zod (`GenerateThemeSchema`). Extra fields are rejec
   "prompt": "Create a light theme with cool blues and subtle green accents.",
   "seedColor": "#1A73E8",
   "variant": "light",
-  "assetIds": ["asset_01"],
+  "assetIds": [
+    "asset_01"
+  ],
   "options": {}
 }
 ```
 
-| Field       | Type                      | Required | Constraints              | Description                                            |
-|-------------|---------------------------|----------|--------------------------|--------------------------------------------------------|
-| `title`     | `string`                  | Yes      | 1..120 chars, trimmed    | Theme name; used as the Firestore Theme document title |
-| `description` | `string`               | No       | max 2000 chars, trimmed  | Business/design context appended to the prompt         |
-| `prompt`    | `string`                  | Yes      | 1..5000 chars, trimmed   | LLM instruction (what to generate, constraints)        |
-| `seedColor` | `string` (`#RRGGBB[AA]`)  | No       | Regex: `^#([0-9A-Fa-f]{6}\|[0-9A-Fa-f]{8})$` | Seed color for the palette        |
-| `variant`   | `"light" \| "dark"`       | No       | Default: `"light"`       |                                                        |
-| `assetIds`  | `string[]`                | No       | max 20 items             | IDs of assets to reference during generation           |
-| `options`   | `Record<string, unknown>` | No       |                          | Advanced generation options                            |
+| Field         | Type                      | Required | Constraints                                  | Description                                            |
+|---------------|---------------------------|----------|----------------------------------------------|--------------------------------------------------------|
+| `title`       | `string`                  | Yes      | 1..120 chars, trimmed                        | Theme name; used as the Firestore Theme document title |
+| `description` | `string`                  | No       | max 2000 chars, trimmed                      | Business/design context appended to the prompt         |
+| `prompt`      | `string`                  | Yes      | 1..5000 chars, trimmed                       | LLM instruction (what to generate, constraints)        |
+| `seedColor`   | `string` (`#RRGGBB[AA]`)  | No       | Regex: `^#([0-9A-Fa-f]{6}\|[0-9A-Fa-f]{8})$` | Seed color for the palette                             |
+| `variant`     | `"light" \| "dark"`       | No       | Default: `"light"`                           |                                                        |
+| `assetIds`    | `string[]`                | No       | max 20 items                                 | IDs of assets to reference during generation           |
+| `options`     | `Record<string, unknown>` | No       |                                              | Advanced generation options                            |
 
 #### Response
 
@@ -196,13 +199,13 @@ All fields are validated via Zod (`NudgeThemeSchema`). Extra fields are rejected
 }
 ```
 
-| Field           | Type                                                  | Required | Constraints                     | Description                                                                               |
-|-----------------|-------------------------------------------------------|----------|---------------------------------|-------------------------------------------------------------------------------------------|
-| `prompt`        | `string`                                              | Yes      | 1..5000 chars, trimmed          | What to change                                                                            |
-| `targets`       | `("colorScheme" \| "widgetConfig" \| "pageConfig")[]` | No       | min 1 item if provided          | Which configs to update. Default: all three                                               |
-| `mode`          | `"patch" \| "replace"`                                | No       | Default: `"patch"`              | `patch` = deep-merge AI output over current. `replace` = full replace                     |
-| `variant`       | `"light" \| "dark"`                                   | No       | Default: `"light"`              |                                                                                           |
-| `seedColorHint` | `string \| null` (`#RRGGBB[AA]`)                      | No       | Regex validated, nullable       | Hints the color generator toward a specific seed                                          |
+| Field           | Type                                                  | Required | Constraints               | Description                                                           |
+|-----------------|-------------------------------------------------------|----------|---------------------------|-----------------------------------------------------------------------|
+| `prompt`        | `string`                                              | Yes      | 1..5000 chars, trimmed    | What to change                                                        |
+| `targets`       | `("colorScheme" \| "widgetConfig" \| "pageConfig")[]` | No       | min 1 item if provided    | Which configs to update. Default: all three                           |
+| `mode`          | `"patch" \| "replace"`                                | No       | Default: `"patch"`        | `patch` = deep-merge AI output over current. `replace` = full replace |
+| `variant`       | `"light" \| "dark"`                                   | No       | Default: `"light"`        |                                                                       |
+| `seedColorHint` | `string \| null` (`#RRGGBB[AA]`)                      | No       | Regex validated, nullable | Hints the color generator toward a specific seed                      |
 
 #### Response
 
@@ -446,10 +449,10 @@ Validation happens at two levels:
 
 Request bodies are validated via Zod schemas + `nestjs-zod` global pipe before reaching the service:
 
-| Schema                 | File                         | Validates                                                      |
-|------------------------|------------------------------|----------------------------------------------------------------|
-| `GenerateThemeSchema`  | `dto/create-generate.dto.ts` | title (1..120), prompt (1..5000), seedColor regex, variant, assetIds (max 20) |
-| `NudgeThemeSchema`     | `dto/nudge-theme.dto.ts`     | prompt (1..5000), targets enum array, mode, variant, seedColorHint regex      |
+| Schema                | File                         | Validates                                                                     |
+|-----------------------|------------------------------|-------------------------------------------------------------------------------|
+| `GenerateThemeSchema` | `dto/create-generate.dto.ts` | title (1..120), prompt (1..5000), seedColor regex, variant, assetIds (max 20) |
+| `NudgeThemeSchema`    | `dto/nudge-theme.dto.ts`     | prompt (1..5000), targets enum array, mode, variant, seedColorHint regex      |
 
 Both schemas use `.strict()` to reject unknown fields. String fields are auto-trimmed.
 
@@ -461,10 +464,10 @@ All three response schemas live in `schemas/` and validate OpenAI output:
 2. **Nudge (replace mode)**: validates the full AI response; keeps current if invalid
 3. **Nudge (patch mode)**: deepMerges AI patch over current, then validates the merged result
 
-| Schema                    | File                              | Validates                                      |
-|---------------------------|-----------------------------------|------------------------------------------------|
-| `ColorSchemeConfigSchema` | `schemas/color-scheme.schema.ts`  | `seedColor` + 40 `#RRGGBB` fields              |
-| `WidgetConfigSchema`      | `schemas/widget-config.schema.ts` | All widget fields, strict + optional/nullable |
+| Schema                    | File                              | Validates                                         |
+|---------------------------|-----------------------------------|---------------------------------------------------|
+| `ColorSchemeConfigSchema` | `schemas/color-scheme.schema.ts`  | `seedColor` + 40 `#RRGGBB` fields                 |
+| `WidgetConfigSchema`      | `schemas/widget-config.schema.ts` | All widget fields, strict + optional/nullable     |
 | `PageConfigSchema`        | `schemas/page-config.schema.ts`   | Login + dialing pages, strict + optional/nullable |
 
 All three AI response schemas use `.strict()` — unknown fields returned by the AI are rejected to prevent

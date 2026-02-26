@@ -6,11 +6,11 @@ widget configs, page configs, feature access) without authentication.
 
 ## Sub-docs
 
-| Document | Description |
-|---|---|
-| [Themes Overview](./themes-overview.md) | Parent feature architecture, module graph |
-| [Data Model](./themes-data-model.md) | Theme and sub-resource entities |
-| [API Endpoints](./themes-api-endpoints.md) | All theme-related endpoints |
+| Document                                   | Description                               |
+|--------------------------------------------|-------------------------------------------|
+| [Themes Overview](./themes-overview.md)    | Parent feature architecture, module graph |
+| [Data Model](./themes-data-model.md)       | Theme and sub-resource entities           |
+| [API Endpoints](./themes-api-endpoints.md) | All theme-related endpoints               |
 
 ---
 
@@ -69,19 +69,19 @@ widget configs, page configs, feature access) without authentication.
 
 ### ThemeShareToken Entity
 
-| Field | Type | Description |
-|---|---|---|
-| `id` | string | UUID token (also the share token value) |
-| `applicationId` | string | Application the shared theme belongs to |
-| `themeId` | string | Theme being shared |
-| `ownerId` | string | Firebase UID of the user who created the token |
-| `active` | boolean | Whether the token is currently valid |
-| `createdAt` | string | ISO timestamp of creation |
+| Field           | Type    | Description                                    |
+|-----------------|---------|------------------------------------------------|
+| `id`            | string  | UUID token (also the share token value)        |
+| `applicationId` | string  | Application the shared theme belongs to        |
+| `themeId`       | string  | Theme being shared                             |
+| `ownerId`       | string  | Firebase UID of the user who created the token |
+| `active`        | boolean | Whether the token is currently valid           |
+| `createdAt`     | string  | ISO timestamp of creation                      |
 
 ### Firestore Collection
 
-| Collection | Entity | ID strategy |
-|---|---|---|
+| Collection           | Entity          | ID strategy                   |
+|----------------------|-----------------|-------------------------------|
 | `theme_share_tokens` | ThemeShareToken | UUID (the share token itself) |
 
 > **Note:** If `COLLECTION_PREFIX` is set, the actual collection name will be prefixed
@@ -101,10 +101,10 @@ POST /theme-shares
 
 **Request body:**
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `applicationId` | string | Yes | Application ID |
-| `themeId` | string | Yes | Theme ID to share |
+| Field           | Type   | Required | Description       |
+|-----------------|--------|----------|-------------------|
+| `applicationId` | string | Yes      | Application ID    |
+| `themeId`       | string | Yes      | Theme ID to share |
 
 **Response (201):**
 
@@ -116,10 +116,10 @@ POST /theme-shares
 
 **Errors:**
 
-| Code | Condition |
-|---|---|
-| 401 | Missing or invalid auth token |
-| 404 | Theme not found or does not belong to the application |
+| Code | Condition                                             |
+|------|-------------------------------------------------------|
+| 401  | Missing or invalid auth token                         |
+| 404  | Theme not found or does not belong to the application |
 
 ---
 
@@ -133,8 +133,8 @@ GET /theme-shares/:token
 
 **Path parameters:**
 
-| Param | Type | Description |
-|---|---|---|
+| Param   | Type   | Description      |
+|---------|--------|------------------|
 | `token` | string | Share token UUID |
 
 **Response (200):**
@@ -153,18 +153,48 @@ GET /theme-shares/:token
     "updatedAt": "2026-02-20T14:30:00.000Z"
   },
   "colorSchemes": {
-    "light": { "id": "...", "config": { ... } },
-    "dark": { "id": "...", "config": { ... } }
+    "light": {
+      "id": "...",
+      "config": {
+        ...
+      }
+    },
+    "dark": {
+      "id": "...",
+      "config": {
+        ...
+      }
+    }
   },
   "widgetConfigs": {
-    "light": { "id": "...", "config": { ... } },
+    "light": {
+      "id": "...",
+      "config": {
+        ...
+      }
+    },
     "dark": null
   },
   "pageConfigs": {
-    "light": { "id": "...", "config": { ... } },
-    "dark": { "id": "...", "config": { ... } }
+    "light": {
+      "id": "...",
+      "config": {
+        ...
+      }
+    },
+    "dark": {
+      "id": "...",
+      "config": {
+        ...
+      }
+    }
   },
-  "featureAccess": { "id": "...", "config": { ... } }
+  "featureAccess": {
+    "id": "...",
+    "config": {
+      ...
+    }
+  }
 }
 ```
 
@@ -172,9 +202,9 @@ Any sub-config that does not exist returns `null`.
 
 **Errors:**
 
-| Code | Condition |
-|---|---|
-| 404 | Token not found, inactive, or referenced theme no longer exists |
+| Code | Condition                                                       |
+|------|-----------------------------------------------------------------|
+| 404  | Token not found, inactive, or referenced theme no longer exists |
 
 ---
 

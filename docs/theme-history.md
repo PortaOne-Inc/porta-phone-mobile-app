@@ -5,11 +5,11 @@ on demand, providing an audit trail of what a theme looked like at a specific po
 
 ## Sub-docs
 
-| Document | Description |
-|---|---|
-| [Themes Overview](./themes-overview.md) | Parent feature architecture, module graph |
-| [Data Model](./themes-data-model.md) | ThemeHistory entity, Firestore collection |
-| [API Endpoints](./themes-api-endpoints.md) | History list and detail endpoints |
+| Document                                   | Description                               |
+|--------------------------------------------|-------------------------------------------|
+| [Themes Overview](./themes-overview.md)    | Parent feature architecture, module graph |
+| [Data Model](./themes-data-model.md)       | ThemeHistory entity, Firestore collection |
+| [API Endpoints](./themes-api-endpoints.md) | History list and detail endpoints         |
 
 ---
 
@@ -51,44 +51,44 @@ during theme saves or sub-resource mutations.
 
 ### ThemeHistory Entity
 
-| Field | Type | Description |
-|---|---|---|
-| `id` | string | Auto-generated UUID |
-| `themeId` | string | Parent theme reference |
-| `applicationId` | string | Parent application reference |
-| `snapshotVersion` | number | Auto-incrementing version per theme (starts at 1) |
-| `action` | string | Always `"snapshot"` for explicit snapshots |
-| `changedBy` | string | Firebase UID of the user who created the snapshot |
-| `snapshot` | ThemeSnapshot | Full aggregate state at time of recording (**only returned by detail endpoint**) |
-| `schemaVersion` | number | Schema version at time of recording (`THEME_SCHEMA_VERSION`, currently `1`) |
-| `tag` | string | Optional user-supplied label (e.g. `"v2.1-release"`), default `""` |
-| `description` | string | Optional user-supplied note, default `""` |
-| `createdAt` | string | ISO timestamp |
+| Field             | Type          | Description                                                                      |
+|-------------------|---------------|----------------------------------------------------------------------------------|
+| `id`              | string        | Auto-generated UUID                                                              |
+| `themeId`         | string        | Parent theme reference                                                           |
+| `applicationId`   | string        | Parent application reference                                                     |
+| `snapshotVersion` | number        | Auto-incrementing version per theme (starts at 1)                                |
+| `action`          | string        | Always `"snapshot"` for explicit snapshots                                       |
+| `changedBy`       | string        | Firebase UID of the user who created the snapshot                                |
+| `snapshot`        | ThemeSnapshot | Full aggregate state at time of recording (**only returned by detail endpoint**) |
+| `schemaVersion`   | number        | Schema version at time of recording (`THEME_SCHEMA_VERSION`, currently `1`)      |
+| `tag`             | string        | Optional user-supplied label (e.g. `"v2.1-release"`), default `""`               |
+| `description`     | string        | Optional user-supplied note, default `""`                                        |
+| `createdAt`       | string        | ISO timestamp                                                                    |
 
 ### ThemeSnapshot Interface
 
-| Field | Type | Description |
-|---|---|---|
-| `theme` | object | Theme entity fields |
-| `colorSchemes` | object[] | All color scheme variants |
-| `widgetConfigs` | object[] | All widget config variants |
-| `pageConfigs` | object[] | All page config variants |
-| `splashAsset` | object / null | Splash asset config (null if not set) |
-| `launchAsset` | object / null | Launch asset config (null if not set) |
+| Field           | Type          | Description                             |
+|-----------------|---------------|-----------------------------------------|
+| `theme`         | object        | Theme entity fields                     |
+| `colorSchemes`  | object[]      | All color scheme variants               |
+| `widgetConfigs` | object[]      | All widget config variants              |
+| `pageConfigs`   | object[]      | All page config variants                |
+| `splashAsset`   | object / null | Splash asset config (null if not set)   |
+| `launchAsset`   | object / null | Launch asset config (null if not set)   |
 | `featureAccess` | object / null | Feature access config (null if not set) |
 
 ### Firestore Collection
 
-| Collection | Entity | ID strategy |
-|---|---|---|
+| Collection      | Entity       | ID strategy           |
+|-----------------|--------------|-----------------------|
 | `theme_history` | ThemeHistory | UUID (auto-generated) |
 
 ### Composite Indexes
 
-| Collection | Indexed Fields | Used By |
-|---|---|---|
-| `theme_history` | `applicationId` + `themeId` + `snapshotVersion` (desc) | `ThemeHistoryService.listByTheme()` |
-| `theme_history` | `themeId` + `snapshotVersion` (desc) | `ThemeHistoryService.getNextVersion()` |
+| Collection      | Indexed Fields                                         | Used By                                |
+|-----------------|--------------------------------------------------------|----------------------------------------|
+| `theme_history` | `applicationId` + `themeId` + `snapshotVersion` (desc) | `ThemeHistoryService.listByTheme()`    |
+| `theme_history` | `themeId` + `snapshotVersion` (desc)                   | `ThemeHistoryService.getNextVersion()` |
 
 > **Note:** If `COLLECTION_PREFIX` is set, the actual collection name will be prefixed
 > (e.g., `dev_theme_history`). The index file must be updated accordingly.
@@ -100,12 +100,12 @@ during theme saves or sub-resource mutations.
 All endpoints are under `/applications/:applicationId/themes/:themeId/history`.
 Auth: Firebase Bearer token (`admin` or `user` role).
 
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/` | Create a new snapshot of the current theme state |
-| `GET` | `/` | List history entries — metadata only, **no snapshot** |
-| `GET` | `/:historyId` | Get a single history entry **with full snapshot** |
-| `PATCH` | `/:historyId` | Update `tag` and/or `description` on a history entry |
+| Method  | Path          | Description                                           |
+|---------|---------------|-------------------------------------------------------|
+| `POST`  | `/`           | Create a new snapshot of the current theme state      |
+| `GET`   | `/`           | List history entries — metadata only, **no snapshot** |
+| `GET`   | `/:historyId` | Get a single history entry **with full snapshot**     |
+| `PATCH` | `/:historyId` | Update `tag` and/or `description` on a history entry  |
 
 ### Create Snapshot
 
@@ -115,10 +115,10 @@ POST /applications/:appId/themes/:themeId/history
 
 **Request body:**
 
-| Field | Type | Description |
-|---|---|---|
-| `tag` | string (max 100) | Optional label (e.g. `"v2.1-release"`) |
-| `description` | string (max 2000) | Optional note |
+| Field         | Type              | Description                            |
+|---------------|-------------------|----------------------------------------|
+| `tag`         | string (max 100)  | Optional label (e.g. `"v2.1-release"`) |
+| `description` | string (max 2000) | Optional note                          |
 
 Both fields are optional.
 
@@ -132,10 +132,10 @@ GET /applications/:appId/themes/:themeId/history?limit=20&startAfter=<cursor>
 
 **Query parameters:**
 
-| Param | Type | Default | Description |
-|---|---|---|---|
-| `limit` | number (1-100) | 20 | Number of entries to return |
-| `startAfter` | string | -- | Cursor ID from previous response for pagination |
+| Param        | Type           | Default | Description                                     |
+|--------------|----------------|---------|-------------------------------------------------|
+| `limit`      | number (1-100) | 20      | Number of entries to return                     |
+| `startAfter` | string         | --      | Cursor ID from previous response for pagination |
 
 **Response:**
 
@@ -181,10 +181,10 @@ PATCH /applications/:appId/themes/:themeId/history/:historyId
 
 **Request body:**
 
-| Field | Type | Description |
-|---|---|---|
-| `tag` | string (max 100) | Optional label for this entry |
-| `description` | string (max 2000) | Optional note for this entry |
+| Field         | Type              | Description                   |
+|---------------|-------------------|-------------------------------|
+| `tag`         | string (max 100)  | Optional label for this entry |
+| `description` | string (max 2000) | Optional note for this entry  |
 
 Both fields are optional; only provided fields are updated.
 

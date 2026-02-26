@@ -18,29 +18,32 @@ export const CreateFooSchema = z
   })
   .strict();
 
-export class CreateFooDto extends createZodDto(CreateFooSchema) {}
+export class CreateFooDto extends createZodDto(CreateFooSchema) {
+}
 ```
 
 For update DTOs, derive from the create schema:
 
 ```typescript
 export const UpdateFooSchema = CreateFooSchema.partial();
-export class UpdateFooDto extends createZodDto(UpdateFooSchema) {}
+
+export class UpdateFooDto extends createZodDto(UpdateFooSchema) {
+}
 ```
 
 ---
 
 ## Conventions
 
-| Convention | Rule |
-|---|---|
-| Request DTOs | Use `.strict()` to reject unknown fields |
-| Response DTOs | Omit `.strict()` (allow extra Firestore fields) |
-| Update DTOs | Use `CreateSchema.partial()` instead of `PartialType()` |
-| Multipart JSON | Parse + validate manually: `Schema.parse(JSON.parse(raw))` |
-| Path-injected fields | Mark as `.optional()` in the schema (set by controller) |
-| Validation pipe | Global `ZodValidationPipe` from `nestjs-zod` (registered in `app.module.ts`) |
-| Shared schemas | Reuse across DTOs where applicable (e.g. `SplashSourceZ` in splash DTOs) |
+| Convention           | Rule                                                                         |
+|----------------------|------------------------------------------------------------------------------|
+| Request DTOs         | Use `.strict()` to reject unknown fields                                     |
+| Response DTOs        | Omit `.strict()` (allow extra Firestore fields)                              |
+| Update DTOs          | Use `CreateSchema.partial()` instead of `PartialType()`                      |
+| Multipart JSON       | Parse + validate manually: `Schema.parse(JSON.parse(raw))`                   |
+| Path-injected fields | Mark as `.optional()` in the schema (set by controller)                      |
+| Validation pipe      | Global `ZodValidationPipe` from `nestjs-zod` (registered in `app.module.ts`) |
+| Shared schemas       | Reuse across DTOs where applicable (e.g. `SplashSourceZ` in splash DTOs)     |
 
 ---
 
@@ -68,8 +71,8 @@ AI-generated output (OpenAI) is validated at a second level using stricter Zod s
 `src/features/themes/features/generate/schemas/`. These schemas validate the JSON returned by the
 LLM and fall back to deterministic defaults on failure.
 
-| Schema | File | Validates |
-|---|---|---|
-| `ColorSchemeConfigSchema` | `schemas/color-scheme.schema.ts` | `seedColor` + 40 `#RRGGBB` fields |
-| `WidgetConfigSchema` | `schemas/widget-config.schema.ts` | All widget fields, strict + optional/nullable |
-| `PageConfigSchema` | `schemas/page-config.schema.ts` | Login + dialing pages, strict + optional/nullable |
+| Schema                    | File                              | Validates                                         |
+|---------------------------|-----------------------------------|---------------------------------------------------|
+| `ColorSchemeConfigSchema` | `schemas/color-scheme.schema.ts`  | `seedColor` + 40 `#RRGGBB` fields                 |
+| `WidgetConfigSchema`      | `schemas/widget-config.schema.ts` | All widget fields, strict + optional/nullable     |
+| `PageConfigSchema`        | `schemas/page-config.schema.ts`   | Login + dialing pages, strict + optional/nullable |
