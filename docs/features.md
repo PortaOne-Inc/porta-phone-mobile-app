@@ -22,6 +22,7 @@ Quick navigation to all feature docs in the project.
 | [Core Flows](./themes-core-flows.md) | Theme creation, copy, cross-app deep copy, cascade delete, asset upload, error handling |
 | [AI Generation](./generate-themes.md) | OpenAI-powered theme generation and nudge, request/response schemas, fallback behavior |
 | [Change History](./theme-history.md) | Theme snapshot history, tracked actions, pagination API, backward compatibility |
+| [Share Preview](./theme-shares.md) | Token-based public theme preview, aggregated sub-config response |
 
 ---
 

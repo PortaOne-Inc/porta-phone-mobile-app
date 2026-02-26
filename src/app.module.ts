@@ -26,6 +26,7 @@ import { LaunchAssetsModule } from './features/themes/features/launch-assets/lau
 import { ArtifactsModule } from './features/artifacts';
 import { RefsModule } from './features/common/refs/refs.module';
 import { GenerateThemesModule } from './features/themes/features/generate/generate.module';
+import { ThemeSharesModule } from './features/theme-shares/theme-shares.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { GenerateThemesModule } from './features/themes/features/generate/genera
     ArtifactsModule,
     RefsModule,
     GenerateThemesModule,
+    ThemeSharesModule,
   ],
   controllers: [GithubProxyController],
   providers: [
