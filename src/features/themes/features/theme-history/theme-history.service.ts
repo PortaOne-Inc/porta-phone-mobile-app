@@ -74,7 +74,7 @@ export class ThemeHistoryService {
     // Exclude snapshot from list — fetch only metadata fields
     query = query.select(
       'themeId', 'applicationId', 'snapshotVersion', 'action',
-      'changedBy', 'schemaVersion', 'tag', 'description', 'createdAt',
+      'changedBy', 'schemaVersion', 'tag', 'description', 'shareTokenId', 'createdAt',
     );
 
     const snap = await query.get();

@@ -25,5 +25,6 @@ export class ThemeHistory {
   schemaVersion!: number;
   tag!: string;
   description!: string;
+  shareTokenId?: string;
   createdAt!: string;
 }

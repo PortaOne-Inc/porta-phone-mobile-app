@@ -15,9 +15,10 @@ on demand, providing an audit trail of what a theme looked like at a specific po
 
 ## How It Works
 
-Snapshots are **explicit** — they are created only when the user requests it via
-`POST /applications/:appId/themes/:themeId/history`. No automatic recording happens
-during theme saves or sub-resource mutations.
+Snapshots are **explicit** — they are created when the user requests it via
+`POST /applications/:appId/themes/:themeId/history`, or **automatically** when
+creating a share token via `POST /theme-shares` (see [Share Preview](./theme-shares.md)).
+No automatic recording happens during theme saves or sub-resource mutations.
 
 ```
   User clicks "Create Snapshot" in the client
@@ -63,6 +64,7 @@ during theme saves or sub-resource mutations.
 | `schemaVersion`   | number        | Schema version at time of recording (`THEME_SCHEMA_VERSION`, currently `1`)      |
 | `tag`             | string        | Optional user-supplied label (e.g. `"v2.1-release"`), default `""`               |
 | `description`     | string        | Optional user-supplied note, default `""`                                        |
+| `shareTokenId`    | string?       | When set, indicates this snapshot was created for a share link (see [Share Preview](./theme-shares.md)) |
 | `createdAt`       | string        | ISO timestamp                                                                    |
 
 ### ThemeSnapshot Interface
@@ -152,6 +154,7 @@ GET /applications/:appId/themes/:themeId/history?limit=20&startAfter=<cursor>
       "schemaVersion": 1,
       "tag": "release-v1",
       "description": "First release",
+      "shareTokenId": null,
       "createdAt": "2026-02-24T10:30:00.000Z"
     }
   ],
@@ -215,10 +218,8 @@ ThemeHistoryModule
 
 Imported by:
  +-- ThemesModule
+ +-- ThemeSharesModule
 ```
-
-No other modules depend on ThemeHistoryModule. Snapshot creation is fully decoupled from
-theme/sub-resource mutation services.
 
 ---
 

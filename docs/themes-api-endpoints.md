@@ -135,8 +135,8 @@ See [Change History docs](./theme-history.md) for response schemas and tracked a
 
 | Method | Path                   | Description                                                   |
 |--------|------------------------|---------------------------------------------------------------|
-| `POST` | `/theme-shares`        | Create a share token for a theme (authenticated)              |
-| `GET`  | `/theme-shares/:token` | Get aggregated theme preview by share token (public, no auth) |
+| `POST` | `/theme-shares`        | Create a share token and snapshot for a theme (authenticated)       |
+| `GET`  | `/theme-shares/:token` | Get frozen snapshot theme preview by share token (public, no auth) |
 
 See [Share Preview docs](./theme-shares.md) for data model, response schemas, and module structure.
 

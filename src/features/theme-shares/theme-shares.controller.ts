@@ -36,7 +36,7 @@ export class ThemeSharesController {
   @ApiResponse({ status: 404, description: 'Theme not found' })
   async createShareToken(@Body() dto: CreateShareTokenDto, @Req() req) {
     const uid = req.user.uid;
-    return this.service.createShareToken(dto.applicationId, dto.themeId, uid);
+    return this.service.createShareToken(dto.applicationId, dto.themeId, uid, dto.tag);
   }
 
   @Get(':token')
