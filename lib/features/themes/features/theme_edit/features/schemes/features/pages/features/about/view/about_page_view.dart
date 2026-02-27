@@ -40,6 +40,25 @@ class _AboutPageViewState extends State<AboutPageView> {
             },
           ),
           const SizedBox(height: 16),
+          AppBarSurfaceEditor(
+            appBarBackgroundColor: currentConfig.appBarBackgroundColor,
+            appBarBlurredSurface: currentConfig.appBarBlurredSurface,
+            onAppBarBackgroundColorChanged: (v) {
+              _cubit.add(
+                ThemePageEvent.setAboutPage(
+                  currentConfig.copyWith(appBarBackgroundColor: v),
+                ),
+              );
+            },
+            onAppBarBlurredSurfaceChanged: (v) {
+              _cubit.add(
+                ThemePageEvent.setAboutPage(
+                  currentConfig.copyWith(appBarBlurredSurface: v),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
           ImageRenderEditor(
             description: 'Pick a logo or illustration for the About screen.',
             source: currentConfig.mainLogo,

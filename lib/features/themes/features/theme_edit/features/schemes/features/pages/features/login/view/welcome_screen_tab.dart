@@ -24,6 +24,30 @@ class WelcomeScreenTab extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       children: [
+        ThemeOverrideSelector(
+          config: currentConfig.themeOverride,
+          onChanged: (v) => cubit.add(
+            ThemePageEvent.setLoginModeSelect(
+              currentConfig.copyWith(themeOverride: v),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        AppBarSurfaceEditor(
+          appBarBackgroundColor: currentConfig.appBarBackgroundColor,
+          appBarBlurredSurface: currentConfig.appBarBlurredSurface,
+          onAppBarBackgroundColorChanged: (v) => cubit.add(
+            ThemePageEvent.setLoginModeSelect(
+              currentConfig.copyWith(appBarBackgroundColor: v),
+            ),
+          ),
+          onAppBarBlurredSurfaceChanged: (v) => cubit.add(
+            ThemePageEvent.setLoginModeSelect(
+              currentConfig.copyWith(appBarBlurredSurface: v),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
         BorderContainer(
           title: 'Mode Select — System UI Overlay',
           descriptionWidget: DescriptionRow.info(

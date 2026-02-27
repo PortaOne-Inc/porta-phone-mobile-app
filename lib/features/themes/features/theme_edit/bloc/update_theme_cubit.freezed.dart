@@ -3458,7 +3458,7 @@ extension ThemePageEventPatterns on ThemePageEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginPage value)?  setLoginPage,TResult Function( _UpdateSwitchPage value)?  updateSwitchPage,TResult Function( _SetLoginPicture value)?  setLoginPicture,TResult Function( _SetLoginModeSelect value)?  setLoginModeSelect,TResult Function( _SetLoginModeSelectButtonLoginStyle value)?  setLoginModeSelectButtonLoginStyle,TResult Function( _SetLoginModeSelectButtonSignupStyle value)?  setLoginModeSelectButtonSignupStyle,TResult Function( _SetAboutPage value)?  setAboutPage,TResult Function( _SetAboutPicture value)?  setAboutPicture,TResult Function( _SetAboutMetadata value)?  setAboutMetadata,TResult Function( _SetDialingPage value)?  setDialingPage,TResult Function( _SetDialingSystemUiOverlay value)?  setDialingSystemUiOverlay,TResult Function( _SetDialingAppBarStyle value)?  setDialingAppBarStyle,TResult Function( _SetDialingInfo value)?  setDialingInfo,TResult Function( _SetSettingsPage value)?  setSettingsPage,TResult Function( _SetDialingInfoUsernameStyle value)?  setDialingInfoUsernameStyle,TResult Function( _SetDialingInfoNumberStyle value)?  setDialingInfoNumberStyle,TResult Function( _SetDialingInfoCallStatusStyle value)?  setDialingInfoCallStatusStyle,TResult Function( _SetDialingInfoProcessingStatusStyle value)?  setDialingInfoProcessingStatusStyle,TResult Function( _SetKeypadPage value)?  setKeypadPage,TResult Function( _SetLoginOtpSigninVerifyCountdown value)?  setLoginOtpSigninVerifyCountdown,TResult Function( _SetLoginSignupVerifyCountdown value)?  setLoginSignupVerifyCountdown,TResult Function( _SetContactsPage value)?  setContactsPage,TResult Function( _SetRecentsPage value)?  setRecentsPage,TResult Function( _SetFavoritesPage value)?  setFavoritesPage,TResult Function( _SetConversationsPage value)?  setConversationsPage,TResult Function( _SetEmbeddedPage value)?  setEmbeddedPage,TResult Function( _ImportJsonPageEvent value)?  importJson,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginPage value)?  setLoginPage,TResult Function( _UpdateSwitchPage value)?  updateSwitchPage,TResult Function( _SetLoginPicture value)?  setLoginPicture,TResult Function( _SetLoginModeSelect value)?  setLoginModeSelect,TResult Function( _SetLoginModeSelectButtonLoginStyle value)?  setLoginModeSelectButtonLoginStyle,TResult Function( _SetLoginModeSelectButtonSignupStyle value)?  setLoginModeSelectButtonSignupStyle,TResult Function( _SetAboutPage value)?  setAboutPage,TResult Function( _SetAboutPicture value)?  setAboutPicture,TResult Function( _SetAboutMetadata value)?  setAboutMetadata,TResult Function( _SetDialingPage value)?  setDialingPage,TResult Function( _SetDialingSystemUiOverlay value)?  setDialingSystemUiOverlay,TResult Function( _SetDialingAppBarStyle value)?  setDialingAppBarStyle,TResult Function( _SetDialingInfo value)?  setDialingInfo,TResult Function( _SetSettingsPage value)?  setSettingsPage,TResult Function( _SetDialingInfoUsernameStyle value)?  setDialingInfoUsernameStyle,TResult Function( _SetDialingInfoNumberStyle value)?  setDialingInfoNumberStyle,TResult Function( _SetDialingInfoCallStatusStyle value)?  setDialingInfoCallStatusStyle,TResult Function( _SetDialingInfoProcessingStatusStyle value)?  setDialingInfoProcessingStatusStyle,TResult Function( _SetKeypadPage value)?  setKeypadPage,TResult Function( _SetLoginOtpSignin value)?  setLoginOtpSignin,TResult Function( _SetLoginPasswordSignin value)?  setLoginPasswordSignin,TResult Function( _SetLoginOtpSigninVerifyCountdown value)?  setLoginOtpSigninVerifyCountdown,TResult Function( _SetLoginSignupVerifyCountdown value)?  setLoginSignupVerifyCountdown,TResult Function( _SetContactsPage value)?  setContactsPage,TResult Function( _SetRecentsPage value)?  setRecentsPage,TResult Function( _SetFavoritesPage value)?  setFavoritesPage,TResult Function( _SetConversationsPage value)?  setConversationsPage,TResult Function( _SetEmbeddedPage value)?  setEmbeddedPage,TResult Function( _ImportJsonPageEvent value)?  importJson,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _SetLoginPage() when setLoginPage != null:
@@ -3480,7 +3480,9 @@ return setDialingInfoUsernameStyle(_that);case _SetDialingInfoNumberStyle() when
 return setDialingInfoNumberStyle(_that);case _SetDialingInfoCallStatusStyle() when setDialingInfoCallStatusStyle != null:
 return setDialingInfoCallStatusStyle(_that);case _SetDialingInfoProcessingStatusStyle() when setDialingInfoProcessingStatusStyle != null:
 return setDialingInfoProcessingStatusStyle(_that);case _SetKeypadPage() when setKeypadPage != null:
-return setKeypadPage(_that);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
+return setKeypadPage(_that);case _SetLoginOtpSignin() when setLoginOtpSignin != null:
+return setLoginOtpSignin(_that);case _SetLoginPasswordSignin() when setLoginPasswordSignin != null:
+return setLoginPasswordSignin(_that);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
 return setLoginOtpSigninVerifyCountdown(_that);case _SetLoginSignupVerifyCountdown() when setLoginSignupVerifyCountdown != null:
 return setLoginSignupVerifyCountdown(_that);case _SetContactsPage() when setContactsPage != null:
 return setContactsPage(_that);case _SetRecentsPage() when setRecentsPage != null:
@@ -3506,7 +3508,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginPage value)  setLoginPage,required TResult Function( _UpdateSwitchPage value)  updateSwitchPage,required TResult Function( _SetLoginPicture value)  setLoginPicture,required TResult Function( _SetLoginModeSelect value)  setLoginModeSelect,required TResult Function( _SetLoginModeSelectButtonLoginStyle value)  setLoginModeSelectButtonLoginStyle,required TResult Function( _SetLoginModeSelectButtonSignupStyle value)  setLoginModeSelectButtonSignupStyle,required TResult Function( _SetAboutPage value)  setAboutPage,required TResult Function( _SetAboutPicture value)  setAboutPicture,required TResult Function( _SetAboutMetadata value)  setAboutMetadata,required TResult Function( _SetDialingPage value)  setDialingPage,required TResult Function( _SetDialingSystemUiOverlay value)  setDialingSystemUiOverlay,required TResult Function( _SetDialingAppBarStyle value)  setDialingAppBarStyle,required TResult Function( _SetDialingInfo value)  setDialingInfo,required TResult Function( _SetSettingsPage value)  setSettingsPage,required TResult Function( _SetDialingInfoUsernameStyle value)  setDialingInfoUsernameStyle,required TResult Function( _SetDialingInfoNumberStyle value)  setDialingInfoNumberStyle,required TResult Function( _SetDialingInfoCallStatusStyle value)  setDialingInfoCallStatusStyle,required TResult Function( _SetDialingInfoProcessingStatusStyle value)  setDialingInfoProcessingStatusStyle,required TResult Function( _SetKeypadPage value)  setKeypadPage,required TResult Function( _SetLoginOtpSigninVerifyCountdown value)  setLoginOtpSigninVerifyCountdown,required TResult Function( _SetLoginSignupVerifyCountdown value)  setLoginSignupVerifyCountdown,required TResult Function( _SetContactsPage value)  setContactsPage,required TResult Function( _SetRecentsPage value)  setRecentsPage,required TResult Function( _SetFavoritesPage value)  setFavoritesPage,required TResult Function( _SetConversationsPage value)  setConversationsPage,required TResult Function( _SetEmbeddedPage value)  setEmbeddedPage,required TResult Function( _ImportJsonPageEvent value)  importJson,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginPage value)  setLoginPage,required TResult Function( _UpdateSwitchPage value)  updateSwitchPage,required TResult Function( _SetLoginPicture value)  setLoginPicture,required TResult Function( _SetLoginModeSelect value)  setLoginModeSelect,required TResult Function( _SetLoginModeSelectButtonLoginStyle value)  setLoginModeSelectButtonLoginStyle,required TResult Function( _SetLoginModeSelectButtonSignupStyle value)  setLoginModeSelectButtonSignupStyle,required TResult Function( _SetAboutPage value)  setAboutPage,required TResult Function( _SetAboutPicture value)  setAboutPicture,required TResult Function( _SetAboutMetadata value)  setAboutMetadata,required TResult Function( _SetDialingPage value)  setDialingPage,required TResult Function( _SetDialingSystemUiOverlay value)  setDialingSystemUiOverlay,required TResult Function( _SetDialingAppBarStyle value)  setDialingAppBarStyle,required TResult Function( _SetDialingInfo value)  setDialingInfo,required TResult Function( _SetSettingsPage value)  setSettingsPage,required TResult Function( _SetDialingInfoUsernameStyle value)  setDialingInfoUsernameStyle,required TResult Function( _SetDialingInfoNumberStyle value)  setDialingInfoNumberStyle,required TResult Function( _SetDialingInfoCallStatusStyle value)  setDialingInfoCallStatusStyle,required TResult Function( _SetDialingInfoProcessingStatusStyle value)  setDialingInfoProcessingStatusStyle,required TResult Function( _SetKeypadPage value)  setKeypadPage,required TResult Function( _SetLoginOtpSignin value)  setLoginOtpSignin,required TResult Function( _SetLoginPasswordSignin value)  setLoginPasswordSignin,required TResult Function( _SetLoginOtpSigninVerifyCountdown value)  setLoginOtpSigninVerifyCountdown,required TResult Function( _SetLoginSignupVerifyCountdown value)  setLoginSignupVerifyCountdown,required TResult Function( _SetContactsPage value)  setContactsPage,required TResult Function( _SetRecentsPage value)  setRecentsPage,required TResult Function( _SetFavoritesPage value)  setFavoritesPage,required TResult Function( _SetConversationsPage value)  setConversationsPage,required TResult Function( _SetEmbeddedPage value)  setEmbeddedPage,required TResult Function( _ImportJsonPageEvent value)  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginPage():
@@ -3528,7 +3530,9 @@ return setDialingInfoUsernameStyle(_that);case _SetDialingInfoNumberStyle():
 return setDialingInfoNumberStyle(_that);case _SetDialingInfoCallStatusStyle():
 return setDialingInfoCallStatusStyle(_that);case _SetDialingInfoProcessingStatusStyle():
 return setDialingInfoProcessingStatusStyle(_that);case _SetKeypadPage():
-return setKeypadPage(_that);case _SetLoginOtpSigninVerifyCountdown():
+return setKeypadPage(_that);case _SetLoginOtpSignin():
+return setLoginOtpSignin(_that);case _SetLoginPasswordSignin():
+return setLoginPasswordSignin(_that);case _SetLoginOtpSigninVerifyCountdown():
 return setLoginOtpSigninVerifyCountdown(_that);case _SetLoginSignupVerifyCountdown():
 return setLoginSignupVerifyCountdown(_that);case _SetContactsPage():
 return setContactsPage(_that);case _SetRecentsPage():
@@ -3550,7 +3554,7 @@ return importJson(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginPage value)?  setLoginPage,TResult? Function( _UpdateSwitchPage value)?  updateSwitchPage,TResult? Function( _SetLoginPicture value)?  setLoginPicture,TResult? Function( _SetLoginModeSelect value)?  setLoginModeSelect,TResult? Function( _SetLoginModeSelectButtonLoginStyle value)?  setLoginModeSelectButtonLoginStyle,TResult? Function( _SetLoginModeSelectButtonSignupStyle value)?  setLoginModeSelectButtonSignupStyle,TResult? Function( _SetAboutPage value)?  setAboutPage,TResult? Function( _SetAboutPicture value)?  setAboutPicture,TResult? Function( _SetAboutMetadata value)?  setAboutMetadata,TResult? Function( _SetDialingPage value)?  setDialingPage,TResult? Function( _SetDialingSystemUiOverlay value)?  setDialingSystemUiOverlay,TResult? Function( _SetDialingAppBarStyle value)?  setDialingAppBarStyle,TResult? Function( _SetDialingInfo value)?  setDialingInfo,TResult? Function( _SetSettingsPage value)?  setSettingsPage,TResult? Function( _SetDialingInfoUsernameStyle value)?  setDialingInfoUsernameStyle,TResult? Function( _SetDialingInfoNumberStyle value)?  setDialingInfoNumberStyle,TResult? Function( _SetDialingInfoCallStatusStyle value)?  setDialingInfoCallStatusStyle,TResult? Function( _SetDialingInfoProcessingStatusStyle value)?  setDialingInfoProcessingStatusStyle,TResult? Function( _SetKeypadPage value)?  setKeypadPage,TResult? Function( _SetLoginOtpSigninVerifyCountdown value)?  setLoginOtpSigninVerifyCountdown,TResult? Function( _SetLoginSignupVerifyCountdown value)?  setLoginSignupVerifyCountdown,TResult? Function( _SetContactsPage value)?  setContactsPage,TResult? Function( _SetRecentsPage value)?  setRecentsPage,TResult? Function( _SetFavoritesPage value)?  setFavoritesPage,TResult? Function( _SetConversationsPage value)?  setConversationsPage,TResult? Function( _SetEmbeddedPage value)?  setEmbeddedPage,TResult? Function( _ImportJsonPageEvent value)?  importJson,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginPage value)?  setLoginPage,TResult? Function( _UpdateSwitchPage value)?  updateSwitchPage,TResult? Function( _SetLoginPicture value)?  setLoginPicture,TResult? Function( _SetLoginModeSelect value)?  setLoginModeSelect,TResult? Function( _SetLoginModeSelectButtonLoginStyle value)?  setLoginModeSelectButtonLoginStyle,TResult? Function( _SetLoginModeSelectButtonSignupStyle value)?  setLoginModeSelectButtonSignupStyle,TResult? Function( _SetAboutPage value)?  setAboutPage,TResult? Function( _SetAboutPicture value)?  setAboutPicture,TResult? Function( _SetAboutMetadata value)?  setAboutMetadata,TResult? Function( _SetDialingPage value)?  setDialingPage,TResult? Function( _SetDialingSystemUiOverlay value)?  setDialingSystemUiOverlay,TResult? Function( _SetDialingAppBarStyle value)?  setDialingAppBarStyle,TResult? Function( _SetDialingInfo value)?  setDialingInfo,TResult? Function( _SetSettingsPage value)?  setSettingsPage,TResult? Function( _SetDialingInfoUsernameStyle value)?  setDialingInfoUsernameStyle,TResult? Function( _SetDialingInfoNumberStyle value)?  setDialingInfoNumberStyle,TResult? Function( _SetDialingInfoCallStatusStyle value)?  setDialingInfoCallStatusStyle,TResult? Function( _SetDialingInfoProcessingStatusStyle value)?  setDialingInfoProcessingStatusStyle,TResult? Function( _SetKeypadPage value)?  setKeypadPage,TResult? Function( _SetLoginOtpSignin value)?  setLoginOtpSignin,TResult? Function( _SetLoginPasswordSignin value)?  setLoginPasswordSignin,TResult? Function( _SetLoginOtpSigninVerifyCountdown value)?  setLoginOtpSigninVerifyCountdown,TResult? Function( _SetLoginSignupVerifyCountdown value)?  setLoginSignupVerifyCountdown,TResult? Function( _SetContactsPage value)?  setContactsPage,TResult? Function( _SetRecentsPage value)?  setRecentsPage,TResult? Function( _SetFavoritesPage value)?  setFavoritesPage,TResult? Function( _SetConversationsPage value)?  setConversationsPage,TResult? Function( _SetEmbeddedPage value)?  setEmbeddedPage,TResult? Function( _ImportJsonPageEvent value)?  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginPage() when setLoginPage != null:
@@ -3572,7 +3576,9 @@ return setDialingInfoUsernameStyle(_that);case _SetDialingInfoNumberStyle() when
 return setDialingInfoNumberStyle(_that);case _SetDialingInfoCallStatusStyle() when setDialingInfoCallStatusStyle != null:
 return setDialingInfoCallStatusStyle(_that);case _SetDialingInfoProcessingStatusStyle() when setDialingInfoProcessingStatusStyle != null:
 return setDialingInfoProcessingStatusStyle(_that);case _SetKeypadPage() when setKeypadPage != null:
-return setKeypadPage(_that);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
+return setKeypadPage(_that);case _SetLoginOtpSignin() when setLoginOtpSignin != null:
+return setLoginOtpSignin(_that);case _SetLoginPasswordSignin() when setLoginPasswordSignin != null:
+return setLoginPasswordSignin(_that);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
 return setLoginOtpSigninVerifyCountdown(_that);case _SetLoginSignupVerifyCountdown() when setLoginSignupVerifyCountdown != null:
 return setLoginSignupVerifyCountdown(_that);case _SetContactsPage() when setContactsPage != null:
 return setContactsPage(_that);case _SetRecentsPage() when setRecentsPage != null:
@@ -3597,7 +3603,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LoginPageConfig login)?  setLoginPage,TResult Function( LoginSwitchPageConfig login)?  updateSwitchPage,TResult Function( ImageSource imageSource)?  setLoginPicture,TResult Function( LoginModeSelectPageConfig modeSelect)?  setLoginModeSelect,TResult Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonLoginStyle,TResult Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonSignupStyle,TResult Function( AboutPageConfig about)?  setAboutPage,TResult Function( AssetModel asset)?  setAboutPicture,TResult Function( Metadata metadata)?  setAboutMetadata,TResult Function( CallPageConfig dialingPage)?  setDialingPage,TResult Function( OverlayStyleModel? style)?  setDialingSystemUiOverlay,TResult Function( AppBarConfig? appBarStyle)?  setDialingAppBarStyle,TResult Function( CallPageInfoConfig? info)?  setDialingInfo,TResult Function( SettingsPageConfig info)?  setSettingsPage,TResult Function( TextStyleConfig? style)?  setDialingInfoUsernameStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoNumberStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoCallStatusStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoProcessingStatusStyle,TResult Function( KeypadPageConfig keypad)?  setKeypadPage,TResult Function( int seconds)?  setLoginOtpSigninVerifyCountdown,TResult Function( int seconds)?  setLoginSignupVerifyCountdown,TResult Function( ContactsPageConfig config)?  setContactsPage,TResult Function( RecentsPageConfig config)?  setRecentsPage,TResult Function( FavoritesPageConfig config)?  setFavoritesPage,TResult Function( ConversationsPageConfig config)?  setConversationsPage,TResult Function( EmbeddedPageConfig config)?  setEmbeddedPage,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LoginPageConfig login)?  setLoginPage,TResult Function( LoginSwitchPageConfig login)?  updateSwitchPage,TResult Function( ImageSource imageSource)?  setLoginPicture,TResult Function( LoginModeSelectPageConfig modeSelect)?  setLoginModeSelect,TResult Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonLoginStyle,TResult Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonSignupStyle,TResult Function( AboutPageConfig about)?  setAboutPage,TResult Function( AssetModel asset)?  setAboutPicture,TResult Function( Metadata metadata)?  setAboutMetadata,TResult Function( CallPageConfig dialingPage)?  setDialingPage,TResult Function( OverlayStyleModel? style)?  setDialingSystemUiOverlay,TResult Function( AppBarConfig? appBarStyle)?  setDialingAppBarStyle,TResult Function( CallPageInfoConfig? info)?  setDialingInfo,TResult Function( SettingsPageConfig info)?  setSettingsPage,TResult Function( TextStyleConfig? style)?  setDialingInfoUsernameStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoNumberStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoCallStatusStyle,TResult Function( TextStyleConfig? style)?  setDialingInfoProcessingStatusStyle,TResult Function( KeypadPageConfig keypad)?  setKeypadPage,TResult Function( LoginOtpSigninPageConfig config)?  setLoginOtpSignin,TResult Function( LoginPasswordSigninPageConfig config)?  setLoginPasswordSignin,TResult Function( int seconds)?  setLoginOtpSigninVerifyCountdown,TResult Function( int seconds)?  setLoginSignupVerifyCountdown,TResult Function( ContactsPageConfig config)?  setContactsPage,TResult Function( RecentsPageConfig config)?  setRecentsPage,TResult Function( FavoritesPageConfig config)?  setFavoritesPage,TResult Function( ConversationsPageConfig config)?  setConversationsPage,TResult Function( EmbeddedPageConfig config)?  setEmbeddedPage,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetLoginPage() when setLoginPage != null:
 return setLoginPage(_that.login);case _UpdateSwitchPage() when updateSwitchPage != null:
@@ -3618,7 +3624,9 @@ return setDialingInfoUsernameStyle(_that.style);case _SetDialingInfoNumberStyle(
 return setDialingInfoNumberStyle(_that.style);case _SetDialingInfoCallStatusStyle() when setDialingInfoCallStatusStyle != null:
 return setDialingInfoCallStatusStyle(_that.style);case _SetDialingInfoProcessingStatusStyle() when setDialingInfoProcessingStatusStyle != null:
 return setDialingInfoProcessingStatusStyle(_that.style);case _SetKeypadPage() when setKeypadPage != null:
-return setKeypadPage(_that.keypad);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
+return setKeypadPage(_that.keypad);case _SetLoginOtpSignin() when setLoginOtpSignin != null:
+return setLoginOtpSignin(_that.config);case _SetLoginPasswordSignin() when setLoginPasswordSignin != null:
+return setLoginPasswordSignin(_that.config);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
 return setLoginOtpSigninVerifyCountdown(_that.seconds);case _SetLoginSignupVerifyCountdown() when setLoginSignupVerifyCountdown != null:
 return setLoginSignupVerifyCountdown(_that.seconds);case _SetContactsPage() when setContactsPage != null:
 return setContactsPage(_that.config);case _SetRecentsPage() when setRecentsPage != null:
@@ -3644,7 +3652,7 @@ return importJson(_that.json);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LoginPageConfig login)  setLoginPage,required TResult Function( LoginSwitchPageConfig login)  updateSwitchPage,required TResult Function( ImageSource imageSource)  setLoginPicture,required TResult Function( LoginModeSelectPageConfig modeSelect)  setLoginModeSelect,required TResult Function( ElevatedButtonStyleType type)  setLoginModeSelectButtonLoginStyle,required TResult Function( ElevatedButtonStyleType type)  setLoginModeSelectButtonSignupStyle,required TResult Function( AboutPageConfig about)  setAboutPage,required TResult Function( AssetModel asset)  setAboutPicture,required TResult Function( Metadata metadata)  setAboutMetadata,required TResult Function( CallPageConfig dialingPage)  setDialingPage,required TResult Function( OverlayStyleModel? style)  setDialingSystemUiOverlay,required TResult Function( AppBarConfig? appBarStyle)  setDialingAppBarStyle,required TResult Function( CallPageInfoConfig? info)  setDialingInfo,required TResult Function( SettingsPageConfig info)  setSettingsPage,required TResult Function( TextStyleConfig? style)  setDialingInfoUsernameStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoNumberStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoCallStatusStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoProcessingStatusStyle,required TResult Function( KeypadPageConfig keypad)  setKeypadPage,required TResult Function( int seconds)  setLoginOtpSigninVerifyCountdown,required TResult Function( int seconds)  setLoginSignupVerifyCountdown,required TResult Function( ContactsPageConfig config)  setContactsPage,required TResult Function( RecentsPageConfig config)  setRecentsPage,required TResult Function( FavoritesPageConfig config)  setFavoritesPage,required TResult Function( ConversationsPageConfig config)  setConversationsPage,required TResult Function( EmbeddedPageConfig config)  setEmbeddedPage,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LoginPageConfig login)  setLoginPage,required TResult Function( LoginSwitchPageConfig login)  updateSwitchPage,required TResult Function( ImageSource imageSource)  setLoginPicture,required TResult Function( LoginModeSelectPageConfig modeSelect)  setLoginModeSelect,required TResult Function( ElevatedButtonStyleType type)  setLoginModeSelectButtonLoginStyle,required TResult Function( ElevatedButtonStyleType type)  setLoginModeSelectButtonSignupStyle,required TResult Function( AboutPageConfig about)  setAboutPage,required TResult Function( AssetModel asset)  setAboutPicture,required TResult Function( Metadata metadata)  setAboutMetadata,required TResult Function( CallPageConfig dialingPage)  setDialingPage,required TResult Function( OverlayStyleModel? style)  setDialingSystemUiOverlay,required TResult Function( AppBarConfig? appBarStyle)  setDialingAppBarStyle,required TResult Function( CallPageInfoConfig? info)  setDialingInfo,required TResult Function( SettingsPageConfig info)  setSettingsPage,required TResult Function( TextStyleConfig? style)  setDialingInfoUsernameStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoNumberStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoCallStatusStyle,required TResult Function( TextStyleConfig? style)  setDialingInfoProcessingStatusStyle,required TResult Function( KeypadPageConfig keypad)  setKeypadPage,required TResult Function( LoginOtpSigninPageConfig config)  setLoginOtpSignin,required TResult Function( LoginPasswordSigninPageConfig config)  setLoginPasswordSignin,required TResult Function( int seconds)  setLoginOtpSigninVerifyCountdown,required TResult Function( int seconds)  setLoginSignupVerifyCountdown,required TResult Function( ContactsPageConfig config)  setContactsPage,required TResult Function( RecentsPageConfig config)  setRecentsPage,required TResult Function( FavoritesPageConfig config)  setFavoritesPage,required TResult Function( ConversationsPageConfig config)  setConversationsPage,required TResult Function( EmbeddedPageConfig config)  setEmbeddedPage,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginPage():
 return setLoginPage(_that.login);case _UpdateSwitchPage():
@@ -3665,7 +3673,9 @@ return setDialingInfoUsernameStyle(_that.style);case _SetDialingInfoNumberStyle(
 return setDialingInfoNumberStyle(_that.style);case _SetDialingInfoCallStatusStyle():
 return setDialingInfoCallStatusStyle(_that.style);case _SetDialingInfoProcessingStatusStyle():
 return setDialingInfoProcessingStatusStyle(_that.style);case _SetKeypadPage():
-return setKeypadPage(_that.keypad);case _SetLoginOtpSigninVerifyCountdown():
+return setKeypadPage(_that.keypad);case _SetLoginOtpSignin():
+return setLoginOtpSignin(_that.config);case _SetLoginPasswordSignin():
+return setLoginPasswordSignin(_that.config);case _SetLoginOtpSigninVerifyCountdown():
 return setLoginOtpSigninVerifyCountdown(_that.seconds);case _SetLoginSignupVerifyCountdown():
 return setLoginSignupVerifyCountdown(_that.seconds);case _SetContactsPage():
 return setContactsPage(_that.config);case _SetRecentsPage():
@@ -3687,7 +3697,7 @@ return importJson(_that.json);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LoginPageConfig login)?  setLoginPage,TResult? Function( LoginSwitchPageConfig login)?  updateSwitchPage,TResult? Function( ImageSource imageSource)?  setLoginPicture,TResult? Function( LoginModeSelectPageConfig modeSelect)?  setLoginModeSelect,TResult? Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonLoginStyle,TResult? Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonSignupStyle,TResult? Function( AboutPageConfig about)?  setAboutPage,TResult? Function( AssetModel asset)?  setAboutPicture,TResult? Function( Metadata metadata)?  setAboutMetadata,TResult? Function( CallPageConfig dialingPage)?  setDialingPage,TResult? Function( OverlayStyleModel? style)?  setDialingSystemUiOverlay,TResult? Function( AppBarConfig? appBarStyle)?  setDialingAppBarStyle,TResult? Function( CallPageInfoConfig? info)?  setDialingInfo,TResult? Function( SettingsPageConfig info)?  setSettingsPage,TResult? Function( TextStyleConfig? style)?  setDialingInfoUsernameStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoNumberStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoCallStatusStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoProcessingStatusStyle,TResult? Function( KeypadPageConfig keypad)?  setKeypadPage,TResult? Function( int seconds)?  setLoginOtpSigninVerifyCountdown,TResult? Function( int seconds)?  setLoginSignupVerifyCountdown,TResult? Function( ContactsPageConfig config)?  setContactsPage,TResult? Function( RecentsPageConfig config)?  setRecentsPage,TResult? Function( FavoritesPageConfig config)?  setFavoritesPage,TResult? Function( ConversationsPageConfig config)?  setConversationsPage,TResult? Function( EmbeddedPageConfig config)?  setEmbeddedPage,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LoginPageConfig login)?  setLoginPage,TResult? Function( LoginSwitchPageConfig login)?  updateSwitchPage,TResult? Function( ImageSource imageSource)?  setLoginPicture,TResult? Function( LoginModeSelectPageConfig modeSelect)?  setLoginModeSelect,TResult? Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonLoginStyle,TResult? Function( ElevatedButtonStyleType type)?  setLoginModeSelectButtonSignupStyle,TResult? Function( AboutPageConfig about)?  setAboutPage,TResult? Function( AssetModel asset)?  setAboutPicture,TResult? Function( Metadata metadata)?  setAboutMetadata,TResult? Function( CallPageConfig dialingPage)?  setDialingPage,TResult? Function( OverlayStyleModel? style)?  setDialingSystemUiOverlay,TResult? Function( AppBarConfig? appBarStyle)?  setDialingAppBarStyle,TResult? Function( CallPageInfoConfig? info)?  setDialingInfo,TResult? Function( SettingsPageConfig info)?  setSettingsPage,TResult? Function( TextStyleConfig? style)?  setDialingInfoUsernameStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoNumberStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoCallStatusStyle,TResult? Function( TextStyleConfig? style)?  setDialingInfoProcessingStatusStyle,TResult? Function( KeypadPageConfig keypad)?  setKeypadPage,TResult? Function( LoginOtpSigninPageConfig config)?  setLoginOtpSignin,TResult? Function( LoginPasswordSigninPageConfig config)?  setLoginPasswordSignin,TResult? Function( int seconds)?  setLoginOtpSigninVerifyCountdown,TResult? Function( int seconds)?  setLoginSignupVerifyCountdown,TResult? Function( ContactsPageConfig config)?  setContactsPage,TResult? Function( RecentsPageConfig config)?  setRecentsPage,TResult? Function( FavoritesPageConfig config)?  setFavoritesPage,TResult? Function( ConversationsPageConfig config)?  setConversationsPage,TResult? Function( EmbeddedPageConfig config)?  setEmbeddedPage,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginPage() when setLoginPage != null:
 return setLoginPage(_that.login);case _UpdateSwitchPage() when updateSwitchPage != null:
@@ -3708,7 +3718,9 @@ return setDialingInfoUsernameStyle(_that.style);case _SetDialingInfoNumberStyle(
 return setDialingInfoNumberStyle(_that.style);case _SetDialingInfoCallStatusStyle() when setDialingInfoCallStatusStyle != null:
 return setDialingInfoCallStatusStyle(_that.style);case _SetDialingInfoProcessingStatusStyle() when setDialingInfoProcessingStatusStyle != null:
 return setDialingInfoProcessingStatusStyle(_that.style);case _SetKeypadPage() when setKeypadPage != null:
-return setKeypadPage(_that.keypad);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
+return setKeypadPage(_that.keypad);case _SetLoginOtpSignin() when setLoginOtpSignin != null:
+return setLoginOtpSignin(_that.config);case _SetLoginPasswordSignin() when setLoginPasswordSignin != null:
+return setLoginPasswordSignin(_that.config);case _SetLoginOtpSigninVerifyCountdown() when setLoginOtpSigninVerifyCountdown != null:
 return setLoginOtpSigninVerifyCountdown(_that.seconds);case _SetLoginSignupVerifyCountdown() when setLoginSignupVerifyCountdown != null:
 return setLoginSignupVerifyCountdown(_that.seconds);case _SetContactsPage() when setContactsPage != null:
 return setContactsPage(_that.config);case _SetRecentsPage() when setRecentsPage != null:
@@ -5148,6 +5160,156 @@ $KeypadPageConfigCopyWith<$Res> get keypad {
   
   return $KeypadPageConfigCopyWith<$Res>(_self.keypad, (value) {
     return _then(_self.copyWith(keypad: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SetLoginOtpSignin implements ThemePageEvent {
+  const _SetLoginOtpSignin(this.config);
+  
+
+ final  LoginOtpSigninPageConfig config;
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetLoginOtpSigninCopyWith<_SetLoginOtpSignin> get copyWith => __$SetLoginOtpSigninCopyWithImpl<_SetLoginOtpSignin>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetLoginOtpSignin&&(identical(other.config, config) || other.config == config));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,config);
+
+@override
+String toString() {
+  return 'ThemePageEvent.setLoginOtpSignin(config: $config)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SetLoginOtpSigninCopyWith<$Res> implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetLoginOtpSigninCopyWith(_SetLoginOtpSignin value, $Res Function(_SetLoginOtpSignin) _then) = __$SetLoginOtpSigninCopyWithImpl;
+@useResult
+$Res call({
+ LoginOtpSigninPageConfig config
+});
+
+
+$LoginOtpSigninPageConfigCopyWith<$Res> get config;
+
+}
+/// @nodoc
+class __$SetLoginOtpSigninCopyWithImpl<$Res>
+    implements _$SetLoginOtpSigninCopyWith<$Res> {
+  __$SetLoginOtpSigninCopyWithImpl(this._self, this._then);
+
+  final _SetLoginOtpSignin _self;
+  final $Res Function(_SetLoginOtpSignin) _then;
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? config = null,}) {
+  return _then(_SetLoginOtpSignin(
+null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
+as LoginOtpSigninPageConfig,
+  ));
+}
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LoginOtpSigninPageConfigCopyWith<$Res> get config {
+  
+  return $LoginOtpSigninPageConfigCopyWith<$Res>(_self.config, (value) {
+    return _then(_self.copyWith(config: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SetLoginPasswordSignin implements ThemePageEvent {
+  const _SetLoginPasswordSignin(this.config);
+  
+
+ final  LoginPasswordSigninPageConfig config;
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetLoginPasswordSigninCopyWith<_SetLoginPasswordSignin> get copyWith => __$SetLoginPasswordSigninCopyWithImpl<_SetLoginPasswordSignin>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetLoginPasswordSignin&&(identical(other.config, config) || other.config == config));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,config);
+
+@override
+String toString() {
+  return 'ThemePageEvent.setLoginPasswordSignin(config: $config)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SetLoginPasswordSigninCopyWith<$Res> implements $ThemePageEventCopyWith<$Res> {
+  factory _$SetLoginPasswordSigninCopyWith(_SetLoginPasswordSignin value, $Res Function(_SetLoginPasswordSignin) _then) = __$SetLoginPasswordSigninCopyWithImpl;
+@useResult
+$Res call({
+ LoginPasswordSigninPageConfig config
+});
+
+
+$LoginPasswordSigninPageConfigCopyWith<$Res> get config;
+
+}
+/// @nodoc
+class __$SetLoginPasswordSigninCopyWithImpl<$Res>
+    implements _$SetLoginPasswordSigninCopyWith<$Res> {
+  __$SetLoginPasswordSigninCopyWithImpl(this._self, this._then);
+
+  final _SetLoginPasswordSignin _self;
+  final $Res Function(_SetLoginPasswordSignin) _then;
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? config = null,}) {
+  return _then(_SetLoginPasswordSignin(
+null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
+as LoginPasswordSigninPageConfig,
+  ));
+}
+
+/// Create a copy of ThemePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LoginPasswordSigninPageConfigCopyWith<$Res> get config {
+  
+  return $LoginPasswordSigninPageConfigCopyWith<$Res>(_self.config, (value) {
+    return _then(_self.copyWith(config: value));
   });
 }
 }

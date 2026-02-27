@@ -34,6 +34,15 @@ class SettingsMainScreenTab extends StatelessWidget {
           onChanged: (value) => onChanged(config.copyWith(background: value)),
         ),
         const SizedBox(height: 16),
+        AppBarSurfaceEditor(
+          appBarBackgroundColor: config.appBarBackgroundColor,
+          appBarBlurredSurface: config.appBarBlurredSurface,
+          onAppBarBackgroundColorChanged: (v) =>
+              onChanged(config.copyWith(appBarBackgroundColor: v)),
+          onAppBarBlurredSurfaceChanged: (v) =>
+              onChanged(config.copyWith(appBarBlurredSurface: v)),
+        ),
+        const SizedBox(height: 16),
         BorderContainer(
           title: 'Layout & Structure',
           descriptionWidget: DescriptionRow.info(

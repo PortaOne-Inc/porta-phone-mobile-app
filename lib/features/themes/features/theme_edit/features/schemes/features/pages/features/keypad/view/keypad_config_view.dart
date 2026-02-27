@@ -36,6 +36,13 @@ class _KeypadConfigViewState extends State<KeypadConfigView> {
             onChanged: (v) => _set(cfg.copyWith(themeOverride: v)),
           ),
           const SizedBox(height: 16),
+          AppBarSurfaceEditor(
+            appBarBackgroundColor: cfg.appBarBackgroundColor,
+            appBarBlurredSurface: cfg.appBarBlurredSurface,
+            onAppBarBackgroundColorChanged: (v) => _set(cfg.copyWith(appBarBackgroundColor: v)),
+            onAppBarBlurredSurfaceChanged: (v) => _set(cfg.copyWith(appBarBlurredSurface: v)),
+          ),
+          const SizedBox(height: 16),
 
           BorderContainer(
             title: 'System UI Overlay',

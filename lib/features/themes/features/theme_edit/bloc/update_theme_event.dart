@@ -141,6 +141,12 @@ sealed class ThemePageEvent with _$ThemePageEvent implements ConfiguratorEvent {
   /// Configuration for the keypad page.
   const factory ThemePageEvent.setKeypadPage(KeypadPageConfig keypad) = _SetKeypadPage;
 
+  /// Configuration for the OTP sign-in page (text field styling).
+  const factory ThemePageEvent.setLoginOtpSignin(LoginOtpSigninPageConfig config) = _SetLoginOtpSignin;
+
+  /// Configuration for the password sign-in page (text field styling).
+  const factory ThemePageEvent.setLoginPasswordSignin(LoginPasswordSigninPageConfig config) = _SetLoginPasswordSignin;
+
   /// OTP sign-in verify countdown in seconds (0 disables the countdown).
   const factory ThemePageEvent.setLoginOtpSigninVerifyCountdown(int seconds) = _SetLoginOtpSigninVerifyCountdown;
 

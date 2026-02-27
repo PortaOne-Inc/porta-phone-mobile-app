@@ -1,4 +1,5 @@
 export 'app_bar_config_editor.dart';
+export 'app_bar_surface_editor.dart';
 export 'bottom_nav_bar_editor_minimal.dart';
 export 'button_style_config_editor.dart';
 export 'confirm_dialog_editor_minimal.dart';

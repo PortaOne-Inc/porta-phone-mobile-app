@@ -57,6 +57,10 @@ abstract class ThemePageEditorApi {
 
   void setKeypadStyle(KeypadPageConfig style);
 
+  void setLoginOtpSignin(LoginOtpSigninPageConfig cfg);
+
+  void setLoginPasswordSignin(LoginPasswordSigninPageConfig cfg);
+
   void setLoginOtpSigninVerify(LoginOtpSigninVerifyScreenPageConfig cfg);
 
   void setLoginSignupVerify(LoginSignupVerifyScreenPageConfig cfg);
@@ -312,6 +316,22 @@ class ThemePageEditor implements ThemePageEditorApi {
   @override
   void setKeypadStyle(KeypadPageConfig style) {
     _current = current.copyWith(keypad: style);
+    _emit();
+  }
+
+  @override
+  void setLoginOtpSignin(LoginOtpSigninPageConfig cfg) {
+    _current = current.copyWith(
+      login: current.login.copyWith(otpSignin: cfg),
+    );
+    _emit();
+  }
+
+  @override
+  void setLoginPasswordSignin(LoginPasswordSigninPageConfig cfg) {
+    _current = current.copyWith(
+      login: current.login.copyWith(passwordSignin: cfg),
+    );
     _emit();
   }
 

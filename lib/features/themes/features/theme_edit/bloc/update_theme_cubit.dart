@@ -502,6 +502,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setDialingInfoCallStatusStyle: (e) => _pageEditor.setDialingInfoCallStatusStyle(e.style),
       setDialingInfoProcessingStatusStyle: (e) => _pageEditor.setDialingInfoProcessingStatusStyle(e.style),
       setKeypadPage: (e) => _pageEditor.setKeypadStyle(e.keypad),
+      setLoginOtpSignin: (e) => _pageEditor.setLoginOtpSignin(e.config),
+      setLoginPasswordSignin: (e) => _pageEditor.setLoginPasswordSignin(e.config),
       setLoginOtpSigninVerifyCountdown: (e) => _pageEditor.setLoginOtpSigninVerifyCountdown(e.seconds),
       setLoginSignupVerifyCountdown: (e) => _pageEditor.setLoginSignupVerifyCountdown(e.seconds),
       setContactsPage: (e) => _pageEditor.setContactsPage(e.config),
