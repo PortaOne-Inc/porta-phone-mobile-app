@@ -36,7 +36,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   List<Widget> _cachedScreenshots = [];
   FeatureAccess? _lastFeatureAccess;
   ThemeMode? _lastThemeMode;
-  Object? _lastThemeSettings;
+  ThemeSettings? _lastThemeSettings;
 
   @override
   void initState() {
@@ -59,16 +59,19 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   Widget build(BuildContext context) {
     final featureAccess = context.watch<FeatureAccess?>();
 
-    final selectedVariant = context
-        .watch<UpdateThemCubit>()
-        .state
-        .selectedVariant;
+    // Read config directly from the cubit state instead of ThemeProvider.
+    // When context.watch<UpdateThemCubit>() triggers a rebuild, ThemeProvider
+    // (updated by a separate BlocBuilder higher in the tree) may not have
+    // propagated yet in the same frame. Reading from the cubit state
+    // guarantees we always compare against the latest config values.
+    final cubitState = context.watch<UpdateThemCubit>().state;
+    final selectedVariant = cubitState.selectedVariant;
 
     final themeMode = selectedVariant == BrightnessVariant.dark
         ? ThemeMode.dark
         : ThemeMode.light;
 
-    final themeSettings = ThemeProvider.of(context).settings;
+    final themeSettings = cubitState.themeSettings;
 
     if (featureAccess != _lastFeatureAccess ||
         themeMode != _lastThemeMode ||
@@ -76,7 +79,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       _lastFeatureAccess = featureAccess;
       _lastThemeMode = themeMode;
       _lastThemeSettings = themeSettings;
-      _cachedScreenshots = _generatePhoneScreenshots(featureAccess, themeMode);
+      _cachedScreenshots = _generatePhoneScreenshots(featureAccess, themeMode, themeSettings);
     }
 
     final screenshots = _cachedScreenshots;
@@ -110,9 +113,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   List<Widget> _generatePhoneScreenshots(
     FeatureAccess? featureAccess,
     ThemeMode themeMode,
+    ThemeSettings themeSettings,
   ) {
     final appBloc = MockAppBloc.allScreen(
-      themeSettings: ThemeProvider.of(context).settings,
+      themeSettings: themeSettings,
       themeMode: themeMode,
       locale: const Locale('en'),
     );
@@ -238,7 +242,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   }
 
   Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc) {
+    // UniqueKey forces full element recreation when the screenshot list is
+    // regenerated (i.e. when theme settings change). Without it, Flutter
+    // reuses existing elements and some StatefulWidget screenshots that push
+    // routes in initState never re-initialise with the new theme config.
     return Provider<AppMetadataProvider>(
+      key: UniqueKey(),
       create: (context) => const MockAppMetadataProvider(),
       child: PresenceViewParams(
         viewSource: PresenceViewSource.contactInfo,
