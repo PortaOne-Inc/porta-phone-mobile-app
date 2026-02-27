@@ -5775,7 +5775,7 @@ extension ThemeWidgetEventPatterns on ThemeWidgetEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetFonts value)?  setFonts,TResult Function( _SetGlobalFontFamily value)?  setGlobalFontFamily,TResult Function( _SetButton value)?  setButton,TResult Function( _SetPrimaryElevatedButton value)?  setPEButton,TResult Function( _SetGroup value)?  setGroup,TResult Function( _SetGroupTitleListTile value)?  setGroupTitleListTile,TResult Function( _SetGroupTitleListTileBackground value)?  setGroupTitleListTileBackground,TResult Function( _SetBar value)?  setBar,TResult Function( _SetBottomNavBar value)?  setBottomNavigationBar,TResult Function( _SetBottomNavBarBackground value)?  setBottomNavBarBackground,TResult Function( _SetBottomNavBarSelected value)?  setBottomNavBarSelected,TResult Function( _SetBottomNavBarUnselected value)?  setBottomNavBarUnselected,TResult Function( _SetExtTabBar value)?  setExtTabBar,TResult Function( _SetTabBarConfig value)?  setTabBarConfig,TResult Function( _SetDefaultPlaceholderImage value)?  setDefaultPlaceholderImage,TResult Function( _SetImageAssets value)?  setImageAssets,TResult Function( _SetAppIcon value)?  setAppIcon,TResult Function( _SetLeadingAvatarStyle value)?  setLeadingAvatarStyle,TResult Function( _SetInput value)?  setInput,TResult Function( _SetTextFormField value)?  setTextFormField,TResult Function( _SetInputLabelColor value)?  setInputLabelColor,TResult Function( _SetInputBorder value)?  setInputBorder,TResult Function( _SetInputBorderDisabled value)?  setInputBorderDisabled,TResult Function( _SetInputBorderFocused value)?  setInputBorderFocused,TResult Function( _SetInputBorderAny value)?  setInputBorderAny,TResult Function( _SetText value)?  setText,TResult Function( _SetTextSelection value)?  setTextSelection,TResult Function( _SetTextCursorColor value)?  setTextCursorColor,TResult Function( _SetTextSelectionColor value)?  setTextSelectionColor,TResult Function( _SetTextSelectionHandleColor value)?  setTextSelectionHandleColor,TResult Function( _SetLinkify value)?  setLinkify,TResult Function( _SetLinkifyStyleColor value)?  setLinkifyStyleColor,TResult Function( _SetLinkifyLinkColor value)?  setLinkifyLinkColor,TResult Function( _SetDialog value)?  setDialog,TResult Function( _SetConfirmDialog value)?  setConfirmDialog,TResult Function( _SetConfirmDialogActive1 value)?  setConfirmDialogActive1,TResult Function( _SetConfirmDialogActive2 value)?  setConfirmDialogActive2,TResult Function( _SetConfirmDialogDefault value)?  setConfirmDialogDefault,TResult Function( _SetSnackBar value)?  setSnackBar,TResult Function( _SetStatuses value)?  setStatuses,TResult Function( _SetRegistrationStatuses value)?  setRegistrationStatuses,TResult Function( _SetRegistrationOnline value)?  setRegistrationOnline,TResult Function( _SetRegistrationOffline value)?  setRegistrationOffline,TResult Function( _SetCallStatuses value)?  setCallStatuses,TResult Function( _SetCallStatusesConnectivityNone value)?  setCallStatusesConnectivityNone,TResult Function( _SetCallStatusesConnectError value)?  setCallStatusesConnectError,TResult Function( _SetCallStatusesAppUnregistered value)?  setCallStatusesAppUnregistered,TResult Function( _SetCallStatusesConnectIssue value)?  setCallStatusesConnectIssue,TResult Function( _SetCallStatusesInProgress value)?  setCallStatusesInProgress,TResult Function( _SetCallStatusesReady value)?  setCallStatusesReady,TResult Function( _SetDecoration value)?  setDecoration,TResult Function( _SetPrimaryGradient value)?  setPrimaryGradient,TResult Function( _SetPrimaryGradientColors value)?  setPrimaryGradientColors,TResult Function( _ImportJsonWidgetEvent value)?  importJson,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetFonts value)?  setFonts,TResult Function( _SetGlobalFontFamily value)?  setGlobalFontFamily,TResult Function( _SetButton value)?  setButton,TResult Function( _SetPrimaryElevatedButton value)?  setPEButton,TResult Function( _SetGroup value)?  setGroup,TResult Function( _SetGroupTitleListTile value)?  setGroupTitleListTile,TResult Function( _SetGroupTitleListTileBackground value)?  setGroupTitleListTileBackground,TResult Function( _SetBar value)?  setBar,TResult Function( _SetBottomNavBar value)?  setBottomNavigationBar,TResult Function( _SetBottomNavBarBackground value)?  setBottomNavBarBackground,TResult Function( _SetBottomNavBarSelected value)?  setBottomNavBarSelected,TResult Function( _SetBottomNavBarUnselected value)?  setBottomNavBarUnselected,TResult Function( _SetExtTabBar value)?  setExtTabBar,TResult Function( _SetTabBarConfig value)?  setTabBarConfig,TResult Function( _SetDefaultPlaceholderImage value)?  setDefaultPlaceholderImage,TResult Function( _SetImageAssets value)?  setImageAssets,TResult Function( _SetAppIcon value)?  setAppIcon,TResult Function( _SetLeadingAvatarStyle value)?  setLeadingAvatarStyle,TResult Function( _SetInput value)?  setInput,TResult Function( _SetTextFormField value)?  setTextFormField,TResult Function( _SetInputLabelColor value)?  setInputLabelColor,TResult Function( _SetInputBorder value)?  setInputBorder,TResult Function( _SetInputBorderDisabled value)?  setInputBorderDisabled,TResult Function( _SetInputBorderFocused value)?  setInputBorderFocused,TResult Function( _SetInputBorderAny value)?  setInputBorderAny,TResult Function( _SetText value)?  setText,TResult Function( _SetTextSelection value)?  setTextSelection,TResult Function( _SetTextCursorColor value)?  setTextCursorColor,TResult Function( _SetTextSelectionColor value)?  setTextSelectionColor,TResult Function( _SetTextSelectionHandleColor value)?  setTextSelectionHandleColor,TResult Function( _SetLinkify value)?  setLinkify,TResult Function( _SetLinkifyStyleColor value)?  setLinkifyStyleColor,TResult Function( _SetLinkifyLinkColor value)?  setLinkifyLinkColor,TResult Function( _SetDialog value)?  setDialog,TResult Function( _SetConfirmDialog value)?  setConfirmDialog,TResult Function( _SetConfirmDialogActive1 value)?  setConfirmDialogActive1,TResult Function( _SetConfirmDialogActive2 value)?  setConfirmDialogActive2,TResult Function( _SetConfirmDialogDefault value)?  setConfirmDialogDefault,TResult Function( _SetSnackBar value)?  setSnackBar,TResult Function( _SetStatuses value)?  setStatuses,TResult Function( _SetRegistrationStatuses value)?  setRegistrationStatuses,TResult Function( _SetRegistrationOnline value)?  setRegistrationOnline,TResult Function( _SetRegistrationOffline value)?  setRegistrationOffline,TResult Function( _SetCallStatuses value)?  setCallStatuses,TResult Function( _SetCallStatusesConnectivityNone value)?  setCallStatusesConnectivityNone,TResult Function( _SetCallStatusesConnectError value)?  setCallStatusesConnectError,TResult Function( _SetCallStatusesAppUnregistered value)?  setCallStatusesAppUnregistered,TResult Function( _SetCallStatusesConnectIssue value)?  setCallStatusesConnectIssue,TResult Function( _SetCallStatusesInProgress value)?  setCallStatusesInProgress,TResult Function( _SetCallStatusesReady value)?  setCallStatusesReady,TResult Function( _ImportJsonWidgetEvent value)?  importJson,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _SetFonts() when setFonts != null:
@@ -5828,10 +5828,7 @@ return setCallStatusesConnectError(_that);case _SetCallStatusesAppUnregistered()
 return setCallStatusesAppUnregistered(_that);case _SetCallStatusesConnectIssue() when setCallStatusesConnectIssue != null:
 return setCallStatusesConnectIssue(_that);case _SetCallStatusesInProgress() when setCallStatusesInProgress != null:
 return setCallStatusesInProgress(_that);case _SetCallStatusesReady() when setCallStatusesReady != null:
-return setCallStatusesReady(_that);case _SetDecoration() when setDecoration != null:
-return setDecoration(_that);case _SetPrimaryGradient() when setPrimaryGradient != null:
-return setPrimaryGradient(_that);case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
-return setPrimaryGradientColors(_that);case _ImportJsonWidgetEvent() when importJson != null:
+return setCallStatusesReady(_that);case _ImportJsonWidgetEvent() when importJson != null:
 return importJson(_that);case _:
   return orElse();
 
@@ -5850,7 +5847,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetFonts value)  setFonts,required TResult Function( _SetGlobalFontFamily value)  setGlobalFontFamily,required TResult Function( _SetButton value)  setButton,required TResult Function( _SetPrimaryElevatedButton value)  setPEButton,required TResult Function( _SetGroup value)  setGroup,required TResult Function( _SetGroupTitleListTile value)  setGroupTitleListTile,required TResult Function( _SetGroupTitleListTileBackground value)  setGroupTitleListTileBackground,required TResult Function( _SetBar value)  setBar,required TResult Function( _SetBottomNavBar value)  setBottomNavigationBar,required TResult Function( _SetBottomNavBarBackground value)  setBottomNavBarBackground,required TResult Function( _SetBottomNavBarSelected value)  setBottomNavBarSelected,required TResult Function( _SetBottomNavBarUnselected value)  setBottomNavBarUnselected,required TResult Function( _SetExtTabBar value)  setExtTabBar,required TResult Function( _SetTabBarConfig value)  setTabBarConfig,required TResult Function( _SetDefaultPlaceholderImage value)  setDefaultPlaceholderImage,required TResult Function( _SetImageAssets value)  setImageAssets,required TResult Function( _SetAppIcon value)  setAppIcon,required TResult Function( _SetLeadingAvatarStyle value)  setLeadingAvatarStyle,required TResult Function( _SetInput value)  setInput,required TResult Function( _SetTextFormField value)  setTextFormField,required TResult Function( _SetInputLabelColor value)  setInputLabelColor,required TResult Function( _SetInputBorder value)  setInputBorder,required TResult Function( _SetInputBorderDisabled value)  setInputBorderDisabled,required TResult Function( _SetInputBorderFocused value)  setInputBorderFocused,required TResult Function( _SetInputBorderAny value)  setInputBorderAny,required TResult Function( _SetText value)  setText,required TResult Function( _SetTextSelection value)  setTextSelection,required TResult Function( _SetTextCursorColor value)  setTextCursorColor,required TResult Function( _SetTextSelectionColor value)  setTextSelectionColor,required TResult Function( _SetTextSelectionHandleColor value)  setTextSelectionHandleColor,required TResult Function( _SetLinkify value)  setLinkify,required TResult Function( _SetLinkifyStyleColor value)  setLinkifyStyleColor,required TResult Function( _SetLinkifyLinkColor value)  setLinkifyLinkColor,required TResult Function( _SetDialog value)  setDialog,required TResult Function( _SetConfirmDialog value)  setConfirmDialog,required TResult Function( _SetConfirmDialogActive1 value)  setConfirmDialogActive1,required TResult Function( _SetConfirmDialogActive2 value)  setConfirmDialogActive2,required TResult Function( _SetConfirmDialogDefault value)  setConfirmDialogDefault,required TResult Function( _SetSnackBar value)  setSnackBar,required TResult Function( _SetStatuses value)  setStatuses,required TResult Function( _SetRegistrationStatuses value)  setRegistrationStatuses,required TResult Function( _SetRegistrationOnline value)  setRegistrationOnline,required TResult Function( _SetRegistrationOffline value)  setRegistrationOffline,required TResult Function( _SetCallStatuses value)  setCallStatuses,required TResult Function( _SetCallStatusesConnectivityNone value)  setCallStatusesConnectivityNone,required TResult Function( _SetCallStatusesConnectError value)  setCallStatusesConnectError,required TResult Function( _SetCallStatusesAppUnregistered value)  setCallStatusesAppUnregistered,required TResult Function( _SetCallStatusesConnectIssue value)  setCallStatusesConnectIssue,required TResult Function( _SetCallStatusesInProgress value)  setCallStatusesInProgress,required TResult Function( _SetCallStatusesReady value)  setCallStatusesReady,required TResult Function( _SetDecoration value)  setDecoration,required TResult Function( _SetPrimaryGradient value)  setPrimaryGradient,required TResult Function( _SetPrimaryGradientColors value)  setPrimaryGradientColors,required TResult Function( _ImportJsonWidgetEvent value)  importJson,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetFonts value)  setFonts,required TResult Function( _SetGlobalFontFamily value)  setGlobalFontFamily,required TResult Function( _SetButton value)  setButton,required TResult Function( _SetPrimaryElevatedButton value)  setPEButton,required TResult Function( _SetGroup value)  setGroup,required TResult Function( _SetGroupTitleListTile value)  setGroupTitleListTile,required TResult Function( _SetGroupTitleListTileBackground value)  setGroupTitleListTileBackground,required TResult Function( _SetBar value)  setBar,required TResult Function( _SetBottomNavBar value)  setBottomNavigationBar,required TResult Function( _SetBottomNavBarBackground value)  setBottomNavBarBackground,required TResult Function( _SetBottomNavBarSelected value)  setBottomNavBarSelected,required TResult Function( _SetBottomNavBarUnselected value)  setBottomNavBarUnselected,required TResult Function( _SetExtTabBar value)  setExtTabBar,required TResult Function( _SetTabBarConfig value)  setTabBarConfig,required TResult Function( _SetDefaultPlaceholderImage value)  setDefaultPlaceholderImage,required TResult Function( _SetImageAssets value)  setImageAssets,required TResult Function( _SetAppIcon value)  setAppIcon,required TResult Function( _SetLeadingAvatarStyle value)  setLeadingAvatarStyle,required TResult Function( _SetInput value)  setInput,required TResult Function( _SetTextFormField value)  setTextFormField,required TResult Function( _SetInputLabelColor value)  setInputLabelColor,required TResult Function( _SetInputBorder value)  setInputBorder,required TResult Function( _SetInputBorderDisabled value)  setInputBorderDisabled,required TResult Function( _SetInputBorderFocused value)  setInputBorderFocused,required TResult Function( _SetInputBorderAny value)  setInputBorderAny,required TResult Function( _SetText value)  setText,required TResult Function( _SetTextSelection value)  setTextSelection,required TResult Function( _SetTextCursorColor value)  setTextCursorColor,required TResult Function( _SetTextSelectionColor value)  setTextSelectionColor,required TResult Function( _SetTextSelectionHandleColor value)  setTextSelectionHandleColor,required TResult Function( _SetLinkify value)  setLinkify,required TResult Function( _SetLinkifyStyleColor value)  setLinkifyStyleColor,required TResult Function( _SetLinkifyLinkColor value)  setLinkifyLinkColor,required TResult Function( _SetDialog value)  setDialog,required TResult Function( _SetConfirmDialog value)  setConfirmDialog,required TResult Function( _SetConfirmDialogActive1 value)  setConfirmDialogActive1,required TResult Function( _SetConfirmDialogActive2 value)  setConfirmDialogActive2,required TResult Function( _SetConfirmDialogDefault value)  setConfirmDialogDefault,required TResult Function( _SetSnackBar value)  setSnackBar,required TResult Function( _SetStatuses value)  setStatuses,required TResult Function( _SetRegistrationStatuses value)  setRegistrationStatuses,required TResult Function( _SetRegistrationOnline value)  setRegistrationOnline,required TResult Function( _SetRegistrationOffline value)  setRegistrationOffline,required TResult Function( _SetCallStatuses value)  setCallStatuses,required TResult Function( _SetCallStatusesConnectivityNone value)  setCallStatusesConnectivityNone,required TResult Function( _SetCallStatusesConnectError value)  setCallStatusesConnectError,required TResult Function( _SetCallStatusesAppUnregistered value)  setCallStatusesAppUnregistered,required TResult Function( _SetCallStatusesConnectIssue value)  setCallStatusesConnectIssue,required TResult Function( _SetCallStatusesInProgress value)  setCallStatusesInProgress,required TResult Function( _SetCallStatusesReady value)  setCallStatusesReady,required TResult Function( _ImportJsonWidgetEvent value)  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetFonts():
@@ -5903,10 +5900,7 @@ return setCallStatusesConnectError(_that);case _SetCallStatusesAppUnregistered()
 return setCallStatusesAppUnregistered(_that);case _SetCallStatusesConnectIssue():
 return setCallStatusesConnectIssue(_that);case _SetCallStatusesInProgress():
 return setCallStatusesInProgress(_that);case _SetCallStatusesReady():
-return setCallStatusesReady(_that);case _SetDecoration():
-return setDecoration(_that);case _SetPrimaryGradient():
-return setPrimaryGradient(_that);case _SetPrimaryGradientColors():
-return setPrimaryGradientColors(_that);case _ImportJsonWidgetEvent():
+return setCallStatusesReady(_that);case _ImportJsonWidgetEvent():
 return importJson(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -5921,7 +5915,7 @@ return importJson(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetFonts value)?  setFonts,TResult? Function( _SetGlobalFontFamily value)?  setGlobalFontFamily,TResult? Function( _SetButton value)?  setButton,TResult? Function( _SetPrimaryElevatedButton value)?  setPEButton,TResult? Function( _SetGroup value)?  setGroup,TResult? Function( _SetGroupTitleListTile value)?  setGroupTitleListTile,TResult? Function( _SetGroupTitleListTileBackground value)?  setGroupTitleListTileBackground,TResult? Function( _SetBar value)?  setBar,TResult? Function( _SetBottomNavBar value)?  setBottomNavigationBar,TResult? Function( _SetBottomNavBarBackground value)?  setBottomNavBarBackground,TResult? Function( _SetBottomNavBarSelected value)?  setBottomNavBarSelected,TResult? Function( _SetBottomNavBarUnselected value)?  setBottomNavBarUnselected,TResult? Function( _SetExtTabBar value)?  setExtTabBar,TResult? Function( _SetTabBarConfig value)?  setTabBarConfig,TResult? Function( _SetDefaultPlaceholderImage value)?  setDefaultPlaceholderImage,TResult? Function( _SetImageAssets value)?  setImageAssets,TResult? Function( _SetAppIcon value)?  setAppIcon,TResult? Function( _SetLeadingAvatarStyle value)?  setLeadingAvatarStyle,TResult? Function( _SetInput value)?  setInput,TResult? Function( _SetTextFormField value)?  setTextFormField,TResult? Function( _SetInputLabelColor value)?  setInputLabelColor,TResult? Function( _SetInputBorder value)?  setInputBorder,TResult? Function( _SetInputBorderDisabled value)?  setInputBorderDisabled,TResult? Function( _SetInputBorderFocused value)?  setInputBorderFocused,TResult? Function( _SetInputBorderAny value)?  setInputBorderAny,TResult? Function( _SetText value)?  setText,TResult? Function( _SetTextSelection value)?  setTextSelection,TResult? Function( _SetTextCursorColor value)?  setTextCursorColor,TResult? Function( _SetTextSelectionColor value)?  setTextSelectionColor,TResult? Function( _SetTextSelectionHandleColor value)?  setTextSelectionHandleColor,TResult? Function( _SetLinkify value)?  setLinkify,TResult? Function( _SetLinkifyStyleColor value)?  setLinkifyStyleColor,TResult? Function( _SetLinkifyLinkColor value)?  setLinkifyLinkColor,TResult? Function( _SetDialog value)?  setDialog,TResult? Function( _SetConfirmDialog value)?  setConfirmDialog,TResult? Function( _SetConfirmDialogActive1 value)?  setConfirmDialogActive1,TResult? Function( _SetConfirmDialogActive2 value)?  setConfirmDialogActive2,TResult? Function( _SetConfirmDialogDefault value)?  setConfirmDialogDefault,TResult? Function( _SetSnackBar value)?  setSnackBar,TResult? Function( _SetStatuses value)?  setStatuses,TResult? Function( _SetRegistrationStatuses value)?  setRegistrationStatuses,TResult? Function( _SetRegistrationOnline value)?  setRegistrationOnline,TResult? Function( _SetRegistrationOffline value)?  setRegistrationOffline,TResult? Function( _SetCallStatuses value)?  setCallStatuses,TResult? Function( _SetCallStatusesConnectivityNone value)?  setCallStatusesConnectivityNone,TResult? Function( _SetCallStatusesConnectError value)?  setCallStatusesConnectError,TResult? Function( _SetCallStatusesAppUnregistered value)?  setCallStatusesAppUnregistered,TResult? Function( _SetCallStatusesConnectIssue value)?  setCallStatusesConnectIssue,TResult? Function( _SetCallStatusesInProgress value)?  setCallStatusesInProgress,TResult? Function( _SetCallStatusesReady value)?  setCallStatusesReady,TResult? Function( _SetDecoration value)?  setDecoration,TResult? Function( _SetPrimaryGradient value)?  setPrimaryGradient,TResult? Function( _SetPrimaryGradientColors value)?  setPrimaryGradientColors,TResult? Function( _ImportJsonWidgetEvent value)?  importJson,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetFonts value)?  setFonts,TResult? Function( _SetGlobalFontFamily value)?  setGlobalFontFamily,TResult? Function( _SetButton value)?  setButton,TResult? Function( _SetPrimaryElevatedButton value)?  setPEButton,TResult? Function( _SetGroup value)?  setGroup,TResult? Function( _SetGroupTitleListTile value)?  setGroupTitleListTile,TResult? Function( _SetGroupTitleListTileBackground value)?  setGroupTitleListTileBackground,TResult? Function( _SetBar value)?  setBar,TResult? Function( _SetBottomNavBar value)?  setBottomNavigationBar,TResult? Function( _SetBottomNavBarBackground value)?  setBottomNavBarBackground,TResult? Function( _SetBottomNavBarSelected value)?  setBottomNavBarSelected,TResult? Function( _SetBottomNavBarUnselected value)?  setBottomNavBarUnselected,TResult? Function( _SetExtTabBar value)?  setExtTabBar,TResult? Function( _SetTabBarConfig value)?  setTabBarConfig,TResult? Function( _SetDefaultPlaceholderImage value)?  setDefaultPlaceholderImage,TResult? Function( _SetImageAssets value)?  setImageAssets,TResult? Function( _SetAppIcon value)?  setAppIcon,TResult? Function( _SetLeadingAvatarStyle value)?  setLeadingAvatarStyle,TResult? Function( _SetInput value)?  setInput,TResult? Function( _SetTextFormField value)?  setTextFormField,TResult? Function( _SetInputLabelColor value)?  setInputLabelColor,TResult? Function( _SetInputBorder value)?  setInputBorder,TResult? Function( _SetInputBorderDisabled value)?  setInputBorderDisabled,TResult? Function( _SetInputBorderFocused value)?  setInputBorderFocused,TResult? Function( _SetInputBorderAny value)?  setInputBorderAny,TResult? Function( _SetText value)?  setText,TResult? Function( _SetTextSelection value)?  setTextSelection,TResult? Function( _SetTextCursorColor value)?  setTextCursorColor,TResult? Function( _SetTextSelectionColor value)?  setTextSelectionColor,TResult? Function( _SetTextSelectionHandleColor value)?  setTextSelectionHandleColor,TResult? Function( _SetLinkify value)?  setLinkify,TResult? Function( _SetLinkifyStyleColor value)?  setLinkifyStyleColor,TResult? Function( _SetLinkifyLinkColor value)?  setLinkifyLinkColor,TResult? Function( _SetDialog value)?  setDialog,TResult? Function( _SetConfirmDialog value)?  setConfirmDialog,TResult? Function( _SetConfirmDialogActive1 value)?  setConfirmDialogActive1,TResult? Function( _SetConfirmDialogActive2 value)?  setConfirmDialogActive2,TResult? Function( _SetConfirmDialogDefault value)?  setConfirmDialogDefault,TResult? Function( _SetSnackBar value)?  setSnackBar,TResult? Function( _SetStatuses value)?  setStatuses,TResult? Function( _SetRegistrationStatuses value)?  setRegistrationStatuses,TResult? Function( _SetRegistrationOnline value)?  setRegistrationOnline,TResult? Function( _SetRegistrationOffline value)?  setRegistrationOffline,TResult? Function( _SetCallStatuses value)?  setCallStatuses,TResult? Function( _SetCallStatusesConnectivityNone value)?  setCallStatusesConnectivityNone,TResult? Function( _SetCallStatusesConnectError value)?  setCallStatusesConnectError,TResult? Function( _SetCallStatusesAppUnregistered value)?  setCallStatusesAppUnregistered,TResult? Function( _SetCallStatusesConnectIssue value)?  setCallStatusesConnectIssue,TResult? Function( _SetCallStatusesInProgress value)?  setCallStatusesInProgress,TResult? Function( _SetCallStatusesReady value)?  setCallStatusesReady,TResult? Function( _ImportJsonWidgetEvent value)?  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetFonts() when setFonts != null:
@@ -5974,10 +5968,7 @@ return setCallStatusesConnectError(_that);case _SetCallStatusesAppUnregistered()
 return setCallStatusesAppUnregistered(_that);case _SetCallStatusesConnectIssue() when setCallStatusesConnectIssue != null:
 return setCallStatusesConnectIssue(_that);case _SetCallStatusesInProgress() when setCallStatusesInProgress != null:
 return setCallStatusesInProgress(_that);case _SetCallStatusesReady() when setCallStatusesReady != null:
-return setCallStatusesReady(_that);case _SetDecoration() when setDecoration != null:
-return setDecoration(_that);case _SetPrimaryGradient() when setPrimaryGradient != null:
-return setPrimaryGradient(_that);case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
-return setPrimaryGradientColors(_that);case _ImportJsonWidgetEvent() when importJson != null:
+return setCallStatusesReady(_that);case _ImportJsonWidgetEvent() when importJson != null:
 return importJson(_that);case _:
   return null;
 
@@ -5995,7 +5986,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( FontsConfig fonts)?  setFonts,TResult Function( String? fontFamily)?  setGlobalFontFamily,TResult Function( ButtonWidgetConfig button)?  setButton,TResult Function( ButtonStyleConfig? cfg)?  setPEButton,TResult Function( GroupWidgetConfig group)?  setGroup,TResult Function( GroupTitleListTileWidgetConfig cfg)?  setGroupTitleListTile,TResult Function( String? color)?  setGroupTitleListTileBackground,TResult Function( BarWidgetConfig bar)?  setBar,TResult Function( BottomNavigationBarWidgetConfig cfg)?  setBottomNavigationBar,TResult Function( String? color)?  setBottomNavBarBackground,TResult Function( String? color)?  setBottomNavBarSelected,TResult Function( String? color)?  setBottomNavBarUnselected,TResult Function( AppBarConfig cfg)?  setExtTabBar,TResult Function( TabBarConfig cfg)?  setTabBarConfig,TResult Function( ImageSource imageSource)?  setDefaultPlaceholderImage,TResult Function( ImageAssetsConfig cfg)?  setImageAssets,TResult Function( AppIconWidgetConfig cfg)?  setAppIcon,TResult Function( LeadingAvatarStyleConfig cfg)?  setLeadingAvatarStyle,TResult Function( InputWidgetConfig cfg)?  setInput,TResult Function( TextFormFieldWidgetConfig cfg)?  setTextFormField,TResult Function( String? color)?  setInputLabelColor,TResult Function( InputBorderWidgetConfig cfg)?  setInputBorder,TResult Function( BorderWidgetConfig cfg)?  setInputBorderDisabled,TResult Function( BorderWidgetConfig cfg)?  setInputBorderFocused,TResult Function( BorderWidgetConfig cfg)?  setInputBorderAny,TResult Function( TextWidgetConfig cfg)?  setText,TResult Function( TextSelectionWidgetConfig cfg)?  setTextSelection,TResult Function( String? color)?  setTextCursorColor,TResult Function( String? color)?  setTextSelectionColor,TResult Function( String? color)?  setTextSelectionHandleColor,TResult Function( LinkifyWidgetConfig cfg)?  setLinkify,TResult Function( String? color)?  setLinkifyStyleColor,TResult Function( String? color)?  setLinkifyLinkColor,TResult Function( DialogWidgetConfig cfg)?  setDialog,TResult Function( ConfirmDialogWidgetConfig cfg)?  setConfirmDialog,TResult Function( String? color)?  setConfirmDialogActive1,TResult Function( String? color)?  setConfirmDialogActive2,TResult Function( String? color)?  setConfirmDialogDefault,TResult Function( SnackBarWidgetConfig cfg)?  setSnackBar,TResult Function( StatusesWidgetConfig cfg)?  setStatuses,TResult Function( RegistrationStatusesWidgetConfig cfg)?  setRegistrationStatuses,TResult Function( String color)?  setRegistrationOnline,TResult Function( String color)?  setRegistrationOffline,TResult Function( CallStatusesWidgetConfig cfg)?  setCallStatuses,TResult Function( String color)?  setCallStatusesConnectivityNone,TResult Function( String color)?  setCallStatusesConnectError,TResult Function( String color)?  setCallStatusesAppUnregistered,TResult Function( String color)?  setCallStatusesConnectIssue,TResult Function( String color)?  setCallStatusesInProgress,TResult Function( String color)?  setCallStatusesReady,TResult Function( DecorationConfig cfg)?  setDecoration,TResult Function( GradientColorsConfig cfg)?  setPrimaryGradient,TResult Function( List<CustomColor> colors)?  setPrimaryGradientColors,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( FontsConfig fonts)?  setFonts,TResult Function( String? fontFamily)?  setGlobalFontFamily,TResult Function( ButtonWidgetConfig button)?  setButton,TResult Function( ButtonStyleConfig? cfg)?  setPEButton,TResult Function( GroupWidgetConfig group)?  setGroup,TResult Function( GroupTitleListTileWidgetConfig cfg)?  setGroupTitleListTile,TResult Function( String? color)?  setGroupTitleListTileBackground,TResult Function( BarWidgetConfig bar)?  setBar,TResult Function( BottomNavigationBarWidgetConfig cfg)?  setBottomNavigationBar,TResult Function( String? color)?  setBottomNavBarBackground,TResult Function( String? color)?  setBottomNavBarSelected,TResult Function( String? color)?  setBottomNavBarUnselected,TResult Function( AppBarConfig cfg)?  setExtTabBar,TResult Function( TabBarConfig cfg)?  setTabBarConfig,TResult Function( ImageSource imageSource)?  setDefaultPlaceholderImage,TResult Function( ImageAssetsConfig cfg)?  setImageAssets,TResult Function( AppIconWidgetConfig cfg)?  setAppIcon,TResult Function( LeadingAvatarStyleConfig cfg)?  setLeadingAvatarStyle,TResult Function( InputWidgetConfig cfg)?  setInput,TResult Function( TextFormFieldWidgetConfig cfg)?  setTextFormField,TResult Function( String? color)?  setInputLabelColor,TResult Function( InputBorderWidgetConfig cfg)?  setInputBorder,TResult Function( BorderWidgetConfig cfg)?  setInputBorderDisabled,TResult Function( BorderWidgetConfig cfg)?  setInputBorderFocused,TResult Function( BorderWidgetConfig cfg)?  setInputBorderAny,TResult Function( TextWidgetConfig cfg)?  setText,TResult Function( TextSelectionWidgetConfig cfg)?  setTextSelection,TResult Function( String? color)?  setTextCursorColor,TResult Function( String? color)?  setTextSelectionColor,TResult Function( String? color)?  setTextSelectionHandleColor,TResult Function( LinkifyWidgetConfig cfg)?  setLinkify,TResult Function( String? color)?  setLinkifyStyleColor,TResult Function( String? color)?  setLinkifyLinkColor,TResult Function( DialogWidgetConfig cfg)?  setDialog,TResult Function( ConfirmDialogWidgetConfig cfg)?  setConfirmDialog,TResult Function( String? color)?  setConfirmDialogActive1,TResult Function( String? color)?  setConfirmDialogActive2,TResult Function( String? color)?  setConfirmDialogDefault,TResult Function( SnackBarWidgetConfig cfg)?  setSnackBar,TResult Function( StatusesWidgetConfig cfg)?  setStatuses,TResult Function( RegistrationStatusesWidgetConfig cfg)?  setRegistrationStatuses,TResult Function( String color)?  setRegistrationOnline,TResult Function( String color)?  setRegistrationOffline,TResult Function( CallStatusesWidgetConfig cfg)?  setCallStatuses,TResult Function( String color)?  setCallStatusesConnectivityNone,TResult Function( String color)?  setCallStatusesConnectError,TResult Function( String color)?  setCallStatusesAppUnregistered,TResult Function( String color)?  setCallStatusesConnectIssue,TResult Function( String color)?  setCallStatusesInProgress,TResult Function( String color)?  setCallStatusesReady,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetFonts() when setFonts != null:
 return setFonts(_that.fonts);case _SetGlobalFontFamily() when setGlobalFontFamily != null:
@@ -6047,10 +6038,7 @@ return setCallStatusesConnectError(_that.color);case _SetCallStatusesAppUnregist
 return setCallStatusesAppUnregistered(_that.color);case _SetCallStatusesConnectIssue() when setCallStatusesConnectIssue != null:
 return setCallStatusesConnectIssue(_that.color);case _SetCallStatusesInProgress() when setCallStatusesInProgress != null:
 return setCallStatusesInProgress(_that.color);case _SetCallStatusesReady() when setCallStatusesReady != null:
-return setCallStatusesReady(_that.color);case _SetDecoration() when setDecoration != null:
-return setDecoration(_that.cfg);case _SetPrimaryGradient() when setPrimaryGradient != null:
-return setPrimaryGradient(_that.cfg);case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
-return setPrimaryGradientColors(_that.colors);case _ImportJsonWidgetEvent() when importJson != null:
+return setCallStatusesReady(_that.color);case _ImportJsonWidgetEvent() when importJson != null:
 return importJson(_that.json);case _:
   return orElse();
 
@@ -6069,7 +6057,7 @@ return importJson(_that.json);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( FontsConfig fonts)  setFonts,required TResult Function( String? fontFamily)  setGlobalFontFamily,required TResult Function( ButtonWidgetConfig button)  setButton,required TResult Function( ButtonStyleConfig? cfg)  setPEButton,required TResult Function( GroupWidgetConfig group)  setGroup,required TResult Function( GroupTitleListTileWidgetConfig cfg)  setGroupTitleListTile,required TResult Function( String? color)  setGroupTitleListTileBackground,required TResult Function( BarWidgetConfig bar)  setBar,required TResult Function( BottomNavigationBarWidgetConfig cfg)  setBottomNavigationBar,required TResult Function( String? color)  setBottomNavBarBackground,required TResult Function( String? color)  setBottomNavBarSelected,required TResult Function( String? color)  setBottomNavBarUnselected,required TResult Function( AppBarConfig cfg)  setExtTabBar,required TResult Function( TabBarConfig cfg)  setTabBarConfig,required TResult Function( ImageSource imageSource)  setDefaultPlaceholderImage,required TResult Function( ImageAssetsConfig cfg)  setImageAssets,required TResult Function( AppIconWidgetConfig cfg)  setAppIcon,required TResult Function( LeadingAvatarStyleConfig cfg)  setLeadingAvatarStyle,required TResult Function( InputWidgetConfig cfg)  setInput,required TResult Function( TextFormFieldWidgetConfig cfg)  setTextFormField,required TResult Function( String? color)  setInputLabelColor,required TResult Function( InputBorderWidgetConfig cfg)  setInputBorder,required TResult Function( BorderWidgetConfig cfg)  setInputBorderDisabled,required TResult Function( BorderWidgetConfig cfg)  setInputBorderFocused,required TResult Function( BorderWidgetConfig cfg)  setInputBorderAny,required TResult Function( TextWidgetConfig cfg)  setText,required TResult Function( TextSelectionWidgetConfig cfg)  setTextSelection,required TResult Function( String? color)  setTextCursorColor,required TResult Function( String? color)  setTextSelectionColor,required TResult Function( String? color)  setTextSelectionHandleColor,required TResult Function( LinkifyWidgetConfig cfg)  setLinkify,required TResult Function( String? color)  setLinkifyStyleColor,required TResult Function( String? color)  setLinkifyLinkColor,required TResult Function( DialogWidgetConfig cfg)  setDialog,required TResult Function( ConfirmDialogWidgetConfig cfg)  setConfirmDialog,required TResult Function( String? color)  setConfirmDialogActive1,required TResult Function( String? color)  setConfirmDialogActive2,required TResult Function( String? color)  setConfirmDialogDefault,required TResult Function( SnackBarWidgetConfig cfg)  setSnackBar,required TResult Function( StatusesWidgetConfig cfg)  setStatuses,required TResult Function( RegistrationStatusesWidgetConfig cfg)  setRegistrationStatuses,required TResult Function( String color)  setRegistrationOnline,required TResult Function( String color)  setRegistrationOffline,required TResult Function( CallStatusesWidgetConfig cfg)  setCallStatuses,required TResult Function( String color)  setCallStatusesConnectivityNone,required TResult Function( String color)  setCallStatusesConnectError,required TResult Function( String color)  setCallStatusesAppUnregistered,required TResult Function( String color)  setCallStatusesConnectIssue,required TResult Function( String color)  setCallStatusesInProgress,required TResult Function( String color)  setCallStatusesReady,required TResult Function( DecorationConfig cfg)  setDecoration,required TResult Function( GradientColorsConfig cfg)  setPrimaryGradient,required TResult Function( List<CustomColor> colors)  setPrimaryGradientColors,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( FontsConfig fonts)  setFonts,required TResult Function( String? fontFamily)  setGlobalFontFamily,required TResult Function( ButtonWidgetConfig button)  setButton,required TResult Function( ButtonStyleConfig? cfg)  setPEButton,required TResult Function( GroupWidgetConfig group)  setGroup,required TResult Function( GroupTitleListTileWidgetConfig cfg)  setGroupTitleListTile,required TResult Function( String? color)  setGroupTitleListTileBackground,required TResult Function( BarWidgetConfig bar)  setBar,required TResult Function( BottomNavigationBarWidgetConfig cfg)  setBottomNavigationBar,required TResult Function( String? color)  setBottomNavBarBackground,required TResult Function( String? color)  setBottomNavBarSelected,required TResult Function( String? color)  setBottomNavBarUnselected,required TResult Function( AppBarConfig cfg)  setExtTabBar,required TResult Function( TabBarConfig cfg)  setTabBarConfig,required TResult Function( ImageSource imageSource)  setDefaultPlaceholderImage,required TResult Function( ImageAssetsConfig cfg)  setImageAssets,required TResult Function( AppIconWidgetConfig cfg)  setAppIcon,required TResult Function( LeadingAvatarStyleConfig cfg)  setLeadingAvatarStyle,required TResult Function( InputWidgetConfig cfg)  setInput,required TResult Function( TextFormFieldWidgetConfig cfg)  setTextFormField,required TResult Function( String? color)  setInputLabelColor,required TResult Function( InputBorderWidgetConfig cfg)  setInputBorder,required TResult Function( BorderWidgetConfig cfg)  setInputBorderDisabled,required TResult Function( BorderWidgetConfig cfg)  setInputBorderFocused,required TResult Function( BorderWidgetConfig cfg)  setInputBorderAny,required TResult Function( TextWidgetConfig cfg)  setText,required TResult Function( TextSelectionWidgetConfig cfg)  setTextSelection,required TResult Function( String? color)  setTextCursorColor,required TResult Function( String? color)  setTextSelectionColor,required TResult Function( String? color)  setTextSelectionHandleColor,required TResult Function( LinkifyWidgetConfig cfg)  setLinkify,required TResult Function( String? color)  setLinkifyStyleColor,required TResult Function( String? color)  setLinkifyLinkColor,required TResult Function( DialogWidgetConfig cfg)  setDialog,required TResult Function( ConfirmDialogWidgetConfig cfg)  setConfirmDialog,required TResult Function( String? color)  setConfirmDialogActive1,required TResult Function( String? color)  setConfirmDialogActive2,required TResult Function( String? color)  setConfirmDialogDefault,required TResult Function( SnackBarWidgetConfig cfg)  setSnackBar,required TResult Function( StatusesWidgetConfig cfg)  setStatuses,required TResult Function( RegistrationStatusesWidgetConfig cfg)  setRegistrationStatuses,required TResult Function( String color)  setRegistrationOnline,required TResult Function( String color)  setRegistrationOffline,required TResult Function( CallStatusesWidgetConfig cfg)  setCallStatuses,required TResult Function( String color)  setCallStatusesConnectivityNone,required TResult Function( String color)  setCallStatusesConnectError,required TResult Function( String color)  setCallStatusesAppUnregistered,required TResult Function( String color)  setCallStatusesConnectIssue,required TResult Function( String color)  setCallStatusesInProgress,required TResult Function( String color)  setCallStatusesReady,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
 switch (_that) {
 case _SetFonts():
 return setFonts(_that.fonts);case _SetGlobalFontFamily():
@@ -6121,10 +6109,7 @@ return setCallStatusesConnectError(_that.color);case _SetCallStatusesAppUnregist
 return setCallStatusesAppUnregistered(_that.color);case _SetCallStatusesConnectIssue():
 return setCallStatusesConnectIssue(_that.color);case _SetCallStatusesInProgress():
 return setCallStatusesInProgress(_that.color);case _SetCallStatusesReady():
-return setCallStatusesReady(_that.color);case _SetDecoration():
-return setDecoration(_that.cfg);case _SetPrimaryGradient():
-return setPrimaryGradient(_that.cfg);case _SetPrimaryGradientColors():
-return setPrimaryGradientColors(_that.colors);case _ImportJsonWidgetEvent():
+return setCallStatusesReady(_that.color);case _ImportJsonWidgetEvent():
 return importJson(_that.json);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -6139,7 +6124,7 @@ return importJson(_that.json);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( FontsConfig fonts)?  setFonts,TResult? Function( String? fontFamily)?  setGlobalFontFamily,TResult? Function( ButtonWidgetConfig button)?  setButton,TResult? Function( ButtonStyleConfig? cfg)?  setPEButton,TResult? Function( GroupWidgetConfig group)?  setGroup,TResult? Function( GroupTitleListTileWidgetConfig cfg)?  setGroupTitleListTile,TResult? Function( String? color)?  setGroupTitleListTileBackground,TResult? Function( BarWidgetConfig bar)?  setBar,TResult? Function( BottomNavigationBarWidgetConfig cfg)?  setBottomNavigationBar,TResult? Function( String? color)?  setBottomNavBarBackground,TResult? Function( String? color)?  setBottomNavBarSelected,TResult? Function( String? color)?  setBottomNavBarUnselected,TResult? Function( AppBarConfig cfg)?  setExtTabBar,TResult? Function( TabBarConfig cfg)?  setTabBarConfig,TResult? Function( ImageSource imageSource)?  setDefaultPlaceholderImage,TResult? Function( ImageAssetsConfig cfg)?  setImageAssets,TResult? Function( AppIconWidgetConfig cfg)?  setAppIcon,TResult? Function( LeadingAvatarStyleConfig cfg)?  setLeadingAvatarStyle,TResult? Function( InputWidgetConfig cfg)?  setInput,TResult? Function( TextFormFieldWidgetConfig cfg)?  setTextFormField,TResult? Function( String? color)?  setInputLabelColor,TResult? Function( InputBorderWidgetConfig cfg)?  setInputBorder,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderDisabled,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderFocused,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderAny,TResult? Function( TextWidgetConfig cfg)?  setText,TResult? Function( TextSelectionWidgetConfig cfg)?  setTextSelection,TResult? Function( String? color)?  setTextCursorColor,TResult? Function( String? color)?  setTextSelectionColor,TResult? Function( String? color)?  setTextSelectionHandleColor,TResult? Function( LinkifyWidgetConfig cfg)?  setLinkify,TResult? Function( String? color)?  setLinkifyStyleColor,TResult? Function( String? color)?  setLinkifyLinkColor,TResult? Function( DialogWidgetConfig cfg)?  setDialog,TResult? Function( ConfirmDialogWidgetConfig cfg)?  setConfirmDialog,TResult? Function( String? color)?  setConfirmDialogActive1,TResult? Function( String? color)?  setConfirmDialogActive2,TResult? Function( String? color)?  setConfirmDialogDefault,TResult? Function( SnackBarWidgetConfig cfg)?  setSnackBar,TResult? Function( StatusesWidgetConfig cfg)?  setStatuses,TResult? Function( RegistrationStatusesWidgetConfig cfg)?  setRegistrationStatuses,TResult? Function( String color)?  setRegistrationOnline,TResult? Function( String color)?  setRegistrationOffline,TResult? Function( CallStatusesWidgetConfig cfg)?  setCallStatuses,TResult? Function( String color)?  setCallStatusesConnectivityNone,TResult? Function( String color)?  setCallStatusesConnectError,TResult? Function( String color)?  setCallStatusesAppUnregistered,TResult? Function( String color)?  setCallStatusesConnectIssue,TResult? Function( String color)?  setCallStatusesInProgress,TResult? Function( String color)?  setCallStatusesReady,TResult? Function( DecorationConfig cfg)?  setDecoration,TResult? Function( GradientColorsConfig cfg)?  setPrimaryGradient,TResult? Function( List<CustomColor> colors)?  setPrimaryGradientColors,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( FontsConfig fonts)?  setFonts,TResult? Function( String? fontFamily)?  setGlobalFontFamily,TResult? Function( ButtonWidgetConfig button)?  setButton,TResult? Function( ButtonStyleConfig? cfg)?  setPEButton,TResult? Function( GroupWidgetConfig group)?  setGroup,TResult? Function( GroupTitleListTileWidgetConfig cfg)?  setGroupTitleListTile,TResult? Function( String? color)?  setGroupTitleListTileBackground,TResult? Function( BarWidgetConfig bar)?  setBar,TResult? Function( BottomNavigationBarWidgetConfig cfg)?  setBottomNavigationBar,TResult? Function( String? color)?  setBottomNavBarBackground,TResult? Function( String? color)?  setBottomNavBarSelected,TResult? Function( String? color)?  setBottomNavBarUnselected,TResult? Function( AppBarConfig cfg)?  setExtTabBar,TResult? Function( TabBarConfig cfg)?  setTabBarConfig,TResult? Function( ImageSource imageSource)?  setDefaultPlaceholderImage,TResult? Function( ImageAssetsConfig cfg)?  setImageAssets,TResult? Function( AppIconWidgetConfig cfg)?  setAppIcon,TResult? Function( LeadingAvatarStyleConfig cfg)?  setLeadingAvatarStyle,TResult? Function( InputWidgetConfig cfg)?  setInput,TResult? Function( TextFormFieldWidgetConfig cfg)?  setTextFormField,TResult? Function( String? color)?  setInputLabelColor,TResult? Function( InputBorderWidgetConfig cfg)?  setInputBorder,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderDisabled,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderFocused,TResult? Function( BorderWidgetConfig cfg)?  setInputBorderAny,TResult? Function( TextWidgetConfig cfg)?  setText,TResult? Function( TextSelectionWidgetConfig cfg)?  setTextSelection,TResult? Function( String? color)?  setTextCursorColor,TResult? Function( String? color)?  setTextSelectionColor,TResult? Function( String? color)?  setTextSelectionHandleColor,TResult? Function( LinkifyWidgetConfig cfg)?  setLinkify,TResult? Function( String? color)?  setLinkifyStyleColor,TResult? Function( String? color)?  setLinkifyLinkColor,TResult? Function( DialogWidgetConfig cfg)?  setDialog,TResult? Function( ConfirmDialogWidgetConfig cfg)?  setConfirmDialog,TResult? Function( String? color)?  setConfirmDialogActive1,TResult? Function( String? color)?  setConfirmDialogActive2,TResult? Function( String? color)?  setConfirmDialogDefault,TResult? Function( SnackBarWidgetConfig cfg)?  setSnackBar,TResult? Function( StatusesWidgetConfig cfg)?  setStatuses,TResult? Function( RegistrationStatusesWidgetConfig cfg)?  setRegistrationStatuses,TResult? Function( String color)?  setRegistrationOnline,TResult? Function( String color)?  setRegistrationOffline,TResult? Function( CallStatusesWidgetConfig cfg)?  setCallStatuses,TResult? Function( String color)?  setCallStatusesConnectivityNone,TResult? Function( String color)?  setCallStatusesConnectError,TResult? Function( String color)?  setCallStatusesAppUnregistered,TResult? Function( String color)?  setCallStatusesConnectIssue,TResult? Function( String color)?  setCallStatusesInProgress,TResult? Function( String color)?  setCallStatusesReady,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
 switch (_that) {
 case _SetFonts() when setFonts != null:
 return setFonts(_that.fonts);case _SetGlobalFontFamily() when setGlobalFontFamily != null:
@@ -6191,10 +6176,7 @@ return setCallStatusesConnectError(_that.color);case _SetCallStatusesAppUnregist
 return setCallStatusesAppUnregistered(_that.color);case _SetCallStatusesConnectIssue() when setCallStatusesConnectIssue != null:
 return setCallStatusesConnectIssue(_that.color);case _SetCallStatusesInProgress() when setCallStatusesInProgress != null:
 return setCallStatusesInProgress(_that.color);case _SetCallStatusesReady() when setCallStatusesReady != null:
-return setCallStatusesReady(_that.color);case _SetDecoration() when setDecoration != null:
-return setDecoration(_that.cfg);case _SetPrimaryGradient() when setPrimaryGradient != null:
-return setPrimaryGradient(_that.cfg);case _SetPrimaryGradientColors() when setPrimaryGradientColors != null:
-return setPrimaryGradientColors(_that.colors);case _ImportJsonWidgetEvent() when importJson != null:
+return setCallStatusesReady(_that.color);case _ImportJsonWidgetEvent() when importJson != null:
 return importJson(_that.json);case _:
   return null;
 
@@ -9752,228 +9734,6 @@ class __$SetCallStatusesReadyCopyWithImpl<$Res>
   return _then(_SetCallStatusesReady(
 null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _SetDecoration implements ThemeWidgetEvent {
-  const _SetDecoration(this.cfg);
-  
-
- final  DecorationConfig cfg;
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SetDecorationCopyWith<_SetDecoration> get copyWith => __$SetDecorationCopyWithImpl<_SetDecoration>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetDecoration&&(identical(other.cfg, cfg) || other.cfg == cfg));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,cfg);
-
-@override
-String toString() {
-  return 'ThemeWidgetEvent.setDecoration(cfg: $cfg)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SetDecorationCopyWith<$Res> implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetDecorationCopyWith(_SetDecoration value, $Res Function(_SetDecoration) _then) = __$SetDecorationCopyWithImpl;
-@useResult
-$Res call({
- DecorationConfig cfg
-});
-
-
-$DecorationConfigCopyWith<$Res> get cfg;
-
-}
-/// @nodoc
-class __$SetDecorationCopyWithImpl<$Res>
-    implements _$SetDecorationCopyWith<$Res> {
-  __$SetDecorationCopyWithImpl(this._self, this._then);
-
-  final _SetDecoration _self;
-  final $Res Function(_SetDecoration) _then;
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? cfg = null,}) {
-  return _then(_SetDecoration(
-null == cfg ? _self.cfg : cfg // ignore: cast_nullable_to_non_nullable
-as DecorationConfig,
-  ));
-}
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DecorationConfigCopyWith<$Res> get cfg {
-  
-  return $DecorationConfigCopyWith<$Res>(_self.cfg, (value) {
-    return _then(_self.copyWith(cfg: value));
-  });
-}
-}
-
-/// @nodoc
-
-
-class _SetPrimaryGradient implements ThemeWidgetEvent {
-  const _SetPrimaryGradient(this.cfg);
-  
-
- final  GradientColorsConfig cfg;
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SetPrimaryGradientCopyWith<_SetPrimaryGradient> get copyWith => __$SetPrimaryGradientCopyWithImpl<_SetPrimaryGradient>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetPrimaryGradient&&(identical(other.cfg, cfg) || other.cfg == cfg));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,cfg);
-
-@override
-String toString() {
-  return 'ThemeWidgetEvent.setPrimaryGradient(cfg: $cfg)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SetPrimaryGradientCopyWith<$Res> implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPrimaryGradientCopyWith(_SetPrimaryGradient value, $Res Function(_SetPrimaryGradient) _then) = __$SetPrimaryGradientCopyWithImpl;
-@useResult
-$Res call({
- GradientColorsConfig cfg
-});
-
-
-$GradientColorsConfigCopyWith<$Res> get cfg;
-
-}
-/// @nodoc
-class __$SetPrimaryGradientCopyWithImpl<$Res>
-    implements _$SetPrimaryGradientCopyWith<$Res> {
-  __$SetPrimaryGradientCopyWithImpl(this._self, this._then);
-
-  final _SetPrimaryGradient _self;
-  final $Res Function(_SetPrimaryGradient) _then;
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? cfg = null,}) {
-  return _then(_SetPrimaryGradient(
-null == cfg ? _self.cfg : cfg // ignore: cast_nullable_to_non_nullable
-as GradientColorsConfig,
-  ));
-}
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$GradientColorsConfigCopyWith<$Res> get cfg {
-  
-  return $GradientColorsConfigCopyWith<$Res>(_self.cfg, (value) {
-    return _then(_self.copyWith(cfg: value));
-  });
-}
-}
-
-/// @nodoc
-
-
-class _SetPrimaryGradientColors implements ThemeWidgetEvent {
-  const _SetPrimaryGradientColors(final  List<CustomColor> colors): _colors = colors;
-  
-
- final  List<CustomColor> _colors;
- List<CustomColor> get colors {
-  if (_colors is EqualUnmodifiableListView) return _colors;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_colors);
-}
-
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SetPrimaryGradientColorsCopyWith<_SetPrimaryGradientColors> get copyWith => __$SetPrimaryGradientColorsCopyWithImpl<_SetPrimaryGradientColors>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetPrimaryGradientColors&&const DeepCollectionEquality().equals(other._colors, _colors));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_colors));
-
-@override
-String toString() {
-  return 'ThemeWidgetEvent.setPrimaryGradientColors(colors: $colors)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SetPrimaryGradientColorsCopyWith<$Res> implements $ThemeWidgetEventCopyWith<$Res> {
-  factory _$SetPrimaryGradientColorsCopyWith(_SetPrimaryGradientColors value, $Res Function(_SetPrimaryGradientColors) _then) = __$SetPrimaryGradientColorsCopyWithImpl;
-@useResult
-$Res call({
- List<CustomColor> colors
-});
-
-
-
-
-}
-/// @nodoc
-class __$SetPrimaryGradientColorsCopyWithImpl<$Res>
-    implements _$SetPrimaryGradientColorsCopyWith<$Res> {
-  __$SetPrimaryGradientColorsCopyWithImpl(this._self, this._then);
-
-  final _SetPrimaryGradientColors _self;
-  final $Res Function(_SetPrimaryGradientColors) _then;
-
-/// Create a copy of ThemeWidgetEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? colors = null,}) {
-  return _then(_SetPrimaryGradientColors(
-null == colors ? _self._colors : colors // ignore: cast_nullable_to_non_nullable
-as List<CustomColor>,
   ));
 }
 

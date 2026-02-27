@@ -119,12 +119,6 @@ abstract class ThemeWidgetEditorApi {
   void setCallStatusesInProgress(String color);
 
   void setCallStatusesReady(String color);
-
-  void setDecoration(DecorationConfig cfg);
-
-  void setPrimaryGradient(GradientColorsConfig cfg);
-
-  void setPrimaryGradientColors(List<CustomColor> colors);
 }
 
 class ThemeWidgetEditor implements ThemeWidgetEditorApi {
@@ -139,8 +133,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   final _controller = StreamController<ThemeWidgetConfig>.broadcast();
 
   /// Returns `true` when [color] is `null` (clear) or a valid hex color string.
-  static bool _isValidColor(String? color) =>
-      color == null || isValidHexColor(color);
+  static bool _isValidColor(String? color) => color == null || isValidHexColor(color);
 
   Stream<ThemeWidgetConfig> get stream => _controller.stream;
 
@@ -165,9 +158,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   ThemeWidgetConfig get initial {
     final i = _initial;
     if (i == null) {
-      throw StateError(
-        'ThemeWidgetEditor not initialized. Call setInitial() first.',
-      );
+      throw StateError('ThemeWidgetEditor not initialized. Call setInitial() first.');
     }
     return i;
   }
@@ -179,9 +170,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   ThemeWidgetConfig get current {
     final c = _current;
     if (c == null) {
-      throw StateError(
-        'ThemeWidgetEditor not initialized. Call setInitial() first.',
-      );
+      throw StateError('ThemeWidgetEditor not initialized. Call setInitial() first.');
     }
     return c;
   }
@@ -224,9 +213,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setGlobalFontFamily(String? fontFamily) {
-    _current = current.copyWith(
-      fonts: current.fonts.copyWith(fontFamily: fontFamily),
-    );
+    _current = current.copyWith(fonts: current.fonts.copyWith(fontFamily: fontFamily));
     _emit();
   }
 
@@ -238,9 +225,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setPrimaryElevatedButton(ButtonStyleConfig? cfg) {
-    _current = current.copyWith(
-      button: current.button.copyWith(primaryElevatedButton: cfg),
-    );
+    _current = current.copyWith(button: current.button.copyWith(primaryElevatedButton: cfg));
     _emit();
   }
 
@@ -252,11 +237,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setGroupTitleListTile(GroupTitleListTileWidgetConfig cfg) {
-    _current = current.copyWith(
-      group: (current.group ?? const GroupWidgetConfig()).copyWith(
-        groupTitleListTile: cfg,
-      ),
-    );
+    _current = current.copyWith(group: (current.group ?? const GroupWidgetConfig()).copyWith(groupTitleListTile: cfg));
     _emit();
   }
 
@@ -265,10 +246,9 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
       group: (current.group ?? const GroupWidgetConfig()).copyWith(
-        groupTitleListTile:
-            (current.group?.groupTitleListTile ??
-                    const GroupTitleListTileWidgetConfig())
-                .copyWith(backgroundColor: color),
+        groupTitleListTile: (current.group?.groupTitleListTile ?? const GroupTitleListTileWidgetConfig()).copyWith(
+          backgroundColor: color,
+        ),
       ),
     );
     _emit();
@@ -293,9 +273,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setBottomNavigationBar(BottomNavigationBarWidgetConfig cfg) {
-    _current = current.copyWith(
-      bar: current.bar.copyWith(bottomNavigationBar: cfg),
-    );
+    _current = current.copyWith(bar: current.bar.copyWith(bottomNavigationBar: cfg));
     _emit();
   }
 
@@ -303,11 +281,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setBottomNavBarBackground(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      bar: current.bar.copyWith(
-        bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
-          backgroundColor: color,
-        ),
-      ),
+      bar: current.bar.copyWith(bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(backgroundColor: color)),
     );
     _emit();
   }
@@ -317,9 +291,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
       bar: current.bar.copyWith(
-        bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
-          selectedItemColor: color,
-        ),
+        bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(selectedItemColor: color),
       ),
     );
     _emit();
@@ -330,9 +302,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
       bar: current.bar.copyWith(
-        bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(
-          unSelectedItemColor: color,
-        ),
+        bottomNavigationBar: current.bar.bottomNavigationBar.copyWith(unSelectedItemColor: color),
       ),
     );
     _emit();
@@ -352,27 +322,19 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setDefaultPlaceholderImage(ImageSource imageSource) {
-    _current = current.copyWith(
-      imageAssets: current.imageAssets.copyWith(
-        defaultPlaceholderImage: imageSource,
-      ),
-    );
+    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(defaultPlaceholderImage: imageSource));
     _emit();
   }
 
   @override
   void setAppIcon(AppIconWidgetConfig cfg) {
-    _current = current.copyWith(
-      imageAssets: current.imageAssets.copyWith(appIcon: cfg),
-    );
+    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(appIcon: cfg));
     _emit();
   }
 
   @override
   void setLeadingAvatarStyle(LeadingAvatarStyleConfig cfg) {
-    _current = current.copyWith(
-      imageAssets: current.imageAssets.copyWith(leadingAvatarStyle: cfg),
-    );
+    _current = current.copyWith(imageAssets: current.imageAssets.copyWith(leadingAvatarStyle: cfg));
     _emit();
   }
 
@@ -393,9 +355,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setInputLabelColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      input: current.input.copyWith(
-        primary: current.input.primary.copyWith(labelColor: color),
-      ),
+      input: current.input.copyWith(primary: current.input.primary.copyWith(labelColor: color)),
     );
     _emit();
   }
@@ -403,9 +363,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   @override
   void setInputBorder(InputBorderWidgetConfig cfg) {
     _current = current.copyWith(
-      input: current.input.copyWith(
-        primary: current.input.primary.copyWith(border: cfg),
-      ),
+      input: current.input.copyWith(primary: current.input.primary.copyWith(border: cfg)),
     );
     _emit();
   }
@@ -414,9 +372,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setInputBorderDisabled(BorderWidgetConfig cfg) {
     _current = current.copyWith(
       input: current.input.copyWith(
-        primary: current.input.primary.copyWith(
-          border: current.input.primary.border.copyWith(disabled: cfg),
-        ),
+        primary: current.input.primary.copyWith(border: current.input.primary.border.copyWith(disabled: cfg)),
       ),
     );
     _emit();
@@ -426,9 +382,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setInputBorderFocused(BorderWidgetConfig cfg) {
     _current = current.copyWith(
       input: current.input.copyWith(
-        primary: current.input.primary.copyWith(
-          border: current.input.primary.border.copyWith(focused: cfg),
-        ),
+        primary: current.input.primary.copyWith(border: current.input.primary.border.copyWith(focused: cfg)),
       ),
     );
     _emit();
@@ -438,9 +392,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setInputBorderAny(BorderWidgetConfig cfg) {
     _current = current.copyWith(
       input: current.input.copyWith(
-        primary: current.input.primary.copyWith(
-          border: current.input.primary.border.copyWith(any: cfg),
-        ),
+        primary: current.input.primary.copyWith(border: current.input.primary.border.copyWith(any: cfg)),
       ),
     );
     _emit();
@@ -462,9 +414,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setTextCursorColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      text: current.text.copyWith(
-        selection: current.text.selection.copyWith(cursorColor: color),
-      ),
+      text: current.text.copyWith(selection: current.text.selection.copyWith(cursorColor: color)),
     );
     _emit();
   }
@@ -473,9 +423,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setTextSelectionColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      text: current.text.copyWith(
-        selection: current.text.selection.copyWith(selectionColor: color),
-      ),
+      text: current.text.copyWith(selection: current.text.selection.copyWith(selectionColor: color)),
     );
     _emit();
   }
@@ -484,9 +432,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setTextSelectionHandleColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      text: current.text.copyWith(
-        selection: current.text.selection.copyWith(selectionHandleColor: color),
-      ),
+      text: current.text.copyWith(selection: current.text.selection.copyWith(selectionHandleColor: color)),
     );
     _emit();
   }
@@ -501,9 +447,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setLinkifyStyleColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      text: current.text.copyWith(
-        linkify: current.text.linkify.copyWith(styleColor: color),
-      ),
+      text: current.text.copyWith(linkify: current.text.linkify.copyWith(styleColor: color)),
     );
     _emit();
   }
@@ -512,9 +456,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setLinkifyLinkColor(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      text: current.text.copyWith(
-        linkify: current.text.linkify.copyWith(linkifyStyleColor: color),
-      ),
+      text: current.text.copyWith(linkify: current.text.linkify.copyWith(linkifyStyleColor: color)),
     );
     _emit();
   }
@@ -527,9 +469,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setConfirmDialog(ConfirmDialogWidgetConfig cfg) {
-    _current = current.copyWith(
-      dialog: current.dialog.copyWith(confirmDialog: cfg),
-    );
+    _current = current.copyWith(dialog: current.dialog.copyWith(confirmDialog: cfg));
     _emit();
   }
 
@@ -537,11 +477,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setConfirmDialogActive1(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      dialog: current.dialog.copyWith(
-        confirmDialog: current.dialog.confirmDialog.copyWith(
-          activeButtonColor1: color,
-        ),
-      ),
+      dialog: current.dialog.copyWith(confirmDialog: current.dialog.confirmDialog.copyWith(activeButtonColor1: color)),
     );
     _emit();
   }
@@ -550,11 +486,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setConfirmDialogActive2(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      dialog: current.dialog.copyWith(
-        confirmDialog: current.dialog.confirmDialog.copyWith(
-          activeButtonColor2: color,
-        ),
-      ),
+      dialog: current.dialog.copyWith(confirmDialog: current.dialog.confirmDialog.copyWith(activeButtonColor2: color)),
     );
     _emit();
   }
@@ -563,11 +495,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setConfirmDialogDefault(String? color) {
     if (!_isValidColor(color)) return;
     _current = current.copyWith(
-      dialog: current.dialog.copyWith(
-        confirmDialog: current.dialog.confirmDialog.copyWith(
-          defaultButtonColor: color,
-        ),
-      ),
+      dialog: current.dialog.copyWith(confirmDialog: current.dialog.confirmDialog.copyWith(defaultButtonColor: color)),
     );
     _emit();
   }
@@ -586,9 +514,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setRegistrationStatuses(RegistrationStatusesWidgetConfig cfg) {
-    _current = current.copyWith(
-      statuses: current.statuses.copyWith(registrationStatuses: cfg),
-    );
+    _current = current.copyWith(statuses: current.statuses.copyWith(registrationStatuses: cfg));
     _emit();
   }
 
@@ -597,9 +523,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
-        registrationStatuses: current.statuses.registrationStatuses.copyWith(
-          online: color,
-        ),
+        registrationStatuses: current.statuses.registrationStatuses.copyWith(online: color),
       ),
     );
     _emit();
@@ -610,9 +534,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
-        registrationStatuses: current.statuses.registrationStatuses.copyWith(
-          offline: color,
-        ),
+        registrationStatuses: current.statuses.registrationStatuses.copyWith(offline: color),
       ),
     );
     _emit();
@@ -620,9 +542,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
 
   @override
   void setCallStatuses(CallStatusesWidgetConfig cfg) {
-    _current = current.copyWith(
-      statuses: current.statuses.copyWith(callStatuses: cfg),
-    );
+    _current = current.copyWith(statuses: current.statuses.copyWith(callStatuses: cfg));
     _emit();
   }
 
@@ -631,9 +551,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
       statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(
-          connectivityNone: color,
-        ),
+        callStatuses: current.statuses.callStatuses.copyWith(connectivityNone: color),
       ),
     );
     _emit();
@@ -643,11 +561,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setCallStatusesConnectError(String color) {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
-      statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(
-          connectError: color,
-        ),
-      ),
+      statuses: current.statuses.copyWith(callStatuses: current.statuses.callStatuses.copyWith(connectError: color)),
     );
     _emit();
   }
@@ -656,11 +570,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setCallStatusesAppUnregistered(String color) {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
-      statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(
-          appUnregistered: color,
-        ),
-      ),
+      statuses: current.statuses.copyWith(callStatuses: current.statuses.callStatuses.copyWith(appUnregistered: color)),
     );
     _emit();
   }
@@ -669,11 +579,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setCallStatusesConnectIssue(String color) {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
-      statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(
-          connectIssue: color,
-        ),
-      ),
+      statuses: current.statuses.copyWith(callStatuses: current.statuses.callStatuses.copyWith(connectIssue: color)),
     );
     _emit();
   }
@@ -682,9 +588,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setCallStatusesInProgress(String color) {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
-      statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(inProgress: color),
-      ),
+      statuses: current.statuses.copyWith(callStatuses: current.statuses.callStatuses.copyWith(inProgress: color)),
     );
     _emit();
   }
@@ -693,38 +597,7 @@ class ThemeWidgetEditor implements ThemeWidgetEditorApi {
   void setCallStatusesReady(String color) {
     if (!isValidHexColor(color)) return;
     _current = current.copyWith(
-      statuses: current.statuses.copyWith(
-        callStatuses: current.statuses.callStatuses.copyWith(ready: color),
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setDecoration(DecorationConfig cfg) {
-    _current = current.copyWith(decorationConfig: cfg);
-    _emit();
-  }
-
-  @override
-  void setPrimaryGradient(GradientColorsConfig cfg) {
-    _current = current.copyWith(
-      decorationConfig: current.decorationConfig.copyWith(
-        primaryGradientColorsConfig: cfg,
-      ),
-    );
-    _emit();
-  }
-
-  @override
-  void setPrimaryGradientColors(List<CustomColor> colors) {
-    _current = current.copyWith(
-      decorationConfig: current.decorationConfig.copyWith(
-        primaryGradientColorsConfig: current
-            .decorationConfig
-            .primaryGradientColorsConfig
-            .copyWith(colors: List<CustomColor>.from(colors)),
-      ),
+      statuses: current.statuses.copyWith(callStatuses: current.statuses.callStatuses.copyWith(ready: color)),
     );
     _emit();
   }

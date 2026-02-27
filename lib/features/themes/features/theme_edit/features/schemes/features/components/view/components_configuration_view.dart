@@ -11,7 +11,6 @@ import 'package:webtrit_phone/widgets/linkify_styles.dart';
 
 import 'bars_config_tab.dart';
 import 'button_config_tab.dart';
-import 'container_config_tab.dart';
 import 'dialog_config.dart';
 import 'fonts_config_tab.dart';
 import 'group_config_tab.dart';
@@ -27,8 +26,7 @@ class ConfigureWidgetsView extends StatefulWidget {
   State<ConfigureWidgetsView> createState() => _ConfigureWidgetsViewState();
 }
 
-class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
-    with SingleTickerProviderStateMixin {
+class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   bool _isJsonMode = false;
 
@@ -61,10 +59,9 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
   Widget build(BuildContext context) {
     final cubit = context.read<UpdateThemCubit>();
 
-    final themeWidgetConfig = context
-        .select<UpdateThemCubit, ThemeWidgetConfig>(
-          (cubit) => cubit.state.themeWidgetConfig,
-        );
+    final themeWidgetConfig = context.select<UpdateThemCubit, ThemeWidgetConfig>(
+      (cubit) => cubit.state.themeWidgetConfig,
+    );
 
     final light = ThemeProvider.of(context).light();
 
@@ -112,10 +109,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
-              FontsConfigTab(
-                fontFamily: fontFamily,
-                sourceFontsConfig: themeWidgetConfig.fonts,
-              ),
+              FontsConfigTab(fontFamily: fontFamily, sourceFontsConfig: themeWidgetConfig.fonts),
               ButtonConfigTab(
                 sourceButtonWidgetConfig: themeWidgetConfig.button,
                 elevatedButtonStyles: elevatedButtonStyles,
@@ -126,9 +120,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
                 sourceGroupWidgetConfig: themeWidgetConfig.group,
               ),
               BarsConfigTab(config: themeWidgetConfig.bar),
-              ImageAssetsConfigTab(
-                imageAssetsConfig: themeWidgetConfig.imageAssets,
-              ),
+              ImageAssetsConfigTab(imageAssetsConfig: themeWidgetConfig.imageAssets),
               InputConfigTab(
                 inputDecorationTheme: inputDecorationTheme,
                 sourceInputWidgetConfig: themeWidgetConfig.input,
@@ -147,9 +139,6 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView>
                 sourceStatusesWidgetConfig: themeWidgetConfig.statuses,
                 callStatusStyles: callStatusStyles,
                 registeredStatusStyles: registeredStatusStyles,
-              ),
-              ContainerConfigTab(
-                decorationConfig: themeWidgetConfig.decorationConfig,
               ),
             ].map((it) => SingleChildScrollView(child: it)).toList(),
           ),

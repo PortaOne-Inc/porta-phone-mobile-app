@@ -467,9 +467,6 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setCallStatusesConnectIssue: (e) => _widgetEditor.setCallStatusesConnectIssue(e.color),
       setCallStatusesInProgress: (e) => _widgetEditor.setCallStatusesInProgress(e.color),
       setCallStatusesReady: (e) => _widgetEditor.setCallStatusesReady(e.color),
-      setDecoration: (e) => _widgetEditor.setDecoration(e.cfg),
-      setPrimaryGradient: (e) => _widgetEditor.setPrimaryGradient(e.cfg),
-      setPrimaryGradientColors: (e) => _widgetEditor.setPrimaryGradientColors(e.colors),
       setDefaultPlaceholderImage: (e) => _widgetEditor.setDefaultPlaceholderImage(e.imageSource),
       importJson: (e) => _onImportWidgetJson(e.json),
     );
