@@ -3,7 +3,7 @@ description: A project that allows you to customize the style of the mobile appl
 
 publish_to: 'none'
 
-version: 0.2.0
+version: 0.0.0
 
 environment:
   sdk: ^3.11.0
@@ -115,13 +115,13 @@ melos:
       exec:
         concurrency: 3
 
-    format:check:
+    fmt:check:
       description: Check Dart formatting in all packages.
       run: dart format --set-exit-if-changed .
       exec:
         concurrency: 3
 
-    format:
+    fmt:
       description: Fix Dart formatting in all packages.
       run: dart format .
       exec:
@@ -151,7 +151,7 @@ melos:
       exec:
         concurrency: 3
 
-    deps:get:
+    get:
       description: Get dependencies for all packages.
       run: flutter pub get
       exec:

@@ -9,6 +9,8 @@ Flutter 3.41.2 (stable), backend: NestJS + Zod.
 ```bash
 melos bootstrap                                               # install all deps
 melos run analyze                                             # lint all packages
+melos run fmt:check                                           # check formatting
+melos run fmt                                                 # fix formatting
 melos run test                                                # test all packages
 flutter test                                                  # unit/widget (app root)
 dart run build_runner build --delete-conflicting-outputs      # codegen (run per package)

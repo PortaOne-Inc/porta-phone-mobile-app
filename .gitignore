@@ -31,6 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+**/build/
 pubspec.lock
 
 # Symbolication related
@@ -47,6 +48,16 @@ app.*.map.json
 # Code generation
 lib/di/injection.config.dart
 
-#Firebase
+# Firebase
 /.firebaserc
 /.firebase/
+
+# Melos
+.melos_tool/
+**/pubspec_overrides.yaml
+
+# Agents
+.aider*
+.claude/settings.local.json
+CLAUDE.local.md
+**/.claude/
