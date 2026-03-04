@@ -28,13 +28,7 @@ class FavoritesPageView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppBarSurfaceEditor(
-          appBarBackgroundColor: config.appBarBackgroundColor,
           appBarBlurredSurface: config.appBarBlurredSurface,
-          onAppBarBackgroundColorChanged: (v) {
-            context.read<UpdateThemCubit>().add(
-              ThemePageEvent.setFavoritesPage(config.copyWith(appBarBackgroundColor: v)),
-            );
-          },
           onAppBarBlurredSurfaceChanged: (v) {
             context.read<UpdateThemCubit>().add(
               ThemePageEvent.setFavoritesPage(config.copyWith(appBarBlurredSurface: v)),

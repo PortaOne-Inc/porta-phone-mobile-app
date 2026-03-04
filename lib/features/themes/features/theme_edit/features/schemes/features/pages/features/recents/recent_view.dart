@@ -26,13 +26,7 @@ class RecentsPageView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppBarSurfaceEditor(
-          appBarBackgroundColor: config.appBarBackgroundColor,
           appBarBlurredSurface: config.appBarBlurredSurface,
-          onAppBarBackgroundColorChanged: (v) {
-            context.read<UpdateThemCubit>().add(
-              ThemePageEvent.setRecentsPage(config.copyWith(appBarBackgroundColor: v)),
-            );
-          },
           onAppBarBlurredSurfaceChanged: (v) {
             context.read<UpdateThemCubit>().add(
               ThemePageEvent.setRecentsPage(config.copyWith(appBarBlurredSurface: v)),

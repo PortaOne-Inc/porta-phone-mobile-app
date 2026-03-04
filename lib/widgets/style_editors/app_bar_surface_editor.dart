@@ -9,16 +9,12 @@ import 'package:webtrit_configurator/widgets/description_row.dart';
 
 class AppBarSurfaceEditor extends StatelessWidget {
   const AppBarSurfaceEditor({
-    required this.appBarBackgroundColor,
     required this.appBarBlurredSurface,
-    required this.onAppBarBackgroundColorChanged,
     required this.onAppBarBlurredSurfaceChanged,
     super.key,
   });
 
-  final String? appBarBackgroundColor;
   final BlurredSurfaceConfig? appBarBlurredSurface;
-  final ValueChanged<String?> onAppBarBackgroundColorChanged;
   final ValueChanged<BlurredSurfaceConfig?> onAppBarBlurredSurfaceChanged;
 
   @override
@@ -27,22 +23,11 @@ class AppBarSurfaceEditor extends StatelessWidget {
 
     return BorderContainer(
       title: 'AppBar',
-      descriptionWidget: DescriptionRow.info('Configure AppBar background and blur effect.'),
+      descriptionWidget: DescriptionRow.info('Configure AppBar blur effect.'),
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ColorInput(
-            label: 'Background Color',
-            color: appBarBackgroundColor?.toColor(),
-            onTap: () => _pickColor(
-              context,
-              appBarBackgroundColor?.toColor(),
-              onAppBarBackgroundColorChanged,
-            ),
-            onClear: () => onAppBarBackgroundColorChanged(null),
-          ),
-          const Divider(height: 32),
           Text(
             'Blurred Surface',
             style: Theme.of(context).textTheme.titleSmall,

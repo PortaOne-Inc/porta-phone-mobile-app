@@ -155,15 +155,7 @@ class _DialingPageViewState extends State<DialingPageView> {
           // ),
           const SizedBox(height: 16),
           AppBarSurfaceEditor(
-            appBarBackgroundColor: currentConfig.appBarBackgroundColor,
             appBarBlurredSurface: currentConfig.appBarBlurredSurface,
-            onAppBarBackgroundColorChanged: (v) {
-              _cubit.add(
-                ThemePageEvent.setDialingPage(
-                  _freshConfig.copyWith(appBarBackgroundColor: v),
-                ),
-              );
-            },
             onAppBarBlurredSurfaceChanged: (v) {
               _cubit.add(
                 ThemePageEvent.setDialingPage(

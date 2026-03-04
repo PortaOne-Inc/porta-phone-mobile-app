@@ -35,10 +35,7 @@ class SettingsMainScreenTab extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppBarSurfaceEditor(
-          appBarBackgroundColor: config.appBarBackgroundColor,
           appBarBlurredSurface: config.appBarBlurredSurface,
-          onAppBarBackgroundColorChanged: (v) =>
-              onChanged(config.copyWith(appBarBackgroundColor: v)),
           onAppBarBlurredSurfaceChanged: (v) =>
               onChanged(config.copyWith(appBarBlurredSurface: v)),
         ),

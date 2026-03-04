@@ -34,16 +34,19 @@ class WelcomeScreenTab extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppBarSurfaceEditor(
-          appBarBackgroundColor: currentConfig.appBarBackgroundColor,
           appBarBlurredSurface: currentConfig.appBarBlurredSurface,
-          onAppBarBackgroundColorChanged: (v) => cubit.add(
-            ThemePageEvent.setLoginModeSelect(
-              currentConfig.copyWith(appBarBackgroundColor: v),
-            ),
-          ),
           onAppBarBlurredSurfaceChanged: (v) => cubit.add(
             ThemePageEvent.setLoginModeSelect(
               currentConfig.copyWith(appBarBlurredSurface: v),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        PageBackgroundEditor(
+          value: currentConfig.background,
+          onChanged: (v) => cubit.add(
+            ThemePageEvent.setLoginModeSelect(
+              currentConfig.copyWith(background: v),
             ),
           ),
         ),

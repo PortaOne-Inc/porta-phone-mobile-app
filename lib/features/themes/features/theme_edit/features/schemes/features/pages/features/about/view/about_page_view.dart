@@ -41,15 +41,7 @@ class _AboutPageViewState extends State<AboutPageView> {
           ),
           const SizedBox(height: 16),
           AppBarSurfaceEditor(
-            appBarBackgroundColor: currentConfig.appBarBackgroundColor,
             appBarBlurredSurface: currentConfig.appBarBlurredSurface,
-            onAppBarBackgroundColorChanged: (v) {
-              _cubit.add(
-                ThemePageEvent.setAboutPage(
-                  currentConfig.copyWith(appBarBackgroundColor: v),
-                ),
-              );
-            },
             onAppBarBlurredSurfaceChanged: (v) {
               _cubit.add(
                 ThemePageEvent.setAboutPage(

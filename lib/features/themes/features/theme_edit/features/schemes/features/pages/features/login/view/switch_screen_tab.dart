@@ -37,15 +37,7 @@ class SwitchScreenTab extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppBarSurfaceEditor(
-          appBarBackgroundColor: currentConfig.appBarBackgroundColor,
           appBarBlurredSurface: currentConfig.appBarBlurredSurface,
-          onAppBarBackgroundColorChanged: (v) {
-            cubit.add(
-              ThemePageEvent.updateSwitchPage(
-                currentConfig.copyWith(appBarBackgroundColor: v),
-              ),
-            );
-          },
           onAppBarBlurredSurfaceChanged: (v) {
             cubit.add(
               ThemePageEvent.updateSwitchPage(
