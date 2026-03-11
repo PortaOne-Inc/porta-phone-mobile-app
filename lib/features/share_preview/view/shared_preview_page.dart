@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:domain/domain.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/mocks/mocks.dart';
@@ -25,9 +26,7 @@ class SharedPreviewPage extends StatelessWidget {
     return BlocBuilder<SharedPreviewCubit, SharedPreviewState>(
       builder: (context, state) {
         return state.when(
-          loading: () => const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
           error: (message) => Scaffold(
             body: Center(
               child: Padding(
@@ -37,18 +36,11 @@ class SharedPreviewPage extends StatelessWidget {
                   children: [
                     const Icon(Icons.error_outline, size: 64),
                     const SizedBox(height: 16),
-                    Text(
-                      'Failed to load preview',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
+                    Text('Failed to load preview', style: Theme.of(context).textTheme.headlineSmall),
                     const SizedBox(height: 8),
                     Text(message, textAlign: TextAlign.center),
                     const SizedBox(height: 24),
-                    FilledButton(
-                      onPressed:
-                          context.read<SharedPreviewCubit>().retry,
-                      child: const Text('Retry'),
-                    ),
+                    FilledButton(onPressed: context.read<SharedPreviewCubit>().retry, child: const Text('Retry')),
                   ],
                 ),
               ),
@@ -109,9 +101,7 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
               ? ThemeWidgetConfig.fromJson(data.widgetConfigs.light!)
               : const ThemeWidgetConfig());
     final pageConfig = _isDark
-        ? (data.pageConfigs.dark != null
-              ? ThemePageConfig.fromJson(data.pageConfigs.dark!)
-              : const ThemePageConfig())
+        ? (data.pageConfigs.dark != null ? ThemePageConfig.fromJson(data.pageConfigs.dark!) : const ThemePageConfig())
         : (data.pageConfigs.light != null
               ? ThemePageConfig.fromJson(data.pageConfigs.light!)
               : const ThemePageConfig());
@@ -138,31 +128,24 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
 
     try {
       final appConfig = AppConfig.fromJson(configJson);
+      final embeds = data.embeds
+          .map(EmbeddedResourceModel.fromJson)
+          .where((m) => m.id != null)
+          .map((m) => m.toEmbeddedResource())
+          .toList();
       final systemInfo = const SystemInfoBuilder().buildInfo();
       final featureOverrides = FeatureOverridesFactory.create(
-        RemoteConfigSnapshot(
-          <String, String>{},
-          MockRemoteCacheConfigService(),
-        ),
+        RemoteConfigSnapshot(<String, String>{}, MockRemoteCacheConfigService()),
       );
       final coreSupport = CoreSupportFactory.create(systemInfo);
 
-      return FeatureAccess.create(
-        appConfig,
-        const <EmbeddedResource>[],
-        coreSupport,
-        featureOverrides,
-      );
+      return FeatureAccess.create(appConfig, embeds, coreSupport, featureOverrides);
     } catch (_) {
       return null;
     }
   }
 
-  List<Widget> _generateScreenshots(
-    FeatureAccess? featureAccess,
-    ThemeSettings themeSettings,
-    ThemeMode themeMode,
-  ) {
+  List<Widget> _generateScreenshots(FeatureAccess? featureAccess, ThemeSettings themeSettings, ThemeMode themeMode) {
     final appBloc = MockAppBloc.allScreen(
       themeSettings: themeSettings,
       themeMode: themeMode,
@@ -174,18 +157,12 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     final loginLabel = loginFeature?.titleL10n;
 
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
-    final isFavoritePreview =
-        bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
-    final isContactPreview =
-        bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
-    final isRecentsPreview =
-        bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
-    final isKeypadPreview =
-        bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
-    final isMessagingPreview =
-        bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
-    final isEmbeddedPreview =
-        bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
+    final isFavoritePreview = bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
+    final isContactPreview = bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
+    final isRecentsPreview = bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
+    final isKeypadPreview = bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
+    final isMessagingPreview = bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
+    final isEmbeddedPreview = bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
@@ -195,56 +172,27 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
       if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
-      if (isCustomSignupPreview)
-        const LoginSignUpScreenshot(
-          supportedLoginTypes: [LoginType.otpSignin],
-        ),
+      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
       const LoginSwitchScreenScreenshot(),
       const UserAgreementScreenScreenshot(),
       if (isFavoritePreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.favorites,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
       if (isRecentsPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.recents,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
       if (isContactPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.contacts,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
       if (isKeypadPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.keypad,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
       if (isMessagingPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.messaging,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
       if (isEmbeddedPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.embedded,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.embedded, loginLabel != null ? Text(loginLabel) : null),
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
         true,
-        localePlaceholderImageUrl:
-            ImagePlaceholdersConstants.previewVideoCallRef1,
-        remotePlaceholderImageUrl:
-            ImagePlaceholdersConstants.previewVideoCallRef2,
+        localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+        remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
       const ContactScreenScreenshot(),
       const ChatConversationScreenScreenshot(),
@@ -254,9 +202,7 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
       const RecentCdrsScreenScreenshot(),
       const NumberCdrsScreenScreenshot(),
       const SettingScreenScreenshot(),
-      const MediaSettingsScreenScreenshot(
-        key: ValueKey('MediaSettingsScreenScreenshot'),
-      ),
+      const MediaSettingsScreenScreenshot(key: ValueKey('MediaSettingsScreenScreenshot')),
       const NetworkScreenScreenshot(),
       const LanguageScreenScreenshot(),
       const DiagnosticScreenScreenshot(),
@@ -289,15 +235,9 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     final themeSettings = _buildThemeSettings();
     final themeMode = _isDark ? ThemeMode.dark : ThemeMode.light;
     final featureAccess = _buildFeatureAccess();
-    final screenshots = _generateScreenshots(
-      featureAccess,
-      themeSettings,
-      themeMode,
-    );
+    final screenshots = _generateScreenshots(featureAccess, themeSettings, themeMode);
 
-    final focusPosition = screenshots.isEmpty
-        ? 0
-        : _focusScreenPosition.clamp(0, screenshots.length - 1);
+    final focusPosition = screenshots.isEmpty ? 0 : _focusScreenPosition.clamp(0, screenshots.length - 1);
 
     return ThemeProvider(
       settings: themeSettings,
@@ -307,11 +247,8 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
         providers: [
           Provider<AppPreferences>.value(value: MockAppPreferences()),
           Provider<DeviceInfo>.value(value: DeviceInfoMock()),
-          Provider<MockAppMetadataProvider>.value(
-            value: const MockAppMetadataProvider(),
-          ),
-          if (featureAccess != null)
-            Provider<FeatureAccess>.value(value: featureAccess),
+          Provider<MockAppMetadataProvider>.value(value: const MockAppMetadataProvider()),
+          if (featureAccess != null) Provider<FeatureAccess>.value(value: featureAccess),
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -333,11 +270,7 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
               Expanded(
                 flex: 3,
                 child: Align(
-                  child: TypePreview(
-                    screens: screenshots,
-                    screenFocus: focusPosition,
-                    isFrameVisible: true,
-                  ),
+                  child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: true),
                 ),
               ),
               SizedBox(

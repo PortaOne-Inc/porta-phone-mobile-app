@@ -22,6 +22,11 @@ _SharedThemePreviewDto _$SharedThemePreviewDtoFromJson(
   splashAsset: json['splashAsset'] as Map<String, dynamic>?,
   launchAsset: json['launchAsset'] as Map<String, dynamic>?,
   featureAccess: json['featureAccess'] as Map<String, dynamic>?,
+  embeds:
+      (json['embeds'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$SharedThemePreviewDtoToJson(
@@ -34,4 +39,5 @@ Map<String, dynamic> _$SharedThemePreviewDtoToJson(
   'splashAsset': instance.splashAsset,
   'launchAsset': instance.launchAsset,
   'featureAccess': instance.featureAccess,
+  'embeds': instance.embeds,
 };

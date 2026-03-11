@@ -14,8 +14,8 @@ sealed class SharedThemePreviewDto with _$SharedThemePreviewDto {
     Map<String, dynamic>? splashAsset,
     Map<String, dynamic>? launchAsset,
     Map<String, dynamic>? featureAccess,
+    @Default([]) List<Map<String, dynamic>> embeds,
   }) = _SharedThemePreviewDto;
 
-  factory SharedThemePreviewDto.fromJson(Map<String, dynamic> json) =>
-      _$SharedThemePreviewDtoFromJson(json);
+  factory SharedThemePreviewDto.fromJson(Map<String, dynamic> json) => _$SharedThemePreviewDtoFromJson(json);
 }

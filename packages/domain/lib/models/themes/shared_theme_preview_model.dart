@@ -7,6 +7,7 @@ class SharedThemePreviewModel {
     this.splashAsset,
     this.launchAsset,
     this.featureAccess,
+    this.embeds = const [],
   });
 
   final Map<String, dynamic> theme;
@@ -16,6 +17,7 @@ class SharedThemePreviewModel {
   final Map<String, dynamic>? splashAsset;
   final Map<String, dynamic>? launchAsset;
   final Map<String, dynamic>? featureAccess;
+  final List<Map<String, dynamic>> embeds;
 
   String get themeName => theme['title'] as String? ?? 'Untitled Theme';
   String? get themeDescription => theme['description'] as String?;
@@ -27,9 +29,7 @@ class SharedThemePreviewVariants {
   /// Extracts light/dark variants from an array of config objects,
   /// where each item has a `variant` field ('light' or 'dark')
   /// and a `config` field containing the actual configuration.
-  factory SharedThemePreviewVariants.fromArray(
-    List<Map<String, dynamic>> items,
-  ) {
+  factory SharedThemePreviewVariants.fromArray(List<Map<String, dynamic>> items) {
     Map<String, dynamic>? light;
     Map<String, dynamic>? dark;
     for (final item in items) {
