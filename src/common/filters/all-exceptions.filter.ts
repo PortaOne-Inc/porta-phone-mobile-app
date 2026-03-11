@@ -7,6 +7,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
+import { ZodError } from 'zod';
 
 type Primitive = string | number | boolean | null | undefined;
 
@@ -23,7 +24,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const status =
         exception instanceof HttpException
             ? exception.getStatus()
-            : HttpStatus.INTERNAL_SERVER_ERROR;
+            : exception instanceof ZodError
+                ? HttpStatus.BAD_REQUEST
+                : HttpStatus.INTERNAL_SERVER_ERROR;
 
     const normalized = this.normalizeException(exception);
     const now = new Date().toISOString();
@@ -73,6 +76,17 @@ export class AllExceptionsFilter implements ExceptionFilter {
     cause?: string;
     stack?: string[];
   } {
+    // ZodError: validation error — return 400 with field-level details
+    if (exception instanceof ZodError) {
+      return {
+        name: 'ValidationError',
+        message: exception.errors.map(e => `${e.path.join('.')}: ${e.message}`).join('; '),
+        code: 'VALIDATION_ERROR',
+        cause: undefined,
+        stack: this.stackLines(exception),
+      };
+    }
+
     // HttpException: preserve its response (could be string or object)
     if (exception instanceof HttpException) {
       const resp = exception.getResponse(); // string | object
