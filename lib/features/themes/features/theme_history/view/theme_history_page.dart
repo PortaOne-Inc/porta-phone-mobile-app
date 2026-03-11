@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:domain/domain.dart';
 
@@ -23,27 +24,18 @@ class ThemeHistoryPage extends StatelessWidget {
           children: [
             TextField(
               controller: tagController,
-              decoration: const InputDecoration(
-                labelText: 'Tag',
-                hintText: 'e.g. release-1.0',
-              ),
+              decoration: const InputDecoration(labelText: 'Tag', hintText: 'e.g. release-1.0'),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: descController,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Optional description',
-              ),
+              decoration: const InputDecoration(labelText: 'Description', hintText: 'Optional description'),
               maxLines: 3,
             ),
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Cancel')),
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
@@ -77,8 +69,8 @@ class ThemeHistoryPage extends StatelessWidget {
       body: BlocBuilder<ThemeHistoryCubit, ThemeHistoryState>(
         builder: (context, state) {
           return switch (state.status) {
-            ThemeHistoryStatus.initial || ThemeHistoryStatus.loading =>
-              const Center(child: CircularProgressIndicator()),
+            ThemeHistoryStatus.initial ||
+            ThemeHistoryStatus.loading => const Center(child: CircularProgressIndicator()),
             ThemeHistoryStatus.failure => _FailureView(
               message: state.errorMessage ?? 'Failed to load history',
               onRetry: () => context.read<ThemeHistoryCubit>().load(),
@@ -90,8 +82,7 @@ class ThemeHistoryPage extends StatelessWidget {
                       items: state.items,
                       isLoadingMore: state.isLoadingMore,
                       hasMore: state.nextCursor != null,
-                      onLoadMore: () =>
-                          context.read<ThemeHistoryCubit>().loadMore(),
+                      onLoadMore: () => context.read<ThemeHistoryCubit>().loadMore(),
                     ),
           };
         },
@@ -134,11 +125,7 @@ class _FailureView extends StatelessWidget {
           const SizedBox(height: 16),
           Text(message, textAlign: TextAlign.center),
           const SizedBox(height: 16),
-          ElevatedButton.icon(
-            onPressed: onRetry,
-            icon: const Icon(Icons.refresh),
-            label: const Text('Retry'),
-          ),
+          ElevatedButton.icon(onPressed: onRetry, icon: const Icon(Icons.refresh), label: const Text('Retry')),
         ],
       ),
     );
@@ -201,9 +188,7 @@ class _HistoryEntryTile extends StatelessWidget {
           backgroundColor: colorScheme.primaryContainer,
           child: Text(
             'v${entry.snapshotVersion}',
-            style: textTheme.labelSmall?.copyWith(
-              color: colorScheme.onPrimaryContainer,
-            ),
+            style: textTheme.labelSmall?.copyWith(color: colorScheme.onPrimaryContainer),
           ),
         ),
         title: Row(
@@ -222,11 +207,7 @@ class _HistoryEntryTile extends StatelessWidget {
               const SizedBox(width: 8),
               Tooltip(
                 message: 'Has share link',
-                child: Icon(
-                  Icons.link,
-                  size: 18,
-                  color: colorScheme.primary,
-                ),
+                child: Icon(Icons.link, size: 18, color: colorScheme.primary),
               ),
             ],
           ],
@@ -236,25 +217,26 @@ class _HistoryEntryTile extends StatelessWidget {
           children: [
             if (entry.description.isNotEmpty) Text(entry.description),
             Text(
-              [
-                if (entry.changedBy != null) 'by ${entry.changedBy}',
-                _formatDate(entry.createdAt),
-              ].join(' · '),
-              style: textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
+              [if (entry.changedBy != null) 'by ${entry.changedBy}', _formatDate(entry.createdAt)].join(' · '),
+              style: textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
             ),
           ],
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (entry.shareTokenId != null)
+            if (entry.shareTokenId != null) ...[
               IconButton(
-                icon: const Icon(Icons.share_outlined, size: 20),
+                icon: const Icon(Icons.open_in_new, size: 20),
+                tooltip: 'Open share link',
+                onPressed: () => _openShareLink(),
+              ),
+              IconButton(
+                icon: const Icon(Icons.copy_outlined, size: 20),
                 tooltip: 'Copy share link',
                 onPressed: () => _copyShareLink(context),
               ),
+            ],
             IconButton(
               icon: const Icon(Icons.edit_outlined, size: 20),
               tooltip: 'Edit tag & description',
@@ -266,12 +248,15 @@ class _HistoryEntryTile extends StatelessWidget {
     );
   }
 
+  String get _shareUrl => '${Uri.base.origin}/share/${entry.shareTokenId}';
+
+  void _openShareLink() {
+    launchUrl(Uri.parse(_shareUrl), mode: LaunchMode.externalApplication);
+  }
+
   void _copyShareLink(BuildContext context) {
-    final shareUrl = '${Uri.base.origin}/share/${entry.shareTokenId}';
-    Clipboard.setData(ClipboardData(text: shareUrl));
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Share link copied to clipboard')),
-    );
+    Clipboard.setData(ClipboardData(text: _shareUrl));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Share link copied to clipboard')));
   }
 
   void _showEditDialog(BuildContext context) {
@@ -287,27 +272,18 @@ class _HistoryEntryTile extends StatelessWidget {
           children: [
             TextField(
               controller: tagController,
-              decoration: const InputDecoration(
-                labelText: 'Tag',
-                hintText: 'e.g. release-1.0',
-              ),
+              decoration: const InputDecoration(labelText: 'Tag', hintText: 'e.g. release-1.0'),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: descController,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Optional description',
-              ),
+              decoration: const InputDecoration(labelText: 'Description', hintText: 'Optional description'),
               maxLines: 3,
             ),
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Cancel')),
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
