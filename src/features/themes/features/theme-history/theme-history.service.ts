@@ -28,7 +28,7 @@ export class ThemeHistoryService {
   async createSnapshot(params: CreateSnapshotParams): Promise<ThemeHistory> {
     const { themeId, applicationId, changedBy } = params;
 
-    const snapshot = await this.captureSnapshot(themeId);
+    const snapshot = await this.captureSnapshot(themeId, applicationId);
     const nextVersion = await this.getNextVersion(themeId);
 
     const entry: ThemeHistory = {
@@ -125,7 +125,7 @@ export class ThemeHistoryService {
 
   // -------------------- Private --------------------
 
-  private async captureSnapshot(themeId: string): Promise<ThemeSnapshot> {
+  private async captureSnapshot(themeId: string, applicationId: string): Promise<ThemeSnapshot> {
     const db = admin.firestore();
 
     const [
@@ -136,6 +136,7 @@ export class ThemeHistoryService {
       splashSnap,
       launchSnap,
       featureAccessSnap,
+      embedsSnap,
     ] = await Promise.all([
       db.collection(Collections.themes).doc(themeId).get(),
       db
@@ -155,6 +156,10 @@ export class ThemeHistoryService {
       db
         .collection(Collections.themeFeatureEntitlements)
         .where('themeId', '==', themeId)
+        .get(),
+      db
+        .collection(Collections.applicationEmbeds)
+        .where('applicationId', '==', applicationId)
         .get(),
     ]);
 
@@ -186,6 +191,7 @@ export class ThemeHistoryService {
             ...featureAccessSnap.docs[0].data(),
           }
         : null,
+      embeds: embedsSnap.docs.map((d) => ({ id: d.id, ...d.data() })),
     };
   }
 

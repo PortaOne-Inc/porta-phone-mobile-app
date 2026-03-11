@@ -4,11 +4,13 @@ import { ThemeSharesController } from './theme-shares.controller';
 import { ThemeSharesService } from './theme-shares.service';
 import { ThemeShareToken } from './entities/theme-share-token.entity';
 import { ThemeHistoryModule } from '../themes/features/theme-history/theme-history.module';
+import { AssetsModule } from '../assets/assets.module';
 
 @Module({
   imports: [
     FireormModule.forFeature([ThemeShareToken]),
     ThemeHistoryModule,
+    AssetsModule,
   ],
   controllers: [ThemeSharesController],
   providers: [ThemeSharesService],

@@ -6,7 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ThemeShareToken } from './entities/theme-share-token.entity';
 import { ThemeHistoryService } from '../themes/features/theme-history/theme-history.service';
-import { Collections, nowIso } from '../../common';
+import { AssetsService } from '../assets/assets.service';
+import { Collections, nowIso, resolveImageSourceUrlsDeep } from '../../common';
+
+const SHARE_PREVIEW_ASSET_URL_TTL_SEC = 60 * 60 * 24 * 7; // 7 days
 
 @Injectable()
 export class ThemeSharesService {
@@ -16,6 +19,7 @@ export class ThemeSharesService {
     @InjectRepository(ThemeShareToken)
     private readonly repo: BaseFirestoreRepository<ThemeShareToken>,
     private readonly themeHistoryService: ThemeHistoryService,
+    private readonly assetsService: AssetsService,
   ) {}
 
   async createShareToken(
@@ -76,6 +80,26 @@ export class ThemeSharesService {
       doc.snapshotId,
     );
 
-    return historyEntry.snapshot;
+    const snapshot = historyEntry.snapshot;
+
+    const resolveUrl = async (id: string) => {
+      try {
+        return await this.assetsService.getSignedUrlByIdForApp(
+          doc.applicationId,
+          id,
+          SHARE_PREVIEW_ASSET_URL_TTL_SEC,
+        );
+      } catch (e) {
+        this.logger.warn(`Failed to resolve asset URL for id=${id}: ${e}`);
+        return null;
+      }
+    };
+
+    const [resolvedPageConfigs, resolvedWidgetConfigs] = await Promise.all([
+      resolveImageSourceUrlsDeep(snapshot.pageConfigs, resolveUrl),
+      resolveImageSourceUrlsDeep(snapshot.widgetConfigs, resolveUrl),
+    ]);
+
+    return { ...snapshot, pageConfigs: resolvedPageConfigs, widgetConfigs: resolvedWidgetConfigs };
   }
 }

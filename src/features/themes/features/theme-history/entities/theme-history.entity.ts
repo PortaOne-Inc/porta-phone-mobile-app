@@ -11,6 +11,7 @@ export interface ThemeSnapshot {
   splashAsset: Record<string, any> | null;
   launchAsset: Record<string, any> | null;
   featureAccess: Record<string, any> | null;
+  embeds: Record<string, any>[];
 }
 
 @Collection(Collections.themeHistory)
