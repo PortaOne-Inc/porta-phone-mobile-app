@@ -65,6 +65,7 @@ dependencies:
   package_info_plus: ^9.0.0
   mime: ^2.0.0
   vector_math: ^2.2.0
+  web: ^1.1.1
 
 dev_dependencies:
   flutter_test:

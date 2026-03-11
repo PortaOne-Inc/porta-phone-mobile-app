@@ -1,6 +1,12 @@
+import 'dart:js_interop';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:web/web.dart' as web;
 
 import 'package:domain/domain.dart';
 
@@ -66,6 +72,7 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
   bool _isDark = false;
   int _focusScreenPosition = 0;
   ErrorWidgetBuilder? _defaultErrorBuilder;
+  final _previewKey = GlobalKey();
 
   @override
   void initState() {
@@ -230,6 +237,27 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     }).toList();
   }
 
+  Future<void> _downloadScreenshot() async {
+    final boundary = _previewKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+    if (boundary == null) return;
+
+    final image = await boundary.toImage(pixelRatio: 3);
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    if (byteData == null) return;
+
+    final bytes = byteData.buffer.asUint8List();
+    final safeName = widget.data.themeName.replaceAll(RegExp(r'[^\w\s-]'), '').trim();
+    final fileName = '${safeName}_screen_${_focusScreenPosition + 1}.png';
+
+    final blob = web.Blob([bytes.toJS].toJS);
+    final url = web.URL.createObjectURL(blob);
+    web.HTMLAnchorElement()
+      ..href = url
+      ..setAttribute('download', fileName)
+      ..click();
+    web.URL.revokeObjectURL(url);
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeSettings = _buildThemeSettings();
@@ -256,6 +284,11 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
             centerTitle: true,
             actions: [
               IconButton(
+                icon: const Icon(Icons.download),
+                tooltip: 'Download screenshot',
+                onPressed: _downloadScreenshot,
+              ),
+              IconButton(
                 icon: Icon(_isDark ? Icons.light_mode : Icons.dark_mode),
                 tooltip: _isDark ? 'Switch to light' : 'Switch to dark',
                 onPressed: () => setState(() {
@@ -270,7 +303,10 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
               Expanded(
                 flex: 3,
                 child: Align(
-                  child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: true),
+                  child: RepaintBoundary(
+                    key: _previewKey,
+                    child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: true),
+                  ),
                 ),
               ),
               SizedBox(
