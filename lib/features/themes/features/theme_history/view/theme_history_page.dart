@@ -229,7 +229,7 @@ class _HistoryEntryTile extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.open_in_new, size: 20),
                 tooltip: 'Open share link',
-                onPressed: () => _openShareLink(),
+                onPressed: _openShareLink,
               ),
               IconButton(
                 icon: const Icon(Icons.copy_outlined, size: 20),
