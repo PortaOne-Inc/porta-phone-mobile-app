@@ -15,10 +15,10 @@ develop branch  →  active development, always targets webtrit-phone/develop
 
 ### Two parallel tracks
 
-| Track | Branch | URL | Purpose |
-|---|---|---|---|
-| Active development | `develop` | — | New features, works with `webtrit-phone` `develop` |
-| Versioned release | `webtrit-phone/<version>` | `https://phone-configurator-<version>.web.app` | Frozen build pinned to a specific phone version |
+| Track              | Branch                    | URL                                            | Purpose                                            |
+|--------------------|---------------------------|------------------------------------------------|----------------------------------------------------|
+| Active development | `develop`                 | —                                              | New features, works with `webtrit-phone` `develop` |
+| Versioned release  | `webtrit-phone/<version>` | `https://phone-configurator-<version>.web.app` | Frozen build pinned to a specific phone version    |
 
 ### Why a separate branch per version?
 
@@ -92,11 +92,11 @@ melos run deploy:version -- 1.14.0
 
 ## Prerequisites
 
-| Requirement | How to satisfy |
-|---|---|
+| Requirement  | How to satisfy                  |
+|--------------|---------------------------------|
 | Firebase CLI | `npm install -g firebase-tools` |
-| CLI auth | `firebase login` |
-| Flutter SDK | must be on `PATH` |
+| CLI auth     | `firebase login`                |
+| Flutter SDK  | must be on `PATH`               |
 
 ---
 
@@ -110,7 +110,12 @@ The hosting config uses the array form to support multiple named targets:
     {
       "target": "backend-version",
       "public": "build/web",
-      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }
@@ -130,11 +135,15 @@ Example state after deploying `1.13.1`:
 
 ```json
 {
-  "projects": { "default": "webtrit-configurator" },
+  "projects": {
+    "default": "webtrit-configurator"
+  },
   "targets": {
     "webtrit-configurator": {
       "hosting": {
-        "backend-version": ["phone-configurator-1-13-1"]
+        "backend-version": [
+          "phone-configurator-1-13-1"
+        ]
       }
     }
   }
@@ -150,7 +159,8 @@ Example state after deploying `1.13.1`:
 3. Run `melos run deploy:version` from that branch (or pass the version manually).
 4. Verify the live URL: `https://phone-configurator-<version>.web.app`.
 5. Commit the updated `.firebaserc` back to the versioned branch.
-6. Apply any version-specific hotfixes directly to `webtrit-phone/<version>` — do **not** merge back to `develop`.
+6. Apply any version-specific hotfixes directly to `webtrit-phone/<version>` — do **not** merge back
+   to `develop`.
 
 ---
 
