@@ -41,20 +41,29 @@ flutter run -d chrome
 
 ## Melos scripts
 
-| Command                       | Description                                                          |
-|-------------------------------|----------------------------------------------------------------------|
-| `melos run generate`          | Run `build_runner` code generation across all packages               |
-| `melos run generate:watch`    | Run `build_runner` in watch mode                                     |
-| `melos run analyze`           | Run `dart analyze` across all packages                               |
-| `melos run format`            | Auto-fix formatting in all packages                                  |
-| `melos run format:check`      | Check formatting without modifying files (for CI)                    |
-| `melos run test`              | Run tests in all packages with a `test/` directory                   |
-| `melos run test:coverage`     | Run tests with coverage                                              |
-| `melos run clean`             | `flutter clean` in all packages                                      |
-| `melos run deps:get`          | `flutter pub get` in all packages                                    |
-| `melos run deploy:version`         | Deploy versioned release to `phone-configurator-<version>.web.app` (see [docs/versioned-deploy.md](docs/versioned-deploy.md)) |
-| `melos run deploy:develop`         | Deploy `develop` build to `phone-configurator-develop.web.app`                                                               |
-| `melos run deploy:versions-index`  | Regenerate the versions index at `phone-configurator-versions.web.app`                                                       |
+### Development
+
+| Command                      | Description                                            |
+|------------------------------|--------------------------------------------------------|
+| `melos run generate`         | Run `build_runner` code generation across all packages |
+| `melos run generate:watch`   | Run `build_runner` in watch mode                       |
+| `melos run analyze`          | Run `dart analyze` across all packages                 |
+| `melos run fmt`              | Auto-fix formatting in all packages                    |
+| `melos run fmt:check`        | Check formatting without modifying files (for CI)      |
+| `melos run test`             | Run tests in all packages with a `test/` directory     |
+| `melos run test:coverage`    | Run tests with coverage                                |
+| `melos run clean`            | `flutter clean` in all packages                        |
+| `melos run get`              | `flutter pub get` in all packages                      |
+
+### Deploy
+
+| Command                            | Description                                                                   |
+|------------------------------------|-------------------------------------------------------------------------------|
+| `melos run deploy:develop`         | Build and deploy `develop` → `phone-configurator-develop.web.app`             |
+| `melos run deploy:version`         | Build and deploy a versioned release → `phone-configurator-<version>.web.app` |
+| `melos run deploy:versions-index`  | Regenerate the versions index → `phone-configurator-versions.web.app`         |
+
+See [docs/versioned-deploy.md](docs/versioned-deploy.md) for the full versioning concept and deploy workflow.
 
 ### Useful flags
 
