@@ -157,3 +157,10 @@ melos:
       run: flutter pub get
       exec:
         concurrency: 3
+
+    deploy:version:
+      description: >
+        Build and deploy Flutter web to a versioned Firebase Hosting site.
+        Auto-detects version from a webtrit-phone/<version> branch, or pass it manually:
+          melos deploy:version -- 1-13-1
+      run: ./tool/deploy_hosting.sh $@
