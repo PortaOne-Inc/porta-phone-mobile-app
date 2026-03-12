@@ -29,6 +29,7 @@ RAW=$(firebase hosting:sites:list 2>/dev/null || true)
 # Extract site IDs matching phone-configurator-* (skip index and develop — handled separately)
 VERSIONS=$(echo "$RAW" \
   | grep -oE 'phone-configurator-[a-z0-9][a-z0-9-]+' \
+  | sort -u \
   | grep -v "^phone-configurator-versions$" \
   | grep -v "^phone-configurator-develop$" \
   | python3 -c "
