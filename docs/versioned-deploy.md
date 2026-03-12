@@ -71,8 +71,14 @@ On each run it:
 
 ### `tool/update_versions_index.sh` — regenerate the versions index
 
-Queries `firebase hosting:sites:list`, builds an HTML page with all
-`phone-configurator-*` sites and deploys it to `phone-configurator-versions`.
+Queries `firebase hosting:sites:list`, deduplicates the results (each site
+appears twice in CLI output — in the ID column and in the URL column), then
+builds an HTML page listing all `phone-configurator-*` sites:
+
+- `develop` pinned to the top with a **latest** badge
+- versioned releases sorted newest → oldest
+
+Deploys the result to `phone-configurator-versions`.
 Can be called independently to refresh the index without a full deploy.
 
 ---
@@ -141,19 +147,22 @@ The hosting config uses the array form to support multiple named targets:
     {
       "target": "backend-version",
       "public": "build/web",
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    {
+      "target": "versions-index",
+      "public": "tool/versions_index",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
     }
   ]
 }
 ```
 
-The `target` value `backend-version` is a logical alias that the script
-re-binds to the correct site on each deploy via `firebase target:apply`.
+`tool/versions_index/` is a generated directory (gitignored) — produced by
+`update_versions_index.sh` before each deploy.
+
+Each `target` is a logical alias re-bound to the correct Firebase site on
+every deploy via `firebase target:apply`.
 
 ---
 
@@ -195,7 +204,19 @@ Example state after deploying `1.13.1`:
 
 ---
 
-## Listing all deployed sites
+## Versions index page
+
+All deployed builds are listed at:
+**`https://phone-configurator-versions.web.app`**
+
+The page is regenerated automatically after every `deploy:version` or
+`deploy:develop` run. To refresh it manually without a new deploy:
+
+```bash
+melos run deploy:versions-index
+```
+
+To see the raw list of Firebase Hosting sites:
 
 ```bash
 firebase hosting:sites:list
