@@ -88,3 +88,9 @@ firebase deploy --only "hosting:${TARGET}"
 
 echo ""
 echo "==> Done. Site live at: https://${SITE_NAME}.web.app"
+
+# ─── Refresh versions index ───────────────────────────────────────────────────
+
+echo ""
+echo "==> Refreshing versions index..."
+"$(dirname "$0")/update_versions_index.sh"

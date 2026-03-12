@@ -162,5 +162,13 @@ melos:
       description: >
         Build and deploy Flutter web to a versioned Firebase Hosting site.
         Auto-detects version from a webtrit-phone/<version> branch, or pass it manually:
-          melos deploy:version -- 1-13-1
+          melos run deploy:version -- 1-13-1
       run: ./tool/deploy_hosting.sh $@
+
+    deploy:develop:
+      description: Build and deploy Flutter web to the develop (latest) Firebase Hosting site.
+      run: ./tool/deploy_hosting.sh develop
+
+    deploy:versions-index:
+      description: Regenerate and deploy the versions index page (lists all deployed versions).
+      run: ./tool/update_versions_index.sh

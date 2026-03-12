@@ -15,5 +15,20 @@
         }
       ]
     }
+    },
+    {
+      "target": "versions-index",
+      "public": "tool/versions_index",
+      "ignore": [
+        "firebase.json",
+        "**/.*"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
   ]
 }

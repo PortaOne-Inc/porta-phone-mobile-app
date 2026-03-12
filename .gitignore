@@ -52,6 +52,9 @@ lib/di/injection.config.dart
 /.firebaserc
 /.firebase/
 
+# Generated versions index (produced by tool/update_versions_index.sh)
+/tool/versions_index/
+
 # Melos
 .melos_tool/
 **/pubspec_overrides.yaml

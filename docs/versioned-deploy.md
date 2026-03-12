@@ -15,10 +15,13 @@ develop branch  →  active development, always targets webtrit-phone/develop
 
 ### Two parallel tracks
 
-| Track              | Branch                    | URL                                            | Purpose                                            |
-|--------------------|---------------------------|------------------------------------------------|----------------------------------------------------|
-| Active development | `develop`                 | —                                              | New features, works with `webtrit-phone` `develop` |
-| Versioned release  | `webtrit-phone/<version>` | `https://phone-configurator-<version>.web.app` | Frozen build pinned to a specific phone version    |
+| Track              | Branch                    | URL                                               | Purpose                                            |
+|--------------------|---------------------------|---------------------------------------------------|----------------------------------------------------|
+| Active development | `develop`                 | `https://phone-configurator-develop.web.app`      | New features, works with `webtrit-phone` `develop` |
+| Versioned release  | `webtrit-phone/<version>` | `https://phone-configurator-<version>.web.app`    | Frozen build pinned to a specific phone version    |
+
+All deployed URLs are listed on the versions index page:
+**`https://phone-configurator-versions.web.app`**
 
 ### Why a separate branch per version?
 
@@ -47,12 +50,15 @@ develop ────────────────────────
 
 ---
 
-## How the deploy script works
+## Deploy scripts
 
-`tool/deploy_hosting.sh` derives the Firebase site name from the version:
+### `tool/deploy_hosting.sh` — deploy a versioned release or develop
+
+Derives the Firebase site name from the version:
 
 ```
 webtrit-phone/1.13.1  →  phone-configurator-1-13-1
+develop argument      →  phone-configurator-develop
 ```
 
 On each run it:
@@ -61,19 +67,44 @@ On each run it:
 2. Binds the `backend-version` target to that site.
 3. Builds the Flutter web app (`launcher/prod.env.json`).
 4. Deploys to the site.
+5. Calls `tool/update_versions_index.sh` to refresh the index page.
+
+### `tool/update_versions_index.sh` — regenerate the versions index
+
+Queries `firebase hosting:sites:list`, builds an HTML page with all
+`phone-configurator-*` sites and deploys it to `phone-configurator-versions`.
+Can be called independently to refresh the index without a full deploy.
 
 ---
 
-## Deploying a new version
+## Melos commands
 
-### From a versioned branch (version auto-detected)
+| Command                              | What it does                                                          |
+|--------------------------------------|-----------------------------------------------------------------------|
+| `melos run deploy:version`           | Deploy versioned release (auto from branch, or pass version manually) |
+| `melos run deploy:develop`           | Deploy `develop` build to `phone-configurator-develop.web.app`        |
+| `melos run deploy:versions-index`    | Regenerate and deploy the versions index page only                    |
+
+---
+
+## Deploying
+
+### develop build
+
+```bash
+melos run deploy:develop
+# → https://phone-configurator-develop.web.app
+```
+
+### versioned release — from the versioned branch (auto-detected)
 
 ```bash
 git checkout webtrit-phone/1.14.0
 melos run deploy:version
+# → https://phone-configurator-1-14-0.web.app
 ```
 
-### From any branch with a manual version
+### versioned release — manual override from any branch
 
 ```bash
 # dots or dashes both accepted
@@ -81,11 +112,11 @@ melos run deploy:version -- 1-14-0
 melos run deploy:version -- 1.14.0
 ```
 
-### Directly via the script
+### refresh index only (without a new deploy)
 
 ```bash
-./tool/deploy_hosting.sh           # auto — must be on webtrit-phone/<version>
-./tool/deploy_hosting.sh 1-14-0   # manual override
+melos run deploy:versions-index
+# → https://phone-configurator-versions.web.app
 ```
 
 ---

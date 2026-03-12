@@ -52,7 +52,9 @@ flutter run -d chrome
 | `melos run test:coverage`     | Run tests with coverage                                              |
 | `melos run clean`             | `flutter clean` in all packages                                      |
 | `melos run deps:get`          | `flutter pub get` in all packages                                    |
-| `melos run deploy:version`    | Build and deploy to a versioned Firebase Hosting site (see [docs/versioned-deploy.md](docs/versioned-deploy.md)) |
+| `melos run deploy:version`         | Deploy versioned release to `phone-configurator-<version>.web.app` (see [docs/versioned-deploy.md](docs/versioned-deploy.md)) |
+| `melos run deploy:develop`         | Deploy `develop` build to `phone-configurator-develop.web.app`                                                               |
+| `melos run deploy:versions-index`  | Regenerate the versions index at `phone-configurator-versions.web.app`                                                       |
 
 ### Useful flags
 
