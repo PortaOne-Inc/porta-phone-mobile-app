@@ -68,6 +68,7 @@ const createFunction = async (expressInstance: Express): Promise<void> => {
 
     const allowlist: (string | RegExp)[] = [
         ...trustedOrigins,
+        /^https:\/\/phone-configurator-[\w-]+\.web\.app$/, // all versioned configurator deploys
         /^https?:\/\/localhost(?::\d+)?$/,
         /^https?:\/\/127\.0\.0\.1(?::\d+)?$/,
     ];
