@@ -54,6 +54,10 @@ abstract class FeatureAccessEditorApi {
   void setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation);
 
   void setSupportedFeatures(List<SupportedFeature> features);
+
+  void setContactsConfig(AppConfigContacts contacts);
+
+  void setMessagingConfig(AppConfigMessaging messaging);
 }
 
 class FeatureAccessEditor implements FeatureAccessEditorApi {
@@ -92,9 +96,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   AppConfig get initial {
     final i = _initial;
     if (i == null) {
-      throw StateError(
-        'FeatureAccessEditor not initialized. Call setInitial() first.',
-      );
+      throw StateError('FeatureAccessEditor not initialized. Call setInitial() first.');
     }
     return i;
   }
@@ -106,9 +108,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   AppConfig get current {
     final c = _current;
     if (c == null) {
-      throw StateError(
-        'FeatureAccessEditor not initialized. Call setInitial() first.',
-      );
+      throw StateError('FeatureAccessEditor not initialized. Call setInitial() first.');
     }
     return c;
   }
@@ -154,19 +154,13 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   @override
   void setMainSystemNotificationsEnabled(bool enabled) {
-    _current = current.copyWith(
-      mainConfig: current.mainConfig.copyWith(
-        systemNotificationsEnabled: enabled,
-      ),
-    );
+    _current = current.copyWith(mainConfig: current.mainConfig.copyWith(systemNotificationsEnabled: enabled));
     _emit();
   }
 
   @override
   void setBottomMenu(AppConfigBottomMenu bottomMenu) {
-    _current = current.copyWith(
-      mainConfig: current.mainConfig.copyWith(bottomMenu: bottomMenu),
-    );
+    _current = current.copyWith(mainConfig: current.mainConfig.copyWith(bottomMenu: bottomMenu));
     _emit();
   }
 
@@ -174,9 +168,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   void setBottomMenuCacheSelectedTab(bool cache) {
     _current = current.copyWith(
       mainConfig: current.mainConfig.copyWith(
-        bottomMenu: current.mainConfig.bottomMenu.copyWith(
-          cacheSelectedTab: cache,
-        ),
+        bottomMenu: current.mainConfig.bottomMenu.copyWith(cacheSelectedTab: cache),
       ),
     );
     _emit();
@@ -185,9 +177,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void setBottomMenuTabs(List<BottomMenuTabScheme> tabs) {
     _current = current.copyWith(
-      mainConfig: current.mainConfig.copyWith(
-        bottomMenu: current.mainConfig.bottomMenu.copyWith(tabs: tabs),
-      ),
+      mainConfig: current.mainConfig.copyWith(bottomMenu: current.mainConfig.bottomMenu.copyWith(tabs: tabs)),
     );
     _emit();
   }
@@ -230,9 +220,7 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   @override
   void setSettingsSections(List<AppConfigSettingsSection> sections) {
-    _current = current.copyWith(
-      settingsConfig: current.settingsConfig.copyWith(sections: sections),
-    );
+    _current = current.copyWith(settingsConfig: current.settingsConfig.copyWith(sections: sections));
     _emit();
   }
 
@@ -244,45 +232,33 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
 
   @override
   void setCallVideoEnabled(bool enabled) {
-    _current = current.copyWith(
-      callConfig: current.callConfig.copyWith(videoEnabled: enabled),
-    );
+    _current = current.copyWith(callConfig: current.callConfig.copyWith(videoEnabled: enabled));
     _emit();
   }
 
   @override
   void setCallTransfer(AppConfigTransfer transfer) {
-    _current = current.copyWith(
-      callConfig: current.callConfig.copyWith(transfer: transfer),
-    );
+    _current = current.copyWith(callConfig: current.callConfig.copyWith(transfer: transfer));
     _emit();
   }
 
   @override
   void setCallEncoding(AppConfigEncoding encoding) {
-    _current = current.copyWith(
-      callConfig: current.callConfig.copyWith(encoding: encoding),
-    );
+    _current = current.copyWith(callConfig: current.callConfig.copyWith(encoding: encoding));
     _emit();
   }
 
   @override
   void setCallPeerConnection(AppConfigPeerConnection pc) {
-    _current = current.copyWith(
-      callConfig: current.callConfig.copyWith(peerConnection: pc),
-    );
+    _current = current.copyWith(callConfig: current.callConfig.copyWith(peerConnection: pc));
     _emit();
   }
 
   @override
-  void setNegotiationOverride(
-    AppConfigNegotiationSettingsOverride negotiation,
-  ) {
+  void setNegotiationOverride(AppConfigNegotiationSettingsOverride negotiation) {
     _current = current.copyWith(
       callConfig: current.callConfig.copyWith(
-        peerConnection: current.callConfig.peerConnection.copyWith(
-          negotiation: negotiation,
-        ),
+        peerConnection: current.callConfig.peerConnection.copyWith(negotiation: negotiation),
       ),
     );
     _emit();
@@ -291,6 +267,18 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void setSupportedFeatures(List<SupportedFeature> features) {
     _current = current.copyWith(supported: features);
+    _emit();
+  }
+
+  @override
+  void setContactsConfig(AppConfigContacts contacts) {
+    _current = current.copyWith(contacts: contacts);
+    _emit();
+  }
+
+  @override
+  void setMessagingConfig(AppConfigMessaging messaging) {
+    _current = current.copyWith(messaging: messaging);
     _emit();
   }
 

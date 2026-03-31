@@ -403,6 +403,8 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setCallPeerConnection: (e) => _featureAccessEditor.setCallPeerConnection(e.pc),
       setNegotiationOverride: (e) => _featureAccessEditor.setNegotiationOverride(e.negotiation),
       setSupportedFeatures: (e) => _featureAccessEditor.setSupportedFeatures(e.features),
+      setContactsConfig: (e) => _featureAccessEditor.setContactsConfig(e.contacts),
+      setMessagingConfig: (e) => _featureAccessEditor.setMessagingConfig(e.messaging),
       importJson: (e) => _onImportFeatureAccessJson(e.json),
     );
   }

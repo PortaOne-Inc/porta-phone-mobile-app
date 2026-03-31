@@ -7,11 +7,7 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class SupportedConfigWidget extends StatefulWidget {
-  const SupportedConfigWidget({
-    required this.supportedFeatures,
-    required this.onChanged,
-    super.key,
-  });
+  const SupportedConfigWidget({required this.supportedFeatures, required this.onChanged, super.key});
 
   final List<SupportedFeature> supportedFeatures;
   final ValueChanged<List<SupportedFeature>> onChanged;
@@ -21,18 +17,7 @@ class SupportedConfigWidget extends StatefulWidget {
 }
 
 class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
-  static const _logLevels = [
-    'ALL',
-    'FINEST',
-    'FINER',
-    'FINE',
-    'CONFIG',
-    'INFO',
-    'WARNING',
-    'SEVERE',
-    'SHOUT',
-    'OFF',
-  ];
+  static const _logLevels = ['ALL', 'FINEST', 'FINER', 'FINE', 'CONFIG', 'INFO', 'WARNING', 'SEVERE', 'SHOUT', 'OFF'];
 
   late TextEditingController _monitorIntervalController;
 
@@ -40,9 +25,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   void initState() {
     super.initState();
     final loggingConfig = _getLoggingConfig(widget.supportedFeatures);
-    _monitorIntervalController = TextEditingController(
-      text: loggingConfig.checkIntervalSec.toString(),
-    );
+    _monitorIntervalController = TextEditingController(text: loggingConfig.checkIntervalSec.toString());
   }
 
   @override
@@ -52,8 +35,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     final newConfig = _getLoggingConfig(widget.supportedFeatures);
 
     if (oldConfig.checkIntervalSec != newConfig.checkIntervalSec &&
-        _monitorIntervalController.text !=
-            newConfig.checkIntervalSec.toString()) {
+        _monitorIntervalController.text != newConfig.checkIntervalSec.toString()) {
       _monitorIntervalController.text = newConfig.checkIntervalSec.toString();
     }
   }
@@ -65,40 +47,26 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   }
 
   SupportedLoggingConfig _getLoggingConfig(List<SupportedFeature> features) {
-    final feature =
-        features.firstWhereOrNull((e) => e is SupportedLoggingConfig)
-            as SupportedLoggingConfig?;
+    final feature = features.firstWhereOrNull((e) => e is SupportedLoggingConfig) as SupportedLoggingConfig?;
     return feature ?? const SupportedLoggingConfig();
   }
 
   @override
   Widget build(BuildContext context) {
     final themeFeature =
-        widget.supportedFeatures.firstWhereOrNull(
-              (e) => e is SupportedThemeMode,
-            )
-            as SupportedThemeMode?;
+        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedThemeMode) as SupportedThemeMode?;
     final videoFeature =
-        widget.supportedFeatures.firstWhereOrNull(
-              (e) => e is SupportedVideoCall,
-            )
-            as SupportedVideoCall?;
+        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedVideoCall) as SupportedVideoCall?;
     final systemNotificationsFeature =
-        widget.supportedFeatures.firstWhereOrNull(
-              (e) => e is SupportedSystemNotifications,
-            )
+        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSystemNotifications)
             as SupportedSystemNotifications?;
     final sipPresenceFeature =
-        widget.supportedFeatures.firstWhereOrNull(
-              (e) => e is SupportedSipPresence,
-            )
-            as SupportedSipPresence?;
+        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSipPresence) as SupportedSipPresence?;
     final loggingConfig = _getLoggingConfig(widget.supportedFeatures);
 
     final currentThemeMode = themeFeature?.mode ?? ThemeModeConfig.system;
     final isVideoEnabled = videoFeature?.enabled ?? false;
-    final isSystemNotificationsEnabled =
-        systemNotificationsFeature?.enabled ?? false;
+    final isSystemNotificationsEnabled = systemNotificationsFeature?.enabled ?? false;
     final isSipPresenceEnabled = sipPresenceFeature?.enabled ?? false;
 
     return ListView(
@@ -106,9 +74,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
       children: [
         BorderContainer(
           title: 'Global App Configuration',
-          descriptionWidget: DescriptionRow.info(
-            'Control global feature flags and app-wide behavior.',
-          ),
+          descriptionWidget: DescriptionRow.info('Control global feature flags and app-wide behavior.'),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -123,9 +89,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable Video Calling'),
-                subtitle: const Text(
-                  'Global switch to allow video call features.',
-                ),
+                subtitle: const Text('Global switch to allow video call features.'),
                 value: isVideoEnabled,
                 onChanged: _onVideoCallChanged,
               ),
@@ -133,9 +97,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable System Notifications'),
-                subtitle: const Text(
-                  'Global switch to allow system push notifications.',
-                ),
+                subtitle: const Text('Global switch to allow system push notifications.'),
                 value: isSystemNotificationsEnabled,
                 onChanged: _onSystemNotificationsChanged,
               ),
@@ -143,9 +105,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Enable SIP Presence'),
-                subtitle: const Text(
-                  'Global switch to allow SIP presence monitoring.',
-                ),
+                subtitle: const Text('Global switch to allow SIP presence monitoring.'),
                 value: isSipPresenceEnabled,
                 onChanged: _onSipPresenceChanged,
               ),
@@ -153,25 +113,19 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               const Divider(),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                initialValue: _logLevels.contains(loggingConfig.logLevel)
-                    ? loggingConfig.logLevel
-                    : 'INFO',
+                initialValue: _logLevels.contains(loggingConfig.logLevel) ? loggingConfig.logLevel : 'INFO',
                 decoration: const InputDecoration(
                   labelText: 'Log Level',
                   helperText: 'Controls the application log level.',
                   border: OutlineInputBorder(),
                 ),
-                items: _logLevels
-                    .map(
-                      (level) =>
-                          DropdownMenuItem(value: level, child: Text(level)),
-                    )
-                    .toList(),
+                items: _logLevels.map((level) => DropdownMenuItem(value: level, child: Text(level))).toList(),
                 onChanged: (value) {
                   if (value != null) {
                     _onLoggingConfigChanged(
                       logLevel: value,
                       checkIntervalSec: loggingConfig.checkIntervalSec,
+                      anonymizationEnabled: loggingConfig.anonymizationEnabled,
                     );
                   }
                 },
@@ -183,8 +137,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: 'RTC Monitor Check Interval (sec)',
-                  helperText:
-                      'Defines how often the RTP traffic monitor checks for traffic.',
+                  helperText: 'Defines how often the RTP traffic monitor checks for traffic.',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
@@ -192,8 +145,21 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
                   _onLoggingConfigChanged(
                     logLevel: loggingConfig.logLevel,
                     checkIntervalSec: interval,
+                    anonymizationEnabled: loggingConfig.anonymizationEnabled,
                   );
                 },
+              ),
+              const Divider(),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Enable Log Anonymization'),
+                subtitle: const Text('Masks personal data (phone numbers, names) in logs.'),
+                value: loggingConfig.anonymizationEnabled,
+                onChanged: (value) => _onLoggingConfigChanged(
+                  logLevel: loggingConfig.logLevel,
+                  checkIntervalSec: loggingConfig.checkIntervalSec,
+                  anonymizationEnabled: value,
+                ),
               ),
             ],
           ),
@@ -237,6 +203,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
   void _onLoggingConfigChanged({
     required String logLevel,
     required int checkIntervalSec,
+    required bool anonymizationEnabled,
   }) {
     final newList = List<SupportedFeature>.from(widget.supportedFeatures)
       ..removeWhere((e) => e is SupportedLoggingConfig)
@@ -244,6 +211,7 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
         SupportedFeature.loggingConfig(
           logLevel: logLevel,
           checkIntervalSec: checkIntervalSec,
+          anonymizationEnabled: anonymizationEnabled,
         ),
       );
 

@@ -76,6 +76,10 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
 
   const factory AppConfigEvent.setSupportedFeatures(List<SupportedFeature> features) = _SetSupportedFeatures;
 
+  const factory AppConfigEvent.setContactsConfig(AppConfigContacts contacts) = _SetContactsConfig;
+
+  const factory AppConfigEvent.setMessagingConfig(AppConfigMessaging messaging) = _SetMessagingConfig;
+
   const factory AppConfigEvent.importJson(Map<String, dynamic> json) = _ImportJsonAppConfigEvent;
 }
 

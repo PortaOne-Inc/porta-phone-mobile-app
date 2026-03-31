@@ -10,11 +10,7 @@ import '../../../../../../../bloc/update_theme_cubit.dart';
 import '../widgets/widgets.dart';
 
 class DialingPageView extends StatefulWidget {
-  const DialingPageView({
-    required this.dialingPageConfig,
-    required this.callActions,
-    super.key,
-  });
+  const DialingPageView({required this.dialingPageConfig, required this.callActions, super.key});
 
   final CallPageConfig dialingPageConfig;
 
@@ -41,9 +37,7 @@ class _DialingPageViewState extends State<DialingPageView> {
   }
 
   void _onActionsChanged(CallPageActionsConfig actions) {
-    _cubit.add(
-      ThemePageEvent.setDialingPage(_freshConfig.copyWith(actions: actions)),
-    );
+    _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(actions: actions)));
   }
 
   String? _lastLegacySource;
@@ -74,11 +68,9 @@ class _DialingPageViewState extends State<DialingPageView> {
   void _importLegacyActions() {
     final legacy = _findLegacyCallActions();
     if (legacy == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Legacy CallActionsWidgetConfig not found.'),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Legacy CallActionsWidgetConfig not found.')));
       return;
     }
 
@@ -91,10 +83,7 @@ class _DialingPageViewState extends State<DialingPageView> {
     }
 
     ElevatedButtonWidgetConfig fixed(String? bgHex) {
-      return ElevatedButtonWidgetConfig(
-        backgroundColor: bgHex,
-        disabledBackgroundColor: withAlpha(bgHex, disabledA),
-      );
+      return ElevatedButtonWidgetConfig(backgroundColor: bgHex, disabledBackgroundColor: withAlpha(bgHex, disabledA));
     }
 
     ElevatedButtonWidgetConfig toggle(String? bgHex) {
@@ -123,68 +112,37 @@ class _DialingPageViewState extends State<DialingPageView> {
 
     _onActionsChanged(converted);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Imported actions from deprecated ${_lastLegacySource ?? 'unknown'}',
-        ),
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Imported actions from deprecated ${_lastLegacySource ?? 'unknown'}')));
   }
 
   @override
   Widget build(BuildContext context) {
     // FIX: Use select to listen to the specific part of the state
-    final currentConfig = context.select(
-      (UpdateThemCubit cubit) => cubit.state.themePageConfig.dialing,
-    );
+    final currentConfig = context.select((UpdateThemCubit cubit) => cubit.state.themePageConfig.dialing);
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
-          // ThemeOverrideSelector(
-          //   config: currentConfig.themeOverride,
-          //   onChanged: (v) {
-          //     _cubit.add(
-          //       ThemePageEvent.setDialingPage(
-          //         currentConfig.copyWith(themeOverride: v),
-          //       ),
-          //     );
-          //   },
-          // ),
-          const SizedBox(height: 16),
           AppBarSurfaceEditor(
             appBarBlurredSurface: currentConfig.appBarBlurredSurface,
             onAppBarBlurredSurfaceChanged: (v) {
-              _cubit.add(
-                ThemePageEvent.setDialingPage(
-                  _freshConfig.copyWith(appBarBlurredSurface: v),
-                ),
-              );
+              _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(appBarBlurredSurface: v)));
             },
           ),
           const SizedBox(height: 16),
           PageBackgroundEditor(
             value: currentConfig.background,
             onChanged: (v) {
-              _cubit.add(
-                ThemePageEvent.setDialingPage(
-                  currentConfig.copyWith(background: v),
-                ),
-              );
+              _cubit.add(ThemePageEvent.setDialingPage(currentConfig.copyWith(background: v)));
             },
           ),
           const SizedBox(height: 16),
-          _AppBarSettings(
-            value: currentConfig.appBarStyle ?? const AppBarConfig(),
-            onChanged: _onAppBarChanged,
-          ),
+          _AppBarSettings(value: currentConfig.appBarStyle ?? const AppBarConfig(), onChanged: _onAppBarChanged),
           const SizedBox(height: 16),
-          _SystemOverlaySettings(
-            value: currentConfig.systemUiOverlayStyle,
-            onChanged: _onOverlayChanged,
-          ),
+          _SystemOverlaySettings(value: currentConfig.systemUiOverlayStyle, onChanged: _onOverlayChanged),
           const SizedBox(height: 16),
           _CallInfoSettings(
             value: currentConfig.callInfo ?? const CallPageInfoConfig(),
@@ -233,8 +191,7 @@ class _AppBarSettings extends StatelessWidget {
                         onTap: (_) => _pickColor(
                           context,
                           value.backgroundColor?.tryParseColor(),
-                          (hex) =>
-                              onChanged(value.copyWith(backgroundColor: hex)),
+                          (hex) => onChanged(value.copyWith(backgroundColor: hex)),
                         ),
                       ),
                     ),
@@ -246,8 +203,7 @@ class _AppBarSettings extends StatelessWidget {
                         onTap: (_) => _pickColor(
                           context,
                           value.foregroundColor?.tryParseColor(),
-                          (hex) =>
-                              onChanged(value.copyWith(foregroundColor: hex)),
+                          (hex) => onChanged(value.copyWith(foregroundColor: hex)),
                         ),
                       ),
                     ),
@@ -265,8 +221,7 @@ class _AppBarSettings extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   title: const Text('Show Back Button'),
                   value: value.showBackButton,
-                  onChanged: (v) =>
-                      onChanged(value.copyWith(showBackButton: v)),
+                  onChanged: (v) => onChanged(value.copyWith(showBackButton: v)),
                 ),
               ],
             ),
@@ -276,11 +231,7 @@ class _AppBarSettings extends StatelessWidget {
     );
   }
 
-  Future<void> _pickColor(
-    BuildContext context,
-    Color? current,
-    ValueChanged<String> onPick,
-  ) async {
+  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
     final picked = await context.showColorPicker(currentColor: current);
     if (context.mounted && picked != null) {
       onPick(picked.toHex(includeAlpha: true));
@@ -308,10 +259,7 @@ class _SystemOverlaySettings extends StatelessWidget {
           margin: EdgeInsets.zero,
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: SystemUiOverlayQuickToggles(
-              value: value,
-              onChanged: onChanged,
-            ),
+            child: SystemUiOverlayQuickToggles(value: value, onChanged: onChanged),
           ),
         ),
       ],
@@ -338,29 +286,25 @@ class _CallInfoSettings extends StatelessWidget {
           TextStyleConfigEditor(
             label: 'Username',
             value: value.usernameTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) =>
-                onUpdate(ThemePageEvent.setDialingInfoUsernameStyle(s)),
+            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoUsernameStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Number',
             value: value.numberTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) =>
-                onUpdate(ThemePageEvent.setDialingInfoNumberStyle(s)),
+            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoNumberStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Call Status',
             value: value.callStatusTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) =>
-                onUpdate(ThemePageEvent.setDialingInfoCallStatusStyle(s)),
+            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoCallStatusStyle(s)),
           ),
           const SizedBox(height: 24),
           TextStyleConfigEditor(
             label: 'Processing Status',
             value: value.processingStatusTextStyle ?? const TextStyleConfig(),
-            onChanged: (s) =>
-                onUpdate(ThemePageEvent.setDialingInfoProcessingStatusStyle(s)),
+            onChanged: (s) => onUpdate(ThemePageEvent.setDialingInfoProcessingStatusStyle(s)),
           ),
         ],
       ),
@@ -369,11 +313,7 @@ class _CallInfoSettings extends StatelessWidget {
 }
 
 class _ActionsSettings extends StatelessWidget {
-  const _ActionsSettings({
-    required this.value,
-    required this.onChanged,
-    required this.onImportLegacy,
-  });
+  const _ActionsSettings({required this.value, required this.onChanged, required this.onImportLegacy});
 
   final CallPageActionsConfig value;
   final ValueChanged<CallPageActionsConfig> onChanged;

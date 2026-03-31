@@ -5,6 +5,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
+import '../features/contacts_messaging/contacts_messaging.dart';
 import '../features/supported/supported.dart';
 
 // Make sure to import the new SupportedConfigWidget file
@@ -21,17 +22,17 @@ class ConfigureAppConfigView extends StatefulWidget {
   State<ConfigureAppConfigView> createState() => _ConfigureAppConfigViewState();
 }
 
-class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
-    with SingleTickerProviderStateMixin {
+class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   bool _isJsonMode = false;
 
   final _tabs = const [
-    Tab(text: 'Supported'), // NEW TAB
+    Tab(text: 'Supported'),
     Tab(text: 'Login'),
     Tab(text: 'Main'),
     Tab(text: 'Settings'),
     Tab(text: 'Call'),
+    Tab(text: 'Contacts & Messaging'),
   ];
 
   @override
@@ -50,9 +51,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    final appConfig = context.select<UpdateThemCubit, AppConfig>(
-      (cubit) => cubit.state.appConfig,
-    );
+    final appConfig = context.select<UpdateThemCubit, AppConfig>((cubit) => cubit.state.appConfig);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,13 +67,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
           ),
           const SizedBox(width: 8),
         ],
-        bottom: _isJsonMode
-            ? null
-            : TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                tabs: _tabs,
-              ),
+        bottom: _isJsonMode ? null : TabBar(controller: _tabController, isScrollable: true, tabs: _tabs),
       ),
       body: IndexedStack(
         index: _isJsonMode ? 1 : 0,
@@ -86,75 +79,61 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView>
               SupportedConfigWidget(
                 supportedFeatures: appConfig.supported,
                 onChanged: (List<SupportedFeature> newList) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setSupportedFeatures(newList),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSupportedFeatures(newList));
                 },
               ),
               LoginSchemeScreen(
                 sourceAppConfigLogin: appConfig.loginConfig,
                 callback: (AppConfigLogin loginCfg) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setLoginConfig(loginCfg),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setLoginConfig(loginCfg));
                 },
               ),
               MainConfigWidget(
                 mainConfig: appConfig.mainConfig,
                 onChange: (AppConfigMain value) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setMainConfig(value),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setMainConfig(value));
                 },
                 onCacheSelectedTabChange: (bool value) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setBottomMenuCacheSelectedTab(value),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setBottomMenuCacheSelectedTab(value));
                 },
               ),
               SettingSchemeScreen(
                 config: appConfig.settingsConfig,
                 callback: (AppConfigSettings value) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setSettingsConfig(value),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setSettingsConfig(value));
                 },
               ),
               AppConfigCallWidget(
                 initialVideoEnabled: appConfig.callConfig.videoEnabled,
-                initialBlindTransferEnabled:
-                    appConfig.callConfig.transfer.enableBlindTransfer,
-                initialAttendedTransferEnabled:
-                    appConfig.callConfig.transfer.enableAttendedTransfer,
+                initialBlindTransferEnabled: appConfig.callConfig.transfer.enableBlindTransfer,
+                initialAttendedTransferEnabled: appConfig.callConfig.transfer.enableAttendedTransfer,
                 onVideoEnabledChanged: (bool enabled) {
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setCallVideoEnabled(enabled),
-                  );
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallVideoEnabled(enabled));
                 },
                 onBlindTransferChanged: (bool enabled) {
-                  final newTransfer = appConfig.callConfig.transfer.copyWith(
-                    enableBlindTransfer: enabled,
-                  );
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setCallTransfer(newTransfer),
-                  );
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableBlindTransfer: enabled);
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
                 },
                 onAttendedTransferChanged: (bool enabled) {
-                  final newTransfer = appConfig.callConfig.transfer.copyWith(
-                    enableAttendedTransfer: enabled,
-                  );
-                  context.read<UpdateThemCubit>().add(
-                    AppConfigEvent.setCallTransfer(newTransfer),
-                  );
+                  final newTransfer = appConfig.callConfig.transfer.copyWith(enableAttendedTransfer: enabled);
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setCallTransfer(newTransfer));
+                },
+              ),
+              ContactsMessagingConfigWidget(
+                contacts: appConfig.contacts,
+                messaging: appConfig.messaging,
+                onContactsChanged: (contacts) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setContactsConfig(contacts));
+                },
+                onMessagingChanged: (messaging) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setMessagingConfig(messaging));
                 },
               ),
             ],
           ),
           JsonEditorPanel(
             initialJson: appConfig.toJson(),
-            onApply: (json) => context.read<UpdateThemCubit>().add(
-              AppConfigEvent.importJson(json),
-            ),
+            onApply: (json) => context.read<UpdateThemCubit>().add(AppConfigEvent.importJson(json)),
           ),
         ],
       ),
