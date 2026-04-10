@@ -146,7 +146,7 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
       );
       final coreSupport = CoreSupportFactory.create(systemInfo);
 
-      return FeatureAccess.create(appConfig, embeds, coreSupport, featureOverrides);
+      return FeatureAccess.create(appConfig, embeds, coreSupport, systemInfo, featureOverrides);
     } catch (_) {
       return null;
     }
@@ -230,7 +230,9 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
       return Provider<AppMetadataProvider>(
         create: (_) => const MockAppMetadataProvider(),
         child: PresenceViewParams(
-          viewSource: PresenceViewSource.contactInfo,
+          hybridPresenceSupport: featureAccess?.sipPresenceConfig.hybridPresenceSupport ?? false,
+          blfViaSipSupport: featureAccess?.sipPresenceConfig.dialogsViaSipBlfSupport ?? false,
+          presenceViaSipSupport: featureAccess?.sipPresenceConfig.presenceViaSipSupport ?? false,
           child: ScreenshotApp(appBloc: appBloc, child: screen),
         ),
       );

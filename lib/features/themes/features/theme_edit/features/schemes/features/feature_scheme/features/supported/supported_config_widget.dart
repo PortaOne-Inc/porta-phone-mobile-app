@@ -60,14 +60,14 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     final systemNotificationsFeature =
         widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSystemNotifications)
             as SupportedSystemNotifications?;
-    final sipPresenceFeature =
-        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedSipPresence) as SupportedSipPresence?;
+    final hybridPresenceFeature =
+        widget.supportedFeatures.firstWhereOrNull((e) => e is SupportedHybridPresence) as SupportedHybridPresence?;
     final loggingConfig = _getLoggingConfig(widget.supportedFeatures);
 
     final currentThemeMode = themeFeature?.mode ?? ThemeModeConfig.system;
     final isVideoEnabled = videoFeature?.enabled ?? false;
     final isSystemNotificationsEnabled = systemNotificationsFeature?.enabled ?? false;
-    final isSipPresenceEnabled = sipPresenceFeature?.enabled ?? false;
+    final isHybridPresenceEnabled = hybridPresenceFeature?.enabled ?? false;
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -104,10 +104,10 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
               const Divider(),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Enable SIP Presence'),
-                subtitle: const Text('Global switch to allow SIP presence monitoring.'),
-                value: isSipPresenceEnabled,
-                onChanged: _onSipPresenceChanged,
+                title: const Text('Enable Hybrid Presence'),
+                subtitle: const Text('Global switch to allow hybrid presence (SIP + BLF) monitoring.'),
+                value: isHybridPresenceEnabled,
+                onChanged: _onHybridPresenceChanged,
               ),
               const SizedBox(height: 8),
               const Divider(),
@@ -192,10 +192,10 @@ class _SupportedConfigWidgetState extends State<SupportedConfigWidget> {
     widget.onChanged(newList);
   }
 
-  void _onSipPresenceChanged(bool enabled) {
+  void _onHybridPresenceChanged(bool enabled) {
     final newList = List<SupportedFeature>.from(widget.supportedFeatures)
-      ..removeWhere((e) => e is SupportedSipPresence)
-      ..add(SupportedFeature.sipPresence(enabled: enabled));
+      ..removeWhere((e) => e is SupportedHybridPresence)
+      ..add(SupportedFeature.hybridPresence(enabled: enabled));
 
     widget.onChanged(newList);
   }

@@ -4,8 +4,7 @@ import 'package:resizable_columns/resizable_columns.dart';
 
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/constants/constants.dart';
-import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart'
-    hide LoginType;
+import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart' hide LoginType;
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 import 'package:webtrit_configurator/mocks/mocks.dart';
 import 'package:webtrit_configurator/widgets/screen_error_boundary.dart';
@@ -67,15 +66,11 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final cubitState = context.watch<UpdateThemCubit>().state;
     final selectedVariant = cubitState.selectedVariant;
 
-    final themeMode = selectedVariant == BrightnessVariant.dark
-        ? ThemeMode.dark
-        : ThemeMode.light;
+    final themeMode = selectedVariant == BrightnessVariant.dark ? ThemeMode.dark : ThemeMode.light;
 
     final themeSettings = cubitState.themeSettings;
 
-    if (featureAccess != _lastFeatureAccess ||
-        themeMode != _lastThemeMode ||
-        themeSettings != _lastThemeSettings) {
+    if (featureAccess != _lastFeatureAccess || themeMode != _lastThemeMode || themeSettings != _lastThemeSettings) {
       _lastFeatureAccess = featureAccess;
       _lastThemeMode = themeMode;
       _lastThemeSettings = themeSettings;
@@ -84,9 +79,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final screenshots = _cachedScreenshots;
 
-    final focusPosition = screenshots.isEmpty
-        ? 0
-        : _focusScreenPosition.clamp(0, screenshots.length - 1);
+    final focusPosition = screenshots.isEmpty ? 0 : _focusScreenPosition.clamp(0, screenshots.length - 1);
 
     return ResizableColumns(
       initialProportions: _initialColumnProportions,
@@ -95,17 +88,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       orientation: ResizableOrientation.vertical,
       children: [
         (_) => Align(
-          child: TypePreview(
-            screens: screenshots,
-            screenFocus: focusPosition,
-            isFrameVisible: widget.frameVisibility,
-          ),
+          child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: widget.frameVisibility),
         ),
-        (_) => DrawerPreview(
-          screenshots: screenshots,
-          focusScreenPosition: focusPosition,
-          onTapScreen: _setFocusedScreen,
-        ),
+        (_) =>
+            DrawerPreview(screenshots: screenshots, focusScreenPosition: focusPosition, onTapScreen: _setFocusedScreen),
       ],
     );
   }
@@ -126,18 +112,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final loginLabel = loginFeature?.titleL10n;
 
     final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
-    final isFavoritePreview =
-        bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
-    final isContactPreview =
-        bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
-    final isRecentsPreview =
-        bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
-    final isKeypadPreview =
-        bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
-    final isMessagingPreview =
-        bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
-    final isEmbeddedPreview =
-        bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
+    final isFavoritePreview = bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
+    final isContactPreview = bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
+    final isRecentsPreview = bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
+    final isKeypadPreview = bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
+    final isMessagingPreview = bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
+    final isEmbeddedPreview = bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
 
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
@@ -148,58 +128,31 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
       if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
       if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
-      if (isCustomSignupPreview)
-        const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
+      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
       if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
       const LoginSwitchScreenScreenshot(),
       const UserAgreementScreenScreenshot(),
 
       // Main tabs
       if (isFavoritePreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.favorites,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
       if (isRecentsPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.recents,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
       if (isContactPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.contacts,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
       if (isKeypadPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.keypad,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
       if (isMessagingPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.messaging,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
       if (isEmbeddedPreview)
-        MainScreenScreenshot(
-          key: bottomMenuKey,
-          MainFlavor.embedded,
-          loginLabel != null ? Text(loginLabel) : null,
-        ),
+        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.embedded, loginLabel != null ? Text(loginLabel) : null),
 
       // Calls
       const CallScreenScreenshot(false),
       const CallScreenScreenshot(
         true,
-        localePlaceholderImageUrl:
-            ImagePlaceholdersConstants.previewVideoCallRef1,
-        remotePlaceholderImageUrl:
-            ImagePlaceholdersConstants.previewVideoCallRef2,
+        localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+        remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
       ),
 
       // Contact & messaging
@@ -215,9 +168,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
       // Settings
       const SettingScreenScreenshot(),
-      const MediaSettingsScreenScreenshot(
-        key: ValueKey('MediaSettingsScreenScreenshot'),
-      ),
+      const MediaSettingsScreenScreenshot(key: ValueKey('MediaSettingsScreenScreenshot')),
       const NetworkScreenScreenshot(),
       const LanguageScreenScreenshot(),
       const DiagnosticScreenScreenshot(),
@@ -236,12 +187,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const EmbeddedErrorDialogScreenshot(),
     ];
 
-    return rawScreens
-        .map((screen) => _wrapWithPreviewEnvironment(screen, appBloc))
-        .toList();
+    return rawScreens.map((screen) => _wrapWithPreviewEnvironment(screen, appBloc, featureAccess)).toList();
   }
 
-  Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc) {
+  Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc, FeatureAccess? featureAccess) {
     // UniqueKey forces full element recreation when the screenshot list is
     // regenerated (i.e. when theme settings change). Without it, Flutter
     // reuses existing elements and some StatefulWidget screenshots that push
@@ -250,7 +199,9 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       key: UniqueKey(),
       create: (context) => const MockAppMetadataProvider(),
       child: PresenceViewParams(
-        viewSource: PresenceViewSource.contactInfo,
+        hybridPresenceSupport: featureAccess?.sipPresenceConfig.hybridPresenceSupport ?? false,
+        blfViaSipSupport: featureAccess?.sipPresenceConfig.dialogsViaSipBlfSupport ?? false,
+        presenceViaSipSupport: featureAccess?.sipPresenceConfig.presenceViaSipSupport ?? false,
         child: ScreenshotApp(appBloc: appBloc, child: screen),
       ),
     );

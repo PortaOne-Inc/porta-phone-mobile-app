@@ -24,12 +24,8 @@ class FeatureAccessShellRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateThemCubit, UpdateThemeState>(
       builder: (context, state) {
-        final hasNavigation = state.loadedComponents.contains(
-          ThemeComponents.navigation,
-        );
-        final hasEmbeds = state.loadedComponents.contains(
-          ThemeComponents.embeds,
-        );
+        final hasNavigation = state.loadedComponents.contains(ThemeComponents.navigation);
+        final hasEmbeds = state.loadedComponents.contains(ThemeComponents.embeds);
 
         if (!hasNavigation || !hasEmbeds) {
           return const LoadingScreen(status: LoadingStatus.fetchingResources);
@@ -38,10 +34,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
         final appConfig = state.appConfig;
         final systemInfo = const SystemInfoBuilder().buildInfo();
         final featureOverrides = FeatureOverridesFactory.create(
-          RemoteConfigSnapshot(
-            <String, String>{},
-            MockRemoteCacheConfigService(),
-          ),
+          RemoteConfigSnapshot(<String, String>{}, MockRemoteCacheConfigService()),
         );
 
         final coreSupport = CoreSupportFactory.create(systemInfo);
@@ -49,11 +42,9 @@ class FeatureAccessShellRoute extends StatelessWidget {
         try {
           final featureAccess = FeatureAccess.create(
             appConfig,
-            state.embeddedResources
-                .where((it) => it.id != null)
-                .map((it) => it.toEmbeddedResource())
-                .toList(),
+            state.embeddedResources.where((it) => it.id != null).map((it) => it.toEmbeddedResource()).toList(),
             coreSupport,
+            systemInfo,
             featureOverrides,
           );
           return ProvidersWrapper(featureAccess: featureAccess, child: child);
@@ -86,22 +77,14 @@ class LoadingScreen extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          const CircularProgressIndicator(strokeWidth: 2),
-          const SizedBox(height: 16),
-          Text(message),
-        ],
+        children: [const CircularProgressIndicator(strokeWidth: 2), const SizedBox(height: 16), Text(message)],
       ),
     );
   }
 }
 
 class ProvidersWrapper extends StatelessWidget {
-  const ProvidersWrapper({
-    required this.featureAccess,
-    required this.child,
-    super.key,
-  });
+  const ProvidersWrapper({required this.featureAccess, required this.child, super.key});
 
   final FeatureAccess featureAccess;
   final Widget child;
@@ -112,9 +95,7 @@ class ProvidersWrapper extends StatelessWidget {
       providers: [
         Provider<AppPreferences>.value(value: MockAppPreferences()),
         Provider<DeviceInfo>.value(value: DeviceInfoMock()),
-        Provider<MockAppMetadataProvider>.value(
-          value: const MockAppMetadataProvider(),
-        ),
+        Provider<MockAppMetadataProvider>.value(value: const MockAppMetadataProvider()),
         Provider<FeatureAccess>.value(value: featureAccess),
       ],
       child: child,
