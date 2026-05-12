@@ -16,16 +16,19 @@ class TranslationsCubit extends Cubit<TranslationsState> {
     required this.usecaseTranslationsGetOverridesByAppId,
     required this.usecaseTranslationsSetOverride,
     required this.usecaseTranslationsDeleteOverride,
-  }) : super(const TranslationsState()) {
+    required this.usecaseTranslationsGetActiveLocales,
+    required this.usecaseTranslationsSaveActiveLocales,
+  }) : super(TranslationsState(filter: Filter(activeLocales: usecaseTranslationsGetActiveLocales.execute()))) {
     fetchTranslation();
   }
 
   final String appId;
   final UsecaseTranslationsGetAll usecaseTranslationsGetAll;
-  final UsecaseTranslationsGetOverridesByAppId
-  usecaseTranslationsGetOverridesByAppId;
+  final UsecaseTranslationsGetOverridesByAppId usecaseTranslationsGetOverridesByAppId;
   final UsecaseTranslationsSetOverride usecaseTranslationsSetOverride;
   final UsecaseTranslationsDeleteOverride usecaseTranslationsDeleteOverride;
+  final UsecaseTranslationsGetActiveLocales usecaseTranslationsGetActiveLocales;
+  final UsecaseTranslationsSaveActiveLocales usecaseTranslationsSaveActiveLocales;
 
   Future<void> fetchTranslation() async {
     emit(state.copyWith(state: TranslationsStateType.initializing));
@@ -57,9 +60,7 @@ class TranslationsCubit extends Cubit<TranslationsState> {
 
       final overrides = List<Translation>.from(state.translations.overrided);
       final overrideIndex = overrides.indexWhere(
-        (element) =>
-            element.locale == translation.locale &&
-            element.key == translation.key,
+        (element) => element.locale == translation.locale && element.key == translation.key,
       );
 
       if (overrideIndex != -1) {
@@ -88,10 +89,7 @@ class TranslationsCubit extends Cubit<TranslationsState> {
       await usecaseTranslationsDeleteOverride.execute(appId, override);
 
       final overrides = List<Translation>.from(state.translations.overrided)
-        ..removeWhere(
-          (element) =>
-              element.locale == override.locale && element.key == override.key,
-        );
+        ..removeWhere((element) => element.locale == override.locale && element.key == override.key);
 
       emit(
         state.copyWith(
@@ -110,5 +108,19 @@ class TranslationsCubit extends Cubit<TranslationsState> {
 
   void updateSearchFilter(String search) {
     emit(state.copyWith(filter: state.filter.copyWith(searchFilter: search)));
+  }
+
+  void updateSearchMode(TranslationSearchMode mode) {
+    emit(state.copyWith(filter: state.filter.copyWith(searchMode: mode)));
+  }
+
+  void updateActiveLocales(Set<String> locales) {
+    final localeFilter = locales.contains(state.filter.localeFilter) ? state.filter.localeFilter : '';
+    emit(
+      state.copyWith(
+        filter: state.filter.copyWith(activeLocales: locales, localeFilter: localeFilter),
+      ),
+    );
+    usecaseTranslationsSaveActiveLocales.execute(locales);
   }
 }

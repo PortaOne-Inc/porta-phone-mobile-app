@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import 'package:domain/domain.dart';
 
-import 'package:webtrit_configurator/core/utility/utility.dart';
 import 'package:webtrit_configurator/localization/localization.dart';
 
 class TranslationItem extends StatefulWidget {
@@ -30,20 +29,34 @@ class TranslationItem extends StatefulWidget {
 class _TranslationItemState extends State<TranslationItem> {
   final FocusNode _focusNode = FocusNode();
   late TextEditingController _controller;
-  late Debouncer _debouncer;
-  late String _previousText;
+  late String _savedValue;
 
   final _border = const OutlineInputBorder(borderSide: BorderSide(width: 0.1));
 
   @override
   void initState() {
     super.initState();
-    _previousText =
-        widget.overrideTranslation?.value ?? widget.originalTranslation.value;
-    _controller = TextEditingController(text: _previousText);
-    _debouncer = Debouncer(milliseconds: 500);
+    _savedValue = widget.overrideTranslation?.value ?? widget.originalTranslation.value;
+    _controller = TextEditingController(text: _savedValue);
     _controller.addListener(_onTextChanged);
   }
+
+  @override
+  void didUpdateWidget(TranslationItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final newValue = widget.overrideTranslation?.value ?? widget.originalTranslation.value;
+    final oldValue = oldWidget.overrideTranslation?.value ?? oldWidget.originalTranslation.value;
+    if (newValue != oldValue && !_focusNode.hasFocus) {
+      _controller.text = newValue;
+      _savedValue = newValue;
+    }
+  }
+
+  bool get _isDirty => _controller.text != _savedValue;
+
+  bool get _isRestoreDisabled =>
+      widget.originalTranslation.value == widget.overrideTranslation?.value ||
+      widget.overrideTranslation?.value == null;
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +74,10 @@ class _TranslationItemState extends State<TranslationItem> {
                 cursor: SystemMouseCursors.click,
                 child: Text(
                   widget.originalTranslation.key,
-                  style: textTheme.labelLarge?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: .25),
-                  ),
+                  style: textTheme.labelLarge?.copyWith(color: colorScheme.onSurface.withValues(alpha: .25)),
                 ),
               ),
-              onTap: () => Clipboard.setData(
-                ClipboardData(text: widget.originalTranslation.key),
-              ),
+              onTap: () => Clipboard.setData(ClipboardData(text: widget.originalTranslation.key)),
             ),
           ),
           subtitle: Row(
@@ -88,9 +97,7 @@ class _TranslationItemState extends State<TranslationItem> {
                   focusNode: _focusNode,
                   controller: _controller,
                   decoration: InputDecoration(
-                    hintText: context
-                        .l10n
-                        .feature_translation_TranslationItem_hint_text,
+                    hintText: context.l10n.feature_translation_TranslationItem_hint_text,
                     enabledBorder: _border,
                     focusedBorder: _border,
                     disabledBorder: _border,
@@ -99,9 +106,13 @@ class _TranslationItemState extends State<TranslationItem> {
               ),
               IconButton(
                 splashRadius: 24,
-                tooltip: context
-                    .l10n
-                    .feature_translation_TranslationItem_tooltip_clear_override,
+                tooltip: context.l10n.feature_translation_TranslationItem_tooltip_save,
+                icon: const Icon(Icons.check),
+                onPressed: _isDirty ? _handleSave : null,
+              ),
+              IconButton(
+                splashRadius: 24,
+                tooltip: context.l10n.feature_translation_TranslationItem_tooltip_clear_override,
                 icon: const Icon(Icons.restore),
                 onPressed: _isRestoreDisabled ? null : _handleRestore,
               ),
@@ -112,36 +123,25 @@ class _TranslationItemState extends State<TranslationItem> {
     );
   }
 
-  bool get _isRestoreDisabled {
-    return widget.originalTranslation.value ==
-            widget.overrideTranslation?.value ||
-        widget.overrideTranslation?.value == null;
-  }
+  void _onTextChanged() => setState(() {});
 
-  void _onTextChanged() {
-    if (_focusNode.hasFocus) {
-      _debouncer.run(() {
-        if (_controller.text != _previousText) {
-          _previousText = _controller.text;
-          widget.onChange?.call(_controller.text);
-        }
-      });
-    }
+  void _handleSave() {
+    setState(() => _savedValue = _controller.text);
+    widget.onChange?.call(_controller.text);
   }
 
   void _handleRestore() {
     setState(() {
       _controller.text = widget.originalTranslation.value;
-      _previousText = widget.originalTranslation.value;
-      widget.onRestore?.call();
+      _savedValue = widget.originalTranslation.value;
     });
+    widget.onRestore?.call();
   }
 
   @override
   void dispose() {
     _focusNode.dispose();
     _controller.dispose();
-    _debouncer.dispose();
     super.dispose();
   }
 }

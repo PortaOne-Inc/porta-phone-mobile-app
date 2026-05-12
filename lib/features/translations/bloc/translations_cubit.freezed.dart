@@ -576,7 +576,7 @@ as List<Translation>,
 /// @nodoc
 mixin _$Filter {
 
- String get localeFilter; String get searchFilter;
+ String get localeFilter; String get searchFilter; TranslationSearchMode get searchMode; Set<String> get activeLocales;
 /// Create a copy of Filter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -587,16 +587,16 @@ $FilterCopyWith<Filter> get copyWith => _$FilterCopyWithImpl<Filter>(this as Fil
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Filter&&(identical(other.localeFilter, localeFilter) || other.localeFilter == localeFilter)&&(identical(other.searchFilter, searchFilter) || other.searchFilter == searchFilter));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Filter&&(identical(other.localeFilter, localeFilter) || other.localeFilter == localeFilter)&&(identical(other.searchFilter, searchFilter) || other.searchFilter == searchFilter)&&(identical(other.searchMode, searchMode) || other.searchMode == searchMode)&&const DeepCollectionEquality().equals(other.activeLocales, activeLocales));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeFilter,searchFilter);
+int get hashCode => Object.hash(runtimeType,localeFilter,searchFilter,searchMode,const DeepCollectionEquality().hash(activeLocales));
 
 @override
 String toString() {
-  return 'Filter(localeFilter: $localeFilter, searchFilter: $searchFilter)';
+  return 'Filter(localeFilter: $localeFilter, searchFilter: $searchFilter, searchMode: $searchMode, activeLocales: $activeLocales)';
 }
 
 
@@ -607,7 +607,7 @@ abstract mixin class $FilterCopyWith<$Res>  {
   factory $FilterCopyWith(Filter value, $Res Function(Filter) _then) = _$FilterCopyWithImpl;
 @useResult
 $Res call({
- String localeFilter, String searchFilter
+ String localeFilter, String searchFilter, TranslationSearchMode searchMode, Set<String> activeLocales
 });
 
 
@@ -624,11 +624,13 @@ class _$FilterCopyWithImpl<$Res>
 
 /// Create a copy of Filter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? localeFilter = null,Object? searchFilter = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? localeFilter = null,Object? searchFilter = null,Object? searchMode = null,Object? activeLocales = null,}) {
   return _then(_self.copyWith(
 localeFilter: null == localeFilter ? _self.localeFilter : localeFilter // ignore: cast_nullable_to_non_nullable
 as String,searchFilter: null == searchFilter ? _self.searchFilter : searchFilter // ignore: cast_nullable_to_non_nullable
-as String,
+as String,searchMode: null == searchMode ? _self.searchMode : searchMode // ignore: cast_nullable_to_non_nullable
+as TranslationSearchMode,activeLocales: null == activeLocales ? _self.activeLocales : activeLocales // ignore: cast_nullable_to_non_nullable
+as Set<String>,
   ));
 }
 
@@ -710,10 +712,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String localeFilter,  String searchFilter)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String localeFilter,  String searchFilter,  TranslationSearchMode searchMode,  Set<String> activeLocales)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Filter() when $default != null:
-return $default(_that.localeFilter,_that.searchFilter);case _:
+return $default(_that.localeFilter,_that.searchFilter,_that.searchMode,_that.activeLocales);case _:
   return orElse();
 
 }
@@ -731,10 +733,10 @@ return $default(_that.localeFilter,_that.searchFilter);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String localeFilter,  String searchFilter)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String localeFilter,  String searchFilter,  TranslationSearchMode searchMode,  Set<String> activeLocales)  $default,) {final _that = this;
 switch (_that) {
 case _Filter():
-return $default(_that.localeFilter,_that.searchFilter);}
+return $default(_that.localeFilter,_that.searchFilter,_that.searchMode,_that.activeLocales);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -748,10 +750,10 @@ return $default(_that.localeFilter,_that.searchFilter);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String localeFilter,  String searchFilter)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String localeFilter,  String searchFilter,  TranslationSearchMode searchMode,  Set<String> activeLocales)?  $default,) {final _that = this;
 switch (_that) {
 case _Filter() when $default != null:
-return $default(_that.localeFilter,_that.searchFilter);case _:
+return $default(_that.localeFilter,_that.searchFilter,_that.searchMode,_that.activeLocales);case _:
   return null;
 
 }
@@ -763,11 +765,19 @@ return $default(_that.localeFilter,_that.searchFilter);case _:
 
 
 class _Filter implements Filter {
-  const _Filter({this.localeFilter = '', this.searchFilter = ''});
+  const _Filter({this.localeFilter = '', this.searchFilter = '', this.searchMode = TranslationSearchMode.key, final  Set<String> activeLocales = const <String>{}}): _activeLocales = activeLocales;
   
 
 @override@JsonKey() final  String localeFilter;
 @override@JsonKey() final  String searchFilter;
+@override@JsonKey() final  TranslationSearchMode searchMode;
+ final  Set<String> _activeLocales;
+@override@JsonKey() Set<String> get activeLocales {
+  if (_activeLocales is EqualUnmodifiableSetView) return _activeLocales;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_activeLocales);
+}
+
 
 /// Create a copy of Filter
 /// with the given fields replaced by the non-null parameter values.
@@ -779,16 +789,16 @@ _$FilterCopyWith<_Filter> get copyWith => __$FilterCopyWithImpl<_Filter>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Filter&&(identical(other.localeFilter, localeFilter) || other.localeFilter == localeFilter)&&(identical(other.searchFilter, searchFilter) || other.searchFilter == searchFilter));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Filter&&(identical(other.localeFilter, localeFilter) || other.localeFilter == localeFilter)&&(identical(other.searchFilter, searchFilter) || other.searchFilter == searchFilter)&&(identical(other.searchMode, searchMode) || other.searchMode == searchMode)&&const DeepCollectionEquality().equals(other._activeLocales, _activeLocales));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localeFilter,searchFilter);
+int get hashCode => Object.hash(runtimeType,localeFilter,searchFilter,searchMode,const DeepCollectionEquality().hash(_activeLocales));
 
 @override
 String toString() {
-  return 'Filter(localeFilter: $localeFilter, searchFilter: $searchFilter)';
+  return 'Filter(localeFilter: $localeFilter, searchFilter: $searchFilter, searchMode: $searchMode, activeLocales: $activeLocales)';
 }
 
 
@@ -799,7 +809,7 @@ abstract mixin class _$FilterCopyWith<$Res> implements $FilterCopyWith<$Res> {
   factory _$FilterCopyWith(_Filter value, $Res Function(_Filter) _then) = __$FilterCopyWithImpl;
 @override @useResult
 $Res call({
- String localeFilter, String searchFilter
+ String localeFilter, String searchFilter, TranslationSearchMode searchMode, Set<String> activeLocales
 });
 
 
@@ -816,11 +826,13 @@ class __$FilterCopyWithImpl<$Res>
 
 /// Create a copy of Filter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? localeFilter = null,Object? searchFilter = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? localeFilter = null,Object? searchFilter = null,Object? searchMode = null,Object? activeLocales = null,}) {
   return _then(_Filter(
 localeFilter: null == localeFilter ? _self.localeFilter : localeFilter // ignore: cast_nullable_to_non_nullable
 as String,searchFilter: null == searchFilter ? _self.searchFilter : searchFilter // ignore: cast_nullable_to_non_nullable
-as String,
+as String,searchMode: null == searchMode ? _self.searchMode : searchMode // ignore: cast_nullable_to_non_nullable
+as TranslationSearchMode,activeLocales: null == activeLocales ? _self._activeLocales : activeLocales // ignore: cast_nullable_to_non_nullable
+as Set<String>,
   ));
 }
 

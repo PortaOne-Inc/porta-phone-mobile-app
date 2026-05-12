@@ -1567,6 +1567,12 @@ abstract class AppLocalizations {
   /// **'Enter translation'**
   String get feature_translation_TranslationItem_hint_text;
 
+  /// No description provided for @feature_translation_TranslationItem_tooltip_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get feature_translation_TranslationItem_tooltip_save;
+
   /// No description provided for @feature_translation_TranslationItem_tooltip_clear_override.
   ///
   /// In en, this message translates to:
@@ -1590,6 +1596,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get feature_translation_ControlBar_search_hint;
+
+  /// No description provided for @feature_translation_ControlBar_search_mode_key.
+  ///
+  /// In en, this message translates to:
+  /// **'Key'**
+  String get feature_translation_ControlBar_search_mode_key;
+
+  /// No description provided for @feature_translation_ControlBar_search_mode_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get feature_translation_ControlBar_search_mode_value;
+
+  /// No description provided for @feature_translation_ControlBar_search_mode_both.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get feature_translation_ControlBar_search_mode_both;
+
+  /// No description provided for @feature_translation_LocaleSettings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Language settings'**
+  String get feature_translation_LocaleSettings_title;
+
+  /// No description provided for @feature_translation_LocaleSettings_tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Language settings'**
+  String get feature_translation_LocaleSettings_tooltip;
+
+  /// No description provided for @feature_translation_LocaleSettings_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No languages available'**
+  String get feature_translation_LocaleSettings_empty;
+
+  /// No description provided for @feature_translation_LocaleSettings_close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get feature_translation_LocaleSettings_close;
 
   /// No description provided for @feature_translation_OverrideEditDialog_edit_translation.
   ///

@@ -779,6 +779,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_translation_TranslationItem_hint_text => 'Enter translation';
 
   @override
+  String get feature_translation_TranslationItem_tooltip_save => 'Save';
+
+  @override
   String get feature_translation_TranslationItem_tooltip_clear_override => 'Clear override';
 
   @override
@@ -789,6 +792,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feature_translation_ControlBar_search_hint => 'Search';
+
+  @override
+  String get feature_translation_ControlBar_search_mode_key => 'Key';
+
+  @override
+  String get feature_translation_ControlBar_search_mode_value => 'Value';
+
+  @override
+  String get feature_translation_ControlBar_search_mode_both => 'Both';
+
+  @override
+  String get feature_translation_LocaleSettings_title => 'Language settings';
+
+  @override
+  String get feature_translation_LocaleSettings_tooltip => 'Language settings';
+
+  @override
+  String get feature_translation_LocaleSettings_empty => 'No languages available';
+
+  @override
+  String get feature_translation_LocaleSettings_close => 'Close';
 
   @override
   String get feature_translation_OverrideEditDialog_edit_translation => 'Edit translation';
