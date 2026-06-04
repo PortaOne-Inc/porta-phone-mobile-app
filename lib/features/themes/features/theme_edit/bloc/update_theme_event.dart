@@ -297,6 +297,12 @@ sealed class UpdateVariantEvent with _$UpdateVariantEvent implements Configurato
   const factory UpdateVariantEvent(BrightnessVariant variant) = _UpdateVariantEvent;
 }
 
+@Freezed(copyWith: false)
+sealed class PreviewCapabilitiesEvent with _$PreviewCapabilitiesEvent implements ConfiguratorEvent {
+  /// Enable or disable a single adapter capability flag used by the preview.
+  const factory PreviewCapabilitiesEvent.toggle(String flag, bool enabled) = _TogglePreviewCapability;
+}
+
 @freezed
 sealed class ResourcesEvent with _$ResourcesEvent implements ConfiguratorEvent {
   /// Application storage assets list updated

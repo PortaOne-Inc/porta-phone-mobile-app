@@ -14,6 +14,7 @@ import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_configurator/features/themes/themes.dart';
 
 import '../../../../../extensions/color_extension.dart';
+import '../consts/preview_capabilities.dart';
 import '../controllers/feature_access_editor_api.dart';
 import '../controllers/theme_page_editor_api.dart';
 import '../controllers/theme_widget_editor_api.dart';
@@ -64,6 +65,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     on<ThemePageEvent>(_onThemePageEvent, transformer: sequential());
     on<ThemeWidgetEvent>(_onThemeWidgetEvent, transformer: sequential());
     on<UpdateVariantEvent>(_onUpdateVariantEvent, transformer: droppable());
+    on<PreviewCapabilitiesEvent>(_onPreviewCapabilitiesEvent, transformer: sequential());
     on<ResourcesEvent>(_onResourcesEvent, transformer: sequential());
     on<LoadingEvent>(_onLoadingEvent, transformer: droppable());
 
@@ -172,6 +174,17 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
         error: allSucceeded ? null : Exception('Some configs failed to load for variant'),
       ),
     );
+  }
+
+  Future<void> _onPreviewCapabilitiesEvent(PreviewCapabilitiesEvent event, Emitter<UpdateThemeState> emit) async {
+    final toggle = event as _TogglePreviewCapability;
+    final current = state.previewCapabilities.toSet();
+    if (toggle.enabled) {
+      current.add(toggle.flag);
+    } else {
+      current.remove(toggle.flag);
+    }
+    emit(state.copyWith(previewCapabilities: List.unmodifiable(current)));
   }
 
   Future<void> _syncConfigWithServer(SyncConfigEvent event, Emitter<UpdateThemeState> emit) async {

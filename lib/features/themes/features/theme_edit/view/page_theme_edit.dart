@@ -14,12 +14,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import 'package:webtrit_configurator/features/themes/features/theme_history/theme_history.dart';
 
 class PageThemeEdit extends StatefulWidget with MixinMessages {
-  const PageThemeEdit({
-    required this.title,
-    required this.children,
-    required this.getIt,
-    super.key,
-  });
+  const PageThemeEdit({required this.title, required this.children, required this.getIt, super.key});
 
   final String title;
   final List<Router<dynamic>> children;
@@ -46,15 +41,10 @@ class _PageThemeEditState extends State<PageThemeEdit> {
             title: ListTile(
               title: Text(
                 'Theme configuration',
-                style: textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              subtitle: Text(
-                state.loadingStatusText(),
-                textAlign: TextAlign.center,
-              ),
+              subtitle: Text(state.loadingStatusText(), textAlign: TextAlign.center),
             ),
             actions: [
               Tooltip(
@@ -62,17 +52,16 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 child: TextButton.icon(
                   icon: const Icon(Icons.update),
                   label: const Text('Update'),
-                  onPressed:
-                      state.isProgress || state.syncStatus == SyncStatus.syncing
+                  onPressed: state.isProgress || state.syncStatus == SyncStatus.syncing
                       ? null
                       : () => _cubit.add(const InitializeEvent()),
                 ),
               ),
               _buildSyncIndicator(state),
+              const PreviewCapabilitiesButton(),
               ThemeModeSwitcher(
                 themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-                onThemeChange: (mode) =>
-                    context.read<CommonBloc>().setThemeMode(mode),
+                onThemeChange: (mode) => context.read<CommonBloc>().setThemeMode(mode),
               ),
             ],
           ),
@@ -83,9 +72,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 ListTile(
                   title: Text(
                     state.theme?.title ?? '...',
-                    style: textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
                 const Divider(),
@@ -93,10 +80,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                   leading: const Icon(Icons.arrow_back_ios),
                   title: const Text('Application details'),
                   subtitle: Text(state.applicationModel?.name ?? '...'),
-                  onTap: () => _openApplicationDetailsCollection(
-                    context,
-                    state.applicationModel?.id ?? '',
-                  ),
+                  onTap: () => _openApplicationDetailsCollection(context, state.applicationModel?.id ?? ''),
                 ),
                 ListTile(
                   leading: const Icon(Icons.list),
@@ -106,11 +90,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
                 ListTile(
                   leading: const Icon(Icons.history),
                   title: const Text('History'),
-                  onTap: () => _openThemeHistory(
-                    context,
-                    _cubit.applicationId,
-                    _cubit.themeId,
-                  ),
+                  onTap: () => _openThemeHistory(context, _cubit.applicationId, _cubit.themeId),
                 ),
                 const Divider(),
                 const Spacer(),
@@ -167,11 +147,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
         return Tooltip(
           message: 'Saving changes...',
           child: TextButton.icon(
-            icon: const SizedBox(
-              width: 16,
-              height: 16,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            ),
+            icon: const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)),
             label: const Text('Saving...'),
             onPressed: null,
           ),
@@ -218,9 +194,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           child: TextButton.icon(
             icon: const Icon(Icons.save),
             label: const Text('Save'),
-            onPressed: isBusy
-                ? null
-                : () => _cubit.add(const SyncConfigEvent()),
+            onPressed: isBusy ? null : () => _cubit.add(const SyncConfigEvent()),
           ),
         );
     }
@@ -236,10 +210,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           'Reload to get the latest version?',
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Cancel')),
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
@@ -272,15 +243,11 @@ class _PageThemeEditState extends State<PageThemeEdit> {
               description: description,
             );
             if (context.mounted) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text('Snapshot created')));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Snapshot created')));
             }
           } catch (e) {
             if (context.mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Failed to create snapshot: $e')),
-              );
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to create snapshot: $e')));
             }
           }
         },
@@ -340,17 +307,12 @@ class _PageThemeEditState extends State<PageThemeEdit> {
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Dismiss'),
-          ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Dismiss')),
           if (detail.hasFailures)
             TextButton(
               onPressed: () {
                 Navigator.of(ctx).pop();
-                _cubit.add(
-                  SyncConfigEvent(retryOnly: detail.failedNames.toSet()),
-                );
+                _cubit.add(SyncConfigEvent(retryOnly: detail.failedNames.toSet()));
               },
               child: const Text('Retry Failed'),
             ),
@@ -377,22 +339,15 @@ class _PageThemeEditState extends State<PageThemeEdit> {
       context: context,
       builder: (BuildContext context) => FailureDialog(
         error: displayError,
-        onRetry: errorSource != null
-            ? () => _cubit.add(ResourcesEvent.retryStream(errorSource))
-            : null,
+        onRetry: errorSource != null ? () => _cubit.add(ResourcesEvent.retryStream(errorSource)) : null,
       ),
     );
   }
 
-  void _openApplicationDetailsCollection(
-    BuildContext context,
-    String applicationId,
-  ) {
+  void _openApplicationDetailsCollection(BuildContext context, String applicationId) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.applicationDetails.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
+      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationId},
     );
   }
 
@@ -400,11 +355,7 @@ class _PageThemeEditState extends State<PageThemeEdit> {
     GoRouter.of(context).goNamed(AppRoutInfo.applicationCollection.name);
   }
 
-  void _openThemeHistory(
-    BuildContext context,
-    String applicationId,
-    String themeId,
-  ) {
+  void _openThemeHistory(BuildContext context, String applicationId, String themeId) {
     Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute<void>(
         builder: (_) => BlocProvider<ThemeHistoryCubit>(
@@ -479,10 +430,7 @@ class _CreateSnapshotDialogState extends State<_CreateSnapshotDialog> {
           const Text('Create a history snapshot of the current theme state.'),
           const SizedBox(height: 12),
           if (_loadingBranches)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: LinearProgressIndicator(),
-            )
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8), child: LinearProgressIndicator())
           else if (_branches != null && _branches!.isNotEmpty)
             Autocomplete<String>(
               optionsBuilder: (textEditingValue) {
@@ -510,36 +458,24 @@ class _CreateSnapshotDialogState extends State<_CreateSnapshotDialog> {
           else
             TextField(
               controller: widget.tagController,
-              decoration: const InputDecoration(
-                labelText: 'Tag',
-                hintText: 'e.g. release-1.0',
-              ),
+              decoration: const InputDecoration(labelText: 'Tag', hintText: 'e.g. release-1.0'),
             ),
           const SizedBox(height: 12),
           TextField(
             controller: widget.descController,
-            decoration: const InputDecoration(
-              labelText: 'Description',
-              hintText: 'Optional description',
-            ),
+            decoration: const InputDecoration(labelText: 'Description', hintText: 'Optional description'),
             maxLines: 3,
           ),
         ],
       ),
       actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
+        TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
             final tag = widget.tagController.text.trim();
             final desc = widget.descController.text.trim();
-            widget.onSubmit(
-              tag.isEmpty ? null : tag,
-              desc.isEmpty ? null : desc,
-            );
+            widget.onSubmit(tag.isEmpty ? null : tag, desc.isEmpty ? null : desc);
           },
           child: const Text('Create'),
         ),

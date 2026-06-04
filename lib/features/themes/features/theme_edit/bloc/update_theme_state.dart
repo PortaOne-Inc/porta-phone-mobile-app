@@ -61,9 +61,9 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     required ThemePageConfig themePageConfig,
     @Default(BrightnessVariant.light) BrightnessVariant selectedVariant,
     @Default(<AssetModel>[]) List<AssetModel> assets,
-    @Default(<EmbeddedResourceModel>[])
-    List<EmbeddedResourceModel> embeddedResources,
+    @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeddedResources,
     @Default(<ThemeComponents>[]) List<ThemeComponents> loadedComponents,
+    @Default(kDefaultPreviewCapabilities) List<String> previewCapabilities,
     ApplicationModel? applicationModel,
     ThemeModel? theme,
     FeatureAccessModel? featureAccessModel,

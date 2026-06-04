@@ -32,7 +32,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
         }
 
         final appConfig = state.appConfig;
-        final systemInfo = const SystemInfoBuilder().buildInfo();
+        final systemInfo = SystemInfoBuilder(adapterSupported: state.previewCapabilities).buildInfo();
         final featureOverrides = FeatureOverridesFactory.create(
           RemoteConfigSnapshot(<String, String>{}, MockRemoteCacheConfigService()),
         );
