@@ -127,7 +127,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
     try {
       final dto = mapper
           .convertTo(resource)
-          .copyWith(id: id, applicationId: applicationId);
+          .copyWith(id: null, applicationId: applicationId);
       final updated = await datasource.updateEmbed(applicationId, id, dto);
       final model = mapper.convertFrom(updated);
       _upsertOne(applicationId, model);
