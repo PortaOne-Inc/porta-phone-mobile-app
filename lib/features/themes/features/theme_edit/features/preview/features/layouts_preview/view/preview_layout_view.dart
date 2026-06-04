@@ -119,6 +119,14 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final isMessagingPreview = bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
     final isEmbeddedPreview = bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
 
+    // Adapter capabilities gate the capability-specific preview screens, so toggling
+    // a capability in the editor immediately adds/removes the matching screenshot.
+    final coreSupport = featureAccess?.coreSupport;
+    final supportsCallHistory = coreSupport?.supportsCallHistory ?? false;
+    final supportsVoicemail = coreSupport?.supportsVoicemail ?? false;
+    final supportsSms = coreSupport?.supportsSms ?? false;
+    final supportsChats = coreSupport?.supportsChats ?? false;
+
     final bottomMenuKey = ValueKey(bottomMenuFeature);
 
     final rawScreens = <Widget>[
@@ -157,14 +165,14 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
       // Contact & messaging
       const ContactScreenScreenshot(),
-      const ChatConversationScreenScreenshot(),
-      const SmsConversationScreenScreenshot(),
+      if (supportsChats) const ChatConversationScreenScreenshot(),
+      if (supportsSms) const SmsConversationScreenScreenshot(),
       const SystemNotificationsScreenScreenshot(),
 
       // CDRs & call log
       const CallLogScreenScreenshot(),
-      const RecentCdrsScreenScreenshot(),
-      const NumberCdrsScreenScreenshot(),
+      if (supportsCallHistory) const RecentCdrsScreenScreenshot(),
+      if (supportsCallHistory) const NumberCdrsScreenScreenshot(),
 
       // Settings
       const SettingScreenScreenshot(),
@@ -175,7 +183,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       const CallerIdSettingsScreenScreenshot(),
       const PresenceSettingsScreenScreenshot(),
       const ThemeModeScreenScreenshot(),
-      const VoicemailScreenScreenshot(),
+      if (supportsVoicemail) const VoicemailScreenScreenshot(),
 
       // Utility
       const PrivacyScreenScreenshot(),
