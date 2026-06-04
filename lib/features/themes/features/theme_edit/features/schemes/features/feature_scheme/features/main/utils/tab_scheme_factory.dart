@@ -7,45 +7,21 @@ BottomMenuTabScheme buildSchemeFromForm(TabFormModel f) {
 
   switch (f.kind) {
     case BottomMenuTabKind.favorites:
-      return FavoritesTabScheme(
-        enabled: f.enabled,
-        initial: f.initial,
-        titleL10n: f.title,
-        icon: icon,
-      );
+      return FavoritesTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
     case BottomMenuTabKind.recents:
-      return RecentsTabScheme(
-        enabled: f.enabled,
-        initial: f.initial,
-        titleL10n: f.title,
-        icon: icon,
-        useCdrs: f.useCdrs,
-      );
+      return RecentsTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
     case BottomMenuTabKind.contacts:
       return ContactsTabScheme(
         enabled: f.enabled,
         initial: f.initial,
         titleL10n: f.title,
         icon: icon,
-        contactSourceTypes: [
-          if (f.contactsLocal) 'local',
-          if (f.contactsExternal) 'external',
-        ],
+        contactSourceTypes: [if (f.contactsLocal) 'local', if (f.contactsExternal) 'external'],
       );
     case BottomMenuTabKind.keypad:
-      return KeypadTabScheme(
-        enabled: f.enabled,
-        initial: f.initial,
-        titleL10n: f.title,
-        icon: icon,
-      );
+      return KeypadTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
     case BottomMenuTabKind.messaging:
-      return MessagingTabScheme(
-        enabled: f.enabled,
-        initial: f.initial,
-        titleL10n: f.title,
-        icon: icon,
-      );
+      return MessagingTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
     case BottomMenuTabKind.embedded:
       if ((f.embeddedResourceId ?? '').isEmpty) {
         throw StateError('Embedded resource is required for embedded tab.');

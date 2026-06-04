@@ -10,7 +10,6 @@ class TabFormModel {
     required this.icon,
     required this.enabled,
     required this.initial,
-    this.useCdrs = false,
     this.contactsLocal = true,
     this.contactsExternal = true,
     this.embeddedResourceId,
@@ -18,13 +17,7 @@ class TabFormModel {
 
   factory TabFormModel.fromScheme(BottomMenuTabScheme? s) {
     if (s == null) {
-      return TabFormModel(
-        kind: BottomMenuTabKind.favorites,
-        title: '',
-        icon: '0xe5fd',
-        enabled: true,
-        initial: false,
-      );
+      return TabFormModel(kind: BottomMenuTabKind.favorites, title: '', icon: '0xe5fd', enabled: true, initial: false);
     }
 
     final model = TabFormModel(
@@ -36,7 +29,6 @@ class TabFormModel {
     );
 
     s.maybeWhen(
-      recents: (_, __, ___, ____, useCdrs) => model.useCdrs = useCdrs,
       contacts: (_, __, ___, ____, types) {
         model
           ..contactsLocal = types.contains('local')
@@ -54,7 +46,6 @@ class TabFormModel {
   bool enabled;
   bool initial;
 
-  bool useCdrs;
   bool contactsLocal;
   bool contactsExternal;
 

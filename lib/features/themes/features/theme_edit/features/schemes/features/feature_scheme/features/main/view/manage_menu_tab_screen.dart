@@ -23,9 +23,7 @@ class ManageMenuTabScreen extends StatefulWidget {
 
 class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TabFormModel _form = TabFormModel.fromScheme(
-    widget.bottomMenuTabScheme,
-  );
+  late final TabFormModel _form = TabFormModel.fromScheme(widget.bottomMenuTabScheme);
 
   // UI controllers are local to the screen
   late final _titleL10nController = TextEditingController(text: _form.title);
@@ -54,10 +52,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              TabTypeDropdown(
-                value: _form.kind,
-                onChanged: (k) => setState(() => _form.kind = k),
-              ),
+              TabTypeDropdown(value: _form.kind, onChanged: (k) => setState(() => _form.kind = k)),
               const SizedBox(height: 12),
               CommonFields(
                 titleController: _titleL10nController,
@@ -72,8 +67,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
               if (isEmbedded) ...[
                 const SizedBox(height: 16),
                 EmbeddedPickerTile(
-                  selectedTitle:
-                      _form.embeddedResourceId ?? 'Select embedded resource',
+                  selectedTitle: _form.embeddedResourceId ?? 'Select embedded resource',
                   onTap: _pickEmbedded,
                 ),
               ],
@@ -89,12 +83,8 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
       case BottomMenuTabKind.favorites:
       case BottomMenuTabKind.keypad:
       case BottomMenuTabKind.messaging:
-        return const SizedBox.shrink();
       case BottomMenuTabKind.recents:
-        return RecentsFields(
-          useCdrs: _form.useCdrs,
-          onUseCdrsChanged: (v) => setState(() => _form.useCdrs = v),
-        );
+        return const SizedBox.shrink();
       case BottomMenuTabKind.contacts:
         return ContactsFields(
           local: _form.contactsLocal,
@@ -109,11 +99,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
 
   Future<void> _pickEmbedded() async {
     final embeds = context.read<UpdateThemCubit>().state.embeddedResources;
-    final picked = await EmbedPickerDialog.show(
-      context,
-      title: 'Select embedded resource',
-      items: embeds,
-    );
+    final picked = await EmbedPickerDialog.show(context, title: 'Select embedded resource', items: embeds);
     setState(() => _form.embeddedResourceId = picked?.first.id);
   }
 
@@ -127,9 +113,7 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
       final updated = buildSchemeFromForm(_form);
       GoRouter.of(context).pop(updated);
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
 }
