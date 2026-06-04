@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EmbeddedResourceDto {
 
- String get id; String get applicationId; String get uri; String get type; Map<String, dynamic> get attributes; MetadataDto get metadata; List<String> get payload; bool get enableConsoleLogCapture; String? get reconnectStrategy; String? get createdAt; String? get updatedAt;
+ String get applicationId; String get uri; String? get id; String get type; Map<String, dynamic> get attributes; MetadataDto get metadata; List<String> get payload; bool get enableConsoleLogCapture; String? get reconnectStrategy; String? get createdAt; String? get updatedAt;
 /// Create a copy of EmbeddedResourceDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EmbeddedResourceDtoCopyWith<EmbeddedResourceDto> get copyWith => _$EmbeddedReso
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmbeddedResourceDto&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.attributes, attributes)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other.payload, payload)&&(identical(other.enableConsoleLogCapture, enableConsoleLogCapture) || other.enableConsoleLogCapture == enableConsoleLogCapture)&&(identical(other.reconnectStrategy, reconnectStrategy) || other.reconnectStrategy == reconnectStrategy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmbeddedResourceDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.attributes, attributes)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other.payload, payload)&&(identical(other.enableConsoleLogCapture, enableConsoleLogCapture) || other.enableConsoleLogCapture == enableConsoleLogCapture)&&(identical(other.reconnectStrategy, reconnectStrategy) || other.reconnectStrategy == reconnectStrategy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,uri,type,const DeepCollectionEquality().hash(attributes),metadata,const DeepCollectionEquality().hash(payload),enableConsoleLogCapture,reconnectStrategy,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,uri,id,type,const DeepCollectionEquality().hash(attributes),metadata,const DeepCollectionEquality().hash(payload),enableConsoleLogCapture,reconnectStrategy,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'EmbeddedResourceDto(id: $id, applicationId: $applicationId, uri: $uri, type: $type, attributes: $attributes, metadata: $metadata, payload: $payload, enableConsoleLogCapture: $enableConsoleLogCapture, reconnectStrategy: $reconnectStrategy, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'EmbeddedResourceDto(applicationId: $applicationId, uri: $uri, id: $id, type: $type, attributes: $attributes, metadata: $metadata, payload: $payload, enableConsoleLogCapture: $enableConsoleLogCapture, reconnectStrategy: $reconnectStrategy, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EmbeddedResourceDtoCopyWith<$Res>  {
   factory $EmbeddedResourceDtoCopyWith(EmbeddedResourceDto value, $Res Function(EmbeddedResourceDto) _then) = _$EmbeddedResourceDtoCopyWithImpl;
 @useResult
 $Res call({
- String id, String applicationId, String uri, String type, Map<String, dynamic> attributes, MetadataDto metadata, List<String> payload, bool enableConsoleLogCapture, String? reconnectStrategy, String? createdAt, String? updatedAt
+ String applicationId, String uri, String? id, String type, Map<String, dynamic> attributes, MetadataDto metadata, List<String> payload, bool enableConsoleLogCapture, String? reconnectStrategy, String? createdAt, String? updatedAt
 });
 
 
@@ -65,12 +65,12 @@ class _$EmbeddedResourceDtoCopyWithImpl<$Res>
 
 /// Create a copy of EmbeddedResourceDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? applicationId = null,Object? uri = null,Object? type = null,Object? attributes = null,Object? metadata = null,Object? payload = null,Object? enableConsoleLogCapture = null,Object? reconnectStrategy = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? uri = null,Object? id = freezed,Object? type = null,Object? attributes = null,Object? metadata = null,Object? payload = null,Object? enableConsoleLogCapture = null,Object? reconnectStrategy = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String,attributes: null == attributes ? _self.attributes : attributes // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as MetadataDto,payload: null == payload ? _self.payload : payload // ignore: cast_nullable_to_non_nullable
@@ -169,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String applicationId,  String uri,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String uri,  String? id,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EmbeddedResourceDto() when $default != null:
-return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.uri,_that.id,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -190,10 +190,10 @@ return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attribut
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String applicationId,  String uri,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String uri,  String? id,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _EmbeddedResourceDto():
-return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);}
+return $default(_that.applicationId,_that.uri,_that.id,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -207,10 +207,10 @@ return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attribut
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String applicationId,  String uri,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String uri,  String? id,  String type,  Map<String, dynamic> attributes,  MetadataDto metadata,  List<String> payload,  bool enableConsoleLogCapture,  String? reconnectStrategy,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _EmbeddedResourceDto() when $default != null:
-return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.applicationId,_that.uri,_that.id,_that.type,_that.attributes,_that.metadata,_that.payload,_that.enableConsoleLogCapture,_that.reconnectStrategy,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -222,12 +222,12 @@ return $default(_that.id,_that.applicationId,_that.uri,_that.type,_that.attribut
 
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _EmbeddedResourceDto extends EmbeddedResourceDto {
-  const _EmbeddedResourceDto({required this.id, required this.applicationId, required this.uri, this.type = 'unknown', final  Map<String, dynamic> attributes = const {}, this.metadata = const MetadataDto(), final  List<String> payload = const <String>[], this.enableConsoleLogCapture = false, this.reconnectStrategy, this.createdAt, this.updatedAt}): _attributes = attributes,_payload = payload,super._();
+  const _EmbeddedResourceDto({required this.applicationId, required this.uri, this.id, this.type = 'unknown', final  Map<String, dynamic> attributes = const {}, this.metadata = const MetadataDto(), final  List<String> payload = const <String>[], this.enableConsoleLogCapture = false, this.reconnectStrategy, this.createdAt, this.updatedAt}): _attributes = attributes,_payload = payload,super._();
   factory _EmbeddedResourceDto.fromJson(Map<String, dynamic> json) => _$EmbeddedResourceDtoFromJson(json);
 
-@override final  String id;
 @override final  String applicationId;
 @override final  String uri;
+@override final  String? id;
 @override@JsonKey() final  String type;
  final  Map<String, dynamic> _attributes;
 @override@JsonKey() Map<String, dynamic> get attributes {
@@ -262,16 +262,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EmbeddedResourceDto&&(identical(other.id, id) || other.id == id)&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._attributes, _attributes)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other._payload, _payload)&&(identical(other.enableConsoleLogCapture, enableConsoleLogCapture) || other.enableConsoleLogCapture == enableConsoleLogCapture)&&(identical(other.reconnectStrategy, reconnectStrategy) || other.reconnectStrategy == reconnectStrategy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EmbeddedResourceDto&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._attributes, _attributes)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other._payload, _payload)&&(identical(other.enableConsoleLogCapture, enableConsoleLogCapture) || other.enableConsoleLogCapture == enableConsoleLogCapture)&&(identical(other.reconnectStrategy, reconnectStrategy) || other.reconnectStrategy == reconnectStrategy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,applicationId,uri,type,const DeepCollectionEquality().hash(_attributes),metadata,const DeepCollectionEquality().hash(_payload),enableConsoleLogCapture,reconnectStrategy,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,applicationId,uri,id,type,const DeepCollectionEquality().hash(_attributes),metadata,const DeepCollectionEquality().hash(_payload),enableConsoleLogCapture,reconnectStrategy,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'EmbeddedResourceDto(id: $id, applicationId: $applicationId, uri: $uri, type: $type, attributes: $attributes, metadata: $metadata, payload: $payload, enableConsoleLogCapture: $enableConsoleLogCapture, reconnectStrategy: $reconnectStrategy, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'EmbeddedResourceDto(applicationId: $applicationId, uri: $uri, id: $id, type: $type, attributes: $attributes, metadata: $metadata, payload: $payload, enableConsoleLogCapture: $enableConsoleLogCapture, reconnectStrategy: $reconnectStrategy, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -282,7 +282,7 @@ abstract mixin class _$EmbeddedResourceDtoCopyWith<$Res> implements $EmbeddedRes
   factory _$EmbeddedResourceDtoCopyWith(_EmbeddedResourceDto value, $Res Function(_EmbeddedResourceDto) _then) = __$EmbeddedResourceDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String applicationId, String uri, String type, Map<String, dynamic> attributes, MetadataDto metadata, List<String> payload, bool enableConsoleLogCapture, String? reconnectStrategy, String? createdAt, String? updatedAt
+ String applicationId, String uri, String? id, String type, Map<String, dynamic> attributes, MetadataDto metadata, List<String> payload, bool enableConsoleLogCapture, String? reconnectStrategy, String? createdAt, String? updatedAt
 });
 
 
@@ -299,12 +299,12 @@ class __$EmbeddedResourceDtoCopyWithImpl<$Res>
 
 /// Create a copy of EmbeddedResourceDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? applicationId = null,Object? uri = null,Object? type = null,Object? attributes = null,Object? metadata = null,Object? payload = null,Object? enableConsoleLogCapture = null,Object? reconnectStrategy = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? uri = null,Object? id = freezed,Object? type = null,Object? attributes = null,Object? metadata = null,Object? payload = null,Object? enableConsoleLogCapture = null,Object? reconnectStrategy = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_EmbeddedResourceDto(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
+applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,uri: null == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String,attributes: null == attributes ? _self._attributes : attributes // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as MetadataDto,payload: null == payload ? _self._payload : payload // ignore: cast_nullable_to_non_nullable

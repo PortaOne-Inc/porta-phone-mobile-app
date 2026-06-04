@@ -11,7 +11,7 @@ class EmbeddedResourceMapper
   @override
   EmbeddedResourceDto convertTo(EmbeddedResourceModel it) {
     return EmbeddedResourceDto(
-      id: it.id.toString(),
+      id: it.id,
       applicationId: it.applicationId,
       uri: it.uri,
       type: it.type.name,

@@ -9,9 +9,9 @@ part of 'embedded_resource_dto.dart';
 _EmbeddedResourceDto _$EmbeddedResourceDtoFromJson(
   Map<String, dynamic> json,
 ) => _EmbeddedResourceDto(
-  id: json['id'] as String,
   applicationId: json['applicationId'] as String,
   uri: json['uri'] as String,
+  id: json['id'] as String?,
   type: json['type'] as String? ?? 'unknown',
   attributes: json['attributes'] as Map<String, dynamic>? ?? const {},
   metadata: json['metadata'] == null
@@ -29,9 +29,9 @@ _EmbeddedResourceDto _$EmbeddedResourceDtoFromJson(
 Map<String, dynamic> _$EmbeddedResourceDtoToJson(
   _EmbeddedResourceDto instance,
 ) => <String, dynamic>{
-  'id': instance.id,
   'applicationId': instance.applicationId,
   'uri': instance.uri,
+  'id': ?instance.id,
   'type': instance.type,
   'attributes': instance.attributes,
   'metadata': instance.metadata.toJson(),

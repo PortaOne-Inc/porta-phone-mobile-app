@@ -9,9 +9,9 @@ sealed class EmbeddedResourceDto with _$EmbeddedResourceDto {
   // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true, includeIfNull: false)
   const factory EmbeddedResourceDto({
-    required String id,
     required String applicationId,
     required String uri,
+    String? id,
     @Default('unknown') String type,
     @Default({}) Map<String, dynamic> attributes,
     @Default(MetadataDto()) MetadataDto metadata,
