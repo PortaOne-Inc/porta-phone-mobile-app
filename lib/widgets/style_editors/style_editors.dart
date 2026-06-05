@@ -8,6 +8,7 @@ export 'group_title_list_tile_editor_minimal.dart';
 export 'image_render_editor.dart';
 export 'keypad_style_editor_minimal.dart';
 export 'page_background_editor.dart';
+export 'separator_style_editor.dart';
 export 'snack_bar_editor_minimal.dart';
 export 'system_ui_overlay_quick_toggles.dart';
 export 'tab_bar_config_editor.dart';
