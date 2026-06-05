@@ -87,18 +87,6 @@ export class GithubProxyController {
     }
   }
 
-  @Get('callkeep-branches')
-  async getCallkeepBranches(): Promise<any[]> {
-    try {
-      return await this.githubProxyService.getCallkeepBranches();
-    } catch (error) {
-      throw new HttpException(
-        { message: error.message, status: HttpStatus.INTERNAL_SERVER_ERROR },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
   @Get('app-version')
   @ApiOperation({
     summary: 'Get app_version from pubspec.yaml in a specified branch',
