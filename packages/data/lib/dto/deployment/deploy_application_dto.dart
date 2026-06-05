@@ -12,7 +12,6 @@ sealed class DeployApplicationDto with _$DeployApplicationDto {
     required String platforms,
     required String phoneSourceBranch,
     required String phoneConfiguratorToolSourceBranch,
-    required String callkeepSourceBranch,
     required String configuratorSourceBranch,
     required String keystoreSourceBranch,
     required String androidPlayStoreConfig,

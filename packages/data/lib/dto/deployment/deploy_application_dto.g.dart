@@ -15,7 +15,6 @@ _DeployApplicationDto _$DeployApplicationDtoFromJson(
   phoneSourceBranch: json['phoneSourceBranch'] as String,
   phoneConfiguratorToolSourceBranch:
       json['phoneConfiguratorToolSourceBranch'] as String,
-  callkeepSourceBranch: json['callkeepSourceBranch'] as String,
   configuratorSourceBranch: json['configuratorSourceBranch'] as String,
   keystoreSourceBranch: json['keystoreSourceBranch'] as String,
   androidPlayStoreConfig: json['androidPlayStoreConfig'] as String,
@@ -30,7 +29,6 @@ Map<String, dynamic> _$DeployApplicationDtoToJson(
   'phoneSourceBranch': instance.phoneSourceBranch,
   'phoneConfiguratorToolSourceBranch':
       instance.phoneConfiguratorToolSourceBranch,
-  'callkeepSourceBranch': instance.callkeepSourceBranch,
   'configuratorSourceBranch': instance.configuratorSourceBranch,
   'keystoreSourceBranch': instance.keystoreSourceBranch,
   'androidPlayStoreConfig': instance.androidPlayStoreConfig,

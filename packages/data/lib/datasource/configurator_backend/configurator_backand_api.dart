@@ -56,7 +56,6 @@ class DeployConfiguratorBackandAPI {
 
   static String get phoneBranched => '/github-proxy/phone-branches';
 
-  static String get callkeepBranches => '/github-proxy/callkeep-branches';
 
   static const String getAppVersionByBranch = '/github-proxy/app-version';
 }

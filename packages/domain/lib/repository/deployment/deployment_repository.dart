@@ -11,7 +11,5 @@ abstract class DeploymentRepository {
 
   Future<List<PhoneBranch>> getPhoneBranched();
 
-  Future<List<CallkeepBranch>> getCallkeepBranches();
-
   Future<BuildVersionModel> getAppVersionByPhoneBranch(String branch);
 }

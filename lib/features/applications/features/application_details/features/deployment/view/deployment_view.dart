@@ -495,30 +495,6 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
                       ).colorScheme.primary.withValues(alpha: .05),
                       children: <Widget>[
                         BranchSelector(
-                          title: context
-                              .l10n
-                              .feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep,
-                          initialBranch: state
-                              .applicationDeploy
-                              .applicationDependencyBranches
-                              .callkeepSourceBranch,
-                          branches: state
-                              .applicationDeploy
-                              .applicationDependencyBranches
-                              .callkeepBranches
-                              .map((it) => it.name)
-                              .toList(),
-                          onUpdate: (value) =>
-                              deploymentCubit.updateApplicationDeploy(
-                                state.applicationDeploy.copyWith(
-                                  applicationDependencyBranches: state
-                                      .applicationDeploy
-                                      .applicationDependencyBranches
-                                      .copyWith(callkeepSourceBranch: value),
-                                ),
-                              ),
-                        ),
-                        BranchSelector(
                           title:
                               'Enter branch for  Configurator: (Using data layer in build flow)',
                           initialBranch: state

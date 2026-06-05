@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApplicationDependencyBranches {
 
- List<PhoneBranch> get phoneBranches; List<CallkeepBranch> get callkeepBranches; String get phoneSourceBranch; String get callkeepSourceBranch; String get configuratorSourceBranch; String get phoneConfiguratorToolSourceBranch; String get keystoreSourceBranch;
+ List<PhoneBranch> get phoneBranches; String get phoneSourceBranch; String get configuratorSourceBranch; String get phoneConfiguratorToolSourceBranch; String get keystoreSourceBranch;
 /// Create a copy of ApplicationDependencyBranches
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ApplicationDependencyBranchesCopyWith<ApplicationDependencyBranches> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplicationDependencyBranches&&const DeepCollectionEquality().equals(other.phoneBranches, phoneBranches)&&const DeepCollectionEquality().equals(other.callkeepBranches, callkeepBranches)&&(identical(other.phoneSourceBranch, phoneSourceBranch) || other.phoneSourceBranch == phoneSourceBranch)&&(identical(other.callkeepSourceBranch, callkeepSourceBranch) || other.callkeepSourceBranch == callkeepSourceBranch)&&(identical(other.configuratorSourceBranch, configuratorSourceBranch) || other.configuratorSourceBranch == configuratorSourceBranch)&&(identical(other.phoneConfiguratorToolSourceBranch, phoneConfiguratorToolSourceBranch) || other.phoneConfiguratorToolSourceBranch == phoneConfiguratorToolSourceBranch)&&(identical(other.keystoreSourceBranch, keystoreSourceBranch) || other.keystoreSourceBranch == keystoreSourceBranch));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApplicationDependencyBranches&&const DeepCollectionEquality().equals(other.phoneBranches, phoneBranches)&&(identical(other.phoneSourceBranch, phoneSourceBranch) || other.phoneSourceBranch == phoneSourceBranch)&&(identical(other.configuratorSourceBranch, configuratorSourceBranch) || other.configuratorSourceBranch == configuratorSourceBranch)&&(identical(other.phoneConfiguratorToolSourceBranch, phoneConfiguratorToolSourceBranch) || other.phoneConfiguratorToolSourceBranch == phoneConfiguratorToolSourceBranch)&&(identical(other.keystoreSourceBranch, keystoreSourceBranch) || other.keystoreSourceBranch == keystoreSourceBranch));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(phoneBranches),const DeepCollectionEquality().hash(callkeepBranches),phoneSourceBranch,callkeepSourceBranch,configuratorSourceBranch,phoneConfiguratorToolSourceBranch,keystoreSourceBranch);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(phoneBranches),phoneSourceBranch,configuratorSourceBranch,phoneConfiguratorToolSourceBranch,keystoreSourceBranch);
 
 @override
 String toString() {
-  return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, callkeepBranches: $callkeepBranches, phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
+  return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, phoneSourceBranch: $phoneSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ApplicationDependencyBranchesCopyWith<$Res>  {
   factory $ApplicationDependencyBranchesCopyWith(ApplicationDependencyBranches value, $Res Function(ApplicationDependencyBranches) _then) = _$ApplicationDependencyBranchesCopyWithImpl;
 @useResult
 $Res call({
- List<PhoneBranch> phoneBranches, List<CallkeepBranch> callkeepBranches, String phoneSourceBranch, String callkeepSourceBranch, String configuratorSourceBranch, String phoneConfiguratorToolSourceBranch, String keystoreSourceBranch
+ List<PhoneBranch> phoneBranches, String phoneSourceBranch, String configuratorSourceBranch, String phoneConfiguratorToolSourceBranch, String keystoreSourceBranch
 });
 
 
@@ -62,12 +62,10 @@ class _$ApplicationDependencyBranchesCopyWithImpl<$Res>
 
 /// Create a copy of ApplicationDependencyBranches
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? phoneBranches = null,Object? callkeepBranches = null,Object? phoneSourceBranch = null,Object? callkeepSourceBranch = null,Object? configuratorSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? keystoreSourceBranch = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? phoneBranches = null,Object? phoneSourceBranch = null,Object? configuratorSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? keystoreSourceBranch = null,}) {
   return _then(_self.copyWith(
 phoneBranches: null == phoneBranches ? _self.phoneBranches : phoneBranches // ignore: cast_nullable_to_non_nullable
-as List<PhoneBranch>,callkeepBranches: null == callkeepBranches ? _self.callkeepBranches : callkeepBranches // ignore: cast_nullable_to_non_nullable
-as List<CallkeepBranch>,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
-as String,callkeepSourceBranch: null == callkeepSourceBranch ? _self.callkeepSourceBranch : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
+as List<PhoneBranch>,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,configuratorSourceBranch: null == configuratorSourceBranch ? _self.configuratorSourceBranch : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,phoneConfiguratorToolSourceBranch: null == phoneConfiguratorToolSourceBranch ? _self.phoneConfiguratorToolSourceBranch : phoneConfiguratorToolSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,keystoreSourceBranch: null == keystoreSourceBranch ? _self.keystoreSourceBranch : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable
@@ -153,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PhoneBranch> phoneBranches,  List<CallkeepBranch> callkeepBranches,  String phoneSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PhoneBranch> phoneBranches,  String phoneSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ApplicationDependencyBranches() when $default != null:
-return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);case _:
+return $default(_that.phoneBranches,_that.phoneSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);case _:
   return orElse();
 
 }
@@ -174,10 +172,10 @@ return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBran
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PhoneBranch> phoneBranches,  List<CallkeepBranch> callkeepBranches,  String phoneSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PhoneBranch> phoneBranches,  String phoneSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)  $default,) {final _that = this;
 switch (_that) {
 case _ApplicationDependencyBranches():
-return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);}
+return $default(_that.phoneBranches,_that.phoneSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -191,10 +189,10 @@ return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBran
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PhoneBranch> phoneBranches,  List<CallkeepBranch> callkeepBranches,  String phoneSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PhoneBranch> phoneBranches,  String phoneSourceBranch,  String configuratorSourceBranch,  String phoneConfiguratorToolSourceBranch,  String keystoreSourceBranch)?  $default,) {final _that = this;
 switch (_that) {
 case _ApplicationDependencyBranches() when $default != null:
-return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);case _:
+return $default(_that.phoneBranches,_that.phoneSourceBranch,_that.configuratorSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.keystoreSourceBranch);case _:
   return null;
 
 }
@@ -206,7 +204,7 @@ return $default(_that.phoneBranches,_that.callkeepBranches,_that.phoneSourceBran
 
 
 class _ApplicationDependencyBranches extends ApplicationDependencyBranches {
-  const _ApplicationDependencyBranches({final  List<PhoneBranch> phoneBranches = const [], final  List<CallkeepBranch> callkeepBranches = const [], this.phoneSourceBranch = _kDefaultPhoneMainSourceBranch, this.callkeepSourceBranch = _kDefaultCallkeepSourceBranch, this.configuratorSourceBranch = _kConfiguratorSourceBranch, this.phoneConfiguratorToolSourceBranch = _kDefaultPhoneConfiguratorToolSourceBranch, this.keystoreSourceBranch = _kDefaultKeystoreSourceBranch}): _phoneBranches = phoneBranches,_callkeepBranches = callkeepBranches,super._();
+  const _ApplicationDependencyBranches({final  List<PhoneBranch> phoneBranches = const [], this.phoneSourceBranch = _kDefaultPhoneMainSourceBranch, this.configuratorSourceBranch = _kConfiguratorSourceBranch, this.phoneConfiguratorToolSourceBranch = _kDefaultPhoneConfiguratorToolSourceBranch, this.keystoreSourceBranch = _kDefaultKeystoreSourceBranch}): _phoneBranches = phoneBranches,super._();
   
 
  final  List<PhoneBranch> _phoneBranches;
@@ -216,15 +214,7 @@ class _ApplicationDependencyBranches extends ApplicationDependencyBranches {
   return EqualUnmodifiableListView(_phoneBranches);
 }
 
- final  List<CallkeepBranch> _callkeepBranches;
-@override@JsonKey() List<CallkeepBranch> get callkeepBranches {
-  if (_callkeepBranches is EqualUnmodifiableListView) return _callkeepBranches;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_callkeepBranches);
-}
-
 @override@JsonKey() final  String phoneSourceBranch;
-@override@JsonKey() final  String callkeepSourceBranch;
 @override@JsonKey() final  String configuratorSourceBranch;
 @override@JsonKey() final  String phoneConfiguratorToolSourceBranch;
 @override@JsonKey() final  String keystoreSourceBranch;
@@ -239,16 +229,16 @@ _$ApplicationDependencyBranchesCopyWith<_ApplicationDependencyBranches> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplicationDependencyBranches&&const DeepCollectionEquality().equals(other._phoneBranches, _phoneBranches)&&const DeepCollectionEquality().equals(other._callkeepBranches, _callkeepBranches)&&(identical(other.phoneSourceBranch, phoneSourceBranch) || other.phoneSourceBranch == phoneSourceBranch)&&(identical(other.callkeepSourceBranch, callkeepSourceBranch) || other.callkeepSourceBranch == callkeepSourceBranch)&&(identical(other.configuratorSourceBranch, configuratorSourceBranch) || other.configuratorSourceBranch == configuratorSourceBranch)&&(identical(other.phoneConfiguratorToolSourceBranch, phoneConfiguratorToolSourceBranch) || other.phoneConfiguratorToolSourceBranch == phoneConfiguratorToolSourceBranch)&&(identical(other.keystoreSourceBranch, keystoreSourceBranch) || other.keystoreSourceBranch == keystoreSourceBranch));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApplicationDependencyBranches&&const DeepCollectionEquality().equals(other._phoneBranches, _phoneBranches)&&(identical(other.phoneSourceBranch, phoneSourceBranch) || other.phoneSourceBranch == phoneSourceBranch)&&(identical(other.configuratorSourceBranch, configuratorSourceBranch) || other.configuratorSourceBranch == configuratorSourceBranch)&&(identical(other.phoneConfiguratorToolSourceBranch, phoneConfiguratorToolSourceBranch) || other.phoneConfiguratorToolSourceBranch == phoneConfiguratorToolSourceBranch)&&(identical(other.keystoreSourceBranch, keystoreSourceBranch) || other.keystoreSourceBranch == keystoreSourceBranch));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_phoneBranches),const DeepCollectionEquality().hash(_callkeepBranches),phoneSourceBranch,callkeepSourceBranch,configuratorSourceBranch,phoneConfiguratorToolSourceBranch,keystoreSourceBranch);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_phoneBranches),phoneSourceBranch,configuratorSourceBranch,phoneConfiguratorToolSourceBranch,keystoreSourceBranch);
 
 @override
 String toString() {
-  return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, callkeepBranches: $callkeepBranches, phoneSourceBranch: $phoneSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
+  return 'ApplicationDependencyBranches(phoneBranches: $phoneBranches, phoneSourceBranch: $phoneSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, keystoreSourceBranch: $keystoreSourceBranch)';
 }
 
 
@@ -259,7 +249,7 @@ abstract mixin class _$ApplicationDependencyBranchesCopyWith<$Res> implements $A
   factory _$ApplicationDependencyBranchesCopyWith(_ApplicationDependencyBranches value, $Res Function(_ApplicationDependencyBranches) _then) = __$ApplicationDependencyBranchesCopyWithImpl;
 @override @useResult
 $Res call({
- List<PhoneBranch> phoneBranches, List<CallkeepBranch> callkeepBranches, String phoneSourceBranch, String callkeepSourceBranch, String configuratorSourceBranch, String phoneConfiguratorToolSourceBranch, String keystoreSourceBranch
+ List<PhoneBranch> phoneBranches, String phoneSourceBranch, String configuratorSourceBranch, String phoneConfiguratorToolSourceBranch, String keystoreSourceBranch
 });
 
 
@@ -276,12 +266,10 @@ class __$ApplicationDependencyBranchesCopyWithImpl<$Res>
 
 /// Create a copy of ApplicationDependencyBranches
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? phoneBranches = null,Object? callkeepBranches = null,Object? phoneSourceBranch = null,Object? callkeepSourceBranch = null,Object? configuratorSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? keystoreSourceBranch = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? phoneBranches = null,Object? phoneSourceBranch = null,Object? configuratorSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? keystoreSourceBranch = null,}) {
   return _then(_ApplicationDependencyBranches(
 phoneBranches: null == phoneBranches ? _self._phoneBranches : phoneBranches // ignore: cast_nullable_to_non_nullable
-as List<PhoneBranch>,callkeepBranches: null == callkeepBranches ? _self._callkeepBranches : callkeepBranches // ignore: cast_nullable_to_non_nullable
-as List<CallkeepBranch>,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
-as String,callkeepSourceBranch: null == callkeepSourceBranch ? _self.callkeepSourceBranch : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
+as List<PhoneBranch>,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,configuratorSourceBranch: null == configuratorSourceBranch ? _self.configuratorSourceBranch : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,phoneConfiguratorToolSourceBranch: null == phoneConfiguratorToolSourceBranch ? _self.phoneConfiguratorToolSourceBranch : phoneConfiguratorToolSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,keystoreSourceBranch: null == keystoreSourceBranch ? _self.keystoreSourceBranch : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable

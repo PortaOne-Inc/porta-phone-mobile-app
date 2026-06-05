@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DeployApplicationDto {
 
- String get applicationId; set applicationId(String value); String get token; set token(String value); String get platforms; set platforms(String value); String get phoneSourceBranch; set phoneSourceBranch(String value); String get phoneConfiguratorToolSourceBranch; set phoneConfiguratorToolSourceBranch(String value); String get callkeepSourceBranch; set callkeepSourceBranch(String value); String get configuratorSourceBranch; set configuratorSourceBranch(String value); String get keystoreSourceBranch; set keystoreSourceBranch(String value); String get androidPlayStoreConfig; set androidPlayStoreConfig(String value);
+ String get applicationId; set applicationId(String value); String get token; set token(String value); String get platforms; set platforms(String value); String get phoneSourceBranch; set phoneSourceBranch(String value); String get phoneConfiguratorToolSourceBranch; set phoneConfiguratorToolSourceBranch(String value); String get configuratorSourceBranch; set configuratorSourceBranch(String value); String get keystoreSourceBranch; set keystoreSourceBranch(String value); String get androidPlayStoreConfig; set androidPlayStoreConfig(String value);
 /// Create a copy of DeployApplicationDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,7 +30,7 @@ $DeployApplicationDtoCopyWith<DeployApplicationDto> get copyWith => _$DeployAppl
 
 @override
 String toString() {
-  return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+  return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
 }
 
 
@@ -41,7 +41,7 @@ abstract mixin class $DeployApplicationDtoCopyWith<$Res>  {
   factory $DeployApplicationDtoCopyWith(DeployApplicationDto value, $Res Function(DeployApplicationDto) _then) = _$DeployApplicationDtoCopyWithImpl;
 @useResult
 $Res call({
- String applicationId, String token, String platforms, String phoneSourceBranch, String phoneConfiguratorToolSourceBranch, String callkeepSourceBranch, String configuratorSourceBranch, String keystoreSourceBranch, String androidPlayStoreConfig
+ String applicationId, String token, String platforms, String phoneSourceBranch, String phoneConfiguratorToolSourceBranch, String configuratorSourceBranch, String keystoreSourceBranch, String androidPlayStoreConfig
 });
 
 
@@ -58,14 +58,13 @@ class _$DeployApplicationDtoCopyWithImpl<$Res>
 
 /// Create a copy of DeployApplicationDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? token = null,Object? platforms = null,Object? phoneSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? callkeepSourceBranch = null,Object? configuratorSourceBranch = null,Object? keystoreSourceBranch = null,Object? androidPlayStoreConfig = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? token = null,Object? platforms = null,Object? phoneSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? configuratorSourceBranch = null,Object? keystoreSourceBranch = null,Object? androidPlayStoreConfig = null,}) {
   return _then(_self.copyWith(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,platforms: null == platforms ? _self.platforms : platforms // ignore: cast_nullable_to_non_nullable
 as String,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,phoneConfiguratorToolSourceBranch: null == phoneConfiguratorToolSourceBranch ? _self.phoneConfiguratorToolSourceBranch : phoneConfiguratorToolSourceBranch // ignore: cast_nullable_to_non_nullable
-as String,callkeepSourceBranch: null == callkeepSourceBranch ? _self.callkeepSourceBranch : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,configuratorSourceBranch: null == configuratorSourceBranch ? _self.configuratorSourceBranch : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,keystoreSourceBranch: null == keystoreSourceBranch ? _self.keystoreSourceBranch : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,androidPlayStoreConfig: null == androidPlayStoreConfig ? _self.androidPlayStoreConfig : androidPlayStoreConfig // ignore: cast_nullable_to_non_nullable
@@ -151,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeployApplicationDto() when $default != null:
-return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);case _:
+return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);case _:
   return orElse();
 
 }
@@ -172,10 +171,10 @@ return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourc
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)  $default,) {final _that = this;
 switch (_that) {
 case _DeployApplicationDto():
-return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);}
+return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -189,10 +188,10 @@ return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourc
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String callkeepSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String token,  String platforms,  String phoneSourceBranch,  String phoneConfiguratorToolSourceBranch,  String configuratorSourceBranch,  String keystoreSourceBranch,  String androidPlayStoreConfig)?  $default,) {final _that = this;
 switch (_that) {
 case _DeployApplicationDto() when $default != null:
-return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.callkeepSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);case _:
+return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourceBranch,_that.phoneConfiguratorToolSourceBranch,_that.configuratorSourceBranch,_that.keystoreSourceBranch,_that.androidPlayStoreConfig);case _:
   return null;
 
 }
@@ -204,7 +203,7 @@ return $default(_that.applicationId,_that.token,_that.platforms,_that.phoneSourc
 @JsonSerializable()
 
 class _DeployApplicationDto implements DeployApplicationDto {
-   _DeployApplicationDto({required this.applicationId, required this.token, required this.platforms, required this.phoneSourceBranch, required this.phoneConfiguratorToolSourceBranch, required this.callkeepSourceBranch, required this.configuratorSourceBranch, required this.keystoreSourceBranch, required this.androidPlayStoreConfig});
+   _DeployApplicationDto({required this.applicationId, required this.token, required this.platforms, required this.phoneSourceBranch, required this.phoneConfiguratorToolSourceBranch, required this.configuratorSourceBranch, required this.keystoreSourceBranch, required this.androidPlayStoreConfig});
   factory _DeployApplicationDto.fromJson(Map<String, dynamic> json) => _$DeployApplicationDtoFromJson(json);
 
 @override  String applicationId;
@@ -212,7 +211,6 @@ class _DeployApplicationDto implements DeployApplicationDto {
 @override  String platforms;
 @override  String phoneSourceBranch;
 @override  String phoneConfiguratorToolSourceBranch;
-@override  String callkeepSourceBranch;
 @override  String configuratorSourceBranch;
 @override  String keystoreSourceBranch;
 @override  String androidPlayStoreConfig;
@@ -232,7 +230,7 @@ Map<String, dynamic> toJson() {
 
 @override
 String toString() {
-  return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, callkeepSourceBranch: $callkeepSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
+  return 'DeployApplicationDto(applicationId: $applicationId, token: $token, platforms: $platforms, phoneSourceBranch: $phoneSourceBranch, phoneConfiguratorToolSourceBranch: $phoneConfiguratorToolSourceBranch, configuratorSourceBranch: $configuratorSourceBranch, keystoreSourceBranch: $keystoreSourceBranch, androidPlayStoreConfig: $androidPlayStoreConfig)';
 }
 
 
@@ -243,7 +241,7 @@ abstract mixin class _$DeployApplicationDtoCopyWith<$Res> implements $DeployAppl
   factory _$DeployApplicationDtoCopyWith(_DeployApplicationDto value, $Res Function(_DeployApplicationDto) _then) = __$DeployApplicationDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String applicationId, String token, String platforms, String phoneSourceBranch, String phoneConfiguratorToolSourceBranch, String callkeepSourceBranch, String configuratorSourceBranch, String keystoreSourceBranch, String androidPlayStoreConfig
+ String applicationId, String token, String platforms, String phoneSourceBranch, String phoneConfiguratorToolSourceBranch, String configuratorSourceBranch, String keystoreSourceBranch, String androidPlayStoreConfig
 });
 
 
@@ -260,14 +258,13 @@ class __$DeployApplicationDtoCopyWithImpl<$Res>
 
 /// Create a copy of DeployApplicationDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? token = null,Object? platforms = null,Object? phoneSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? callkeepSourceBranch = null,Object? configuratorSourceBranch = null,Object? keystoreSourceBranch = null,Object? androidPlayStoreConfig = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? token = null,Object? platforms = null,Object? phoneSourceBranch = null,Object? phoneConfiguratorToolSourceBranch = null,Object? configuratorSourceBranch = null,Object? keystoreSourceBranch = null,Object? androidPlayStoreConfig = null,}) {
   return _then(_DeployApplicationDto(
 applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
 as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,platforms: null == platforms ? _self.platforms : platforms // ignore: cast_nullable_to_non_nullable
 as String,phoneSourceBranch: null == phoneSourceBranch ? _self.phoneSourceBranch : phoneSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,phoneConfiguratorToolSourceBranch: null == phoneConfiguratorToolSourceBranch ? _self.phoneConfiguratorToolSourceBranch : phoneConfiguratorToolSourceBranch // ignore: cast_nullable_to_non_nullable
-as String,callkeepSourceBranch: null == callkeepSourceBranch ? _self.callkeepSourceBranch : callkeepSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,configuratorSourceBranch: null == configuratorSourceBranch ? _self.configuratorSourceBranch : configuratorSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,keystoreSourceBranch: null == keystoreSourceBranch ? _self.keystoreSourceBranch : keystoreSourceBranch // ignore: cast_nullable_to_non_nullable
 as String,androidPlayStoreConfig: null == androidPlayStoreConfig ? _self.androidPlayStoreConfig : androidPlayStoreConfig // ignore: cast_nullable_to_non_nullable

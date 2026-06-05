@@ -20,12 +20,10 @@ class DeploymentCubit extends Cubit<DeploymentState> {
     required this.updateBuildNumberUseCase,
     required this.updateApplicationUsecase,
     required this.getPhoneBranchesUsecase,
-    required this.getCallkeepBranchesUsecase,
     required this.usecaseDeployBuilds,
   }) : super(const DeploymentState()) {
     _getApplication();
     _getPhoneBranches();
-    _getCallkeepBranches();
   }
 
   final String applicationId;
@@ -34,7 +32,6 @@ class DeploymentCubit extends Cubit<DeploymentState> {
   final UpdateBuildNumberUseCase updateBuildNumberUseCase;
   final UpdateApplicationUsecase updateApplicationUsecase;
   final GetPhoneBranchesUsecase getPhoneBranchesUsecase;
-  final GetCallkeepBranchesUsecase getCallkeepBranchesUsecase;
   final UsecaseDeployBuilds usecaseDeployBuilds;
 
   // TODO(Serdun): Clean up code
@@ -73,27 +70,6 @@ class DeploymentCubit extends Cubit<DeploymentState> {
           .applicationDeploy
           .applicationDependencyBranches
           .copyWith(phoneBranches: branches);
-      final updatedApplicationDeploy = state.applicationDeploy.copyWith(
-        applicationDependencyBranches: updatedDependencyBranches,
-      );
-
-      emit(
-        state.copyWith(
-          applicationDeploy: updatedApplicationDeploy,
-          status: DeploymentDetailsStatus.success,
-        ),
-      );
-    });
-  }
-
-  Future<void> _getCallkeepBranches() async {
-    await _executeWithErrorHandling(() async {
-      final branches = await getCallkeepBranchesUsecase.execute();
-
-      final updatedDependencyBranches = state
-          .applicationDeploy
-          .applicationDependencyBranches
-          .copyWith(callkeepBranches: branches);
       final updatedApplicationDeploy = state.applicationDeploy.copyWith(
         applicationDependencyBranches: updatedDependencyBranches,
       );
