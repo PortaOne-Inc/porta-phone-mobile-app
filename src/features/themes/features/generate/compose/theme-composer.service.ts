@@ -35,6 +35,28 @@ const gradient = (colors: string[]) => ({
   endY: 1,
 });
 
+/** Readable text color (#111111 or #FFFFFF) for a given background hex. */
+function readableOn(hex: string): string {
+  const m = /^#?([0-9a-fA-F]{6})$/.exec(hex.trim());
+  if (!m) return '#FFFFFF';
+  const n = parseInt(m[1], 16);
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((c) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum > 0.45 ? '#111111' : '#FFFFFF';
+}
+
+const isHex6 = (v: unknown): v is string => typeof v === 'string' && /^#[0-9A-Fa-f]{6}$/.test(v);
+const weightObj = (w?: number | null) => (w ? { weight: w } : undefined);
+
+/** Assign `obj[path...] = value` only when value is defined (keeps base default otherwise). */
+function setIf(obj: Json, path: string[], value: unknown) {
+  if (value === undefined || value === null) return;
+  setPath(obj, path, value);
+}
+
 /** Assign `obj[path...] = value`, creating intermediate objects as needed. */
 function setPath(obj: Json, path: string[], value: unknown) {
   let cur = obj;
@@ -58,11 +80,8 @@ export class ThemeComposerService {
   constructor(private readonly base: BaseThemeLoader) {}
 
   compose(brief: ThemeBrief): ComposedTheme {
-    const palette = generatePalette(brief.palette.seed, {
-      secondary: brief.palette.secondary,
-      tertiary: brief.palette.tertiary,
-    });
     const seedColor = brief.palette.seed;
+    const palette = this.resolvePalette(brief);
 
     const colorScheme: Record<Variant, Json> = {
       light: this.buildColorScheme(seedColor, palette.light, 'light'),
@@ -88,6 +107,76 @@ export class ThemeComposerService {
     return { colorScheme, widget, page, appConfig, assetIds: [...new Set(assetIds)] };
   }
 
+  /**
+   * Resolve the full light+dark palettes. Priority per role:
+   *   explicit colorRoles  >  explicit semantic colors  >  M3-from-seed  >  default.
+   * Explicit colors describe the "primary" variant (light, or dark if mood=dark);
+   * the other variant stays purely M3-derived so it remains coherent/readable.
+   */
+  private resolvePalette(brief: ThemeBrief): Record<Variant, Record<string, string>> {
+    const m3 = generatePalette(brief.palette.seed, {
+      secondary: brief.palette.secondary,
+      tertiary: brief.palette.tertiary,
+    });
+    const out: Record<Variant, Record<string, string>> = { light: { ...m3.light }, dark: { ...m3.dark } };
+    const described: Variant = brief.mood === 'dark' ? 'dark' : 'light';
+    out[described] = this.applyExplicit(out[described], brief);
+    return out;
+  }
+
+  private applyExplicit(base: Record<string, string>, brief: ThemeBrief): Record<string, string> {
+    const p = { ...base };
+    const pal = brief.palette;
+    const set = (role: string, hex?: string | null) => {
+      if (isHex6(hex)) p[role] = hex;
+    };
+
+    // Brand / CTA
+    const brand = pal.brand ?? pal.seed;
+    if (isHex6(brand)) {
+      p.primary = brand;
+      p.surfaceTint = brand;
+      p.onPrimary = readableOn(brand);
+    }
+    set('secondary', pal.secondary);
+
+    // Success / positive accent -> tertiary family (snackBar.success, statuses use tertiary)
+    if (isHex6(pal.success)) {
+      p.tertiary = pal.success;
+      p.onTertiary = readableOn(pal.success);
+    }
+    set('tertiary', pal.tertiary);
+
+    // Backgrounds & surfaces
+    if (isHex6(pal.background)) {
+      p.surface = pal.background;
+      p.surfaceBright = pal.background;
+      p.surfaceContainerLowest = pal.background;
+    }
+    if (isHex6(pal.surface)) {
+      p.surfaceContainerLow = pal.surface;
+      p.surfaceContainer = pal.surface;
+    }
+    // Soft containers (cards / highlights, e.g. lavender)
+    if (isHex6(pal.container)) {
+      p.secondaryContainer = pal.container;
+      p.primaryContainer = pal.container;
+      p.surfaceContainerHigh = pal.container;
+      p.surfaceContainerHighest = pal.container;
+    }
+
+    // Text
+    set('onSurface', pal.textStrong);
+    set('onSurfaceVariant', pal.textMuted);
+    set('error', pal.error);
+
+    // Exact Material-role overrides win over everything.
+    if (brief.colorRoles) {
+      for (const [role, hex] of Object.entries(brief.colorRoles)) set(role, hex);
+    }
+    return p;
+  }
+
   private buildColorScheme(seedColor: string, override: Record<string, string>, variant: Variant): Json {
     const candidate = { seedColor, colorSchemeOverride: override };
     const check = ColorSchemeConfigSchema.safeParse(candidate);
@@ -99,10 +188,18 @@ export class ThemeComposerService {
   private buildWidget(variant: Variant, P: Record<string, string>, seed: string, brief: ThemeBrief): Json {
     const w = this.base.widget(variant);
 
-    if (brief.typography?.fontFamily) {
-      setPath(w, ['fonts', 'fontFamily'], brief.typography.fontFamily);
-    }
-    const radius = brief.shape?.corners ? CORNER_RADIUS[brief.shape.corners] : undefined;
+    const typo = brief.typography ?? {};
+    if (typo.fontFamily) setPath(w, ['fonts', 'fontFamily'], typo.fontFamily);
+
+    const radius =
+      typeof brief.shape?.radius === 'number'
+        ? brief.shape.radius
+        : brief.shape?.corners
+          ? CORNER_RADIUS[brief.shape.corners]
+          : undefined;
+
+    const headingColor = brief.typography?.headingColor ?? brief.palette.textStrong ?? P.onSurface;
+    const headingWeight = weightObj(typo.headingWeight);
 
     // Primary elevated button
     setPath(w, ['button', 'primaryElevatedButton', 'backgroundColor'], P.primary);
@@ -124,11 +221,17 @@ export class ThemeComposerService {
     setPath(w, ['bar', 'tabBarConfig', 'labelColor'], P.onPrimary);
     setPath(w, ['bar', 'tabBarConfig', 'unselectedLabelColor'], unselected);
 
-    // App bar
-    setPath(w, ['bar', 'appBarConfig', 'foregroundColor'], P.onSurface);
-    setPath(w, ['bar', 'appBarConfig', 'titleTextStyle', 'color'], P.onSurface);
+    // App bar — title uses heading color/weight
+    setPath(w, ['bar', 'appBarConfig', 'foregroundColor'], headingColor);
+    setPath(w, ['bar', 'appBarConfig', 'titleTextStyle', 'color'], headingColor);
+    setIf(w, ['bar', 'appBarConfig', 'titleTextStyle', 'fontWeight'], headingWeight);
     setPath(w, ['bar', 'appBarConfig', 'systemOverlayStyle', 'statusBarIconBrightness'], variant === 'dark' ? 'light' : 'dark');
     setPath(w, ['bar', 'appBarConfig', 'systemOverlayStyle', 'statusBarBrightness'], variant === 'dark' ? 'dark' : 'light');
+
+    // Section/group titles — soft container card + brand heading
+    setPath(w, ['group', 'groupTitleListTile', 'backgroundColor'], P.surfaceContainerHigh);
+    setPath(w, ['group', 'groupTitleListTile', 'textStyle', 'color'], P.primary);
+    setIf(w, ['group', 'groupTitleListTile', 'textStyle', 'fontWeight'], headingWeight);
 
     // Avatar
     setPath(w, ['imageAssets', 'leadingAvatarStyle', 'backgroundColor'], P.surfaceContainerHigh);
@@ -151,10 +254,13 @@ export class ThemeComposerService {
     setPath(w, ['text', 'linkify', 'styleColor'], P.onSurface);
     setPath(w, ['text', 'linkify', 'linkifyStyleColor'], P.primary);
 
-    // Dialogs
+    // Dialogs (success channel carried by P.tertiary, which == brief.palette.success when given)
     setPath(w, ['dialog', 'snackBar', 'successBackgroundColor'], P.tertiary);
     setPath(w, ['dialog', 'snackBar', 'errorBackgroundColor'], P.error);
     setPath(w, ['dialog', 'snackBar', 'warningBackgroundColor'], seed);
+    setPath(w, ['dialog', 'confirmDialog', 'activeButtonColor1'], P.primary);
+    setPath(w, ['dialog', 'confirmDialog', 'activeButtonColor2'], P.error);
+    setPath(w, ['dialog', 'confirmDialog', 'defaultButtonColor'], P.outline);
 
     // Statuses
     setPath(w, ['statuses', 'registrationStatuses', 'online'], P.tertiary);
@@ -186,8 +292,29 @@ export class ThemeComposerService {
     const soft = gradient(dark ? [P.surfaceContainerHigh, P.surface] : [P.primaryContainer, P.surfaceBright]);
     const subtle = gradient(dark ? [P.surfaceContainer, P.surface] : [P.surfaceBright, P.surfaceContainerLow]);
 
-    setPath(p, ['login', 'modeSelect', 'background'], brandedGradient);
-    setPath(p, ['login', 'switchPage', 'background'], brandedGradient);
+    // Login/hero treatment ADAPTS to the reference (brief.style.heroStyle),
+    // defaulting to airy for light surfaces and branded for dark/colored ones:
+    //  - airy    : light hero (e.g. white→pale lavender), brand as accent, dark text
+    //  - branded : brand color fills the screen, white text
+    //  - solid   : flat single background color
+    const headingTextColor = brief.typography?.headingColor ?? brief.palette.textStrong;
+    const lightSurface = readableOn(P.surface) === '#111111';
+    const heroStyle = brief.style?.heroStyle ?? (lightSurface ? 'airy' : 'branded');
+    let loginBg: Record<string, unknown>;
+    let loginText: string;
+    if (heroStyle === 'branded') {
+      loginBg = brandedGradient;
+      loginText = '#FFFFFF';
+    } else if (heroStyle === 'solid') {
+      loginBg = { type: 'solid', color: P.surface };
+      loginText = readableOn(P.surface);
+    } else {
+      loginBg = soft;
+      loginText = dark ? '#FFFFFF' : (headingTextColor ?? P.onSurface);
+    }
+
+    setPath(p, ['login', 'modeSelect', 'background'], loginBg);
+    setPath(p, ['login', 'switchPage', 'background'], loginBg);
     setPath(p, ['dialing', 'background'], brandedGradient);
     setPath(p, ['keypad', 'background'], soft);
     for (const pg of ['about', 'settings', 'contacts', 'favorites', 'conversations', 'recents', 'embedded']) {
@@ -197,19 +324,33 @@ export class ThemeComposerService {
     // Logo: an uploaded asset (resolved to a signed URL downstream), otherwise a
     // public placeholder so the theme is never empty even with no assets.
     const logoId = brief.assets?.logoAssetId;
-    const logoFor = (path: string[]) => {
-      const render = getPath(p, [...path, 'render']) ?? { scale: 0.35, alignment: 'center' };
+    // topPad: when set, give the logo breathing room from the top on auth screens
+    // (the only spacing the theme contract exposes here — via ImageSource render.padding).
+    const logoFor = (path: string[], topPad?: number) => {
+      const baseRender = getPath(p, [...path, 'render']) ?? { scale: 0.35, alignment: 'center' };
+      let render = baseRender;
+      if (topPad !== undefined) {
+        const basePad = baseRender.padding ?? { left: 0, top: 0, right: 0, bottom: 0 };
+        render = { ...baseRender, padding: { ...basePad, top: topPad } };
+      }
       return logoId ? { ...assetRef(logoId), render } : { uri: PUBLIC_LOGO_URI, render };
     };
     setPath(p, ['login', 'modeSelect', 'mainLogo'], logoFor(['login', 'modeSelect', 'mainLogo']));
-    setPath(p, ['login', 'switchPage', 'mainLogo'], logoFor(['login', 'switchPage', 'mainLogo']));
-    setPath(p, ['about', 'mainLogo'], logoFor(['about', 'mainLogo']));
+    setPath(p, ['login', 'switchPage', 'mainLogo'], logoFor(['login', 'switchPage', 'mainLogo'], 80));
+    setPath(p, ['about', 'mainLogo'], logoFor(['about', 'mainLogo'], 24));
     if (logoId) assetIds.push(logoId);
 
     // System UI overlay brightness per variant on the main surfaces.
     const iconBrightness = dark ? 'light' : 'dark';
     setPath(p, ['login', 'modeSelect', 'systemUiOverlayStyle', 'statusBarIconBrightness'], iconBrightness);
     setPath(p, ['keypad', 'systemUiOverlayStyle', 'statusBarIconBrightness'], iconBrightness);
+
+    // Typography depth — login greeting follows the hero treatment's text color;
+    // call-screen name on the branded gradient (white).
+    const headingWeight = weightObj(brief.typography?.headingWeight);
+    setPath(p, ['login', 'modeSelect', 'greetingTextStyle', 'color'], loginText);
+    setIf(p, ['login', 'modeSelect', 'greetingTextStyle', 'fontWeight'], headingWeight);
+    setIf(p, ['dialing', 'callInfo', 'usernameTextStyle', 'fontWeight'], headingWeight);
 
     return p;
   }

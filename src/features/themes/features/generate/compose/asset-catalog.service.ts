@@ -30,11 +30,14 @@ export class AssetCatalogService {
   /**
    * Placeholder logo seeded when the app has no SVG asset. The phone app renders
    * logos via SVG only, so this MUST be an SVG (a raster PNG would not render).
+   * Icon-only (no text) — the app shows its own label beneath the logo.
    * Inlined (no network) for reliability.
    */
-  private static readonly SEED_LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
-  <rect width="600" height="200" rx="24" fill="#E0E0E0"/>
-  <text x="300" y="118" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" fill="#9E9E9E" text-anchor="middle">Logo</text>
+  private static readonly SEED_LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <rect x="20" y="20" width="160" height="160" rx="40" fill="#6750A4"/>
+  <g transform="translate(58,58) scale(3.5)" fill="#FFFFFF">
+    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+  </g>
 </svg>`;
 
   constructor(private readonly assets: AssetsService) {}
