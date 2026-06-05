@@ -75,7 +75,7 @@ class _SettingSchemeScreenState extends State<SettingSchemeScreen> {
         buildDefaultDragHandles: false,
         padding: const EdgeInsets.only(bottom: 100),
         itemCount: widget.config.sections.length,
-        onReorder: _controller.reorderSections,
+        onReorderItem: _controller.reorderSections,
         itemBuilder: (context, index) {
           final section = widget.config.sections[index];
 

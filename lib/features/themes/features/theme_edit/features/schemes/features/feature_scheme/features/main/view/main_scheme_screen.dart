@@ -79,12 +79,10 @@ class _MainConfigWidgetState extends State<MainConfigWidget> {
                   child: ReorderableListView(
                     padding: const EdgeInsets.all(8),
                     scrollDirection: Axis.horizontal,
-                    onReorder: (oldIndex, newIndex) {
+                    onReorderItem: (oldIndex, newIndex) {
                       setState(() {
-                        var adjustedIndex = newIndex;
-                        if (adjustedIndex > oldIndex) adjustedIndex -= 1;
                         final item = _activeTabs.removeAt(oldIndex);
-                        _activeTabs.insert(adjustedIndex, item);
+                        _activeTabs.insert(newIndex, item);
                         _updateAppConfig();
                       });
                     },

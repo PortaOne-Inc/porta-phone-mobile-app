@@ -49,13 +49,9 @@ class GradientEditor extends StatelessWidget {
   }
 
   void _onReorder(int oldIndex, int newIndex) {
-    var targetIndex = newIndex;
-    if (oldIndex < targetIndex) {
-      targetIndex -= 1;
-    }
     final updated = List<Color>.from(_activeColors);
     final item = updated.removeAt(oldIndex);
-    updated.insert(targetIndex, item);
+    updated.insert(newIndex, item);
     _updateColors(updated);
   }
 
@@ -88,7 +84,7 @@ class GradientEditor extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: activeColors.length,
-            onReorder: _onReorder,
+            onReorderItem: _onReorder,
             buildDefaultDragHandles: false,
             proxyDecorator: (child, index, animation) {
               return Material(

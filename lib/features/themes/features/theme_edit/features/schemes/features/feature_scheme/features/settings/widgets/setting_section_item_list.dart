@@ -72,7 +72,7 @@ class _SettingSectionItemListState extends State<SettingSectionItemList> {
             child: child,
           );
         },
-        onReorder: widget.onReorderItems,
+        onReorderItem: widget.onReorderItems,
         itemBuilder: (context, index) {
           final item = widget.section.items[index];
 

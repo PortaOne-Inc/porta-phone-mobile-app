@@ -270,7 +270,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         // Pointer handling is decided per surface by TypePreview/DrawerPreview
         // (focused preview is toggleable, thumbnails stay tap-to-focus), so the
         // screenshot itself must not swallow pointers here.
-        child: ScreenshotApp(appBloc: appBloc, child: screen, ignorePointer: false),
+        child: ScreenshotApp(appBloc: appBloc, ignorePointer: false, child: screen),
       ),
     );
   }

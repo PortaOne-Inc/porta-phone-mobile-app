@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../features/theme_edit/widgets/widgets.dart';
 
@@ -26,7 +27,7 @@ class DrawerPreview extends StatelessWidget {
           ).copyWith(dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.trackpad}),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            cacheExtent: 200,
+            scrollCacheExtent: const ScrollCacheExtent.pixels(200),
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(width: 8);
             },

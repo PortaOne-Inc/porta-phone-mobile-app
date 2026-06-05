@@ -32,14 +32,9 @@ class SchemeEditorController {
   void reorderSections(int oldIndex, int newIndex) {
     if (oldIndex < 0 || oldIndex >= config.sections.length) return;
 
-    var adjustedIndex = newIndex;
-    if (adjustedIndex > oldIndex) {
-      adjustedIndex -= 1;
-    }
-
     final sections = [...config.sections];
     final item = sections.removeAt(oldIndex);
-    sections.insert(adjustedIndex, item);
+    sections.insert(newIndex, item);
 
     _emit(config.copyWith(sections: sections));
   }
@@ -88,14 +83,9 @@ class SchemeEditorController {
     _updateSection(targetSection, (s) {
       if (oldIndex < 0 || oldIndex >= s.items.length) return s;
 
-      var adjustedIndex = newIndex;
-      if (adjustedIndex > oldIndex) {
-        adjustedIndex -= 1;
-      }
-
       final items = [...s.items];
       final movedItem = items.removeAt(oldIndex);
-      items.insert(adjustedIndex, movedItem);
+      items.insert(newIndex, movedItem);
 
       return s.copyWith(items: items);
     });

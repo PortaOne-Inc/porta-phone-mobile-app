@@ -145,7 +145,7 @@ class _AddSettingItemScreenState extends State<AddSettingItemScreen> {
                   switchOutCurve: Curves.easeIn,
                   transitionBuilder: (child, animation) => SizeTransition(
                     sizeFactor: animation,
-                    axisAlignment: -1,
+                    alignment: AlignmentDirectional.topStart,
                     child: FadeTransition(opacity: animation, child: child),
                   ),
                   child: state.type == SettingsFlavor.embedded
