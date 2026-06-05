@@ -150,6 +150,13 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
       if (isKeypadPreview)
         MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
+      if (isKeypadPreview)
+        MainScreenScreenshot(
+          key: ValueKey((bottomMenuFeature, 'keypad_dialing')),
+          MainFlavor.keypad,
+          loginLabel != null ? Text(loginLabel) : null,
+          keypadDialing: true,
+        ),
       if (isMessagingPreview)
         MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
       if (isEmbeddedPreview)
