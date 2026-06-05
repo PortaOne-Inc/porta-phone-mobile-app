@@ -1,0 +1,8 @@
+name: base_theme_gen
+description: Generates the AI generator's base theme from webtrit_appearance_theme DTO defaults.
+publish_to: none
+environment:
+  sdk: ^3.0.0
+dependencies:
+  webtrit_appearance_theme:
+    path: ../../../webtrit_phone/packages/webtrit_appearance_theme

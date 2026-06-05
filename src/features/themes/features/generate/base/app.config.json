@@ -4,25 +4,13 @@
       "fullScreenLaunchEmbeddedResourceId": null
     },
     "modeSelect": {
-      "greetingL10n": "WebTrit",
+      "greetingL10n": null,
       "actions": [
         {
           "enabled": true,
           "type": "login",
           "titleL10n": "login_Button_signUpToDemoInstance",
           "embeddedId": null
-        },
-        {
-          "enabled": false,
-          "type": "embedded",
-          "titleL10n": "login_Button_signUpToDemoInstance",
-          "embeddedId": "example_embedded_login"
-        },
-        {
-          "enabled": false,
-          "type": "embedded",
-          "titleL10n": "login_Button_signInMediaQueryExample",
-          "embeddedId": "example_embedded_media_query"
         }
       ]
     }
@@ -39,7 +27,7 @@
           "type": "favorites"
         },
         {
-          "enabled": true,
+          "enabled": false,
           "initial": false,
           "titleL10n": "main_BottomNavigationBarItemLabel_recents",
           "icon": "0xe03a",
@@ -64,27 +52,11 @@
           "type": "keypad"
         },
         {
-          "enabled": true,
+          "enabled": false,
           "initial": false,
           "titleL10n": "main_BottomNavigationBarItemLabel_chats",
           "icon": "0xe155",
           "type": "messaging"
-        },
-        {
-          "enabled": false,
-          "initial": false,
-          "titleL10n": "main_BottomNavigationBarItemLabel_embedded",
-          "icon": "0xe2ce",
-          "embeddedResourceId": "example_embedded_payload_data",
-          "type": "embedded"
-        },
-        {
-          "enabled": false,
-          "initial": false,
-          "titleL10n": "main_BottomNavigationBarItemLabel_embedded_spa_example",
-          "icon": "0xe2ce",
-          "embeddedResourceId": "example_embedded_spa",
-          "type": "embedded"
         }
       ]
     },
@@ -93,31 +65,9 @@
   "settingsConfig": {
     "sections": [
       {
-        "titleL10n": "settings_ListViewTileTitle_features",
-        "enabled": false,
-        "items": [
-          {
-            "enabled": false,
-            "titleL10n": "settings_ListViewTileTitle_voicemail",
-            "type": "voicemail",
-            "icon": "0xe6c1",
-            "iconColor": null,
-            "embeddedResourceId": null
-          }
-        ]
-      },
-      {
         "titleL10n": "settings_ListViewTileTitle_settings",
         "enabled": true,
         "items": [
-          {
-            "enabled": true,
-            "titleL10n": "settings_ListViewTileTitle_presence",
-            "type": "presence",
-            "icon": "0xf4c8",
-            "iconColor": null,
-            "embeddedResourceId": null
-          },
           {
             "enabled": true,
             "titleL10n": "settings_ListViewTileTitle_network",
@@ -136,33 +86,9 @@
           },
           {
             "enabled": true,
-            "titleL10n": "settings_ListViewTileTitle_callerId",
-            "type": "callerId",
-            "icon": "0xf26e",
-            "iconColor": null,
-            "embeddedResourceId": null
-          },
-          {
-            "enabled": true,
             "titleL10n": "settings_ListViewTileTitle_language",
             "type": "language",
             "icon": "0xe366",
-            "iconColor": null,
-            "embeddedResourceId": null
-          },
-          {
-            "enabled": true,
-            "titleL10n": "settings_ListViewTileTitle_themeMode",
-            "type": "themeMode",
-            "icon": "0xe518",
-            "iconColor": null,
-            "embeddedResourceId": null
-          },
-          {
-            "enabled": false,
-            "titleL10n": "settings_ListViewTileTitle_help",
-            "type": "help",
-            "icon": "0xe30b",
             "iconColor": null,
             "embeddedResourceId": null
           },
@@ -172,7 +98,7 @@
             "type": "terms",
             "icon": "0xeedf",
             "iconColor": null,
-            "embeddedResourceId": "privacy-policy-for-webtrit-app"
+            "embeddedResourceId": "0"
           },
           {
             "enabled": true,
@@ -195,44 +121,6 @@
             "icon": "0xee79",
             "iconColor": null,
             "embeddedResourceId": null
-          },
-          {
-            "enabled": true,
-            "titleL10n": "settings_ListViewTileTitle_accountDelete",
-            "type": "deleteAccount",
-            "icon": "0xe1bb",
-            "iconColor": null,
-            "embeddedResourceId": null
-          },
-          {
-            "enabled": false,
-            "titleL10n": "settings_ListViewTileTitle_embedded1",
-            "type": "embedded",
-            "icon": "0xe3a2",
-            "iconColor": null,
-            "embeddedResourceId": "example_embedded_registration"
-          },
-          {
-            "enabled": false,
-            "titleL10n": "settings_ListViewTileTitle_embedded2",
-            "type": "embedded",
-            "icon": "0xe3a2",
-            "iconColor": null,
-            "embeddedResourceId": "example_embedded_statistics"
-          }
-        ]
-      },
-      {
-        "titleL10n": "settings_ListViewTileTitle_embedded_section1",
-        "enabled": false,
-        "items": [
-          {
-            "enabled": true,
-            "titleL10n": "settings_ListViewTileTitle_embedded3",
-            "type": "embedded",
-            "icon": "0xe3a2",
-            "iconColor": null,
-            "embeddedResourceId": "example_embedded_rating"
           }
         ]
       }
@@ -287,20 +175,5 @@
       }
     }
   },
-  "supported": [
-    {
-      "mode": "system",
-      "type": "themeMode"
-    },
-    {
-      "logLevel": "INFO",
-      "checkIntervalSec": 15,
-      "anonymizationEnabled": true,
-      "type": "loggingConfig"
-    },
-    {
-      "enabled": true,
-      "type": "hybridPresence"
-    }
-  ]
+  "supported": []
 }

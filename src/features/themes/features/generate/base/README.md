@@ -1,37 +1,37 @@
 # Base theme (generator source of truth)
 
-These JSON files are the **canonical "original" theme** used as the structural
-base by the AI theme generator (`ThemeComposerService`). They guarantee a
-complete, valid theme; the generator only overrides a palette-driven subset.
+These JSON files are the structural base used by the AI theme generator
+(`ThemeComposerService`). They guarantee a complete, valid theme; the generator
+overrides a palette-driven subset on top (colors, gradients, tabs, features,
+logo).
 
-## ⚠️ Do not edit by hand
+## ⚠️ Do not edit by hand — generated from the DTOs
 
-They are **copied verbatim** from the single source of truth — the
-DTO-normalized canonical artifacts in the `webtrit_appearance_theme` package
-(`<phone>/packages/webtrit_appearance_theme/canonical/*.json`). Those are
-generated from the DTOs themselves (`tool/dump_canonical.dart`) and drift-guarded
-by the package's `test/canonical_test.dart`, so they always conform to the
-current schema. Same file names here as there.
+They are produced from **pure DTO defaults** of the `webtrit_appearance_theme`
+package — the schema source of truth — via a backend-only Dart tool
+(`tool/base-theme/`). The DTOs carry sensible `@Default` content (the default tab
+list, settings sections, full widget/page structure, default palette), so the
+base is complete without copying anything from the client app.
 
-## Keeping in sync
-
-When the phone app's theme / the `webtrit_appearance_theme` package evolves,
-re-sync from a local `webtrit_phone` checkout:
-
-```bash
-# defaults WEBTRIT_PHONE_DIR to ../webtrit_phone
-npm run sync:base-theme
-
-# or point at an explicit checkout
-WEBTRIT_PHONE_DIR=/path/to/webtrit_phone npm run sync:base-theme
+```
+webtrit_appearance_theme (DTOs)
+  └─ ColorSchemeConfig() / ThemeWidgetConfig() / ThemePageConfig() / AppConfig()  .toJson()
+        ↓ (tool/base-theme — Dart, reads the package; nothing written to the client)
+     src/.../generate/base/*.json
+        ↓ ThemeComposerService overlays design (M3 colors, gradients, tabs, features, logo)
+     generated theme
 ```
 
-CI / drift detection (fails if these files diverged from the source):
+## Regenerating / drift check
+
+Requires the Dart SDK and a sibling `webtrit_phone` checkout (the path dependency
+in `tool/base-theme/pubspec.yaml`).
 
 ```bash
-npm run check:base-theme
+npm run sync:base-theme    # regenerate base/*.json from current DTO defaults
+npm run check:base-theme   # exit 1 if base drifted from the DTOs (CI)
 ```
 
-> The generator is defensive about schema evolution: unknown fields are carried
-> through, and every field is optional-with-defaults, so a stale base degrades
-> gracefully rather than breaking generation.
+When the DTOs change, re-run `sync:base-theme` and commit the result; the
+generator is defensive (all fields optional-with-defaults, unknown fields carried
+through), so a stale base degrades gracefully rather than breaking generation.
