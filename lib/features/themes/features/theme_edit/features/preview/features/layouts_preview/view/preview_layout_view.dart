@@ -39,6 +39,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   FeatureAccess? _lastFeatureAccess;
   ThemeMode? _lastThemeMode;
   ThemeSettings? _lastThemeSettings;
+  bool? _lastInteractive;
 
   @override
   void initState() {
@@ -73,10 +74,14 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
 
     final themeSettings = cubitState.themeSettings;
 
-    if (featureAccess != _lastFeatureAccess || themeMode != _lastThemeMode || themeSettings != _lastThemeSettings) {
+    if (featureAccess != _lastFeatureAccess ||
+        themeMode != _lastThemeMode ||
+        themeSettings != _lastThemeSettings ||
+        widget.interactive != _lastInteractive) {
       _lastFeatureAccess = featureAccess;
       _lastThemeMode = themeMode;
       _lastThemeSettings = themeSettings;
+      _lastInteractive = widget.interactive;
       _cachedScreenshots = _generatePhoneScreenshots(featureAccess, themeMode, themeSettings);
     }
 
@@ -127,6 +132,26 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     final isMessagingPreview = bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
     final isEmbeddedPreview = bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
 
+    final hasAnyMainTab =
+        isFavoritePreview ||
+        isRecentsPreview ||
+        isContactPreview ||
+        isKeypadPreview ||
+        isMessagingPreview ||
+        isEmbeddedPreview;
+    // First enabled tab — used as the initial flavor for the single interactive main screen.
+    final firstMainFlavor = isFavoritePreview
+        ? MainFlavor.favorites
+        : isRecentsPreview
+        ? MainFlavor.recents
+        : isContactPreview
+        ? MainFlavor.contacts
+        : isKeypadPreview
+        ? MainFlavor.keypad
+        : isMessagingPreview
+        ? MainFlavor.messaging
+        : MainFlavor.embedded;
+
     // Adapter capabilities gate the capability-specific preview screens, so toggling
     // a capability in the editor immediately adds/removes the matching screenshot.
     final coreSupport = featureAccess?.coreSupport;
@@ -141,42 +166,59 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       // Login
       const LoginModeSelectScreenScreenshot(),
       const LoginCoreUrlAssignScreenScreenshot(),
-      if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
-      if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
-      if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
+      // Login request: when interactive, collapse the otp/password/signup tab duplicates
+      // into a single switchable screen; otherwise keep a snapshot per tab.
       if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
-      if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
-      const LoginSwitchScreenScreenshot(),
+      if (!isCustomSignupPreview && widget.interactive) const LoginScreenshot(),
+      if (!isCustomSignupPreview && !widget.interactive) const LoginOtpSignInScreenshot(),
+      if (!isCustomSignupPreview && !widget.interactive) const LoginPasswordSignInScreenshot(),
+      // Verify steps and the switch-screen demo reuse the same login chrome; they read as
+      // duplicates next to the interactive login, so keep them only in snapshot mode.
+      if (!isCustomSignupPreview && !widget.interactive) const LoginOtpVerifyInScreenshot(),
+      if (!isCustomSignupPreview && !widget.interactive) const LoginSignUpVerifyScreenshot(),
+      if (!widget.interactive) const LoginSwitchScreenScreenshot(),
       const UserAgreementScreenScreenshot(),
 
-      // Main tabs
-      if (isFavoritePreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
-      if (isRecentsPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
-      if (isContactPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
-      if (isKeypadPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
-      if (isKeypadPreview)
+      // Main tabs: when interactive, a single screen whose bottom menu switches the body;
+      // otherwise a snapshot per enabled tab (plus the dialed-keypad variant).
+      if (widget.interactive && hasAnyMainTab)
         MainScreenScreenshot(
-          key: ValueKey((bottomMenuFeature, 'keypad_dialing')),
-          MainFlavor.keypad,
+          key: bottomMenuKey,
+          firstMainFlavor,
           loginLabel != null ? Text(loginLabel) : null,
-          keypadDialing: true,
+          interactive: true,
         ),
-      if (isMessagingPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
-      if (isEmbeddedPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.embedded, loginLabel != null ? Text(loginLabel) : null),
+      if (!widget.interactive) ...[
+        if (isFavoritePreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
+        if (isRecentsPreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
+        if (isContactPreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
+        if (isKeypadPreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
+        if (isKeypadPreview)
+          MainScreenScreenshot(
+            key: ValueKey((bottomMenuFeature, 'keypad_dialing')),
+            MainFlavor.keypad,
+            loginLabel != null ? Text(loginLabel) : null,
+            keypadDialing: true,
+          ),
+        if (isMessagingPreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
+        if (isEmbeddedPreview)
+          MainScreenScreenshot(key: bottomMenuKey, MainFlavor.embedded, loginLabel != null ? Text(loginLabel) : null),
+      ],
 
-      // Calls
-      const CallScreenScreenshot(false),
-      const CallScreenScreenshot(
-        true,
-        localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
-        remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
-      ),
+      // Calls: the audio/video variants render the same call chrome, so collapse to one
+      // when interactive (and make its mute/hold buttons reactive); keep both as snapshots otherwise.
+      CallScreenScreenshot(false, interactive: widget.interactive),
+      if (!widget.interactive)
+        const CallScreenScreenshot(
+          true,
+          localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
+          remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
+        ),
 
       // Contact & messaging
       const ContactScreenScreenshot(),
