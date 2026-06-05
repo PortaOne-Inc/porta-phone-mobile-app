@@ -1,264 +1,204 @@
-import {
-    Injectable,
-    Logger,
-    NotFoundException,
-} from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 
+import { deepMerge, nowIso } from '../../../../common';
 import { Theme } from '../../entities/theme';
 import { ColorScheme } from '../color-schemes/entities/color-scheme.entity';
 import { WidgetConfigEntity } from '../widget-configs/entities/widget-config.entity';
 import { PageConfigEntity } from '../page-configs/entities/page-config.entity';
-import { NudgeThemeDto } from './dto/nudge-theme.dto';
+import { FeatureAccessService } from '../feature-access/feature-access.service';
 import { GenerateThemeDto } from './dto/create-generate.dto';
-import { ColorSchemeGenerator } from './generators/color-scheme.generator';
-import { WidgetConfigGenerator } from './generators/widget-config.generator';
-import { PageConfigGenerator } from './generators/page-config.generator';
+import { NudgeThemeDto } from './dto/nudge-theme.dto';
+import { AssetCatalogService } from './compose/asset-catalog.service';
+import { BriefGeneratorService } from './brief/brief-generator.service';
+import { ThemeComposerService } from './compose/theme-composer.service';
+
+type Variant = 'light' | 'dark';
+
+interface ConfigEntity {
+  id: string;
+  applicationId: string;
+  themeId: string;
+  variant: Variant;
+  config: Record<string, any>;
+  version?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/**
+ * AI theme generator.
+ *
+ * Pipeline: prompt (+ asset catalog) -> ThemeBrief (Anthropic, structured) ->
+ * deterministic ThemeComposer (M3 palette for light+dark on top of the
+ * canonical base, recolored tabs, bound assets, all features enabled) ->
+ * persist the full document set. The HTTP API is unchanged.
+ */
 @Injectable()
 export class GenerateThemesService {
-    private readonly logger = new Logger(GenerateThemesService.name);
+  private readonly logger = new Logger(GenerateThemesService.name);
 
-    constructor(
-        @InjectRepository(Theme)
-        private readonly themeRepo: BaseFirestoreRepository<Theme>,
-        @InjectRepository(ColorScheme)
-        private readonly colorSchemeRepo: BaseFirestoreRepository<ColorScheme>,
-        @InjectRepository(WidgetConfigEntity)
-        private readonly widgetCfgRepo: BaseFirestoreRepository<WidgetConfigEntity>,
-        @InjectRepository(PageConfigEntity)
-        private readonly pageCfgRepo: BaseFirestoreRepository<PageConfigEntity>,
-        private readonly colorSchemeGen: ColorSchemeGenerator,
-        private readonly widgetConfigGen: WidgetConfigGenerator,
-        private readonly pageConfigGen: PageConfigGenerator,
-    ) {}
+  constructor(
+    @InjectRepository(Theme)
+    private readonly themeRepo: BaseFirestoreRepository<Theme>,
+    @InjectRepository(ColorScheme)
+    private readonly colorSchemeRepo: BaseFirestoreRepository<ColorScheme>,
+    @InjectRepository(WidgetConfigEntity)
+    private readonly widgetCfgRepo: BaseFirestoreRepository<WidgetConfigEntity>,
+    @InjectRepository(PageConfigEntity)
+    private readonly pageCfgRepo: BaseFirestoreRepository<PageConfigEntity>,
+    private readonly featureAccess: FeatureAccessService,
+    private readonly assetCatalog: AssetCatalogService,
+    private readonly briefGen: BriefGeneratorService,
+    private readonly composer: ThemeComposerService,
+  ) {}
 
-    async generateAndCreate(
-        _uid: string,
-        applicationId: string,
-        dto: GenerateThemeDto,
-    ) {
-        const variant: 'light' | 'dark' = dto.variant ?? 'light';
-        const theme = await this.themeRepo.create({
-            applicationId,
-            title: dto.title,
-        } as Theme);
+  async generateAndCreate(uid: string, applicationId: string, dto: GenerateThemeDto) {
+    const primary: Variant = dto.variant ?? 'light';
+    const theme = await this.themeRepo.create({ applicationId, title: dto.title } as Theme);
 
-        const fullPrompt = [dto.prompt.trim(), '', 'Context:', dto.description.trim()].join('\n');
+    const fullPrompt = [dto.prompt.trim(), '', 'Context:', (dto.description ?? '').trim()]
+      .join('\n')
+      .trim();
 
-        const colorCfg = await this.colorSchemeGen.generate(fullPrompt, dto.seedColor ?? undefined);
+    const { brief, llmUsed } = await this.resolveBrief(uid, applicationId, fullPrompt, dto.seedColor);
+    const composed = this.composer.compose(brief);
 
-        const [widgetCfg, pageCfg] = await Promise.all([
-            this.widgetConfigGen.generate(fullPrompt, colorCfg),
-            this.pageConfigGen.generate(fullPrompt, colorCfg),
-        ]);
+    const variants: Variant[] = ['light', 'dark'];
+    await Promise.all(
+      variants.flatMap((v) => [
+        this.upsert(this.colorSchemeRepo, theme.id, applicationId, v, composed.colorScheme[v]),
+        this.upsert(this.widgetCfgRepo, theme.id, applicationId, v, composed.widget[v]),
+        this.upsert(this.pageCfgRepo, theme.id, applicationId, v, composed.page[v]),
+      ]),
+    );
 
-        const csEntity = await this.saveColorScheme(theme.id, applicationId, variant, colorCfg);
-        const wcEntity = await this.saveWidgetConfig(theme.id, applicationId, variant, widgetCfg);
-        const pcEntity = await this.savePageConfig(theme.id, applicationId, variant, pageCfg);
+    await this.featureAccess.upsertByTheme(applicationId, theme.id, {
+      status: 'draft',
+      config: composed.appConfig,
+    });
 
-        return {
-            theme,
-            colorSchemeConfig: csEntity.config,
-            themeWidgetConfig: wcEntity.config,
-            themePageConfig: { [variant]: pcEntity.config },
-        };
+    const assetsApplied = await this.assetCatalog.link(uid, theme.id, composed.assetIds);
+
+    return {
+      theme,
+      colorSchemeConfig: composed.colorScheme[primary],
+      themeWidgetConfig: composed.widget[primary],
+      themePageConfig: { light: composed.page.light, dark: composed.page.dark },
+      featureAccessConfig: composed.appConfig,
+      meta: {
+        llmUsed,
+        degraded: !llmUsed,
+        variantsGenerated: variants,
+        primaryVariant: primary,
+        seedColor: brief.palette.seed,
+        assetsApplied,
+      },
+    };
+  }
+
+  async nudgeAndUpdate(uid: string, applicationId: string, themeId: string, dto: NudgeThemeDto) {
+    const variant: Variant = dto.variant ?? 'light';
+    const targets = dto.targets?.length
+      ? dto.targets
+      : (['colorScheme', 'widgetConfig', 'pageConfig'] as const);
+    const mode = dto.mode ?? 'patch';
+
+    const theme = await this.themeRepo.findById(themeId).catch(() => null);
+    if (!theme || theme.applicationId !== applicationId) {
+      throw new NotFoundException('Theme not found');
     }
 
-    async nudgeAndUpdate(
-        _uid: string,
-        applicationId: string,
-        themeId: string,
-        dto: NudgeThemeDto,
-    ) {
-        const variant: 'light' | 'dark' = dto.variant ?? 'light';
-        const targets = dto.targets?.length
-            ? dto.targets
-            : (['colorScheme', 'widgetConfig', 'pageConfig'] as const);
-        const mode = dto.mode ?? 'patch';
+    const { brief, llmUsed } = await this.resolveBrief(
+      uid,
+      applicationId,
+      dto.prompt,
+      dto.seedColorHint ?? undefined,
+    );
+    const composed = this.composer.compose(brief);
 
-        const theme = await this.themeRepo.findById(themeId).catch(() => null);
-        if (!theme || theme.applicationId !== applicationId) {
-            throw new NotFoundException('Theme not found');
-        }
+    const next: Record<string, Record<string, any>> = {
+      colorScheme: composed.colorScheme[variant],
+      widgetConfig: composed.widget[variant],
+      pageConfig: composed.page[variant],
+    };
+    const repoByTarget = {
+      colorScheme: this.colorSchemeRepo,
+      widgetConfig: this.widgetCfgRepo,
+      pageConfig: this.pageCfgRepo,
+    } as const;
 
-        const cfgId = `${themeId}_${variant}`;
-        const [csPrev, wcPrev, pcPrev] = await Promise.all([
-            this.colorSchemeRepo.findById(cfgId).catch(() => null),
-            this.widgetCfgRepo.findById(cfgId).catch(() => null),
-            this.pageCfgRepo.findById(cfgId).catch(() => null),
-        ]);
-
-        let colorSchemeConfig =
-            csPrev?.config ?? this.colorSchemeGen.fallback(dto.seedColorHint ?? undefined);
-        let widgetConfig =
-            wcPrev?.config ?? this.widgetConfigGen.fallback(colorSchemeConfig);
-        let pageConfig =
-            pcPrev?.config ?? this.pageConfigGen.fallback(colorSchemeConfig);
-
-        if (targets.includes('colorScheme')) {
-            const updated = await this.colorSchemeGen.nudge(
-                dto.prompt,
-                colorSchemeConfig,
-                mode,
-                dto.seedColorHint ?? undefined,
-            );
-            colorSchemeConfig = updated ?? colorSchemeConfig;
-        }
-        if (targets.includes('widgetConfig')) {
-            const updated = await this.widgetConfigGen.nudge(
-                dto.prompt,
-                widgetConfig,
-                colorSchemeConfig,
-                mode,
-            );
-            widgetConfig = updated ?? widgetConfig;
-        }
-        if (targets.includes('pageConfig')) {
-            const updated = await this.pageConfigGen.nudge(
-                dto.prompt,
-                pageConfig,
-                colorSchemeConfig,
-                mode,
-            );
-            pageConfig = updated ?? pageConfig;
-        }
-
-        const now = new Date().toISOString();
-
-        await Promise.all([
-            targets.includes('colorScheme')
-                ? this.upsertColorScheme(cfgId, applicationId, themeId, variant, colorSchemeConfig, csPrev?.createdAt ?? now, now)
-                : Promise.resolve(),
-            targets.includes('widgetConfig')
-                ? this.upsertWidgetConfig(cfgId, applicationId, themeId, variant, widgetConfig, wcPrev?.createdAt ?? now, now)
-                : Promise.resolve(),
-            targets.includes('pageConfig')
-                ? this.upsertPageConfig(cfgId, applicationId, themeId, variant, pageConfig, pcPrev?.createdAt ?? now, now)
-                : Promise.resolve(),
-        ]);
-
-        return {
-            theme,
-            colorSchemeConfig,
-            themeWidgetConfig: widgetConfig,
-            themePageConfig: { [variant]: pageConfig },
-            updated: targets,
-            mode,
-        };
+    const updated: string[] = [];
+    for (const target of targets) {
+      const repo = repoByTarget[target] as BaseFirestoreRepository<ConfigEntity>;
+      const id = `${themeId}_${variant}`;
+      const prev = await repo.findById(id).catch(() => null);
+      const merged =
+        mode === 'replace' || !prev?.config
+          ? next[target]
+          : deepMerge(structuredClone(prev.config), next[target]);
+      await this.upsert(repo, themeId, applicationId, variant, merged);
+      updated.push(target);
     }
 
-    private async saveColorScheme(
-        themeId: string,
-        applicationId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-    ): Promise<ColorScheme> {
-        const id = `${themeId}_${variant}`;
-        const now = new Date().toISOString();
-        const existing = await this.colorSchemeRepo.findById(id).catch(() => null);
-        const entity: ColorScheme = {
-            id,
-            applicationId,
-            themeId,
-            variant,
-            config,
-            createdAt: existing?.createdAt ?? now,
-            updatedAt: now,
-        };
-        if (existing) await this.colorSchemeRepo.update(entity);
-        else await this.colorSchemeRepo.create(entity);
-        return entity;
-    }
+    const assetsApplied = await this.assetCatalog.link(uid, themeId, composed.assetIds);
 
-    private async saveWidgetConfig(
-        themeId: string,
-        applicationId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-    ): Promise<WidgetConfigEntity> {
-        const id = `${themeId}_${variant}`;
-        const now = new Date().toISOString();
-        const existing = await this.widgetCfgRepo.findById(id).catch(() => null);
-        const entity: WidgetConfigEntity = {
-            id,
-            applicationId,
-            themeId,
-            variant,
-            config,
-            createdAt: existing?.createdAt ?? now,
-            updatedAt: now,
-        };
-        if (existing) await this.widgetCfgRepo.update(entity);
-        else await this.widgetCfgRepo.create(entity);
-        return entity;
-    }
+    return {
+      theme,
+      colorSchemeConfig: composed.colorScheme[variant],
+      themeWidgetConfig: composed.widget[variant],
+      themePageConfig: { [variant]: composed.page[variant] },
+      updated,
+      mode,
+      meta: { llmUsed, degraded: !llmUsed, assetsApplied },
+    };
+  }
 
-    private async savePageConfig(
-        themeId: string,
-        applicationId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-    ): Promise<PageConfigEntity> {
-        const id = `${themeId}_${variant}`;
-        const now = new Date().toISOString();
-        const existing = await this.pageCfgRepo.findById(id).catch(() => null);
-        const entity: PageConfigEntity = {
-            id,
-            applicationId,
-            themeId,
-            variant,
-            config,
-            createdAt: existing?.createdAt ?? now,
-            updatedAt: now,
-        };
-        if (existing) await this.pageCfgRepo.update(entity);
-        else await this.pageCfgRepo.create(entity);
-        return entity;
-    }
+  /**
+   * Build the ThemeBrief, seeding a starter public asset when the application
+   * has none so the generated theme references a real asset (visible in the
+   * Assets list) rather than only an inline placeholder URL.
+   */
+  private async resolveBrief(uid: string, applicationId: string, prompt: string, seedHint?: string) {
+    const isSvg = (a: { mime: string; name: string }) =>
+      a.mime === 'image/svg+xml' || a.name.toLowerCase().endsWith('.svg');
 
-    private async upsertColorScheme(
-        id: string,
-        applicationId: string,
-        themeId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-        createdAt: string,
-        updatedAt: string,
-    ): Promise<void> {
-        const entity: ColorScheme = { id, applicationId, themeId, variant, config, createdAt, updatedAt };
-        const existing = await this.colorSchemeRepo.findById(id).catch(() => null);
-        if (existing) await this.colorSchemeRepo.update(entity);
-        else await this.colorSchemeRepo.create(entity);
+    let catalog = await this.assetCatalog.catalog(uid, applicationId);
+    // Logos render as SVG only; seed a placeholder SVG if the app has none.
+    if (!catalog.some(isSvg)) {
+      const seeded = await this.assetCatalog.seedDefaultAsset(uid, applicationId);
+      if (seeded) catalog = [...catalog, seeded];
     }
+    const { brief, llmUsed } = await this.briefGen.generate(prompt, seedHint, catalog);
+    if (!brief.assets?.logoAssetId) {
+      const logo = catalog.find(isSvg) ?? catalog[0];
+      if (logo) brief.assets = { ...(brief.assets ?? {}), logoAssetId: logo.id };
+    }
+    return { brief, llmUsed };
+  }
 
-    private async upsertWidgetConfig(
-        id: string,
-        applicationId: string,
-        themeId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-        createdAt: string,
-        updatedAt: string,
-    ): Promise<void> {
-        const entity: WidgetConfigEntity = { id, applicationId, themeId, variant, config, createdAt, updatedAt };
-        const existing = await this.widgetCfgRepo.findById(id).catch(() => null);
-        if (existing) await this.widgetCfgRepo.update(entity);
-        else await this.widgetCfgRepo.create(entity);
-    }
-
-    private async upsertPageConfig(
-        id: string,
-        applicationId: string,
-        themeId: string,
-        variant: 'light' | 'dark',
-        config: Record<string, any>,
-        createdAt: string,
-        updatedAt: string,
-    ): Promise<void> {
-        const entity: PageConfigEntity = { id, applicationId, themeId, variant, config, createdAt, updatedAt };
-        const existing = await this.pageCfgRepo.findById(id).catch(() => null);
-        if (existing) await this.pageCfgRepo.update(entity);
-        else await this.pageCfgRepo.create(entity);
-    }
+  private async upsert(
+    repo: BaseFirestoreRepository<any>,
+    themeId: string,
+    applicationId: string,
+    variant: Variant,
+    config: Record<string, any>,
+  ): Promise<void> {
+    const id = `${themeId}_${variant}`;
+    const now = nowIso();
+    const existing = await repo.findById(id).catch(() => null);
+    const entity: ConfigEntity = {
+      id,
+      applicationId,
+      themeId,
+      variant,
+      config,
+      version: (existing?.version ?? 0) + 1,
+      createdAt: existing?.createdAt ?? now,
+      updatedAt: now,
+    };
+    if (existing) await repo.update(entity as any);
+    else await repo.create(entity as any);
+  }
 }

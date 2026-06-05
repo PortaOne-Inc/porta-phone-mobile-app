@@ -1,25 +1,27 @@
 import { Module } from '@nestjs/common';
 import { FireormModule } from 'nestjs-fireorm';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { ArtifactsModule } from '../../../artifacts';
+
 import { CommonModule } from '../../../../common/common.module';
 import { AssetsModule } from '../../../assets/assets.module';
 import { Theme } from '../../entities/theme';
-import { GenerateThemesController } from './generate.controller';
-import { GenerateThemesService } from './generate.service';
-import { ThemesService } from '../../themes.service';
 import { ColorScheme } from '../color-schemes/entities/color-scheme.entity';
 import { WidgetConfigEntity } from '../widget-configs/entities/widget-config.entity';
 import { PageConfigEntity } from '../page-configs/entities/page-config.entity';
-import { OpenAiClientService } from './generators/openai-client.service';
-import { ColorSchemeGenerator } from './generators/color-scheme.generator';
-import { WidgetConfigGenerator } from './generators/widget-config.generator';
-import { PageConfigGenerator } from './generators/page-config.generator';
+import { FeatureAccess } from '../feature-access/entities/feature-access.entity';
+import { FeatureAccessService } from '../feature-access/feature-access.service';
+
+import { GenerateThemesController } from './generate.controller';
+import { GenerateThemesService } from './generate.service';
+import { BaseThemeLoader } from './base/base-theme.loader';
+import { AnthropicClientService } from './generators/anthropic-client.service';
+import { BriefGeneratorService } from './brief/brief-generator.service';
+import { ThemeComposerService } from './compose/theme-composer.service';
+import { AssetCatalogService } from './compose/asset-catalog.service';
 
 @Module({
   imports: [
     CommonModule,
-    ArtifactsModule,
     AssetsModule,
     ThrottlerModule.forRoot([
       { name: 'generate', ttl: 60_000, limit: 5 },
@@ -30,16 +32,18 @@ import { PageConfigGenerator } from './generators/page-config.generator';
       ColorScheme,
       WidgetConfigEntity,
       PageConfigEntity,
+      FeatureAccess,
     ]),
   ],
   controllers: [GenerateThemesController],
   providers: [
     GenerateThemesService,
-    ThemesService,
-    OpenAiClientService,
-    ColorSchemeGenerator,
-    WidgetConfigGenerator,
-    PageConfigGenerator,
+    FeatureAccessService,
+    BaseThemeLoader,
+    AnthropicClientService,
+    BriefGeneratorService,
+    ThemeComposerService,
+    AssetCatalogService,
   ],
 })
 export class GenerateThemesModule {}
