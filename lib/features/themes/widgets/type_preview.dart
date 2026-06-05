@@ -7,11 +7,13 @@ class TypePreview extends StatelessWidget {
     required this.screens,
     required this.screenFocus,
     required this.isFrameVisible,
+    this.interactive = false,
     super.key,
   });
 
   final int screenFocus;
   final bool isFrameVisible;
+  final bool interactive;
   final List<Widget> screens;
 
   @override
@@ -25,7 +27,7 @@ class TypePreview extends StatelessWidget {
           key: ValueKey(screenFocus),
           isFrameVisible: isFrameVisible,
           constraints: const BoxConstraints(),
-          child: screens[screenFocus],
+          child: IgnorePointer(ignoring: !interactive, child: screens[screenFocus]),
         ),
       );
     }

@@ -21,9 +21,9 @@ class DrawerPreview extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16),
       child: Center(
         child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.trackpad},
-          ),
+          behavior: ScrollConfiguration.of(
+            context,
+          ).copyWith(dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.trackpad}),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             cacheExtent: 200,
@@ -39,17 +39,13 @@ class DrawerPreview extends StatelessWidget {
                   onTap: () => onTapScreen(index),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      border: isFocused
-                          ? Border.all(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 2,
-                            )
-                          : null,
+                      border: isFocused ? Border.all(color: Theme.of(context).colorScheme.primary, width: 2) : null,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: TypeOfPreview(
                       constraints: const BoxConstraints(maxHeight: 124),
-                      child: screenshots[index],
+                      // Thumbnails are tap-to-focus only; never forward pointers to the screenshot.
+                      child: IgnorePointer(child: screenshots[index]),
                     ),
                   ),
                 ),

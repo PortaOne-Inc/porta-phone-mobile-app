@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PreviewThemeState {
 
- bool get frameVisible;
+ bool get frameVisible; bool get interactive;
 /// Create a copy of PreviewThemeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PreviewThemeStateCopyWith<PreviewThemeState> get copyWith => _$PreviewThemeStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PreviewThemeState&&(identical(other.frameVisible, frameVisible) || other.frameVisible == frameVisible));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PreviewThemeState&&(identical(other.frameVisible, frameVisible) || other.frameVisible == frameVisible)&&(identical(other.interactive, interactive) || other.interactive == interactive));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,frameVisible);
+int get hashCode => Object.hash(runtimeType,frameVisible,interactive);
 
 @override
 String toString() {
-  return 'PreviewThemeState(frameVisible: $frameVisible)';
+  return 'PreviewThemeState(frameVisible: $frameVisible, interactive: $interactive)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PreviewThemeStateCopyWith<$Res>  {
   factory $PreviewThemeStateCopyWith(PreviewThemeState value, $Res Function(PreviewThemeState) _then) = _$PreviewThemeStateCopyWithImpl;
 @useResult
 $Res call({
- bool frameVisible
+ bool frameVisible, bool interactive
 });
 
 
@@ -62,9 +62,10 @@ class _$PreviewThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of PreviewThemeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? frameVisible = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? frameVisible = null,Object? interactive = null,}) {
   return _then(_self.copyWith(
 frameVisible: null == frameVisible ? _self.frameVisible : frameVisible // ignore: cast_nullable_to_non_nullable
+as bool,interactive: null == interactive ? _self.interactive : interactive // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -147,10 +148,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool frameVisible)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool frameVisible,  bool interactive)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PreviewThemeState() when $default != null:
-return $default(_that.frameVisible);case _:
+return $default(_that.frameVisible,_that.interactive);case _:
   return orElse();
 
 }
@@ -168,10 +169,10 @@ return $default(_that.frameVisible);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool frameVisible)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool frameVisible,  bool interactive)  $default,) {final _that = this;
 switch (_that) {
 case _PreviewThemeState():
-return $default(_that.frameVisible);}
+return $default(_that.frameVisible,_that.interactive);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,10 +186,10 @@ return $default(_that.frameVisible);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool frameVisible)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool frameVisible,  bool interactive)?  $default,) {final _that = this;
 switch (_that) {
 case _PreviewThemeState() when $default != null:
-return $default(_that.frameVisible);case _:
+return $default(_that.frameVisible,_that.interactive);case _:
   return null;
 
 }
@@ -200,10 +201,11 @@ return $default(_that.frameVisible);case _:
 
 
 class _PreviewThemeState implements PreviewThemeState {
-  const _PreviewThemeState({required this.frameVisible});
+  const _PreviewThemeState({required this.frameVisible, required this.interactive});
   
 
 @override final  bool frameVisible;
+@override final  bool interactive;
 
 /// Create a copy of PreviewThemeState
 /// with the given fields replaced by the non-null parameter values.
@@ -215,16 +217,16 @@ _$PreviewThemeStateCopyWith<_PreviewThemeState> get copyWith => __$PreviewThemeS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PreviewThemeState&&(identical(other.frameVisible, frameVisible) || other.frameVisible == frameVisible));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PreviewThemeState&&(identical(other.frameVisible, frameVisible) || other.frameVisible == frameVisible)&&(identical(other.interactive, interactive) || other.interactive == interactive));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,frameVisible);
+int get hashCode => Object.hash(runtimeType,frameVisible,interactive);
 
 @override
 String toString() {
-  return 'PreviewThemeState(frameVisible: $frameVisible)';
+  return 'PreviewThemeState(frameVisible: $frameVisible, interactive: $interactive)';
 }
 
 
@@ -235,7 +237,7 @@ abstract mixin class _$PreviewThemeStateCopyWith<$Res> implements $PreviewThemeS
   factory _$PreviewThemeStateCopyWith(_PreviewThemeState value, $Res Function(_PreviewThemeState) _then) = __$PreviewThemeStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool frameVisible
+ bool frameVisible, bool interactive
 });
 
 
@@ -252,9 +254,10 @@ class __$PreviewThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of PreviewThemeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? frameVisible = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? frameVisible = null,Object? interactive = null,}) {
   return _then(_PreviewThemeState(
 frameVisible: null == frameVisible ? _self.frameVisible : frameVisible // ignore: cast_nullable_to_non_nullable
+as bool,interactive: null == interactive ? _self.interactive : interactive // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -17,9 +17,12 @@ import 'package:webtrit_phone/utils/utils.dart';
 import 'package:domain/domain.dart';
 
 class PreviewLayoutView extends StatefulWidget {
-  const PreviewLayoutView({required this.frameVisibility, super.key});
+  const PreviewLayoutView({required this.frameVisibility, required this.interactive, super.key});
 
   final bool frameVisibility;
+
+  /// Allows pointer interaction with the focused phone preview (thumbnails stay tap-to-focus).
+  final bool interactive;
 
   @override
   State<PreviewLayoutView> createState() => _PreviewLayoutViewState();
@@ -88,7 +91,12 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
       orientation: ResizableOrientation.vertical,
       children: [
         (_) => Align(
-          child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: widget.frameVisibility),
+          child: TypePreview(
+            screens: screenshots,
+            screenFocus: focusPosition,
+            isFrameVisible: widget.frameVisibility,
+            interactive: widget.interactive,
+          ),
         ),
         (_) =>
             DrawerPreview(screenshots: screenshots, focusScreenPosition: focusPosition, onTapScreen: _setFocusedScreen),
@@ -217,7 +225,10 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
         hybridPresenceSupport: featureAccess?.sipPresenceConfig.hybridPresenceSupport ?? false,
         blfViaSipSupport: featureAccess?.sipPresenceConfig.dialogsViaSipBlfSupport ?? false,
         presenceViaSipSupport: featureAccess?.sipPresenceConfig.presenceViaSipSupport ?? false,
-        child: ScreenshotApp(appBloc: appBloc, child: screen),
+        // Pointer handling is decided per surface by TypePreview/DrawerPreview
+        // (focused preview is toggleable, thumbnails stay tap-to-focus), so the
+        // screenshot itself must not swallow pointers here.
+        child: ScreenshotApp(appBloc: appBloc, child: screen, ignorePointer: false),
       ),
     );
   }

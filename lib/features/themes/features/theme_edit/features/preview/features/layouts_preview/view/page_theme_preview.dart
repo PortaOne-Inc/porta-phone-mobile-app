@@ -14,7 +14,7 @@ class PageThemePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PreviewThemeCubit, PreviewThemeState>(
       builder: (BuildContext context, PreviewThemeState state) {
-        return PreviewLayoutView(frameVisibility: state.frameVisible);
+        return PreviewLayoutView(frameVisibility: state.frameVisible, interactive: state.interactive);
       },
     );
   }

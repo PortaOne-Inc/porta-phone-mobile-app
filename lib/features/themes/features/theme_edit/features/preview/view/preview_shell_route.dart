@@ -20,6 +20,8 @@ class PreviewShellRoute extends StatelessWidget {
           appBar: MenuPreviewToolbar(
             onFrameTab: previewCubit.setFrame,
             isEnableFrame: state.frameVisible,
+            onInteractiveTab: previewCubit.setInteractive,
+            isInteractive: state.interactive,
           ),
           body: child,
         );
