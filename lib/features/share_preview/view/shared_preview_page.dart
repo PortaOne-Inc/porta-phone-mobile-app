@@ -12,7 +12,6 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
-import 'package:webtrit_configurator/features/themes/constants/constants.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/mocks/mocks.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 import 'package:webtrit_configurator/mocks/mocks.dart';
@@ -70,6 +69,7 @@ class _SharedPreviewContent extends StatefulWidget {
 
 class _SharedPreviewContentState extends State<_SharedPreviewContent> {
   bool _isDark = false;
+  bool _interactive = false;
   int _focusScreenPosition = 0;
   ErrorWidgetBuilder? _defaultErrorBuilder;
   final _previewKey = GlobalKey();
@@ -152,93 +152,6 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     }
   }
 
-  List<Widget> _generateScreenshots(FeatureAccess? featureAccess, ThemeSettings themeSettings, ThemeMode themeMode) {
-    final appBloc = MockAppBloc.allScreen(
-      themeSettings: themeSettings,
-      themeMode: themeMode,
-      locale: const Locale('en'),
-    );
-
-    final loginFeature = featureAccess?.loginConfig;
-    final bottomMenuFeature = featureAccess?.bottomMenuConfig;
-    final loginLabel = loginFeature?.titleL10n;
-
-    final isCustomSignupPreview = loginFeature?.hasEmbeddedPage ?? false;
-    final isFavoritePreview = bottomMenuFeature?.getTabEnabled<FavoritesBottomMenuTab>() != null;
-    final isContactPreview = bottomMenuFeature?.getTabEnabled<ContactsBottomMenuTab>() != null;
-    final isRecentsPreview = bottomMenuFeature?.getTabEnabled<RecentsBottomMenuTab>() != null;
-    final isKeypadPreview = bottomMenuFeature?.getTabEnabled<KeypadBottomMenuTab>() != null;
-    final isMessagingPreview = bottomMenuFeature?.getTabEnabled<MessagingBottomMenuTab>() != null;
-    final isEmbeddedPreview = bottomMenuFeature?.getTabEnabled<EmbeddedBottomMenuTab>() != null;
-
-    final bottomMenuKey = ValueKey(bottomMenuFeature);
-
-    final rawScreens = <Widget>[
-      const LoginModeSelectScreenScreenshot(),
-      const LoginCoreUrlAssignScreenScreenshot(),
-      if (!isCustomSignupPreview) const LoginOtpSignInScreenshot(),
-      if (!isCustomSignupPreview) const LoginOtpVerifyInScreenshot(),
-      if (!isCustomSignupPreview) const LoginPasswordSignInScreenshot(),
-      if (isCustomSignupPreview) const LoginSignUpScreenshot(supportedLoginTypes: [LoginType.otpSignin]),
-      if (!isCustomSignupPreview) const LoginSignUpVerifyScreenshot(),
-      const LoginSwitchScreenScreenshot(),
-      const UserAgreementScreenScreenshot(),
-      if (isFavoritePreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.favorites, loginLabel != null ? Text(loginLabel) : null),
-      if (isRecentsPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.recents, loginLabel != null ? Text(loginLabel) : null),
-      if (isContactPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.contacts, loginLabel != null ? Text(loginLabel) : null),
-      if (isKeypadPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.keypad, loginLabel != null ? Text(loginLabel) : null),
-      if (isMessagingPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.messaging, loginLabel != null ? Text(loginLabel) : null),
-      if (isEmbeddedPreview)
-        MainScreenScreenshot(key: bottomMenuKey, MainFlavor.embedded, loginLabel != null ? Text(loginLabel) : null),
-      const CallScreenScreenshot(false),
-      const CallScreenScreenshot(
-        true,
-        localePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef1,
-        remotePlaceholderImageUrl: ImagePlaceholdersConstants.previewVideoCallRef2,
-      ),
-      const ContactScreenScreenshot(),
-      const ChatConversationScreenScreenshot(),
-      const SmsConversationScreenScreenshot(),
-      const SystemNotificationsScreenScreenshot(),
-      const CallLogScreenScreenshot(),
-      const RecentCdrsScreenScreenshot(),
-      const NumberCdrsScreenScreenshot(),
-      const SettingScreenScreenshot(),
-      const MediaSettingsScreenScreenshot(key: ValueKey('MediaSettingsScreenScreenshot')),
-      const NetworkScreenScreenshot(),
-      const LanguageScreenScreenshot(),
-      const DiagnosticScreenScreenshot(),
-      const CallerIdSettingsScreenScreenshot(),
-      const PresenceSettingsScreenScreenshot(),
-      const ThemeModeScreenScreenshot(),
-      const VoicemailScreenScreenshot(),
-      const PrivacyScreenScreenshot(),
-      const AboutScreenshot(),
-      const PermissionsScreenScreenshot(),
-      const ContactsAgreementScreenScreenshot(),
-      const TeardownScreenScreenshot(),
-      const LogRecordsConsoleScreenScreenshot(),
-      const EmbeddedErrorDialogScreenshot(),
-    ];
-
-    return rawScreens.map((screen) {
-      return Provider<AppMetadataProvider>(
-        create: (_) => const MockAppMetadataProvider(),
-        child: PresenceViewParams(
-          hybridPresenceSupport: featureAccess?.sipPresenceConfig.hybridPresenceSupport ?? false,
-          blfViaSipSupport: featureAccess?.sipPresenceConfig.dialogsViaSipBlfSupport ?? false,
-          presenceViaSipSupport: featureAccess?.sipPresenceConfig.presenceViaSipSupport ?? false,
-          child: ScreenshotApp(appBloc: appBloc, child: screen),
-        ),
-      );
-    }).toList();
-  }
-
   Future<void> _downloadScreenshot() async {
     final boundary = _previewKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
     if (boundary == null) return;
@@ -265,7 +178,12 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     final themeSettings = _buildThemeSettings();
     final themeMode = _isDark ? ThemeMode.dark : ThemeMode.light;
     final featureAccess = _buildFeatureAccess();
-    final screenshots = _generateScreenshots(featureAccess, themeSettings, themeMode);
+    final screenshots = buildPreviewScreenshots(
+      featureAccess: featureAccess,
+      themeMode: themeMode,
+      themeSettings: themeSettings,
+      interactive: _interactive,
+    );
 
     final focusPosition = screenshots.isEmpty ? 0 : _focusScreenPosition.clamp(0, screenshots.length - 1);
 
@@ -291,6 +209,14 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
                 onPressed: _downloadScreenshot,
               ),
               IconButton(
+                icon: Icon(_interactive ? Icons.touch_app : Icons.touch_app_outlined),
+                tooltip: _interactive ? 'Disable interaction' : 'Enable interaction',
+                onPressed: () => setState(() {
+                  _interactive = !_interactive;
+                  _focusScreenPosition = 0;
+                }),
+              ),
+              IconButton(
                 icon: Icon(_isDark ? Icons.light_mode : Icons.dark_mode),
                 tooltip: _isDark ? 'Switch to light' : 'Switch to dark',
                 onPressed: () => setState(() {
@@ -307,7 +233,12 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
                 child: Align(
                   child: RepaintBoundary(
                     key: _previewKey,
-                    child: TypePreview(screens: screenshots, screenFocus: focusPosition, isFrameVisible: true),
+                    child: TypePreview(
+                      screens: screenshots,
+                      screenFocus: focusPosition,
+                      isFrameVisible: true,
+                      interactive: _interactive,
+                    ),
                   ),
                 ),
               ),
