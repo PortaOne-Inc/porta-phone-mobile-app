@@ -17,9 +17,9 @@ on:
         default: 'WebTrit/webtrit_callkeep'
 
 env:
-  FLUTTER_VERSION: 3.41.2
+  FLUTTER_VERSION: 3.44.1
   FLUTTER_CHANNEL: 'stable'
-  DART_VERSION: 3.12.0
+  DART_VERSION: 3.12.1
 
   REPOSITORY_CONFIGURATOR_BRANCH: ${{ github.event.inputs.branch }}
   REPOSITORY_CONFIGURATOR_OUT_DIR: configurator
