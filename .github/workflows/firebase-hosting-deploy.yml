@@ -189,7 +189,7 @@ jobs:
           path: ${{ env.WORKING_DIRECTORY }}/${{ env.REPOSITORY_CONFIGURATOR_OUT_DIR }}
 
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: web-build
           path: ${{ env.WORKING_DIRECTORY }}/${{ env.REPOSITORY_CONFIGURATOR_OUT_DIR }}/firebase/public
