@@ -25,9 +25,33 @@ export class GithubProxyService {
         };
     }
 
+    /**
+     * Inputs that older clients still send but the builder workflow no longer
+     * accepts. Forwarding them verbatim makes GitHub reject the dispatch with
+     * `422 Unexpected inputs provided`, which we surface as a 500 and break the
+     * build flow. Strip them for backward compatibility.
+     *
+     * TODO(tech-debt): temporary compatibility shim. Once outdated clients are
+     * gone (give it a few releases — watch for the "Dropped deprecated dispatch
+     * input" warnings below to stop appearing), remove this list and the
+     * stripping logic in dispatchWorkflow.
+     */
+    private static readonly DEPRECATED_DISPATCH_INPUTS = ['callkeepSourceBranch'];
+
     async dispatchWorkflow(inputs: any): Promise<any> {
         const url = `${this.GITHUB_API_BASE_URL}/workflows/build_phone.yml/dispatches`;
-        const data = {ref: 'main', inputs};
+
+        const sanitizedInputs = {...(inputs ?? {})};
+        for (const key of GithubProxyService.DEPRECATED_DISPATCH_INPUTS) {
+            if (key in sanitizedInputs) {
+                delete sanitizedInputs[key];
+                this.logger.warn(
+                    `Dropped deprecated dispatch input "${key}" sent by an outdated client`,
+                );
+            }
+        }
+
+        const data = {ref: 'main', inputs: sanitizedInputs};
 
         try {
             const res = await fetch(url, {
