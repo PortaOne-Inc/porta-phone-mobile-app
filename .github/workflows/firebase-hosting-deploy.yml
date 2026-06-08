@@ -35,8 +35,9 @@ env:
   WORKING_DIRECTORY: webtrit
 
   # Build commands
-  BUILD_PROD_COMMAND: --release --dart-define-from-file=launcher/prod.env.json
-  BUILD_STAGE_COMMAND: --release --dart-define-from-file=launcher/stage.env.json
+  # --no-tree-shake-icons: webtrit_phone uses a non-const IconData, which the icon tree-shaker rejects.
+  BUILD_PROD_COMMAND: --release --no-tree-shake-icons --dart-define-from-file=launcher/prod.env.json
+  BUILD_STAGE_COMMAND: --release --no-tree-shake-icons --dart-define-from-file=launcher/stage.env.json
 
   # Swagger generation commands
   SWAGGER_STAGE_COMMAND: --host=us-central1-webtrit-configurator-stage.cloudfunctions.net/api/v1 --scheme=https
