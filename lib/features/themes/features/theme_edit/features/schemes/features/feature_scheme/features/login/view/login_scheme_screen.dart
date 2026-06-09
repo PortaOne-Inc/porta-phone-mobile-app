@@ -4,24 +4,16 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 
 import 'login_scheme_common.dart';
+import 'login_scheme_signin_order.dart';
 import 'login_scheme_welcome.dart';
 
 class LoginSchemeScreen extends StatelessWidget {
-  const LoginSchemeScreen({
-    required this.callback,
-    required this.sourceAppConfigLogin,
-    super.key,
-  });
+  const LoginSchemeScreen({required this.callback, required this.sourceAppConfigLogin, super.key});
 
   final AppConfigLogin sourceAppConfigLogin;
   final ObjectCallback<AppConfigLogin> callback;
 
-  bool get _isEmbedded =>
-      sourceAppConfigLogin
-          .common
-          .fullScreenLaunchEmbeddedResourceId
-          ?.isNotEmpty ??
-      false;
+  bool get _isEmbedded => sourceAppConfigLogin.common.fullScreenLaunchEmbeddedResourceId?.isNotEmpty ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +21,7 @@ class LoginSchemeScreen extends StatelessWidget {
 
     final tabs = <Tab>[
       const Tab(text: 'Base login config'),
+      if (showNativeTab) const Tab(text: 'Sign-in tabs'),
       if (showNativeTab) const Tab(text: 'Native welcome screen'),
     ];
 
@@ -40,10 +33,14 @@ class LoginSchemeScreen extends StatelessWidget {
         },
       ),
       if (showNativeTab)
+        LoginSchemeSigninOrder(
+          signinOrder: sourceAppConfigLogin.signinOrder,
+          callback: (it) => callback(sourceAppConfigLogin.copyWith(signinOrder: it)),
+        ),
+      if (showNativeTab)
         LoginSchemeWelcome(
           config: sourceAppConfigLogin.modeSelect,
-          callback: (it) =>
-              callback(sourceAppConfigLogin.copyWith(modeSelect: it)),
+          callback: (it) => callback(sourceAppConfigLogin.copyWith(modeSelect: it)),
         ),
     ];
 
