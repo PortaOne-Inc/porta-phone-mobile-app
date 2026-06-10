@@ -149,6 +149,16 @@ class _DialingPageViewState extends State<DialingPageView> {
             onUpdate: (event) => _cubit.add(event),
           ),
           const SizedBox(height: 16),
+          _CallListSettings(
+            value: currentConfig.callList ?? const CallPageListConfig(),
+            onChanged: (v) => _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(callList: v))),
+          ),
+          const SizedBox(height: 16),
+          _ActingOnHintSettings(
+            value: currentConfig.actingOnHint ?? const CallPageHintConfig(),
+            onChanged: (v) => _cubit.add(ThemePageEvent.setDialingPage(_freshConfig.copyWith(actingOnHint: v))),
+          ),
+          const SizedBox(height: 16),
           _ActionsSettings(
             value: currentConfig.actions ?? const CallPageActionsConfig(),
             onChanged: _onActionsChanged,
@@ -222,6 +232,188 @@ class _AppBarSettings extends StatelessWidget {
                   title: const Text('Show Back Button'),
                   value: value.showBackButton,
                   onChanged: (v) => onChanged(value.copyWith(showBackButton: v)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+    final picked = await context.showColorPicker(currentColor: current);
+    if (context.mounted && picked != null) {
+      onPick(picked.toHex(includeAlpha: true));
+    }
+  }
+}
+
+/// Colors of the multi-call list rows: overlays of the focused/unfocused
+/// rows, the focused border and the per-state status dots.
+class _CallListSettings extends StatelessWidget {
+  const _CallListSettings({required this.value, required this.onChanged});
+
+  final CallPageListConfig value;
+  final ValueChanged<CallPageListConfig> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8, left: 4),
+          child: Text('Call List', style: theme.textTheme.titleSmall),
+        ),
+        Card(
+          margin: EdgeInsets.zero,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: ColorField(
+                        title: 'Row',
+                        color: value.rowBackgroundColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.rowBackgroundColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(rowBackgroundColor: hex)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ColorField(
+                        title: 'Focused Row',
+                        color: value.rowFocusedBackgroundColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.rowFocusedBackgroundColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(rowFocusedBackgroundColor: hex)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ColorField(
+                        title: 'Focused Border',
+                        color: value.rowFocusedBorderColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.rowFocusedBorderColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(rowFocusedBorderColor: hex)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ColorField(
+                        title: 'Ringing Dot',
+                        color: value.dotRingingColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.dotRingingColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(dotRingingColor: hex)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ColorField(
+                        title: 'On Call Dot',
+                        color: value.dotOnCallColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.dotOnCallColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(dotOnCallColor: hex)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ColorField(
+                        title: 'Held Dot',
+                        color: value.dotHeldColor?.tryParseColor(),
+                        onTap: (_) => _pickColor(
+                          context,
+                          value.dotHeldColor?.tryParseColor(),
+                          (hex) => onChanged(value.copyWith(dotHeldColor: hex)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onPick) async {
+    final picked = await context.showColorPicker(currentColor: current);
+    if (context.mounted && picked != null) {
+      onPick(picked.toHex(includeAlpha: true));
+    }
+  }
+}
+
+/// Colors of the "Acting on" hint pill shown above the call actions with
+/// multiple calls: the pill background and the affected-name highlight.
+class _ActingOnHintSettings extends StatelessWidget {
+  const _ActingOnHintSettings({required this.value, required this.onChanged});
+
+  final CallPageHintConfig value;
+  final ValueChanged<CallPageHintConfig> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8, left: 4),
+          child: Text('Acting On Hint', style: theme.textTheme.titleSmall),
+        ),
+        Card(
+          margin: EdgeInsets.zero,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ColorField(
+                    title: 'Background',
+                    color: value.backgroundColor?.tryParseColor(),
+                    onTap: (_) => _pickColor(
+                      context,
+                      value.backgroundColor?.tryParseColor(),
+                      (hex) => onChanged(value.copyWith(backgroundColor: hex)),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ColorField(
+                    title: 'Affected Name',
+                    color: value.affectedNameColor?.tryParseColor(),
+                    onTap: (_) => _pickColor(
+                      context,
+                      value.affectedNameColor?.tryParseColor(),
+                      (hex) => onChanged(value.copyWith(affectedNameColor: hex)),
+                    ),
+                  ),
                 ),
               ],
             ),

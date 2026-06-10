@@ -6,17 +6,12 @@ import 'package:webtrit_configurator/widgets/widgets.dart';
 /// Edits all actions inside CallPageActionsConfig using ButtonStyleEditorMinimal.
 /// No hardcoded defaults — you set exactly what you want per action.
 class CallActionsEditorMinimal extends StatelessWidget {
-  const CallActionsEditorMinimal({
-    required this.value,
-    required this.onChanged,
-    super.key,
-  });
+  const CallActionsEditorMinimal({required this.value, required this.onChanged, super.key});
 
   final CallPageActionsConfig value;
   final ValueChanged<CallPageActionsConfig> onChanged;
 
-  ElevatedButtonWidgetConfig _btnOrNew(ElevatedButtonWidgetConfig? b) =>
-      b ?? const ElevatedButtonWidgetConfig();
+  ElevatedButtonWidgetConfig _btnOrNew(ElevatedButtonWidgetConfig? b) => b ?? const ElevatedButtonWidgetConfig();
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +23,7 @@ class CallActionsEditorMinimal extends StatelessWidget {
           child: ElevatedButtonConfigEditor(
             title: 'Call start',
             value: value.callStart,
-            onChanged: (v) =>
-                onChanged(value.copyWith(callStart: _btnOrNew(v))),
+            onChanged: (v) => onChanged(value.copyWith(callStart: _btnOrNew(v))),
           ),
         ),
         const SizedBox(height: 12),
