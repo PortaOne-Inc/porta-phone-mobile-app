@@ -83,8 +83,12 @@ class _ManageMenuTabScreenState extends State<ManageMenuTabScreen> {
       case BottomMenuTabKind.favorites:
       case BottomMenuTabKind.keypad:
       case BottomMenuTabKind.messaging:
-      case BottomMenuTabKind.recents:
         return const SizedBox.shrink();
+      case BottomMenuTabKind.recents:
+        return RecentsFields(
+          supportsCallHistory: _form.supportsCallHistory,
+          onSupportsCallHistoryChanged: (v) => setState(() => _form.supportsCallHistory = v),
+        );
       case BottomMenuTabKind.contacts:
         return ContactsFields(
           local: _form.contactsLocal,

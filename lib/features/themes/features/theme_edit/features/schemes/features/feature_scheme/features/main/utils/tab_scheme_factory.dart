@@ -9,7 +9,13 @@ BottomMenuTabScheme buildSchemeFromForm(TabFormModel f) {
     case BottomMenuTabKind.favorites:
       return FavoritesTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
     case BottomMenuTabKind.recents:
-      return RecentsTabScheme(enabled: f.enabled, initial: f.initial, titleL10n: f.title, icon: icon);
+      return RecentsTabScheme(
+        enabled: f.enabled,
+        initial: f.initial,
+        titleL10n: f.title,
+        icon: icon,
+        supportsCallHistory: f.supportsCallHistory,
+      );
     case BottomMenuTabKind.contacts:
       return ContactsTabScheme(
         enabled: f.enabled,

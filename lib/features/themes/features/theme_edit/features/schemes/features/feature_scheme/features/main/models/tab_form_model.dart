@@ -10,6 +10,7 @@ class TabFormModel {
     required this.icon,
     required this.enabled,
     required this.initial,
+    this.supportsCallHistory = true,
     this.contactsLocal = true,
     this.contactsExternal = true,
     this.embeddedResourceId,
@@ -29,6 +30,7 @@ class TabFormModel {
     );
 
     s.maybeWhen(
+      recents: (_, __, ___, ____, supportsCallHistory) => model.supportsCallHistory = supportsCallHistory,
       contacts: (_, __, ___, ____, types) {
         model
           ..contactsLocal = types.contains('local')
@@ -46,6 +48,7 @@ class TabFormModel {
   bool enabled;
   bool initial;
 
+  bool supportsCallHistory;
   bool contactsLocal;
   bool contactsExternal;
 
