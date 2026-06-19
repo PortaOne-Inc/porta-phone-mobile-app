@@ -18,16 +18,11 @@ class GroupTitleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
-
-    return ColoredBox(
-      color: backgroundColor,
-      child: ListTile(
-        contentPadding: contentPadding,
-        title: Text(titleData, style: style),
-        trailing: trailing,
-        tileColor: themeData.colorScheme.surface,
-      ),
+    return ListTile(
+      contentPadding: contentPadding,
+      title: Text(titleData, style: style),
+      trailing: trailing,
+      tileColor: backgroundColor,
     );
   }
 }

@@ -189,7 +189,10 @@ class DeploymentCubit extends Cubit<DeploymentState> {
   }
 
   Future<void> updateApplicationDeploy(ApplicationDeploy model) async {
-    updateApplicationUsecase.execute(state.application!);
+    final application = state.application;
+    if (application != null) {
+      updateApplicationUsecase.execute(application);
+    }
     emit(state.copyWith(applicationDeploy: model));
   }
 
