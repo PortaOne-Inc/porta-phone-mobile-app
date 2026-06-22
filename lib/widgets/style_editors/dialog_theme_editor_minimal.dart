@@ -4,18 +4,16 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
-class ConfirmDialogEditorMinimal extends StatelessWidget {
-  const ConfirmDialogEditorMinimal({
-    required this.value,
-    required this.onChanged,
-    this.boxConstraints = const BoxConstraints(minWidth: 140, minHeight: 60),
-    this.description,
-    super.key,
-  });
+/// Editor for the global [DialogThemeConfig] mapped to `ThemeData.dialogTheme`.
+///
+/// Drives the baseline appearance of every dialog. Unset fields fall back to a
+/// readable color-scheme role in the app, so leaving everything empty already
+/// fixes the Material default that resolves the background to `surfaceContainerHigh`.
+class DialogThemeEditorMinimal extends StatelessWidget {
+  const DialogThemeEditorMinimal({required this.value, required this.onChanged, this.description, super.key});
 
-  final ConfirmDialogWidgetConfig value;
-  final ValueChanged<ConfirmDialogWidgetConfig> onChanged;
-  final BoxConstraints boxConstraints;
+  final DialogThemeConfig value;
+  final ValueChanged<DialogThemeConfig> onChanged;
   final Widget? description;
 
   Future<void> _pickColor(BuildContext context, String? currentHex, ValueChanged<String> onApply) async {
@@ -32,41 +30,6 @@ class ConfirmDialogEditorMinimal extends StatelessWidget {
       children: [
         if (description != null) Padding(padding: const EdgeInsets.only(bottom: 12), child: description),
         ColorInput(
-          label: 'Active button color 1',
-          color: value.activeButtonColor1?.tryParseColor(),
-          onTap: () => _pickColor(
-            context,
-            value.activeButtonColor1,
-            (hex) => onChanged(value.copyWith(activeButtonColor1: hex)),
-          ),
-          onClear: () => onChanged(value.copyWith(activeButtonColor1: null)),
-        ),
-        const SizedBox(height: 12),
-        ColorInput(
-          label: 'Active button color 2',
-          color: value.activeButtonColor2?.tryParseColor(),
-          onTap: () => _pickColor(
-            context,
-            value.activeButtonColor2,
-            (hex) => onChanged(value.copyWith(activeButtonColor2: hex)),
-          ),
-          onClear: () => onChanged(value.copyWith(activeButtonColor2: null)),
-        ),
-        const SizedBox(height: 12),
-        ColorInput(
-          label: 'Default button color',
-          color: value.defaultButtonColor?.tryParseColor(),
-          onTap: () => _pickColor(
-            context,
-            value.defaultButtonColor,
-            (hex) => onChanged(value.copyWith(defaultButtonColor: hex)),
-          ),
-          onClear: () => onChanged(value.copyWith(defaultButtonColor: null)),
-        ),
-        const Divider(height: 32),
-        // Surface overrides layered on top of the global dialog theme; leave empty
-        // to inherit it.
-        ColorInput(
           label: 'Background color',
           color: value.backgroundColor?.tryParseColor(),
           onTap: () =>
@@ -80,6 +43,20 @@ class ConfirmDialogEditorMinimal extends StatelessWidget {
           onTap: () =>
               _pickColor(context, value.surfaceTintColor, (hex) => onChanged(value.copyWith(surfaceTintColor: hex))),
           onClear: () => onChanged(value.copyWith(surfaceTintColor: null)),
+        ),
+        const SizedBox(height: 12),
+        ColorInput(
+          label: 'Shadow color',
+          color: value.shadowColor?.tryParseColor(),
+          onTap: () => _pickColor(context, value.shadowColor, (hex) => onChanged(value.copyWith(shadowColor: hex))),
+          onClear: () => onChanged(value.copyWith(shadowColor: null)),
+        ),
+        const SizedBox(height: 12),
+        ColorInput(
+          label: 'Barrier color',
+          color: value.barrierColor?.tryParseColor(),
+          onTap: () => _pickColor(context, value.barrierColor, (hex) => onChanged(value.copyWith(barrierColor: hex))),
+          onClear: () => onChanged(value.copyWith(barrierColor: null)),
         ),
         const SizedBox(height: 12),
         Row(

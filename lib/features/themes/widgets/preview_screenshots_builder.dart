@@ -141,6 +141,8 @@ List<Widget> buildPreviewScreenshots({
 
     // Settings
     const SettingScreenScreenshot(),
+    // Dialog theme catalog (all confirm/alert variants on one page).
+    const DialogsShowcaseScreenshot(),
     const MediaSettingsScreenScreenshot(key: ValueKey('MediaSettingsScreenScreenshot')),
     const NetworkScreenScreenshot(),
     const LanguageScreenScreenshot(),

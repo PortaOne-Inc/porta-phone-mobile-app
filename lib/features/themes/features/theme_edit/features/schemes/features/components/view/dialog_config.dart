@@ -30,16 +30,29 @@ class DialogConfig extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BorderContainer(
+            title: 'Dialog (global)',
+            descriptionWidget: DescriptionRow.info(
+              'Baseline appearance for every dialog. Leave empty to fall back to '
+              'a readable color-scheme surface instead of the Material default.',
+            ),
+            padding: const EdgeInsets.all(16),
+            child: DialogThemeEditorMinimal(
+              value: dialogCfg.theme,
+              onChanged: (v) =>
+                  context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setDialog(dialogCfg.copyWith(theme: v))),
+            ),
+          ),
+          const SizedBox(height: 16),
+          BorderContainer(
             title: 'Confirm Dialog',
             descriptionWidget: DescriptionRow.info(
-              'Configure the confirm dialog active/default button colors.',
+              'Confirm-dialog overrides (buttons, surface, text) layered on top of '
+              'the global dialog theme.',
             ),
             padding: const EdgeInsets.all(16),
             child: ConfirmDialogEditorMinimal(
               value: dialogCfg.confirmDialog,
-              onChanged: (v) => context.read<UpdateThemCubit>().add(
-                ThemeWidgetEvent.setConfirmDialog(v),
-              ),
+              onChanged: (v) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setConfirmDialog(v)),
             ),
           ),
           const SizedBox(height: 16),
@@ -51,9 +64,7 @@ class DialogConfig extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: SnackBarEditorMinimal(
               value: dialogCfg.snackBar,
-              onChanged: (v) => context.read<UpdateThemCubit>().add(
-                ThemeWidgetEvent.setSnackBar(v),
-              ),
+              onChanged: (v) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setSnackBar(v)),
             ),
           ),
         ],

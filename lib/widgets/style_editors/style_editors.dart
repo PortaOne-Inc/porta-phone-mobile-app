@@ -3,6 +3,7 @@ export 'app_bar_surface_editor.dart';
 export 'bottom_nav_bar_editor_minimal.dart';
 export 'button_style_config_editor.dart';
 export 'confirm_dialog_editor_minimal.dart';
+export 'dialog_theme_editor_minimal.dart';
 export 'elevated_button_config_editor.dart';
 export 'group_title_list_tile_editor_minimal.dart';
 export 'image_render_editor.dart';
