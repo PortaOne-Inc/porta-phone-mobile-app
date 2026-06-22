@@ -18,6 +18,18 @@ dart run build_runner build --delete-conflicting-outputs      # codegen (run per
 
 > **Note:** `melos run generate` fails in non-interactive terminals — run `dart run build_runner build --delete-conflicting-outputs` directly inside each package dir (`packages/domain`, `packages/data`, repo root).
 
+## Deploy
+
+Per-version configurator deploy — one Firebase Hosting site per phone version:
+
+```bash
+melos run deploy:version -- X-Y-Z   # e.g. 1-16-0 -> https://phone-configurator-X-Y-Z.web.app
+```
+
+Auto-detects the version from a `webtrit-phone/X.Y.Z` branch; builds against the sibling `../webtrit_phone` (check it out to the matching `release/X.Y.Z` first). Wraps `tool/deploy_hosting.sh`, which applies the `backend-version` hosting target itself; needs `firebase login`. Full details: `docs/versioned-deploy.md`.
+
+> Do **not** use the `firebase-hosting-deploy.yml` GitHub Actions workflow for version deploys — it deploys the main stage/prod app + backend, not the per-version sites.
+
 ## Code Standards
 
 - No Cyrillic anywhere (source, comments, strings, logs, keys).
