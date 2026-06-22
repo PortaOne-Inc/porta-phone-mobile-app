@@ -2,30 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:webtrit_phone/widgets/widgets.dart';
-
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class TextConfigTab extends StatelessWidget {
-  const TextConfigTab({
-    required this.sourceTextWidgetConfig,
-    super.key,
-    this.textSelectionThemeData,
-    this.linkifyStyles,
-  });
+  const TextConfigTab({required this.sourceTextWidgetConfig, super.key});
 
   final TextWidgetConfig sourceTextWidgetConfig;
-  final TextSelectionThemeData? textSelectionThemeData;
-  final LinkifyStyles? linkifyStyles;
 
-  Future<void> _pickColor(
-    BuildContext context,
-    Color? current,
-    ValueChanged<String> onApply,
-  ) async {
+  Future<void> _pickColor(BuildContext context, Color? current, ValueChanged<String> onApply) async {
     final newColor = await context.showColorPicker(currentColor: current);
     if (newColor != null) {
       onApply(newColor.toHex());
@@ -34,9 +21,15 @@ class TextConfigTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ThemeProvider.of(context).light();
-    final sel = textSelectionThemeData ?? theme.textSelectionTheme;
-    final link = (linkifyStyles ?? theme.extension<LinkifyStyles>())?.primary;
+    // Read colors from the source config, not the built theme: an unset value must
+    // render as "not defined" rather than a derived theme color that hides the gap.
+    final selection = sourceTextWidgetConfig.selection;
+    final linkify = sourceTextWidgetConfig.linkify;
+    final cursorColor = selection.cursorColor?.toColor();
+    final selectionColor = selection.selectionColor?.toColor();
+    final selectionHandleColor = selection.selectionHandleColor?.toColor();
+    final linkStyleColor = linkify.styleColor?.toColor();
+    final linkColor = linkify.linkifyStyleColor?.toColor();
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -45,9 +38,7 @@ class TextConfigTab extends StatelessWidget {
         children: [
           BorderContainer(
             title: 'Text selection',
-            descriptionWidget: DescriptionRow.info(
-              'Cursor and selection colors for editable text.',
-            ),
+            descriptionWidget: DescriptionRow.info('Cursor and selection colors for editable text.'),
             child: Wrap(
               spacing: 12,
               runSpacing: 12,
@@ -57,13 +48,11 @@ class TextConfigTab extends StatelessWidget {
                   width: 200,
                   child: ColorInput(
                     label: 'Cursor color',
-                    color: sel.cursorColor,
+                    color: cursorColor,
                     onTap: () => _pickColor(
                       context,
-                      sel.cursorColor,
-                      (hex) => context.read<UpdateThemCubit>().add(
-                        ThemeWidgetEvent.setTextCursorColor(hex),
-                      ),
+                      cursorColor,
+                      (hex) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setTextCursorColor(hex)),
                     ),
                     onClear: () {},
                   ),
@@ -72,13 +61,11 @@ class TextConfigTab extends StatelessWidget {
                   width: 200,
                   child: ColorInput(
                     label: 'Selection color',
-                    color: sel.selectionColor,
+                    color: selectionColor,
                     onTap: () => _pickColor(
                       context,
-                      sel.selectionColor,
-                      (hex) => context.read<UpdateThemCubit>().add(
-                        ThemeWidgetEvent.setTextSelectionColor(hex),
-                      ),
+                      selectionColor,
+                      (hex) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setTextSelectionColor(hex)),
                     ),
                     onClear: () {},
                   ),
@@ -87,13 +74,11 @@ class TextConfigTab extends StatelessWidget {
                   width: 200,
                   child: ColorInput(
                     label: 'Handle color',
-                    color: sel.selectionHandleColor,
+                    color: selectionHandleColor,
                     onTap: () => _pickColor(
                       context,
-                      sel.selectionHandleColor,
-                      (hex) => context.read<UpdateThemCubit>().add(
-                        ThemeWidgetEvent.setTextSelectionHandleColor(hex),
-                      ),
+                      selectionHandleColor,
+                      (hex) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setTextSelectionHandleColor(hex)),
                     ),
                     onClear: () {},
                   ),
@@ -104,9 +89,7 @@ class TextConfigTab extends StatelessWidget {
           const SizedBox(height: 16),
           BorderContainer(
             title: 'Linkify',
-            descriptionWidget: DescriptionRow.info(
-              'Colors for inline links and their base text style.',
-            ),
+            descriptionWidget: DescriptionRow.info('Colors for inline links and their base text style.'),
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 12,
@@ -116,13 +99,11 @@ class TextConfigTab extends StatelessWidget {
                   width: 200,
                   child: ColorInput(
                     label: 'Style color',
-                    color: link?.style?.color,
+                    color: linkStyleColor,
                     onTap: () => _pickColor(
                       context,
-                      link?.style?.color,
-                      (hex) => context.read<UpdateThemCubit>().add(
-                        ThemeWidgetEvent.setLinkifyStyleColor(hex),
-                      ),
+                      linkStyleColor,
+                      (hex) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setLinkifyStyleColor(hex)),
                     ),
                     onClear: () {},
                   ),
@@ -131,13 +112,11 @@ class TextConfigTab extends StatelessWidget {
                   width: 200,
                   child: ColorInput(
                     label: 'Link color',
-                    color: link?.linkStyle?.color,
+                    color: linkColor,
                     onTap: () => _pickColor(
                       context,
-                      link?.linkStyle?.color,
-                      (hex) => context.read<UpdateThemCubit>().add(
-                        ThemeWidgetEvent.setLinkifyLinkColor(hex),
-                      ),
+                      linkColor,
+                      (hex) => context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setLinkifyLinkColor(hex)),
                     ),
                     onClear: () {},
                   ),

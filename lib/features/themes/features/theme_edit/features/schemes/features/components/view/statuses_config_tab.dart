@@ -8,25 +8,16 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/up
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
 class StatusesConfigTab extends StatelessWidget {
-  const StatusesConfigTab({
-    required this.sourceStatusesWidgetConfig,
-    this.callStatusStyles,
-    this.registeredStatusStyles,
-    super.key,
-  });
+  const StatusesConfigTab({required this.sourceStatusesWidgetConfig, super.key});
 
   final StatusesWidgetConfig sourceStatusesWidgetConfig;
-  final CallStatusStyles? callStatusStyles;
-  final RegisteredStatusStyles? registeredStatusStyles;
 
   @override
   Widget build(BuildContext context) {
-    final light = ThemeProvider.of(context).light();
-    final callStyles =
-        (callStatusStyles ?? light.extension<CallStatusStyles>())?.primary;
-    final regStyles =
-        (registeredStatusStyles ?? light.extension<RegisteredStatusStyles>())
-            ?.primary;
+    // Read colors from the source config, not the built theme extensions, so the
+    // configurator always shows the actual configured value.
+    final registration = sourceStatusesWidgetConfig.registrationStatuses;
+    final call = sourceStatusesWidgetConfig.callStatuses;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -35,29 +26,23 @@ class StatusesConfigTab extends StatelessWidget {
         children: [
           StatusSection(
             title: 'Registration statuses',
-            descriptionWidget: DescriptionRow.info(
-              'Colors for registered/unregistered account states.',
-            ),
+            descriptionWidget: DescriptionRow.info('Colors for registered/unregistered account states.'),
             statuses: [
               StatusDescriptor(
                 title: 'Registered',
-                color: regStyles?.registered,
+                color: registration.online.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setRegistrationOnline(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setRegistrationOnline(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'Unregistered',
-                color: regStyles?.unregistered,
+                color: registration.offline.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setRegistrationOffline(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setRegistrationOffline(c.toHex()));
                   }
                 },
               ),
@@ -66,77 +51,59 @@ class StatusesConfigTab extends StatelessWidget {
           const SizedBox(height: 16),
           StatusSection(
             title: 'Call statuses',
-            descriptionWidget: DescriptionRow.info(
-              'Connection and call lifecycle indicators.',
-            ),
+            descriptionWidget: DescriptionRow.info('Connection and call lifecycle indicators.'),
             statuses: [
               StatusDescriptor(
                 title: 'Connectivity none',
-                color: callStyles?.connectivityNone,
+                color: call.connectivityNone.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectivityNone(
-                        c.toHex(),
-                      ),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesConnectivityNone(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'Connect error',
-                color: callStyles?.connectError,
+                color: call.connectError.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesConnectError(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'App unregistered',
-                color: callStyles?.appUnregistered,
+                color: call.appUnregistered.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesAppUnregistered(
-                        c.toHex(),
-                      ),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesAppUnregistered(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'Connect issue',
-                color: callStyles?.connectIssue,
+                color: call.connectIssue.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesConnectIssue(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'In progress',
-                color: callStyles?.inProgress,
+                color: call.inProgress.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesInProgress(c.toHex()));
                   }
                 },
               ),
               StatusDescriptor(
                 title: 'Ready',
-                color: callStyles?.ready,
+                color: call.ready.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
-                    context.read<UpdateThemCubit>().add(
-                      ThemeWidgetEvent.setCallStatusesReady(c.toHex()),
-                    );
+                    context.read<UpdateThemCubit>().add(ThemeWidgetEvent.setCallStatusesReady(c.toHex()));
                   }
                 },
               ),
@@ -149,12 +116,7 @@ class StatusesConfigTab extends StatelessWidget {
 }
 
 class StatusSection extends StatelessWidget {
-  const StatusSection({
-    required this.title,
-    required this.statuses,
-    this.descriptionWidget,
-    super.key,
-  });
+  const StatusSection({required this.title, required this.statuses, this.descriptionWidget, super.key});
 
   final String title;
   final List<StatusDescriptor> statuses;
@@ -192,11 +154,7 @@ class StatusSection extends StatelessWidget {
 }
 
 class StatusDescriptor {
-  const StatusDescriptor({
-    required this.title,
-    required this.color,
-    required this.onColorSelected,
-  });
+  const StatusDescriptor({required this.title, required this.color, required this.onColorSelected});
 
   final String title;
   final Color? color;

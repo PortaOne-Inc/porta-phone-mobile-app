@@ -7,7 +7,6 @@ import 'package:webtrit_configurator/exports/exports.dart';
 
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/widgets/confirm_dialog_styles.dart';
-import 'package:webtrit_phone/widgets/linkify_styles.dart';
 
 import 'bars_config_tab.dart';
 import 'button_config_tab.dart';
@@ -66,14 +65,10 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
 
     // Theme extensions for previews
     final elevatedButtonStyles = light.extension<ElevatedButtonStyles>();
-    final callStatusStyles = light.extension<CallStatusStyles>();
-    final registeredStatusStyles = light.extension<RegisteredStatusStyles>();
     final confirmDialogStyles = light.extension<ConfirmDialogStyles>();
     final snackBarStyles = light.extension<SnackBarStyles>();
     final groupTitleListStyles = light.extension<GroupTitleListStyles>();
     final callActionsStyles = light.extension<CallActionsStyles>();
-    final linkifyStyles = light.extension<LinkifyStyles>();
-    final textSelectionThemeData = light.textSelectionTheme;
     final inputDecorationTheme = light.inputDecorationTheme;
 
     final fontFamily = light.textTheme.bodyMedium?.fontFamily;
@@ -124,21 +119,13 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
                 inputDecorationTheme: inputDecorationTheme,
                 sourceInputWidgetConfig: themeWidgetConfig.input,
               ),
-              TextConfigTab(
-                sourceTextWidgetConfig: themeWidgetConfig.text,
-                linkifyStyles: linkifyStyles,
-                textSelectionThemeData: textSelectionThemeData,
-              ),
+              TextConfigTab(sourceTextWidgetConfig: themeWidgetConfig.text),
               DialogConfig(
                 sourceDialogWidgetConfig: themeWidgetConfig.dialog,
                 confirmDialogStyles: confirmDialogStyles,
                 snackBarStyles: snackBarStyles,
               ),
-              StatusesConfigTab(
-                sourceStatusesWidgetConfig: themeWidgetConfig.statuses,
-                callStatusStyles: callStatusStyles,
-                registeredStatusStyles: registeredStatusStyles,
-              ),
+              StatusesConfigTab(sourceStatusesWidgetConfig: themeWidgetConfig.statuses),
             ].map((it) => SingleChildScrollView(child: it)).toList(),
           ),
           JsonEditorPanel(
