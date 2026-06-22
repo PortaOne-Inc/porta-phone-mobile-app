@@ -40,13 +40,12 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
     'Texts',
     'Dialogs',
     'Statuses',
-    'Containers',
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 11, vsync: this);
+    _tabController = TabController(length: _tabs.length, vsync: this);
   }
 
   @override
