@@ -59,25 +59,10 @@ class IncrementBuildNameUseCase implements UpdateBuildNameUseCase {
     }
 
     final newBuildName = parts.join('.');
-    final newPrefix = parts.join();
 
-    final currentBuildNumberStr = (buildVersion.buildNumber ?? 0).toString();
-    final oldPrefix = currentBuildName.replaceAll('.', '');
-
-    var suffixLength = currentBuildNumberStr.length - oldPrefix.length;
-    if (suffixLength <= 0) {
-      suffixLength = 5;
-    }
-
-    final newBuildNumberStr = newPrefix + ''.padLeft(suffixLength, '0');
-    var newBuildNumber = int.tryParse(newBuildNumberStr);
-
-    if (newBuildNumber == null) return null;
-
-    final currentBuildNumber = buildVersion.buildNumber ?? 0;
-    if (newBuildNumber <= currentBuildNumber) {
-      newBuildNumber = currentBuildNumber + 1;
-    }
+    // The build number is a standalone monotonic counter, not derived from the
+    // version name: bumping the name still advances it by exactly one.
+    final newBuildNumber = (buildVersion.buildNumber ?? 0) + 1;
 
     return BuildVersionModel(
       buildName: newBuildName,
