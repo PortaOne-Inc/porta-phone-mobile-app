@@ -301,6 +301,10 @@ sealed class UpdateVariantEvent with _$UpdateVariantEvent implements Configurato
 sealed class PreviewCapabilitiesEvent with _$PreviewCapabilitiesEvent implements ConfiguratorEvent {
   /// Enable or disable a single adapter capability flag used by the preview.
   const factory PreviewCapabilitiesEvent.toggle(String flag, bool enabled) = _TogglePreviewCapability;
+
+  /// Set the core version the preview's mocked `system-info` reports, which
+  /// gates version-aware features (e.g. hybrid presence).
+  const factory PreviewCapabilitiesEvent.setCoreVersion(String version) = _SetPreviewCoreVersion;
 }
 
 @freezed

@@ -177,14 +177,18 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   }
 
   Future<void> _onPreviewCapabilitiesEvent(PreviewCapabilitiesEvent event, Emitter<UpdateThemeState> emit) async {
-    final toggle = event as _TogglePreviewCapability;
-    final current = state.previewCapabilities.toSet();
-    if (toggle.enabled) {
-      current.add(toggle.flag);
-    } else {
-      current.remove(toggle.flag);
+    switch (event) {
+      case _TogglePreviewCapability(:final flag, :final enabled):
+        final current = state.previewCapabilities.toSet();
+        if (enabled) {
+          current.add(flag);
+        } else {
+          current.remove(flag);
+        }
+        emit(state.copyWith(previewCapabilities: List.unmodifiable(current)));
+      case _SetPreviewCoreVersion(:final version):
+        emit(state.copyWith(previewCoreVersion: version));
     }
-    emit(state.copyWith(previewCapabilities: List.unmodifiable(current)));
   }
 
   Future<void> _syncConfigWithServer(SyncConfigEvent event, Emitter<UpdateThemeState> emit) async {

@@ -15,7 +15,7 @@ import 'fonts_config_tab.dart';
 import 'group_config_tab.dart';
 import 'image_assets_config_tab.dart';
 import 'input_config_tab.dart';
-import 'statuses_config_tab.dart';
+import 'indicators_statuses_config_tab.dart';
 import 'text_config_tab.dart';
 
 class ConfigureWidgetsView extends StatefulWidget {
@@ -38,7 +38,7 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
     'Inputs',
     'Texts',
     'Dialogs',
-    'Statuses',
+    'Indicators & Statuses',
   ];
 
   @override
@@ -103,30 +103,37 @@ class _ConfigureWidgetsViewState extends State<ConfigureWidgetsView> with Single
             physics: const NeverScrollableScrollPhysics(),
             controller: _tabController,
             children: [
-              FontsConfigTab(fontFamily: fontFamily, sourceFontsConfig: themeWidgetConfig.fonts),
-              ButtonConfigTab(
-                sourceButtonWidgetConfig: themeWidgetConfig.button,
-                elevatedButtonStyles: elevatedButtonStyles,
+              // Every tab scrolls as a whole, except the Indicators & Statuses
+              // hub, which owns the scrolling inside each of its inner sub-tabs.
+              ...[
+                FontsConfigTab(fontFamily: fontFamily, sourceFontsConfig: themeWidgetConfig.fonts),
+                ButtonConfigTab(
+                  sourceButtonWidgetConfig: themeWidgetConfig.button,
+                  elevatedButtonStyles: elevatedButtonStyles,
+                ),
+                GroupConfigTab(
+                  groupTitleListStyles: groupTitleListStyles,
+                  callActionsStyles: callActionsStyles,
+                  sourceGroupWidgetConfig: themeWidgetConfig.group,
+                ),
+                BarsConfigTab(config: themeWidgetConfig.bar),
+                ImageAssetsConfigTab(imageAssetsConfig: themeWidgetConfig.imageAssets),
+                InputConfigTab(
+                  inputDecorationTheme: inputDecorationTheme,
+                  sourceInputWidgetConfig: themeWidgetConfig.input,
+                ),
+                TextConfigTab(sourceTextWidgetConfig: themeWidgetConfig.text),
+                DialogConfig(
+                  sourceDialogWidgetConfig: themeWidgetConfig.dialog,
+                  confirmDialogStyles: confirmDialogStyles,
+                  snackBarStyles: snackBarStyles,
+                ),
+              ].map((it) => SingleChildScrollView(child: it)),
+              IndicatorsStatusesConfigTab(
+                imageAssetsConfig: themeWidgetConfig.imageAssets,
+                statusesWidgetConfig: themeWidgetConfig.statuses,
               ),
-              GroupConfigTab(
-                groupTitleListStyles: groupTitleListStyles,
-                callActionsStyles: callActionsStyles,
-                sourceGroupWidgetConfig: themeWidgetConfig.group,
-              ),
-              BarsConfigTab(config: themeWidgetConfig.bar),
-              ImageAssetsConfigTab(imageAssetsConfig: themeWidgetConfig.imageAssets),
-              InputConfigTab(
-                inputDecorationTheme: inputDecorationTheme,
-                sourceInputWidgetConfig: themeWidgetConfig.input,
-              ),
-              TextConfigTab(sourceTextWidgetConfig: themeWidgetConfig.text),
-              DialogConfig(
-                sourceDialogWidgetConfig: themeWidgetConfig.dialog,
-                confirmDialogStyles: confirmDialogStyles,
-                snackBarStyles: snackBarStyles,
-              ),
-              StatusesConfigTab(sourceStatusesWidgetConfig: themeWidgetConfig.statuses),
-            ].map((it) => SingleChildScrollView(child: it)).toList(),
+            ],
           ),
           JsonEditorPanel(
             initialJson: themeWidgetConfig.toJson(),

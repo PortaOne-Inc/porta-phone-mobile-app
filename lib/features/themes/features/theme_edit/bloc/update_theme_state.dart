@@ -64,6 +64,7 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeddedResources,
     @Default(<ThemeComponents>[]) List<ThemeComponents> loadedComponents,
     @Default(kDefaultPreviewCapabilities) List<String> previewCapabilities,
+    @Default(kDefaultPreviewCoreVersion) String previewCoreVersion,
     ApplicationModel? applicationModel,
     ThemeModel? theme,
     FeatureAccessModel? featureAccessModel,

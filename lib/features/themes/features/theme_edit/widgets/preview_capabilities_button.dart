@@ -43,6 +43,8 @@ class _PreviewCapabilitiesDialog extends StatelessWidget {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const _CoreVersionField(),
+                const SizedBox(height: 12),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
@@ -67,6 +69,62 @@ class _PreviewCapabilitiesDialog extends StatelessWidget {
         ),
       ),
       actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Close'))],
+    );
+  }
+}
+
+/// Editable core version reported by the preview's mocked `system-info`.
+/// Gates version-aware features (e.g. hybrid presence) so the preview can match
+/// the backend the app actually talks to.
+class _CoreVersionField extends StatefulWidget {
+  const _CoreVersionField();
+
+  @override
+  State<_CoreVersionField> createState() => _CoreVersionFieldState();
+}
+
+class _CoreVersionFieldState extends State<_CoreVersionField> {
+  // Lightweight semver check so an invalid entry does not silently break the
+  // preview; the exact constraint lives in the app's CoreInfo version gates.
+  static final _versionPattern = RegExp(r'^\d+\.\d+\.\d+([-+][0-9A-Za-z.-]+)*$');
+
+  late final TextEditingController _controller;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: context.read<UpdateThemCubit>().state.previewCoreVersion);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onChanged(String value) {
+    final trimmed = value.trim();
+    if (!_versionPattern.hasMatch(trimmed)) {
+      setState(() => _error = 'Invalid version (e.g. 1.0.0)');
+      return;
+    }
+    setState(() => _error = null);
+    context.read<UpdateThemCubit>().add(PreviewCapabilitiesEvent.setCoreVersion(trimmed));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      decoration: InputDecoration(
+        labelText: 'Core version',
+        helperText: 'system-info core version — gates features like hybrid presence',
+        errorText: _error,
+        isDense: true,
+        border: const OutlineInputBorder(),
+      ),
+      onChanged: _onChanged,
     );
   }
 }

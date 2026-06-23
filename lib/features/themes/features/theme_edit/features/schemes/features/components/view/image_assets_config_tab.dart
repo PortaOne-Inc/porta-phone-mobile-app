@@ -9,6 +9,8 @@ import 'package:webtrit_configurator/extensions/extensions.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/bloc/update_theme_cubit.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
+import 'leading_avatar_editors.dart';
+
 class ImageAssetsConfigTab extends StatelessWidget {
   const ImageAssetsConfigTab({required this.imageAssetsConfig, super.key});
 
@@ -115,25 +117,10 @@ class ImageAssetsConfigTab extends StatelessWidget {
                       leading.copyWith(loading: loading),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  _SmartIndicatorSettings(
-                    value:
-                        leading.smartIndicator ??
-                        const SmartIndicatorStyleConfig(),
-                    onChanged: (smart) => _updateLeadingAvatar(
-                      context,
-                      leading.copyWith(smartIndicator: smart),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _BadgeSettings(
-                    value:
-                        leading.registeredBadge ??
-                        const RegisteredBadgeStyleConfig(),
-                    onChanged: (badge) => _updateLeadingAvatar(
-                      context,
-                      leading.copyWith(registeredBadge: badge),
-                    ),
+                  const SizedBox(height: 16),
+                  DescriptionRow.info(
+                    'Presence, registration and smart indicators are configured in '
+                    'the Indicators & Statuses tab.',
                   ),
                 ],
               ),
@@ -204,7 +191,7 @@ class _PlaceholderIconSettings extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: _CodePointInput(
+              child: CodePointInput(
                 value: value.codePoint,
                 onChanged: (v) => onChanged(value.copyWith(codePoint: v)),
               ),
@@ -266,230 +253,6 @@ class _LoadingOverlaySettings extends StatelessWidget {
           onChanged: (p) => onChanged(value.copyWith(padding: p)),
         ),
       ],
-    );
-  }
-}
-
-class _SmartIndicatorSettings extends StatelessWidget {
-  const _SmartIndicatorSettings({required this.value, required this.onChanged});
-
-  final SmartIndicatorStyleConfig value;
-  final ValueChanged<SmartIndicatorStyleConfig> onChanged;
-
-  static const int _defaultCodePoint = 0xe491;
-
-  Future<void> _pickBackgroundColor(BuildContext context) async {
-    final newColor = await context.showColorPicker(
-      currentColor: value.backgroundColor?.tryParseColor(),
-    );
-    if (newColor != null) {
-      onChanged(value.copyWith(backgroundColor: newColor.toHex()));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Smart Indicator', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: ColorField(
-                title: 'Background',
-                color: value.backgroundColor?.tryParseColor(),
-                onTap: (_) => _pickBackgroundColor(context),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: NumberInputControl(
-                label: 'Size Factor',
-                value: value.sizeFactor,
-                onChanged: (v) => onChanged(value.copyWith(sizeFactor: v)),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: _CodePointInput(
-                value: value.icon?.codePoint ?? _defaultCodePoint,
-                onChanged: (v) => onChanged(
-                  value.copyWith(
-                    icon:
-                        (value.icon ??
-                                const IconDataConfig(
-                                  codePoint: _defaultCodePoint,
-                                ))
-                            .copyWith(codePoint: v),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: TextFormField(
-                initialValue: value.icon?.fontFamily ?? 'MaterialIcons',
-                decoration: const InputDecoration(
-                  labelText: 'Font Family',
-                  isDense: true,
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (v) => onChanged(
-                  value.copyWith(
-                    icon:
-                        (value.icon ??
-                                const IconDataConfig(
-                                  codePoint: _defaultCodePoint,
-                                ))
-                            .copyWith(fontFamily: v),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class _BadgeSettings extends StatelessWidget {
-  const _BadgeSettings({required this.value, required this.onChanged});
-
-  final RegisteredBadgeStyleConfig value;
-  final ValueChanged<RegisteredBadgeStyleConfig> onChanged;
-
-  Future<void> _pickColor(
-    BuildContext context,
-    String? currentHex,
-    ValueChanged<String> onApply,
-  ) async {
-    final newColor = await context.showColorPicker(
-      currentColor: currentHex?.tryParseColor(),
-    );
-    if (newColor != null) {
-      onApply(newColor.toHex());
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Registered Badge', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: ColorField(
-                title: 'Registered',
-                color: value.registeredColor?.tryParseColor(),
-                onTap: (_) => _pickColor(
-                  context,
-                  value.registeredColor,
-                  (hex) => onChanged(value.copyWith(registeredColor: hex)),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: ColorField(
-                title: 'Unregistered',
-                color: value.unregisteredColor?.tryParseColor(),
-                onTap: (_) => _pickColor(
-                  context,
-                  value.unregisteredColor,
-                  (hex) => onChanged(value.copyWith(unregisteredColor: hex)),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        NumberInputControl(
-          label: 'Size Factor',
-          value: value.sizeFactor,
-          onChanged: (v) => onChanged(value.copyWith(sizeFactor: v)),
-        ),
-      ],
-    );
-  }
-}
-
-class _CodePointInput extends StatefulWidget {
-  const _CodePointInput({required this.value, required this.onChanged});
-
-  final int value;
-  final ValueChanged<int> onChanged;
-
-  @override
-  State<_CodePointInput> createState() => _CodePointInputState();
-}
-
-class _CodePointInputState extends State<_CodePointInput> {
-  late final TextEditingController _controller;
-
-  String _format(int v) => '0x${v.toRadixString(16)}';
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: _format(widget.value));
-  }
-
-  @override
-  void didUpdateWidget(covariant _CodePointInput oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.value != oldWidget.value) {
-      if (_parse(_controller.text) != widget.value) {
-        final newText = _format(widget.value);
-        _controller.value = TextEditingValue(
-          text: newText,
-          selection: TextSelection.collapsed(offset: newText.length),
-        );
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  int? _parse(String input) {
-    final v = input.trim();
-    if (v.isEmpty) return null;
-    if (v.startsWith('0x') || v.startsWith('0X')) {
-      return int.tryParse(v.substring(2), radix: 16);
-    }
-    if (RegExp(r'^[0-9a-fA-F]+$').hasMatch(v)) {
-      return int.tryParse(v, radix: 16);
-    }
-    return int.tryParse(v);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _controller,
-      decoration: const InputDecoration(
-        labelText: 'Code Point (Hex)',
-        isDense: true,
-        border: OutlineInputBorder(),
-        hintText: '0xe491',
-      ),
-      onChanged: (v) {
-        final parsed = _parse(v);
-        if (parsed != null) widget.onChanged(parsed);
-      },
     );
   }
 }

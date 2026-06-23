@@ -54,3 +54,10 @@ const List<String> kDefaultPreviewCapabilities = [
   'autoProvision',
   'customMethods',
 ];
+
+/// Core version reported by the preview's mocked `system-info`.
+///
+/// Must be recent enough to advertise version-gated features the live app
+/// relies on (hybrid presence >=0.28.0-alpha.1, remote favorites >=0.25,
+/// remote caller-id >=0.23); 1.0.0 sits within the supported `<2.0.0` range.
+const String kDefaultPreviewCoreVersion = '1.0.0';

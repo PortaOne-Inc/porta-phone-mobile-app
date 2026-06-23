@@ -26,10 +26,14 @@ class StatusesConfigTab extends StatelessWidget {
         children: [
           StatusSection(
             title: 'Registration statuses',
-            descriptionWidget: DescriptionRow.info('Colors for registered/unregistered account states.'),
+            descriptionWidget: DescriptionRow.info(
+              'Registration badge on contact avatars (registered vs unregistered account). '
+              'The availability dot uses Images & Icons > Leading Avatar Style > Presence Badge.',
+            ),
             statuses: [
               StatusDescriptor(
                 title: 'Registered',
+                description: 'Avatar registration badge when the account is registered with the SIP server.',
                 color: registration.online.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -39,6 +43,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'Unregistered',
+                description: 'Avatar registration badge when the account is not registered with the SIP server.',
                 color: registration.offline.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -51,10 +56,14 @@ class StatusesConfigTab extends StatelessWidget {
           const SizedBox(height: 16),
           StatusSection(
             title: 'Call statuses',
-            descriptionWidget: DescriptionRow.info('Connection and call lifecycle indicators.'),
+            descriptionWidget: DescriptionRow.info(
+              'Connection status shown in the top app bar and the session status in Settings. '
+              'These are not the avatar indicators.',
+            ),
             statuses: [
               StatusDescriptor(
                 title: 'Connectivity none',
+                description: 'No network connectivity.',
                 color: call.connectivityNone.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -64,6 +73,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'Connect error',
+                description: 'Failed to reach the server (WebSocket connection error).',
                 color: call.connectError.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -73,6 +83,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'App unregistered',
+                description: 'Connected to the server, but the account is not registered for calls.',
                 color: call.appUnregistered.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -82,6 +93,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'Connect issue',
+                description: 'Temporary connection problem (reconnecting) or a push-notification service issue.',
                 color: call.connectIssue.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -91,6 +103,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'In progress',
+                description: 'Establishing the connection - the "Connecting..." state.',
                 color: call.inProgress.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -100,6 +113,7 @@ class StatusesConfigTab extends StatelessWidget {
               ),
               StatusDescriptor(
                 title: 'Ready',
+                description: 'Connected and registered - ready to make and receive calls.',
                 color: call.ready.toColor(),
                 onColorSelected: (c) {
                   if (c != null) {
@@ -138,7 +152,7 @@ class StatusSection extends StatelessWidget {
         spacing: 12,
         runSpacing: 12,
         children: statuses.map((status) {
-          return SizedBox(
+          final field = SizedBox(
             width: 200,
             child: ColorInput(
               label: status.title,
@@ -147,6 +161,9 @@ class StatusSection extends StatelessWidget {
               onClear: () => status.onColorSelected(null),
             ),
           );
+          final description = status.description;
+          if (description == null) return field;
+          return Tooltip(message: description, child: field);
         }).toList(),
       ),
     );
@@ -154,9 +171,12 @@ class StatusSection extends StatelessWidget {
 }
 
 class StatusDescriptor {
-  const StatusDescriptor({required this.title, required this.color, required this.onColorSelected});
+  const StatusDescriptor({required this.title, required this.color, required this.onColorSelected, this.description});
 
   final String title;
   final Color? color;
   final ValueChanged<Color?> onColorSelected;
+
+  /// Optional hint explaining where this status color appears, shown as a tooltip.
+  final String? description;
 }
