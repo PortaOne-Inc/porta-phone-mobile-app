@@ -111,7 +111,7 @@ export class ThemeSharesService {
     const application = await this.applicationRepo
       .findById(doc.applicationId)
       .catch(() => null);
-    const environment = this.encodeSharedEnvironment(application?.environment);
+    const environment = this.encodeSharedEnvironment(application);
 
     return {
       ...snapshot,
@@ -125,10 +125,24 @@ export class ThemeSharesService {
   // secret keys, then base64-encodes the remaining values. base64 is only
   // obfuscation (the share endpoint is public), so secrets are removed first.
   private encodeSharedEnvironment(
-    environment?: Record<string, string | boolean | number>,
+    application: Application | null,
   ): string | null {
-    if (!environment) {
+    if (!application) {
       return null;
+    }
+    const environment: Record<string, string | boolean | number> = {
+      ...(application.environment ?? {}),
+    };
+    // Web has no platform bundle id, so default the web bundle id from the
+    // application's platform identifier (mirrors the editor preview). Without it
+    // the backend rejects login with unconfigured_bundle_id.
+    const webBundleIdKey = 'WEBTRIT_APP_WEB_BUNDLE_ID';
+    if (!environment[webBundleIdKey]) {
+      const platformId =
+        application.androidPlatformId ?? application.iosPlatformId;
+      if (platformId) {
+        environment[webBundleIdKey] = platformId;
+      }
     }
     const safe = Object.fromEntries(
       Object.entries(environment).filter(
