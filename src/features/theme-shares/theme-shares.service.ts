@@ -5,11 +5,17 @@ import { InjectRepository } from 'nestjs-fireorm';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ThemeShareToken } from './entities/theme-share-token.entity';
+import { Application } from '../applications/entities/application';
 import { ThemeHistoryService } from '../themes/features/theme-history/theme-history.service';
 import { AssetsService } from '../assets/assets.service';
 import { Collections, nowIso, resolveImageSourceUrlsDeep } from '../../common';
 
 const SHARE_PREVIEW_ASSET_URL_TTL_SEC = 60 * 60 * 24 * 7; // 7 days
+
+// Environment keys whose values are secrets and must never be exposed in a
+// public share preview (the share endpoint is unauthenticated). Matched
+// case-insensitively against the key name.
+const SECRET_ENV_KEY_PATTERN = /TOKEN|SECRET|VAPID|KEYSTORE|PASSWORD|PRIVATE/i;
 
 @Injectable()
 export class ThemeSharesService {
@@ -18,6 +24,8 @@ export class ThemeSharesService {
   constructor(
     @InjectRepository(ThemeShareToken)
     private readonly repo: BaseFirestoreRepository<ThemeShareToken>,
+    @InjectRepository(Application)
+    private readonly applicationRepo: BaseFirestoreRepository<Application>,
     private readonly themeHistoryService: ThemeHistoryService,
     private readonly assetsService: AssetsService,
   ) {}
@@ -100,6 +108,36 @@ export class ThemeSharesService {
       resolveImageSourceUrlsDeep(snapshot.widgetConfigs, resolveUrl),
     ]);
 
-    return { ...snapshot, pageConfigs: resolvedPageConfigs, widgetConfigs: resolvedWidgetConfigs };
+    const application = await this.applicationRepo
+      .findById(doc.applicationId)
+      .catch(() => null);
+    const environment = this.encodeSharedEnvironment(application?.environment);
+
+    return {
+      ...snapshot,
+      pageConfigs: resolvedPageConfigs,
+      widgetConfigs: resolvedWidgetConfigs,
+      environment,
+    };
+  }
+
+  // Encodes the application environment for the realtime share preview: drops
+  // secret keys, then base64-encodes the remaining values. base64 is only
+  // obfuscation (the share endpoint is public), so secrets are removed first.
+  private encodeSharedEnvironment(
+    environment?: Record<string, string | boolean | number>,
+  ): string | null {
+    if (!environment) {
+      return null;
+    }
+    const safe = Object.fromEntries(
+      Object.entries(environment).filter(
+        ([key]) => !SECRET_ENV_KEY_PATTERN.test(key),
+      ),
+    );
+    if (Object.keys(safe).length === 0) {
+      return null;
+    }
+    return Buffer.from(JSON.stringify(safe), 'utf8').toString('base64');
   }
 }
