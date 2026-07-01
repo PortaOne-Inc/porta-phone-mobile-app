@@ -16,6 +16,7 @@
   "feature_authorization_exception_wrong_password": "Invalid password.",
   "feature_authorization_reset_password": "Reset password.",
   "authorization_title": "Authorization",
+  "authorization_session_expired": "Your session has expired.\nPlease log in again",
   "authorization_enter_email_hint": "Enter email",
   "authorization_enter_password_hint": "Enter password",
   "authorization_sign_in": "Sign In",

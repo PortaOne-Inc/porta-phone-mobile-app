@@ -181,6 +181,12 @@ abstract class AppLocalizations {
   /// **'Authorization'**
   String get authorization_title;
 
+  /// No description provided for @authorization_session_expired.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired.\nPlease log in again'**
+  String get authorization_session_expired;
+
   /// No description provided for @authorization_enter_email_hint.
   ///
   /// In en, this message translates to:

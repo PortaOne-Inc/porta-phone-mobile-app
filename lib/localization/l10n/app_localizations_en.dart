@@ -55,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authorization_title => 'Authorization';
 
   @override
+  String get authorization_session_expired => 'Your session has expired.\nPlease log in again';
+
+  @override
   String get authorization_enter_email_hint => 'Enter email';
 
   @override
