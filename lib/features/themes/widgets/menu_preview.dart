@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:webtrit_configurator/core/core.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/layouts_preview/bloc/preview_mode.dart';
+
 import 'menu_space.dart';
 
 class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget {
   const MenuPreviewToolbar({
     required this.onFrameTab,
     required this.isEnableFrame,
-    required this.onInteractiveTab,
-    required this.isInteractive,
+    required this.mode,
+    required this.onModeChanged,
+    this.onOverrideDartDefine,
     super.key,
   });
 
@@ -15,9 +19,13 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
 
   final bool isEnableFrame;
 
-  final void Function(bool isInteractive) onInteractiveTab;
+  final PreviewMode mode;
 
-  final bool isInteractive;
+  final void Function(PreviewMode mode) onModeChanged;
+
+  /// When non-null (realtime mode), shows an action that opens the temporary
+  /// dart-define override editor.
+  final VoidCallback? onOverrideDartDefine;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +36,20 @@ class MenuPreviewToolbar extends StatelessWidget implements PreferredSizeWidget 
       background: colorScheme.surfaceDim.withValues(alpha: 0.2),
       children: [
         const Spacer(),
-        IconButton(
-          tooltip: isInteractive ? 'Disable preview interaction' : 'Enable preview interaction',
-          onPressed: () => onInteractiveTab(!isInteractive),
-          icon: Icon(isInteractive ? Icons.touch_app : Icons.do_not_touch_outlined, size: 20),
+        Dropdown(
+          key: ValueKey(mode),
+          items: PreviewMode.values.map((mode) => mode.label).toList(),
+          position: mode.index,
+          icon: Icon(mode.icon, size: 18, color: colorScheme.secondary),
+          onSelect: (position) => onModeChanged(PreviewMode.values[position]),
         ),
+        const SizedBox(width: 8),
+        if (onOverrideDartDefine != null)
+          IconButton(
+            tooltip: 'Override dart-define',
+            onPressed: onOverrideDartDefine,
+            icon: const Icon(Icons.data_object, size: 20),
+          ),
         IconButton(
           tooltip: isEnableFrame ? 'Hide device frame' : 'Show device frame',
           onPressed: () => onFrameTab(!isEnableFrame),

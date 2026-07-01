@@ -12,6 +12,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
+import 'package:webtrit_configurator/features/themes/features/theme_edit/features/preview/features/layouts_preview/layouts_preview.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/mocks/mocks.dart';
 import 'package:webtrit_configurator/features/themes/widgets/widgets.dart';
 import 'package:webtrit_configurator/mocks/mocks.dart';
@@ -69,7 +70,7 @@ class _SharedPreviewContent extends StatefulWidget {
 
 class _SharedPreviewContentState extends State<_SharedPreviewContent> {
   bool _isDark = false;
-  bool _interactive = false;
+  PreviewMode _mode = PreviewMode.static;
   int _focusScreenPosition = 0;
   ErrorWidgetBuilder? _defaultErrorBuilder;
   final _previewKey = GlobalKey();
@@ -178,11 +179,12 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
     final themeSettings = _buildThemeSettings();
     final themeMode = _isDark ? ThemeMode.dark : ThemeMode.light;
     final featureAccess = _buildFeatureAccess();
+    final interactive = _mode.isInteractive;
     final screenshots = buildPreviewScreenshots(
       featureAccess: featureAccess,
       themeMode: themeMode,
       themeSettings: themeSettings,
-      interactive: _interactive,
+      interactive: interactive,
     );
 
     final focusPosition = screenshots.isEmpty ? 0 : _focusScreenPosition.clamp(0, screenshots.length - 1);
@@ -203,18 +205,23 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
             title: Text(widget.data.themeName),
             centerTitle: true,
             actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Dropdown(
+                  key: ValueKey(_mode),
+                  items: PreviewMode.values.map((mode) => mode.label).toList(),
+                  position: _mode.index,
+                  icon: Icon(_mode.icon, size: 18),
+                  onSelect: (position) => setState(() {
+                    _mode = PreviewMode.values[position];
+                    _focusScreenPosition = 0;
+                  }),
+                ),
+              ),
               IconButton(
                 icon: const Icon(Icons.download),
                 tooltip: 'Download screenshot',
                 onPressed: _downloadScreenshot,
-              ),
-              IconButton(
-                icon: Icon(_interactive ? Icons.touch_app : Icons.touch_app_outlined),
-                tooltip: _interactive ? 'Disable interaction' : 'Enable interaction',
-                onPressed: () => setState(() {
-                  _interactive = !_interactive;
-                  _focusScreenPosition = 0;
-                }),
               ),
               IconButton(
                 icon: Icon(_isDark ? Icons.light_mode : Icons.dark_mode),
@@ -226,34 +233,48 @@ class _SharedPreviewContentState extends State<_SharedPreviewContent> {
               ),
             ],
           ),
-          body: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Align(
-                  child: RepaintBoundary(
-                    key: _previewKey,
-                    child: TypePreview(
-                      screens: screenshots,
-                      screenFocus: focusPosition,
-                      isFrameVisible: true,
-                      interactive: _interactive,
-                    ),
+          body: _mode.isRealtime
+              // Boots the real app with the backend-supplied environment, so the
+              // shared link shows the live themed app (login works when the
+              // environment carries a usable backend). Centered to match the
+              // static/semi-dynamic preview.
+              ? Center(
+                  child: RealtimePreview(
+                    featureAccess: featureAccess,
+                    themeMode: themeMode,
+                    themeSettings: themeSettings,
+                    isFrameVisible: true,
+                    environment: widget.data.environment,
                   ),
+                )
+              : Column(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Align(
+                        child: RepaintBoundary(
+                          key: _previewKey,
+                          child: TypePreview(
+                            screens: screenshots,
+                            screenFocus: focusPosition,
+                            isFrameVisible: true,
+                            interactive: interactive,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 160,
+                      child: DrawerPreview(
+                        screenshots: screenshots,
+                        focusScreenPosition: focusPosition,
+                        onTapScreen: (index) => setState(() {
+                          _focusScreenPosition = index;
+                        }),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 160,
-                child: DrawerPreview(
-                  screenshots: screenshots,
-                  focusScreenPosition: focusPosition,
-                  onTapScreen: (index) => setState(() {
-                    _focusScreenPosition = index;
-                  }),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

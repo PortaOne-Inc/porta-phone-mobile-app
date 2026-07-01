@@ -27,6 +27,7 @@ _SharedThemePreviewDto _$SharedThemePreviewDtoFromJson(
           ?.map((e) => e as Map<String, dynamic>)
           .toList() ??
       const [],
+  environment: json['environment'] as String?,
 );
 
 Map<String, dynamic> _$SharedThemePreviewDtoToJson(
@@ -40,4 +41,5 @@ Map<String, dynamic> _$SharedThemePreviewDtoToJson(
   'launchAsset': instance.launchAsset,
   'featureAccess': instance.featureAccess,
   'embeds': instance.embeds,
+  'environment': instance.environment,
 };

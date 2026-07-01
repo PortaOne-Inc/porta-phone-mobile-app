@@ -26,7 +26,7 @@ List<Widget> buildPreviewScreenshots({
   required bool interactive,
   Locale locale = const Locale('en'),
 }) {
-  final appBloc = MockAppBloc.allScreen(themeSettings: themeSettings, themeMode: themeMode, locale: locale);
+  final appBloc = MockAppBloc.allScreen(themeMode: themeMode, locale: locale);
 
   final loginFeature = featureAccess?.loginConfig;
   final bottomMenuFeature = featureAccess?.bottomMenuConfig;
@@ -162,10 +162,17 @@ List<Widget> buildPreviewScreenshots({
     const EmbeddedErrorDialogScreenshot(),
   ];
 
-  return rawScreens.map((screen) => _wrapWithPreviewEnvironment(screen, appBloc, featureAccess)).toList();
+  return rawScreens
+      .map((screen) => _wrapWithPreviewEnvironment(screen, appBloc, featureAccess, themeSettings))
+      .toList();
 }
 
-Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc, FeatureAccess? featureAccess) {
+Widget _wrapWithPreviewEnvironment(
+  Widget screen,
+  AppBloc appBloc,
+  FeatureAccess? featureAccess,
+  ThemeSettings themeSettings,
+) {
   // UniqueKey forces full element recreation when the screenshot list is
   // regenerated (i.e. when theme settings change). Without it, Flutter
   // reuses existing elements and some StatefulWidget screenshots that push
@@ -180,7 +187,12 @@ Widget _wrapWithPreviewEnvironment(Widget screen, AppBloc appBloc, FeatureAccess
       // Pointer handling is decided per surface by TypePreview/DrawerPreview
       // (focused preview is toggleable, thumbnails stay tap-to-focus), so the
       // screenshot itself must not swallow pointers here.
-      child: ScreenshotApp(appBloc: appBloc, ignorePointer: false, child: screen),
+      // The theme is provided as an inherited value (ScreenshotApp reads it),
+      // since it no longer lives in AppState.
+      child: Provider<ThemeSettings>.value(
+        value: themeSettings,
+        child: ScreenshotApp(appBloc: appBloc, ignorePointer: false, child: screen),
+      ),
     ),
   );
 }

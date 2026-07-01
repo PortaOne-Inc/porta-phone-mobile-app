@@ -289,6 +289,7 @@ class AppRoute {
                       ),
                     ),
                     BlocProvider<PreviewThemeCubit>(create: (BuildContext context) => PreviewThemeCubit()),
+                    RepositoryProvider<GetApplicationEnvironmentUsecase>(create: (_) => getIt.get()),
                   ],
                   child: PageThemeEdit(
                     title: context.l10n.feature_theme_edit_Toolbar_dashboard,

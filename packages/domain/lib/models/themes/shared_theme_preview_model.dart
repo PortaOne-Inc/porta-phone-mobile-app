@@ -8,6 +8,7 @@ class SharedThemePreviewModel {
     this.launchAsset,
     this.featureAccess,
     this.embeds = const [],
+    this.environment,
   });
 
   final Map<String, dynamic> theme;
@@ -18,6 +19,10 @@ class SharedThemePreviewModel {
   final Map<String, dynamic>? launchAsset;
   final Map<String, dynamic>? featureAccess;
   final List<Map<String, dynamic>> embeds;
+
+  /// The application's dart-define environment for the realtime preview
+  /// (secret-filtered by the backend), or null when not provided.
+  final Map<String, dynamic>? environment;
 
   String get themeName => theme['title'] as String? ?? 'Untitled Theme';
   String? get themeDescription => theme['description'] as String?;

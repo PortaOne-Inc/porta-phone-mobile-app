@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
@@ -210,11 +212,25 @@ class ThemeRepositoryImpl extends ThemeRepository {
         launchAsset: dto.launchAsset,
         featureAccess: dto.featureAccess,
         embeds: dto.embeds,
+        environment: _decodeSharedEnvironment(dto.environment),
       );
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {
       throw BaseException(message: e.toString());
+    }
+  }
+
+  /// Decodes the base64-encoded environment from the shared preview response.
+  /// Returns null on any malformed input so a bad value never breaks the preview.
+  Map<String, dynamic>? _decodeSharedEnvironment(String? encoded) {
+    if (encoded == null || encoded.isEmpty) return null;
+    try {
+      final decoded = utf8.decode(base64.decode(encoded));
+      final parsed = jsonDecode(decoded);
+      return parsed is Map<String, dynamic> ? parsed : null;
+    } catch (_) {
+      return null;
     }
   }
 }

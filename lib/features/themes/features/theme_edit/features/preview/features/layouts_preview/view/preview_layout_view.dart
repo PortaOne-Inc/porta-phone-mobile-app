@@ -10,12 +10,21 @@ import 'package:webtrit_phone/data/feature_access.dart';
 import 'package:domain/domain.dart';
 
 class PreviewLayoutView extends StatefulWidget {
-  const PreviewLayoutView({required this.frameVisibility, required this.interactive, super.key});
+  const PreviewLayoutView({
+    required this.frameVisibility,
+    required this.mode,
+    this.dartDefineOverrides = const {},
+    super.key,
+  });
 
   final bool frameVisibility;
 
-  /// Allows pointer interaction with the focused phone preview (thumbnails stay tap-to-focus).
-  final bool interactive;
+  /// Selected preview fidelity (static snapshots, interactive snapshots, or the
+  /// live in-process app).
+  final PreviewMode mode;
+
+  /// Temporary dart-define overrides applied to the realtime preview only.
+  final Map<String, String> dartDefineOverrides;
 
   @override
   State<PreviewLayoutView> createState() => _PreviewLayoutViewState();
@@ -55,6 +64,31 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
   Widget build(BuildContext context) {
     final featureAccess = context.watch<FeatureAccess?>();
 
+    if (widget.mode.isRealtime) {
+      final cubit = context.watch<UpdateThemCubit>();
+      final cubitState = cubit.state;
+      final selectedVariant = cubitState.selectedVariant;
+      final themeMode = selectedVariant == BrightnessVariant.dark ? ThemeMode.dark : ThemeMode.light;
+      final application = cubitState.applicationModel;
+      final overrides = widget.dartDefineOverrides;
+      return Align(
+        child: RealtimePreview(
+          // Re-bootstrap the embedded app whenever the dart-define overrides change.
+          key: ValueKey(overrides.entries.map((entry) => '${entry.key}=${entry.value}').join('&')),
+          applicationId: cubit.applicationId,
+          environmentUsecase: context.read<GetApplicationEnvironmentUsecase>(),
+          dartDefineOverrides: overrides,
+          defaultWebBundleId: application?.androidPlatformId ?? application?.iosPlatformId,
+          featureAccess: featureAccess,
+          themeMode: themeMode,
+          themeSettings: cubitState.themeSettings,
+          isFrameVisible: widget.frameVisibility,
+        ),
+      );
+    }
+
+    final interactive = widget.mode.isInteractive;
+
     // Read config directly from the cubit state instead of ThemeProvider.
     // When context.watch<UpdateThemCubit>() triggers a rebuild, ThemeProvider
     // (updated by a separate BlocBuilder higher in the tree) may not have
@@ -70,16 +104,16 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
     if (featureAccess != _lastFeatureAccess ||
         themeMode != _lastThemeMode ||
         themeSettings != _lastThemeSettings ||
-        widget.interactive != _lastInteractive) {
+        interactive != _lastInteractive) {
       _lastFeatureAccess = featureAccess;
       _lastThemeMode = themeMode;
       _lastThemeSettings = themeSettings;
-      _lastInteractive = widget.interactive;
+      _lastInteractive = interactive;
       _cachedScreenshots = buildPreviewScreenshots(
         featureAccess: featureAccess,
         themeMode: themeMode,
         themeSettings: themeSettings,
-        interactive: widget.interactive,
+        interactive: interactive,
       );
     }
 
@@ -98,7 +132,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
             screens: screenshots,
             screenFocus: focusPosition,
             isFrameVisible: widget.frameVisibility,
-            interactive: widget.interactive,
+            interactive: interactive,
           ),
         ),
         (_) =>

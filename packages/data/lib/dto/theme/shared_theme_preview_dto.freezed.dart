@@ -15,7 +15,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SharedThemePreviewDto {
 
- Map<String, dynamic> get theme; List<Map<String, dynamic>> get colorSchemes; List<Map<String, dynamic>> get widgetConfigs; List<Map<String, dynamic>> get pageConfigs; Map<String, dynamic>? get splashAsset; Map<String, dynamic>? get launchAsset; Map<String, dynamic>? get featureAccess; List<Map<String, dynamic>> get embeds;
+ Map<String, dynamic> get theme; List<Map<String, dynamic>> get colorSchemes; List<Map<String, dynamic>> get widgetConfigs; List<Map<String, dynamic>> get pageConfigs; Map<String, dynamic>? get splashAsset; Map<String, dynamic>? get launchAsset; Map<String, dynamic>? get featureAccess; List<Map<String, dynamic>> get embeds;// Base64-encoded, secret-filtered dart-define environment supplied by the
+// backend for the realtime share preview. Null when not provided.
+ String? get environment;
 /// Create a copy of SharedThemePreviewDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +30,16 @@ $SharedThemePreviewDtoCopyWith<SharedThemePreviewDto> get copyWith => _$SharedTh
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SharedThemePreviewDto&&const DeepCollectionEquality().equals(other.theme, theme)&&const DeepCollectionEquality().equals(other.colorSchemes, colorSchemes)&&const DeepCollectionEquality().equals(other.widgetConfigs, widgetConfigs)&&const DeepCollectionEquality().equals(other.pageConfigs, pageConfigs)&&const DeepCollectionEquality().equals(other.splashAsset, splashAsset)&&const DeepCollectionEquality().equals(other.launchAsset, launchAsset)&&const DeepCollectionEquality().equals(other.featureAccess, featureAccess)&&const DeepCollectionEquality().equals(other.embeds, embeds));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SharedThemePreviewDto&&const DeepCollectionEquality().equals(other.theme, theme)&&const DeepCollectionEquality().equals(other.colorSchemes, colorSchemes)&&const DeepCollectionEquality().equals(other.widgetConfigs, widgetConfigs)&&const DeepCollectionEquality().equals(other.pageConfigs, pageConfigs)&&const DeepCollectionEquality().equals(other.splashAsset, splashAsset)&&const DeepCollectionEquality().equals(other.launchAsset, launchAsset)&&const DeepCollectionEquality().equals(other.featureAccess, featureAccess)&&const DeepCollectionEquality().equals(other.embeds, embeds)&&(identical(other.environment, environment) || other.environment == environment));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(theme),const DeepCollectionEquality().hash(colorSchemes),const DeepCollectionEquality().hash(widgetConfigs),const DeepCollectionEquality().hash(pageConfigs),const DeepCollectionEquality().hash(splashAsset),const DeepCollectionEquality().hash(launchAsset),const DeepCollectionEquality().hash(featureAccess),const DeepCollectionEquality().hash(embeds));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(theme),const DeepCollectionEquality().hash(colorSchemes),const DeepCollectionEquality().hash(widgetConfigs),const DeepCollectionEquality().hash(pageConfigs),const DeepCollectionEquality().hash(splashAsset),const DeepCollectionEquality().hash(launchAsset),const DeepCollectionEquality().hash(featureAccess),const DeepCollectionEquality().hash(embeds),environment);
 
 @override
 String toString() {
-  return 'SharedThemePreviewDto(theme: $theme, colorSchemes: $colorSchemes, widgetConfigs: $widgetConfigs, pageConfigs: $pageConfigs, splashAsset: $splashAsset, launchAsset: $launchAsset, featureAccess: $featureAccess, embeds: $embeds)';
+  return 'SharedThemePreviewDto(theme: $theme, colorSchemes: $colorSchemes, widgetConfigs: $widgetConfigs, pageConfigs: $pageConfigs, splashAsset: $splashAsset, launchAsset: $launchAsset, featureAccess: $featureAccess, embeds: $embeds, environment: $environment)';
 }
 
 
@@ -48,7 +50,7 @@ abstract mixin class $SharedThemePreviewDtoCopyWith<$Res>  {
   factory $SharedThemePreviewDtoCopyWith(SharedThemePreviewDto value, $Res Function(SharedThemePreviewDto) _then) = _$SharedThemePreviewDtoCopyWithImpl;
 @useResult
 $Res call({
- Map<String, dynamic> theme, List<Map<String, dynamic>> colorSchemes, List<Map<String, dynamic>> widgetConfigs, List<Map<String, dynamic>> pageConfigs, Map<String, dynamic>? splashAsset, Map<String, dynamic>? launchAsset, Map<String, dynamic>? featureAccess, List<Map<String, dynamic>> embeds
+ Map<String, dynamic> theme, List<Map<String, dynamic>> colorSchemes, List<Map<String, dynamic>> widgetConfigs, List<Map<String, dynamic>> pageConfigs, Map<String, dynamic>? splashAsset, Map<String, dynamic>? launchAsset, Map<String, dynamic>? featureAccess, List<Map<String, dynamic>> embeds, String? environment
 });
 
 
@@ -65,7 +67,7 @@ class _$SharedThemePreviewDtoCopyWithImpl<$Res>
 
 /// Create a copy of SharedThemePreviewDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? theme = null,Object? colorSchemes = null,Object? widgetConfigs = null,Object? pageConfigs = null,Object? splashAsset = freezed,Object? launchAsset = freezed,Object? featureAccess = freezed,Object? embeds = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? theme = null,Object? colorSchemes = null,Object? widgetConfigs = null,Object? pageConfigs = null,Object? splashAsset = freezed,Object? launchAsset = freezed,Object? featureAccess = freezed,Object? embeds = null,Object? environment = freezed,}) {
   return _then(_self.copyWith(
 theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,colorSchemes: null == colorSchemes ? _self.colorSchemes : colorSchemes // ignore: cast_nullable_to_non_nullable
@@ -75,7 +77,8 @@ as List<Map<String, dynamic>>,splashAsset: freezed == splashAsset ? _self.splash
 as Map<String, dynamic>?,launchAsset: freezed == launchAsset ? _self.launchAsset : launchAsset // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,featureAccess: freezed == featureAccess ? _self.featureAccess : featureAccess // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,embeds: null == embeds ? _self.embeds : embeds // ignore: cast_nullable_to_non_nullable
-as List<Map<String, dynamic>>,
+as List<Map<String, dynamic>>,environment: freezed == environment ? _self.environment : environment // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -157,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds,  String? environment)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SharedThemePreviewDto() when $default != null:
-return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds);case _:
+return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds,_that.environment);case _:
   return orElse();
 
 }
@@ -178,10 +181,10 @@ return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageCon
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds,  String? environment)  $default,) {final _that = this;
 switch (_that) {
 case _SharedThemePreviewDto():
-return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds);}
+return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds,_that.environment);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +198,10 @@ return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageCon
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, dynamic> theme,  List<Map<String, dynamic>> colorSchemes,  List<Map<String, dynamic>> widgetConfigs,  List<Map<String, dynamic>> pageConfigs,  Map<String, dynamic>? splashAsset,  Map<String, dynamic>? launchAsset,  Map<String, dynamic>? featureAccess,  List<Map<String, dynamic>> embeds,  String? environment)?  $default,) {final _that = this;
 switch (_that) {
 case _SharedThemePreviewDto() when $default != null:
-return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds);case _:
+return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageConfigs,_that.splashAsset,_that.launchAsset,_that.featureAccess,_that.embeds,_that.environment);case _:
   return null;
 
 }
@@ -210,7 +213,7 @@ return $default(_that.theme,_that.colorSchemes,_that.widgetConfigs,_that.pageCon
 @JsonSerializable()
 
 class _SharedThemePreviewDto implements SharedThemePreviewDto {
-  const _SharedThemePreviewDto({required final  Map<String, dynamic> theme, required final  List<Map<String, dynamic>> colorSchemes, required final  List<Map<String, dynamic>> widgetConfigs, required final  List<Map<String, dynamic>> pageConfigs, final  Map<String, dynamic>? splashAsset, final  Map<String, dynamic>? launchAsset, final  Map<String, dynamic>? featureAccess, final  List<Map<String, dynamic>> embeds = const []}): _theme = theme,_colorSchemes = colorSchemes,_widgetConfigs = widgetConfigs,_pageConfigs = pageConfigs,_splashAsset = splashAsset,_launchAsset = launchAsset,_featureAccess = featureAccess,_embeds = embeds;
+  const _SharedThemePreviewDto({required final  Map<String, dynamic> theme, required final  List<Map<String, dynamic>> colorSchemes, required final  List<Map<String, dynamic>> widgetConfigs, required final  List<Map<String, dynamic>> pageConfigs, final  Map<String, dynamic>? splashAsset, final  Map<String, dynamic>? launchAsset, final  Map<String, dynamic>? featureAccess, final  List<Map<String, dynamic>> embeds = const [], this.environment}): _theme = theme,_colorSchemes = colorSchemes,_widgetConfigs = widgetConfigs,_pageConfigs = pageConfigs,_splashAsset = splashAsset,_launchAsset = launchAsset,_featureAccess = featureAccess,_embeds = embeds;
   factory _SharedThemePreviewDto.fromJson(Map<String, dynamic> json) => _$SharedThemePreviewDtoFromJson(json);
 
  final  Map<String, dynamic> _theme;
@@ -275,6 +278,9 @@ class _SharedThemePreviewDto implements SharedThemePreviewDto {
   return EqualUnmodifiableListView(_embeds);
 }
 
+// Base64-encoded, secret-filtered dart-define environment supplied by the
+// backend for the realtime share preview. Null when not provided.
+@override final  String? environment;
 
 /// Create a copy of SharedThemePreviewDto
 /// with the given fields replaced by the non-null parameter values.
@@ -289,16 +295,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SharedThemePreviewDto&&const DeepCollectionEquality().equals(other._theme, _theme)&&const DeepCollectionEquality().equals(other._colorSchemes, _colorSchemes)&&const DeepCollectionEquality().equals(other._widgetConfigs, _widgetConfigs)&&const DeepCollectionEquality().equals(other._pageConfigs, _pageConfigs)&&const DeepCollectionEquality().equals(other._splashAsset, _splashAsset)&&const DeepCollectionEquality().equals(other._launchAsset, _launchAsset)&&const DeepCollectionEquality().equals(other._featureAccess, _featureAccess)&&const DeepCollectionEquality().equals(other._embeds, _embeds));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SharedThemePreviewDto&&const DeepCollectionEquality().equals(other._theme, _theme)&&const DeepCollectionEquality().equals(other._colorSchemes, _colorSchemes)&&const DeepCollectionEquality().equals(other._widgetConfigs, _widgetConfigs)&&const DeepCollectionEquality().equals(other._pageConfigs, _pageConfigs)&&const DeepCollectionEquality().equals(other._splashAsset, _splashAsset)&&const DeepCollectionEquality().equals(other._launchAsset, _launchAsset)&&const DeepCollectionEquality().equals(other._featureAccess, _featureAccess)&&const DeepCollectionEquality().equals(other._embeds, _embeds)&&(identical(other.environment, environment) || other.environment == environment));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_theme),const DeepCollectionEquality().hash(_colorSchemes),const DeepCollectionEquality().hash(_widgetConfigs),const DeepCollectionEquality().hash(_pageConfigs),const DeepCollectionEquality().hash(_splashAsset),const DeepCollectionEquality().hash(_launchAsset),const DeepCollectionEquality().hash(_featureAccess),const DeepCollectionEquality().hash(_embeds));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_theme),const DeepCollectionEquality().hash(_colorSchemes),const DeepCollectionEquality().hash(_widgetConfigs),const DeepCollectionEquality().hash(_pageConfigs),const DeepCollectionEquality().hash(_splashAsset),const DeepCollectionEquality().hash(_launchAsset),const DeepCollectionEquality().hash(_featureAccess),const DeepCollectionEquality().hash(_embeds),environment);
 
 @override
 String toString() {
-  return 'SharedThemePreviewDto(theme: $theme, colorSchemes: $colorSchemes, widgetConfigs: $widgetConfigs, pageConfigs: $pageConfigs, splashAsset: $splashAsset, launchAsset: $launchAsset, featureAccess: $featureAccess, embeds: $embeds)';
+  return 'SharedThemePreviewDto(theme: $theme, colorSchemes: $colorSchemes, widgetConfigs: $widgetConfigs, pageConfigs: $pageConfigs, splashAsset: $splashAsset, launchAsset: $launchAsset, featureAccess: $featureAccess, embeds: $embeds, environment: $environment)';
 }
 
 
@@ -309,7 +315,7 @@ abstract mixin class _$SharedThemePreviewDtoCopyWith<$Res> implements $SharedThe
   factory _$SharedThemePreviewDtoCopyWith(_SharedThemePreviewDto value, $Res Function(_SharedThemePreviewDto) _then) = __$SharedThemePreviewDtoCopyWithImpl;
 @override @useResult
 $Res call({
- Map<String, dynamic> theme, List<Map<String, dynamic>> colorSchemes, List<Map<String, dynamic>> widgetConfigs, List<Map<String, dynamic>> pageConfigs, Map<String, dynamic>? splashAsset, Map<String, dynamic>? launchAsset, Map<String, dynamic>? featureAccess, List<Map<String, dynamic>> embeds
+ Map<String, dynamic> theme, List<Map<String, dynamic>> colorSchemes, List<Map<String, dynamic>> widgetConfigs, List<Map<String, dynamic>> pageConfigs, Map<String, dynamic>? splashAsset, Map<String, dynamic>? launchAsset, Map<String, dynamic>? featureAccess, List<Map<String, dynamic>> embeds, String? environment
 });
 
 
@@ -326,7 +332,7 @@ class __$SharedThemePreviewDtoCopyWithImpl<$Res>
 
 /// Create a copy of SharedThemePreviewDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? theme = null,Object? colorSchemes = null,Object? widgetConfigs = null,Object? pageConfigs = null,Object? splashAsset = freezed,Object? launchAsset = freezed,Object? featureAccess = freezed,Object? embeds = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? theme = null,Object? colorSchemes = null,Object? widgetConfigs = null,Object? pageConfigs = null,Object? splashAsset = freezed,Object? launchAsset = freezed,Object? featureAccess = freezed,Object? embeds = null,Object? environment = freezed,}) {
   return _then(_SharedThemePreviewDto(
 theme: null == theme ? _self._theme : theme // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,colorSchemes: null == colorSchemes ? _self._colorSchemes : colorSchemes // ignore: cast_nullable_to_non_nullable
@@ -336,7 +342,8 @@ as List<Map<String, dynamic>>,splashAsset: freezed == splashAsset ? _self._splas
 as Map<String, dynamic>?,launchAsset: freezed == launchAsset ? _self._launchAsset : launchAsset // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,featureAccess: freezed == featureAccess ? _self._featureAccess : featureAccess // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,embeds: null == embeds ? _self._embeds : embeds // ignore: cast_nullable_to_non_nullable
-as List<Map<String, dynamic>>,
+as List<Map<String, dynamic>>,environment: freezed == environment ? _self.environment : environment // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

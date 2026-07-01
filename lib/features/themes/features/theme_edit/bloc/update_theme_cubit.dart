@@ -116,6 +116,22 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     add(const InitializeEvent());
   }
 
+  /// Loads the application metadata (name, platform identifiers) into state.
+  ///
+  /// Best-effort: metadata is not required to edit the theme, so a failure is
+  /// logged and does not fail initialization.
+  Future<bool> _initializeApplication(Emitter<UpdateThemeState> emit, int epoch) async {
+    try {
+      final application = await getApplicationUseCase.execute(id: applicationId);
+      if (_initEpoch == epoch) {
+        emit(state.copyWith(applicationModel: application));
+      }
+    } catch (error, stackTrace) {
+      _logger.warning('Failed to load application metadata', error, stackTrace);
+    }
+    return true;
+  }
+
   Future<void> _onLoadingEvent(LoadingEvent event, Emitter<UpdateThemeState> emit) async {
     event.map(
       setStatus: (e) => emit(state.copyWith(status: e.status)),
@@ -577,6 +593,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
     add(const LoadingEvent.reset(status: ThemePropertyStatus.progress));
 
     final results = await Future.wait([
+      _initializeApplication(emit, epoch),
       _initializeFeatureAccess(applicationId, themeId, epoch),
       _initializeEmbeddedResourceModel(applicationId, epoch),
       _initializeColorScheme(applicationId, themeId, state.selectedVariant, epoch),
