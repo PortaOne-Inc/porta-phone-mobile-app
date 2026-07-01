@@ -16,12 +16,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     required this.deleteThemeUseCase,
     required this.applicationDeleteUsecase,
     ApplicationModel? applicationModel,
-  }) : super(
-         ThemeCollectionState(
-           status: ThemeCollectionStateStatus.progress,
-           application: applicationModel,
-         ),
-       ) {
+  }) : super(ThemeCollectionState(status: ThemeCollectionStateStatus.progress, application: applicationModel)) {
     _init();
   }
 
@@ -35,6 +30,9 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
     await _getThemes();
   }
 
+  /// Re-fetches the themes, e.g. after a re-login.
+  Future<void> reload() => _init();
+
   Future<void> tryDeleteTheme(ThemeModel themeModel) async {
     emit(state.copyWith(deleteTheme: themeModel));
   }
@@ -42,12 +40,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   Future<void> confirmDeleteTheme() async {
     final deleteTheme = state.deleteTheme;
     if (deleteTheme != null) {
-      emit(
-        state.copyWith(
-          deleteTheme: null,
-          status: ThemeCollectionStateStatus.progress,
-        ),
-      );
+      emit(state.copyWith(deleteTheme: null, status: ThemeCollectionStateStatus.progress));
       await _deleteTheme(deleteTheme);
     }
   }
@@ -74,9 +67,7 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
   Future<void> _tryDeleteApplication(ApplicationModel applicationModel) async {
     try {
       emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
-      await applicationDeleteUsecase.execute(
-        applicationId: applicationModel.id!,
-      );
+      await applicationDeleteUsecase.execute(applicationId: applicationModel.id!);
       emit(state.copyWith(status: ThemeCollectionStateStatus.deleted));
     } on BaseException catch (e) {
       emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
@@ -88,16 +79,9 @@ class ThemeCollectionCubit extends Cubit<ThemeCollectionState> {
       try {
         emit(state.copyWith(status: ThemeCollectionStateStatus.progress));
         final themes = await getAllThemesUseCase.execute();
-        emit(
-          state.copyWith(
-            themes: themes,
-            status: ThemeCollectionStateStatus.success,
-          ),
-        );
+        emit(state.copyWith(themes: themes, status: ThemeCollectionStateStatus.success));
       } on BaseException catch (e) {
-        emit(
-          state.copyWith(error: e, status: ThemeCollectionStateStatus.error),
-        );
+        emit(state.copyWith(error: e, status: ThemeCollectionStateStatus.error));
       }
     }
   }

@@ -7,6 +7,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/app/application.dart';
+import 'package:webtrit_configurator/features/auth/auth.dart';
 import 'package:webtrit_configurator/features/common/common.dart';
 
 import '../bloc/theme_collection_cubit.dart';
@@ -18,74 +19,68 @@ class ThemeCollectionDetailsPage extends StatefulWidget with MixinMessages {
   const ThemeCollectionDetailsPage({super.key});
 
   @override
-  State<ThemeCollectionDetailsPage> createState() =>
-      _ThemeCollectionDetailsPageState();
+  State<ThemeCollectionDetailsPage> createState() => _ThemeCollectionDetailsPageState();
 }
 
-class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
-    with MixinMessages {
+class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage> with MixinMessages {
   late final bloc = BlocProvider.of<ThemeCollectionCubit>(context);
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return BlocConsumer<ThemeCollectionCubit, ThemeCollectionState>(
-      listener: _listenThemesState,
-      builder: (ctx, state) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-              'Themes',
-              style: textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            actions: [
-              ThemeModeSwitcher(
-                themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
-                onThemeChange: (mode) => _onThemeModeChanged(context, mode),
-              ),
-            ],
-          ),
-          drawer: Drawer(
-            child: Column(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.list),
-                  title: const Text('Applications'),
-                  onTap: () => _openApplicationCollection(context),
-                ),
-                const Divider(),
-                const Spacer(),
-                ListTile(
-                  leading: const Icon(Icons.exit_to_app),
-                  title: const Text('Logout'),
-                  onTap: () => _logout(context),
+    return AuthReloginTrigger(
+      onRelogin: bloc.reload,
+      child: BlocConsumer<ThemeCollectionCubit, ThemeCollectionState>(
+        listener: _listenThemesState,
+        builder: (ctx, state) {
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text('Themes', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+              actions: [
+                ThemeModeSwitcher(
+                  themeMode: BlocProvider.of<CommonBloc>(context).state.themeMode,
+                  onThemeChange: (mode) => _onThemeModeChanged(context, mode),
                 ),
               ],
             ),
-          ),
-          body: ConditionalProgressBar(
-            condition: !state.isProgress,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16, left: 16),
-              child: ApplicationThemesScreen(
-                themes: state.themes,
-                crossAxisCount: 6,
-                onNewBranding: () =>
-                    _onNewTheme(context, state.application!.id!),
-                onOpenBranding: (String themeId) => {},
-                onMakeDefault: (it) {},
-                onDelete: bloc.tryDeleteTheme,
-                onShowInfo: (theme) =>
-                    _showThemeInfo(context, state.application!.id!, theme),
+            drawer: Drawer(
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.list),
+                    title: const Text('Applications'),
+                    onTap: () => _openApplicationCollection(context),
+                  ),
+                  const Divider(),
+                  const Spacer(),
+                  ListTile(
+                    leading: const Icon(Icons.exit_to_app),
+                    title: const Text('Logout'),
+                    onTap: () => _logout(context),
+                  ),
+                ],
               ),
             ),
-          ),
-        );
-      },
+            body: ConditionalProgressBar(
+              condition: !state.isProgress,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16, left: 16),
+                child: ApplicationThemesScreen(
+                  themes: state.themes,
+                  crossAxisCount: 6,
+                  onNewBranding: () => _onNewTheme(context, state.application!.id!),
+                  onOpenBranding: (String themeId) => {},
+                  onMakeDefault: (it) {},
+                  onDelete: bloc.tryDeleteTheme,
+                  onShowInfo: (theme) => _showThemeInfo(context, state.application!.id!, theme),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -103,8 +98,7 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
         context: context,
         builder: (context) => ConfirmationDialog(
           title: 'Remove application',
-          description:
-              'Are you sure to delete the application ${state.deleteApplication?.name}?',
+          description: 'Are you sure to delete the application ${state.deleteApplication?.name}?',
           onConfirm: () {
             Navigator.pop(context);
             bloc.confirmDeleteTheme();
@@ -121,21 +115,14 @@ class _ThemeCollectionDetailsPageState extends State<ThemeCollectionDetailsPage>
   void _onNewTheme(BuildContext context, String applicationId) {
     GoRouter.of(context).goNamed(
       AppRoutInfo.themesCreate.name,
-      pathParameters: <String, String>{
-        AppRoutInfo.keyApplicationId: applicationId,
-      },
+      pathParameters: <String, String>{AppRoutInfo.keyApplicationId: applicationId},
     );
   }
 
-  Future<void> _showThemeInfo(
-    BuildContext context,
-    String applicationId,
-    ThemeModel model,
-  ) async {
+  Future<void> _showThemeInfo(BuildContext context, String applicationId, ThemeModel model) async {
     await showDialog<void>(
       context: context,
-      builder: (context) =>
-          CredentialsDialog(themeId: model.id!, applicationId: applicationId),
+      builder: (context) => CredentialsDialog(themeId: model.id!, applicationId: applicationId),
     );
   }
 

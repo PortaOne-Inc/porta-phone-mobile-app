@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 
 import 'package:webtrit_configurator/core/widgets/widgets.dart';
 import 'package:webtrit_configurator/extensions/extensions.dart';
+import 'package:webtrit_configurator/features/auth/auth.dart';
 
 import '../bloc/assets_cubit.dart';
 
@@ -27,71 +28,66 @@ class _AssetsScreenState extends State<AssetsScreen> {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<AssetsCubit, AssetsState>(
-          listenWhen: (prev, curr) =>
-              prev.creating != curr.creating ||
-              prev.createError != curr.createError ||
-              prev.assets.length != curr.assets.length,
-          listener: (context, state) {
-            if (state.creating) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Creating asset...'),
-                  duration: Duration(milliseconds: 800),
-                ),
-              );
-            } else if (state.createError != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Create failed: ${state.createError}')),
-              );
-            }
-          },
-        ),
-        BlocListener<AssetsCubit, AssetsState>(
-          listenWhen: (prev, curr) =>
-              prev.deleting != curr.deleting ||
-              prev.deleteError != curr.deleteError,
-          listener: (context, state) {
-            if (state.deleting) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Deleting asset...'),
-                  duration: Duration(milliseconds: 800),
-                ),
-              );
-            } else if (state.deleteError != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Delete failed: ${state.deleteError}')),
-              );
-            }
-          },
-        ),
-      ],
-      child: BlocBuilder<AssetsCubit, AssetsState>(
-        builder: (context, state) {
-          final title = Text('Assets', style: textTheme.titleSmall);
+    return AuthReloginTrigger(
+      onRelogin: () => context.read<AssetsCubit>().load(),
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<AssetsCubit, AssetsState>(
+            listenWhen: (prev, curr) =>
+                prev.creating != curr.creating ||
+                prev.createError != curr.createError ||
+                prev.assets.length != curr.assets.length,
+            listener: (context, state) {
+              if (state.creating) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Creating asset...'), duration: Duration(milliseconds: 800)),
+                );
+              } else if (state.createError != null) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('Create failed: ${state.createError}')));
+              }
+            },
+          ),
+          BlocListener<AssetsCubit, AssetsState>(
+            listenWhen: (prev, curr) => prev.deleting != curr.deleting || prev.deleteError != curr.deleteError,
+            listener: (context, state) {
+              if (state.deleting) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Deleting asset...'), duration: Duration(milliseconds: 800)),
+                );
+              } else if (state.deleteError != null) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('Delete failed: ${state.deleteError}')));
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<AssetsCubit, AssetsState>(
+          builder: (context, state) {
+            final title = Text('Assets', style: textTheme.titleSmall);
 
-          return Scaffold(
-            appBar: AppBar(
-              title: title,
-              actions: [
-                IconButton(
-                  tooltip: 'Refresh',
-                  icon: Icon(Icons.refresh, color: colorScheme.primary),
-                  onPressed: () => context.read<AssetsCubit>().load(),
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton.extended(
-              onPressed: state.creating ? null : () => _onAddPressed(context),
-              icon: const Icon(Icons.add),
-              label: const Text('Add'),
-            ),
-            body: _buildBody(context, state),
-          );
-        },
+            return Scaffold(
+              appBar: AppBar(
+                title: title,
+                actions: [
+                  IconButton(
+                    tooltip: 'Refresh',
+                    icon: Icon(Icons.refresh, color: colorScheme.primary),
+                    onPressed: () => context.read<AssetsCubit>().load(),
+                  ),
+                ],
+              ),
+              floatingActionButton: FloatingActionButton.extended(
+                onPressed: state.creating ? null : () => _onAddPressed(context),
+                icon: const Icon(Icons.add),
+                label: const Text('Add'),
+              ),
+              body: _buildBody(context, state),
+            );
+          },
+        ),
       ),
     );
   }
@@ -128,8 +124,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
         ),
         itemBuilder: (context, index) {
           final asset = state.assets[index];
-          final isDeleting =
-              state.deleting && state.deletingAssetId == asset.id;
+          final isDeleting = state.deleting && state.deletingAssetId == asset.id;
 
           return _AssetTile(
             asset: asset,
@@ -144,12 +139,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
 }
 
 class _AssetTile extends StatelessWidget {
-  const _AssetTile({
-    required this.asset,
-    required this.onDownload,
-    required this.onDelete,
-    this.isDeleting = false,
-  });
+  const _AssetTile({required this.asset, required this.onDownload, required this.onDelete, this.isDeleting = false});
 
   final AssetModel asset;
   final VoidCallback onDownload;
@@ -180,22 +170,11 @@ class _AssetTile extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: hasUrl
-                    ? MimeAwareImage(
-                        resource: MimeImageResource.fromUrl(
-                          url,
-                          mimeType: asset.mimeType,
-                        ),
-                      )
+                    ? MimeAwareImage(resource: MimeImageResource.fromUrl(url, mimeType: asset.mimeType))
                     : Container(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .surfaceContainerHighest
-                            .withValues(alpha: 0.5),
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
                         alignment: Alignment.center,
-                        child: Icon(
-                          _isImage ? Icons.image : Icons.insert_drive_file,
-                          size: 40,
-                        ),
+                        child: Icon(_isImage ? Icons.image : Icons.insert_drive_file, size: 40),
                       ),
               ),
             ),
@@ -219,11 +198,7 @@ class _AssetTile extends StatelessWidget {
                 ),
                 IconButton(
                   icon: isDeleting
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
+                      ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
                       : const Icon(Icons.delete, color: Colors.redAccent),
                   onPressed: isDeleting ? null : onDelete,
                   tooltip: 'Delete',
@@ -232,8 +207,7 @@ class _AssetTile extends StatelessWidget {
             ),
             Text('MIME: ${asset.mimeType}', style: t.bodySmall),
             Text('Size: ${_humanSize(asset.size)}', style: t.bodySmall),
-            if ((asset.refCount) > 0)
-              Text('Used by: ${asset.refCount}', style: t.bodySmall),
+            if ((asset.refCount) > 0) Text('Used by: ${asset.refCount}', style: t.bodySmall),
           ],
         ),
       ),
@@ -275,11 +249,7 @@ class _EmptyView extends StatelessWidget {
           const SizedBox(height: 4),
           Text('Pull to refresh or add new assets.', style: t.bodySmall),
           const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: onRefresh,
-            icon: const Icon(Icons.refresh),
-            label: const Text('Reload'),
-          ),
+          OutlinedButton.icon(onPressed: onRefresh, icon: const Icon(Icons.refresh), label: const Text('Reload')),
         ],
       ),
     );
@@ -307,11 +277,7 @@ class _ErrorView extends StatelessWidget {
             const SizedBox(height: 4),
             Text(message, style: t.bodySmall, textAlign: TextAlign.center),
             const SizedBox(height: 12),
-            ElevatedButton.icon(
-              onPressed: onRetry,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Try again'),
-            ),
+            ElevatedButton.icon(onPressed: onRetry, icon: const Icon(Icons.refresh), label: const Text('Try again')),
           ],
         ),
       ),
