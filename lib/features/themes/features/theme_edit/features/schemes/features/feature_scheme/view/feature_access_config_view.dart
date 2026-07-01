@@ -6,6 +6,7 @@ import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_edit.dart';
 
 import '../features/contacts_messaging/contacts_messaging.dart';
+import '../features/localization/localization.dart';
 import '../features/supported/supported.dart';
 
 // Make sure to import the new SupportedConfigWidget file
@@ -33,6 +34,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
     Tab(text: 'Settings'),
     Tab(text: 'Call'),
     Tab(text: 'Contacts & Messaging'),
+    Tab(text: 'Localization'),
   ];
 
   @override
@@ -127,6 +129,12 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                 },
                 onMessagingChanged: (messaging) {
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setMessagingConfig(messaging));
+                },
+              ),
+              LocalizationConfigWidget(
+                localization: appConfig.localization,
+                onChanged: (localization) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setLocalizationConfig(localization));
                 },
               ),
             ],

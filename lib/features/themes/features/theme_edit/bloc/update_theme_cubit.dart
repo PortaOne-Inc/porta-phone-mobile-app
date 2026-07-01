@@ -438,6 +438,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setSupportedFeatures: (e) => _featureAccessEditor.setSupportedFeatures(e.features),
       setContactsConfig: (e) => _featureAccessEditor.setContactsConfig(e.contacts),
       setMessagingConfig: (e) => _featureAccessEditor.setMessagingConfig(e.messaging),
+      setLocalizationConfig: (e) => _featureAccessEditor.setLocalizationConfig(e.localization),
       importJson: (e) => _onImportFeatureAccessJson(e.json),
     );
   }

@@ -58,6 +58,8 @@ abstract class FeatureAccessEditorApi {
   void setContactsConfig(AppConfigContacts contacts);
 
   void setMessagingConfig(AppConfigMessaging messaging);
+
+  void setLocalizationConfig(AppConfigLocalization localization);
 }
 
 class FeatureAccessEditor implements FeatureAccessEditorApi {
@@ -279,6 +281,12 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   @override
   void setMessagingConfig(AppConfigMessaging messaging) {
     _current = current.copyWith(messaging: messaging);
+    _emit();
+  }
+
+  @override
+  void setLocalizationConfig(AppConfigLocalization localization) {
+    _current = current.copyWith(localization: localization);
     _emit();
   }
 
