@@ -12,10 +12,7 @@ import '../dto/dto.dart';
 // TODO(DMITRO): The domain layer should be aware of DTOs
 @Injectable(as: ApplicationRepository)
 class ApplicationRepositoryImpl extends ApplicationRepository {
-  ApplicationRepositoryImpl({
-    required this.configuratorBackandDatasource,
-    required this.applicationMapper,
-  });
+  ApplicationRepositoryImpl({required this.configuratorBackandDatasource, required this.applicationMapper});
 
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
   final CommonMapper<ApplicationModel, ApplicationDTO> applicationMapper;
@@ -24,9 +21,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   Future<ApplicationModel> createApplication(ApplicationModel model) async {
     try {
       final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.createApplications(
-        dtoParam,
-      );
+      final dto = await configuratorBackandDatasource.createApplications(dtoParam);
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw mapDioException(e);
@@ -37,16 +32,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
 
   @override
   Future<List<ApplicationModel>> getUserApplications() async {
-    final dto = await configuratorBackandDatasource.getApplications();
-    return applicationMapper.convertListFrom(dto);
-  }
-
-  @override
-  Future<void> deleteApplication(String applicationId) async {
     try {
-      return await configuratorBackandDatasource.deleteApplications(
-        applicationId,
-      );
+      final dto = await configuratorBackandDatasource.getApplications();
+      return applicationMapper.convertListFrom(dto);
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {
@@ -55,16 +43,21 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<ApplicationModel> updateApplication(
-    String applicationId,
-    ApplicationModel model,
-  ) async {
+  Future<void> deleteApplication(String applicationId) async {
+    try {
+      return await configuratorBackandDatasource.deleteApplications(applicationId);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model) async {
     try {
       final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.putApplication(
-        applicationId,
-        dtoParam,
-      );
+      final dto = await configuratorBackandDatasource.putApplication(applicationId, dtoParam);
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw mapDioException(e);
@@ -76,9 +69,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationModel> getApplication(String id) async {
     try {
-      final dto = await configuratorBackandDatasource.getApplication(
-        applicationId: id,
-      );
+      final dto = await configuratorBackandDatasource.getApplication(applicationId: id);
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw mapDioException(e);
@@ -90,9 +81,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   @override
   Future<ApplicationModel> incApplicationVersion(String applicationId) async {
     try {
-      final dto = await configuratorBackandDatasource.incApplicationVersion(
-        applicationId,
-      );
+      final dto = await configuratorBackandDatasource.incApplicationVersion(applicationId);
       return applicationMapper.convertFrom(dto);
     } on DioException catch (e) {
       throw mapDioException(e);
@@ -102,13 +91,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<Map<String, dynamic>> getApplicationEnvironment(
-    String applicationId,
-  ) async {
+  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
     try {
-      return await configuratorBackandDatasource.getApplicationEnvironment(
-        applicationId,
-      );
+      return await configuratorBackandDatasource.getApplicationEnvironment(applicationId);
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {
@@ -122,10 +107,7 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
     Map<String, dynamic> environment,
   ) async {
     try {
-      return await configuratorBackandDatasource.updateApplicationEnvironment(
-        applicationId,
-        environment,
-      );
+      return await configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment);
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {
@@ -154,15 +136,9 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   }
 
   @override
-  Future<String> resolveThemeIdForBuild(
-    String applicationId, {
-    String env = 'prod',
-  }) async {
+  Future<String> resolveThemeIdForBuild(String applicationId, {String env = 'prod'}) async {
     try {
-      return await configuratorBackandDatasource.resolveThemeIdForBuild(
-        applicationId,
-        env: env,
-      );
+      return await configuratorBackandDatasource.resolveThemeIdForBuild(applicationId, env: env);
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {

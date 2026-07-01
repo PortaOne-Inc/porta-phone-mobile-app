@@ -6,7 +6,8 @@ import 'package:domain/domain.dart';
 /// Parses the backend JSON response to extract structured error info:
 /// `message`, `statusCode`, `error`, `details.exceptionCode`, `details.cause`.
 ///
-/// Returns [VersionConflictException] for HTTP 409.
+/// Returns [VersionConflictException] for HTTP 409 and
+/// [UnauthorizedException] for HTTP 401.
 BaseException mapDioException(DioException e) {
   final response = e.response;
   final statusCode = response?.statusCode;
@@ -36,12 +37,16 @@ BaseException mapDioException(DioException e) {
     );
   }
 
-  return BaseException(
-    message: resolvedMessage,
-    statusCode: statusCode,
-    errorCode: errorCode,
-    details: details,
-  );
+  if (statusCode == 401) {
+    return UnauthorizedException(
+      message: resolvedMessage,
+      statusCode: statusCode,
+      errorCode: errorCode,
+      details: details,
+    );
+  }
+
+  return BaseException(message: resolvedMessage, statusCode: statusCode, errorCode: errorCode, details: details);
 }
 
 String? _extractMessage(Map<String, dynamic> body) {

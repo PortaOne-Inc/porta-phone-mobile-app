@@ -22,20 +22,26 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     required String applicationId,
     String? themeId, // no longer needed, kept for backward compatibility
   }) async {
-    final dtos = await _api.getFeatureAccesses(applicationId: applicationId);
-    return dtos.map(_mapper.convertFrom).toList();
+    try {
+      final dtos = await _api.getFeatureAccesses(applicationId: applicationId);
+      return dtos.map(_mapper.convertFrom).toList();
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
-  Future<FeatureAccessModel> getFeatureAccess({
-    required String applicationId,
-    required String themeId,
-  }) async {
-    final dto = await _api.getFeatureAccessByTheme(
-      applicationId: applicationId,
-      themeId: themeId,
-    );
-    return _mapper.convertFrom(dto);
+  Future<FeatureAccessModel> getFeatureAccess({required String applicationId, required String themeId}) async {
+    try {
+      final dto = await _api.getFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
+      return _mapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
@@ -61,13 +67,13 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
   }
 
   @override
-  Future<void> deleteFeatureAccess({
-    required String applicationId,
-    required String themeId,
-  }) async {
-    await _api.deleteFeatureAccessByTheme(
-      applicationId: applicationId,
-      themeId: themeId,
-    );
+  Future<void> deleteFeatureAccess({required String applicationId, required String themeId}) async {
+    try {
+      await _api.deleteFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 }

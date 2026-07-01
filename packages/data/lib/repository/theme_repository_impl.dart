@@ -32,11 +32,17 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<ThemeModel> createTheme(String applicationId, String title, String description) async {
-    final dto = await configuratorBackandDatasource.createTheme(
-      applicationId,
-      CreateThemeDTO(title: title, description: description),
-    );
-    return themeMapper.convertFrom(dto);
+    try {
+      final dto = await configuratorBackandDatasource.createTheme(
+        applicationId,
+        CreateThemeDTO(title: title, description: description),
+      );
+      return themeMapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
@@ -45,6 +51,8 @@ class ThemeRepositoryImpl extends ThemeRepository {
       final dtos = await configuratorBackandDatasource.getApplicationThemes(applicationId);
       // Mapping can throw TypeError if DTO fields are null but Model expects non-null
       return dtos.map(themeMapper.convertFrom).toList();
+    } on DioException catch (e) {
+      throw mapDioException(e);
     } on Object catch (e, stackTrace) {
       // Catch both Exception (network) and Error (parsing/mapping)
       Error.throwWithStackTrace(BaseException(message: e.toString()), stackTrace);
@@ -53,8 +61,14 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
-    return themeMapper.convertFrom(dto);
+    try {
+      final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
+      return themeMapper.convertFrom(dto);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
@@ -76,8 +90,14 @@ class ThemeRepositoryImpl extends ThemeRepository {
 
   @override
   Future<List<ThemeModel>> getAllThemes() async {
-    final dtos = await configuratorBackandDatasource.getAllThemes();
-    return dtos.map(themeMapper.convertFrom).toList();
+    try {
+      final dtos = await configuratorBackandDatasource.getAllThemes();
+      return dtos.map(themeMapper.convertFrom).toList();
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override

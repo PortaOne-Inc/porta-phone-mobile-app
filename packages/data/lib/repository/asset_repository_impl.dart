@@ -92,45 +92,44 @@ class AssetRepositoryImpl extends AssetRepository {
   }
 
   @override
-  Future<List<AssetModel>> getApplicationAssets(
-    String applicationId, {
-    bool includeUrl = true,
-    int? urlTtlSec,
-  }) async {
-    final dtos = await configuratorBackendDatasource.getUserAssets(
-      applicationId,
-      includeUrl: includeUrl,
-      urlTtlSec: urlTtlSec,
-    );
-    final models = dtos.map(assetMapper.convertFrom).toList();
-    _emit(applicationId, models);
-    return models;
+  Future<List<AssetModel>> getApplicationAssets(String applicationId, {bool includeUrl = true, int? urlTtlSec}) async {
+    try {
+      final dtos = await configuratorBackendDatasource.getUserAssets(
+        applicationId,
+        includeUrl: includeUrl,
+        urlTtlSec: urlTtlSec,
+      );
+      final models = dtos.map(assetMapper.convertFrom).toList();
+      _emit(applicationId, models);
+      return models;
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
-  Future<AssetModel> getAsset(
-    String applicationId,
-    String assetId, {
-    bool includeUrl = true,
-    int? urlTtlSec,
-  }) async {
-    final dto = await configuratorBackendDatasource.getAsset(
-      applicationId,
-      assetId,
-      includeUrl: includeUrl,
-      urlTtlSec: urlTtlSec,
-    );
-    final model = assetMapper.convertFrom(dto);
-    _upsertOne(applicationId, model);
-    return model;
+  Future<AssetModel> getAsset(String applicationId, String assetId, {bool includeUrl = true, int? urlTtlSec}) async {
+    try {
+      final dto = await configuratorBackendDatasource.getAsset(
+        applicationId,
+        assetId,
+        includeUrl: includeUrl,
+        urlTtlSec: urlTtlSec,
+      );
+      final model = assetMapper.convertFrom(dto);
+      _upsertOne(applicationId, model);
+      return model;
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
-  Future<AssetModel> updateAsset(
-    String applicationId,
-    String assetId, {
-    String? checksum,
-  }) async {
+  Future<AssetModel> updateAsset(String applicationId, String assetId, {String? checksum}) async {
     try {
       final dto = await configuratorBackendDatasource.updateAsset(
         applicationId,
@@ -151,8 +150,7 @@ class AssetRepositoryImpl extends AssetRepository {
   Future<void> deleteAsset(String applicationId, String assetId) async {
     try {
       await configuratorBackendDatasource.deleteAsset(applicationId, assetId);
-      final list = List<AssetModel>.from(_cache[applicationId] ?? const [])
-        ..removeWhere((a) => a.id == assetId);
+      final list = List<AssetModel>.from(_cache[applicationId] ?? const [])..removeWhere((a) => a.id == assetId);
       _emit(applicationId, list);
     } on DioException catch (e) {
       throw mapDioException(e);
@@ -162,11 +160,7 @@ class AssetRepositoryImpl extends AssetRepository {
   }
 
   @override
-  Future<AssetModel> linkAsset(
-    String applicationId,
-    String assetId,
-    AssetLink link,
-  ) async {
+  Future<AssetModel> linkAsset(String applicationId, String assetId, AssetLink link) async {
     try {
       final dto = await configuratorBackendDatasource.linkAsset(
         applicationId,
@@ -184,11 +178,7 @@ class AssetRepositoryImpl extends AssetRepository {
   }
 
   @override
-  Future<AssetModel> unlinkAsset(
-    String applicationId,
-    String assetId,
-    AssetLink link,
-  ) async {
+  Future<AssetModel> unlinkAsset(String applicationId, String assetId, AssetLink link) async {
     try {
       final dto = await configuratorBackendDatasource.unlinkAsset(
         applicationId,
@@ -208,10 +198,7 @@ class AssetRepositoryImpl extends AssetRepository {
   @override
   Future<String> getDownloadUrl(String applicationId, String assetId) async {
     try {
-      return await configuratorBackendDatasource.getAssetDownloadUrl(
-        applicationId,
-        assetId,
-      );
+      return await configuratorBackendDatasource.getAssetDownloadUrl(applicationId, assetId);
     } on DioException catch (e) {
       throw mapDioException(e);
     } catch (e) {
@@ -224,39 +211,22 @@ class AssetRepositoryImpl extends AssetRepository {
   // ----------------------------
 
   @override
-  Stream<List<AssetModel>> watchApplicationAssets(
-    String applicationId, {
-    bool includeUrl = true,
-    int? urlTtlSec,
-  }) {
+  Stream<List<AssetModel>> watchApplicationAssets(String applicationId, {bool includeUrl = true, int? urlTtlSec}) {
     // Ensure controller exists
     final stream = _controllerWithCache(applicationId);
 
     // If cache is empty, trigger initial load
     if (!_cache.containsKey(applicationId)) {
       // ignore: discarded_futures
-      getApplicationAssets(
-        applicationId,
-        includeUrl: includeUrl,
-        urlTtlSec: urlTtlSec,
-      );
+      getApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec);
     }
 
     return stream;
   }
 
   @override
-  Stream<AssetModel> watchAsset(
-    String applicationId,
-    String assetId, {
-    bool includeUrl = true,
-    int? urlTtlSec,
-  }) {
-    return watchApplicationAssets(
-          applicationId,
-          includeUrl: includeUrl,
-          urlTtlSec: urlTtlSec,
-        )
+  Stream<AssetModel> watchAsset(String applicationId, String assetId, {bool includeUrl = true, int? urlTtlSec}) {
+    return watchApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec)
         .where((list) => list.any((a) => a.id == assetId))
         .map((list) => list.firstWhere((a) => a.id == assetId))
         .distinct((a, b) => a == b); // relies on == from Freezed

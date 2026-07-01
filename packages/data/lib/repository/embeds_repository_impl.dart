@@ -20,8 +20,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   // In-memory cache
   // ----------------------------
   final Map<String, List<EmbeddedResourceModel>> _cache = {};
-  final Map<String, StreamController<List<EmbeddedResourceModel>>>
-  _controllers = {};
+  final Map<String, StreamController<List<EmbeddedResourceModel>>> _controllers = {};
 
   Stream<List<EmbeddedResourceModel>> _controllerWithCache(String appId) {
     final existing = _controllers[appId];
@@ -61,8 +60,7 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   }
 
   void _removeOne(String appId, String id) {
-    final list = List<EmbeddedResourceModel>.from(_cache[appId] ?? const [])
-      ..removeWhere((e) => e.id == id);
+    final list = List<EmbeddedResourceModel>.from(_cache[appId] ?? const [])..removeWhere((e) => e.id == id);
     _emit(appId, list);
   }
 
@@ -72,22 +70,22 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
 
   @override
   Future<List<EmbeddedResourceModel>> getEmbeds(String applicationId) async {
-    final dtos = await datasource.getEmbeds(applicationId);
-    final models = dtos.map(mapper.convertFrom).toList();
-    _emit(applicationId, models);
-    return models;
+    try {
+      final dtos = await datasource.getEmbeds(applicationId);
+      final models = dtos.map(mapper.convertFrom).toList();
+      _emit(applicationId, models);
+      return models;
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   @override
-  Future<EmbeddedResourceModel> getEmbed(
-    String applicationId,
-    String id,
-  ) async {
+  Future<EmbeddedResourceModel> getEmbed(String applicationId, String id) async {
     try {
-      final dto = await datasource.getEmbed(
-        applicationId: applicationId,
-        id: id,
-      );
+      final dto = await datasource.getEmbed(applicationId: applicationId, id: id);
       final model = mapper.convertFrom(dto);
       _upsertOne(applicationId, model);
       return model;
@@ -99,14 +97,9 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   }
 
   @override
-  Future<EmbeddedResourceModel> createEmbed(
-    String applicationId,
-    EmbeddedResourceModel resource,
-  ) async {
+  Future<EmbeddedResourceModel> createEmbed(String applicationId, EmbeddedResourceModel resource) async {
     try {
-      final dto = mapper
-          .convertTo(resource)
-          .copyWith(applicationId: applicationId);
+      final dto = mapper.convertTo(resource).copyWith(applicationId: applicationId);
       final created = await datasource.createEmbed(applicationId, dto);
       final model = mapper.convertFrom(created);
       _upsertOne(applicationId, model);
@@ -119,15 +112,9 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   }
 
   @override
-  Future<EmbeddedResourceModel> updateEmbed(
-    String applicationId,
-    String id,
-    EmbeddedResourceModel resource,
-  ) async {
+  Future<EmbeddedResourceModel> updateEmbed(String applicationId, String id, EmbeddedResourceModel resource) async {
     try {
-      final dto = mapper
-          .convertTo(resource)
-          .copyWith(id: null, applicationId: applicationId);
+      final dto = mapper.convertTo(resource).copyWith(id: null, applicationId: applicationId);
       final updated = await datasource.updateEmbed(applicationId, id, dto);
       final model = mapper.convertFrom(updated);
       _upsertOne(applicationId, model);
