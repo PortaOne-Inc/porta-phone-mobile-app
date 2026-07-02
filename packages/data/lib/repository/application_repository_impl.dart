@@ -18,131 +18,64 @@ class ApplicationRepositoryImpl extends ApplicationRepository {
   final CommonMapper<ApplicationModel, ApplicationDTO> applicationMapper;
 
   @override
-  Future<ApplicationModel> createApplication(ApplicationModel model) async {
-    try {
-      final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.createApplications(dtoParam);
-      return applicationMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ApplicationModel> createApplication(ApplicationModel model) => guardApiCall(() async {
+    final dtoParam = applicationMapper.convertTo(model);
+    final dto = await configuratorBackandDatasource.createApplications(dtoParam);
+    return applicationMapper.convertFrom(dto);
+  });
 
   @override
-  Future<List<ApplicationModel>> getUserApplications() async {
-    try {
-      final dto = await configuratorBackandDatasource.getApplications();
-      return applicationMapper.convertListFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<ApplicationModel>> getUserApplications() => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.getApplications();
+    return applicationMapper.convertListFrom(dto);
+  });
 
   @override
-  Future<void> deleteApplication(String applicationId) async {
-    try {
-      return await configuratorBackandDatasource.deleteApplications(applicationId);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteApplication(String applicationId) =>
+      guardApiCall(() => configuratorBackandDatasource.deleteApplications(applicationId));
 
   @override
-  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model) async {
-    try {
-      final dtoParam = applicationMapper.convertTo(model);
-      final dto = await configuratorBackandDatasource.putApplication(applicationId, dtoParam);
-      return applicationMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ApplicationModel> updateApplication(String applicationId, ApplicationModel model) => guardApiCall(() async {
+    final dtoParam = applicationMapper.convertTo(model);
+    final dto = await configuratorBackandDatasource.putApplication(applicationId, dtoParam);
+    return applicationMapper.convertFrom(dto);
+  });
 
   @override
-  Future<ApplicationModel> getApplication(String id) async {
-    try {
-      final dto = await configuratorBackandDatasource.getApplication(applicationId: id);
-      return applicationMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ApplicationModel> getApplication(String id) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.getApplication(applicationId: id);
+    return applicationMapper.convertFrom(dto);
+  });
 
   @override
-  Future<ApplicationModel> incApplicationVersion(String applicationId) async {
-    try {
-      final dto = await configuratorBackandDatasource.incApplicationVersion(applicationId);
-      return applicationMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ApplicationModel> incApplicationVersion(String applicationId) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.incApplicationVersion(applicationId);
+    return applicationMapper.convertFrom(dto);
+  });
 
   @override
-  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) async {
-    try {
-      return await configuratorBackandDatasource.getApplicationEnvironment(applicationId);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<Map<String, dynamic>> getApplicationEnvironment(String applicationId) =>
+      guardApiCall(() => configuratorBackandDatasource.getApplicationEnvironment(applicationId));
 
   @override
-  Future<Map<String, dynamic>> updateApplicationEnvironment(
-    String applicationId,
-    Map<String, dynamic> environment,
-  ) async {
-    try {
-      return await configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<Map<String, dynamic>> updateApplicationEnvironment(String applicationId, Map<String, dynamic> environment) =>
+      guardApiCall(() => configuratorBackandDatasource.updateApplicationEnvironment(applicationId, environment));
 
   @override
   Future<ApplicationModel> updateThemeBindings(
     String applicationId, {
     String? defaultThemeId,
     Map<String, String>? themeByEnv,
-  }) async {
-    try {
-      final dto = await configuratorBackandDatasource.updateThemeBindings(
-        applicationId,
-        defaultThemeId: defaultThemeId,
-        themeByEnv: themeByEnv,
-      );
-      return applicationMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.updateThemeBindings(
+      applicationId,
+      defaultThemeId: defaultThemeId,
+      themeByEnv: themeByEnv,
+    );
+    return applicationMapper.convertFrom(dto);
+  });
 
   @override
-  Future<String> resolveThemeIdForBuild(String applicationId, {String env = 'prod'}) async {
-    try {
-      return await configuratorBackandDatasource.resolveThemeIdForBuild(applicationId, env: env);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<String> resolveThemeIdForBuild(String applicationId, {String env = 'prod'}) =>
+      guardApiCall(() => configuratorBackandDatasource.resolveThemeIdForBuild(applicationId, env: env));
 }

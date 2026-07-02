@@ -33,22 +33,16 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
     bool includeUrl = false,
     int? urlTtlSec,
     bool withValidation = false,
-  }) async {
-    try {
-      final dto = await api.getLaunchAssetsByTheme(
-        applicationId: applicationId,
-        themeId: themeId,
-        includeUrl: includeUrl,
-        urlTtlSec: urlTtlSec,
-        withValidation: withValidation,
-      );
-      return envelopeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await api.getLaunchAssetsByTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+      includeUrl: includeUrl,
+      urlTtlSec: urlTtlSec,
+      withValidation: withValidation,
+    );
+    return envelopeMapper.convertFrom(dto);
+  });
 
   @override
   Future<LaunchAssetsModel> upsertWithFilesByTheme({
@@ -57,61 +51,30 @@ class LaunchAssetsRepositoryImpl extends LaunchAssetsRepository {
     required List<LaunchArtifactUpload> uploads,
     SourceConfigModel? source,
     PlatformParamsModel? params,
-  }) async {
-    try {
-      final dto = await api.upsertLaunchAssetsUploadBatch(
-        applicationId: applicationId,
-        themeId: themeId,
-        // dto part
-        source: source != null ? sourceMapper.convertTo(source) : null,
-        params: params != null ? paramsMapper.convertTo(params) : null,
-        // files
-        uploads: uploads
-            .map(
-              (u) => LaunchArtifactUploadWire(
-                target: _mapTarget(u.target),
-                mimeType: u.mimeType,
-                bytes: u.bytes,
-              ),
-            )
-            .toList(),
-      );
-      return entityMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await api.upsertLaunchAssetsUploadBatch(
+      applicationId: applicationId,
+      themeId: themeId,
+      // dto part
+      source: source != null ? sourceMapper.convertTo(source) : null,
+      params: params != null ? paramsMapper.convertTo(params) : null,
+      // files
+      uploads: uploads
+          .map((u) => LaunchArtifactUploadWire(target: _mapTarget(u.target), mimeType: u.mimeType, bytes: u.bytes))
+          .toList(),
+    );
+    return entityMapper.convertFrom(dto);
+  });
 
   @override
-  Future<void> deleteByTheme({
-    required String applicationId,
-    required String themeId,
-  }) async {
-    try {
-      await api.deleteLaunchAssets(
-        applicationId: applicationId,
-        themeId: themeId,
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteByTheme({required String applicationId, required String themeId}) =>
+      guardApiCall(() => api.deleteLaunchAssets(applicationId: applicationId, themeId: themeId));
 
   @override
-  Future<ConstraintsModel> getConstraintsDefaults() async {
-    try {
-      final dto = await api.getLaunchConstraintsDefaults();
-      return constraintsMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ConstraintsModel> getConstraintsDefaults() => guardApiCall(() async {
+    final dto = await api.getLaunchConstraintsDefaults();
+    return constraintsMapper.convertFrom(dto);
+  });
 
   String _mapTarget(LaunchOutputTarget t) {
     switch (t) {

@@ -16,52 +16,24 @@ class TranslationsRepositoryImpl extends TranslationsRepository {
   final TranslationPrefDatasource _prefDatasource;
 
   @override
-  Future<List<Translation>> getTranslations() async {
-    try {
-      final models = await _datasource.getTranslations();
-      return models.map(_mapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<Translation>> getTranslations() => guardApiCall(() async {
+    final models = await _datasource.getTranslations();
+    return models.map(_mapper.convertFrom).toList();
+  });
 
   @override
-  Future<List<Translation>> getOverridesByAppId(String appId) async {
-    try {
-      final models = await _datasource.getTranslationOverrides(appId);
-      return models.map(_mapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<Translation>> getOverridesByAppId(String appId) => guardApiCall(() async {
+    final models = await _datasource.getTranslationOverrides(appId);
+    return models.map(_mapper.convertFrom).toList();
+  });
 
   @override
-  Future<void> setOverrideByAppId(String appId, Translation translation) async {
-    try {
-      final model = _mapper.convertTo(translation);
-      await _datasource.setTranslationOverride(appId, model);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> setOverrideByAppId(String appId, Translation translation) =>
+      guardApiCall(() => _datasource.setTranslationOverride(appId, _mapper.convertTo(translation)));
 
   @override
-  Future<void> deleteOverrideByAppId(String appId, Translation translation) async {
-    try {
-      final model = _mapper.convertTo(translation);
-      await _datasource.deleteTranslationOverride(appId, model);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteOverrideByAppId(String appId, Translation translation) =>
+      guardApiCall(() => _datasource.deleteTranslationOverride(appId, _mapper.convertTo(translation)));
 
   @override
   Future<void> saveActiveLocales(Set<String> locales) async {

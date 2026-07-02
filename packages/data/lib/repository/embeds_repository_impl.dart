@@ -69,74 +69,46 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   // ----------------------------
 
   @override
-  Future<List<EmbeddedResourceModel>> getEmbeds(String applicationId) async {
-    try {
-      final dtos = await datasource.getEmbeds(applicationId);
-      final models = dtos.map(mapper.convertFrom).toList();
-      _emit(applicationId, models);
-      return models;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<EmbeddedResourceModel>> getEmbeds(String applicationId) => guardApiCall(() async {
+    final dtos = await datasource.getEmbeds(applicationId);
+    final models = dtos.map(mapper.convertFrom).toList();
+    _emit(applicationId, models);
+    return models;
+  });
 
   @override
-  Future<EmbeddedResourceModel> getEmbed(String applicationId, String id) async {
-    try {
-      final dto = await datasource.getEmbed(applicationId: applicationId, id: id);
-      final model = mapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<EmbeddedResourceModel> getEmbed(String applicationId, String id) => guardApiCall(() async {
+    final dto = await datasource.getEmbed(applicationId: applicationId, id: id);
+    final model = mapper.convertFrom(dto);
+    _upsertOne(applicationId, model);
+    return model;
+  });
 
   @override
-  Future<EmbeddedResourceModel> createEmbed(String applicationId, EmbeddedResourceModel resource) async {
-    try {
-      final dto = mapper.convertTo(resource).copyWith(applicationId: applicationId);
-      final created = await datasource.createEmbed(applicationId, dto);
-      final model = mapper.convertFrom(created);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<EmbeddedResourceModel> createEmbed(String applicationId, EmbeddedResourceModel resource) =>
+      guardApiCall(() async {
+        final dto = mapper.convertTo(resource).copyWith(applicationId: applicationId);
+        final created = await datasource.createEmbed(applicationId, dto);
+        final model = mapper.convertFrom(created);
+        _upsertOne(applicationId, model);
+        return model;
+      });
 
   @override
-  Future<EmbeddedResourceModel> updateEmbed(String applicationId, String id, EmbeddedResourceModel resource) async {
-    try {
-      final dto = mapper.convertTo(resource).copyWith(id: null, applicationId: applicationId);
-      final updated = await datasource.updateEmbed(applicationId, id, dto);
-      final model = mapper.convertFrom(updated);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<EmbeddedResourceModel> updateEmbed(String applicationId, String id, EmbeddedResourceModel resource) =>
+      guardApiCall(() async {
+        final dto = mapper.convertTo(resource).copyWith(id: null, applicationId: applicationId);
+        final updated = await datasource.updateEmbed(applicationId, id, dto);
+        final model = mapper.convertFrom(updated);
+        _upsertOne(applicationId, model);
+        return model;
+      });
 
   @override
-  Future<void> deleteEmbed(String applicationId, String id) async {
-    try {
-      await datasource.deleteEmbed(applicationId, id);
-      _removeOne(applicationId, id);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteEmbed(String applicationId, String id) => guardApiCall(() async {
+    await datasource.deleteEmbed(applicationId, id);
+    _removeOne(applicationId, id);
+  });
 
   // ----------------------------
   // Watch (streams)
@@ -146,8 +118,9 @@ class EmbedsRepositoryImpl extends EmbedsRepository {
   Stream<List<EmbeddedResourceModel>> watchEmbeds(String applicationId) {
     final stream = _controllerWithCache(applicationId);
     if (!_cache.containsKey(applicationId)) {
-      // ignore: discarded_futures
-      getEmbeds(applicationId);
+      // Background priming of the cache; failures (incl. 401) are surfaced via
+      // the explicit getEmbeds() path, so ignore them here.
+      getEmbeds(applicationId).ignore();
     }
     return stream;
   }

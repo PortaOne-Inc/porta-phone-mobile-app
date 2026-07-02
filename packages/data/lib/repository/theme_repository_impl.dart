@@ -18,32 +18,20 @@ class ThemeRepositoryImpl extends ThemeRepository {
   final CommonMapper<ThemeModel, ThemeDTO> themeMapper;
 
   @override
-  Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) async {
-    try {
-      final param = themeMapper.convertTo(theme!);
-      final dto = await configuratorBackandDatasource.updateTheme(applicationId, param);
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ThemeModel> updateTheme(String applicationId, ThemeModel? theme) => guardApiCall(() async {
+    final param = themeMapper.convertTo(theme!);
+    final dto = await configuratorBackandDatasource.updateTheme(applicationId, param);
+    return themeMapper.convertFrom(dto);
+  });
 
   @override
-  Future<ThemeModel> createTheme(String applicationId, String title, String description) async {
-    try {
-      final dto = await configuratorBackandDatasource.createTheme(
-        applicationId,
-        CreateThemeDTO(title: title, description: description),
-      );
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ThemeModel> createTheme(String applicationId, String title, String description) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.createTheme(
+      applicationId,
+      CreateThemeDTO(title: title, description: description),
+    );
+    return themeMapper.convertFrom(dto);
+  });
 
   @override
   Future<List<ThemeModel>> getApplicationThemes(String applicationId) async {
@@ -60,27 +48,14 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<ThemeModel> getTheme(String applicationId, String themeId) async {
-    try {
-      final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<ThemeModel> getTheme(String applicationId, String themeId) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.getTheme(applicationId: applicationId, themeId: themeId);
+    return themeMapper.convertFrom(dto);
+  });
 
   @override
-  Future<void> deleteTheme(String applicationId, String themeId) async {
-    try {
-      await configuratorBackandDatasource.deleteTheme(applicationId, themeId);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteTheme(String applicationId, String themeId) =>
+      guardApiCall(() => configuratorBackandDatasource.deleteTheme(applicationId, themeId));
 
   @override
   Future<void> downloadTheme(String applicationId, String themeId) {
@@ -89,16 +64,10 @@ class ThemeRepositoryImpl extends ThemeRepository {
   }
 
   @override
-  Future<List<ThemeModel>> getAllThemes() async {
-    try {
-      final dtos = await configuratorBackandDatasource.getAllThemes();
-      return dtos.map(themeMapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<ThemeModel>> getAllThemes() => guardApiCall(() async {
+    final dtos = await configuratorBackandDatasource.getAllThemes();
+    return dtos.map(themeMapper.convertFrom).toList();
+  });
 
   @override
   Future<void> generateTheme({
@@ -108,22 +77,16 @@ class ThemeRepositoryImpl extends ThemeRepository {
     required String prompt,
     String? seedColor,
     String variant = 'light',
-  }) async {
-    try {
-      await configuratorBackandDatasource.generateTheme(
-        applicationId: applicationId,
-        title: title,
-        description: description,
-        prompt: prompt,
-        seedColor: seedColor,
-        variant: variant,
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(
+    () => configuratorBackandDatasource.generateTheme(
+      applicationId: applicationId,
+      title: title,
+      description: description,
+      prompt: prompt,
+      seedColor: seedColor,
+      variant: variant,
+    ),
+  );
 
   @override
   Future<void> nudgeTheme(
@@ -134,23 +97,17 @@ class ThemeRepositoryImpl extends ThemeRepository {
     String variant = 'light',
     String mode = 'patch',
     String? seedColorHint,
-  }) async {
-    try {
-      await configuratorBackandDatasource.nudgeTheme(
-        applicationId: applicationId,
-        themeId: themeId,
-        prompt: prompt,
-        targets: targets,
-        variant: variant,
-        mode: mode,
-        seedColorHint: seedColorHint,
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(
+    () => configuratorBackandDatasource.nudgeTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+      prompt: prompt,
+      targets: targets,
+      variant: variant,
+      mode: mode,
+      seedColorHint: seedColorHint,
+    ),
+  );
 
   @override
   Future<ThemeModel> copyTheme(
@@ -159,22 +116,16 @@ class ThemeRepositoryImpl extends ThemeRepository {
     String? title,
     String? description,
     String? label, // 'dev' | 'stage' | 'prod'
-  }) async {
-    try {
-      final dto = await configuratorBackandDatasource.copyTheme(
-        applicationId,
-        themeId,
-        title: title,
-        description: description,
-        label: label,
-      );
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.copyTheme(
+      applicationId,
+      themeId,
+      title: title,
+      description: description,
+      label: label,
+    );
+    return themeMapper.convertFrom(dto);
+  });
 
   @override
   Future<ThemeModel> copyThemeToApplication(
@@ -184,62 +135,44 @@ class ThemeRepositoryImpl extends ThemeRepository {
     String? title,
     String? description,
     String? label,
-  }) async {
-    try {
-      final dto = await configuratorBackandDatasource.copyThemeToApplication(
-        applicationId,
-        themeId,
-        targetApplicationId: targetApplicationId,
-        title: title,
-        description: description,
-        label: label,
-      );
-      return themeMapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await configuratorBackandDatasource.copyThemeToApplication(
+      applicationId,
+      themeId,
+      targetApplicationId: targetApplicationId,
+      title: title,
+      description: description,
+      label: label,
+    );
+    return themeMapper.convertFrom(dto);
+  });
 
   @override
-  Future<String> createShareToken(String applicationId, String themeId, {String? tag}) async {
-    try {
-      final resp = await configuratorBackandDatasource.createShareToken(
-        applicationId: applicationId,
-        themeId: themeId,
-        tag: tag,
-      );
-      return resp['token'] as String;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<String> createShareToken(String applicationId, String themeId, {String? tag}) => guardApiCall(() async {
+    final resp = await configuratorBackandDatasource.createShareToken(
+      applicationId: applicationId,
+      themeId: themeId,
+      tag: tag,
+    );
+    return resp['token'] as String;
+  });
 
   @override
-  Future<SharedThemePreviewModel> getSharedThemePreview(String token) async {
-    try {
-      final raw = await configuratorBackandDatasource.getSharedThemePreview(token);
-      final dto = SharedThemePreviewDto.fromJson(raw);
-      return SharedThemePreviewModel(
-        theme: dto.theme,
-        colorSchemes: SharedThemePreviewVariants.fromArray(dto.colorSchemes),
-        widgetConfigs: SharedThemePreviewVariants.fromArray(dto.widgetConfigs),
-        pageConfigs: SharedThemePreviewVariants.fromArray(dto.pageConfigs),
-        splashAsset: dto.splashAsset,
-        launchAsset: dto.launchAsset,
-        featureAccess: dto.featureAccess,
-        embeds: dto.embeds,
-        environment: _decodeSharedEnvironment(dto.environment),
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<SharedThemePreviewModel> getSharedThemePreview(String token) => guardApiCall(() async {
+    final raw = await configuratorBackandDatasource.getSharedThemePreview(token);
+    final dto = SharedThemePreviewDto.fromJson(raw);
+    return SharedThemePreviewModel(
+      theme: dto.theme,
+      colorSchemes: SharedThemePreviewVariants.fromArray(dto.colorSchemes),
+      widgetConfigs: SharedThemePreviewVariants.fromArray(dto.widgetConfigs),
+      pageConfigs: SharedThemePreviewVariants.fromArray(dto.pageConfigs),
+      splashAsset: dto.splashAsset,
+      launchAsset: dto.launchAsset,
+      featureAccess: dto.featureAccess,
+      embeds: dto.embeds,
+      environment: _decodeSharedEnvironment(dto.environment),
+    );
+  });
 
   /// Decodes the base64-encoded environment from the shared preview response.
   /// Returns null on any malformed input so a bad value never breaks the preview.

@@ -1,6 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
+/// Runs [body] and converts any failure into a domain exception.
+///
+/// A [DioException] is mapped via [mapDioException] (so HTTP 401/409 become their
+/// typed subclasses); any other error becomes a [BaseException]. Wrap every
+/// backend call with this so repositories never leak a raw [DioException] and the
+/// error contract is enforced in one place instead of copied per method.
+Future<T> guardApiCall<T>(Future<T> Function() body) async {
+  try {
+    return await body();
+  } on DioException catch (e) {
+    throw mapDioException(e);
+  } catch (e) {
+    throw BaseException(message: e.toString());
+  }
+}
+
 /// Maps a [DioException] to a typed [BaseException].
 ///
 /// Parses the backend JSON response to extract structured error info:

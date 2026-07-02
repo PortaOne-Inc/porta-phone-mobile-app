@@ -67,24 +67,28 @@ stream, to avoid a race with the re-login flow.
 
 **Repository contract:** for this to work app-wide, a 401 must reach the UI *as* an
 `UnauthorizedException`. Repository methods that hit the backend must therefore surface **domain
-exceptions**, never a raw `DioException`. Wrap backend calls with the standard pattern:
+exceptions**, never a raw `DioException`. Wrap every backend call in **`guardApiCall`**
+(`packages/data/lib/common/api_exception_mapper.dart`):
 
 ```dart
-try {
-  return await datasource.something();
-} on DioException catch (e) {
-  throw mapDioException(e);
-} catch (e) {
-  throw BaseException(message: e.toString());
-}
+Future<Foo> getFoo() => guardApiCall(() async {
+  final dto = await datasource.something();
+  return mapper.convertFrom(dto);
+});
 ```
 
-Do not flatten a `DioException` straight to `BaseException(message: ...)` — that discards the
-status code and defeats the 401 classification. Firebase Storage and local-prefs repositories
-are exempt (they never produce a backend 401).
+`guardApiCall` maps a `DioException` via `mapDioException` (so 401/409 become their typed
+subclasses) and turns anything else into a `BaseException`. This enforces the contract in one
+place instead of copying the try/catch per method. Do **not** flatten a `DioException` straight
+to `BaseException(message: ...)` — that discards the status code and defeats the 401
+classification. Firebase Storage and local-prefs repositories are exempt (they never produce a
+backend 401).
 
-**Login / reset are exempt.** Those flows do not route through `mapDioException`; their failures
-stay `AuthException` so wrong-password / no-user feedback is still shown.
+**Login credential errors are neutral.** `AuthRepositoryImpl.login` is wrapped too, so a login
+401 surfaces as `UnauthorizedException`; `LoginCubit` maps it to a single neutral
+`Invalid email or password.` message and deliberately does **not** distinguish wrong-password
+from no-such-user (that would leak account existence). These errors are shown via `errorL10n`
+(a string), so they are not affected by the 401 dialog suppression above.
 
 ## The page re-initializes after re-login
 

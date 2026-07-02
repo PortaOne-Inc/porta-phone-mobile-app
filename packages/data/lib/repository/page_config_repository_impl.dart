@@ -18,63 +18,34 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
   final CommonMapper<PageConfigModel, PageConfigDto> _mapper;
 
   @override
-  Future<List<PageConfigModel>> listForTheme({
-    required String applicationId,
-    required String themeId,
-  }) async {
-    try {
-      final dtos = await _api.getPageConfigsForTheme(
-        applicationId: applicationId,
-        themeId: themeId,
-      );
-      return dtos.map(_mapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<PageConfigModel>> listForTheme({required String applicationId, required String themeId}) =>
+      guardApiCall(() async {
+        final dtos = await _api.getPageConfigsForTheme(applicationId: applicationId, themeId: themeId);
+        return dtos.map(_mapper.convertFrom).toList();
+      });
 
   @override
   Future<({PageConfigModel light, PageConfigModel dark})> ensurePair({
     required String applicationId,
     required String themeId,
-  }) async {
-    try {
-      final pair = await _api.ensurePageConfigsPair(
-        applicationId: applicationId,
-        themeId: themeId,
-      );
-      return (
-        light: _mapper.convertFrom(pair.light),
-        dark: _mapper.convertFrom(pair.dark),
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final pair = await _api.ensurePageConfigsPair(applicationId: applicationId, themeId: themeId);
+    return (light: _mapper.convertFrom(pair.light), dark: _mapper.convertFrom(pair.dark));
+  });
 
   @override
   Future<PageConfigModel> getByThemeVariant({
     required String applicationId,
     required String themeId,
     required BrightnessVariant variant,
-  }) async {
-    try {
-      final dto = await _api.getPageConfigByThemeVariant(
-        applicationId: applicationId,
-        themeId: themeId,
-        variant: variant.name,
-      );
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await _api.getPageConfigByThemeVariant(
+      applicationId: applicationId,
+      themeId: themeId,
+      variant: variant.name,
+    );
+    return _mapper.convertFrom(dto);
+  });
 
   @override
   Future<PageConfigModel> upsertByThemeVariant({
@@ -83,20 +54,14 @@ class PageConfigRepositoryImpl extends PageConfigRepository {
     required BrightnessVariant variant,
     Map<String, dynamic>? config,
     int? expectedVersion,
-  }) async {
-    try {
-      final dto = await _api.upsertPageConfigByThemeVariant(
-        applicationId: applicationId,
-        themeId: themeId,
-        variant: variant.name,
-        config: config,
-        expectedVersion: expectedVersion,
-      );
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await _api.upsertPageConfigByThemeVariant(
+      applicationId: applicationId,
+      themeId: themeId,
+      variant: variant.name,
+      config: config,
+      expectedVersion: expectedVersion,
+    );
+    return _mapper.convertFrom(dto);
+  });
 }

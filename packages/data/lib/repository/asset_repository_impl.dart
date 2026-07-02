@@ -73,138 +73,87 @@ class AssetRepositoryImpl extends AssetRepository {
     required String filename,
     required List<int> bytes,
     required String mimeType,
-  }) async {
-    try {
-      final dto = await configuratorBackendDatasource.uploadAssetFile(
-        applicationId: applicationId,
-        filename: filename,
-        bytes: bytes,
-        mimeType: mimeType,
-      );
-      final model = assetMapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await configuratorBackendDatasource.uploadAssetFile(
+      applicationId: applicationId,
+      filename: filename,
+      bytes: bytes,
+      mimeType: mimeType,
+    );
+    final model = assetMapper.convertFrom(dto);
+    _upsertOne(applicationId, model);
+    return model;
+  });
 
   @override
-  Future<List<AssetModel>> getApplicationAssets(String applicationId, {bool includeUrl = true, int? urlTtlSec}) async {
-    try {
-      final dtos = await configuratorBackendDatasource.getUserAssets(
-        applicationId,
-        includeUrl: includeUrl,
-        urlTtlSec: urlTtlSec,
-      );
-      final models = dtos.map(assetMapper.convertFrom).toList();
-      _emit(applicationId, models);
-      return models;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<List<AssetModel>> getApplicationAssets(String applicationId, {bool includeUrl = true, int? urlTtlSec}) =>
+      guardApiCall(() async {
+        final dtos = await configuratorBackendDatasource.getUserAssets(
+          applicationId,
+          includeUrl: includeUrl,
+          urlTtlSec: urlTtlSec,
+        );
+        final models = dtos.map(assetMapper.convertFrom).toList();
+        _emit(applicationId, models);
+        return models;
+      });
 
   @override
-  Future<AssetModel> getAsset(String applicationId, String assetId, {bool includeUrl = true, int? urlTtlSec}) async {
-    try {
-      final dto = await configuratorBackendDatasource.getAsset(
-        applicationId,
-        assetId,
-        includeUrl: includeUrl,
-        urlTtlSec: urlTtlSec,
-      );
-      final model = assetMapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<AssetModel> getAsset(String applicationId, String assetId, {bool includeUrl = true, int? urlTtlSec}) =>
+      guardApiCall(() async {
+        final dto = await configuratorBackendDatasource.getAsset(
+          applicationId,
+          assetId,
+          includeUrl: includeUrl,
+          urlTtlSec: urlTtlSec,
+        );
+        final model = assetMapper.convertFrom(dto);
+        _upsertOne(applicationId, model);
+        return model;
+      });
 
   @override
-  Future<AssetModel> updateAsset(String applicationId, String assetId, {String? checksum}) async {
-    try {
-      final dto = await configuratorBackendDatasource.updateAsset(
-        applicationId,
-        assetId,
-        UpdateAssetDtoReq(checksum: checksum),
-      );
-      final model = assetMapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<AssetModel> updateAsset(String applicationId, String assetId, {String? checksum}) => guardApiCall(() async {
+    final dto = await configuratorBackendDatasource.updateAsset(
+      applicationId,
+      assetId,
+      UpdateAssetDtoReq(checksum: checksum),
+    );
+    final model = assetMapper.convertFrom(dto);
+    _upsertOne(applicationId, model);
+    return model;
+  });
 
   @override
-  Future<void> deleteAsset(String applicationId, String assetId) async {
-    try {
-      await configuratorBackendDatasource.deleteAsset(applicationId, assetId);
-      final list = List<AssetModel>.from(_cache[applicationId] ?? const [])..removeWhere((a) => a.id == assetId);
-      _emit(applicationId, list);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteAsset(String applicationId, String assetId) => guardApiCall(() async {
+    await configuratorBackendDatasource.deleteAsset(applicationId, assetId);
+    final list = List<AssetModel>.from(_cache[applicationId] ?? const [])..removeWhere((a) => a.id == assetId);
+    _emit(applicationId, list);
+  });
 
   @override
-  Future<AssetModel> linkAsset(String applicationId, String assetId, AssetLink link) async {
-    try {
-      final dto = await configuratorBackendDatasource.linkAsset(
-        applicationId,
-        assetId,
-        assetLinkMapper.convertTo(link),
-      );
-      final model = assetMapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<AssetModel> linkAsset(String applicationId, String assetId, AssetLink link) => guardApiCall(() async {
+    final dto = await configuratorBackendDatasource.linkAsset(applicationId, assetId, assetLinkMapper.convertTo(link));
+    final model = assetMapper.convertFrom(dto);
+    _upsertOne(applicationId, model);
+    return model;
+  });
 
   @override
-  Future<AssetModel> unlinkAsset(String applicationId, String assetId, AssetLink link) async {
-    try {
-      final dto = await configuratorBackendDatasource.unlinkAsset(
-        applicationId,
-        assetId,
-        assetLinkMapper.convertTo(link),
-      );
-      final model = assetMapper.convertFrom(dto);
-      _upsertOne(applicationId, model);
-      return model;
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<AssetModel> unlinkAsset(String applicationId, String assetId, AssetLink link) => guardApiCall(() async {
+    final dto = await configuratorBackendDatasource.unlinkAsset(
+      applicationId,
+      assetId,
+      assetLinkMapper.convertTo(link),
+    );
+    final model = assetMapper.convertFrom(dto);
+    _upsertOne(applicationId, model);
+    return model;
+  });
 
   @override
-  Future<String> getDownloadUrl(String applicationId, String assetId) async {
-    try {
-      return await configuratorBackendDatasource.getAssetDownloadUrl(applicationId, assetId);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<String> getDownloadUrl(String applicationId, String assetId) =>
+      guardApiCall(() => configuratorBackendDatasource.getAssetDownloadUrl(applicationId, assetId));
 
   // ----------------------------
   // Watch (streams)
@@ -215,10 +164,10 @@ class AssetRepositoryImpl extends AssetRepository {
     // Ensure controller exists
     final stream = _controllerWithCache(applicationId);
 
-    // If cache is empty, trigger initial load
+    // If cache is empty, trigger initial load. Failures (incl. 401) are surfaced
+    // via the explicit getApplicationAssets() path, so ignore them here.
     if (!_cache.containsKey(applicationId)) {
-      // ignore: discarded_futures
-      getApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec);
+      getApplicationAssets(applicationId, includeUrl: includeUrl, urlTtlSec: urlTtlSec).ignore();
     }
 
     return stream;

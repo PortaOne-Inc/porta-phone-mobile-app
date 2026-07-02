@@ -9,27 +9,17 @@ import '../common/api_exception_mapper.dart';
 import '../mappers/mapper.dart';
 
 @Injectable(as: PublicationResourcesRepository)
-class PublicationResourcesRepositoryImpl
-    extends PublicationResourcesRepository {
-  PublicationResourcesRepositoryImpl({
-    required this.datasource,
-    required this.mapper,
-  });
+class PublicationResourcesRepositoryImpl extends PublicationResourcesRepository {
+  PublicationResourcesRepositoryImpl({required this.datasource, required this.mapper});
 
   final ConfiguratorBackandDatasource datasource;
   final CommonMapper<PublicationResourceModel, PublicationResourceDto> mapper;
 
   @override
-  Future<List<PublicationResourceModel>> getApplicationResources(
-    String applicationId,
-  ) async {
-    try {
-      final dtos = await datasource.getAll(applicationId);
-      return dtos.map(mapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    }
-  }
+  Future<List<PublicationResourceModel>> getApplicationResources(String applicationId) => guardApiCall(() async {
+    final dtos = await datasource.getAll(applicationId);
+    return dtos.map(mapper.convertFrom).toList();
+  });
 
   @override
   Future<PublicationResourceModel> createResource(
@@ -38,20 +28,10 @@ class PublicationResourcesRepositoryImpl
     String? url,
     String? note,
     String? text,
-  }) async {
-    try {
-      final dto = await datasource.create(
-        applicationId,
-        title: title,
-        url: url,
-        note: note,
-        text: text,
-      );
-      return mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await datasource.create(applicationId, title: title, url: url, note: note, text: text);
+    return mapper.convertFrom(dto);
+  });
 
   @override
   Future<PublicationResourceModel> updateResource(
@@ -60,27 +40,11 @@ class PublicationResourcesRepositoryImpl
     String? url,
     String? note,
     String? text,
-  }) async {
-    try {
-      final dto = await datasource.update(
-        id,
-        title: title,
-        url: url,
-        note: note,
-        text: text,
-      );
-      return mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await datasource.update(id, title: title, url: url, note: note, text: text);
+    return mapper.convertFrom(dto);
+  });
 
   @override
-  Future<void> deleteResource(String id) async {
-    try {
-      await datasource.delete(id);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    }
-  }
+  Future<void> deleteResource(String id) => guardApiCall(() => datasource.delete(id));
 }

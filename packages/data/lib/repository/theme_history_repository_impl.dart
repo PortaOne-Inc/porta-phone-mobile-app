@@ -19,24 +19,15 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
     required String themeId,
     int? limit,
     String? startAfter,
-  }) async {
-    try {
-      final page = await _api.getThemeHistory(
-        applicationId: applicationId,
-        themeId: themeId,
-        limit: limit,
-        startAfter: startAfter,
-      );
-      return ThemeHistoryPageModel(
-        items: page.items.map(_mapper.convertFrom).toList(),
-        nextCursor: page.nextCursor,
-      );
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final page = await _api.getThemeHistory(
+      applicationId: applicationId,
+      themeId: themeId,
+      limit: limit,
+      startAfter: startAfter,
+    );
+    return ThemeHistoryPageModel(items: page.items.map(_mapper.convertFrom).toList(), nextCursor: page.nextCursor);
+  });
 
   @override
   Future<ThemeHistoryEntryModel> createSnapshot({
@@ -44,21 +35,15 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
     required String themeId,
     String? tag,
     String? description,
-  }) async {
-    try {
-      final dto = await _api.createThemeHistorySnapshot(
-        applicationId: applicationId,
-        themeId: themeId,
-        tag: tag,
-        description: description,
-      );
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await _api.createThemeHistorySnapshot(
+      applicationId: applicationId,
+      themeId: themeId,
+      tag: tag,
+      description: description,
+    );
+    return _mapper.convertFrom(dto);
+  });
 
   @override
   Future<ThemeHistoryEntryModel> updateEntry({
@@ -67,20 +52,14 @@ class ThemeHistoryRepositoryImpl extends ThemeHistoryRepository {
     required String historyId,
     String? tag,
     String? description,
-  }) async {
-    try {
-      final dto = await _api.patchThemeHistoryEntry(
-        applicationId: applicationId,
-        themeId: themeId,
-        historyId: historyId,
-        tag: tag,
-        description: description,
-      );
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await _api.patchThemeHistoryEntry(
+      applicationId: applicationId,
+      themeId: themeId,
+      historyId: historyId,
+      tag: tag,
+      description: description,
+    );
+    return _mapper.convertFrom(dto);
+  });
 }

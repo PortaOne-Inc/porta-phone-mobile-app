@@ -21,28 +21,17 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
   Future<List<FeatureAccessModel>> getFeatureAccessList({
     required String applicationId,
     String? themeId, // no longer needed, kept for backward compatibility
-  }) async {
-    try {
-      final dtos = await _api.getFeatureAccesses(applicationId: applicationId);
-      return dtos.map(_mapper.convertFrom).toList();
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  }) => guardApiCall(() async {
+    final dtos = await _api.getFeatureAccesses(applicationId: applicationId);
+    return dtos.map(_mapper.convertFrom).toList();
+  });
 
   @override
-  Future<FeatureAccessModel> getFeatureAccess({required String applicationId, required String themeId}) async {
-    try {
-      final dto = await _api.getFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<FeatureAccessModel> getFeatureAccess({required String applicationId, required String themeId}) =>
+      guardApiCall(() async {
+        final dto = await _api.getFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
+        return _mapper.convertFrom(dto);
+      });
 
   @override
   Future<FeatureAccessModel> upsertFeatureAccess({
@@ -51,29 +40,18 @@ class FeatureAccessRepositoryImpl extends FeatureAccessRepository {
     String? status,
     Map<String, dynamic>? config,
     int? expectedVersion,
-  }) async {
-    try {
-      final dto = await _api.upsertFeatureAccessByTheme(
-        applicationId: applicationId,
-        themeId: themeId,
-        status: status,
-        config: config,
-        expectedVersion: expectedVersion,
-      );
-      return _mapper.convertFrom(dto);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    }
-  }
+  }) => guardApiCall(() async {
+    final dto = await _api.upsertFeatureAccessByTheme(
+      applicationId: applicationId,
+      themeId: themeId,
+      status: status,
+      config: config,
+      expectedVersion: expectedVersion,
+    );
+    return _mapper.convertFrom(dto);
+  });
 
   @override
-  Future<void> deleteFeatureAccess({required String applicationId, required String themeId}) async {
-    try {
-      await _api.deleteFeatureAccessByTheme(applicationId: applicationId, themeId: themeId);
-    } on DioException catch (e) {
-      throw mapDioException(e);
-    } catch (e) {
-      throw BaseException(message: e.toString());
-    }
-  }
+  Future<void> deleteFeatureAccess({required String applicationId, required String themeId}) =>
+      guardApiCall(() => _api.deleteFeatureAccessByTheme(applicationId: applicationId, themeId: themeId));
 }
