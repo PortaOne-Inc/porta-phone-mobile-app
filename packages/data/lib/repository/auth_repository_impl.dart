@@ -8,6 +8,8 @@ import 'package:data/datasource/datasource.dart';
 
 import 'package:domain/domain.dart';
 
+import '../common/api_exception_mapper.dart';
+
 /// Implementation of the [AuthRepository] interface.
 @Singleton(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository {
@@ -19,9 +21,7 @@ class AuthRepositoryImpl extends AuthRepository {
     required this.authPrefDataSource,
     required this.userPrefDataSource,
   }) {
-    configuratorBackandDatasource.setUnauthorizedListener(
-      _onBackendUnauthorizedListener,
-    );
+    configuratorBackandDatasource.setUnauthorizedListener(_onBackendUnauthorizedListener);
   }
 
   final AuthPrefDatasource authPrefDataSource;
@@ -29,9 +29,7 @@ class AuthRepositoryImpl extends AuthRepository {
   final ConfiguratorBackandDatasource configuratorBackandDatasource;
 
   late final StreamController<AuthenticationStatus> _tokenExpirationController =
-      StreamController<AuthenticationStatus>.broadcast(
-        onListen: _emitInitialStatus,
-      );
+      StreamController<AuthenticationStatus>.broadcast(onListen: _emitInitialStatus);
 
   Future<void> _emitInitialStatus() async {
     _tokenExpirationController.add(await isUserAuthorized());
@@ -42,20 +40,26 @@ class AuthRepositoryImpl extends AuthRepository {
   /// Returns a [String] containing the JWT token.
   @override
   Future<String> login(String email, String password) async {
-    final authResponse = await configuratorBackandDatasource.login(
-      LoginCredentials(email: email, password: password),
-    );
+    try {
+      final authResponse = await configuratorBackandDatasource.login(
+        LoginCredentials(email: email, password: password),
+      );
 
-    final jwtToken = authResponse.token;
-    final jwtPayload = JwtPayload.fromJson(JwtDecoder.decode(jwtToken));
+      final jwtToken = authResponse.token;
+      final jwtPayload = JwtPayload.fromJson(JwtDecoder.decode(jwtToken));
 
-    await authPrefDataSource.saveAuthToken(jwtToken, jwtPayload.exp);
-    await userPrefDataSource.saveUserId(jwtPayload.userId);
-    await userPrefDataSource.saveEmail(jwtPayload.email);
+      await authPrefDataSource.saveAuthToken(jwtToken, jwtPayload.exp);
+      await userPrefDataSource.saveUserId(jwtPayload.userId);
+      await userPrefDataSource.saveEmail(jwtPayload.email);
 
-    _tokenExpirationController.add(AuthenticationStatus.authenticated);
+      _tokenExpirationController.add(AuthenticationStatus.authenticated);
 
-    return jwtToken;
+      return jwtToken;
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (e) {
+      throw BaseException(message: e.toString());
+    }
   }
 
   /// Logs out the current user.
@@ -83,19 +87,11 @@ class AuthRepositoryImpl extends AuthRepository {
       final jwtToken = authPrefDataSource.getAuthToken();
       final expiredTime = authPrefDataSource.getExpiredTime();
 
-      if (userId == null ||
-          email == null ||
-          jwtToken == null ||
-          expiredTime == null) {
+      if (userId == null || email == null || jwtToken == null || expiredTime == null) {
         return null;
       }
 
-      return UserMetadata(
-        id: userId,
-        email: email,
-        jwtToken: jwtToken,
-        expiredTime: expiredTime,
-      );
+      return UserMetadata(id: userId, email: email, jwtToken: jwtToken, expiredTime: expiredTime);
     } on Exception catch (e) {
       throw BaseException(message: 'Failed to retrieve user: $e');
     }
@@ -109,9 +105,7 @@ class AuthRepositoryImpl extends AuthRepository {
     if (!authPrefDataSource.isAuthTokenExist()) {
       return AuthenticationStatus.unauthenticated;
     }
-    return authPrefDataSource.isAuthTokenExpired()
-        ? AuthenticationStatus.expired
-        : AuthenticationStatus.authenticated;
+    return authPrefDataSource.isAuthTokenExpired() ? AuthenticationStatus.expired : AuthenticationStatus.authenticated;
   }
 
   /// Monitors the token expiration status.

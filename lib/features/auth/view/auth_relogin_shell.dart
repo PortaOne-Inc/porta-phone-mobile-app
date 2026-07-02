@@ -27,6 +27,7 @@ class AuthReLoginShell extends StatefulWidget {
 
 class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages {
   Route<void>? _reloginRoute;
+  AuthenticationStatus? _previousStatus;
 
   @override
   void initState() {
@@ -52,9 +53,13 @@ class _AuthReLoginShellState extends State<AuthReLoginShell> with MixinMessages 
         _showReLogin(context);
       case AuthenticationStatus.authenticated:
         _dismissReLogin(context);
-        showTopSnakeMessageSuccess(context, context.l10n.feature_auth_SnakeBar_success_auth);
+        if (_previousStatus == AuthenticationStatus.expired) {
+          showTopSnackMessageSuccess(context, context.l10n.feature_auth_snackBar_success_auth);
+        }
       case null:
     }
+
+    _previousStatus = state.status;
   }
 
   void _showReLogin(BuildContext context) {

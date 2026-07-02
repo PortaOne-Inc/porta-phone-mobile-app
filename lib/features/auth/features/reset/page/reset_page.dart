@@ -33,46 +33,29 @@ class _ResetPageState extends State<ResetPage> with MixinMessages {
           ),
           body: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 800,
-                minWidth: 200,
-                maxHeight: 528,
-                minHeight: 200,
-              ),
+              constraints: const BoxConstraints(maxWidth: 800, minWidth: 200, maxHeight: 528, minHeight: 200),
               child: SingleChildScrollView(
                 child: Card(
                   child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 64,
-                      horizontal: 16,
-                    ),
+                    margin: const EdgeInsets.symmetric(vertical: 64, horizontal: 16),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          context
-                              .l10n
-                              .feature_auth_reset_toolbar_recover_account,
+                          context.l10n.feature_auth_reset_toolbar_recover_account,
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 32),
                         TextFormField(
-                          onChanged: (it) =>
-                              BlocProvider.of<ResetPasswordCubit>(
-                                context,
-                              ).authEmailChanged(it),
+                          onChanged: (it) => BlocProvider.of<ResetPasswordCubit>(context).authEmailChanged(it),
                           initialValue: state.emailInput?.value,
                           decoration: InputDecoration(
-                            hintText:
-                                context.l10n.authorization_enter_email_hint,
+                            hintText: context.l10n.authorization_enter_email_hint,
                             errorText: state.emailInput?.errorL10n(context),
                           ),
                         ),
                         const SizedBox(height: 16),
-                        Button(
-                          title: context.l10n.authorization_sign_in,
-                          onPressed: () => _tryToReset(context),
-                        ),
+                        Button(title: context.l10n.authorization_sign_in, onPressed: () => _tryToReset(context)),
                       ],
                     ),
                   ),
@@ -91,7 +74,7 @@ class _ResetPageState extends State<ResetPage> with MixinMessages {
     }
     if (state is ResetPasswordStateSuccess) {
       GoRouter.of(context).goNamed(AppRoutInfo.login.name);
-      showTopSnakeMessageSuccess(
+      showTopSnackMessageSuccess(
         context,
         context.l10n.feature_auth_reset_success,
         duration: const Duration(seconds: 2),

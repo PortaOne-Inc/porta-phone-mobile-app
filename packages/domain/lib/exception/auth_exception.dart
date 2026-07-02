@@ -1,24 +1,20 @@
 import 'common/base_exception.dart';
 
-enum AuthStateEnum { userNotFount, wrongPassword, another }
+enum AuthStateEnum { invalidCredentials, another }
 
 class AuthException extends BaseException {
   AuthException({required this.state, required super.message});
 
-  AuthException.noUser({
-    this.state = AuthStateEnum.userNotFount,
-    super.message = 'User not fount',
+  /// Neutral credentials failure.
+  ///
+  /// Intentionally does not distinguish "wrong password" from "no such user" —
+  /// revealing which one is wrong leaks account existence.
+  AuthException.invalidCredentials({
+    this.state = AuthStateEnum.invalidCredentials,
+    super.message = 'Invalid credentials',
   });
 
-  AuthException.wrongPassword({
-    this.state = AuthStateEnum.wrongPassword,
-    super.message = 'Wrong password',
-  });
-
-  AuthException.another({
-    required super.message,
-    this.state = AuthStateEnum.another,
-  });
+  AuthException.another({required super.message, this.state = AuthStateEnum.another});
 
   final AuthStateEnum state;
 }

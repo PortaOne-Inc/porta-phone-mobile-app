@@ -5,12 +5,12 @@ import 'package:domain/domain.dart';
 import '../widgets/widgets.dart';
 
 mixin MixinMessages {
-  void showTopSnakeMessageSuccess(
+  void showTopSnackMessageSuccess(
     BuildContext context,
     String message, {
     Duration duration = const Duration(milliseconds: 500),
   }) {
-    final snakeBar = SnackBar(
+    final snackBar = SnackBar(
       content: Text(message, textAlign: TextAlign.center),
       behavior: SnackBarBehavior.floating,
       dismissDirection: DismissDirection.up,
@@ -21,7 +21,7 @@ mixin MixinMessages {
       margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height - kToolbarHeight - kMinInteractiveDimension),
     );
 
-    ScaffoldMessenger.of(context).showSnackBar(snakeBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void showFailureMessage(BuildContext context, Object error) {

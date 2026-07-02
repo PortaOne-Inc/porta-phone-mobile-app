@@ -43,10 +43,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sorry, we couldn\'t find the page you\'re looking for. It\'s possible that the page has been removed, renamed, or is temporarily unavailable. Please check the URL and try again, or contact us if you think this is a mistake.';
 
   @override
-  String get feature_authorization_exception_user_not_fount => 'There is no such user.';
-
-  @override
-  String get feature_authorization_exception_wrong_password => 'Invalid password.';
+  String get feature_authorization_exception_invalid_credentials => 'Invalid email or password.';
 
   @override
   String get feature_authorization_reset_password => 'Reset password.';
@@ -496,7 +493,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feature_auth_logout => 'Logout';
 
   @override
-  String get feature_auth_SnakeBar_success_auth => 'You success authorized';
+  String get feature_auth_snackBar_success_auth => 'Successfully authorized.';
 
   @override
   String get feature_auth_Input_invalid_email_address => 'Invalid email address';

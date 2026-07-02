@@ -11,8 +11,7 @@ part 'reset_password_state.dart';
 part 'reset_password_cubit.freezed.dart';
 
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
-  ResetPasswordCubit({required this.resetAuthPassword})
-    : super(ResetPasswordState());
+  ResetPasswordCubit({required this.resetAuthPassword}) : super(ResetPasswordState());
 
   final ResetAuthPasswordUsecase resetAuthPassword;
 
@@ -41,14 +40,10 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   Future<void> _tryToReset() async {
     try {
       await _resetPassword(state.emailInput!.value);
-    } on AuthUserNotFountException catch (_) {
-      emit(state.copyWithError(failure: AuthException.noUser()));
-    } on AuthWrongPasswordException catch (_) {
-      emit(state.copyWithError(failure: AuthException.wrongPassword()));
+    } on UnauthorizedException catch (_) {
+      emit(state.copyWithError(failure: AuthException.invalidCredentials()));
     } on BaseException catch (e) {
-      emit(
-        state.copyWithError(failure: AuthException.another(message: e.message)),
-      );
+      emit(state.copyWithError(failure: AuthException.another(message: e.message)));
     }
   }
 

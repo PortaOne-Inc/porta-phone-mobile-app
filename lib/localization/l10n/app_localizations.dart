@@ -157,17 +157,11 @@ abstract class AppLocalizations {
   /// **'Sorry, we couldn\'t find the page you\'re looking for. It\'s possible that the page has been removed, renamed, or is temporarily unavailable. Please check the URL and try again, or contact us if you think this is a mistake.'**
   String get common_not_fount_description;
 
-  /// No description provided for @feature_authorization_exception_user_not_fount.
+  /// No description provided for @feature_authorization_exception_invalid_credentials.
   ///
   /// In en, this message translates to:
-  /// **'There is no such user.'**
-  String get feature_authorization_exception_user_not_fount;
-
-  /// No description provided for @feature_authorization_exception_wrong_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid password.'**
-  String get feature_authorization_exception_wrong_password;
+  /// **'Invalid email or password.'**
+  String get feature_authorization_exception_invalid_credentials;
 
   /// No description provided for @feature_authorization_reset_password.
   ///
@@ -1051,11 +1045,11 @@ abstract class AppLocalizations {
   /// **'Logout'**
   String get feature_auth_logout;
 
-  /// No description provided for @feature_auth_SnakeBar_success_auth.
+  /// No description provided for @feature_auth_snackBar_success_auth.
   ///
   /// In en, this message translates to:
-  /// **'You success authorized'**
-  String get feature_auth_SnakeBar_success_auth;
+  /// **'Successfully authorized.'**
+  String get feature_auth_snackBar_success_auth;
 
   /// No description provided for @feature_auth_Input_invalid_email_address.
   ///

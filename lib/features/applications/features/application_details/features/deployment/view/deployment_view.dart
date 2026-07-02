@@ -227,7 +227,7 @@ class _DeploymentViewState extends State<DeploymentView> with MixinMessages {
     }
 
     if (state.status == DeploymentDetailsStatus.deploySuccess) {
-      showTopSnakeMessageSuccess(
+      showTopSnackMessageSuccess(
         context,
         context.l10n.feature_application_details_ApplicationDetailsScreen_deploy_success_message,
         duration: const Duration(seconds: 4),
