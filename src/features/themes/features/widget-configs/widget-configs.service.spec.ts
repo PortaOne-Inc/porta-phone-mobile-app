@@ -3,26 +3,39 @@ import {
   ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 
 import { WidgetConfigsService } from './widget-configs.service';
 import { WidgetConfigEntity } from './entities/widget-config.entity';
 import { Application } from '../../../applications/entities/application';
 import { Theme } from '../../entities/theme';
+import { Collections } from '../../../../common';
 import { OwnershipService } from '../../../../common/data/ownership.service';
 import { InMemoryRepo } from '../../../../testing/in-memory-repo';
+import {
+  createFakeFirestore,
+  FakeFirestoreStore,
+  storeKey,
+} from '../../../../testing/fake-firestore';
+
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(),
+}));
 
 /**
- * Characterization tests: pin the CURRENT behavior. Ownership is now
- * enforced (uid -> application -> theme); the non-transactional version
- * check is still a known gap.
+ * Characterization tests: pin the CURRENT behavior. Ownership is enforced
+ * (uid -> application -> theme) and the upsert is a transactional
+ * read-check-write guarded by expectedVersion.
  */
 describe('WidgetConfigsService', () => {
   let repo: InMemoryRepo<WidgetConfigEntity>;
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
   let assets: { getSignedUrlByIdForApp: jest.Mock };
+  let store: FakeFirestoreStore;
   let service: WidgetConfigsService;
 
+  /** Ownership/get reads go through fireorm; the transaction reads the store. */
   const seedConfig = (
     overrides: Partial<WidgetConfigEntity> = {},
   ): WidgetConfigEntity => {
@@ -38,13 +51,23 @@ describe('WidgetConfigsService', () => {
       ...overrides,
     };
     repo.seed(entity);
+    store.set(storeKey(Collections.themeConfigWidgets, entity.id), entity);
     return entity;
   };
+
+  const storedConfig = (id: string) =>
+    store.get(
+      storeKey(Collections.themeConfigWidgets, id),
+    ) as WidgetConfigEntity;
 
   beforeEach(() => {
     repo = new InMemoryRepo<WidgetConfigEntity>();
     appRepo = new InMemoryRepo<Application>();
     themeRepo = new InMemoryRepo<Theme>();
+    store = new Map();
+    (admin.firestore as unknown as jest.Mock).mockReturnValue(
+      createFakeFirestore(store),
+    );
     appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
     themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
     assets = { getSignedUrlByIdForApp: jest.fn() };
@@ -107,6 +130,10 @@ describe('WidgetConfigsService', () => {
         variant: 'dark',
         version: 1,
       });
+      expect(storedConfig('t1_dark')).toMatchObject({
+        config: { fontFamily: 'Roboto' },
+        version: 1,
+      });
     });
 
     it('deep-merges the config patch and bumps the version', async () => {
@@ -125,6 +152,10 @@ describe('WidgetConfigsService', () => {
 
       expect(result.config).toEqual({ buttons: { radius: 8, elevation: 2 } });
       expect(result.version).toBe(3);
+      expect(storedConfig('t1_light')).toMatchObject({
+        config: { buttons: { radius: 8, elevation: 2 } },
+        version: 3,
+      });
     });
 
     it('throws ConflictException on a stale expectedVersion', async () => {
@@ -136,6 +167,7 @@ describe('WidgetConfigsService', () => {
           expectedVersion: 1,
         }),
       ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedConfig('t1_light').version).toBe(2);
     });
 
     it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
@@ -150,6 +182,7 @@ describe('WidgetConfigsService', () => {
       );
 
       expect(result.version).toBe(6);
+      expect(storedConfig('t1_light').version).toBe(6);
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
@@ -171,6 +204,17 @@ describe('WidgetConfigsService', () => {
         }),
       ).rejects.toBeInstanceOf(NotFoundException);
     });
+
+    it('throws NotFoundException when the stored config belongs to another application', async () => {
+      seedConfig({ applicationId: 'other-app' });
+
+      await expect(
+        service.upsertByThemeVariant('user-1', 'app-1', 't1', 'light', {
+          config: { fontFamily: 'Roboto' },
+        }),
+      ).rejects.toBeInstanceOf(NotFoundException);
+      expect(storedConfig('t1_light').version).toBe(1);
+    });
   });
 
   describe('ensurePair', () => {
@@ -179,6 +223,20 @@ describe('WidgetConfigsService', () => {
 
       expect(result.light.id).toBe('t1_light');
       expect(result.dark.id).toBe('t1_dark');
+      expect(storedConfig('t1_light')).toMatchObject({ version: 1 });
+      expect(storedConfig('t1_dark')).toMatchObject({ version: 1 });
+      expect(store.size).toBe(2);
+    });
+
+    it('bumps versions of existing variants instead of resetting them', async () => {
+      seedConfig({ version: 2 });
+
+      const result = await service.ensurePair('user-1', 'app-1', 't1');
+
+      expect(result.light.version).toBe(3);
+      expect(result.dark.version).toBe(1);
+      expect(storedConfig('t1_light').version).toBe(3);
+      expect(storedConfig('t1_dark').version).toBe(1);
     });
   });
 

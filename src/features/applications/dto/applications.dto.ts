@@ -10,6 +10,7 @@ export const UpdateThemeBindingsSchema = z
   .object({
     defaultThemeId: z.string().min(1).optional(),
     themeByEnv: ThemeByEnvSchema.optional(),
+    expectedVersion: z.number().int().nonnegative().optional(),
   })
   .strict();
 

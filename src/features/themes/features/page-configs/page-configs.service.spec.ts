@@ -3,26 +3,39 @@ import {
   ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 
 import { PageConfigsService } from './page-configs.service';
 import { PageConfigEntity } from './entities/page-config.entity';
 import { Application } from '../../../applications/entities/application';
 import { Theme } from '../../entities/theme';
+import { Collections } from '../../../../common';
 import { OwnershipService } from '../../../../common/data/ownership.service';
 import { InMemoryRepo } from '../../../../testing/in-memory-repo';
+import {
+  createFakeFirestore,
+  FakeFirestoreStore,
+  storeKey,
+} from '../../../../testing/fake-firestore';
+
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(),
+}));
 
 /**
  * Characterization tests: pin the CURRENT behavior of the service.
- * Ownership is now enforced (uid -> application -> theme); the remaining
- * known gap (non-transactional version check) is still pinned explicitly.
+ * Ownership is enforced (uid -> application -> theme) and the upsert is a
+ * transactional read-check-write guarded by expectedVersion.
  */
 describe('PageConfigsService', () => {
   let repo: InMemoryRepo<PageConfigEntity>;
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
   let assets: { getSignedUrlByIdForApp: jest.Mock };
+  let store: FakeFirestoreStore;
   let service: PageConfigsService;
 
+  /** Non-transactional reads go through fireorm; the transaction reads the store. */
   const seedConfig = (
     overrides: Partial<PageConfigEntity> = {},
   ): PageConfigEntity => {
@@ -38,8 +51,12 @@ describe('PageConfigsService', () => {
       ...overrides,
     };
     repo.seed(entity);
+    store.set(storeKey(Collections.themeConfigPages, entity.id), entity);
     return entity;
   };
+
+  const storedConfig = (id: string) =>
+    store.get(storeKey(Collections.themeConfigPages, id)) as PageConfigEntity;
 
   beforeEach(() => {
     repo = new InMemoryRepo<PageConfigEntity>();
@@ -48,6 +65,10 @@ describe('PageConfigsService', () => {
     appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
     themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
     assets = { getSignedUrlByIdForApp: jest.fn() };
+    store = new Map();
+    (admin.firestore as unknown as jest.Mock).mockReturnValue(
+      createFakeFirestore(store),
+    );
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
     service = new PageConfigsService(repo as any, assets as any, ownership);
   });
@@ -107,6 +128,11 @@ describe('PageConfigsService', () => {
         variant: 'dark',
         version: 1,
       });
+      expect(storedConfig('t1_dark')).toMatchObject({
+        applicationId: 'app-1',
+        config: { login: { title: 'Hi' } },
+        version: 1,
+      });
     });
 
     it('deep-merges the config patch and bumps the version', async () => {
@@ -127,6 +153,10 @@ describe('PageConfigsService', () => {
         login: { title: 'Hello', subtitle: 'Sign in' },
       });
       expect(result.version).toBe(3);
+      expect(storedConfig('t1_light')).toMatchObject({
+        config: { login: { title: 'Hello', subtitle: 'Sign in' } },
+        version: 3,
+      });
     });
 
     it('throws ConflictException on a stale expectedVersion', async () => {
@@ -138,6 +168,7 @@ describe('PageConfigsService', () => {
           expectedVersion: 1,
         }),
       ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedConfig('t1_light').version).toBe(2);
     });
 
     it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
@@ -152,6 +183,7 @@ describe('PageConfigsService', () => {
       );
 
       expect(result.version).toBe(6);
+      expect(storedConfig('t1_light').version).toBe(6);
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
@@ -170,6 +202,20 @@ describe('PageConfigsService', () => {
           config: {},
         }),
       ).rejects.toBeInstanceOf(NotFoundException);
+    });
+
+    it('throws NotFoundException when the stored config belongs to another application', async () => {
+      seedConfig({ applicationId: 'other-app', version: 4 });
+
+      await expect(
+        service.upsertByThemeVariant('user-1', 'app-1', 't1', 'light', {
+          config: { login: { title: 'Hijack' } },
+        }),
+      ).rejects.toBeInstanceOf(NotFoundException);
+      expect(storedConfig('t1_light')).toMatchObject({
+        applicationId: 'other-app',
+        version: 4,
+      });
     });
   });
 

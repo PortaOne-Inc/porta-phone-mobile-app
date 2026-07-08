@@ -3,25 +3,38 @@ import {
   ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 
 import { FeatureAccessService } from './feature-access.service';
 import { FeatureAccess } from './entities/feature-access.entity';
 import { Application } from '../../../applications/entities/application';
 import { Theme } from '../../entities/theme';
+import { Collections } from '../../../../common';
 import { OwnershipService } from '../../../../common/data/ownership.service';
 import { InMemoryRepo } from '../../../../testing/in-memory-repo';
+import {
+  createFakeFirestore,
+  FakeFirestoreStore,
+  storeKey,
+} from '../../../../testing/fake-firestore';
+
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(),
+}));
 
 /**
  * Characterization tests: pin the CURRENT behavior of the service.
- * Ownership is now enforced (uid -> application -> theme); the remaining
- * known gap (non-transactional version check) is still pinned explicitly.
+ * Ownership is enforced (uid -> application -> theme) and the upsert is a
+ * transactional read-check-write guarded by expectedVersion.
  */
 describe('FeatureAccessService', () => {
   let repo: InMemoryRepo<FeatureAccess>;
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
+  let store: FakeFirestoreStore;
   let service: FeatureAccessService;
 
+  /** Non-transactional reads go through fireorm; the transaction reads the store. */
   const seedAccess = (
     overrides: Partial<FeatureAccess> = {},
   ): FeatureAccess => {
@@ -37,8 +50,17 @@ describe('FeatureAccessService', () => {
       ...overrides,
     } as FeatureAccess;
     repo.seed(entity);
+    store.set(
+      storeKey(Collections.themeFeatureEntitlements, entity.id),
+      entity,
+    );
     return entity;
   };
+
+  const storedAccess = (id: string) =>
+    store.get(
+      storeKey(Collections.themeFeatureEntitlements, id),
+    ) as FeatureAccess;
 
   beforeEach(() => {
     repo = new InMemoryRepo<FeatureAccess>();
@@ -46,6 +68,10 @@ describe('FeatureAccessService', () => {
     themeRepo = new InMemoryRepo<Theme>();
     appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
     themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
+    store = new Map();
+    (admin.firestore as unknown as jest.Mock).mockReturnValue(
+      createFakeFirestore(store),
+    );
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
     service = new FeatureAccessService(repo as any, ownership);
   });
@@ -95,6 +121,12 @@ describe('FeatureAccessService', () => {
         status: 'draft',
         version: 1,
       });
+      expect(storedAccess('t1')).toMatchObject({
+        applicationId: 'app-1',
+        config: { chat: { enabled: false } },
+        status: 'draft',
+        version: 1,
+      });
     });
 
     it('deep-merges the config patch, updates status and bumps the version', async () => {
@@ -113,6 +145,11 @@ describe('FeatureAccessService', () => {
         chat: { enabled: false, history: true },
       });
       expect(result.version).toBe(3);
+      expect(storedAccess('t1')).toMatchObject({
+        status: 'published',
+        config: { chat: { enabled: false, history: true } },
+        version: 3,
+      });
     });
 
     it('throws ConflictException on a stale expectedVersion', async () => {
@@ -124,6 +161,7 @@ describe('FeatureAccessService', () => {
           expectedVersion: 1,
         }),
       ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedAccess('t1').version).toBe(2);
     });
 
     it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
@@ -134,6 +172,7 @@ describe('FeatureAccessService', () => {
       });
 
       expect(result.version).toBe(6);
+      expect(storedAccess('t1').version).toBe(6);
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
@@ -148,6 +187,39 @@ describe('FeatureAccessService', () => {
       await expect(
         service.upsertByTheme('user-1', 'app-1', 't-foreign', { config: {} }),
       ).rejects.toBeInstanceOf(NotFoundException);
+    });
+
+    it('throws NotFoundException when the stored record belongs to another application', async () => {
+      seedAccess({ applicationId: 'other-app', version: 4 });
+
+      await expect(
+        service.upsertByTheme('user-1', 'app-1', 't1', {
+          config: { chat: { enabled: false } },
+        }),
+      ).rejects.toBeInstanceOf(NotFoundException);
+      expect(storedAccess('t1')).toMatchObject({
+        applicationId: 'other-app',
+        version: 4,
+      });
+    });
+
+    it('updates a LEGACY record stored under a random doc id instead of creating a themeId doc', async () => {
+      seedAccess({ id: 'legacy-random-id', themeId: 't1', version: 3 });
+
+      const result = await service.upsertByTheme('user-1', 'app-1', 't1', {
+        config: { chat: { enabled: false } },
+      });
+
+      expect(result.id).toBe('legacy-random-id');
+      expect(result.version).toBe(4);
+      expect(storedAccess('legacy-random-id')).toMatchObject({
+        themeId: 't1',
+        config: { chat: { enabled: false } },
+        version: 4,
+      });
+      expect(
+        store.has(storeKey(Collections.themeFeatureEntitlements, 't1')),
+      ).toBe(false);
     });
   });
 

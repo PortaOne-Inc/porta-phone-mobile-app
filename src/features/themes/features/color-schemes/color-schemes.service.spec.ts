@@ -3,25 +3,38 @@ import {
   ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 
 import { ColorSchemesService } from './color-schemes.service';
 import { ColorScheme } from './entities/color-scheme.entity';
 import { Application } from '../../../applications/entities/application';
 import { Theme } from '../../entities/theme';
+import { Collections } from '../../../../common';
 import { OwnershipService } from '../../../../common/data/ownership.service';
 import { InMemoryRepo } from '../../../../testing/in-memory-repo';
+import {
+  createFakeFirestore,
+  FakeFirestoreStore,
+  storeKey,
+} from '../../../../testing/fake-firestore';
+
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(),
+}));
 
 /**
- * Characterization tests: pin the CURRENT behavior. Ownership is now
- * enforced (uid -> application -> theme); the non-transactional version
- * check is still a known gap.
+ * Characterization tests: pin the CURRENT behavior. Ownership is enforced
+ * (uid -> application -> theme) and the upsert is a transactional
+ * read-check-write guarded by expectedVersion.
  */
 describe('ColorSchemesService', () => {
   let repo: InMemoryRepo<ColorScheme>;
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
+  let store: FakeFirestoreStore;
   let service: ColorSchemesService;
 
+  /** Ownership/get reads go through fireorm; the transaction reads the store. */
   const seedScheme = (overrides: Partial<ColorScheme> = {}): ColorScheme => {
     const scheme: ColorScheme = {
       id: 't1_light',
@@ -35,13 +48,21 @@ describe('ColorSchemesService', () => {
       ...overrides,
     };
     repo.seed(scheme);
+    store.set(storeKey(Collections.themeConfigColorSchemes, scheme.id), scheme);
     return scheme;
   };
+
+  const storedScheme = (id: string) =>
+    store.get(storeKey(Collections.themeConfigColorSchemes, id)) as ColorScheme;
 
   beforeEach(() => {
     repo = new InMemoryRepo<ColorScheme>();
     appRepo = new InMemoryRepo<Application>();
     themeRepo = new InMemoryRepo<Theme>();
+    store = new Map();
+    (admin.firestore as unknown as jest.Mock).mockReturnValue(
+      createFakeFirestore(store),
+    );
     appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
     themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
@@ -102,6 +123,10 @@ describe('ColorSchemesService', () => {
         variant: 'dark',
         version: 1,
       });
+      expect(storedScheme('t1_dark')).toMatchObject({
+        config: { seed: '#000000' },
+        version: 1,
+      });
     });
 
     it('deep-merges the config patch and bumps the version', async () => {
@@ -122,6 +147,10 @@ describe('ColorSchemesService', () => {
         colors: { primary: '#999999', secondary: '#222222' },
       });
       expect(result.version).toBe(4);
+      expect(storedScheme('t1_light')).toMatchObject({
+        config: { colors: { primary: '#999999', secondary: '#222222' } },
+        version: 4,
+      });
     });
 
     it('keeps the existing config but still bumps the version on an empty patch', async () => {
@@ -137,6 +166,10 @@ describe('ColorSchemesService', () => {
 
       expect(result.config).toEqual({ seed: '#112233' });
       expect(result.version).toBe(2);
+      expect(storedScheme('t1_light')).toMatchObject({
+        config: { seed: '#112233' },
+        version: 2,
+      });
     });
 
     it('throws ConflictException on a stale expectedVersion', async () => {
@@ -148,6 +181,10 @@ describe('ColorSchemesService', () => {
           expectedVersion: 1,
         }),
       ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedScheme('t1_light')).toMatchObject({
+        config: { seed: '#112233' },
+        version: 2,
+      });
     });
 
     it('accepts a matching expectedVersion', async () => {
@@ -162,6 +199,7 @@ describe('ColorSchemesService', () => {
       );
 
       expect(result.version).toBe(3);
+      expect(storedScheme('t1_light').version).toBe(3);
     });
 
     it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
@@ -176,6 +214,7 @@ describe('ColorSchemesService', () => {
       );
 
       expect(result.version).toBe(6);
+      expect(storedScheme('t1_light').version).toBe(6);
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
@@ -197,6 +236,17 @@ describe('ColorSchemesService', () => {
         }),
       ).rejects.toBeInstanceOf(NotFoundException);
     });
+
+    it('throws NotFoundException when the stored scheme belongs to another application', async () => {
+      seedScheme({ applicationId: 'other-app' });
+
+      await expect(
+        service.upsertByThemeVariant('user-1', 'app-1', 't1', 'light', {
+          config: { seed: '#000000' },
+        }),
+      ).rejects.toBeInstanceOf(NotFoundException);
+      expect(storedScheme('t1_light').version).toBe(1);
+    });
   });
 
   describe('ensurePair', () => {
@@ -205,7 +255,9 @@ describe('ColorSchemesService', () => {
 
       expect(result.light.id).toBe('t1_light');
       expect(result.dark.id).toBe('t1_dark');
-      expect(repo.docs.size).toBe(2);
+      expect(storedScheme('t1_light')).toMatchObject({ version: 1 });
+      expect(storedScheme('t1_dark')).toMatchObject({ version: 1 });
+      expect(store.size).toBe(2);
     });
 
     it('bumps versions of existing variants instead of resetting them', async () => {
@@ -215,6 +267,8 @@ describe('ColorSchemesService', () => {
 
       expect(result.light.version).toBe(3);
       expect(result.dark.version).toBe(1);
+      expect(storedScheme('t1_light').version).toBe(3);
+      expect(storedScheme('t1_dark').version).toBe(1);
     });
   });
 

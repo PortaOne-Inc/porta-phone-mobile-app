@@ -1,13 +1,16 @@
 import {
+  ConflictException,
   Injectable,
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 import { Application } from './entities/application';
 import { Theme } from '../themes/entities/theme';
 import { UpdateThemeBindingsDto } from './dto/applications.dto';
+import { Collections } from '../../common';
 import { OwnershipService } from '../../common/data/ownership.service';
 import { ThemesService } from '../themes/themes.service';
 
@@ -41,14 +44,20 @@ export class ApplicationsService {
   async updateApplication(
     uid: string,
     id: string,
-    applicationDto: Application,
+    applicationDto: Application & { expectedVersion?: number },
   ): Promise<Application> {
-    const application = await this.ownership.assertOwnsApplication(uid, id);
-    // id and user (the owner) are immutable through this endpoint.
-    const { id: _id, user: _user, ...updatable } = applicationDto;
-    Object.assign(application, updatable);
-    await this.applicationRepository.update(application);
-    return application;
+    await this.ownership.assertOwnsApplication(uid, id);
+    // id, user (the owner) and version are immutable through this endpoint.
+    const {
+      id: _id,
+      user: _user,
+      version: _version,
+      expectedVersion,
+      ...updatable
+    } = applicationDto;
+    return this.transactionalUpdate(id, expectedVersion, (current) =>
+      Object.assign(current, updatable),
+    );
   }
 
   /**
@@ -86,14 +95,16 @@ export class ApplicationsService {
     uid: string,
     id: string,
     environmentData: Record<string, string | boolean | number>,
+    expectedVersion?: number,
   ): Promise<Application> {
-    const application = await this.ownership.assertOwnsApplication(uid, id);
-    application.environment = {
-      ...application.environment,
-      ...environmentData,
-    };
-    await this.applicationRepository.update(application);
-    return application;
+    await this.ownership.assertOwnsApplication(uid, id);
+    return this.transactionalUpdate(id, expectedVersion, (current) => {
+      current.environment = {
+        ...current.environment,
+        ...environmentData,
+      };
+      return current;
+    });
   }
 
   async updateThemeBindings(
@@ -123,13 +134,52 @@ export class ApplicationsService {
       }
     }
 
-    app.themeByEnv = { ...(app.themeByEnv ?? {}), ...(dto.themeByEnv ?? {}) };
-    if (dto.defaultThemeId) {
-      app.theme = dto.defaultThemeId;
-    }
+    return this.transactionalUpdate(appId, dto.expectedVersion, (current) => {
+      current.themeByEnv = {
+        ...(current.themeByEnv ?? {}),
+        ...(dto.themeByEnv ?? {}),
+      };
+      if (dto.defaultThemeId) {
+        current.theme = dto.defaultThemeId;
+      }
+      return current;
+    });
+  }
 
-    await this.applicationRepository.update(app);
-    return app;
+  /**
+   * Read-check-mutate-write inside a Firestore transaction so concurrent
+   * writers cannot interleave between the version check and the write.
+   */
+  private async transactionalUpdate(
+    id: string,
+    expectedVersion: number | undefined,
+    mutate: (current: Application) => Application,
+  ): Promise<Application> {
+    const db = admin.firestore();
+    const ref = db.collection(Collections.applications).doc(id);
+    return db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (!snap.exists) {
+        throw new NotFoundException('Application not found');
+      }
+      const current = { ...(snap.data() as Application), id };
+      if (
+        typeof expectedVersion === 'number' &&
+        expectedVersion !== (current.version ?? 0)
+      ) {
+        throw new ConflictException(
+          `Version mismatch: expected ${expectedVersion}, actual ${
+            current.version ?? 0
+          }`,
+        );
+      }
+      const next = mutate(current);
+      next.version = (current.version ?? 0) + 1;
+      // Strip undefined values: Firestore rejects them on set().
+      const data = JSON.parse(JSON.stringify(next));
+      tx.set(ref, data);
+      return next;
+    });
   }
 
   async resolveThemeIdForBuild(

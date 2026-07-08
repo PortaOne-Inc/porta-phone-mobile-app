@@ -6,9 +6,15 @@ import {
 } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
+import * as admin from 'firebase-admin';
 
 import { PageConfigEntity, PageVariant } from './entities/page-config.entity';
-import { findByIdSafe, mergeConfig, nowIso } from '../../../../common';
+import {
+  Collections,
+  findByIdSafe,
+  mergeConfig,
+  nowIso,
+} from '../../../../common';
 import { makePageConfigId } from './utils';
 import { AssetsService } from '../../../assets/assets.service';
 import { resolveConfigImages } from '../../../../common/utils/config-utils';
@@ -26,16 +32,6 @@ export class PageConfigsService {
     private readonly assets: AssetsService,
     private readonly ownership: OwnershipService,
   ) {}
-
-  private async findByThemeVariant(
-    applicationId: string,
-    themeId: string,
-    variant: PageVariant,
-  ): Promise<PageConfigEntity | null> {
-    const id = makePageConfigId(themeId, variant);
-    const found = await findByIdSafe(this.repo, id);
-    return found && found.applicationId === applicationId ? found : null;
-  }
 
   // ---------- Public API ----------
   /**
@@ -76,46 +72,50 @@ export class PageConfigsService {
     const id = makePageConfigId(themeId, variant);
     const now = nowIso();
 
-    const existing = await this.findByThemeVariant(
-      applicationId,
-      themeId,
-      variant,
-    );
-    if (existing) {
-      if (
-        typeof dto.expectedVersion === 'number' &&
-        dto.expectedVersion !== (existing.version ?? 0)
-      ) {
-        throw new ConflictException(
-          `Version mismatch: expected ${dto.expectedVersion}, actual ${
-            existing.version ?? 0
-          }`,
-        );
+    // Version check and write happen inside one transaction so concurrent
+    // writers cannot interleave between the check and the set.
+    const db = admin.firestore();
+    const ref = db.collection(Collections.themeConfigPages).doc(id);
+    return db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (snap.exists) {
+        const existing = { ...(snap.data() as PageConfigEntity), id };
+        if (existing.applicationId !== applicationId) {
+          throw new NotFoundException('Page config not found');
+        }
+        if (
+          typeof dto.expectedVersion === 'number' &&
+          dto.expectedVersion !== (existing.version ?? 0)
+        ) {
+          throw new ConflictException(
+            `Version mismatch: expected ${dto.expectedVersion}, actual ${
+              existing.version ?? 0
+            }`,
+          );
+        }
+        const next: PageConfigEntity = {
+          ...existing,
+          config: mergeConfig(existing.config, dto.config) ?? {},
+          version: (existing.version ?? 0) + 1,
+          updatedAt: now,
+        };
+        tx.set(ref, JSON.parse(JSON.stringify(next)));
+        return next;
       }
-      const next: PageConfigEntity = {
-        ...existing,
-        config: mergeConfig(existing.config, dto.config) ?? {},
-        version: (existing.version ?? 0) + 1,
+
+      const created: PageConfigEntity = {
+        id,
+        applicationId,
+        themeId,
+        variant,
+        config: dto.config ?? {},
+        version: 1,
+        createdAt: now,
         updatedAt: now,
       };
-      const result = await this.repo.update(next);
-
-      return result;
-    }
-
-    const created: PageConfigEntity = {
-      id,
-      applicationId,
-      themeId,
-      variant,
-      config: dto.config ?? {},
-      version: 1,
-      createdAt: now,
-      updatedAt: now,
-    };
-    const result = await this.repo.create(created);
-
-    return result;
+      tx.set(ref, JSON.parse(JSON.stringify(created)));
+      return created;
+    });
   }
 
   /** Ensure both variants exist (light & dark). */

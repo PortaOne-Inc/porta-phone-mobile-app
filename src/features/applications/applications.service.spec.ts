@@ -1,31 +1,56 @@
 import {
   BadRequestException,
+  ConflictException,
   ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
+import * as admin from 'firebase-admin';
 
 import { ApplicationsService } from './applications.service';
 import { Application } from './entities/application';
 import { Theme } from '../themes/entities/theme';
+import { Collections } from '../../common';
 import { OwnershipService } from '../../common/data/ownership.service';
 import { InMemoryRepo } from '../../testing/in-memory-repo';
+import {
+  createFakeFirestore,
+  FakeFirestoreStore,
+  storeKey,
+} from '../../testing/fake-firestore';
+
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(),
+}));
 
 /**
  * Characterization tests: they pin the CURRENT behavior of the service.
- * Ownership is now enforced (uid -> application.user); the remaining known
- * gaps (errors swallowed to null, no optimistic locking) are still pinned
- * explicitly and will flip in later steps.
+ * Ownership is enforced (uid -> application.user) and every mutating write
+ * is a transactional read-check-write guarded by expectedVersion.
  */
 describe('ApplicationsService', () => {
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
   let themesService: { deleteTheme: jest.Mock };
+  let store: FakeFirestoreStore;
   let service: ApplicationsService;
+
+  /** Ownership reads go through fireorm; the transaction reads the store. */
+  const seedApp = (app: Partial<Application>) => {
+    appRepo.seed(app as Application);
+    store.set(storeKey(Collections.applications, app.id!), app);
+  };
+
+  const storedApp = (id: string) =>
+    store.get(storeKey(Collections.applications, id)) as Application;
 
   beforeEach(() => {
     appRepo = new InMemoryRepo<Application>();
     themeRepo = new InMemoryRepo<Theme>();
     themesService = { deleteTheme: jest.fn().mockResolvedValue(undefined) };
+    store = new Map();
+    (admin.firestore as unknown as jest.Mock).mockReturnValue(
+      createFakeFirestore(store),
+    );
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
     service = new ApplicationsService(
       appRepo as any,
@@ -42,9 +67,8 @@ describe('ApplicationsService', () => {
         user: 'someone-else',
       } as Application);
 
-      expect(result).not.toBeNull();
-      expect(result!.user).toBe('user-1');
-      expect(appRepo.docs.get(result!.id)!.user).toBe('user-1');
+      expect(result.user).toBe('user-1');
+      expect(appRepo.docs.get(result.id)!.user).toBe('user-1');
     });
 
     it('propagates repository failures', async () => {
@@ -58,7 +82,7 @@ describe('ApplicationsService', () => {
 
   describe('findApplicationById', () => {
     it('returns the application to its owner', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1', name: 'A' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1', name: 'A' });
 
       expect(
         await service.findApplicationById('user-1', 'app-1'),
@@ -72,7 +96,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner' } as Application);
+      seedApp({ id: 'app-1', user: 'owner' });
 
       await expect(
         service.findApplicationById('intruder', 'app-1'),
@@ -81,15 +105,16 @@ describe('ApplicationsService', () => {
   });
 
   describe('updateApplication', () => {
-    it('merges the dto into the stored application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1', name: 'Old' } as Application);
+    it('merges the dto and bumps the version transactionally', async () => {
+      seedApp({ id: 'app-1', user: 'user-1', name: 'Old', version: 2 });
 
       const result = await service.updateApplication('user-1', 'app-1', {
         name: 'New',
       } as Application);
 
-      expect(result!.name).toBe('New');
-      expect(appRepo.docs.get('app-1')!.name).toBe('New');
+      expect(result.name).toBe('New');
+      expect(result.version).toBe(3);
+      expect(storedApp('app-1')).toMatchObject({ name: 'New', version: 3 });
     });
 
     it('throws NotFoundException for a missing application', async () => {
@@ -99,56 +124,69 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner', name: 'Keep' } as Application);
+      seedApp({ id: 'app-1', user: 'owner', name: 'Keep' });
 
       await expect(
         service.updateApplication('intruder', 'app-1', {
           name: 'Hacked',
         } as Application),
       ).rejects.toBeInstanceOf(ForbiddenException);
-      expect(appRepo.docs.get('app-1')!.name).toBe('Keep');
+      expect(storedApp('app-1').name).toBe('Keep');
     });
 
-    it('ignores attempts to change the owner or the id via the dto', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner', name: 'Old' } as Application);
+    it('ignores attempts to change the owner, the id or the version via the dto', async () => {
+      seedApp({ id: 'app-1', user: 'owner', name: 'Old', version: 1 });
 
       const result = await service.updateApplication('owner', 'app-1', {
         id: 'other-id',
         user: 'attacker',
+        version: 99,
         name: 'New',
       } as Application);
 
-      expect(result!.user).toBe('owner');
-      expect(result!.id).toBe('app-1');
-      expect(appRepo.docs.get('app-1')!.user).toBe('owner');
+      expect(result.user).toBe('owner');
+      expect(result.id).toBe('app-1');
+      expect(result.version).toBe(2);
+      expect(storedApp('app-1').user).toBe('owner');
     });
 
-    it('has no optimistic locking: a stale write silently wins', async () => {
-      appRepo.seed({ id: 'app-1', user: 'u', name: 'v1' } as Application);
-
-      await service.updateApplication('u', 'app-1', {
-        name: 'v2',
-      } as Application);
-      const result = await service.updateApplication('u', 'app-1', {
-        name: 'stale',
-      } as Application);
-
-      expect(result!.name).toBe('stale');
-    });
-
-    it('propagates repository failures', async () => {
-      appRepo.seed({ id: 'app-1', user: 'u' } as Application);
-      jest.spyOn(appRepo, 'update').mockRejectedValue(new Error('boom'));
+    it('throws ConflictException on a stale expectedVersion', async () => {
+      seedApp({ id: 'app-1', user: 'u', name: 'v2', version: 2 });
 
       await expect(
-        service.updateApplication('u', 'app-1', {} as Application),
-      ).rejects.toThrow('boom');
+        service.updateApplication('u', 'app-1', {
+          name: 'stale',
+          expectedVersion: 1,
+        } as Application & { expectedVersion?: number }),
+      ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedApp('app-1').name).toBe('v2');
+    });
+
+    it('accepts a matching expectedVersion', async () => {
+      seedApp({ id: 'app-1', user: 'u', name: 'v2', version: 2 });
+
+      const result = await service.updateApplication('u', 'app-1', {
+        name: 'v3',
+        expectedVersion: 2,
+      } as Application & { expectedVersion?: number });
+
+      expect(result).toMatchObject({ name: 'v3', version: 3 });
+    });
+
+    it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
+      seedApp({ id: 'app-1', user: 'u', name: 'v5', version: 5 });
+
+      const result = await service.updateApplication('u', 'app-1', {
+        name: 'newer',
+      } as Application);
+
+      expect(result.version).toBe(6);
     });
   });
 
   describe('removeApplication', () => {
     it('deletes an owned application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
 
       await service.removeApplication('user-1', 'app-1');
 
@@ -156,7 +194,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application and keeps it', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner' } as Application);
+      seedApp({ id: 'app-1', user: 'owner' });
 
       await expect(
         service.removeApplication('intruder', 'app-1'),
@@ -165,7 +203,7 @@ describe('ApplicationsService', () => {
     });
 
     it('propagates repository failures', async () => {
-      appRepo.seed({ id: 'app-1', user: 'u' } as Application);
+      seedApp({ id: 'app-1', user: 'u' });
       jest.spyOn(appRepo, 'delete').mockRejectedValue(new Error('boom'));
 
       await expect(service.removeApplication('u', 'app-1')).rejects.toThrow(
@@ -174,7 +212,7 @@ describe('ApplicationsService', () => {
     });
 
     it('cascade-deletes the themes of the application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
       themeRepo.seed(
         { id: 't1', applicationId: 'app-1' } as Theme,
         { id: 't2', applicationId: 'app-1' } as Theme,
@@ -195,7 +233,7 @@ describe('ApplicationsService', () => {
     });
 
     it('still deletes the application when a theme fails to delete', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
       themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
       themesService.deleteTheme.mockRejectedValue(new Error('stuck theme'));
 
@@ -207,25 +245,19 @@ describe('ApplicationsService', () => {
 
   describe('listApplications', () => {
     it('returns only applications of the given user', async () => {
-      appRepo.seed(
-        { id: 'a1', user: 'user-1' } as Application,
-        { id: 'a2', user: 'user-2' } as Application,
-        { id: 'a3', user: 'user-1' } as Application,
-      );
+      seedApp({ id: 'a1', user: 'user-1' });
+      seedApp({ id: 'a2', user: 'user-2' });
+      seedApp({ id: 'a3', user: 'user-1' });
 
       const result = await service.listApplications('user-1');
 
-      expect(result!.map((a) => a.id).sort()).toEqual(['a1', 'a3']);
+      expect(result.map((a) => a.id).sort()).toEqual(['a1', 'a3']);
     });
   });
 
   describe('getApplicationEnvironment', () => {
     it('returns the environment map to the owner', async () => {
-      appRepo.seed({
-        id: 'app-1',
-        user: 'user-1',
-        environment: { KEY: 'value' },
-      } as Application);
+      seedApp({ id: 'app-1', user: 'user-1', environment: { KEY: 'value' } });
 
       expect(
         await service.getApplicationEnvironment('user-1', 'app-1'),
@@ -233,7 +265,7 @@ describe('ApplicationsService', () => {
     });
 
     it('returns an empty object when the application has no environment', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
 
       expect(
         await service.getApplicationEnvironment('user-1', 'app-1'),
@@ -247,7 +279,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner' } as Application);
+      seedApp({ id: 'app-1', user: 'owner' });
 
       await expect(
         service.getApplicationEnvironment('intruder', 'app-1'),
@@ -256,12 +288,13 @@ describe('ApplicationsService', () => {
   });
 
   describe('updateApplicationEnvironment', () => {
-    it('shallow-merges new keys over the existing environment', async () => {
-      appRepo.seed({
+    it('shallow-merges new keys and bumps the version', async () => {
+      seedApp({
         id: 'app-1',
         user: 'user-1',
         environment: { KEEP: '1', OVERRIDE: 'old' },
-      } as Application);
+        version: 1,
+      });
 
       const result = await service.updateApplicationEnvironment(
         'user-1',
@@ -269,32 +302,40 @@ describe('ApplicationsService', () => {
         { OVERRIDE: 'new', ADDED: true },
       );
 
-      expect(result!.environment).toEqual({
+      expect(result.environment).toEqual({
         KEEP: '1',
         OVERRIDE: 'new',
         ADDED: true,
       });
+      expect(result.version).toBe(2);
     });
 
-    it('has no optimistic locking (no expectedVersion support)', async () => {
-      appRepo.seed({
+    it('throws ConflictException on a stale expectedVersion', async () => {
+      seedApp({
         id: 'app-1',
         user: 'u',
-        environment: { KEY: 'first' },
-      } as Application);
-
-      await service.updateApplicationEnvironment('u', 'app-1', {
-        KEY: 'second',
+        environment: { KEY: 'current' },
+        version: 3,
       });
+
+      await expect(
+        service.updateApplicationEnvironment('u', 'app-1', { KEY: 'stale' }, 2),
+      ).rejects.toBeInstanceOf(ConflictException);
+      expect(storedApp('app-1').environment).toEqual({ KEY: 'current' });
+    });
+
+    it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
+      seedApp({ id: 'app-1', user: 'u', environment: {}, version: 5 });
+
       const result = await service.updateApplicationEnvironment('u', 'app-1', {
-        KEY: 'stale',
+        KEY: 'v',
       });
 
-      expect(result!.environment).toEqual({ KEY: 'stale' });
+      expect(result.version).toBe(6);
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner' } as Application);
+      seedApp({ id: 'app-1', user: 'owner' });
 
       await expect(
         service.updateApplicationEnvironment('intruder', 'app-1', {}),
@@ -310,7 +351,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner' } as Application);
+      seedApp({ id: 'app-1', user: 'owner' });
 
       await expect(
         service.updateThemeBindings('intruder', 'app-1', {} as any),
@@ -318,7 +359,7 @@ describe('ApplicationsService', () => {
     });
 
     it('rejects theme ids that do not belong to the application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
       themeRepo.seed({ id: 't1', applicationId: 'other-app' } as Theme);
 
       await expect(
@@ -328,12 +369,13 @@ describe('ApplicationsService', () => {
       ).rejects.toBeInstanceOf(BadRequestException);
     });
 
-    it('merges themeByEnv and sets the default theme', async () => {
-      appRepo.seed({
+    it('merges themeByEnv, sets the default theme and bumps the version', async () => {
+      seedApp({
         id: 'app-1',
         user: 'user-1',
         themeByEnv: { dev: 't-dev' },
-      } as Application);
+        version: 1,
+      });
       themeRepo.seed(
         { id: 't-prod', applicationId: 'app-1' } as Theme,
         { id: 't-default', applicationId: 'app-1' } as Theme,
@@ -346,17 +388,28 @@ describe('ApplicationsService', () => {
 
       expect(result.theme).toBe('t-default');
       expect(result.themeByEnv).toEqual({ dev: 't-dev', prod: 't-prod' });
+      expect(result.version).toBe(2);
+    });
+
+    it('throws ConflictException on a stale expectedVersion', async () => {
+      seedApp({ id: 'app-1', user: 'user-1', version: 2 });
+
+      await expect(
+        service.updateThemeBindings('user-1', 'app-1', {
+          expectedVersion: 1,
+        } as any),
+      ).rejects.toBeInstanceOf(ConflictException);
     });
   });
 
   describe('resolveThemeIdForBuild', () => {
     it('prefers themeByEnv[env] over everything else', async () => {
-      appRepo.seed({
+      seedApp({
         id: 'app-1',
         user: 'user-1',
         theme: 't-default',
         themeByEnv: { prod: 't-prod' },
-      } as Application);
+      });
 
       expect(
         await service.resolveThemeIdForBuild('user-1', 'app-1', 'prod'),
@@ -364,11 +417,7 @@ describe('ApplicationsService', () => {
     });
 
     it('falls back to the default theme binding', async () => {
-      appRepo.seed({
-        id: 'app-1',
-        user: 'user-1',
-        theme: 't-default',
-      } as Application);
+      seedApp({ id: 'app-1', user: 'user-1', theme: 't-default' });
 
       expect(
         await service.resolveThemeIdForBuild('user-1', 'app-1', 'prod'),
@@ -376,7 +425,7 @@ describe('ApplicationsService', () => {
     });
 
     it('falls back to a theme labeled with the env', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
       themeRepo.seed(
         { id: 't1', applicationId: 'app-1', label: 'dev' } as Theme,
         { id: 't2', applicationId: 'app-1', label: 'prod' } as Theme,
@@ -388,7 +437,7 @@ describe('ApplicationsService', () => {
     });
 
     it('falls back to any theme of the application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
       themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
 
       expect(
@@ -397,7 +446,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws NotFoundException when the application has no themes', async () => {
-      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      seedApp({ id: 'app-1', user: 'user-1' });
 
       await expect(
         service.resolveThemeIdForBuild('user-1', 'app-1', 'prod'),
@@ -405,7 +454,7 @@ describe('ApplicationsService', () => {
     });
 
     it('throws ForbiddenException for a foreign application', async () => {
-      appRepo.seed({ id: 'app-1', user: 'owner', theme: 't1' } as Application);
+      seedApp({ id: 'app-1', user: 'owner', theme: 't1' });
 
       await expect(
         service.resolveThemeIdForBuild('intruder', 'app-1', 'prod'),

@@ -6,9 +6,10 @@ import {
 } from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
+import * as admin from 'firebase-admin';
 
 import { ColorScheme, ThemeVariant } from './entities/color-scheme.entity';
-import { deepMerge, nowIso } from '../../../../common';
+import { Collections, deepMerge, nowIso } from '../../../../common';
 import { OwnershipService } from '../../../../common/data/ownership.service';
 
 @Injectable()
@@ -51,41 +52,49 @@ export class ColorSchemesService {
     const id = this.buildId(themeId, variant);
     const now = nowIso();
 
-    const existing = await this.repo.findById(id).catch(() => null);
-    if (existing) {
-      if (
-        typeof dto.expectedVersion === 'number' &&
-        dto.expectedVersion !== (existing.version ?? 0)
-      ) {
-        throw new ConflictException(
-          `Version mismatch: expected ${dto.expectedVersion}, actual ${
-            existing.version ?? 0
-          }`,
-        );
+    // Version check and write happen inside one transaction so concurrent
+    // writers cannot interleave between the check and the set.
+    const db = admin.firestore();
+    const ref = db.collection(Collections.themeConfigColorSchemes).doc(id);
+    return db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (snap.exists) {
+        const existing = { ...(snap.data() as ColorScheme), id };
+        if (existing.applicationId !== applicationId) {
+          throw new NotFoundException('Color scheme not found');
+        }
+        if (
+          typeof dto.expectedVersion === 'number' &&
+          dto.expectedVersion !== (existing.version ?? 0)
+        ) {
+          throw new ConflictException(
+            `Version mismatch: expected ${dto.expectedVersion}, actual ${
+              existing.version ?? 0
+            }`,
+          );
+        }
+        if (dto.config && Object.keys(dto.config).length > 0) {
+          existing.config = deepMerge(existing.config ?? {}, dto.config);
+        }
+        existing.version = (existing.version ?? 0) + 1;
+        existing.updatedAt = now;
+        tx.set(ref, JSON.parse(JSON.stringify(existing)));
+        return existing;
       }
-      if (dto.config && Object.keys(dto.config).length > 0) {
-        existing.config = deepMerge(existing.config ?? {}, dto.config);
-      }
-      existing.version = (existing.version ?? 0) + 1;
-      existing.updatedAt = now;
-      const result = await this.repo.update(existing);
 
-      return result;
-    }
-
-    const created: ColorScheme = {
-      id,
-      applicationId,
-      themeId,
-      variant,
-      config: dto.config ?? {},
-      version: 1,
-      createdAt: now,
-      updatedAt: now,
-    };
-    const result = await this.repo.create(created);
-
-    return result;
+      const created: ColorScheme = {
+        id,
+        applicationId,
+        themeId,
+        variant,
+        config: dto.config ?? {},
+        version: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      tx.set(ref, JSON.parse(JSON.stringify(created)));
+      return created;
+    });
   }
 
   /** Ensure both variants exist (light & dark). */

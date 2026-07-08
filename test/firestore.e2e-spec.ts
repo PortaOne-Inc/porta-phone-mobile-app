@@ -96,6 +96,28 @@ describe('Firestore emulator smoke', () => {
     expect(list!.map((a) => a.id)).toContain(appId);
   });
 
+  it('application writes are versioned and conflict on a stale expectedVersion', async () => {
+    const appId = await createApp('Versioned App');
+
+    const first = await applications.updateApplicationEnvironment(UID, appId, {
+      A: '1',
+    });
+    expect(first.version).toBe(1);
+
+    await expect(
+      applications.updateApplicationEnvironment(UID, appId, { A: 'stale' }, 0),
+    ).rejects.toBeInstanceOf(ConflictException);
+
+    const second = await applications.updateApplicationEnvironment(
+      UID,
+      appId,
+      { B: '2' },
+      1,
+    );
+    expect(second.version).toBe(2);
+    expect(second.environment).toEqual({ A: '1', B: '2' });
+  });
+
   it('ownership boundary: a foreign uid is rejected end-to-end', async () => {
     const appId = await createApp('Ownership App');
 

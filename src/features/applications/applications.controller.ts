@@ -14,7 +14,7 @@ import { ApplicationsService } from './applications.service';
 import { Application } from './entities/application';
 import { Roles } from '../auth/guard/roles.decorator';
 import { CurrentUser, Principal } from '../auth/current-user.decorator';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import {
   ResolveThemeQueryDto,
@@ -84,15 +84,23 @@ export class ApplicationsController {
   }
 
   @Put(':id/environment')
+  @ApiQuery({
+    name: 'expectedVersion',
+    type: Number,
+    required: false,
+    description: 'Optimistic-locking version guard',
+  })
   async updateApplicationEnvironment(
     @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() environmentData: Record<string, string | boolean | number>,
+    @Query('expectedVersion') expectedVersion?: string,
   ): Promise<Application> {
     return this.applicationsService.updateApplicationEnvironment(
       user.uid,
       id,
       environmentData,
+      expectedVersion !== undefined ? Number(expectedVersion) : undefined,
     );
   }
 
