@@ -2,6 +2,14 @@
   "firestore": {
     "indexes": "firestore.indexes.json"
   },
+  "emulators": {
+    "firestore": {
+      "port": 8085
+    },
+    "ui": {
+      "enabled": false
+    }
+  },
   "functions": [
     {
       "source": ".",

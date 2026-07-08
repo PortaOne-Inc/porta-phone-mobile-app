@@ -19,6 +19,10 @@
     "start:dev": "cross-env NODE_ENV=dev nest start --watch",
     "start:stage": "cross-env NODE_ENV=stage nest start --watch",
     "start:prod": "cross-env NODE_ENV=prod node dist/main",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:e2e": "firebase emulators:exec --only firestore --project demo-test \"jest --config ./test/jest-e2e.json --runInBand --forceExit\"",
     "emulators:dev": "cross-env-shell NODE_ENV=dev GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/creds/firebase-dev.json\" firebase emulators:start --only functions --project dev",
     "emulators:stage": "cross-env-shell NODE_ENV=stage GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/creds/firebase-stage.json\" firebase emulators:start --only functions --project stage",
     "emulators:prod": "cross-env-shell NODE_ENV=prod GOOGLE_APPLICATION_CREDENTIALS=\"$(pwd)/creds/firebase-prod.json\" firebase emulators:start --only functions --project prod",
@@ -110,6 +114,9 @@
     ],
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
+    },
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
