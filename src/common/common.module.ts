@@ -5,13 +5,14 @@ import { BuildVersion } from '../features/applications/entities/build-version';
 import { Theme } from '../features/themes/entities/theme';
 import { ApplicationsService } from '../features/applications/applications.service';
 import { UserRole } from '../features/users/entities/userRole';
+import { OwnershipService } from './data/ownership.service';
 
 @Module({
   imports: [
     FireormModule.forFeature([Application, BuildVersion, Theme, UserRole]),
   ],
-  providers: [ApplicationsService],
+  providers: [ApplicationsService, OwnershipService],
 
-  exports: [FireormModule],
+  exports: [FireormModule, OwnershipService],
 })
 export class CommonModule {}

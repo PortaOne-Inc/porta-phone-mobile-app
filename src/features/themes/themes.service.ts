@@ -1,5 +1,11 @@
 import * as admin from 'firebase-admin';
-import { ConflictException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from 'nestjs-fireorm';
 import { BaseFirestoreRepository } from 'fireorm';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,8 +15,13 @@ import { Application } from '../applications/entities/application';
 import { Asset } from '../assets/entities/asset.entity';
 import { ArtifactsService } from '../artifacts';
 import { AssetsService } from '../assets/assets.service';
-import { resolveImageSourceUrlsDeep, extractAssetIdsDeep, remapAssetIdsDeep } from '../../common';
+import {
+  resolveImageSourceUrlsDeep,
+  extractAssetIdsDeep,
+  remapAssetIdsDeep,
+} from '../../common';
 import { CloudStorageService } from '../common';
+import { OwnershipService } from '../../common/data/ownership.service';
 import { Collections, nowIso, UploadNamespaces } from '../../common';
 import { CreateThemeDto, UpdateThemeDto } from './dto/themes.dto';
 
@@ -76,8 +87,8 @@ export class ThemesService {
     private readonly artifacts: ArtifactsService,
     private readonly assetsService: AssetsService,
     private readonly cloud: CloudStorageService,
-  ) {
-  }
+    private readonly ownership: OwnershipService,
+  ) {}
 
   // -------------------- Public API --------------------
 
@@ -85,6 +96,7 @@ export class ThemesService {
     applicationId: string,
     uid: string,
   ): Promise<AggregatedTheme[]> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const themes = await this.themeRepository
       .whereEqualTo('applicationId', applicationId)
       .find();
@@ -92,7 +104,15 @@ export class ThemesService {
   }
 
   async getAllThemes(uid: string): Promise<AggregatedTheme[]> {
-    const themes = await this.themeRepository.find();
+    const ownedApps = await this.applicationRepository
+      .whereEqualTo('user', uid)
+      .find();
+    const themesPerApp = await Promise.all(
+      ownedApps.map((app) =>
+        this.themeRepository.whereEqualTo('applicationId', app.id).find(),
+      ),
+    );
+    const themes = themesPerApp.flat();
     return Promise.all(themes.map((t) => this.aggregateTheme(t, uid)));
   }
 
@@ -101,6 +121,7 @@ export class ThemesService {
     themeId: string,
     uid: string,
   ) {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${themeId} not found`);
@@ -150,12 +171,13 @@ export class ThemesService {
       themeWidgetConfig,
       assets: assetsLegacy,
       ...((theme as any).appConfig
-        ? {appConfig: (theme as any).appConfig}
+        ? { appConfig: (theme as any).appConfig }
         : {}),
     };
   }
 
   async getThemeById(applicationId: string, themeId: string, uid: string) {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${themeId} not found`);
@@ -166,8 +188,9 @@ export class ThemesService {
   async createTheme(
     applicationId: string,
     dto: CreateThemeDto,
-    uid?: string,
+    uid: string,
   ): Promise<Theme> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     return this.themeRepository.create({
       applicationId,
       title: dto.title,
@@ -181,8 +204,9 @@ export class ThemesService {
     applicationId: string,
     themeId: string,
     dto: UpdateThemeDto,
-    uid?: string,
+    uid: string,
   ): Promise<Theme> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const db = admin.firestore();
     const ref = db.collection(Collections.themes).doc(themeId);
 
@@ -202,7 +226,9 @@ export class ThemesService {
         dto.expectedVersion !== (current.version ?? 0)
       ) {
         throw new ConflictException(
-          `Version mismatch: expected ${dto.expectedVersion}, actual ${current.version ?? 0}`,
+          `Version mismatch: expected ${dto.expectedVersion}, actual ${
+            current.version ?? 0
+          }`,
         );
       }
 
@@ -227,6 +253,7 @@ export class ThemesService {
     themeId: string,
     opts: DeleteOpts = {},
   ): Promise<void> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const theme = await this.themeRepository.findById(themeId);
     if (!theme || theme.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${themeId} not found`);
@@ -246,7 +273,9 @@ export class ThemesService {
     feQuery.docs.forEach((d) => refsToDelete.push(d.ref));
 
     // Launch assets — collect doc ref + artifact IDs for storage cleanup
-    const launchRef = db.collection(Collections.themeAssetsLauncher).doc(themeId);
+    const launchRef = db
+      .collection(Collections.themeAssetsLauncher)
+      .doc(themeId);
     const launchSnap = await launchRef.get();
     if (launchSnap.exists) {
       refsToDelete.push(launchRef);
@@ -303,9 +332,7 @@ export class ThemesService {
     themeArtifacts.forEach((a) => artifactIdsToClean.push(a.id));
 
     // Theme entity itself
-    const themeRef = db
-      .collection(Collections.themes)
-      .doc(theme.id);
+    const themeRef = db.collection(Collections.themes).doc(theme.id);
     refsToDelete.push(themeRef);
 
     // 2. Atomic Firestore batch delete (max 500 per batch)
@@ -351,9 +378,12 @@ export class ThemesService {
   async copyTheme(
     applicationId: string,
     sourceThemeId: string,
-    overrides?: Partial<Pick<Theme, 'title' | 'description' | 'label'>>,
-    uid?: string,
+    overrides:
+      | Partial<Pick<Theme, 'title' | 'description' | 'label'>>
+      | undefined,
+    uid: string,
   ): Promise<Theme | null> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const source = await this.themeRepository.findById(sourceThemeId);
     if (!source || source.applicationId !== applicationId) {
       throw new NotFoundException(`Theme with ID ${sourceThemeId} not found`);
@@ -388,7 +418,12 @@ export class ThemesService {
       this.collectPageConfigWrites(sourceThemeId, newThemeId, batch),
       this.collectSplashWrites(sourceThemeId, newThemeId, batch),
       this.collectLaunchWrites(sourceThemeId, newThemeId, batch),
-      this.collectFeatureAccessWrites(sourceThemeId, newThemeId, applicationId, batch),
+      this.collectFeatureAccessWrites(
+        sourceThemeId,
+        newThemeId,
+        applicationId,
+        batch,
+      ),
     ]);
 
     // Single atomic commit
@@ -404,16 +439,21 @@ export class ThemesService {
     targetApplicationId: string,
     overrides?: Partial<Pick<Theme, 'title' | 'description' | 'label'>>,
   ): Promise<Theme | null> {
-    // 1. Validate source theme
+    // 1. Validate source theme (and that the caller owns its application)
+    await this.ownership.assertOwnsApplication(uid, sourceApplicationId);
     const source = await this.themeRepository.findById(sourceThemeId);
     if (!source || source.applicationId !== sourceApplicationId) {
       throw new NotFoundException(`Theme with ID ${sourceThemeId} not found`);
     }
 
     // 2. Validate target application exists and is owned by uid
-    const targetApp = await this.applicationRepository.findById(targetApplicationId).catch(() => null);
+    const targetApp = await this.applicationRepository
+      .findById(targetApplicationId)
+      .catch(() => null);
     if (!targetApp) {
-      throw new NotFoundException(`Target application ${targetApplicationId} not found`);
+      throw new NotFoundException(
+        `Target application ${targetApplicationId} not found`,
+      );
     }
     if (targetApp.user !== uid) {
       throw new ForbiddenException('You do not own the target application');
@@ -424,15 +464,33 @@ export class ThemesService {
     const now = nowIso();
 
     // 3. Read all sub-resources in parallel
-    const [widgetSnaps, colorSnaps, pageSnaps, splashSnap, launchSnap, feSnaps] =
-      await Promise.all([
-        db.collection(Collections.themeConfigWidgets).where('themeId', '==', sourceThemeId).get(),
-        db.collection(Collections.themeConfigColorSchemes).where('themeId', '==', sourceThemeId).get(),
-        db.collection(Collections.themeConfigPages).where('themeId', '==', sourceThemeId).get(),
-        db.collection(Collections.themeAssetsSplash).doc(sourceThemeId).get(),
-        db.collection(Collections.themeAssetsLauncher).doc(sourceThemeId).get(),
-        db.collection(Collections.themeFeatureEntitlements).where('themeId', '==', sourceThemeId).get(),
-      ]);
+    const [
+      widgetSnaps,
+      colorSnaps,
+      pageSnaps,
+      splashSnap,
+      launchSnap,
+      feSnaps,
+    ] = await Promise.all([
+      db
+        .collection(Collections.themeConfigWidgets)
+        .where('themeId', '==', sourceThemeId)
+        .get(),
+      db
+        .collection(Collections.themeConfigColorSchemes)
+        .where('themeId', '==', sourceThemeId)
+        .get(),
+      db
+        .collection(Collections.themeConfigPages)
+        .where('themeId', '==', sourceThemeId)
+        .get(),
+      db.collection(Collections.themeAssetsSplash).doc(sourceThemeId).get(),
+      db.collection(Collections.themeAssetsLauncher).doc(sourceThemeId).get(),
+      db
+        .collection(Collections.themeFeatureEntitlements)
+        .where('themeId', '==', sourceThemeId)
+        .get(),
+    ]);
 
     // 4. Collect all referenced asset IDs
     const allAssetIds = new Set<string>();
@@ -469,13 +527,17 @@ export class ThemesService {
     if (splashSnap.exists) {
       const outs = (splashSnap.data() as any)?.outputsArtifacts ?? {};
       if (outs.splashArtifactId) allArtifactIds.add(outs.splashArtifactId);
-      if (outs.android12SplashArtifactId) allArtifactIds.add(outs.android12SplashArtifactId);
+      if (outs.android12SplashArtifactId)
+        allArtifactIds.add(outs.android12SplashArtifactId);
     }
     if (launchSnap.exists) {
       const outs = (launchSnap.data() as any)?.outputsArtifacts ?? {};
-      if (outs.androidLegacyArtifactId) allArtifactIds.add(outs.androidLegacyArtifactId);
-      if (outs.androidAdaptiveForegroundArtifactId) allArtifactIds.add(outs.androidAdaptiveForegroundArtifactId);
-      if (outs.androidAdaptiveBackgroundArtifactId) allArtifactIds.add(outs.androidAdaptiveBackgroundArtifactId);
+      if (outs.androidLegacyArtifactId)
+        allArtifactIds.add(outs.androidLegacyArtifactId);
+      if (outs.androidAdaptiveForegroundArtifactId)
+        allArtifactIds.add(outs.androidAdaptiveForegroundArtifactId);
+      if (outs.androidAdaptiveBackgroundArtifactId)
+        allArtifactIds.add(outs.androidAdaptiveBackgroundArtifactId);
       if (outs.iosArtifactId) allArtifactIds.add(outs.iosArtifactId);
       if (outs.webArtifactId) allArtifactIds.add(outs.webArtifactId);
     }
@@ -486,7 +548,10 @@ export class ThemesService {
     const createdStoragePaths: string[] = [];
 
     for (const oldAssetId of allAssetIds) {
-      const srcAsset = await this.assetsService.findOneByIdForApp(sourceApplicationId, oldAssetId);
+      const srcAsset = await this.assetsService.findOneByIdForApp(
+        sourceApplicationId,
+        oldAssetId,
+      );
       if (!srcAsset) continue;
 
       const newAssetId = uuidv4();
@@ -517,7 +582,10 @@ export class ThemesService {
         refCount: 0,
         usedBy: [],
       };
-      await db.collection(Collections.applicationAssets).doc(newAssetId).set(newAsset);
+      await db
+        .collection(Collections.applicationAssets)
+        .doc(newAssetId)
+        .set(newAsset);
       createdAssetIds.push(newAssetId);
 
       idMap.set(oldAssetId, newAssetId);
@@ -529,7 +597,10 @@ export class ThemesService {
     const createdArtifactPaths: string[] = [];
 
     for (const oldArtifactId of allArtifactIds) {
-      const srcSnap = await db.collection(Collections.applicationAssetsRenditions).doc(oldArtifactId).get();
+      const srcSnap = await db
+        .collection(Collections.applicationAssetsRenditions)
+        .doc(oldArtifactId)
+        .get();
       if (!srcSnap.exists) continue;
 
       const srcArtifact = srcSnap.data() as any;
@@ -556,7 +627,10 @@ export class ThemesService {
         createdAt: now,
         updatedAt: now,
       };
-      await db.collection(Collections.applicationAssetsRenditions).doc(newArtifactId).set(newArtifact);
+      await db
+        .collection(Collections.applicationAssetsRenditions)
+        .doc(newArtifactId)
+        .set(newArtifact);
       createdArtifactIds.push(newArtifactId);
 
       artifactIdMap.set(oldArtifactId, newArtifactId);
@@ -586,7 +660,10 @@ export class ThemesService {
         const data = doc.data() as any;
         const variant = data?.variant ?? 'light';
         const newId = `${newThemeId}_${variant}`;
-        const remappedConfig = idMap.size > 0 ? remapAssetIdsDeep(data?.config, idMap) : data?.config;
+        const remappedConfig =
+          idMap.size > 0
+            ? remapAssetIdsDeep(data?.config, idMap)
+            : data?.config;
         batch.set(db.collection(Collections.themeConfigWidgets).doc(newId), {
           ...data,
           config: remappedConfig,
@@ -603,14 +680,17 @@ export class ThemesService {
         const data = doc.data() as any;
         const variant = data?.variant ?? doc.id.split('_')[1] ?? 'light';
         const newId = `${newThemeId}_${variant}`;
-        batch.set(db.collection(Collections.themeConfigColorSchemes).doc(newId), {
-          ...data,
-          themeId: newThemeId,
-          applicationId: targetApplicationId,
-          id: newId,
-          version: 1,
-          updatedAt: now,
-        });
+        batch.set(
+          db.collection(Collections.themeConfigColorSchemes).doc(newId),
+          {
+            ...data,
+            themeId: newThemeId,
+            applicationId: targetApplicationId,
+            id: newId,
+            version: 1,
+            updatedAt: now,
+          },
+        );
       }
 
       // Page configs — remap asset IDs in config (ID must be ${themeId}_${variant})
@@ -618,7 +698,10 @@ export class ThemesService {
         const data = doc.data() as any;
         const variant = data?.variant ?? 'light';
         const newId = `${newThemeId}_${variant}`;
-        const remappedConfig = idMap.size > 0 ? remapAssetIdsDeep(data?.config, idMap) : data?.config;
+        const remappedConfig =
+          idMap.size > 0
+            ? remapAssetIdsDeep(data?.config, idMap)
+            : data?.config;
         batch.set(db.collection(Collections.themeConfigPages).doc(newId), {
           ...data,
           config: remappedConfig,
@@ -641,22 +724,35 @@ export class ThemesService {
           src.backgroundAssetId = idMap.get(src.backgroundAssetId);
         }
         const splashOuts = { ...(data?.outputsArtifacts ?? {}) };
-        if (splashOuts.splashArtifactId && artifactIdMap.has(splashOuts.splashArtifactId)) {
-          splashOuts.splashArtifactId = artifactIdMap.get(splashOuts.splashArtifactId);
+        if (
+          splashOuts.splashArtifactId &&
+          artifactIdMap.has(splashOuts.splashArtifactId)
+        ) {
+          splashOuts.splashArtifactId = artifactIdMap.get(
+            splashOuts.splashArtifactId,
+          );
         }
-        if (splashOuts.android12SplashArtifactId && artifactIdMap.has(splashOuts.android12SplashArtifactId)) {
-          splashOuts.android12SplashArtifactId = artifactIdMap.get(splashOuts.android12SplashArtifactId);
+        if (
+          splashOuts.android12SplashArtifactId &&
+          artifactIdMap.has(splashOuts.android12SplashArtifactId)
+        ) {
+          splashOuts.android12SplashArtifactId = artifactIdMap.get(
+            splashOuts.android12SplashArtifactId,
+          );
         }
-        batch.set(db.collection(Collections.themeAssetsSplash).doc(newThemeId), {
-          ...data,
-          source: src,
-          id: newThemeId,
-          themeId: newThemeId,
-          applicationId: targetApplicationId,
-          outputsArtifacts: splashOuts,
-          createdAt: now,
-          updatedAt: now,
-        });
+        batch.set(
+          db.collection(Collections.themeAssetsSplash).doc(newThemeId),
+          {
+            ...data,
+            source: src,
+            id: newThemeId,
+            themeId: newThemeId,
+            applicationId: targetApplicationId,
+            outputsArtifacts: splashOuts,
+            createdAt: now,
+            updatedAt: now,
+          },
+        );
       }
 
       // Launch — remap source asset IDs and outputsArtifacts
@@ -670,45 +766,76 @@ export class ThemesService {
           src.backgroundAssetId = idMap.get(src.backgroundAssetId);
         }
         const launchOuts = { ...(data?.outputsArtifacts ?? {}) };
-        if (launchOuts.androidLegacyArtifactId && artifactIdMap.has(launchOuts.androidLegacyArtifactId)) {
-          launchOuts.androidLegacyArtifactId = artifactIdMap.get(launchOuts.androidLegacyArtifactId);
+        if (
+          launchOuts.androidLegacyArtifactId &&
+          artifactIdMap.has(launchOuts.androidLegacyArtifactId)
+        ) {
+          launchOuts.androidLegacyArtifactId = artifactIdMap.get(
+            launchOuts.androidLegacyArtifactId,
+          );
         }
-        if (launchOuts.androidAdaptiveForegroundArtifactId && artifactIdMap.has(launchOuts.androidAdaptiveForegroundArtifactId)) {
-          launchOuts.androidAdaptiveForegroundArtifactId = artifactIdMap.get(launchOuts.androidAdaptiveForegroundArtifactId);
+        if (
+          launchOuts.androidAdaptiveForegroundArtifactId &&
+          artifactIdMap.has(launchOuts.androidAdaptiveForegroundArtifactId)
+        ) {
+          launchOuts.androidAdaptiveForegroundArtifactId = artifactIdMap.get(
+            launchOuts.androidAdaptiveForegroundArtifactId,
+          );
         }
-        if (launchOuts.androidAdaptiveBackgroundArtifactId && artifactIdMap.has(launchOuts.androidAdaptiveBackgroundArtifactId)) {
-          launchOuts.androidAdaptiveBackgroundArtifactId = artifactIdMap.get(launchOuts.androidAdaptiveBackgroundArtifactId);
+        if (
+          launchOuts.androidAdaptiveBackgroundArtifactId &&
+          artifactIdMap.has(launchOuts.androidAdaptiveBackgroundArtifactId)
+        ) {
+          launchOuts.androidAdaptiveBackgroundArtifactId = artifactIdMap.get(
+            launchOuts.androidAdaptiveBackgroundArtifactId,
+          );
         }
-        if (launchOuts.iosArtifactId && artifactIdMap.has(launchOuts.iosArtifactId)) {
-          launchOuts.iosArtifactId = artifactIdMap.get(launchOuts.iosArtifactId);
+        if (
+          launchOuts.iosArtifactId &&
+          artifactIdMap.has(launchOuts.iosArtifactId)
+        ) {
+          launchOuts.iosArtifactId = artifactIdMap.get(
+            launchOuts.iosArtifactId,
+          );
         }
-        if (launchOuts.webArtifactId && artifactIdMap.has(launchOuts.webArtifactId)) {
-          launchOuts.webArtifactId = artifactIdMap.get(launchOuts.webArtifactId);
+        if (
+          launchOuts.webArtifactId &&
+          artifactIdMap.has(launchOuts.webArtifactId)
+        ) {
+          launchOuts.webArtifactId = artifactIdMap.get(
+            launchOuts.webArtifactId,
+          );
         }
-        batch.set(db.collection(Collections.themeAssetsLauncher).doc(newThemeId), {
-          ...data,
-          source: src,
-          id: newThemeId,
-          themeId: newThemeId,
-          applicationId: targetApplicationId,
-          outputsArtifacts: launchOuts,
-          createdAt: now,
-          updatedAt: now,
-        });
+        batch.set(
+          db.collection(Collections.themeAssetsLauncher).doc(newThemeId),
+          {
+            ...data,
+            source: src,
+            id: newThemeId,
+            themeId: newThemeId,
+            applicationId: targetApplicationId,
+            outputsArtifacts: launchOuts,
+            createdAt: now,
+            updatedAt: now,
+          },
+        );
       }
 
       // Feature entitlements
       for (const doc of feSnaps.docs) {
         const data = doc.data() as any;
-        batch.set(db.collection(Collections.themeFeatureEntitlements).doc(newThemeId), {
-          ...data,
-          id: newThemeId,
-          applicationId: targetApplicationId,
-          themeId: newThemeId,
-          version: 1,
-          createdAt: now,
-          updatedAt: now,
-        });
+        batch.set(
+          db.collection(Collections.themeFeatureEntitlements).doc(newThemeId),
+          {
+            ...data,
+            id: newThemeId,
+            applicationId: targetApplicationId,
+            themeId: newThemeId,
+            version: 1,
+            createdAt: now,
+            updatedAt: now,
+          },
+        );
       }
 
       // 7. Commit atomically
@@ -729,7 +856,10 @@ export class ThemesService {
           db.collection(Collections.applicationAssets).doc(id).delete(),
         ),
         ...createdArtifactIds.map((id) =>
-          db.collection(Collections.applicationAssetsRenditions).doc(id).delete(),
+          db
+            .collection(Collections.applicationAssetsRenditions)
+            .doc(id)
+            .delete(),
         ),
         ...createdStoragePaths.map((p) => this.cloud.delete(p)),
         ...createdArtifactPaths.map((p) => this.cloud.delete(p)),
@@ -803,7 +933,9 @@ export class ThemesService {
     dstThemeId: string,
     batch: FirebaseFirestore.WriteBatch,
   ) {
-    const col = admin.firestore().collection(Collections.themeConfigColorSchemes);
+    const col = admin
+      .firestore()
+      .collection(Collections.themeConfigColorSchemes);
     const q = await col.where('themeId', '==', srcThemeId).get();
     const now = nowIso();
 
@@ -923,7 +1055,9 @@ export class ThemesService {
     applicationId: string,
     batch: FirebaseFirestore.WriteBatch,
   ) {
-    const col = admin.firestore().collection(Collections.themeFeatureEntitlements);
+    const col = admin
+      .firestore()
+      .collection(Collections.themeFeatureEntitlements);
     const q = await col.where('themeId', '==', srcThemeId).get();
     if (q.empty) return;
 
@@ -1323,7 +1457,7 @@ function buildLegacyPageConfig(pageCfgRaw: any) {
 function buildLegacyWidgetConfig(widgetCfgRaw: any) {
   if (!widgetCfgRaw) {
     return {
-      fonts: {fontFamily: 'Montserrat'},
+      fonts: { fontFamily: 'Montserrat' },
       dialog: {
         confirmDialog: {
           activeButtonColor1: null,
@@ -1342,15 +1476,15 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
           uri: 'asset://assets/primary_onboardin_logo.svg',
           widthFactor: 0.42,
           labelColor: '#FFFFFF',
-          metadata: {attributes: {}},
+          metadata: { attributes: {} },
         },
         secondaryOnboardingLogo: {
           uri: 'asset://assets/secondary_onboardin_logo.svg',
           widthFactor: 0.25,
           labelColor: '#FFFFFF',
-          metadata: {attributes: {}},
+          metadata: { attributes: {} },
         },
-        appIcon: {color: null},
+        appIcon: { color: null },
       },
     };
   }
@@ -1374,7 +1508,7 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
         metadata: {
           attributes: {
             ...(imgAssets.primaryOnboardingLogo?.metadata?.attributes ?? {}),
-            ...(primaryUrl ? {primaryOnboardingLogoUrl: primaryUrl} : {}),
+            ...(primaryUrl ? { primaryOnboardingLogoUrl: primaryUrl } : {}),
           },
         },
       },
@@ -1386,15 +1520,15 @@ function buildLegacyWidgetConfig(widgetCfgRaw: any) {
           attributes: {
             ...(imgAssets.secondaryOnboardingLogo?.metadata?.attributes ?? {}),
             ...(secondaryUrl
-              ? {secondaryOnboardingLogoUrl: secondaryUrl}
+              ? { secondaryOnboardingLogoUrl: secondaryUrl }
               : {}),
           },
         },
       },
-      appIcon: imgAssets.appIcon ?? {color: null},
+      appIcon: imgAssets.appIcon ?? { color: null },
     },
   };
 
-  if (!out.fonts) out.fonts = {fontFamily: 'Montserrat'};
+  if (!out.fonts) out.fonts = { fontFamily: 'Montserrat' };
   return out;
 }

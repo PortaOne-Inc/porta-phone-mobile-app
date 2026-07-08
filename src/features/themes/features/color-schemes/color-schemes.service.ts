@@ -1,9 +1,15 @@
-import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { BaseFirestoreRepository } from 'fireorm';
 import { InjectRepository } from 'nestjs-fireorm';
 
 import { ColorScheme, ThemeVariant } from './entities/color-scheme.entity';
 import { deepMerge, nowIso } from '../../../../common';
+import { OwnershipService } from '../../../../common/data/ownership.service';
 
 @Injectable()
 export class ColorSchemesService {
@@ -12,6 +18,7 @@ export class ColorSchemesService {
   constructor(
     @InjectRepository(ColorScheme)
     private readonly repo: BaseFirestoreRepository<ColorScheme>,
+    private readonly ownership: OwnershipService,
   ) {}
 
   private buildId(themeId: string, variant: ThemeVariant) {
@@ -19,10 +26,12 @@ export class ColorSchemesService {
   }
 
   async getByThemeVariant(
+    uid: string,
     applicationId: string,
     themeId: string,
     variant: ThemeVariant,
   ): Promise<ColorScheme> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     const id = this.buildId(themeId, variant);
     const found = await this.repo.findById(id).catch(() => null);
     if (!found || found.applicationId !== applicationId) {
@@ -32,11 +41,13 @@ export class ColorSchemesService {
   }
 
   async upsertByThemeVariant(
+    uid: string,
     applicationId: string,
     themeId: string,
     variant: ThemeVariant,
     dto: { config?: Record<string, any>; expectedVersion?: number },
   ): Promise<ColorScheme> {
+    await this.ownership.assertOwnsTheme(uid, applicationId, themeId);
     const id = this.buildId(themeId, variant);
     const now = nowIso();
 
@@ -47,7 +58,9 @@ export class ColorSchemesService {
         dto.expectedVersion !== (existing.version ?? 0)
       ) {
         throw new ConflictException(
-          `Version mismatch: expected ${dto.expectedVersion}, actual ${existing.version ?? 0}`,
+          `Version mismatch: expected ${dto.expectedVersion}, actual ${
+            existing.version ?? 0
+          }`,
         );
       }
       if (dto.config && Object.keys(dto.config).length > 0) {
@@ -56,7 +69,6 @@ export class ColorSchemesService {
       existing.version = (existing.version ?? 0) + 1;
       existing.updatedAt = now;
       const result = await this.repo.update(existing);
-
 
       return result;
     }
@@ -78,23 +90,28 @@ export class ColorSchemesService {
 
   /** Ensure both variants exist (light & dark). */
   async ensurePair(
+    uid: string,
     applicationId: string,
     themeId: string,
   ): Promise<{ light: ColorScheme; dark: ColorScheme }> {
     const [light, dark] = await Promise.all([
-      this.upsertByThemeVariant(applicationId, themeId, 'light', {
+      this.upsertByThemeVariant(uid, applicationId, themeId, 'light', {
         config: {},
       }),
-      this.upsertByThemeVariant(applicationId, themeId, 'dark', { config: {} }),
+      this.upsertByThemeVariant(uid, applicationId, themeId, 'dark', {
+        config: {},
+      }),
     ]);
     return { light, dark };
   }
 
   /** List all variants for a theme (if any). */
   async listForTheme(
+    uid: string,
     applicationId: string,
     themeId: string,
   ): Promise<ColorScheme[]> {
+    await this.ownership.assertOwnsApplication(uid, applicationId);
     return this.repo
       .whereEqualTo('applicationId', applicationId)
       .whereEqualTo('themeId', themeId)

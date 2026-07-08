@@ -72,21 +72,20 @@ export class ApplicationsController {
 
   @Get(':id')
   async findApplicationById(
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
   ): Promise<Application | null> {
-    const application = await this.applicationsService.findApplicationById(id);
-    if (!application) {
-      throw new HttpException('Application not found', HttpStatus.NOT_FOUND);
-    }
-    return application;
+    return this.applicationsService.findApplicationById(user.uid, id);
   }
 
   @Put(':id')
   async updateApplication(
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() applicationDto: Application,
   ): Promise<Application | null> {
     const updatedApplication = await this.applicationsService.updateApplication(
+      user.uid,
       id,
       applicationDto,
     );
@@ -114,31 +113,26 @@ export class ApplicationsController {
         .catch(() => undefined);
     }
 
-    await this.applicationsService.removeApplication(id);
+    await this.applicationsService.removeApplication(user.uid, id);
   }
 
   @Get(':id/environment')
   async getApplicationEnvironment(
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
   ): Promise<Record<string, string | boolean | number> | null> {
-    const environment =
-      await this.applicationsService.getApplicationEnvironment(id);
-    if (!environment) {
-      throw new HttpException(
-        'Environment not found or application does not exist',
-        HttpStatus.NOT_FOUND,
-      );
-    }
-    return environment;
+    return this.applicationsService.getApplicationEnvironment(user.uid, id);
   }
 
   @Put(':id/environment')
   async updateApplicationEnvironment(
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() environmentData: Record<string, string | boolean | number>,
   ): Promise<Application | null> {
     const updatedApplication =
       await this.applicationsService.updateApplicationEnvironment(
+        user.uid,
         id,
         environmentData,
       );
@@ -153,17 +147,23 @@ export class ApplicationsController {
 
   @Patch(':id/theme-bindings')
   async updateThemeBindings(
+    @CurrentUser() user: Principal,
     @Param('id') appId: string,
     @Body() dto: UpdateThemeBindingsDto,
   ) {
-    return this.applicationsService.updateThemeBindings(appId, dto);
+    return this.applicationsService.updateThemeBindings(user.uid, appId, dto);
   }
 
   @Get(':id/resolve-theme')
   async resolveTheme(
+    @CurrentUser() user: Principal,
     @Param('id') appId: string,
     @Query() query: ResolveThemeQueryDto,
   ) {
-    return this.applicationsService.resolveThemeIdForBuild(appId, query.env);
+    return this.applicationsService.resolveThemeIdForBuild(
+      user.uid,
+      appId,
+      query.env,
+    );
   }
 }

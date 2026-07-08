@@ -54,32 +54,71 @@ export class GenerateThemesService {
     private readonly composer: ThemeComposerService,
   ) {}
 
-  async generateAndCreate(uid: string, applicationId: string, dto: GenerateThemeDto) {
+  async generateAndCreate(
+    uid: string,
+    applicationId: string,
+    dto: GenerateThemeDto,
+  ) {
     const primary: Variant = dto.variant ?? 'light';
-    const theme = await this.themeRepo.create({ applicationId, title: dto.title } as Theme);
+    const theme = await this.themeRepo.create({
+      applicationId,
+      title: dto.title,
+    } as Theme);
 
-    const fullPrompt = [dto.prompt.trim(), '', 'Context:', (dto.description ?? '').trim()]
+    const fullPrompt = [
+      dto.prompt.trim(),
+      '',
+      'Context:',
+      (dto.description ?? '').trim(),
+    ]
       .join('\n')
       .trim();
 
-    const { brief, llmUsed } = await this.resolveBrief(uid, applicationId, fullPrompt, dto.seedColor);
+    const { brief, llmUsed } = await this.resolveBrief(
+      uid,
+      applicationId,
+      fullPrompt,
+      dto.seedColor,
+    );
     const composed = this.composer.compose(brief);
 
     const variants: Variant[] = ['light', 'dark'];
     await Promise.all(
       variants.flatMap((v) => [
-        this.upsert(this.colorSchemeRepo, theme.id, applicationId, v, composed.colorScheme[v]),
-        this.upsert(this.widgetCfgRepo, theme.id, applicationId, v, composed.widget[v]),
-        this.upsert(this.pageCfgRepo, theme.id, applicationId, v, composed.page[v]),
+        this.upsert(
+          this.colorSchemeRepo,
+          theme.id,
+          applicationId,
+          v,
+          composed.colorScheme[v],
+        ),
+        this.upsert(
+          this.widgetCfgRepo,
+          theme.id,
+          applicationId,
+          v,
+          composed.widget[v],
+        ),
+        this.upsert(
+          this.pageCfgRepo,
+          theme.id,
+          applicationId,
+          v,
+          composed.page[v],
+        ),
       ]),
     );
 
-    await this.featureAccess.upsertByTheme(applicationId, theme.id, {
+    await this.featureAccess.upsertByTheme(uid, applicationId, theme.id, {
       status: 'draft',
       config: composed.appConfig,
     });
 
-    const assetsApplied = await this.assetCatalog.link(uid, theme.id, composed.assetIds);
+    const assetsApplied = await this.assetCatalog.link(
+      uid,
+      theme.id,
+      composed.assetIds,
+    );
 
     return {
       theme,
@@ -98,7 +137,12 @@ export class GenerateThemesService {
     };
   }
 
-  async nudgeAndUpdate(uid: string, applicationId: string, themeId: string, dto: NudgeThemeDto) {
+  async nudgeAndUpdate(
+    uid: string,
+    applicationId: string,
+    themeId: string,
+    dto: NudgeThemeDto,
+  ) {
     const variant: Variant = dto.variant ?? 'light';
     const targets = dto.targets?.length
       ? dto.targets
@@ -131,7 +175,9 @@ export class GenerateThemesService {
 
     const updated: string[] = [];
     for (const target of targets) {
-      const repo = repoByTarget[target] as BaseFirestoreRepository<ConfigEntity>;
+      const repo = repoByTarget[
+        target
+      ] as BaseFirestoreRepository<ConfigEntity>;
       const id = `${themeId}_${variant}`;
       const prev = await repo.findById(id).catch(() => null);
       const merged =
@@ -142,7 +188,11 @@ export class GenerateThemesService {
       updated.push(target);
     }
 
-    const assetsApplied = await this.assetCatalog.link(uid, themeId, composed.assetIds);
+    const assetsApplied = await this.assetCatalog.link(
+      uid,
+      themeId,
+      composed.assetIds,
+    );
 
     return {
       theme,
@@ -160,20 +210,33 @@ export class GenerateThemesService {
    * has none so the generated theme references a real asset (visible in the
    * Assets list) rather than only an inline placeholder URL.
    */
-  private async resolveBrief(uid: string, applicationId: string, prompt: string, seedHint?: string) {
+  private async resolveBrief(
+    uid: string,
+    applicationId: string,
+    prompt: string,
+    seedHint?: string,
+  ) {
     const isSvg = (a: { mime: string; name: string }) =>
       a.mime === 'image/svg+xml' || a.name.toLowerCase().endsWith('.svg');
 
     let catalog = await this.assetCatalog.catalog(uid, applicationId);
     // Logos render as SVG only; seed a placeholder SVG if the app has none.
     if (!catalog.some(isSvg)) {
-      const seeded = await this.assetCatalog.seedDefaultAsset(uid, applicationId);
+      const seeded = await this.assetCatalog.seedDefaultAsset(
+        uid,
+        applicationId,
+      );
       if (seeded) catalog = [...catalog, seeded];
     }
-    const { brief, llmUsed } = await this.briefGen.generate(prompt, seedHint, catalog);
+    const { brief, llmUsed } = await this.briefGen.generate(
+      prompt,
+      seedHint,
+      catalog,
+    );
     if (!brief.assets?.logoAssetId) {
       const logo = catalog.find(isSvg) ?? catalog[0];
-      if (logo) brief.assets = { ...(brief.assets ?? {}), logoAssetId: logo.id };
+      if (logo)
+        brief.assets = { ...(brief.assets ?? {}), logoAssetId: logo.id };
     }
     return { brief, llmUsed };
   }

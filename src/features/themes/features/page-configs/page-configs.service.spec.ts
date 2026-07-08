@@ -1,15 +1,25 @@
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  NotFoundException,
+} from '@nestjs/common';
 
 import { PageConfigsService } from './page-configs.service';
 import { PageConfigEntity } from './entities/page-config.entity';
+import { Application } from '../../../applications/entities/application';
+import { Theme } from '../../entities/theme';
+import { OwnershipService } from '../../../../common/data/ownership.service';
 import { InMemoryRepo } from '../../../../testing/in-memory-repo';
 
 /**
- * Characterization tests: pin the CURRENT behavior, including known gaps
- * (no uid/ownership at the service layer, non-transactional version check).
+ * Characterization tests: pin the CURRENT behavior of the service.
+ * Ownership is now enforced (uid -> application -> theme); the remaining
+ * known gap (non-transactional version check) is still pinned explicitly.
  */
 describe('PageConfigsService', () => {
   let repo: InMemoryRepo<PageConfigEntity>;
+  let appRepo: InMemoryRepo<Application>;
+  let themeRepo: InMemoryRepo<Theme>;
   let assets: { getSignedUrlByIdForApp: jest.Mock };
   let service: PageConfigsService;
 
@@ -33,15 +43,25 @@ describe('PageConfigsService', () => {
 
   beforeEach(() => {
     repo = new InMemoryRepo<PageConfigEntity>();
+    appRepo = new InMemoryRepo<Application>();
+    themeRepo = new InMemoryRepo<Theme>();
+    appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+    themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
     assets = { getSignedUrlByIdForApp: jest.fn() };
-    service = new PageConfigsService(repo as any, assets as any);
+    const ownership = new OwnershipService(appRepo as any, themeRepo as any);
+    service = new PageConfigsService(repo as any, assets as any, ownership);
   });
 
   describe('getByThemeVariant', () => {
     it('returns the config addressed as {themeId}_{variant}', async () => {
       seedConfig();
 
-      const result = await service.getByThemeVariant('app-1', 't1', 'light');
+      const result = await service.getByThemeVariant(
+        'user-1',
+        'app-1',
+        't1',
+        'light',
+      );
 
       expect(result.id).toBe('t1_light');
       expect(result.config).toEqual({ login: { title: 'Welcome' } });
@@ -49,7 +69,7 @@ describe('PageConfigsService', () => {
 
     it('throws NotFoundException for a missing config', async () => {
       await expect(
-        service.getByThemeVariant('app-1', 't1', 'dark'),
+        service.getByThemeVariant('user-1', 'app-1', 't1', 'dark'),
       ).rejects.toBeInstanceOf(NotFoundException);
     });
 
@@ -57,16 +77,28 @@ describe('PageConfigsService', () => {
       seedConfig({ applicationId: 'other-app' });
 
       await expect(
-        service.getByThemeVariant('app-1', 't1', 'light'),
+        service.getByThemeVariant('user-1', 'app-1', 't1', 'light'),
       ).rejects.toBeInstanceOf(NotFoundException);
+    });
+
+    it('throws ForbiddenException for a foreign application', async () => {
+      seedConfig();
+
+      await expect(
+        service.getByThemeVariant('intruder', 'app-1', 't1', 'light'),
+      ).rejects.toBeInstanceOf(ForbiddenException);
     });
   });
 
   describe('upsertByThemeVariant', () => {
     it('creates a new config with version 1', async () => {
-      const result = await service.upsertByThemeVariant('app-1', 't1', 'dark', {
-        config: { login: { title: 'Hi' } },
-      });
+      const result = await service.upsertByThemeVariant(
+        'user-1',
+        'app-1',
+        't1',
+        'dark',
+        { config: { login: { title: 'Hi' } } },
+      );
 
       expect(result).toMatchObject({
         id: 't1_dark',
@@ -84,6 +116,7 @@ describe('PageConfigsService', () => {
       });
 
       const result = await service.upsertByThemeVariant(
+        'user-1',
         'app-1',
         't1',
         'light',
@@ -100,7 +133,7 @@ describe('PageConfigsService', () => {
       seedConfig({ version: 2 });
 
       await expect(
-        service.upsertByThemeVariant('app-1', 't1', 'light', {
+        service.upsertByThemeVariant('user-1', 'app-1', 't1', 'light', {
           config: {},
           expectedVersion: 1,
         }),
@@ -111,6 +144,7 @@ describe('PageConfigsService', () => {
       seedConfig({ version: 5 });
 
       const result = await service.upsertByThemeVariant(
+        'user-1',
         'app-1',
         't1',
         'light',
@@ -118,6 +152,24 @@ describe('PageConfigsService', () => {
       );
 
       expect(result.version).toBe(6);
+    });
+
+    it('throws ForbiddenException for a foreign application', async () => {
+      await expect(
+        service.upsertByThemeVariant('intruder', 'app-1', 't1', 'light', {
+          config: {},
+        }),
+      ).rejects.toBeInstanceOf(ForbiddenException);
+    });
+
+    it('throws NotFoundException when the theme belongs to another application', async () => {
+      themeRepo.seed({ id: 't-foreign', applicationId: 'other-app' } as Theme);
+
+      await expect(
+        service.upsertByThemeVariant('user-1', 'app-1', 't-foreign', 'light', {
+          config: {},
+        }),
+      ).rejects.toBeInstanceOf(NotFoundException);
     });
   });
 
@@ -127,7 +179,7 @@ describe('PageConfigsService', () => {
       seedConfig({ id: 't1_dark', variant: 'dark' });
       seedConfig({ id: 't2_light', themeId: 't2' });
 
-      const result = await service.listForTheme('app-1', 't1');
+      const result = await service.listForTheme('user-1', 'app-1', 't1');
 
       expect(result.map((c) => c.id).sort()).toEqual(['t1_dark', 't1_light']);
     });

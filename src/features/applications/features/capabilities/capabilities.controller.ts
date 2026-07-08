@@ -23,8 +23,11 @@ export class ApplicationCapabilitiesController {
   constructor(private readonly svc: ApplicationCapabilitiesService) {}
 
   @Get()
-  async get(@Param('applicationId') applicationId: string) {
-    return this.svc.get(applicationId);
+  async get(
+    @Param('applicationId') applicationId: string,
+    @CurrentUser() user: Principal,
+  ) {
+    return this.svc.get(user.uid, applicationId);
   }
 
   @Put()
@@ -34,7 +37,6 @@ export class ApplicationCapabilitiesController {
     @CurrentUser() user: Principal,
     @Body() body: unknown,
   ) {
-    const uid = user.uid;
-    return this.svc.update(applicationId, body, uid);
+    return this.svc.update(user.uid, applicationId, body);
   }
 }

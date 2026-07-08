@@ -1,10 +1,15 @@
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  NotFoundException,
+} from '@nestjs/common';
 import * as admin from 'firebase-admin';
 
 import { ThemesService } from './themes.service';
 import { Theme } from './entities/theme';
 import { Application } from '../applications/entities/application';
 import { Collections } from '../../common';
+import { OwnershipService } from '../../common/data/ownership.service';
 import { InMemoryRepo } from '../../testing/in-memory-repo';
 
 jest.mock('firebase-admin', () => ({
@@ -36,8 +41,8 @@ const createFakeFirestore = (store: Map<string, unknown>) => ({
 });
 
 /**
- * Characterization tests: pin the CURRENT behavior, including known gaps
- * (uid accepted but not used for authorization).
+ * Characterization tests: pin the CURRENT behavior. Ownership is now
+ * enforced (uid -> application.user) on all theme operations.
  */
 describe('ThemesService', () => {
   let themeRepo: InMemoryRepo<Theme>;
@@ -48,21 +53,24 @@ describe('ThemesService', () => {
   beforeEach(() => {
     themeRepo = new InMemoryRepo<Theme>();
     appRepo = new InMemoryRepo<Application>();
+    appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
     store = new Map();
     (admin.firestore as unknown as jest.Mock).mockReturnValue(
       createFakeFirestore(store),
     );
+    const ownership = new OwnershipService(appRepo as any, themeRepo as any);
     service = new ThemesService(
       themeRepo as any,
       appRepo as any,
       {} as any,
       {} as any,
       {} as any,
+      ownership,
     );
   });
 
   describe('getThemeById', () => {
-    it('returns the theme by id within the application', async () => {
+    it('returns the theme by id within an owned application', async () => {
       themeRepo.seed({ id: 't1', applicationId: 'app-1', title: 'T' } as Theme);
 
       const result = await service.getThemeById('app-1', 't1', 'user-1');
@@ -84,28 +92,40 @@ describe('ThemesService', () => {
       ).rejects.toBeInstanceOf(NotFoundException);
     });
 
-    it('accepts uid but does not use it for authorization (any uid can read)', async () => {
+    it('throws ForbiddenException when the caller does not own the application', async () => {
       themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
 
       await expect(
         service.getThemeById('app-1', 't1', 'foreign-uid'),
-      ).resolves.toBeDefined();
+      ).rejects.toBeInstanceOf(ForbiddenException);
+    });
+
+    it('throws NotFoundException when the application does not exist', async () => {
+      await expect(
+        service.getThemeById('missing-app', 't1', 'user-1'),
+      ).rejects.toBeInstanceOf(NotFoundException);
     });
   });
 
   describe('createTheme', () => {
-    it('creates a theme with version 1 bound to the application', async () => {
-      const result = await service.createTheme('app-1', {
-        title: 'New',
-        description: 'Desc',
-        label: 'dev',
-      } as any);
+    it('creates a theme with version 1 bound to an owned application', async () => {
+      const result = await service.createTheme(
+        'app-1',
+        { title: 'New', description: 'Desc', label: 'dev' } as any,
+        'user-1',
+      );
 
       expect(result).toMatchObject({
         applicationId: 'app-1',
         title: 'New',
         version: 1,
       });
+    });
+
+    it('throws ForbiddenException for a foreign application', async () => {
+      await expect(
+        service.createTheme('app-1', { title: 'New' } as any, 'intruder'),
+      ).rejects.toBeInstanceOf(ForbiddenException);
     });
   });
 
@@ -123,10 +143,12 @@ describe('ThemesService', () => {
         version: 3,
       });
 
-      const result = await service.patchTheme('app-1', 't1', {
-        title: 'New',
-        status: 'published',
-      } as any);
+      const result = await service.patchTheme(
+        'app-1',
+        't1',
+        { title: 'New', status: 'published' } as any,
+        'user-1',
+      );
 
       expect(result).toMatchObject({
         title: 'New',
@@ -148,9 +170,12 @@ describe('ThemesService', () => {
         version: 1,
       });
 
-      const result = await service.patchTheme('app-1', 't1', {
-        status: 'archived',
-      } as any);
+      const result = await service.patchTheme(
+        'app-1',
+        't1',
+        { status: 'archived' } as any,
+        'user-1',
+      );
 
       expect(result).toMatchObject({
         title: 'Keep',
@@ -162,7 +187,7 @@ describe('ThemesService', () => {
 
     it('throws NotFoundException for a missing theme', async () => {
       await expect(
-        service.patchTheme('app-1', 'missing', {} as any),
+        service.patchTheme('app-1', 'missing', {} as any, 'user-1'),
       ).rejects.toBeInstanceOf(NotFoundException);
     });
 
@@ -170,29 +195,56 @@ describe('ThemesService', () => {
       seedThemeDoc({ id: 't1', applicationId: 'other-app', version: 1 });
 
       await expect(
-        service.patchTheme('app-1', 't1', {} as any),
+        service.patchTheme('app-1', 't1', {} as any, 'user-1'),
       ).rejects.toBeInstanceOf(NotFoundException);
+    });
+
+    it('throws ForbiddenException when the caller does not own the application', async () => {
+      seedThemeDoc({ id: 't1', applicationId: 'app-1', version: 1 });
+
+      await expect(
+        service.patchTheme('app-1', 't1', { title: 'New' } as any, 'intruder'),
+      ).rejects.toBeInstanceOf(ForbiddenException);
+      expect(store.get(`${Collections.themes}/t1`)).toMatchObject({
+        version: 1,
+      });
     });
 
     it('throws ConflictException on a stale expectedVersion', async () => {
       seedThemeDoc({ id: 't1', applicationId: 'app-1', version: 2 });
 
       await expect(
-        service.patchTheme('app-1', 't1', {
-          title: 'New',
-          expectedVersion: 1,
-        } as any),
+        service.patchTheme(
+          'app-1',
+          't1',
+          { title: 'New', expectedVersion: 1 } as any,
+          'user-1',
+        ),
       ).rejects.toBeInstanceOf(ConflictException);
     });
 
     it('skips the version check when expectedVersion is omitted (last write wins)', async () => {
       seedThemeDoc({ id: 't1', applicationId: 'app-1', version: 5 });
 
-      const result = await service.patchTheme('app-1', 't1', {
-        title: 'New',
-      } as any);
+      const result = await service.patchTheme(
+        'app-1',
+        't1',
+        { title: 'New' } as any,
+        'user-1',
+      );
 
       expect(result.version).toBe(6);
+    });
+  });
+
+  describe('deleteTheme', () => {
+    it('throws ForbiddenException when the caller does not own the application', async () => {
+      themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
+
+      await expect(
+        service.deleteTheme('intruder', 'app-1', 't1'),
+      ).rejects.toBeInstanceOf(ForbiddenException);
+      expect(themeRepo.docs.has('t1')).toBe(true);
     });
   });
 });

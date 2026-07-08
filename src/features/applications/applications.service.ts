@@ -8,6 +8,7 @@ import { BaseFirestoreRepository } from 'fireorm';
 import { Application } from './entities/application';
 import { Theme } from '../themes/entities/theme';
 import { UpdateThemeBindingsDto } from './dto/applications.dto';
+import { OwnershipService } from '../../common/data/ownership.service';
 
 type Env = 'dev' | 'stage' | 'prod';
 
@@ -18,6 +19,7 @@ export class ApplicationsService {
     private readonly applicationRepository: BaseFirestoreRepository<Application>,
     @InjectRepository(Theme)
     private readonly themeRepository: BaseFirestoreRepository<Theme>,
+    private readonly ownership: OwnershipService,
   ) {}
 
   async createApplication(
@@ -34,32 +36,29 @@ export class ApplicationsService {
     }
   }
 
-  async findApplicationById(id: string): Promise<Application | null> {
-    try {
-      return await this.applicationRepository.findById(id);
-    } catch {
-      return null;
-    }
+  async findApplicationById(uid: string, id: string): Promise<Application> {
+    return this.ownership.assertOwnsApplication(uid, id);
   }
 
   async updateApplication(
+    uid: string,
     id: string,
     applicationDto: Application,
   ): Promise<Application | null> {
+    const application = await this.ownership.assertOwnsApplication(uid, id);
+    // id and user (the owner) are immutable through this endpoint.
+    const { id: _id, user: _user, ...updatable } = applicationDto;
     try {
-      const application = await this.applicationRepository.findById(id);
-      if (application) {
-        Object.assign(application, applicationDto);
-        await this.applicationRepository.update(application);
-        return application;
-      }
-      return null;
+      Object.assign(application, updatable);
+      await this.applicationRepository.update(application);
+      return application;
     } catch {
       return null;
     }
   }
 
-  async removeApplication(id: string): Promise<void | null> {
+  async removeApplication(uid: string, id: string): Promise<void | null> {
+    await this.ownership.assertOwnsApplication(uid, id);
     try {
       await this.applicationRepository.delete(id);
     } catch {
@@ -78,39 +77,37 @@ export class ApplicationsService {
   }
 
   async getApplicationEnvironment(
+    uid: string,
     id: string,
-  ): Promise<Record<string, string | boolean | number> | null> {
-    try {
-      const application = await this.applicationRepository.findById(id);
-      return application ? application.environment || {} : null;
-    } catch {
-      return null;
-    }
+  ): Promise<Record<string, string | boolean | number>> {
+    const application = await this.ownership.assertOwnsApplication(uid, id);
+    return application.environment || {};
   }
 
   async updateApplicationEnvironment(
+    uid: string,
     id: string,
     environmentData: Record<string, string | boolean | number>,
   ): Promise<Application | null> {
+    const application = await this.ownership.assertOwnsApplication(uid, id);
     try {
-      const application = await this.applicationRepository.findById(id);
-      if (application) {
-        application.environment = {
-          ...application.environment,
-          ...environmentData,
-        };
-        await this.applicationRepository.update(application);
-        return application;
-      }
-      return null;
+      application.environment = {
+        ...application.environment,
+        ...environmentData,
+      };
+      await this.applicationRepository.update(application);
+      return application;
     } catch {
       return null;
     }
   }
 
-  async updateThemeBindings(appId: string, dto: UpdateThemeBindingsDto) {
-    const app = await this.applicationRepository.findById(appId);
-    if (!app) throw new NotFoundException('Application not found');
+  async updateThemeBindings(
+    uid: string,
+    appId: string,
+    dto: UpdateThemeBindingsDto,
+  ) {
+    const app = await this.ownership.assertOwnsApplication(uid, appId);
 
     const candidateIds = [
       dto.defaultThemeId,
@@ -142,11 +139,11 @@ export class ApplicationsService {
   }
 
   async resolveThemeIdForBuild(
+    uid: string,
     appId: string,
     env: Env,
   ): Promise<{ themeId: string }> {
-    const app = await this.applicationRepository.findById(appId);
-    if (!app) throw new NotFoundException('Application not found');
+    const app = await this.ownership.assertOwnsApplication(uid, appId);
 
     // 1
     const envMatch = app.themeByEnv?.[env];

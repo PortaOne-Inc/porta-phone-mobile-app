@@ -9,6 +9,7 @@ import { Application } from '../applications/entities/application';
 import { ThemeHistoryService } from '../themes/features/theme-history/theme-history.service';
 import { AssetsService } from '../assets/assets.service';
 import { Collections, nowIso, resolveImageSourceUrlsDeep } from '../../common';
+import { OwnershipService } from '../../common/data/ownership.service';
 
 const SHARE_PREVIEW_ASSET_URL_TTL_SEC = 60 * 60 * 24 * 7; // 7 days
 
@@ -28,6 +29,7 @@ export class ThemeSharesService {
     private readonly applicationRepo: BaseFirestoreRepository<Application>,
     private readonly themeHistoryService: ThemeHistoryService,
     private readonly assetsService: AssetsService,
+    private readonly ownership: OwnershipService,
   ) {}
 
   async createShareToken(
@@ -36,12 +38,10 @@ export class ThemeSharesService {
     uid: string,
     tag?: string,
   ): Promise<{ token: string }> {
-    // 1. Validate theme exists and matches application
+    // 1. Validate the caller owns the application and the theme belongs to it
+    await this.ownership.assertOwnsTheme(uid, applicationId, themeId);
+
     const db = admin.firestore();
-    const themeDoc = await db.collection(Collections.themes).doc(themeId).get();
-    if (!themeDoc.exists || themeDoc.data()?.applicationId !== applicationId) {
-      throw new NotFoundException('Theme not found');
-    }
 
     // 2. Generate token ID upfront (needed for shareTokenId on snapshot)
     const tokenId = uuidv4();
