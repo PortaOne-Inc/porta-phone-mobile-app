@@ -33,7 +33,7 @@ class FeatureAccessShellRoute extends StatelessWidget {
 
         final appConfig = state.appConfig;
         final systemInfo = SystemInfoBuilder(
-          adapterSupported: state.previewCapabilities,
+          adapterSupported: state.effectivePreviewCapabilities,
           coreVersion: state.previewCoreVersion,
         ).buildInfo();
         final featureOverrides = FeatureOverridesFactory.create(

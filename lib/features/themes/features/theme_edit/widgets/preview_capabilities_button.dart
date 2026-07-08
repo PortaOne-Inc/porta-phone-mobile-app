@@ -37,9 +37,10 @@ class _PreviewCapabilitiesDialog extends StatelessWidget {
       content: SizedBox(
         width: 360,
         child: BlocBuilder<UpdateThemCubit, UpdateThemeState>(
-          buildWhen: (previous, current) => previous.previewCapabilities != current.previewCapabilities,
+          buildWhen: (previous, current) =>
+              previous.effectivePreviewCapabilities != current.effectivePreviewCapabilities,
           builder: (context, state) {
-            final enabled = state.previewCapabilities.toSet();
+            final enabled = state.effectivePreviewCapabilities.toSet();
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -48,8 +49,9 @@ class _PreviewCapabilitiesDialog extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Mock the capabilities advertised by the backend adapter. '
-                    'The preview updates immediately.',
+                    'Capabilities advertised by the backend adapter. Defaults to the '
+                    'real backend values once the realtime preview has loaded them; '
+                    'toggling overrides them. The preview updates immediately.',
                     style: TextStyle(fontSize: 12),
                   ),
                 ),

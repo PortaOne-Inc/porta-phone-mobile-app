@@ -307,6 +307,11 @@ sealed class PreviewCapabilitiesEvent with _$PreviewCapabilitiesEvent implements
   /// Set the core version the preview's mocked `system-info` reports, which
   /// gates version-aware features (e.g. hybrid presence).
   const factory PreviewCapabilitiesEvent.setCoreVersion(String version) = _SetPreviewCoreVersion;
+
+  /// Seed the capabilities advertised by the application's real backend
+  /// (`system-info.adapter.supported` fetched by the realtime preview); used
+  /// as the preview default until the user overrides them via the toggles.
+  const factory PreviewCapabilitiesEvent.backendCapabilities(List<String> supported) = _SetBackendCapabilities;
 }
 
 @freezed

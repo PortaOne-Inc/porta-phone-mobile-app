@@ -64,6 +64,8 @@ abstract class UpdateThemeState with _$UpdateThemeState {
     @Default(<EmbeddedResourceModel>[]) List<EmbeddedResourceModel> embeddedResources,
     @Default(<ThemeComponents>[]) List<ThemeComponents> loadedComponents,
     @Default(kDefaultPreviewCapabilities) List<String> previewCapabilities,
+    @Default(false) bool previewCapabilitiesOverridden,
+    List<String>? backendCapabilities,
     @Default(kDefaultPreviewCoreVersion) String previewCoreVersion,
     ApplicationModel? applicationModel,
     ThemeModel? theme,
@@ -77,6 +79,12 @@ abstract class UpdateThemeState with _$UpdateThemeState {
   }) = _UpdateThemeState;
 
   const UpdateThemeState._();
+
+  /// Capabilities the preview renders with: the manual toggles once the user
+  /// has touched them, otherwise the ones advertised by the application's real
+  /// backend (fetched by the realtime preview), otherwise the static defaults.
+  List<String> get effectivePreviewCapabilities =>
+      previewCapabilitiesOverridden ? previewCapabilities : (backendCapabilities ?? previewCapabilities);
 
   bool get isProgress {
     final allCount = ThemeComponents.values.length;

@@ -195,15 +195,19 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
   Future<void> _onPreviewCapabilitiesEvent(PreviewCapabilitiesEvent event, Emitter<UpdateThemeState> emit) async {
     switch (event) {
       case _TogglePreviewCapability(:final flag, :final enabled):
-        final current = state.previewCapabilities.toSet();
+        // Start from the effective set so the first manual toggle inherits the
+        // backend-provided defaults instead of resetting to the static ones.
+        final current = state.effectivePreviewCapabilities.toSet();
         if (enabled) {
           current.add(flag);
         } else {
           current.remove(flag);
         }
-        emit(state.copyWith(previewCapabilities: List.unmodifiable(current)));
+        emit(state.copyWith(previewCapabilities: List.unmodifiable(current), previewCapabilitiesOverridden: true));
       case _SetPreviewCoreVersion(:final version):
         emit(state.copyWith(previewCoreVersion: version));
+      case _SetBackendCapabilities(:final supported):
+        emit(state.copyWith(backendCapabilities: List.unmodifiable(supported)));
     }
   }
 

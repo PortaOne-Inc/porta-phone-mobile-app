@@ -9,6 +9,7 @@ import 'package:webtrit_phone/common/common.dart';
 import 'package:webtrit_phone/data/feature_access.dart';
 import 'package:webtrit_phone/environment_config.dart';
 import 'package:webtrit_phone/main.dart';
+import 'package:webtrit_phone/repositories/repositories.dart';
 import 'package:webtrit_phone/theme/theme.dart';
 
 import 'package:webtrit_configurator/features/themes/features/theme_edit/widgets/mock_device.dart';
@@ -38,6 +39,7 @@ class RealtimePreview extends StatefulWidget {
     this.environment,
     this.dartDefineOverrides = const {},
     this.defaultWebBundleId,
+    this.onBackendCapabilities,
     super.key,
   });
 
@@ -62,6 +64,12 @@ class RealtimePreview extends StatefulWidget {
   final String? defaultWebBundleId;
 
   final FeatureAccess? featureAccess;
+
+  /// Reports the adapter capabilities the application's real backend advertises
+  /// (`system-info.adapter.supported`), fetched through the embedded app's own
+  /// repository once it has booted. Null when the caller does not consume them
+  /// (the public shared preview).
+  final ValueChanged<List<String>>? onBackendCapabilities;
 
   final ThemeMode themeMode;
 
@@ -115,7 +123,25 @@ class _RealtimePreviewState extends State<RealtimePreview> {
         ),
       );
     }
-    return bootstrap(firebase: const FirebaseIntegrationDisabled());
+    final registry = await bootstrap(firebase: const FirebaseIntegrationDisabled());
+    unawaited(_reportBackendCapabilities(registry));
+    return registry;
+  }
+
+  /// Fetches the real backend's `system-info` through the embedded app's own
+  /// repository (same core URL and dart-define overrides as the app itself)
+  /// and reports its adapter capabilities so the preview can default to them.
+  Future<void> _reportBackendCapabilities(InstanceRegistry registry) async {
+    if (widget.onBackendCapabilities == null) return;
+    try {
+      final info = await registry.get<SystemInfoRepository>().getSystemInfo(fetchPolicy: FetchPolicy.networkOnly);
+      final supported = info?.adapter?.supported;
+      if (supported == null || !mounted) return;
+      widget.onBackendCapabilities?.call(supported);
+    } catch (_) {
+      // Backend unreachable or no environment configured: the preview keeps
+      // its current capability defaults.
+    }
   }
 
   @override

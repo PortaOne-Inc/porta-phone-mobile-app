@@ -280,7 +280,7 @@ as ConfigSyncResult,
 /// @nodoc
 mixin _$UpdateThemeState {
 
- AppConfig get appConfig; ColorSchemeConfig get colorSchemeConfig; ThemeWidgetConfig get themeWidgetConfig; ThemePageConfig get themePageConfig; BrightnessVariant get selectedVariant; List<AssetModel> get assets; List<EmbeddedResourceModel> get embeddedResources; List<ThemeComponents> get loadedComponents; List<String> get previewCapabilities; String get previewCoreVersion; ApplicationModel? get applicationModel; ThemeModel? get theme; FeatureAccessModel? get featureAccessModel; ThemePropertyStatus? get status; SyncStatus get syncStatus; SyncDetail get syncDetail; ColorSchemeModel? get colorSchemeModel; Exception? get error; String? get errorSource;
+ AppConfig get appConfig; ColorSchemeConfig get colorSchemeConfig; ThemeWidgetConfig get themeWidgetConfig; ThemePageConfig get themePageConfig; BrightnessVariant get selectedVariant; List<AssetModel> get assets; List<EmbeddedResourceModel> get embeddedResources; List<ThemeComponents> get loadedComponents; List<String> get previewCapabilities; bool get previewCapabilitiesOverridden; List<String>? get backendCapabilities; String get previewCoreVersion; ApplicationModel? get applicationModel; ThemeModel? get theme; FeatureAccessModel? get featureAccessModel; ThemePropertyStatus? get status; SyncStatus get syncStatus; SyncDetail get syncDetail; ColorSchemeModel? get colorSchemeModel; Exception? get error; String? get errorSource;
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -291,16 +291,16 @@ $UpdateThemeStateCopyWith<UpdateThemeState> get copyWith => _$UpdateThemeStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other.assets, assets)&&const DeepCollectionEquality().equals(other.embeddedResources, embeddedResources)&&const DeepCollectionEquality().equals(other.loadedComponents, loadedComponents)&&const DeepCollectionEquality().equals(other.previewCapabilities, previewCapabilities)&&(identical(other.previewCoreVersion, previewCoreVersion) || other.previewCoreVersion == previewCoreVersion)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other.assets, assets)&&const DeepCollectionEquality().equals(other.embeddedResources, embeddedResources)&&const DeepCollectionEquality().equals(other.loadedComponents, loadedComponents)&&const DeepCollectionEquality().equals(other.previewCapabilities, previewCapabilities)&&(identical(other.previewCapabilitiesOverridden, previewCapabilitiesOverridden) || other.previewCapabilitiesOverridden == previewCapabilitiesOverridden)&&const DeepCollectionEquality().equals(other.backendCapabilities, backendCapabilities)&&(identical(other.previewCoreVersion, previewCoreVersion) || other.previewCoreVersion == previewCoreVersion)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(assets),const DeepCollectionEquality().hash(embeddedResources),const DeepCollectionEquality().hash(loadedComponents),const DeepCollectionEquality().hash(previewCapabilities),previewCoreVersion,applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource]);
+int get hashCode => Object.hashAll([runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(assets),const DeepCollectionEquality().hash(embeddedResources),const DeepCollectionEquality().hash(loadedComponents),const DeepCollectionEquality().hash(previewCapabilities),previewCapabilitiesOverridden,const DeepCollectionEquality().hash(backendCapabilities),previewCoreVersion,applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource]);
 
 @override
 String toString() {
-  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, previewCapabilities: $previewCapabilities, previewCoreVersion: $previewCoreVersion, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
+  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, previewCapabilities: $previewCapabilities, previewCapabilitiesOverridden: $previewCapabilitiesOverridden, backendCapabilities: $backendCapabilities, previewCoreVersion: $previewCoreVersion, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
 }
 
 
@@ -311,7 +311,7 @@ abstract mixin class $UpdateThemeStateCopyWith<$Res>  {
   factory $UpdateThemeStateCopyWith(UpdateThemeState value, $Res Function(UpdateThemeState) _then) = _$UpdateThemeStateCopyWithImpl;
 @useResult
 $Res call({
- AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, List<String> previewCapabilities, String previewCoreVersion, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
+ AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, List<String> previewCapabilities, bool previewCapabilitiesOverridden, List<String>? backendCapabilities, String previewCoreVersion, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
 });
 
 
@@ -328,7 +328,7 @@ class _$UpdateThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? previewCapabilities = null,Object? previewCoreVersion = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? previewCapabilities = null,Object? previewCapabilitiesOverridden = null,Object? backendCapabilities = freezed,Object? previewCoreVersion = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
   return _then(_self.copyWith(
 appConfig: null == appConfig ? _self.appConfig : appConfig // ignore: cast_nullable_to_non_nullable
 as AppConfig,colorSchemeConfig: null == colorSchemeConfig ? _self.colorSchemeConfig : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
@@ -339,7 +339,9 @@ as BrightnessVariant,assets: null == assets ? _self.assets : assets // ignore: c
 as List<AssetModel>,embeddedResources: null == embeddedResources ? _self.embeddedResources : embeddedResources // ignore: cast_nullable_to_non_nullable
 as List<EmbeddedResourceModel>,loadedComponents: null == loadedComponents ? _self.loadedComponents : loadedComponents // ignore: cast_nullable_to_non_nullable
 as List<ThemeComponents>,previewCapabilities: null == previewCapabilities ? _self.previewCapabilities : previewCapabilities // ignore: cast_nullable_to_non_nullable
-as List<String>,previewCoreVersion: null == previewCoreVersion ? _self.previewCoreVersion : previewCoreVersion // ignore: cast_nullable_to_non_nullable
+as List<String>,previewCapabilitiesOverridden: null == previewCapabilitiesOverridden ? _self.previewCapabilitiesOverridden : previewCapabilitiesOverridden // ignore: cast_nullable_to_non_nullable
+as bool,backendCapabilities: freezed == backendCapabilities ? _self.backendCapabilities : backendCapabilities // ignore: cast_nullable_to_non_nullable
+as List<String>?,previewCoreVersion: null == previewCoreVersion ? _self.previewCoreVersion : previewCoreVersion // ignore: cast_nullable_to_non_nullable
 as String,applicationModel: freezed == applicationModel ? _self.applicationModel : applicationModel // ignore: cast_nullable_to_non_nullable
 as ApplicationModel?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as ThemeModel?,featureAccessModel: freezed == featureAccessModel ? _self.featureAccessModel : featureAccessModel // ignore: cast_nullable_to_non_nullable
@@ -527,10 +529,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  bool previewCapabilitiesOverridden,  List<String>? backendCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateThemeState() when $default != null:
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCapabilitiesOverridden,_that.backendCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   return orElse();
 
 }
@@ -548,10 +550,10 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  bool previewCapabilitiesOverridden,  List<String>? backendCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateThemeState():
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCapabilitiesOverridden,_that.backendCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -568,10 +570,10 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppConfig appConfig,  ColorSchemeConfig colorSchemeConfig,  ThemeWidgetConfig themeWidgetConfig,  ThemePageConfig themePageConfig,  BrightnessVariant selectedVariant,  List<AssetModel> assets,  List<EmbeddedResourceModel> embeddedResources,  List<ThemeComponents> loadedComponents,  List<String> previewCapabilities,  bool previewCapabilitiesOverridden,  List<String>? backendCapabilities,  String previewCoreVersion,  ApplicationModel? applicationModel,  ThemeModel? theme,  FeatureAccessModel? featureAccessModel,  ThemePropertyStatus? status,  SyncStatus syncStatus,  SyncDetail syncDetail,  ColorSchemeModel? colorSchemeModel,  Exception? error,  String? errorSource)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateThemeState() when $default != null:
-return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
+return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,_that.themePageConfig,_that.selectedVariant,_that.assets,_that.embeddedResources,_that.loadedComponents,_that.previewCapabilities,_that.previewCapabilitiesOverridden,_that.backendCapabilities,_that.previewCoreVersion,_that.applicationModel,_that.theme,_that.featureAccessModel,_that.status,_that.syncStatus,_that.syncDetail,_that.colorSchemeModel,_that.error,_that.errorSource);case _:
   return null;
 
 }
@@ -583,7 +585,7 @@ return $default(_that.appConfig,_that.colorSchemeConfig,_that.themeWidgetConfig,
 
 
 class _UpdateThemeState extends UpdateThemeState {
-   _UpdateThemeState({required this.appConfig, required this.colorSchemeConfig, required this.themeWidgetConfig, required this.themePageConfig, this.selectedVariant = BrightnessVariant.light, final  List<AssetModel> assets = const <AssetModel>[], final  List<EmbeddedResourceModel> embeddedResources = const <EmbeddedResourceModel>[], final  List<ThemeComponents> loadedComponents = const <ThemeComponents>[], final  List<String> previewCapabilities = kDefaultPreviewCapabilities, this.previewCoreVersion = kDefaultPreviewCoreVersion, this.applicationModel, this.theme, this.featureAccessModel, this.status, this.syncStatus = SyncStatus.idle, this.syncDetail = const SyncDetail(), this.colorSchemeModel, this.error, this.errorSource}): _assets = assets,_embeddedResources = embeddedResources,_loadedComponents = loadedComponents,_previewCapabilities = previewCapabilities,super._();
+   _UpdateThemeState({required this.appConfig, required this.colorSchemeConfig, required this.themeWidgetConfig, required this.themePageConfig, this.selectedVariant = BrightnessVariant.light, final  List<AssetModel> assets = const <AssetModel>[], final  List<EmbeddedResourceModel> embeddedResources = const <EmbeddedResourceModel>[], final  List<ThemeComponents> loadedComponents = const <ThemeComponents>[], final  List<String> previewCapabilities = kDefaultPreviewCapabilities, this.previewCapabilitiesOverridden = false, final  List<String>? backendCapabilities, this.previewCoreVersion = kDefaultPreviewCoreVersion, this.applicationModel, this.theme, this.featureAccessModel, this.status, this.syncStatus = SyncStatus.idle, this.syncDetail = const SyncDetail(), this.colorSchemeModel, this.error, this.errorSource}): _assets = assets,_embeddedResources = embeddedResources,_loadedComponents = loadedComponents,_previewCapabilities = previewCapabilities,_backendCapabilities = backendCapabilities,super._();
   
 
 @override final  AppConfig appConfig;
@@ -619,6 +621,16 @@ class _UpdateThemeState extends UpdateThemeState {
   return EqualUnmodifiableListView(_previewCapabilities);
 }
 
+@override@JsonKey() final  bool previewCapabilitiesOverridden;
+ final  List<String>? _backendCapabilities;
+@override List<String>? get backendCapabilities {
+  final value = _backendCapabilities;
+  if (value == null) return null;
+  if (_backendCapabilities is EqualUnmodifiableListView) return _backendCapabilities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 @override@JsonKey() final  String previewCoreVersion;
 @override final  ApplicationModel? applicationModel;
 @override final  ThemeModel? theme;
@@ -640,16 +652,16 @@ _$UpdateThemeStateCopyWith<_UpdateThemeState> get copyWith => __$UpdateThemeStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other._assets, _assets)&&const DeepCollectionEquality().equals(other._embeddedResources, _embeddedResources)&&const DeepCollectionEquality().equals(other._loadedComponents, _loadedComponents)&&const DeepCollectionEquality().equals(other._previewCapabilities, _previewCapabilities)&&(identical(other.previewCoreVersion, previewCoreVersion) || other.previewCoreVersion == previewCoreVersion)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateThemeState&&(identical(other.appConfig, appConfig) || other.appConfig == appConfig)&&(identical(other.colorSchemeConfig, colorSchemeConfig) || other.colorSchemeConfig == colorSchemeConfig)&&(identical(other.themeWidgetConfig, themeWidgetConfig) || other.themeWidgetConfig == themeWidgetConfig)&&(identical(other.themePageConfig, themePageConfig) || other.themePageConfig == themePageConfig)&&(identical(other.selectedVariant, selectedVariant) || other.selectedVariant == selectedVariant)&&const DeepCollectionEquality().equals(other._assets, _assets)&&const DeepCollectionEquality().equals(other._embeddedResources, _embeddedResources)&&const DeepCollectionEquality().equals(other._loadedComponents, _loadedComponents)&&const DeepCollectionEquality().equals(other._previewCapabilities, _previewCapabilities)&&(identical(other.previewCapabilitiesOverridden, previewCapabilitiesOverridden) || other.previewCapabilitiesOverridden == previewCapabilitiesOverridden)&&const DeepCollectionEquality().equals(other._backendCapabilities, _backendCapabilities)&&(identical(other.previewCoreVersion, previewCoreVersion) || other.previewCoreVersion == previewCoreVersion)&&(identical(other.applicationModel, applicationModel) || other.applicationModel == applicationModel)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.featureAccessModel, featureAccessModel) || other.featureAccessModel == featureAccessModel)&&(identical(other.status, status) || other.status == status)&&(identical(other.syncStatus, syncStatus) || other.syncStatus == syncStatus)&&(identical(other.syncDetail, syncDetail) || other.syncDetail == syncDetail)&&(identical(other.colorSchemeModel, colorSchemeModel) || other.colorSchemeModel == colorSchemeModel)&&(identical(other.error, error) || other.error == error)&&(identical(other.errorSource, errorSource) || other.errorSource == errorSource));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(_assets),const DeepCollectionEquality().hash(_embeddedResources),const DeepCollectionEquality().hash(_loadedComponents),const DeepCollectionEquality().hash(_previewCapabilities),previewCoreVersion,applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource]);
+int get hashCode => Object.hashAll([runtimeType,appConfig,colorSchemeConfig,themeWidgetConfig,themePageConfig,selectedVariant,const DeepCollectionEquality().hash(_assets),const DeepCollectionEquality().hash(_embeddedResources),const DeepCollectionEquality().hash(_loadedComponents),const DeepCollectionEquality().hash(_previewCapabilities),previewCapabilitiesOverridden,const DeepCollectionEquality().hash(_backendCapabilities),previewCoreVersion,applicationModel,theme,featureAccessModel,status,syncStatus,syncDetail,colorSchemeModel,error,errorSource]);
 
 @override
 String toString() {
-  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, previewCapabilities: $previewCapabilities, previewCoreVersion: $previewCoreVersion, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
+  return 'UpdateThemeState(appConfig: $appConfig, colorSchemeConfig: $colorSchemeConfig, themeWidgetConfig: $themeWidgetConfig, themePageConfig: $themePageConfig, selectedVariant: $selectedVariant, assets: $assets, embeddedResources: $embeddedResources, loadedComponents: $loadedComponents, previewCapabilities: $previewCapabilities, previewCapabilitiesOverridden: $previewCapabilitiesOverridden, backendCapabilities: $backendCapabilities, previewCoreVersion: $previewCoreVersion, applicationModel: $applicationModel, theme: $theme, featureAccessModel: $featureAccessModel, status: $status, syncStatus: $syncStatus, syncDetail: $syncDetail, colorSchemeModel: $colorSchemeModel, error: $error, errorSource: $errorSource)';
 }
 
 
@@ -660,7 +672,7 @@ abstract mixin class _$UpdateThemeStateCopyWith<$Res> implements $UpdateThemeSta
   factory _$UpdateThemeStateCopyWith(_UpdateThemeState value, $Res Function(_UpdateThemeState) _then) = __$UpdateThemeStateCopyWithImpl;
 @override @useResult
 $Res call({
- AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, List<String> previewCapabilities, String previewCoreVersion, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
+ AppConfig appConfig, ColorSchemeConfig colorSchemeConfig, ThemeWidgetConfig themeWidgetConfig, ThemePageConfig themePageConfig, BrightnessVariant selectedVariant, List<AssetModel> assets, List<EmbeddedResourceModel> embeddedResources, List<ThemeComponents> loadedComponents, List<String> previewCapabilities, bool previewCapabilitiesOverridden, List<String>? backendCapabilities, String previewCoreVersion, ApplicationModel? applicationModel, ThemeModel? theme, FeatureAccessModel? featureAccessModel, ThemePropertyStatus? status, SyncStatus syncStatus, SyncDetail syncDetail, ColorSchemeModel? colorSchemeModel, Exception? error, String? errorSource
 });
 
 
@@ -677,7 +689,7 @@ class __$UpdateThemeStateCopyWithImpl<$Res>
 
 /// Create a copy of UpdateThemeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? previewCapabilities = null,Object? previewCoreVersion = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appConfig = null,Object? colorSchemeConfig = null,Object? themeWidgetConfig = null,Object? themePageConfig = null,Object? selectedVariant = null,Object? assets = null,Object? embeddedResources = null,Object? loadedComponents = null,Object? previewCapabilities = null,Object? previewCapabilitiesOverridden = null,Object? backendCapabilities = freezed,Object? previewCoreVersion = null,Object? applicationModel = freezed,Object? theme = freezed,Object? featureAccessModel = freezed,Object? status = freezed,Object? syncStatus = null,Object? syncDetail = null,Object? colorSchemeModel = freezed,Object? error = freezed,Object? errorSource = freezed,}) {
   return _then(_UpdateThemeState(
 appConfig: null == appConfig ? _self.appConfig : appConfig // ignore: cast_nullable_to_non_nullable
 as AppConfig,colorSchemeConfig: null == colorSchemeConfig ? _self.colorSchemeConfig : colorSchemeConfig // ignore: cast_nullable_to_non_nullable
@@ -688,7 +700,9 @@ as BrightnessVariant,assets: null == assets ? _self._assets : assets // ignore: 
 as List<AssetModel>,embeddedResources: null == embeddedResources ? _self._embeddedResources : embeddedResources // ignore: cast_nullable_to_non_nullable
 as List<EmbeddedResourceModel>,loadedComponents: null == loadedComponents ? _self._loadedComponents : loadedComponents // ignore: cast_nullable_to_non_nullable
 as List<ThemeComponents>,previewCapabilities: null == previewCapabilities ? _self._previewCapabilities : previewCapabilities // ignore: cast_nullable_to_non_nullable
-as List<String>,previewCoreVersion: null == previewCoreVersion ? _self.previewCoreVersion : previewCoreVersion // ignore: cast_nullable_to_non_nullable
+as List<String>,previewCapabilitiesOverridden: null == previewCapabilitiesOverridden ? _self.previewCapabilitiesOverridden : previewCapabilitiesOverridden // ignore: cast_nullable_to_non_nullable
+as bool,backendCapabilities: freezed == backendCapabilities ? _self._backendCapabilities : backendCapabilities // ignore: cast_nullable_to_non_nullable
+as List<String>?,previewCoreVersion: null == previewCoreVersion ? _self.previewCoreVersion : previewCoreVersion // ignore: cast_nullable_to_non_nullable
 as String,applicationModel: freezed == applicationModel ? _self.applicationModel : applicationModel // ignore: cast_nullable_to_non_nullable
 as ApplicationModel?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as ThemeModel?,featureAccessModel: freezed == featureAccessModel ? _self.featureAccessModel : featureAccessModel // ignore: cast_nullable_to_non_nullable
@@ -10453,12 +10467,13 @@ extension PreviewCapabilitiesEventPatterns on PreviewCapabilitiesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _TogglePreviewCapability value)?  toggle,TResult Function( _SetPreviewCoreVersion value)?  setCoreVersion,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _TogglePreviewCapability value)?  toggle,TResult Function( _SetPreviewCoreVersion value)?  setCoreVersion,TResult Function( _SetBackendCapabilities value)?  backendCapabilities,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _TogglePreviewCapability() when toggle != null:
 return toggle(_that);case _SetPreviewCoreVersion() when setCoreVersion != null:
-return setCoreVersion(_that);case _:
+return setCoreVersion(_that);case _SetBackendCapabilities() when backendCapabilities != null:
+return backendCapabilities(_that);case _:
   return orElse();
 
 }
@@ -10476,12 +10491,13 @@ return setCoreVersion(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _TogglePreviewCapability value)  toggle,required TResult Function( _SetPreviewCoreVersion value)  setCoreVersion,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _TogglePreviewCapability value)  toggle,required TResult Function( _SetPreviewCoreVersion value)  setCoreVersion,required TResult Function( _SetBackendCapabilities value)  backendCapabilities,}){
 final _that = this;
 switch (_that) {
 case _TogglePreviewCapability():
 return toggle(_that);case _SetPreviewCoreVersion():
-return setCoreVersion(_that);}
+return setCoreVersion(_that);case _SetBackendCapabilities():
+return backendCapabilities(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -10495,12 +10511,13 @@ return setCoreVersion(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _TogglePreviewCapability value)?  toggle,TResult? Function( _SetPreviewCoreVersion value)?  setCoreVersion,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _TogglePreviewCapability value)?  toggle,TResult? Function( _SetPreviewCoreVersion value)?  setCoreVersion,TResult? Function( _SetBackendCapabilities value)?  backendCapabilities,}){
 final _that = this;
 switch (_that) {
 case _TogglePreviewCapability() when toggle != null:
 return toggle(_that);case _SetPreviewCoreVersion() when setCoreVersion != null:
-return setCoreVersion(_that);case _:
+return setCoreVersion(_that);case _SetBackendCapabilities() when backendCapabilities != null:
+return backendCapabilities(_that);case _:
   return null;
 
 }
@@ -10517,11 +10534,12 @@ return setCoreVersion(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String flag,  bool enabled)?  toggle,TResult Function( String version)?  setCoreVersion,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String flag,  bool enabled)?  toggle,TResult Function( String version)?  setCoreVersion,TResult Function( List<String> supported)?  backendCapabilities,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TogglePreviewCapability() when toggle != null:
 return toggle(_that.flag,_that.enabled);case _SetPreviewCoreVersion() when setCoreVersion != null:
-return setCoreVersion(_that.version);case _:
+return setCoreVersion(_that.version);case _SetBackendCapabilities() when backendCapabilities != null:
+return backendCapabilities(_that.supported);case _:
   return orElse();
 
 }
@@ -10539,11 +10557,12 @@ return setCoreVersion(_that.version);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String flag,  bool enabled)  toggle,required TResult Function( String version)  setCoreVersion,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String flag,  bool enabled)  toggle,required TResult Function( String version)  setCoreVersion,required TResult Function( List<String> supported)  backendCapabilities,}) {final _that = this;
 switch (_that) {
 case _TogglePreviewCapability():
 return toggle(_that.flag,_that.enabled);case _SetPreviewCoreVersion():
-return setCoreVersion(_that.version);}
+return setCoreVersion(_that.version);case _SetBackendCapabilities():
+return backendCapabilities(_that.supported);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -10557,11 +10576,12 @@ return setCoreVersion(_that.version);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String flag,  bool enabled)?  toggle,TResult? Function( String version)?  setCoreVersion,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String flag,  bool enabled)?  toggle,TResult? Function( String version)?  setCoreVersion,TResult? Function( List<String> supported)?  backendCapabilities,}) {final _that = this;
 switch (_that) {
 case _TogglePreviewCapability() when toggle != null:
 return toggle(_that.flag,_that.enabled);case _SetPreviewCoreVersion() when setCoreVersion != null:
-return setCoreVersion(_that.version);case _:
+return setCoreVersion(_that.version);case _SetBackendCapabilities() when backendCapabilities != null:
+return backendCapabilities(_that.supported);case _:
   return null;
 
 }
@@ -10626,6 +10646,44 @@ int get hashCode => Object.hash(runtimeType,version);
 @override
 String toString() {
   return 'PreviewCapabilitiesEvent.setCoreVersion(version: $version)';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _SetBackendCapabilities implements PreviewCapabilitiesEvent {
+  const _SetBackendCapabilities(final  List<String> supported): _supported = supported;
+  
+
+ final  List<String> _supported;
+ List<String> get supported {
+  if (_supported is EqualUnmodifiableListView) return _supported;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_supported);
+}
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetBackendCapabilities&&const DeepCollectionEquality().equals(other._supported, _supported));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_supported));
+
+@override
+String toString() {
+  return 'PreviewCapabilitiesEvent.backendCapabilities(supported: $supported)';
 }
 
 

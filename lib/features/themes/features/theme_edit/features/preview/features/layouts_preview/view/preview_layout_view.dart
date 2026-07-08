@@ -80,6 +80,7 @@ class _PreviewLayoutViewState extends State<PreviewLayoutView> {
           dartDefineOverrides: overrides,
           defaultWebBundleId: application?.androidPlatformId ?? application?.iosPlatformId,
           featureAccess: featureAccess,
+          onBackendCapabilities: (supported) => cubit.add(PreviewCapabilitiesEvent.backendCapabilities(supported)),
           themeMode: themeMode,
           themeSettings: cubitState.themeSettings,
           isFrameVisible: widget.frameVisibility,
