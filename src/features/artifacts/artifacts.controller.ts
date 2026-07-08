@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
@@ -20,6 +19,7 @@ import {
 } from '../../common/interceptors/deco';
 import { CloudFile } from '../../common/interceptors/cloud-functions-multipart.interceptor';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../auth/current-user.decorator';
 
 @Controller('applications/:applicationId/themes/:themeId/artifacts')
 @ApiBearerAuth()
@@ -33,14 +33,14 @@ export class ArtifactsController {
   @ApiQuery({ name: 'urlTtlSec', required: false, type: Number })
   @ApiQuery({ name: 'kind', required: false, type: String })
   list(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
     @Query('includeUrl') includeUrl?: string,
     @Query('urlTtlSec') urlTtlSec?: string,
     @Query('kind') kind?: string,
   ) {
-    const uid = req.user.uid as string;
+    const uid = user.uid;
     return this.service.findAll(uid, appId, themeId, {
       includeUrl: includeUrl === 'true',
       urlTtlSec: urlTtlSec ? Number(urlTtlSec) : undefined,
@@ -53,12 +53,12 @@ export class ArtifactsController {
   @ApiQuery({ name: 'includeUrl', required: false, type: Boolean })
   @ApiQuery({ name: 'urlTtlSec', required: false, type: Number })
   getOne(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Query('includeUrl') includeUrl?: string,
     @Query('urlTtlSec') urlTtlSec?: string,
   ) {
-    const uid = req.user.uid as string;
+    const uid = user.uid;
     return this.service.findOne(uid, id, {
       includeUrl: includeUrl === 'true',
       urlTtlSec: urlTtlSec ? Number(urlTtlSec) : undefined,
@@ -68,12 +68,12 @@ export class ArtifactsController {
   /** Create from known storagePath (rarely used; prefer upload) */
   @Post()
   create(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
     @Body() dto: CreateArtifactDto,
   ) {
-    const uid = req.user.uid as string;
+    const uid = user.uid;
     dto.applicationId = appId;
     dto.themeId = themeId;
     return this.service.create(uid, dto);
@@ -83,13 +83,13 @@ export class ArtifactsController {
   @Post('upload')
   @CloudFileUpload('file')
   async upload(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
     @UploadedCloudFile() file: CloudFile,
     @CloudFormFields() fields: Record<string, string>,
   ) {
-    const uid = req.user.uid as string;
+    const uid = user.uid;
     if (!file) throw new Error('file is required');
     const kind = fields['kind'] || 'generic';
 
@@ -108,18 +108,18 @@ export class ArtifactsController {
   /** Update basic meta (rarely needed) */
   @Post(':id')
   update(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() dto: UpdateArtifactDto,
   ) {
-    const uid = req.user.uid as string;
+    const uid = user.uid;
     return this.service.update(uid, id, dto);
   }
 
   /** Delete artifact + file + decrement refs on sources */
   @Delete(':id')
-  remove(@Req() req: any, @Param('id') id: string) {
-    const uid = req.user.uid as string;
+  remove(@CurrentUser() user: Principal, @Param('id') id: string) {
+    const uid = user.uid;
     return this.service.remove(uid, id);
   }
 }

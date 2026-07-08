@@ -5,7 +5,6 @@ import {
   Param,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiQuery } from '@nestjs/swagger';
@@ -15,6 +14,7 @@ import {
   UpsertSplashAssetSchema,
 } from './dto/upsert-splash-asset.dto';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../../../auth/current-user.decorator';
 import {
   CloudAnyUpload,
   CloudFormFields,
@@ -35,14 +35,14 @@ export class SplashAssetsController {
   @ApiQuery({ name: 'urlTtlSec', required: false, type: Number })
   @ApiOkResponse({ type: GetSplashAssetDto })
   async get(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
     @Query('withValidation') withValidation?: string,
     @Query('includeUrl') includeUrl?: string,
     @Query('urlTtlSec') urlTtlSec?: string,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
 
     const raw = await this.service.get(appId, themeId, {
       withValidation: withValidation === 'true',
@@ -71,18 +71,21 @@ export class SplashAssetsController {
   @Put('upload-batch')
   @CloudAnyUpload()
   async upsertWithUploadBatch(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
     @UploadedAnyFiles()
     files: Record<string, CloudFile[] | CloudFile | undefined>,
     @CloudFormFields() fields: Record<string, string>,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     console.log('files keys:', Object.keys(files ?? {}), 'fields:', fields);
 
     const targetsMap = fields['targets']
-      ? (JSON.parse(fields['targets']) as Record<string, 'splash' | 'android12Splash'>)
+      ? (JSON.parse(fields['targets']) as Record<
+          string,
+          'splash' | 'android12Splash'
+        >)
       : {};
     const dtoRaw = fields['dto'];
     const dto: UpsertSplashAssetDto = dtoRaw
@@ -101,11 +104,11 @@ export class SplashAssetsController {
   /** Delete config (optionally cleaning up artifacts in service) */
   @Delete()
   remove(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') appId: string,
     @Param('themeId') themeId: string,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     return this.service.remove(uid, appId, themeId);
   }
 

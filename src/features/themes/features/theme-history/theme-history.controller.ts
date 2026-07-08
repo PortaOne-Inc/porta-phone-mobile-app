@@ -6,14 +6,18 @@ import {
   Patch,
   Post,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../../../auth/current-user.decorator';
 import { Roles } from '../../../auth/guard/roles.decorator';
 import { ThemeHistoryService } from './theme-history.service';
-import { CreateThemeHistoryDto, ListThemeHistoryQueryDto, PatchThemeHistoryDto } from './dto/theme-history.dto';
+import {
+  CreateThemeHistoryDto,
+  ListThemeHistoryQueryDto,
+  PatchThemeHistoryDto,
+} from './dto/theme-history.dto';
 
 @ApiTags('theme-history')
 @Controller('applications/:applicationId/themes/:themeId/history')
@@ -28,12 +32,12 @@ export class ThemeHistoryController {
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() dto: CreateThemeHistoryDto,
-    @Req() req: any,
+    @CurrentUser() user: Principal,
   ) {
     return this.service.createSnapshot({
       themeId,
       applicationId,
-      changedBy: req.user?.uid ?? '',
+      changedBy: user.uid,
       tag: dto.tag,
       description: dto.description,
     });

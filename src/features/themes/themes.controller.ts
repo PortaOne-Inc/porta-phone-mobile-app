@@ -9,15 +9,20 @@ import {
   HttpException,
   HttpStatus,
   UseGuards,
-  Req,
   Query,
   Logger,
 } from '@nestjs/common';
 import { ThemesService } from './themes.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../auth/current-user.decorator';
 import { Roles } from '../auth/guard/roles.decorator';
-import { CreateThemeDto, UpdateThemeDto, CopyThemeDto, CopyThemeToApplicationDto } from './dto/themes.dto';
+import {
+  CreateThemeDto,
+  UpdateThemeDto,
+  CopyThemeDto,
+  CopyThemeToApplicationDto,
+} from './dto/themes.dto';
 
 @ApiTags('themes')
 @Controller('applications/:applicationId/themes')
@@ -31,33 +36,32 @@ export class ThemesController {
 
   @Get()
   async getThemesByApplicationId(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     this.logger.debug({
       msg: 'getThemesByApplicationId: incoming',
       uid,
       applicationId,
-      headersAuth: req.headers['authorization'] ? 'present' : 'missing',
     });
 
     return this.themesService.getThemesByApplicationId(applicationId, uid);
   }
 
   @Get('all')
-  async getAllThemes(@Req() req: any) {
-    const uid: string = req.user?.uid ?? '';
+  async getAllThemes(@CurrentUser() user: Principal) {
+    const uid = user.uid;
     return this.themesService.getAllThemes(uid);
   }
 
   @Get(':themeId/legacy')
   async getAggregatedLegacyThemeById(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     const theme = await this.themesService.getAggregatedLegacyThemeById(
       applicationId,
       themeId,
@@ -74,11 +78,11 @@ export class ThemesController {
 
   @Get(':themeId')
   async getThemeById(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     const theme = await this.themesService.getThemeById(
       applicationId,
       themeId,
@@ -95,12 +99,16 @@ export class ThemesController {
 
   @Post()
   async createTheme(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Body() dto: CreateThemeDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
-    const newTheme = await this.themesService.createTheme(applicationId, dto, uid);
+    const uid = user.uid;
+    const newTheme = await this.themesService.createTheme(
+      applicationId,
+      dto,
+      uid,
+    );
     if (!newTheme) {
       throw new HttpException('Failed to create theme', HttpStatus.BAD_REQUEST);
     }
@@ -109,12 +117,12 @@ export class ThemesController {
 
   @Patch(':themeId')
   async patchTheme(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() updateThemeDto: UpdateThemeDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     return this.themesService.patchTheme(
       applicationId,
       themeId,
@@ -125,12 +133,12 @@ export class ThemesController {
 
   @Delete(':themeId')
   async deleteTheme(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Query('purgeOrphanAssets') purgeOrphanAssets?: string,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     await this.themesService.deleteTheme(uid, applicationId, themeId, {
       purgeOrphanAssets: purgeOrphanAssets === 'true',
     });
@@ -138,12 +146,12 @@ export class ThemesController {
 
   @Post(':themeId/copy-to-application')
   async copyThemeToApplication(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() dto: CopyThemeToApplicationDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     const cloned = await this.themesService.copyThemeToApplication(
       uid,
       applicationId,
@@ -156,19 +164,22 @@ export class ThemesController {
       },
     );
     if (!cloned) {
-      throw new HttpException('Failed to copy theme to application', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'Failed to copy theme to application',
+        HttpStatus.BAD_REQUEST,
+      );
     }
     return cloned;
   }
 
   @Post(':themeId/copy')
   async copyTheme(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() overrides: CopyThemeDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
+    const uid = user.uid;
     const cloned = await this.themesService.copyTheme(
       applicationId,
       themeId,

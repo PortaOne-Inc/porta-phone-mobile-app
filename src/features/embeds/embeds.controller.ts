@@ -7,11 +7,11 @@ import {
   Patch,
   Post,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { EmbedsService } from './embeds.service';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../auth/current-user.decorator';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { CreateEmbeddedDto } from './dto/create-embed.dto';
 import { UpdateEmbeddedDto } from './dto/update-embed.dto';
@@ -24,65 +24,65 @@ export class EmbedsController {
 
   @Post()
   async create(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Body() dto: CreateEmbeddedDto,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     dto.applicationId = applicationId;
     return this.service.create(uid, dto);
   }
 
   @Get()
   findAll(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Query('limit') _limit?: string,
     @Query('cursor') _cursor?: string,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     return this.service.findAll(uid, applicationId);
   }
 
   @Get(':id')
-  findOne(@Req() req: any, @Param('id') id: string) {
-    const uid: string = req.user.uid;
+  findOne(@CurrentUser() user: Principal, @Param('id') id: string) {
+    const uid = user.uid;
     return this.service.findOne(uid, id);
   }
 
   @Patch(':id')
   update(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() dto: UpdateEmbeddedDto,
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     return this.service.update(uid, id, dto);
   }
 
   @Delete(':id')
-  remove(@Req() req: any, @Param('id') id: string) {
-    const uid: string = req.user.uid;
+  remove(@CurrentUser() user: Principal, @Param('id') id: string) {
+    const uid = user.uid;
     return this.service.remove(uid, id);
   }
 
   @Post(':id/link')
   link(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() body: { type: string; id: string },
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     return this.service.link(uid, id, body);
   }
 
   @Post(':id/unlink')
   unlink(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() body: { type: string; id: string },
   ) {
-    const uid: string = req.user.uid;
+    const uid = user.uid;
     return this.service.unlink(uid, id, body);
   }
 }

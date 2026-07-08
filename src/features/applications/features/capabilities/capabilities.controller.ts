@@ -6,11 +6,11 @@ import {
   HttpStatus,
   Param,
   Put,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../../../auth/current-user.decorator';
 import { Roles } from '../../../auth/guard/roles.decorator';
 import { ApplicationCapabilitiesService } from './capabilities.service';
 
@@ -31,10 +31,10 @@ export class ApplicationCapabilitiesController {
   @HttpCode(HttpStatus.OK)
   async update(
     @Param('applicationId') applicationId: string,
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Body() body: unknown,
   ) {
-    const uid: string = req.user?.uid ?? 'unknown';
+    const uid = user.uid;
     return this.svc.update(applicationId, body, uid);
   }
 }

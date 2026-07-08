@@ -5,13 +5,13 @@ import {
   Get,
   Param,
   Put,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { Roles } from '../auth/guard/roles.decorator';
+import { CurrentUser, Principal } from '../auth/current-user.decorator';
 import { UserDto } from './dto/user.dto';
 
 @ApiTags('users')
@@ -46,8 +46,9 @@ export class UsersController {
   }
 
   @Get('profile/id')
-  async getUserIdFromToken(@Req() request): Promise<{ userId: string }> {
-    const userId = request.user.uid;
-    return { userId };
+  async getUserIdFromToken(
+    @CurrentUser() user: Principal,
+  ): Promise<{ userId: string }> {
+    return { userId: user.uid };
   }
 }

@@ -10,12 +10,12 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ApplicationsService } from './applications.service';
 import { Application } from './entities/application';
 import { Roles } from '../auth/guard/roles.decorator';
+import { CurrentUser, Principal } from '../auth/current-user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 import { ThemesService } from '../themes/themes.service';
@@ -37,12 +37,11 @@ export class ApplicationsController {
 
   @Post()
   async createApplication(
-    @Req() request,
+    @CurrentUser() user: Principal,
     @Body() applicationDto: Application,
   ): Promise<Application | null> {
-    const userId = request.user.uid;
     const newApplication = await this.applicationsService.createApplication(
-      userId,
+      user.uid,
       applicationDto,
     );
     if (!newApplication) {
@@ -56,10 +55,12 @@ export class ApplicationsController {
 
   @Get()
   @Roles('admin', 'user')
-  async listApplications(@Req() request): Promise<Application[] | null> {
-    const userId = request.user.uid;
-    const applications =
-      await this.applicationsService.listApplications(userId);
+  async listApplications(
+    @CurrentUser() user: Principal,
+  ): Promise<Application[] | null> {
+    const applications = await this.applicationsService.listApplications(
+      user.uid,
+    );
     if (!applications) {
       throw new HttpException(
         'Failed to list applications',
@@ -101,16 +102,15 @@ export class ApplicationsController {
   @Delete(':id')
   @Roles('admin', 'user')
   async removeApplication(
-    @Req() req,
+    @CurrentUser() user: Principal,
     @Param('id') id: string,
   ): Promise<void | null> {
-    const uid: string = req.user?.uid ?? '';
     const themes = await this.themesService
-      .getThemesByApplicationId(id, uid)
+      .getThemesByApplicationId(id, user.uid)
       .catch(() => []);
     for (const t of themes ?? []) {
       await this.themesService
-        .deleteTheme(uid, id, (t as any).id, { purgeOrphanAssets: true })
+        .deleteTheme(user.uid, id, (t as any).id, { purgeOrphanAssets: true })
         .catch(() => undefined);
     }
 

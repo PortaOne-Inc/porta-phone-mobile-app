@@ -1,15 +1,8 @@
-import {
-  Body,
-  Controller,
-  Param,
-  Post,
-  Req,
-  UseGuards,
-  BadRequestException,
-} from '@nestjs/common';
+import { Body, Controller, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
 import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
+import { CurrentUser, Principal } from '../../../auth/current-user.decorator';
 import { Roles } from '../../../auth/guard/roles.decorator';
 import { GenerateThemesService } from './generate.service';
 import { GenerateThemeDto } from './dto/create-generate.dto';
@@ -27,27 +20,22 @@ export class GenerateThemesController {
   @Post()
   @Throttle({ generate: { limit: 5, ttl: 60_000 } })
   async generate(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Body() dto: GenerateThemeDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
-    if (!uid) throw new BadRequestException('Missing user uid');
-
     const payload: GenerateThemeDto = { ...dto };
-    return this.gen.generateAndCreate(uid, applicationId, payload);
+    return this.gen.generateAndCreate(user.uid, applicationId, payload);
   }
 
   @Post(':themeId/generate/nudge')
   @Throttle({ nudge: { limit: 10, ttl: 60_000 } })
   async nudge(
-    @Req() req: any,
+    @CurrentUser() user: Principal,
     @Param('applicationId') applicationId: string,
     @Param('themeId') themeId: string,
     @Body() dto: NudgeThemeDto,
   ) {
-    const uid: string = req.user?.uid ?? '';
-    if (!uid) throw new BadRequestException('Missing user uid');
-    return this.gen.nudgeAndUpdate(uid, applicationId, themeId, dto);
+    return this.gen.nudgeAndUpdate(user.uid, applicationId, themeId, dto);
   }
 }
