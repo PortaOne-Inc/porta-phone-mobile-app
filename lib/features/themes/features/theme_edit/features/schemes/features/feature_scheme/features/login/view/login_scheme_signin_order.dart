@@ -20,14 +20,15 @@ class LoginSchemeSigninOrder extends StatefulWidget {
 
 class _LoginSchemeSigninOrderState extends State<LoginSchemeSigninOrder> {
   /// Known sign-in type names, matching the phone `LoginType` enum.
-  static const _knownTypes = ['passwordSignin', 'otpSignin', 'signup'];
+  static const _knownTypes = ['passwordSignin', 'otpSignin', 'signup', 'qrSignin'];
 
-  static const _labels = {'passwordSignin': 'Password', 'otpSignin': 'OTP', 'signup': 'Sign up'};
+  static const _labels = {'passwordSignin': 'Password', 'otpSignin': 'OTP', 'signup': 'Sign up', 'qrSignin': 'QR code'};
 
   static const _descriptions = {
     'passwordSignin': 'Username and password sign-in',
     'otpSignin': 'One-time code sign-in',
     'signup': 'Demo / self sign-up',
+    'qrSignin': 'QR code credentials sign-in',
   };
 
   late List<String> _order;

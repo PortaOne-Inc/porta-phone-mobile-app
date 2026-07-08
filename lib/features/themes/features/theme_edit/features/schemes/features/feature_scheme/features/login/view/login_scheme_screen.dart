@@ -4,6 +4,7 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 
 import 'login_scheme_common.dart';
+import 'login_scheme_qr.dart';
 import 'login_scheme_signin_order.dart';
 import 'login_scheme_welcome.dart';
 
@@ -22,6 +23,7 @@ class LoginSchemeScreen extends StatelessWidget {
     final tabs = <Tab>[
       const Tab(text: 'Base login config'),
       if (showNativeTab) const Tab(text: 'Sign-in tabs'),
+      if (showNativeTab) const Tab(text: 'QR sign-in'),
       if (showNativeTab) const Tab(text: 'Native welcome screen'),
     ];
 
@@ -36,6 +38,11 @@ class LoginSchemeScreen extends StatelessWidget {
         LoginSchemeSigninOrder(
           signinOrder: sourceAppConfigLogin.signinOrder,
           callback: (it) => callback(sourceAppConfigLogin.copyWith(signinOrder: it)),
+        ),
+      if (showNativeTab)
+        LoginSchemeQr(
+          config: sourceAppConfigLogin.qr,
+          callback: (it) => callback(sourceAppConfigLogin.copyWith(qr: it)),
         ),
       if (showNativeTab)
         LoginSchemeWelcome(
