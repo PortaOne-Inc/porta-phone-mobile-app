@@ -9,6 +9,7 @@ import { Application } from './entities/application';
 import { Theme } from '../themes/entities/theme';
 import { UpdateThemeBindingsDto } from './dto/applications.dto';
 import { OwnershipService } from '../../common/data/ownership.service';
+import { ThemesService } from '../themes/themes.service';
 
 type Env = 'dev' | 'stage' | 'prod';
 
@@ -20,20 +21,17 @@ export class ApplicationsService {
     @InjectRepository(Theme)
     private readonly themeRepository: BaseFirestoreRepository<Theme>,
     private readonly ownership: OwnershipService,
+    private readonly themesService: ThemesService,
   ) {}
 
   async createApplication(
     userId: string,
     applicationDto: Application,
-  ): Promise<Application | null> {
-    try {
-      return this.applicationRepository.create({
-        ...applicationDto,
-        user: userId,
-      });
-    } catch {
-      return null;
-    }
+  ): Promise<Application> {
+    return this.applicationRepository.create({
+      ...applicationDto,
+      user: userId,
+    });
   }
 
   async findApplicationById(uid: string, id: string): Promise<Application> {
@@ -44,36 +42,36 @@ export class ApplicationsService {
     uid: string,
     id: string,
     applicationDto: Application,
-  ): Promise<Application | null> {
+  ): Promise<Application> {
     const application = await this.ownership.assertOwnsApplication(uid, id);
     // id and user (the owner) are immutable through this endpoint.
     const { id: _id, user: _user, ...updatable } = applicationDto;
-    try {
-      Object.assign(application, updatable);
-      await this.applicationRepository.update(application);
-      return application;
-    } catch {
-      return null;
-    }
+    Object.assign(application, updatable);
+    await this.applicationRepository.update(application);
+    return application;
   }
 
-  async removeApplication(uid: string, id: string): Promise<void | null> {
+  /**
+   * Deletes the application together with its themes. Theme cleanup is
+   * best-effort: a theme that fails to delete must not leave the
+   * application itself undeletable.
+   */
+  async removeApplication(uid: string, id: string): Promise<void> {
     await this.ownership.assertOwnsApplication(uid, id);
-    try {
-      await this.applicationRepository.delete(id);
-    } catch {
-      return null;
+    const themes = await this.themeRepository
+      .whereEqualTo('applicationId', id)
+      .find()
+      .catch(() => [] as Theme[]);
+    for (const theme of themes) {
+      await this.themesService
+        .deleteTheme(uid, id, theme.id, { purgeOrphanAssets: true })
+        .catch(() => undefined);
     }
+    await this.applicationRepository.delete(id);
   }
 
-  async listApplications(userId: string): Promise<Application[] | null> {
-    try {
-      return await this.applicationRepository
-        .whereEqualTo('user', userId)
-        .find();
-    } catch {
-      return null;
-    }
+  async listApplications(userId: string): Promise<Application[]> {
+    return this.applicationRepository.whereEqualTo('user', userId).find();
   }
 
   async getApplicationEnvironment(
@@ -88,18 +86,14 @@ export class ApplicationsService {
     uid: string,
     id: string,
     environmentData: Record<string, string | boolean | number>,
-  ): Promise<Application | null> {
+  ): Promise<Application> {
     const application = await this.ownership.assertOwnsApplication(uid, id);
-    try {
-      application.environment = {
-        ...application.environment,
-        ...environmentData,
-      };
-      await this.applicationRepository.update(application);
-      return application;
-    } catch {
-      return null;
-    }
+    application.environment = {
+      ...application.environment,
+      ...environmentData,
+    };
+    await this.applicationRepository.update(application);
+    return application;
   }
 
   async updateThemeBindings(

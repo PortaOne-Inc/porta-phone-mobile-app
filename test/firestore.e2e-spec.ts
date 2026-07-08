@@ -42,11 +42,6 @@ describe('Firestore emulator smoke', () => {
     const colorSchemeRepo = getRepository(ColorScheme);
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
 
-    applications = new ApplicationsService(
-      appRepo as any,
-      themeRepo as any,
-      ownership,
-    );
     colorSchemes = new ColorSchemesService(colorSchemeRepo as any, ownership);
     // Only repository-backed methods are exercised, so the asset/artifact/
     // storage collaborators are not needed here.
@@ -57,6 +52,12 @@ describe('Firestore emulator smoke', () => {
       {} as any,
       {} as any,
       ownership,
+    );
+    applications = new ApplicationsService(
+      appRepo as any,
+      themeRepo as any,
+      ownership,
+      themes,
     );
   });
 

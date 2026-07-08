@@ -19,16 +19,19 @@ import { InMemoryRepo } from '../../testing/in-memory-repo';
 describe('ApplicationsService', () => {
   let appRepo: InMemoryRepo<Application>;
   let themeRepo: InMemoryRepo<Theme>;
+  let themesService: { deleteTheme: jest.Mock };
   let service: ApplicationsService;
 
   beforeEach(() => {
     appRepo = new InMemoryRepo<Application>();
     themeRepo = new InMemoryRepo<Theme>();
+    themesService = { deleteTheme: jest.fn().mockResolvedValue(undefined) };
     const ownership = new OwnershipService(appRepo as any, themeRepo as any);
     service = new ApplicationsService(
       appRepo as any,
       themeRepo as any,
       ownership,
+      themesService as any,
     );
   });
 
@@ -44,7 +47,7 @@ describe('ApplicationsService', () => {
       expect(appRepo.docs.get(result!.id)!.user).toBe('user-1');
     });
 
-    it('rejects on repository failure (the create promise is returned without await, so the catch never fires)', async () => {
+    it('propagates repository failures', async () => {
       jest.spyOn(appRepo, 'create').mockRejectedValue(new Error('boom'));
 
       await expect(
@@ -133,13 +136,13 @@ describe('ApplicationsService', () => {
       expect(result!.name).toBe('stale');
     });
 
-    it('swallows repository errors and returns null', async () => {
+    it('propagates repository failures', async () => {
       appRepo.seed({ id: 'app-1', user: 'u' } as Application);
       jest.spyOn(appRepo, 'update').mockRejectedValue(new Error('boom'));
 
-      expect(
-        await service.updateApplication('u', 'app-1', {} as Application),
-      ).toBeNull();
+      await expect(
+        service.updateApplication('u', 'app-1', {} as Application),
+      ).rejects.toThrow('boom');
     });
   });
 
@@ -161,11 +164,44 @@ describe('ApplicationsService', () => {
       expect(appRepo.docs.has('app-1')).toBe(true);
     });
 
-    it('swallows repository errors and returns null', async () => {
+    it('propagates repository failures', async () => {
       appRepo.seed({ id: 'app-1', user: 'u' } as Application);
       jest.spyOn(appRepo, 'delete').mockRejectedValue(new Error('boom'));
 
-      expect(await service.removeApplication('u', 'app-1')).toBeNull();
+      await expect(service.removeApplication('u', 'app-1')).rejects.toThrow(
+        'boom',
+      );
+    });
+
+    it('cascade-deletes the themes of the application', async () => {
+      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      themeRepo.seed(
+        { id: 't1', applicationId: 'app-1' } as Theme,
+        { id: 't2', applicationId: 'app-1' } as Theme,
+        { id: 't3', applicationId: 'other-app' } as Theme,
+      );
+
+      await service.removeApplication('user-1', 'app-1');
+
+      expect(
+        themesService.deleteTheme.mock.calls.map((c) => c[2]).sort(),
+      ).toEqual(['t1', 't2']);
+      expect(
+        themesService.deleteTheme.mock.calls.every(
+          (c) => c[0] === 'user-1' && c[1] === 'app-1',
+        ),
+      ).toBe(true);
+      expect(appRepo.docs.has('app-1')).toBe(false);
+    });
+
+    it('still deletes the application when a theme fails to delete', async () => {
+      appRepo.seed({ id: 'app-1', user: 'user-1' } as Application);
+      themeRepo.seed({ id: 't1', applicationId: 'app-1' } as Theme);
+      themesService.deleteTheme.mockRejectedValue(new Error('stuck theme'));
+
+      await service.removeApplication('user-1', 'app-1');
+
+      expect(appRepo.docs.has('app-1')).toBe(false);
     });
   });
 

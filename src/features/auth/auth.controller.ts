@@ -1,17 +1,11 @@
-import {
-  Controller,
-  Post,
-  Body,
-  UseGuards,
-  Req,
-  BadRequestException,
-} from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RegisterDto } from './dto/register.dto';
 import { AuthResponseDto, ErrorResponseDto } from './dto/auth-response.dto';
 import { LoginDto } from './dto/login.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { FirebaseAuthGuard } from './guard/firebase-auth.guard';
+import { CurrentUser, Principal } from './current-user.decorator';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -58,7 +52,8 @@ export class AuthController {
   }
 
   @Post('generate-token')
-  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
+  @UseGuards(FirebaseAuthGuard)
   @ApiResponse({
     status: 200,
     description: 'Token generation successful',
@@ -69,14 +64,8 @@ export class AuthController {
     description: 'Token generation failed',
     type: ErrorResponseDto,
   })
-  async generateToken(@Req() request) {
-    const uid = request.user.uid;
-
-    if (!uid) {
-      throw new BadRequestException('Invalid UID provided');
-    }
-
-    const token = await this.authService.generateIdToken(uid);
+  async generateToken(@CurrentUser() user: Principal) {
+    const token = await this.authService.generateIdToken(user.uid);
     return { status: 'success', token };
   }
 }

@@ -5,11 +5,11 @@ import {
   Delete,
   Param,
   Body,
-  Res,
+  StreamableFile,
   UseGuards,
 } from '@nestjs/common';
+import type { Readable } from 'stream';
 import { TranslationsService } from './translations.service';
-import { Response } from 'express';
 import { Translation } from './entities/translation';
 import {
   ApiTags,
@@ -38,10 +38,11 @@ export class TranslationsController {
   // Intentionally unauthenticated: the phone build pipeline downloads the
   // ARB bundle server-to-server without user credentials.
   @Get('compose-arb/:appId')
-  async composeArb(@Param('appId') appId: string, @Res() res: Response) {
+  async composeArb(@Param('appId') appId: string): Promise<StreamableFile> {
     const result = await this.translationsService.composeArb(appId);
-    res.setHeader('Content-Type', 'application/zip');
-    result.pipe(res);
+    return new StreamableFile(result as Readable, {
+      type: 'application/zip',
+    });
   }
 
   @ApiOperation({ summary: 'Retrieve all translations from Localizely' })

@@ -3,8 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpException,
-  HttpStatus,
   Param,
   Patch,
   Post,
@@ -18,7 +16,6 @@ import { Roles } from '../auth/guard/roles.decorator';
 import { CurrentUser, Principal } from '../auth/current-user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
-import { ThemesService } from '../themes/themes.service';
 import {
   ResolveThemeQueryDto,
   UpdateThemeBindingsDto,
@@ -30,51 +27,29 @@ import {
 @UseGuards(FirebaseAuthGuard)
 @Roles('admin', 'user')
 export class ApplicationsController {
-  constructor(
-    private readonly applicationsService: ApplicationsService,
-    private readonly themesService: ThemesService,
-  ) {}
+  constructor(private readonly applicationsService: ApplicationsService) {}
 
   @Post()
   async createApplication(
     @CurrentUser() user: Principal,
     @Body() applicationDto: Application,
-  ): Promise<Application | null> {
-    const newApplication = await this.applicationsService.createApplication(
-      user.uid,
-      applicationDto,
-    );
-    if (!newApplication) {
-      throw new HttpException(
-        'Failed to create application',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-    return newApplication;
+  ): Promise<Application> {
+    return this.applicationsService.createApplication(user.uid, applicationDto);
   }
 
   @Get()
   @Roles('admin', 'user')
   async listApplications(
     @CurrentUser() user: Principal,
-  ): Promise<Application[] | null> {
-    const applications = await this.applicationsService.listApplications(
-      user.uid,
-    );
-    if (!applications) {
-      throw new HttpException(
-        'Failed to list applications',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-    return applications;
+  ): Promise<Application[]> {
+    return this.applicationsService.listApplications(user.uid);
   }
 
   @Get(':id')
   async findApplicationById(
     @CurrentUser() user: Principal,
     @Param('id') id: string,
-  ): Promise<Application | null> {
+  ): Promise<Application> {
     return this.applicationsService.findApplicationById(user.uid, id);
   }
 
@@ -83,19 +58,12 @@ export class ApplicationsController {
     @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() applicationDto: Application,
-  ): Promise<Application | null> {
-    const updatedApplication = await this.applicationsService.updateApplication(
+  ): Promise<Application> {
+    return this.applicationsService.updateApplication(
       user.uid,
       id,
       applicationDto,
     );
-    if (!updatedApplication) {
-      throw new HttpException(
-        'Failed to update application',
-        HttpStatus.NOT_FOUND,
-      );
-    }
-    return updatedApplication;
   }
 
   @Delete(':id')
@@ -103,16 +71,7 @@ export class ApplicationsController {
   async removeApplication(
     @CurrentUser() user: Principal,
     @Param('id') id: string,
-  ): Promise<void | null> {
-    const themes = await this.themesService
-      .getThemesByApplicationId(id, user.uid)
-      .catch(() => []);
-    for (const t of themes ?? []) {
-      await this.themesService
-        .deleteTheme(user.uid, id, (t as any).id, { purgeOrphanAssets: true })
-        .catch(() => undefined);
-    }
-
+  ): Promise<void> {
     await this.applicationsService.removeApplication(user.uid, id);
   }
 
@@ -120,7 +79,7 @@ export class ApplicationsController {
   async getApplicationEnvironment(
     @CurrentUser() user: Principal,
     @Param('id') id: string,
-  ): Promise<Record<string, string | boolean | number> | null> {
+  ): Promise<Record<string, string | boolean | number>> {
     return this.applicationsService.getApplicationEnvironment(user.uid, id);
   }
 
@@ -129,20 +88,12 @@ export class ApplicationsController {
     @CurrentUser() user: Principal,
     @Param('id') id: string,
     @Body() environmentData: Record<string, string | boolean | number>,
-  ): Promise<Application | null> {
-    const updatedApplication =
-      await this.applicationsService.updateApplicationEnvironment(
-        user.uid,
-        id,
-        environmentData,
-      );
-    if (!updatedApplication) {
-      throw new HttpException(
-        'Failed to update environment',
-        HttpStatus.NOT_FOUND,
-      );
-    }
-    return updatedApplication;
+  ): Promise<Application> {
+    return this.applicationsService.updateApplicationEnvironment(
+      user.uid,
+      id,
+      environmentData,
+    );
   }
 
   @Patch(':id/theme-bindings')
