@@ -6,6 +6,7 @@ import {
   Param,
   Body,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { TranslationsService } from './translations.service';
 import { Response } from 'express';
@@ -15,8 +16,10 @@ import {
   ApiOperation,
   ApiParam,
   ApiBody,
+  ApiBearerAuth,
   ApiResponse,
 } from '@nestjs/swagger';
+import { FirebaseAuthGuard } from '../auth/guard/firebase-auth.guard';
 
 @ApiTags('Translations')
 @Controller('translations')
@@ -32,6 +35,8 @@ export class TranslationsController {
     status: 200,
     description: 'Returns a zip file containing ARB translations',
   })
+  // Intentionally unauthenticated: the phone build pipeline downloads the
+  // ARB bundle server-to-server without user credentials.
   @Get('compose-arb/:appId')
   async composeArb(@Param('appId') appId: string, @Res() res: Response) {
     const result = await this.translationsService.composeArb(appId);
@@ -46,6 +51,8 @@ export class TranslationsController {
     type: [Translation],
   })
   @Get()
+  @ApiBearerAuth()
+  @UseGuards(FirebaseAuthGuard)
   async getTranslations(): Promise<Translation[]> {
     return this.translationsService.getTranslations();
   }
@@ -58,6 +65,8 @@ export class TranslationsController {
     type: [Translation],
   })
   @Get('overrides/:appId')
+  @ApiBearerAuth()
+  @UseGuards(FirebaseAuthGuard)
   async getOverridesByAppId(
     @Param('appId') appId: string,
   ): Promise<Translation[]> {
@@ -69,6 +78,8 @@ export class TranslationsController {
   @ApiBody({ type: Translation, description: 'Translation override data' })
   @ApiResponse({ status: 201, description: 'Override successfully set' })
   @Post('overrides/:appId')
+  @ApiBearerAuth()
+  @UseGuards(FirebaseAuthGuard)
   async setOverrideByAppId(
     @Param('appId') appId: string,
     @Body() translation: Translation,
@@ -81,6 +92,8 @@ export class TranslationsController {
   @ApiBody({ type: Translation, description: 'Translation override to delete' })
   @ApiResponse({ status: 200, description: 'Override successfully deleted' })
   @Delete('overrides/:appId')
+  @ApiBearerAuth()
+  @UseGuards(FirebaseAuthGuard)
   async deleteOverrideByAppId(
     @Param('appId') appId: string,
     @Body() translation: Translation,

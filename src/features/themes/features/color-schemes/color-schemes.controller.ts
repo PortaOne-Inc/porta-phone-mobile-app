@@ -1,12 +1,14 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { ColorSchemesService } from './color-schemes.service';
 import { UpsertColorSchemeDto } from './dto/upsert-color-scheme.dto';
+import { FirebaseAuthGuard } from '../../../auth/guard/firebase-auth.guard';
 
 type Variant = 'light' | 'dark';
 
 @Controller('applications/:applicationId/themes/:themeId/color-schemes')
 @ApiBearerAuth()
+@UseGuards(FirebaseAuthGuard)
 export class ColorSchemesController {
   constructor(private readonly service: ColorSchemesService) {}
 
