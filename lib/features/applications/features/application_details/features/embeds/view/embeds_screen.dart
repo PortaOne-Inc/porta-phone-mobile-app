@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:domain/domain.dart';
 import 'package:webtrit_configurator/app/route/app_route_consts.dart';
+import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/features/auth/auth.dart';
 import '../bloc/embeds_cubit.dart';
 
@@ -632,8 +633,12 @@ class _EmbedEditorDialogState extends State<_EmbedEditorDialog> {
               children: [
                 TextFormField(
                   controller: _uriCtrl,
-                  decoration: const InputDecoration(labelText: 'URI'),
-                  validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+                  decoration: const InputDecoration(
+                    labelText: 'URI',
+                    hintText: 'https://example.com/resource',
+                  ),
+                  keyboardType: TextInputType.url,
+                  validator: FormValidators.httpsUri,
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<EmbeddedResourceModelType>(

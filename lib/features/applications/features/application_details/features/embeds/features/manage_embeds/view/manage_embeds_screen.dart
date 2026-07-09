@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/domain.dart';
+import 'package:webtrit_configurator/core/core.dart';
 
 import '../bloc/manage_embeds_cubit.dart';
 
@@ -264,9 +265,12 @@ class _CreateEmbedDialogState extends State<_CreateEmbedDialog> {
               children: [
                 TextFormField(
                   controller: _uriCtrl,
-                  decoration: const InputDecoration(labelText: 'URI'),
-                  validator: (v) =>
-                      (v == null || v.trim().isEmpty) ? 'Required' : null,
+                  decoration: const InputDecoration(
+                    labelText: 'URI',
+                    hintText: 'https://example.com/resource',
+                  ),
+                  keyboardType: TextInputType.url,
+                  validator: FormValidators.httpsUri,
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<EmbeddedResourceModelType>(
