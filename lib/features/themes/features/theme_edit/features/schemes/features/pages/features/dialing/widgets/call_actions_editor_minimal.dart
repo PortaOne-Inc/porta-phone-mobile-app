@@ -98,6 +98,16 @@ class CallActionsEditorMinimal extends StatelessWidget {
             onChanged: (v) => onChanged(value.copyWith(key: _btnOrNew(v))),
           ),
         ),
+        const SizedBox(height: 12),
+        _section(
+          title: 'Keypad input text',
+          child: TextStyleConfigEditor(
+            label: 'Keypad input text',
+            description: 'Style of the digits typed on the in-call keypad.',
+            value: value.keypadInputStyle ?? const TextStyleConfig(),
+            onChanged: (s) => onChanged(value.copyWith(keypadInputStyle: s)),
+          ),
+        ),
       ],
     );
   }
