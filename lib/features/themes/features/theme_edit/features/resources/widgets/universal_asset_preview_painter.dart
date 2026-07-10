@@ -22,6 +22,7 @@ class UniversalAssetPreviewPainter extends CustomPainter {
     required this.paddingPx,
     required this.fit,
     required this.safeZonePx,
+    this.maskPx,
   });
 
   final ui.Image? backgroundImage;
@@ -42,6 +43,12 @@ class UniversalAssetPreviewPainter extends CustomPainter {
   /// `null` means no safe-zone guide is drawn.
   final double? safeZonePx;
 
+  /// Diameter (in px) of the platform mask circle. When set, the artboard is
+  /// clipped to this circle so the preview shows the icon exactly as the
+  /// platform renders it (everything outside the mask is cut away, revealing
+  /// the transparency pattern behind). `null` keeps the full square artboard.
+  final double? maskPx;
+
   @override
   void paint(Canvas canvas, Size size) {
     final bgPaint = Paint()
@@ -53,6 +60,15 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       ..filterQuality = FilterQuality.high;
 
     final board = Rect.fromLTWH(0, 0, artboardPx, artboardPx);
+    final center = Offset(artboardPx / 2, artboardPx / 2);
+    final masked = maskPx != null && maskPx! > 0;
+
+    if (masked) {
+      canvas
+        ..save()
+        ..clipPath(Path()..addOval(Rect.fromCircle(center: center, radius: maskPx! / 2)));
+    }
+
     canvas.drawRect(board, bgPaint);
 
     if (backgroundImage != null) {
@@ -62,9 +78,12 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       _drawFitted(canvas, foregroundImage!, board, paddingPx, fit, imgPaint);
     }
 
+    if (masked) {
+      canvas.restore();
+    }
+
     // Safe-zone circle — contrasting stroke for visibility on any background
     if (safeZonePx != null && safeZonePx! > 0) {
-      final center = Offset(artboardPx / 2, artboardPx / 2);
       final lum = backgroundColor.computeLuminance();
       final guideColor = lum > 0.5 ? Colors.black : Colors.white;
       final safePaint = Paint()
@@ -74,34 +93,24 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       canvas.drawCircle(center, safeZonePx! / 2, safePaint);
     }
 
-    // Artboard border frame
+    // Border frame: follows the mask circle when masked, else the artboard
     final frame = Paint()
       ..style = PaintingStyle.stroke
       ..color = Colors.black.withValues(alpha: 0.25)
       ..strokeWidth = artboardPx * 0.015;
 
-    canvas.drawRect(board.deflate(frame.strokeWidth / 2), frame);
+    if (masked) {
+      canvas.drawCircle(center, (maskPx! - frame.strokeWidth) / 2, frame);
+    } else {
+      canvas.drawRect(board.deflate(frame.strokeWidth / 2), frame);
+    }
   }
 
-  void _drawFitted(
-    Canvas canvas,
-    ui.Image img,
-    Rect board,
-    double paddingPx,
-    BoxFit fit,
-    Paint paint,
-  ) {
-    final dest = destRectWithPadding(
-      artboardPx: board.width,
-      paddingPx: paddingPx,
-    );
+  void _drawFitted(Canvas canvas, ui.Image img, Rect board, double paddingPx, BoxFit fit, Paint paint) {
+    final dest = destRectWithPadding(artboardPx: board.width, paddingPx: paddingPx);
     final src = srcRectForImage(img);
 
-    final output = applyBoxFit(
-      fit,
-      Size(src.width, src.height),
-      Size(dest.width, dest.height),
-    );
+    final output = applyBoxFit(fit, Size(src.width, src.height), Size(dest.width, dest.height));
 
     final renderSize = output.destination;
     final inputSubrect = Alignment.center.inscribe(output.source, src);
@@ -118,5 +127,6 @@ class UniversalAssetPreviewPainter extends CustomPainter {
       old.artboardPx != artboardPx ||
       old.paddingPx != paddingPx ||
       old.fit != fit ||
-      old.safeZonePx != safeZonePx;
+      old.safeZonePx != safeZonePx ||
+      old.maskPx != maskPx;
 }

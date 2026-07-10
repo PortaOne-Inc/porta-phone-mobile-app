@@ -33,6 +33,7 @@ class DesignerPageConfig {
     this.bgInheritsFromCommon = true,
     this.paddingDp,
     this.initialBackgroundHex,
+    this.maskDp,
   });
 
   final String id;
@@ -63,14 +64,17 @@ class DesignerPageConfig {
   final double? paddingDp;
 
   final String? initialBackgroundHex;
+
+  /// Diameter (dp) of the platform mask circle. When set, the preview card is
+  /// clipped to this circle so it shows the icon exactly as the platform
+  /// renders it (e.g. Android launchers display only the central 72 dp of the
+  /// 108 dp adaptive canvas). `null` keeps the full square artboard preview.
+  /// Affects only the preview; exports always render the full artboard.
+  final double? maskDp;
 }
 
 class DesignerPageEffective {
-  const DesignerPageEffective({
-    required this.pageId,
-    required this.paddingDp,
-    required this.backgroundHex,
-  });
+  const DesignerPageEffective({required this.pageId, required this.paddingDp, required this.backgroundHex});
 
   final String pageId;
   final double paddingDp;
@@ -78,11 +82,7 @@ class DesignerPageEffective {
 }
 
 class DesignerSnapshot {
-  const DesignerSnapshot({
-    required this.commonBackgroundHex,
-    required this.commonPaddingDp,
-    required this.pages,
-  });
+  const DesignerSnapshot({required this.commonBackgroundHex, required this.commonPaddingDp, required this.pages});
 
   final String? commonBackgroundHex;
   final double commonPaddingDp;
@@ -101,8 +101,7 @@ typedef PickColorCallback = Future<String?> Function(ColorPickRequest request);
 class ConfigurableAssetDesignerController {
   _ConfigurableAssetDesignerState? _state;
 
-  final ValueNotifier<DesignerSnapshot?> snapshot =
-      ValueNotifier<DesignerSnapshot?>(null);
+  final ValueNotifier<DesignerSnapshot?> snapshot = ValueNotifier<DesignerSnapshot?>(null);
 
   PickColorCallback? onPickColor;
 
@@ -111,9 +110,7 @@ class ConfigurableAssetDesignerController {
   Future<Map<String, Uint8List>> exportAll() async {
     final s = _state;
     if (s == null) {
-      throw StateError(
-        'ConfigurableAssetDesignerController is not attached to a widget.',
-      );
+      throw StateError('ConfigurableAssetDesignerController is not attached to a widget.');
     }
     return s._exportAll(returnOnly: true);
   }
@@ -153,10 +150,7 @@ String _normalizeHex(String raw) {
   return raw;
 }
 
-double _scaleForPreview({
-  required double artboardDp,
-  required double previewPx,
-}) => previewPx / artboardDp;
+double _scaleForPreview({required double artboardDp, required double previewPx}) => previewPx / artboardDp;
 
 double _dpToPx(double dp, double scale) => dp * scale;
 
@@ -181,9 +175,7 @@ Future<ui.Image?> _rasterizeAsset(AssetModel? asset, int sizePx) async {
       child: SizedBox(
         width: sizePx.toDouble(),
         height: sizePx.toDouble(),
-        child: FittedBox(
-          child: SvgPicture.memory(bytes, allowDrawingOutsideViewBox: true),
-        ),
+        child: FittedBox(child: SvgPicture.memory(bytes, allowDrawingOutsideViewBox: true)),
       ),
     );
     final png = await controller.captureFromWidget(w, pixelRatio: 1);
@@ -191,11 +183,7 @@ Future<ui.Image?> _rasterizeAsset(AssetModel? asset, int sizePx) async {
     final frame = await codec.getNextFrame();
     return frame.image;
   } else {
-    final codec = await ui.instantiateImageCodec(
-      bytes,
-      targetWidth: sizePx,
-      targetHeight: sizePx,
-    );
+    final codec = await ui.instantiateImageCodec(bytes, targetWidth: sizePx, targetHeight: sizePx);
     final frame = await codec.getNextFrame();
     return frame.image;
   }
@@ -227,17 +215,11 @@ class ConfigurableAssetDesigner extends StatefulWidget {
   final ConfigurableAssetDesignerController? controller;
 
   @override
-  State<ConfigurableAssetDesigner> createState() =>
-      _ConfigurableAssetDesignerState();
+  State<ConfigurableAssetDesigner> createState() => _ConfigurableAssetDesignerState();
 }
 
 class _PageState {
-  _PageState({
-    required bool startBgInherit,
-    double? paddingDp,
-    double minPaddingDp = 0,
-    String? initialBgHex,
-  }) {
+  _PageState({required bool startBgInherit, double? paddingDp, double minPaddingDp = 0, String? initialBgHex}) {
     bgInheritCommon = startBgInherit;
 
     paddingOverrideDp = math.max(paddingDp ?? minPaddingDp, minPaddingDp);
@@ -265,15 +247,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
 
   late final Map<String, _PageState> _pageStates;
 
-  DesignerPageConfig? get _commonPage => widget.pages
-      .cast<DesignerPageConfig?>()
-      .firstWhere((p) => p?.isCommon ?? true, orElse: () => null);
+  DesignerPageConfig? get _commonPage =>
+      widget.pages.cast<DesignerPageConfig?>().firstWhere((p) => p?.isCommon ?? true, orElse: () => null);
 
-  List<DesignerPageConfig> get _nonCommonPages =>
-      widget.pages.where((p) => p.isCommon == false).toList();
+  List<DesignerPageConfig> get _nonCommonPages => widget.pages.where((p) => p.isCommon == false).toList();
 
-  double _minPadFor(DesignerPageConfig p) =>
-      (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2;
+  double _minPadFor(DesignerPageConfig p) => (p.sizeDp - (p.safeZoneDp ?? p.sizeDp)) / 2;
 
   double _maxPadFor(DesignerPageConfig p) => p.sizeDp / 2;
 
@@ -288,9 +267,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     super.initState();
 
     final cp = _commonPage;
-    final commonMinPad = cp != null
-        ? (cp.sizeDp - (cp.safeZoneDp ?? cp.sizeDp)) / 2
-        : 0.0;
+    final commonMinPad = cp != null ? (cp.sizeDp - (cp.safeZoneDp ?? cp.sizeDp)) / 2 : 0.0;
     _commonPaddingDp = math.max(cp?.paddingDp ?? 0, commonMinPad);
     _commonBgHex = cp?.initialBackgroundHex ?? '#FFFFFFFF';
 
@@ -298,16 +275,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     if (cp != null) {
       final cMin = _minPadFor(cp);
       final cMax = _maxPadFor(cp);
-      _paddingRatio = (cMax > cMin)
-          ? ((_commonPaddingDp - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
-          : 0.0;
+      _paddingRatio = (cMax > cMin) ? ((_commonPaddingDp - cMin) / (cMax - cMin)).clamp(0.0, 1.0) : 0.0;
     } else {
       _paddingRatio = 0.0;
     }
 
-    _basePaddingTextCtrl = TextEditingController(
-      text: _commonPaddingDp.toStringAsFixed(0),
-    );
+    _basePaddingTextCtrl = TextEditingController(text: _commonPaddingDp.toStringAsFixed(0));
 
     _pageStates = {
       for (final p in _nonCommonPages)
@@ -361,22 +334,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
 
   DesignerPageEffective _effectiveFor(DesignerPageConfig p) {
     if (p.isCommon) {
-      return DesignerPageEffective(
-        pageId: p.id,
-        paddingDp: _commonPaddingDp,
-        backgroundHex: _commonBgHex,
-      );
+      return DesignerPageEffective(pageId: p.id, paddingDp: _commonPaddingDp, backgroundHex: _commonBgHex);
     }
     final st = _pageStates[p.id]!;
-    final pad = st.paddingLocked
-        ? _proportionalPadFor(p)
-        : (st.paddingOverrideDp ?? _proportionalPadFor(p));
+    final pad = st.paddingLocked ? _proportionalPadFor(p) : (st.paddingOverrideDp ?? _proportionalPadFor(p));
     final bg = _commonBgHex;
-    return DesignerPageEffective(
-      pageId: p.id,
-      paddingDp: pad,
-      backgroundHex: bg,
-    );
+    return DesignerPageEffective(pageId: p.id, paddingDp: pad, backgroundHex: bg);
   }
 
   DesignerSnapshot _buildSnapshot() {
@@ -400,14 +363,8 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
 
   Future<void> _loadImagesForSize(int sizePx) async {
     final futures = await Future.wait<ui.Image?>([
-      if (widget.backgroundAsset != null)
-        _rasterizeAsset(widget.backgroundAsset, sizePx)
-      else
-        Future.value(),
-      if (widget.foregroundAsset != null)
-        _rasterizeAsset(widget.foregroundAsset, sizePx)
-      else
-        Future.value(),
+      if (widget.backgroundAsset != null) _rasterizeAsset(widget.backgroundAsset, sizePx) else Future.value(),
+      if (widget.foregroundAsset != null) _rasterizeAsset(widget.foregroundAsset, sizePx) else Future.value(),
     ]);
     if (!mounted) return;
     setState(() {
@@ -419,10 +376,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
   // Controller API — kept as no-op for backward compatibility
   void _setActiveTabById(String pageId) {}
 
-  Widget _bgColorPickerRow({
-    required String scopeId,
-    required String? currentHex,
-  }) {
+  Widget _bgColorPickerRow({required String scopeId, required String? currentHex}) {
     final color = _parseHexColor(currentHex);
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -441,9 +395,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
           onPressed: () async {
             final picker = widget.controller?.onPickColor;
             if (picker == null) return;
-            final picked = await picker(
-              ColorPickRequest(scopeId: scopeId, currentHex: currentHex),
-            );
+            final picked = await picker(ColorPickRequest(scopeId: scopeId, currentHex: currentHex));
             if (picked != null) {
               setState(() {
                 _commonBgHex = _normalizeHex(picked);
@@ -487,9 +439,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                   if (cp != null) {
                     final cMin = _minPadFor(cp);
                     final cMax = _maxPadFor(cp);
-                    _paddingRatio = (cMax > cMin)
-                        ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
-                        : 0.0;
+                    _paddingRatio = (cMax > cMin) ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0) : 0.0;
                   }
                   _basePaddingTextCtrl.text = v.toStringAsFixed(0);
                 });
@@ -501,14 +451,8 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
             width: 84,
             child: TextField(
               controller: _basePaddingTextCtrl,
-              decoration: const InputDecoration(
-                isDense: true,
-                labelText: 'dp',
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
+              decoration: const InputDecoration(isDense: true, labelText: 'dp', border: OutlineInputBorder()),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (txt) {
                 final v = (double.tryParse(txt) ?? clamped).clamp(minDp, maxDp);
                 setState(() {
@@ -516,9 +460,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                   if (cp != null) {
                     final cMin = _minPadFor(cp);
                     final cMax = _maxPadFor(cp);
-                    _paddingRatio = (cMax > cMin)
-                        ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0)
-                        : 0.0;
+                    _paddingRatio = (cMax > cMin) ? ((v - cMin) / (cMax - cMin)).clamp(0.0, 1.0) : 0.0;
                   }
                   _basePaddingTextCtrl.text = v.toStringAsFixed(0);
                 });
@@ -537,9 +479,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
-        children: [
-          for (final p in widget.pages) _buildPlatformCard(p, previewSize),
-        ],
+        children: [for (final p in widget.pages) _buildPlatformCard(p, previewSize)],
       ),
     );
   }
@@ -550,6 +490,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     final artboardPx = p.sizeDp * scale;
     final paddingPx = _dpToPx(eff.paddingDp, scale);
     final safePx = p.safeZoneDp != null ? _dpToPx(p.safeZoneDp!, scale) : null;
+    final maskPx = p.maskDp != null ? _dpToPx(p.maskDp!, scale) : null;
 
     final isCommon = p.isCommon;
     final st = isCommon ? null : _pageStates[p.id];
@@ -570,10 +511,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                 if (!isCommon) ...[
                   const SizedBox(width: 4),
                   IconButton(
-                    icon: Icon(
-                      locked ? Icons.lock_outline : Icons.lock_open,
-                      size: 18,
-                    ),
+                    icon: Icon(locked ? Icons.lock_outline : Icons.lock_open, size: 18),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     tooltip: locked ? 'Unlock padding' : 'Lock padding',
@@ -606,21 +544,16 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
                 paddingPx: paddingPx,
                 fit: BoxFit.scaleDown,
                 safeZonePx: safePx,
+                maskPx: maskPx,
               ),
             ),
           ),
           const SizedBox(height: 4),
           // Footer
           if (isCommon)
-            Text(
-              '${eff.paddingDp.toStringAsFixed(0)} dp',
-              style: Theme.of(context).textTheme.bodySmall,
-            )
+            Text('${eff.paddingDp.toStringAsFixed(0)} dp', style: Theme.of(context).textTheme.bodySmall)
           else if (locked)
-            Text(
-              '${eff.paddingDp.toStringAsFixed(0)} dp',
-              style: Theme.of(context).textTheme.bodySmall,
-            )
+            Text('${eff.paddingDp.toStringAsFixed(0)} dp', style: Theme.of(context).textTheme.bodySmall)
           else
             _buildUnlockedFooter(p, st!, cardSize),
         ],
@@ -628,17 +561,10 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
     );
   }
 
-  Widget _buildUnlockedFooter(
-    DesignerPageConfig p,
-    _PageState st,
-    double cardWidth,
-  ) {
+  Widget _buildUnlockedFooter(DesignerPageConfig p, _PageState st, double cardWidth) {
     final minDp = _minPadFor(p);
     final maxDp = _maxPadFor(p);
-    final current = (st.paddingOverrideDp ?? _proportionalPadFor(p)).clamp(
-      minDp,
-      maxDp,
-    );
+    final current = (st.paddingOverrideDp ?? _proportionalPadFor(p)).clamp(minDp, maxDp);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -660,11 +586,7 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
           child: TextFormField(
             key: ValueKey('pad_${p.id}_${current.toStringAsFixed(0)}'),
             initialValue: current.toStringAsFixed(0),
-            decoration: const InputDecoration(
-              isDense: true,
-              labelText: 'dp',
-              border: OutlineInputBorder(),
-            ),
+            decoration: const InputDecoration(isDense: true, labelText: 'dp', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             onFieldSubmitted: (txt) {
               final v = (double.tryParse(txt) ?? current).clamp(minDp, maxDp);
@@ -718,19 +640,12 @@ class _ConfigurableAssetDesignerState extends State<ConfigurableAssetDesigner> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final cardPreviewSize = ((constraints.maxWidth - 48) / 2).clamp(
-          0.0,
-          260.0,
-        );
+        final cardPreviewSize = ((constraints.maxWidth - 48) / 2).clamp(0.0, 260.0);
         return Stack(
           children: [
             Positioned.fill(
               child: CustomPaint(
-                painter: PatternPainter(
-                  primaryColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest,
-                ),
+                painter: PatternPainter(primaryColor: Theme.of(context).colorScheme.surfaceContainerHighest),
               ),
             ),
             SingleChildScrollView(

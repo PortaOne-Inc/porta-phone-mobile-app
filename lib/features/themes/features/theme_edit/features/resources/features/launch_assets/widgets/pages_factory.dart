@@ -4,10 +4,7 @@ import '../../../widgets/widgets.dart';
 import '../bloc/launch_assets_bloc.dart';
 import '../constants/designer_page_ids.dart';
 
-List<DesignerPageConfig> buildDesignerPages({
-  required LaunchAssetsState state,
-  required ConstraintsModel constraints,
-}) {
+List<DesignerPageConfig> buildDesignerPages({required LaunchAssetsState state, required ConstraintsModel constraints}) {
   final cons = constraints;
 
   return <DesignerPageConfig>[
@@ -29,6 +26,10 @@ List<DesignerPageConfig> buildDesignerPages({
       safeZoneDp: cons.androidAdaptive?.safeZoneDp ?? 264,
       exportSizePx: 432,
       paddingDp: state.paddingAndroidAdaptive,
+      // Android launchers mask the adaptive icon to the central 72 dp of the
+      // 108 dp canvas; clip the preview the same way so the card matches what
+      // the device shows.
+      maskDp: (cons.androidAdaptive?.sizeDp ?? 432) * 72 / 108,
     ),
     DesignerPageConfig(
       id: DesignerPageIds.androidLegacy,
