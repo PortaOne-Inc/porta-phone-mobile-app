@@ -42,18 +42,13 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
         final isLoading = state.isLoading;
         final cons = state.constraints ?? defaultConstraintsModel;
 
-        final designerKey = ValueKey(
-          state.envelope?.entity.updatedAt.toIso8601String() ?? 'init',
-        );
+        final designerKey = ValueKey(state.envelope?.entity.updatedAt.toIso8601String() ?? 'init');
 
         return Scaffold(
           appBar: AppBar(
             title: const Text('Launcher Icons'),
             bottom: isLoading
-                ? const PreferredSize(
-                    preferredSize: Size.fromHeight(4),
-                    child: LinearProgressIndicator(),
-                  )
+                ? const PreferredSize(preferredSize: Size.fromHeight(4), child: LinearProgressIndicator())
                 : null,
             actions: [
               LaunchAssetsAppBarActions(
@@ -128,10 +123,10 @@ class _LaunchAssetsScreenState extends State<LaunchAssetsScreen> {
     final files = await controller.exportAll();
 
     await _cubit.saveWithExports(
-      files[DesignerPageIds.androidAdaptive]!,
-      files[DesignerPageIds.androidLegacy]!,
-      files[DesignerPageIds.ios]!,
-      files[DesignerPageIds.web]!,
+      androidAdaptiveImage: files[DesignerPageIds.androidAdaptive]!,
+      androidLegacyImage: files[DesignerPageIds.androidLegacy]!,
+      iosImage: files[DesignerPageIds.ios]!,
+      webImage: files[DesignerPageIds.web]!,
     );
   }
 

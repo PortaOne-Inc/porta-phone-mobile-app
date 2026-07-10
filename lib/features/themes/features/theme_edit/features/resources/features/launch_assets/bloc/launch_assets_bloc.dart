@@ -30,9 +30,7 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
        _getConstraintsDefaultsUsecase = getConstraintsDefaultsUsecase,
        _watchApplicationAssetsUsecase = watchApplicationAssetsUsecase,
        _deleteLaunchAssetsUsecase = deleteLaunchAssetsUsecase,
-       super(
-         LaunchAssetsState(applicationId: applicationId, themeId: themeId),
-       ) {
+       super(LaunchAssetsState(applicationId: applicationId, themeId: themeId)) {
     _assetsSub = _watchApplicationAssetsUsecase
         .execute(state.applicationId)
         .listen(
@@ -41,21 +39,13 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
             emit(
               state.copyWith(
                 assets: assets,
-                selectedForegroundAsset:
-                    _resolveById(assets, src?.foregroundAssetId) ??
-                    state.selectedForegroundAsset,
-                selectedBackgroundAsset:
-                    _resolveById(assets, src?.backgroundAssetId) ??
-                    state.selectedBackgroundAsset,
+                selectedForegroundAsset: _resolveById(assets, src?.foregroundAssetId) ?? state.selectedForegroundAsset,
+                selectedBackgroundAsset: _resolveById(assets, src?.backgroundAssetId) ?? state.selectedBackgroundAsset,
               ),
             );
           },
           onError: (Object error, StackTrace stackTrace) {
-            _logger.warning(
-              'watchApplicationAssetsUsecase stream error',
-              error,
-              stackTrace,
-            );
+            _logger.warning('watchApplicationAssetsUsecase stream error', error, stackTrace);
           },
         );
   }
@@ -96,45 +86,27 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
           status: LaunchAssetsStatus.loaded,
           envelope: env,
           constraints: defaultConstraints,
-          selectedForegroundAsset:
-              _resolveById(state.assets, src?.foregroundAssetId) ??
-              state.selectedForegroundAsset,
-          selectedBackgroundAsset:
-              _resolveById(state.assets, src?.backgroundAssetId) ??
-              state.selectedBackgroundAsset,
+          selectedForegroundAsset: _resolveById(state.assets, src?.foregroundAssetId) ?? state.selectedForegroundAsset,
+          selectedBackgroundAsset: _resolveById(state.assets, src?.backgroundAssetId) ?? state.selectedBackgroundAsset,
           selectedBackgroundColorHex: src?.backgroundColorHex,
-          paddingAndroidLegacy: _clampPadding(
-            params?.androidLegacy?.paddingDp ?? 0,
-            defaultConstraints.androidLegacy,
-          ),
+          paddingAndroidLegacy: _clampPadding(params?.androidLegacy?.paddingDp ?? 0, defaultConstraints.androidLegacy),
           paddingAndroidAdaptive: _clampPadding(
             params?.androidAdaptive?.paddingDp ?? 0,
             defaultConstraints.androidAdaptive,
           ),
-          paddingIOS: _clampPadding(
-            params?.ios?.paddingDp ?? 0,
-            defaultConstraints.ios,
-          ),
-          paddingWEB: _clampPadding(
-            params?.web?.paddingDp ?? 0,
-            defaultConstraints.web,
-          ),
+          paddingIOS: _clampPadding(params?.ios?.paddingDp ?? 0, defaultConstraints.ios),
+          paddingWEB: _clampPadding(params?.web?.paddingDp ?? 0, defaultConstraints.web),
         ),
       );
     } catch (e, st) {
       _logger.severe('load failed', e, st);
-      emit(
-        state.copyWith(status: LaunchAssetsStatus.failure, error: e.toString()),
-      );
+      emit(state.copyWith(status: LaunchAssetsStatus.failure, error: e.toString()));
     }
   }
 
   Future<void> delete() async {
     try {
-      await _deleteLaunchAssetsUsecase.execute(
-        state.applicationId,
-        state.themeId,
-      );
+      await _deleteLaunchAssetsUsecase.execute(state.applicationId, state.themeId);
       emit(
         state.copyWith(
           envelope: null,
@@ -146,20 +118,15 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
       );
     } catch (e, st) {
       _logger.severe('delete failed', e, st);
-      emit(
-        state.copyWith(status: LaunchAssetsStatus.failure, error: e.toString()),
-      );
+      emit(state.copyWith(status: LaunchAssetsStatus.failure, error: e.toString()));
     }
   }
 
-  void selectForegroundAsset(AssetModel asset) =>
-      emit(state.copyWith(selectedForegroundAsset: asset));
+  void selectForegroundAsset(AssetModel asset) => emit(state.copyWith(selectedForegroundAsset: asset));
 
-  void selectBackgroundAsset(AssetModel asset) =>
-      emit(state.copyWith(selectedBackgroundAsset: asset));
+  void selectBackgroundAsset(AssetModel asset) => emit(state.copyWith(selectedBackgroundAsset: asset));
 
-  void selectBackgroundColor(Color? color) =>
-      emit(state.copyWith(selectedBackgroundColorHex: color?.toHex()));
+  void selectBackgroundColor(Color? color) => emit(state.copyWith(selectedBackgroundColorHex: color?.toHex()));
 
   void setPadding({
     double? paddingAndroidLegacy,
@@ -169,10 +136,8 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
   }) {
     emit(
       state.copyWith(
-        paddingAndroidLegacy:
-            paddingAndroidLegacy ?? state.paddingAndroidLegacy,
-        paddingAndroidAdaptive:
-            paddingAndroidAdaptive ?? state.paddingAndroidAdaptive,
+        paddingAndroidLegacy: paddingAndroidLegacy ?? state.paddingAndroidLegacy,
+        paddingAndroidAdaptive: paddingAndroidAdaptive ?? state.paddingAndroidAdaptive,
         paddingIOS: paddingIOS ?? state.paddingIOS,
         paddingWEB: paddingWEB ?? state.paddingWEB,
       ),
@@ -183,22 +148,22 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
     emit(state.copyWith(saving: true, error: null));
   }
 
-  Future<void> saveWithExports(
-    Uint8List adaptiveLegacyImage,
-    Uint8List androidAdaptiveImage,
-    Uint8List iosImage,
-    Uint8List webImage,
-  ) async {
+  Future<void> saveWithExports({
+    required Uint8List androidLegacyImage,
+    required Uint8List androidAdaptiveImage,
+    required Uint8List iosImage,
+    required Uint8List webImage,
+  }) async {
     emit(state.copyWith(saving: true, error: null));
     try {
       final source = _buildSource();
       final params = _buildParams();
 
       final uploads = _mapExportsToUploads(
-        adaptiveLegacyImage,
-        androidAdaptiveImage,
-        iosImage,
-        webImage,
+        androidLegacyImage: androidLegacyImage,
+        androidAdaptiveImage: androidAdaptiveImage,
+        iosImage: iosImage,
+        webImage: webImage,
       );
 
       await _upsertWithFilesUsecase.execute(
@@ -217,22 +182,10 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
         withValidation: true,
       );
 
-      emit(
-        state.copyWith(
-          saving: false,
-          envelope: env,
-          status: LaunchAssetsStatus.loaded,
-        ),
-      );
+      emit(state.copyWith(saving: false, envelope: env, status: LaunchAssetsStatus.loaded));
     } catch (e, st) {
       _logger.severe('saveWithExports failed', e, st);
-      emit(
-        state.copyWith(
-          saving: false,
-          status: LaunchAssetsStatus.failure,
-          error: e.toString(),
-        ),
-      );
+      emit(state.copyWith(saving: false, status: LaunchAssetsStatus.failure, error: e.toString()));
     }
   }
 
@@ -264,18 +217,18 @@ class LaunchAssetsCubit extends Cubit<LaunchAssetsState> {
     web: FitPaddingModel(paddingDp: state.paddingWEB),
   );
 
-  List<LaunchArtifactUpload> _mapExportsToUploads(
-    Uint8List adaptiveLegacyImage,
-    Uint8List androidAdaptiveImage,
-    Uint8List iosImage,
-    Uint8List webImage,
-  ) {
+  List<LaunchArtifactUpload> _mapExportsToUploads({
+    required Uint8List androidLegacyImage,
+    required Uint8List androidAdaptiveImage,
+    required Uint8List iosImage,
+    required Uint8List webImage,
+  }) {
     return [
       LaunchArtifactUpload(
         target: LaunchOutputTarget.androidLegacy,
         // filename: 'android_legacy.png',
         mimeType: 'image/png',
-        bytes: adaptiveLegacyImage,
+        bytes: androidLegacyImage,
       ),
       LaunchArtifactUpload(
         target: LaunchOutputTarget.androidAdaptiveForeground,
