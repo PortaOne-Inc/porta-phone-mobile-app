@@ -97,6 +97,10 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
     _update(_transcription.copyWith(local: _transcription.local.copyWith(model: model)));
   }
 
+  void _onLocalUserSelectableChanged(bool userSelectable) {
+    _update(_transcription.copyWith(local: _transcription.local.copyWith(userSelectable: userSelectable)));
+  }
+
   void _onRemoteChanged() {
     _update(
       _transcription.copyWith(
@@ -179,14 +183,29 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
           description:
               'Whisper model tier used by the local mode. Larger tiers transcribe better but cost more '
               'download size, memory and CPU; "base" and "small" are the practical phone choices.',
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: DropdownButtonFormField<String>(
-              initialValue: _transcription.local.model,
-              decoration: const InputDecoration(labelText: 'Model', border: OutlineInputBorder()),
-              items: _localModelItems,
-              onChanged: mode == _localMode ? _onLocalModelChanged : null,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: DropdownButtonFormField<String>(
+                  initialValue: _transcription.local.model,
+                  decoration: const InputDecoration(labelText: 'Model', border: OutlineInputBorder()),
+                  items: _localModelItems,
+                  onChanged: mode == _localMode ? _onLocalModelChanged : null,
+                ),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Let users change the model'),
+                subtitle: const Text(
+                  'Adds a model picker to the voicemail screen; the tier above stays the default. '
+                  'Turn off to pin the model to the tier above.',
+                ),
+                value: _transcription.local.userSelectable,
+                onChanged: mode == _localMode ? _onLocalUserSelectableChanged : null,
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 16),

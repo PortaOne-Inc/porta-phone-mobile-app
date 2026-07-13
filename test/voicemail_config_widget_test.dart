@@ -76,6 +76,23 @@ void main() {
     expect(updated?.transcription.local.model, 'small');
   });
 
+  testWidgets('toggles whether users may change the model', (tester) async {
+    AppConfigVoicemail? updated;
+    await tester.pumpWidget(
+      wrap(
+        const AppConfigVoicemail(transcription: AppConfigVoicemailTranscription(mode: 'local')),
+        (it) => updated = it,
+      ),
+    );
+
+    await tester.tap(find.widgetWithText(SwitchListTile, 'Let users change the model'));
+    expect(updated?.transcription.local.userSelectable, isFalse);
+
+    await tester.pumpWidget(wrap(updated!, (it) => updated = it));
+    await tester.tap(find.widgetWithText(SwitchListTile, 'Let users change the model'));
+    expect(updated?.transcription.local.userSelectable, isTrue);
+  });
+
   testWidgets('unknown local model is kept as an extra dropdown item', (tester) async {
     await tester.pumpWidget(
       wrap(
