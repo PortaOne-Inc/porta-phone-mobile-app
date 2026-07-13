@@ -1835,7 +1835,7 @@ extension AppConfigEventPatterns on AppConfigEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginConfig value)?  setLoginConfig,TResult Function( _SetMainConfig value)?  setMainConfig,TResult Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult Function( _SetBottomMenu value)?  setBottomMenu,TResult Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult Function( _SetSettingsConfig value)?  setSettingsConfig,TResult Function( _SetSettingsSections value)?  setSettingsSections,TResult Function( _SetCallConfig value)?  setCallConfig,TResult Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult Function( _SetCallTransfer value)?  setCallTransfer,TResult Function( _SetCallEncoding value)?  setCallEncoding,TResult Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult Function( _SetContactsConfig value)?  setContactsConfig,TResult Function( _SetMessagingConfig value)?  setMessagingConfig,TResult Function( _SetLocalizationConfig value)?  setLocalizationConfig,TResult Function( _ImportJsonAppConfigEvent value)?  importJson,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _SetLoginConfig value)?  setLoginConfig,TResult Function( _SetMainConfig value)?  setMainConfig,TResult Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult Function( _SetBottomMenu value)?  setBottomMenu,TResult Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult Function( _SetSettingsConfig value)?  setSettingsConfig,TResult Function( _SetSettingsSections value)?  setSettingsSections,TResult Function( _SetCallConfig value)?  setCallConfig,TResult Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult Function( _SetCallTransfer value)?  setCallTransfer,TResult Function( _SetCallEncoding value)?  setCallEncoding,TResult Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult Function( _SetContactsConfig value)?  setContactsConfig,TResult Function( _SetMessagingConfig value)?  setMessagingConfig,TResult Function( _SetLocalizationConfig value)?  setLocalizationConfig,TResult Function( _SetVoicemailConfig value)?  setVoicemailConfig,TResult Function( _ImportJsonAppConfigEvent value)?  importJson,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
@@ -1859,7 +1859,8 @@ return setNegotiationOverride(_that);case _SetSupportedFeatures() when setSuppor
 return setSupportedFeatures(_that);case _SetContactsConfig() when setContactsConfig != null:
 return setContactsConfig(_that);case _SetMessagingConfig() when setMessagingConfig != null:
 return setMessagingConfig(_that);case _SetLocalizationConfig() when setLocalizationConfig != null:
-return setLocalizationConfig(_that);case _ImportJsonAppConfigEvent() when importJson != null:
+return setLocalizationConfig(_that);case _SetVoicemailConfig() when setVoicemailConfig != null:
+return setVoicemailConfig(_that);case _ImportJsonAppConfigEvent() when importJson != null:
 return importJson(_that);case _:
   return orElse();
 
@@ -1878,7 +1879,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginConfig value)  setLoginConfig,required TResult Function( _SetMainConfig value)  setMainConfig,required TResult Function( _SetMainSystemNotificationsEnabled value)  setMainSystemNotificationsEnabled,required TResult Function( _SetBottomMenu value)  setBottomMenu,required TResult Function( _SetBottomMenuCacheSelectedTab value)  setBottomMenuCacheSelectedTab,required TResult Function( _SetBottomMenuTabs value)  setBottomMenuTabs,required TResult Function( _UpdateBottomMenuTab value)  updateBottomMenuTab,required TResult Function( _InsertBottomMenuTab value)  insertBottomMenuTab,required TResult Function( _RemoveBottomMenuTabAt value)  removeBottomMenuTabAt,required TResult Function( _SetSettingsConfig value)  setSettingsConfig,required TResult Function( _SetSettingsSections value)  setSettingsSections,required TResult Function( _SetCallConfig value)  setCallConfig,required TResult Function( _SetCallVideoEnabled value)  setCallVideoEnabled,required TResult Function( _SetCallTransfer value)  setCallTransfer,required TResult Function( _SetCallEncoding value)  setCallEncoding,required TResult Function( _SetCallPeerConnection value)  setCallPeerConnection,required TResult Function( _SetNegotiationOverride value)  setNegotiationOverride,required TResult Function( _SetSupportedFeatures value)  setSupportedFeatures,required TResult Function( _SetContactsConfig value)  setContactsConfig,required TResult Function( _SetMessagingConfig value)  setMessagingConfig,required TResult Function( _SetLocalizationConfig value)  setLocalizationConfig,required TResult Function( _ImportJsonAppConfigEvent value)  importJson,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _SetLoginConfig value)  setLoginConfig,required TResult Function( _SetMainConfig value)  setMainConfig,required TResult Function( _SetMainSystemNotificationsEnabled value)  setMainSystemNotificationsEnabled,required TResult Function( _SetBottomMenu value)  setBottomMenu,required TResult Function( _SetBottomMenuCacheSelectedTab value)  setBottomMenuCacheSelectedTab,required TResult Function( _SetBottomMenuTabs value)  setBottomMenuTabs,required TResult Function( _UpdateBottomMenuTab value)  updateBottomMenuTab,required TResult Function( _InsertBottomMenuTab value)  insertBottomMenuTab,required TResult Function( _RemoveBottomMenuTabAt value)  removeBottomMenuTabAt,required TResult Function( _SetSettingsConfig value)  setSettingsConfig,required TResult Function( _SetSettingsSections value)  setSettingsSections,required TResult Function( _SetCallConfig value)  setCallConfig,required TResult Function( _SetCallVideoEnabled value)  setCallVideoEnabled,required TResult Function( _SetCallTransfer value)  setCallTransfer,required TResult Function( _SetCallEncoding value)  setCallEncoding,required TResult Function( _SetCallPeerConnection value)  setCallPeerConnection,required TResult Function( _SetNegotiationOverride value)  setNegotiationOverride,required TResult Function( _SetSupportedFeatures value)  setSupportedFeatures,required TResult Function( _SetContactsConfig value)  setContactsConfig,required TResult Function( _SetMessagingConfig value)  setMessagingConfig,required TResult Function( _SetLocalizationConfig value)  setLocalizationConfig,required TResult Function( _SetVoicemailConfig value)  setVoicemailConfig,required TResult Function( _ImportJsonAppConfigEvent value)  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig():
@@ -1902,7 +1903,8 @@ return setNegotiationOverride(_that);case _SetSupportedFeatures():
 return setSupportedFeatures(_that);case _SetContactsConfig():
 return setContactsConfig(_that);case _SetMessagingConfig():
 return setMessagingConfig(_that);case _SetLocalizationConfig():
-return setLocalizationConfig(_that);case _ImportJsonAppConfigEvent():
+return setLocalizationConfig(_that);case _SetVoicemailConfig():
+return setVoicemailConfig(_that);case _ImportJsonAppConfigEvent():
 return importJson(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -1920,7 +1922,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginConfig value)?  setLoginConfig,TResult? Function( _SetMainConfig value)?  setMainConfig,TResult? Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult? Function( _SetBottomMenu value)?  setBottomMenu,TResult? Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult? Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult? Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult? Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult? Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult? Function( _SetSettingsConfig value)?  setSettingsConfig,TResult? Function( _SetSettingsSections value)?  setSettingsSections,TResult? Function( _SetCallConfig value)?  setCallConfig,TResult? Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult? Function( _SetCallTransfer value)?  setCallTransfer,TResult? Function( _SetCallEncoding value)?  setCallEncoding,TResult? Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult? Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult? Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult? Function( _SetContactsConfig value)?  setContactsConfig,TResult? Function( _SetMessagingConfig value)?  setMessagingConfig,TResult? Function( _SetLocalizationConfig value)?  setLocalizationConfig,TResult? Function( _ImportJsonAppConfigEvent value)?  importJson,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _SetLoginConfig value)?  setLoginConfig,TResult? Function( _SetMainConfig value)?  setMainConfig,TResult? Function( _SetMainSystemNotificationsEnabled value)?  setMainSystemNotificationsEnabled,TResult? Function( _SetBottomMenu value)?  setBottomMenu,TResult? Function( _SetBottomMenuCacheSelectedTab value)?  setBottomMenuCacheSelectedTab,TResult? Function( _SetBottomMenuTabs value)?  setBottomMenuTabs,TResult? Function( _UpdateBottomMenuTab value)?  updateBottomMenuTab,TResult? Function( _InsertBottomMenuTab value)?  insertBottomMenuTab,TResult? Function( _RemoveBottomMenuTabAt value)?  removeBottomMenuTabAt,TResult? Function( _SetSettingsConfig value)?  setSettingsConfig,TResult? Function( _SetSettingsSections value)?  setSettingsSections,TResult? Function( _SetCallConfig value)?  setCallConfig,TResult? Function( _SetCallVideoEnabled value)?  setCallVideoEnabled,TResult? Function( _SetCallTransfer value)?  setCallTransfer,TResult? Function( _SetCallEncoding value)?  setCallEncoding,TResult? Function( _SetCallPeerConnection value)?  setCallPeerConnection,TResult? Function( _SetNegotiationOverride value)?  setNegotiationOverride,TResult? Function( _SetSupportedFeatures value)?  setSupportedFeatures,TResult? Function( _SetContactsConfig value)?  setContactsConfig,TResult? Function( _SetMessagingConfig value)?  setMessagingConfig,TResult? Function( _SetLocalizationConfig value)?  setLocalizationConfig,TResult? Function( _SetVoicemailConfig value)?  setVoicemailConfig,TResult? Function( _ImportJsonAppConfigEvent value)?  importJson,}){
 final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
@@ -1944,7 +1946,8 @@ return setNegotiationOverride(_that);case _SetSupportedFeatures() when setSuppor
 return setSupportedFeatures(_that);case _SetContactsConfig() when setContactsConfig != null:
 return setContactsConfig(_that);case _SetMessagingConfig() when setMessagingConfig != null:
 return setMessagingConfig(_that);case _SetLocalizationConfig() when setLocalizationConfig != null:
-return setLocalizationConfig(_that);case _ImportJsonAppConfigEvent() when importJson != null:
+return setLocalizationConfig(_that);case _SetVoicemailConfig() when setVoicemailConfig != null:
+return setVoicemailConfig(_that);case _ImportJsonAppConfigEvent() when importJson != null:
 return importJson(_that);case _:
   return null;
 
@@ -1962,7 +1965,7 @@ return importJson(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AppConfigLogin login)?  setLoginConfig,TResult Function( AppConfigMain main)?  setMainConfig,TResult Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult Function( int index)?  removeBottomMenuTabAt,TResult Function( AppConfigSettings settings)?  setSettingsConfig,TResult Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult Function( AppConfigCall callConfig)?  setCallConfig,TResult Function( bool enabled)?  setCallVideoEnabled,TResult Function( AppConfigTransfer transfer)?  setCallTransfer,TResult Function( AppConfigEncoding encoding)?  setCallEncoding,TResult Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult Function( AppConfigContacts contacts)?  setContactsConfig,TResult Function( AppConfigMessaging messaging)?  setMessagingConfig,TResult Function( AppConfigLocalization localization)?  setLocalizationConfig,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( AppConfigLogin login)?  setLoginConfig,TResult Function( AppConfigMain main)?  setMainConfig,TResult Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult Function( int index)?  removeBottomMenuTabAt,TResult Function( AppConfigSettings settings)?  setSettingsConfig,TResult Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult Function( AppConfigCall callConfig)?  setCallConfig,TResult Function( bool enabled)?  setCallVideoEnabled,TResult Function( AppConfigTransfer transfer)?  setCallTransfer,TResult Function( AppConfigEncoding encoding)?  setCallEncoding,TResult Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult Function( AppConfigContacts contacts)?  setContactsConfig,TResult Function( AppConfigMessaging messaging)?  setMessagingConfig,TResult Function( AppConfigLocalization localization)?  setLocalizationConfig,TResult Function( AppConfigVoicemail voicemail)?  setVoicemailConfig,TResult Function( Map<String, dynamic> json)?  importJson,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
 return setLoginConfig(_that.login);case _SetMainConfig() when setMainConfig != null:
@@ -1985,7 +1988,8 @@ return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures() wh
 return setSupportedFeatures(_that.features);case _SetContactsConfig() when setContactsConfig != null:
 return setContactsConfig(_that.contacts);case _SetMessagingConfig() when setMessagingConfig != null:
 return setMessagingConfig(_that.messaging);case _SetLocalizationConfig() when setLocalizationConfig != null:
-return setLocalizationConfig(_that.localization);case _ImportJsonAppConfigEvent() when importJson != null:
+return setLocalizationConfig(_that.localization);case _SetVoicemailConfig() when setVoicemailConfig != null:
+return setVoicemailConfig(_that.voicemail);case _ImportJsonAppConfigEvent() when importJson != null:
 return importJson(_that.json);case _:
   return orElse();
 
@@ -2004,7 +2008,7 @@ return importJson(_that.json);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AppConfigLogin login)  setLoginConfig,required TResult Function( AppConfigMain main)  setMainConfig,required TResult Function( bool enabled)  setMainSystemNotificationsEnabled,required TResult Function( AppConfigBottomMenu bottomMenu)  setBottomMenu,required TResult Function( bool cache)  setBottomMenuCacheSelectedTab,required TResult Function( List<BottomMenuTabScheme> tabs)  setBottomMenuTabs,required TResult Function( int index,  BottomMenuTabScheme tab)  updateBottomMenuTab,required TResult Function( int index,  BottomMenuTabScheme tab)  insertBottomMenuTab,required TResult Function( int index)  removeBottomMenuTabAt,required TResult Function( AppConfigSettings settings)  setSettingsConfig,required TResult Function( List<AppConfigSettingsSection> sections)  setSettingsSections,required TResult Function( AppConfigCall callConfig)  setCallConfig,required TResult Function( bool enabled)  setCallVideoEnabled,required TResult Function( AppConfigTransfer transfer)  setCallTransfer,required TResult Function( AppConfigEncoding encoding)  setCallEncoding,required TResult Function( AppConfigPeerConnection pc)  setCallPeerConnection,required TResult Function( AppConfigNegotiationSettingsOverride negotiation)  setNegotiationOverride,required TResult Function( List<SupportedFeature> features)  setSupportedFeatures,required TResult Function( AppConfigContacts contacts)  setContactsConfig,required TResult Function( AppConfigMessaging messaging)  setMessagingConfig,required TResult Function( AppConfigLocalization localization)  setLocalizationConfig,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( AppConfigLogin login)  setLoginConfig,required TResult Function( AppConfigMain main)  setMainConfig,required TResult Function( bool enabled)  setMainSystemNotificationsEnabled,required TResult Function( AppConfigBottomMenu bottomMenu)  setBottomMenu,required TResult Function( bool cache)  setBottomMenuCacheSelectedTab,required TResult Function( List<BottomMenuTabScheme> tabs)  setBottomMenuTabs,required TResult Function( int index,  BottomMenuTabScheme tab)  updateBottomMenuTab,required TResult Function( int index,  BottomMenuTabScheme tab)  insertBottomMenuTab,required TResult Function( int index)  removeBottomMenuTabAt,required TResult Function( AppConfigSettings settings)  setSettingsConfig,required TResult Function( List<AppConfigSettingsSection> sections)  setSettingsSections,required TResult Function( AppConfigCall callConfig)  setCallConfig,required TResult Function( bool enabled)  setCallVideoEnabled,required TResult Function( AppConfigTransfer transfer)  setCallTransfer,required TResult Function( AppConfigEncoding encoding)  setCallEncoding,required TResult Function( AppConfigPeerConnection pc)  setCallPeerConnection,required TResult Function( AppConfigNegotiationSettingsOverride negotiation)  setNegotiationOverride,required TResult Function( List<SupportedFeature> features)  setSupportedFeatures,required TResult Function( AppConfigContacts contacts)  setContactsConfig,required TResult Function( AppConfigMessaging messaging)  setMessagingConfig,required TResult Function( AppConfigLocalization localization)  setLocalizationConfig,required TResult Function( AppConfigVoicemail voicemail)  setVoicemailConfig,required TResult Function( Map<String, dynamic> json)  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig():
 return setLoginConfig(_that.login);case _SetMainConfig():
@@ -2027,7 +2031,8 @@ return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures():
 return setSupportedFeatures(_that.features);case _SetContactsConfig():
 return setContactsConfig(_that.contacts);case _SetMessagingConfig():
 return setMessagingConfig(_that.messaging);case _SetLocalizationConfig():
-return setLocalizationConfig(_that.localization);case _ImportJsonAppConfigEvent():
+return setLocalizationConfig(_that.localization);case _SetVoicemailConfig():
+return setVoicemailConfig(_that.voicemail);case _ImportJsonAppConfigEvent():
 return importJson(_that.json);case _:
   throw StateError('Unexpected subclass');
 
@@ -2045,7 +2050,7 @@ return importJson(_that.json);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AppConfigLogin login)?  setLoginConfig,TResult? Function( AppConfigMain main)?  setMainConfig,TResult? Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult? Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult? Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult? Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult? Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult? Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult? Function( int index)?  removeBottomMenuTabAt,TResult? Function( AppConfigSettings settings)?  setSettingsConfig,TResult? Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult? Function( AppConfigCall callConfig)?  setCallConfig,TResult? Function( bool enabled)?  setCallVideoEnabled,TResult? Function( AppConfigTransfer transfer)?  setCallTransfer,TResult? Function( AppConfigEncoding encoding)?  setCallEncoding,TResult? Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult? Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult? Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult? Function( AppConfigContacts contacts)?  setContactsConfig,TResult? Function( AppConfigMessaging messaging)?  setMessagingConfig,TResult? Function( AppConfigLocalization localization)?  setLocalizationConfig,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( AppConfigLogin login)?  setLoginConfig,TResult? Function( AppConfigMain main)?  setMainConfig,TResult? Function( bool enabled)?  setMainSystemNotificationsEnabled,TResult? Function( AppConfigBottomMenu bottomMenu)?  setBottomMenu,TResult? Function( bool cache)?  setBottomMenuCacheSelectedTab,TResult? Function( List<BottomMenuTabScheme> tabs)?  setBottomMenuTabs,TResult? Function( int index,  BottomMenuTabScheme tab)?  updateBottomMenuTab,TResult? Function( int index,  BottomMenuTabScheme tab)?  insertBottomMenuTab,TResult? Function( int index)?  removeBottomMenuTabAt,TResult? Function( AppConfigSettings settings)?  setSettingsConfig,TResult? Function( List<AppConfigSettingsSection> sections)?  setSettingsSections,TResult? Function( AppConfigCall callConfig)?  setCallConfig,TResult? Function( bool enabled)?  setCallVideoEnabled,TResult? Function( AppConfigTransfer transfer)?  setCallTransfer,TResult? Function( AppConfigEncoding encoding)?  setCallEncoding,TResult? Function( AppConfigPeerConnection pc)?  setCallPeerConnection,TResult? Function( AppConfigNegotiationSettingsOverride negotiation)?  setNegotiationOverride,TResult? Function( List<SupportedFeature> features)?  setSupportedFeatures,TResult? Function( AppConfigContacts contacts)?  setContactsConfig,TResult? Function( AppConfigMessaging messaging)?  setMessagingConfig,TResult? Function( AppConfigLocalization localization)?  setLocalizationConfig,TResult? Function( AppConfigVoicemail voicemail)?  setVoicemailConfig,TResult? Function( Map<String, dynamic> json)?  importJson,}) {final _that = this;
 switch (_that) {
 case _SetLoginConfig() when setLoginConfig != null:
 return setLoginConfig(_that.login);case _SetMainConfig() when setMainConfig != null:
@@ -2068,7 +2073,8 @@ return setNegotiationOverride(_that.negotiation);case _SetSupportedFeatures() wh
 return setSupportedFeatures(_that.features);case _SetContactsConfig() when setContactsConfig != null:
 return setContactsConfig(_that.contacts);case _SetMessagingConfig() when setMessagingConfig != null:
 return setMessagingConfig(_that.messaging);case _SetLocalizationConfig() when setLocalizationConfig != null:
-return setLocalizationConfig(_that.localization);case _ImportJsonAppConfigEvent() when importJson != null:
+return setLocalizationConfig(_that.localization);case _SetVoicemailConfig() when setVoicemailConfig != null:
+return setVoicemailConfig(_that.voicemail);case _ImportJsonAppConfigEvent() when importJson != null:
 return importJson(_that.json);case _:
   return null;
 
@@ -3607,6 +3613,81 @@ $AppConfigLocalizationCopyWith<$Res> get localization {
   
   return $AppConfigLocalizationCopyWith<$Res>(_self.localization, (value) {
     return _then(_self.copyWith(localization: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _SetVoicemailConfig implements AppConfigEvent {
+  const _SetVoicemailConfig(this.voicemail);
+  
+
+ final  AppConfigVoicemail voicemail;
+
+/// Create a copy of AppConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetVoicemailConfigCopyWith<_SetVoicemailConfig> get copyWith => __$SetVoicemailConfigCopyWithImpl<_SetVoicemailConfig>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetVoicemailConfig&&(identical(other.voicemail, voicemail) || other.voicemail == voicemail));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,voicemail);
+
+@override
+String toString() {
+  return 'AppConfigEvent.setVoicemailConfig(voicemail: $voicemail)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SetVoicemailConfigCopyWith<$Res> implements $AppConfigEventCopyWith<$Res> {
+  factory _$SetVoicemailConfigCopyWith(_SetVoicemailConfig value, $Res Function(_SetVoicemailConfig) _then) = __$SetVoicemailConfigCopyWithImpl;
+@useResult
+$Res call({
+ AppConfigVoicemail voicemail
+});
+
+
+$AppConfigVoicemailCopyWith<$Res> get voicemail;
+
+}
+/// @nodoc
+class __$SetVoicemailConfigCopyWithImpl<$Res>
+    implements _$SetVoicemailConfigCopyWith<$Res> {
+  __$SetVoicemailConfigCopyWithImpl(this._self, this._then);
+
+  final _SetVoicemailConfig _self;
+  final $Res Function(_SetVoicemailConfig) _then;
+
+/// Create a copy of AppConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? voicemail = null,}) {
+  return _then(_SetVoicemailConfig(
+null == voicemail ? _self.voicemail : voicemail // ignore: cast_nullable_to_non_nullable
+as AppConfigVoicemail,
+  ));
+}
+
+/// Create a copy of AppConfigEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$AppConfigVoicemailCopyWith<$Res> get voicemail {
+  
+  return $AppConfigVoicemailCopyWith<$Res>(_self.voicemail, (value) {
+    return _then(_self.copyWith(voicemail: value));
   });
 }
 }

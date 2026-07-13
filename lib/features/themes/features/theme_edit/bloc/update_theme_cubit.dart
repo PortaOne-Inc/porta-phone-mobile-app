@@ -443,6 +443,7 @@ class UpdateThemCubit extends Bloc<ConfiguratorEvent, UpdateThemeState> {
       setContactsConfig: (e) => _featureAccessEditor.setContactsConfig(e.contacts),
       setMessagingConfig: (e) => _featureAccessEditor.setMessagingConfig(e.messaging),
       setLocalizationConfig: (e) => _featureAccessEditor.setLocalizationConfig(e.localization),
+      setVoicemailConfig: (e) => _featureAccessEditor.setVoicemailConfig(e.voicemail),
       importJson: (e) => _onImportFeatureAccessJson(e.json),
     );
   }

@@ -8,6 +8,7 @@ import 'package:webtrit_configurator/features/themes/features/theme_edit/theme_e
 import '../features/contacts_messaging/contacts_messaging.dart';
 import '../features/localization/localization.dart';
 import '../features/supported/supported.dart';
+import '../features/voicemail/voicemail.dart';
 
 // Make sure to import the new SupportedConfigWidget file
 // import 'path/to/supported_config_widget.dart';
@@ -35,6 +36,7 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
     Tab(text: 'Call'),
     Tab(text: 'Contacts & Messaging'),
     Tab(text: 'Localization'),
+    Tab(text: 'Voicemail'),
   ];
 
   @override
@@ -135,6 +137,12 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                 localization: appConfig.localization,
                 onChanged: (localization) {
                   context.read<UpdateThemCubit>().add(AppConfigEvent.setLocalizationConfig(localization));
+                },
+              ),
+              VoicemailConfigWidget(
+                voicemail: appConfig.voicemail,
+                onChanged: (voicemail) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setVoicemailConfig(voicemail));
                 },
               ),
             ],

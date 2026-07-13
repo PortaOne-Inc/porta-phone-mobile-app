@@ -82,6 +82,8 @@ class AppConfigEvent with _$AppConfigEvent implements ConfiguratorEvent {
 
   const factory AppConfigEvent.setLocalizationConfig(AppConfigLocalization localization) = _SetLocalizationConfig;
 
+  const factory AppConfigEvent.setVoicemailConfig(AppConfigVoicemail voicemail) = _SetVoicemailConfig;
+
   const factory AppConfigEvent.importJson(Map<String, dynamic> json) = _ImportJsonAppConfigEvent;
 }
 
