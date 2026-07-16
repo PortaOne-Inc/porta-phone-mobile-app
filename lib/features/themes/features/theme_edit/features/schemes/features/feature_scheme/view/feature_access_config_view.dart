@@ -140,9 +140,9 @@ class _ConfigureAppConfigViewState extends State<ConfigureAppConfigView> with Si
                 },
               ),
               VoicemailConfigWidget(
-                voicemail: appConfig.voicemail,
-                onChanged: (voicemail) {
-                  context.read<UpdateThemCubit>().add(AppConfigEvent.setVoicemailConfig(voicemail));
+                transcription: appConfig.transcription,
+                onChanged: (transcription) {
+                  context.read<UpdateThemCubit>().add(AppConfigEvent.setTranscriptionConfig(transcription));
                 },
               ),
             ],

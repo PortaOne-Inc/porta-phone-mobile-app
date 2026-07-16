@@ -4,15 +4,15 @@ import 'package:webtrit_configurator/core/core.dart';
 import 'package:webtrit_configurator/exports/exports.dart';
 import 'package:webtrit_configurator/widgets/widgets.dart';
 
-/// Editor for [AppConfigVoicemail.transcription] - client-side voicemail
+/// Editor for [AppConfigTranscription] - client-side voicemail
 /// transcription. Transcripts are produced by the app itself: either on the
 /// device or through an OpenAI-compatible speech-to-text endpoint, depending
 /// on the selected mode.
 class VoicemailConfigWidget extends StatefulWidget {
-  const VoicemailConfigWidget({required this.voicemail, required this.onChanged, super.key});
+  const VoicemailConfigWidget({required this.transcription, required this.onChanged, super.key});
 
-  final AppConfigVoicemail voicemail;
-  final ValueChanged<AppConfigVoicemail> onChanged;
+  final AppConfigTranscription transcription;
+  final ValueChanged<AppConfigTranscription> onChanged;
 
   @override
   State<VoicemailConfigWidget> createState() => _VoicemailConfigWidgetState();
@@ -25,9 +25,15 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
 
   static const _defaultRemoteModel = 'whisper-1';
 
+  /// The `off` sentinel: no default model, the app's transcription settings
+  /// screen starts on "Off" and the user opts in themselves. Any other value
+  /// is a Whisper ggml tier the local engine downloads on first use.
+  static const _offModel = 'off';
+
   /// Whisper ggml tiers accepted by the phone's on-device engine, with the
   /// approximate download size; `.en` variants are English-only.
   static const _localModels = <String, String>{
+    _offModel: 'Off (the user opts in from the app)',
     'tiny': 'tiny (~75 MB)',
     'base': 'base (~142 MB)',
     'small': 'small (~466 MB)',
@@ -47,7 +53,7 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
   @override
   void initState() {
     super.initState();
-    final transcription = widget.voicemail.transcription;
+    final transcription = widget.transcription;
     _languageController.text = transcription.language ?? '';
     _remoteUrlController.text = transcription.remote.url ?? '';
     _remoteApiKeyController.text = transcription.remote.apiKey ?? '';
@@ -68,7 +74,7 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
     super.dispose();
   }
 
-  AppConfigVoicemailTranscription get _transcription => widget.voicemail.transcription;
+  AppConfigTranscription get _transcription => widget.transcription;
 
   String get _mode {
     final mode = _transcription.mode.trim().toLowerCase();
@@ -80,8 +86,8 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
     return text.isEmpty ? null : text;
   }
 
-  void _update(AppConfigVoicemailTranscription transcription) {
-    widget.onChanged(widget.voicemail.copyWith(transcription: transcription));
+  void _update(AppConfigTranscription transcription) {
+    widget.onChanged(transcription);
   }
 
   void _onModeChanged(String? mode) {
@@ -95,10 +101,6 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
   void _onLocalModelChanged(String? model) {
     if (model == null) return;
     _update(_transcription.copyWith(local: _transcription.local.copyWith(model: model)));
-  }
-
-  void _onLocalUserSelectableChanged(bool userSelectable) {
-    _update(_transcription.copyWith(local: _transcription.local.copyWith(userSelectable: userSelectable)));
   }
 
   void _onRemoteChanged() {
@@ -181,31 +183,19 @@ class _VoicemailConfigWidgetState extends State<VoicemailConfigWidget> {
         BorderContainer(
           title: 'On-device model',
           description:
-              'Whisper model tier used by the local mode. Larger tiers transcribe better but cost more '
-              'download size, memory and CPU; "base" and "small" are the practical phone choices.',
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: DropdownButtonFormField<String>(
-                  initialValue: _transcription.local.model,
-                  decoration: const InputDecoration(labelText: 'Model', border: OutlineInputBorder()),
-                  items: _localModelItems,
-                  onChanged: mode == _localMode ? _onLocalModelChanged : null,
-                ),
-              ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Let users change the model'),
-                subtitle: const Text(
-                  'Adds a model picker to the voicemail screen; the tier above stays the default. '
-                  'Turn off to pin the model to the tier above.',
-                ),
-                value: _transcription.local.userSelectable,
-                onChanged: mode == _localMode ? _onLocalUserSelectableChanged : null,
-              ),
-            ],
+              'Default local-mode selection: "Off" leaves transcription turned off until the user opts in from '
+              "the app's transcription settings screen (always reachable in local mode); a Whisper tier "
+              'preloads that tier as the default instead. Larger tiers transcribe better but cost more download '
+              'size, memory and CPU - "base" and "small" are the practical phone choices. Users can always pick '
+              'a different tier (or off) themselves.',
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: DropdownButtonFormField<String>(
+              initialValue: _transcription.local.model,
+              decoration: const InputDecoration(labelText: 'Default selection', border: OutlineInputBorder()),
+              items: _localModelItems,
+              onChanged: mode == _localMode ? _onLocalModelChanged : null,
+            ),
           ),
         ),
         const SizedBox(height: 16),

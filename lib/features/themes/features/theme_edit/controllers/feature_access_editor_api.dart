@@ -61,7 +61,7 @@ abstract class FeatureAccessEditorApi {
 
   void setLocalizationConfig(AppConfigLocalization localization);
 
-  void setVoicemailConfig(AppConfigVoicemail voicemail);
+  void setTranscriptionConfig(AppConfigTranscription transcription);
 }
 
 class FeatureAccessEditor implements FeatureAccessEditorApi {
@@ -293,8 +293,8 @@ class FeatureAccessEditor implements FeatureAccessEditorApi {
   }
 
   @override
-  void setVoicemailConfig(AppConfigVoicemail voicemail) {
-    _current = current.copyWith(voicemail: voicemail);
+  void setTranscriptionConfig(AppConfigTranscription transcription) {
+    _current = current.copyWith(transcription: transcription);
     _emit();
   }
 
