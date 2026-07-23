@@ -21,9 +21,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   screenshots:
-    path: ../webtrit_phone/screenshots
+    path: ../phone/screenshots
   webtrit_phone:
-    path: ../webtrit_phone
+    path: ../phone
   domain:
     path: ./packages/domain
   # TODO(Serdun): Try to remove data dependency from presentation now it used for providing env data for http client
@@ -71,7 +71,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   webtrit_analysis:
-    git: https://github.com/WebTrit/webtrit_analysis.git
+    path: ../analysis
 
   flutter_gen_runner: ^5.12.0
   injectable_generator: ^2.9.1

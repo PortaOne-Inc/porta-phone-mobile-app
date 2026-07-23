@@ -5,4 +5,4 @@ environment:
   sdk: ^3.0.0
 dependencies:
   webtrit_appearance_theme:
-    path: ../../../webtrit_phone/packages/webtrit_appearance_theme
+    path: ../../../phone/packages/webtrit_appearance_theme

@@ -12,8 +12,8 @@ include $(TOOLS_MAKEFILE)
 
 # Variables
 DART_DEFINE_FILE = --dart-define-from-file=dart_define.json
-CONFIGURATOR = dart run ../webtrit_phone_tools/bin/webtrit_phone_tools.dart
-KEYSTORES_PATH = --keystores-path=../webtrit_phone_keystores/applications
+CONFIGURATOR = dart run ../phone_tools/bin/webtrit_phone_tools.dart
+KEYSTORES_PATH = --keystores-path=../keystores/applications
 
 # ===========================
 #  Paths to Configuration Files

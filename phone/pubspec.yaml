@@ -140,7 +140,7 @@ dependencies:
     # develop tracks the local working copy of callkeep for co-development.
     # On release branches this is pinned to a callkeep tag (see docs/release_versioning.md).
     # Never back-merge a git ref onto develop - keep this a path here (enforced by callkeep-path-guard).
-    path: ../webtrit_callkeep/webtrit_callkeep
+    path: ../callkeep/webtrit_callkeep
   webtrit_phone_number:
     path: ./packages/webtrit_phone_number
   webtrit_signaling:
@@ -441,15 +441,15 @@ melos:
         [ -f .env ] || { echo "ERROR: .env not found. Copy .env.example to .env and fill in your credentials." >&2; exit 1; }
         APP_ID=$(grep -E '^(export[[:space:]]+)?APP_ID=' .env | cut -d '=' -f2-)
         CONFIGURATOR_TOKEN=$(grep -E '^(export[[:space:]]+)?CONFIGURATOR_TOKEN=' .env | cut -d '=' -f2-)
-        KEYSTORE_APP_PATH="../webtrit_phone_keystores/applications/${APP_ID:?APP_ID not found in .env}"
-        dart run ../webtrit_phone_tools/bin/webtrit_phone_tools.dart \
+        KEYSTORE_APP_PATH="../keystores/applications/${APP_ID:?APP_ID not found in .env}"
+        dart run ../phone_tools/bin/webtrit_phone_tools.dart \
           configurator-resources \
           --applicationId="$APP_ID" \
-          --keystores-path=../webtrit_phone_keystores/applications \
+          --keystores-path=../keystores/applications \
           --token="${CONFIGURATOR_TOKEN:?CONFIGURATOR_TOKEN not found in .env}"
-        dart run ../webtrit_phone_tools/bin/webtrit_phone_tools.dart \
+        dart run ../phone_tools/bin/webtrit_phone_tools.dart \
           configurator-generate
-        dart run ../webtrit_phone_tools/bin/webtrit_phone_tools.dart \
+        dart run ../phone_tools/bin/webtrit_phone_tools.dart \
           configurator-setup \
           --platform ios \
           --platform android \

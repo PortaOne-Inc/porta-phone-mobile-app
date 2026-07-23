@@ -18,7 +18,7 @@ dependencies:
 
 dev_dependencies:
   webtrit_analysis:
-    git: https://github.com/WebTrit/webtrit_analysis.git
+    path: ../../../analysis
 
   material_color_utilities: ^0.13.0
   flutter_gen_runner: ^5.12.0
